@@ -274,6 +274,25 @@ public open class TabBar : Control() {
   }
 
   /**
+   * Selects the first available tab with lower index than the currently selected. Returns `true` if tab selection changed.
+   */
+  public fun selectPreviousAvailable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SELECT_PREVIOUS_AVAILABLE,
+        BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Selects the first available tab with greater index than the currently selected. Returns `true` if tab selection changed.
+   */
+  public fun selectNextAvailable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SELECT_NEXT_AVAILABLE, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
    * Sets a [title] for the tab at index [tabIdx].
    */
   public fun setTabTitle(tabIdx: Int, title: String): Unit {

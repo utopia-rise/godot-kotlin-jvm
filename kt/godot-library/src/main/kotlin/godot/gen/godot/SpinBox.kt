@@ -118,7 +118,7 @@ public open class SpinBox : Range() {
     }
 
   /**
-   * Adds the specified `prefix` string before the numerical value of the [godot.SpinBox].
+   * Adds the specified prefix string before the numerical value of the [godot.SpinBox].
    */
   public var prefix: String
     get() {
@@ -132,7 +132,7 @@ public open class SpinBox : Range() {
     }
 
   /**
-   * Adds the specified `suffix` string after the numerical value of the [godot.SpinBox].
+   * Adds the specified suffix string after the numerical value of the [godot.SpinBox].
    */
   public var suffix: String
     get() {
@@ -146,7 +146,7 @@ public open class SpinBox : Range() {
     }
 
   /**
-   * If not `0`, `value` will always be rounded to a multiple of `custom_arrow_step` when interacting with the arrow buttons of the [godot.SpinBox].
+   * If not `0`, [godot.Range.value] will always be rounded to a multiple of [customArrowStep] when interacting with the arrow buttons of the [godot.SpinBox].
    */
   public var customArrowStep: Double
     get() {

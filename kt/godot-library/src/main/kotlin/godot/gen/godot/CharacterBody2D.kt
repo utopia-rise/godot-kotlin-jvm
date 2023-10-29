@@ -55,7 +55,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   /**
-   * Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling) when calling [moveAndSlide]. Defaults to `Vector2.UP`. As the vector will be normalized it can't be equal to [godot.Vector2.ZERO], if you want all collisions to be reported as walls, consider using [MOTION_MODE_FLOATING] as [motionMode].
+   * Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling) when calling [moveAndSlide]. Defaults to [godot.Vector2.UP]. As the vector will be normalized it can't be equal to [godot.Vector2.ZERO], if you want all collisions to be reported as walls, consider using [MOTION_MODE_FLOATING] as [motionMode].
    */
   @CoreTypeLocalCopy
   public var upDirection: Vector2
@@ -297,7 +297,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling) when calling [moveAndSlide]. Defaults to `Vector2.UP`. As the vector will be normalized it can't be equal to [godot.Vector2.ZERO], if you want all collisions to be reported as walls, consider using [MOTION_MODE_FLOATING] as [motionMode].
+   * Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling) when calling [moveAndSlide]. Defaults to [godot.Vector2.UP]. As the vector will be normalized it can't be equal to [godot.Vector2.ZERO], if you want all collisions to be reported as walls, consider using [MOTION_MODE_FLOATING] as [motionMode].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -479,7 +479,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Returns the floor's collision angle at the last collision point according to [upDirection], which is `Vector2.UP` by default. This value is always positive and only valid after calling [moveAndSlide] and when [isOnFloor] returns `true`.
+   * Returns the floor's collision angle at the last collision point according to [upDirection], which is [godot.Vector2.UP] by default. This value is always positive and only valid after calling [moveAndSlide] and when [isOnFloor] returns `true`.
    */
   @JvmOverloads
   public fun getFloorAngle(upDirection: Vector2 = Vector2(0, -1)): Float {

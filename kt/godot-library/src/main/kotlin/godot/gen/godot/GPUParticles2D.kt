@@ -25,6 +25,8 @@ import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.signals.Signal0
+import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -34,7 +36,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * 2D particle emitter.
+ * A 2D particle emitter.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/515](https://godotengine.org/asset-library/asset/515)
@@ -43,12 +45,19 @@ import kotlin.Unit
  *
  * Use the [processMaterial] property to add a [godot.ParticleProcessMaterial] to configure particle appearance and behavior. Alternatively, you can add a [godot.ShaderMaterial] which will be applied to all particles.
  *
- * 2D particles can optionally collide with [godot.LightOccluder2D] nodes (note: they don't collide with [godot.PhysicsBody2D] nodes).
+ * 2D particles can optionally collide with [godot.LightOccluder2D], but they don't collide with [godot.PhysicsBody2D] nodes.
  */
 @GodotBaseType
 public open class GPUParticles2D : Node2D() {
   /**
-   * If `true`, particles are being emitted.
+   * Emitted when all active particles have finished processing. When [oneShot] is disabled, particles will process continuously, so this is never emitted.
+   *
+   * **Note:** Due to the particles being computed on the GPU there might be a delay before the signal gets emitted.
+   */
+  public val finished: Signal0 by signal()
+
+  /**
+   * If `true`, particles are being emitted. [emitting] can be used to start and stop particles from emitting. However, if [oneShot] is `true` setting [emitting] to `true` will not restart the emission cycle until after all active particles finish processing. You can use the [finished] signal to be notified once all active particles finish processing.
    */
   public var emitting: Boolean
     get() {
@@ -73,6 +82,24 @@ public open class GPUParticles2D : Node2D() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_AMOUNT, NIL)
+    }
+
+  /**
+   * The ratio of particles that should actually be emitted. If set to a value lower than `1.0`, this will set the amount of emitted particles throughout the lifetime to `amount * amount_ratio`. Unlike changing [amount], changing [amountRatio] while emitting does not affect already-emitted particles and doesn't cause the particle system to restart. [amountRatio] can be used to create effects that make the number of emitted particles vary over time.
+   *
+   * **Note:** Reducing the [amountRatio] has no performance benefit, since resources need to be allocated and processed for the total [amount] of particles regardless of the [amountRatio].
+   */
+  public var amountRatio: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_AMOUNT_RATIO,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_AMOUNT_RATIO,
+          NIL)
     }
 
   /**
@@ -263,6 +290,24 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
+   * Causes all the particles in this node to interpolate towards the end of their lifetime.
+   *
+   * **Note**: This only works when used with a [godot.ParticleProcessMaterial]. It needs to be manually implemented for custom process shaders.
+   */
+  public var interpToEnd: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_INTERP_TO_END,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_INTERP_TO_END,
+          NIL)
+    }
+
+  /**
    * Multiplier for particle's collision radius. `1.0` corresponds to the size of the sprite.
    */
   public var collisionBaseSize: Float
@@ -428,6 +473,8 @@ public open class GPUParticles2D : Node2D() {
 
   /**
    * Returns a rectangle containing the positions of all existing particles.
+   *
+   * **Note:** When using threaded rendering this method synchronizes the rendering thread. Calling it often may have a negative impact on performance.
    */
   public fun captureRect(): Rect2 {
     TransferContext.writeArguments()
@@ -455,6 +502,15 @@ public open class GPUParticles2D : Node2D() {
   ): Unit {
     TransferContext.writeArguments(TRANSFORM2D to xform, VECTOR2 to velocity, COLOR to color, COLOR to custom, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_EMIT_PARTICLE, NIL)
+  }
+
+  /**
+   * Sets this node's properties to match a given [godot.CPUParticles2D] node.
+   */
+  public fun convertFromParticles(particles: Node): Unit {
+    TransferContext.writeArguments(OBJECT to particles)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_CONVERT_FROM_PARTICLES, NIL)
   }
 
   public enum class DrawOrder(

@@ -27,6 +27,9 @@ import kotlin.Unit
 /**
  * Texture with optional normal and specular maps for use in 2D rendering.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/2d/2d_lights_and_shadows.html]($DOCS_URL/tutorials/2d/2d_lights_and_shadows.html)
+ *
  * [godot.CanvasTexture] is an alternative to [godot.ImageTexture] for 2D rendering. It allows using normal maps and specular maps in any node that inherits from [godot.CanvasItem]. [godot.CanvasTexture] also allows overriding the texture's filter and repeat mode independently of the node's properties (or the project settings).
  *
  * **Note:** [godot.CanvasTexture] cannot be used in 3D rendering. For physically-based materials in 3D, use [godot.BaseMaterial3D] instead.

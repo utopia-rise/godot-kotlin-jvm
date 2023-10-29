@@ -750,6 +750,15 @@ public open class ItemList : Control() {
     return (TransferContext.readReturnValue(OBJECT, true) as VScrollBar?)
   }
 
+  /**
+   * Forces an update to the list size based on its items. This happens automatically whenever size of the items, or other relevant settings like [autoHeight], change. The method can be used to trigger the update ahead of next drawing pass.
+   */
+  public fun forceUpdateListSize(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_FORCE_UPDATE_LIST_SIZE,
+        NIL)
+  }
+
   public enum class IconMode(
     id: Long,
   ) {

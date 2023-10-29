@@ -28,12 +28,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Default 3D rendering material.
+ * Abstract base class for defining the 3D rendering properties of meshes.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/3d/standard_material_3d.html]($DOCS_URL/tutorials/3d/standard_material_3d.html)
  *
- * This provides a default material with a wide variety of rendering features and properties without the need to write shader code. See the tutorial below for details.
+ * This class serves as a default material with a wide variety of rendering features and properties without the need to write shader code. See the tutorial below for details.
  */
 @GodotBaseType
 public open class BaseMaterial3D internal constructor() : Material() {
@@ -243,6 +243,20 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 14L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+    }
+
+  /**
+   * If `true`, the object will not be affected by fog (neither volumetric nor depth fog). This is useful for unshaded or transparent materials (e.g. particles), which without this setting will be affected even if fully transparent.
+   */
+  public var disableFog: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 21L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 21L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
     }
 
@@ -1799,7 +1813,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The width of the shape outine.
+   * The width of the shape outline.
    */
   public var msdfOutlineSize: Float
     get() {
@@ -1833,7 +1847,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Distance at which the object starts to become visible. If the object is less than this distance away, it will be invisible.
    *
-   * **Note:** If `distance_fade_min_distance` is greater than `distance_fade_max_distance`, the behavior will be reversed. The object will start to fade away at `distance_fade_max_distance` and will fully disappear once it reaches `distance_fade_min_distance`.
+   * **Note:** If [distanceFadeMinDistance] is greater than [distanceFadeMaxDistance], the behavior will be reversed. The object will start to fade away at [distanceFadeMaxDistance] and will fully disappear once it reaches [distanceFadeMinDistance].
    */
   public var distanceFadeMinDistance: Float
     get() {
@@ -1851,7 +1865,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Distance at which the object appears fully opaque.
    *
-   * **Note:** If `distance_fade_max_distance` is less than `distance_fade_min_distance`, the behavior will be reversed. The object will start to fade away at `distance_fade_max_distance` and will fully disappear once it reaches `distance_fade_min_distance`.
+   * **Note:** If [distanceFadeMaxDistance] is less than [distanceFadeMinDistance], the behavior will be reversed. The object will start to fade away at [distanceFadeMaxDistance] and will fully disappear once it reaches [distanceFadeMinDistance].
    */
   public var distanceFadeMaxDistance: Float
     get() {
@@ -2564,9 +2578,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     FLAG_ALBEDO_TEXTURE_MSDF(20),
     /**
+     * Disables receiving depth-based or volumetric fog.
+     */
+    FLAG_DISABLE_FOG(21),
+    /**
      * Represents the size of the [enum Flags] enum.
      */
-    FLAG_MAX(21),
+    FLAG_MAX(22),
     ;
 
     public val id: Long

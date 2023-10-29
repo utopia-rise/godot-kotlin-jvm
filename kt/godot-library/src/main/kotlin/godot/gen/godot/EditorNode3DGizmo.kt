@@ -35,9 +35,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Gizmo for editing Node3D objects.
+ * Gizmo for editing [godot.Node3D] objects.
  *
- * Gizmo that is used for providing custom visualization and editing (handles and subgizmos) for Node3D objects. Can be overridden to create custom gizmos, but for simple gizmos creating a [godot.EditorNode3DGizmoPlugin] is usually recommended.
+ * Gizmo that is used for providing custom visualization and editing (handles and subgizmos) for [godot.Node3D] objects. Can be overridden to create custom gizmos, but for simple gizmos creating a [godot.EditorNode3DGizmoPlugin] is usually recommended.
  */
 @GodotBaseType
 public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
@@ -115,7 +115,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   }
 
   /**
-   * Override this method to allow selecting subgizmos using mouse drag box selection. Given a [camera] and a [frustum], this method should return which subgizmos are contained within the frustum. The [frustum] argument consists of an `Array` with all the `Plane`s that make up the selection frustum. The returned value should contain a list of unique subgizmo identifiers, which can have any non-negative value and will be used in other virtual methods like [_getSubgizmoTransform] or [_commitSubgizmos].
+   * Override this method to allow selecting subgizmos using mouse drag box selection. Given a [camera] and a [frustum], this method should return which subgizmos are contained within the frustum. The [frustum] argument consists of an array with all the [godot.core.Plane]s that make up the selection frustum. The returned value should contain a list of unique subgizmo identifiers, which can have any non-negative value and will be used in other virtual methods like [_getSubgizmoTransform] or [_commitSubgizmos].
    */
   public open fun _subgizmosIntersectFrustum(camera: Camera3D, frustum: VariantArray<Plane>):
       PackedInt32Array {
@@ -123,7 +123,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   }
 
   /**
-   * Override this method to update the node properties during subgizmo editing (see [_subgizmosIntersectRay] and [_subgizmosIntersectFrustum]). The [transform] is given in the Node3D's local coordinate system.
+   * Override this method to update the node properties during subgizmo editing (see [_subgizmosIntersectRay] and [_subgizmosIntersectFrustum]). The [transform] is given in the [godot.Node3D]'s local coordinate system.
    */
   public open fun _setSubgizmoTransform(id: Int, transform: Transform3D): Unit {
   }
@@ -208,7 +208,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   }
 
   /**
-   * Adds a list of handles (points) which can be used to edit the properties of the gizmo's Node3D. The [ids] argument can be used to specify a custom identifier for each handle, if an empty `Array` is passed, the ids will be assigned automatically from the [handles] argument order.
+   * Adds a list of handles (points) which can be used to edit the properties of the gizmo's [godot.Node3D]. The [ids] argument can be used to specify a custom identifier for each handle, if an empty array is passed, the ids will be assigned automatically from the [handles] argument order.
    *
    * The [secondary] argument marks the added handles as secondary, meaning they will normally have lower selection priority than regular handles. When the user is holding the shift key secondary handles will switch to have higher priority than regular handles. This change in priority can be used to place multiple handles at the same point while still giving the user control on their selection.
    *

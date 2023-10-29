@@ -20,12 +20,16 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A material that uses a custom [godot.Shader] program.
+ * A material defined by a custom [godot.Shader] program and the values of its shader parameters.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/shaders/index.html]($DOCS_URL/tutorials/shaders/index.html)
  *
- * A material that uses a custom [godot.Shader] program to render either items to screen or process particles. You can create multiple materials for the same shader but configure different values for the uniforms defined in the shader.
+ * A material that uses a custom [godot.Shader] program to render visual items (canvas items, meshes, skies, fog), or to process particles. Compared to other materials, [godot.ShaderMaterial] gives deeper control over the generated shader code. For more information, see the shaders documentation index below.
+ *
+ * Multiple [godot.ShaderMaterial]s can use the same shader and configure different values for the shader uniforms.
+ *
+ * **Note:** For performance reasons, the [godot.Resource.changed] signal is only emitted when the [godot.Resource.resourceName] changes. Only in editor, it is also emitted for [shader] changes.
  */
 @GodotBaseType
 public open class ShaderMaterial : Material() {

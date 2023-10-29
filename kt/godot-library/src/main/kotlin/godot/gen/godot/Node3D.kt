@@ -43,7 +43,7 @@ import kotlin.jvm.JvmOverloads
  * Tutorials:
  * [https://github.com/godotengine/godot-demo-projects/tree/master/3d](https://github.com/godotengine/godot-demo-projects/tree/master/3d)
  *
- * Most basic 3D game object, with a [godot.Transform3D] and visibility settings. All other 3D game objects inherit from Node3D. Use [godot.Node3D] as a parent node to move, scale, rotate and show/hide children in a 3D project.
+ * Most basic 3D game object, with a [godot.Transform3D] and visibility settings. All other 3D game objects inherit from [godot.Node3D]. Use [godot.Node3D] as a parent node to move, scale, rotate and show/hide children in a 3D project.
  *
  * Affine operations (rotate, scale, translate) happen in parent's local coordinate system, unless the [godot.Node3D] object is set as top-level. Affine operations in this coordinate system correspond to direct affine operations on the [godot.Node3D]'s transform. The word local below refers to this coordinate system. The coordinate system that is attached to the [godot.Node3D] object itself is referred to as object-local coordinate system.
  *
@@ -105,7 +105,7 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Rotation part of the local transformation in radians, specified in terms of Euler angles. The angles construct a rotaton in the order specified by the [rotationOrder] property.
+   * Rotation part of the local transformation in radians, specified in terms of Euler angles. The angles construct a rotation in the order specified by the [rotationOrder] property.
    *
    * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [godot.core.Vector3] data structure not because the rotation is a vector, but only because [godot.core.Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
    *
@@ -155,7 +155,7 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Direct access to the 3x3 basis of the [godot.Transform3D] property.
+   * Direct access to the 3x3 basis of the [transform] property.
    */
   @CoreTypeLocalCopy
   public var basis: Basis
@@ -246,6 +246,21 @@ public open class Node3D : Node() {
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_GLOBAL_POSITION, NIL)
+    }
+
+  /**
+   * Global basis of this node. This is equivalent to `global_transform.basis`.
+   */
+  @CoreTypeLocalCopy
+  public var globalBasis: Basis
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_GLOBAL_BASIS, BASIS)
+      return (TransferContext.readReturnValue(BASIS, false) as Basis)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BASIS to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_GLOBAL_BASIS, NIL)
     }
 
   /**
@@ -391,7 +406,7 @@ public open class Node3D : Node() {
 
 
   /**
-   * Rotation part of the local transformation in radians, specified in terms of Euler angles. The angles construct a rotaton in the order specified by the [rotationOrder] property.
+   * Rotation part of the local transformation in radians, specified in terms of Euler angles. The angles construct a rotation in the order specified by the [rotationOrder] property.
    *
    * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [godot.core.Vector3] data structure not because the rotation is a vector, but only because [godot.core.Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
    *
@@ -467,7 +482,7 @@ public open class Node3D : Node() {
 
 
   /**
-   * Direct access to the 3x3 basis of the [godot.Transform3D] property.
+   * Direct access to the 3x3 basis of the [transform] property.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -539,6 +554,30 @@ public open class Node3D : Node() {
   public open fun globalPositionMutate(block: Vector3.() -> Unit): Vector3 = globalPosition.apply{
       block(this)
       globalPosition = this
+  }
+
+
+  /**
+   * Global basis of this node. This is equivalent to `global_transform.basis`.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = node3d.globalBasis
+   * //Your changes
+   * node3d.globalBasis = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun globalBasisMutate(block: Basis.() -> Unit): Basis = globalBasis.apply{
+      block(this)
+      globalBasis = this
   }
 
 
@@ -646,7 +685,7 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Updates all the [godot.Node3DGizmo]s attached to this node.
+   * Updates all the [godot.Node3D] gizmos attached to this node.
    */
   public fun updateGizmos(): Unit {
     TransferContext.writeArguments()
@@ -654,7 +693,9 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Attach a gizmo to this `Node3D`.
+   * Attach an editor gizmo to this [godot.Node3D].
+   *
+   * **Note:** The gizmo object would typically be an instance of [godot.EditorNode3DGizmo], but the argument type is kept generic to avoid creating a dependency on editor classes in [godot.Node3D].
    */
   public fun addGizmo(gizmo: Node3DGizmo): Unit {
     TransferContext.writeArguments(OBJECT to gizmo)
@@ -662,7 +703,7 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Returns all the gizmos attached to this `Node3D`.
+   * Returns all the gizmos attached to this [godot.Node3D].
    */
   public fun getGizmos(): VariantArray<Node3DGizmo> {
     TransferContext.writeArguments()
@@ -671,7 +712,7 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Clear all gizmos attached to this `Node3D`.
+   * Clear all gizmos attached to this [godot.Node3D].
    */
   public fun clearGizmos(): Unit {
     TransferContext.writeArguments()
@@ -680,6 +721,8 @@ public open class Node3D : Node() {
 
   /**
    * Set subgizmo selection for this node in the editor.
+   *
+   * **Note:** The gizmo object would typically be an instance of [godot.EditorNode3DGizmo], but the argument type is kept generic to avoid creating a dependency on editor classes in [godot.Node3D].
    */
   public fun setSubgizmoSelection(
     gizmo: Node3DGizmo,
@@ -949,29 +992,29 @@ public open class Node3D : Node() {
 
   public companion object {
     /**
-     * Node3D nodes receives this notification when their global transform changes. This means that either the current or a parent node changed its transform.
+     * [godot.Node3D] nodes receive this notification when their global transform changes. This means that either the current or a parent node changed its transform.
      *
      * In order for [NOTIFICATION_TRANSFORM_CHANGED] to work, users first need to ask for it, with [setNotifyTransform]. The notification is also sent if the node is in the editor context and it has at least one valid gizmo.
      */
     public final const val NOTIFICATION_TRANSFORM_CHANGED: Long = 2000
 
     /**
-     * Node3D nodes receives this notification when they are registered to new [godot.World3D] resource.
+     * [godot.Node3D] nodes receive this notification when they are registered to new [godot.World3D] resource.
      */
     public final const val NOTIFICATION_ENTER_WORLD: Long = 41
 
     /**
-     * Node3D nodes receives this notification when they are unregistered from current [godot.World3D] resource.
+     * [godot.Node3D] nodes receive this notification when they are unregistered from current [godot.World3D] resource.
      */
     public final const val NOTIFICATION_EXIT_WORLD: Long = 42
 
     /**
-     * Node3D nodes receives this notification when their visibility changes.
+     * [godot.Node3D] nodes receive this notification when their visibility changes.
      */
     public final const val NOTIFICATION_VISIBILITY_CHANGED: Long = 43
 
     /**
-     * Node3D nodes receives this notification when their local transform changes. This is not received when the transform of a parent node is changed.
+     * [godot.Node3D] nodes receive this notification when their local transform changes. This is not received when the transform of a parent node is changed.
      *
      * In order for [NOTIFICATION_LOCAL_TRANSFORM_CHANGED] to work, users first need to ask for it, with [setNotifyLocalTransform].
      */

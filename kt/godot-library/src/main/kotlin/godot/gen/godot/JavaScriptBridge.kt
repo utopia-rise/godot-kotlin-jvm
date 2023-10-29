@@ -53,7 +53,7 @@ public object JavaScriptBridge : Object() {
   }
 
   /**
-   * Execute the string [code] as JavaScript code within the browser window. This is a call to the actual global JavaScript function `eval()`.
+   * Execute the string [code] as JavaScript code within the browser window. This is a call to the actual global JavaScript function [code skip-lint]eval()`.
    *
    * If [useGlobalExecutionContext] is `true`, the code will be evaluated in the global execution context. Otherwise, it is evaluated in the execution context of a function within the engine's runtime environment.
    */

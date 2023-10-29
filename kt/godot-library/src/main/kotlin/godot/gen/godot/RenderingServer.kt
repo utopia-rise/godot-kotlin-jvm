@@ -402,12 +402,34 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Returns the [enum Image.Format] for the texture.
+   */
+  public fun textureGetFormat(texture: RID): Image.Format {
+    TransferContext.writeArguments(_RID to texture)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_TEXTURE_GET_FORMAT,
+        LONG)
+    return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
    *
    */
   public fun textureSetForceRedrawIfVisible(texture: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to texture, BOOL to enable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_TEXTURE_SET_FORCE_REDRAW_IF_VISIBLE, NIL)
+  }
+
+  /**
+   * Creates a new texture object based on a texture created directly on the [godot.RenderingDevice]. If the texture contains layers, [layerType] is used to define the layer type.
+   */
+  @JvmOverloads
+  public fun textureRdCreate(rdTexture: RID, layerType: TextureLayeredType =
+      RenderingServer.TextureLayeredType.TEXTURE_LAYERED_2D_ARRAY): RID {
+    TransferContext.writeArguments(_RID to rdTexture, LONG to layerType.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_TEXTURE_RD_CREATE,
+        _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
@@ -621,7 +643,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Returns the offset of a given attribute by [arrayIndex] in the start of its respective buffer.
    */
   public fun meshSurfaceGetFormatOffset(
     format: ArrayFormat,
@@ -635,7 +657,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Returns the stride of the vertex positions for a mesh with given [format]. Note importantly that vertex positions are stored consecutively and are not interleaved with the other attributes in the vertex buffer (normals and tangents).
    */
   public fun meshSurfaceGetFormatVertexStride(format: ArrayFormat, vertexCount: Int): Long {
     TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
@@ -645,7 +667,18 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Returns the stride of the combined normals and tangents for a mesh with given [format]. Note importantly that, while normals and tangents are in the vertex buffer with vertices, they are only interleaved with each other and so have a different stride than vertex positions.
+   */
+  public fun meshSurfaceGetFormatNormalTangentStride(format: ArrayFormat, vertexCount: Int): Long {
+    TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SURFACE_GET_FORMAT_NORMAL_TANGENT_STRIDE,
+        LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  /**
+   * Returns the stride of the attribute buffer for a mesh with given [format].
    */
   public fun meshSurfaceGetFormatAttributeStride(format: ArrayFormat, vertexCount: Int): Long {
     TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
@@ -655,7 +688,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   *
+   * Returns the stride of the skin buffer for a mesh with given [format].
    */
   public fun meshSurfaceGetFormatSkinStride(format: ArrayFormat, vertexCount: Int): Long {
     TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
@@ -683,7 +716,7 @@ public object RenderingServer : Object() {
     arrays: VariantArray<Any?>,
     blendShapes: VariantArray<Any?> = godot.core.variantArrayOf(),
     lods: Dictionary<Any?, Any?> = Dictionary(),
-    compressFormat: ArrayFormat = RenderingServer.ArrayFormatValue(0),
+    compressFormat: ArrayFormat = RenderingServer.ArrayFormat.ARRAY_FLAG_FORMAT_VERSION_1,
   ): Unit {
     TransferContext.writeArguments(_RID to mesh, LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, LONG to compressFormat.flag)
     TransferContext.callMethod(rawPtr,
@@ -2005,6 +2038,15 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Sets the amount ratio for particles to be emitted. Equivalent to [godot.GPUParticles3D.amountRatio].
+   */
+  public fun particlesSetAmountRatio(particles: RID, ratio: Float): Unit {
+    TransferContext.writeArguments(_RID to particles, DOUBLE to ratio.toDouble())
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_PARTICLES_SET_AMOUNT_RATIO, NIL)
+  }
+
+  /**
    * Sets the lifetime of each particle in the system. Equivalent to [godot.GPUParticles3D.lifetime].
    */
   public fun particlesSetLifetime(particles: RID, lifetime: Double): Unit {
@@ -2047,6 +2089,24 @@ public object RenderingServer : Object() {
     TransferContext.writeArguments(_RID to particles, DOUBLE to ratio.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_PARTICLES_SET_RANDOMNESS_RATIO, NIL)
+  }
+
+  /**
+   * Sets the value that informs a [godot.ParticleProcessMaterial] to rush all particles towards the end of their lifetime.
+   */
+  public fun particlesSetInterpToEnd(particles: RID, factor: Float): Unit {
+    TransferContext.writeArguments(_RID to particles, DOUBLE to factor.toDouble())
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_PARTICLES_SET_INTERP_TO_END, NIL)
+  }
+
+  /**
+   * Sets the velocity of a particle node, that will be used by [godot.ParticleProcessMaterial.inheritVelocityRatio].
+   */
+  public fun particlesSetEmitterVelocity(particles: RID, velocity: Vector3): Unit {
+    TransferContext.writeArguments(_RID to particles, VECTOR3 to velocity)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_PARTICLES_SET_EMITTER_VELOCITY, NIL)
   }
 
   /**
@@ -2967,6 +3027,17 @@ public object RenderingServer : Object() {
     TransferContext.writeArguments(_RID to viewport, LONG to msaa.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_MSAA_2D, NIL)
+  }
+
+  /**
+   * If `true`, 2D rendering will use a high dynamic range (HDR) format framebuffer matching the bit depth of the 3D framebuffer. When using the Forward+ renderer this will be a `RGBA16` framebuffer, while when using the Mobile renderer it will be a `RGB10_A2` framebuffer. Additionally, 2D rendering will take place in linear color space and will be converted to sRGB space immediately before blitting to the screen (if the Viewport is attached to the screen). Practically speaking, this means that the end result of the Viewport will not be clamped into the `0-1` range and can be used in 3D rendering without color space adjustments. This allows 2D rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as substantially improves the appearance of effects requiring highly detailed gradients. This setting has the same effect as [godot.Viewport.useHdr2d].
+   *
+   * **Note:** This setting will have no effect when using the GL Compatibility renderer as the GL Compatibility renderer always renders in low dynamic range for performance reasons.
+   */
+  public fun viewportSetUseHdr2d(viewport: RID, enabled: Boolean): Unit {
+    TransferContext.writeArguments(_RID to viewport, BOOL to enabled)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_USE_HDR_2D, NIL)
   }
 
   /**
@@ -5108,7 +5179,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Tries to free an object in the RenderingServer. To avoid memory leaks, this should be called after using an object as memory management does not occur automatically when using RendeeringServer directly.
+   * Tries to free an object in the RenderingServer. To avoid memory leaks, this should be called after using an object as memory management does not occur automatically when using RenderingServer directly.
    */
   public fun freeRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
@@ -5387,6 +5458,15 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CREATE_LOCAL_RENDERING_DEVICE, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as RenderingDevice?)
+  }
+
+  /**
+   * As the RenderingServer actual logic may run on an separate thread, accessing its internals from the main (or any other) thread will result in errors. To make it easier to run code that can safely access the rendering internals (such as [godot.RenderingDevice] and similar RD classes), push a callable via this function so it will be executed on the render thread.
+   */
+  public fun callOnRenderThread(callable: Callable): Unit {
+    TransferContext.writeArguments(CALLABLE to callable)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CALL_ON_RENDER_THREAD, NIL)
   }
 
   public enum class TextureLayeredType(
@@ -5720,6 +5800,20 @@ public object RenderingServer : Object() {
       public val ARRAY_FLAG_USE_8_BONE_WEIGHTS: ArrayFormat = ArrayFormatValue(134217728)
 
       public val ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY: ArrayFormat = ArrayFormatValue(268435456)
+
+      public val ARRAY_FLAG_COMPRESS_ATTRIBUTES: ArrayFormat = ArrayFormatValue(536870912)
+
+      public val ARRAY_FLAG_FORMAT_VERSION_BASE: ArrayFormat = ArrayFormatValue(35)
+
+      public val ARRAY_FLAG_FORMAT_VERSION_SHIFT: ArrayFormat = ArrayFormatValue(35)
+
+      public val ARRAY_FLAG_FORMAT_VERSION_1: ArrayFormat = ArrayFormatValue(0)
+
+      public val ARRAY_FLAG_FORMAT_VERSION_2: ArrayFormat = ArrayFormatValue(34359738368)
+
+      public val ARRAY_FLAG_FORMAT_CURRENT_VERSION: ArrayFormat = ArrayFormatValue(34359738368)
+
+      public val ARRAY_FLAG_FORMAT_VERSION_MASK: ArrayFormat = ArrayFormatValue(255)
     }
   }
 
@@ -6500,9 +6594,13 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_SCALING_3D_MODE_FSR(1),
     /**
+     * Use AMD FidelityFX Super Resolution 2.2 upscaling for the viewport's 3D buffer. The amount of scaling can be set using [godot.Viewport.scaling3dScale]. Values less than `1.0` will be result in the viewport being upscaled using FSR2. Values greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of `1.0` will use FSR2 at native resolution as a TAA solution.
+     */
+    VIEWPORT_SCALING_3D_MODE_FSR2(2),
+    /**
      * Represents the size of the [enum ViewportScaling3DMode] enum.
      */
-    VIEWPORT_SCALING_3D_MODE_MAX(2),
+    VIEWPORT_SCALING_3D_MODE_MAX(3),
     ;
 
     public val id: Long
@@ -6868,6 +6966,10 @@ public object RenderingServer : Object() {
     VIEWPORT_DEBUG_DRAW_SHADOW_ATLAS(9),
     /**
      * Draws the shadow atlas that stores shadows from [godot.DirectionalLight3D]s in the upper left quadrant of the [godot.Viewport].
+     *
+     * The slice of the camera frustum related to the shadow map cascade is superimposed to visualize coverage. The color of each slice matches the colors used for [VIEWPORT_DEBUG_DRAW_PSSM_SPLITS]. When shadow cascades are blended the overlap is taken into account when drawing the frustum slices.
+     *
+     * The last cascade shows all frustum slices to illustrate the coverage of all slices.
      */
     VIEWPORT_DEBUG_DRAW_DIRECTIONAL_SHADOW_ATLAS(10),
     /**
@@ -6930,6 +7032,10 @@ public object RenderingServer : Object() {
      * Draws the motion vectors buffer. This is used by temporal antialiasing to correct for motion that occurs during gameplay.
      */
     VIEWPORT_DEBUG_DRAW_MOTION_VECTORS(25),
+    /**
+     * Internal buffer is drawn instead of regular scene so you can see the per-pixel output that will be used by post-processing effects.
+     */
+    VIEWPORT_DEBUG_DRAW_INTERNAL_BUFFER(26),
     ;
 
     public val id: Long

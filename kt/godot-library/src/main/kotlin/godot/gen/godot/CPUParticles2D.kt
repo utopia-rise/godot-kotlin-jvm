@@ -23,6 +23,8 @@ import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.signals.Signal0
+import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -32,7 +34,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * CPU-based 2D particle emitter.
+ * A CPU-based 2D particle emitter.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/2d/particle_systems_2d.html]($DOCS_URL/tutorials/2d/particle_systems_2d.html)
@@ -44,7 +46,12 @@ import kotlin.Unit
 @GodotBaseType
 public open class CPUParticles2D : Node2D() {
   /**
-   * If `true`, particles are being emitted.
+   * Emitted when all active particles have finished processing. When [oneShot] is disabled, particles will process continuously, so this is never emitted.
+   */
+  public val finished: Signal0 by signal()
+
+  /**
+   * If `true`, particles are being emitted. [emitting] can be used to start and stop particles from emitting. However, if [oneShot] is `true` setting [emitting] to `true` will not restart the emission cycle until after all active particles finish processing. You can use the [finished] signal to be notified once all active particles finish processing.
    */
   public var emitting: Boolean
     get() {

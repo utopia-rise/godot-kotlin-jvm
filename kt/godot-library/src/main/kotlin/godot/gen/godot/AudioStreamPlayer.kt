@@ -118,7 +118,7 @@ public open class AudioStreamPlayer : Node() {
     }
 
   /**
-   * If `true`, the playback is paused. You can resume it by setting `stream_paused` to `false`.
+   * If `true`, the playback is paused. You can resume it by setting [streamPaused] to `false`.
    */
   public var streamPaused: Boolean
     get() {

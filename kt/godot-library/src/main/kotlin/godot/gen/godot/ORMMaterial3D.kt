@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Physically based rendering (PBR) material that can be applied to 3D objects, can use an ORM texture.
+ * A PBR (Physically Based Rendering) material to be used on 3D objects. Uses an ORM texture.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/3d/standard_material_3d.html]($DOCS_URL/tutorials/3d/standard_material_3d.html)

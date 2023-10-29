@@ -25,7 +25,7 @@ import kotlin.Unit
 /**
  * A 2D physics body that can't be moved by external forces. When moved manually, it doesn't affect other bodies in its path.
  *
- * A static 2D physics body. It can't be moved by external forces or contacts, but can be moved manually by other means such as code, [godot.AnimationPlayer]s (with [godot.AnimationPlayer.playbackProcessMode] set to `ANIMATION_PROCESS_PHYSICS`), and [godot.RemoteTransform2D].
+ * A static 2D physics body. It can't be moved by external forces or contacts, but can be moved manually by other means such as code, [godot.AnimationMixer]s (with [godot.AnimationMixer.callbackModeProcess] set to [godot.AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS]), and [godot.RemoteTransform2D].
  *
  * When [godot.StaticBody2D] is moved, it is teleported to its new position without affecting other physics bodies in its path. If this is not desired, use [godot.AnimatableBody2D] instead.
  *

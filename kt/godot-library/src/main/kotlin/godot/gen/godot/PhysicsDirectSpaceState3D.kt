@@ -71,6 +71,10 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    *
    * `position`: The intersection point.
    *
+   * `face_index`: The face index at the intersection point.
+   *
+   * **Note:** Returns a valid number only if the intersected shape is a [godot.ConcavePolygonShape3D]. Otherwise, `-1` is returned.
+   *
    * `rid`: The intersecting object's [RID].
    *
    * `shape`: The shape index of the colliding shape.

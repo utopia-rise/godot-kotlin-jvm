@@ -117,9 +117,78 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
+   * The physics material override for the body.
+   *
+   * If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.
+   */
+  public var physicsMaterialOverride: PhysicsMaterial?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_PHYSICS_MATERIAL_OVERRIDE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_PHYSICS_MATERIAL_OVERRIDE, NIL)
+    }
+
+  /**
+   * This is multiplied by the global 3D gravity setting found in **Project > Project Settings > Physics > 3d** to produce RigidBody3D's gravity. For example, a value of 1 will be normal gravity, 2 will apply double gravity, and 0.5 will apply half gravity to this object.
+   */
+  public var gravityScale: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_GRAVITY_SCALE,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_GRAVITY_SCALE,
+          NIL)
+    }
+
+  /**
+   * Defines the way the body's center of mass is set. See [enum CenterOfMassMode] for possible values.
+   */
+  public var centerOfMassMode: CenterOfMassMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_CENTER_OF_MASS_MODE, LONG)
+      return RigidBody3D.CenterOfMassMode.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_CENTER_OF_MASS_MODE, NIL)
+    }
+
+  /**
+   * The body's custom center of mass, relative to the body's origin position, when [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of the body, where applied forces only cause linear acceleration. Applying forces outside of the center of mass causes angular acceleration.
+   *
+   * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of mass is automatically computed.
+   */
+  @CoreTypeLocalCopy
+  public var centerOfMass: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_CENTER_OF_MASS,
+          VECTOR3)
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_CENTER_OF_MASS,
+          NIL)
+    }
+
+  /**
    * The body's moment of inertia. This is like mass, but for rotation: it determines how much torque it takes to rotate the body on each axis. The moment of inertia is usually computed automatically from the mass and the shapes, but this property allows you to set a custom value.
    *
-   * If set to `Vector3.ZERO`, inertia is automatically computed (default value).
+   * If set to [godot.Vector3.ZERO], inertia is automatically computed (default value).
    *
    * **Note:** This value does not change when inertia is automatically computed. Use [godot.PhysicsServer3D] to get the computed inertia.
    *
@@ -175,145 +244,6 @@ public open class RigidBody3D : PhysicsBody3D() {
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_INERTIA, NIL)
-    }
-
-  /**
-   * Defines the way the body's center of mass is set. See [enum CenterOfMassMode] for possible values.
-   */
-  public var centerOfMassMode: CenterOfMassMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_CENTER_OF_MASS_MODE, LONG)
-      return RigidBody3D.CenterOfMassMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_CENTER_OF_MASS_MODE, NIL)
-    }
-
-  /**
-   * The body's custom center of mass, relative to the body's origin position, when [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of the body, where applied forces only cause linear acceleration. Applying forces outside of the center of mass causes angular acceleration.
-   *
-   * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of mass is automatically computed.
-   */
-  @CoreTypeLocalCopy
-  public var centerOfMass: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_CENTER_OF_MASS,
-          VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_CENTER_OF_MASS,
-          NIL)
-    }
-
-  /**
-   * The physics material override for the body.
-   *
-   * If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.
-   */
-  public var physicsMaterialOverride: PhysicsMaterial?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_PHYSICS_MATERIAL_OVERRIDE, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_PHYSICS_MATERIAL_OVERRIDE, NIL)
-    }
-
-  /**
-   * This is multiplied by the global 3D gravity setting found in **Project > Project Settings > Physics > 3d** to produce RigidBody3D's gravity. For example, a value of 1 will be normal gravity, 2 will apply double gravity, and 0.5 will apply half gravity to this object.
-   */
-  public var gravityScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_GRAVITY_SCALE,
-          DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_GRAVITY_SCALE,
-          NIL)
-    }
-
-  /**
-   * If `true`, internal force integration will be disabled (like gravity or air friction) for this body. Other than collision response, the body will only move as determined by the [_integrateForces] function, if defined.
-   */
-  public var customIntegrator: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_IS_USING_CUSTOM_INTEGRATOR, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_USE_CUSTOM_INTEGRATOR, NIL)
-    }
-
-  /**
-   * If `true`, continuous collision detection is used.
-   *
-   * Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided. Continuous collision detection is more precise, and misses fewer impacts by small, fast-moving objects. Not using continuous collision detection is faster to compute, but can miss small, fast-moving objects.
-   */
-  public var continuousCd: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_IS_USING_CONTINUOUS_COLLISION_DETECTION, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_USE_CONTINUOUS_COLLISION_DETECTION, NIL)
-    }
-
-  /**
-   * The maximum number of contacts that will be recorded. Requires a value greater than 0 and [contactMonitor] to be set to `true` to start to register contacts. Use [getContactCount] to retrieve the count or [getCollidingBodies] to retrieve bodies that have been collided with.
-   *
-   * **Note:** The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end), and collisions between parallel faces will result in four contacts (one at each corner).
-   */
-  public var maxContactsReported: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_MAX_CONTACTS_REPORTED, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_MAX_CONTACTS_REPORTED, NIL)
-    }
-
-  /**
-   * If `true`, the RigidBody3D will emit signals when it collides with another body.
-   *
-   * **Note:** By default the maximum contacts reported is set to 0, meaning nothing will be recorded, see [maxContactsReported].
-   */
-  public var contactMonitor: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_IS_CONTACT_MONITOR_ENABLED, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_CONTACT_MONITOR,
-          NIL)
     }
 
   /**
@@ -395,6 +325,76 @@ public open class RigidBody3D : PhysicsBody3D() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_FREEZE_MODE, NIL)
+    }
+
+  /**
+   * If `true`, internal force integration will be disabled (like gravity or air friction) for this body. Other than collision response, the body will only move as determined by the [_integrateForces] function, if defined.
+   */
+  public var customIntegrator: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_IS_USING_CUSTOM_INTEGRATOR, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_USE_CUSTOM_INTEGRATOR, NIL)
+    }
+
+  /**
+   * If `true`, continuous collision detection is used.
+   *
+   * Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided. Continuous collision detection is more precise, and misses fewer impacts by small, fast-moving objects. Not using continuous collision detection is faster to compute, but can miss small, fast-moving objects.
+   */
+  public var continuousCd: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_IS_USING_CONTINUOUS_COLLISION_DETECTION, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_USE_CONTINUOUS_COLLISION_DETECTION, NIL)
+    }
+
+  /**
+   * The maximum number of contacts that will be recorded. Requires a value greater than 0 and [contactMonitor] to be set to `true` to start to register contacts. Use [getContactCount] to retrieve the count or [getCollidingBodies] to retrieve bodies that have been collided with.
+   *
+   * **Note:** The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end), and collisions between parallel faces will result in four contacts (one at each corner).
+   */
+  public var maxContactsReported: Int
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_MAX_CONTACTS_REPORTED, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_MAX_CONTACTS_REPORTED, NIL)
+    }
+
+  /**
+   * If `true`, the RigidBody3D will emit signals when it collides with another body.
+   *
+   * **Note:** By default the maximum contacts reported is set to 0, meaning nothing will be recorded, see [maxContactsReported].
+   */
+  public var contactMonitor: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_IS_CONTACT_MONITOR_ENABLED, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_CONTACT_MONITOR,
+          NIL)
     }
 
   /**
@@ -541,9 +541,35 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   /**
+   * The body's custom center of mass, relative to the body's origin position, when [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of the body, where applied forces only cause linear acceleration. Applying forces outside of the center of mass causes angular acceleration.
+   *
+   * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of mass is automatically computed.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rigidbody3d.centerOfMass
+   * //Your changes
+   * rigidbody3d.centerOfMass = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun centerOfMassMutate(block: Vector3.() -> Unit): Vector3 = centerOfMass.apply{
+      block(this)
+      centerOfMass = this
+  }
+
+
+  /**
    * The body's moment of inertia. This is like mass, but for rotation: it determines how much torque it takes to rotate the body on each axis. The moment of inertia is usually computed automatically from the mass and the shapes, but this property allows you to set a custom value.
    *
-   * If set to `Vector3.ZERO`, inertia is automatically computed (default value).
+   * If set to [godot.Vector3.ZERO], inertia is automatically computed (default value).
    *
    * **Note:** This value does not change when inertia is automatically computed. Use [godot.PhysicsServer3D] to get the computed inertia.
    *
@@ -607,32 +633,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   public open fun inertiaMutate(block: Vector3.() -> Unit): Vector3 = inertia.apply{
       block(this)
       inertia = this
-  }
-
-
-  /**
-   * The body's custom center of mass, relative to the body's origin position, when [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of the body, where applied forces only cause linear acceleration. Applying forces outside of the center of mass causes angular acceleration.
-   *
-   * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of mass is automatically computed.
-   *
-   * This is a helper function to make dealing with local copies easier. 
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
-   * Allow to directly modify the local copy of the property and assign it back to the Object.
-   *
-   * Prefer that over writing:
-   * ``````
-   * val myCoreType = rigidbody3d.centerOfMass
-   * //Your changes
-   * rigidbody3d.centerOfMass = myCoreType
-   * ``````
-   */
-  @CoreTypeHelper
-  public open fun centerOfMassMutate(block: Vector3.() -> Unit): Vector3 = centerOfMass.apply{
-      block(this)
-      centerOfMass = this
   }
 
 

@@ -11,10 +11,18 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 
+/**
+ * Imports a image for use in scripting, with no rendering capabilities.
+ *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/assets_pipeline/importing_images.html]($DOCS_URL/tutorials/assets_pipeline/importing_images.html)
+ *
+ * This importer imports [godot.Image] resources, as opposed to [godot.CompressedTexture2D]. If you need to render the image in 2D or 3D, use [godot.ResourceImporterTexture] instead.
+ */
 @GodotBaseType
-public open class UniformSetCacheRD internal constructor() : Object() {
+public open class ResourceImporterImage internal constructor() : ResourceImporter() {
   public override fun new(scriptIndex: Int): Boolean {
-    callConstructor(ENGINECLASS_UNIFORMSETCACHERD, scriptIndex)
+    callConstructor(ENGINECLASS_RESOURCEIMPORTERIMAGE, scriptIndex)
     return true
   }
 

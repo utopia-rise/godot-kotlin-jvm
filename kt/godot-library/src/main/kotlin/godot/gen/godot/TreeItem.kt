@@ -245,6 +245,26 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
+   * Sets the clipping behavior when the text exceeds the item's bounding rectangle in the given [column].
+   */
+  public fun setTextOverrunBehavior(column: Int, overrunBehavior: TextServer.OverrunBehavior):
+      Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to overrunBehavior.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_TEXT_OVERRUN_BEHAVIOR,
+        NIL)
+  }
+
+  /**
+   * Returns the clipping behavior when the text exceeds the item's bounding rectangle in the given [column]. By default it is [godot.TextServer.OVERRUN_TRIM_ELLIPSIS].
+   */
+  public fun getTextOverrunBehavior(column: Int): TextServer.OverrunBehavior {
+    TransferContext.writeArguments(LONG to column.toLong())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_TEXT_OVERRUN_BEHAVIOR,
+        LONG)
+    return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
    *
    */
   public fun setStructuredTextBidiOverride(column: Int, parser: TextServer.StructuredTextParser):
@@ -714,6 +734,19 @@ public open class TreeItem internal constructor() : Object() {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_BUTTON, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  /**
+   * Sets the tooltip text for the button at index [buttonIndex] in the given [column].
+   */
+  public fun setButtonTooltipText(
+    column: Int,
+    buttonIndex: Int,
+    tooltip: String,
+  ): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong(), STRING to tooltip)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_BUTTON_TOOLTIP_TEXT,
+        NIL)
   }
 
   /**

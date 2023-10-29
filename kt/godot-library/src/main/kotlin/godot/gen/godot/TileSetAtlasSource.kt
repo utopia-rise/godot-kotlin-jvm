@@ -298,6 +298,25 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
+   * Checks if the source has any tiles that don't fit the texture area (either partially or completely).
+   */
+  public fun hasTilesOutsideTexture(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_HAS_TILES_OUTSIDE_TEXTURE, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Removes all tiles that don't fit the available texture area. This method iterates over all the source's tiles, so it's advised to use [hasTilesOutsideTexture] beforehand.
+   */
+  public fun clearTilesOutsideTexture(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_CLEAR_TILES_OUTSIDE_TEXTURE, NIL)
+  }
+
+  /**
    * Sets the number of columns in the animation layout of the tile at coordinates [atlasCoords]. If set to 0, then the different frames of the animation are laid out as a single horizontal line in the atlas.
    */
   public fun setTileAnimationColumns(atlasCoords: Vector2i, frameColumns: Int): Unit {
@@ -352,6 +371,25 @@ public open class TileSetAtlasSource : TileSetSource() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_TILE_ANIMATION_SPEED, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  /**
+   * Sets the [enum TileAnimationMode] of the tile at [atlasCoords] to [mode]. See also [getTileAnimationMode].
+   */
+  public fun setTileAnimationMode(atlasCoords: Vector2i, mode: TileAnimationMode): Unit {
+    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to mode.id)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_SET_TILE_ANIMATION_MODE, NIL)
+  }
+
+  /**
+   * Returns the [enum TileAnimationMode] of the tile at [atlasCoords]. See also [setTileAnimationMode].
+   */
+  public fun getTileAnimationMode(atlasCoords: Vector2i): TileAnimationMode {
+    TransferContext.writeArguments(VECTOR2I to atlasCoords)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_GET_TILE_ANIMATION_MODE, LONG)
+    return TileSetAtlasSource.TileAnimationMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -466,7 +504,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Returns the atlas grid size, which depends on how many tiles can fit in the texture. It thus depends on the Texture's size, the atlas `margins` the tiles' `texture_region_size`.
+   * Returns the atlas grid size, which depends on how many tiles can fit in the texture. It thus depends on the [texture]'s size, the atlas [margins], and the tiles' [textureRegionSize].
    */
   public fun getAtlasGridSize(): Vector2i {
     TransferContext.writeArguments()
@@ -508,5 +546,54 @@ public open class TileSetAtlasSource : TileSetSource() {
     return (TransferContext.readReturnValue(RECT2I, false) as Rect2i)
   }
 
-  public companion object
+  public enum class TileAnimationMode(
+    id: Long,
+  ) {
+    /**
+     * Tile animations start at same time, looking identical.
+     */
+    TILE_ANIMATION_MODE_DEFAULT(0),
+    /**
+     * Tile animations start at random times, looking varied.
+     */
+    TILE_ANIMATION_MODE_RANDOM_START_TIMES(1),
+    /**
+     * Represents the size of the [enum TileAnimationMode] enum.
+     */
+    TILE_ANIMATION_MODE_MAX(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
+  }
+
+  public companion object {
+    /**
+     * Represents cell's horizontal flip flag. Should be used directly with [godot.TileMap] to flip placed tiles by altering their alternative IDs.
+     *
+     * ```
+     * 			var alternate_id = $TileMap.get_cell_alternative_tile(0, Vector2i(2, 2))
+     * 			if not alternate_id & TileSetAtlasSource.TRANSFORM_FLIP_H:
+     * 			    # If tile is not already flipped, flip it.
+     * 			    $TileMap.set_cell(0, Vector2i(2, 2), source_id, atlas_coords, alternate_id | TileSetAtlasSource.TRANSFORM_FLIP_H)
+     * 			```
+     */
+    public final const val TRANSFORM_FLIP_H: Long = 4096
+
+    /**
+     * Represents cell's vertical flip flag. See [TRANSFORM_FLIP_H] for usage.
+     */
+    public final const val TRANSFORM_FLIP_V: Long = 8192
+
+    /**
+     * Represents cell's transposed flag. See [TRANSFORM_FLIP_H] for usage.
+     */
+    public final const val TRANSFORM_TRANSPOSE: Long = 16384
+  }
 }

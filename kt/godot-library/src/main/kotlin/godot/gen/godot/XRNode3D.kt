@@ -15,6 +15,8 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
+import godot.signals.Signal1
+import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -25,10 +27,18 @@ import kotlin.Unit
 /**
  * A spatial node that has its position automatically updated by the [godot.XRServer].
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/xr/index.html]($DOCS_URL/tutorials/xr/index.html)
+ *
  * This node can be bound to a specific pose of a [godot.XRPositionalTracker] and will automatically have its [godot.Node3D.transform] updated by the [godot.XRServer]. Nodes of this type must be added as children of the [godot.XROrigin3D] node.
  */
 @GodotBaseType
 public open class XRNode3D internal constructor() : Node3D() {
+  /**
+   * Emitted when the [tracker] starts or stops receiving updated tracking data for the [pose] being tracked. The [tracking] argument indicates whether the tracker is getting updated tracking data.
+   */
+  public val trackingChanged: Signal1<Boolean> by signal("tracking")
+
   /**
    * The name of the tracker we're bound to. Which trackers are available is not known during design time.
    *

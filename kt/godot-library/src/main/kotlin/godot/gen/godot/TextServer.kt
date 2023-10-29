@@ -189,6 +189,16 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
+   * Creates a new variation existing font which is reusing the same glyph cache and font data. To free the resulting resource, use the [freeRid] method.
+   */
+  public fun createFontLinkedVariation(fontRid: RID): RID {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_CREATE_FONT_LINKED_VARIATION, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  /**
    * Sets font source data, e.g contents of the dynamic font source file.
    */
   public fun fontSetData(fontRid: RID, `data`: PackedByteArray): Unit {
@@ -533,6 +543,27 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
+   * Sets the spacing for [spacing] (see [enum TextServer.SpacingType]) to [value] in pixels (not relative to the font size).
+   */
+  public fun fontSetSpacing(
+    fontRid: RID,
+    spacing: SpacingType,
+    `value`: Long,
+  ): Unit {
+    TransferContext.writeArguments(_RID to fontRid, LONG to spacing.id, LONG to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_SPACING, NIL)
+  }
+
+  /**
+   * Returns the spacing for [spacing] (see [enum TextServer.SpacingType]) in pixels (not relative to the font size).
+   */
+  public fun fontGetSpacing(fontRid: RID, spacing: SpacingType): Long {
+    TransferContext.writeArguments(_RID to fontRid, LONG to spacing.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_SPACING, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  /**
    * Sets 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating glyphs.
    *
    * For example, to simulate italic typeface by slanting, apply the following transform `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
@@ -592,7 +623,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns list of the font sizes in the cache. Each size is `Vector2i` with font size and outline size.
+   * Returns list of the font sizes in the cache. Each size is [godot.Vector2i] with font size and outline size.
    */
   public fun fontGetSizeCacheList(fontRid: RID): VariantArray<Vector2i> {
     TransferContext.writeArguments(_RID to fontRid)
@@ -1028,7 +1059,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns outline contours of the glyph as a `Dictionary` with the following contents:
+   * Returns outline contours of the glyph as a [godot.core.Dictionary] with the following contents:
    *
    * `points`         - [godot.PackedVector3Array], containing outline points. `x` and `y` are point coordinates. `z` is the type of the point, using the [enum ContourPointTag] values.
    *
@@ -1106,7 +1137,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the glyph index of a [char], optionally modified by the [variationSelector].  See [fontGetCharFromGlyphIndex].
+   * Returns the glyph index of a [char], optionally modified by the [variationSelector]. See [fontGetCharFromGlyphIndex].
    */
   public fun fontGetGlyphIndex(
     fontRid: RID,
@@ -1742,7 +1773,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns `true`, if text buffer contents any visible characters.
+   * Returns `true` if text buffer contains any visible characters.
    */
   public fun shapedTextHasVisibleChars(shaped: RID): Boolean {
     TransferContext.writeArguments(_RID to shaped)
@@ -2029,7 +2060,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns composite character end position closest to the [pos].
+   * Returns grapheme end position closest to the [pos].
    */
   public fun shapedTextNextGraphemePos(shaped: RID, pos: Long): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to pos)
@@ -2039,12 +2070,52 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns composite character start position closest to the [pos].
+   * Returns grapheme start position closest to the [pos].
    */
   public fun shapedTextPrevGraphemePos(shaped: RID, pos: Long): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to pos)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_PREV_GRAPHEME_POS, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  /**
+   * Returns array of the composite character boundaries.
+   */
+  public fun shapedTextGetCharacterBreaks(shaped: RID): PackedInt32Array {
+    TransferContext.writeArguments(_RID to shaped)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_CHARACTER_BREAKS, PACKED_INT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+  }
+
+  /**
+   * Returns composite character end position closest to the [pos].
+   */
+  public fun shapedTextNextCharacterPos(shaped: RID, pos: Long): Long {
+    TransferContext.writeArguments(_RID to shaped, LONG to pos)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_NEXT_CHARACTER_POS, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  /**
+   * Returns composite character start position closest to the [pos].
+   */
+  public fun shapedTextPrevCharacterPos(shaped: RID, pos: Long): Long {
+    TransferContext.writeArguments(_RID to shaped, LONG to pos)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_PREV_CHARACTER_POS, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  /**
+   * Returns composite character position closest to the [pos].
+   */
+  public fun shapedTextClosestCharacterPos(shaped: RID, pos: Long): Long {
+    TransferContext.writeArguments(_RID to shaped, LONG to pos)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_CLOSEST_CHARACTER_POS, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -2148,6 +2219,22 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(STRING to string, STRING to language, LONG to charsPerLine)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_STRING_GET_WORD_BREAKS,
         PACKED_INT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+  }
+
+  /**
+   * Returns array of the composite character boundaries.
+   *
+   * ```
+   * 				var ts = TextServerManager.get_primary_interface()
+   * 				print(ts.string_get_word_breaks("Test ❤️‍🔥 Test")) # Prints [1, 2, 3, 4, 5, 9, 10, 11, 12, 13, 14]
+   * 				```
+   */
+  @JvmOverloads
+  public fun stringGetCharacterBreaks(string: String, language: String = ""): PackedInt32Array {
+    TransferContext.writeArguments(STRING to string, STRING to language)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_STRING_GET_CHARACTER_BREAKS, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
@@ -3101,9 +3188,7 @@ public open class TextServer internal constructor() : RefCounted() {
      */
     STRUCTURED_TEXT_EMAIL(3),
     /**
-     * BiDi override for lists.
-     *
-     * Structured text options: list separator `String`.
+     * BiDi override for lists. Structured text options: list separator [godot.String].
      */
     STRUCTURED_TEXT_LIST(4),
     /**

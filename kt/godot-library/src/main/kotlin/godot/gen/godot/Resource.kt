@@ -45,7 +45,9 @@ public open class Resource : RefCounted() {
   public val changed: Signal0 by signal()
 
   /**
-   * Emitted when [setupLocalToScene] is called, usually by a newly duplicated resource with [resourceLocalToScene] set to `true`. Custom behavior can be defined by connecting this signal.
+   * Emitted by a newly duplicated resource with [resourceLocalToScene] set to `true`. 
+   *
+   * *Deprecated.* This signal is only emitted when the resource is created. Override [_setupLocalToScene] instead.
    */
   public val setupLocalToSceneRequested: Signal0 by signal()
 
@@ -101,6 +103,23 @@ public open class Resource : RefCounted() {
   }
 
   /**
+   * Override this method to customize the newly duplicated resource created from [godot.PackedScene.instantiate], if the original's [resourceLocalToScene] is set to `true`.
+   *
+   * **Example:** Set a random `damage` value to every local resource from an instantiated scene.
+   *
+   * ```
+   * 				extends Resource
+   *
+   * 				var damage = 0
+   *
+   * 				func _setup_local_to_scene():
+   * 				    damage = randi_range(10, 40)
+   * 				```
+   */
+  public open fun _setupLocalToScene(): Unit {
+  }
+
+  /**
    * Sets the [resourcePath] to [path], potentially overriding an existing cache entry for this path. Further attempts to load an overridden resource by path will instead return this resource.
    */
   public fun takeOverPath(path: String): Unit {
@@ -127,23 +146,9 @@ public open class Resource : RefCounted() {
   }
 
   /**
-   * Emits the [setupLocalToSceneRequested] signal. If [resourceLocalToScene] is set to `true`, this method is called from [godot.PackedScene.instantiate] by the newly duplicated resource within the scene instance.
+   * Calls [_setupLocalToScene]. If [resourceLocalToScene] is set to `true`, this method is automatically called from [godot.PackedScene.instantiate] by the newly duplicated resource within the scene instance.
    *
-   * For most resources, this method performs no logic of its own. Custom behavior can be defined by connecting [setupLocalToSceneRequested] from a script, **not** by overriding this method.
-   *
-   * **Example:** Assign a random value to `health` for every duplicated Resource from an instantiated scene, excluding the original.
-   *
-   * ```
-   * 				extends Resource
-   *
-   * 				var health = 0
-   *
-   * 				func _init():
-   * 				    setup_local_to_scene_requested.connect(randomize_health)
-   *
-   * 				func randomize_health():
-   * 				    health = randi_range(10, 40)
-   * 				```
+   * *Deprecated.* This method should only be called internally. Override [_setupLocalToScene] instead.
    */
   public fun setupLocalToScene(): Unit {
     TransferContext.writeArguments()
@@ -151,7 +156,7 @@ public open class Resource : RefCounted() {
   }
 
   /**
-   * Emits the [changed] signal. This method is called automatically for built-in resources.
+   * Emits the [changed] signal. This method is called automatically for some built-in resources.
    *
    * **Note:** For custom resources, it's recommended to call this method whenever a meaningful change occurs, such as a modified property. This ensures that custom [godot.Object]s depending on the resource are properly updated.
    *

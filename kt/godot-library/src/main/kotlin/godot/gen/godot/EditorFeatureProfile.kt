@@ -128,6 +128,8 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
 
   /**
    * Saves the editor feature profile to a file in JSON format. It can then be imported using the feature profile manager's **Import** button or the [loadFromFile] method.
+   *
+   * **Note:** Feature profiles created via the user interface are saved in the `feature_profiles` directory, as a file with the `.profile` extension. The editor configuration folder can be found by using [godot.EditorPaths.getConfigDir].
    */
   public fun saveToFile(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
@@ -138,6 +140,8 @@ public open class EditorFeatureProfile internal constructor() : RefCounted() {
 
   /**
    * Loads an editor feature profile from a file. The file must follow the JSON format obtained by using the feature profile manager's **Export** button or the [saveToFile] method.
+   *
+   * **Note:** Feature profiles created via the user interface are loaded from the `feature_profiles` directory, as a file with the `.profile` extension. The editor configuration folder can be found by using [godot.EditorPaths.getConfigDir].
    */
   public fun loadFromFile(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)

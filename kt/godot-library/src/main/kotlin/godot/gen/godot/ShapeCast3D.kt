@@ -253,7 +253,7 @@ public open class ShapeCast3D : Node3D() {
 
 
   /**
-   * This method is used internally to update the debug gizmo in the editor. Any code placed in this function will be called whenever the [shape] resource is modified.
+   * *Obsoleted.* Use [godot.Resource.changed] instead.
    */
   public fun resourceChanged(resource: Resource): Unit {
     TransferContext.writeArguments(OBJECT to resource)

@@ -30,7 +30,7 @@ import kotlin.jvm.JvmOverloads
  *
  * [gdscript]
  *
- * var command_palette = get_editor_interface().get_command_palette()
+ * var command_palette = EditorInterface.get_command_palette()
  *
  * # external_command is a function that will be called with the command is executed.
  *
@@ -42,7 +42,7 @@ import kotlin.jvm.JvmOverloads
  *
  * [csharp]
  *
- * EditorCommandPalette commandPalette = GetEditorInterface().GetCommandPalette();
+ * EditorCommandPalette commandPalette = EditorInterface.Singleton.GetCommandPalette();
  *
  * // ExternalCommand is a function that will be called with the command is executed.
  *

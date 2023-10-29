@@ -24,6 +24,8 @@ import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.signals.Signal0
+import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -33,19 +35,26 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * 3D particle emitter.
+ * A 3D particle emitter.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
  * 3D particle node used to create a variety of particle systems and effects. [godot.GPUParticles3D] features an emitter that generates some number of particles at a given rate.
  *
- * Use the `process_material` property to add a [godot.ParticleProcessMaterial] to configure particle appearance and behavior. Alternatively, you can add a [godot.ShaderMaterial] which will be applied to all particles.
+ * Use [processMaterial] to add a [godot.ParticleProcessMaterial] to configure particle appearance and behavior. Alternatively, you can add a [godot.ShaderMaterial] which will be applied to all particles.
  */
 @GodotBaseType
 public open class GPUParticles3D : GeometryInstance3D() {
   /**
-   * If `true`, particles are being emitted.
+   * Emitted when all active particles have finished processing. When [oneShot] is disabled, particles will process continuously, so this is never emitted.
+   *
+   * **Note:** Due to the particles being computed on the GPU there might be a delay before the signal gets emitted.
+   */
+  public val finished: Signal0 by signal()
+
+  /**
+   * If `true`, particles are being emitted. [emitting] can be used to start and stop particles from emitting. However, if [oneShot] is `true` setting [emitting] to `true` will not restart the emission cycle until after all active particles finish processing. You can use the [finished] signal to be notified once all active particles finish processing.
    */
   public var emitting: Boolean
     get() {
@@ -70,6 +79,24 @@ public open class GPUParticles3D : GeometryInstance3D() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_AMOUNT, NIL)
+    }
+
+  /**
+   * The ratio of particles that should actually be emitted. If set to a value lower than `1.0`, this will set the amount of emitted particles throughout the lifetime to `amount * amount_ratio`. Unlike changing [amount], changing [amountRatio] while emitting does not affect already-emitted particles and doesn't cause the particle system to restart. [amountRatio] can be used to create effects that make the number of emitted particles vary over time.
+   *
+   * **Note:** Reducing the [amountRatio] has no performance benefit, since resources need to be allocated and processed for the total [amount] of particles regardless of the [amountRatio].
+   */
+  public var amountRatio: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_AMOUNT_RATIO,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_AMOUNT_RATIO,
+          NIL)
     }
 
   /**
@@ -104,7 +131,25 @@ public open class GPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * If `true`, only `amount` particles will be emitted.
+   * Causes all the particles in this node to interpolate towards the end of their lifetime.
+   *
+   * **Note**: This only works when used with a [godot.ParticleProcessMaterial]. It needs to be manually implemented for custom process shaders.
+   */
+  public var interpToEnd: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_INTERP_TO_END,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_INTERP_TO_END,
+          NIL)
+    }
+
+  /**
+   * If `true`, only the number of particles equal to [amount] will be emitted.
    */
   public var oneShot: Boolean
     get() {
@@ -520,6 +565,15 @@ public open class GPUParticles3D : GeometryInstance3D() {
   ): Unit {
     TransferContext.writeArguments(TRANSFORM3D to xform, VECTOR3 to velocity, COLOR to color, COLOR to custom, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_EMIT_PARTICLE, NIL)
+  }
+
+  /**
+   * Sets this node's properties to match a given [godot.CPUParticles3D] node.
+   */
+  public fun convertFromParticles(particles: Node): Unit {
+    TransferContext.writeArguments(OBJECT to particles)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_CONVERT_FROM_PARTICLES, NIL)
   }
 
   public enum class DrawOrder(

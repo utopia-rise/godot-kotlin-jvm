@@ -18,9 +18,9 @@ import kotlin.Suppress
 import kotlin.jvm.JvmName
 
 /**
- * A texture that shows a curve.
+ * A 1D texture where pixel brightness corresponds to points on a curve.
  *
- * Renders a given [godot.Curve] provided to it. Simplifies the task of drawing curves and/or saving them as image files.
+ * A 1D texture where pixel brightness corresponds to points on a [godot.Curve] resource, either in grayscale or in red. This visual representation simplifies the task of saving curves as image files.
  *
  * If you need to store up to 3 curves within a single texture, use [godot.CurveXYZTexture] instead. See also [godot.GradientTexture1D] and [godot.GradientTexture2D].
  */

@@ -202,11 +202,11 @@ import kotlin.jvm.JvmOverloads
  *
  * Some [godot.Tweener]s use transitions and eases. The first accepts a [enum TransitionType] constant, and refers to the way the timing of the animation is handled (see [easings.net](https://easings.net/) for some examples). The second accepts an [enum EaseType] constant, and controls where the `trans_type` is applied to the interpolation (in the beginning, the end, or both). If you don't know which transition and easing to pick, you can try different [enum TransitionType] constants with [EASE_IN_OUT], and use the one that looks best.
  *
- * [godot.Tween easing and transition types cheatsheet](https://raw.githubusercontent.com/godotengine/godot-docs/4.1/img/tween_cheatsheet.webp)
+ * [godot.Tween easing and transition types cheatsheet](https://raw.githubusercontent.com/godotengine/godot-docs/master/img/tween_cheatsheet.webp)
  *
  * **Note:** Tweens are not designed to be re-used and trying to do so results in an undefined behavior. Create a new Tween for each animation and every time you replay an animation from start. Keep in mind that Tweens start immediately, so only create a Tween when you want to start animating.
  *
- * **Note:** The tween is processed after all of the nodes in the current frame, i.e. node's [godot.Node.Process] method would be called before the timer (or [godot.Node.PhysicsProcess] depending on the value passed to [setProcessMode]).
+ * **Note:** The tween is processed after all of the nodes in the current frame, i.e. node's [godot.Node.Process] method would be called before the tween (or [godot.Node.PhysicsProcess] depending on the value passed to [setProcessMode]).
  */
 @GodotBaseType
 public open class Tween : RefCounted() {
@@ -455,7 +455,7 @@ public open class Tween : RefCounted() {
    *
    * Tween tween = CreateTween();
    *
-   * tween.TweenMethod(Callable.From(() => LookAt(Vector3.Up)), new Vector3(-1.0f, 0.0f, -1.0f), new Vector3(1.0f, 0.0f, -1.0f), 1.0f); // The LookAt() method takes up vector as second argument.
+   * tween.TweenMethod(Callable.From((Vector3 target) => LookAt(target, Vector3.Up)), new Vector3(-1.0f, 0.0f, -1.0f), new Vector3(1.0f, 0.0f, -1.0f), 1.0f); // Use lambdas to bind additional arguments for the call.
    *
    * [/csharp]
    *
@@ -535,6 +535,8 @@ public open class Tween : RefCounted() {
 
   /**
    * Stops the tweening and resets the [godot.Tween] to its initial state. This will not remove any appended [godot.Tweener]s.
+   *
+   * **Note:** If a Tween is stopped and not bound to any node, it will exist indefinitely until manually started or invalidated. If you lose a reference to such Tween, you can retrieve it using [godot.SceneTree.getProcessedTweens].
    */
   public fun stop(): Unit {
     TransferContext.writeArguments()
@@ -543,6 +545,8 @@ public open class Tween : RefCounted() {
 
   /**
    * Pauses the tweening. The animation can be resumed by using [play].
+   *
+   * **Note:** If a Tween is paused and not bound to any node, it will exist indefinitely until manually started or invalidated. If you lose a reference to such Tween, you can retrieve it using [godot.SceneTree.getProcessedTweens].
    */
   public fun pause(): Unit {
     TransferContext.writeArguments()

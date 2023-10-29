@@ -12,7 +12,10 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Overrides global shader parameters' values in a specific scene.
+ * A node used to override global shader parameters' values in a scene.
+ *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/shaders/shader_reference/shading_language.html]($DOCS_URL/tutorials/shaders/shader_reference/shading_language.html)
  *
  * Similar to how a [godot.WorldEnvironment] node can be used to override the environment while a specific scene is loaded, [godot.ShaderGlobalsOverride] can be used to override global shader parameters temporarily. Once the node is removed, the project-wide values for the global shader parameters are restored. See the [godot.RenderingServer] `global_shader_parameter_*` methods for more information.
  *

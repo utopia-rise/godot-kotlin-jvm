@@ -115,6 +115,75 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   /**
+   * The physics material override for the body.
+   *
+   * If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.
+   */
+  public var physicsMaterialOverride: PhysicsMaterial?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_PHYSICS_MATERIAL_OVERRIDE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_PHYSICS_MATERIAL_OVERRIDE, NIL)
+    }
+
+  /**
+   * Multiplies the gravity applied to the body. The body's gravity is calculated from the **Default Gravity** value in **Project > Project Settings > Physics > 2d** and/or any additional gravity vector applied by [godot.Area2D]s.
+   */
+  public var gravityScale: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_GRAVITY_SCALE,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_GRAVITY_SCALE,
+          NIL)
+    }
+
+  /**
+   * Defines the way the body's center of mass is set. See [enum CenterOfMassMode] for possible values.
+   */
+  public var centerOfMassMode: CenterOfMassMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_CENTER_OF_MASS_MODE, LONG)
+      return RigidBody2D.CenterOfMassMode.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_CENTER_OF_MASS_MODE, NIL)
+    }
+
+  /**
+   * The body's custom center of mass, relative to the body's origin position, when [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of the body, where applied forces only cause linear acceleration. Applying forces outside of the center of mass causes angular acceleration.
+   *
+   * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of mass is automatically computed.
+   */
+  @CoreTypeLocalCopy
+  public var centerOfMass: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_CENTER_OF_MASS,
+          VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_CENTER_OF_MASS,
+          NIL)
+    }
+
+  /**
    * The body's moment of inertia. This is like mass, but for rotation: it determines how much torque it takes to rotate the body. The moment of inertia is usually computed automatically from the mass and the shapes, but this property allows you to set a custom value.
    *
    * If set to `0`, inertia is automatically computed (default value).
@@ -172,145 +241,6 @@ public open class RigidBody2D : PhysicsBody2D() {
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_INERTIA, NIL)
-    }
-
-  /**
-   * Defines the way the body's center of mass is set. See [enum CenterOfMassMode] for possible values.
-   */
-  public var centerOfMassMode: CenterOfMassMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_CENTER_OF_MASS_MODE, LONG)
-      return RigidBody2D.CenterOfMassMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_CENTER_OF_MASS_MODE, NIL)
-    }
-
-  /**
-   * The body's custom center of mass, relative to the body's origin position, when [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of the body, where applied forces only cause linear acceleration. Applying forces outside of the center of mass causes angular acceleration.
-   *
-   * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of mass is automatically computed.
-   */
-  @CoreTypeLocalCopy
-  public var centerOfMass: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_CENTER_OF_MASS,
-          VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_CENTER_OF_MASS,
-          NIL)
-    }
-
-  /**
-   * The physics material override for the body.
-   *
-   * If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.
-   */
-  public var physicsMaterialOverride: PhysicsMaterial?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_PHYSICS_MATERIAL_OVERRIDE, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_PHYSICS_MATERIAL_OVERRIDE, NIL)
-    }
-
-  /**
-   * Multiplies the gravity applied to the body. The body's gravity is calculated from the **Default Gravity** value in **Project > Project Settings > Physics > 2d** and/or any additional gravity vector applied by [godot.Area2D]s.
-   */
-  public var gravityScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_GRAVITY_SCALE,
-          DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_GRAVITY_SCALE,
-          NIL)
-    }
-
-  /**
-   * If `true`, internal force integration is disabled for this body. Aside from collision response, the body will only move as determined by the [_integrateForces] function.
-   */
-  public var customIntegrator: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_IS_USING_CUSTOM_INTEGRATOR, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_USE_CUSTOM_INTEGRATOR, NIL)
-    }
-
-  /**
-   * Continuous collision detection mode.
-   *
-   * Continuous collision detection tries to predict where a moving body will collide instead of moving it and correcting its movement after collision. Continuous collision detection is slower, but more precise and misses fewer collisions with small, fast-moving objects. Raycasting and shapecasting methods are available. See [enum CCDMode] for details.
-   */
-  public var continuousCd: CCDMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_CONTINUOUS_COLLISION_DETECTION_MODE, LONG)
-      return RigidBody2D.CCDMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_CONTINUOUS_COLLISION_DETECTION_MODE, NIL)
-    }
-
-  /**
-   * The maximum number of contacts that will be recorded. Requires a value greater than 0 and [contactMonitor] to be set to `true` to start to register contacts. Use [getContactCount] to retrieve the count or [getCollidingBodies] to retrieve bodies that have been collided with.
-   *
-   * **Note:** The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end), and collisions between parallel faces will result in four contacts (one at each corner).
-   */
-  public var maxContactsReported: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_MAX_CONTACTS_REPORTED, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_MAX_CONTACTS_REPORTED, NIL)
-    }
-
-  /**
-   * If `true`, the RigidBody2D will emit signals when it collides with another body.
-   *
-   * **Note:** By default the maximum contacts reported is set to 0, meaning nothing will be recorded, see [maxContactsReported].
-   */
-  public var contactMonitor: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_IS_CONTACT_MONITOR_ENABLED, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_CONTACT_MONITOR,
-          NIL)
     }
 
   /**
@@ -392,6 +322,76 @@ public open class RigidBody2D : PhysicsBody2D() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_FREEZE_MODE, NIL)
+    }
+
+  /**
+   * If `true`, internal force integration is disabled for this body. Aside from collision response, the body will only move as determined by the [_integrateForces] function.
+   */
+  public var customIntegrator: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_IS_USING_CUSTOM_INTEGRATOR, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_USE_CUSTOM_INTEGRATOR, NIL)
+    }
+
+  /**
+   * Continuous collision detection mode.
+   *
+   * Continuous collision detection tries to predict where a moving body will collide instead of moving it and correcting its movement after collision. Continuous collision detection is slower, but more precise and misses fewer collisions with small, fast-moving objects. Raycasting and shapecasting methods are available. See [enum CCDMode] for details.
+   */
+  public var continuousCd: CCDMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_CONTINUOUS_COLLISION_DETECTION_MODE, LONG)
+      return RigidBody2D.CCDMode.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_CONTINUOUS_COLLISION_DETECTION_MODE, NIL)
+    }
+
+  /**
+   * The maximum number of contacts that will be recorded. Requires a value greater than 0 and [contactMonitor] to be set to `true` to start to register contacts. Use [getContactCount] to retrieve the count or [getCollidingBodies] to retrieve bodies that have been collided with.
+   *
+   * **Note:** The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end), and collisions between parallel faces will result in four contacts (one at each corner).
+   */
+  public var maxContactsReported: Int
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_MAX_CONTACTS_REPORTED, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_MAX_CONTACTS_REPORTED, NIL)
+    }
+
+  /**
+   * If `true`, the RigidBody2D will emit signals when it collides with another body.
+   *
+   * **Note:** By default the maximum contacts reported is set to 0, meaning nothing will be recorded, see [maxContactsReported].
+   */
+  public var contactMonitor: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_IS_CONTACT_MONITOR_ENABLED, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_CONTACT_MONITOR,
+          NIL)
     }
 
   /**

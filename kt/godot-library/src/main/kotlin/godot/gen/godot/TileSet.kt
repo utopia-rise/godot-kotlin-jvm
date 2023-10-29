@@ -39,13 +39,13 @@ import kotlin.jvm.JvmOverloads
  *
  * A TileSet is a library of tiles for a [godot.TileMap]. A TileSet handles a list of [godot.TileSetSource], each of them storing a set of tiles.
  *
- * Tiles can either be from a [godot.TileSetAtlasSource], that render tiles out of a texture with support for physics, navigation, etc... or from a [godot.TileSetScenesCollectionSource] which exposes scene-based tiles.
+ * Tiles can either be from a [godot.TileSetAtlasSource], which renders tiles out of a texture with support for physics, navigation, etc., or from a [godot.TileSetScenesCollectionSource], which exposes scene-based tiles.
  *
- * Tiles are referenced by using three IDs: their source ID, their atlas coordinates ID and their alternative tile ID.
+ * Tiles are referenced by using three IDs: their source ID, their atlas coordinates ID, and their alternative tile ID.
  *
- * A TileSet can be configured so that its tiles expose more or less properties. To do so, the TileSet resources uses property layers, that you can add or remove depending on your needs.
+ * A TileSet can be configured so that its tiles expose more or fewer properties. To do so, the TileSet resources use property layers, which you can add or remove depending on your needs.
  *
- * For example, adding a physics layer allows giving collision shapes to your tiles. Each layer having dedicated properties (physics layer and mask), you may add several TileSet physics layers for each type of collision you need.
+ * For example, adding a physics layer allows giving collision shapes to your tiles. Each layer has dedicated properties (physics layer and mask), so you may add several TileSet physics layers for each type of collision you need.
  *
  * See the functions to add new layers for more information.
  */
@@ -153,7 +153,7 @@ public open class TileSet : Resource() {
 
 
   /**
-   * Returns a new unused source ID. This generated ID is the same that a call to `add_source` would return.
+   * Returns a new unused source ID. This generated ID is the same that a call to [addSource] would return.
    */
   public fun getNextSourceId(): Int {
     TransferContext.writeArguments()

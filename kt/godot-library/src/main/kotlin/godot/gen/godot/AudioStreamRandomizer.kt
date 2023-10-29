@@ -29,22 +29,6 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class AudioStreamRandomizer : AudioStream() {
   /**
-   * The number of streams in the stream pool.
-   */
-  public var streamsCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_STREAMS_COUNT, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_SET_STREAMS_COUNT, NIL)
-    }
-
-  /**
    * Controls how this AudioStreamRandomizer picks which AudioStream to play next.
    */
   public var playbackMode: PlaybackMode
@@ -90,6 +74,22 @@ public open class AudioStreamRandomizer : AudioStream() {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_SET_RANDOM_VOLUME_OFFSET_DB, NIL)
+    }
+
+  /**
+   * The number of streams in the stream pool.
+   */
+  public var streamsCount: Int
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_STREAMS_COUNT, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_SET_STREAMS_COUNT, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {

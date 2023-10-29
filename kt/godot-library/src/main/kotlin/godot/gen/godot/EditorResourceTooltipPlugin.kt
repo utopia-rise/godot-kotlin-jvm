@@ -44,7 +44,7 @@ public open class EditorResourceTooltipPlugin internal constructor() : RefCounte
   /**
    * Create and return a tooltip that will be displayed when the user hovers a resource under the given [path] in filesystem dock.
    *
-   * The [metadata] dictionary is provided by preview generator (see method EditorResourcePreviewGenerator._generate]).
+   * The [metadata] dictionary is provided by preview generator (see [godot.EditorResourcePreviewGenerator.Generate]).
    *
    * [base] is the base default tooltip, which is a [godot.VBoxContainer] with a file name, type and size labels. If another plugin handled the same file type, [base] will be output from the previous plugin. For best result, make sure the base tooltip is part of the returned [godot.Control].
    *

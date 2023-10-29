@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
@@ -98,6 +99,16 @@ public open class EditorInspector internal constructor() : ScrollContainer() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINSPECTOR_GET_SELECTED_PATH,
         STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  /**
+   * Returns the object currently selected in this inspector.
+   */
+  public fun getEditedObject(): Object? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINSPECTOR_GET_EDITED_OBJECT,
+        OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Object?)
   }
 
   public companion object

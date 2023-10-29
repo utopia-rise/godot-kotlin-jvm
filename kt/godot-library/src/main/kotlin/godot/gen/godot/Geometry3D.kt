@@ -39,6 +39,16 @@ public object Geometry3D : Object() {
   }
 
   /**
+   * Calculates and returns all the vertex points of a convex shape defined by an array of [planes].
+   */
+  public fun computeConvexMeshPoints(planes: VariantArray<Plane>): PackedVector3Array {
+    TransferContext.writeArguments(ARRAY to planes)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_COMPUTE_CONVEX_MESH_POINTS, PACKED_VECTOR3_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
+  }
+
+  /**
    * Returns an array with 6 [godot.core.Plane]s that describe the sides of a box centered at the origin. The box size is defined by [extents], which represents one (positive) corner of the box (i.e. half its actual size).
    */
   public fun buildBoxPlanes(extents: Vector3): VariantArray<Plane> {
@@ -121,6 +131,23 @@ public object Geometry3D : Object() {
     TransferContext.writeArguments(VECTOR3 to point, VECTOR3 to s1, VECTOR3 to s2)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_GET_CLOSEST_POINT_TO_SEGMENT_UNCAPPED, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  /**
+   * Returns a [godot.core.Vector3] containing weights based on how close a 3D position ([point]) is to a triangle's different vertices ([a], [b] and [c]). This is useful for interpolating between the data of different vertices in a triangle. One example use case is using this to smoothly rotate over a mesh instead of relying solely on face normals.
+   *
+   * [godot.Here is a more detailed explanation of barycentric coordinates.](https://en.wikipedia.org/wiki/Barycentric_coordinate_system)
+   */
+  public fun getTriangleBarycentricCoords(
+    point: Vector3,
+    a: Vector3,
+    b: Vector3,
+    c: Vector3,
+  ): Vector3 {
+    TransferContext.writeArguments(VECTOR3 to point, VECTOR3 to a, VECTOR3 to b, VECTOR3 to c)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_GET_TRIANGLE_BARYCENTRIC_COORDS, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 

@@ -12,7 +12,11 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
+ * Abstract class to expose editor gizmos for [godot.Node3D].
  *
+ * This abstract class helps connect the [godot.Node3D] scene with the editor-specific [godot.EditorNode3DGizmo] class.
+ *
+ * [godot.Node3DGizmo] by itself has no exposed API, refer to [godot.Node3D.addGizmo] and pass it an [godot.EditorNode3DGizmo] instance.
  */
 @GodotBaseType
 public open class Node3DGizmo internal constructor() : RefCounted() {

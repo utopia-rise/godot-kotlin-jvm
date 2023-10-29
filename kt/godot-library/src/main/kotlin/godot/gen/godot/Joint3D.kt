@@ -8,10 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
+import godot.core.RID
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
+import godot.core.VariantType._RID
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
@@ -89,6 +91,15 @@ public open class Joint3D internal constructor() : Node3D() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_JOINT3D, scriptIndex)
     return true
+  }
+
+  /**
+   * Returns the joint's [RID].
+   */
+  public fun getRid(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_RID, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   public companion object

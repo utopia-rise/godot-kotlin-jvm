@@ -53,6 +53,11 @@ public open class XRPositionalTracker : RefCounted() {
   public val poseChanged: Signal1<XRPose> by signal("pose")
 
   /**
+   * Emitted when a pose tracked by this tracker stops getting updated tracking data.
+   */
+  public val poseLostTracking: Signal1<XRPose> by signal("pose")
+
+  /**
    * Emitted when a button on this tracker is pressed. Note that many XR runtimes allow other inputs to be mapped to buttons.
    */
   public val buttonPressed: Signal1<String> by signal("name")
@@ -186,7 +191,7 @@ public open class XRPositionalTracker : RefCounted() {
   }
 
   /**
-   * Marks this pose as invalid, we don't clear the last reported state but it allows users to decide if trackers need to be hidden if we loose tracking or just remain at their last known position.
+   * Marks this pose as invalid, we don't clear the last reported state but it allows users to decide if trackers need to be hidden if we lose tracking or just remain at their last known position.
    */
   public fun invalidatePose(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)

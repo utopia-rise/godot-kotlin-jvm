@@ -31,17 +31,21 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A 2D line.
+ * A 2D polyline that can optionally be textured.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/583](https://godotengine.org/asset-library/asset/583)
  *
- * A line through several points in 2D space.
+ * This node draws a 2D polyline, i.e. a shape consisting of several points connected by segments. [godot.Line2D] is not a mathematical polyline, i.e. the segments are not infinitely thin. It is intended for rendering and it can be colored and optionally textured.
+ *
+ * **Warning:** Certain configurations may be impossible to draw nicely, such as very sharp angles. In these situations, the node uses fallback drawing logic to look decent.
+ *
+ * **Note:** [godot.Line2D] is drawn using a 2D mesh.
  */
 @GodotBaseType
 public open class Line2D : Node2D() {
   /**
-   * The points that form the lines. The line is drawn between every point set in this array. Points are interpreted as local vectors.
+   * The points of the polyline, interpreted in local 2D coordinates. Segments are drawn between the adjacent points in this array.
    */
   public var points: PackedVector2Array
     get() {
@@ -56,7 +60,25 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The line's width.
+   * If `true` and the polyline has more than 2 points, the last point and the first one will be connected by a segment.
+   *
+   * **Note:** The shape of the closing segment is not guaranteed to be seamless if a [widthCurve] is provided.
+   *
+   * **Note:** The joint between the closing segment and the first segment is drawn first and it samples the [gradient] and the [widthCurve] at the beginning. This is an implementation detail that might change in a future version.
+   */
+  public var closed: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_IS_CLOSED, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_CLOSED, NIL)
+    }
+
+  /**
+   * The polyline's width.
    */
   public var width: Float
     get() {
@@ -70,7 +92,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The line's width varies with the curve. The original width is simply multiply by the value of the Curve.
+   * The polyline's width curve. The width of the polyline over its length will be equivalent to the value of the width curve over its domain.
    */
   public var widthCurve: Curve?
     get() {
@@ -84,7 +106,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The line's color. Will not be used if a gradient is set.
+   * The color of the polyline. Will not be used if a gradient is set.
    */
   @CoreTypeLocalCopy
   public var defaultColor: Color
@@ -99,7 +121,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The gradient is drawn through the whole line from start to finish. The default color will not be used if a gradient is set.
+   * The gradient is drawn through the whole line from start to finish. The [defaultColor] will not be used if this property is set.
    */
   public var gradient: Gradient?
     get() {
@@ -113,7 +135,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The texture used for the line's texture. Uses `texture_mode` for drawing style.
+   * The texture used for the polyline. Uses [textureMode] for drawing style.
    */
   public var texture: Texture2D?
     get() {
@@ -127,7 +149,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The style to render the `texture` on the line. Use [enum LineTextureMode] constants.
+   * The style to render the [texture] of the polyline. Use [enum LineTextureMode] constants.
    */
   public var textureMode: LineTextureMode
     get() {
@@ -141,7 +163,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The style for the points between the start and the end.
+   * The style of the connections between segments of the polyline. Use [enum LineJointMode] constants.
    */
   public var jointMode: LineJointMode
     get() {
@@ -155,7 +177,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * Controls the style of the line's first point. Use [enum LineCapMode] constants.
+   * The style of the beginning of the polyline, if [closed] is `false`. Use [enum LineCapMode] constants.
    */
   public var beginCapMode: LineCapMode
     get() {
@@ -169,7 +191,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * Controls the style of the line's last point. Use [enum LineCapMode] constants.
+   * The style of the end of the polyline, if [closed] is `false`. Use [enum LineCapMode] constants.
    */
   public var endCapMode: LineCapMode
     get() {
@@ -183,7 +205,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The direction difference in radians between vector points. This value is only used if [jointMode] is set to [LINE_JOINT_SHARP].
+   * Determines the miter limit of the polyline. Normally, when [jointMode] is set to [LINE_JOINT_SHARP], sharp angles fall back to using the logic of [LINE_JOINT_BEVEL] joints to prevent very long miters. Higher values of this property mean that the fallback to a bevel joint will happen at sharper angles.
    */
   public var sharpLimit: Float
     get() {
@@ -197,9 +219,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The smoothness of the rounded joints and caps. Higher values result in smoother corners, but are more demanding to render and update. This is only used if a cap or joint is set as round.
-   *
-   * **Note:** The default value is tuned for lines with the default [width]. For thin lines, this value should be reduced to a number between `2` and `4` to improve performance.
+   * The smoothness used for rounded joints and caps. Higher values result in smoother corners, but are more demanding to render and update.
    */
   public var roundPrecision: Int
     get() {
@@ -213,9 +233,9 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * If `true`, the line's border will be anti-aliased.
+   * If `true`, the polyline's border will be anti-aliased.
    *
-   * **Note:** Line2D is not accelerated by batching when being anti-aliased.
+   * **Note:** [godot.Line2D] is not accelerated by batching when being anti-aliased.
    */
   public var antialiased: Boolean
     get() {
@@ -234,7 +254,7 @@ public open class Line2D : Node2D() {
   }
 
   /**
-   * The line's color. Will not be used if a gradient is set.
+   * The color of the polyline. Will not be used if a gradient is set.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -258,7 +278,7 @@ public open class Line2D : Node2D() {
 
 
   /**
-   * Overwrites the position of the point at index [index] with the supplied [position].
+   * Overwrites the position of the point at the given [index] with the supplied [position].
    */
   public fun setPointPosition(index: Int, position: Vector2): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), VECTOR2 to position)
@@ -275,7 +295,7 @@ public open class Line2D : Node2D() {
   }
 
   /**
-   * Returns the number of points in the line.
+   * Returns the number of points in the polyline.
    */
   public fun getPointCount(): Int {
     TransferContext.writeArguments()
@@ -284,9 +304,9 @@ public open class Line2D : Node2D() {
   }
 
   /**
-   * Adds a point with the specified [position] relative to the line's own position. Appends the new point at the end of the point list.
+   * Adds a point with the specified [position] relative to the polyline's own position. If no [index] is provided, the new point will be added to the end of the points array.
    *
-   * If [index] is given, the new point is inserted before the existing point identified by index [index]. Every existing point starting from [index] is shifted further down the list of points. The index must be greater than or equal to `0` and must not exceed the number of existing points in the line. See [getPointCount].
+   * If [index] is given, the new point is inserted before the existing point identified by index [index]. The indices of the points after the new point get increased by 1. The provided [index] must not exceed the number of existing points in the polyline. See [getPointCount].
    */
   @JvmOverloads
   public fun addPoint(position: Vector2, index: Int = -1): Unit {
@@ -295,7 +315,7 @@ public open class Line2D : Node2D() {
   }
 
   /**
-   * Removes the point at index [index] from the line.
+   * Removes the point at index [index] from the polyline.
    */
   public fun removePoint(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -303,7 +323,7 @@ public open class Line2D : Node2D() {
   }
 
   /**
-   * Removes all points from the line.
+   * Removes all points from the polyline, making it empty.
    */
   public fun clearPoints(): Unit {
     TransferContext.writeArguments()
@@ -314,15 +334,15 @@ public open class Line2D : Node2D() {
     id: Long,
   ) {
     /**
-     * The line's joints will be pointy. If `sharp_limit` is greater than the rotation of a joint, it becomes a bevel joint instead.
+     * Makes the polyline's joints pointy, connecting the sides of the two segments by extending them until they intersect. If the rotation of a joint is too big (based on [sharpLimit]), the joint falls back to [LINE_JOINT_BEVEL] to prevent very long miters.
      */
     LINE_JOINT_SHARP(0),
     /**
-     * The line's joints will be bevelled/chamfered.
+     * Makes the polyline's joints bevelled/chamfered, connecting the sides of the two segments with a simple line.
      */
     LINE_JOINT_BEVEL(1),
     /**
-     * The line's joints will be rounded.
+     * Makes the polyline's joints rounded, connecting the sides of the two segments with an arc. The detail of this arc depends on [roundPrecision].
      */
     LINE_JOINT_ROUND(2),
     ;
@@ -341,15 +361,15 @@ public open class Line2D : Node2D() {
     id: Long,
   ) {
     /**
-     * Don't draw a line cap.
+     * Draws no line cap.
      */
     LINE_CAP_NONE(0),
     /**
-     * Draws the line cap as a box.
+     * Draws the line cap as a box, slightly extending the first/last segment.
      */
     LINE_CAP_BOX(1),
     /**
-     * Draws the line cap as a circle.
+     * Draws the line cap as a semicircle attached to the first/last segment.
      */
     LINE_CAP_ROUND(2),
     ;
@@ -368,15 +388,15 @@ public open class Line2D : Node2D() {
     id: Long,
   ) {
     /**
-     * Takes the left pixels of the texture and renders it over the whole line.
+     * Takes the left pixels of the texture and renders them over the whole polyline.
      */
     LINE_TEXTURE_NONE(0),
     /**
-     * Tiles the texture over the line. [godot.CanvasItem.textureRepeat] of the [godot.Line2D] node must be [godot.CanvasItem.TEXTURE_REPEAT_ENABLED] or [godot.CanvasItem.TEXTURE_REPEAT_MIRROR] for it to work properly.
+     * Tiles the texture over the polyline. [godot.CanvasItem.textureRepeat] of the [godot.Line2D] node must be [godot.CanvasItem.TEXTURE_REPEAT_ENABLED] or [godot.CanvasItem.TEXTURE_REPEAT_MIRROR] for it to work properly.
      */
     LINE_TEXTURE_TILE(1),
     /**
-     * Stretches the texture across the line. [godot.CanvasItem.textureRepeat] of the [godot.Line2D] node must be [godot.CanvasItem.TEXTURE_REPEAT_DISABLED] for best results.
+     * Stretches the texture across the polyline. [godot.CanvasItem.textureRepeat] of the [godot.Line2D] node must be [godot.CanvasItem.TEXTURE_REPEAT_DISABLED] for best results.
      */
     LINE_TEXTURE_STRETCH(2),
     ;

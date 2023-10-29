@@ -212,36 +212,6 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * If `true`, every character is replaced with the secret character (see [secretCharacter]).
-   */
-  public var secret: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_SECRET, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_SECRET, NIL)
-    }
-
-  /**
-   * The character to use to mask secret input (defaults to "•"). Only a single character can be used as the secret character.
-   */
-  public var secretCharacter: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SECRET_CHARACTER,
-          STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_SECRET_CHARACTER,
-          NIL)
-    }
-
-  /**
    * If `true`, the [godot.LineEdit] width will increase to stay longer than the [text]. It will **not** compress if the [text] is shortened.
    */
   public var expandToTextLength: Boolean
@@ -388,6 +358,22 @@ public open class LineEdit : Control() {
     }
 
   /**
+   * If `true`, allow drag and drop of selected text.
+   */
+  public var dragAndDropSelectionEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_DRAG_AND_DROP_SELECTION_ENABLED, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_DRAG_AND_DROP_SELECTION_ENABLED, NIL)
+    }
+
+  /**
    * Sets the icon that will appear in the right end of the [godot.LineEdit] if there's no [text], or always, if [clearButtonEnabled] is set to `false`.
    */
   public var rightIcon: Texture2D?
@@ -402,7 +388,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * If `true`, the [godot.LineEdit] don't display decoration.
+   * If `true`, the [godot.LineEdit] doesn't display decoration.
    */
   public var flat: Boolean
     get() {
@@ -528,6 +514,36 @@ public open class LineEdit : Control() {
     }
 
   /**
+   * If `true`, every character is replaced with the secret character (see [secretCharacter]).
+   */
+  public var secret: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_SECRET, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_SECRET, NIL)
+    }
+
+  /**
+   * The character to use to mask secret input (defaults to "•"). Only a single character can be used as the secret character.
+   */
+  public var secretCharacter: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SECRET_CHARACTER,
+          STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_SECRET_CHARACTER,
+          NIL)
+    }
+
+  /**
    * Base text writing direction.
    */
   public var textDirection: Control.TextDirection
@@ -542,7 +558,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
+   * Language code used for line-breaking and text shaping algorithms. If left empty, current locale is used instead.
    */
   public var language: String
     get() {

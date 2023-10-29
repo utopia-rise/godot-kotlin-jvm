@@ -47,9 +47,9 @@ public open class BaseButton : Control() {
   public val buttonDown: Signal0 by signal()
 
   /**
-   * Emitted when the button was just toggled between pressed and normal states (only if [toggleMode] is active). The new state is contained in the [buttonPressed] argument.
+   * Emitted when the button was just toggled between pressed and normal states (only if [toggleMode] is active). The new state is contained in the [toggledOn] argument.
    */
-  public val toggled: Signal1<Boolean> by signal("buttonPressed")
+  public val toggled: Signal1<Boolean> by signal("toggledOn")
 
   /**
    * If `true`, the button is in disabled state and can't be clicked or toggled.
@@ -220,7 +220,7 @@ public open class BaseButton : Control() {
   /**
    * Called when the button is toggled (only if [toggleMode] is active).
    */
-  public open fun _toggled(buttonPressed: Boolean): Unit {
+  public open fun _toggled(toggledOn: Boolean): Unit {
   }
 
   /**

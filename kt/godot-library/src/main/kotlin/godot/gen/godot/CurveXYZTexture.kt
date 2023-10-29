@@ -17,9 +17,9 @@ import kotlin.Suppress
 import kotlin.jvm.JvmName
 
 /**
- * A texture that shows 3 different curves (stored on the red, green and blue color channels).
+ * A 1D texture where the red, green, and blue color channels correspond to points on 3 curves.
  *
- * Renders 3 given [godot.Curve]s provided to it, on the red, green and blue channels respectively. Compared to using separate [godot.CurveTexture]s, this further simplifies the task of drawing curves and/or saving them as image files.
+ * A 1D texture where the red, green, and blue color channels correspond to points on 3 [godot.Curve] resources. Compared to using separate [godot.CurveTexture]s, this further simplifies the task of saving curves as image files.
  *
  * If you only need to store one curve within a single texture, use [godot.CurveTexture] instead. See also [godot.GradientTexture1D] and [godot.GradientTexture2D].
  */

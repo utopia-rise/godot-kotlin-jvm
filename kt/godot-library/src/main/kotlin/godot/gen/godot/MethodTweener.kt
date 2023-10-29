@@ -21,6 +21,8 @@ import kotlin.Suppress
  *
  * [godot.MethodTweener] is similar to a combination of [godot.CallbackTweener] and [godot.PropertyTweener]. It calls a method providing an interpolated value as a parameter. See [godot.Tween.tweenMethod] for more usage information.
  *
+ * The tweener will finish automatically if the callback's target object is freed.
+ *
  * **Note:** [godot.Tween.tweenMethod] is the only correct way to create [godot.MethodTweener]. Any [godot.MethodTweener] created manually will not function correctly.
  */
 @GodotBaseType

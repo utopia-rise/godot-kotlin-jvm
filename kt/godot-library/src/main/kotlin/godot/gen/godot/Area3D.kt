@@ -45,7 +45,7 @@ import kotlin.Unit
  *
  * This node can also locally alter or override physics parameters (gravity, damping) and route audio to custom audio buses.
  *
- * **Warning:** Using a [godot.ConcavePolygonShape3D] inside a [godot.CollisionShape3D] child of this node (created e.g. by using the *Create Trimesh Collision Sibling* option in the *Mesh* menu that appears when selecting a [godot.MeshInstance3D] node) may give unexpected results, since this collision shape is hollow. If this is not desired, it has to be split into multiple [godot.ConvexPolygonShape3D]s or primitive shapes like [godot.BoxShape3D], or in some cases it may be replaceable by a [godot.CollisionPolygon3D].
+ * **Warning:** Using a [godot.ConcavePolygonShape3D] inside a [godot.CollisionShape3D] child of this node (created e.g. by using the **Create Trimesh Collision Sibling** option in the **Mesh** menu that appears when selecting a [godot.MeshInstance3D] node) may give unexpected results, since this collision shape is hollow. If this is not desired, it has to be split into multiple [godot.ConvexPolygonShape3D]s or primitive shapes like [godot.BoxShape3D], or in some cases it may be replaceable by a [godot.CollisionPolygon3D].
  */
 @GodotBaseType
 public open class Area3D : CollisionObject3D() {

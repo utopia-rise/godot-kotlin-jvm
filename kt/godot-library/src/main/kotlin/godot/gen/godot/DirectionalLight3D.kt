@@ -20,7 +20,7 @@ import kotlin.Suppress
  * Directional light from a distance, as from the Sun.
  *
  * Tutorials:
- * [$DOCS_URL/tutorials/3d/lights_and_shadows.html]($DOCS_URL/tutorials/3d/lights_and_shadows.html)
+ * [$DOCS_URL/tutorials/3d/global_illumination/faking_global_illumination.html]($DOCS_URL/tutorials/3d/global_illumination/faking_global_illumination.html)
  *
  * A directional light is a type of [godot.Light3D] node that models an infinite number of parallel rays covering the entire scene. It is used for lights with strong intensity that are located far away from the scene to model sunlight or moonlight. The worldspace location of the DirectionalLight3D transform (origin) is ignored. Only the basis is used to determine light direction.
  */

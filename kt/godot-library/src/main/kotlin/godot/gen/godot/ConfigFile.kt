@@ -283,7 +283,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Loads the config file specified as a parameter. The file's contents are parsed and loaded in the [godot.ConfigFile] object which the method was called on.
    *
-   * Returns one of the [enum Error] code constants ([OK] on success).
+   * Returns [OK] on success, or one of the other [enum Error] values if the operation failed.
    */
   public fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
@@ -294,7 +294,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Parses the passed string as the contents of a config file. The string is parsed and loaded in the ConfigFile object which the method was called on.
    *
-   * Returns one of the [enum Error] code constants ([OK] on success).
+   * Returns [OK] on success, or one of the other [enum Error] values if the operation failed.
    */
   public fun parse(`data`: String): GodotError {
     TransferContext.writeArguments(STRING to data)
@@ -305,7 +305,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Saves the contents of the [godot.ConfigFile] object to the file specified as a parameter. The output file uses an INI-style structure.
    *
-   * Returns one of the [enum Error] code constants ([OK] on success).
+   * Returns [OK] on success, or one of the other [enum Error] values if the operation failed.
    */
   public fun save(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
@@ -325,7 +325,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Loads the encrypted config file specified as a parameter, using the provided [key] to decrypt it. The file's contents are parsed and loaded in the [godot.ConfigFile] object which the method was called on.
    *
-   * Returns one of the [enum Error] code constants ([OK] on success).
+   * Returns [OK] on success, or one of the other [enum Error] values if the operation failed.
    */
   public fun loadEncrypted(path: String, key: PackedByteArray): GodotError {
     TransferContext.writeArguments(STRING to path, PACKED_BYTE_ARRAY to key)
@@ -336,7 +336,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Loads the encrypted config file specified as a parameter, using the provided [password] to decrypt it. The file's contents are parsed and loaded in the [godot.ConfigFile] object which the method was called on.
    *
-   * Returns one of the [enum Error] code constants ([OK] on success).
+   * Returns [OK] on success, or one of the other [enum Error] values if the operation failed.
    */
   public fun loadEncryptedPass(path: String, password: String): GodotError {
     TransferContext.writeArguments(STRING to path, STRING to password)
@@ -348,7 +348,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Saves the contents of the [godot.ConfigFile] object to the AES-256 encrypted file specified as a parameter, using the provided [key] to encrypt it. The output file uses an INI-style structure.
    *
-   * Returns one of the [enum Error] code constants ([OK] on success).
+   * Returns [OK] on success, or one of the other [enum Error] values if the operation failed.
    */
   public fun saveEncrypted(path: String, key: PackedByteArray): GodotError {
     TransferContext.writeArguments(STRING to path, PACKED_BYTE_ARRAY to key)
@@ -359,7 +359,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Saves the contents of the [godot.ConfigFile] object to the AES-256 encrypted file specified as a parameter, using the provided [password] to encrypt it. The output file uses an INI-style structure.
    *
-   * Returns one of the [enum Error] code constants ([OK] on success).
+   * Returns [OK] on success, or one of the other [enum Error] values if the operation failed.
    */
   public fun saveEncryptedPass(path: String, password: String): GodotError {
     TransferContext.writeArguments(STRING to path, STRING to password)

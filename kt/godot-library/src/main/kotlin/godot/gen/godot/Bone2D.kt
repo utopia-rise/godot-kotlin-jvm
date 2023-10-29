@@ -90,7 +90,7 @@ public open class Bone2D : Node2D() {
   }
 
   /**
-   * Returns the node's [rest] `Transform2D` if it doesn't have a parent, or its rest pose relative to its parent.
+   * Returns the node's [rest] [godot.core.Transform2D] if it doesn't have a parent, or its rest pose relative to its parent.
    */
   public fun getSkeletonRest(): Transform2D {
     TransferContext.writeArguments()
@@ -147,7 +147,7 @@ public open class Bone2D : Node2D() {
   /**
    * Sets the bone angle for the [godot.Bone2D]. This is typically set to the rotation from the [godot.Bone2D] to a child [godot.Bone2D] node.
    *
-   * **Note:** **Note:** This is different from the [godot.Bone2D]'s rotation. The bone's angle is the rotation of the bone shown by the gizmo, which is unaffected by the [godot.Bone2D]'s [godot.Node2D.transform].
+   * **Note:** This is different from the [godot.Bone2D]'s rotation. The bone's angle is the rotation of the bone shown by the gizmo, which is unaffected by the [godot.Bone2D]'s [godot.Node2D.transform].
    */
   public fun setBoneAngle(angle: Float): Unit {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())

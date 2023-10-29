@@ -17,9 +17,9 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Background that uses a [godot.Material] to draw a sky.
+ * Defines a 3D environment's background by using a [godot.Material].
  *
- * The [godot.Sky] class uses a [godot.Material] to draw the background and update the reflection/radiance cubemaps.
+ * The [godot.Sky] class uses a [godot.Material] to render a 3D environment's background and the light it emits by updating the reflection/radiance cubemaps.
  */
 @GodotBaseType
 public open class Sky : Resource() {

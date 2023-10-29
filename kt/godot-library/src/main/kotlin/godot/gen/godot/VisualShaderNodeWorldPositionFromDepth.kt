@@ -11,11 +11,15 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 
+/**
+ * A visual shader node that calculates the position of the pixel in world space using the depth texture.
+ *
+ * The WorldPositionFromDepth node reconstructs the depth position of the pixel in world space. This can be used to obtain world space UVs for projection mapping like Caustics.
+ */
 @GodotBaseType
-public open class GDScriptEditorTranslationParserPlugin internal constructor() :
-    EditorTranslationParserPlugin() {
+public open class VisualShaderNodeWorldPositionFromDepth : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Boolean {
-    callConstructor(ENGINECLASS_GDSCRIPTEDITORTRANSLATIONPARSERPLUGIN, scriptIndex)
+    callConstructor(ENGINECLASS_VISUALSHADERNODEWORLDPOSITIONFROMDEPTH, scriptIndex)
     return true
   }
 

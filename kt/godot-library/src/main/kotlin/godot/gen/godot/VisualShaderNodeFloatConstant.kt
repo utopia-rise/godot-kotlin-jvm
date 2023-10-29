@@ -19,7 +19,7 @@ import kotlin.Suppress
 /**
  * A scalar floating-point constant to be used within the visual shader graph.
  *
- * Translated to `float` in the shader language.
+ * Translated to [code skip-lint]float` in the shader language.
  */
 @GodotBaseType
 public open class VisualShaderNodeFloatConstant : VisualShaderNodeConstant() {

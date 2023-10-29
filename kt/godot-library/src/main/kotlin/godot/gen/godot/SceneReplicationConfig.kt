@@ -76,6 +76,19 @@ public open class SceneReplicationConfig : Resource() {
         ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_PROPERTY_SET_SPAWN, NIL)
   }
 
+  public fun propertyGetReplicationMode(path: NodePath): ReplicationMode {
+    TransferContext.writeArguments(NODE_PATH to path)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_PROPERTY_GET_REPLICATION_MODE, LONG)
+    return SceneReplicationConfig.ReplicationMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun propertySetReplicationMode(path: NodePath, mode: ReplicationMode): Unit {
+    TransferContext.writeArguments(NODE_PATH to path, LONG to mode.id)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_PROPERTY_SET_REPLICATION_MODE, NIL)
+  }
+
   public fun propertyGetSync(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr,
@@ -100,6 +113,24 @@ public open class SceneReplicationConfig : Resource() {
     TransferContext.writeArguments(NODE_PATH to path, BOOL to enabled)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_PROPERTY_SET_WATCH, NIL)
+  }
+
+  public enum class ReplicationMode(
+    id: Long,
+  ) {
+    REPLICATION_MODE_NEVER(0),
+    REPLICATION_MODE_ALWAYS(1),
+    REPLICATION_MODE_ON_CHANGE(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
   }
 
   public companion object

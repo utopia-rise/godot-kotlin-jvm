@@ -10,6 +10,7 @@ data class Method @JsonCreator constructor(
     @JsonProperty("is_virtual") val isVirtual : Boolean,
     @JsonProperty("is_static") val isStatic: Boolean,
     @JsonProperty("hash") val hash : Long,
+    @JsonProperty("hash_compatibility") val hashCompatibility: List<Long>?,
     @JsonProperty("return_value") val returnValue : ReturnValue?,
     @JsonProperty("return_type") val returnType: String?,
     @JsonProperty("arguments") val arguments : List<Argument>?

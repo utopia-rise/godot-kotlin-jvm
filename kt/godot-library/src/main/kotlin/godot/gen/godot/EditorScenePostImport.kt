@@ -19,7 +19,7 @@ import kotlin.Suppress
  * Post-processes scenes after import.
  *
  * Tutorials:
- * [$DOCS_URL/tutorials/assets_pipeline/importing_scenes.html#custom-script]($DOCS_URL/tutorials/assets_pipeline/importing_scenes.html#custom-script)
+ * [$DOCS_URL/tutorials/assets_pipeline/importing_3d_scenes/import_configuration.html#using-import-scripts-for-automation]($DOCS_URL/tutorials/assets_pipeline/importing_3d_scenes/import_configuration.html#using-import-scripts-for-automation)
  *
  * Imported scenes can be automatically modified right after import by setting their **Custom Script** Import property to a `tool` script that inherits from this class.
  *

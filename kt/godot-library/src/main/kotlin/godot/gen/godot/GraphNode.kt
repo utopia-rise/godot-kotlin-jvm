@@ -6,8 +6,6 @@
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
-import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.VariantType.BOOL
@@ -18,10 +16,9 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
+import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
 import godot.signals.Signal1
-import godot.signals.Signal2
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Int
@@ -40,49 +37,14 @@ import kotlin.jvm.JvmOverloads
  *
  * Slots can be configured in the Inspector dock once you add at least one child [godot.Control]. The properties are grouped by each slot's index in the "Slot" section.
  *
- * **Note:** While GraphNode is set up using slots and slot indices, connections are made between the ports which are enabled. Because of that, [godot.GraphEdit] uses the port's index and not the slot's index. You can use [getConnectionInputSlot] and [getConnectionOutputSlot] to get the slot index from the port index.
+ * **Note:** While GraphNode is set up using slots and slot indices, connections are made between the ports which are enabled. Because of that [godot.GraphEdit] uses the port's index and not the slot's index. You can use [getInputPortSlot] and [getOutputPortSlot] to get the slot index from the port index.
  */
 @GodotBaseType
-public open class GraphNode : Container() {
-  /**
-   * Emitted when the GraphNode is moved.
-   */
-  public val positionOffsetChanged: Signal0 by signal()
-
-  /**
-   * Emitted when the GraphNode is selected.
-   */
-  public val nodeSelected: Signal0 by signal()
-
-  /**
-   * Emitted when the GraphNode is deselected.
-   */
-  public val nodeDeselected: Signal0 by signal()
-
+public open class GraphNode : GraphElement() {
   /**
    * Emitted when any GraphNode's slot is updated.
    */
-  public val slotUpdated: Signal1<Long> by signal("idx")
-
-  /**
-   * Emitted when the GraphNode is dragged.
-   */
-  public val dragged: Signal2<Vector2, Vector2> by signal("from", "to")
-
-  /**
-   * Emitted when the GraphNode is requested to be displayed over other ones. Happens on focusing (clicking into) the GraphNode.
-   */
-  public val raiseRequest: Signal0 by signal()
-
-  /**
-   * Emitted when the GraphNode is requested to be closed. Happens on clicking the close button (see [showClose]).
-   */
-  public val closeRequest: Signal0 by signal()
-
-  /**
-   * Emitted when the GraphNode is requested to be resized. Happens on dragging the resizer handle (see [resizable]).
-   */
-  public val resizeRequest: Signal1<Vector2> by signal("newMinsize")
+  public val slotUpdated: Signal1<Long> by signal("slotIndex")
 
   /**
    * The text displayed in the GraphNode's title bar.
@@ -98,191 +60,33 @@ public open class GraphNode : Container() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_TITLE, NIL)
     }
 
-  /**
-   * The offset of the GraphNode, relative to the scroll offset of the [godot.GraphEdit].
-   *
-   * **Note:** You cannot use position offset directly, as [godot.GraphEdit] is a [godot.Container].
-   */
-  @CoreTypeLocalCopy
-  public var positionOffset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_POSITION_OFFSET,
-          VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_POSITION_OFFSET,
-          NIL)
-    }
-
-  /**
-   * If `true`, the close button will be visible.
-   *
-   * **Note:** Pressing it will only emit the [closeRequest] signal, the GraphNode needs to be removed manually.
-   */
-  public var showClose: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_IS_CLOSE_BUTTON_VISIBLE,
-          BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SHOW_CLOSE_BUTTON,
-          NIL)
-    }
-
-  /**
-   * If `true`, the user can resize the GraphNode.
-   *
-   * **Note:** Dragging the handle will only emit the [resizeRequest] signal, the GraphNode needs to be resized manually.
-   */
-  public var resizable: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_IS_RESIZABLE, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_RESIZABLE, NIL)
-    }
-
-  /**
-   * If `true`, the user can drag the GraphNode.
-   */
-  public var draggable: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_IS_DRAGGABLE, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_DRAGGABLE, NIL)
-    }
-
-  /**
-   * If `true`, the user can select the GraphNode.
-   */
-  public var selectable: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_IS_SELECTABLE, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SELECTABLE, NIL)
-    }
-
-  /**
-   * If `true`, the GraphNode is selected.
-   */
-  public var selected: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_IS_SELECTED, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SELECTED, NIL)
-    }
-
-  /**
-   * If `true`, the GraphNode is a comment node.
-   */
-  public var comment: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_IS_COMMENT, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_COMMENT, NIL)
-    }
-
-  /**
-   * Sets the overlay shown above the GraphNode. See [enum Overlay].
-   */
-  public var overlay: Overlay
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_OVERLAY, LONG)
-      return GraphNode.Overlay.from(TransferContext.readReturnValue(LONG) as Long)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_OVERLAY, NIL)
-    }
-
-  /**
-   * Base text writing direction.
-   */
-  public var textDirection: Control.TextDirection
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_TEXT_DIRECTION,
-          LONG)
-      return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_TEXT_DIRECTION, NIL)
-    }
-
-  /**
-   * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
-   */
-  public var language: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_LANGUAGE, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_LANGUAGE, NIL)
-    }
-
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GRAPHNODE, scriptIndex)
     return true
   }
 
   /**
-   * The offset of the GraphNode, relative to the scroll offset of the [godot.GraphEdit].
    *
-   * **Note:** You cannot use position offset directly, as [godot.GraphEdit] is a [godot.Container].
-   *
-   * This is a helper function to make dealing with local copies easier. 
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
-   * Allow to directly modify the local copy of the property and assign it back to the Object.
-   *
-   * Prefer that over writing:
-   * ``````
-   * val myCoreType = graphnode.positionOffset
-   * //Your changes
-   * graphnode.positionOffset = myCoreType
-   * ``````
    */
-  @CoreTypeHelper
-  public open fun positionOffsetMutate(block: Vector2.() -> Unit): Vector2 = positionOffset.apply{
-      block(this)
-      positionOffset = this
+  public open fun _drawPort(
+    slotIndex: Int,
+    position: Vector2i,
+    left: Boolean,
+    color: Color,
+  ): Unit {
   }
 
+  /**
+   * Returns the [godot.HBoxContainer] used for the title bar, only containing a [godot.Label] for displaying the title by default. This can be used to add custom controls to the title bar such as option or close buttons.
+   */
+  public fun getTitlebarHbox(): HBoxContainer? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_TITLEBAR_HBOX, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as HBoxContainer?)
+  }
 
   /**
-   * Sets properties of the slot with the [slotIndex] index.
+   * Sets properties of the slot with the given [slotIndex].
    *
    * If [enableLeftPort]/[enableRightPort] is `true`, a port will appear and the slot will be able to be connected from this side.
    *
@@ -314,7 +118,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Disables input and output slot whose index is [slotIndex].
+   * Disables the slot with the given [slotIndex]. This will remove the corresponding input and output port from the GraphNode.
    */
   public fun clearSlot(slotIndex: Int): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
@@ -322,7 +126,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Disables all input and output slots of the GraphNode.
+   * Disables all slots of the GraphNode. This will remove all input/output ports from the GraphNode.
    */
   public fun clearAllSlots(): Unit {
     TransferContext.writeArguments()
@@ -330,16 +134,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Toggles the left (input) side of the slot [slotIndex]. If [enable] is `true`, a port will appear on the left side and the slot will be able to be connected from this side.
-   */
-  public fun setSlotEnabledLeft(slotIndex: Int, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to slotIndex.toLong(), BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SLOT_ENABLED_LEFT,
-        NIL)
-  }
-
-  /**
-   * Returns `true` if left (input) side of the slot [slotIndex] is enabled.
+   * Returns `true` if left (input) side of the slot with the given [slotIndex] is enabled.
    */
   public fun isSlotEnabledLeft(slotIndex: Int): Boolean {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
@@ -349,7 +144,16 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Sets the left (input) type of the slot [slotIndex] to [type]. If the value is negative, all connections will be disallowed to be created via user inputs.
+   * Toggles the left (input) side of the slot with the given [slotIndex]. If [enable] is `true`, a port will appear on the left side and the slot will be able to be connected from this side.
+   */
+  public fun setSlotEnabledLeft(slotIndex: Int, enable: Boolean): Unit {
+    TransferContext.writeArguments(LONG to slotIndex.toLong(), BOOL to enable)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SLOT_ENABLED_LEFT,
+        NIL)
+  }
+
+  /**
+   * Sets the left (input) type of the slot with the given [slotIndex] to [type]. If the value is negative, all connections will be disallowed to be created via user inputs.
    */
   public fun setSlotTypeLeft(slotIndex: Int, type: Int): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), LONG to type.toLong())
@@ -357,7 +161,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns the left (input) type of the slot [slotIndex].
+   * Returns the left (input) type of the slot with the given [slotIndex].
    */
   public fun getSlotTypeLeft(slotIndex: Int): Int {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
@@ -366,7 +170,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Sets the [godot.core.Color] of the left (input) side of the slot [slotIndex] to [color].
+   * Sets the [godot.core.Color] of the left (input) side of the slot with the given [slotIndex] to [color].
    */
   public fun setSlotColorLeft(slotIndex: Int, color: Color): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), COLOR to color)
@@ -374,7 +178,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns the left (input) [godot.core.Color] of the slot [slotIndex].
+   * Returns the left (input) [godot.core.Color] of the slot with the given [slotIndex].
    */
   public fun getSlotColorLeft(slotIndex: Int): Color {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
@@ -384,16 +188,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Toggles the right (output) side of the slot [slotIndex]. If [enable] is `true`, a port will appear on the right side and the slot will be able to be connected from this side.
-   */
-  public fun setSlotEnabledRight(slotIndex: Int, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to slotIndex.toLong(), BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SLOT_ENABLED_RIGHT,
-        NIL)
-  }
-
-  /**
-   * Returns `true` if right (output) side of the slot [slotIndex] is enabled.
+   * Returns `true` if right (output) side of the slot with the given [slotIndex] is enabled.
    */
   public fun isSlotEnabledRight(slotIndex: Int): Boolean {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
@@ -403,7 +198,16 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Sets the right (output) type of the slot [slotIndex] to [type]. If the value is negative, all connections will be disallowed to be created via user inputs.
+   * Toggles the right (output) side of the slot with the given [slotIndex]. If [enable] is `true`, a port will appear on the right side and the slot will be able to be connected from this side.
+   */
+  public fun setSlotEnabledRight(slotIndex: Int, enable: Boolean): Unit {
+    TransferContext.writeArguments(LONG to slotIndex.toLong(), BOOL to enable)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SLOT_ENABLED_RIGHT,
+        NIL)
+  }
+
+  /**
+   * Sets the right (output) type of the slot with the given [slotIndex] to [type]. If the value is negative, all connections will be disallowed to be created via user inputs.
    */
   public fun setSlotTypeRight(slotIndex: Int, type: Int): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), LONG to type.toLong())
@@ -411,7 +215,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns the right (output) type of the slot [slotIndex].
+   * Returns the right (output) type of the slot with the given [slotIndex].
    */
   public fun getSlotTypeRight(slotIndex: Int): Int {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
@@ -420,7 +224,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Sets the [godot.core.Color] of the right (output) side of the slot [slotIndex] to [color].
+   * Sets the [godot.core.Color] of the right (output) side of the slot with the given [slotIndex] to [color].
    */
   public fun setSlotColorRight(slotIndex: Int, color: Color): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), COLOR to color)
@@ -428,7 +232,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns the right (output) [godot.core.Color] of the slot [slotIndex].
+   * Returns the right (output) [godot.core.Color] of the slot with the given [slotIndex].
    */
   public fun getSlotColorRight(slotIndex: Int): Color {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
@@ -438,7 +242,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns true if the background [godot.StyleBox] of the slot [slotIndex] is drawn.
+   * Returns true if the background [godot.StyleBox] of the slot with the given [slotIndex] is drawn.
    */
   public fun isSlotDrawStylebox(slotIndex: Int): Boolean {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
@@ -448,7 +252,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Toggles the background [godot.StyleBox] of the slot [slotIndex].
+   * Toggles the background [godot.StyleBox] of the slot with the given [slotIndex].
    */
   public fun setSlotDrawStylebox(slotIndex: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), BOOL to enable)
@@ -457,150 +261,101 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns the number of enabled input slots (connections) to the GraphNode.
+   * Returns the number of slots with an enabled input port.
    */
-  public fun getConnectionInputCount(): Int {
+  public fun getInputPortCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_CONNECTION_INPUT_COUNT, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-  }
-
-  /**
-   * Returns the height of the input connection [port].
-   */
-  public fun getConnectionInputHeight(port: Int): Int {
-    TransferContext.writeArguments(LONG to port.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_CONNECTION_INPUT_HEIGHT, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-  }
-
-  /**
-   * Returns the position of the input connection [port].
-   */
-  public fun getConnectionInputPosition(port: Int): Vector2 {
-    TransferContext.writeArguments(LONG to port.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_CONNECTION_INPUT_POSITION, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-  }
-
-  /**
-   * Returns the type of the input connection [port].
-   */
-  public fun getConnectionInputType(port: Int): Int {
-    TransferContext.writeArguments(LONG to port.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_CONNECTION_INPUT_TYPE,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_INPUT_PORT_COUNT,
         LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
-   * Returns the [godot.core.Color] of the input connection [port].
+   * Returns the position of the input port with the given [portIdx].
    */
-  public fun getConnectionInputColor(port: Int): Color {
-    TransferContext.writeArguments(LONG to port.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_CONNECTION_INPUT_COLOR, COLOR)
+  public fun getInputPortPosition(portIdx: Int): Vector2 {
+    TransferContext.writeArguments(LONG to portIdx.toLong())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_INPUT_PORT_POSITION,
+        VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  /**
+   * Returns the type of the input port with the given [portIdx].
+   */
+  public fun getInputPortType(portIdx: Int): Int {
+    TransferContext.writeArguments(LONG to portIdx.toLong())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_INPUT_PORT_TYPE, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  /**
+   * Returns the [godot.core.Color] of the input port with the given [portIdx].
+   */
+  public fun getInputPortColor(portIdx: Int): Color {
+    TransferContext.writeArguments(LONG to portIdx.toLong())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_INPUT_PORT_COLOR,
+        COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
   /**
-   * Returns the corresponding slot index of the input connection [port].
+   * Returns the corresponding slot index of the input port with the given [portIdx].
    */
-  public fun getConnectionInputSlot(port: Int): Int {
-    TransferContext.writeArguments(LONG to port.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_CONNECTION_INPUT_SLOT,
+  public fun getInputPortSlot(portIdx: Int): Int {
+    TransferContext.writeArguments(LONG to portIdx.toLong())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_INPUT_PORT_SLOT, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  /**
+   * Returns the number of slots with an enabled output port.
+   */
+  public fun getOutputPortCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_OUTPUT_PORT_COUNT,
         LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
-   * Returns the number of enabled output slots (connections) of the GraphNode.
+   * Returns the position of the output port with the given [portIdx].
    */
-  public fun getConnectionOutputCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_CONNECTION_OUTPUT_COUNT, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-  }
-
-  /**
-   * Returns the height of the output connection [port].
-   */
-  public fun getConnectionOutputHeight(port: Int): Int {
-    TransferContext.writeArguments(LONG to port.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_CONNECTION_OUTPUT_HEIGHT, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-  }
-
-  /**
-   * Returns the position of the output connection [port].
-   */
-  public fun getConnectionOutputPosition(port: Int): Vector2 {
-    TransferContext.writeArguments(LONG to port.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_CONNECTION_OUTPUT_POSITION, VECTOR2)
+  public fun getOutputPortPosition(portIdx: Int): Vector2 {
+    TransferContext.writeArguments(LONG to portIdx.toLong())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_OUTPUT_PORT_POSITION,
+        VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
-   * Returns the type of the output connection [port].
+   * Returns the type of the output port with the given [portIdx].
    */
-  public fun getConnectionOutputType(port: Int): Int {
-    TransferContext.writeArguments(LONG to port.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_CONNECTION_OUTPUT_TYPE, LONG)
+  public fun getOutputPortType(portIdx: Int): Int {
+    TransferContext.writeArguments(LONG to portIdx.toLong())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_OUTPUT_PORT_TYPE,
+        LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
-   * Returns the [godot.core.Color] of the output connection [port].
+   * Returns the [godot.core.Color] of the output port with the given [portIdx].
    */
-  public fun getConnectionOutputColor(port: Int): Color {
-    TransferContext.writeArguments(LONG to port.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_CONNECTION_OUTPUT_COLOR, COLOR)
+  public fun getOutputPortColor(portIdx: Int): Color {
+    TransferContext.writeArguments(LONG to portIdx.toLong())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_OUTPUT_PORT_COLOR,
+        COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
   /**
-   * Returns the corresponding slot index of the output connection [port].
+   * Returns the corresponding slot index of the output port with the given [portIdx].
    */
-  public fun getConnectionOutputSlot(port: Int): Int {
-    TransferContext.writeArguments(LONG to port.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_CONNECTION_OUTPUT_SLOT, LONG)
+  public fun getOutputPortSlot(portIdx: Int): Int {
+    TransferContext.writeArguments(LONG to portIdx.toLong())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_OUTPUT_PORT_SLOT,
+        LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-  }
-
-  public enum class Overlay(
-    id: Long,
-  ) {
-    /**
-     * No overlay is shown.
-     */
-    OVERLAY_DISABLED(0),
-    /**
-     * Show overlay set in the [theme_item breakpoint] theme property.
-     */
-    OVERLAY_BREAKPOINT(1),
-    /**
-     * Show overlay set in the [theme_item position] theme property.
-     */
-    OVERLAY_POSITION(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
-    }
   }
 
   public companion object

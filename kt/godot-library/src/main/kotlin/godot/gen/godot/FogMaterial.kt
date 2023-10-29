@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * [godot.Material] used with a [godot.FogVolume] to draw things with the volumetric fog effect.
+ * A material that controls how volumetric fog is rendered, to be assigned to a [godot.FogVolume].
  *
  * A [godot.Material] resource that can be used by [godot.FogVolume]s to draw volumetric effects.
  *

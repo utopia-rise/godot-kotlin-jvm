@@ -12,9 +12,9 @@ import kotlin.Int
 import kotlin.Suppress
 
 @GodotBaseType
-public open class ResourceFormatImporterSaver internal constructor() : ResourceFormatSaver() {
+public open class ResourceImporterMP3 : ResourceImporter() {
   public override fun new(scriptIndex: Int): Boolean {
-    callConstructor(ENGINECLASS_RESOURCEFORMATIMPORTERSAVER, scriptIndex)
+    callConstructor(ENGINECLASS_RESOURCEIMPORTERMP3, scriptIndex)
     return true
   }
 

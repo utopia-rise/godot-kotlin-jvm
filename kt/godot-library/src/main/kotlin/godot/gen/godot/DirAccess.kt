@@ -258,6 +258,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Changes the currently opened directory to the one passed as an argument. The argument can be relative to the current directory (e.g. `newdir` or `../newdir`), or an absolute path (e.g. `/tmp/newdir` or `res://somedir/newdir`).
    *
    * Returns one of the [enum Error] code constants ([OK] on success).
+   *
+   * **Note:** The new directory must be within the same scope, e.g. when you had opened a directory inside `res://`, you can't change it to `user://` directory. If you need to open a directory in another access scope, use [open] to create a new instance instead.
    */
   public fun changeDir(toDir: String): GodotError {
     TransferContext.writeArguments(STRING to toDir)

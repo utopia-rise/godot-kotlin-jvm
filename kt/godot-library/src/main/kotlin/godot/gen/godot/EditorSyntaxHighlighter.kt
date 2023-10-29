@@ -19,7 +19,7 @@ import kotlin.Suppress
  *
  * Base class that all [godot.SyntaxHighlighter]s used by the [godot.ScriptEditor] extend from.
  *
- * Add a syntax highlighter to an individual script by calling [godot.ScriptEditorBase.addSyntaxHighlighter]. To apply to all scripts on open, call [godot.ScriptEditor.registerSyntaxHighlighter]
+ * Add a syntax highlighter to an individual script by calling [godot.ScriptEditorBase.addSyntaxHighlighter]. To apply to all scripts on open, call [godot.ScriptEditor.registerSyntaxHighlighter].
  */
 @GodotBaseType
 public open class EditorSyntaxHighlighter internal constructor() : SyntaxHighlighter() {

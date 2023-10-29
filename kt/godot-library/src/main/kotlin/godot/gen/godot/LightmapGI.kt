@@ -28,6 +28,9 @@ import kotlin.Unit
 /**
  * Computes and stores baked lightmaps for fast global illumination.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/3d/global_illumination/using_lightmap_gi.html]($DOCS_URL/tutorials/3d/global_illumination/using_lightmap_gi.html)
+ *
  * The [godot.LightmapGI] node is used to compute and store baked lightmaps. Lightmaps are used to provide high-quality indirect lighting with very little light leaking. [godot.LightmapGI] can also provide rough reflections using spherical harmonics if [directional] is enabled. Dynamic objects can receive indirect lighting thanks to *light probes*, which can be automatically placed by setting [generateProbesSubdiv] to a value other than [GENERATE_PROBES_DISABLED]. Additional lightmap probes can also be added by creating [godot.LightmapProbe] nodes. The downside is that lightmaps are fully static and cannot be baked in an exported project. Baking a [godot.LightmapGI] node is also slower compared to [godot.VoxelGI].
  *
  * **Procedural generation:** Lightmap baking functionality is only available in the editor. This means [godot.LightmapGI] is not suited to procedurally generated or user-built levels. For procedurally generated or user-built levels, use [godot.VoxelGI] or SDFGI instead (see [godot.Environment.sdfgiEnabled]).
@@ -103,9 +106,7 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * If `true`, uses a CPU-based denoising algorithm on the generated lightmap. This eliminates most noise within the generated lightmap at the cost of longer bake times. File sizes are generally not impacted significantly by the use of a denoiser, although lossless compression may do a better job at compressing a denoised image.
-   *
-   * **Note:** The built-in denoiser (OpenImageDenoise) may crash when denoising lightmaps in large scenes. If you encounter a crash at the end of lightmap baking, try disabling [useDenoiser].
+   * If `true`, uses a GPU-based denoising algorithm on the generated lightmap. This eliminates most noise within the generated lightmap at the cost of longer bake times. File sizes are generally not impacted significantly by the use of a denoiser, although lossless compression may do a better job at compressing a denoised image.
    */
   public var useDenoiser: Boolean
     get() {
@@ -117,6 +118,22 @@ public open class LightmapGI : VisualInstance3D() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_USE_DENOISER, NIL)
+    }
+
+  /**
+   * The strength of denoising step applied to the generated lightmaps. Only effective if [useDenoiser] is `true` and [godot.ProjectSettings.rendering/lightmapping/denoising/denoiser] is set to JNLM.
+   */
+  public var denoiserStrength: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_DENOISER_STRENGTH,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_DENOISER_STRENGTH,
+          NIL)
     }
 
   /**
@@ -399,6 +416,10 @@ public open class LightmapGI : VisualInstance3D() {
      * The user aborted the lightmap baking operation (typically by clicking the **Cancel** button in the progress dialog).
      */
     BAKE_ERROR_USER_ABORTED(8),
+    /**
+     * Lightmap baking failed as the maximum texture size is too small to fit some of the meshes marked for baking.
+     */
+    BAKE_ERROR_TEXTURE_SIZE_TOO_SMALL(9),
     ;
 
     public val id: Long

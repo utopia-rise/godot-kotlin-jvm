@@ -57,5 +57,12 @@ public open class ZIPReader : RefCounted() {
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
+  @JvmOverloads
+  public fun fileExists(path: String, caseSensitive: Boolean = true): Boolean {
+    TransferContext.writeArguments(STRING to path, BOOL to caseSensitive)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ZIPREADER_FILE_EXISTS, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   public companion object
 }

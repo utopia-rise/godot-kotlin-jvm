@@ -123,7 +123,7 @@ public open class NavigationRegion3D : Node3D() {
     }
 
   /**
-   * When pathfinding enters this region's navigation mesh from another regions navigation mesh the `enter_cost` value is added to the path distance for determining the shortest path.
+   * When pathfinding enters this region's navigation mesh from another regions navigation mesh the [enterCost] value is added to the path distance for determining the shortest path.
    */
   public var enterCost: Float
     get() {
@@ -139,7 +139,7 @@ public open class NavigationRegion3D : Node3D() {
     }
 
   /**
-   * When pathfinding moves inside this region's navigation mesh the traveled distances are multiplied with `travel_cost` for determining the shortest path.
+   * When pathfinding moves inside this region's navigation mesh the traveled distances are multiplied with [travelCost] for determining the shortest path.
    */
   public var travelCost: Float
     get() {
@@ -157,6 +157,25 @@ public open class NavigationRegion3D : Node3D() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_NAVIGATIONREGION3D, scriptIndex)
     return true
+  }
+
+  /**
+   * Sets the [RID] of the navigation map this region should use. By default the region will automatically join the [godot.World3D] default navigation map so this function is only required to override the default map.
+   */
+  public fun setNavigationMap(navigationMap: RID): Unit {
+    TransferContext.writeArguments(_RID to navigationMap)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_SET_NAVIGATION_MAP, NIL)
+  }
+
+  /**
+   * Returns the current navigation map [RID] used by this region.
+   */
+  public fun getNavigationMap(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_GET_NAVIGATION_MAP, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**

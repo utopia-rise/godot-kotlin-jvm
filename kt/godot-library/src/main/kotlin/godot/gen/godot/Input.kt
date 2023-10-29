@@ -8,10 +8,12 @@ package godot
 
 import godot.MouseButtonMaskValue
 import godot.`annotation`.GodotBaseType
+import godot.core.Dictionary
 import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -25,6 +27,7 @@ import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.signals.Signal2
 import godot.signals.signal
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -120,7 +123,7 @@ public object Input : Object() {
   }
 
   /**
-   * Returns `true` if you are pressing the action event. Note that if an action has multiple buttons assigned and more than one of them is pressed, releasing one button will release the action, even if some other button assigned to this action is still pressed.
+   * Returns `true` if you are pressing the action event.
    *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    *
@@ -166,7 +169,7 @@ public object Input : Object() {
   }
 
   /**
-   * Returns a value between 0 and 1 representing the intensity of the given action. In a joypad, for example, the further away the axis (analog sticks or L2, R2 triggers) is from the dead zone, the closer the value will be to 1. If the action is mapped to a control that has no axis as the keyboard, the value returned will be 0 or 1.
+   * Returns a value between 0 and 1 representing the intensity of the given action. In a joypad, for example, the further away the axis (analog sticks or L2, R2 triggers) is from the dead zone, the closer the value will be to 1. If the action is mapped to a control that has no axis such as the keyboard, the value returned will be 0 or 1.
    *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
@@ -275,6 +278,40 @@ public object Input : Object() {
   }
 
   /**
+   * Returns a dictionary with extra platform-specific information about the device, e.g. the raw gamepad name from the OS or the Steam Input index.
+   *
+   * On Windows the dictionary contains the following fields:
+   *
+   * `xinput_index`: The index of the controller in the XInput system.
+   *
+   * On Linux:
+   *
+   * `raw_name`: The name of the controller as it came from the OS, before getting renamed by the godot controller database.
+   *
+   * `vendor_id`: The USB vendor ID of the device.
+   *
+   * `product_id`: The USB product ID of the device.
+   *
+   * `steam_input_index`: The Steam Input gamepad index, if the device is not a Steam Input device this key won't be present.
+   */
+  public fun getJoyInfo(device: Int): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments(LONG to device.toLong())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_INFO, DICTIONARY)
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+  }
+
+  /**
+   * Queries whether an input device should be ignored or not. Devices can be ignored by setting the environment variable `SDL_GAMECONTROLLER_IGNORE_DEVICES`. Read the [godot.SDL documentation](https://wiki.libsdl.org/SDL2) for more information.
+   *
+   * **Note:** Some 3rd party tools can contribute to the list of ignored devices. For example, *SteamInput* creates virtual devices from physical devices for remapping purposes. To avoid handling the same input device twice, the original device is added to the ignore list.
+   */
+  public fun shouldIgnoreDevice(vendorId: Int, productId: Int): Boolean {
+    TransferContext.writeArguments(LONG to vendorId.toLong(), LONG to productId.toLong())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SHOULD_IGNORE_DEVICE, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
    * Returns an [godot.Array] containing the device IDs of all currently connected joypads.
    */
   public fun getConnectedJoypads(): VariantArray<Long> {
@@ -360,7 +397,7 @@ public object Input : Object() {
    *
    * Note this method returns an empty [godot.core.Vector3] when running from the editor even when your device has an accelerometer. You must export your project to a supported device to read values from the accelerometer.
    *
-   * **Note:** This method only works on iOS, Android, and UWP. On other platforms, it always returns [godot.Vector3.ZERO].
+   * **Note:** This method only works on Android and iOS. On other platforms, it always returns [godot.Vector3.ZERO].
    */
   public fun getAccelerometer(): Vector3 {
     TransferContext.writeArguments()
@@ -371,7 +408,7 @@ public object Input : Object() {
   /**
    * Returns the magnetic field strength in micro-Tesla for all axes of the device's magnetometer sensor, if the device has one. Otherwise, the method returns [godot.Vector3.ZERO].
    *
-   * **Note:** This method only works on Android, iOS and UWP. On other platforms, it always returns [godot.Vector3.ZERO].
+   * **Note:** This method only works on Android and iOS. On other platforms, it always returns [godot.Vector3.ZERO].
    */
   public fun getMagnetometer(): Vector3 {
     TransferContext.writeArguments()

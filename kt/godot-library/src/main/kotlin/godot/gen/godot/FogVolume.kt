@@ -22,7 +22,10 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A node used to add local fog with the volumetric fog effect.
+ * A region that contributes to the default volumetric fog from the world environment.
+ *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/3d/volumetric_fog.html]($DOCS_URL/tutorials/3d/volumetric_fog.html)
  *
  * [godot.FogVolume]s are used to add localized fog into the global volumetric fog effect. [godot.FogVolume]s can also remove volumetric fog from specific areas if using a [godot.FogMaterial] with a negative [godot.FogMaterial.density].
  *

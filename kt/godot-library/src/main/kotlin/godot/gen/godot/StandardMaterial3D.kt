@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Physically based rendering (PBR) material that can be applied to 3D objects.
+ * A PBR (Physically Based Rendering) material to be used on 3D objects.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/3d/standard_material_3d.html]($DOCS_URL/tutorials/3d/standard_material_3d.html)

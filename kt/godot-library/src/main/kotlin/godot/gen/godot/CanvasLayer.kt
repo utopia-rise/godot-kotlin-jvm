@@ -54,6 +54,8 @@ public open class CanvasLayer : Node() {
 
   /**
    * Layer index for draw order. Lower values are drawn behind higher values.
+   *
+   * **Note:** If multiple CanvasLayers have the same layer index, [godot.CanvasItem] children of one CanvasLayer are drawn behind the [godot.CanvasItem] children of the other CanvasLayer. Which CanvasLayer is drawn in front is non-deterministic.
    */
   public var layer: Int
     get() {

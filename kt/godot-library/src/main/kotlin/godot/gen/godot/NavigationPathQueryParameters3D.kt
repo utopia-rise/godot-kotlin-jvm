@@ -34,7 +34,7 @@ import kotlin.jvm.JvmInline
 @GodotBaseType
 public open class NavigationPathQueryParameters3D : RefCounted() {
   /**
-   * The navigation `map` [RID] used in the path query.
+   * The navigation map [RID] used in the path query.
    */
   public var map: RID
     get() {

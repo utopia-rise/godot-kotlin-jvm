@@ -65,7 +65,7 @@ public open class CollisionShape3D : Node3D() {
   }
 
   /**
-   * If this method exists within a script it will be called whenever the shape resource has been modified.
+   * *Obsoleted.* Use [godot.Resource.changed] instead.
    */
   public fun resourceChanged(resource: Resource): Unit {
     TransferContext.writeArguments(OBJECT to resource)

@@ -62,7 +62,7 @@ public open class CollisionPolygon3D : Node3D() {
   /**
    * Array of vertices which define the 2D polygon in the local XY plane.
    *
-   * **Note:** The returned value is a copy of the original. Methods which mutate the size or properties of the return value will not impact the original polygon. To change properties of the polygon, assign it to a temporary variable and make changes before reassigning the `polygon` member.
+   * **Note:** The returned value is a copy of the original. Methods which mutate the size or properties of the return value will not impact the original polygon. To change properties of the polygon, assign it to a temporary variable and make changes before reassigning the class property.
    */
   public var polygon: PackedVector2Array
     get() {

@@ -7,16 +7,20 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.PackedByteArray
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.PACKED_BYTE_ARRAY
+import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 
 @GodotBaseType
@@ -103,5 +107,19 @@ public open class AudioStreamOggVorbis : AudioStream() {
     return true
   }
 
-  public companion object
+  public companion object {
+    public fun loadFromBuffer(buffer: PackedByteArray): AudioStreamOggVorbis? {
+      TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMOGGVORBIS_LOAD_FROM_BUFFER,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as AudioStreamOggVorbis?)
+    }
+
+    public fun loadFromFile(path: String): AudioStreamOggVorbis? {
+      TransferContext.writeArguments(STRING to path)
+      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMOGGVORBIS_LOAD_FROM_FILE,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as AudioStreamOggVorbis?)
+    }
+  }
 }

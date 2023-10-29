@@ -27,6 +27,9 @@ import kotlin.Unit
 /**
  * Version Control System (VCS) interface, which reads and writes to the local VCS in use.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/best_practices/version_control_systems.html]($DOCS_URL/tutorials/best_practices/version_control_systems.html)
+ *
  * Defines the API that the editor uses to extract information from the underlying VCS. The implementation of this API is included in VCS plugins, which are GDExtension plugins that inherit [godot.EditorVCSInterface] and are attached (on demand) to the singleton instance of [godot.EditorVCSInterface]. Instead of performing the task themselves, all the virtual functions listed below are calling the internally overridden functions in the VCS plugins to provide a plug-n-play experience. A custom VCS plugin is supposed to inherit from [godot.EditorVCSInterface] and override each of these virtual functions.
  */
 @GodotBaseType

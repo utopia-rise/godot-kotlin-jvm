@@ -175,7 +175,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Set the navigation [map] edge connection use. If [enabled] the navigation map allows navigation regions to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin.
+   * Set the navigation [map] edge connection use. If [enabled] is `true`, the navigation map allows navigation regions to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin.
    */
   public fun mapSetUseEdgeConnections(map: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to map, BOOL to enabled)
@@ -369,7 +369,26 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * If [enabled] the navigation [region] will use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin.
+   * If [enabled] is `true`, the specified [region] will contribute to its current navigation map.
+   */
+  public fun regionSetEnabled(region: RID, enabled: Boolean): Unit {
+    TransferContext.writeArguments(_RID to region, BOOL to enabled)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_SET_ENABLED, NIL)
+  }
+
+  /**
+   * Returns `true` if the specified [region] is enabled.
+   */
+  public fun regionGetEnabled(region: RID): Boolean {
+    TransferContext.writeArguments(_RID to region)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_ENABLED, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * If [enabled] is `true`, the navigation [region] will use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin.
    */
   public fun regionSetUseEdgeConnections(region: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to region, BOOL to enabled)
@@ -516,6 +535,8 @@ public object NavigationServer3D : Object() {
 
   /**
    * Bakes the [navigationMesh] with bake source geometry collected starting from the [rootNode].
+   *
+   * *Deprecated.* This function is deprecated due to core threading changes. To upgrade existing code, first create a [godot.NavigationMeshSourceGeometryData3D] resource. Use this resource with [parseSourceGeometryData] to parse the SceneTree for nodes that should contribute to the navigation mesh baking. The SceneTree parsing needs to happen on the main thread. After the parsing is finished use the resource with [bakeFromSourceGeometryData] to bake a navigation mesh.
    */
   public fun regionBakeNavigationMesh(navigationMesh: NavigationMesh, rootNode: Node): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to rootNode)
@@ -580,6 +601,25 @@ public object NavigationServer3D : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_GET_MAP,
         _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  /**
+   * If [enabled] is `true`, the specified [link] will contribute to its current navigation map.
+   */
+  public fun linkSetEnabled(link: RID, enabled: Boolean): Unit {
+    TransferContext.writeArguments(_RID to link, BOOL to enabled)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_SET_ENABLED,
+        NIL)
+  }
+
+  /**
+   * Returns `true` if the specified [link] is enabled.
+   */
+  public fun linkGetEnabled(link: RID): Boolean {
+    TransferContext.writeArguments(_RID to link)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_GET_ENABLED,
+        BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -726,7 +766,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * If [enabled] the provided [agent] calculates avoidance.
+   * If [enabled] is `true`, the provided [agent] calculates avoidance.
    */
   public fun agentSetAvoidanceEnabled(agent: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to agent, BOOL to enabled)
@@ -956,7 +996,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * If [enabled] the provided [obstacle] affects avoidance using agents.
+   * If [enabled] is `true`, the provided [obstacle] affects avoidance using agents.
    */
   public fun obstacleSetAvoidanceEnabled(obstacle: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to obstacle, BOOL to enabled)
@@ -1116,6 +1156,20 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, CALLABLE to callback)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_BAKE_FROM_SOURCE_GEOMETRY_DATA, NIL)
+  }
+
+  /**
+   * Bakes the provided [navigationMesh] with the data from the provided [sourceGeometryData] as an async task running on a background thread. After the process is finished the optional [callback] will be called.
+   */
+  @JvmOverloads
+  public fun bakeFromSourceGeometryDataAsync(
+    navigationMesh: NavigationMesh,
+    sourceGeometryData: NavigationMeshSourceGeometryData3D,
+    callback: Callable = Callable(),
+  ): Unit {
+    TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, CALLABLE to callback)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_BAKE_FROM_SOURCE_GEOMETRY_DATA_ASYNC, NIL)
   }
 
   /**

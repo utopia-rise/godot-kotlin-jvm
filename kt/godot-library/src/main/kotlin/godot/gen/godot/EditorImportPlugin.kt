@@ -406,7 +406,7 @@ public open class EditorImportPlugin internal constructor() : ResourceImporter()
   }
 
   /**
-   * This function can only be called during the [_import] callback and it allows manually importing resources from it. This is useful when the imported file generates external resources that require importing (as example, images). Custom parameters for the ".import" file can be passed via the [customOptions]. Additionally, in cases where multiple importers can handle a file, the [customImporter] ca be specified to force a specific one. This function performs a resource import and returns immediately with a success or error code. [generatorParameters] defines optional extra metadata which will be stored as `generator_parameters` in the `remap` section of the `.import` file, for example to store a md5 hash of the source data.
+   * This function can only be called during the [_import] callback and it allows manually importing resources from it. This is useful when the imported file generates external resources that require importing (as example, images). Custom parameters for the ".import" file can be passed via the [customOptions]. Additionally, in cases where multiple importers can handle a file, the [customImporter] ca be specified to force a specific one. This function performs a resource import and returns immediately with a success or error code. [generatorParameters] defines optional extra metadata which will be stored as [code skip-lint]generator_parameters` in the `remap` section of the `.import` file, for example to store a md5 hash of the source data.
    */
   @JvmOverloads
   public fun appendImportExternalResource(

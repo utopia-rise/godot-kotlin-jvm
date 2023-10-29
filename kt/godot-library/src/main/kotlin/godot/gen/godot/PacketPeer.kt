@@ -34,7 +34,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
   /**
    * Maximum buffer size allowed when encoding [Variant]s. Raise this value to support heavier memory allocations.
    *
-   * The [putVar] method allocates memory on the stack, and the buffer used will grow automatically to the closest power of two to match the size of the [Variant]. If the [Variant] is bigger than `encode_buffer_max_size`, the method will error out with [ERR_OUT_OF_MEMORY].
+   * The [putVar] method allocates memory on the stack, and the buffer used will grow automatically to the closest power of two to match the size of the [Variant]. If the [Variant] is bigger than [encodeBufferMaxSize], the method will error out with [ERR_OUT_OF_MEMORY].
    */
   public var encodeBufferMaxSize: Int
     get() {

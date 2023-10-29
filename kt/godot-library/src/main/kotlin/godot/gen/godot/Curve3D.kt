@@ -219,9 +219,7 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns a point within the curve at position [offset], where [offset] is measured as a distance in 3D units along the curve.
-   *
-   * To do that, it finds the two cached points where the [offset] lies between, then interpolates the values. This interpolation is cubic if [cubic] is set to `true`, or linear if set to `false`.
+   * Returns a point within the curve at position [offset], where [offset] is measured as a distance in 3D units along the curve. To do that, it finds the two cached points where the [offset] lies between, then interpolates the values. This interpolation is cubic if [cubic] is set to `true`, or linear if set to `false`.
    *
    * Cubic interpolation tends to follow the curves better, but linear is faster (and often, precise enough).
    */
@@ -233,7 +231,7 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Similar with `interpolate_baked()`. The return value is `Transform3D`, with `origin` as point position, `basis.x` as sideway vector, `basis.y` as up vector, `basis.z` as forward vector. When the curve length is 0, there is no reasonable way to calculate the rotation, all vectors aligned with global space axes.
+   * Returns a [godot.Transform3D] with `origin` as point position, `basis.x` as sideway vector, `basis.y` as up vector, `basis.z` as forward vector. When the curve length is 0, there is no reasonable way to calculate the rotation, all vectors aligned with global space axes. See also [sampleBaked].
    */
   @JvmOverloads
   public fun sampleBakedWithRotation(
@@ -248,9 +246,7 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns an up vector within the curve at position [offset], where [offset] is measured as a distance in 3D units along the curve.
-   *
-   * To do that, it finds the two cached up vectors where the [offset] lies between, then interpolates the values. If [applyTilt] is `true`, an interpolated tilt is applied to the interpolated up vector.
+   * Returns an up vector within the curve at position [offset], where [offset] is measured as a distance in 3D units along the curve. To do that, it finds the two cached up vectors where the [offset] lies between, then interpolates the values. If [applyTilt] is `true`, an interpolated tilt is applied to the interpolated up vector.
    *
    * If the curve has no up vectors, the function sends an error to the console, and returns `(0, 1, 0)`.
    */

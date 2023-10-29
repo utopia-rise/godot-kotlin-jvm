@@ -31,6 +31,9 @@ import kotlin.Unit
 /**
  * Base node for geometry-based visual instances.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/3d/visibility_ranges.html]($DOCS_URL/tutorials/3d/visibility_ranges.html)
+ *
  * Base node for geometry-based visual instances. Shares some common functionality like visibility and custom materials.
  */
 @GodotBaseType

@@ -46,7 +46,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Polygon2D : Node2D() {
   /**
-   * The polygon's fill color. If `texture` is defined, it will be multiplied by this color. It will also be the default color for vertices not set in `vertex_colors`.
+   * The polygon's fill color. If [texture] is set, it will be multiplied by this color. It will also be the default color for vertices not set in [vertexColors].
    */
   @CoreTypeLocalCopy
   public var color: Color
@@ -90,7 +90,7 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   * The polygon's fill texture. Use `uv` to set texture coordinates.
+   * The polygon's fill texture. Use [uv] to set texture coordinates.
    */
   public var texture: Texture2D?
     get() {
@@ -104,7 +104,7 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   * Amount to offset the polygon's `texture`. If `(0, 0)` the texture's origin (its top-left corner) will be placed at the polygon's `position`.
+   * Amount to offset the polygon's [texture]. If set to `Vector2(0, 0)`, the texture's origin (its top-left corner) will be placed at the polygon's position.
    */
   @CoreTypeLocalCopy
   public var textureOffset: Vector2
@@ -120,7 +120,7 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   * Amount to multiply the `uv` coordinates when using a `texture`. Larger values make the texture smaller, and vice versa.
+   * Amount to multiply the [uv] coordinates when using [texture]. Larger values make the texture smaller, and vice versa.
    */
   @CoreTypeLocalCopy
   public var textureScale: Vector2
@@ -213,7 +213,7 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   * Texture coordinates for each vertex of the polygon. There should be one `uv` per polygon vertex. If there are fewer, undefined vertices will use `(0, 0)`.
+   * Texture coordinates for each vertex of the polygon. There should be one UV value per polygon vertex. If there are fewer, undefined vertices will use `Vector2(0, 0)`.
    */
   public var uv: PackedVector2Array
     get() {
@@ -228,7 +228,7 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   * Color for each vertex. Colors are interpolated between vertices, resulting in smooth gradients. There should be one per polygon vertex. If there are fewer, undefined vertices will use `color`.
+   * Color for each vertex. Colors are interpolated between vertices, resulting in smooth gradients. There should be one per polygon vertex. If there are fewer, undefined vertices will use [color].
    */
   public var vertexColors: PackedColorArray
     get() {
@@ -278,7 +278,7 @@ public open class Polygon2D : Node2D() {
   }
 
   /**
-   * The polygon's fill color. If `texture` is defined, it will be multiplied by this color. It will also be the default color for vertices not set in `vertex_colors`.
+   * The polygon's fill color. If [texture] is set, it will be multiplied by this color. It will also be the default color for vertices not set in [vertexColors].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -326,7 +326,7 @@ public open class Polygon2D : Node2D() {
 
 
   /**
-   * Amount to offset the polygon's `texture`. If `(0, 0)` the texture's origin (its top-left corner) will be placed at the polygon's `position`.
+   * Amount to offset the polygon's [texture]. If set to `Vector2(0, 0)`, the texture's origin (its top-left corner) will be placed at the polygon's position.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -350,7 +350,7 @@ public open class Polygon2D : Node2D() {
 
 
   /**
-   * Amount to multiply the `uv` coordinates when using a `texture`. Larger values make the texture smaller, and vice versa.
+   * Amount to multiply the [uv] coordinates when using [texture]. Larger values make the texture smaller, and vice versa.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

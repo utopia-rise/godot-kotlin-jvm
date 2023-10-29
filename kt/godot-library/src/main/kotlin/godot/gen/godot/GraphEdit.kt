@@ -45,7 +45,7 @@ import kotlin.Unit
  *
  * [godot.GraphEdit] provides tools for creation, manipulation, and display of various graphs. Its main purpose in the engine is to power the visual programming systems, such as visual shaders, but it is also available for use in user projects.
  *
- * [godot.GraphEdit] by itself is only an empty container, representing an infinite grid where [godot.GraphNode]s can be placed. Each [godot.GraphNode] represents a node in the graph, a single unit of data in the connected scheme. [godot.GraphEdit], in turn, helps to control various interactions with nodes and between nodes. When the user attempts to connect, disconnect, or close a [godot.GraphNode], a signal is emitted in the [godot.GraphEdit], but no action is taken by default. It is the responsibility of the programmer utilizing this control to implement the necessary logic to determine how each request should be handled.
+ * [godot.GraphEdit] by itself is only an empty container, representing an infinite grid where [godot.GraphNode]s can be placed. Each [godot.GraphNode] represents a node in the graph, a single unit of data in the connected scheme. [godot.GraphEdit], in turn, helps to control various interactions with nodes and between nodes. When the user attempts to connect, disconnect, or delete a [godot.GraphNode], a signal is emitted in the [godot.GraphEdit], but no action is taken by default. It is the responsibility of the programmer utilizing this control to implement the necessary logic to determine how each request should be handled.
  *
  * **Performance:** It is greatly advised to enable low-processor usage mode (see [godot.OS.lowProcessorUsageMode]) when using GraphEdits.
  */
@@ -64,36 +64,6 @@ public open class GraphEdit : Control() {
       "fromPort", "toNode", "toPort")
 
   /**
-   * Emitted when a popup is requested. Happens on right-clicking in the GraphEdit. [position] is the position of the mouse pointer when the signal is sent.
-   */
-  public val popupRequest: Signal1<Vector2> by signal("position")
-
-  /**
-   * Emitted when a GraphNode is attempted to be duplicated in the GraphEdit.
-   */
-  public val duplicateNodesRequest: Signal0 by signal()
-
-  /**
-   * Emitted when the user presses [kbd]Ctrl + C[/kbd].
-   */
-  public val copyNodesRequest: Signal0 by signal()
-
-  /**
-   * Emitted when the user presses [kbd]Ctrl + V[/kbd].
-   */
-  public val pasteNodesRequest: Signal0 by signal()
-
-  /**
-   * Emitted when a GraphNode is selected.
-   */
-  public val nodeSelected: Signal1<Node> by signal("node")
-
-  /**
-   *
-   */
-  public val nodeDeselected: Signal1<Node> by signal("node")
-
-  /**
    * Emitted when user drags a connection from an output port into the empty space of the graph.
    */
   public val connectionToEmpty: Signal3<StringName, Long, Vector2> by signal("fromNode", "fromPort",
@@ -106,9 +76,50 @@ public open class GraphEdit : Control() {
       "releasePosition")
 
   /**
-   * Emitted when a GraphNode is attempted to be removed from the GraphEdit. Provides a list of node names to be removed (all selected nodes, excluding nodes without closing button).
+   * Emitted at the beginning of a connection drag.
+   */
+  public val connectionDragStarted: Signal3<StringName, Long, Boolean> by signal("fromNode",
+      "fromPort", "isOutput")
+
+  /**
+   * Emitted at the end of a connection drag.
+   */
+  public val connectionDragEnded: Signal0 by signal()
+
+  /**
+   * Emitted when the user presses [kbd]Ctrl + C[/kbd].
+   */
+  public val copyNodesRequest: Signal0 by signal()
+
+  /**
+   * Emitted when the user presses [kbd]Ctrl + V[/kbd].
+   */
+  public val pasteNodesRequest: Signal0 by signal()
+
+  /**
+   * Emitted when a GraphNode is attempted to be duplicated in the GraphEdit.
+   */
+  public val duplicateNodesRequest: Signal0 by signal()
+
+  /**
+   * Emitted when attempting to remove a GraphNode from the GraphEdit. Provides a list of node names to be removed (all selected nodes, excluding nodes without closing button).
    */
   public val deleteNodesRequest: Signal1<VariantArray<StringName>> by signal("nodes")
+
+  /**
+   * Emitted when a GraphNode is selected.
+   */
+  public val nodeSelected: Signal1<Node> by signal("node")
+
+  /**
+   *
+   */
+  public val nodeDeselected: Signal1<Node> by signal("node")
+
+  /**
+   * Emitted when a popup is requested. Happens on right-clicking in the GraphEdit. [position] is the position of the mouse pointer when the signal is sent.
+   */
+  public val popupRequest: Signal1<Vector2> by signal("position")
 
   /**
    * Emitted at the beginning of a GraphNode movement.
@@ -126,73 +137,65 @@ public open class GraphEdit : Control() {
   public val scrollOffsetChanged: Signal1<Vector2> by signal("offset")
 
   /**
-   * Emitted at the beginning of a connection drag.
-   */
-  public val connectionDragStarted: Signal3<StringName, Long, Boolean> by signal("fromNode",
-      "fromPort", "isOutput")
-
-  /**
-   * Emitted at the end of a connection drag.
-   */
-  public val connectionDragEnded: Signal0 by signal()
-
-  /**
-   * If `true`, enables disconnection of existing connections in the GraphEdit by dragging the right end.
-   */
-  public var rightDisconnects: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_RIGHT_DISCONNECTS_ENABLED, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_RIGHT_DISCONNECTS,
-          NIL)
-    }
-
-  /**
    * The scroll offset.
    */
   @CoreTypeLocalCopy
   public var scrollOffset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_SCROLL_OFS, VECTOR2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_SCROLL_OFFSET,
+          VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SCROLL_OFS, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SCROLL_OFFSET, NIL)
     }
 
   /**
-   * The snapping distance in pixels.
+   * If `true`, the grid is visible.
    */
-  public var snapDistance: Int
+  public var showGrid: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_SNAP, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_SHOWING_GRID, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SNAP, NIL)
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SHOW_GRID, NIL)
     }
 
   /**
    * If `true`, enables snapping.
    */
-  public var useSnap: Boolean
+  public var snappingEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_USING_SNAP, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_SNAPPING_ENABLED,
+          BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_USE_SNAP, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SNAPPING_ENABLED,
+          NIL)
+    }
+
+  /**
+   * The snapping distance in pixels, also determines the grid line distance.
+   */
+  public var snappingDistance: Int
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_SNAPPING_DISTANCE,
+          LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SNAPPING_DISTANCE,
+          NIL)
     }
 
   /**
@@ -208,6 +211,22 @@ public open class GraphEdit : Control() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_PANNING_SCHEME, NIL)
+    }
+
+  /**
+   * If `true`, enables disconnection of existing connections in the GraphEdit by dragging the right end.
+   */
+  public var rightDisconnects: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_RIGHT_DISCONNECTS_ENABLED, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_RIGHT_DISCONNECTS,
+          NIL)
     }
 
   /**
@@ -315,22 +334,6 @@ public open class GraphEdit : Control() {
     }
 
   /**
-   * If `true`, makes a label with the current zoom level visible. The zoom value is displayed in percents.
-   */
-  public var showZoomLabel: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_SHOWING_ZOOM_LABEL,
-          BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SHOW_ZOOM_LABEL,
-          NIL)
-    }
-
-  /**
    * If `true`, the minimap is visible.
    */
   public var minimapEnabled: Boolean
@@ -379,19 +382,97 @@ public open class GraphEdit : Control() {
     }
 
   /**
-   * If `true`, the Arrange Nodes button is hidden.
+   * If `true`, the menu toolbar is visible.
    */
-  public var arrangeNodesButtonHidden: Boolean
+  public var showMenu: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_ARRANGE_NODES_BUTTON_HIDDEN, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_SHOWING_MENU, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SHOW_MENU, NIL)
+    }
+
+  /**
+   * If `true`, the label with the current zoom level is visible. The zoom level is displayed in percents.
+   */
+  public var showZoomLabel: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_SHOWING_ZOOM_LABEL,
+          BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SHOW_ZOOM_LABEL,
+          NIL)
+    }
+
+  /**
+   * If `true`, buttons that allow to change and reset the zoom level are visible.
+   */
+  public var showZoomButtons: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_SHOWING_ZOOM_BUTTONS,
+          BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SHOW_ZOOM_BUTTONS,
+          NIL)
+    }
+
+  /**
+   * If `true`, buttons that allow to configure grid and snapping options are visible.
+   */
+  public var showGridButtons: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_SHOWING_GRID_BUTTONS,
+          BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SHOW_GRID_BUTTONS,
+          NIL)
+    }
+
+  /**
+   * If `true`, the button to toggle the minimap is visible.
+   */
+  public var showMinimapButton: Boolean
+    get() {
+      TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_ARRANGE_NODES_BUTTON_HIDDEN, NIL)
+          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_SHOWING_MINIMAP_BUTTON, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SHOW_MINIMAP_BUTTON,
+          NIL)
+    }
+
+  /**
+   * If `true`, the button to automatically arrange graph nodes is visible.
+   */
+  public var showArrangeButton: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_SHOWING_ARRANGE_BUTTON, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SHOW_ARRANGE_BUTTON,
+          NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -450,14 +531,14 @@ public open class GraphEdit : Control() {
   /**
    * Returns whether the [mousePosition] is in the input hot zone.
    *
-   * By default, a hot zone is a [godot.core.Rect2] positioned such that its center is at [inNode].[godot.GraphNode.getConnectionInputPosition]([inPort]) (For output's case, call [godot.GraphNode.getConnectionOutputPosition] instead). The hot zone's width is twice the Theme Property `port_grab_distance_horizontal`, and its height is twice the `port_grab_distance_vertical`.
+   * By default, a hot zone is a [godot.core.Rect2] positioned such that its center is at [inNode].[godot.GraphNode.getInputPortPosition]([inPort]) (For output's case, call [godot.GraphNode.getOutputPortPosition] instead). The hot zone's width is twice the Theme Property `port_grab_distance_horizontal`, and its height is twice the `port_grab_distance_vertical`.
    *
    * Below is a sample code to help get started:
    *
    * ```
    * 				func _is_in_input_hotzone(in_node, in_port, mouse_position):
    * 				    var port_size: Vector2 = Vector2(get_theme_constant("port_grab_distance_horizontal"), get_theme_constant("port_grab_distance_vertical"))
-   * 				    var port_pos: Vector2 = in_node.get_position() + in_node.get_connection_input_position(in_port) - port_size / 2
+   * 				    var port_pos: Vector2 = in_node.get_position() + in_node.get_input_port_position(in_port) - port_size / 2
    * 				    var rect = Rect2(port_pos, port_size)
    *
    * 				    return rect.has_point(mouse_position)
@@ -479,7 +560,7 @@ public open class GraphEdit : Control() {
    * ```
    * 				func _is_in_output_hotzone(in_node, in_port, mouse_position):
    * 				    var port_size: Vector2 = Vector2(get_theme_constant("port_grab_distance_horizontal"), get_theme_constant("port_grab_distance_vertical"))
-   * 				    var port_pos: Vector2 = in_node.get_position() + in_node.get_connection_output_position(in_port) - port_size / 2
+   * 				    var port_pos: Vector2 = in_node.get_position() + in_node.get_output_port_position(in_port) - port_size / 2
    * 				    var rect = Rect2(port_pos, port_size)
    *
    * 				    return rect.has_point(mouse_position)
@@ -713,9 +794,9 @@ public open class GraphEdit : Control() {
    *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
-  public fun getZoomHbox(): HBoxContainer? {
+  public fun getMenuHbox(): HBoxContainer? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM_HBOX, OBJECT)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_MENU_HBOX, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as HBoxContainer?)
   }
 

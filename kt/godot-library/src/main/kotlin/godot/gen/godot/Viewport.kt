@@ -12,7 +12,9 @@ import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.Transform2D
+import godot.core.VariantArray
 import godot.core.VariantType.ANY
+import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -68,7 +70,21 @@ public open class Viewport internal constructor() : Node() {
   public val guiFocusChanged: Signal1<Control> by signal("node")
 
   /**
-   * Disable 3D rendering (but keep 2D rendering).
+   * If `true`, disables 2D rendering while keeping 3D rendering. See also [disable3d].
+   */
+  public var disable2d: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_2D_DISABLED, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DISABLE_2D, NIL)
+    }
+
+  /**
+   * If `true`, disables 3D rendering while keeping 2D rendering. See also [disable2d].
    */
   public var disable3d: Boolean
     get() {
@@ -337,6 +353,22 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
+   * If `true`, 2D rendering will use an high dynamic range (HDR) format framebuffer matching the bit depth of the 3D framebuffer. When using the Forward+ renderer this will be a `RGBA16` framebuffer, while when using the Mobile renderer it will be a `RGB10_A2` framebuffer. Additionally, 2D rendering will take place in linear color space and will be converted to sRGB space immediately before blitting to the screen (if the Viewport is attached to the screen). Practically speaking, this means that the end result of the Viewport will not be clamped into the `0-1` range and can be used in 3D rendering without color space adjustments. This allows 2D rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as substantially improves the appearance of effects requiring highly detailed gradients.
+   *
+   * **Note:** This setting will have no effect when using the GL Compatibility renderer as the GL Compatibility renderer always renders in low dynamic range for performance reasons.
+   */
+  public var useHdr2d: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_HDR_2D, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_HDR_2D, NIL)
+    }
+
+  /**
    * Sets scaling 3d mode. Bilinear scaling renders at different resolution to either undersample or supersample the viewport. FidelityFX Super Resolution 1.0, abbreviated to FSR, is an upscaling technology that produces high quality images at fast framerates by using a spatially aware upscaling algorithm. FSR is slightly more expensive than bilinear, but it produces significantly higher image quality. FSR should be used where possible.
    *
    * To control this property on the root viewport, set the [godot.ProjectSettings.rendering/scaling3d/mode] project setting.
@@ -521,6 +553,8 @@ public open class Viewport internal constructor() : Node() {
 
   /**
    * If `true`, the objects rendered by viewport become subjects of mouse picking process.
+   *
+   * **Note:** The number of simultaneously pickable objects is limited to 64 and they are selected in a non-deterministic order, which can be different in each picking process.
    */
   public var physicsObjectPicking: Boolean
     get() {
@@ -539,6 +573,8 @@ public open class Viewport internal constructor() : Node() {
    * If `true`, objects receive mouse picking events sorted primarily by their [godot.CanvasItem.zIndex] and secondarily by their position in the scene tree. If `false`, the order is undetermined.
    *
    * **Note:** This setting is disabled by default because of its potential expensive computational cost.
+   *
+   * **Note:** Sorting happens after selecting the pickable objects. Because of the limitation of 64 simultaneously pickable objects, it is not guaranteed that the object with the highest [godot.CanvasItem.zIndex] receives the picking event.
    */
   public var physicsObjectPickingSort: Boolean
     get() {
@@ -926,9 +962,9 @@ public open class Viewport internal constructor() : Node() {
    *
    * - [godot.Node.ShortcutInput]
    *
-   * - [godot.Node.UnhandledInput]
-   *
    * - [godot.Node.UnhandledKeyInput]
+   *
+   * - [godot.Node.UnhandledInput]
    *
    * If an earlier method marks the input as handled via [setInputAsHandled], any later method in this list will not be called.
    *
@@ -951,9 +987,9 @@ public open class Viewport internal constructor() : Node() {
    *
    * - [godot.Node.ShortcutInput]
    *
-   * - [godot.Node.UnhandledInput]
-   *
    * - [godot.Node.UnhandledKeyInput]
+   *
+   * - [godot.Node.UnhandledInput]
    *
    * If an earlier method marks the input as handled via [setInputAsHandled], any later method in this list will not be called.
    *
@@ -1079,6 +1115,18 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
+   * Returns a list of the visible embedded [godot.Window]s inside the viewport.
+   *
+   * **Note:** [godot.Window]s inside other viewports will not be listed.
+   */
+  public fun getEmbeddedSubwindows(): VariantArray<Window> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_EMBEDDED_SUBWINDOWS,
+        ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Window>)
+  }
+
+  /**
    * Set/clear individual bits on the rendering layer mask. This simplifies editing this [godot.Viewport]'s layers.
    */
   public fun setCanvasCullMaskBit(layer: Long, enable: Boolean): Unit {
@@ -1174,9 +1222,13 @@ public open class Viewport internal constructor() : Node() {
      */
     SCALING_3D_MODE_FSR(1),
     /**
+     * Use AMD FidelityFX Super Resolution 2.2 upscaling for the viewport's 3D buffer. The amount of scaling can be set using [godot.Viewport.scaling3dScale]. Values less than `1.0` will be result in the viewport being upscaled using FSR2. Values greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of `1.0` will use FSR2 at native resolution as a TAA solution.
+     */
+    SCALING_3D_MODE_FSR2(2),
+    /**
      * Represents the size of the [enum Scaling3DMode] enum.
      */
-    SCALING_3D_MODE_MAX(2),
+    SCALING_3D_MODE_MAX(3),
     ;
 
     public val id: Long
@@ -1416,6 +1468,10 @@ public open class Viewport internal constructor() : Node() {
      *
      */
     DEBUG_DRAW_MOTION_VECTORS(25),
+    /**
+     * Draws the internal resolution buffer of the scene before post-processing is applied.
+     */
+    DEBUG_DRAW_INTERNAL_BUFFER(26),
     ;
 
     public val id: Long

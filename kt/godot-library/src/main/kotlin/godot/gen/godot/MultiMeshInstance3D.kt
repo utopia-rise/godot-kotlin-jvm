@@ -18,7 +18,7 @@ import kotlin.Suppress
  * Node that instances a [godot.MultiMesh].
  *
  * Tutorials:
- * [$DOCS_URL/tutorials/performance/using_multimesh.html]($DOCS_URL/tutorials/performance/using_multimesh.html)
+ * [$DOCS_URL/tutorials/performance/vertex_animation/animating_thousands_of_fish.html]($DOCS_URL/tutorials/performance/vertex_animation/animating_thousands_of_fish.html)
  *
  * [godot.MultiMeshInstance3D] is a specialized node to instance [godot.GeometryInstance3D]s based on a [godot.MultiMesh] resource.
  *

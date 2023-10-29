@@ -38,7 +38,25 @@ import kotlin.jvm.JvmOverloads
  *
  * [godot.EditorInterface] gives you control over Godot editor's window. It allows customizing the window, saving and (re-)loading scenes, rendering mesh previews, inspecting and editing resources and objects, and provides access to [godot.EditorSettings], [godot.EditorFileSystem], [godot.EditorResourcePreview], [godot.ScriptEditor], the editor viewport, and information about scenes.
  *
- * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorPlugin.getEditorInterface].
+ * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton directly by its name.
+ *
+ * [codeblocks]
+ *
+ * [gdscript]
+ *
+ * var editor_settings = EditorInterface.get_editor_settings()
+ *
+ * [/gdscript]
+ *
+ * [csharp]
+ *
+ * // In C# you can access it via the static Singleton property.
+ *
+ * EditorSettings settings = EditorInterface.Singleton.GetEditorSettings();
+ *
+ * [/csharp]
+ *
+ * [/codeblocks]
  */
 @GodotBaseType
 public open class EditorInterface internal constructor() : Object() {
@@ -181,6 +199,18 @@ public open class EditorInterface internal constructor() : Object() {
   }
 
   /**
+   * Returns the editor's [godot.Theme].
+   *
+   * **Note:** When creating custom editor UI, prefer accessing theme items directly from your GUI nodes using the `get_theme_*` methods.
+   */
+  public fun getEditorTheme(): Theme? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_THEME,
+        OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Theme?)
+  }
+
+  /**
    * Returns the main container of Godot editor's window. For example, you can use it to retrieve the size of the container and place your controls accordingly.
    *
    * **Warning:** Removing and freeing this node will render the editor useless and may cause a crash.
@@ -217,7 +247,28 @@ public open class EditorInterface internal constructor() : Object() {
   }
 
   /**
-   * Sets the editor's current main screen to the one specified in [name]. [name] must match the text of the tab in question exactly (`2D`, `3D`, `Script`, `AssetLib`).
+   * Returns the 2D editor [godot.SubViewport]. It does not have a camera. Instead, the view transforms are done directly and can be accessed with [godot.Viewport.globalCanvasTransform].
+   */
+  public fun getEditorViewport2d(): SubViewport? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_VIEWPORT_2D, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as SubViewport?)
+  }
+
+  /**
+   * Returns the specified 3D editor [godot.SubViewport], from `0` to `3`. The viewport can be used to access the active editor cameras with [godot.Viewport.getCamera3d].
+   */
+  @JvmOverloads
+  public fun getEditorViewport3d(idx: Int = 0): SubViewport? {
+    TransferContext.writeArguments(LONG to idx.toLong())
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_VIEWPORT_3D, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as SubViewport?)
+  }
+
+  /**
+   * Sets the editor's current main screen to the one specified in [name]. [name] must match the title of the tab in question exactly (e.g. `2D`, `3D`, [code skip-lint]Script`, or `AssetLib` for default tabs).
    */
   public fun setMainScreenEditor(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
@@ -286,6 +337,33 @@ public open class EditorInterface internal constructor() : Object() {
     TransferContext.writeArguments(OBJECT to dialog, VECTOR2I to minsize, DOUBLE to fallbackRatio.toDouble())
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_POPUP_DIALOG_CENTERED_CLAMPED, NIL)
+  }
+
+  /**
+   * Returns the name of the currently activated feature profile. If the default profile is currently active, an empty string is returned instead.
+   *
+   * In order to get a reference to the [godot.EditorFeatureProfile], you must load the feature profile using [godot.EditorFeatureProfile.loadFromFile].
+   *
+   * **Note:** Feature profiles created via the user interface are loaded from the `feature_profiles` directory, as a file with the `.profile` extension. The editor configuration folder can be found by using [godot.EditorPaths.getConfigDir].
+   */
+  public fun getCurrentFeatureProfile(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_CURRENT_FEATURE_PROFILE, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  /**
+   * Selects and activates the specified feature profile with the given [profileName]. Set [profileName] to an empty string to reset to the default feature profile.
+   *
+   * A feature profile can be created programmatically using the [godot.EditorFeatureProfile] class.
+   *
+   * **Note:** The feature profile that gets activated must be located in the `feature_profiles` directory, as a file with the `.profile` extension. If a profile could not be found, an error occurs. The editor configuration folder can be found by using [godot.EditorPaths.getConfigDir].
+   */
+  public fun setCurrentFeatureProfile(profileName: String): Unit {
+    TransferContext.writeArguments(STRING to profileName)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_CURRENT_FEATURE_PROFILE, NIL)
   }
 
   /**
@@ -432,7 +510,7 @@ public open class EditorInterface internal constructor() : Object() {
   }
 
   /**
-   * Saves the scene. Returns either [OK] or [ERR_CANT_CREATE].
+   * Saves the currently active scene. Returns either [OK] or [ERR_CANT_CREATE].
    */
   public fun saveScene(): GodotError {
     TransferContext.writeArguments()
@@ -441,12 +519,21 @@ public open class EditorInterface internal constructor() : Object() {
   }
 
   /**
-   * Saves the scene as a file at [path].
+   * Saves the currently active scene as a file at [path].
    */
   @JvmOverloads
   public fun saveSceneAs(path: String, withPreview: Boolean = true): Unit {
     TransferContext.writeArguments(STRING to path, BOOL to withPreview)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SAVE_SCENE_AS, NIL)
+  }
+
+  /**
+   * Saves all opened scenes in the editor.
+   */
+  public fun saveAllScenes(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SAVE_ALL_SCENES,
+        NIL)
   }
 
   /**

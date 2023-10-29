@@ -7,24 +7,23 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.VariantType.ANY
-import godot.core.memory.TransferContext
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 
+/**
+ * Imports a [godot.BitMap] resource (2D array of boolean values).
+ *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/assets_pipeline/importing_images.html]($DOCS_URL/tutorials/assets_pipeline/importing_images.html)
+ *
+ * [godot.BitMap] resources are typically used as click masks in [godot.TextureButton] and [godot.TouchScreenButton].
+ */
 @GodotBaseType
-public open class GDScriptNativeClass internal constructor() : RefCounted() {
+public open class ResourceImporterBitMap internal constructor() : ResourceImporter() {
   public override fun new(scriptIndex: Int): Boolean {
-    callConstructor(ENGINECLASS_GDSCRIPTNATIVECLASS, scriptIndex)
+    callConstructor(ENGINECLASS_RESOURCEIMPORTERBITMAP, scriptIndex)
     return true
-  }
-
-  public fun new(): Any? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDSCRIPTNATIVECLASS_NEW, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   public companion object

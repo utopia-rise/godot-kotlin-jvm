@@ -19,7 +19,7 @@ import kotlin.Suppress
  *
  * Has only one output port and no inputs.
  *
- * Translated to `bool` in the shader language.
+ * Translated to [code skip-lint]bool` in the shader language.
  */
 @GodotBaseType
 public open class VisualShaderNodeBooleanConstant : VisualShaderNodeConstant() {

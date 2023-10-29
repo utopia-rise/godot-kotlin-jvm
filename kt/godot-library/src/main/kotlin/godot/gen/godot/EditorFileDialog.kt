@@ -215,7 +215,7 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
   }
 
   /**
-   * Returns the `VBoxContainer` used to display the file system.
+   * Returns the [godot.VBoxContainer] used to display the file system.
    *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
@@ -235,6 +235,15 @@ public open class EditorFileDialog internal constructor() : ConfirmationDialog()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_LINE_EDIT,
         OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as LineEdit?)
+  }
+
+  /**
+   * Adds the given [menu] to the side of the file dialog with the given [title] text on top. Only one side menu is allowed.
+   */
+  @JvmOverloads
+  public fun addSideMenu(menu: Control, title: String = ""): Unit {
+    TransferContext.writeArguments(OBJECT to menu, STRING to title)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_ADD_SIDE_MENU, NIL)
   }
 
   /**

@@ -282,99 +282,7 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * If `true`, all occurrences of the selected text will be highlighted.
-   */
-  public var highlightAllOccurrences: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_HIGHLIGHT_ALL_OCCURRENCES_ENABLED, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_HIGHLIGHT_ALL_OCCURRENCES, NIL)
-    }
-
-  /**
-   * If `true`, the line containing the cursor is highlighted.
-   */
-  public var highlightCurrentLine: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_HIGHLIGHT_CURRENT_LINE_ENABLED, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_HIGHLIGHT_CURRENT_LINE, NIL)
-    }
-
-  /**
-   * If `true`, control characters are displayed.
-   */
-  public var drawControlChars: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_DRAW_CONTROL_CHARS,
-          BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAW_CONTROL_CHARS,
-          NIL)
-    }
-
-  /**
-   * If `true`, the "tab" character will have a visible representation.
-   */
-  public var drawTabs: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_DRAWING_TABS, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAW_TABS, NIL)
-    }
-
-  /**
-   * If `true`, the "space" character will have a visible representation.
-   */
-  public var drawSpaces: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_DRAWING_SPACES, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAW_SPACES, NIL)
-    }
-
-  /**
-   * Sets the [godot.SyntaxHighlighter] to use.
-   */
-  public var syntaxHighlighter: SyntaxHighlighter?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SYNTAX_HIGHLIGHTER,
-          OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as SyntaxHighlighter?)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SYNTAX_HIGHLIGHTER,
-          NIL)
-    }
-
-  /**
-   * Scroll smoothly over the text rather then jumping to the next location.
+   * Scroll smoothly over the text rather than jumping to the next location.
    */
   public var scrollSmooth: Boolean
     get() {
@@ -604,6 +512,98 @@ public open class TextEdit : Control() {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_MULTIPLE_CARETS_ENABLED, NIL)
+    }
+
+  /**
+   * Sets the [godot.SyntaxHighlighter] to use.
+   */
+  public var syntaxHighlighter: SyntaxHighlighter?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SYNTAX_HIGHLIGHTER,
+          OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as SyntaxHighlighter?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_SYNTAX_HIGHLIGHTER,
+          NIL)
+    }
+
+  /**
+   * If `true`, all occurrences of the selected text will be highlighted.
+   */
+  public var highlightAllOccurrences: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_HIGHLIGHT_ALL_OCCURRENCES_ENABLED, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_HIGHLIGHT_ALL_OCCURRENCES, NIL)
+    }
+
+  /**
+   * If `true`, the line containing the cursor is highlighted.
+   */
+  public var highlightCurrentLine: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_HIGHLIGHT_CURRENT_LINE_ENABLED, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_HIGHLIGHT_CURRENT_LINE, NIL)
+    }
+
+  /**
+   * If `true`, control characters are displayed.
+   */
+  public var drawControlChars: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_DRAW_CONTROL_CHARS,
+          BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAW_CONTROL_CHARS,
+          NIL)
+    }
+
+  /**
+   * If `true`, the "tab" character will have a visible representation.
+   */
+  public var drawTabs: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_DRAWING_TABS, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAW_TABS, NIL)
+    }
+
+  /**
+   * If `true`, the "space" character will have a visible representation.
+   */
+  public var drawSpaces: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_DRAWING_SPACES, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_DRAW_SPACES, NIL)
     }
 
   /**

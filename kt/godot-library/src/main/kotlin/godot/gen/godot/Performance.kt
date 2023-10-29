@@ -330,7 +330,7 @@ public object Performance : Object() {
      */
     PHYSICS_3D_ISLAND_COUNT(22),
     /**
-     * Output latency of the [godot.AudioServer]. *Lower is better.*
+     * Output latency of the [godot.AudioServer]. Equivalent to calling [godot.AudioServer.getOutputLatency], it is not recommended to call this every frame.
      */
     AUDIO_OUTPUT_LATENCY(23),
     /**

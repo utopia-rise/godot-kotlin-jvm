@@ -81,6 +81,17 @@ public open class XRInterface internal constructor() : RefCounted() {
     }
 
   /**
+   * Specify how XR should blend in the environment. This is specific to certain AR and passthrough devices where camera images are blended in by the XR compositor.
+   */
+  public val environmentBlendMode: EnvironmentBlendMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_ENVIRONMENT_BLEND_MODE, LONG)
+      return XRInterface.EnvironmentBlendMode.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+
+  /**
    * On an AR interface, `true` if anchor detection is enabled.
    */
   public var arIsAnchorDetectionEnabled: Boolean

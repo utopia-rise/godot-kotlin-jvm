@@ -44,7 +44,7 @@ import kotlin.jvm.JvmOverloads
  *
  * [gdscript]
  *
- * var settings = get_editor_interface().get_editor_settings()
+ * var settings = EditorInterface.get_editor_settings()
  *
  * # `settings.set("some/property", 10)` also works as this class overrides `_set()` internally.
  *
@@ -60,7 +60,7 @@ import kotlin.jvm.JvmOverloads
  *
  * [csharp]
  *
- * EditorSettings settings = GetEditorInterface().GetEditorSettings();
+ * EditorSettings settings = EditorInterface.Singleton.GetEditorSettings();
  *
  * // `settings.set("some/property", value)` also works as this class overrides `_set()` internally.
  *

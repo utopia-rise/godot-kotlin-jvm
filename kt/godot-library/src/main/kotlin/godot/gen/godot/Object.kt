@@ -306,6 +306,8 @@ public open class Object : KtObject() {
    * - `hint_string` depends on the hint (see [enum PropertyHint]);
    *
    * - `usage` is a combination of [enum PropertyUsageFlags].
+   *
+   * **Note:** In GDScript, all class members are treated as properties. In C# and GDExtension, it may be necessary to explicitly mark class members as Godot properties using decorators or attributes.
    */
   public fun getPropertyList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
@@ -455,9 +457,9 @@ public open class Object : KtObject() {
    *
    * If [value] is `null`, the entry is removed. This is the equivalent of using [removeMeta]. See also [hasMeta] and [getMeta].
    *
-   * **Note:** A metadata's [name] must be a valid identifier as per [godot.StringName.isValidIdentifier] method.
+   * **Note:** A metadata's name must be a valid identifier as per [godot.StringName.isValidIdentifier] method.
    *
-   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited, although it can still be found by this method.
+   * **Note:** Metadata that has a name starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited, although it can still be found by this method.
    */
   public fun setMeta(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
@@ -467,9 +469,9 @@ public open class Object : KtObject() {
   /**
    * Removes the given entry [name] from the object's metadata. See also [hasMeta], [getMeta] and [setMeta].
    *
-   * **Note:** A metadata's [name] must be a valid identifier as per [godot.StringName.isValidIdentifier] method.
+   * **Note:** A metadata's name must be a valid identifier as per [godot.StringName.isValidIdentifier] method.
    *
-   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited, although it can still be found by this method.
+   * **Note:** Metadata that has a name starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited, although it can still be found by this method.
    */
   public fun removeMeta(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -479,9 +481,9 @@ public open class Object : KtObject() {
   /**
    * Returns the object's metadata value for the given entry [name]. If the entry does not exist, returns [default]. If [default] is `null`, an error is also generated.
    *
-   * **Note:** A metadata's [name] must be a valid identifier as per [godot.StringName.isValidIdentifier] method.
+   * **Note:** A metadata's name must be a valid identifier as per [godot.StringName.isValidIdentifier] method.
    *
-   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited, although it can still be found by this method.
+   * **Note:** Metadata that has a name starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited, although it can still be found by this method.
    */
   @JvmOverloads
   public fun getMeta(name: StringName, default: Any? = null): Any? {
@@ -493,9 +495,9 @@ public open class Object : KtObject() {
   /**
    * Returns `true` if a metadata entry is found with the given [name]. See also [getMeta], [setMeta] and [removeMeta].
    *
-   * **Note:** A metadata's [name] must be a valid identifier as per [godot.StringName.isValidIdentifier] method.
+   * **Note:** A metadata's name must be a valid identifier as per [godot.StringName.isValidIdentifier] method.
    *
-   * **Note:** Metadata that has a [name] starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited, although it can still be found by this method.
+   * **Note:** Metadata that has a name starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited, although it can still be found by this method.
    */
   public fun hasMeta(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -810,7 +812,7 @@ public open class Object : KtObject() {
   /**
    * Returns an [godot.Array] of connections for the given [signal] name. Each connection is represented as a [godot.core.Dictionary] that contains three entries:
    *
-   * - `signal` is a reference to the [godot.Signal];
+   * - [code skip-lint]signal` is a reference to the [godot.Signal];
    *
    * - `callable` is a reference to the connected [godot.Callable];
    *
@@ -938,7 +940,7 @@ public open class Object : KtObject() {
    *
    * [/codeblocks]
    *
-   * **`Object.connect()` or `Signal.connect()`?**
+   * **[code skip-lint]Object.connect()` or [code skip-lint]Signal.connect()`?**
    *
    * As seen above, the recommended method to connect signals is not [godot.Object.connect]. The code block below shows the four options for connecting signals, using either this legacy method or the recommended [godot.Signal.connect], and using either an implicit [godot.Callable] or a manually defined one.
    *

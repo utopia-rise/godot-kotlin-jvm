@@ -37,6 +37,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -74,12 +75,12 @@ public open class Window : Viewport() {
   public val filesDropped: Signal1<PackedStringArray> by signal("files")
 
   /**
-   * Emitted when the mouse cursor enters the [godot.Window]'s area, regardless if it's currently focused or not.
+   * Emitted when the mouse cursor enters the [godot.Window]'s visible area, that is not occluded behind other [godot.Control]s or windows, provided its [godot.Viewport.guiDisableInput] is `false` and regardless if it's currently focused or not.
    */
   public val mouseEntered: Signal0 by signal()
 
   /**
-   * Emitted when the mouse cursor exits the [godot.Window]'s area (including when it's hovered over another window on top of this one).
+   * Emitted when the mouse cursor leaves the [godot.Window]'s visible area, that is not occluded behind other [godot.Control]s or windows, provided its [godot.Viewport.guiDisableInput] is `false` and regardless if it's currently focused or not.
    */
   public val mouseExited: Signal0 by signal()
 
@@ -432,8 +433,6 @@ public open class Window : Viewport() {
 
   /**
    * If `true`, the [godot.Window] will be considered a popup. Popups are sub-windows that don't show as separate windows in system's window manager's window list and will send close request when anything is clicked outside of them (unless [exclusive] is enabled).
-   *
-   * **Note:** This property only works with native windows.
    */
   public var popupWindow: Boolean
     get() {
@@ -517,6 +516,22 @@ public open class Window : Viewport() {
     }
 
   /**
+   * If `true`, the [godot.Window] width is expanded to keep the title bar text fully visible.
+   */
+  public var keepTitleVisible: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_KEEP_TITLE_VISIBLE,
+          BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_KEEP_TITLE_VISIBLE,
+          NIL)
+    }
+
+  /**
    * Base size of the content (i.e. nodes that are drawn inside the window). If non-zero, [godot.Window]'s content will be scaled when the window is resized to a different size.
    */
   @CoreTypeLocalCopy
@@ -562,6 +577,22 @@ public open class Window : Viewport() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_CONTENT_SCALE_ASPECT,
+          NIL)
+    }
+
+  /**
+   * The policy to use to determine the final scale factor for 2D elements. This affects how [contentScaleFactor] is applied, in addition to the automatic scale factor determined by [contentScaleSize].
+   */
+  public var contentScaleStretch: ContentScaleStretch
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_CONTENT_SCALE_STRETCH,
+          LONG)
+      return Window.ContentScaleStretch.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_CONTENT_SCALE_STRETCH,
           NIL)
     }
 
@@ -762,12 +793,27 @@ public open class Window : Viewport() {
 
 
   /**
+   * Virtual method to be implemented by the user. Overrides the value returned by [getContentsMinimumSize].
+   */
+  public open fun _getContentsMinimumSize(): Vector2 {
+    throw NotImplementedError("_get_contents_minimum_size is not implemented for Window")
+  }
+
+  /**
    * Returns the ID of the window.
    */
   public fun getWindowId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_WINDOW_ID, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  /**
+   * Centers a native window on the current screen and an embedded window on its embedder [godot.Viewport].
+   */
+  public fun moveToCenter(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_MOVE_TO_CENTER, NIL)
   }
 
   /**
@@ -903,6 +949,8 @@ public open class Window : Viewport() {
 
   /**
    * Returns the combined minimum size from the child [godot.Control] nodes of the window. Use [childControlsChanged] to update it when children nodes have changed.
+   *
+   * The value returned by this method can be overridden with [_getContentsMinimumSize].
    */
   public fun getContentsMinimumSize(): Vector2 {
     TransferContext.writeArguments()
@@ -1480,17 +1528,29 @@ public open class Window : Viewport() {
      */
     MODE_MAXIMIZED(2),
     /**
-     * Full screen window mode. Note that this is not *exclusive* full screen. On Windows and Linux, a borderless window is used to emulate full screen. On macOS, a new desktop is used to display the running project.
+     * Full screen mode with full multi-window support.
      *
-     * Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
+     * Full screen window covers the entire display area of a screen and has no decorations. The display's video mode is not changed.
+     *
+     * **On Windows:** Multi-window full-screen mode has a 1px border of the [godot.ProjectSettings.rendering/environment/defaults/defaultClearColor] color.
+     *
+     * **On macOS:** A new desktop is used to display the running project.
+     *
+     * **Note:** Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
      */
     MODE_FULLSCREEN(3),
     /**
-     * Exclusive full screen window mode. This mode is implemented on Windows only. On other platforms, it is equivalent to [MODE_FULLSCREEN].
+     * A single window full screen mode. This mode has less overhead, but only one window can be open on a given screen at a time (opening a child window or application switching will trigger a full screen transition).
      *
-     * Only one window in exclusive full screen mode can be visible on a given screen at a time. If multiple windows are in exclusive full screen mode for the same screen, the last one being set to this mode takes precedence.
+     * Full screen window covers the entire display area of a screen and has no border or decorations. The display's video mode is not changed.
      *
-     * Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
+     * **On Windows:** Depending on video driver, full screen transition might cause screens to go black for a moment.
+     *
+     * **On macOS:** A new desktop is used to display the running project. Exclusive full screen mode prevents Dock and Menu from showing up when the mouse pointer is hovering the edge of the screen.
+     *
+     * **On Linux (X11):** Exclusive full screen mode bypasses compositor.
+     *
+     * **Note:** Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
      */
     MODE_EXCLUSIVE_FULLSCREEN(4),
     ;
@@ -1616,6 +1676,29 @@ public open class Window : Viewport() {
      * The content's aspect will be preserved. If the target size has different aspect from the base one, the content will stay in the top-left corner and add an extra visible area in the stretched space.
      */
     CONTENT_SCALE_ASPECT_EXPAND(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
+  }
+
+  public enum class ContentScaleStretch(
+    id: Long,
+  ) {
+    /**
+     * The content will be stretched according to a fractional factor. This fills all the space available in the window, but allows "pixel wobble" to occur due to uneven pixel scaling.
+     */
+    CONTENT_SCALE_STRETCH_FRACTIONAL(0),
+    /**
+     * The content will be stretched only according to an integer factor, preserving sharp pixels. This may leave a black background visible on the window's edges depending on the window size.
+     */
+    CONTENT_SCALE_STRETCH_INTEGER(1),
     ;
 
     public val id: Long

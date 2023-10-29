@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
@@ -35,6 +36,84 @@ public open class PinJoint2D : Joint2D() {
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PINJOINT2D_SET_SOFTNESS, NIL)
+    }
+
+  /**
+   * If `true`, the pin maximum and minimum rotation, defined by [angularLimitLower] and [angularLimitUpper] are applied.
+   */
+  public var angularLimitEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PINJOINT2D_IS_ANGULAR_LIMIT_ENABLED, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PINJOINT2D_SET_ANGULAR_LIMIT_ENABLED, NIL)
+    }
+
+  /**
+   * The minimum rotation. Only active if [angularLimitEnabled] is `true`.
+   */
+  public var angularLimitLower: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PINJOINT2D_GET_ANGULAR_LIMIT_LOWER, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PINJOINT2D_SET_ANGULAR_LIMIT_LOWER, NIL)
+    }
+
+  /**
+   * The maximum rotation. Only active if [angularLimitEnabled] is `true`.
+   */
+  public var angularLimitUpper: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PINJOINT2D_GET_ANGULAR_LIMIT_UPPER, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PINJOINT2D_SET_ANGULAR_LIMIT_UPPER, NIL)
+    }
+
+  /**
+   * When activated, a motor turns the pin.
+   */
+  public var motorEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PINJOINT2D_IS_MOTOR_ENABLED, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PINJOINT2D_SET_MOTOR_ENABLED, NIL)
+    }
+
+  /**
+   * Target speed for the motor. In radians per second.
+   */
+  public var motorTargetVelocity: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PINJOINT2D_GET_MOTOR_TARGET_VELOCITY, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PINJOINT2D_SET_MOTOR_TARGET_VELOCITY, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {

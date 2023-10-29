@@ -119,7 +119,7 @@ public open class RayCast2D : Node2D() {
     }
 
   /**
-   * If `true`, collision with [godot.Area2D]s will be reported.
+   * If `true`, collisions with [godot.Area2D]s will be reported.
    */
   public var collideWithAreas: Boolean
     get() {
@@ -135,7 +135,7 @@ public open class RayCast2D : Node2D() {
     }
 
   /**
-   * If `true`, collision with [godot.PhysicsBody2D]s will be reported.
+   * If `true`, collisions with [godot.PhysicsBody2D]s will be reported.
    */
   public var collideWithBodies: Boolean
     get() {
@@ -189,7 +189,7 @@ public open class RayCast2D : Node2D() {
   }
 
   /**
-   * Updates the collision information for the ray. Use this method to update the collision information immediately instead of waiting for the next `_physics_process` call, for example if the ray or its parent has changed state.
+   * Updates the collision information for the ray immediately, without waiting for the next `_physics_process` call. Use this method, for example, when the ray or its parent has changed state.
    *
    * **Note:** [enabled] does not need to be `true` for this to work.
    */

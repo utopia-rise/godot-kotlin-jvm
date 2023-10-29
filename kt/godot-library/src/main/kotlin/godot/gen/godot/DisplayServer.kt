@@ -116,6 +116,19 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Registers callables to emit when the menu is respectively about to show or closed.
+   */
+  public fun globalMenuSetPopupCallbacks(
+    menuRoot: String,
+    openCallback: Callable,
+    closeCallback: Callable,
+  ): Unit {
+    TransferContext.writeArguments(STRING to menuRoot, CALLABLE to openCallback, CALLABLE to closeCallback)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_SET_POPUP_CALLBACKS, NIL)
+  }
+
+  /**
    * Adds an item that will act as a submenu of the global menu [menuRoot]. The [submenu] argument is the ID of the global menu root that will be shown when the item is clicked.
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
@@ -564,6 +577,20 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Returns `true` if the item at index [idx] is hidden.
+   *
+   * See [globalMenuSetItemHidden] for more info on how to hide an item.
+   *
+   * **Note:** This method is implemented only on macOS.
+   */
+  public fun globalMenuIsItemHidden(menuRoot: String, idx: Int): Boolean {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_IS_ITEM_HIDDEN, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
    * Returns the tooltip associated with the specified index [idx].
    *
    * **Note:** This method is implemented only on macOS.
@@ -688,6 +715,23 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Sets the callback of the item at index [idx]. The callback is emitted when an item is hovered.
+   *
+   * **Note:** The [callback] Callable needs to accept exactly one Variant parameter, the parameter passed to the Callable will be the value passed to the `tag` parameter when the menu item was created.
+   *
+   * **Note:** This method is implemented only on macOS.
+   */
+  public fun globalMenuSetItemHoverCallbacks(
+    menuRoot: String,
+    idx: Int,
+    callback: Callable,
+  ): Unit {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), CALLABLE to callback)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_SET_ITEM_HOVER_CALLBACKS, NIL)
+  }
+
+  /**
    * Sets the callback of the item at index [idx]. Callback is emitted when its accelerator is activated.
    *
    * **Note:** The [keyCallback] Callable needs to accept exactly one Variant parameter, the parameter passed to the Callable will be the value passed to the `tag` parameter when the menu item was created.
@@ -777,6 +821,21 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), BOOL to disabled)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_SET_ITEM_DISABLED, NIL)
+  }
+
+  /**
+   * Hides/shows the item at index [idx]. When it is hidden, an item does not appear in a menu and its action cannot be invoked.
+   *
+   * **Note:** This method is implemented only on macOS.
+   */
+  public fun globalMenuSetItemHidden(
+    menuRoot: String,
+    idx: Int,
+    hidden: Boolean,
+  ): Unit {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), BOOL to hidden)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_SET_ITEM_HIDDEN, NIL)
   }
 
   /**
@@ -934,7 +993,7 @@ public object DisplayServer : Object() {
    *
    * - `id` is voice identifier.
    *
-   * - `language` is language code in `lang_Variant` format. `lang` part is a 2 or 3-letter code based on the ISO-639 standard, in lowercase. And `Variant` part is an engine dependent string describing country, region or/and dialect.
+   * - `language` is language code in `lang_Variant` format. The `lang` part is a 2 or 3-letter code based on the ISO-639 standard, in lowercase. The [code skip-lint]Variant` part is an engine-dependent string describing country, region or/and dialect.
    *
    * Note that Godot depends on system libraries for text-to-speech functionality. These libraries are installed by default on Windows and macOS, but not on all Linux distributions. If they are not present, this method will return an empty list. This applies to both Godot users on Linux, as well as end-users on Linux running Godot games that use text-to-speech.
    *
@@ -1055,7 +1114,7 @@ public object DisplayServer : Object() {
   /**
    * Returns `true` if OS supports dark mode.
    *
-   * **Note:** This method is implemented on macOS, Windows and Linux (X11).
+   * **Note:** This method is implemented on Android, iOS, macOS, Windows, and Linux (X11).
    */
   public fun isDarkModeSupported(): Boolean {
     TransferContext.writeArguments()
@@ -1067,7 +1126,7 @@ public object DisplayServer : Object() {
   /**
    * Returns `true` if OS is using dark mode.
    *
-   * **Note:** This method is implemented on macOS, Windows and Linux (X11).
+   * **Note:** This method is implemented on Android, iOS, macOS, Windows, and Linux (X11).
    */
   public fun isDarkMode(): Boolean {
     TransferContext.writeArguments()
@@ -1152,11 +1211,31 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns `true` if there is content on the user's clipboard.
+   * Returns the user's clipboard as an image if possible.
+   */
+  public fun clipboardGetImage(): Image? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_CLIPBOARD_GET_IMAGE,
+        OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+  }
+
+  /**
+   * Returns `true` if there is a text content on the user's clipboard.
    */
   public fun clipboardHas(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_CLIPBOARD_HAS, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Returns `true` if there is an image content on the user's clipboard.
+   */
+  public fun clipboardHasImage(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_CLIPBOARD_HAS_IMAGE,
+        BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -1531,6 +1610,19 @@ public object DisplayServer : Object() {
   public fun windowSetTitle(title: String, windowId: Int = 0): Unit {
     TransferContext.writeArguments(STRING to title, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_TITLE, NIL)
+  }
+
+  /**
+   * Returns the estimated window title bar size (including text and window buttons) for the window specified by [windowId] (in pixels). This method does not change the window title.
+   *
+   * **Note:** This method is implemented on macOS and Windows.
+   */
+  @JvmOverloads
+  public fun windowGetTitleSize(title: String, windowId: Int = 0): Vector2i {
+    TransferContext.writeArguments(STRING to title, LONG to windowId.toLong())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_TITLE_SIZE,
+        VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
   /**
@@ -2129,7 +2221,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns `true` if positions of **OK** and **Cancel** buttons are swapped in dialogs. This is enabled by default on Windows and UWP to follow interface conventions, and be toggled by changing [godot.ProjectSettings.gui/common/swapCancelOk].
+   * Returns `true` if positions of **OK** and **Cancel** buttons are swapped in dialogs. This is enabled by default on Windows to follow interface conventions, and be toggled by changing [godot.ProjectSettings.gui/common/swapCancelOk].
    *
    * **Note:** This doesn't affect native dialogs such as the ones spawned by [godot.DisplayServer.dialogShow].
    */
@@ -2180,6 +2272,38 @@ public object DisplayServer : Object() {
   ): GodotError {
     TransferContext.writeArguments(STRING to title, STRING to description, STRING to existingText, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_DIALOG_INPUT_TEXT,
+        LONG)
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Displays OS native dialog for selecting files or directories in the file system.
+   *
+   * Callbacks have the following arguments: `bool status, PackedStringArray selected_paths, int selected_filter_index`.
+   *
+   * **Note:** This method is implemented if the display server has the [FEATURE_NATIVE_DIALOG] feature.
+   *
+   * **Note:** This method is implemented on Linux, Windows and macOS.
+   *
+   * **Note:** [currentDirectory] might be ignored.
+   *
+   * **Note:** On Linux, [showHidden] is ignored.
+   *
+   * **Note:** On macOS, native file dialogs have no title.
+   *
+   * **Note:** On macOS, sandboxed apps will save security-scoped bookmarks to retain access to the opened folders across multiple sessions. Use [godot.OS.getGrantedPermissions] to get a list of saved bookmarks.
+   */
+  public fun fileDialogShow(
+    title: String,
+    currentDirectory: String,
+    filename: String,
+    showHidden: Boolean,
+    mode: FileDialogMode,
+    filters: PackedStringArray,
+    callback: Callable,
+  ): GodotError {
+    TransferContext.writeArguments(STRING to title, STRING to currentDirectory, STRING to filename, BOOL to showHidden, LONG to mode.id, PACKED_STRING_ARRAY to filters, CALLABLE to callback)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_FILE_DIALOG_SHOW,
         LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2252,6 +2376,18 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments(LONG to keycode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_KEYBOARD_GET_KEYCODE_FROM_PHYSICAL, LONG)
+    return Key.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Converts a physical (US QWERTY) [keycode] to localized label printed on the key in the active keyboard layout.
+   *
+   * **Note:** This method is implemented on Linux (X11), macOS and Windows.
+   */
+  public fun keyboardGetLabelFromPhysical(keycode: Key): Key {
+    TransferContext.writeArguments(LONG to keycode.id)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_KEYBOARD_GET_LABEL_FROM_PHYSICAL, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -2652,6 +2788,41 @@ public object DisplayServer : Object() {
     }
   }
 
+  public enum class FileDialogMode(
+    id: Long,
+  ) {
+    /**
+     * The native file dialog allows selecting one, and only one file.
+     */
+    FILE_DIALOG_MODE_OPEN_FILE(0),
+    /**
+     * The native file dialog allows selecting multiple files.
+     */
+    FILE_DIALOG_MODE_OPEN_FILES(1),
+    /**
+     * The native file dialog only allows selecting a directory, disallowing the selection of any file.
+     */
+    FILE_DIALOG_MODE_OPEN_DIR(2),
+    /**
+     * The native file dialog allows selecting one file or directory.
+     */
+    FILE_DIALOG_MODE_OPEN_ANY(3),
+    /**
+     * The native file dialog will warn when a file exists.
+     */
+    FILE_DIALOG_MODE_SAVE_FILE(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
+  }
+
   public enum class WindowMode(
     id: Long,
   ) {
@@ -2670,7 +2841,11 @@ public object DisplayServer : Object() {
     /**
      * Full screen mode with full multi-window support.
      *
-     * Full screen window cover the entire display area of a screen, have no border or decorations. Display video mode is not changed.
+     * Full screen window covers the entire display area of a screen and has no decorations. The display's video mode is not changed.
+     *
+     * **On Windows:** Multi-window full-screen mode has a 1px border of the [godot.ProjectSettings.rendering/environment/defaults/defaultClearColor] color.
+     *
+     * **On macOS:** A new desktop is used to display the running project.
      *
      * **Note:** Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
      */
@@ -2678,11 +2853,11 @@ public object DisplayServer : Object() {
     /**
      * A single window full screen mode. This mode has less overhead, but only one window can be open on a given screen at a time (opening a child window or application switching will trigger a full screen transition).
      *
-     * Full screen window cover the entire display area of a screen, have no border or decorations. Display video mode is not changed.
+     * Full screen window covers the entire display area of a screen and has no border or decorations. The display's video mode is not changed.
      *
      * **On Windows:** Depending on video driver, full screen transition might cause screens to go black for a moment.
      *
-     * **On macOS:** Exclusive full screen mode prevents Dock and Menu from showing up when the mouse pointer is hovering the edge of the screen.
+     * **On macOS:** A new desktop is used to display the running project. Exclusive full screen mode prevents Dock and Menu from showing up when the mouse pointer is hovering the edge of the screen.
      *
      * **On Linux (X11):** Exclusive full screen mode bypasses compositor.
      *
@@ -2886,11 +3061,11 @@ public object DisplayServer : Object() {
     /**
      * OpenGL context (only with the GL Compatibility renderer):
      *
-     * - Windows: `HGLRC` for the window.
+     * - Windows: `HGLRC` for the window (native GL), or `EGLContext` for the window (ANGLE).
      *
      * - Linux: `GLXContext*` for the window.
      *
-     * - macOS: `NSOpenGLContext*` for the window.
+     * - macOS: `NSOpenGLContext*` for the window (native GL), or `EGLContext` for the window (ANGLE).
      *
      * - Android: `EGLContext` for the window.
      */

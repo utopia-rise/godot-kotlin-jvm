@@ -19,7 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Abstract class for 3D particle attractors affecting [godot.GPUParticles3D] nodes.
+ * Abstract base class for 3D particle attractors.
  *
  * Particle attractors can be used to attract particles towards the attractor's origin, or to push them away from the attractor's origin.
  *
@@ -32,7 +32,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class GPUParticlesAttractor3D internal constructor() : VisualInstance3D() {
   /**
-   * If [strength] is negative, particles will be pushed in the reverse direction. Particles will be pushed *away* from the attractor's  origin if [directionality] is `0.0`, or towards local +Z if [directionality] is greater than `0.0`.
+   * Adjusts the strength of the attractor. If [strength] is negative, particles will be pushed in the opposite direction. Particles will be pushed *away* from the attractor's origin if [directionality] is `0.0`, or towards local +Z if [directionality] is greater than `0.0`.
    */
   public var strength: Float
     get() {

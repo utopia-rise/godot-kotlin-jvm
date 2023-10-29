@@ -201,6 +201,22 @@ public open class TabContainer : Container() {
           ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_USE_HIDDEN_TABS_FOR_MIN_SIZE, NIL)
     }
 
+  /**
+   * The focus access mode for the internal [godot.TabBar] node.
+   */
+  public var tabFocusMode: Control.FocusMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TAB_FOCUS_MODE,
+          LONG)
+      return Control.FocusMode.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_TAB_FOCUS_MODE,
+          NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_TABCONTAINER, scriptIndex)
     return true
@@ -225,6 +241,26 @@ public open class TabContainer : Container() {
   }
 
   /**
+   * Selects the first available tab with lower index than the currently selected. Returns `true` if tab selection changed.
+   */
+  public fun selectPreviousAvailable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SELECT_PREVIOUS_AVAILABLE, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Selects the first available tab with greater index than the currently selected. Returns `true` if tab selection changed.
+   */
+  public fun selectNextAvailable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SELECT_NEXT_AVAILABLE,
+        BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
    * Returns the child [godot.Control] node located at the active tab index.
    */
   public fun getCurrentTabControl(): Control? {
@@ -232,6 +268,17 @@ public open class TabContainer : Container() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_CURRENT_TAB_CONTROL, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Control?)
+  }
+
+  /**
+   * Returns the [godot.TabBar] contained in this container.
+   *
+   * **Warning:** This is a required internal node, removing and freeing it or editing its tabs may cause a crash. If you wish to edit the tabs, use the methods provided in [godot.TabContainer].
+   */
+  public fun getTabBar(): TabBar? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TAB_BAR, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as TabBar?)
   }
 
   /**

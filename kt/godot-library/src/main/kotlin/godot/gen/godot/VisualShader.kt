@@ -36,9 +36,10 @@ import kotlin.Unit
 /**
  * A custom shader program with a visual editor.
  *
- * This class allows you to define a custom shader program that can be used for various materials to render objects.
+ * Tutorials:
+ * [$DOCS_URL/tutorials/shaders/visual_shaders.html]($DOCS_URL/tutorials/shaders/visual_shaders.html)
  *
- * The visual shader editor creates the shader.
+ * This class provides a graph-like visual editor for creating a [godot.Shader]. Although [godot.VisualShader]s do not require coding, they share the same logic with script shaders. They use [godot.VisualShaderNode]s that can be connected to each other to control the flow of the shader. The visual shader graph is converted to a script shader behind the scenes.
  */
 @GodotBaseType
 public open class VisualShader : Shader() {

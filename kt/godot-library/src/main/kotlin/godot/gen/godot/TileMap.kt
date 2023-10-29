@@ -43,6 +43,10 @@ import kotlin.jvm.JvmOverloads
  * [https://godotengine.org/asset-library/asset/113](https://godotengine.org/asset-library/asset/113)
  *
  * Node for 2D tile-based maps. Tilemaps use a [godot.TileSet] which contain a list of tiles which are used to create grid-based maps. A TileMap may have several layers, layouting tiles on top of each other.
+ *
+ * For performance reasons, all TileMap updates are batched at the end of a frame. Notably, this means that scene tiles from a [godot.TileSetScenesCollectionSource] may be initialized after their parent.
+ *
+ * To force an update earlier on, call [updateInternals].
  */
 @GodotBaseType
 public open class TileMap : Node2D() {
@@ -66,17 +70,23 @@ public open class TileMap : Node2D() {
     }
 
   /**
-   * The TileMap's quadrant size. Optimizes drawing by batching, using chunks of this size.
+   * The TileMap's quadrant size. A quadrant is a group of tiles to be drawn together on a single canvas item, for optimization purposes. [renderingQuadrantSize] defines the length of a square's side, in the map's coordinate system, that forms the quadrant. Thus, the default quandrant size groups together `16 * 16 = 256` tiles.
+   *
+   * The quadrant size does not apply on Y-sorted layers, as tiles are be grouped by Y position instead in that case.
+   *
+   * **Note:** As quadrants are created according to the map's coordinate system, the quadrant's "square shape" might not look like square in the TileMap's local coordinate system.
    */
-  public var cellQuadrantSize: Int
+  public var renderingQuadrantSize: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_QUADRANT_SIZE, LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_RENDERING_QUADRANT_SIZE, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_QUADRANT_SIZE, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_RENDERING_QUADRANT_SIZE, NIL)
     }
 
   /**
@@ -138,6 +148,8 @@ public open class TileMap : Node2D() {
    * Should return `true` if the tile at coordinates [coords] on layer [layer] requires a runtime update.
    *
    * **Warning:** Make sure this function only return `true` when needed. Any tile processed at runtime without a need for it will imply a significant performance penalty.
+   *
+   * **Note:** If the result of this function should changed, use [notifyRuntimeTileDataUpdate] to notify the TileMap it needs an update.
    */
   public open fun _useTileDataRuntimeUpdate(layer: Int, coords: Vector2i): Boolean {
     throw NotImplementedError("_use_tile_data_runtime_update is not implemented for TileMap")
@@ -150,13 +162,39 @@ public open class TileMap : Node2D() {
    *
    * **Warning:** The [tileData] object's sub-resources are the same as the one in the TileSet. Modifying them might impact the whole TileSet. Instead, make sure to duplicate those resources.
    *
-   * **Note:** If the properties of [tileData] object should change over time, use [forceUpdate] to trigger a TileMap update.
+   * **Note:** If the properties of [tileData] object should change over time, use [notifyRuntimeTileDataUpdate] to notify the TileMap it needs an update.
    */
   public open fun _tileDataRuntimeUpdate(
     layer: Int,
     coords: Vector2i,
     tileData: TileData,
   ): Unit {
+  }
+
+  /**
+   * See [setLayerNavigationMap].
+   */
+  public fun setNavigationMap(layer: Int, map: RID): Unit {
+    TransferContext.writeArguments(LONG to layer.toLong(), _RID to map)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_NAVIGATION_MAP, NIL)
+  }
+
+  /**
+   * See [getLayerNavigationMap].
+   */
+  public fun getNavigationMap(layer: Int): RID {
+    TransferContext.writeArguments(LONG to layer.toLong())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_NAVIGATION_MAP, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  /**
+   * *Deprecated.* See [notifyRuntimeTileDataUpdate] and [updateInternals].
+   */
+  @JvmOverloads
+  public fun forceUpdate(layer: Int = -1): Unit {
+    TransferContext.writeArguments(LONG to layer.toLong())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_FORCE_UPDATE, NIL)
   }
 
   /**
@@ -204,6 +242,8 @@ public open class TileMap : Node2D() {
 
   /**
    * Returns a TileMap layer's name.
+   *
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun getLayerName(layer: Int): String {
     TransferContext.writeArguments(LONG to layer.toLong())
@@ -223,6 +263,8 @@ public open class TileMap : Node2D() {
 
   /**
    * Returns if a layer is enabled.
+   *
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun isLayerEnabled(layer: Int): Boolean {
     TransferContext.writeArguments(LONG to layer.toLong())
@@ -242,6 +284,8 @@ public open class TileMap : Node2D() {
 
   /**
    * Returns a TileMap layer's modulate.
+   *
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun getLayerModulate(layer: Int): Color {
     TransferContext.writeArguments(LONG to layer.toLong())
@@ -264,6 +308,8 @@ public open class TileMap : Node2D() {
 
   /**
    * Returns if a layer Y-sorts its tiles.
+   *
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun isLayerYSortEnabled(layer: Int): Boolean {
     TransferContext.writeArguments(LONG to layer.toLong())
@@ -287,6 +333,8 @@ public open class TileMap : Node2D() {
 
   /**
    * Returns a TileMap layer's Y sort origin.
+   *
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun getLayerYSortOrigin(layer: Int): Int {
     TransferContext.writeArguments(LONG to layer.toLong())
@@ -307,6 +355,8 @@ public open class TileMap : Node2D() {
 
   /**
    * Returns a TileMap layer's Z-index value.
+   *
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun getLayerZIndex(layer: Int): Int {
     TransferContext.writeArguments(LONG to layer.toLong())
@@ -319,11 +369,14 @@ public open class TileMap : Node2D() {
    *
    * By default the TileMap uses the default [godot.World2D] navigation map for the first TileMap layer. For each additional TileMap layer a new navigation map is created for the additional layer.
    *
-   * In order to make [godot.NavigationAgent2D] switch between TileMap layer navigation maps use [godot.NavigationAgent2D.setNavigationMap] with the navigation map received from [getNavigationMap].
+   * In order to make [godot.NavigationAgent2D] switch between TileMap layer navigation maps use [godot.NavigationAgent2D.setNavigationMap] with the navigation map received from [getLayerNavigationMap].
+   *
+   * If [layer] is negative, the layers are accessed from the last one.
    */
-  public fun setNavigationMap(layer: Int, map: RID): Unit {
+  public fun setLayerNavigationMap(layer: Int, map: RID): Unit {
     TransferContext.writeArguments(LONG to layer.toLong(), _RID to map)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_NAVIGATION_MAP, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_NAVIGATION_MAP,
+        NIL)
   }
 
   /**
@@ -331,11 +384,14 @@ public open class TileMap : Node2D() {
    *
    * By default the TileMap uses the default [godot.World2D] navigation map for the first TileMap layer. For each additional TileMap layer a new navigation map is created for the additional layer.
    *
-   * In order to make [godot.NavigationAgent2D] switch between TileMap layer navigation maps use [godot.NavigationAgent2D.setNavigationMap] with the navigation map received from [getNavigationMap].
+   * In order to make [godot.NavigationAgent2D] switch between TileMap layer navigation maps use [godot.NavigationAgent2D.setNavigationMap] with the navigation map received from [getLayerNavigationMap].
+   *
+   * If [layer] is negative, the layers are accessed from the last one.
    */
-  public fun getNavigationMap(layer: Int): RID {
+  public fun getLayerNavigationMap(layer: Int): RID {
     TransferContext.writeArguments(LONG to layer.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_NAVIGATION_MAP, _RID)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYER_NAVIGATION_MAP,
+        _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -349,6 +405,8 @@ public open class TileMap : Node2D() {
    * - The alternative tile identifier [alternativeTile] identifies a tile alternative in the atlas (if the source is a [godot.TileSetAtlasSource]), and the scene for a [godot.TileSetScenesCollectionSource].
    *
    * If [sourceId] is set to `-1`, [atlasCoords] to `Vector2i(-1, -1)` or [alternativeTile] to `-1`, the cell will be erased. An erased cell gets **all** its identifiers automatically set to their respective invalid values, namely `-1`, `Vector2i(-1, -1)` and `-1`.
+   *
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   @JvmOverloads
   public fun setCell(
@@ -364,6 +422,8 @@ public open class TileMap : Node2D() {
 
   /**
    * Erases the cell on layer [layer] at coordinates [coords].
+   *
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun eraseCell(layer: Int, coords: Vector2i): Unit {
     TransferContext.writeArguments(LONG to layer.toLong(), VECTOR2I to coords)
@@ -374,6 +434,8 @@ public open class TileMap : Node2D() {
    * Returns the tile source ID of the cell on layer [layer] at coordinates [coords]. Returns `-1` if the cell does not exist.
    *
    * If [useProxies] is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
+   *
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   @JvmOverloads
   public fun getCellSourceId(
@@ -388,6 +450,8 @@ public open class TileMap : Node2D() {
 
   /**
    * Returns the tile atlas coordinates ID of the cell on layer [layer] at coordinates [coords]. If [useProxies] is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
+   *
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   @JvmOverloads
   public fun getCellAtlasCoords(
@@ -403,6 +467,8 @@ public open class TileMap : Node2D() {
 
   /**
    * Returns the tile alternative ID of the cell on layer [layer] at [coords]. If [useProxies] is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
+   *
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   @JvmOverloads
   public fun getCellAlternativeTile(
@@ -418,6 +484,8 @@ public open class TileMap : Node2D() {
 
   /**
    * Returns the [godot.TileData] object associated with the given cell, or `null` if the cell does not exist or is not a [godot.TileSetAtlasSource].
+   *
+   * If [layer] is negative, the layers are accessed from the last one.
    *
    * If [useProxies] is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
    *
@@ -464,6 +532,8 @@ public open class TileMap : Node2D() {
 
   /**
    * Creates a new [godot.TileMapPattern] from the given layer and set of cells.
+   *
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun getPattern(layer: Int, coordsArray: VariantArray<Vector2i>): TileMapPattern? {
     TransferContext.writeArguments(LONG to layer.toLong(), ARRAY to coordsArray)
@@ -486,6 +556,8 @@ public open class TileMap : Node2D() {
 
   /**
    * Paste the given [godot.TileMapPattern] at the given [position] and [layer] in the tile map.
+   *
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun setPattern(
     layer: Int,
@@ -500,6 +572,8 @@ public open class TileMap : Node2D() {
    * Update all the cells in the [cells] coordinates array so that they use the given [terrain] for the given [terrainSet]. If an updated cell has the same terrain as one of its neighboring cells, this function tries to join the two. This function might update neighboring tiles if needed to create correct terrain transitions.
    *
    * If [ignoreEmptyTerrains] is true, empty terrains will be ignored when trying to find the best fitting tile for the given terrain constraints.
+   *
+   * If [layer] is negative, the layers are accessed from the last one.
    *
    * **Note:** To work correctly, this method requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.
    */
@@ -520,6 +594,8 @@ public open class TileMap : Node2D() {
    * Update all the cells in the [path] coordinates array so that they use the given [terrain] for the given [terrainSet]. The function will also connect two successive cell in the path with the same terrain. This function might update neighboring tiles if needed to create correct terrain transitions.
    *
    * If [ignoreEmptyTerrains] is true, empty terrains will be ignored when trying to find the best fitting tile for the given terrain constraints.
+   *
+   * If [layer] is negative, the layers are accessed from the last one.
    *
    * **Note:** To work correctly, this method requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.
    */
@@ -545,6 +621,8 @@ public open class TileMap : Node2D() {
 
   /**
    * Clears all cells on the given layer.
+   *
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun clearLayer(layer: Int): Unit {
     TransferContext.writeArguments(LONG to layer.toLong())
@@ -560,16 +638,31 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Triggers an update of the TileMap. If [layer] is provided, only updates the given layer.
+   * Triggers a direct update of the TileMap. Usually, calling this function is not needed, as TileMap node updates automatically when one of its properties or cells is modified.
    *
-   * **Note:** The TileMap node updates automatically when one of its properties is modified. A manual update is only needed if runtime modifications (implemented in [_tileDataRuntimeUpdate]) need to be applied.
+   * However, for performance reasons, those updates are batched and delayed to the end of the frame. Calling this function will force the TileMap to update right away instead.
    *
-   * **Warning:** Updating the TileMap is computationally expensive and may impact performance. Try to limit the number of updates and the tiles they impact (by placing frequently updated tiles in a dedicated layer for example).
+   * **Warning:** Updating the TileMap is computationally expensive and may impact performance. Try to limit the number of updates and how many tiles they impact.
+   */
+  public fun updateInternals(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_UPDATE_INTERNALS, NIL)
+  }
+
+  /**
+   * Notifies the TileMap node that calls to [_useTileDataRuntimeUpdate] or [_tileDataRuntimeUpdate] will lead to different results. This will thus trigger a TileMap update.
+   *
+   * If [layer] is provided, only notifies changes for the given layer. Providing the [layer] argument (when applicable) is usually preferred for performance reasons.
+   *
+   * **Warning:** Updating the TileMap is computationally expensive and may impact performance. Try to limit the number of calls to this function to avoid unnecessary update.
+   *
+   * **Note:** This does not trigger a direct update of the TileMap, the update will be done at the end of the frame as usual (unless you call [updateInternals]).
    */
   @JvmOverloads
-  public fun forceUpdate(layer: Int = -1): Unit {
+  public fun notifyRuntimeTileDataUpdate(layer: Int = -1): Unit {
     TransferContext.writeArguments(LONG to layer.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_FORCE_UPDATE, NIL)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILEMAP_NOTIFY_RUNTIME_TILE_DATA_UPDATE, NIL)
   }
 
   /**
@@ -584,6 +677,8 @@ public open class TileMap : Node2D() {
 
   /**
    * Returns a [godot.Vector2i] array with the positions of all cells containing a tile in the given layer. A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.
+   *
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun getUsedCells(layer: Int): VariantArray<Vector2i> {
     TransferContext.writeArguments(LONG to layer.toLong())
@@ -597,6 +692,8 @@ public open class TileMap : Node2D() {
    * If a parameter has its value set to the default one, this parameter is not used to filter a cell. Thus, if all parameters have their respective default value, this method returns the same result as [getUsedCells].
    *
    * A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.
+   *
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   @JvmOverloads
   public fun getUsedCellsById(

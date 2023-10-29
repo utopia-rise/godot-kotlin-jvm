@@ -58,7 +58,7 @@ public open class TLSOptions internal constructor() : RefCounted() {
     /**
      * Creates a TLS client configuration which validates certificates and their common names (fully qualified domain names).
      *
-     * You can specify a custom [trustedChain] of certification authorities (the default CA list will be used if `null`), and optionally provide a [commonNameOverride] if you expect the certificate to have a common name other then the server FQDN.
+     * You can specify a custom [trustedChain] of certification authorities (the default CA list will be used if `null`), and optionally provide a [commonNameOverride] if you expect the certificate to have a common name other than the server FQDN.
      *
      * **Note:** On the Web platform, TLS verification is always enforced against the CA list of the web browser. This is considered a security feature.
      */

@@ -18,14 +18,14 @@ import kotlin.Suppress
 import kotlin.jvm.JvmName
 
 /**
- * Gradient-filled texture.
+ * A 1D texture that uses colors obtained from a [godot.Gradient].
  *
- * GradientTexture1D uses a [godot.Gradient] to fill the texture data. The gradient will be filled from left to right using colors obtained from the gradient. This means the texture does not necessarily represent an exact copy of the gradient, but instead an interpolation of samples obtained from the gradient at fixed steps (see [width]). See also [godot.GradientTexture2D], [godot.CurveTexture] and [godot.CurveXYZTexture].
+ * A 1D texture that obtains colors from a [godot.Gradient] to fill the texture data. The texture is filled by sampling the gradient for each pixel. Therefore, the texture does not necessarily represent an exact copy of the gradient, as it may miss some colors if there are not enough pixels. See also [godot.GradientTexture2D], [godot.CurveTexture] and [godot.CurveXYZTexture].
  */
 @GodotBaseType
 public open class GradientTexture1D : Texture2D() {
   /**
-   * The [godot.Gradient] that will be used to fill the texture.
+   * The [godot.Gradient] used to fill the texture.
    */
   public var gradient: Gradient?
     get() {

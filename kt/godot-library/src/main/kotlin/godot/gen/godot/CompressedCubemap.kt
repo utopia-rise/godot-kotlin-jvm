@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * 6-sided texture typically used in 3D rendering, optionally compressed.
+ * An optionally compressed [godot.Cubemap].
  *
  * A cubemap that is loaded from a `.ccube` file. This file format is internal to Godot; it is created by importing other image formats with the import system. [godot.CompressedCubemap] can use one of 4 compresson methods:
  *
