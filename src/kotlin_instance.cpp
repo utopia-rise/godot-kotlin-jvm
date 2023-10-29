@@ -97,7 +97,7 @@ Variant KotlinInstance::callp(const StringName& p_method, const Variant** p_args
     return ret_var;
 }
 
-void KotlinInstance::notification(int p_notification) {
+void KotlinInstance::notification(int p_notification, bool p_reversed) {
     if (p_notification == Object::NOTIFICATION_PREDELETE) { delete_flag = false; }
 
     KtFunction* function {kt_class->get_method(CoreStringNames::get_singleton()->notification)};
@@ -105,8 +105,21 @@ void KotlinInstance::notification(int p_notification) {
     if (function) {
         Variant ret_var;
         Variant value = p_notification;
-        const Variant* args[1] = {&value};
-        function->invoke(kt_object, args, 1, ret_var);
+        Variant reversed = p_reversed;
+        const int arg_count = 2;
+        const Variant* args[arg_count] = {&value, &reversed};
+        function->invoke(kt_object, args, arg_count, ret_var);
+    }
+}
+
+void KotlinInstance::validate_property(PropertyInfo& p_property) const {
+    if (KtFunction* function { kt_class->get_method(SNAME("_validate_property")) }) {
+        Variant ret_var;
+        Variant property_arg = (Dictionary) p_property;
+        const int arg_count {1};
+        const Variant* args[arg_count] = { &property_arg };
+        function->invoke(kt_object, args, arg_count, ret_var);
+        p_property = PropertyInfo::from_dict(property_arg);
     }
 }
 

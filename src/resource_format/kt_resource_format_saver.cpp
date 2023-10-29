@@ -13,18 +13,18 @@ bool KtResourceFormatSaver::recognize(const Ref<Resource>& p_resource) const {
 }
 
 Error KtResourceFormatSaver::save(const Ref<Resource>& p_resource, const String& p_path, uint32_t p_flags) {
-    Ref<KotlinScript> script = p_resource;
-    ERR_FAIL_COND_V(script.is_null(), ERR_INVALID_PARAMETER);
+    Ref<KotlinScript> kotlin_script = p_resource;
+    ERR_FAIL_COND_V(kotlin_script.is_null(), ERR_INVALID_PARAMETER);
 
     String package {p_path.replace("src/main/kotlin/", "")
                       .trim_prefix("res://")
-                      .trim_suffix(script->get_name() + "." + KotlinLanguage::get_instance()->get_extension())
+                      .trim_suffix(kotlin_script->get_name() + "." + KotlinLanguage::get_instance()->get_extension())
                       .trim_suffix("/")
                       .replace("/", ".")};
 
     if (!package.is_empty()) { package = "package " + package + "\n\n"; }
 
-    String source = script->get_source_code().replace("%PACKAGE%", package);
+    String source = kotlin_script->get_source_code().replace("%PACKAGE%", package);
 
     Error err;
     Ref<FileAccess> file {FileAccess::open(p_path, FileAccess::WRITE, &err)};

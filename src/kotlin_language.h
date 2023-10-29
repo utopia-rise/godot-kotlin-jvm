@@ -28,6 +28,8 @@ public:
 
     void get_comment_delimiters(List<String>* p_delimiters) const override;
 
+    void get_doc_comment_delimiters(List<String> *p_delimiters) const override;
+
     void get_string_delimiters(List<String>* p_delimiters) const override;
 
     String get_template(const String& p_class_name, const String& p_base_class_name) const;
