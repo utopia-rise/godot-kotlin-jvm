@@ -17,7 +17,7 @@ class EnumService(
     private val classService: IClassService
 ) : IEnumService {
     override fun getGlobalEnums() = globalEnumRepository.list()
-    override fun findEnumValue(enumClassName: ClassTypeNameWrapper, enumValue: Int) : DefaultEnumValue {
+    override fun findEnumValue(enumClassName: ClassTypeNameWrapper, enumValue: Long) : DefaultEnumValue {
         val simpleNames = enumClassName.className.simpleNames
         return if (simpleNames.size > 1) {
             val className = simpleNames[0]

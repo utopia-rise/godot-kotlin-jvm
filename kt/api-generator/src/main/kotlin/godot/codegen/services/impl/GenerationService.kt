@@ -828,7 +828,7 @@ class GenerationService(
                 val appliedDefault = if ((argument.isEnum() || argument.isBitField()) && defaultValueKotlinCode != null) {
                     enumService.findEnumValue(
                         argumentTypeClassName,
-                        defaultValueKotlinCode.toInt()
+                        defaultValueKotlinCode.toLong()
                     ).name
                 } else {
                     defaultValueKotlinCode
