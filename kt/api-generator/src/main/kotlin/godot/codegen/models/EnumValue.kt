@@ -5,5 +5,5 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 data class EnumValue @JsonCreator constructor(
     @JsonProperty("name") val name : String,
-    @JsonProperty("value") val value : Int
+    @JsonProperty("value") val value : Long
 )
