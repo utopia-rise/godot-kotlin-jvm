@@ -89,8 +89,7 @@ void register_user_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_type
 }
 
 void register_user_types_members_hook(JNIEnv* p_env, jobject p_this) {
-    jni::Env env(p_env);
-    GDKotlin::get_instance().register_members(env);
+    GDKotlin::get_instance().register_members();
 }
 
 void GDKotlin::init() {
@@ -369,6 +368,11 @@ void GDKotlin::finish() {
     delete bootstrap;
     bootstrap = nullptr;
 
+#ifdef TOOLS_ENABLED
+    KotlinScriptCache::invalidate();
+#endif
+    TypeManager::get_instance().clear();
+
     if (is_gc_started) {
         jni::JClass garbage_collector_cls {env.load_class("godot.core.memory.MemoryManager", ClassLoader::get_default_loader())};
         jni::FieldId garbage_collector_instance_field {
@@ -388,14 +392,8 @@ void GDKotlin::finish() {
         garbage_collector_instance.call_void_method(env, clean_up_method_id);
     }
 
-#ifdef TOOLS_ENABLED
-    KotlinScriptCache::invalidate();
-#endif
-
     LongStringQueue::destroy();
     BridgesManager::get_instance().delete_bridges();
-
-    TypeManager::get_instance().clear();
 
     ClassLoader::delete_default_loader(env);
     jni::Jvm::destroy();
@@ -406,9 +404,8 @@ void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
 #ifdef DEV_ENABLED
     LOG_INFO("Loading classes ...");
 #endif
-    jni::JObject class_loader = ClassLoader::get_default_loader();
     for (auto i = 0; i < p_classes.length(p_env); i++) {
-        auto* kt_class = new KtClass(p_classes.get(p_env, i), class_loader);
+        auto* kt_class = new KtClass(p_classes.get(p_env, i));
         classes[kt_class->resource_path] = kt_class;
 #ifdef DEV_ENABLED
         LOG_VERBOSE(vformat("Loaded class %s : %s, as %s", kt_class->resource_path, kt_class->base_godot_class, kt_class->registered_class_name));
@@ -517,7 +514,7 @@ GDKotlin::GDKotlin() :
   is_initialized(false),
   transfer_context(nullptr) {}
 
-void GDKotlin::register_members(jni::Env& p_env) {
+void GDKotlin::register_members() {
     for (const KeyValue<StringName, KtClass*>& item : classes) {
         item.value->fetch_members();
     }

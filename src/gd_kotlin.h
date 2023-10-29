@@ -51,7 +51,7 @@ public:
 
     void register_classes(jni::Env& p_env, jni::JObjectArray p_classes);
 
-    void register_members(jni::Env& p_env);
+    void register_members();
 
     void unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes);
 
