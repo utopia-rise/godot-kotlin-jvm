@@ -137,6 +137,10 @@ void KotlinLanguage::get_comment_delimiters(List<String>* p_delimiters) const {
     p_delimiters->push_back("/* */");
 }
 
+void KotlinLanguage::get_doc_comment_delimiters(List<String> *p_delimiters) const {
+    p_delimiters->push_back("/** */");
+}
+
 void KotlinLanguage::get_string_delimiters(List<String>* p_delimiters) const {
     p_delimiters->push_back("' '");
     p_delimiters->push_back("\" \"");
@@ -171,13 +175,13 @@ String KotlinLanguage::get_template(const String& p_class_name, const String& p_
 }
 
 Ref<Script> KotlinLanguage::make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const {
-    Ref<KotlinScript> script;
-    script.instantiate();
+    Ref<KotlinScript> kotlin_script;
+    kotlin_script.instantiate();
     String processed_template {
       p_template.replace("_BASE_", p_base_class_name).replace("_CLASS_", p_class_name).replace("_TS_", GODOT_KOTLIN_IDENTATION)};
-    script->set_source_code(processed_template);
-    script->set_name(p_class_name);
-    return script;
+    kotlin_script->set_source_code(processed_template);
+    kotlin_script->set_name(p_class_name);
+    return kotlin_script;
 }
 
 Vector<ScriptLanguage::ScriptTemplate> KotlinLanguage::get_built_in_templates(StringName p_object) {
