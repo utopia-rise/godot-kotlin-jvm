@@ -92,6 +92,20 @@ public open class GLTFPhysicsBody : Resource() {
     }
 
   @CoreTypeLocalCopy
+  public var centerOfMass: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSBODY_GET_CENTER_OF_MASS, VECTOR3)
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSBODY_SET_CENTER_OF_MASS, NIL)
+    }
+
+  @CoreTypeLocalCopy
   public var inertiaTensor: Basis
     get() {
       TransferContext.writeArguments()

@@ -242,6 +242,20 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
+   * If `true`, the object will not be affected by fog (neither volumetric nor depth fog). This is useful for unshaded or transparent materials (e.g. particles), which without this setting will be affected even if fully transparent.
+   */
+  public var disableFog: Boolean
+    get() {
+      TransferContext.writeArguments(LONG to 21L)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 21L, BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+    }
+
+  /**
    * If `true`, the vertex color is used as albedo color.
    */
   public var vertexColorUseAsAlbedo: Boolean

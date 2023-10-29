@@ -261,6 +261,21 @@ public open class Node3D : Node() {
     }
 
   /**
+   * Global basis of this node. This is equivalent to `global_transform.basis`.
+   */
+  @CoreTypeLocalCopy
+  public var globalBasis: Basis
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_GLOBAL_BASIS, BASIS)
+      return (TransferContext.readReturnValue(BASIS, false) as Basis)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BASIS to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_GLOBAL_BASIS, NIL)
+    }
+
+  /**
    * Rotation part of the global transformation in radians, specified in terms of YXZ-Euler angles in the format (X angle, Y angle, Z angle).
    *
    * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [godot.core.Vector3] data structure not because the rotation is a vector, but only because [godot.core.Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.

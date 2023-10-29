@@ -168,6 +168,22 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
+   * The strength of denoising step applied to the generated lightmaps. Only effective if [useDenoiser] is `true` and [godot.ProjectSettings.rendering/lightmapping/denoising/denoiser] is set to JNLM.
+   */
+  public var denoiserStrength: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_DENOISER_STRENGTH,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_DENOISER_STRENGTH,
+          NIL)
+    }
+
+  /**
    * The bias to use when computing shadows. Increasing [bias] can fix shadow acne on the resulting baked lightmap, but can introduce peter-panning (shadows not connecting to their casters). Real-time [godot.Light3D] shadows are not affected by this [bias] property.
    */
   public var bias: Float

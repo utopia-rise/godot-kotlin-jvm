@@ -519,6 +519,14 @@ public open class NavigationMesh : Resource() {
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
+  /**
+   * Clears the internal arrays for vertices and polygon indices.
+   */
+  public fun clear(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_CLEAR, NIL)
+  }
+
   public enum class SamplePartitionType(
     id: Long,
   ) {

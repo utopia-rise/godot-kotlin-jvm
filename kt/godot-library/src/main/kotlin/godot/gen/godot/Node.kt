@@ -1238,6 +1238,46 @@ public open class Node : Object() {
   }
 
   /**
+   * Returns the tree as a [godot.String]. Used mainly for debugging purposes. This version displays the path relative to the current node, and is good for copy/pasting into the [getNode] function. It also can be used in game UI/UX.
+   *
+   * **Example output:**
+   *
+   * ```
+   * 				TheGame
+   * 				TheGame/Menu
+   * 				TheGame/Menu/Label
+   * 				TheGame/Menu/Camera2D
+   * 				TheGame/SplashScreen
+   * 				TheGame/SplashScreen/Camera2D
+   * 				```
+   */
+  public fun getTreeString(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_TREE_STRING, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  /**
+   * Similar to [getTreeString], this returns the tree as a [godot.String]. This version displays a more graphical representation similar to what is displayed in the Scene Dock. It is useful for inspecting larger trees.
+   *
+   * **Example output:**
+   *
+   * ```
+   * 				 ┖╴TheGame
+   * 				    ┠╴Menu
+   * 				    ┃  ┠╴Label
+   * 				    ┃  ┖╴Camera2D
+   * 				    ┖╴SplashScreen
+   * 				       ┖╴Camera2D
+   * 				```
+   */
+  public fun getTreeStringPretty(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_TREE_STRING_PRETTY, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  /**
    * Notifies the current node and all its children recursively by calling [godot.Object.notification] on all of them.
    */
   public fun propagateNotification(what: Int): Unit {
