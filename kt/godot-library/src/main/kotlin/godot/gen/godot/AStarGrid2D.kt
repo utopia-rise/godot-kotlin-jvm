@@ -65,7 +65,7 @@ import kotlin.jvm.JvmOverloads
  *
  * AStarGrid2D astarGrid = new AStarGrid2D();
  *
- * astarGrid.Size = new Vector2I(32, 32);
+ * astarGrid.Region = new Rect2I(0, 0, 32, 32);
  *
  * astarGrid.CellSize = new Vector2I(16, 16);
  *
@@ -309,7 +309,7 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * Called when estimating the cost between a point and the path's ending point.
    *
-   * Note that this function is hidden in the default `AStarGrid2D` class.
+   * Note that this function is hidden in the default [godot.AStarGrid2D] class.
    */
   public open fun _estimateCost(fromId: Vector2i, toId: Vector2i): Float {
     throw NotImplementedError("_estimate_cost is not implemented for AStarGrid2D")
@@ -318,14 +318,14 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * Called when computing the cost between two connected points.
    *
-   * Note that this function is hidden in the default `AStarGrid2D` class.
+   * Note that this function is hidden in the default [godot.AStarGrid2D] class.
    */
   public open fun _computeCost(fromId: Vector2i, toId: Vector2i): Float {
     throw NotImplementedError("_compute_cost is not implemented for AStarGrid2D")
   }
 
   /**
-   * Returns `true` if the [x] and [y] is a valid grid coordinate (id).
+   * Returns `true` if the [x] and [y] is a valid grid coordinate (id), i.e. if it is inside [region]. Equivalent to `region.has_point(Vector2i(x, y))`.
    */
   public fun isInBounds(x: Int, y: Int): Boolean {
     TransferContext.writeArguments(LONG to x.toLong(), LONG to y.toLong())
@@ -334,7 +334,7 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   /**
-   * Returns `true` if the [id] vector is a valid grid coordinate.
+   * Returns `true` if the [id] vector is a valid grid coordinate, i.e. if it is inside [region]. Equivalent to `region.has_point(id)`.
    */
   public fun isInBoundsv(id: Vector2i): Boolean {
     TransferContext.writeArguments(VECTOR2I to id)
@@ -401,6 +401,28 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   /**
+   * Fills the given [region] on the grid with the specified value for the solid flag.
+   *
+   * **Note:** Calling [update] is not needed after the call of this function.
+   */
+  @JvmOverloads
+  public fun fillSolidRegion(region: Rect2i, solid: Boolean = true): Unit {
+    TransferContext.writeArguments(RECT2I to region, BOOL to solid)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_FILL_SOLID_REGION, NIL)
+  }
+
+  /**
+   * Fills the given [region] on the grid with the specified value for the weight scale.
+   *
+   * **Note:** Calling [update] is not needed after the call of this function.
+   */
+  public fun fillWeightScaleRegion(region: Rect2i, weightScale: Float): Unit {
+    TransferContext.writeArguments(RECT2I to region, DOUBLE to weightScale.toDouble())
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_FILL_WEIGHT_SCALE_REGION, NIL)
+  }
+
+  /**
    * Clears the grid and sets the [region] to `Rect2i(0, 0, 0, 0)`.
    */
   public fun clear(): Unit {
@@ -418,7 +440,7 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   /**
-   * Returns an array with the points that are in the path found by AStarGrid2D between the given points. The array is ordered from the starting point to the ending point of the path.
+   * Returns an array with the points that are in the path found by [godot.AStarGrid2D] between the given points. The array is ordered from the starting point to the ending point of the path.
    *
    * **Note:** This method is not thread-safe. If called from a [godot.Thread], it will return an empty [godot.PackedVector3Array] and will print an error message.
    */

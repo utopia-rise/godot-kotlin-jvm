@@ -54,7 +54,7 @@ import kotlin.jvm.JvmOverloads
  *
  * Any [godot.CanvasItem] can draw. For this, [queueRedraw] is called by the engine, then [NOTIFICATION_DRAW] will be received on idle time to request a redraw. Because of this, canvas items don't need to be redrawn on every frame, improving the performance significantly. Several functions for drawing on the [godot.CanvasItem] are provided (see `draw_*` functions). However, they can only be used inside [_draw], its corresponding [godot.Object.Notification] or methods connected to the [draw] signal.
  *
- * Canvas items are drawn in tree order. By default, children are on top of their parents, so a root [godot.CanvasItem] will be drawn behind everything. This behavior can be changed on a per-item basis.
+ * Canvas items are drawn in tree order on their canvas layer. By default, children are on top of their parents, so a root [godot.CanvasItem] will be drawn behind everything. This behavior can be changed on a per-item basis.
  *
  * A [godot.CanvasItem] can be hidden, which will also hide its children. By adjusting various other properties of a [godot.CanvasItem], you can also modulate its color (via [modulate] or [selfModulate]), change its Z-index, blend mode, and more.
  */

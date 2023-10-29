@@ -106,6 +106,8 @@ public open class EditorScript internal constructor() : RefCounted() {
 
   /**
    * Returns the [godot.EditorInterface] singleton instance.
+   *
+   * *Deprecated.* [godot.EditorInterface] is a global singleton and can be accessed directly by its name.
    */
   public fun getEditorInterface(): EditorInterface? {
     TransferContext.writeArguments()

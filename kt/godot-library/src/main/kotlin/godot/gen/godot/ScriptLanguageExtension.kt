@@ -90,6 +90,13 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   /**
    *
    */
+  public open fun _getDocCommentDelimiters(): PackedStringArray {
+    throw NotImplementedError("_get_doc_comment_delimiters is not implemented for ScriptLanguageExtension")
+  }
+
+  /**
+   *
+   */
   public open fun _getStringDelimiters(): PackedStringArray {
     throw NotImplementedError("_get_string_delimiters is not implemented for ScriptLanguageExtension")
   }
@@ -148,7 +155,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   }
 
   /**
-   *
+   * *Deprecated.* This method is not called by the engine.
    */
   public open fun _hasNamedClasses(): Boolean {
     throw NotImplementedError("_has_named_classes is not implemented for ScriptLanguageExtension")

@@ -45,7 +45,7 @@ import kotlin.jvm.JvmOverloads
  *
  * Native image datatype. Contains image data which can be converted to an [godot.ImageTexture] and provides commonly used *image processing* methods. The maximum width and height for an [godot.Image] are [MAX_WIDTH] and [MAX_HEIGHT].
  *
- * An [godot.Image] cannot be assigned to a `texture` property of an object directly (such as [godot.Sprite2D]), and has to be converted manually to an [godot.ImageTexture] first.
+ * An [godot.Image] cannot be assigned to a texture property of an object directly (such as [godot.Sprite2D.texture]), and has to be converted manually to an [godot.ImageTexture] first.
  *
  * **Note:** The maximum image size is 16384×16384 pixels due to graphics hardware limitations. Larger images may fail to import.
  */
@@ -119,7 +119,16 @@ public open class Image : Resource() {
   }
 
   /**
-   * Returns the offset where the image's mipmap with index [mipmap] is stored in the `data` dictionary.
+   * Returns the number of mipmap levels or 0 if the image has no mipmaps. The largest main level image is not counted as a mipmap level by this method, so if you want to include it you can add 1 to this count.
+   */
+  public fun getMipmapCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_MIPMAP_COUNT, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  /**
+   * Returns the offset where the image's mipmap with index [mipmap] is stored in the [data] dictionary.
    */
   public fun getMipmapOffset(mipmap: Int): Int {
     TransferContext.writeArguments(LONG to mipmap.toLong())
@@ -183,7 +192,9 @@ public open class Image : Resource() {
   }
 
   /**
-   * Generates mipmaps for the image. Mipmaps are precalculated lower-resolution copies of the image that are automatically used if the image needs to be scaled down when rendered. They help improve image quality and performance when rendering. This method returns an error if the image is compressed, in a custom format, or if the image's width/height is `0`.
+   * Generates mipmaps for the image. Mipmaps are precalculated lower-resolution copies of the image that are automatically used if the image needs to be scaled down when rendered. They help improve image quality and performance when rendering. This method returns an error if the image is compressed, in a custom format, or if the image's width/height is `0`. Enabling [renormalize] when generating mipmaps for normal textures will make sure all resulting vector values are normalized.
+   *
+   * It is possible to check if the image has mipmaps by calling [hasMipmaps] or [getMipmapCount].
    */
   @JvmOverloads
   public fun generateMipmaps(renormalize: Boolean = false): GodotError {
@@ -753,6 +764,41 @@ public open class Image : Resource() {
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  /**
+   * Loads an image from the binary contents of a KTX file.
+   */
+  public fun loadKtxFromBuffer(buffer: PackedByteArray): GodotError {
+    TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_KTX_FROM_BUFFER, LONG)
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Loads an image from the UTF-8 binary contents of an **uncompressed** SVG file (**.svg**).
+   *
+   * **Note:** Beware when using compressed SVG files (like **.svgz**), they need to be `decompressed` before loading.
+   *
+   * **Note:** This method is only available in engine builds with the SVG module enabled. By default, the SVG module is enabled, but it can be disabled at build-time using the `module_svg_enabled=no` SCons option.
+   */
+  @JvmOverloads
+  public fun loadSvgFromBuffer(buffer: PackedByteArray, scale: Float = 1.0f): GodotError {
+    TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer, DOUBLE to scale.toDouble())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_SVG_FROM_BUFFER, LONG)
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Loads an image from the string contents of a SVG file (**.svg**).
+   *
+   * **Note:** This method is only available in engine builds with the SVG module enabled. By default, the SVG module is enabled, but it can be disabled at build-time using the `module_svg_enabled=no` SCons option.
+   */
+  @JvmOverloads
+  public fun loadSvgFromString(svgStr: String, scale: Float = 1.0f): GodotError {
+    TransferContext.writeArguments(STRING to svgStr, DOUBLE to scale.toDouble())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_SVG_FROM_STRING, LONG)
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   public enum class Format(
     id: Long,
   ) {
@@ -809,19 +855,19 @@ public open class Image : Resource() {
      */
     FORMAT_RGBAF(11),
     /**
-     * OpenGL texture format `GL_R32F` where there's one component, a 16-bit "half-precision" floating-point value.
+     * OpenGL texture format `GL_R16F` where there's one component, a 16-bit "half-precision" floating-point value.
      */
     FORMAT_RH(12),
     /**
-     * OpenGL texture format `GL_RG32F` where there are two components, each a 16-bit "half-precision" floating-point value.
+     * OpenGL texture format `GL_RG16F` where there are two components, each a 16-bit "half-precision" floating-point value.
      */
     FORMAT_RGH(13),
     /**
-     * OpenGL texture format `GL_RGB32F` where there are three components, each a 16-bit "half-precision" floating-point value.
+     * OpenGL texture format `GL_RGB16F` where there are three components, each a 16-bit "half-precision" floating-point value.
      */
     FORMAT_RGBH(14),
     /**
-     * OpenGL texture format `GL_RGBA32F` where there are four components, each a 16-bit "half-precision" floating-point value.
+     * OpenGL texture format `GL_RGBA16F` where there are four components, each a 16-bit "half-precision" floating-point value.
      */
     FORMAT_RGBAH(15),
     /**
@@ -915,7 +961,7 @@ public open class Image : Resource() {
      */
     FORMAT_DXT5_RA_AS_RG(34),
     /**
-     * [godot.Adaptive Scalable Texutre Compression](https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression). This implements the 4x4 (high quality) mode.
+     * [godot.Adaptive Scalable Texture Compression](https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression). This implements the 4x4 (high quality) mode.
      */
     FORMAT_ASTC_4x4(35),
     /**
@@ -923,7 +969,7 @@ public open class Image : Resource() {
      */
     FORMAT_ASTC_4x4_HDR(36),
     /**
-     * [godot.Adaptive Scalable Texutre Compression](https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression). This implements the 8x8 (low quality) mode.
+     * [godot.Adaptive Scalable Texture Compression](https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression). This implements the 8x8 (low quality) mode.
      */
     FORMAT_ASTC_8x8(37),
     /**

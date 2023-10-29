@@ -30,6 +30,9 @@ import kotlin.Unit
 /**
  * This object contains all data related to a pose on a tracked object.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/xr/index.html]($DOCS_URL/tutorials/xr/index.html)
+ *
  * XR runtimes often identify multiple locations on devices such as controllers that are spatially tracked.
  *
  * Orientation, location, linear velocity and angular velocity are all provided for each pose by the XR runtime. This object contains this state of a pose.

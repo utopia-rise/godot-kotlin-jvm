@@ -63,7 +63,7 @@ public open class RefCounted : Object() {
   /**
    * Decrements the internal reference counter. Use this only if you really know what you are doing.
    *
-   * Returns `true` if the decrement was successful, `false` otherwise.
+   * Returns `true` if the object should be freed after the decrement, `false` otherwise.
    */
   public fun unreference(): Boolean {
     TransferContext.writeArguments()

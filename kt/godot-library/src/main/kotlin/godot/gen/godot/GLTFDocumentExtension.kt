@@ -15,6 +15,7 @@ import godot.core.TypeManager
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Float
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.String
@@ -51,6 +52,10 @@ public open class GLTFDocumentExtension : Resource() {
     retImage: Image,
   ): GodotError {
     throw NotImplementedError("_parse_image_data is not implemented for GLTFDocumentExtension")
+  }
+
+  public open fun _getImageFileExtension(): String {
+    throw NotImplementedError("_get_image_file_extension is not implemented for GLTFDocumentExtension")
   }
 
   public open fun _parseTextureJson(
@@ -95,6 +100,43 @@ public open class GLTFDocumentExtension : Resource() {
     gltfNode: GLTFNode,
     sceneNode: Node,
   ): Unit {
+  }
+
+  public open fun _exportPreserialize(state: GLTFState): GodotError {
+    throw NotImplementedError("_export_preserialize is not implemented for GLTFDocumentExtension")
+  }
+
+  public open fun _getSaveableImageFormats(): PackedStringArray {
+    throw NotImplementedError("_get_saveable_image_formats is not implemented for GLTFDocumentExtension")
+  }
+
+  public open fun _serializeImageToBytes(
+    state: GLTFState,
+    image: Image,
+    imageDict: Dictionary<Any?, Any?>,
+    imageFormat: String,
+    lossyQuality: Float,
+  ): PackedByteArray {
+    throw NotImplementedError("_serialize_image_to_bytes is not implemented for GLTFDocumentExtension")
+  }
+
+  public open fun _saveImageAtPath(
+    state: GLTFState,
+    image: Image,
+    filePath: String,
+    imageFormat: String,
+    lossyQuality: Float,
+  ): GodotError {
+    throw NotImplementedError("_save_image_at_path is not implemented for GLTFDocumentExtension")
+  }
+
+  public open fun _serializeTextureJson(
+    state: GLTFState,
+    textureJson: Dictionary<Any?, Any?>,
+    gltfTexture: GLTFTexture,
+    imageFormat: String,
+  ): GodotError {
+    throw NotImplementedError("_serialize_texture_json is not implemented for GLTFDocumentExtension")
   }
 
   public open fun _exportNode(

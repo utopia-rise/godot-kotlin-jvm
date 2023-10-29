@@ -16,6 +16,7 @@ import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 
 /**
@@ -66,6 +67,13 @@ public open class SubViewportContainer : Container() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SUBVIEWPORTCONTAINER, scriptIndex)
     return true
+  }
+
+  /**
+   * Virtual method to be implemented by the user. If it returns `true`, the [event] is propagated to [godot.SubViewport] children. Propagation doesn't happen if it returns `false`. If the function is not implemented, all events are propagated to SubViewports.
+   */
+  public open fun _propagateInputEvent(event: InputEvent): Boolean {
+    throw NotImplementedError("_propagate_input_event is not implemented for SubViewportContainer")
   }
 
   public companion object

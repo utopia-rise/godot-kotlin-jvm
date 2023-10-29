@@ -28,9 +28,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Baked signed distance field 3D particle attractor affecting [godot.GPUParticles3D] nodes.
+ * A baked signed distance field 3D particle collision shape affecting [godot.GPUParticles3D] nodes.
  *
- * Baked signed distance field 3D particle attractor affecting [godot.GPUParticles3D] nodes.
+ * A baked signed distance field 3D particle collision shape affecting [godot.GPUParticles3D] nodes.
  *
  * Signed distance fields (SDF) allow for efficiently representing approximate collision shapes for convex and concave objects of any shape. This is more flexible than [godot.GPUParticlesCollisionHeightField3D], but it requires a baking step.
  *

@@ -143,7 +143,7 @@ public object OS : Object() {
   /**
    * Returns the name of the CPU model on the host machine (e.g. "Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz").
    *
-   * **Note:** This method is only implemented on Windows, macOS, Linux and iOS. On Android, Web and UWP, [getProcessorName] returns an empty string.
+   * **Note:** This method is only implemented on Windows, macOS, Linux and iOS. On Android and Web, [getProcessorName] returns an empty string.
    */
   public fun getProcessorName(): String {
     TransferContext.writeArguments()
@@ -482,7 +482,7 @@ public object OS : Object() {
   /**
    * Returns the name of the host OS.
    *
-   * On Windows, this is `"Windows"` or `"UWP"` if exported on Universal Windows Platform.
+   * On Windows, this is `"Windows"`.
    *
    * On macOS, this is `"macOS"`.
    *
@@ -504,7 +504,7 @@ public object OS : Object() {
    *
    * match OS.get_name():
    *
-   *     "Windows", "UWP":
+   *     "Windows":
    *
    *         print("Windows")
    *
@@ -538,8 +538,6 @@ public object OS : Object() {
    *
    *     case "Windows":
    *
-   *     case "UWP":
-   *
    *         GD.Print("Windows");
    *
    *         break;
@@ -556,7 +554,7 @@ public object OS : Object() {
    *
    *     case "NetBSD":
    *
-   *     case "OpenBSD"
+   *     case "OpenBSD":
    *
    *     case "BSD":
    *
@@ -617,8 +615,6 @@ public object OS : Object() {
    * For rolling distributions, such as Arch Linux, an empty string is returned.
    *
    * For macOS and iOS, the major and minor version are returned, as well as the patch number.
-   *
-   * For UWP, the device family version is returned.
    *
    * For Android, the SDK version and the incremental build number are returned. If it's a custom ROM, it attempts to return its version instead.
    *
@@ -806,7 +802,7 @@ public object OS : Object() {
    *
    * `language` - 2 or 3-letter [language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes), in lower case.
    *
-   * `Script` - optional, 4-letter [script code](https://en.wikipedia.org/wiki/ISO_15924), in title case.
+   * [code skip-lint]Script` - optional, 4-letter [script code](https://en.wikipedia.org/wiki/ISO_15924), in title case.
    *
    * `COUNTRY` - optional, 2 or 3-letter [country code](https://en.wikipedia.org/wiki/ISO_3166-1), in upper case.
    *
@@ -1016,7 +1012,7 @@ public object OS : Object() {
    *
    * **Note:** This string may change without notice if the user reinstalls/upgrades their operating system or changes their hardware. This means it should generally not be used to encrypt persistent data as the data saved before an unexpected ID change would become inaccessible. The returned string may also be falsified using external programs, so do not rely on the string returned by [getUniqueId] for security purposes.
    *
-   * **Note:** Returns an empty string on Web and UWP, as this method isn't implemented on those platforms yet.
+   * **Note:** Returns an empty string and prints an error on Web, as this method cannot be implemented on this platform.
    */
   public fun getUniqueId(): String {
     TransferContext.writeArguments()
@@ -1106,6 +1102,17 @@ public object OS : Object() {
   }
 
   /**
+   * Returns `true` if application is running in the sandbox.
+   *
+   * **Note:** This method is implemented on macOS and Linux.
+   */
+  public fun isSandboxed(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_SANDBOXED, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
    * At the moment this function is only used by `AudioDriverOpenSL` to request permission for `RECORD_AUDIO` on Android.
    */
   public fun requestPermission(name: String): Boolean {
@@ -1126,14 +1133,22 @@ public object OS : Object() {
   }
 
   /**
-   * With this function, you can get the list of dangerous permissions that have been granted to the Android application.
+   * On Android devices: With this function, you can get the list of dangerous permissions that have been granted.
    *
-   * **Note:** This method is implemented only on Android.
+   * On macOS (sandboxed applications only): This function returns the list of user selected folders accessible to the application. Use native file dialog to request folder access permission.
    */
   public fun getGrantedPermissions(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGrantedPermissionsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+  }
+
+  /**
+   * On macOS (sandboxed applications only), this function clears list of user selected folders accessible to the application.
+   */
+  public fun revokeGrantedPermissions(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_REVOKE_GRANTED_PERMISSIONS, NIL)
   }
 
   public enum class RenderingDriver(

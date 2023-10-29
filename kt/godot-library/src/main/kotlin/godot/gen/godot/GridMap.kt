@@ -26,6 +26,7 @@ import godot.core.VariantType._RID
 import godot.core.Vector3
 import godot.core.Vector3i
 import godot.core.memory.TransferContext
+import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
 import godot.util.VoidPtr
@@ -42,6 +43,8 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class GridMap : Node3D() {
   public val cellSizeChanged: Signal1<Vector3> by signal("cellSize")
+
+  public val changed: Signal0 by signal()
 
   public var meshLibrary: MeshLibrary?
     get() {

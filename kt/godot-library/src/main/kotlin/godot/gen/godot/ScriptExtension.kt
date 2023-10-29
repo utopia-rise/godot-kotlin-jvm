@@ -117,8 +117,22 @@ public open class ScriptExtension : Script() {
   /**
    *
    */
+  public open fun _getClassIconPath(): String {
+    throw NotImplementedError("_get_class_icon_path is not implemented for ScriptExtension")
+  }
+
+  /**
+   *
+   */
   public open fun _hasMethod(method: StringName): Boolean {
     throw NotImplementedError("_has_method is not implemented for ScriptExtension")
+  }
+
+  /**
+   *
+   */
+  public open fun _hasStaticMethod(method: StringName): Boolean {
+    throw NotImplementedError("_has_static_method is not implemented for ScriptExtension")
   }
 
   /**
@@ -140,6 +154,13 @@ public open class ScriptExtension : Script() {
    */
   public open fun _isValid(): Boolean {
     throw NotImplementedError("_is_valid is not implemented for ScriptExtension")
+  }
+
+  /**
+   * Returns `true` if the script is an abstract script. An abstract script does not have a constructor and cannot be instantiated.
+   */
+  public open fun _isAbstract(): Boolean {
+    throw NotImplementedError("_is_abstract is not implemented for ScriptExtension")
   }
 
   /**

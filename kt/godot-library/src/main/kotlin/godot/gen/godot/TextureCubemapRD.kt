@@ -7,31 +7,23 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
-import godot.core.VariantType.ANY
-import godot.core.memory.TransferContext
-import godot.util.VoidPtr
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 
+/**
+ * Texture for Cubemap that is bound to a texture created on the [godot.RenderingDevice].
+ *
+ * This texture class allows you to use a cubemap texture created directly on the [godot.RenderingDevice] as a texture for materials, meshes, etc.
+ */
 @GodotBaseType
-public open class GDScriptNativeClass internal constructor() : RefCounted() {
+public open class TextureCubemapRD : TextureLayeredRD() {
   public override fun new(scriptIndex: Int): Boolean {
-    callConstructor(ENGINECLASS_GDSCRIPTNATIVECLASS, scriptIndex)
+    callConstructor(ENGINECLASS_TEXTURECUBEMAPRD, scriptIndex)
     return true
-  }
-
-  public fun new(): Any? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.newPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   public companion object
 
-  internal object MethodBindings {
-    public val newPtr: VoidPtr = TypeManager.getMethodBindPtr("GDScriptNativeClass", "new")
-  }
+  internal object MethodBindings
 }

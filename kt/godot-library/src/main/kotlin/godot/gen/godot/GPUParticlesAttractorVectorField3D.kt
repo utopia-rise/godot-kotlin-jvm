@@ -22,11 +22,13 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Box-shaped 3D particle attractor with strength varying within the box, affecting [godot.GPUParticles3D] nodes.
+ * A box-shaped attractor with varying directions and strengths defined in it that influences particles from [godot.GPUParticles3D] nodes.
  *
- * Box-shaped 3D particle attractor with strength varying within the box, affecting [godot.GPUParticles3D] nodes.
+ * A box-shaped attractor with varying directions and strengths defined in it that influences particles from [godot.GPUParticles3D] nodes.
  *
  * Unlike [godot.GPUParticlesAttractorBox3D], [godot.GPUParticlesAttractorVectorField3D] uses a [texture] to affect attraction strength within the box. This can be used to create complex attraction scenarios where particles travel in different directions depending on their location. This can be useful for weather effects such as sandstorms.
+ *
+ * Particle attractors work in real-time and can be moved, rotated and scaled during gameplay. Unlike collision shapes, non-uniform scaling of attractors is also supported.
  *
  * **Note:** Particle attractors only affect [godot.GPUParticles3D], not [godot.CPUParticles3D].
  */

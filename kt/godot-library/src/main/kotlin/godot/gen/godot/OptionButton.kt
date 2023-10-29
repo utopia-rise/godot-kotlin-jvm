@@ -34,11 +34,7 @@ import kotlin.jvm.JvmOverloads
  *
  * See also [godot.BaseButton] which contains common properties and methods associated with this node.
  *
- * **Note:** Properties [godot.Button.text] and [godot.Button.icon] are automatically set based on the selected item. They shouldn't be changed manually.
- *
  * **Note:** The ID values used for items are limited to 32 bits, not full 64 bits of [int]. This has a range of `-2^32` to `2^32 - 1`, i.e. `-2147483648` to `2147483647`.
- *
- * **Note:** The ID values used for items are 32-bit, unlike [int] which is always 64-bit. They go from `-2147483648` to `2147483647`.
  *
  * **Note:** The [godot.Button.text] and [godot.Button.icon] properties are set automatically based on the selected item. They shouldn't be changed manually.
  */
@@ -350,6 +346,15 @@ public open class OptionButton : Button() {
     TransferContext.writeArguments(BOOL to fromLast)
     TransferContext.callMethod(rawPtr, MethodBindings.getSelectableItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  /**
+   * If `true`, shortcuts are disabled and cannot be used to trigger the button.
+   */
+  public fun setDisableShortcuts(disabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to disabled)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_DISABLE_SHORTCUTS,
+        NIL)
   }
 
   public companion object

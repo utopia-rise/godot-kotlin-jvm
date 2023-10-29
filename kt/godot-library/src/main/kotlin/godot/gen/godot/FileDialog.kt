@@ -136,6 +136,24 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
+   * If `true`, [access] is set to [ACCESS_FILESYSTEM], and it is supported by the current [godot.DisplayServer], OS native dialog will be used instead of custom one.
+   *
+   * **Note:** On macOS, sandboxed apps always use native dialogs to access host filesystem.
+   */
+  public var useNativeDialog: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_USE_NATIVE_DIALOG,
+          BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_USE_NATIVE_DIALOG,
+          NIL)
+    }
+
+  /**
    * The current working directory of the file dialog.
    */
   public var currentDir: String

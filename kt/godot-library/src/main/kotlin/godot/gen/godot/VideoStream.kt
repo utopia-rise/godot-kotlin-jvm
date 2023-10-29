@@ -21,6 +21,9 @@ import kotlin.Suppress
 /**
  * Base resource for video streams.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/animation/playing_videos.html]($DOCS_URL/tutorials/animation/playing_videos.html)
+ *
  * Base resource type for all video streams. Classes that derive from [godot.VideoStream] can all be used as resource types to play back videos in [godot.VideoStreamPlayer].
  */
 @GodotBaseType

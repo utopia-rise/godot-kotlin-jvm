@@ -62,7 +62,7 @@ import kotlin.jvm.JvmOverloads
  *
  * [/codeblocks]
  *
- * **Example of saving a node with different owners:** The following example creates 3 objects: [godot.Node2D] (`node`), [godot.RigidBody2D] (`body`) and [godot.CollisionObject2D] (`collision`). `collision` is a child of `body` which is a child of `node`. Only `body` is owned by `node` and `pack` will therefore only save those two nodes, but not `collision`.
+ * **Example of saving a node with different owners:** The following example creates 3 objects: [godot.Node2D] (`node`), [godot.RigidBody2D] (`body`) and [godot.CollisionObject2D] (`collision`). `collision` is a child of `body` which is a child of `node`. Only `body` is owned by `node` and [pack] will therefore only save those two nodes, but not `collision`.
  *
  * [codeblocks]
  *
@@ -197,7 +197,7 @@ public open class PackedScene : Resource() {
   }
 
   /**
-   * Returns the `SceneState` representing the scene file contents.
+   * Returns the [godot.SceneState] representing the scene file contents.
    */
   public fun getState(): SceneState? {
     TransferContext.writeArguments()

@@ -252,7 +252,7 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Size of tabs, if `indent_use_spaces` is enabled the number of spaces to use.
+   * Size of the tabulation indent (one [kbd]Tab[/kbd] press) in characters. If [indentUseSpaces] is enabled the number of spaces to use.
    */
   public var indentSize: Int
     get() {
@@ -618,6 +618,69 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
+   * Creates a new code region with the selection. At least one single line comment delimiter have to be defined (see [addCommentDelimiter]).
+   *
+   * A code region is a part of code that is highlighted when folded and can help organize your script.
+   *
+   * Code region start and end tags can be customized (see [setCodeRegionTags]).
+   *
+   * Code regions are delimited using start and end tags (respectively `region` and `endregion` by default) preceded by one line comment delimiter. (eg. `#region` and `#endregion`)
+   */
+  public fun createCodeRegion(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CREATE_CODE_REGION, NIL)
+  }
+
+  /**
+   * Returns the code region start tag (without comment delimiter).
+   */
+  public fun getCodeRegionStartTag(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_CODE_REGION_START_TAG,
+        STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  /**
+   * Returns the code region end tag (without comment delimiter).
+   */
+  public fun getCodeRegionEndTag(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_CODE_REGION_END_TAG,
+        STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  /**
+   * Sets the code region start and end tags (without comment delimiter).
+   */
+  @JvmOverloads
+  public fun setCodeRegionTags(start: String = "region", end: String = "endregion"): Unit {
+    TransferContext.writeArguments(STRING to start, STRING to end)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_CODE_REGION_TAGS, NIL)
+  }
+
+  /**
+   * Returns whether the line at the specified index is a code region start.
+   */
+  public fun isLineCodeRegionStart(line: Int): Boolean {
+    TransferContext.writeArguments(LONG to line.toLong())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_LINE_CODE_REGION_START,
+        BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Returns whether the line at the specified index is a code region end.
+   */
+  public fun isLineCodeRegionEnd(line: Int): Boolean {
+    TransferContext.writeArguments(LONG to line.toLong())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_LINE_CODE_REGION_END,
+        BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
    * Adds a string delimiter.
    *
    * Both the start and end keys must be symbols. Only the start key has to be unique.
@@ -813,7 +876,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Submits all completion options added with [addCodeCompletionOption]. Will try to force the autoccomplete menu to popup, if [force] is `true`.
+   * Submits all completion options added with [addCodeCompletionOption]. Will try to force the autocomplete menu to popup, if [force] is `true`.
    *
    * **Note:** This will replace all current candidates.
    */
@@ -870,7 +933,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Inserts the selected entry into the text. If [replace] is true, any existing text is replaced rather then merged.
+   * Inserts the selected entry into the text. If [replace] is true, any existing text is replaced rather than merged.
    */
   @JvmOverloads
   public fun confirmCodeCompletion(replace: Boolean = false): Unit {
@@ -896,11 +959,29 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
+   * Returns the full text with char `0xFFFF` at the specified location.
+   */
+  public fun getTextWithCursorChar(line: Int, column: Int): String {
+    TransferContext.writeArguments(LONG to line.toLong(), LONG to column.toLong())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_TEXT_WITH_CURSOR_CHAR,
+        STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  /**
    * Sets the symbol emitted by [symbolValidate] as a valid lookup.
    */
   public fun setSymbolLookupWordAsValid(valid: Boolean): Unit {
     TransferContext.writeArguments(BOOL to valid)
     TransferContext.callMethod(rawPtr, MethodBindings.setSymbolLookupWordAsValidPtr, NIL)
+  }
+
+  /**
+   * Duplicates all lines currently selected with any caret. Duplicates the entire line beneath the current one no matter where the caret is within the line.
+   */
+  public fun duplicateLines(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_DUPLICATE_LINES, NIL)
   }
 
   public enum class CodeCompletionKind(

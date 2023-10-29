@@ -38,7 +38,7 @@ import kotlin.Unit
  * A navigation mesh that defines traversable areas and obstacles.
  *
  * Tutorials:
- * [$DOCS_URL/tutorials/navigation/navigation_using_navigationmeshes.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationmeshes.html)
+ * [https://godotengine.org/asset-library/asset/124](https://godotengine.org/asset-library/asset/124)
  *
  * A navigation mesh is a collection of polygons that define which areas of an environment are traversable to aid agents in pathfinding through complicated spaces.
  */
@@ -252,7 +252,7 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * The maximum allowed length for contour edges along the border of the mesh.
+   * The maximum allowed length for contour edges along the border of the mesh. A value of `0.0` disables this feature.
    *
    * **Note:** While baking, this value will be rounded up to the nearest multiple of [cellSize].
    */
@@ -509,6 +509,14 @@ public open class NavigationMesh : Resource() {
   public fun createFromMesh(mesh: Mesh): Unit {
     TransferContext.writeArguments(OBJECT to mesh)
     TransferContext.callMethod(rawPtr, MethodBindings.createFromMeshPtr, NIL)
+  }
+
+  /**
+   * Clears the internal arrays for vertices and polygon indices.
+   */
+  public fun clear(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_CLEAR, NIL)
   }
 
   public enum class SamplePartitionType(

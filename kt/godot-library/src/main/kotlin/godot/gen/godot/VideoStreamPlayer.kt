@@ -32,6 +32,9 @@ import kotlin.Unit
 /**
  * A control used for video playback.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/animation/playing_videos.html]($DOCS_URL/tutorials/animation/playing_videos.html)
+ *
  * A control used for playback of [godot.VideoStream] resources.
  *
  * Supported video formats are [godot.Ogg Theora](https://www.theora.org/) (`.ogv`, [godot.VideoStreamTheora]) and any format exposed via a GDExtension plugin.
@@ -146,6 +149,20 @@ public open class VideoStreamPlayer : Control() {
     }
 
   /**
+   * If `true`, the video restarts when it reaches its end.
+   */
+  public var loop: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_HAS_LOOP, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_LOOP, NIL)
+    }
+
+  /**
    * Amount of time in milliseconds to store in buffer while playing.
    */
   public var bufferingMsec: Int
@@ -230,6 +247,18 @@ public open class VideoStreamPlayer : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  /**
+   * The length of the current stream, in seconds.
+   *
+   * **Note:** For [godot.VideoStreamTheora] streams (the built-in format supported by Godot), this value will always be zero, as getting the stream length is not implemented yet. The feature may be supported by video formats implemented by a GDExtension add-on.
+   */
+  public fun getStreamLength(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_STREAM_LENGTH,
+        DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
   /**

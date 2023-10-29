@@ -41,6 +41,9 @@ import kotlin.Unit
 /**
  * Base class for XR interface extensions (plugins).
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/xr/index.html]($DOCS_URL/tutorials/xr/index.html)
+ *
  * External XR interface plugins should inherit from this class.
  */
 @GodotBaseType
@@ -85,7 +88,7 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   /**
-   * Returns a [godot.core.Dictionary] with system informationr elated to this interface.
+   * Returns a [godot.core.Dictionary] with system information related to this interface.
    */
   public open fun _getSystemInfo(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_system_info is not implemented for XRInterfaceExtension")

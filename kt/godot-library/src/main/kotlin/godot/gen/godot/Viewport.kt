@@ -12,8 +12,9 @@ import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.Transform2D
-import godot.core.TypeManager
+import godot.core.VariantArray
 import godot.core.VariantType.ANY
+import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -29,7 +30,6 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -70,17 +70,31 @@ public open class Viewport internal constructor() : Node() {
   public val guiFocusChanged: Signal1<Control> by signal("node")
 
   /**
-   * Disable 3D rendering (but keep 2D rendering).
+   * If `true`, disables 2D rendering while keeping 3D rendering. See also [disable3d].
    */
-  public var disable3d: Boolean
+  public var disable2d: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.is3dDisabledPtr, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_2D_DISABLED, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDisable3dPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DISABLE_2D, NIL)
+    }
+
+  /**
+   * If `true`, disables 3D rendering while keeping 2D rendering. See also [disable2d].
+   */
+  public var disable3d: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_3D_DISABLED, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DISABLE_3D, NIL)
     }
 
   /**
@@ -89,12 +103,12 @@ public open class Viewport internal constructor() : Node() {
   public var useXr: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingXrPtr, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_XR, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseXrPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_XR, NIL)
     }
 
   /**
@@ -103,12 +117,14 @@ public open class Viewport internal constructor() : Node() {
   public var ownWorld3d: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingOwnWorld3dPtr, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_OWN_WORLD_3D,
+          BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseOwnWorld3dPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_OWN_WORLD_3D,
+          NIL)
     }
 
   /**
@@ -117,12 +133,12 @@ public open class Viewport internal constructor() : Node() {
   public var world3d: World3D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getWorld3dPtr, OBJECT)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_WORLD_3D, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as World3D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setWorld3dPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_WORLD_3D, NIL)
     }
 
   /**
@@ -131,12 +147,12 @@ public open class Viewport internal constructor() : Node() {
   public var world2d: World2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getWorld2dPtr, OBJECT)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_WORLD_2D, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as World2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setWorld2dPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_WORLD_2D, NIL)
     }
 
   /**
@@ -145,12 +161,14 @@ public open class Viewport internal constructor() : Node() {
   public var transparentBg: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.hasTransparentBackgroundPtr, BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_HAS_TRANSPARENT_BACKGROUND, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTransparentBackgroundPtr, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_TRANSPARENT_BACKGROUND, NIL)
     }
 
   /**
@@ -163,12 +181,14 @@ public open class Viewport internal constructor() : Node() {
   public var handleInputLocally: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isHandlingInputLocallyPtr, BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_HANDLING_INPUT_LOCALLY, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHandleInputLocallyPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_HANDLE_INPUT_LOCALLY,
+          NIL)
     }
 
   /**
@@ -177,12 +197,14 @@ public open class Viewport internal constructor() : Node() {
   public var snap2dTransformsToPixel: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isSnap2dTransformsToPixelEnabledPtr, BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_SNAP_2D_TRANSFORMS_TO_PIXEL_ENABLED, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSnap2dTransformsToPixelPtr, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SNAP_2D_TRANSFORMS_TO_PIXEL, NIL)
     }
 
   /**
@@ -191,12 +213,14 @@ public open class Viewport internal constructor() : Node() {
   public var snap2dVerticesToPixel: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isSnap2dVerticesToPixelEnabledPtr, BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_SNAP_2D_VERTICES_TO_PIXEL_ENABLED, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSnap2dVerticesToPixelPtr, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SNAP_2D_VERTICES_TO_PIXEL, NIL)
     }
 
   /**
@@ -205,12 +229,12 @@ public open class Viewport internal constructor() : Node() {
   public var msaa2d: MSAA
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMsaa2dPtr, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MSAA_2D, LONG)
       return Viewport.MSAA.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMsaa2dPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_MSAA_2D, NIL)
     }
 
   /**
@@ -219,12 +243,12 @@ public open class Viewport internal constructor() : Node() {
   public var msaa3d: MSAA
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMsaa3dPtr, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MSAA_3D, LONG)
       return Viewport.MSAA.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMsaa3dPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_MSAA_3D, NIL)
     }
 
   /**
@@ -233,12 +257,13 @@ public open class Viewport internal constructor() : Node() {
   public var screenSpaceAa: ScreenSpaceAA
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getScreenSpaceAaPtr, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCREEN_SPACE_AA,
+          LONG)
       return Viewport.ScreenSpaceAA.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setScreenSpaceAaPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SCREEN_SPACE_AA, NIL)
     }
 
   /**
@@ -249,12 +274,12 @@ public open class Viewport internal constructor() : Node() {
   public var useTaa: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingTaaPtr, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_TAA, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseTaaPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_TAA, NIL)
     }
 
   /**
@@ -265,12 +290,12 @@ public open class Viewport internal constructor() : Node() {
   public var useDebanding: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingDebandingPtr, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_DEBANDING, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseDebandingPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_DEBANDING, NIL)
     }
 
   /**
@@ -283,12 +308,14 @@ public open class Viewport internal constructor() : Node() {
   public var useOcclusionCulling: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingOcclusionCullingPtr, BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_OCCLUSION_CULLING, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseOcclusionCullingPtr, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_OCCLUSION_CULLING, NIL)
     }
 
   /**
@@ -301,12 +328,14 @@ public open class Viewport internal constructor() : Node() {
   public var meshLodThreshold: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMeshLodThresholdPtr, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MESH_LOD_THRESHOLD,
+          DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMeshLodThresholdPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_MESH_LOD_THRESHOLD,
+          NIL)
     }
 
   /**
@@ -315,12 +344,28 @@ public open class Viewport internal constructor() : Node() {
   public var debugDraw: DebugDraw
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDebugDrawPtr, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEBUG_DRAW, LONG)
       return Viewport.DebugDraw.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDebugDrawPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DEBUG_DRAW, NIL)
+    }
+
+  /**
+   * If `true`, 2D rendering will use an high dynamic range (HDR) format framebuffer matching the bit depth of the 3D framebuffer. When using the Forward+ renderer this will be a `RGBA16` framebuffer, while when using the Mobile renderer it will be a `RGB10_A2` framebuffer. Additionally, 2D rendering will take place in linear color space and will be converted to sRGB space immediately before blitting to the screen (if the Viewport is attached to the screen). Practically speaking, this means that the end result of the Viewport will not be clamped into the `0-1` range and can be used in 3D rendering without color space adjustments. This allows 2D rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as substantially improves the appearance of effects requiring highly detailed gradients.
+   *
+   * **Note:** This setting will have no effect when using the GL Compatibility renderer as the GL Compatibility renderer always renders in low dynamic range for performance reasons.
+   */
+  public var useHdr2d: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_HDR_2D, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_HDR_2D, NIL)
     }
 
   /**
@@ -331,12 +376,13 @@ public open class Viewport internal constructor() : Node() {
   public var scaling3dMode: Scaling3DMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getScaling3dModePtr, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCALING_3D_MODE,
+          LONG)
       return Viewport.Scaling3DMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setScaling3dModePtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SCALING_3D_MODE, NIL)
     }
 
   /**
@@ -349,12 +395,14 @@ public open class Viewport internal constructor() : Node() {
   public var scaling3dScale: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getScaling3dScalePtr, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCALING_3D_SCALE,
+          DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setScaling3dScalePtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SCALING_3D_SCALE,
+          NIL)
     }
 
   /**
@@ -369,12 +417,14 @@ public open class Viewport internal constructor() : Node() {
   public var textureMipmapBias: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureMipmapBiasPtr, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_TEXTURE_MIPMAP_BIAS,
+          DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureMipmapBiasPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_TEXTURE_MIPMAP_BIAS,
+          NIL)
     }
 
   /**
@@ -385,12 +435,13 @@ public open class Viewport internal constructor() : Node() {
   public var fsrSharpness: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFsrSharpnessPtr, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_FSR_SHARPNESS,
+          DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFsrSharpnessPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_FSR_SHARPNESS, NIL)
     }
 
   /**
@@ -399,12 +450,12 @@ public open class Viewport internal constructor() : Node() {
   public var vrsMode: VRSMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVrsModePtr, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_VRS_MODE, LONG)
       return Viewport.VRSMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVrsModePtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_VRS_MODE, NIL)
     }
 
   /**
@@ -428,12 +479,12 @@ public open class Viewport internal constructor() : Node() {
   public var vrsTexture: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVrsTexturePtr, OBJECT)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_VRS_TEXTURE, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVrsTexturePtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_VRS_TEXTURE, NIL)
     }
 
   /**
@@ -442,12 +493,14 @@ public open class Viewport internal constructor() : Node() {
   public var canvasItemDefaultTextureFilter: DefaultCanvasItemTextureFilter
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDefaultCanvasItemTextureFilterPtr, LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEFAULT_CANVAS_ITEM_TEXTURE_FILTER, LONG)
       return Viewport.DefaultCanvasItemTextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultCanvasItemTextureFilterPtr, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DEFAULT_CANVAS_ITEM_TEXTURE_FILTER, NIL)
     }
 
   /**
@@ -456,12 +509,14 @@ public open class Viewport internal constructor() : Node() {
   public var canvasItemDefaultTextureRepeat: DefaultCanvasItemTextureRepeat
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDefaultCanvasItemTextureRepeatPtr, LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT, LONG)
       return Viewport.DefaultCanvasItemTextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultCanvasItemTextureRepeatPtr, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT, NIL)
     }
 
   /**
@@ -470,12 +525,14 @@ public open class Viewport internal constructor() : Node() {
   public var audioListenerEnable2d: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAudioListener2dPtr, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_AUDIO_LISTENER_2D,
+          BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAsAudioListener2dPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_AS_AUDIO_LISTENER_2D,
+          NIL)
     }
 
   /**
@@ -484,42 +541,52 @@ public open class Viewport internal constructor() : Node() {
   public var audioListenerEnable3d: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAudioListener3dPtr, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_AUDIO_LISTENER_3D,
+          BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAsAudioListener3dPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_AS_AUDIO_LISTENER_3D,
+          NIL)
     }
 
   /**
    * If `true`, the objects rendered by viewport become subjects of mouse picking process.
+   *
+   * **Note:** The number of simultaneously pickable objects is limited to 64 and they are selected in a non-deterministic order, which can be different in each picking process.
    */
   public var physicsObjectPicking: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsObjectPickingPtr, BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_PHYSICS_OBJECT_PICKING, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsObjectPickingPtr, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_PHYSICS_OBJECT_PICKING, NIL)
     }
 
   /**
    * If `true`, objects receive mouse picking events sorted primarily by their [godot.CanvasItem.zIndex] and secondarily by their position in the scene tree. If `false`, the order is undetermined.
    *
    * **Note:** This setting is disabled by default because of its potential expensive computational cost.
+   *
+   * **Note:** Sorting happens after selecting the pickable objects. Because of the limitation of 64 simultaneously pickable objects, it is not guaranteed that the object with the highest [godot.CanvasItem.zIndex] receives the picking event.
    */
   public var physicsObjectPickingSort: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsObjectPickingSortPtr, BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_PHYSICS_OBJECT_PICKING_SORT, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsObjectPickingSortPtr, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_PHYSICS_OBJECT_PICKING_SORT, NIL)
     }
 
   /**
@@ -528,12 +595,12 @@ public open class Viewport internal constructor() : Node() {
   public var guiDisableInput: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isInputDisabledPtr, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_INPUT_DISABLED, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDisableInputPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DISABLE_INPUT, NIL)
     }
 
   /**
@@ -542,12 +609,14 @@ public open class Viewport internal constructor() : Node() {
   public var guiSnapControlsToPixels: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isSnapControlsToPixelsEnabledPtr, BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_SNAP_CONTROLS_TO_PIXELS_ENABLED, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSnapControlsToPixelsPtr, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SNAP_CONTROLS_TO_PIXELS, NIL)
     }
 
   /**
@@ -556,12 +625,14 @@ public open class Viewport internal constructor() : Node() {
   public var guiEmbedSubwindows: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isEmbeddingSubwindowsPtr, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_EMBEDDING_SUBWINDOWS,
+          BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEmbeddingSubwindowsPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_EMBEDDING_SUBWINDOWS,
+          NIL)
     }
 
   /**
@@ -570,12 +641,12 @@ public open class Viewport internal constructor() : Node() {
   public var sdfOversize: SDFOversize
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSdfOversizePtr, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SDF_OVERSIZE, LONG)
       return Viewport.SDFOversize.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSdfOversizePtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SDF_OVERSIZE, NIL)
     }
 
   /**
@@ -584,12 +655,12 @@ public open class Viewport internal constructor() : Node() {
   public var sdfScale: SDFScale
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSdfScalePtr, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SDF_SCALE, LONG)
       return Viewport.SDFScale.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSdfScalePtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SDF_SCALE, NIL)
     }
 
   /**
@@ -600,12 +671,14 @@ public open class Viewport internal constructor() : Node() {
   public var positionalShadowAtlasSize: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPositionalShadowAtlasSizePtr, LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_SIZE, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPositionalShadowAtlasSizePtr, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_SIZE, NIL)
     }
 
   /**
@@ -614,12 +687,14 @@ public open class Viewport internal constructor() : Node() {
   public var positionalShadowAtlas16Bits: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPositionalShadowAtlas16BitsPtr, BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_16_BITS, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPositionalShadowAtlas16BitsPtr, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_16_BITS, NIL)
     }
 
   /**
@@ -628,14 +703,14 @@ public open class Viewport internal constructor() : Node() {
   public var positionalShadowAtlasQuad0: PositionalShadowAtlasQuadrantSubdiv
     get() {
       TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getPositionalShadowAtlasQuadrantSubdivPtr,
-          LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
       return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 0L, LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPositionalShadowAtlasQuadrantSubdivPtr,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
     }
 
   /**
@@ -644,14 +719,14 @@ public open class Viewport internal constructor() : Node() {
   public var positionalShadowAtlasQuad1: PositionalShadowAtlasQuadrantSubdiv
     get() {
       TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getPositionalShadowAtlasQuadrantSubdivPtr,
-          LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
       return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 1L, LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPositionalShadowAtlasQuadrantSubdivPtr,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
     }
 
   /**
@@ -660,14 +735,14 @@ public open class Viewport internal constructor() : Node() {
   public var positionalShadowAtlasQuad2: PositionalShadowAtlasQuadrantSubdiv
     get() {
       TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getPositionalShadowAtlasQuadrantSubdivPtr,
-          LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
       return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 2L, LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPositionalShadowAtlasQuadrantSubdivPtr,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
     }
 
   /**
@@ -676,14 +751,14 @@ public open class Viewport internal constructor() : Node() {
   public var positionalShadowAtlasQuad3: PositionalShadowAtlasQuadrantSubdiv
     get() {
       TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getPositionalShadowAtlasQuadrantSubdivPtr,
-          LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
       return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 3L, LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPositionalShadowAtlasQuadrantSubdivPtr,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_POSITIONAL_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
     }
 
   /**
@@ -693,12 +768,14 @@ public open class Viewport internal constructor() : Node() {
   public var canvasTransform: Transform2D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCanvasTransformPtr, TRANSFORM2D)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CANVAS_TRANSFORM,
+          TRANSFORM2D)
       return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCanvasTransformPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_CANVAS_TRANSFORM,
+          NIL)
     }
 
   /**
@@ -708,12 +785,14 @@ public open class Viewport internal constructor() : Node() {
   public var globalCanvasTransform: Transform2D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGlobalCanvasTransformPtr, TRANSFORM2D)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_GLOBAL_CANVAS_TRANSFORM, TRANSFORM2D)
       return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGlobalCanvasTransformPtr, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_GLOBAL_CANVAS_TRANSFORM, NIL)
     }
 
   /**
@@ -722,12 +801,14 @@ public open class Viewport internal constructor() : Node() {
   public var canvasCullMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCanvasCullMaskPtr, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CANVAS_CULL_MASK,
+          LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCanvasCullMaskPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_CANVAS_CULL_MASK,
+          NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -790,7 +871,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun findWorld2d(): World2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.findWorld2dPtr, OBJECT)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_FIND_WORLD_2D, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as World2D?)
   }
 
@@ -799,7 +880,8 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun getFinalTransform(): Transform2D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFinalTransformPtr, TRANSFORM2D)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_FINAL_TRANSFORM,
+        TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
   }
 
@@ -808,7 +890,8 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun getScreenTransform(): Transform2D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScreenTransformPtr, TRANSFORM2D)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCREEN_TRANSFORM,
+        TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
   }
 
@@ -817,7 +900,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun getVisibleRect(): Rect2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibleRectPtr, RECT2)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_VISIBLE_RECT, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)
   }
 
@@ -826,7 +909,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun getRenderInfo(type: RenderInfoType, info: RenderInfo): Int {
     TransferContext.writeArguments(LONG to type.id, LONG to info.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getRenderInfoPtr, LONG)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_RENDER_INFO, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -843,7 +926,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun getTexture(): ViewportTexture? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_TEXTURE, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as ViewportTexture?)
   }
 
@@ -852,7 +935,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun getViewportRid(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getViewportRidPtr, _RID)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_VIEWPORT_RID, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -861,7 +944,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun pushTextInput(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, MethodBindings.pushTextInputPtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_PUSH_TEXT_INPUT, NIL)
   }
 
   /**
@@ -879,9 +962,9 @@ public open class Viewport internal constructor() : Node() {
    *
    * - [godot.Node.ShortcutInput]
    *
-   * - [godot.Node.UnhandledInput]
-   *
    * - [godot.Node.UnhandledKeyInput]
+   *
+   * - [godot.Node.UnhandledInput]
    *
    * If an earlier method marks the input as handled via [setInputAsHandled], any later method in this list will not be called.
    *
@@ -890,7 +973,7 @@ public open class Viewport internal constructor() : Node() {
   @JvmOverloads
   public fun pushInput(event: InputEvent, inLocalCoords: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to event, BOOL to inLocalCoords)
-    TransferContext.callMethod(rawPtr, MethodBindings.pushInputPtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_PUSH_INPUT, NIL)
   }
 
   /**
@@ -904,9 +987,9 @@ public open class Viewport internal constructor() : Node() {
    *
    * - [godot.Node.ShortcutInput]
    *
-   * - [godot.Node.UnhandledInput]
-   *
    * - [godot.Node.UnhandledKeyInput]
+   *
+   * - [godot.Node.UnhandledInput]
    *
    * If an earlier method marks the input as handled via [setInputAsHandled], any later method in this list will not be called.
    *
@@ -919,7 +1002,7 @@ public open class Viewport internal constructor() : Node() {
   @JvmOverloads
   public fun pushUnhandledInput(event: InputEvent, inLocalCoords: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to event, BOOL to inLocalCoords)
-    TransferContext.callMethod(rawPtr, MethodBindings.pushUnhandledInputPtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_PUSH_UNHANDLED_INPUT, NIL)
   }
 
   /**
@@ -927,7 +1010,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun getCamera2d(): Camera2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCamera2dPtr, OBJECT)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CAMERA_2D, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Camera2D?)
   }
 
@@ -936,7 +1019,8 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun getMousePosition(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMousePositionPtr, VECTOR2)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MOUSE_POSITION,
+        VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
@@ -947,7 +1031,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun warpMouse(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.warpMousePtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_WARP_MOUSE, NIL)
   }
 
   /**
@@ -955,7 +1039,8 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun updateMouseCursorState(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.updateMouseCursorStatePtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_UPDATE_MOUSE_CURSOR_STATE,
+        NIL)
   }
 
   /**
@@ -963,7 +1048,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun guiGetDragData(): Any? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.guiGetDragDataPtr, ANY)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_GET_DRAG_DATA, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -974,7 +1059,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun guiIsDragging(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.guiIsDraggingPtr, BOOL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_IS_DRAGGING, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -983,7 +1068,8 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun guiIsDragSuccessful(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.guiIsDragSuccessfulPtr, BOOL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_IS_DRAG_SUCCESSFUL,
+        BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -992,7 +1078,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun guiReleaseFocus(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.guiReleaseFocusPtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_RELEASE_FOCUS, NIL)
   }
 
   /**
@@ -1000,7 +1086,8 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun guiGetFocusOwner(): Control? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.guiGetFocusOwnerPtr, OBJECT)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_GET_FOCUS_OWNER,
+        OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Control?)
   }
 
@@ -1011,7 +1098,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun setInputAsHandled(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.setInputAsHandledPtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_INPUT_AS_HANDLED, NIL)
   }
 
   /**
@@ -1023,8 +1110,20 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun isInputHandled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isInputHandledPtr, BOOL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_INPUT_HANDLED, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Returns a list of the visible embedded [godot.Window]s inside the viewport.
+   *
+   * **Note:** [godot.Window]s inside other viewports will not be listed.
+   */
+  public fun getEmbeddedSubwindows(): VariantArray<Window> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_EMBEDDED_SUBWINDOWS,
+        ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Window>)
   }
 
   /**
@@ -1032,7 +1131,8 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun setCanvasCullMaskBit(layer: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to layer, BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCanvasCullMaskBitPtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_CANVAS_CULL_MASK_BIT,
+        NIL)
   }
 
   /**
@@ -1040,7 +1140,8 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun getCanvasCullMaskBit(layer: Long): Boolean {
     TransferContext.writeArguments(LONG to layer)
-    TransferContext.callMethod(rawPtr, MethodBindings.getCanvasCullMaskBitPtr, BOOL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CANVAS_CULL_MASK_BIT,
+        BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -1049,7 +1150,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun findWorld3d(): World3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.findWorld3dPtr, OBJECT)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_FIND_WORLD_3D, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as World3D?)
   }
 
@@ -1058,7 +1159,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public fun getCamera3d(): Camera3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCamera3dPtr, OBJECT)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CAMERA_3D, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Camera3D?)
   }
 
@@ -1121,9 +1222,13 @@ public open class Viewport internal constructor() : Node() {
      */
     SCALING_3D_MODE_FSR(1),
     /**
+     * Use AMD FidelityFX Super Resolution 2.2 upscaling for the viewport's 3D buffer. The amount of scaling can be set using [godot.Viewport.scaling3dScale]. Values less than `1.0` will be result in the viewport being upscaled using FSR2. Values greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of `1.0` will use FSR2 at native resolution as a TAA solution.
+     */
+    SCALING_3D_MODE_FSR2(2),
+    /**
      * Represents the size of the [enum Scaling3DMode] enum.
      */
-    SCALING_3D_MODE_MAX(2),
+    SCALING_3D_MODE_MAX(3),
     ;
 
     public val id: Long
@@ -1363,6 +1468,10 @@ public open class Viewport internal constructor() : Node() {
      *
      */
     DEBUG_DRAW_MOTION_VECTORS(25),
+    /**
+     * Draws the internal resolution buffer of the scene before post-processing is applied.
+     */
+    DEBUG_DRAW_INTERNAL_BUFFER(26),
     ;
 
     public val id: Long
@@ -1539,294 +1648,4 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public companion object
-
-  internal object MethodBindings {
-    public val setWorld2dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_world_2d")
-
-    public val getWorld2dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_world_2d")
-
-    public val findWorld2dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "find_world_2d")
-
-    public val setCanvasTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_canvas_transform")
-
-    public val getCanvasTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_canvas_transform")
-
-    public val setGlobalCanvasTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_global_canvas_transform")
-
-    public val getGlobalCanvasTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_global_canvas_transform")
-
-    public val getFinalTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_final_transform")
-
-    public val getScreenTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_screen_transform")
-
-    public val getVisibleRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_visible_rect")
-
-    public val setTransparentBackgroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_transparent_background")
-
-    public val hasTransparentBackgroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "has_transparent_background")
-
-    public val setMsaa2dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_msaa_2d")
-
-    public val getMsaa2dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_msaa_2d")
-
-    public val setMsaa3dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_msaa_3d")
-
-    public val getMsaa3dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_msaa_3d")
-
-    public val setScreenSpaceAaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_screen_space_aa")
-
-    public val getScreenSpaceAaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_screen_space_aa")
-
-    public val setUseTaaPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_use_taa")
-
-    public val isUsingTaaPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "is_using_taa")
-
-    public val setUseDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_use_debanding")
-
-    public val isUsingDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_using_debanding")
-
-    public val setUseOcclusionCullingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_use_occlusion_culling")
-
-    public val isUsingOcclusionCullingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_using_occlusion_culling")
-
-    public val setDebugDrawPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_debug_draw")
-
-    public val getDebugDrawPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_debug_draw")
-
-    public val getRenderInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_render_info")
-
-    public val getTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_texture")
-
-    public val setPhysicsObjectPickingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_physics_object_picking")
-
-    public val getPhysicsObjectPickingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_physics_object_picking")
-
-    public val setPhysicsObjectPickingSortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_physics_object_picking_sort")
-
-    public val getPhysicsObjectPickingSortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_physics_object_picking_sort")
-
-    public val getViewportRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_viewport_rid")
-
-    public val pushTextInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "push_text_input")
-
-    public val pushInputPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "push_input")
-
-    public val pushUnhandledInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "push_unhandled_input")
-
-    public val getCamera2dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_camera_2d")
-
-    public val setAsAudioListener2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_as_audio_listener_2d")
-
-    public val isAudioListener2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_audio_listener_2d")
-
-    public val getMousePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_mouse_position")
-
-    public val warpMousePtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "warp_mouse")
-
-    public val updateMouseCursorStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "update_mouse_cursor_state")
-
-    public val guiGetDragDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_get_drag_data")
-
-    public val guiIsDraggingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_is_dragging")
-
-    public val guiIsDragSuccessfulPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_is_drag_successful")
-
-    public val guiReleaseFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_release_focus")
-
-    public val guiGetFocusOwnerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_get_focus_owner")
-
-    public val setDisableInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_disable_input")
-
-    public val isInputDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_input_disabled")
-
-    public val setPositionalShadowAtlasSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_positional_shadow_atlas_size")
-
-    public val getPositionalShadowAtlasSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_positional_shadow_atlas_size")
-
-    public val setPositionalShadowAtlas16BitsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_positional_shadow_atlas_16_bits")
-
-    public val getPositionalShadowAtlas16BitsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_positional_shadow_atlas_16_bits")
-
-    public val setSnapControlsToPixelsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_snap_controls_to_pixels")
-
-    public val isSnapControlsToPixelsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_snap_controls_to_pixels_enabled")
-
-    public val setSnap2dTransformsToPixelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_snap_2d_transforms_to_pixel")
-
-    public val isSnap2dTransformsToPixelEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_snap_2d_transforms_to_pixel_enabled")
-
-    public val setSnap2dVerticesToPixelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_snap_2d_vertices_to_pixel")
-
-    public val isSnap2dVerticesToPixelEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_snap_2d_vertices_to_pixel_enabled")
-
-    public val setPositionalShadowAtlasQuadrantSubdivPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_positional_shadow_atlas_quadrant_subdiv")
-
-    public val getPositionalShadowAtlasQuadrantSubdivPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_positional_shadow_atlas_quadrant_subdiv")
-
-    public val setInputAsHandledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_input_as_handled")
-
-    public val isInputHandledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_input_handled")
-
-    public val setHandleInputLocallyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_handle_input_locally")
-
-    public val isHandlingInputLocallyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_handling_input_locally")
-
-    public val setDefaultCanvasItemTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_default_canvas_item_texture_filter")
-
-    public val getDefaultCanvasItemTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_default_canvas_item_texture_filter")
-
-    public val setEmbeddingSubwindowsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_embedding_subwindows")
-
-    public val isEmbeddingSubwindowsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_embedding_subwindows")
-
-    public val setCanvasCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_canvas_cull_mask")
-
-    public val getCanvasCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_canvas_cull_mask")
-
-    public val setCanvasCullMaskBitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_canvas_cull_mask_bit")
-
-    public val getCanvasCullMaskBitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_canvas_cull_mask_bit")
-
-    public val setDefaultCanvasItemTextureRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_default_canvas_item_texture_repeat")
-
-    public val getDefaultCanvasItemTextureRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_default_canvas_item_texture_repeat")
-
-    public val setSdfOversizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_sdf_oversize")
-
-    public val getSdfOversizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_sdf_oversize")
-
-    public val setSdfScalePtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_sdf_scale")
-
-    public val getSdfScalePtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_sdf_scale")
-
-    public val setMeshLodThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_mesh_lod_threshold")
-
-    public val getMeshLodThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_mesh_lod_threshold")
-
-    public val setWorld3dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_world_3d")
-
-    public val getWorld3dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_world_3d")
-
-    public val findWorld3dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "find_world_3d")
-
-    public val setUseOwnWorld3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_use_own_world_3d")
-
-    public val isUsingOwnWorld3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_using_own_world_3d")
-
-    public val getCamera3dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_camera_3d")
-
-    public val setAsAudioListener3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_as_audio_listener_3d")
-
-    public val isAudioListener3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_audio_listener_3d")
-
-    public val setDisable3dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_disable_3d")
-
-    public val is3dDisabledPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "is_3d_disabled")
-
-    public val setUseXrPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_use_xr")
-
-    public val isUsingXrPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "is_using_xr")
-
-    public val setScaling3dModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_scaling_3d_mode")
-
-    public val getScaling3dModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_scaling_3d_mode")
-
-    public val setScaling3dScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_scaling_3d_scale")
-
-    public val getScaling3dScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_scaling_3d_scale")
-
-    public val setFsrSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_fsr_sharpness")
-
-    public val getFsrSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_fsr_sharpness")
-
-    public val setTextureMipmapBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_texture_mipmap_bias")
-
-    public val getTextureMipmapBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_texture_mipmap_bias")
-
-    public val setVrsModePtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_vrs_mode")
-
-    public val getVrsModePtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_vrs_mode")
-
-    public val setVrsTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_vrs_texture")
-
-    public val getVrsTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_vrs_texture")
-  }
 }

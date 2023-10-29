@@ -31,7 +31,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class WorldBoundaryShape2D : Shape2D() {
   /**
-   * The line's normal, typically a unit vector. Its direction indicates the non-colliding half-plane. Can be of any length but zero. Defaults to `Vector2.UP`.
+   * The line's normal, typically a unit vector. Its direction indicates the non-colliding half-plane. Can be of any length but zero. Defaults to [godot.Vector2.UP].
    */
   @CoreTypeLocalCopy
   public var normal: Vector2
@@ -67,7 +67,7 @@ public open class WorldBoundaryShape2D : Shape2D() {
   }
 
   /**
-   * The line's normal, typically a unit vector. Its direction indicates the non-colliding half-plane. Can be of any length but zero. Defaults to `Vector2.UP`.
+   * The line's normal, typically a unit vector. Its direction indicates the non-colliding half-plane. Can be of any length but zero. Defaults to [godot.Vector2.UP].
    *
    * This is a helper function to make dealing with local copies easier. 
    *

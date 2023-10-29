@@ -11,14 +11,20 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 
+/**
+ * Imports a WAV audio file for playback.
+ *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/assets_pipeline/importing_audio_samples.html]($DOCS_URL/tutorials/assets_pipeline/importing_audio_samples.html)
+ *
+ * WAV is an uncompressed format, which can provide higher quality compared to Ogg Vorbis and MP3. It also has the lowest CPU cost to decode. This means high numbers of WAV sounds can be played at the same time, even on low-end deviceS.
+ */
 @GodotBaseType
-public open class MovieWriterPNGWAV internal constructor() : MovieWriter() {
+public open class ResourceImporterWAV internal constructor() : ResourceImporter() {
   public override fun new(scriptIndex: Int): Boolean {
-    callConstructor(ENGINECLASS_MOVIEWRITERPNGWAV, scriptIndex)
+    callConstructor(ENGINECLASS_RESOURCEIMPORTERWAV, scriptIndex)
     return true
   }
 
   public companion object
-
-  internal object MethodBindings
 }

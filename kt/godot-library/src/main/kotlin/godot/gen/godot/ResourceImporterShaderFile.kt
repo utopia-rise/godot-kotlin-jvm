@@ -11,14 +11,17 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 
+/**
+ * Imports native GLSL shaders (not Godot shaders) as a [godot.RDShaderFile].
+ *
+ * This imports native GLSL shaders as [godot.RDShaderFile] resources, for use with low-level [godot.RenderingDevice] operations. This importer does *not* handle `.gdshader` files.
+ */
 @GodotBaseType
-public open class UniformSetCacheRD internal constructor() : Object() {
+public open class ResourceImporterShaderFile internal constructor() : ResourceImporter() {
   public override fun new(scriptIndex: Int): Boolean {
-    callConstructor(ENGINECLASS_UNIFORMSETCACHERD, scriptIndex)
+    callConstructor(ENGINECLASS_RESOURCEIMPORTERSHADERFILE, scriptIndex)
     return true
   }
 
   public companion object
-
-  internal object MethodBindings
 }

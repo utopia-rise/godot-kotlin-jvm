@@ -37,7 +37,7 @@ public open class MenuButton : Button() {
   public val aboutToPopup: Signal0 by signal()
 
   /**
-   * If `true`, when the cursor hovers above another [godot.MenuButton] within the same parent which also has `switch_on_hover` enabled, it will close the current [godot.MenuButton] and open the other one.
+   * If `true`, when the cursor hovers above another [godot.MenuButton] within the same parent which also has [switchOnHover] enabled, it will close the current [godot.MenuButton] and open the other one.
    */
   public var switchOnHover: Boolean
     get() {

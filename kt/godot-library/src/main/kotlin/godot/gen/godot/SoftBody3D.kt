@@ -119,7 +119,7 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   /**
-   *
+   * Higher values will result in a stiffer body, while lower values will increase the body's ability to bend. The value can be between `0.0` and `1.0` (inclusive).
    */
   public var linearStiffness: Float
     get() {

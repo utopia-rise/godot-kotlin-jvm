@@ -39,6 +39,8 @@ import kotlin.jvm.JvmOverloads
  * [$DOCS_URL/tutorials/plugins/editor/index.html]($DOCS_URL/tutorials/plugins/editor/index.html)
  *
  * Plugins are used by the editor to extend functionality. The most common types of plugins are those which edit a given node or resource type, import plugins and export plugins. See also [godot.EditorScript] to add functions to the editor.
+ *
+ * **Note:** Some names in this class contain "left" or "right" (e.g. [DOCK_SLOT_LEFT_UL]). These APIs assume left-to-right layout, and would be backwards when using right-to-left layout. These names are kept for compatibility reasons.
  */
 @GodotBaseType
 public open class EditorPlugin internal constructor() : Node() {
@@ -64,6 +66,8 @@ public open class EditorPlugin internal constructor() : Node() {
 
   /**
    * Emitted when any project setting has changed.
+   *
+   * *Deprecated.* Use [godot.ProjectSettings.settingsChanged] instead.
    */
   public val projectSettingsChanged: Signal0 by signal()
 
@@ -406,7 +410,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    *     # Or use a built-in icon:
    *
-   *     return get_editor_interface().get_base_control().get_theme_icon("Node", "EditorIcons")
+   *     return EditorInterface.get_editor_theme().get_icon("Node", "EditorIcons")
    *
    * [/gdscript]
    *
@@ -422,7 +426,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    *     // Or use a built-in icon:
    *
-   *     return GetEditorInterface().GetBaseControl().GetThemeIcon("Node", "EditorIcons");
+   *     return EditorInterface.Singleton.GetEditorTheme().GetIcon("Node", "EditorIcons");
    *
    * }
    *
@@ -446,7 +450,7 @@ public open class EditorPlugin internal constructor() : Node() {
    *
    * 				func _enter_tree():
    * 				    plugin_control = preload("my_plugin_control.tscn").instantiate()
-   * 				    get_editor_interface().get_editor_main_screen().add_child(plugin_control)
+   * 				    EditorInterface.get_editor_main_screen().add_child(plugin_control)
    * 				    plugin_control.hide()
    *
    * 				func _has_main_screen():
@@ -459,7 +463,7 @@ public open class EditorPlugin internal constructor() : Node() {
    * 				    return "My Super Cool Plugin 3000"
    *
    * 				func _get_plugin_icon():
-   * 				    return get_editor_interface().get_base_control().get_theme_icon("Node", "EditorIcons")
+   * 				    return EditorInterface.get_editor_theme().get_icon("Node", "EditorIcons")
    * 				```
    */
   public open fun _hasMainScreen(): Boolean {
@@ -484,6 +488,8 @@ public open class EditorPlugin internal constructor() : Node() {
 
   /**
    * Implement this function if your plugin edits a specific type of object (Resource or Node). If you return `true`, then you will get the functions [_edit] and [_makeVisible] called when the editor requests them. If you have declared the methods [_forwardCanvasGuiInput] and [_forward3dGuiInput] these will be called too.
+   *
+   * **Note:** Each plugin should handle only one type of objects at a time. If a plugin handes more types of objects and they are edited at the same time, it will result in errors.
    */
   public open fun _handles(_object: Object): Boolean {
     throw NotImplementedError("_handles is not implemented for EditorPlugin")
@@ -526,6 +532,39 @@ public open class EditorPlugin internal constructor() : Node() {
    * Clear all the state and reset the object being edited to zero. This ensures your plugin does not keep editing a currently existing node, or a node from the wrong scene.
    */
   public open fun _clear(): Unit {
+  }
+
+  /**
+   * Override this method to provide a custom message that lists unsaved changes. The editor will call this method when exiting or when closing a scene, and display the returned string in a confirmation dialog. Return empty string if the plugin has no unsaved changes.
+   *
+   * When closing a scene, [forScene] is the path to the scene being closed. You can use it to handle built-in resources in that scene.
+   *
+   * If the user confirms saving, [_saveExternalData] will be called, before closing the editor.
+   *
+   * ```
+   * 				func _get_unsaved_status(for_scene):
+   * 				    if not unsaved:
+   * 				        return ""
+   *
+   * 				    if for_scene.is_empty():
+   * 				        return "Save changes in MyCustomPlugin before closing?"
+   * 				    else:
+   * 				        return "Scene %s has changes from MyCustomPlugin. Save before closing?" % for_scene.get_file()
+   *
+   * 				func _save_external_data():
+   * 				    unsaved = false
+   * 				```
+   *
+   * If the plugin has no scene-specific changes, you can ignore the calls when closing scenes:
+   *
+   * ```
+   * 				func _get_unsaved_status(for_scene):
+   * 				    if not for_scene.is_empty():
+   * 				        return ""
+   * 				```
+   */
+  public open fun _getUnsavedStatus(forScene: String): String {
+    throw NotImplementedError("_get_unsaved_status is not implemented for EditorPlugin")
   }
 
   /**
@@ -985,7 +1024,9 @@ public open class EditorPlugin internal constructor() : Node() {
   }
 
   /**
-   * Returns the [godot.EditorInterface] singleton. It provides access to some parts of the editor GUI as well as various inner states and tools.
+   * Returns the [godot.EditorInterface] singleton instance.
+   *
+   * *Deprecated.* [godot.EditorInterface] is a global singleton and can be accessed directly by its name.
    */
   public fun getEditorInterface(): EditorInterface? {
     TransferContext.writeArguments()
@@ -1020,6 +1061,16 @@ public open class EditorPlugin internal constructor() : Node() {
   public fun removeDebuggerPlugin(script: EditorDebuggerPlugin): Unit {
     TransferContext.writeArguments(OBJECT to script)
     TransferContext.callMethod(rawPtr, MethodBindings.removeDebuggerPluginPtr, NIL)
+  }
+
+  /**
+   * Provide the version of the plugin declared in the `plugin.cfg` config file.
+   */
+  public fun getPluginVersion(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_GET_PLUGIN_VERSION,
+        STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public enum class CustomControlContainer(
@@ -1105,7 +1156,7 @@ public open class EditorPlugin internal constructor() : Node() {
      */
     DOCK_SLOT_LEFT_BR(3),
     /**
-     * Dock slot, right side, upper-left (empty in default layout).
+     * Dock slot, right side, upper-left (in default layout includes Inspector, Node, and History docks).
      */
     DOCK_SLOT_RIGHT_UL(4),
     /**
@@ -1113,7 +1164,7 @@ public open class EditorPlugin internal constructor() : Node() {
      */
     DOCK_SLOT_RIGHT_BL(5),
     /**
-     * Dock slot, right side, upper-right (in default layout includes Inspector, Node and History docks).
+     * Dock slot, right side, upper-right (empty in default layout).
      */
     DOCK_SLOT_RIGHT_UR(6),
     /**

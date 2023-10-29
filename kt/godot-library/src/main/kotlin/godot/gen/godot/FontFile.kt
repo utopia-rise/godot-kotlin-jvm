@@ -341,19 +341,6 @@ public open class FontFile : Font() {
       TransferContext.callMethod(rawPtr, MethodBindings.setOpentypeFeatureOverridesPtr, NIL)
     }
 
-  /**
-   * Array of fallback [godot.Font]s.
-   */
-  public var fallbacks: VariantArray<Font>
-    @JvmName("getFallbacks_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
-    get() = super.getFallbacks()
-    @JvmName("setFallbacks_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
-    set(`value`) {
-      super.setFallbacks(value)
-    }
-
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_FONTFILE, scriptIndex)
     return true
@@ -407,7 +394,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Returns list of the font sizes in the cache. Each size is `Vector2i` with font size and outline size.
+   * Returns list of the font sizes in the cache. Each size is [godot.Vector2i] with font size and outline size.
    */
   public fun getSizeCacheList(cacheIndex: Int): VariantArray<Vector2i> {
     TransferContext.writeArguments(LONG to cacheIndex.toLong())
@@ -484,6 +471,27 @@ public open class FontFile : Font() {
   }
 
   /**
+   * Sets the spacing for [spacing] (see [enum TextServer.SpacingType]) to [value] in pixels (not relative to the font size).
+   */
+  public fun setExtraSpacing(
+    cacheIndex: Int,
+    spacing: TextServer.SpacingType,
+    `value`: Long,
+  ): Unit {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to spacing.id, LONG to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_EXTRA_SPACING, NIL)
+  }
+
+  /**
+   * Returns spacing for [spacing] (see [enum TextServer.SpacingType]) in pixels (not relative to the font size).
+   */
+  public fun getExtraSpacing(cacheIndex: Int, spacing: TextServer.SpacingType): Long {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to spacing.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_EXTRA_SPACING, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  /**
    * Sets an active face index in the TrueType / OpenType collection.
    */
   public fun setFaceIndex(cacheIndex: Int, faceIndex: Long): Unit {
@@ -492,7 +500,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Recturns an active face index in the TrueType / OpenType collection.
+   * Returns an active face index in the TrueType / OpenType collection.
    */
   public fun getFaceIndex(cacheIndex: Int): Long {
     TransferContext.writeArguments(LONG to cacheIndex.toLong())

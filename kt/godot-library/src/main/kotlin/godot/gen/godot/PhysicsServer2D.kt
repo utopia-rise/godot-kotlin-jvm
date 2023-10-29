@@ -135,19 +135,19 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the shape data that defines the configuration of the shape. The [data] to be passed depends on the shape's type (see [shapeGetType]):
    *
-   * - [SHAPE_WORLD_BOUNDARY]: an array of length two containing a [godot.core.Vector2] `normal` direction and a `float` distance `d`,
+   * - [SHAPE_WORLD_BOUNDARY]: an array of length two containing a [godot.core.Vector2] `normal` direction and a [float] distance `d`,
    *
-   * - [SHAPE_SEPARATION_RAY]: a dictionary containing the key `length` with a `float` value and the key `slide_on_slope` with a `bool` value,
+   * - [SHAPE_SEPARATION_RAY]: a dictionary containing the key `length` with a [float] value and the key `slide_on_slope` with a [bool] value,
    *
    * - [SHAPE_SEGMENT]: a [godot.core.Rect2] `rect` containing the first point of the segment in `rect.position` and the second point of the segment in `rect.size`,
    *
-   * - [SHAPE_CIRCLE]: a `float` `radius`,
+   * - [SHAPE_CIRCLE]: a [float] `radius`,
    *
    * - [SHAPE_RECTANGLE]: a [godot.core.Vector2] `half_extents`,
    *
-   * - [SHAPE_CAPSULE]: an array of length two (or a [godot.core.Vector2]) containing a `float` `height` and a `float` `radius`,
+   * - [SHAPE_CAPSULE]: an array of length two (or a [godot.core.Vector2]) containing a [float] `height` and a [float] `radius`,
    *
-   * - [SHAPE_CONVEX_POLYGON]: either a [godot.PackedVector2Array] of points defining a convex polygon in counterclockwise order (the clockwise outward normal of each segment formed by consecutive points is calculated internally), or a [godot.PackedFloat32Array] of length divisible by four so that every 4-tuple of `float`s contains the coordinates of a point followed by the coordinates of the clockwise outward normal vector to the segment between the current point and the next point,
+   * - [SHAPE_CONVEX_POLYGON]: either a [godot.PackedVector2Array] of points defining a convex polygon in counterclockwise order (the clockwise outward normal of each segment formed by consecutive points is calculated internally), or a [godot.PackedFloat32Array] of length divisible by four so that every 4-tuple of [float]s contains the coordinates of a point followed by the coordinates of the clockwise outward normal vector to the segment between the current point and the next point,
    *
    * - [SHAPE_CONCAVE_POLYGON]: a [godot.PackedVector2Array] of length divisible by two (each pair of points forms one segment).
    *
@@ -252,7 +252,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the [RID] of the space assigned to the area. Returns `RID()` if no space is assigned.
+   * Returns the [RID] of the space assigned to the area. Returns an empty [RID] if no space is assigned.
    */
   public fun areaGetSpace(area: RID): RID {
     TransferContext.writeArguments(_RID to area)
@@ -531,7 +531,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the [RID] of the space assigned to the body. Returns `RID()` if no space is assigned.
+   * Returns the [RID] of the space assigned to the body. Returns an empty [RID] if no space is assigned.
    */
   public fun bodyGetSpace(body: RID): RID {
     TransferContext.writeArguments(_RID to body)
@@ -1126,7 +1126,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Makes the joint a pin joint. If [bodyB] is `RID()`, then [bodyA] is pinned to the point [anchor] (given in global coordinates); otherwise, [bodyA] is pinned to [bodyB] at the point [anchor] (given in global coordinates). To set the parameters which are specific to the pin joint, see [pinJointSetParam].
+   * Makes the joint a pin joint. If [bodyB] is an empty [RID], then [bodyA] is pinned to the point [anchor] (given in global coordinates); otherwise, [bodyA] is pinned to [bodyB] at the point [anchor] (given in global coordinates). To set the parameters which are specific to the pin joint, see [pinJointSetParam].
    */
   @JvmOverloads
   public fun jointMakePin(
@@ -1168,6 +1168,29 @@ public object PhysicsServer2D : Object() {
   ): Unit {
     TransferContext.writeArguments(_RID to joint, VECTOR2 to anchorA, VECTOR2 to anchorB, _RID to bodyA, _RID to bodyB)
     TransferContext.callMethod(rawPtr, MethodBindings.jointMakeDampedSpringPtr, NIL)
+  }
+
+  /**
+   * Sets a pin joint flag (see [enum PinJointFlag] constants).
+   */
+  public fun pinJointSetFlag(
+    joint: RID,
+    flag: PinJointFlag,
+    enabled: Boolean,
+  ): Unit {
+    TransferContext.writeArguments(_RID to joint, LONG to flag.id, BOOL to enabled)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_PIN_JOINT_SET_FLAG,
+        NIL)
+  }
+
+  /**
+   * Gets a pin joint flag (see [enum PinJointFlag] constants).
+   */
+  public fun pinJointGetFlag(joint: RID, flag: PinJointFlag): Boolean {
+    TransferContext.writeArguments(_RID to joint, LONG to flag.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_PIN_JOINT_GET_FLAG,
+        BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -1663,6 +1686,41 @@ public object PhysicsServer2D : Object() {
      * Constant to set/get a how much the bond of the pin joint can flex. The default value of this parameter is `0.0`.
      */
     PIN_JOINT_SOFTNESS(0),
+    /**
+     * The maximum rotation around the pin.
+     */
+    PIN_JOINT_LIMIT_UPPER(1),
+    /**
+     * The minimum rotation around the pin.
+     */
+    PIN_JOINT_LIMIT_LOWER(2),
+    /**
+     * Target speed for the motor. In radians per second.
+     */
+    PIN_JOINT_MOTOR_TARGET_VELOCITY(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
+  }
+
+  public enum class PinJointFlag(
+    id: Long,
+  ) {
+    /**
+     * If `true`, the pin has a maximum and a minimum rotation.
+     */
+    PIN_JOINT_FLAG_ANGULAR_LIMIT_ENABLED(0),
+    /**
+     * If `true`, a motor turns the pin.
+     */
+    PIN_JOINT_FLAG_MOTOR_ENABLED(1),
     ;
 
     public val id: Long

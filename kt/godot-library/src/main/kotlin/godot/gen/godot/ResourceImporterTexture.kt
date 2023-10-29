@@ -11,14 +11,20 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 
+/**
+ * Imports an image for use in 2D or 3D rendering.
+ *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/assets_pipeline/importing_images.html]($DOCS_URL/tutorials/assets_pipeline/importing_images.html)
+ *
+ * This importer imports [godot.CompressedTexture2D] resources. If you need to process the image in scripts in a more convenient way, use [godot.ResourceImporterImage] instead. See also [godot.ResourceImporterLayeredTexture].
+ */
 @GodotBaseType
-public open class MovieWriterMJPEG internal constructor() : MovieWriter() {
+public open class ResourceImporterTexture internal constructor() : ResourceImporter() {
   public override fun new(scriptIndex: Int): Boolean {
-    callConstructor(ENGINECLASS_MOVIEWRITERMJPEG, scriptIndex)
+    callConstructor(ENGINECLASS_RESOURCEIMPORTERTEXTURE, scriptIndex)
     return true
   }
 
   public companion object
-
-  internal object MethodBindings
 }

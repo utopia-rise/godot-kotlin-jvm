@@ -106,6 +106,11 @@ public open class EditorSceneFormatImporter internal constructor() : RefCounted(
      *
      */
     public final const val IMPORT_DISCARD_MESHES_AND_MATERIALS: Long = 32
+
+    /**
+     *
+     */
+    public final const val IMPORT_FORCE_DISABLE_MESH_COMPRESSION: Long = 64
   }
 
   internal object MethodBindings {

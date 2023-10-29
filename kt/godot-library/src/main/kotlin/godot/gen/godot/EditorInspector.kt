@@ -7,7 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
+import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
@@ -15,7 +15,6 @@ import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.Signal3
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -97,14 +96,20 @@ public open class EditorInspector internal constructor() : ScrollContainer() {
    */
   public fun getSelectedPath(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSelectedPathPtr, STRING)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINSPECTOR_GET_SELECTED_PATH,
+        STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public companion object
-
-  internal object MethodBindings {
-    public val getSelectedPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInspector", "get_selected_path")
+  /**
+   * Returns the object currently selected in this inspector.
+   */
+  public fun getEditedObject(): Object? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINSPECTOR_GET_EDITED_OBJECT,
+        OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Object?)
   }
+
+  public companion object
 }

@@ -80,6 +80,20 @@ public open class GLTFPhysicsBody : Resource() {
     }
 
   @CoreTypeLocalCopy
+  public var centerOfMass: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSBODY_GET_CENTER_OF_MASS, VECTOR3)
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSBODY_SET_CENTER_OF_MASS, NIL)
+    }
+
+  @CoreTypeLocalCopy
   public var inertiaTensor: Basis
     get() {
       TransferContext.writeArguments()
@@ -137,6 +151,28 @@ public open class GLTFPhysicsBody : Resource() {
   public open fun angularVelocityMutate(block: Vector3.() -> Unit): Vector3 = angularVelocity.apply{
       block(this)
       angularVelocity = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = gltfphysicsbody.centerOfMass
+   * //Your changes
+   * gltfphysicsbody.centerOfMass = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun centerOfMassMutate(block: Vector3.() -> Unit): Vector3 = centerOfMass.apply{
+      block(this)
+      centerOfMass = this
   }
 
 

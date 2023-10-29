@@ -104,7 +104,7 @@ public open class NavigationObstacle2D : Node2D() {
     }
 
   /**
-   * A bitfield determining the avoidance layers for this obstacle. Agent's with a matching bit on the their avoidance mask will avoid this obstacle.
+   * A bitfield determining the avoidance layers for this obstacle. Agents with a matching bit on the their avoidance mask will avoid this obstacle.
    */
   public var avoidanceLayers: Long
     get() {

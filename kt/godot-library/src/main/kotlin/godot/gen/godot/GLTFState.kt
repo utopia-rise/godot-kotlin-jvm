@@ -69,6 +69,17 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMinorVersionPtr, NIL)
     }
 
+  public var copyright: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_COPYRIGHT, STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_COPYRIGHT, NIL)
+    }
+
   public var glbData: PackedByteArray
     get() {
       TransferContext.writeArguments()
@@ -177,6 +188,17 @@ public open class GLTFState : Resource() {
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setBasePathPtr, NIL)
+    }
+
+  public var filename: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_FILENAME, STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_FILENAME, NIL)
     }
 
   public var rootNodes: PackedInt32Array

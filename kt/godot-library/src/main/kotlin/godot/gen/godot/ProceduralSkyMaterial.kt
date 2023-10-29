@@ -26,13 +26,13 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A [godot.Material] used with [godot.Sky] to generate a background based on user input parameters.
+ * A material that defines a simple sky for a [godot.Sky] resource.
  *
- * ProceduralSkyMaterial provides a way to create an effective background quickly by defining procedural parameters for the sun, the sky and the ground. The sky and ground are very similar, they are defined by a color at the horizon, another color, and finally an easing curve to interpolate between these two colors. Similarly, the sun is described by a position in the sky, a color, and an easing curve. However, the sun also defines a minimum and maximum angle, these two values define at what distance the easing curve begins and ends from the sun, and thus end up defining the size of the sun in the sky.
+ * [godot.ProceduralSkyMaterial] provides a way to create an effective background quickly by defining procedural parameters for the sun, the sky and the ground. The sky and ground are defined by a main color, a color at the horizon, and an easing curve to interpolate between them. Suns are described by a position in the sky, a color, and a max angle from the sun at which the easing curve ends. The max angle therefore defines the size of the sun in the sky.
  *
- * The [godot.ProceduralSkyMaterial] uses a lightweight shader to draw the sky and is thus suited for real time updates. When you do not need a quick sky that is not realistic, this is a good option. If you need a more realistic option, try using [godot.PhysicalSkyMaterial] instead.
+ * [godot.ProceduralSkyMaterial] supports up to 4 suns, using the color, and energy, direction, and angular distance of the first four [godot.DirectionalLight3D] nodes in the scene. This means that the suns are defined individually by the properties of their corresponding [godot.DirectionalLight3D]s and globally by [sunAngleMax] and [sunCurve].
  *
- * The [godot.ProceduralSkyMaterial] supports up to 4 suns. Each sun takes its color, energy, and direction from the corresponding [godot.DirectionalLight3D] in the scene.
+ * [godot.ProceduralSkyMaterial] uses a lightweight shader to draw the sky and is therefore suited for real time updates. This makes it a great option for a sky that is simple and computationally cheap, but unrealistic. If you need a more realistic procedural option, use [godot.PhysicalSkyMaterial].
  */
 @GodotBaseType
 public open class ProceduralSkyMaterial : Material() {

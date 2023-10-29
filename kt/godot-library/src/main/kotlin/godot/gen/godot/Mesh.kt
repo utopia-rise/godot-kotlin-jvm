@@ -209,7 +209,7 @@ public open class Mesh : Resource() {
   }
 
   /**
-   * Returns the number of surfaces that the [godot.Mesh] holds.
+   * Returns the number of surfaces that the [godot.Mesh] holds. This is equivalent to [godot.MeshInstance3D.getSurfaceOverrideMaterialCount].
    */
   public fun getSurfaceCount(): Int {
     TransferContext.writeArguments()
@@ -218,7 +218,7 @@ public open class Mesh : Resource() {
   }
 
   /**
-   * Returns the arrays for the vertices, normals, uvs, etc. that make up the requested surface (see [godot.ArrayMesh.addSurfaceFromArrays]).
+   * Returns the arrays for the vertices, normals, UVs, etc. that make up the requested surface (see [godot.ArrayMesh.addSurfaceFromArrays]).
    */
   public fun surfaceGetArrays(surfIdx: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
@@ -237,6 +237,8 @@ public open class Mesh : Resource() {
 
   /**
    * Sets a [godot.Material] for a given surface. Surface will be rendered using this material.
+   *
+   * **Note:** This assigns the material within the [godot.Mesh] resource, not the [godot.Material] associated to the [godot.MeshInstance3D]'s Surface Material Override properties. To set the [godot.Material] associated to the [godot.MeshInstance3D]'s Surface Material Override properties, use [godot.MeshInstance3D.setSurfaceOverrideMaterial] instead.
    */
   public fun surfaceSetMaterial(surfIdx: Int, material: Material): Unit {
     TransferContext.writeArguments(LONG to surfIdx.toLong(), OBJECT to material)
@@ -245,6 +247,8 @@ public open class Mesh : Resource() {
 
   /**
    * Returns a [godot.Material] in a given surface. Surface is rendered using this material.
+   *
+   * **Note:** This returns the material within the [godot.Mesh] resource, not the [godot.Material] associated to the [godot.MeshInstance3D]'s Surface Material Override properties. To get the [godot.Material] associated to the [godot.MeshInstance3D]'s Surface Material Override properties, use [godot.MeshInstance3D.getSurfaceOverrideMaterial] instead.
    */
   public fun surfaceGetMaterial(surfIdx: Int): Material? {
     TransferContext.writeArguments(LONG to surfIdx.toLong())

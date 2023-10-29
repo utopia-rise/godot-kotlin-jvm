@@ -34,6 +34,9 @@ import kotlin.Unit
 /**
  * A script that is executed when exporting the project.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/platform/android/android_plugin.html]($DOCS_URL/tutorials/platform/android/android_plugin.html)
+ *
  * [godot.EditorExportPlugin]s are automatically invoked whenever the user exports the project. Their most common use is to determine what files are being included in the exported project. For each plugin, [_exportBegin] is called at the beginning of the export process and then [_exportFile] is called for each exported file.
  *
  * To use [godot.EditorExportPlugin], register it using the [godot.EditorPlugin.addExportPlugin] method first.
@@ -157,6 +160,15 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   }
 
   /**
+   * Check the requirements for the given [option] and return a non-empty warning string if they are not met.
+   *
+   * **Note:** Use [getOption] to check the value of the export options.
+   */
+  public open fun _getExportOptionWarning(platform: EditorExportPlatform, option: String): String {
+    throw NotImplementedError("_get_export_option_warning is not implemented for EditorExportPlugin")
+  }
+
+  /**
    * Return a [godot.PackedStringArray] of additional features this preset, for the given [platform], should have.
    */
   public open fun _getExportFeatures(platform: EditorExportPlatform, debug: Boolean):
@@ -171,6 +183,81 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    */
   public open fun _getName(): String {
     throw NotImplementedError("_get_name is not implemented for EditorExportPlugin")
+  }
+
+  /**
+   * Return `true` if the plugin supports the given [platform].
+   */
+  public open fun _supportsPlatform(platform: EditorExportPlatform): Boolean {
+    throw NotImplementedError("_supports_platform is not implemented for EditorExportPlugin")
+  }
+
+  /**
+   * Virtual method to be overridden by the user. This is called to retrieve the set of Android dependencies provided by this plugin. Each returned Android dependency should have the format of an Android remote binary dependency: `org.godot.example:my-plugin:0.0.0`
+   *
+   * For more information see [godot.Android documentation on dependencies](https://developer.android.com/build/dependencies?agpversion=4.1#dependency-types).
+   *
+   * **Note:** Only supported on Android and requires [godot.EditorExportPlatformAndroid.gradleBuild/useGradleBuild] to be enabled.
+   */
+  public open fun _getAndroidDependencies(platform: EditorExportPlatform, debug: Boolean):
+      PackedStringArray {
+    throw NotImplementedError("_get_android_dependencies is not implemented for EditorExportPlugin")
+  }
+
+  /**
+   * Virtual method to be overridden by the user. This is called to retrieve the URLs of Maven repositories for the set of Android dependencies provided by this plugin.
+   *
+   * For more information see [godot.Gradle documentation on dependency management](https://docs.gradle.org/current/userguide/dependency_management.html#sec:maven_repo).
+   *
+   * **Note:** Google's Maven repo and the Maven Central repo are already included by default.
+   *
+   * **Note:** Only supported on Android and requires [godot.EditorExportPlatformAndroid.gradleBuild/useGradleBuild] to be enabled.
+   */
+  public open fun _getAndroidDependenciesMavenRepos(platform: EditorExportPlatform, debug: Boolean):
+      PackedStringArray {
+    throw NotImplementedError("_get_android_dependencies_maven_repos is not implemented for EditorExportPlugin")
+  }
+
+  /**
+   * Virtual method to be overridden by the user. This is called to retrieve the local paths of the Android libraries archive (AAR) files provided by this plugin.
+   *
+   * **Note:** Relative paths **must** be relative to Godot's `res://addons/` directory. For example, an AAR file located under `res://addons/hello_world_plugin/HelloWorld.release.aar` can be returned as an absolute path using `res://addons/hello_world_plugin/HelloWorld.release.aar` or a relative path using `hello_world_plugin/HelloWorld.release.aar`.
+   *
+   * **Note:** Only supported on Android and requires [godot.EditorExportPlatformAndroid.gradleBuild/useGradleBuild] to be enabled.
+   */
+  public open fun _getAndroidLibraries(platform: EditorExportPlatform, debug: Boolean):
+      PackedStringArray {
+    throw NotImplementedError("_get_android_libraries is not implemented for EditorExportPlugin")
+  }
+
+  /**
+   * Virtual method to be overridden by the user. This is used at export time to update the contents of the `activity` element in the generated Android manifest.
+   *
+   * **Note:** Only supported on Android and requires [godot.EditorExportPlatformAndroid.gradleBuild/useGradleBuild] to be enabled.
+   */
+  public open fun _getAndroidManifestActivityElementContents(platform: EditorExportPlatform,
+      debug: Boolean): String {
+    throw NotImplementedError("_get_android_manifest_activity_element_contents is not implemented for EditorExportPlugin")
+  }
+
+  /**
+   * Virtual method to be overridden by the user. This is used at export time to update the contents of the `application` element in the generated Android manifest.
+   *
+   * **Note:** Only supported on Android and requires [godot.EditorExportPlatformAndroid.gradleBuild/useGradleBuild] to be enabled.
+   */
+  public open fun _getAndroidManifestApplicationElementContents(platform: EditorExportPlatform,
+      debug: Boolean): String {
+    throw NotImplementedError("_get_android_manifest_application_element_contents is not implemented for EditorExportPlugin")
+  }
+
+  /**
+   * Virtual method to be overridden by the user. This is used at export time to update the contents of the `manifest` element in the generated Android manifest.
+   *
+   * **Note:** Only supported on Android and requires [godot.EditorExportPlatformAndroid.gradleBuild/useGradleBuild] to be enabled.
+   */
+  public open fun _getAndroidManifestElementContents(platform: EditorExportPlatform,
+      debug: Boolean): String {
+    throw NotImplementedError("_get_android_manifest_element_contents is not implemented for EditorExportPlugin")
   }
 
   /**
@@ -222,9 +309,9 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
   /**
    * Adds a dynamic library (*.dylib, *.framework) to Linking Phase in iOS's Xcode project and embeds it into resulting binary.
    *
-   * **Note:** For static libraries (*.a) works in same way as `add_ios_framework`.
+   * **Note:** For static libraries (*.a) works in same way as [addIosFramework].
    *
-   * This method should not be used for System libraries as they are already present on the device.
+   * **Note:** This method should not be used for System libraries as they are already present on the device.
    */
   public fun addIosEmbeddedFramework(path: String): Unit {
     TransferContext.writeArguments(STRING to path)

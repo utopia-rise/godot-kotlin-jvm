@@ -11,10 +11,15 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 
+/**
+ * A visual shader node that unpacks the screen normal texture in World Space.
+ *
+ * The ScreenNormalWorldSpace node allows to create outline effects.
+ */
 @GodotBaseType
-public open class GLTFDocumentExtensionPhysics internal constructor() : GLTFDocumentExtension() {
+public open class VisualShaderNodeScreenNormalWorldSpace : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Boolean {
-    callConstructor(ENGINECLASS_GLTFDOCUMENTEXTENSIONPHYSICS, scriptIndex)
+    callConstructor(ENGINECLASS_VISUALSHADERNODESCREENNORMALWORLDSPACE, scriptIndex)
     return true
   }
 

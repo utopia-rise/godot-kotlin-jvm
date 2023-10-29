@@ -10,7 +10,6 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -25,7 +24,6 @@ import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal4
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -108,12 +106,81 @@ public open class RigidBody2D : PhysicsBody2D() {
   public var mass: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMassPtr, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_MASS, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMassPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_MASS, NIL)
+    }
+
+  /**
+   * The physics material override for the body.
+   *
+   * If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.
+   */
+  public var physicsMaterialOverride: PhysicsMaterial?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_PHYSICS_MATERIAL_OVERRIDE, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_PHYSICS_MATERIAL_OVERRIDE, NIL)
+    }
+
+  /**
+   * Multiplies the gravity applied to the body. The body's gravity is calculated from the **Default Gravity** value in **Project > Project Settings > Physics > 2d** and/or any additional gravity vector applied by [godot.Area2D]s.
+   */
+  public var gravityScale: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_GRAVITY_SCALE,
+          DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_GRAVITY_SCALE,
+          NIL)
+    }
+
+  /**
+   * Defines the way the body's center of mass is set. See [enum CenterOfMassMode] for possible values.
+   */
+  public var centerOfMassMode: CenterOfMassMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_CENTER_OF_MASS_MODE, LONG)
+      return RigidBody2D.CenterOfMassMode.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_CENTER_OF_MASS_MODE, NIL)
+    }
+
+  /**
+   * The body's custom center of mass, relative to the body's origin position, when [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of the body, where applied forces only cause linear acceleration. Applying forces outside of the center of mass causes angular acceleration.
+   *
+   * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of mass is automatically computed.
+   */
+  @CoreTypeLocalCopy
+  public var centerOfMass: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_CENTER_OF_MASS,
+          VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_CENTER_OF_MASS,
+          NIL)
     }
 
   /**
@@ -168,136 +235,12 @@ public open class RigidBody2D : PhysicsBody2D() {
   public var inertia: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInertiaPtr, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_INERTIA, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setInertiaPtr, NIL)
-    }
-
-  /**
-   * Defines the way the body's center of mass is set. See [enum CenterOfMassMode] for possible values.
-   */
-  public var centerOfMassMode: CenterOfMassMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCenterOfMassModePtr, LONG)
-      return RigidBody2D.CenterOfMassMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCenterOfMassModePtr, NIL)
-    }
-
-  /**
-   * The body's custom center of mass, relative to the body's origin position, when [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of the body, where applied forces only cause linear acceleration. Applying forces outside of the center of mass causes angular acceleration.
-   *
-   * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of mass is automatically computed.
-   */
-  @CoreTypeLocalCopy
-  public var centerOfMass: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCenterOfMassPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCenterOfMassPtr, NIL)
-    }
-
-  /**
-   * The physics material override for the body.
-   *
-   * If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.
-   */
-  public var physicsMaterialOverride: PhysicsMaterial?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsMaterialOverridePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsMaterialOverridePtr, NIL)
-    }
-
-  /**
-   * Multiplies the gravity applied to the body. The body's gravity is calculated from the **Default Gravity** value in **Project > Project Settings > Physics > 2d** and/or any additional gravity vector applied by [godot.Area2D]s.
-   */
-  public var gravityScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGravityScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setGravityScalePtr, NIL)
-    }
-
-  /**
-   * If `true`, internal force integration is disabled for this body. Aside from collision response, the body will only move as determined by the [_integrateForces] function.
-   */
-  public var customIntegrator: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingCustomIntegratorPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseCustomIntegratorPtr, NIL)
-    }
-
-  /**
-   * Continuous collision detection mode.
-   *
-   * Continuous collision detection tries to predict where a moving body will collide instead of moving it and correcting its movement after collision. Continuous collision detection is slower, but more precise and misses fewer collisions with small, fast-moving objects. Raycasting and shapecasting methods are available. See [enum CCDMode] for details.
-   */
-  public var continuousCd: CCDMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getContinuousCollisionDetectionModePtr,
-          LONG)
-      return RigidBody2D.CCDMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setContinuousCollisionDetectionModePtr, NIL)
-    }
-
-  /**
-   * The maximum number of contacts that will be recorded. Requires a value greater than 0 and [contactMonitor] to be set to `true` to start to register contacts. Use [getContactCount] to retrieve the count or [getCollidingBodies] to retrieve bodies that have been collided with.
-   *
-   * **Note:** The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end), and collisions between parallel faces will result in four contacts (one at each corner).
-   */
-  public var maxContactsReported: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxContactsReportedPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxContactsReportedPtr, NIL)
-    }
-
-  /**
-   * If `true`, the RigidBody2D will emit signals when it collides with another body.
-   *
-   * **Note:** By default the maximum contacts reported is set to 0, meaning nothing will be recorded, see [maxContactsReported].
-   */
-  public var contactMonitor: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isContactMonitorEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setContactMonitorPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_INERTIA, NIL)
     }
 
   /**
@@ -306,12 +249,12 @@ public open class RigidBody2D : PhysicsBody2D() {
   public var sleeping: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isSleepingPtr, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_IS_SLEEPING, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSleepingPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_SLEEPING, NIL)
     }
 
   /**
@@ -320,12 +263,13 @@ public open class RigidBody2D : PhysicsBody2D() {
   public var canSleep: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAbleToSleepPtr, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_IS_ABLE_TO_SLEEP,
+          BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCanSleepPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_CAN_SLEEP, NIL)
     }
 
   /**
@@ -334,12 +278,14 @@ public open class RigidBody2D : PhysicsBody2D() {
   public var lockRotation: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isLockRotationEnabledPtr, BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_IS_LOCK_ROTATION_ENABLED, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLockRotationEnabledPtr, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_LOCK_ROTATION_ENABLED, NIL)
     }
 
   /**
@@ -352,12 +298,14 @@ public open class RigidBody2D : PhysicsBody2D() {
   public var freeze: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isFreezeEnabledPtr, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_IS_FREEZE_ENABLED,
+          BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFreezeEnabledPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_FREEZE_ENABLED,
+          NIL)
     }
 
   /**
@@ -368,12 +316,82 @@ public open class RigidBody2D : PhysicsBody2D() {
   public var freezeMode: FreezeMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFreezeModePtr, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_FREEZE_MODE, LONG)
       return RigidBody2D.FreezeMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFreezeModePtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_FREEZE_MODE, NIL)
+    }
+
+  /**
+   * If `true`, internal force integration is disabled for this body. Aside from collision response, the body will only move as determined by the [_integrateForces] function.
+   */
+  public var customIntegrator: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_IS_USING_CUSTOM_INTEGRATOR, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_USE_CUSTOM_INTEGRATOR, NIL)
+    }
+
+  /**
+   * Continuous collision detection mode.
+   *
+   * Continuous collision detection tries to predict where a moving body will collide instead of moving it and correcting its movement after collision. Continuous collision detection is slower, but more precise and misses fewer collisions with small, fast-moving objects. Raycasting and shapecasting methods are available. See [enum CCDMode] for details.
+   */
+  public var continuousCd: CCDMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_CONTINUOUS_COLLISION_DETECTION_MODE, LONG)
+      return RigidBody2D.CCDMode.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_CONTINUOUS_COLLISION_DETECTION_MODE, NIL)
+    }
+
+  /**
+   * The maximum number of contacts that will be recorded. Requires a value greater than 0 and [contactMonitor] to be set to `true` to start to register contacts. Use [getContactCount] to retrieve the count or [getCollidingBodies] to retrieve bodies that have been collided with.
+   *
+   * **Note:** The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end), and collisions between parallel faces will result in four contacts (one at each corner).
+   */
+  public var maxContactsReported: Int
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_MAX_CONTACTS_REPORTED, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_MAX_CONTACTS_REPORTED, NIL)
+    }
+
+  /**
+   * If `true`, the RigidBody2D will emit signals when it collides with another body.
+   *
+   * **Note:** By default the maximum contacts reported is set to 0, meaning nothing will be recorded, see [maxContactsReported].
+   */
+  public var contactMonitor: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_IS_CONTACT_MONITOR_ENABLED, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_CONTACT_MONITOR,
+          NIL)
     }
 
   /**
@@ -383,12 +401,14 @@ public open class RigidBody2D : PhysicsBody2D() {
   public var linearVelocity: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_LINEAR_VELOCITY,
+          VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLinearVelocityPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_LINEAR_VELOCITY,
+          NIL)
     }
 
   /**
@@ -397,12 +417,14 @@ public open class RigidBody2D : PhysicsBody2D() {
   public var linearDampMode: DampMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampModePtr, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_LINEAR_DAMP_MODE,
+          LONG)
       return RigidBody2D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampModePtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_LINEAR_DAMP_MODE,
+          NIL)
     }
 
   /**
@@ -413,12 +435,13 @@ public open class RigidBody2D : PhysicsBody2D() {
   public var linearDamp: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampPtr, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_LINEAR_DAMP,
+          DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_LINEAR_DAMP, NIL)
     }
 
   /**
@@ -427,12 +450,14 @@ public open class RigidBody2D : PhysicsBody2D() {
   public var angularVelocity: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_ANGULAR_VELOCITY,
+          DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAngularVelocityPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_ANGULAR_VELOCITY,
+          NIL)
     }
 
   /**
@@ -441,12 +466,14 @@ public open class RigidBody2D : PhysicsBody2D() {
   public var angularDampMode: DampMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampModePtr, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_ANGULAR_DAMP_MODE,
+          LONG)
       return RigidBody2D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampModePtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_ANGULAR_DAMP_MODE,
+          NIL)
     }
 
   /**
@@ -457,12 +484,13 @@ public open class RigidBody2D : PhysicsBody2D() {
   public var angularDamp: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampPtr, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_ANGULAR_DAMP,
+          DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampPtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_ANGULAR_DAMP, NIL)
     }
 
   /**
@@ -474,12 +502,14 @@ public open class RigidBody2D : PhysicsBody2D() {
   public var constantForce: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getConstantForcePtr, VECTOR2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_CONSTANT_FORCE,
+          VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setConstantForcePtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_CONSTANT_FORCE,
+          NIL)
     }
 
   /**
@@ -490,12 +520,14 @@ public open class RigidBody2D : PhysicsBody2D() {
   public var constantTorque: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getConstantTorquePtr, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_CONSTANT_TORQUE,
+          DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setConstantTorquePtr, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_CONSTANT_TORQUE,
+          NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -592,7 +624,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    */
   public fun getContactCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getContactCountPtr, LONG)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_CONTACT_COUNT, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -601,7 +633,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    */
   public fun setAxisVelocity(axisVelocity: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to axisVelocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAxisVelocityPtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_AXIS_VELOCITY, NIL)
   }
 
   /**
@@ -614,7 +646,8 @@ public open class RigidBody2D : PhysicsBody2D() {
   @JvmOverloads
   public fun applyCentralImpulse(impulse: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to impulse)
-    TransferContext.callMethod(rawPtr, MethodBindings.applyCentralImpulsePtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_APPLY_CENTRAL_IMPULSE,
+        NIL)
   }
 
   /**
@@ -627,7 +660,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   @JvmOverloads
   public fun applyImpulse(impulse: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to impulse, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.applyImpulsePtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_APPLY_IMPULSE, NIL)
   }
 
   /**
@@ -639,7 +672,8 @@ public open class RigidBody2D : PhysicsBody2D() {
    */
   public fun applyTorqueImpulse(torque: Float): Unit {
     TransferContext.writeArguments(DOUBLE to torque.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.applyTorqueImpulsePtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_APPLY_TORQUE_IMPULSE,
+        NIL)
   }
 
   /**
@@ -649,7 +683,8 @@ public open class RigidBody2D : PhysicsBody2D() {
    */
   public fun applyCentralForce(force: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to force)
-    TransferContext.callMethod(rawPtr, MethodBindings.applyCentralForcePtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_APPLY_CENTRAL_FORCE,
+        NIL)
   }
 
   /**
@@ -660,7 +695,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   @JvmOverloads
   public fun applyForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.applyForcePtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_APPLY_FORCE, NIL)
   }
 
   /**
@@ -670,7 +705,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    */
   public fun applyTorque(torque: Float): Unit {
     TransferContext.writeArguments(DOUBLE to torque.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.applyTorquePtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_APPLY_TORQUE, NIL)
   }
 
   /**
@@ -680,7 +715,8 @@ public open class RigidBody2D : PhysicsBody2D() {
    */
   public fun addConstantCentralForce(force: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to force)
-    TransferContext.callMethod(rawPtr, MethodBindings.addConstantCentralForcePtr, NIL)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_ADD_CONSTANT_CENTRAL_FORCE, NIL)
   }
 
   /**
@@ -691,7 +727,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   @JvmOverloads
   public fun addConstantForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.addConstantForcePtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_ADD_CONSTANT_FORCE, NIL)
   }
 
   /**
@@ -699,7 +735,8 @@ public open class RigidBody2D : PhysicsBody2D() {
    */
   public fun addConstantTorque(torque: Float): Unit {
     TransferContext.writeArguments(DOUBLE to torque.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.addConstantTorquePtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_ADD_CONSTANT_TORQUE,
+        NIL)
   }
 
   /**
@@ -709,7 +746,8 @@ public open class RigidBody2D : PhysicsBody2D() {
    */
   public fun getCollidingBodies(): VariantArray<Node2D> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollidingBodiesPtr, ARRAY)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_GET_COLLIDING_BODIES,
+        ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node2D>)
   }
 
@@ -810,175 +848,4 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public companion object
-
-  internal object MethodBindings {
-    public val _integrateForcesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "_integrate_forces")
-
-    public val setMassPtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody2D", "set_mass")
-
-    public val getMassPtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody2D", "get_mass")
-
-    public val getInertiaPtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody2D", "get_inertia")
-
-    public val setInertiaPtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody2D", "set_inertia")
-
-    public val setCenterOfMassModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_center_of_mass_mode")
-
-    public val getCenterOfMassModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_center_of_mass_mode")
-
-    public val setCenterOfMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_center_of_mass")
-
-    public val getCenterOfMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_center_of_mass")
-
-    public val setPhysicsMaterialOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_physics_material_override")
-
-    public val getPhysicsMaterialOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_physics_material_override")
-
-    public val setGravityScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_gravity_scale")
-
-    public val getGravityScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_gravity_scale")
-
-    public val setLinearDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_linear_damp_mode")
-
-    public val getLinearDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_linear_damp_mode")
-
-    public val setAngularDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_angular_damp_mode")
-
-    public val getAngularDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_angular_damp_mode")
-
-    public val setLinearDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_linear_damp")
-
-    public val getLinearDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_linear_damp")
-
-    public val setAngularDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_angular_damp")
-
-    public val getAngularDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_angular_damp")
-
-    public val setLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_linear_velocity")
-
-    public val getLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_linear_velocity")
-
-    public val setAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_angular_velocity")
-
-    public val getAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_angular_velocity")
-
-    public val setMaxContactsReportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_max_contacts_reported")
-
-    public val getMaxContactsReportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_max_contacts_reported")
-
-    public val getContactCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_contact_count")
-
-    public val setUseCustomIntegratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_use_custom_integrator")
-
-    public val isUsingCustomIntegratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "is_using_custom_integrator")
-
-    public val setContactMonitorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_contact_monitor")
-
-    public val isContactMonitorEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "is_contact_monitor_enabled")
-
-    public val setContinuousCollisionDetectionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_continuous_collision_detection_mode")
-
-    public val getContinuousCollisionDetectionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_continuous_collision_detection_mode")
-
-    public val setAxisVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_axis_velocity")
-
-    public val applyCentralImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "apply_central_impulse")
-
-    public val applyImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "apply_impulse")
-
-    public val applyTorqueImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "apply_torque_impulse")
-
-    public val applyCentralForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "apply_central_force")
-
-    public val applyForcePtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody2D", "apply_force")
-
-    public val applyTorquePtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody2D", "apply_torque")
-
-    public val addConstantCentralForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "add_constant_central_force")
-
-    public val addConstantForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "add_constant_force")
-
-    public val addConstantTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "add_constant_torque")
-
-    public val setConstantForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_constant_force")
-
-    public val getConstantForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_constant_force")
-
-    public val setConstantTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_constant_torque")
-
-    public val getConstantTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_constant_torque")
-
-    public val setSleepingPtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody2D", "set_sleeping")
-
-    public val isSleepingPtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody2D", "is_sleeping")
-
-    public val setCanSleepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_can_sleep")
-
-    public val isAbleToSleepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "is_able_to_sleep")
-
-    public val setLockRotationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_lock_rotation_enabled")
-
-    public val isLockRotationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "is_lock_rotation_enabled")
-
-    public val setFreezeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_freeze_enabled")
-
-    public val isFreezeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "is_freeze_enabled")
-
-    public val setFreezeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_freeze_mode")
-
-    public val getFreezeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_freeze_mode")
-
-    public val getCollidingBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_colliding_bodies")
-  }
 }

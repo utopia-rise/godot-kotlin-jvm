@@ -24,6 +24,9 @@ import kotlin.jvm.JvmOverloads
 /**
  * A cryptographic key (RSA).
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/networking/ssl_certificates.html]($DOCS_URL/tutorials/networking/ssl_certificates.html)
+ *
  * The CryptoKey class represents a cryptographic key. Keys can be loaded and saved like any other [godot.Resource].
  *
  * They can be used to generate a self-signed [godot.X509Certificate] via [godot.Crypto.generateSelfSignedCertificate] and as private key in [godot.StreamPeerTLS.acceptStream] along with the appropriate certificate.

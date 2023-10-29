@@ -24,12 +24,12 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Base class for nodes in a visual shader graph.
+ * Base class for [godot.VisualShader] nodes. Not related to scene nodes.
  *
  * Tutorials:
  * [$DOCS_URL/tutorials/shaders/visual_shaders.html]($DOCS_URL/tutorials/shaders/visual_shaders.html)
  *
- * Visual shader graphs consist of various nodes. Each node in the graph is a separate object and they are represented as a rectangular boxes with title and a set of properties. Each node has also connection ports that allow to connect it to another nodes and control the flow of the shader.
+ * Visual shader graphs consist of various nodes. Each node in the graph is a separate object and they are represented as a rectangular boxes with title and a set of properties. Each node also has connection ports that allow to connect it to another nodes and control the flow of the shader.
  */
 @GodotBaseType
 public open class VisualShaderNode internal constructor() : Resource() {
@@ -61,6 +61,16 @@ public open class VisualShaderNode internal constructor() : Resource() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADERNODE, scriptIndex)
     return true
+  }
+
+  /**
+   * Returns the input port which should be connected by default when this node is created as a result of dragging a connection from an existing node to the empty space on the graph.
+   */
+  public fun getDefaultInputPort(type: PortType): Int {
+    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_GET_DEFAULT_INPUT_PORT, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -105,35 +115,35 @@ public open class VisualShaderNode internal constructor() : Resource() {
     id: Long,
   ) {
     /**
-     * Floating-point scalar. Translated to `float` type in shader code.
+     * Floating-point scalar. Translated to [code skip-lint]float` type in shader code.
      */
     PORT_TYPE_SCALAR(0),
     /**
-     * Integer scalar. Translated to `int` type in shader code.
+     * Integer scalar. Translated to [code skip-lint]int` type in shader code.
      */
     PORT_TYPE_SCALAR_INT(1),
     /**
-     * Unsigned integer scalar. Translated to `uint` type in shader code.
+     * Unsigned integer scalar. Translated to [code skip-lint]uint` type in shader code.
      */
     PORT_TYPE_SCALAR_UINT(2),
     /**
-     * 2D vector of floating-point values. Translated to `vec2` type in shader code.
+     * 2D vector of floating-point values. Translated to [code skip-lint]vec2` type in shader code.
      */
     PORT_TYPE_VECTOR_2D(3),
     /**
-     * 3D vector of floating-point values. Translated to `vec3` type in shader code.
+     * 3D vector of floating-point values. Translated to [code skip-lint]vec3` type in shader code.
      */
     PORT_TYPE_VECTOR_3D(4),
     /**
-     * 4D vector of floating-point values. Translated to `vec4` type in shader code.
+     * 4D vector of floating-point values. Translated to [code skip-lint]vec4` type in shader code.
      */
     PORT_TYPE_VECTOR_4D(5),
     /**
-     * Boolean type. Translated to `bool` type in shader code.
+     * Boolean type. Translated to [code skip-lint]bool` type in shader code.
      */
     PORT_TYPE_BOOLEAN(6),
     /**
-     * Transform type. Translated to `mat4` type in shader code.
+     * Transform type. Translated to [code skip-lint]mat4` type in shader code.
      */
     PORT_TYPE_TRANSFORM(7),
     /**

@@ -12,10 +12,9 @@ import kotlin.Int
 import kotlin.Suppress
 
 @GodotBaseType
-public open class GLTFDocumentExtensionTextureWebP internal constructor() : GLTFDocumentExtension()
-    {
+public open class ResourceImporterMP3 : ResourceImporter() {
   public override fun new(scriptIndex: Int): Boolean {
-    callConstructor(ENGINECLASS_GLTFDOCUMENTEXTENSIONTEXTUREWEBP, scriptIndex)
+    callConstructor(ENGINECLASS_RESOURCEIMPORTERMP3, scriptIndex)
     return true
   }
 

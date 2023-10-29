@@ -38,6 +38,9 @@ import kotlin.Unit
 /**
  * A node for displaying plain text in 3D space.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/3d/3d_text.html]($DOCS_URL/tutorials/3d/3d_text.html)
+ *
  * A node for displaying plain text in 3D space. By adjusting various properties of this node, you can configure things such as the text's appearance and whether it always faces the camera.
  */
 @GodotBaseType

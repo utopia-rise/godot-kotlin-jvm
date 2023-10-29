@@ -36,6 +36,9 @@ import kotlin.Unit
 /**
  * Generate an [godot.PrimitiveMesh] from the text.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/3d/3d_text.html]($DOCS_URL/tutorials/3d/3d_text.html)
+ *
  * Generate an [godot.PrimitiveMesh] from the text.
  *
  * TextMesh can be generated only when using dynamic fonts with vector glyph contours. Bitmap fonts (including bitmap data in the TrueType/OpenType containers, like color emoji fonts) are not supported.

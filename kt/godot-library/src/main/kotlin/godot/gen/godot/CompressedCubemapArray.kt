@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Array of 6-sided textures typically used in 3D rendering, optionally compressed.
+ * An optionally compressed [godot.CubemapArray].
  *
  * A cubemap array that is loaded from a `.ccubearray` file. This file format is internal to Godot; it is created by importing other image formats with the import system. [godot.CompressedCubemapArray] can use one of 4 compresson methods:
  *

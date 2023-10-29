@@ -146,7 +146,7 @@ public open class EditorDebuggerPlugin internal constructor() : RefCounted() {
   /**
    * Returns an array of [godot.EditorDebuggerSession] currently available to this debugger plugin.
    *
-   * **Note:** Not sessions in the array may be inactive, check their state via [godot.EditorDebuggerSession.isActive]
+   * **Note:** Sessions in the array may be inactive, check their state via [godot.EditorDebuggerSession.isActive].
    */
   public fun getSessions(): VariantArray<Any?> {
     TransferContext.writeArguments()

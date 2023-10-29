@@ -22,12 +22,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Abstract base [godot.Resource] for coloring and shading geometry.
+ * Abstract base class for applying visual properties to an object, such as color and roughness.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
- * Material is a base [godot.Resource] used for coloring and shading geometry. All materials inherit from it and almost all [godot.VisualInstance3D] derived nodes carry a Material. A few flags and parameters are shared between all material types and are configured here.
+ * [godot.Material] is a base resource used for coloring and shading geometry. All materials inherit from it and almost all [godot.VisualInstance3D] derived nodes carry a [godot.Material]. A few flags and parameters are shared between all material types and are configured here.
  */
 @GodotBaseType
 public open class Material : Resource() {

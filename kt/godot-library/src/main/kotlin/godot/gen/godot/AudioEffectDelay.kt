@@ -46,7 +46,7 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   /**
-   * If `true`, `tap1` will be enabled.
+   * If `true`, the first tap will be enabled.
    */
   public var tap1Active: Boolean
     get() {
@@ -60,7 +60,7 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   /**
-   * `tap1` delay time in milliseconds.
+   * First tap delay time in milliseconds.
    */
   public var tap1DelayMs: Float
     get() {
@@ -74,7 +74,7 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   /**
-   * Sound level for `tap1`.
+   * Sound level for the first tap.
    */
   public var tap1LevelDb: Float
     get() {
@@ -88,7 +88,7 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   /**
-   * Pan position for `tap1`. Value can range from -1 (fully left) to 1 (fully right).
+   * Pan position for the first tap. Value can range from -1 (fully left) to 1 (fully right).
    */
   public var tap1Pan: Float
     get() {
@@ -102,7 +102,7 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   /**
-   * If `true`, `tap2` will be enabled.
+   * If `true`, the second tap will be enabled.
    */
   public var tap2Active: Boolean
     get() {
@@ -116,7 +116,7 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   /**
-   * **Tap2** delay time in milliseconds.
+   * Second tap delay time in milliseconds.
    */
   public var tap2DelayMs: Float
     get() {
@@ -130,7 +130,7 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   /**
-   * Sound level for `tap2`.
+   * Sound level for the second tap.
    */
   public var tap2LevelDb: Float
     get() {
@@ -144,7 +144,7 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   /**
-   * Pan position for `tap2`. Value can range from -1 (fully left) to 1 (fully right).
+   * Pan position for the second tap. Value can range from -1 (fully left) to 1 (fully right).
    */
   public var tap2Pan: Float
     get() {
@@ -186,7 +186,7 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   /**
-   * Sound level for `tap1`.
+   * Sound level for feedback.
    */
   public var feedbackLevelDb: Float
     get() {

@@ -180,7 +180,7 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * Multiplies the color of the bar's `texture_under` texture.
+   * Multiplies the color of the bar's [textureUnder] texture.
    */
   @CoreTypeLocalCopy
   public var tintUnder: Color
@@ -195,7 +195,7 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * Multiplies the color of the bar's `texture_over` texture. The effect is similar to [godot.CanvasItem.modulate], except it only affects this specific texture instead of the entire node.
+   * Multiplies the color of the bar's [textureOver] texture. The effect is similar to [godot.CanvasItem.modulate], except it only affects this specific texture instead of the entire node.
    */
   @CoreTypeLocalCopy
   public var tintOver: Color
@@ -210,7 +210,7 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * Multiplies the color of the bar's `texture_progress` texture.
+   * Multiplies the color of the bar's [textureProgress] texture.
    */
   @CoreTypeLocalCopy
   public var tintProgress: Color
@@ -300,7 +300,7 @@ public open class TextureProgressBar : Range() {
 
 
   /**
-   * Multiplies the color of the bar's `texture_under` texture.
+   * Multiplies the color of the bar's [textureUnder] texture.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -324,7 +324,7 @@ public open class TextureProgressBar : Range() {
 
 
   /**
-   * Multiplies the color of the bar's `texture_over` texture. The effect is similar to [godot.CanvasItem.modulate], except it only affects this specific texture instead of the entire node.
+   * Multiplies the color of the bar's [textureOver] texture. The effect is similar to [godot.CanvasItem.modulate], except it only affects this specific texture instead of the entire node.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -348,7 +348,7 @@ public open class TextureProgressBar : Range() {
 
 
   /**
-   * Multiplies the color of the bar's `texture_progress` texture.
+   * Multiplies the color of the bar's [textureProgress] texture.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

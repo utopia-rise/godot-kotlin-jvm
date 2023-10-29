@@ -55,6 +55,7 @@ class ClassService(
                     isVirtual = false,
                     isStatic = false,
                     hash = 0,
+                    hashCompatibility = listOf(),
                     returnValue = ReturnValue(returnType, null),
                     returnType = null,
                     arguments = arguments
