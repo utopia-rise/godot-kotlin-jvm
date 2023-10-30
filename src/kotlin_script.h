@@ -15,7 +15,6 @@ class KotlinScript : public Script {
 private:
     String source;
 
-    // Stored kotlin_class should be nullptr when in TOOL
     KtClass* kotlin_class;
     Vector<Ref<KotlinScript>> parent_scripts;
 
@@ -26,8 +25,6 @@ public:
     KotlinScript();
 
     ~KotlinScript() override;
-
-    KtClass* get_kotlin_class() const;
 
     Variant _new(const Variant** p_args, int p_argcount, Callable::CallError& r_error);
 
@@ -61,6 +58,8 @@ public:
 
     bool is_valid() const override;
 
+    bool is_placeholder_fallback_enabled() const override;
+
     ScriptLanguage* get_language() const override;
 
     bool has_script_signal(const StringName& p_signal) const override;
@@ -75,7 +74,7 @@ public:
 
     void get_script_exported_property_list(List<PropertyInfo>* p_list) const;
 
-      void set_path(const String& p_path, bool p_take_over) override;
+    void set_path(const String& p_path, bool p_take_over) override;
 
     const Variant get_rpc_config() const override;
 
@@ -99,8 +98,6 @@ public:
     PlaceHolderScriptInstance* placeholder_instance_create(Object* p_this) override;
 
     void update_exports() override;
-
-    // JNI methods
 
 protected:
     static void _bind_methods();

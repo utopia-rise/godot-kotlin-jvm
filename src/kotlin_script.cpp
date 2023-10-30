@@ -20,30 +20,28 @@ bool KotlinScript::can_instantiate() const {
 bool KotlinScript::inherits_script(const Ref<Script>& p_script) const {
     Ref<KotlinScript> script {p_script};
     if (script.is_null()) { return false; }
+    if (!is_valid() || !script->is_valid()) { return false; }
 
-    KtClass* inheritor_class {get_kotlin_class()};
-    KtClass* parent_class {script->get_kotlin_class()};
-    if (inheritor_class == nullptr || parent_class == nullptr) { return false; }
-
+    KtClass* inheritor_class {kotlin_class};
+    KtClass* parent_class {script->kotlin_class};
     if (inheritor_class == parent_class) { return true; }
 
     return inheritor_class->registered_supertypes.find(parent_class->registered_class_name);
 }
 
 Ref<Script> KotlinScript::get_base_script() const {
-    KtClass* clazz = get_kotlin_class();
-    if (!clazz || clazz->registered_supertypes.size() == 0) { return Ref<Script>(); }
-    StringName parent_name = clazz->registered_supertypes[0];
+    if (!is_valid() || kotlin_class->registered_supertypes.size() == 0) { return Ref<Script>(); }
+    StringName parent_name = kotlin_class->registered_supertypes[0];
     return TypeManager::get_instance().get_user_script_from_name(parent_name);
 }
 
 StringName KotlinScript::get_global_name() const {
-    if (KtClass * kt_class {get_kotlin_class()}) { return kt_class->registered_class_name; }
+    if (is_valid()) { return kotlin_class->registered_class_name; }
     return StringName();
 }
 
 StringName KotlinScript::get_instance_base_type() const {
-    if (KtClass * kt_class {get_kotlin_class()}) { return kt_class->base_godot_class; }
+    if (is_valid()) { return kotlin_class->base_godot_class; }
     // not found
     return StringName();
 }
@@ -60,13 +58,13 @@ ScriptInstance* KotlinScript::_instance_create(const Variant** p_args, int p_arg
         KotlinBindingManager::get_instance_binding(p_this);
     }
 
-    KtClass* kt_class {get_kotlin_class()};
 #ifdef DEBUG_ENABLED
-    LOG_VERBOSE(vformat("Try to create %s instance.", kt_class->resource_path));
+    JVM_CRASH_COND_MSG(!is_valid(), vformat("An invalid script was attempted to be used. Make sure you have properly build your project"));
+    LOG_VERBOSE(vformat("Try to create %s instance.", kotlin_class->resource_path));
 #endif
 
     jni::Env env = jni::Jvm::current_env();
-    KtObject* wrapped = kt_class->create_instance(env, p_args, p_argcount, p_this);
+    KtObject* wrapped = kotlin_class->create_instance(env, p_args, p_argcount, p_this);
     return memnew(KotlinInstance(p_this, wrapped, this));
 }
 
@@ -84,9 +82,7 @@ String KotlinScript::get_source_code() const {
 
 void KotlinScript::set_source_code(const String& p_code) {
     if (source == p_code) { return; }
-
     source = p_code;
-
     // TODO : deal with tool mode
 }
 
@@ -95,13 +91,12 @@ Error KotlinScript::reload(bool p_keep_state) {
 }
 
 bool KotlinScript::has_method(const StringName& p_method) const {
-    KtClass* kt_class {get_kotlin_class()};
-    return kt_class != nullptr && kt_class->get_method(p_method) != nullptr;
+    return is_valid() && kotlin_class->get_method(p_method) != nullptr;
 }
 
 MethodInfo KotlinScript::get_method_info(const StringName& p_method) const {
-    if (KtClass * kt_class {get_kotlin_class()}) {
-        if (KtFunction * method {kt_class->get_method(p_method)}) { return method->get_member_info(); }
+    if (is_valid()) {
+        if (KtFunction * method {kotlin_class->get_method(p_method)}) { return method->get_member_info(); }
     }
     return MethodInfo();
 }
@@ -111,7 +106,11 @@ bool KotlinScript::is_tool() const {
 }
 
 bool KotlinScript::is_valid() const {
-    return false;
+    return kotlin_class != nullptr;
+}
+
+bool KotlinScript::is_placeholder_fallback_enabled() const{
+    return kotlin_class == nullptr;
 }
 
 ScriptLanguage* KotlinScript::get_language() const {
@@ -119,12 +118,11 @@ ScriptLanguage* KotlinScript::get_language() const {
 }
 
 bool KotlinScript::has_script_signal(const StringName& p_signal) const {
-    KtClass* kt_class {get_kotlin_class()};
-    return kt_class != nullptr && kt_class->get_signal(p_signal) != nullptr;
+    return is_valid() && kotlin_class->get_signal(p_signal) != nullptr;
 }
 
 void KotlinScript::get_script_signal_list(List<MethodInfo>* r_signals) const {
-    if (KtClass * kt_class {get_kotlin_class()}) { kt_class->get_signal_list(r_signals); }
+    if (is_valid()) { kotlin_class->get_signal_list(r_signals); }
 }
 
 bool KotlinScript::get_property_default_value(const StringName& p_property, Variant& r_value) const {
@@ -140,13 +138,11 @@ bool KotlinScript::get_property_default_value(const StringName& p_property, Vari
 }
 
 void KotlinScript::get_script_method_list(List<MethodInfo>* p_list) const {
-    KtClass* kt_class {get_kotlin_class()};
-    if (kt_class) { kt_class->get_method_list(p_list); }
+    if (is_valid()) { kotlin_class->get_method_list(p_list); }
 }
 
 void KotlinScript::get_script_property_list(List<PropertyInfo>* p_list) const {
-    KtClass* kt_class {get_kotlin_class()};
-    if (kt_class) { kt_class->get_property_list(p_list); }
+    if (is_valid()) { kotlin_class->get_property_list(p_list); }
 }
 
 void KotlinScript::get_script_exported_property_list(List<PropertyInfo>* p_list) const {
@@ -158,18 +154,13 @@ void KotlinScript::get_script_exported_property_list(List<PropertyInfo>* p_list)
     }
 }
 
-KtClass* KotlinScript::get_kotlin_class() const {
-#ifdef TOOLS_ENABLED
-    return GDKotlin::get_instance().find_class(get_path());
-#else
-    return kotlin_class;
-#endif
-}
-
 Variant KotlinScript::_new(const Variant** p_args, int p_argcount, Callable::CallError& r_error) {
     r_error.error = Callable::CallError::CALL_OK;
 
-    Object* owner {ClassDB::instantiate(get_kotlin_class()->base_godot_class)};
+#ifdef DEBUG_ENABLED
+    JVM_CRASH_COND_MSG(!is_valid(), vformat("An invalid script was attempted to be used. Make sure you have properly build your project"));
+#endif
+    Object* owner {ClassDB::instantiate(kotlin_class->base_godot_class)};
 
     ScriptInstance* instance {_instance_create<true>(p_args, p_argcount, owner)};
     owner->set_script_instance(instance);
@@ -184,9 +175,8 @@ Variant KotlinScript::_new(const Variant** p_args, int p_argcount, Callable::Cal
 void KotlinScript::set_path(const String& p_path, bool p_take_over) {
     Resource::set_path(p_path, p_take_over);
 
-#ifndef TOOLS_ENABLED
-    if (!kotlin_class) { kotlin_class = GDKotlin::get_instance().find_class(p_path); }
-#else
+#ifdef TOOLS_ENABLED
+
     String package {p_path.replace("src/main/kotlin/", "")
                       .trim_prefix("res://")
                       .trim_suffix(get_name() + "." + KotlinLanguage::get_instance()->get_extension())
@@ -202,7 +192,8 @@ void KotlinScript::set_path(const String& p_path, bool p_take_over) {
 
 // Variant is of type Dictionary
 const Variant KotlinScript::get_rpc_config() const {
-    return get_kotlin_class()->get_rpc_config();
+    if (is_valid()) { kotlin_class->get_rpc_config(); }
+    return Dictionary();
 }
 
 #ifdef TOOLS_ENABLED

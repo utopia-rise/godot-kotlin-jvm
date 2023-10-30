@@ -1,7 +1,6 @@
 #include "type_manager.h"
 
 #include <core/io/resource_loader.h>
-#include <modules/kotlin_jvm/src/jni/class_loader.h>
 
 TypeManager& TypeManager::get_instance() {
     static TypeManager instance;

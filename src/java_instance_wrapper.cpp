@@ -1,13 +1,15 @@
 #include "java_instance_wrapper.h"
 
-JavaInstanceWrapper::JavaInstanceWrapper(jni::JObject p_wrapped) {
+JavaInstanceWrapper::JavaInstanceWrapper() : is_weak(false) {
+    wrapped = jni::JObject();
+}
+
+JavaInstanceWrapper::JavaInstanceWrapper(jni::JObject p_wrapped) : is_weak(false) {
     // When created, it's a strong reference by default
     jni::Env env {jni::Jvm::current_env()};
     wrapped = p_wrapped.new_global_ref<jni::JObject>(env);
-    is_weak = false;
     p_wrapped.delete_local_ref(env);
 }
-
 
 JavaInstanceWrapper::~JavaInstanceWrapper() {
     jni::Env env {jni::Jvm::current_env()};
@@ -16,14 +18,11 @@ JavaInstanceWrapper::~JavaInstanceWrapper() {
     } else {
         wrapped.delete_global_ref(env);
     }
-    class_loader.delete_global_ref(env);
 }
-
 
 bool JavaInstanceWrapper::is_ref_weak() const {
     return is_weak;
 }
-
 
 void JavaInstanceWrapper::swap_to_strong_unsafe() {
     // Assume the reference is currently weak
@@ -33,7 +32,6 @@ void JavaInstanceWrapper::swap_to_strong_unsafe() {
     wrapped = new_ref;
     is_weak = false;
 }
-
 
 void JavaInstanceWrapper::swap_to_weak_unsafe() {
     // Assume the reference is currently strong

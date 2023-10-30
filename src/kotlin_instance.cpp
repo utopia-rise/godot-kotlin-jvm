@@ -8,7 +8,7 @@
 KotlinInstance::KotlinInstance(Object* p_owner, KtObject* p_kt_object, KotlinScript* p_script) :
   owner(p_owner),
   kt_object(p_kt_object),
-  kt_class(p_script->get_kotlin_class()),
+  kt_class(p_script->kotlin_class),
   script(p_script),
   delete_flag(true) {
     kt_object->swap_to_weak_unsafe();

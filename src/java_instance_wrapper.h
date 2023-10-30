@@ -45,8 +45,9 @@ class JavaInstanceWrapper {
 protected:
     bool is_weak;
     jni::JObject wrapped;
-    jni::JObject class_loader;
 
+    //Used for placeholder wrappers
+    JavaInstanceWrapper();
     JavaInstanceWrapper(jni::JObject p_wrapped);
 
     ~JavaInstanceWrapper();
