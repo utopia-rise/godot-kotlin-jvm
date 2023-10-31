@@ -6,33 +6,18 @@ JNI_INIT_STATICS_FOR_CLASS(
     INIT_JNI_METHOD(INIT)
     INIT_JNI_METHOD(FINISH)
     INIT_NATIVE_METHOD("loadClasses", "([Lgodot/core/KtClass;)V", Bootstrap::load_classes)
-    INIT_NATIVE_METHOD("unloadClasses", "([Lgodot/core/KtClass;)V", Bootstrap::unload_classes)
     INIT_NATIVE_METHOD("registerManagedEngineTypes", "([Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/Integer;)V", Bootstrap::register_engine_type)
-    INIT_NATIVE_METHOD("registerUserTypesNames", "([Ljava/lang/String;)V", Bootstrap::register_user_types_names)
-    INIT_NATIVE_METHOD("registerUserTypesMembers", "()V", Bootstrap::register_user_types_members)
 )
 // clang-format on
 
 Bootstrap::LoadClassesHook Bootstrap::load_classes {};
-Bootstrap::UnloadClassesHook Bootstrap::unload_classes {};
 Bootstrap::RegisterManagedEngineTypesHook Bootstrap::register_engine_type {};
-Bootstrap::RegisterUserTypesNamesHook Bootstrap::register_user_types_names {};
-Bootstrap::RegisterUserTypesMembersHook Bootstrap::register_user_types_members {};
 
 Bootstrap::Bootstrap(jni::JObject p_wrapped) : JavaInstanceWrapper(p_wrapped) {}
 
-void Bootstrap::register_hooks(
-  LoadClassesHook p_load_classes_hook,
-  UnloadClassesHook p_unload_classes_hook,
-  RegisterManagedEngineTypesHook p_register_managed_engine_types_hook,
-  RegisterUserTypesNamesHook p_user_types_names_hook,
-  RegisterUserTypesMembersHook p_user_types_members_hook
-) {
+void Bootstrap::register_hooks(LoadClassesHook p_load_classes_hook, RegisterManagedEngineTypesHook p_register_managed_engine_types_hook) {
     Bootstrap::load_classes = p_load_classes_hook;
-    Bootstrap::unload_classes = p_unload_classes_hook;
     Bootstrap::register_engine_type = p_register_managed_engine_types_hook;
-    Bootstrap::register_user_types_names = p_user_types_names_hook;
-    Bootstrap::register_user_types_members = p_user_types_members_hook;
 }
 
 void Bootstrap::init(jni::Env& p_env, bool p_is_editor, const String& p_project_path, const String& p_jar_path, const String& p_jar_file, const jni::JObject& p_class_loader) {

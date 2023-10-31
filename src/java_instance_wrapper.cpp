@@ -1,9 +1,5 @@
 #include "java_instance_wrapper.h"
 
-JavaInstanceWrapper::JavaInstanceWrapper() : is_weak(false) {
-    wrapped = jni::JObject();
-}
-
 JavaInstanceWrapper::JavaInstanceWrapper(jni::JObject p_wrapped) : is_weak(false) {
     // When created, it's a strong reference by default
     jni::Env env {jni::Jvm::current_env()};

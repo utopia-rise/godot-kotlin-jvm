@@ -17,6 +17,10 @@ bool KotlinScript::can_instantiate() const {
 #endif
 }
 
+KtClass* KotlinScript::get_kotlin_class() const {
+    return kotlin_class;
+}
+
 bool KotlinScript::inherits_script(const Ref<Script>& p_script) const {
     Ref<KotlinScript> script {p_script};
     if (script.is_null()) { return false; }
@@ -37,7 +41,9 @@ Ref<Script> KotlinScript::get_base_script() const {
 
 StringName KotlinScript::get_global_name() const {
     if (is_valid()) { return kotlin_class->registered_class_name; }
-    return StringName();
+    // Scripts are either (valid and loaded from .jar) or (placeholders and loaded from .gdj)
+    // Even in the case of an invalid file, we can then use its path to find the right name.
+    return get_path().get_file().trim_suffix(get_path().get_extension()).trim_suffix(".");
 }
 
 StringName KotlinScript::get_instance_base_type() const {
@@ -59,7 +65,7 @@ ScriptInstance* KotlinScript::_instance_create(const Variant** p_args, int p_arg
     }
 
 #ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(!is_valid(), vformat("An invalid script was attempted to be used. Make sure you have properly build your project"));
+    JVM_CRASH_COND_MSG(!is_valid(), vformat("An invalid script was attempted to be used. Make sure you have properly built your project."));
     LOG_VERBOSE(vformat("Try to create %s instance.", kotlin_class->resource_path));
 #endif
 
@@ -87,7 +93,7 @@ void KotlinScript::set_source_code(const String& p_code) {
 }
 
 Error KotlinScript::reload(bool p_keep_state) {
-    return ERR_UNAVAILABLE;
+    return Error::ERR_UNAVAILABLE;
 }
 
 bool KotlinScript::has_method(const StringName& p_method) const {
@@ -109,7 +115,7 @@ bool KotlinScript::is_valid() const {
     return kotlin_class != nullptr;
 }
 
-bool KotlinScript::is_placeholder_fallback_enabled() const{
+bool KotlinScript::is_placeholder_fallback_enabled() const {
     return kotlin_class == nullptr;
 }
 
@@ -158,7 +164,7 @@ Variant KotlinScript::_new(const Variant** p_args, int p_argcount, Callable::Cal
     r_error.error = Callable::CallError::CALL_OK;
 
 #ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(!is_valid(), vformat("An invalid script was attempted to be used. Make sure you have properly build your project"));
+    JVM_CRASH_COND_MSG(!is_valid(), vformat("An invalid script was attempted to be used. Make sure you have properly built your project."));
 #endif
     Object* owner {ClassDB::instantiate(kotlin_class->base_godot_class)};
 
@@ -174,20 +180,6 @@ Variant KotlinScript::_new(const Variant** p_args, int p_argcount, Callable::Cal
 
 void KotlinScript::set_path(const String& p_path, bool p_take_over) {
     Resource::set_path(p_path, p_take_over);
-
-#ifdef TOOLS_ENABLED
-
-    String package {p_path.replace("src/main/kotlin/", "")
-                      .trim_prefix("res://")
-                      .trim_suffix(get_name() + "." + KotlinLanguage::get_instance()->get_extension())
-                      .trim_suffix("/")
-                      .replace("/", ".")};
-
-    if (!package.is_empty()) { package = "package " + package + "\n\n"; }
-
-    String source_code = get_source_code().replace("%PACKAGE%", package);
-    set_source_code(source_code);
-#endif
 }
 
 // Variant is of type Dictionary
@@ -206,12 +198,8 @@ PropertyInfo KotlinScript::get_class_category() const {
     // TODO/4.0:
     return {};
 }
-#endif
-
-KotlinScript::KotlinScript() : kotlin_class(nullptr) {}
 
 PlaceHolderScriptInstance* KotlinScript::placeholder_instance_create(Object* p_this) {
-#ifdef TOOLS_ENABLED
     PlaceHolderScriptInstance* placeholder {
       memnew(PlaceHolderScriptInstance(KotlinLanguage::get_instance(), Ref<Script>(this), p_this))};
 
@@ -221,14 +209,11 @@ PlaceHolderScriptInstance* KotlinScript::placeholder_instance_create(Object* p_t
 
     placeholders.insert(placeholder);
     return placeholder;
-#else
-    return nullptr;
-#endif
 }
 
 void KotlinScript::update_exports() {
-#ifdef TOOLS_ENABLED
     exported_members_default_value_cache.clear();
+    if (!is_valid()) { return; }
 
     Callable::CallError call;
     Object* tmp_object {_new({}, 0, call)};
@@ -249,21 +234,22 @@ void KotlinScript::update_exports() {
     }
 
     memdelete(tmp_object);
-#endif
 }
 
 void KotlinScript::_placeholder_erased(PlaceHolderScriptInstance* p_placeholder) {
-#ifdef TOOLS_ENABLED
     placeholders.erase(p_placeholder);
-#endif
 }
+#endif
 
 void KotlinScript::_bind_methods() {
     ClassDB::bind_vararg_method(METHOD_FLAGS_DEFAULT, "new", &KotlinScript::_new, MethodInfo("new"));
 }
 
+KotlinScript::KotlinScript() : kotlin_class(nullptr) {}
+
 KotlinScript::~KotlinScript() {
 #ifdef TOOLS_ENABLED
     exported_members_default_value_cache.clear();
 #endif
+    if (kotlin_class) { delete kotlin_class; }
 }

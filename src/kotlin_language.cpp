@@ -4,6 +4,8 @@
 #include "godotkotlin_defs.h"
 #include "kotlin_script.h"
 
+#include <core/io/resource_loader.h>
+
 static const String GODOT_ENTRY_PATH {"res://build/generated/ksp"};
 
 KotlinLanguage* KotlinLanguage::get_instance() {
@@ -16,7 +18,6 @@ String KotlinLanguage::get_name() const {
 }
 
 void KotlinLanguage::init() {
-    kt_custom_callable_middleman = memnew(Object);
     GDKotlin::get_instance().init();
 }
 
@@ -26,8 +27,6 @@ String KotlinLanguage::get_type() const {
 
 void KotlinLanguage::finish() {
     GDKotlin::get_instance().finish();
-    memdelete(kt_custom_callable_middleman);
-    kt_custom_callable_middleman = nullptr;
 }
 
 void KotlinLanguage::get_reserved_words(List<String>* p_words) const {
@@ -364,17 +363,20 @@ bool KotlinLanguage::handles_global_class_type(const String& p_type) const {
 String KotlinLanguage::get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path) const {
     if (p_path.begins_with(GODOT_ENTRY_PATH)) { return String(); }
 
-    if (KtClass* clazz {GDKotlin::get_instance().find_class(p_path)}) {
-        if (r_base_type) { *r_base_type = clazz->base_godot_class; }
-
-        return clazz->registered_class_name;
+    String script_name = p_path.get_file().trim_suffix(p_path.get_extension()).trim_suffix(".");
+    Ref<KotlinScript> script = TypeManager::get_instance().get_user_script_from_name(script_name);
+    if (!script.is_null() && script.is_valid()) {
+        if (r_base_type) {
+            if (script->get_base_script().is_null()) {
+                *r_base_type = script->get_instance_base_type();
+            } else {
+                *r_base_type = script->get_base_script()->get_global_name();
+            }
+        }
+        return script->get_global_name();
     }
 
     return String();
 }
 
-const Object* KotlinLanguage::get_custom_callable_middleman() const {
-    return kt_custom_callable_middleman;
-}
-
-KotlinLanguage::KotlinLanguage() : kt_custom_callable_middleman(nullptr) {}
+KotlinLanguage::KotlinLanguage() {}
