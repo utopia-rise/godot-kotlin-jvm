@@ -1,12 +1,11 @@
 #include "kt_resource_format_saver.h"
 
 #include "godotkotlin_defs.h"
+#include "kotlin_language.h"
 #include "kotlin_script.h"
 
 void KtResourceFormatSaver::get_recognized_extensions(const Ref<Resource>& p_resource, List<String>* p_extensions) const {
-    if (Object::cast_to<KotlinScript>(p_resource.ptr())) {
-        p_extensions->push_back(GODOT_KOTLIN_SCRIPT_EXTENSION);
-    }
+    if (Object::cast_to<KotlinScript>(p_resource.ptr())) { p_extensions->push_back(GODOT_KOTLIN_SCRIPT_EXTENSION); }
 }
 
 bool KtResourceFormatSaver::recognize(const Ref<Resource>& p_resource) const {
@@ -16,7 +15,17 @@ bool KtResourceFormatSaver::recognize(const Ref<Resource>& p_resource) const {
 Error KtResourceFormatSaver::save(const Ref<Resource>& p_resource, const String& p_path, uint32_t p_flags) {
     Ref<KotlinScript> script = p_resource;
     ERR_FAIL_COND_V(script.is_null(), ERR_INVALID_PARAMETER);
-    String source = script->get_source_code();
+
+    String package {p_path.replace("src/main/kotlin/", "")
+                      .trim_prefix("res://")
+                      .trim_suffix(script->get_name() + "." + KotlinLanguage::get_instance()->get_extension())
+                      .trim_suffix("/")
+                      .replace("/", ".")};
+
+    if (!package.is_empty()) { package = "package " + package + "\n\n"; }
+
+    String source = script->get_source_code().replace("%PACKAGE%", package);
+
     Error err;
     Ref<FileAccess> file {FileAccess::open(p_path, FileAccess::WRITE, &err)};
     JVM_ERR_FAIL_COND_V_MSG(err != OK, err, "Cannot save Kotlin script file '" + p_path + "'.");

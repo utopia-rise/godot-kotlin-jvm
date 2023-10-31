@@ -163,8 +163,6 @@ internal class Bootstrap {
 
         // START: order matters!
         loadClasses(classes)
-        registerUserTypesNames(TypeManager.userTypes.toTypedArray())
-        registerUserTypesMembers()
         forceJvmInitializationOfSingletons()
         // END: order matters!
     }
@@ -184,11 +182,6 @@ internal class Bootstrap {
     }
 
     private fun clearClassesCache() {
-        val classes = classRegistries
-            .flatMap { registry -> registry.classes }
-            .toTypedArray()
-
-        unloadClasses(classes)
         classRegistries.clear()
         TypeManager.clearUserTypes()
     }
@@ -200,7 +193,6 @@ internal class Bootstrap {
     }
 
     private external fun loadClasses(classes: Array<KtClass<*>>)
-    private external fun unloadClasses(classes: Array<KtClass<*>>)
 
     private external fun registerManagedEngineTypes(
         engineTypesNames: Array<String>,
@@ -208,7 +200,4 @@ internal class Bootstrap {
         engineTypeMethodNames: Array<String>,
         typeOfMethods: Array<Int>
     )
-
-    private external fun registerUserTypesNames(userTypesNames: Array<String>)
-    private external fun registerUserTypesMembers()
 }

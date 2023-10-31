@@ -30,7 +30,7 @@ private:                                                    \
 
 #define INIT_JNI_METHOD(name) jni_methods.name.init(env, clazz);
 
-#define INIT_NATIVE_METHOD(string_name, signature, function)                                            \
+#define INIT_NATIVE_METHOD(string_name, signature, function) \
     methods.push_back({const_cast<char*>(string_name), const_cast<char*>(signature), (void*) function});
 
 /**
@@ -46,8 +46,6 @@ protected:
     bool is_weak;
     jni::JObject wrapped;
 
-    //Used for placeholder wrappers
-    JavaInstanceWrapper();
     JavaInstanceWrapper(jni::JObject p_wrapped);
 
     ~JavaInstanceWrapper();
