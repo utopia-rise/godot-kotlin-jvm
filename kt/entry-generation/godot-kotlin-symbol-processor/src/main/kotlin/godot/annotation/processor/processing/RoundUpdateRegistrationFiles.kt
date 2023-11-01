@@ -89,7 +89,7 @@ internal class RoundUpdateRegistrationFiles(
             }
         }
         // delete empty dirs in the initial gdj out folder (but not anywhere else!)
-        kspRegistrationFilesBaseDir
+        initialRegistrationFilesOutDir
             .walkBottomUp()
             .filter { dir -> dir.isDirectory && dir.listFiles()?.isEmpty() == true }
             .forEach { emptyDir ->
