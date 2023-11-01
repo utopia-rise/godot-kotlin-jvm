@@ -13,6 +13,7 @@ import godot.annotation.processor.ext.hasCompilationErrors
 import godot.annotation.processor.ext.mapToClazz
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.SourceFile
+import java.io.File
 
 /**
  * Collects [RegisterClass], [RegisterConstructor], [RegisterFunction], [RegisterProperty], [RegisterSignal] annotations
@@ -21,7 +22,7 @@ import godot.entrygenerator.model.SourceFile
 internal class RegistrationAnnotationVisitor(
     private val isFqNameRegistrationEnabled: Boolean,
     private val classNamePrefix: String?,
-    private val localResourcePathProvider: (fqName: String, registeredName: String) -> String,
+    private val projectBaseDir: File,
 ) : KSVisitorVoid() {
 
     private val registerAnnotations = listOf(
@@ -48,7 +49,7 @@ internal class RegistrationAnnotationVisitor(
                         if (declaration.hasCompilationErrors()) {
                             null
                         } else {
-                            val clazz = declaration.mapToClazz(isFqNameRegistrationEnabled, classNamePrefix, localResourcePathProvider)
+                            val clazz = declaration.mapToClazz(isFqNameRegistrationEnabled, classNamePrefix, projectBaseDir)
                             if (clazz is RegisteredClass) {
                                 clazz
                             } else null
@@ -71,7 +72,7 @@ internal class RegistrationAnnotationVisitor(
                 SourceFile(
                     absolutePath = absolutePath,
                     registeredClasses = registeredClasses,
-                    source = this
+                    symbolProcessorSource = this
                 )
             )
         }

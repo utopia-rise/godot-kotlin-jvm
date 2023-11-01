@@ -94,7 +94,7 @@ internal fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): God
     return when (fqNameUnsafe) {
         RegisterClass::class.qualifiedName -> RegisterClassAnnotation(
             customName = arguments.first().value as? String,
-            source = this
+            symbolProcessorSource = this
         )
         RegisterConstructor::class.qualifiedName -> RegisterConstructorAnnotation(this)
         RegisterFunction::class.qualifiedName -> RegisterFunctionAnnotation(this)
@@ -107,7 +107,7 @@ internal fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): God
             sync = rpcSyncEnum,
             transferMode = rpcTransferModeEnum,
             transferChannel = rpcChannel,
-            source = this
+            symbolProcessorSource = this
         )
         "godot.annotation.GodotBaseType" -> GodotBaseTypeAnnotation(this) //is internal
         EnumFlag::class.qualifiedName -> {
@@ -201,6 +201,6 @@ private fun <T: Number> KSAnnotation.provideRangeHintAnnotation(stepDefault: T):
         isDegrees = isDegrees,
         isExp = isExp,
         suffix = suffix,
-        source = this
+        symbolProcessorSource = this
     )
 }

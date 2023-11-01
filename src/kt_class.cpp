@@ -6,6 +6,7 @@
 JNI_INIT_STATICS_FOR_CLASS(
     KtClass,
     INIT_JNI_METHOD(GET_REGISTERED_NAME)
+    INIT_JNI_METHOD(GET_RELATIVE_SOURCE_PATH)
     INIT_JNI_METHOD(GET_REGISTERED_SUPERTYPES)
     INIT_JNI_METHOD(GET_BASE_GODOT_CLASS)
     INIT_JNI_METHOD(GET_FUNCTIONS)
@@ -20,8 +21,9 @@ KtClass::KtClass(jni::JObject p_wrapped) :
   JavaInstanceWrapper(p_wrapped),
   constructors {} {
     jni::Env env {jni::Jvm::current_env()};
-    LOCAL_FRAME(2);
+    LOCAL_FRAME(3);
     registered_class_name = get_registered_name(env);
+    relative_source_path = get_relative_source_path(env);
     base_godot_class = get_base_godot_class(env);
 }
 
@@ -74,6 +76,12 @@ KtSignalInfo* KtClass::get_signal(const StringName& p_signal_name) {
 
 String KtClass::get_registered_name(jni::Env& env) {
     jni::MethodId getter {jni_methods.GET_REGISTERED_NAME.method_id};
+    jni::JObject ret {wrapped.call_object_method(env, getter)};
+    return env.from_jstring(jni::JString((jstring) ret.obj));
+}
+
+String KtClass::get_relative_source_path(jni::Env& env) {
+    jni::MethodId getter {jni_methods.GET_RELATIVE_SOURCE_PATH.method_id};
     jni::JObject ret {wrapped.call_object_method(env, getter)};
     return env.from_jstring(jni::JString((jstring) ret.obj));
 }

@@ -80,7 +80,7 @@ internal fun KSPropertyDeclaration.mapToRegisteredProperty(): RegisteredProperty
         isLateinit = modifiers.contains(Modifier.LATEINIT),
         isOverridee = findOverridee() != null,
         annotations = annotations.toList(),
-        source = this
+        symbolProcessorSource = this
     )
 }
 
@@ -117,6 +117,6 @@ internal fun KSPropertyDeclaration.mapToRegisteredSignal(declaredProperties: Lis
         parameterNames = signalParameterNames,
         isOverridee = findOverridee() != null,
         annotations = annotations.toList(),
-        source = this
+        symbolProcessorSource = this
     )
 }

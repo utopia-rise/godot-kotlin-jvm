@@ -6,6 +6,7 @@ annotation class RegisteredClassMetadata(
     val registeredName: String,
     val baseType: String,
     val fqName: String,
+    val relativeSourcePath: String,
     val projectName: String,
     val superTypes: String,
     val signals: String,

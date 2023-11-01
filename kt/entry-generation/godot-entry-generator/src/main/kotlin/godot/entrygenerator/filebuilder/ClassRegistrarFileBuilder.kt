@@ -35,6 +35,7 @@ class ClassRegistrarFileBuilder(
                         .addMember("\"${registeredClass.registeredName}\"")
                         .addMember("\"${registeredClass.godotBaseClass}\"")
                         .addMember("\"${registeredClass.fqName}\"")
+                        .addMember("\"${registeredClass.relativeSourcePath}\"")
                         .addMember("\"$projectName\"")
                         .addMember("\"${registeredClass.supertypes.joinToString(",") { it.fqName }}\"")
                         .addMember("\"${registeredClass.signals.joinToString(",") { it.fqName }}\"")
@@ -69,11 +70,12 @@ class ClassRegistrarFileBuilder(
                     value
                 }.reduceOrNull { statement, name -> "$statement,$name" } ?: ""
                 funSpecBuilder.beginControlFlow(
-                    "registerClass<%T>(listOf($superClasses),·%T::class,·${registeredClass.isTool},·%S,·%S)·{",
+                    "registerClass<%T>(listOf($superClasses),·%T::class,·${registeredClass.isTool},·%S,·%S,·%S)·{",
                     className,
                     className,
                     registeredClass.godotBaseClass,
-                    registeredClass.registeredName
+                    registeredClass.registeredName,
+                    registeredClass.relativeSourcePath,
                 ) //START: registerClass
             } else {
                 funSpecBuilder

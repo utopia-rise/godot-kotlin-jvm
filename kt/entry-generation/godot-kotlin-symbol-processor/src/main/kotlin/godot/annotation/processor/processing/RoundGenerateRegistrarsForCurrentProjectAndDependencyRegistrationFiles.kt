@@ -31,14 +31,7 @@ internal class RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistration
         val registerAnnotationVisitor = RegistrationAnnotationVisitor(
             isFqNameRegistrationEnabled = settings.isFqNameRegistrationEnabled,
             classNamePrefix = settings.classPrefix,
-            localResourcePathProvider = { fqName, registeredName ->
-                //  if the fqName does not contain a '.' it means the class is in the root package
-                if (settings.isRegistrationFileHierarchyEnabled && fqName.contains(".")) {
-                    "${fqName.substringBeforeLast(".").replace(".", "/")}/$registeredName"
-                } else {
-                    registeredName
-                }.let { localPath -> "$localPath.${FileExtensions.GodotKotlinJvm.registrationFile}" }
-            }
+            projectBaseDir = settings.projectBaseDir,
         )
 
         resolver.getNewFiles().ifEmpty { resolver.getAllFiles() }.toList().map {
