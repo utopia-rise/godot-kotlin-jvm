@@ -6,7 +6,7 @@ import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.symbol.KSAnnotated
 import godot.annotation.processor.Settings
-import godot.annotation.processor.ext.provideRegistrationFileDir
+import godot.annotation.processor.ext.provideRegistrationFilePathForInitialGeneration
 import godot.annotation.processor.utils.JvmTypeProvider
 import godot.annotation.processor.utils.LoggerWrapper
 import godot.annotation.processor.visitor.MetadataAnnotationVisitor
@@ -59,7 +59,6 @@ internal class RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistration
             classRegistrarFromDependencyCount = metadataAnnotationVisitor.registeredClassMetadataContainers.size,
             logger = LoggerWrapper(logger),
             sourceFiles = registerAnnotationVisitor.sourceFilesContainingRegisteredClasses,
-            registrationFileBaseDir = settings.registrationBaseDirPathRelativeToProjectDir,
             jvmTypeFqNamesProvider = JvmTypeProvider(),
             classRegistrarAppendableProvider = { registeredClass ->
                 codeGenerator.createNewFile(
@@ -91,9 +90,8 @@ internal class RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistration
                 registrationFileAppendableProvider = { metadata ->
                     blackboard.alreadyGeneratedRegistrationFiles.add(metadata.fqName)
 
-                    val resourcePathFromProjectRoot = metadata.provideRegistrationFileDir(
-                        currentCompilationProjectName = settings.projectName,
-                        registrationBaseDirPathRelativeToProjectDir = settings.registrationBaseDirPathRelativeToProjectDir
+                    val resourcePathFromProjectRoot = metadata.provideRegistrationFilePathForInitialGeneration(
+                        settings = settings
                     )
 
                     codeGenerator.createNewFileByPath(

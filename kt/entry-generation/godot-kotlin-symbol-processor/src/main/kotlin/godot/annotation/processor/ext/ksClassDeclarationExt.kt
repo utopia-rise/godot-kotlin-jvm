@@ -73,7 +73,6 @@ internal fun KSClassDeclaration.mapToClazz(
         RegisteredClass(
             fqName = fqName,
             supertypes = supertypeDeclarations,
-            localResourcePathProvider = { localResourcePathProvider(fqName, registeredName) },
             annotations = mappedAnnotations,
             constructors = registeredConstructors,
             functions = registeredFunctions,

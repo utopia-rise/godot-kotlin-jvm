@@ -5,8 +5,6 @@
 // clang-format off
 JNI_INIT_STATICS_FOR_CLASS(
     KtClass,
-    INIT_JNI_METHOD(GET_RESOURCE_PATH)
-    INIT_JNI_METHOD(GET_RESOURCE_PATH)
     INIT_JNI_METHOD(GET_REGISTERED_NAME)
     INIT_JNI_METHOD(GET_REGISTERED_SUPERTYPES)
     INIT_JNI_METHOD(GET_BASE_GODOT_CLASS)
@@ -22,8 +20,7 @@ KtClass::KtClass(jni::JObject p_wrapped) :
   JavaInstanceWrapper(p_wrapped),
   constructors {} {
     jni::Env env {jni::Jvm::current_env()};
-    LOCAL_FRAME(3);
-    resource_path = get_resource_path(env);
+    LOCAL_FRAME(2);
     registered_class_name = get_registered_name(env);
     base_godot_class = get_base_godot_class(env);
 }
@@ -48,13 +45,13 @@ KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_
     KtConstructor* constructor {constructors[p_arg_count]};
 
 #ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(constructor == nullptr, vformat("Cannot find constructor with %s parameters for class %s", p_arg_count, resource_path));
+    JVM_CRASH_COND_MSG(constructor == nullptr, vformat("Cannot find constructor with %s parameters for class %s", p_arg_count, registered_class_name));
 #endif
 
     KtObject* jvm_instance {constructor->create_instance(p_args, p_owner)};
 
 #ifdef DEV_ENABLED
-    LOG_VERBOSE(vformat("Instantiated an object with resource path %s", resource_path));
+    LOG_VERBOSE(vformat("Instantiated an object with resource path %s", registered_class_name));
 #endif
 
     return jvm_instance;
@@ -73,12 +70,6 @@ KtProperty* KtClass::get_property(const StringName& p_property_name) {
 KtSignalInfo* KtClass::get_signal(const StringName& p_signal_name) {
     KtSignalInfo** signal_info {signal_infos.getptr(p_signal_name)};
     return signal_info ? *signal_info : nullptr;
-}
-
-StringName KtClass::get_resource_path(jni::Env& env) {
-    jni::MethodId getter {jni_methods.GET_RESOURCE_PATH.method_id};
-    jni::JObject ret {wrapped.call_object_method(env, jni_methods.GET_RESOURCE_PATH.method_id)};
-    return StringName(env.from_jstring(jni::JString((jstring) ret.obj)));
 }
 
 String KtClass::get_registered_name(jni::Env& env) {
@@ -114,7 +105,7 @@ void KtClass::fetch_methods(jni::Env& env) {
         auto* ktFunction {new KtFunction(object)};
         methods[ktFunction->get_name()] = ktFunction;
 #ifdef DEV_ENABLED
-        LOG_VERBOSE(vformat("Fetched method %s for class %s", ktFunction->get_name(), resource_path));
+        LOG_VERBOSE(vformat("Fetched method %s for class %s", ktFunction->get_name(), registered_class_name));
 #endif
     }
     functionsArray.delete_local_ref(env);
@@ -127,7 +118,7 @@ void KtClass::fetch_properties(jni::Env& env) {
         auto* ktProperty {new KtProperty(propertiesArray.get(env, i))};
         properties[ktProperty->get_name()] = ktProperty;
 #ifdef DEV_ENABLED
-        LOG_VERBOSE(vformat("Fetched property %s for class %s", ktProperty->get_name(), resource_path));
+        LOG_VERBOSE(vformat("Fetched property %s for class %s", ktProperty->get_name(), registered_class_name));
 #endif
     }
     propertiesArray.delete_local_ref(env);
@@ -140,7 +131,7 @@ void KtClass::fetch_signals(jni::Env& env) {
         auto* kt_signal_info {new KtSignalInfo(signal_info_array.get(env, i))};
         signal_infos[kt_signal_info->name] = kt_signal_info;
 #ifdef DEV_ENABLED
-        LOG_VERBOSE(vformat("Fetched signal %s for class %s", kt_signal_info->name, resource_path));
+        LOG_VERBOSE(vformat("Fetched signal %s for class %s", kt_signal_info->name, registered_class_name));
 #endif
     }
     signal_info_array.delete_local_ref(env);
@@ -155,7 +146,7 @@ void KtClass::fetch_constructors(jni::Env& env) {
         if (constructor.obj != nullptr) {
             kt_constructor = new KtConstructor(constructor);
 #ifdef DEV_ENABLED
-            LOG_VERBOSE(vformat("Fetched constructor with %s parameters for class %s", i, resource_path));
+            LOG_VERBOSE(vformat("Fetched constructor with %s parameters for class %s", i, registered_class_name));
 #endif
         }
         constructors[i] = kt_constructor;

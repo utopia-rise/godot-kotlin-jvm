@@ -1,15 +1,20 @@
 package godot.annotation.processor.ext
 
+import godot.annotation.processor.Settings
 import godot.entrygenerator.model.RegisteredClassMetadataContainer
 
-internal fun RegisteredClassMetadataContainer.provideRegistrationFileDir(
-    currentCompilationProjectName: String,
-    registrationBaseDirPathRelativeToProjectDir: String
+internal fun RegisteredClassMetadataContainer.provideRegistrationFilePathForInitialGeneration(
+    settings: Settings
 ): String {
-    // keep in sync with ClassRegistry!
-    return if (currentCompilationProjectName == projectName) {
-        "${registrationBaseDirPathRelativeToProjectDir}/${localResPath}"
+    val registrationFileRelativePath = if (settings.isRegistrationFileHierarchyEnabled && fqName.contains(".")) {
+        fqName.substringBeforeLast(".").replace(".", "/")
+    } else ""
+
+    val localResourcePath = "$registrationFileRelativePath/$registeredName".removePrefix("/")
+
+    return if (settings.projectName == projectName) {
+        "${settings.registrationBaseDirPathRelativeToProjectDir}/$localResourcePath"
     } else {
-        "${registrationBaseDirPathRelativeToProjectDir}/dependencies/${projectName}/${localResPath}"
+        "${settings.registrationBaseDirPathRelativeToProjectDir}/dependencies/${projectName}/$localResourcePath"
     }
 }

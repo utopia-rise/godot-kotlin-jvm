@@ -4,7 +4,6 @@ data class RegisteredClassMetadataContainer(
     val registeredName : String,
     val baseType: String,
     val fqName: String,
-    val localResPath: String,
     val projectName: String,
     val superTypes: String,
     val signals: String,

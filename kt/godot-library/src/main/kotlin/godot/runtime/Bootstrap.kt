@@ -129,7 +129,6 @@ internal class Bootstrap {
             val registry = ClassRegistry(
                 projectName = entry.projectName,
                 isDependency = !isMainEntry,
-                baseResourcePath = mainEntry.userScriptResourcePathPrefix
             )
             classRegistries.add(registry)
 

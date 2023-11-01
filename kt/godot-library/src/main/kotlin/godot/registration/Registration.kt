@@ -7,6 +7,13 @@ import godot.core.KtEnumProperty
 import godot.core.KtFunction
 import godot.core.KtFunction0
 import godot.core.KtFunction1
+import godot.core.KtFunction10
+import godot.core.KtFunction11
+import godot.core.KtFunction12
+import godot.core.KtFunction13
+import godot.core.KtFunction14
+import godot.core.KtFunction15
+import godot.core.KtFunction16
 import godot.core.KtFunction2
 import godot.core.KtFunction3
 import godot.core.KtFunction4
@@ -15,13 +22,6 @@ import godot.core.KtFunction6
 import godot.core.KtFunction7
 import godot.core.KtFunction8
 import godot.core.KtFunction9
-import godot.core.KtFunction10
-import godot.core.KtFunction11
-import godot.core.KtFunction12
-import godot.core.KtFunction13
-import godot.core.KtFunction14
-import godot.core.KtFunction15
-import godot.core.KtFunction16
 import godot.core.KtFunctionInfo
 import godot.core.KtObject
 import godot.core.KtProperty
@@ -37,14 +37,6 @@ import godot.tools.common.constants.Constraints
 import godot.util.camelToSnakeCase
 import kotlin.reflect.KClass
 import kotlin.reflect.KFunction1
-import kotlin.reflect.KFunction2
-import kotlin.reflect.KFunction3
-import kotlin.reflect.KFunction4
-import kotlin.reflect.KFunction5
-import kotlin.reflect.KFunction6
-import kotlin.reflect.KFunction7
-import kotlin.reflect.KFunction8
-import kotlin.reflect.KFunction9
 import kotlin.reflect.KFunction10
 import kotlin.reflect.KFunction11
 import kotlin.reflect.KFunction12
@@ -53,6 +45,14 @@ import kotlin.reflect.KFunction14
 import kotlin.reflect.KFunction15
 import kotlin.reflect.KFunction16
 import kotlin.reflect.KFunction17
+import kotlin.reflect.KFunction2
+import kotlin.reflect.KFunction3
+import kotlin.reflect.KFunction4
+import kotlin.reflect.KFunction5
+import kotlin.reflect.KFunction6
+import kotlin.reflect.KFunction7
+import kotlin.reflect.KFunction8
+import kotlin.reflect.KFunction9
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.KProperty
 
@@ -73,8 +73,7 @@ data class KtFunctionArgument(
 
 
 class ClassBuilderDsl<T : KtObject>(
-    @PublishedApi internal val localResourcePath: String,
-    private val registeredName: String,
+    @PublishedApi internal val registeredName: String,
     private val superClasses: List<String>,
     private val baseGodotClass: String
 ) {
@@ -109,7 +108,7 @@ class ClassBuilderDsl<T : KtObject>(
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
         require(!properties.contains(propertyName)) {
-            "Found two properties with name $propertyName for class $localResourcePath"
+            "Found two properties with name $propertyName for class $registeredName"
         }
         properties[propertyName] = KtProperty(
             KtPropertyInfo(
@@ -133,7 +132,7 @@ class ClassBuilderDsl<T : KtObject>(
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
         require(!properties.contains(propertyName)) {
-            "Found two properties with name $propertyName for class $localResourcePath"
+            "Found two properties with name $propertyName for class $registeredName"
         }
 
         properties[propertyName] = KtEnumProperty(
@@ -158,7 +157,7 @@ class ClassBuilderDsl<T : KtObject>(
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
         require(!properties.contains(propertyName)) {
-            "Found two properties with name $propertyName for class $localResourcePath"
+            "Found two properties with name $propertyName for class $registeredName"
         }
 
         properties[propertyName] = KtEnumListProperty(
@@ -203,7 +202,7 @@ class ClassBuilderDsl<T : KtObject>(
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
         require(!properties.contains(propertyName)) {
-            "Found two properties with name $propertyName for class $localResourcePath"
+            "Found two properties with name $propertyName for class $registeredName"
         }
 
         properties[propertyName] = KtEnumProperty(
@@ -1271,7 +1270,6 @@ class ClassBuilderDsl<T : KtObject>(
             constructorArray[it.key] = it.value
         }
         return KtClass(
-            localResourcePath,
             registeredName,
             superClasses,
             constructorArray.toList(),
@@ -1286,30 +1284,21 @@ class ClassBuilderDsl<T : KtObject>(
 class ClassRegistry(
     private val projectName: String,
     private val isDependency: Boolean,
-    private val baseResourcePath: String
 ) {
     private val _classes = mutableListOf<KtClass<*>>()
     val classes: List<KtClass<*>> = _classes
 
     fun <T : KtObject> registerClass(
-        localResourcePath: String,
         superClass: List<String>,
         kClass: KClass<out KtObject>,
         isTool: Boolean = false,
         baseGodotClass: String,
-        registeredName: String = localResourcePath.replace('.', '_'),
+        registeredName: String,
         cb: ClassBuilderDsl<T>.() -> Unit
     ) {
-        // keep in sync with symbol processor!
-        val resourcePath = if (isDependency) {
-            "$baseResourcePath/dependencies/$projectName/$localResourcePath"
-        } else {
-            "$baseResourcePath/$localResourcePath"
-        }
-
-        val builder = ClassBuilderDsl<T>(resourcePath, registeredName, superClass, baseGodotClass)
+        val builder = ClassBuilderDsl<T>(registeredName, superClass, baseGodotClass)
         builder.cb()
-        TypeManager.registerUserType(resourcePath, kClass)
+        TypeManager.registerUserType(registeredName, kClass)
         registerClass(builder.build())
     }
 
