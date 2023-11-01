@@ -121,12 +121,15 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     // We simply delete their kotlin_class if they got one
     for (KeyValue<StringName, Ref<KotlinScript>> keyValue : script_cache) {
         Ref<KotlinScript> ref = keyValue.value;
-        if (ref->kotlin_class) { delete ref->kotlin_class; }
+        if (ref->kotlin_class) {
+#ifdef DEV_ENABLED
+            LOG_VERBOSE(vformat("Kotlin Script created: %s", ref->kotlin_class->registered_class_name));
+#endif
+            delete ref->kotlin_class;
+        }
 
         // We only add them back if they are in use, otherwise we let the Script die.
-        if (!ref->placeholders.is_empty()) {
-            scripts.push_back(ref);
-        }
+        if (!ref->placeholders.is_empty()) { scripts.push_back(ref); }
     }
 
 #else
@@ -139,6 +142,9 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
         ref.instantiate();
         ref->kotlin_class = kotlin_class;
         scripts.push_back(ref);
+#ifdef DEV_ENABLED
+        LOG_VERBOSE(vformat("Kotlin Script created: %s", kotlin_class->registered_class_name));
+#endif
     }
 #endif
 
@@ -156,6 +162,7 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
 }
 
 Ref<KotlinScript> TypeManager::create_placeholder_script(String p_path) {
+    // Placeholder scripts have to be registered in the TypeManager in order to be transformed in valid scripts when the jar is built.
     Ref<KotlinScript> ref;
     ref.instantiate();
     ref->set_path(p_path, true);
