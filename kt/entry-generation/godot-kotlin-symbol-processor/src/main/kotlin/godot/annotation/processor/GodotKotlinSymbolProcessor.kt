@@ -84,7 +84,7 @@ class GodotKotlinSymbolProcessor(
     private fun provideSettingsFromArguments(): Settings {
         return Settings(
             projectName = options["projectName"] ?: throw IllegalStateException("No projectName option provided"),
-            projectBasePath = options["projectBasePath"]?.let { absolutePath -> File(absolutePath) }
+            projectBaseDir = options["projectBasePath"]?.let { absolutePath -> File(absolutePath) }
                 ?: throw IllegalStateException("No projectBasePath option provided"),
             registrationBaseDirPathRelativeToProjectDir = options["registrationFileBaseDir"]
                 ?: throw IllegalStateException("No registrationFileBaseDir option provided"),

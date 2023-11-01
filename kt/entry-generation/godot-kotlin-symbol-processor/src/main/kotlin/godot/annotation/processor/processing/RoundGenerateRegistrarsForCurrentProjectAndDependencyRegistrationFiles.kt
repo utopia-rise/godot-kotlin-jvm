@@ -54,7 +54,7 @@ internal class RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistration
         // generate entry files for this compilation
         EntryGenerator.generateEntryFiles(
             projectName = settings.projectName,
-            projectDir = settings.projectBasePath.absolutePath,
+            projectDir = settings.projectBaseDir.absolutePath,
             // in this first round, the received metadata containers are all from dependencies as the ones from this compilation will only be present in the next processing round
             classRegistrarFromDependencyCount = metadataAnnotationVisitor.registeredClassMetadataContainers.size,
             logger = LoggerWrapper(logger),
