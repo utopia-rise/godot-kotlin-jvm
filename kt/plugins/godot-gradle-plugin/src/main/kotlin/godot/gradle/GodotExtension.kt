@@ -135,7 +135,7 @@ open class GodotExtension(objects: ObjectFactory) {
      *
      * example: ${System.getenv("VC_VARS_PATH")}
      */
-    val windowsDeveloperVCVarsPath: Property<String> = objects.property(String::class.java)
+    val windowsDeveloperVCVarsPath: RegularFileProperty = objects.fileProperty()
 
     /**
      * Additional Graal JNI configurations.
@@ -207,7 +207,7 @@ open class GodotExtension(objects: ObjectFactory) {
         additionalGraalReflectionConfigurationFiles.set(arrayOf())
         additionalGraalResourceConfigurationFiles.set(arrayOf())
         isGraalVmNativeImageGenerationVerbose.set(false)
-        windowsDeveloperVCVarsPath.set("\"%VC_VARS_PATH%\"")
+        windowsDeveloperVCVarsPath.set(File(System.getenv("VC_VARS_PATH")))
 
         isIOSExportEnabled.set(false)
     }
