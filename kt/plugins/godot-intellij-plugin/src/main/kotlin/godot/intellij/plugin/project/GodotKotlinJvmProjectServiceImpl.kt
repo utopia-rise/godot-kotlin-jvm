@@ -13,12 +13,13 @@ import org.jetbrains.kotlin.idea.base.util.isGradleModule
 import org.jetbrains.plugins.gradle.util.GradleUtil
 import java.io.File
 import java.util.*
+import java.util.concurrent.ConcurrentHashMap
 import kotlin.jvm.optionals.getOrNull
 
 class GodotKotlinJvmProjectServiceImpl(val project: Project) : GodotKotlinJvmProjectService, Disposable {
     private val signalConnectionCache: MutableMap<Module, SignalConnectionCache> = mutableMapOf()
     private val registeredClassNameCache: MutableMap<Module, RegisteredClassNameCache> = mutableMapOf()
-    private val godotRootCache: MutableMap<Module, Optional<GodotRoot>> = mutableMapOf()
+    private val godotRootCache: MutableMap<Module, Optional<GodotRoot>> = ConcurrentHashMap<Module, Optional<GodotRoot>>()
 
     private val caches = listOf(
         signalConnectionCache,
