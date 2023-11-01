@@ -68,6 +68,10 @@ class GodotKotlinJvmProjectServiceImpl(val project: Project) : GodotKotlinJvmPro
         }
     }
 
+    private val dirsToIgnore = listOf(
+        "build",
+        "gradle"
+    )
     override fun provideGodotRoot(module: Module): GodotRoot? {
         val godotRootOptions = godotRootCache[module] ?: run {
             val cache = Optional.ofNullable(
@@ -76,6 +80,7 @@ class GodotKotlinJvmProjectServiceImpl(val project: Project) : GodotKotlinJvmPro
                     GradleUtil.findGradleModuleData(module)?.data?.let { moduleData ->
                         File(moduleData.linkedExternalProjectPath)
                             .walkTopDown()
+                            .onEnter { dir -> !dir.name.startsWith(".") && !dirsToIgnore.contains(dir.name) }
                             .firstOrNull { file -> file.name == "project.godot" }
                             ?.parentFile
                             ?.let { godotRootDir -> GodotRoot(godotRootDir = godotRootDir) }
