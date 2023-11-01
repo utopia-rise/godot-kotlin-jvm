@@ -23,7 +23,7 @@ internal class RoundUpdateRegistrationFiles(
 ) : BaseRound() {
     override fun executeInternal(): List<KSAnnotated> {
         if (settings.isRegistrationFileGenerationEnabled) {
-            val kspRegistrationFilesBaseDir = settings.projectBaseDir.resolve("build/generated/ksp/main/resources/entryFiles")
+            val kspRegistrationFilesBaseDir = settings.projectBaseDir.resolve("build/generated/ksp/main/resources/entryFiles").resolve(settings.registrationBaseDirPathRelativeToProjectDir)
             val initialRegistrationFilesOutDir = settings.projectBaseDir.resolve(settings.registrationBaseDirPathRelativeToProjectDir)
 
             updateRegistrationFiles(
@@ -106,9 +106,9 @@ internal class RoundUpdateRegistrationFiles(
         }
 
         // copy new registration files
-        newRegistrationFiles.forEach { (registrationFileName, registrationFile) ->
+        newRegistrationFiles.forEach { (_, registrationFile) ->
             val relativePath = registrationFile.toRelativeString(kspRegistrationFilesBaseDir)
-            val targetFile = initialRegistrationFilesOutDir.resolve(relativePath).resolve(registrationFileName)
+            val targetFile = initialRegistrationFilesOutDir.resolve(relativePath)
             registrationFile.copyTo(targetFile, overwrite = true)
         }
     }
