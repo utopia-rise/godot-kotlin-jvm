@@ -6,6 +6,10 @@
 #include "kotlin_language.h"
 #include "logging.h"
 
+String KotlinScript::get_script_file_name(const String& path) {
+    return path.get_file().trim_suffix(path.get_extension()).trim_suffix(".");
+}
+
 bool KotlinScript::can_instantiate() const {
 #ifdef TOOLS_ENABLED
     if (Engine::get_singleton()->is_editor_hint()) {
@@ -40,7 +44,8 @@ StringName KotlinScript::get_global_name() const {
     if (is_valid()) { return kotlin_class->registered_class_name; }
     // Scripts are either (valid and loaded from .jar) or (placeholders and loaded from .gdj)
     // Even in the case of an invalid file, we can then use its path to find the right name.
-    return get_path().get_file().trim_suffix(get_path().get_extension()).trim_suffix(".");
+    String path = get_path();
+    return get_script_file_name(path);
 }
 
 StringName KotlinScript::get_instance_base_type() const {
@@ -62,7 +67,10 @@ ScriptInstance* KotlinScript::_instance_create(const Variant** p_args, int p_arg
     }
 
 #ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(!is_valid(), vformat("An invalid script was attempted to be used. Make sure you have properly built your project."));
+    JVM_CRASH_COND_MSG(
+      !is_valid(),
+      vformat("Invalid script %s was attempted to be used. Make sure you have properly built your project.", get_path())
+    );
     LOG_VERBOSE(vformat("Try to create %s instance.", kotlin_class->resource_path));
 #endif
 
@@ -161,7 +169,10 @@ Variant KotlinScript::_new(const Variant** p_args, int p_argcount, Callable::Cal
     r_error.error = Callable::CallError::CALL_OK;
 
 #ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(!is_valid(), vformat("An invalid script was attempted to be used. Make sure you have properly built your project."));
+    JVM_CRASH_COND_MSG(
+      !is_valid(),
+      vformat("Invalid script %s was attempted to be used. Make sure you have properly built your project.", get_path())
+    );
 #endif
     Object* owner {ClassDB::instantiate(kotlin_class->base_godot_class)};
 
@@ -209,8 +220,8 @@ PlaceHolderScriptInstance* KotlinScript::placeholder_instance_create(Object* p_t
 }
 
 void KotlinScript::update_exports() {
-    //TODO: Remove this when multithreading is fixed.
-    if(!Thread::is_main_thread()){
+    // TODO: Remove this when multithreading is fixed.
+    if (!Thread::is_main_thread()) {
         MessageQueue::get_singleton()->push_callable(callable_mp(this, &KotlinScript::update_exports));
         return;
     }

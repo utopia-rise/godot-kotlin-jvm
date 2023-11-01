@@ -20,6 +20,9 @@ private:
     ScriptInstance* _instance_create(const Variant** p_args, int p_argcount, Object* p_this);
 
 public:
+
+    _FORCE_INLINE_ static String get_script_file_name(const String& path);
+
     KotlinScript();
 
     ~KotlinScript() override;

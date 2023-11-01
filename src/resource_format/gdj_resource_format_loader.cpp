@@ -28,7 +28,7 @@ Error kt_read_all_file_utf8(const String& p_path, String& r_content) {
 
 Ref<Resource> GdjResourceFormatLoader::load(const String& p_path, const String& p_original_path, Error* r_error, bool p_use_sub_threads, float* r_progress, CacheMode p_cache_mode) {
     // We don't import Kotlin scripts so p_path == p_original_path
-    String script_name = p_path.get_file().trim_suffix(p_path.get_extension()).trim_suffix(".");
+    String script_name = KotlinScript::get_script_file_name(p_path);
     Ref<KotlinScript> ref = TypeManager::get_instance().get_user_script_from_name(script_name);
     if (ref.is_null()) {
 #ifdef TOOLS_ENABLED

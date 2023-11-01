@@ -363,7 +363,7 @@ bool KotlinLanguage::handles_global_class_type(const String& p_type) const {
 String KotlinLanguage::get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path) const {
     if (p_path.begins_with(GODOT_ENTRY_PATH)) { return String(); }
 
-    String script_name = p_path.get_file().trim_suffix(p_path.get_extension()).trim_suffix(".");
+    String script_name = KotlinScript::get_script_file_name(p_path);
     Ref<KotlinScript> script = TypeManager::get_instance().get_user_script_from_name(script_name);
     if (!script.is_null() && script.is_valid()) {
         if (r_base_type) {
