@@ -166,12 +166,22 @@ open class GodotExtension(objects: ObjectFactory) {
     val isGraalVmNativeImageGenerationVerbose: Property<Boolean> = objects.property(Boolean::class.java)
 
     internal fun configureExtensionDefaults(target: Project) {
-        val buildToolsDir = System.getenv("ANDROID_SDK_ROOT")?.let { androidSdkRoot ->
-            File("$androidSdkRoot/build-tools/")
+        val androidSdkRoot = System.getenv("ANDROID_SDK_ROOT")?.let { androidSdkRoot ->
+            File(androidSdkRoot)
         }
-        val platformsDir = System.getenv("ANDROID_SDK_ROOT")?.let { androidSdkRoot ->
-            File("$androidSdkRoot/platforms/")
+
+        val buildToolsDir = androidSdkRoot?.resolve("build-tools")?.let { buildToolsDir ->
+            if (buildToolsDir.exists() && buildToolsDir.isDirectory) {
+                buildToolsDir
+            } else null
         }
+
+        val platformsDir = androidSdkRoot?.resolve("platforms")?.let { platformsFolder ->
+            if (platformsFolder.exists() && platformsFolder.isDirectory) {
+                platformsFolder
+            } else null
+        }
+
         val d8Tool = buildToolsDir
             ?.listFiles()
             ?.last { it.isDirectory }
