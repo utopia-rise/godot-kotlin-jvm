@@ -1,5 +1,6 @@
 #include "kotlin_script.h"
 
+#include "core/os/thread.h"
 #include "gd_kotlin.h"
 #include "kotlin_instance.h"
 #include "kotlin_language.h"
@@ -15,10 +16,6 @@ bool KotlinScript::can_instantiate() const {
 #else
     return true;
 #endif
-}
-
-KtClass* KotlinScript::get_kotlin_class() const {
-    return kotlin_class;
 }
 
 bool KotlinScript::inherits_script(const Ref<Script>& p_script) const {
@@ -212,6 +209,12 @@ PlaceHolderScriptInstance* KotlinScript::placeholder_instance_create(Object* p_t
 }
 
 void KotlinScript::update_exports() {
+    //TODO: Remove this when multithreading is fixed.
+    if(!Thread::is_main_thread()){
+        MessageQueue::get_singleton()->push_callable(callable_mp(this, &KotlinScript::update_exports));
+        return;
+    }
+
     exported_members_default_value_cache.clear();
     if (!is_valid()) { return; }
 

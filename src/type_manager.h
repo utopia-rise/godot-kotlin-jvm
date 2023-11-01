@@ -24,10 +24,9 @@ public:
     void create_and_update_scripts(Vector<KtClass*>& classes);
     Ref<KotlinScript> create_placeholder_script(String p_path);
 
-    TypeManager(const TypeManager&) = delete;
-
     static TypeManager& get_instance();
 
+    TypeManager(const TypeManager&) = delete;
     TypeManager& operator=(const TypeManager&) = delete;
 
 private:
@@ -38,6 +37,10 @@ private:
 
     Vector<Ref<KotlinScript>> user_scripts;
     HashMap<StringName, Ref<KotlinScript>> user_scripts_map;
+
+#ifdef TOOLS_ENABLED
+    bool is_init = false;
+#endif
 
     TypeManager() = default;
     ~TypeManager() = default;

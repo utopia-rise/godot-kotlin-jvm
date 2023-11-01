@@ -24,8 +24,6 @@ public:
 
     ~KotlinScript() override;
 
-    KtClass* get_kotlin_class() const;
-
     Variant _new(const Variant** p_args, int p_argcount, Callable::CallError& r_error);
 
     bool can_instantiate() const override;

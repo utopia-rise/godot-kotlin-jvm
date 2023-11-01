@@ -85,10 +85,6 @@ void TypeManager::register_methods(jni::Env& p_env, jni::JObjectArray& method_na
 }
 
 void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
-#ifdef DEBUG_ENABLED
-    JVM_ERR_FAIL_COND_MSG(user_scripts.size() != 0, "Kotlin scripts are being initialized more than once.");
-#endif
-
     LocalVector<Ref<KotlinScript>> scripts;
 
 #ifdef TOOLS_ENABLED
@@ -105,11 +101,16 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
         if (!ref.is_null()) {
             delete ref->kotlin_class;
             ref->kotlin_class = kotlin_class;
+#ifdef DEV_ENABLED
+            LOG_VERBOSE(vformat("Kotlin Script updated: %s", kotlin_class->registered_class_name));
+#endif
         } else {
             // Script doesn't exist so we create it.
             ref.instantiate();
             ref->kotlin_class = kotlin_class;
-            ref->set_path(kotlin_class->resource_path, true);
+#ifdef DEV_ENABLED
+            LOG_VERBOSE(vformat("Kotlin Script created: %s", kotlin_class->registered_class_name));
+#endif
         }
 
         scripts.push_back(ref);
@@ -123,15 +124,20 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
         if (ref->kotlin_class) { delete ref->kotlin_class; }
 
         // We only add them back if they are in use, otherwise we let the Script die.
-        if (!ref->placeholders.is_empty()) { scripts.push_back(ref); }
+        if (!ref->placeholders.is_empty()) {
+            scripts.push_back(ref);
+        }
     }
 
 #else
+#ifdef DEBUG_ENABLED
+    JVM_ERR_FAIL_COND_MSG(user_scripts.size() != 0, "Kotlin scripts are being initialized more than once.");
+#endif
+
     for (KtClass* kotlin_class : classes) {
         Ref<KotlinScript> ref;
         ref.instantiate();
         ref->kotlin_class = kotlin_class;
-        ref->set_path(kotlin_class->resource_path, true);
         scripts.push_back(ref);
     }
 #endif
@@ -141,11 +147,18 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
         user_scripts_map[script->get_global_name()] = script;
     }
 
-    // update_exports also update script default values, which require creating an instance of the script.
-    // Because scripts can depend on each other, we only call that method after everything has been added in the previous loop.
-    for (Ref<KotlinScript> script : user_scripts) {
-        //script->update_exports();
+#ifdef TOOLS_ENABLED
+    if (!is_init) {
+        is_init = true;
+        return;
     }
+    // The editor is not fully ready yet, so we can't call update_export the first time.
+    // update_export is called once anyway when loaded by ResourceLoader.
+    // We only need to refresh after the initial initialization.
+    for (Ref<KotlinScript> script : user_scripts) {
+        script->update_exports();
+    }
+#endif
 }
 
 Ref<KotlinScript> TypeManager::create_placeholder_script(String p_path) {
