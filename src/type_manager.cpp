@@ -148,15 +148,9 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     }
 
 #ifdef TOOLS_ENABLED
-    if (!is_init) {
-        is_init = true;
-        return;
-    }
-    // The editor is not fully ready yet, so we can't call update_export the first time.
-    // update_export is called once anyway when loaded by ResourceLoader.
-    // We only need to refresh after the initial initialization.
     for (Ref<KotlinScript> script : user_scripts) {
-        script->update_exports();
+        // We have to delay the update_export. The engine is not fully initialized and scripts can cause undefined behaviors.
+        MessageQueue::get_singleton()->push_callable(callable_mp(script.ptr(), &KotlinScript::update_exports));
     }
 #endif
 }

@@ -38,10 +38,6 @@ private:
     Vector<Ref<KotlinScript>> user_scripts;
     HashMap<StringName, Ref<KotlinScript>> user_scripts_map;
 
-#ifdef TOOLS_ENABLED
-    bool is_init = false;
-#endif
-
     TypeManager() = default;
     ~TypeManager() = default;
 };

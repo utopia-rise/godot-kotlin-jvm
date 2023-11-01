@@ -27,7 +27,7 @@ static EditorPlugin* godot_kotlin_jvm_editor_plugin_creator_func() {
 #endif
 
 void initialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
-    if (p_level == MODULE_INITIALIZATION_LEVEL_SERVERS) {
+    if (p_level == MODULE_INITIALIZATION_LEVEL_SCENE) {
         GDREGISTER_CLASS(KotlinScript);
         ScriptServer::register_language(KotlinLanguage::get_instance());
         resource_format_loader.instantiate();

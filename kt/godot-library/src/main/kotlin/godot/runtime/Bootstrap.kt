@@ -37,6 +37,7 @@ internal class Bootstrap {
             val libsDir = Paths.get(jarRootDir)
             val mainJarPath = libsDir.resolve(jarFile)
 
+
             if (File(mainJarPath.toString()).exists()) {
                 doInit(mainJarPath.toUri().toURL(), loader)
             } else {
@@ -70,8 +71,11 @@ internal class Bootstrap {
                             return@scheduleAtFixedRate
                         }
                         info("Changes detected, reloading classes ...")
-                        clearClassesCache()
-                        serviceLoader.reload()
+
+                        if(::serviceLoader.isInitialized){
+                            clearClassesCache()
+                            serviceLoader.reload()
+                        }
 
                         if (File(mainJarPath.toString()).exists()) {
                             doInit(mainJarPath.toUri().toURL(), null) //no classloader so new main jar get's loaded
@@ -89,13 +93,6 @@ internal class Bootstrap {
         watchService?.close()
         clearClassesCache()
         serviceLoader.reload()
-    }
-
-    /**
-     * This must be called when this class is called in editor mode, i.e the game is not running.
-     */
-    fun bindClassLoader() {
-        Thread.currentThread().contextClassLoader = classloader
     }
 
     private fun doInit(mainJar: URL, classLoader: ClassLoader?) {
