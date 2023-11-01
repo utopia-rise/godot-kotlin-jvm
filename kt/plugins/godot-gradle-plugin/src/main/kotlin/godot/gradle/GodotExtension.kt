@@ -207,7 +207,10 @@ open class GodotExtension(objects: ObjectFactory) {
         additionalGraalReflectionConfigurationFiles.set(arrayOf())
         additionalGraalResourceConfigurationFiles.set(arrayOf())
         isGraalVmNativeImageGenerationVerbose.set(false)
-        windowsDeveloperVCVarsPath.set(File(System.getenv("VC_VARS_PATH")))
+
+        System.getenv("VC_VARS_PATH")?.let {
+            windowsDeveloperVCVarsPath.set(File(it))
+        }
 
         isIOSExportEnabled.set(false)
     }
