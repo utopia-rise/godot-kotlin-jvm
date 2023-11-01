@@ -37,7 +37,7 @@ Ref<Resource> GdjResourceFormatLoader::load(const String& p_path, const String& 
         ref = TypeManager::get_instance().create_placeholder_script(p_path);
 #elif DEBUG_ENABLED
         // All scripts are supposed to be already in cache when not in the editor.
-        if (r_error) { *r_error = Error::ERR_UNAUTHORIZED; }
+        if (r_error) { *r_error = Error::ERR_SCRIPT_FAILED; }
         return Ref<KotlinScript>();
 #endif
     }
