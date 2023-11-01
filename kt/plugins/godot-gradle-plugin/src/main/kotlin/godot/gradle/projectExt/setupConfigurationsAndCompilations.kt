@@ -18,7 +18,7 @@ fun Project.setupConfigurationsAndCompilations() {
     //add our dependencies to the main compilation -> convenience for the user
     kotlinJvmExtension.target.compilations.getByName("main").apply {
         dependencies {
-            compileOnly("com.utopia-rise:$godotLibraryArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
+            implementation("com.utopia-rise:$godotLibraryArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
             compileOnly("com.utopia-rise:godot-kotlin-symbol-processor:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
         }
         dependencies.add(
