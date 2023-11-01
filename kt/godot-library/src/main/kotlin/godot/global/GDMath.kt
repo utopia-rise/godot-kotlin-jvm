@@ -1,17 +1,18 @@
 @file:JvmName("GDMathUtils")
+
 package godot.global
 
 import godot.core.Color
 import godot.core.Vector2
 import godot.core.Vector3
+import godot.util.DB2NEPER
+import godot.util.NEPER2DB
+import godot.util.TAU
+import godot.util.fposmod
+import godot.util.isEqualApprox
+import godot.util.isZeroApprox
 import godot.util.toRealT
 import kotlin.math.pow
-
-private const val NEPER2DB = 8.6858896380650365530225783783321
-private const val DB2NEPER = 1 / NEPER2DB
-
-const val PI = kotlin.math.PI
-const val TAU = 2 * PI
 
 //Necessary for stepDecimal function
 const val MAX_N = 10
@@ -118,23 +119,17 @@ internal interface GDMath {
 
 
     /** Converts from decibels to linear energy (audio). */
-    fun db2linear(db: Float) = kotlin.math.exp(db * DB2NEPER)
+    fun dbToLinear(db: Float) = kotlin.math.exp(db * DB2NEPER)
 
     /** Converts from decibels to linear energy (audio). */
-    fun db2linear(db: Double) = kotlin.math.exp(db * DB2NEPER)
+    fun dbToLinear(db: Double) = kotlin.math.exp(db * DB2NEPER)
 
-
-    /** Returns the result of value decreased by step * amount. */
-    fun dectime(value: Float, amount: Float, step: Float) = value - step * amount
-
-    /** Returns the result of value decreased by step * amount. */
-    fun dectime(value: Double, amount: Double, step: Double) = value - step * amount
 
     /** Returns degrees converted to radians. */
-    fun deg2rad(s: Float) = s * TAU / 360
+    fun degToRad(s: Float) = s * TAU / 360
 
     /** Returns degrees converted to radians. */
-    fun deg2rad(s: Double) = s * TAU / 360
+    fun degToRad(s: Double) = s * TAU / 360
 
     /** Easing function, based on exponent. 0 is constant, 1 is linear, 0 to 1 is ease-in, 1+ is ease out.
      * Negative values are in-out/out in.
@@ -162,6 +157,7 @@ internal interface GDMath {
                     s.pow(curve)
                 }
             }
+
             curve < 0.0 -> {
                 if (value < 0.5) {
                     val a = s * 2.0
@@ -171,6 +167,7 @@ internal interface GDMath {
                     (1.0 - a.pow(-curve)) * 0.5 + 0.5
                 }
             }
+
             else -> 0.0
         }
     }
@@ -189,6 +186,12 @@ internal interface GDMath {
     /** Rounds s to the closest smaller integer and returns it. */
     fun floor(s: Double) = kotlin.math.floor(s)
 
+    /** Rounds s to the closest smaller integer and returns it. */
+    fun floori(s: Float) = kotlin.math.floor(s).toInt()
+
+    /** Rounds s to the closest smaller integer and returns it. */
+    fun floori(s: Double) = kotlin.math.floor(s).toInt()
+
 
     /** Returns the floating-point remainder of a/b, keeping the sign of a. */
     fun fmod(a: Float, b: Float) = a.rem(b)
@@ -199,22 +202,13 @@ internal interface GDMath {
 
     /** Returns the floating-point modulus of a/b that wraps equally in positive and negative. */
     fun fposmod(a: Float, b: Float): Float {
-        val value = a.rem(b)
-        if ((value < 0 && b > 0) || (value > 0 && b < 0)) {
-            return value + b;
-        }
-        return value
+        return a.toRealT().fposmod(b.toRealT()).toFloat()
     }
 
     /** Returns the floating-point modulus of a/b that wraps equally in positive and negative. */
     fun fposmod(a: Double, b: Double): Double {
-        val value = a.rem(b)
-        if ((value < 0 && b > 0) || (value > 0 && b < 0)) {
-            return value + b;
-        }
-        return value
+        return a.toRealT().fposmod(b.toRealT()).toDouble()
     }
-
 
     /** Returns a normalized value considering the given range. This is the opposite of lerp. */
     fun inverseLerp(from: Float, to: Float, weight: Float) = (weight - from) / (to - from)
@@ -222,12 +216,19 @@ internal interface GDMath {
     /** Returns a normalized value considering the given range. This is the opposite of lerp. */
     fun inverseLerp(from: Double, to: Double, weight: Double) = (weight - from) / (to - from)
 
-    /** Returns true if a and b are approximately equal to each other. */
-    fun isEqualApprox(a: Float, b: Float) = godot.util.isEqualApprox(a.toRealT(), b.toRealT())
 
     /** Returns true if a and b are approximately equal to each other. */
-    fun isEqualApprox(a: Double, b: Double) = godot.util.isEqualApprox(a.toRealT(), b.toRealT())
+    fun isEqualApprox(a: Float, b: Float) = a.toRealT().isEqualApprox(b.toRealT())
 
+    /** Returns true if a and b are approximately equal to each other. */
+    fun isEqualApprox(a: Double, b: Double) = a.toRealT().isEqualApprox(b.toRealT())
+
+
+    /** Returns whether x is a finite value, i.e. it is not NAN, positive infinity, or negative infinity. */
+    fun isFinite(s: Float) = s.isFinite()
+
+    /** Returns whether s is an infinity value (either positive infinity or negative infinity). */
+    fun isFinite(s: Double) = s.isFinite()
 
     /** Returns whether s is an infinity value (either positive infinity or negative infinity). */
     fun isInf(s: Float) = s.isInfinite()
@@ -235,19 +236,22 @@ internal interface GDMath {
     /** Returns whether s is an infinity value (either positive infinity or negative infinity). */
     fun isInf(s: Double) = s.isInfinite()
 
+    /** Returns whether s is an infinity value (either positive infinity or negative infinity). */
+    fun isNan(s: Float) = s.isNaN()
 
     /** Returns whether s is an infinity value (either positive infinity or negative infinity). */
-    fun isNan(s: Float) = s.isInfinite()
+    fun isNan(s: Double) = s.isNaN()
 
-    /** Returns whether s is an infinity value (either positive infinity or negative infinity). */
-    fun isNan(s: Double) = s.isInfinite()
+
+    /** Returns true, for value types, if a and b share the same value. Returns true, for reference types, if the references of a and b are the same. */
+    fun isSame(a: Any, b: Any) = a == b
 
 
     /** Returns true if s is zero or almost zero. */
-    fun isZeroApprox(s: Float) = isEqualApprox(s, 0f)
+    fun isZeroApprox(s: Float) = s.toRealT().isZeroApprox()
 
     /** Returns true if s is zero or almost zero. */
-    fun isZeroApprox(s: Double) = isEqualApprox(s, 0.0)
+    fun isZeroApprox(s: Double) = s.toRealT().isZeroApprox()
 
     /** Linearly interpolates between two values by a normalized value. This is the opposite of inverse_lerp. */
     fun lerp(from: Int, to: Int, weight: Float) = from + weight * (to - from)
@@ -296,11 +300,11 @@ internal interface GDMath {
 
     /** Converts from linear energy to decibels (audio).
      * This can be used to implement volume sliders that behave as expected (since volume isn't linear) */
-    fun linear2db(nrg: Float) = kotlin.math.ln(nrg) * NEPER2DB
+    fun linearToDb(nrg: Float) = kotlin.math.ln(nrg) * NEPER2DB
 
     /** Converts from linear energy to decibels (audio).
      * This can be used to implement volume sliders that behave as expected (since volume isn't linear) */
-    fun linear2db(nrg: Double) = kotlin.math.ln(nrg) * NEPER2DB
+    fun linearToDb(nrg: Double) = kotlin.math.ln(nrg) * NEPER2DB
 
 
     /** Natural logarithm. The amount of time needed to reach a certain level of continuous growth.
@@ -411,10 +415,10 @@ internal interface GDMath {
 
 
     /** Converts from radians to degrees. */
-    fun rad2deg(rad: Float) = rad2deg(rad.toDouble()).toFloat()
+    fun radToDeg(rad: Float) = radToDeg(rad.toDouble()).toFloat()
 
     /** Converts from radians to degrees. */
-    fun rad2deg(rad: Double) = rad * 360 / TAU
+    fun radToDeg(rad: Double) = rad * 360 / TAU
 
 
     /** Maps a value from range [istart, istop] to [ostart, ostop]. */
@@ -463,12 +467,13 @@ internal interface GDMath {
      * Similar to lerp, but interpolates faster at the beginning and slower at the end.
      */
     fun smoothstep(from: Double, to: Double, weight: Double): Double {
-        if (isEqualApprox(from, to)) {
+        if (from.isEqualApprox(to)) {
             return from
         }
         val x: Double = clamp((weight - from) / (to - from), 0.0, 1.0)
         return x * x * (3.0 - 2.0 * x)
     }
+
 
     /** Returns the square root of s. */
     fun sqrt(s: Float) = kotlin.math.sqrt(s)

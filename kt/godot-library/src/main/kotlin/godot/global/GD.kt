@@ -48,8 +48,6 @@ object GD : GDMath, GDCore, GDRandom, GDPrint {
         return when (what) {
             is String -> len(what)
             is NodePath -> len(what)
-            is Dictionary<*, *> -> len(what)
-            is VariantArray<*> -> len(what)
             is PackedByteArray -> len(what)
             is PackedInt32Array -> len(what)
             is PackedFloat64Array -> len(what)
@@ -66,7 +64,7 @@ object GD : GDMath, GDCore, GDRandom, GDPrint {
      * The resource is loaded on the method call (unless it's referenced already elsewhere, e.g. in another script or in the scene), which might cause slight delay, especially when loading scenes.
      * Important: The path must be absolute, a local path will just return null.
      * */
-    @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
+    @Suppress("NOTHING_TO_INLINE")
     @JvmStatic
     @JvmOverloads
     inline fun <T : Resource> load(
