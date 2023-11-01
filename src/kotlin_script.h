@@ -20,9 +20,6 @@ private:
     ScriptInstance* _instance_create(const Variant** p_args, int p_argcount, Object* p_this);
 
 public:
-
-    _FORCE_INLINE_ static String get_script_file_name(const String& path);
-
     KotlinScript();
 
     ~KotlinScript() override;
@@ -79,8 +76,11 @@ public:
 
     const Variant get_rpc_config() const override;
 
-#ifdef TOOLS_ENABLED
+    _FORCE_INLINE_ static String get_script_file_name(const String& path) {
+        return path.get_file().trim_suffix(path.get_extension()).trim_suffix(".");
+    }
 
+#ifdef TOOLS_ENABLED
     // This concerns placeholders script instances only
 
 private:

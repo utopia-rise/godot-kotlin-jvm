@@ -6,10 +6,6 @@
 #include "kotlin_language.h"
 #include "logging.h"
 
-String KotlinScript::get_script_file_name(const String& path) {
-    return path.get_file().trim_suffix(path.get_extension()).trim_suffix(".");
-}
-
 bool KotlinScript::can_instantiate() const {
 #ifdef TOOLS_ENABLED
     if (Engine::get_singleton()->is_editor_hint()) {
