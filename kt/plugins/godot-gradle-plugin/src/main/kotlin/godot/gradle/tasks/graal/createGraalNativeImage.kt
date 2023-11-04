@@ -78,7 +78,7 @@ fun Project.createGraalNativeImageTask(
 
                         "(",
 
-                        godotJvmExtension.windowsDeveloperVCVarsPath.get(),
+                        godotJvmExtension.windowsDeveloperVCVarsPath.get().asFile.absolutePath,
 
                         "&&",
 
