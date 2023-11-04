@@ -3,25 +3,17 @@ package godot.intellij.plugin.annotator.copy
 import com.intellij.codeInspection.ProblemHighlightType
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
-import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
-import com.intellij.psi.PsiField
-import com.intellij.psi.PsiMethod
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.model.CORE_TYPE_LOCAL_COPY_ANNOTATION
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
-import org.jetbrains.kotlin.asJava.toLightElements
 import org.jetbrains.kotlin.idea.caches.resolve.analyze
 import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.idea.references.resolveToDescriptors
-
 import org.jetbrains.kotlin.lexer.KtSingleValueToken
-
 import org.jetbrains.kotlin.psi.KtBinaryExpression
-import org.jetbrains.kotlin.psi.KtBlockExpression
 import org.jetbrains.kotlin.psi.KtDotQualifiedExpression
-import org.jetbrains.kotlin.psi.KtElement
 import org.jetbrains.kotlin.resolve.lazy.BodyResolveMode
 
 class CopyModificationAnnotator : Annotator {
@@ -55,10 +47,9 @@ class CopyModificationAnnotator : Annotator {
         }
 
         if (isCoreTypeCopyAssignment) {
-            val relevantParent = getRelevantParent(element)
             holder.registerProblem(
                 GodotPluginBundle.message("problem.general.modificationOfCoreTypeCopy"),
-                relevantParent ?: element,
+                element,
                 problemHighlightType = ProblemHighlightType.WEAK_WARNING
             )
         }
@@ -145,45 +136,6 @@ class CopyModificationAnnotator : Annotator {
 
             // in most cases at this point we are at the end of the dot call chain
             else -> false
-        }
-    }
-
-
-    /**
-     * Returns the topmost relevant parent or null if no suitable relevant parent was found.
-     *
-     * The following elements are considered relevant:
-     * - Class
-     * - Property
-     * - Field
-     * - Method
-     * - MethodBody
-     *
-     * This is primarily needed to provide an anchor for annotation holder in expressions where the same problem might
-     * arise multiple times.
-     *
-     * For example local copy modifications of core types in dot call chains: `transform.basis.x` here without the
-     * common parent, the error would be displayed twice for this single line of code. Once for the element `transform`
-     * and once for the element `basis`. But with this function, we use the topmost relevant parent which is the whole
-     * line. And thus even as we add the error twice, we add it twice for the same psi element and thus it is only
-     * displayed once.
-     */
-    private tailrec fun getRelevantParent(element: PsiElement, depth: Int = 0, maxDepth: Int = 50): PsiElement? {
-        val parent = element.parent
-
-        val localElement = if (parent is KtElement) {
-            parent.toLightElements().firstOrNull() ?: parent
-        } else {
-            parent
-        }
-        return when (localElement) {
-            is KtBlockExpression -> element
-            is PsiClass -> element
-            is PsiMethod -> element
-            is PsiField -> element
-            else -> if (depth < maxDepth) {
-                getRelevantParent(localElement, depth + 1)
-            } else null
         }
     }
 }
