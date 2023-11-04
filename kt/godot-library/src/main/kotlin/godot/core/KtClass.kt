@@ -4,6 +4,7 @@ package godot.core
 data class KtClass<T : KtObject>(
     val registeredName: String,
     val relativeSourcePath: String,
+    val compilationTimeRelativeRegistrationFilePath: String,
     private val _registeredSupertypes: List<String>,
     private val _constructors: List<KtConstructor<T>?>,
     private val _properties: Map<String, KtProperty<T, *>>,

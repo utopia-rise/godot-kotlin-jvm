@@ -28,7 +28,8 @@ internal class RoundUpdateRegistrationFiles(
 
             updateRegistrationFiles(
                 kspRegistrationFilesBaseDir = kspRegistrationFilesBaseDir,
-                initialRegistrationFilesOutDir = initialRegistrationFilesOutDir
+                initialRegistrationFilesOutDir = initialRegistrationFilesOutDir,
+                existingRegistrationFilesMap = blackboard.existingRegistrationFilesMap,
             )
         }
 
@@ -38,27 +39,8 @@ internal class RoundUpdateRegistrationFiles(
     private fun updateRegistrationFiles(
         kspRegistrationFilesBaseDir: File,
         initialRegistrationFilesOutDir: File,
+        existingRegistrationFilesMap: Map<String, File>
     ) {
-        val excludedDirs = listOf(
-            "build", // needs to be excluded so the registration files generated from ksp are not counted as existing registration files
-        )
-
-        // get existing registration files
-        val existingRegistrationFilesMap = settings
-            .projectBaseDir
-            .walkTopDown()
-            .onEnter { directory ->
-                // do not enter excluded directories or hidden directories
-                !excludedDirs.contains(directory.toRelativeString(settings.projectBaseDir))
-                    && !directory.name.startsWith(".")
-            }
-            .filter { file ->
-                file.extension == FileExtensions.GodotKotlinJvm.registrationFile
-            }
-            .associateBy { file ->
-                file.name
-            }
-
         val kspRegistrationFiles = kspRegistrationFilesBaseDir
             .walkTopDown()
             .filter { file ->

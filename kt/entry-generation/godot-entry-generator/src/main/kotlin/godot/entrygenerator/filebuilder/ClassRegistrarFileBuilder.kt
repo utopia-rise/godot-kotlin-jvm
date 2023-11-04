@@ -22,6 +22,7 @@ import java.io.BufferedWriter
 class ClassRegistrarFileBuilder(
     projectName: String,
     private val registeredClass: RegisteredClass,
+    private val compilationTimeRelativeRegistrationFilePath: String,
     private val registrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
 ) {
     private val classRegistrarBuilder = TypeSpec
@@ -36,6 +37,7 @@ class ClassRegistrarFileBuilder(
                         .addMember("\"${registeredClass.godotBaseClass}\"")
                         .addMember("\"${registeredClass.fqName}\"")
                         .addMember("\"${registeredClass.relativeSourcePath}\"")
+                        .addMember("\"${compilationTimeRelativeRegistrationFilePath}\"")
                         .addMember("\"$projectName\"")
                         .addMember("\"${registeredClass.supertypes.joinToString(",") { it.fqName }}\"")
                         .addMember("\"${registeredClass.signals.joinToString(",") { it.fqName }}\"")
@@ -70,12 +72,13 @@ class ClassRegistrarFileBuilder(
                     value
                 }.reduceOrNull { statement, name -> "$statement,$name" } ?: ""
                 funSpecBuilder.beginControlFlow(
-                    "registerClass<%T>(listOf($superClasses),·%T::class,·${registeredClass.isTool},·%S,·%S,·%S)·{",
+                    "registerClass<%T>(listOf($superClasses),·%T::class,·${registeredClass.isTool},·%S,·%S,·%S,·%S)·{",
                     className,
                     className,
                     registeredClass.godotBaseClass,
                     registeredClass.registeredName,
                     registeredClass.relativeSourcePath,
+                    compilationTimeRelativeRegistrationFilePath,
                 ) //START: registerClass
             } else {
                 funSpecBuilder

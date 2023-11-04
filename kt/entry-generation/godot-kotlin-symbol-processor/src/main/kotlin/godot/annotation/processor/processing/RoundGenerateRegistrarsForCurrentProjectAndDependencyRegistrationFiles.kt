@@ -6,7 +6,7 @@ import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.symbol.KSAnnotated
 import godot.annotation.processor.Settings
-import godot.annotation.processor.ext.provideRegistrationFilePathForInitialGeneration
+import godot.annotation.processor.ext.provideRegistrationFilePathForInitialGenerationWithoutExtension
 import godot.annotation.processor.utils.JvmTypeProvider
 import godot.annotation.processor.utils.LoggerWrapper
 import godot.annotation.processor.visitor.MetadataAnnotationVisitor
@@ -14,6 +14,7 @@ import godot.annotation.processor.visitor.RegistrationAnnotationVisitor
 import godot.entrygenerator.EntryGenerator
 import godot.tools.common.constants.FileExtensions
 import godot.tools.common.constants.godotEntryBasePackage
+import java.io.File
 
 /**
  * First round:
@@ -53,6 +54,23 @@ internal class RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistration
             logger = LoggerWrapper(logger),
             sourceFiles = registerAnnotationVisitor.sourceFilesContainingRegisteredClasses,
             jvmTypeFqNamesProvider = JvmTypeProvider(),
+            compilationTimeRelativeRegistrationFilePathProvider = { registeredClass ->
+                val registrationFile = blackboard
+                    .existingRegistrationFilesMap["${registeredClass.registeredName}.${FileExtensions.GodotKotlinJvm.registrationFile}"]
+                    ?.relativeTo(settings.projectBaseDir)
+                    ?: File(
+                        provideRegistrationFilePathForInitialGenerationWithoutExtension(
+                            isRegistrationFileHierarchyEnabled = settings.isRegistrationFileHierarchyEnabled,
+                            fqName = registeredClass.fqName,
+                            registeredName = registeredClass.registeredName,
+                            compilationProjectName = settings.projectName,
+                            classProjectName = settings.projectName, // same as project name as no registration file exists for this class, hence it is new / renamed
+                            registrationFileOutDir = settings.registrationBaseDirPathRelativeToProjectDir
+                        )
+                    )
+
+                registrationFile.path
+            },
             classRegistrarAppendableProvider = { registeredClass ->
                 codeGenerator.createNewFile(
                     Dependencies(
@@ -83,13 +101,18 @@ internal class RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistration
                 registrationFileAppendableProvider = { metadata ->
                     blackboard.alreadyGeneratedRegistrationFiles.add(metadata.fqName)
 
-                    val resourcePathFromProjectRoot = metadata.provideRegistrationFilePathForInitialGeneration(
-                        settings = settings
+                    val registrationFile = provideRegistrationFilePathForInitialGenerationWithoutExtension(
+                        isRegistrationFileHierarchyEnabled = settings.isRegistrationFileHierarchyEnabled,
+                        fqName = metadata.fqName,
+                        registeredName = metadata.registeredName,
+                        compilationProjectName = settings.projectName,
+                        classProjectName = metadata.projectName,
+                        registrationFileOutDir = settings.registrationBaseDirPathRelativeToProjectDir
                     )
 
                     codeGenerator.createNewFileByPath(
                         Dependencies.ALL_FILES,
-                        "entryFiles/${resourcePathFromProjectRoot.removeSuffix(".${FileExtensions.GodotKotlinJvm.registrationFile}")}", // suffix will be added by the codeGenerator of KSP and is defined one line below
+                        "entryFiles/${registrationFile.removeSuffix(".${FileExtensions.GodotKotlinJvm.registrationFile}")}", // suffix will be added by the codeGenerator of KSP and is defined one line below
                         FileExtensions.GodotKotlinJvm.registrationFile
                     ).bufferedWriter()
                 }

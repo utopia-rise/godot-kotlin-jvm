@@ -17,6 +17,7 @@ class KtClass : public JavaInstanceWrapper {
 public:
     StringName registered_class_name;
     StringName relative_source_path;
+    StringName compilation_time_relative_registration_file_path;
     Vector<StringName> registered_supertypes;
     StringName base_godot_class;
 
@@ -52,6 +53,8 @@ private:
 
     String get_relative_source_path(jni::Env& env);
 
+    String get_compilation_time_relative_registration_file_path(jni::Env& env);
+
     StringName get_base_godot_class(jni::Env& env);
 
     void fetch_registered_supertypes(jni::Env& env);
@@ -83,6 +86,7 @@ private:
     DECLARE_JNI_METHODS(
             JNI_METHOD(GET_REGISTERED_NAME, "getRegisteredName", "()Ljava/lang/String;")
             JNI_METHOD(GET_RELATIVE_SOURCE_PATH, "getRelativeSourcePath", "()Ljava/lang/String;")
+            JNI_METHOD(GET_COMPILATION_TIME_RELATIVE_REGISTRATION_FILE_PATH, "getCompilationTimeRelativeRegistrationFilePath", "()Ljava/lang/String;")
             JNI_METHOD(GET_REGISTERED_SUPERTYPES, "getRegisteredSupertypes", "()[Ljava/lang/String;")
             JNI_METHOD(GET_BASE_GODOT_CLASS, "getBaseGodotClass", "()Ljava/lang/String;")
             JNI_METHOD(GET_FUNCTIONS, "getFunctions", "()[Lgodot/core/KtFunction;")

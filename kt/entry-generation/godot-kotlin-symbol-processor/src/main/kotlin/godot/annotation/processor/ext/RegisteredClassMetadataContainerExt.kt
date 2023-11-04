@@ -1,20 +1,25 @@
 package godot.annotation.processor.ext
 
-import godot.annotation.processor.Settings
-import godot.entrygenerator.model.RegisteredClassMetadataContainer
+import godot.tools.common.constants.FileExtensions
+import org.jetbrains.kotlin.konan.properties.suffix
 
-internal fun RegisteredClassMetadataContainer.provideRegistrationFilePathForInitialGeneration(
-    settings: Settings
+internal fun provideRegistrationFilePathForInitialGenerationWithoutExtension(
+    isRegistrationFileHierarchyEnabled: Boolean,
+    fqName: String,
+    registeredName: String,
+    compilationProjectName: String,
+    classProjectName: String,
+    registrationFileOutDir: String
 ): String {
-    val registrationFileRelativePath = if (settings.isRegistrationFileHierarchyEnabled && fqName.contains(".")) {
+    val registrationFileRelativePath = if (isRegistrationFileHierarchyEnabled && fqName.contains(".")) {
         fqName.substringBeforeLast(".").replace(".", "/")
     } else ""
 
     val localResourcePath = "$registrationFileRelativePath/$registeredName".removePrefix("/")
 
-    return if (settings.projectName == projectName) {
-        "${settings.registrationBaseDirPathRelativeToProjectDir}/$localResourcePath"
+    return if (compilationProjectName == classProjectName) {
+        "${registrationFileOutDir}/$localResourcePath"
     } else {
-        "${settings.registrationBaseDirPathRelativeToProjectDir}/dependencies/${projectName}/$localResourcePath"
-    }
+        "${registrationFileOutDir}/dependencies/${classProjectName}/$localResourcePath"
+    }.suffix(FileExtensions.GodotKotlinJvm.registrationFile)
 }

@@ -7,6 +7,7 @@ JNI_INIT_STATICS_FOR_CLASS(
     KtClass,
     INIT_JNI_METHOD(GET_REGISTERED_NAME)
     INIT_JNI_METHOD(GET_RELATIVE_SOURCE_PATH)
+    INIT_JNI_METHOD(GET_COMPILATION_TIME_RELATIVE_REGISTRATION_FILE_PATH)
     INIT_JNI_METHOD(GET_REGISTERED_SUPERTYPES)
     INIT_JNI_METHOD(GET_BASE_GODOT_CLASS)
     INIT_JNI_METHOD(GET_FUNCTIONS)
@@ -21,9 +22,10 @@ KtClass::KtClass(jni::JObject p_wrapped) :
   JavaInstanceWrapper(p_wrapped),
   constructors {} {
     jni::Env env {jni::Jvm::current_env()};
-    LOCAL_FRAME(3);
+    LOCAL_FRAME(4);
     registered_class_name = get_registered_name(env);
     relative_source_path = get_relative_source_path(env);
+    compilation_time_relative_registration_file_path = get_compilation_time_relative_registration_file_path(env);
     base_godot_class = get_base_godot_class(env);
 }
 
@@ -82,6 +84,12 @@ String KtClass::get_registered_name(jni::Env& env) {
 
 String KtClass::get_relative_source_path(jni::Env& env) {
     jni::MethodId getter {jni_methods.GET_RELATIVE_SOURCE_PATH.method_id};
+    jni::JObject ret {wrapped.call_object_method(env, getter)};
+    return env.from_jstring(jni::JString((jstring) ret.obj));
+}
+
+String KtClass::get_compilation_time_relative_registration_file_path(jni::Env& env) {
+    jni::MethodId getter {jni_methods.GET_COMPILATION_TIME_RELATIVE_REGISTRATION_FILE_PATH.method_id};
     jni::JObject ret {wrapped.call_object_method(env, getter)};
     return env.from_jstring(jni::JString((jstring) ret.obj));
 }
