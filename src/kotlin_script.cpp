@@ -23,11 +23,10 @@ bool KotlinScript::inherits_script(const Ref<Script>& p_script) const {
     if (script.is_null()) { return false; }
     if (!is_valid() || !script->is_valid()) { return false; }
 
-    KtClass* inheritor_class {kotlin_class};
     KtClass* parent_class {script->kotlin_class};
-    if (inheritor_class == parent_class) { return true; }
+    if (kotlin_class == parent_class) { return true; }
 
-    return inheritor_class->registered_supertypes.find(parent_class->registered_class_name);
+    return kotlin_class->registered_supertypes.find(parent_class->registered_class_name);
 }
 
 Ref<Script> KotlinScript::get_base_script() const {

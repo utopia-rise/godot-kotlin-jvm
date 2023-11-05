@@ -123,7 +123,7 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
         Ref<KotlinScript> ref = keyValue.value;
         if (ref->kotlin_class) {
 #ifdef DEV_ENABLED
-            LOG_VERBOSE(vformat("Kotlin Script created: %s", ref->kotlin_class->registered_class_name));
+            LOG_VERBOSE(vformat("Kotlin Script deleted: %s", ref->kotlin_class->registered_class_name));
 #endif
             delete ref->kotlin_class;
         }
