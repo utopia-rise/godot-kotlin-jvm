@@ -18,7 +18,7 @@ JNI_INIT_STATICS_FOR_CLASS(
 
 // clang-format on
 
-KtClass::KtClass(jni::JObject p_wrapped, jni::JObject& p_class_loader) :
+KtClass::KtClass(jni::JObject p_wrapped) :
   JavaInstanceWrapper(p_wrapped),
   constructors {} {
     jni::Env env {jni::Jvm::current_env()};

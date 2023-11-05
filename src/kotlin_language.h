@@ -126,13 +126,6 @@ public:
     bool handles_global_class_type(const String& p_type) const override;
 
     String get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path) const override;
-
-    const Object* get_custom_callable_middleman() const;
-
-private:
-    KotlinLanguage* instance;
-
-    Object* kt_custom_callable_middleman;
 };
 
 #endif// GODOT_JVM_KOTLIN_LANGUAGE_H

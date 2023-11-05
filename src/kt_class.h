@@ -20,7 +20,7 @@ public:
     Vector<StringName> registered_supertypes;
     StringName base_godot_class;
 
-    KtClass(jni::JObject p_wrapped, jni::JObject& p_class_loader);
+    KtClass(jni::JObject p_wrapped);
 
     ~KtClass();
 

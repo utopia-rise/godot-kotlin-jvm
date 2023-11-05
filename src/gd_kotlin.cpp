@@ -13,12 +13,6 @@
 
 #endif
 
-#ifdef TOOLS_ENABLED
-
-#include "kotlin_script_cache.h"
-
-#endif
-
 #ifdef __ANDROID__
 
 #include <platform/android/java_godot_wrapper.h>
@@ -39,17 +33,6 @@ void load_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
     jni::JObject j_object {p_this};
 
     GDKotlin::get_instance().register_classes(env, classes);
-
-    j_object.delete_local_ref(env);
-    classes.delete_local_ref(env);
-}
-
-void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
-    jni::Env env(p_env);
-    jni::JObjectArray classes {jni::JObjectArray(p_classes)};
-    jni::JObject j_object {p_this};
-
-    GDKotlin::get_instance().unregister_classes(env, classes);
 
     j_object.delete_local_ref(env);
     classes.delete_local_ref(env);
@@ -80,17 +63,6 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
 #ifdef DEV_ENABLED
     LOG_VERBOSE("Done registering managed engine types...");
 #endif
-}
-
-void register_user_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_types) {
-    jni::Env env(p_env);
-    jni::JObjectArray types {p_types};
-    TypeManager::get_instance().register_user_types(env, types);
-}
-
-void register_user_types_members_hook(JNIEnv* p_env, jobject p_this) {
-    jni::Env env(p_env);
-    GDKotlin::get_instance().register_members(env);
 }
 
 void GDKotlin::init() {
@@ -322,7 +294,7 @@ void GDKotlin::init() {
     jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");
     jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
     bootstrap = new Bootstrap(instance);
-    Bootstrap::register_hooks(load_classes_hook, unload_classes_hook, register_engine_types_hook, register_user_types_hook, register_user_types_members_hook);
+    Bootstrap::register_hooks(load_classes_hook, register_engine_types_hook);
     Bootstrap::initialize_class("godot.runtime.Bootstrap");
     bool is_editor = Engine::get_singleton()->is_editor_hint();
 
@@ -369,6 +341,8 @@ void GDKotlin::finish() {
     delete bootstrap;
     bootstrap = nullptr;
 
+    TypeManager::get_instance().clear();
+
     if (is_gc_started) {
         jni::JClass garbage_collector_cls {env.load_class("godot.core.memory.MemoryManager", ClassLoader::get_default_loader())};
         jni::FieldId garbage_collector_instance_field {
@@ -388,14 +362,8 @@ void GDKotlin::finish() {
         garbage_collector_instance.call_void_method(env, clean_up_method_id);
     }
 
-#ifdef TOOLS_ENABLED
-    KotlinScriptCache::invalidate();
-#endif
-
     LongStringQueue::destroy();
     BridgesManager::get_instance().delete_bridges();
-
-    TypeManager::get_instance().clear();
 
     ClassLoader::delete_default_loader(env);
     jni::Jvm::destroy();
@@ -406,35 +374,16 @@ void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
 #ifdef DEV_ENABLED
     LOG_INFO("Loading classes ...");
 #endif
-    jni::JObject class_loader = ClassLoader::get_default_loader();
+    Vector<KtClass*> classes;
     for (auto i = 0; i < p_classes.length(p_env); i++) {
-        auto* kt_class = new KtClass(p_classes.get(p_env, i), class_loader);
-        classes[kt_class->resource_path] = kt_class;
+        KtClass* kt_class = new KtClass(p_classes.get(p_env, i));
+        kt_class->fetch_members();
+        classes.append(kt_class);
 #ifdef DEV_ENABLED
-        LOG_VERBOSE(vformat("Loaded class %s : %s, as %s", kt_class->resource_path, kt_class->base_godot_class, kt_class->registered_class_name));
+        LOG_VERBOSE(vformat("Loaded class %s : %s, as %s", kt_class->registered_class_name, kt_class->base_godot_class));
 #endif
     }
-}
-
-void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
-#ifdef DEV_ENABLED
-    LOG_INFO("Unloading classes ...");
-#endif
-    for (const KeyValue<StringName, KtClass*>& item : classes) {
-        KtClass* kt_class {item.value};
-#ifdef DEV_ENABLED
-        LOG_VERBOSE(vformat("Unloading class %s : %s, as %s", kt_class->resource_path, kt_class->base_godot_class, kt_class->registered_class_name));
-#endif
-        delete kt_class;
-    }
-    classes.clear();
-}
-
-KtClass* GDKotlin::find_class(const StringName& p_script_path) {
-#ifdef DEBUG_ENABLED
-    if (!classes.has(p_script_path)) { return nullptr; }
-#endif
-    return classes[p_script_path];
+    TypeManager::get_instance().create_and_update_scripts(classes);
 }
 
 const GdKotlinConfiguration& GDKotlin::get_configuration() {
@@ -516,28 +465,6 @@ GDKotlin::GDKotlin() :
   configuration(GdKotlinConfiguration::load_gd_kotlin_configuration_or_default(gd_kotlin_configuration_path)),
   is_initialized(false),
   transfer_context(nullptr) {}
-
-void GDKotlin::register_members(jni::Env& p_env) {
-    for (const KeyValue<StringName, KtClass*>& item : classes) {
-        item.value->fetch_members();
-    }
-
-#ifdef TOOLS_ENABLED
-    // updates all exports for all classes loaded in the editor and makes sure the values are updated
-    //
-    // Reason: godot only does that for us when the resource file is updated, but not when the classes are reloaded but
-    // the resource files have not changed. Such a case is, when the user edits the script and goes back to the godot
-    // editor before building and presses build there, or goes back to the editor before the build is done. Then the
-    // last default value is loaded but the new ones are never loaded after registering.
-    //
-    // Downside: in other cases the exports might get updated twice. Case being, the user changes a script and the build
-    // finishes before returning to the godot editor
-    Vector<Ref<KotlinScript>> kotlin_scripts = KotlinScriptCache::get_cached_scripts();
-    for (Ref<KotlinScript>& kotlin_script : kotlin_scripts) {
-        kotlin_script->update_exports();
-    }
-#endif
-}
 
 bool GDKotlin::check_configuration() {
     bool has_configuration_error = false;

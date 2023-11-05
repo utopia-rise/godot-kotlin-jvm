@@ -7,29 +7,17 @@ class Bootstrap : public JavaInstanceWrapper {
 public:
     // clang-format off
     typedef void (*LoadClassesHook)(JNIEnv* p_env, jobject p_this, jobjectArray classes);
-    typedef void (*UnloadClassesHook)(JNIEnv* p_env, jobject p_this, jobjectArray classes);
     typedef void (*RegisterManagedEngineTypesHook)(
       JNIEnv* p_env, jobject p_this, jobjectArray classes_names,
       jobjectArray singleton_names, jobjectArray method_names,
       jobjectArray types_of_methods
       );
-    typedef void (*RegisterUserTypesNamesHook)(JNIEnv* p_env, jobject p_this, jobjectArray classes_names);
-    typedef void (*RegisterUserTypesMembersHook)(JNIEnv* p_env, jobject p_this);
     // clang-format on
 
     static LoadClassesHook load_classes;
-    static UnloadClassesHook unload_classes;
     static RegisterManagedEngineTypesHook register_engine_type;
-    static RegisterUserTypesNamesHook register_user_types_names;
-    static RegisterUserTypesMembersHook register_user_types_members;
 
-    static void register_hooks(
-      LoadClassesHook p_load_classes_hook,
-      UnloadClassesHook p_unload_classes_hook,
-      RegisterManagedEngineTypesHook p_register_managed_engine_types_hook,
-      RegisterUserTypesNamesHook p_user_types_names_hook,
-      RegisterUserTypesMembersHook p_user_types_members_hook
-    );
+    static void register_hooks(LoadClassesHook p_load_classes_hook, RegisterManagedEngineTypesHook p_register_managed_engine_types_hook);
 
     Bootstrap(jni::JObject p_wrapped);
     ~Bootstrap() = default;

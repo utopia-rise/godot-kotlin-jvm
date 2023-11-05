@@ -16,8 +16,6 @@ private:
 
     ~GDKotlin() = default;
 
-    HashMap<StringName, KtClass*> classes;
-
     Bootstrap* bootstrap;
 
     bool is_gc_started;
@@ -50,12 +48,6 @@ public:
     void finish();
 
     void register_classes(jni::Env& p_env, jni::JObjectArray p_classes);
-
-    void register_members(jni::Env& p_env);
-
-    void unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes);
-
-    KtClass* find_class(const StringName& p_script_path);
 
     const GdKotlinConfiguration& get_configuration();
 

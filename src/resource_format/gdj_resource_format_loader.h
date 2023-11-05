@@ -1,5 +1,6 @@
 #ifndef GODOT_JVM_KT_RESOURCE_LOADER_H
 #define GODOT_JVM_KT_RESOURCE_LOADER_H
+
 #include <core/io/resource_loader.h>
 
 class GdjResourceFormatLoader : public ResourceFormatLoader {
