@@ -27,6 +27,14 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.jvm.JvmOverloads
 
+/**
+ * This class defines the interface for noise generation libraries to inherit from.
+ * A default [getSeamlessImage] implementation is provided for libraries that do not provide
+ * seamless noise. This function requests a larger image from the [getImage] method, reverses the
+ * quadrants of the image, then uses the strips of extra width to blend over the seams.
+ * Inheriting noise classes can optionally override this function to provide a more optimal
+ * algorithm.
+ */
 @GodotBaseType
 public open class Noise internal constructor() : Resource() {
   public override fun new(scriptIndex: Int): Boolean {
@@ -34,24 +42,36 @@ public open class Noise internal constructor() : Resource() {
     return true
   }
 
+  /**
+   * Returns the 1D noise value at the given (x) coordinate.
+   */
   public fun getNoise1d(x: Float): Float {
     TransferContext.writeArguments(DOUBLE to x.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.getNoise1dPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
+  /**
+   * Returns the 2D noise value at the given position.
+   */
   public fun getNoise2d(x: Float, y: Float): Float {
     TransferContext.writeArguments(DOUBLE to x.toDouble(), DOUBLE to y.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.getNoise2dPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
+  /**
+   * Returns the 2D noise value at the given position.
+   */
   public fun getNoise2dv(v: Vector2): Float {
     TransferContext.writeArguments(VECTOR2 to v)
     TransferContext.callMethod(rawPtr, MethodBindings.getNoise2dvPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
+  /**
+   * Returns the 3D noise value at the given position.
+   */
   public fun getNoise3d(
     x: Float,
     y: Float,
@@ -62,12 +82,20 @@ public open class Noise internal constructor() : Resource() {
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
+  /**
+   * Returns the 3D noise value at the given position.
+   */
   public fun getNoise3dv(v: Vector3): Float {
     TransferContext.writeArguments(VECTOR3 to v)
     TransferContext.callMethod(rawPtr, MethodBindings.getNoise3dvPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
+  /**
+   * Returns an [Image] containing 2D noise values.
+   * **Note:** With [param normalize] set to `false`, the default implementation expects the noise
+   * generator to return values in the range `-1.0` to `1.0`.
+   */
   @JvmOverloads
   public fun getImage(
     width: Int,
@@ -81,6 +109,11 @@ public open class Noise internal constructor() : Resource() {
     return (TransferContext.readReturnValue(OBJECT, true) as Image?)
   }
 
+  /**
+   * Returns an [Image] containing seamless 2D noise values.
+   * **Note:** With [param normalize] set to `false`, the default implementation expects the noise
+   * generator to return values in the range `-1.0` to `1.0`.
+   */
   @JvmOverloads
   public fun getSeamlessImage(
     width: Int,
@@ -95,6 +128,11 @@ public open class Noise internal constructor() : Resource() {
     return (TransferContext.readReturnValue(OBJECT, true) as Image?)
   }
 
+  /**
+   * Returns an [Array] of [Image]s containing 3D noise values for use with [ImageTexture3D.create].
+   * **Note:** With [param normalize] set to `false`, the default implementation expects the noise
+   * generator to return values in the range `-1.0` to `1.0`.
+   */
   @JvmOverloads
   public fun getImage3d(
     width: Int,
@@ -108,6 +146,12 @@ public open class Noise internal constructor() : Resource() {
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Image>)
   }
 
+  /**
+   * Returns an [Array] of [Image]s containing seamless 3D noise values for use with
+   * [ImageTexture3D.create].
+   * **Note:** With [param normalize] set to `false`, the default implementation expects the noise
+   * generator to return values in the range `-1.0` to `1.0`.
+   */
   @JvmOverloads
   public fun getSeamlessImage3d(
     width: Int,

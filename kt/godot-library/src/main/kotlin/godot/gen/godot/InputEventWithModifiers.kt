@@ -20,17 +20,15 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Abstract base class for input events affected by modifier keys like [kbd]Shift[/kbd] and [kbd]Alt[/kbd].
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
- *
- * Stores information about mouse, keyboard, and touch gesture input events. This includes information about which modifier keys are pressed, such as [kbd]Shift[/kbd] or [kbd]Alt[/kbd]. See [godot.Node.Input].
+ * Stores information about mouse, keyboard, and touch gesture input events. This includes
+ * information about which modifier keys are pressed, such as [kbd]Shift[/kbd] or [kbd]Alt[/kbd]. See
+ * [Node.Input].
  */
 @GodotBaseType
 public open class InputEventWithModifiers internal constructor() : InputEventFromWindow() {
   /**
-   * Automatically use [kbd]Meta[/kbd] ([kbd]Cmd[/kbd]) on macOS and [kbd]Ctrl[/kbd] on other platforms. If `true`, [ctrlPressed] and [metaPressed] cannot be set.
+   * Automatically use [kbd]Meta[/kbd] ([kbd]Cmd[/kbd]) on macOS and [kbd]Ctrl[/kbd] on other
+   * platforms. If `true`, [ctrlPressed] and [metaPressed] cannot be set.
    */
   public var commandOrControlAutoremap: Boolean
     get() {
@@ -86,7 +84,8 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
     }
 
   /**
-   * State of the [kbd]Meta[/kbd] modifier. On Windows and Linux, this represents the Windows key (sometimes called "meta" or "super" on Linux). On macOS, this represents the Command key.
+   * State of the [kbd]Meta[/kbd] modifier. On Windows and Linux, this represents the Windows key
+   * (sometimes called "meta" or "super" on Linux). On macOS, this represents the Command key.
    */
   public var metaPressed: Boolean
     get() {
@@ -106,7 +105,6 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
 
   /**
    * On macOS, returns `true` if [kbd]Meta[/kbd] ([kbd]Cmd[/kbd]) is pressed.
-   *
    * On other platforms, returns `true` if [kbd]Ctrl[/kbd] is pressed.
    */
   public fun isCommandOrControlPressed(): Boolean {

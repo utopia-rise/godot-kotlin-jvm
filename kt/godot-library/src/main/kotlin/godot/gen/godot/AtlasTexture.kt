@@ -23,18 +23,18 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A texture that crops out part of another Texture2D.
- *
- * [godot.Texture2D] resource that draws only part of its [atlas] texture, as defined by the [region]. An additional [margin] can also be set, which is useful for small adjustments.
- *
- * Multiple [godot.AtlasTexture] resources can be cropped from the same [atlas]. Packing many smaller textures into a singular large texture helps to optimize video memory costs and render calls.
- *
- * **Note:** [godot.AtlasTexture] cannot be used in an [godot.AnimatedTexture], and may not tile properly in nodes such as [godot.TextureRect], when inside other [godot.AtlasTexture] resources.
+ * [Texture2D] resource that draws only part of its [atlas] texture, as defined by the [region]. An
+ * additional [margin] can also be set, which is useful for small adjustments.
+ * Multiple [AtlasTexture] resources can be cropped from the same [atlas]. Packing many smaller
+ * textures into a singular large texture helps to optimize video memory costs and render calls.
+ * **Note:** [AtlasTexture] cannot be used in an [AnimatedTexture], and may not tile properly in
+ * nodes such as [TextureRect], when inside other [AtlasTexture] resources.
  */
 @GodotBaseType
 public open class AtlasTexture : Texture2D() {
   /**
-   * The texture that contains the atlas. Can be any type inheriting from [godot.Texture2D], including another [godot.AtlasTexture].
+   * The texture that contains the atlas. Can be any type inheriting from [Texture2D], including
+   * another [AtlasTexture].
    */
   public var atlas: Texture2D?
     get() {
@@ -63,7 +63,9 @@ public open class AtlasTexture : Texture2D() {
     }
 
   /**
-   * The margin around the [region]. Useful for small adjustments. If the [godot.Rect2.size] of this property ("w" and "h" in the editor) is set, the drawn texture is resized to fit within the margin.
+   * The margin around the [region]. Useful for small adjustments. If the [Rect2.size] of this
+   * property ("w" and "h" in the editor) is set, the drawn texture is resized to fit within the
+   * margin.
    */
   @CoreTypeLocalCopy
   public var margin: Rect2
@@ -78,7 +80,8 @@ public open class AtlasTexture : Texture2D() {
     }
 
   /**
-   * If `true`, the area outside of the [region] is clipped to avoid bleeding of the surrounding texture pixels.
+   * If `true`, the area outside of the [region] is clipped to avoid bleeding of the surrounding
+   * texture pixels.
    */
   public var filterClip: Boolean
     get() {
@@ -121,7 +124,9 @@ public open class AtlasTexture : Texture2D() {
 
 
   /**
-   * The margin around the [region]. Useful for small adjustments. If the [godot.Rect2.size] of this property ("w" and "h" in the editor) is set, the drawn texture is resized to fit within the margin.
+   * The margin around the [region]. Useful for small adjustments. If the [Rect2.size] of this
+   * property ("w" and "h" in the editor) is set, the drawn texture is resized to fit within the
+   * margin.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

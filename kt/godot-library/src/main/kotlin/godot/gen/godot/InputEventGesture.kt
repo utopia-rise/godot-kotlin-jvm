@@ -21,17 +21,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Abstract base class for touch gestures.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
- *
- * InputEventGestures are sent when a user performs a supported gesture on a touch screen. Gestures can't be emulated using mouse, because they typically require multi-touch.
+ * InputEventGestures are sent when a user performs a supported gesture on a touch screen. Gestures
+ * can't be emulated using mouse, because they typically require multi-touch.
  */
 @GodotBaseType
 public open class InputEventGesture internal constructor() : InputEventWithModifiers() {
   /**
-   * The local gesture position relative to the [godot.Viewport]. If used in [godot.Control.GuiInput], the position is relative to the current [godot.Control] that received this gesture.
+   * The local gesture position relative to the [Viewport]. If used in [Control.GuiInput], the
+   * position is relative to the current [Control] that received this gesture.
    */
   @CoreTypeLocalCopy
   public var position: Vector2
@@ -51,7 +48,8 @@ public open class InputEventGesture internal constructor() : InputEventWithModif
   }
 
   /**
-   * The local gesture position relative to the [godot.Viewport]. If used in [godot.Control.GuiInput], the position is relative to the current [godot.Control] that received this gesture.
+   * The local gesture position relative to the [Viewport]. If used in [Control.GuiInput], the
+   * position is relative to the current [Control] that received this gesture.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

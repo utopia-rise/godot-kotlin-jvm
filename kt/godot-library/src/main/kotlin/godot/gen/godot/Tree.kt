@@ -34,63 +34,49 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A control used to show a set of internal [godot.TreeItem]s in a hierarchical structure.
+ * A control used to show a set of internal [TreeItem]s in a hierarchical structure. The tree items
+ * can be selected, expanded and collapsed. The tree can have multiple columns with custom controls
+ * like [LineEdit]s, buttons and popups. It can be useful for structured displays and interactions.
+ * Trees are built via code, using [TreeItem] objects to create the structure. They have a single
+ * root, but multiple roots can be simulated with [hideRoot]:
  *
- * A control used to show a set of internal [godot.TreeItem]s in a hierarchical structure. The tree items can be selected, expanded and collapsed. The tree can have multiple columns with custom controls like [godot.LineEdit]s, buttons and popups. It can be useful for structured displays and interactions.
- *
- * Trees are built via code, using [godot.TreeItem] objects to create the structure. They have a single root, but multiple roots can be simulated with [hideRoot]:
- *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * func _ready():
- *
  *     var tree = Tree.new()
- *
  *     var root = tree.create_item()
- *
  *     tree.hide_root = true
- *
  *     var child1 = tree.create_item(root)
- *
  *     var child2 = tree.create_item(root)
- *
  *     var subchild1 = tree.create_item(child1)
- *
  *     subchild1.set_text(0, "Subchild1")
- *
- * [/gdscript]
- *
- * [csharp]
- *
+ * ```
+ * csharp:
+ * ```csharp
  * public override void _Ready()
- *
  * {
- *
  *     var tree = new Tree();
- *
  *     TreeItem root = tree.CreateItem();
- *
  *     tree.HideRoot = true;
- *
  *     TreeItem child1 = tree.CreateItem(root);
- *
  *     TreeItem child2 = tree.CreateItem(root);
- *
  *     TreeItem subchild1 = tree.CreateItem(child1);
- *
  *     subchild1.SetText(0, "Subchild1");
- *
  * }
+ * ```
  *
- * [/csharp]
- *
- * [/codeblocks]
- *
- * To iterate over all the [godot.TreeItem] objects in a [godot.Tree] object, use [godot.TreeItem.getNext] and [godot.TreeItem.getFirstChild] after getting the root through [getRoot]. You can use [godot.Object.free] on a [godot.TreeItem] to remove it from the [godot.Tree].
- *
- * **Incremental search:** Like [godot.ItemList] and [godot.PopupMenu], [godot.Tree] supports searching within the list while the control is focused. Press a key that matches the first letter of an item's name to select the first item starting with the given letter. After that point, there are two ways to perform incremental search: 1) Press the same key again before the timeout duration to select the next item starting with the same letter. 2) Press letter keys that match the rest of the word before the timeout duration to match to select the item in question directly. Both of these actions will be reset to the beginning of the list if the timeout duration has passed since the last keystroke was registered. You can adjust the timeout duration by changing [godot.ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
+ * To iterate over all the [TreeItem] objects in a [Tree] object, use [TreeItem.getNext] and
+ * [TreeItem.getFirstChild] after getting the root through [getRoot]. You can use [Object.free] on a
+ * [TreeItem] to remove it from the [Tree].
+ * **Incremental search:** Like [ItemList] and [PopupMenu], [Tree] supports searching within the
+ * list while the control is focused. Press a key that matches the first letter of an item's name to
+ * select the first item starting with the given letter. After that point, there are two ways to
+ * perform incremental search: 1) Press the same key again before the timeout duration to select the
+ * next item starting with the same letter. 2) Press letter keys that match the rest of the word before
+ * the timeout duration to match to select the item in question directly. Both of these actions will be
+ * reset to the beginning of the list if the timeout duration has passed since the last keystroke was
+ * registered. You can adjust the timeout duration by changing
+ * [ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
  */
 @GodotBaseType
 public open class Tree : Control() {
@@ -105,7 +91,7 @@ public open class Tree : Control() {
   public val cellSelected: Signal0 by signal()
 
   /**
-   * Emitted instead of [itemSelected] if [selectMode] is set to [SELECT_MULTI].
+   * Emitted instead of [signal item_selected] if [selectMode] is set to [constant SELECT_MULTI].
    */
   public val multiSelected: Signal3<TreeItem, Long, Boolean> by signal("item", "column", "selected")
 
@@ -125,12 +111,13 @@ public open class Tree : Control() {
   public val itemEdited: Signal0 by signal()
 
   /**
-   * Emitted when an item with [godot.TreeItem.CELL_MODE_CUSTOM] is clicked with a mouse button.
+   * Emitted when an item with [constant TreeItem.CELL_MODE_CUSTOM] is clicked with a mouse button.
    */
   public val customItemClicked: Signal1<Long> by signal("mouseButtonIndex")
 
   /**
-   * Emitted when an item's icon is double-clicked. For a signal that emits when any part of the item is double-clicked, see [itemActivated].
+   * Emitted when an item's icon is double-clicked. For a signal that emits when any part of the
+   * item is double-clicked, see [signal item_activated].
    */
   public val itemIconDoubleClicked: Signal0 by signal()
 
@@ -140,28 +127,33 @@ public open class Tree : Control() {
   public val itemCollapsed: Signal1<TreeItem> by signal("item")
 
   /**
-   * Emitted when [godot.TreeItem.propagateCheck] is called. Connect to this signal to process the items that are affected when [godot.TreeItem.propagateCheck] is invoked. The order that the items affected will be processed is as follows: the item that invoked the method, children of that item, and finally parents of that item.
+   * Emitted when [TreeItem.propagateCheck] is called. Connect to this signal to process the items
+   * that are affected when [TreeItem.propagateCheck] is invoked. The order that the items affected
+   * will be processed is as follows: the item that invoked the method, children of that item, and
+   * finally parents of that item.
    */
   public val checkPropagatedToItem: Signal2<TreeItem, Long> by signal("item", "column")
 
   /**
-   * Emitted when a button on the tree was pressed (see [godot.TreeItem.addButton]).
+   * Emitted when a button on the tree was pressed (see [TreeItem.addButton]).
    */
   public val buttonClicked: Signal4<TreeItem, Long, Long, Long> by signal("item", "column", "id",
       "mouseButtonIndex")
 
   /**
-   * Emitted when a cell with the [godot.TreeItem.CELL_MODE_CUSTOM] is clicked to be edited.
+   * Emitted when a cell with the [constant TreeItem.CELL_MODE_CUSTOM] is clicked to be edited.
    */
   public val customPopupEdited: Signal1<Boolean> by signal("arrowClicked")
 
   /**
-   * Emitted when an item is double-clicked, or selected with a `ui_accept` input event (e.g. using [kbd]Enter[/kbd] or [kbd]Space[/kbd] on the keyboard).
+   * Emitted when an item is double-clicked, or selected with a `ui_accept` input event (e.g. using
+   * [kbd]Enter[/kbd] or [kbd]Space[/kbd] on the keyboard).
    */
   public val itemActivated: Signal0 by signal()
 
   /**
-   * Emitted when a column's title is clicked with either [MOUSE_BUTTON_LEFT] or [MOUSE_BUTTON_RIGHT].
+   * Emitted when a column's title is clicked with either [constant MOUSE_BUTTON_LEFT] or [constant
+   * MOUSE_BUTTON_RIGHT].
    */
   public val columnTitleClicked: Signal2<Long, Long> by signal("column", "mouseButtonIndex")
 
@@ -227,7 +219,7 @@ public open class Tree : Control() {
     }
 
   /**
-   * If `true`, allows navigating the [godot.Tree] with letter keys through incremental search.
+   * If `true`, allows navigating the [Tree] with letter keys through incremental search.
    */
   public var allowSearch: Boolean
     get() {
@@ -255,7 +247,8 @@ public open class Tree : Control() {
     }
 
   /**
-   * If `true`, recursive folding is enabled for this [godot.Tree]. Holding down Shift while clicking the fold arrow collapses or uncollapses the [godot.TreeItem] and all its descendants.
+   * If `true`, recursive folding is enabled for this [Tree]. Holding down Shift while clicking the
+   * fold arrow collapses or uncollapses the [TreeItem] and all its descendants.
    */
   public var enableRecursiveFolding: Boolean
     get() {
@@ -283,9 +276,11 @@ public open class Tree : Control() {
     }
 
   /**
-   * The drop mode as an OR combination of flags. See [enum DropModeFlags] constants. Once dropping is done, reverts to [DROP_MODE_DISABLED]. Setting this during [godot.Control.CanDropData] is recommended.
-   *
-   * This controls the drop sections, i.e. the decision and drawing of possible drop locations based on the mouse position.
+   * The drop mode as an OR combination of flags. See [enum DropModeFlags] constants. Once dropping
+   * is done, reverts to [constant DROP_MODE_DISABLED]. Setting this during [Control.CanDropData] is
+   * recommended.
+   * This controls the drop sections, i.e. the decision and drawing of possible drop locations based
+   * on the mouse position.
    */
   public var dropModeFlags: Int
     get() {
@@ -354,11 +349,12 @@ public open class Tree : Control() {
   }
 
   /**
-   * Creates an item in the tree and adds it as a child of [parent], which can be either a valid [godot.TreeItem] or `null`.
-   *
-   * If [parent] is `null`, the root item will be the parent, or the new item will be the root itself if the tree is empty.
-   *
-   * The new item will be the [index]-th child of parent, or it will be the last child if there are not enough siblings.
+   * Creates an item in the tree and adds it as a child of [param parent], which can be either a
+   * valid [TreeItem] or `null`.
+   * If [param parent] is `null`, the root item will be the parent, or the new item will be the root
+   * itself if the tree is empty.
+   * The new item will be the [param index]-th child of parent, or it will be the last child if
+   * there are not enough siblings.
    */
   @JvmOverloads
   public fun createItem(parent: TreeItem? = null, index: Int = -1): TreeItem? {
@@ -377,7 +373,9 @@ public open class Tree : Control() {
   }
 
   /**
-   * Overrides the calculated minimum width of a column. It can be set to `0` to restore the default behavior. Columns that have the "Expand" flag will use their "min_width" in a similar fashion to [godot.Control.sizeFlagsStretchRatio].
+   * Overrides the calculated minimum width of a column. It can be set to `0` to restore the default
+   * behavior. Columns that have the "Expand" flag will use their "min_width" in a similar fashion to
+   * [Control.sizeFlagsStretchRatio].
    */
   public fun setColumnCustomMinimumWidth(column: Int, minWidth: Int): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to minWidth.toLong())
@@ -385,7 +383,9 @@ public open class Tree : Control() {
   }
 
   /**
-   * If `true`, the column will have the "Expand" flag of [godot.Control]. Columns that have the "Expand" flag will use their expand ratio in a similar fashion to [godot.Control.sizeFlagsStretchRatio] (see [setColumnExpandRatio]).
+   * If `true`, the column will have the "Expand" flag of [Control]. Columns that have the "Expand"
+   * flag will use their expand ratio in a similar fashion to [Control.sizeFlagsStretchRatio] (see
+   * [setColumnExpandRatio]).
    */
   public fun setColumnExpand(column: Int, expand: Boolean): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to expand)
@@ -445,9 +445,8 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the next selected [godot.TreeItem] after the given one, or `null` if the end is reached.
-   *
-   * If [from] is `null`, this returns the first selected item.
+   * Returns the next selected [TreeItem] after the given one, or `null` if the end is reached.
+   * If [param from] is `null`, this returns the first selected item.
    */
   public fun getNextSelected(from: TreeItem): TreeItem? {
     TransferContext.writeArguments(OBJECT to from)
@@ -457,9 +456,9 @@ public open class Tree : Control() {
 
   /**
    * Returns the currently focused item, or `null` if no item is focused.
-   *
-   * In [SELECT_ROW] and [SELECT_SINGLE] modes, the focused item is same as the selected item. In [SELECT_MULTI] mode, the focused item is the item under the focus cursor, not necessarily selected.
-   *
+   * In [constant SELECT_ROW] and [constant SELECT_SINGLE] modes, the focused item is same as the
+   * selected item. In [constant SELECT_MULTI] mode, the focused item is the item under the focus
+   * cursor, not necessarily selected.
    * To get the currently selected item(s), use [getNextSelected].
    */
   public fun getSelected(): TreeItem? {
@@ -469,7 +468,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Selects the specified [godot.TreeItem] and column.
+   * Selects the specified [TreeItem] and column.
    */
   public fun setSelected(item: TreeItem, column: Int): Unit {
     TransferContext.writeArguments(OBJECT to item, LONG to column.toLong())
@@ -478,10 +477,11 @@ public open class Tree : Control() {
 
   /**
    * Returns the currently focused column, or -1 if no column is focused.
-   *
-   * In [SELECT_SINGLE] mode, the focused column is the selected column. In [SELECT_ROW] mode, the focused column is always 0 if any item is selected. In [SELECT_MULTI] mode, the focused column is the column under the focus cursor, and there are not necessarily any column selected.
-   *
-   * To tell whether a column of an item is selected, use [godot.TreeItem.isSelected].
+   * In [constant SELECT_SINGLE] mode, the focused column is the selected column. In [constant
+   * SELECT_ROW] mode, the focused column is always 0 if any item is selected. In [constant
+   * SELECT_MULTI] mode, the focused column is the column under the focus cursor, and there are not
+   * necessarily any column selected.
+   * To tell whether a column of an item is selected, use [TreeItem.isSelected].
    */
   public fun getSelectedColumn(): Int {
     TransferContext.writeArguments()
@@ -499,7 +499,8 @@ public open class Tree : Control() {
   }
 
   /**
-   * Deselects all tree items (rows and columns). In [SELECT_MULTI] mode also removes selection cursor.
+   * Deselects all tree items (rows and columns). In [constant SELECT_MULTI] mode also removes
+   * selection cursor.
    */
   public fun deselectAll(): Unit {
     TransferContext.writeArguments()
@@ -507,47 +508,29 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the currently edited item. Can be used with [itemEdited] to get the item that was modified.
+   * Returns the currently edited item. Can be used with [signal item_edited] to get the item that
+   * was modified.
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * func _ready():
-   *
    *     $Tree.item_edited.connect(on_Tree_item_edited)
    *
-   *
-   *
    * func on_Tree_item_edited():
-   *
    *     print($Tree.get_edited()) # This item just got edited (e.g. checked).
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * public override void _Ready()
-   *
    * {
-   *
    *     GetNode<Tree>("Tree").ItemEdited += OnTreeItemEdited;
-   *
    * }
-   *
-   *
    *
    * public void OnTreeItemEdited()
-   *
    * {
-   *
    *     GD.Print(GetNode<Tree>("Tree").GetEdited()); // This item just got edited (e.g. checked).
-   *
    * }
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public fun getEdited(): TreeItem? {
     TransferContext.writeArguments()
@@ -566,9 +549,8 @@ public open class Tree : Control() {
 
   /**
    * Edits the selected tree item as if it was clicked.
-   *
-   * Either the item must be set editable with [godot.TreeItem.setEditable] or [forceEdit] must be `true`.
-   *
+   * Either the item must be set editable with [TreeItem.setEditable] or [param force_edit] must be
+   * `true`.
    * Returns `true` if the item could be edited. Fails if no item is selected.
    */
   @JvmOverloads
@@ -579,7 +561,8 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the rectangle for custom popups. Helper to create custom cell controls that display a popup. See [godot.TreeItem.setCellMode].
+   * Returns the rectangle for custom popups. Helper to create custom cell controls that display a
+   * popup. See [TreeItem.setCellMode].
    */
   public fun getCustomPopupRect(): Rect2 {
     TransferContext.writeArguments()
@@ -588,7 +571,9 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the rectangle area for the specified [godot.TreeItem]. If [column] is specified, only get the position and size of that column, otherwise get the rectangle containing all columns. If a button index is specified, the rectangle of that button will be returned.
+   * Returns the rectangle area for the specified [TreeItem]. If [param column] is specified, only
+   * get the position and size of that column, otherwise get the rectangle containing all columns. If a
+   * button index is specified, the rectangle of that button will be returned.
    */
   @JvmOverloads
   public fun getItemAreaRect(
@@ -611,7 +596,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the column index at [position], or -1 if no item is there.
+   * Returns the column index at [param position], or -1 if no item is there.
    */
   public fun getColumnAtPosition(position: Vector2): Int {
     TransferContext.writeArguments(VECTOR2 to position)
@@ -620,10 +605,9 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the drop section at [position], or -100 if no item is there.
-   *
-   * Values -1, 0, or 1 will be returned for the "above item", "on item", and "below item" drop sections, respectively. See [enum DropModeFlags] for a description of each drop section.
-   *
+   * Returns the drop section at [param position], or -100 if no item is there.
+   * Values -1, 0, or 1 will be returned for the "above item", "on item", and "below item" drop
+   * sections, respectively. See [enum DropModeFlags] for a description of each drop section.
    * To get the item which the returned drop section is relative to, use [getItemAtPosition].
    */
   public fun getDropSectionAtPosition(position: Vector2): Int {
@@ -633,7 +617,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the button ID at [position], or -1 if no button is there.
+   * Returns the button ID at [param position], or -1 if no button is there.
    */
   public fun getButtonIdAtPosition(position: Vector2): Int {
     TransferContext.writeArguments(VECTOR2 to position)
@@ -643,10 +627,10 @@ public open class Tree : Control() {
 
   /**
    * Makes the currently focused cell visible.
-   *
-   * This will scroll the tree if necessary. In [SELECT_ROW] mode, this will not do horizontal scrolling, as all the cells in the selected row is focused logically.
-   *
-   * **Note:** Despite the name of this method, the focus cursor itself is only visible in [SELECT_MULTI] mode.
+   * This will scroll the tree if necessary. In [constant SELECT_ROW] mode, this will not do
+   * horizontal scrolling, as all the cells in the selected row is focused logically.
+   * **Note:** Despite the name of this method, the focus cursor itself is only visible in [constant
+   * SELECT_MULTI] mode.
    */
   public fun ensureCursorIsVisible(): Unit {
     TransferContext.writeArguments()
@@ -671,7 +655,8 @@ public open class Tree : Control() {
   }
 
   /**
-   * Sets the column title alignment. Note that [@GlobalScope.HORIZONTAL_ALIGNMENT_FILL] is not supported for column titles.
+   * Sets the column title alignment. Note that [constant @GlobalScope.HORIZONTAL_ALIGNMENT_FILL] is
+   * not supported for column titles.
    */
   public fun setColumnTitleAlignment(column: Int, titleAlignment: HorizontalAlignment): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to titleAlignment.id)
@@ -705,7 +690,8 @@ public open class Tree : Control() {
   }
 
   /**
-   * Sets language code of column title used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
+   * Sets language code of column title used for line-breaking and text shaping algorithms, if left
+   * empty current locale is used instead.
    */
   public fun setColumnTitleLanguage(column: Int, language: String): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), STRING to language)
@@ -731,7 +717,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Causes the [godot.Tree] to jump to the specified [godot.TreeItem].
+   * Causes the [Tree] to jump to the specified [TreeItem].
    */
   @JvmOverloads
   public fun scrollToItem(item: TreeItem, centerOnItem: Boolean = false): Unit {
@@ -743,21 +729,25 @@ public open class Tree : Control() {
     id: Long,
   ) {
     /**
-     * Allows selection of a single cell at a time. From the perspective of items, only a single item is allowed to be selected. And there is only one column selected in the selected item.
-     *
-     * The focus cursor is always hidden in this mode, but it is positioned at the current selection, making the currently selected item the currently focused item.
+     * Allows selection of a single cell at a time. From the perspective of items, only a single
+     * item is allowed to be selected. And there is only one column selected in the selected item.
+     * The focus cursor is always hidden in this mode, but it is positioned at the current
+     * selection, making the currently selected item the currently focused item.
      */
     SELECT_SINGLE(0),
     /**
-     * Allows selection of a single row at a time. From the perspective of items, only a single items is allowed to be selected. And all the columns are selected in the selected item.
-     *
-     * The focus cursor is always hidden in this mode, but it is positioned at the first column of the current selection, making the currently selected item the currently focused item.
+     * Allows selection of a single row at a time. From the perspective of items, only a single
+     * items is allowed to be selected. And all the columns are selected in the selected item.
+     * The focus cursor is always hidden in this mode, but it is positioned at the first column of
+     * the current selection, making the currently selected item the currently focused item.
      */
     SELECT_ROW(1),
     /**
-     * Allows selection of multiple cells at the same time. From the perspective of items, multiple items are allowed to be selected. And there can be multiple columns selected in each selected item.
-     *
-     * The focus cursor is visible in this mode, the item or column under the cursor is not necessarily selected.
+     * Allows selection of multiple cells at the same time. From the perspective of items, multiple
+     * items are allowed to be selected. And there can be multiple columns selected in each selected
+     * item.
+     * The focus cursor is visible in this mode, the item or column under the cursor is not
+     * necessarily selected.
      */
     SELECT_MULTI(2),
     ;
@@ -776,21 +766,22 @@ public open class Tree : Control() {
     id: Long,
   ) {
     /**
-     * Disables all drop sections, but still allows to detect the "on item" drop section by [getDropSectionAtPosition].
-     *
+     * Disables all drop sections, but still allows to detect the "on item" drop section by
+     * [getDropSectionAtPosition].
      * **Note:** This is the default flag, it has no effect when combined with other flags.
      */
     DROP_MODE_DISABLED(0),
     /**
      * Enables the "on item" drop section. This drop section covers the entire item.
-     *
-     * When combined with [DROP_MODE_INBETWEEN], this drop section halves the height and stays centered vertically.
+     * When combined with [constant DROP_MODE_INBETWEEN], this drop section halves the height and
+     * stays centered vertically.
      */
     DROP_MODE_ON_ITEM(1),
     /**
-     * Enables "above item" and "below item" drop sections. The "above item" drop section covers the top half of the item, and the "below item" drop section covers the bottom half.
-     *
-     * When combined with [DROP_MODE_ON_ITEM], these drop sections halves the height and stays on top / bottom accordingly.
+     * Enables "above item" and "below item" drop sections. The "above item" drop section covers the
+     * top half of the item, and the "below item" drop section covers the bottom half.
+     * When combined with [constant DROP_MODE_ON_ITEM], these drop sections halves the height and
+     * stays on top / bottom accordingly.
      */
     DROP_MODE_INBETWEEN(2),
     ;

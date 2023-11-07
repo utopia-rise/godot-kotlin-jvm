@@ -23,8 +23,16 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 
+/**
+ * Represents a camera as defined by the base GLTF spec.
+ */
 @GodotBaseType
 public open class GLTFCamera : Resource() {
+  /**
+   * Whether or not the camera is in perspective mode. If false, the camera is in
+   * orthographic/orthogonal mode. This maps to GLTF's camera `type` property. See
+   * [Camera3D.projection] and the GLTF spec for more information.
+   */
   public var perspective: Boolean
     get() {
       TransferContext.writeArguments()
@@ -36,6 +44,11 @@ public open class GLTFCamera : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setPerspectivePtr, NIL)
     }
 
+  /**
+   * The FOV of the camera. This class and GLTF define the camera FOV in radians, while Godot uses
+   * degrees. This maps to GLTF's `yfov` property. This value is only used for perspective cameras,
+   * when [perspective] is true.
+   */
   public var fov: Float
     get() {
       TransferContext.writeArguments()
@@ -47,6 +60,11 @@ public open class GLTFCamera : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFovPtr, NIL)
     }
 
+  /**
+   * The size of the camera. This class and GLTF define the camera size magnitude as a radius in
+   * meters, while Godot defines it as a diameter in meters. This maps to GLTF's `ymag` property. This
+   * value is only used for orthographic/orthogonal cameras, when [perspective] is false.
+   */
   public var sizeMag: Float
     get() {
       TransferContext.writeArguments()
@@ -58,6 +76,10 @@ public open class GLTFCamera : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSizeMagPtr, NIL)
     }
 
+  /**
+   * The distance to the far culling boundary for this camera relative to its local Z axis, in
+   * meters. This maps to GLTF's `zfar` property.
+   */
   public var depthFar: Float
     get() {
       TransferContext.writeArguments()
@@ -69,6 +91,10 @@ public open class GLTFCamera : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDepthFarPtr, NIL)
     }
 
+  /**
+   * The distance to the near culling boundary for this camera relative to its local Z axis, in
+   * meters. This maps to GLTF's `znear` property.
+   */
   public var depthNear: Float
     get() {
       TransferContext.writeArguments()
@@ -85,12 +111,18 @@ public open class GLTFCamera : Resource() {
     return true
   }
 
+  /**
+   * Converts this GLTFCamera instance into a Godot [Camera3D] node.
+   */
   public fun toNode(): Camera3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.toNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Camera3D?)
   }
 
+  /**
+   * Serializes this GLTFCamera instance into a [Dictionary].
+   */
   public fun toDictionary(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.toDictionaryPtr, DICTIONARY)
@@ -98,12 +130,18 @@ public open class GLTFCamera : Resource() {
   }
 
   public companion object {
+    /**
+     * Create a new GLTFCamera instance from the given Godot [Camera3D] node.
+     */
     public fun fromNode(cameraNode: Camera3D): GLTFCamera? {
       TransferContext.writeArguments(OBJECT to cameraNode)
       TransferContext.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as GLTFCamera?)
     }
 
+    /**
+     * Creates a new GLTFCamera instance by parsing the given [Dictionary].
+     */
     public fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFCamera? {
       TransferContext.writeArguments(DICTIONARY to dictionary)
       TransferContext.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)

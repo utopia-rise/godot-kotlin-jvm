@@ -24,25 +24,32 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A region that contributes to the default volumetric fog from the world environment.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/3d/volumetric_fog.html]($DOCS_URL/tutorials/3d/volumetric_fog.html)
- *
- * [godot.FogVolume]s are used to add localized fog into the global volumetric fog effect. [godot.FogVolume]s can also remove volumetric fog from specific areas if using a [godot.FogMaterial] with a negative [godot.FogMaterial.density].
- *
- * Performance of [godot.FogVolume]s is directly related to their relative size on the screen and the complexity of their attached [godot.FogMaterial]. It is best to keep [godot.FogVolume]s relatively small and simple where possible.
- *
- * **Note:** [godot.FogVolume]s only have a visible effect if [godot.Environment.volumetricFogEnabled] is `true`. If you don't want fog to be globally visible (but only within [godot.FogVolume] nodes), set [godot.Environment.volumetricFogDensity] to `0.0`.
+ * [FogVolume]s are used to add localized fog into the global volumetric fog effect. [FogVolume]s
+ * can also remove volumetric fog from specific areas if using a [FogMaterial] with a negative
+ * [FogMaterial.density].
+ * Performance of [FogVolume]s is directly related to their relative size on the screen and the
+ * complexity of their attached [FogMaterial]. It is best to keep [FogVolume]s relatively small and
+ * simple where possible.
+ * **Note:** [FogVolume]s only have a visible effect if [Environment.volumetricFogEnabled] is
+ * `true`. If you don't want fog to be globally visible (but only within [FogVolume] nodes), set
+ * [Environment.volumetricFogDensity] to `0.0`.
  */
 @GodotBaseType
 public open class FogVolume : VisualInstance3D() {
   /**
-   * The size of the [godot.FogVolume] when [shape] is [godot.RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID], [godot.RenderingServer.FOG_VOLUME_SHAPE_CONE], [godot.RenderingServer.FOG_VOLUME_SHAPE_CYLINDER] or [godot.RenderingServer.FOG_VOLUME_SHAPE_BOX].
-   *
-   * **Note:** Thin fog volumes may appear to flicker when the camera moves or rotates. This can be alleviated by increasing [godot.ProjectSettings.rendering/environment/volumetricFog/volumeDepth] (at a performance cost) or by decreasing [godot.Environment.volumetricFogLength] (at no performance cost, but at the cost of lower fog range). Alternatively, the [godot.FogVolume] can be made thicker and use a lower density in the [material].
-   *
-   * **Note:** If [shape] is [godot.RenderingServer.FOG_VOLUME_SHAPE_CONE] or [godot.RenderingServer.FOG_VOLUME_SHAPE_CYLINDER], the cone/cylinder will be adjusted to fit within the size. Non-uniform scaling of cone/cylinder shapes via the [size] property is not supported, but you can scale the [godot.FogVolume] node instead.
+   * The size of the [FogVolume] when [shape] is [constant
+   * RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID], [constant RenderingServer.FOG_VOLUME_SHAPE_CONE],
+   * [constant RenderingServer.FOG_VOLUME_SHAPE_CYLINDER] or [constant
+   * RenderingServer.FOG_VOLUME_SHAPE_BOX].
+   * **Note:** Thin fog volumes may appear to flicker when the camera moves or rotates. This can be
+   * alleviated by increasing [ProjectSettings.rendering/environment/volumetricFog/volumeDepth] (at a
+   * performance cost) or by decreasing [Environment.volumetricFogLength] (at no performance cost, but
+   * at the cost of lower fog range). Alternatively, the [FogVolume] can be made thicker and use a
+   * lower density in the [material].
+   * **Note:** If [shape] is [constant RenderingServer.FOG_VOLUME_SHAPE_CONE] or [constant
+   * RenderingServer.FOG_VOLUME_SHAPE_CYLINDER], the cone/cylinder will be adjusted to fit within the
+   * size. Non-uniform scaling of cone/cylinder shapes via the [size] property is not supported, but
+   * you can scale the [FogVolume] node instead.
    */
   @CoreTypeLocalCopy
   public var size: Vector3
@@ -57,7 +64,10 @@ public open class FogVolume : VisualInstance3D() {
     }
 
   /**
-   * The shape of the [godot.FogVolume]. This can be set to either [godot.RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID], [godot.RenderingServer.FOG_VOLUME_SHAPE_CONE], [godot.RenderingServer.FOG_VOLUME_SHAPE_CYLINDER], [godot.RenderingServer.FOG_VOLUME_SHAPE_BOX] or [godot.RenderingServer.FOG_VOLUME_SHAPE_WORLD].
+   * The shape of the [FogVolume]. This can be set to either [constant
+   * RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID], [constant RenderingServer.FOG_VOLUME_SHAPE_CONE],
+   * [constant RenderingServer.FOG_VOLUME_SHAPE_CYLINDER], [constant
+   * RenderingServer.FOG_VOLUME_SHAPE_BOX] or [constant RenderingServer.FOG_VOLUME_SHAPE_WORLD].
    */
   public var shape: RenderingServer.FogVolumeShape
     get() {
@@ -71,7 +81,8 @@ public open class FogVolume : VisualInstance3D() {
     }
 
   /**
-   * The [godot.Material] used by the [godot.FogVolume]. Can be either a built-in [godot.FogMaterial] or a custom [godot.ShaderMaterial].
+   * The [Material] used by the [FogVolume]. Can be either a built-in [FogMaterial] or a custom
+   * [ShaderMaterial].
    */
   public var material: Material?
     get() {
@@ -90,11 +101,19 @@ public open class FogVolume : VisualInstance3D() {
   }
 
   /**
-   * The size of the [godot.FogVolume] when [shape] is [godot.RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID], [godot.RenderingServer.FOG_VOLUME_SHAPE_CONE], [godot.RenderingServer.FOG_VOLUME_SHAPE_CYLINDER] or [godot.RenderingServer.FOG_VOLUME_SHAPE_BOX].
-   *
-   * **Note:** Thin fog volumes may appear to flicker when the camera moves or rotates. This can be alleviated by increasing [godot.ProjectSettings.rendering/environment/volumetricFog/volumeDepth] (at a performance cost) or by decreasing [godot.Environment.volumetricFogLength] (at no performance cost, but at the cost of lower fog range). Alternatively, the [godot.FogVolume] can be made thicker and use a lower density in the [material].
-   *
-   * **Note:** If [shape] is [godot.RenderingServer.FOG_VOLUME_SHAPE_CONE] or [godot.RenderingServer.FOG_VOLUME_SHAPE_CYLINDER], the cone/cylinder will be adjusted to fit within the size. Non-uniform scaling of cone/cylinder shapes via the [size] property is not supported, but you can scale the [godot.FogVolume] node instead.
+   * The size of the [FogVolume] when [shape] is [constant
+   * RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID], [constant RenderingServer.FOG_VOLUME_SHAPE_CONE],
+   * [constant RenderingServer.FOG_VOLUME_SHAPE_CYLINDER] or [constant
+   * RenderingServer.FOG_VOLUME_SHAPE_BOX].
+   * **Note:** Thin fog volumes may appear to flicker when the camera moves or rotates. This can be
+   * alleviated by increasing [ProjectSettings.rendering/environment/volumetricFog/volumeDepth] (at a
+   * performance cost) or by decreasing [Environment.volumetricFogLength] (at no performance cost, but
+   * at the cost of lower fog range). Alternatively, the [FogVolume] can be made thicker and use a
+   * lower density in the [material].
+   * **Note:** If [shape] is [constant RenderingServer.FOG_VOLUME_SHAPE_CONE] or [constant
+   * RenderingServer.FOG_VOLUME_SHAPE_CYLINDER], the cone/cylinder will be adjusted to fit within the
+   * size. Non-uniform scaling of cone/cylinder shapes via the [size] property is not supported, but
+   * you can scale the [FogVolume] node instead.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

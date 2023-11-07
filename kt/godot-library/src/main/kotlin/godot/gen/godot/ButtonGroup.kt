@@ -22,11 +22,10 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A group of buttons that doesn't allow more than one button to be pressed at a time.
- *
- * A group of [godot.BaseButton]-derived buttons. The buttons in a [godot.ButtonGroup] are treated like radio buttons: No more than one button can be pressed at a time. Some types of buttons (such as [godot.CheckBox]) may have a special appearance in this state.
- *
- * Every member of a [godot.ButtonGroup] should have [godot.BaseButton.toggleMode] set to `true`.
+ * A group of [BaseButton]-derived buttons. The buttons in a [ButtonGroup] are treated like radio
+ * buttons: No more than one button can be pressed at a time. Some types of buttons (such as
+ * [CheckBox]) may have a special appearance in this state.
+ * Every member of a [ButtonGroup] should have [BaseButton.toggleMode] set to `true`.
  */
 @GodotBaseType
 public open class ButtonGroup : Resource() {
@@ -36,7 +35,7 @@ public open class ButtonGroup : Resource() {
   public val pressed: Signal1<BaseButton> by signal("button")
 
   /**
-   * If `true`, it is possible to unpress all buttons in this [godot.ButtonGroup].
+   * If `true`, it is possible to unpress all buttons in this [ButtonGroup].
    */
   public var allowUnpress: Boolean
     get() {
@@ -64,7 +63,8 @@ public open class ButtonGroup : Resource() {
   }
 
   /**
-   * Returns an [godot.Array] of [godot.Button]s who have this as their [godot.ButtonGroup] (see [godot.BaseButton.buttonGroup]).
+   * Returns an [Array] of [Button]s who have this as their [ButtonGroup] (see
+   * [BaseButton.buttonGroup]).
    */
   public fun getButtons(): VariantArray<BaseButton> {
     TransferContext.writeArguments()

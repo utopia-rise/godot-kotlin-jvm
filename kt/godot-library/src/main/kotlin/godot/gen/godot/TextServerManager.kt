@@ -29,11 +29,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A singleton for managing [godot.TextServer] implementations.
- *
- * [godot.TextServerManager] is the API backend for loading, enumerating, and switching [godot.TextServer]s.
- *
- * **Note:** Switching text server at runtime is possible, but will invalidate all fonts and text buffers. Make sure to unload all controls, fonts, and themes before doing so.
+ * [TextServerManager] is the API backend for loading, enumerating, and switching [TextServer]s.
+ * **Note:** Switching text server at runtime is possible, but will invalidate all fonts and text
+ * buffers. Make sure to unload all controls, fonts, and themes before doing so.
  */
 @GodotBaseType
 public object TextServerManager : Object() {
@@ -53,7 +51,7 @@ public object TextServerManager : Object() {
   }
 
   /**
-   * Registers a [godot.TextServer] interface.
+   * Registers a [TextServer] interface.
    */
   public fun addInterface(_interface: TextServer): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
@@ -70,7 +68,8 @@ public object TextServerManager : Object() {
   }
 
   /**
-   * Removes an interface. All fonts and shaped text caches should be freed before removing an interface.
+   * Removes an interface. All fonts and shaped text caches should be freed before removing an
+   * interface.
    */
   public fun removeInterface(_interface: TextServer): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
@@ -96,7 +95,7 @@ public object TextServerManager : Object() {
   }
 
   /**
-   * Finds an interface by its [name].
+   * Finds an interface by its [param name].
    */
   public fun findInterface(name: String): TextServer? {
     TransferContext.writeArguments(STRING to name)
@@ -105,7 +104,7 @@ public object TextServerManager : Object() {
   }
 
   /**
-   * Sets the primary [godot.TextServer] interface.
+   * Sets the primary [TextServer] interface.
    */
   public fun setPrimaryInterface(index: TextServer): Unit {
     TransferContext.writeArguments(OBJECT to index)
@@ -113,7 +112,7 @@ public object TextServerManager : Object() {
   }
 
   /**
-   * Returns the primary [godot.TextServer] interface currently in use.
+   * Returns the primary [TextServer] interface currently in use.
    */
   public fun getPrimaryInterface(): TextServer? {
     TransferContext.writeArguments()

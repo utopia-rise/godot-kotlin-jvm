@@ -17,8 +17,16 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Represents a texture sampler as defined by the base GLTF spec. Texture samplers in GLTF specify
+ * how to sample data from the texture's base image, when rendering the texture on an object.
+ */
 @GodotBaseType
 public open class GLTFTextureSampler : Resource() {
+  /**
+   * Texture's magnification filter, used when texture appears larger on screen than the source
+   * image.
+   */
   public var magFilter: Int
     get() {
       TransferContext.writeArguments()
@@ -30,6 +38,10 @@ public open class GLTFTextureSampler : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMagFilterPtr, NIL)
     }
 
+  /**
+   * Texture's minification filter, used when the texture appears smaller on screen than the source
+   * image.
+   */
   public var minFilter: Int
     get() {
       TransferContext.writeArguments()
@@ -41,6 +53,9 @@ public open class GLTFTextureSampler : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMinFilterPtr, NIL)
     }
 
+  /**
+   * Wrapping mode to use for S-axis (horizontal) texture coordinates.
+   */
   public var wrapS: Int
     get() {
       TransferContext.writeArguments()
@@ -52,6 +67,9 @@ public open class GLTFTextureSampler : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setWrapSPtr, NIL)
     }
 
+  /**
+   * Wrapping mode to use for T-axis (vertical) texture coordinates.
+   */
   public var wrapT: Int
     get() {
       TransferContext.writeArguments()

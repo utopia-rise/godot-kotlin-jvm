@@ -22,9 +22,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Class representing a spherical [godot.PrimitiveMesh].
- *
- * Class representing a spherical [godot.PrimitiveMesh].
+ * Class representing a spherical [PrimitiveMesh].
  */
 @GodotBaseType
 public open class SphereMesh : PrimitiveMesh() {
@@ -86,7 +84,6 @@ public open class SphereMesh : PrimitiveMesh() {
 
   /**
    * If `true`, a hemisphere is created rather than a full sphere.
-   *
    * **Note:** To get a regular hemisphere, the height and radius of the sphere must be equal.
    */
   public var isHemisphere: Boolean

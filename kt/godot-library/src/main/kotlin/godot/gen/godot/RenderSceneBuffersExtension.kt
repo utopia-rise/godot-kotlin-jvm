@@ -17,8 +17,6 @@ import kotlin.Unit
 
 /**
  * This class allows for a RenderSceneBuffer implementation to be made in GDExtension.
- *
- * This class allows for a RenderSceneBuffer implementation to be made in GDExtension.
  */
 @GodotBaseType
 public open class RenderSceneBuffersExtension : RenderSceneBuffers() {

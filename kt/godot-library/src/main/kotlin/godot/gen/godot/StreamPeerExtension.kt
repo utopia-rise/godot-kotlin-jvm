@@ -14,9 +14,6 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 
-/**
- *
- */
 @GodotBaseType
 public open class StreamPeerExtension : StreamPeer() {
   public override fun new(scriptIndex: Int): Boolean {
@@ -24,9 +21,6 @@ public open class StreamPeerExtension : StreamPeer() {
     return true
   }
 
-  /**
-   *
-   */
   public open fun _getAvailableBytes(): Int {
     throw NotImplementedError("_get_available_bytes is not implemented for StreamPeerExtension")
   }

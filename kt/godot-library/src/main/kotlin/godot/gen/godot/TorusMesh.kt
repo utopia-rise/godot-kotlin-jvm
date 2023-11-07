@@ -21,9 +21,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Class representing a torus [godot.PrimitiveMesh].
- *
- * Class representing a torus [godot.PrimitiveMesh].
+ * Class representing a torus [PrimitiveMesh].
  */
 @GodotBaseType
 public open class TorusMesh : PrimitiveMesh() {

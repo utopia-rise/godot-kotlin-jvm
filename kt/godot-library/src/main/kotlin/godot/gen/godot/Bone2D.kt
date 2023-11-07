@@ -27,20 +27,20 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A joint used with [godot.Skeleton2D] to control and animate other nodes.
- *
- * A hierarchy of [godot.Bone2D]s can be bound to a [godot.Skeleton2D] to control and animate other [godot.Node2D] nodes.
- *
- * You can use [godot.Bone2D] and [godot.Skeleton2D] nodes to animate 2D meshes created with the [godot.Polygon2D] UV editor.
- *
- * Each bone has a [rest] transform that you can reset to with [applyRest]. These rest poses are relative to the bone's parent.
- *
- * If in the editor, you can set the rest pose of an entire skeleton using a menu option, from the code, you need to iterate over the bones to set their individual rest poses.
+ * A hierarchy of [Bone2D]s can be bound to a [Skeleton2D] to control and animate other [Node2D]
+ * nodes.
+ * You can use [Bone2D] and [Skeleton2D] nodes to animate 2D meshes created with the [Polygon2D] UV
+ * editor.
+ * Each bone has a [rest] transform that you can reset to with [applyRest]. These rest poses are
+ * relative to the bone's parent.
+ * If in the editor, you can set the rest pose of an entire skeleton using a menu option, from the
+ * code, you need to iterate over the bones to set their individual rest poses.
  */
 @GodotBaseType
 public open class Bone2D : Node2D() {
   /**
-   * Rest transform of the bone. You can reset the node's transforms to this value using [applyRest].
+   * Rest transform of the bone. You can reset the node's transforms to this value using
+   * [applyRest].
    */
   @CoreTypeLocalCopy
   public var rest: Transform2D
@@ -60,7 +60,8 @@ public open class Bone2D : Node2D() {
   }
 
   /**
-   * Rest transform of the bone. You can reset the node's transforms to this value using [applyRest].
+   * Rest transform of the bone. You can reset the node's transforms to this value using
+   * [applyRest].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -92,7 +93,8 @@ public open class Bone2D : Node2D() {
   }
 
   /**
-   * Returns the node's [rest] [godot.core.Transform2D] if it doesn't have a parent, or its rest pose relative to its parent.
+   * Returns the node's [rest] [Transform2D] if it doesn't have a parent, or its rest pose relative
+   * to its parent.
    */
   public fun getSkeletonRest(): Transform2D {
     TransferContext.writeArguments()
@@ -101,7 +103,7 @@ public open class Bone2D : Node2D() {
   }
 
   /**
-   * Returns the node's index as part of the entire skeleton. See [godot.Skeleton2D].
+   * Returns the node's index as part of the entire skeleton. See [Skeleton2D].
    */
   public fun getIndexInSkeleton(): Int {
     TransferContext.writeArguments()
@@ -110,7 +112,9 @@ public open class Bone2D : Node2D() {
   }
 
   /**
-   * When set to `true`, the [godot.Bone2D] node will attempt to automatically calculate the bone angle and length using the first child [godot.Bone2D] node, if one exists. If none exist, the [godot.Bone2D] cannot automatically calculate these values and will print a warning.
+   * When set to `true`, the [Bone2D] node will attempt to automatically calculate the bone angle
+   * and length using the first child [Bone2D] node, if one exists. If none exist, the [Bone2D] cannot
+   * automatically calculate these values and will print a warning.
    */
   public fun setAutocalculateLengthAndAngle(autoCalculate: Boolean): Unit {
     TransferContext.writeArguments(BOOL to autoCalculate)
@@ -118,7 +122,9 @@ public open class Bone2D : Node2D() {
   }
 
   /**
-   * Returns whether this [godot.Bone2D] is going to autocalculate its length and bone angle using its first [godot.Bone2D] child node, if one exists. If there are no [godot.Bone2D] children, then it cannot autocalculate these values and will print a warning.
+   * Returns whether this [Bone2D] is going to autocalculate its length and bone angle using its
+   * first [Bone2D] child node, if one exists. If there are no [Bone2D] children, then it cannot
+   * autocalculate these values and will print a warning.
    */
   public fun getAutocalculateLengthAndAngle(): Boolean {
     TransferContext.writeArguments()
@@ -127,7 +133,7 @@ public open class Bone2D : Node2D() {
   }
 
   /**
-   * Sets the length of the bone in the [godot.Bone2D].
+   * Sets the length of the bone in the [Bone2D].
    */
   public fun setLength(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
@@ -135,7 +141,7 @@ public open class Bone2D : Node2D() {
   }
 
   /**
-   * Returns the length of the bone in the [godot.Bone2D] node.
+   * Returns the length of the bone in the [Bone2D] node.
    */
   public fun getLength(): Float {
     TransferContext.writeArguments()
@@ -144,9 +150,10 @@ public open class Bone2D : Node2D() {
   }
 
   /**
-   * Sets the bone angle for the [godot.Bone2D]. This is typically set to the rotation from the [godot.Bone2D] to a child [godot.Bone2D] node.
-   *
-   * **Note:** This is different from the [godot.Bone2D]'s rotation. The bone's angle is the rotation of the bone shown by the gizmo, which is unaffected by the [godot.Bone2D]'s [godot.Node2D.transform].
+   * Sets the bone angle for the [Bone2D]. This is typically set to the rotation from the [Bone2D]
+   * to a child [Bone2D] node.
+   * **Note:** This is different from the [Bone2D]'s rotation. The bone's angle is the rotation of
+   * the bone shown by the gizmo, which is unaffected by the [Bone2D]'s [Node2D.transform].
    */
   public fun setBoneAngle(angle: Float): Unit {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
@@ -154,9 +161,9 @@ public open class Bone2D : Node2D() {
   }
 
   /**
-   * Returns the angle of the bone in the [godot.Bone2D].
-   *
-   * **Note:** This is different from the [godot.Bone2D]'s rotation. The bone's angle is the rotation of the bone shown by the gizmo, which is unaffected by the [godot.Bone2D]'s [godot.Node2D.transform].
+   * Returns the angle of the bone in the [Bone2D].
+   * **Note:** This is different from the [Bone2D]'s rotation. The bone's angle is the rotation of
+   * the bone shown by the gizmo, which is unaffected by the [Bone2D]'s [Node2D.transform].
    */
   public fun getBoneAngle(): Float {
     TransferContext.writeArguments()

@@ -18,14 +18,13 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Abstract base class for layered texture RD types.
- *
- * Base class for [godot.Texture2DArrayRD], [godot.TextureCubemapRD] and [godot.TextureCubemapArrayRD]. Cannot be used directly, but contains all the functions necessary for accessing the derived resource types.
+ * Base class for [Texture2DArrayRD], [TextureCubemapRD] and [TextureCubemapArrayRD]. Cannot be used
+ * directly, but contains all the functions necessary for accessing the derived resource types.
  */
 @GodotBaseType
 public open class TextureLayeredRD internal constructor() : TextureLayered() {
   /**
-   * The RID of the texture object created on the [godot.RenderingDevice].
+   * The RID of the texture object created on the [RenderingDevice].
    */
   public var textureRdRid: RID
     get() {

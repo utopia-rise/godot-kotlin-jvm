@@ -17,14 +17,15 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Represents a triggered keyboard [godot.Shortcut].
- *
- * InputEventShortcut is a special event that can be received in [godot.Node.UnhandledKeyInput]. It is typically sent by the editor's Command Palette to trigger actions, but can also be sent manually using [godot.Viewport.pushInput].
+ * InputEventShortcut is a special event that can be received in [Node.UnhandledKeyInput]. It is
+ * typically sent by the editor's Command Palette to trigger actions, but can also be sent manually
+ * using [Viewport.pushInput].
  */
 @GodotBaseType
 public open class InputEventShortcut : InputEvent() {
   /**
-   * The [godot.Shortcut] represented by this event. Its [godot.Shortcut.matchesEvent] method will always return `true` for this event.
+   * The [Shortcut] represented by this event. Its [Shortcut.matchesEvent] method will always return
+   * `true` for this event.
    */
   public var shortcut: Shortcut?
     get() {

@@ -23,9 +23,8 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base class for texture types which contain the data of multiple [godot.ImageTexture]s. Each image is of the same size and format.
- *
- * Base class for [godot.Texture2DArray], [godot.Cubemap] and [godot.CubemapArray]. Cannot be used directly, but contains all the functions necessary for accessing the derived resource types. See also [godot.Texture3D].
+ * Base class for [Texture2DArray], [Cubemap] and [CubemapArray]. Cannot be used directly, but
+ * contains all the functions necessary for accessing the derived resource types. See also [Texture3D].
  */
 @GodotBaseType
 public open class ImageTextureLayered internal constructor() : TextureLayered() {
@@ -35,9 +34,10 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
   }
 
   /**
-   * Creates an [godot.ImageTextureLayered] from an array of [godot.Image]s. See [godot.Image.create] for the expected data format. The first image decides the width, height, image format and mipmapping setting. The other images *must* have the same width, height, image format and mipmapping setting.
-   *
-   * Each [godot.Image] represents one `layer`.
+   * Creates an [ImageTextureLayered] from an array of [Image]s. See [Image.create] for the expected
+   * data format. The first image decides the width, height, image format and mipmapping setting. The
+   * other images *must* have the same width, height, image format and mipmapping setting.
+   * Each [Image] represents one `layer`.
    */
   public fun createFromImages(images: VariantArray<Image>): GodotError {
     TransferContext.writeArguments(ARRAY to images)
@@ -46,12 +46,11 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
   }
 
   /**
-   * Replaces the existing [godot.Image] data at the given [layer] with this new image.
-   *
-   * The given [godot.Image] must have the same width, height, image format, and mipmapping flag as the rest of the referenced images.
-   *
-   * If the image format is unsupported, it will be decompressed and converted to a similar and supported [enum Image.Format].
-   *
+   * Replaces the existing [Image] data at the given [param layer] with this new image.
+   * The given [Image] must have the same width, height, image format, and mipmapping flag as the
+   * rest of the referenced images.
+   * If the image format is unsupported, it will be decompressed and converted to a similar and
+   * supported [enum Image.Format].
    * The update is immediate: it's synchronized with drawing.
    */
   public fun updateLayer(image: Image, layer: Int): Unit {

@@ -29,9 +29,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Exposes the internal debugger.
- *
- * [godot.EngineDebugger] handles the communication between the editor and the running game. It is active in the running game. Messages can be sent/received through it. It also manages the profilers.
+ * [EngineDebugger] handles the communication between the editor and the running game. It is active
+ * in the running game. Messages can be sent/received through it. It also manages the profilers.
  */
 @GodotBaseType
 public object EngineDebugger : Object() {
@@ -50,7 +49,7 @@ public object EngineDebugger : Object() {
   }
 
   /**
-   * Registers a profiler with the given [name]. See [godot.EngineProfiler] for more information.
+   * Registers a profiler with the given [param name]. See [EngineProfiler] for more information.
    */
   public fun registerProfiler(name: StringName, profiler: EngineProfiler): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to profiler)
@@ -58,7 +57,7 @@ public object EngineDebugger : Object() {
   }
 
   /**
-   * Unregisters a profiler with given [name].
+   * Unregisters a profiler with given [param name].
    */
   public fun unregisterProfiler(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -84,7 +83,7 @@ public object EngineDebugger : Object() {
   }
 
   /**
-   * Calls the `add` callable of the profiler with given [name] and [data].
+   * Calls the `add` callable of the profiler with given [param name] and [param data].
    */
   public fun profilerAddFrameData(name: StringName, `data`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ARRAY to data)
@@ -92,7 +91,8 @@ public object EngineDebugger : Object() {
   }
 
   /**
-   * Calls the `toggle` callable of the profiler with given [name] and [arguments]. Enables/Disables the same profiler depending on [enable] argument.
+   * Calls the `toggle` callable of the profiler with given [param name] and [param arguments].
+   * Enables/Disables the same profiler depending on [param enable] argument.
    */
   @JvmOverloads
   public fun profilerEnable(
@@ -105,9 +105,10 @@ public object EngineDebugger : Object() {
   }
 
   /**
-   * Registers a message capture with given [name]. If [name] is "my_message" then messages starting with "my_message:" will be called with the given callable.
-   *
-   * Callable must accept a message string and a data array as argument. If the message and data are valid then callable must return `true` otherwise `false`.
+   * Registers a message capture with given [param name]. If [param name] is "my_message" then
+   * messages starting with "my_message:" will be called with the given callable.
+   * Callable must accept a message string and a data array as argument. If the message and data are
+   * valid then callable must return `true` otherwise `false`.
    */
   public fun registerMessageCapture(name: StringName, callable: Callable): Unit {
     TransferContext.writeArguments(STRING_NAME to name, CALLABLE to callable)
@@ -115,7 +116,7 @@ public object EngineDebugger : Object() {
   }
 
   /**
-   * Unregisters the message capture with given [name].
+   * Unregisters the message capture with given [param name].
    */
   public fun unregisterMessageCapture(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -132,7 +133,7 @@ public object EngineDebugger : Object() {
   }
 
   /**
-   * Sends a message with given [message] and [data] array.
+   * Sends a message with given [param message] and [param data] array.
    */
   public fun sendMessage(message: String, `data`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(STRING to message, ARRAY to data)

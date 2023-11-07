@@ -27,12 +27,8 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Casts light in a 2D environment.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/2d/2d_lights_and_shadows.html]($DOCS_URL/tutorials/2d/2d_lights_and_shadows.html)
- *
- * Casts light in a 2D environment. A light is defined as a color, an energy value, a mode (see constants), and various other parameters (range and shadows-related).
+ * Casts light in a 2D environment. A light is defined as a color, an energy value, a mode (see
+ * constants), and various other parameters (range and shadows-related).
  */
 @GodotBaseType
 public open class Light2D internal constructor() : Node2D() {
@@ -65,7 +61,7 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
   /**
-   * The Light2D's [godot.core.Color].
+   * The Light2D's [Color].
    */
   @CoreTypeLocalCopy
   public var color: Color
@@ -164,9 +160,10 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
   /**
-   * The layer mask. Only objects with a matching [godot.CanvasItem.lightMask] will be affected by the Light2D. See also [shadowItemCullMask], which affects which objects can cast shadows.
-   *
-   * **Note:** [rangeItemCullMask] is ignored by [godot.DirectionalLight2D], which will always light a 2D node regardless of the 2D node's [godot.CanvasItem.lightMask].
+   * The layer mask. Only objects with a matching [CanvasItem.lightMask] will be affected by the
+   * Light2D. See also [shadowItemCullMask], which affects which objects can cast shadows.
+   * **Note:** [rangeItemCullMask] is ignored by [DirectionalLight2D], which will always light a 2D
+   * node regardless of the 2D node's [CanvasItem.lightMask].
    */
   public var rangeItemCullMask: Int
     get() {
@@ -194,7 +191,7 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
   /**
-   * [godot.core.Color] of shadows cast by the Light2D.
+   * [Color] of shadows cast by the Light2D.
    */
   @CoreTypeLocalCopy
   public var shadowColor: Color
@@ -223,7 +220,9 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
   /**
-   * Smoothing value for shadows. Higher values will result in softer shadows, at the cost of visible streaks that can appear in shadow rendering. [shadowFilterSmooth] only has an effect if [shadowFilter] is [godot.SHADOW_FILTER_PCF5] or [godot.SHADOW_FILTER_PCF13].
+   * Smoothing value for shadows. Higher values will result in softer shadows, at the cost of
+   * visible streaks that can appear in shadow rendering. [shadowFilterSmooth] only has an effect if
+   * [shadowFilter] is [constant SHADOW_FILTER_PCF5] or [constant SHADOW_FILTER_PCF13].
    */
   public var shadowFilterSmooth: Float
     get() {
@@ -237,7 +236,9 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
   /**
-   * The shadow mask. Used with [godot.LightOccluder2D] to cast shadows. Only occluders with a matching [godot.CanvasItem.lightMask] will cast shadows. See also [rangeItemCullMask], which affects which objects can *receive* the light.
+   * The shadow mask. Used with [LightOccluder2D] to cast shadows. Only occluders with a matching
+   * [CanvasItem.lightMask] will cast shadows. See also [rangeItemCullMask], which affects which
+   * objects can *receive* the light.
    */
   public var shadowItemCullMask: Int
     get() {
@@ -256,7 +257,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   /**
-   * The Light2D's [godot.core.Color].
+   * The Light2D's [Color].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -280,7 +281,7 @@ public open class Light2D internal constructor() : Node2D() {
 
 
   /**
-   * [godot.core.Color] of shadows cast by the Light2D.
+   * [Color] of shadows cast by the Light2D.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -304,7 +305,8 @@ public open class Light2D internal constructor() : Node2D() {
 
 
   /**
-   * Sets the light's height, which is used in 2D normal mapping. See [godot.PointLight2D.height] and [godot.DirectionalLight2D.height].
+   * Sets the light's height, which is used in 2D normal mapping. See [PointLight2D.height] and
+   * [DirectionalLight2D.height].
    */
   public fun setHeight(height: Float): Unit {
     TransferContext.writeArguments(DOUBLE to height.toDouble())
@@ -312,7 +314,8 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   /**
-   * Returns the light's height, which is used in 2D normal mapping. See [godot.PointLight2D.height] and [godot.DirectionalLight2D.height].
+   * Returns the light's height, which is used in 2D normal mapping. See [PointLight2D.height] and
+   * [DirectionalLight2D.height].
    */
   public fun getHeight(): Float {
     TransferContext.writeArguments()
@@ -324,15 +327,18 @@ public open class Light2D internal constructor() : Node2D() {
     id: Long,
   ) {
     /**
-     * No filter applies to the shadow map. This provides hard shadow edges and is the fastest to render. See [shadowFilter].
+     * No filter applies to the shadow map. This provides hard shadow edges and is the fastest to
+     * render. See [shadowFilter].
      */
     SHADOW_FILTER_NONE(0),
     /**
-     * Percentage closer filtering (5 samples) applies to the shadow map. This is slower compared to hard shadow rendering. See [shadowFilter].
+     * Percentage closer filtering (5 samples) applies to the shadow map. This is slower compared to
+     * hard shadow rendering. See [shadowFilter].
      */
     SHADOW_FILTER_PCF5(1),
     /**
-     * Percentage closer filtering (13 samples) applies to the shadow map. This is the slowest shadow filtering mode, and should be used sparingly. See [shadowFilter].
+     * Percentage closer filtering (13 samples) applies to the shadow map. This is the slowest
+     * shadow filtering mode, and should be used sparingly. See [shadowFilter].
      */
     SHADOW_FILTER_PCF13(2),
     ;
@@ -351,15 +357,18 @@ public open class Light2D internal constructor() : Node2D() {
     id: Long,
   ) {
     /**
-     * Adds the value of pixels corresponding to the Light2D to the values of pixels under it. This is the common behavior of a light.
+     * Adds the value of pixels corresponding to the Light2D to the values of pixels under it. This
+     * is the common behavior of a light.
      */
     BLEND_MODE_ADD(0),
     /**
-     * Subtracts the value of pixels corresponding to the Light2D to the values of pixels under it, resulting in inversed light effect.
+     * Subtracts the value of pixels corresponding to the Light2D to the values of pixels under it,
+     * resulting in inversed light effect.
      */
     BLEND_MODE_SUB(1),
     /**
-     * Mix the value of pixels corresponding to the Light2D to the values of pixels under it by linear interpolation.
+     * Mix the value of pixels corresponding to the Light2D to the values of pixels under it by
+     * linear interpolation.
      */
     BLEND_MODE_MIX(2),
     ;

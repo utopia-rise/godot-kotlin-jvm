@@ -25,16 +25,11 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A countdown timer.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/515](https://godotengine.org/asset-library/asset/515)
- *
- * Counts down a specified interval and emits a signal on reaching 0. Can be set to repeat or "one-shot" mode.
- *
- * **Note:** Timers are affected by [godot.Engine.timeScale], a higher scale means quicker timeouts, and vice versa.
- *
- * **Note:** To create a one-shot timer without instantiating a node, use [godot.SceneTree.createTimer].
+ * Counts down a specified interval and emits a signal on reaching 0. Can be set to repeat or
+ * "one-shot" mode.
+ * **Note:** Timers are affected by [Engine.timeScale], a higher scale means quicker timeouts, and
+ * vice versa.
+ * **Note:** To create a one-shot timer without instantiating a node, use [SceneTree.createTimer].
  */
 @GodotBaseType
 public open class Timer : Node() {
@@ -59,8 +54,12 @@ public open class Timer : Node() {
 
   /**
    * The wait time in seconds.
-   *
-   * **Note:** Timers can only emit once per rendered frame at most (or once per physics frame if [processCallback] is [TIMER_PROCESS_PHYSICS]). This means very low wait times (lower than 0.05 seconds) will behave in significantly different ways depending on the rendered framerate. For very low wait times, it is recommended to use a process loop in a script instead of using a Timer node. Timers are affected by [godot.Engine.timeScale], a higher scale means quicker timeouts, and vice versa.
+   * **Note:** Timers can only emit once per rendered frame at most (or once per physics frame if
+   * [processCallback] is [constant TIMER_PROCESS_PHYSICS]). This means very low wait times (lower than
+   * 0.05 seconds) will behave in significantly different ways depending on the rendered framerate. For
+   * very low wait times, it is recommended to use a process loop in a script instead of using a Timer
+   * node. Timers are affected by [Engine.timeScale], a higher scale means quicker timeouts, and vice
+   * versa.
    */
   public var waitTime: Double
     get() {
@@ -89,8 +88,8 @@ public open class Timer : Node() {
 
   /**
    * If `true`, the timer will automatically start when entering the scene tree.
-   *
-   * **Note:** This property is automatically set to `false` after the timer enters the scene tree and starts.
+   * **Note:** This property is automatically set to `false` after the timer enters the scene tree
+   * and starts.
    */
   public var autostart: Boolean
     get() {
@@ -104,7 +103,8 @@ public open class Timer : Node() {
     }
 
   /**
-   * If `true`, the timer is paused and will not process until it is unpaused again, even if [start] is called.
+   * If `true`, the timer is paused and will not process until it is unpaused again, even if [start]
+   * is called.
    */
   public var paused: Boolean
     get() {
@@ -119,8 +119,8 @@ public open class Timer : Node() {
 
   /**
    * The timer's remaining time in seconds. Returns 0 if the timer is inactive.
-   *
-   * **Note:** This value is read-only and cannot be set. It is based on [waitTime], which can be set using [start].
+   * **Note:** This value is read-only and cannot be set. It is based on [waitTime], which can be
+   * set using [start].
    */
   public val timeLeft: Double
     get() {
@@ -135,8 +135,8 @@ public open class Timer : Node() {
   }
 
   /**
-   * Starts the timer. Sets [waitTime] to [timeSec] if `time_sec > 0`. This also resets the remaining time to [waitTime].
-   *
+   * Starts the timer. Sets [waitTime] to [param time_sec] if `time_sec > 0`. This also resets the
+   * remaining time to [waitTime].
    * **Note:** This method will not resume a paused timer. See [paused].
    */
   @JvmOverloads
@@ -166,11 +166,12 @@ public open class Timer : Node() {
     id: Long,
   ) {
     /**
-     * Update the timer during physics frames (see [godot.Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
+     * Update the timer during physics frames (see [constant
+     * Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
     TIMER_PROCESS_PHYSICS(0),
     /**
-     * Update the timer during process frames (see [godot.Node.NOTIFICATION_INTERNAL_PROCESS]).
+     * Update the timer during process frames (see [constant Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
     TIMER_PROCESS_IDLE(1),
     ;

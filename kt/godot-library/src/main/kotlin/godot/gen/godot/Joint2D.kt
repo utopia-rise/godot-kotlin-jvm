@@ -24,14 +24,13 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Abstract base class for all 2D physics joints.
- *
- * Abstract base class for all joints in 2D physics. 2D joints bind together two physics bodies and apply a constraint.
+ * Abstract base class for all joints in 2D physics. 2D joints bind together two physics bodies and
+ * apply a constraint.
  */
 @GodotBaseType
 public open class Joint2D internal constructor() : Node2D() {
   /**
-   * The first body attached to the joint. Must derive from [godot.PhysicsBody2D].
+   * The first body attached to the joint. Must derive from [PhysicsBody2D].
    */
   public var nodeA: NodePath
     get() {
@@ -45,7 +44,7 @@ public open class Joint2D internal constructor() : Node2D() {
     }
 
   /**
-   * The second body attached to the joint. Must derive from [godot.PhysicsBody2D].
+   * The second body attached to the joint. Must derive from [PhysicsBody2D].
    */
   public var nodeB: NodePath
     get() {
@@ -59,9 +58,11 @@ public open class Joint2D internal constructor() : Node2D() {
     }
 
   /**
-   * When [nodeA] and [nodeB] move in different directions the [bias] controls how fast the joint pulls them back to their original position. The lower the [bias] the more the two bodies can pull on the joint.
-   *
-   * When set to `0`, the default value from [godot.ProjectSettings.physics/2d/solver/defaultConstraintBias] is used.
+   * When [nodeA] and [nodeB] move in different directions the [bias] controls how fast the joint
+   * pulls them back to their original position. The lower the [bias] the more the two bodies can pull
+   * on the joint.
+   * When set to `0`, the default value from
+   * [ProjectSettings.physics/2d/solver/defaultConstraintBias] is used.
    */
   public var bias: Float
     get() {

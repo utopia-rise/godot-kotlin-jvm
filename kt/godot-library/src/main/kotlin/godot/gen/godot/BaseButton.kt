@@ -25,16 +25,15 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Abstract base class for GUI buttons.
- *
- * [godot.BaseButton] is an abstract base class for GUI buttons. It doesn't display anything by itself.
+ * [BaseButton] is an abstract base class for GUI buttons. It doesn't display anything by itself.
  */
 @GodotBaseType
 public open class BaseButton : Control() {
   /**
-   * Emitted when the button is toggled or pressed. This is on [buttonDown] if [actionMode] is [ACTION_MODE_BUTTON_PRESS] and on [buttonUp] otherwise.
-   *
-   * If you need to know the button's pressed state (and [toggleMode] is active), use [toggled] instead.
+   * Emitted when the button is toggled or pressed. This is on [signal button_down] if [actionMode]
+   * is [constant ACTION_MODE_BUTTON_PRESS] and on [signal button_up] otherwise.
+   * If you need to know the button's pressed state (and [toggleMode] is active), use [signal
+   * toggled] instead.
    */
   public val pressed: Signal0 by signal()
 
@@ -49,7 +48,8 @@ public open class BaseButton : Control() {
   public val buttonDown: Signal0 by signal()
 
   /**
-   * Emitted when the button was just toggled between pressed and normal states (only if [toggleMode] is active). The new state is contained in the [toggledOn] argument.
+   * Emitted when the button was just toggled between pressed and normal states (only if
+   * [toggleMode] is active). The new state is contained in the [param toggled_on] argument.
    */
   public val toggled: Signal1<Boolean> by signal("toggledOn")
 
@@ -68,7 +68,8 @@ public open class BaseButton : Control() {
     }
 
   /**
-   * If `true`, the button is in toggle mode. Makes the button flip state between pressed and unpressed each time its area is clicked.
+   * If `true`, the button is in toggle mode. Makes the button flip state between pressed and
+   * unpressed each time its area is clicked.
    */
   public var toggleMode: Boolean
     get() {
@@ -82,9 +83,10 @@ public open class BaseButton : Control() {
     }
 
   /**
-   * If `true`, the button's state is pressed. Means the button is pressed down or toggled (if [toggleMode] is active). Only works if [toggleMode] is `true`.
-   *
-   * **Note:** Setting [buttonPressed] will result in [toggled] to be emitted. If you want to change the pressed state without emitting that signal, use [setPressedNoSignal].
+   * If `true`, the button's state is pressed. Means the button is pressed down or toggled (if
+   * [toggleMode] is active). Only works if [toggleMode] is `true`.
+   * **Note:** Setting [buttonPressed] will result in [signal toggled] to be emitted. If you want to
+   * change the pressed state without emitting that signal, use [setPressedNoSignal].
    */
   public var buttonPressed: Boolean
     get() {
@@ -113,8 +115,8 @@ public open class BaseButton : Control() {
 
   /**
    * Binary mask to choose which mouse buttons this button will respond to.
-   *
-   * To allow both left-click and right-click, use `MOUSE_BUTTON_MASK_LEFT | MOUSE_BUTTON_MASK_RIGHT`.
+   * To allow both left-click and right-click, use `MOUSE_BUTTON_MASK_LEFT |
+   * MOUSE_BUTTON_MASK_RIGHT`.
    */
   public var buttonMask: MouseButtonMask
     get() {
@@ -128,9 +130,10 @@ public open class BaseButton : Control() {
     }
 
   /**
-   * If `true`, the button stays pressed when moving the cursor outside the button while pressing it.
-   *
-   * **Note:** This property only affects the button's visual appearance. Signals will be emitted at the same moment regardless of this property's value.
+   * If `true`, the button stays pressed when moving the cursor outside the button while pressing
+   * it.
+   * **Note:** This property only affects the button's visual appearance. Signals will be emitted at
+   * the same moment regardless of this property's value.
    */
   public var keepPressedOutside: Boolean
     get() {
@@ -144,9 +147,8 @@ public open class BaseButton : Control() {
     }
 
   /**
-   * The [godot.ButtonGroup] associated with the button. Not to be confused with node groups.
-   *
-   * **Note:** The button will be configured as a radio button if a [godot.ButtonGroup] is assigned to it.
+   * The [ButtonGroup] associated with the button. Not to be confused with node groups.
+   * **Note:** The button will be configured as a radio button if a [ButtonGroup] is assigned to it.
    */
   public var buttonGroup: ButtonGroup?
     get() {
@@ -160,7 +162,7 @@ public open class BaseButton : Control() {
     }
 
   /**
-   * [godot.Shortcut] associated to the button.
+   * [Shortcut] associated to the button.
    */
   public var shortcut: Shortcut?
     get() {
@@ -174,7 +176,8 @@ public open class BaseButton : Control() {
     }
 
   /**
-   * If `true`, the button will highlight for a short amount of time when its shortcut is activated. If `false` and [toggleMode] is `false`, the shortcut will activate without any visual feedback.
+   * If `true`, the button will highlight for a short amount of time when its shortcut is activated.
+   * If `false` and [toggleMode] is `false`, the shortcut will activate without any visual feedback.
    */
   public var shortcutFeedback: Boolean
     get() {
@@ -207,7 +210,8 @@ public open class BaseButton : Control() {
   }
 
   /**
-   * Called when the button is pressed. If you need to know the button's pressed state (and [toggleMode] is active), use [_toggled] instead.
+   * Called when the button is pressed. If you need to know the button's pressed state (and
+   * [toggleMode] is active), use [_toggled] instead.
    */
   public open fun _pressed(): Unit {
   }
@@ -219,8 +223,9 @@ public open class BaseButton : Control() {
   }
 
   /**
-   * Changes the [buttonPressed] state of the button, without emitting [toggled]. Use when you just want to change the state of the button without sending the pressed event (e.g. when initializing scene). Only works if [toggleMode] is `true`.
-   *
+   * Changes the [buttonPressed] state of the button, without emitting [signal toggled]. Use when
+   * you just want to change the state of the button without sending the pressed event (e.g. when
+   * initializing scene). Only works if [toggleMode] is `true`.
    * **Note:** This method doesn't unpress other buttons in [buttonGroup].
    */
   public fun setPressedNoSignal(pressed: Boolean): Unit {
@@ -238,7 +243,9 @@ public open class BaseButton : Control() {
   }
 
   /**
-   * Returns the visual state used to draw the button. This is useful mainly when implementing your own draw code by either overriding _draw() or connecting to "draw" signal. The visual state of the button is defined by the [enum DrawMode] enum.
+   * Returns the visual state used to draw the button. This is useful mainly when implementing your
+   * own draw code by either overriding _draw() or connecting to "draw" signal. The visual state of the
+   * button is defined by the [enum DrawMode] enum.
    */
   public fun getDrawMode(): DrawMode {
     TransferContext.writeArguments()

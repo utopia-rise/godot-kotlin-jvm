@@ -23,17 +23,14 @@ import kotlin.Suppress
 import kotlin.jvm.JvmName
 
 /**
- * Represents a mouse button being pressed or released.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/inputs/mouse_and_input_coordinates.html]($DOCS_URL/tutorials/inputs/mouse_and_input_coordinates.html)
- *
- * Stores information about mouse click events. See [godot.Node.Input].
+ * Stores information about mouse click events. See [Node.Input].
  */
 @GodotBaseType
 public open class InputEventMouseButton : InputEventMouse() {
   /**
-   * The amount (or delta) of the event. When used for high-precision scroll events, this indicates the scroll amount (vertical or horizontal). This is only supported on some platforms; the reported sensitivity varies depending on the platform. May be `0` if not supported.
+   * The amount (or delta) of the event. When used for high-precision scroll events, this indicates
+   * the scroll amount (vertical or horizontal). This is only supported on some platforms; the reported
+   * sensitivity varies depending on the platform. May be `0` if not supported.
    */
   public var factor: Float
     get() {
@@ -72,7 +69,8 @@ public open class InputEventMouseButton : InputEventMouse() {
     }
 
   /**
-   * If `true`, the mouse button's state is pressed. If `false`, the mouse button's state is released.
+   * If `true`, the mouse button's state is pressed. If `false`, the mouse button's state is
+   * released.
    */
   public var pressed: Boolean
     @JvmName("isPressed_prop")

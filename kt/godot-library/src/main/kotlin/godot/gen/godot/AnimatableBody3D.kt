@@ -17,19 +17,19 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A 3D physics body that can't be moved by external forces. When moved manually, it affects other bodies in its path.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
- *
- * An animatable 3D physics body. It can't be moved by external forces or contacts, but can be moved manually by other means such as code, [godot.AnimationMixer]s (with [godot.AnimationMixer.callbackModeProcess] set to [godot.AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS]), and [godot.RemoteTransform3D].
- *
- * When [godot.AnimatableBody3D] is moved, its linear and angular velocity are estimated and used to affect other physics bodies in its path. This makes it useful for moving platforms, doors, and other moving objects.
+ * An animatable 3D physics body. It can't be moved by external forces or contacts, but can be moved
+ * manually by other means such as code, [AnimationMixer]s (with [AnimationMixer.callbackModeProcess]
+ * set to [constant AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS]), and [RemoteTransform3D].
+ * When [AnimatableBody3D] is moved, its linear and angular velocity are estimated and used to
+ * affect other physics bodies in its path. This makes it useful for moving platforms, doors, and other
+ * moving objects.
  */
 @GodotBaseType
 public open class AnimatableBody3D : StaticBody3D() {
   /**
-   * If `true`, the body's movement will be synchronized to the physics frame. This is useful when animating movement via [godot.AnimationPlayer], for example on moving platforms. Do **not** use together with [godot.PhysicsBody3D.moveAndCollide].
+   * If `true`, the body's movement will be synchronized to the physics frame. This is useful when
+   * animating movement via [AnimationPlayer], for example on moving platforms. Do **not** use together
+   * with [PhysicsBody3D.moveAndCollide].
    */
   public var syncToPhysics: Boolean
     get() {

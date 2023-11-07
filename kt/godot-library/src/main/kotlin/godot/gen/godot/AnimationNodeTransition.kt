@@ -23,72 +23,41 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A transition within an [godot.AnimationTree] connecting two [godot.AnimationNode]s.
+ * Simple state machine for cases which don't require a more advanced [AnimationNodeStateMachine].
+ * Animations can be connected to the inputs and transition times can be specified.
+ * After setting the request and changing the animation playback, the transition node automatically
+ * clears the request on the next process frame by setting its `transition_request` value to empty.
+ * **Note:** When using a cross-fade, `current_state` and `current_index` change to the next state
+ * immediately after the cross-fade begins.
  *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
- *
- * Simple state machine for cases which don't require a more advanced [godot.AnimationNodeStateMachine]. Animations can be connected to the inputs and transition times can be specified.
- *
- * After setting the request and changing the animation playback, the transition node automatically clears the request on the next process frame by setting its `transition_request` value to empty.
- *
- * **Note:** When using a cross-fade, `current_state` and `current_index` change to the next state immediately after the cross-fade begins.
- *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * # Play child animation connected to "state_2" port.
- *
  * animation_tree.set("parameters/Transition/transition_request", "state_2")
- *
  * # Alternative syntax (same result as above).
- *
  * animation_tree["parameters/Transition/transition_request"] = "state_2"
  *
- *
- *
  * # Get current state name (read-only).
- *
  * animation_tree.get("parameters/Transition/current_state")
- *
  * # Alternative syntax (same result as above).
- *
  * animation_tree["parameters/Transition/current_state"]
  *
- *
- *
  * # Get current state index (read-only).
- *
  * animation_tree.get("parameters/Transition/current_index")
- *
  * # Alternative syntax (same result as above).
- *
  * animation_tree["parameters/Transition/current_index"]
- *
- * [/gdscript]
- *
- * [csharp]
- *
+ * ```
+ * csharp:
+ * ```csharp
  * // Play child animation connected to "state_2" port.
- *
  * animationTree.Set("parameters/Transition/transition_request", "state_2");
  *
- *
- *
  * // Get current state name (read-only).
- *
  * animationTree.Get("parameters/Transition/current_state");
  *
- *
- *
  * // Get current state index (read-only).
- *
  * animationTree.Get("parameters/Transition/current_index");
- *
- * [/csharp]
- *
- * [/codeblocks]
+ * ```
  */
 @GodotBaseType
 public open class AnimationNodeTransition : AnimationNodeSync() {
@@ -107,7 +76,8 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
     }
 
   /**
-   * Determines how cross-fading between animations is eased. If empty, the transition will be linear.
+   * Determines how cross-fading between animations is eased. If empty, the transition will be
+   * linear.
    */
   public var xfadeCurve: Curve?
     get() {
@@ -121,7 +91,8 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
     }
 
   /**
-   * If `true`, allows transition to the self state. When the reset option is enabled in input, the animation is restarted. If `false`, nothing happens on the transition to the self state.
+   * If `true`, allows transition to the self state. When the reset option is enabled in input, the
+   * animation is restarted. If `false`, nothing happens on the transition to the self state.
    */
   public var allowTransitionToSelf: Boolean
     get() {
@@ -151,7 +122,9 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   }
 
   /**
-   * Enables or disables auto-advance for the given [input] index. If enabled, state changes to the next input after playing the animation once. If enabled for the last input state, it loops to the first.
+   * Enables or disables auto-advance for the given [param input] index. If enabled, state changes
+   * to the next input after playing the animation once. If enabled for the last input state, it loops
+   * to the first.
    */
   public fun setInputAsAutoAdvance(input: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to input.toLong(), BOOL to enable)
@@ -159,7 +132,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   }
 
   /**
-   * Returns `true` if auto-advance is enabled for the given [input] index.
+   * Returns `true` if auto-advance is enabled for the given [param input] index.
    */
   public fun isInputSetAsAutoAdvance(input: Int): Boolean {
     TransferContext.writeArguments(LONG to input.toLong())

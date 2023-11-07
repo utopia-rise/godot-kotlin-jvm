@@ -40,12 +40,34 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+/**
+ * GridMap lets you place meshes on a grid interactively. It works both from the editor and from
+ * scripts, which can help you create in-game level editors.
+ * GridMaps use a [MeshLibrary] which contains a list of tiles. Each tile is a mesh with materials
+ * plus optional collision and navigation shapes.
+ * A GridMap contains a collection of cells. Each grid cell refers to a tile in the [MeshLibrary].
+ * All cells in the map have the same dimensions.
+ * Internally, a GridMap is split into a sparse collection of octants for efficient rendering and
+ * physics processing. Every octant has the same dimensions and can contain several cells.
+ * **Note:** GridMap doesn't extend [VisualInstance3D] and therefore can't be hidden or cull masked
+ * based on [VisualInstance3D.layers]. If you make a light not affect the first layer, the whole
+ * GridMap won't be lit by the light in question.
+ */
 @GodotBaseType
 public open class GridMap : Node3D() {
+  /**
+   * Emitted when [cellSize] changes.
+   */
   public val cellSizeChanged: Signal1<Vector3> by signal("cellSize")
 
+  /**
+   * Emitted when the [MeshLibrary] of this GridMap changes.
+   */
   public val changed: Signal0 by signal()
 
+  /**
+   * The assigned [MeshLibrary].
+   */
   public var meshLibrary: MeshLibrary?
     get() {
       TransferContext.writeArguments()
@@ -57,6 +79,9 @@ public open class GridMap : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMeshLibraryPtr, NIL)
     }
 
+  /**
+   * Overrides the default friction and bounce physics properties for the whole [GridMap].
+   */
   public var physicsMaterial: PhysicsMaterial?
     get() {
       TransferContext.writeArguments()
@@ -68,6 +93,10 @@ public open class GridMap : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsMaterialPtr, NIL)
     }
 
+  /**
+   * The dimensions of the grid's cells.
+   * This does not affect the size of the meshes. See [cellScale].
+   */
   @CoreTypeLocalCopy
   public var cellSize: Vector3
     get() {
@@ -80,6 +109,9 @@ public open class GridMap : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
     }
 
+  /**
+   * The size of each octant measured in number of cells. This applies to all three axis.
+   */
   public var cellOctantSize: Int
     get() {
       TransferContext.writeArguments()
@@ -91,6 +123,9 @@ public open class GridMap : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setOctantSizePtr, NIL)
     }
 
+  /**
+   * If `true`, grid items are centered on the X axis.
+   */
   public var cellCenterX: Boolean
     get() {
       TransferContext.writeArguments()
@@ -102,6 +137,9 @@ public open class GridMap : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCenterXPtr, NIL)
     }
 
+  /**
+   * If `true`, grid items are centered on the Y axis.
+   */
   public var cellCenterY: Boolean
     get() {
       TransferContext.writeArguments()
@@ -113,6 +151,9 @@ public open class GridMap : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCenterYPtr, NIL)
     }
 
+  /**
+   * If `true`, grid items are centered on the Z axis.
+   */
   public var cellCenterZ: Boolean
     get() {
       TransferContext.writeArguments()
@@ -124,6 +165,11 @@ public open class GridMap : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCenterZPtr, NIL)
     }
 
+  /**
+   * The scale of the cell items.
+   * This does not affect the size of the grid cells themselves, only the items in them. This can be
+   * used to make cell items overlap their neighbors.
+   */
   public var cellScale: Float
     get() {
       TransferContext.writeArguments()
@@ -135,6 +181,11 @@ public open class GridMap : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCellScalePtr, NIL)
     }
 
+  /**
+   * The physics layers this GridMap is in.
+   * GridMaps act as static bodies, meaning they aren't affected by gravity or other forces. They
+   * only affect other physics bodies that collide with them.
+   */
   public var collisionLayer: Long
     get() {
       TransferContext.writeArguments()
@@ -146,6 +197,11 @@ public open class GridMap : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCollisionLayerPtr, NIL)
     }
 
+  /**
+   * The physics layers this GridMap detects collisions in. See
+   * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
+   * layers and masks[/url] in the documentation for more information.
+   */
   public var collisionMask: Long
     get() {
       TransferContext.writeArguments()
@@ -157,6 +213,11 @@ public open class GridMap : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
     }
 
+  /**
+   * The priority used to solve colliding when occurring penetration. The higher the priority is,
+   * the lower the penetration into the object will be. This can for example be used to prevent the
+   * player from breaking through the boundaries of a level.
+   */
   public var collisionPriority: Float
     get() {
       TransferContext.writeArguments()
@@ -168,6 +229,11 @@ public open class GridMap : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCollisionPriorityPtr, NIL)
     }
 
+  /**
+   * If `true`, this GridMap creates a navigation region for each cell that uses a [meshLibrary]
+   * item with a navigation mesh. The created navigation region will use the navigation layers bitmask
+   * assigned to the [MeshLibrary]'s item.
+   */
   public var bakeNavigation: Boolean
     get() {
       TransferContext.writeArguments()
@@ -185,6 +251,9 @@ public open class GridMap : Node3D() {
   }
 
   /**
+   * The dimensions of the grid's cells.
+   * This does not affect the size of the meshes. See [cellScale].
+   *
    * This is a helper function to make dealing with local copies easier. 
    *
    * For more information, see our
@@ -206,39 +275,72 @@ public open class GridMap : Node3D() {
   }
 
 
+  /**
+   * Based on [param value], enables or disables the specified layer in the [collisionMask], given a
+   * [param layer_number] between 1 and 32.
+   */
   public fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskValuePtr, NIL)
   }
 
+  /**
+   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a [param
+   * layer_number] between 1 and 32.
+   */
   public fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  /**
+   * Based on [param value], enables or disables the specified layer in the [collisionLayer], given
+   * a [param layer_number] between 1 and 32.
+   */
   public fun setCollisionLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollisionLayerValuePtr, NIL)
   }
 
+  /**
+   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a [param
+   * layer_number] between 1 and 32.
+   */
   public fun getCollisionLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionLayerValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  /**
+   * Sets the [RID] of the navigation map this GridMap node should use for its cell baked navigation
+   * meshes.
+   */
   public fun setNavigationMap(navigationMap: RID): Unit {
     TransferContext.writeArguments(_RID to navigationMap)
     TransferContext.callMethod(rawPtr, MethodBindings.setNavigationMapPtr, NIL)
   }
 
+  /**
+   * Returns the [RID] of the navigation map this GridMap node uses for its cell baked navigation
+   * meshes.
+   * This function returns always the map set on the GridMap node and not the map on the
+   * NavigationServer. If the map is changed directly with the NavigationServer API the GridMap node
+   * will not be aware of the map change.
+   */
   public fun getNavigationMap(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
+  /**
+   * Sets the mesh index for the cell referenced by its grid coordinates.
+   * A negative item index such as [constant INVALID_CELL_ITEM] will clear the cell.
+   * Optionally, the item's orientation can be passed. For valid orientation values, see
+   * [getOrthogonalIndexFromBasis].
+   */
   @JvmOverloads
   public fun setCellItem(
     position: Vector3i,
@@ -249,93 +351,152 @@ public open class GridMap : Node3D() {
     TransferContext.callMethod(rawPtr, MethodBindings.setCellItemPtr, NIL)
   }
 
+  /**
+   * The [MeshLibrary] item index located at the given grid coordinates. If the cell is empty,
+   * [constant INVALID_CELL_ITEM] will be returned.
+   */
   public fun getCellItem(position: Vector3i): Int {
     TransferContext.writeArguments(VECTOR3I to position)
     TransferContext.callMethod(rawPtr, MethodBindings.getCellItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  /**
+   * The orientation of the cell at the given grid coordinates. `-1` is returned if the cell is
+   * empty.
+   */
   public fun getCellItemOrientation(position: Vector3i): Int {
     TransferContext.writeArguments(VECTOR3I to position)
     TransferContext.callMethod(rawPtr, MethodBindings.getCellItemOrientationPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  /**
+   * Returns the basis that gives the specified cell its orientation.
+   */
   public fun getCellItemBasis(position: Vector3i): Basis {
     TransferContext.writeArguments(VECTOR3I to position)
     TransferContext.callMethod(rawPtr, MethodBindings.getCellItemBasisPtr, BASIS)
     return (TransferContext.readReturnValue(BASIS, false) as Basis)
   }
 
+  /**
+   * Returns one of 24 possible rotations that lie along the vectors (x,y,z) with each component
+   * being either -1, 0, or 1. For further details, refer to the Godot source code.
+   */
   public fun getBasisWithOrthogonalIndex(index: Int): Basis {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBasisWithOrthogonalIndexPtr, BASIS)
     return (TransferContext.readReturnValue(BASIS, false) as Basis)
   }
 
+  /**
+   * This function considers a discretization of rotations into 24 points on unit sphere, lying
+   * along the vectors (x,y,z) with each component being either -1, 0, or 1, and returns the index (in
+   * the range from 0 to 23) of the point best representing the orientation of the object. For further
+   * details, refer to the Godot source code.
+   */
   public fun getOrthogonalIndexFromBasis(basis: Basis): Int {
     TransferContext.writeArguments(BASIS to basis)
     TransferContext.callMethod(rawPtr, MethodBindings.getOrthogonalIndexFromBasisPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  /**
+   * Returns the map coordinates of the cell containing the given [param local_position]. If [param
+   * local_position] is in global coordinates, consider using [Node3D.toLocal] before passing it to
+   * this method. See also [mapToLocal].
+   */
   public fun localToMap(localPosition: Vector3): Vector3i {
     TransferContext.writeArguments(VECTOR3 to localPosition)
     TransferContext.callMethod(rawPtr, MethodBindings.localToMapPtr, VECTOR3I)
     return (TransferContext.readReturnValue(VECTOR3I, false) as Vector3i)
   }
 
+  /**
+   * Returns the position of a grid cell in the GridMap's local coordinate space. To convert the
+   * returned value into global coordinates, use [Node3D.toGlobal]. See also [mapToLocal].
+   */
   public fun mapToLocal(mapPosition: Vector3i): Vector3 {
     TransferContext.writeArguments(VECTOR3I to mapPosition)
     TransferContext.callMethod(rawPtr, MethodBindings.mapToLocalPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
+  /**
+   * *Obsoleted.* Use [signal Resource.changed] instead.
+   */
   public fun resourceChanged(resource: Resource): Unit {
     TransferContext.writeArguments(OBJECT to resource)
     TransferContext.callMethod(rawPtr, MethodBindings.resourceChangedPtr, NIL)
   }
 
+  /**
+   * Clear all cells.
+   */
   public fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
+  /**
+   * Returns an array of [Vector3] with the non-empty cell coordinates in the grid map.
+   */
   public fun getUsedCells(): VariantArray<Vector3i> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUsedCellsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector3i>)
   }
 
+  /**
+   * Returns an array of all cells with the given item index specified in [param item].
+   */
   public fun getUsedCellsByItem(item: Int): VariantArray<Vector3i> {
     TransferContext.writeArguments(LONG to item.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getUsedCellsByItemPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector3i>)
   }
 
+  /**
+   * Returns an array of [Transform3D] and [Mesh] references corresponding to the non-empty cells in
+   * the grid. The transforms are specified in local space.
+   */
   public fun getMeshes(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMeshesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
+  /**
+   * Returns an array of [ArrayMesh]es and [Transform3D] references of all bake meshes that exist
+   * within the current GridMap.
+   */
   public fun getBakeMeshes(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBakeMeshesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
+  /**
+   * Returns [RID] of a baked mesh with the given [param idx].
+   */
   public fun getBakeMeshInstance(idx: Int): RID {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBakeMeshInstancePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
+  /**
+   * Clears all baked meshes. See [makeBakedMeshes].
+   */
   public fun clearBakedMeshes(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearBakedMeshesPtr, NIL)
   }
 
+  /**
+   * Bakes lightmap data for all meshes in the assigned [MeshLibrary].
+   */
   @JvmOverloads
   public fun makeBakedMeshes(genLightmapUv: Boolean = false, lightmapUvTexelSize: Float = 0.1f):
       Unit {
@@ -344,6 +505,10 @@ public open class GridMap : Node3D() {
   }
 
   public companion object {
+    /**
+     * Invalid cell item that can be used in [setCellItem] to clear cells (or represent an empty
+     * cell in [getCellItem]).
+     */
     public final const val INVALID_CELL_ITEM: Long = -1
   }
 

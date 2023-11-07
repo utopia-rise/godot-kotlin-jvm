@@ -26,14 +26,16 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A 2D texture that creates a pattern with colors obtained from a [godot.Gradient].
- *
- * A 2D texture that obtains colors from a [godot.Gradient] to fill the texture data. This texture is able to transform a color transition into different patterns such as a linear or a radial gradient. The gradient is sampled individually for each pixel so it does not necessarily represent an exact copy of the gradient(see [width] and [height]). See also [godot.GradientTexture1D], [godot.CurveTexture] and [godot.CurveXYZTexture].
+ * A 2D texture that obtains colors from a [Gradient] to fill the texture data. This texture is able
+ * to transform a color transition into different patterns such as a linear or a radial gradient. The
+ * gradient is sampled individually for each pixel so it does not necessarily represent an exact copy
+ * of the gradient(see [width] and [height]). See also [GradientTexture1D], [CurveTexture] and
+ * [CurveXYZTexture].
  */
 @GodotBaseType
 public open class GradientTexture2D : Texture2D() {
   /**
-   * The [godot.Gradient] used to fill the texture.
+   * The [Gradient] used to fill the texture.
    */
   public var gradient: Gradient?
     get() {
@@ -47,7 +49,8 @@ public open class GradientTexture2D : Texture2D() {
     }
 
   /**
-   * The number of horizontal color samples that will be obtained from the [godot.Gradient], which also represents the texture's width.
+   * The number of horizontal color samples that will be obtained from the [Gradient], which also
+   * represents the texture's width.
    */
   public var width: Int
     @JvmName("getWidth_prop")
@@ -58,7 +61,8 @@ public open class GradientTexture2D : Texture2D() {
     }
 
   /**
-   * The number of vertical color samples that will be obtained from the [godot.Gradient], which also represents the texture's height.
+   * The number of vertical color samples that will be obtained from the [Gradient], which also
+   * represents the texture's height.
    */
   public var height: Int
     @JvmName("getHeight_prop")
@@ -69,7 +73,10 @@ public open class GradientTexture2D : Texture2D() {
     }
 
   /**
-   * If `true`, the generated texture will support high dynamic range ([godot.Image.FORMAT_RGBAF] format). This allows for glow effects to work if [godot.Environment.glowEnabled] is `true`. If `false`, the generated texture will use low dynamic range; overbright colors will be clamped ([godot.Image.FORMAT_RGBA8] format).
+   * If `true`, the generated texture will support high dynamic range ([constant Image.FORMAT_RGBAF]
+   * format). This allows for glow effects to work if [Environment.glowEnabled] is `true`. If `false`,
+   * the generated texture will use low dynamic range; overbright colors will be clamped ([constant
+   * Image.FORMAT_RGBA8] format).
    */
   public var useHdr: Boolean
     get() {
@@ -83,7 +90,8 @@ public open class GradientTexture2D : Texture2D() {
     }
 
   /**
-   * The gradient fill type, one of the [enum Fill] values. The texture is filled by interpolating colors starting from [fillFrom] to [fillTo] offsets.
+   * The gradient fill type, one of the [enum Fill] values. The texture is filled by interpolating
+   * colors starting from [fillFrom] to [fillTo] offsets.
    */
   public var fill: Fill
     get() {
@@ -127,7 +135,9 @@ public open class GradientTexture2D : Texture2D() {
     }
 
   /**
-   * The gradient repeat type, one of the [enum Repeat] values. The texture is filled starting from [fillFrom] to [fillTo] offsets by default, but the gradient fill can be repeated to cover the entire texture.
+   * The gradient repeat type, one of the [enum Repeat] values. The texture is filled starting from
+   * [fillFrom] to [fillTo] offsets by default, but the gradient fill can be repeated to cover the
+   * entire texture.
    */
   public var repeat: Repeat
     get() {
@@ -228,11 +238,13 @@ public open class GradientTexture2D : Texture2D() {
      */
     REPEAT_NONE(0),
     /**
-     * The texture is filled starting from [fillFrom] to [fillTo] offsets, repeating the same pattern in both directions.
+     * The texture is filled starting from [fillFrom] to [fillTo] offsets, repeating the same
+     * pattern in both directions.
      */
     REPEAT(1),
     /**
-     * The texture is filled starting from [fillFrom] to [fillTo] offsets, mirroring the pattern in both directions.
+     * The texture is filled starting from [fillFrom] to [fillTo] offsets, mirroring the pattern in
+     * both directions.
      */
     REPEAT_MIRROR(2),
     ;

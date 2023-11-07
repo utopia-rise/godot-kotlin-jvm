@@ -29,19 +29,17 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A shader implemented in the Godot shading language.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/shaders/index.html]($DOCS_URL/tutorials/shaders/index.html)
- *
- * A custom shader program implemented in the Godot shading language, saved with the `.gdshader` extension.
- *
- * This class is used by a [godot.ShaderMaterial] and allows you to write your own custom behavior for rendering visual items or updating particle information. For a detailed explanation and usage, please see the tutorials linked below.
+ * A custom shader program implemented in the Godot shading language, saved with the `.gdshader`
+ * extension.
+ * This class is used by a [ShaderMaterial] and allows you to write your own custom behavior for
+ * rendering visual items or updating particle information. For a detailed explanation and usage,
+ * please see the tutorials linked below.
  */
 @GodotBaseType
 public open class Shader : Resource() {
   /**
-   * Returns the shader's code as the user has written it, not the full generated code used internally.
+   * Returns the shader's code as the user has written it, not the full generated code used
+   * internally.
    */
   public var code: String
     get() {
@@ -69,11 +67,10 @@ public open class Shader : Resource() {
   }
 
   /**
-   * Sets the default texture to be used with a texture uniform. The default is used if a texture is not set in the [godot.ShaderMaterial].
-   *
-   * **Note:** [name] must match the name of the uniform in the code exactly.
-   *
-   * **Note:** If the sampler array is used use [index] to access the specified texture.
+   * Sets the default texture to be used with a texture uniform. The default is used if a texture is
+   * not set in the [ShaderMaterial].
+   * **Note:** [param name] must match the name of the uniform in the code exactly.
+   * **Note:** If the sampler array is used use [param index] to access the specified texture.
    */
   @JvmOverloads
   public fun setDefaultTextureParameter(
@@ -87,10 +84,8 @@ public open class Shader : Resource() {
 
   /**
    * Returns the texture that is set as default for the specified parameter.
-   *
-   * **Note:** [name] must match the name of the uniform in the code exactly.
-   *
-   * **Note:** If the sampler array is used use [index] to access the specified texture.
+   * **Note:** [param name] must match the name of the uniform in the code exactly.
+   * **Note:** If the sampler array is used use [param index] to access the specified texture.
    */
   @JvmOverloads
   public fun getDefaultTextureParameter(name: StringName, index: Int = 0): Texture2D? {
@@ -100,9 +95,11 @@ public open class Shader : Resource() {
   }
 
   /**
-   * Get the list of shader uniforms that can be assigned to a [godot.ShaderMaterial], for use with [godot.ShaderMaterial.setShaderParameter] and [godot.ShaderMaterial.getShaderParameter]. The parameters returned are contained in dictionaries in a similar format to the ones returned by [godot.Object.getPropertyList].
-   *
-   * If argument [getGroups] is true, parameter grouping hints will be provided.
+   * Get the list of shader uniforms that can be assigned to a [ShaderMaterial], for use with
+   * [ShaderMaterial.setShaderParameter] and [ShaderMaterial.getShaderParameter]. The parameters
+   * returned are contained in dictionaries in a similar format to the ones returned by
+   * [Object.getPropertyList].
+   * If argument [param get_groups] is true, parameter grouping hints will be provided.
    */
   @JvmOverloads
   public fun getShaderUniformList(getGroups: Boolean = false): VariantArray<Any?> {
@@ -127,7 +124,7 @@ public open class Shader : Resource() {
      */
     MODE_PARTICLES(2),
     /**
-     * Mode used for drawing skies. Only works with shaders attached to [godot.Sky] objects.
+     * Mode used for drawing skies. Only works with shaders attached to [Sky] objects.
      */
     MODE_SKY(3),
     /**

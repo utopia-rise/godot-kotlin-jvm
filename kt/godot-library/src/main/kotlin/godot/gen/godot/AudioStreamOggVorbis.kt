@@ -25,8 +25,17 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * The AudioStreamOggVorbis class is a specialized [AudioStream] for handling Ogg Vorbis file
+ * formats. It offers functionality for loading and playing back Ogg Vorbis files, as well as managing
+ * looping and other playback properties. This class is part of the audio stream system, which also
+ * supports WAV files through the [AudioStreamWAV] class.
+ */
 @GodotBaseType
 public open class AudioStreamOggVorbis : AudioStream() {
+  /**
+   * Contains the raw Ogg data for this stream.
+   */
   public var packetSequence: OggPacketSequence?
     get() {
       TransferContext.writeArguments()
@@ -71,6 +80,10 @@ public open class AudioStreamOggVorbis : AudioStream() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBarBeatsPtr, NIL)
     }
 
+  /**
+   * If `true`, the audio will play again from the specified [loopOffset] once it is done playing.
+   * Useful for ambient sounds and background music.
+   */
   public var loop: Boolean
     get() {
       TransferContext.writeArguments()
@@ -82,6 +95,9 @@ public open class AudioStreamOggVorbis : AudioStream() {
       TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
     }
 
+  /**
+   * Time in seconds at which the stream starts after being looped.
+   */
   public var loopOffset: Double
     get() {
       TransferContext.writeArguments()
@@ -99,12 +115,20 @@ public open class AudioStreamOggVorbis : AudioStream() {
   }
 
   public companion object {
+    /**
+     * Creates a new AudioStreamOggVorbis instance from the given buffer. The buffer must contain
+     * Ogg Vorbis data.
+     */
     public fun loadFromBuffer(buffer: PackedByteArray): AudioStreamOggVorbis? {
       TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
       TransferContext.callMethod(0, MethodBindings.loadFromBufferPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as AudioStreamOggVorbis?)
     }
 
+    /**
+     * Creates a new AudioStreamOggVorbis instance from the given file path. The file must be in Ogg
+     * Vorbis format.
+     */
     public fun loadFromFile(path: String): AudioStreamOggVorbis? {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.loadFromFilePtr, OBJECT)

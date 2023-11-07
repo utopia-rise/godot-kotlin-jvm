@@ -35,9 +35,8 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Provides access to engine properties.
- *
- * The [godot.Engine] singleton allows you to query and modify the project's run-time parameters, such as frames per second, time scale, and others.
+ * The [Engine] singleton allows you to query and modify the project's run-time parameters, such as
+ * frames per second, time scale, and others.
  */
 @GodotBaseType
 public object Engine : Object() {
@@ -80,7 +79,8 @@ public object Engine : Object() {
   }
 
   /**
-   * Returns the fraction through the current physics tick we are at the time of rendering the frame. This can be used to implement fixed timestep interpolation.
+   * Returns the fraction through the current physics tick we are at the time of rendering the
+   * frame. This can be used to implement fixed timestep interpolation.
    */
   public fun getPhysicsInterpolationFraction(): Double {
     TransferContext.writeArguments()
@@ -111,7 +111,9 @@ public object Engine : Object() {
   }
 
   /**
-   * Returns the total number of frames drawn. On headless platforms, or if the render loop is disabled with `--disable-render-loop` via command line, [getFramesDrawn] always returns `0`. See [getProcessFrames].
+   * Returns the total number of frames drawn. On headless platforms, or if the render loop is
+   * disabled with `--disable-render-loop` via command line, [getFramesDrawn] always returns `0`. See
+   * [getProcessFrames].
    */
   public fun getFramesDrawn(): Int {
     TransferContext.writeArguments()
@@ -129,45 +131,28 @@ public object Engine : Object() {
   }
 
   /**
-   * Returns the total number of frames passed since engine initialization which is advanced on each **physics frame**. See also [getProcessFrames].
+   * Returns the total number of frames passed since engine initialization which is advanced on each
+   * **physics frame**. See also [getProcessFrames].
+   * [getPhysicsFrames] can be used to run expensive logic less often without relying on a [Timer]:
    *
-   * [getPhysicsFrames] can be used to run expensive logic less often without relying on a [godot.Timer]:
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * func _physics_process(_delta):
-   *
-   *     if Engine.get_physics_frames() % 2 == 0:
-   *
+   *     if Engine.get_physics_frames() &#37; 2 == 0:
    *         pass  # Run expensive logic only once every 2 physics frames here.
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * public override void _PhysicsProcess(double delta)
-   *
    * {
-   *
    *     base._PhysicsProcess(delta);
    *
-   *
-   *
-   *     if (Engine.GetPhysicsFrames() % 2 == 0)
-   *
+   *     if (Engine.GetPhysicsFrames() &#37; 2 == 0)
    *     {
-   *
    *         // Run expensive logic only once every 2 physics frames here.
-   *
    *     }
-   *
    * }
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public fun getPhysicsFrames(): Long {
     TransferContext.writeArguments()
@@ -176,45 +161,29 @@ public object Engine : Object() {
   }
 
   /**
-   * Returns the total number of frames passed since engine initialization which is advanced on each **process frame**, regardless of whether the render loop is enabled. See also [getFramesDrawn] and [getPhysicsFrames].
+   * Returns the total number of frames passed since engine initialization which is advanced on each
+   * **process frame**, regardless of whether the render loop is enabled. See also [getFramesDrawn] and
+   * [getPhysicsFrames].
+   * [getProcessFrames] can be used to run expensive logic less often without relying on a [Timer]:
    *
-   * [getProcessFrames] can be used to run expensive logic less often without relying on a [godot.Timer]:
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * func _process(_delta):
-   *
-   *     if Engine.get_process_frames() % 2 == 0:
-   *
+   *     if Engine.get_process_frames() &#37; 2 == 0:
    *         pass  # Run expensive logic only once every 2 process (render) frames here.
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * public override void _Process(double delta)
-   *
    * {
-   *
    *     base._Process(delta);
    *
-   *
-   *
-   *     if (Engine.GetProcessFrames() % 2 == 0)
-   *
+   *     if (Engine.GetProcessFrames() &#37; 2 == 0)
    *     {
-   *
    *         // Run expensive logic only once every 2 physics frames here.
-   *
    *     }
-   *
    * }
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public fun getProcessFrames(): Long {
     TransferContext.writeArguments()
@@ -223,7 +192,7 @@ public object Engine : Object() {
   }
 
   /**
-   * Returns the main loop object (see [godot.MainLoop] and [godot.SceneTree]).
+   * Returns the main loop object (see [MainLoop] and [SceneTree]).
    */
   public fun getMainLoop(): MainLoop? {
     TransferContext.writeArguments()
@@ -233,62 +202,39 @@ public object Engine : Object() {
 
   /**
    * Returns the current engine version information in a Dictionary.
-   *
    * `major`    - Holds the major version number as an int
-   *
    * `minor`    - Holds the minor version number as an int
-   *
    * `patch`    - Holds the patch version number as an int
-   *
-   * `hex`      - Holds the full version number encoded as a hexadecimal int with one byte (2 places) per number (see example below)
-   *
+   * `hex`      - Holds the full version number encoded as a hexadecimal int with one byte (2
+   * places) per number (see example below)
    * `status`   - Holds the status (e.g. "beta", "rc1", "rc2", ... "stable") as a String
-   *
    * `build`    - Holds the build name (e.g. "custom_build") as a String
-   *
    * `hash`     - Holds the full Git commit hash as a String
-   *
    * `year`     - Holds the year the version was released in as an int
-   *
    * `string`   - `major` + `minor` + `patch` + `status` + `build` in a single String
+   * The `hex` value is encoded as follows, from left to right: one byte for the major, one byte for
+   * the minor, one byte for the patch version. For example, "3.1.12" would be `0x03010C`. **Note:**
+   * It's still an int internally, and printing it will give you its decimal representation, which is
+   * not particularly meaningful. Use hexadecimal literals for easy version comparisons from code:
    *
-   * The `hex` value is encoded as follows, from left to right: one byte for the major, one byte for the minor, one byte for the patch version. For example, "3.1.12" would be `0x03010C`. **Note:** It's still an int internally, and printing it will give you its decimal representation, which is not particularly meaningful. Use hexadecimal literals for easy version comparisons from code:
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * if Engine.get_version_info().hex >= 0x030200:
-   *
    *     # Do things specific to version 3.2 or later
-   *
    * else:
-   *
    *     # Do things specific to versions before 3.2
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * if ((int)Engine.GetVersionInfo()["hex"] >= 0x030200)
-   *
    * {
-   *
    *     // Do things specific to version 3.2 or later
-   *
    * }
-   *
    * else
-   *
    * {
-   *
    *     // Do things specific to versions before 3.2
-   *
    * }
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public fun getVersionInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
@@ -298,13 +244,9 @@ public object Engine : Object() {
 
   /**
    * Returns engine author information in a Dictionary.
-   *
    * `lead_developers`    - Array of Strings, lead developer names
-   *
    * `founders`           - Array of Strings, founder names
-   *
    * `project_managers`   - Array of Strings, project manager names
-   *
    * `developers`         - Array of Strings, developer names
    */
   public fun getAuthorInfo(): Dictionary<Any?, Any?> {
@@ -315,10 +257,9 @@ public object Engine : Object() {
 
   /**
    * Returns an Array of copyright information Dictionaries.
-   *
    * `name`    - String, component name
-   *
-   * `parts`   - Array of Dictionaries {`files`, `copyright`, `license`} describing subsections of the component
+   * `parts`   - Array of Dictionaries {`files`, `copyright`, `license`} describing subsections of
+   * the component
    */
   public fun getCopyrightInfo(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
@@ -328,8 +269,8 @@ public object Engine : Object() {
 
   /**
    * Returns a Dictionary of Arrays of donor names.
-   *
-   * {`platinum_sponsors`, `gold_sponsors`, `silver_sponsors`, `bronze_sponsors`, `mini_sponsors`, `gold_donors`, `silver_donors`, `bronze_donors`}
+   * {`platinum_sponsors`, `gold_sponsors`, `silver_sponsors`, `bronze_sponsors`, `mini_sponsors`,
+   * `gold_donors`, `silver_donors`, `bronze_donors`}
    */
   public fun getDonorInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
@@ -356,39 +297,29 @@ public object Engine : Object() {
   }
 
   /**
-   * Returns the name of the CPU architecture the Godot binary was built for. Possible return values are `x86_64`, `x86_32`, `arm64`, `arm32`, `rv64`, `riscv`, `ppc64`, `ppc`, `wasm64` and `wasm32`.
+   * Returns the name of the CPU architecture the Godot binary was built for. Possible return values
+   * are `x86_64`, `x86_32`, `arm64`, `arm32`, `rv64`, `riscv`, `ppc64`, `ppc`, `wasm64` and `wasm32`.
+   * To detect whether the current CPU architecture is 64-bit, you can use the fact that all 64-bit
+   * architecture names have `64` in their name:
    *
-   * To detect whether the current CPU architecture is 64-bit, you can use the fact that all 64-bit architecture names have `64` in their name:
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * if "64" in Engine.get_architecture_name():
-   *
    *     print("Running a 64-bit build of Godot.")
-   *
    * else:
-   *
    *     print("Running a 32-bit build of Godot.")
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * if (Engine.GetArchitectureName().Contains("64"))
-   *
    *     GD.Print("Running a 64-bit build of Godot.");
-   *
    * else
-   *
    *     GD.Print("Running a 32-bit build of Godot.");
+   * ```
    *
-   * [/csharp]
-   *
-   * [/codeblocks]
-   *
-   * **Note:** [getArchitectureName] does *not* return the name of the host CPU architecture. For example, if running an x86_32 Godot binary on a x86_64 system, the returned value will be `x86_32`.
+   * **Note:** [getArchitectureName] does *not* return the name of the host CPU architecture. For
+   * example, if running an x86_32 Godot binary on a x86_64 system, the returned value will be
+   * `x86_32`.
    */
   public fun getArchitectureName(): String {
     TransferContext.writeArguments()
@@ -406,7 +337,7 @@ public object Engine : Object() {
   }
 
   /**
-   * Returns `true` if a singleton with given [name] exists in global scope.
+   * Returns `true` if a singleton with given [param name] exists in global scope.
    */
   public fun hasSingleton(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -415,7 +346,7 @@ public object Engine : Object() {
   }
 
   /**
-   * Returns a global singleton with given [name]. Often used for plugins, e.g. GodotPayments.
+   * Returns a global singleton with given [param name]. Often used for plugins, e.g. GodotPayments.
    */
   public fun getSingleton(name: StringName): Object? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -424,7 +355,7 @@ public object Engine : Object() {
   }
 
   /**
-   * Registers the given object as a singleton, globally available under [name].
+   * Registers the given object as a singleton, globally available under [param name].
    */
   public fun registerSingleton(name: StringName, instance: Object): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to instance)
@@ -432,7 +363,8 @@ public object Engine : Object() {
   }
 
   /**
-   * Unregisters the singleton registered under [name]. The singleton object is not freed. Only works with user-defined singletons created with [registerSingleton].
+   * Unregisters the singleton registered under [param name]. The singleton object is not freed.
+   * Only works with user-defined singletons created with [registerSingleton].
    */
   public fun unregisterSingleton(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -449,15 +381,13 @@ public object Engine : Object() {
   }
 
   /**
-   * Registers a [godot.ScriptLanguage] instance to be available with `ScriptServer`.
-   *
+   * Registers a [ScriptLanguage] instance to be available with `ScriptServer`.
    * Returns:
-   *
-   * - [OK] on success
-   *
-   * - [ERR_UNAVAILABLE] if `ScriptServer` has reached it limit and cannot register any new language
-   *
-   * - [ERR_ALREADY_EXISTS] if `ScriptServer` already contains a language with similar extension/name/type
+   * - [constant OK] on success
+   * - [constant ERR_UNAVAILABLE] if `ScriptServer` has reached it limit and cannot register any new
+   * language
+   * - [constant ERR_ALREADY_EXISTS] if `ScriptServer` already contains a language with similar
+   * extension/name/type
    */
   public fun registerScriptLanguage(language: ScriptLanguage): GodotError {
     TransferContext.writeArguments(OBJECT to language)
@@ -466,13 +396,10 @@ public object Engine : Object() {
   }
 
   /**
-   * Unregisters the [godot.ScriptLanguage] instance from `ScriptServer`.
-   *
+   * Unregisters the [ScriptLanguage] instance from `ScriptServer`.
    * Returns:
-   *
-   * - [OK] on success
-   *
-   * - [ERR_DOES_NOT_EXIST] if the language is already not registered in `ScriptServer`
+   * - [constant OK] on success
+   * - [constant ERR_DOES_NOT_EXIST] if the language is already not registered in `ScriptServer`
    */
   public fun unregisterScriptLanguage(language: ScriptLanguage): GodotError {
     TransferContext.writeArguments(OBJECT to language)
@@ -490,7 +417,7 @@ public object Engine : Object() {
   }
 
   /**
-   * Returns an instance of a [godot.ScriptLanguage] with the given index.
+   * Returns an instance of a [ScriptLanguage] with the given index.
    */
   public fun getScriptLanguage(index: Int): ScriptLanguage? {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -499,39 +426,32 @@ public object Engine : Object() {
   }
 
   /**
-   * Returns `true` if the script is currently running inside the editor, `false` otherwise. This is useful for `@tool` scripts to conditionally draw editor helpers, or prevent accidentally running "game" code that would affect the scene state while in the editor:
+   * Returns `true` if the script is currently running inside the editor, `false` otherwise. This is
+   * useful for `@tool` scripts to conditionally draw editor helpers, or prevent accidentally running
+   * "game" code that would affect the scene state while in the editor:
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * if Engine.is_editor_hint():
-   *
    *     draw_gizmos()
-   *
    * else:
-   *
    *     simulate_physics()
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * if (Engine.IsEditorHint())
-   *
    *     DrawGizmos();
-   *
    * else
-   *
    *     SimulatePhysics();
+   * ```
    *
-   * [/csharp]
-   *
-   * [/codeblocks]
-   *
-   * See [godot.Running code in the editor]($DOCS_URL/tutorials/plugins/running_code_in_the_editor.html) in the documentation for more information.
-   *
-   * **Note:** To detect whether the script is run from an editor *build* (e.g. when pressing [kbd]F5[/kbd]), use [godot.OS.hasFeature] with the `"editor"` argument instead. `OS.has_feature("editor")` will evaluate to `true` both when the code is running in the editor and when running the project from the editor, but it will evaluate to `false` when the code is run from an exported project.
+   * See [url=$DOCS_URL/tutorials/plugins/running_code_in_the_editor.html]Running code in the
+   * editor[/url] in the documentation for more information.
+   * **Note:** To detect whether the script is run from an editor *build* (e.g. when pressing
+   * [kbd]F5[/kbd]), use [OS.hasFeature] with the `"editor"` argument instead.
+   * `OS.has_feature("editor")` will evaluate to `true` both when the code is running in the editor and
+   * when running the project from the editor, but it will evaluate to `false` when the code is run
+   * from an exported project.
    */
   public fun isEditorHint(): Boolean {
     TransferContext.writeArguments()
@@ -540,7 +460,9 @@ public object Engine : Object() {
   }
 
   /**
-   * Returns the path to the [godot.MovieWriter]'s output file, or an empty string if the engine wasn't started in Movie Maker mode. This path can be absolute or relative depending on how the user specified it.
+   * Returns the path to the [MovieWriter]'s output file, or an empty string if the engine wasn't
+   * started in Movie Maker mode. This path can be absolute or relative depending on how the user
+   * specified it.
    */
   public fun getWriteMoviePath(): String {
     TransferContext.writeArguments()

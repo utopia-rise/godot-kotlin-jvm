@@ -23,9 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Shader uniform (used by [godot.RenderingDevice]).
- *
- * This object is used by [godot.RenderingDevice].
+ * This object is used by [RenderingDevice].
  */
 @GodotBaseType
 public open class RDUniform : RefCounted() {
@@ -62,25 +60,16 @@ public open class RDUniform : RefCounted() {
     return true
   }
 
-  /**
-   *
-   */
   public fun addId(id: RID): Unit {
     TransferContext.writeArguments(_RID to id)
     TransferContext.callMethod(rawPtr, MethodBindings.addIdPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun clearIds(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearIdsPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun getIds(): VariantArray<RID> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIdsPtr, ARRAY)

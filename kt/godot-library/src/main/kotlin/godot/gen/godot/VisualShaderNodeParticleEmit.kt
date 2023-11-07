@@ -18,9 +18,9 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A visual shader node that forces to emit a particle from a sub-emitter.
- *
- * This node internally calls `emit_subparticle` shader method. It will emit a particle from the configured sub-emitter and also allows to customize how its emitted. Requires a sub-emitter assigned to the particles node with this shader.
+ * This node internally calls `emit_subparticle` shader method. It will emit a particle from the
+ * configured sub-emitter and also allows to customize how its emitted. Requires a sub-emitter assigned
+ * to the particles node with this shader.
  */
 @GodotBaseType
 public open class VisualShaderNodeParticleEmit : VisualShaderNode() {

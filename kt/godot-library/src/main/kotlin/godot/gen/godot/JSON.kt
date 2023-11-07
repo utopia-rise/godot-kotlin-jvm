@@ -25,49 +25,45 @@ import kotlin.Suppress
 import kotlin.jvm.JvmOverloads
 
 /**
- * Helper class for creating and parsing JSON data.
- *
- * The [JSON] enables all data types to be converted to and from a JSON string. This useful for serializing data to save to a file or send over the network.
- *
+ * The [JSON] enables all data types to be converted to and from a JSON string. This useful for
+ * serializing data to save to a file or send over the network.
  * [stringify] is used to convert any data type into a JSON string.
- *
- * [parse] is used to convert any existing JSON data into a [Variant] that can be used within Godot. If successfully parsed, use [data] to retrieve the [Variant], and use `typeof` to check if the Variant's type is what you expect. JSON Objects are converted into a [godot.core.Dictionary], but JSON data can be used to store [godot.Array]s, numbers, [godot.String]s and even just a boolean.
- *
+ * [parse] is used to convert any existing JSON data into a [Variant] that can be used within Godot.
+ * If successfully parsed, use [data] to retrieve the [Variant], and use `typeof` to check if the
+ * Variant's type is what you expect. JSON Objects are converted into a [Dictionary], but JSON data can
+ * be used to store [Array]s, numbers, [String]s and even just a boolean.
  * **Example**
- *
- * ```
- * 		var data_to_send = ["a", "b", "c"]
- * 		var json_string = JSON.stringify(data_to_send)
- * 		# Save data
- * 		# ...
- * 		# Retrieve data
- * 		var json = JSON.new()
- * 		var error = json.parse(json_string)
- * 		if error == OK:
- * 		    var data_received = json.data
- * 		    if typeof(data_received) == TYPE_ARRAY:
- * 		        print(data_received) # Prints array
- * 		    else:
- * 		        print("Unexpected data")
- * 		else:
- * 		    print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
- * 		```
- *
- * Alternatively, you can parse string using the static [parseString] method, but it doesn't allow to handle errors.
- *
- * ```
- * 		var data = JSON.parse_string(json_string) # Returns null if parsing failed.
- * 		```
- *
+ * [codeblock]
+ * var data_to_send = ["a", "b", "c"]
+ * var json_string = JSON.stringify(data_to_send)
+ * # Save data
+ * # ...
+ * # Retrieve data
+ * var json = JSON.new()
+ * var error = json.parse(json_string)
+ * if error == OK:
+ *     var data_received = json.data
+ *     if typeof(data_received) == TYPE_ARRAY:
+ *         print(data_received) # Prints array
+ *     else:
+ *         print("Unexpected data")
+ * else:
+ *     print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ",
+ * json.get_error_line())
+ * [/codeblock]
+ * Alternatively, you can parse string using the static [parseString] method, but it doesn't allow
+ * to handle errors.
+ * [codeblock]
+ * var data = JSON.parse_string(json_string) # Returns null if parsing failed.
+ * [/codeblock]
  * **Note:** Both parse methods do not fully comply with the JSON specification:
- *
  * - Trailing commas in arrays or objects are ignored, instead of causing a parser error.
- *
- * - New line and tab characters are accepted in string literals, and are treated like their corresponding escape sequences `\n` and `\t`.
- *
- * - Numbers are parsed using [godot.String.toFloat] which is generally more lax than the JSON specification.
- *
- * - Certain errors, such as invalid Unicode sequences, do not cause a parser error. Instead, the string is cleansed and an error is logged to the console.
+ * - New line and tab characters are accepted in string literals, and are treated like their
+ * corresponding escape sequences `\n` and `\t`.
+ * - Numbers are parsed using [String.toFloat] which is generally more lax than the JSON
+ * specification.
+ * - Certain errors, such as invalid Unicode sequences, do not cause a parser error. Instead, the
+ * string is cleansed and an error is logged to the console.
  */
 @GodotBaseType
 public open class JSON : Resource() {
@@ -91,13 +87,14 @@ public open class JSON : Resource() {
   }
 
   /**
-   * Attempts to parse the [jsonText] provided.
-   *
-   * Returns an [enum Error]. If the parse was successful, it returns [OK] and the result can be retrieved using [data]. If unsuccessful, use [getErrorLine] and [getErrorMessage] for identifying the source of the failure.
-   *
+   * Attempts to parse the [param json_text] provided.
+   * Returns an [enum Error]. If the parse was successful, it returns [constant OK] and the result
+   * can be retrieved using [data]. If unsuccessful, use [getErrorLine] and [getErrorMessage] for
+   * identifying the source of the failure.
    * Non-static variant of [parseString], if you want custom error handling.
-   *
-   * The optional [keepText] argument instructs the parser to keep a copy of the original text. This text can be obtained later by using the [getParsedText] function and is used when saving the resource (instead of generating new text from [data]).
+   * The optional [param keep_text] argument instructs the parser to keep a copy of the original
+   * text. This text can be obtained later by using the [getParsedText] function and is used when
+   * saving the resource (instead of generating new text from [data]).
    */
   @JvmOverloads
   public fun parse(jsonText: String, keepText: Boolean = false): GodotError {
@@ -116,7 +113,8 @@ public open class JSON : Resource() {
   }
 
   /**
-   * Returns `0` if the last call to [parse] was successful, or the line number where the parse failed.
+   * Returns `0` if the last call to [parse] was successful, or the line number where the parse
+   * failed.
    */
   public fun getErrorLine(): Int {
     TransferContext.writeArguments()
@@ -125,7 +123,8 @@ public open class JSON : Resource() {
   }
 
   /**
-   * Returns an empty string if the last call to [parse] was successful, or the error message if it failed.
+   * Returns an empty string if the last call to [parse] was successful, or the error message if it
+   * failed.
    */
   public fun getErrorMessage(): String {
     TransferContext.writeArguments()
@@ -135,52 +134,54 @@ public open class JSON : Resource() {
 
   public companion object {
     /**
-     * Converts a [Variant] var to JSON text and returns the result. Useful for serializing data to store or send over the network.
-     *
-     * **Note:** The JSON specification does not define integer or float types, but only a *number* type. Therefore, converting a Variant to JSON text will convert all numerical values to [float] types.
-     *
-     * **Note:** If [fullPrecision] is `true`, when stringifying floats, the unreliable digits are stringified in addition to the reliable digits to guarantee exact decoding.
-     *
-     * The [indent] parameter controls if and how something is indented, the string used for this parameter will be used where there should be an indent in the output, even spaces like `"   "` will work. `\t` and `\n` can also be used for a tab indent, or to make a newline for each indent respectively.
-     *
+     * Converts a [Variant] var to JSON text and returns the result. Useful for serializing data to
+     * store or send over the network.
+     * **Note:** The JSON specification does not define integer or float types, but only a *number*
+     * type. Therefore, converting a Variant to JSON text will convert all numerical values to [float]
+     * types.
+     * **Note:** If [param full_precision] is `true`, when stringifying floats, the unreliable
+     * digits are stringified in addition to the reliable digits to guarantee exact decoding.
+     * The [param indent] parameter controls if and how something is indented, the string used for
+     * this parameter will be used where there should be an indent in the output, even spaces like `"  
+     * "` will work. `\t` and `\n` can also be used for a tab indent, or to make a newline for each
+     * indent respectively.
      * **Example output:**
+     * [codeblock]
+     * ## JSON.stringify(my_dictionary)
+     * {"name":"my_dictionary","version":"1.0.0","entities":[{"name":"entity_0","value":"value_0"},{"name":"entity_1","value":"value_1"}]}
      *
-     * ```
-     * 				## JSON.stringify(my_dictionary)
-     * 				{"name":"my_dictionary","version":"1.0.0","entities":[{"name":"entity_0","value":"value_0"},{"name":"entity_1","value":"value_1"}]}
+     * ## JSON.stringify(my_dictionary, "\t")
+     * {
+     *     "name": "my_dictionary",
+     *     "version": "1.0.0",
+     *     "entities": [
+     *         {
+     *             "name": "entity_0",
+     *             "value": "value_0"
+     *         },
+     *         {
+     *             "name": "entity_1",
+     *             "value": "value_1"
+     *         }
+     *     ]
+     * }
      *
-     * 				## JSON.stringify(my_dictionary, "\t")
-     * 				{
-     * 				    "name": "my_dictionary",
-     * 				    "version": "1.0.0",
-     * 				    "entities": [
-     * 				        {
-     * 				            "name": "entity_0",
-     * 				            "value": "value_0"
-     * 				        },
-     * 				        {
-     * 				            "name": "entity_1",
-     * 				            "value": "value_1"
-     * 				        }
-     * 				    ]
-     * 				}
-     *
-     * 				## JSON.stringify(my_dictionary, "...")
-     * 				{
-     * 				..."name": "my_dictionary",
-     * 				..."version": "1.0.0",
-     * 				..."entities": [
-     * 				......{
-     * 				........."name": "entity_0",
-     * 				........."value": "value_0"
-     * 				......},
-     * 				......{
-     * 				........."name": "entity_1",
-     * 				........."value": "value_1"
-     * 				......}
-     * 				...]
-     * 				}
-     * 				```
+     * ## JSON.stringify(my_dictionary, "...")
+     * {
+     * ..."name": "my_dictionary",
+     * ..."version": "1.0.0",
+     * ..."entities": [
+     * ......{
+     * ........."name": "entity_0",
+     * ........."value": "value_0"
+     * ......},
+     * ......{
+     * ........."name": "entity_1",
+     * ........."value": "value_1"
+     * ......}
+     * ...]
+     * }
+     * [/codeblock]
      */
     @JvmOverloads
     public fun stringify(
@@ -195,7 +196,8 @@ public open class JSON : Resource() {
     }
 
     /**
-     * Attempts to parse the [jsonString] provided and returns the parsed data. Returns `null` if parse failed.
+     * Attempts to parse the [param json_string] provided and returns the parsed data. Returns
+     * `null` if parse failed.
      */
     public fun parseString(jsonString: String): Any? {
       TransferContext.writeArguments(STRING to jsonString)

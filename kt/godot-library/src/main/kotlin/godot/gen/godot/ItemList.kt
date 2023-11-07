@@ -45,23 +45,32 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A vertical list of selectable items with one or multiple columns.
- *
- * This control provides a vertical list of selectable items that may be in a single or in multiple columns, with each item having options for text and an icon. Tooltips are supported and may be different for every item in the list.
- *
- * Selectable items in the list may be selected or deselected and multiple selection may be enabled. Selection with right mouse button may also be enabled to allow use of popup context menus. Items may also be "activated" by double-clicking them or by pressing [kbd]Enter[/kbd].
- *
- * Item text only supports single-line strings. Newline characters (e.g. `\n`) in the string won't produce a newline. Text wrapping is enabled in [ICON_MODE_TOP] mode, but the column's width is adjusted to fully fit its content by default. You need to set [fixedColumnWidth] greater than zero to wrap the text.
- *
- * All `set_*` methods allow negative item indices, i.e. `-1` to access the last item, `-2` to select the second-to-last item, and so on.
- *
- * **Incremental search:** Like [godot.PopupMenu] and [godot.Tree], [godot.ItemList] supports searching within the list while the control is focused. Press a key that matches the first letter of an item's name to select the first item starting with the given letter. After that point, there are two ways to perform incremental search: 1) Press the same key again before the timeout duration to select the next item starting with the same letter. 2) Press letter keys that match the rest of the word before the timeout duration to match to select the item in question directly. Both of these actions will be reset to the beginning of the list if the timeout duration has passed since the last keystroke was registered. You can adjust the timeout duration by changing [godot.ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
+ * This control provides a vertical list of selectable items that may be in a single or in multiple
+ * columns, with each item having options for text and an icon. Tooltips are supported and may be
+ * different for every item in the list.
+ * Selectable items in the list may be selected or deselected and multiple selection may be enabled.
+ * Selection with right mouse button may also be enabled to allow use of popup context menus. Items may
+ * also be "activated" by double-clicking them or by pressing [kbd]Enter[/kbd].
+ * Item text only supports single-line strings. Newline characters (e.g. `\n`) in the string won't
+ * produce a newline. Text wrapping is enabled in [constant ICON_MODE_TOP] mode, but the column's width
+ * is adjusted to fully fit its content by default. You need to set [fixedColumnWidth] greater than
+ * zero to wrap the text.
+ * All `set_*` methods allow negative item indices, i.e. `-1` to access the last item, `-2` to
+ * select the second-to-last item, and so on.
+ * **Incremental search:** Like [PopupMenu] and [Tree], [ItemList] supports searching within the
+ * list while the control is focused. Press a key that matches the first letter of an item's name to
+ * select the first item starting with the given letter. After that point, there are two ways to
+ * perform incremental search: 1) Press the same key again before the timeout duration to select the
+ * next item starting with the same letter. 2) Press letter keys that match the rest of the word before
+ * the timeout duration to match to select the item in question directly. Both of these actions will be
+ * reset to the beginning of the list if the timeout duration has passed since the last keystroke was
+ * registered. You can adjust the timeout duration by changing
+ * [ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
  */
 @GodotBaseType
 public open class ItemList : Control() {
   /**
    * Triggered when specified item has been selected.
-   *
    * [allowReselect] must be enabled to reselect an item.
    */
   public val itemSelected: Signal1<Long> by signal("index")
@@ -73,8 +82,8 @@ public open class ItemList : Control() {
 
   /**
    * Triggered when specified list item has been clicked with any mouse button.
-   *
-   * The click position is also provided to allow appropriate popup of context menus at the correct location.
+   * The click position is also provided to allow appropriate popup of context menus at the correct
+   * location.
    */
   public val itemClicked: Signal3<Long, Vector2, Long> by signal("index", "atPosition",
       "mouseButtonIndex")
@@ -85,7 +94,8 @@ public open class ItemList : Control() {
   public val multiSelected: Signal2<Long, Boolean> by signal("index", "selected")
 
   /**
-   * Triggered when specified list item is activated via double-clicking or by pressing [kbd]Enter[/kbd].
+   * Triggered when specified list item is activated via double-clicking or by pressing
+   * [kbd]Enter[/kbd].
    */
   public val itemActivated: Signal1<Long> by signal("index")
 
@@ -132,7 +142,7 @@ public open class ItemList : Control() {
     }
 
   /**
-   * If `true`, allows navigating the [godot.ItemList] with letter keys through incremental search.
+   * If `true`, allows navigating the [ItemList] with letter keys through incremental search.
    */
   public var allowSearch: Boolean
     get() {
@@ -146,9 +156,10 @@ public open class ItemList : Control() {
     }
 
   /**
-   * Maximum lines of text allowed in each item. Space will be reserved even when there is not enough lines of text to display.
-   *
-   * **Note:** This property takes effect only when [iconMode] is [ICON_MODE_TOP]. To make the text wrap, [fixedColumnWidth] should be greater than zero.
+   * Maximum lines of text allowed in each item. Space will be reserved even when there is not
+   * enough lines of text to display.
+   * **Note:** This property takes effect only when [iconMode] is [constant ICON_MODE_TOP]. To make
+   * the text wrap, [fixedColumnWidth] should be greater than zero.
    */
   public var maxTextLines: Int
     get() {
@@ -176,7 +187,8 @@ public open class ItemList : Control() {
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds an item's bounding rectangle. See [enum TextServer.OverrunBehavior] for a description of all modes.
+   * Sets the clipping behavior when the text exceeds an item's bounding rectangle. See [enum
+   * TextServer.OverrunBehavior] for a description of all modes.
    */
   public var textOverrunBehavior: TextServer.OverrunBehavior
     get() {
@@ -205,9 +217,7 @@ public open class ItemList : Control() {
 
   /**
    * Maximum columns the list will have.
-   *
    * If greater than zero, the content will be split among the specified columns.
-   *
    * A value of zero means unlimited columns, i.e. all items will be put in the same row.
    */
   public var maxColumns: Int
@@ -223,7 +233,6 @@ public open class ItemList : Control() {
 
   /**
    * Whether all columns will have the same width.
-   *
    * If `true`, the width is equal to the largest column width of all columns.
    */
   public var sameColumnWidth: Boolean
@@ -239,8 +248,8 @@ public open class ItemList : Control() {
 
   /**
    * The width all columns will be adjusted to.
-   *
-   * A value of zero disables the adjustment, each item will have a width equal to the width of its content and the columns will have an uneven width.
+   * A value of zero disables the adjustment, each item will have a width equal to the width of its
+   * content and the columns will have an uneven width.
    */
   public var fixedColumnWidth: Int
     get() {
@@ -283,7 +292,6 @@ public open class ItemList : Control() {
 
   /**
    * The size all icons will be adjusted to.
-   *
    * If either X or Y component is not greater than zero, icon size won't be affected.
    */
   @CoreTypeLocalCopy
@@ -305,7 +313,6 @@ public open class ItemList : Control() {
 
   /**
    * The size all icons will be adjusted to.
-   *
    * If either X or Y component is not greater than zero, icon size won't be affected.
    *
    * This is a helper function to make dealing with local copies easier. 
@@ -331,9 +338,7 @@ public open class ItemList : Control() {
 
   /**
    * Adds an item to the item list with specified text. Returns the index of an added item.
-   *
-   * Specify an [icon], or use `null` as the [icon] for a list item with no icon.
-   *
+   * Specify an [param icon], or use `null` as the [param icon] for a list item with no icon.
    * If selectable is `true`, the list item will be selectable.
    */
   @JvmOverloads
@@ -375,7 +380,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Sets (or replaces) the icon's [godot.Texture2D] associated with the specified index.
+   * Sets (or replaces) the icon's [Texture2D] associated with the specified index.
    */
   public fun setItemIcon(idx: Int, icon: Texture2D): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), OBJECT to icon)
@@ -409,7 +414,8 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Sets language code of item's text used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
+   * Sets language code of item's text used for line-breaking and text shaping algorithms, if left
+   * empty current locale is used instead.
    */
   public fun setItemLanguage(idx: Int, language: String): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), STRING to language)
@@ -460,7 +466,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Sets a modulating [godot.core.Color] of the item associated with the specified index.
+   * Sets a modulating [Color] of the item associated with the specified index.
    */
   public fun setItemIconModulate(idx: Int, modulate: Color): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), COLOR to modulate)
@@ -468,7 +474,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Returns a [godot.core.Color] modulating item's icon at the specified index.
+   * Returns a [Color] modulating item's icon at the specified index.
    */
   public fun getItemIconModulate(idx: Int): Color {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -495,8 +501,8 @@ public open class ItemList : Control() {
 
   /**
    * Disables (or enables) the item at the specified index.
-   *
-   * Disabled items cannot be selected and do not trigger activation signals (when double-clicking or pressing [kbd]Enter[/kbd]).
+   * Disabled items cannot be selected and do not trigger activation signals (when double-clicking
+   * or pressing [kbd]Enter[/kbd]).
    */
   public fun setItemDisabled(idx: Int, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to disabled)
@@ -530,7 +536,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Sets the background color of the item specified by [idx] index to the specified [godot.core.Color].
+   * Sets the background color of the item specified by [param idx] index to the specified [Color].
    */
   public fun setItemCustomBgColor(idx: Int, customBgColor: Color): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), COLOR to customBgColor)
@@ -538,7 +544,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Returns the custom background color of the item specified by [idx] index.
+   * Returns the custom background color of the item specified by [param idx] index.
    */
   public fun getItemCustomBgColor(idx: Int): Color {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -547,7 +553,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Sets the foreground color of the item specified by [idx] index to the specified [godot.core.Color].
+   * Sets the foreground color of the item specified by [param idx] index to the specified [Color].
    */
   public fun setItemCustomFgColor(idx: Int, customFgColor: Color): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), COLOR to customFgColor)
@@ -555,7 +561,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Returns the custom foreground color of the item specified by [idx] index.
+   * Returns the custom foreground color of the item specified by [param idx] index.
    */
   public fun getItemCustomFgColor(idx: Int): Color {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -564,9 +570,11 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Returns the position and size of the item with the specified index, in the coordinate system of the [godot.ItemList] node. If [expand] is `true` the last column expands to fill the rest of the row.
-   *
-   * **Note:** The returned value is unreliable if called right after modifying the [godot.ItemList], before it redraws in the next frame.
+   * Returns the position and size of the item with the specified index, in the coordinate system of
+   * the [ItemList] node. If [param expand] is `true` the last column expands to fill the rest of the
+   * row.
+   * **Note:** The returned value is unreliable if called right after modifying the [ItemList],
+   * before it redraws in the next frame.
    */
   @JvmOverloads
   public fun getItemRect(idx: Int, expand: Boolean = true): Rect2 {
@@ -611,7 +619,6 @@ public open class ItemList : Control() {
 
   /**
    * Select the item at the specified index.
-   *
    * **Note:** This method does not trigger the item selection signal.
    */
   @JvmOverloads
@@ -655,7 +662,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Moves item from index [fromIdx] to [toIdx].
+   * Moves item from index [param from_idx] to [param to_idx].
    */
   public fun moveItem(fromIdx: Int, toIdx: Int): Unit {
     TransferContext.writeArguments(LONG to fromIdx.toLong(), LONG to toIdx.toLong())
@@ -663,7 +670,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Removes the item specified by [idx] index from the list.
+   * Removes the item specified by [param idx] index from the list.
    */
   public fun removeItem(idx: Int): Unit {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -696,11 +703,11 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Returns the item index at the given [position].
-   *
-   * When there is no item at that point, -1 will be returned if [exact] is `true`, and the closest item index will be returned otherwise.
-   *
-   * **Note:** The returned value is unreliable if called right after modifying the [godot.ItemList], before it redraws in the next frame.
+   * Returns the item index at the given [param position].
+   * When there is no item at that point, -1 will be returned if [param exact] is `true`, and the
+   * closest item index will be returned otherwise.
+   * **Note:** The returned value is unreliable if called right after modifying the [ItemList],
+   * before it redraws in the next frame.
    */
   @JvmOverloads
   public fun getItemAtPosition(position: Vector2, exact: Boolean = false): Int {
@@ -719,8 +726,8 @@ public open class ItemList : Control() {
 
   /**
    * Returns the vertical scrollbar.
-   *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
+   * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public fun getVScrollBar(): VScrollBar? {
     TransferContext.writeArguments()
@@ -729,7 +736,9 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Forces an update to the list size based on its items. This happens automatically whenever size of the items, or other relevant settings like [autoHeight], change. The method can be used to trigger the update ahead of next drawing pass.
+   * Forces an update to the list size based on its items. This happens automatically whenever size
+   * of the items, or other relevant settings like [autoHeight], change. The method can be used to
+   * trigger the update ahead of next drawing pass.
    */
   public fun forceUpdateListSize(): Unit {
     TransferContext.writeArguments()

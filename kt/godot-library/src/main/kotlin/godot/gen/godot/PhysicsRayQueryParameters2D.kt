@@ -29,9 +29,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Provides parameters for [godot.PhysicsDirectSpaceState2D.intersectRay].
- *
- * By changing various properties of this object, such as the ray position, you can configure the parameters for [godot.PhysicsDirectSpaceState2D.intersectRay].
+ * By changing various properties of this object, such as the ray position, you can configure the
+ * parameters for [PhysicsDirectSpaceState2D.intersectRay].
  */
 @GodotBaseType
 public open class PhysicsRayQueryParameters2D : RefCounted() {
@@ -66,7 +65,10 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
     }
 
   /**
-   * The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The physics layers the query will detect (as a bitmask). By default, all collision layers are
+   * detected. See
+   * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
+   * layers and masks[/url] in the documentation for more information.
    */
   public var collisionMask: Long
     get() {
@@ -80,7 +82,8 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
     }
 
   /**
-   * The list of object [RID]s that will be excluded from collisions. Use [godot.CollisionObject2D.getRid] to get the [RID] associated with a [godot.CollisionObject2D]-derived node.
+   * The list of object [RID]s that will be excluded from collisions. Use [CollisionObject2D.getRid]
+   * to get the [RID] associated with a [CollisionObject2D]-derived node.
    */
   public var exclude: VariantArray<RID>
     get() {
@@ -94,7 +97,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
     }
 
   /**
-   * If `true`, the query will take [godot.PhysicsBody2D]s into account.
+   * If `true`, the query will take [PhysicsBody2D]s into account.
    */
   public var collideWithBodies: Boolean
     get() {
@@ -108,7 +111,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
     }
 
   /**
-   * If `true`, the query will take [godot.Area2D]s into account.
+   * If `true`, the query will take [Area2D]s into account.
    */
   public var collideWithAreas: Boolean
     get() {
@@ -122,7 +125,8 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
     }
 
   /**
-   * If `true`, the query will detect a hit when starting inside shapes. In this case the collision normal will be `Vector2(0, 0)`. Does not affect concave polygon shapes.
+   * If `true`, the query will detect a hit when starting inside shapes. In this case the collision
+   * normal will be `Vector2(0, 0)`. Does not affect concave polygon shapes.
    */
   public var hitFromInside: Boolean
     get() {
@@ -190,12 +194,13 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
 
   public companion object {
     /**
-     * Returns a new, pre-configured [godot.PhysicsRayQueryParameters2D] object. Use it to quickly create query parameters using the most common options.
-     *
-     * ```
-     * 				var query = PhysicsRayQueryParameters2D.create(global_position, global_position + Vector2(0, 100))
-     * 				var collision = get_world_2d().direct_space_state.intersect_ray(query)
-     * 				```
+     * Returns a new, pre-configured [PhysicsRayQueryParameters2D] object. Use it to quickly create
+     * query parameters using the most common options.
+     * [codeblock]
+     * var query = PhysicsRayQueryParameters2D.create(global_position, global_position + Vector2(0,
+     * 100))
+     * var collision = get_world_2d().direct_space_state.intersect_ray(query)
+     * [/codeblock]
      */
     @JvmOverloads
     public fun create(

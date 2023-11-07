@@ -25,12 +25,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Represents a screen touch event.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
- *
- * Stores information about multi-touch press/release input events. Supports touch press, touch release and [index] for multi-touch count and order.
+ * Stores information about multi-touch press/release input events. Supports touch press, touch
+ * release and [index] for multi-touch count and order.
  */
 @GodotBaseType
 public open class InputEventScreenTouch : InputEventFromWindow() {

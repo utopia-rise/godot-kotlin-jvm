@@ -12,12 +12,8 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Adds a high-pass filter to the audio bus.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
- *
- * Cuts frequencies lower than the [godot.AudioEffectFilter.cutoffHz] and allows higher frequencies to pass.
+ * Cuts frequencies lower than the [AudioEffectFilter.cutoffHz] and allows higher frequencies to
+ * pass.
  */
 @GodotBaseType
 public open class AudioEffectHighPassFilter : AudioEffectFilter() {

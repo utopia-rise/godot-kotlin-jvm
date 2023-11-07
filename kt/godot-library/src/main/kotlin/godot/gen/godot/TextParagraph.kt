@@ -45,9 +45,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Holds a paragraph of text.
- *
- * Abstraction over [godot.TextServer] for handling a single paragraph of text.
+ * Abstraction over [TextServer] for handling a single paragraph of text.
  */
 @GodotBaseType
 public open class TextParagraph : RefCounted() {
@@ -66,7 +64,8 @@ public open class TextParagraph : RefCounted() {
     }
 
   /**
-   * Custom punctuation character list, used for word breaking. If set to empty string, server defaults are used.
+   * Custom punctuation character list, used for word breaking. If set to empty string, server
+   * defaults are used.
    */
   public var customPunctuation: String
     get() {
@@ -136,7 +135,7 @@ public open class TextParagraph : RefCounted() {
     }
 
   /**
-   * Line breaking rules. For more info see [godot.TextServer].
+   * Line breaking rules. For more info see [TextServer].
    */
   public var breakFlags: TextServer.LineBreakFlag
     get() {
@@ -164,7 +163,8 @@ public open class TextParagraph : RefCounted() {
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds the paragraph's set width. See [enum TextServer.OverrunBehavior] for a description of all modes.
+   * Sets the clipping behavior when the text exceeds the paragraph's set width. See [enum
+   * TextServer.OverrunBehavior] for a description of all modes.
    */
   public var textOverrunBehavior: TextServer.OverrunBehavior
     get() {
@@ -220,8 +220,8 @@ public open class TextParagraph : RefCounted() {
 
   /**
    * Overrides BiDi for the structured text.
-   *
-   * Override ranges should cover full source text without overlaps. BiDi algorithm will be used on each range separately.
+   * Override ranges should cover full source text without overlaps. BiDi algorithm will be used on
+   * each range separately.
    */
   public fun setBidiOverride(`override`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(ARRAY to override)
@@ -229,7 +229,8 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Sets drop cap, overrides previously set drop cap. Drop cap (dropped capital) is a decorative element at the beginning of a paragraph that is larger than the rest of the text.
+   * Sets drop cap, overrides previously set drop cap. Drop cap (dropped capital) is a decorative
+   * element at the beginning of a paragraph that is larger than the rest of the text.
    */
   @JvmOverloads
   public fun setDropcap(
@@ -269,7 +270,8 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Adds inline object to the text buffer, [key] must be unique. In the text, object is represented as [length] object replacement characters.
+   * Adds inline object to the text buffer, [param key] must be unique. In the text, object is
+   * represented as [param length] object replacement characters.
    */
   @JvmOverloads
   public fun addObject(
@@ -398,7 +400,8 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Returns the text line ascent (number of pixels above the baseline for horizontal layout or to the left of baseline for vertical).
+   * Returns the text line ascent (number of pixels above the baseline for horizontal layout or to
+   * the left of baseline for vertical).
    */
   public fun getLineAscent(line: Int): Float {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -407,7 +410,8 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Returns the text line descent (number of pixels below the baseline for horizontal layout or to the right of baseline for vertical).
+   * Returns the text line descent (number of pixels below the baseline for horizontal layout or to
+   * the right of baseline for vertical).
    */
   public fun getLineDescent(line: Int): Float {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -461,7 +465,8 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Draw all lines of the text and drop cap into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
+   * Draw all lines of the text and drop cap into a canvas item at a given position, with [param
+   * color]. [param pos] specifies the top left corner of the bounding box.
    */
   @JvmOverloads
   public fun draw(
@@ -475,7 +480,8 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Draw outlines of all lines of the text and drop cap into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
+   * Draw outlines of all lines of the text and drop cap into a canvas item at a given position,
+   * with [param color]. [param pos] specifies the top left corner of the bounding box.
    */
   @JvmOverloads
   public fun drawOutline(
@@ -490,7 +496,8 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Draw single line of text into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
+   * Draw single line of text into a canvas item at a given position, with [param color]. [param
+   * pos] specifies the top left corner of the bounding box.
    */
   @JvmOverloads
   public fun drawLine(
@@ -504,7 +511,8 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Draw outline of the single line of text into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
+   * Draw outline of the single line of text into a canvas item at a given position, with [param
+   * color]. [param pos] specifies the top left corner of the bounding box.
    */
   @JvmOverloads
   public fun drawLineOutline(
@@ -519,7 +527,8 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Draw drop cap into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
+   * Draw drop cap into a canvas item at a given position, with [param color]. [param pos] specifies
+   * the top left corner of the bounding box.
    */
   @JvmOverloads
   public fun drawDropcap(
@@ -532,7 +541,8 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Draw drop cap outline into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
+   * Draw drop cap outline into a canvas item at a given position, with [param color]. [param pos]
+   * specifies the top left corner of the bounding box.
    */
   @JvmOverloads
   public fun drawDropcapOutline(
@@ -546,7 +556,8 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Returns caret character offset at the specified coordinates. This function always returns a valid position.
+   * Returns caret character offset at the specified coordinates. This function always returns a
+   * valid position.
    */
   public fun hitTest(coords: Vector2): Int {
     TransferContext.writeArguments(VECTOR2 to coords)

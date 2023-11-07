@@ -12,9 +12,9 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A visual shader node that sets a value of a varying.
- *
- * Inputs a value to a varying defined in the shader. You need to first create a varying that can be used in the given function, e.g. varying setter in Fragment shader requires a varying with mode set to [godot.VisualShader.VARYING_MODE_FRAG_TO_LIGHT].
+ * Inputs a value to a varying defined in the shader. You need to first create a varying that can be
+ * used in the given function, e.g. varying setter in Fragment shader requires a varying with mode set
+ * to [constant VisualShader.VARYING_MODE_FRAG_TO_LIGHT].
  */
 @GodotBaseType
 public open class VisualShaderNodeVaryingSetter : VisualShaderNodeVarying() {

@@ -21,8 +21,17 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.jvm.JvmOverloads
 
+/**
+ * Universal Plug and Play (UPnP) device. See [UPNP] for UPnP discovery and utility functions.
+ * Provides low-level access to UPNP control commands. Allows to manage port mappings (port forwarding)
+ * and to query network information of the device (like local and external IP address and status). Note
+ * that methods on this class are synchronous and block the calling thread.
+ */
 @GodotBaseType
 public open class UPNPDevice : RefCounted() {
+  /**
+   * URL to the device description.
+   */
   public var descriptionUrl: String
     get() {
       TransferContext.writeArguments()
@@ -34,6 +43,9 @@ public open class UPNPDevice : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDescriptionUrlPtr, NIL)
     }
 
+  /**
+   * Service type.
+   */
   public var serviceType: String
     get() {
       TransferContext.writeArguments()
@@ -45,6 +57,9 @@ public open class UPNPDevice : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setServiceTypePtr, NIL)
     }
 
+  /**
+   * IDG control URL.
+   */
   public var igdControlUrl: String
     get() {
       TransferContext.writeArguments()
@@ -56,6 +71,9 @@ public open class UPNPDevice : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setIgdControlUrlPtr, NIL)
     }
 
+  /**
+   * IGD service type.
+   */
   public var igdServiceType: String
     get() {
       TransferContext.writeArguments()
@@ -67,6 +85,9 @@ public open class UPNPDevice : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setIgdServiceTypePtr, NIL)
     }
 
+  /**
+   * Address of the local machine in the network connecting it to this [UPNPDevice].
+   */
   public var igdOurAddr: String
     get() {
       TransferContext.writeArguments()
@@ -78,6 +99,9 @@ public open class UPNPDevice : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setIgdOurAddrPtr, NIL)
     }
 
+  /**
+   * IGD status. See [enum IGDStatus].
+   */
   public var igdStatus: IGDStatus
     get() {
       TransferContext.writeArguments()
@@ -94,18 +118,29 @@ public open class UPNPDevice : RefCounted() {
     return true
   }
 
+  /**
+   * Returns `true` if this is a valid IGD (InternetGatewayDevice) which potentially supports port
+   * forwarding.
+   */
   public fun isValidGateway(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isValidGatewayPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  /**
+   * Returns the external IP address of this [UPNPDevice] or an empty string.
+   */
   public fun queryExternalAddress(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.queryExternalAddressPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
+  /**
+   * Adds a port mapping to forward the given external port on this [UPNPDevice] for the given
+   * protocol to the local machine. See [UPNP.addPortMapping].
+   */
   @JvmOverloads
   public fun addPortMapping(
     port: Int,
@@ -119,6 +154,10 @@ public open class UPNPDevice : RefCounted() {
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  /**
+   * Deletes the port mapping identified by the given port and protocol combination on this device.
+   * See [UPNP.deletePortMapping].
+   */
   @JvmOverloads
   public fun deletePortMapping(port: Int, proto: String = "UDP"): Int {
     TransferContext.writeArguments(LONG to port.toLong(), STRING to proto)
@@ -129,15 +168,45 @@ public open class UPNPDevice : RefCounted() {
   public enum class IGDStatus(
     id: Long,
   ) {
+    /**
+     * OK.
+     */
     IGD_STATUS_OK(0),
+    /**
+     * HTTP error.
+     */
     IGD_STATUS_HTTP_ERROR(1),
+    /**
+     * Empty HTTP response.
+     */
     IGD_STATUS_HTTP_EMPTY(2),
+    /**
+     * Returned response contained no URLs.
+     */
     IGD_STATUS_NO_URLS(3),
+    /**
+     * Not a valid IGD.
+     */
     IGD_STATUS_NO_IGD(4),
+    /**
+     * Disconnected.
+     */
     IGD_STATUS_DISCONNECTED(5),
+    /**
+     * Unknown device.
+     */
     IGD_STATUS_UNKNOWN_DEVICE(6),
+    /**
+     * Invalid control.
+     */
     IGD_STATUS_INVALID_CONTROL(7),
+    /**
+     * Memory allocation error.
+     */
     IGD_STATUS_MALLOC_ERROR(8),
+    /**
+     * Unknown error.
+     */
     IGD_STATUS_UNKNOWN_ERROR(9),
     ;
 

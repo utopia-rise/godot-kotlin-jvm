@@ -30,84 +30,54 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A 2D navigation mesh that describes a traversable surface for pathfinding.
+ * A navigation mesh can be created either by baking it with the help of the [NavigationServer2D],
+ * or by adding vertices and convex polygon indices arrays manually.
+ * To bake a navigation mesh at least one outline needs to be added that defines the outer bounds of
+ * the baked area.
  *
- * Tutorials:
- * [$DOCS_URL/tutorials/navigation/navigation_using_navigationmeshes.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationmeshes.html)
- *
- * A navigation mesh can be created either by baking it with the help of the [godot.NavigationServer2D], or by adding vertices and convex polygon indices arrays manually.
- *
- * To bake a navigation mesh at least one outline needs to be added that defines the outer bounds of the baked area.
- *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * var new_navigation_mesh = NavigationPolygon.new()
- *
- * var bounding_outline = PackedVector2Array([godot.Vector2(0, 0), Vector2(0, 50), Vector2(50, 50), Vector2(50, 0)])
- *
+ * var bounding_outline = PackedVector2Array([Vector2(0, 0), Vector2(0, 50), Vector2(50, 50),
+ * Vector2(50, 0)])
  * new_navigation_mesh.add_outline(bounding_outline)
- *
- * NavigationServer2D.bake_from_source_geometry_data(new_navigation_mesh, NavigationMeshSourceGeometryData2D.new());
- *
+ * NavigationServer2D.bake_from_source_geometry_data(new_navigation_mesh,
+ * NavigationMeshSourceGeometryData2D.new());
  * $NavigationRegion2D.navigation_polygon = new_navigation_mesh
- *
- * [/gdscript]
- *
- * [csharp]
- *
+ * ```
+ * csharp:
+ * ```csharp
  * var newNavigationMesh = new NavigationPolygon();
- *
- * var boundingOutline = new Vector2[] { new Vector2(0, 0), new Vector2(0, 50), new Vector2(50, 50), new Vector2(50, 0) };
- *
+ * var boundingOutline = new Vector2[] { new Vector2(0, 0), new Vector2(0, 50), new Vector2(50, 50),
+ * new Vector2(50, 0) };
  * newNavigationMesh.AddOutline(boundingOutline);
- *
- * NavigationServer2D.BakeFromSourceGeometryData(newNavigationMesh, new NavigationMeshSourceGeometryData2D());
- *
+ * NavigationServer2D.BakeFromSourceGeometryData(newNavigationMesh, new
+ * NavigationMeshSourceGeometryData2D());
  * GetNode<NavigationRegion2D>("NavigationRegion2D").NavigationPolygon = newNavigationMesh;
- *
- * [/csharp]
- *
- * [/codeblocks]
+ * ```
  *
  * Adding vertices and polygon indices manually.
  *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * var new_navigation_mesh = NavigationPolygon.new()
- *
- * var new_vertices = PackedVector2Array([godot.Vector2(0, 0), Vector2(0, 50), Vector2(50, 50), Vector2(50, 0)])
- *
+ * var new_vertices = PackedVector2Array([Vector2(0, 0), Vector2(0, 50), Vector2(50, 50),
+ * Vector2(50, 0)])
  * new_navigation_mesh.vertices = new_vertices
- *
  * var new_polygon_indices = PackedInt32Array([0, 1, 2, 3])
- *
  * new_navigation_mesh.add_polygon(new_polygon_indices)
- *
  * $NavigationRegion2D.navigation_polygon = new_navigation_mesh
- *
- * [/gdscript]
- *
- * [csharp]
- *
+ * ```
+ * csharp:
+ * ```csharp
  * var newNavigationMesh = new NavigationPolygon();
- *
- * var newVertices = new Vector2[] { new Vector2(0, 0), new Vector2(0, 50), new Vector2(50, 50), new Vector2(50, 0) };
- *
+ * var newVertices = new Vector2[] { new Vector2(0, 0), new Vector2(0, 50), new Vector2(50, 50), new
+ * Vector2(50, 0) };
  * newNavigationMesh.Vertices = newVertices;
- *
  * var newPolygonIndices = new int[] { 0, 1, 2, 3 };
- *
  * newNavigationMesh.AddPolygon(newPolygonIndices);
- *
  * GetNode<NavigationRegion2D>("NavigationRegion2D").NavigationPolygon = newNavigationMesh;
- *
- * [/csharp]
- *
- * [/codeblocks]
+ * ```
  */
 @GodotBaseType
 public open class NavigationPolygon : Resource() {
@@ -123,7 +93,8 @@ public open class NavigationPolygon : Resource() {
     }
 
   /**
-   * Determines which type of nodes will be parsed as geometry. See [enum ParsedGeometryType] for possible values.
+   * Determines which type of nodes will be parsed as geometry. See [enum ParsedGeometryType] for
+   * possible values.
    */
   public var parsedGeometryType: ParsedGeometryType
     get() {
@@ -138,8 +109,8 @@ public open class NavigationPolygon : Resource() {
 
   /**
    * The physics layers to scan for static colliders.
-   *
-   * Only used when [parsedGeometryType] is [PARSED_GEOMETRY_STATIC_COLLIDERS] or [PARSED_GEOMETRY_BOTH].
+   * Only used when [parsedGeometryType] is [constant PARSED_GEOMETRY_STATIC_COLLIDERS] or [constant
+   * PARSED_GEOMETRY_BOTH].
    */
   public var parsedCollisionMask: Long
     get() {
@@ -168,8 +139,8 @@ public open class NavigationPolygon : Resource() {
 
   /**
    * The group name of nodes that should be parsed for baking source geometry.
-   *
-   * Only used when [sourceGeometryMode] is [SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN] or [SOURCE_GEOMETRY_GROUPS_EXPLICIT].
+   * Only used when [sourceGeometryMode] is [constant SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN] or
+   * [constant SOURCE_GEOMETRY_GROUPS_EXPLICIT].
    */
   public var sourceGeometryGroupName: StringName
     get() {
@@ -183,7 +154,8 @@ public open class NavigationPolygon : Resource() {
     }
 
   /**
-   * The cell size used to rasterize the navigation mesh vertices. Must match with the cell size on the navigation map.
+   * The cell size used to rasterize the navigation mesh vertices. Must match with the cell size on
+   * the navigation map.
    */
   public var cellSize: Float
     get() {
@@ -233,7 +205,7 @@ public open class NavigationPolygon : Resource() {
   }
 
   /**
-   * Returns a [godot.PackedInt32Array] containing the indices of the vertices of a created polygon.
+   * Returns a [PackedInt32Array] containing the indices of the vertices of a created polygon.
    */
   public fun getPolygon(idx: Int): PackedInt32Array {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -250,7 +222,10 @@ public open class NavigationPolygon : Resource() {
   }
 
   /**
-   * Returns the [godot.NavigationMesh] resulting from this navigation polygon. This navigation mesh can be used to update the navigation mesh of a region with the [godot.NavigationServer3D.regionSetNavigationMesh] API directly (as 2D uses the 3D server behind the scene).
+   * Returns the [NavigationMesh] resulting from this navigation polygon. This navigation mesh can
+   * be used to update the navigation mesh of a region with the
+   * [NavigationServer3D.regionSetNavigationMesh] API directly (as 2D uses the 3D server behind the
+   * scene).
    */
   public fun getNavigationMesh(): NavigationMesh? {
     TransferContext.writeArguments()
@@ -259,7 +234,8 @@ public open class NavigationPolygon : Resource() {
   }
 
   /**
-   * Appends a [godot.PackedVector2Array] that contains the vertices of an outline to the internal array that contains all the outlines.
+   * Appends a [PackedVector2Array] that contains the vertices of an outline to the internal array
+   * that contains all the outlines.
    */
   public fun addOutline(outline: PackedVector2Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to outline)
@@ -267,7 +243,8 @@ public open class NavigationPolygon : Resource() {
   }
 
   /**
-   * Adds a [godot.PackedVector2Array] that contains the vertices of an outline to the internal array that contains all the outlines at a fixed position.
+   * Adds a [PackedVector2Array] that contains the vertices of an outline to the internal array that
+   * contains all the outlines at a fixed position.
    */
   public fun addOutlineAtIndex(outline: PackedVector2Array, index: Int): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to outline, LONG to index.toLong())
@@ -284,7 +261,8 @@ public open class NavigationPolygon : Resource() {
   }
 
   /**
-   * Changes an outline created in the editor or by script. You have to call [makePolygonsFromOutlines] for the polygons to update.
+   * Changes an outline created in the editor or by script. You have to call
+   * [makePolygonsFromOutlines] for the polygons to update.
    */
   public fun setOutline(idx: Int, outline: PackedVector2Array): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), PACKED_VECTOR2_ARRAY to outline)
@@ -292,7 +270,8 @@ public open class NavigationPolygon : Resource() {
   }
 
   /**
-   * Returns a [godot.PackedVector2Array] containing the vertices of an outline that was created in the editor or by script.
+   * Returns a [PackedVector2Array] containing the vertices of an outline that was created in the
+   * editor or by script.
    */
   public fun getOutline(idx: Int): PackedVector2Array {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -301,7 +280,8 @@ public open class NavigationPolygon : Resource() {
   }
 
   /**
-   * Removes an outline created in the editor or by script. You have to call [makePolygonsFromOutlines] for the polygons to update.
+   * Removes an outline created in the editor or by script. You have to call
+   * [makePolygonsFromOutlines] for the polygons to update.
    */
   public fun removeOutline(idx: Int): Unit {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -309,7 +289,8 @@ public open class NavigationPolygon : Resource() {
   }
 
   /**
-   * Clears the array of the outlines, but it doesn't clear the vertices and the polygons that were created by them.
+   * Clears the array of the outlines, but it doesn't clear the vertices and the polygons that were
+   * created by them.
    */
   public fun clearOutlines(): Unit {
     TransferContext.writeArguments()
@@ -318,8 +299,9 @@ public open class NavigationPolygon : Resource() {
 
   /**
    * Creates polygons from the outlines added in the editor or by script.
-   *
-   * *Deprecated.* This function is deprecated, and might be removed in a future release. Use [godot.NavigationServer2D.parseSourceGeometryData] and [godot.NavigationServer2D.bakeFromSourceGeometryData] instead.
+   * *Deprecated.* This function is deprecated, and might be removed in a future release. Use
+   * [NavigationServer2D.parseSourceGeometryData] and [NavigationServer2D.bakeFromSourceGeometryData]
+   * instead.
    */
   public fun makePolygonsFromOutlines(): Unit {
     TransferContext.writeArguments()
@@ -327,7 +309,8 @@ public open class NavigationPolygon : Resource() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [parsedCollisionMask], given a [layerNumber] between 1 and 32.
+   * Based on [param value], enables or disables the specified layer in the [parsedCollisionMask],
+   * given a [param layer_number] between 1 and 32.
    */
   public fun setParsedCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -335,7 +318,8 @@ public open class NavigationPolygon : Resource() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [parsedCollisionMask] is enabled, given a [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [parsedCollisionMask] is enabled, given a
+   * [param layer_number] between 1 and 32.
    */
   public fun getParsedCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -355,17 +339,19 @@ public open class NavigationPolygon : Resource() {
     id: Long,
   ) {
     /**
-     * Parses mesh instances as obstruction geometry. This includes [godot.Polygon2D], [godot.MeshInstance2D], [godot.MultiMeshInstance2D], and [godot.TileMap] nodes.
-     *
+     * Parses mesh instances as obstruction geometry. This includes [Polygon2D], [MeshInstance2D],
+     * [MultiMeshInstance2D], and [TileMap] nodes.
      * Meshes are only parsed when they use a 2D vertices surface format.
      */
     PARSED_GEOMETRY_MESH_INSTANCES(0),
     /**
-     * Parses [godot.StaticBody2D] and [godot.TileMap] colliders as obstruction geometry. The collider should be in any of the layers specified by [parsedCollisionMask].
+     * Parses [StaticBody2D] and [TileMap] colliders as obstruction geometry. The collider should be
+     * in any of the layers specified by [parsedCollisionMask].
      */
     PARSED_GEOMETRY_STATIC_COLLIDERS(1),
     /**
-     * Both [PARSED_GEOMETRY_MESH_INSTANCES] and [PARSED_GEOMETRY_STATIC_COLLIDERS].
+     * Both [constant PARSED_GEOMETRY_MESH_INSTANCES] and [constant
+     * PARSED_GEOMETRY_STATIC_COLLIDERS].
      */
     PARSED_GEOMETRY_BOTH(2),
     /**
@@ -392,7 +378,8 @@ public open class NavigationPolygon : Resource() {
      */
     SOURCE_GEOMETRY_ROOT_NODE_CHILDREN(0),
     /**
-     * Scans nodes in a group and their child nodes recursively for geometry. The group is specified by [sourceGeometryGroupName].
+     * Scans nodes in a group and their child nodes recursively for geometry. The group is specified
+     * by [sourceGeometryGroupName].
      */
     SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN(1),
     /**

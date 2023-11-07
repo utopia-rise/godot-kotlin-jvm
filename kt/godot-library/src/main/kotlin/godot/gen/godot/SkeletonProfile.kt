@@ -28,26 +28,25 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base class for a profile of a virtual skeleton used as a target for retargeting.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/assets_pipeline/retargeting_3d_skeletons.html]($DOCS_URL/tutorials/assets_pipeline/retargeting_3d_skeletons.html)
- *
- * This resource is used in [godot.EditorScenePostImport]. Some parameters are referring to bones in [godot.Skeleton3D], [godot.Skin], [godot.Animation], and some other nodes are rewritten based on the parameters of [godot.SkeletonProfile].
- *
- * **Note:** These parameters need to be set only when creating a custom profile. In [godot.SkeletonProfileHumanoid], they are defined internally as read-only values.
+ * This resource is used in [EditorScenePostImport]. Some parameters are referring to bones in
+ * [Skeleton3D], [Skin], [Animation], and some other nodes are rewritten based on the parameters of
+ * [SkeletonProfile].
+ * **Note:** These parameters need to be set only when creating a custom profile. In
+ * [SkeletonProfileHumanoid], they are defined internally as read-only values.
  */
 @GodotBaseType
 public open class SkeletonProfile : Resource() {
   /**
-   * This signal is emitted when change the value in profile. This is used to update key name in the [godot.BoneMap] and to redraw the [godot.BoneMap] editor.
-   *
-   * **Note:** This signal is not connected directly to editor to simplify the reference, instead it is passed on to editor through the [godot.BoneMap].
+   * This signal is emitted when change the value in profile. This is used to update key name in the
+   * [BoneMap] and to redraw the [BoneMap] editor.
+   * **Note:** This signal is not connected directly to editor to simplify the reference, instead it
+   * is passed on to editor through the [BoneMap].
    */
   public val profileUpdated: Signal0 by signal()
 
   /**
-   * A bone name that will be used as the root bone in [godot.AnimationTree]. This should be the bone of the parent of hips that exists at the world origin.
+   * A bone name that will be used as the root bone in [AnimationTree]. This should be the bone of
+   * the parent of hips that exists at the world origin.
    */
   public var rootBone: StringName
     get() {
@@ -61,7 +60,8 @@ public open class SkeletonProfile : Resource() {
     }
 
   /**
-   * A bone name which will use model's height as the coefficient for normalization. For example, [godot.SkeletonProfileHumanoid] defines it as `Hips`.
+   * A bone name which will use model's height as the coefficient for normalization. For example,
+   * [SkeletonProfileHumanoid] defines it as `Hips`.
    */
   public var scaleBaseBone: StringName
     get() {
@@ -75,8 +75,8 @@ public open class SkeletonProfile : Resource() {
     }
 
   /**
-   * The amount of groups of bones in retargeting section's [godot.BoneMap] editor. For example, [godot.SkeletonProfileHumanoid] has 4 groups.
-   *
+   * The amount of groups of bones in retargeting section's [BoneMap] editor. For example,
+   * [SkeletonProfileHumanoid] has 4 groups.
    * This property exists to separate the bone list into several sections in the editor.
    */
   public var groupSize: Int
@@ -91,9 +91,10 @@ public open class SkeletonProfile : Resource() {
     }
 
   /**
-   * The amount of bones in retargeting section's [godot.BoneMap] editor. For example, [godot.SkeletonProfileHumanoid] has 56 bones.
-   *
-   * The size of elements in [godot.BoneMap] updates when changing this property in it's assigned [godot.SkeletonProfile].
+   * The amount of bones in retargeting section's [BoneMap] editor. For example,
+   * [SkeletonProfileHumanoid] has 56 bones.
+   * The size of elements in [BoneMap] updates when changing this property in it's assigned
+   * [SkeletonProfile].
    */
   public var boneSize: Int
     get() {
@@ -112,7 +113,8 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Returns the name of the group at [groupIdx] that will be the drawing group in the [godot.BoneMap] editor.
+   * Returns the name of the group at [param group_idx] that will be the drawing group in the
+   * [BoneMap] editor.
    */
   public fun getGroupName(groupIdx: Int): StringName {
     TransferContext.writeArguments(LONG to groupIdx.toLong())
@@ -121,7 +123,8 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Sets the name of the group at [groupIdx] that will be the drawing group in the [godot.BoneMap] editor.
+   * Sets the name of the group at [param group_idx] that will be the drawing group in the [BoneMap]
+   * editor.
    */
   public fun setGroupName(groupIdx: Int, groupName: StringName): Unit {
     TransferContext.writeArguments(LONG to groupIdx.toLong(), STRING_NAME to groupName)
@@ -129,7 +132,8 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Returns the texture of the group at [groupIdx] that will be the drawing group background image in the [godot.BoneMap] editor.
+   * Returns the texture of the group at [param group_idx] that will be the drawing group background
+   * image in the [BoneMap] editor.
    */
   public fun getTexture(groupIdx: Int): Texture2D? {
     TransferContext.writeArguments(LONG to groupIdx.toLong())
@@ -138,7 +142,8 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Sets the texture of the group at [groupIdx] that will be the drawing group background image in the [godot.BoneMap] editor.
+   * Sets the texture of the group at [param group_idx] that will be the drawing group background
+   * image in the [BoneMap] editor.
    */
   public fun setTexture(groupIdx: Int, texture: Texture2D): Unit {
     TransferContext.writeArguments(LONG to groupIdx.toLong(), OBJECT to texture)
@@ -146,7 +151,7 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Returns the bone index that matches [boneName] as its name.
+   * Returns the bone index that matches [param bone_name] as its name.
    */
   public fun findBone(boneName: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to boneName)
@@ -155,8 +160,7 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Returns the name of the bone at [boneIdx] that will be the key name in the [godot.BoneMap].
-   *
+   * Returns the name of the bone at [param bone_idx] that will be the key name in the [BoneMap].
    * In the retargeting process, the returned bone name is the bone name of the target skeleton.
    */
   public fun getBoneName(boneIdx: Int): StringName {
@@ -166,8 +170,7 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Sets the name of the bone at [boneIdx] that will be the key name in the [godot.BoneMap].
-   *
+   * Sets the name of the bone at [param bone_idx] that will be the key name in the [BoneMap].
    * In the retargeting process, the setting bone name is the bone name of the target skeleton.
    */
   public fun setBoneName(boneIdx: Int, boneName: StringName): Unit {
@@ -176,7 +179,8 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Returns the name of the bone which is the parent to the bone at [boneIdx]. The result is empty if the bone has no parent.
+   * Returns the name of the bone which is the parent to the bone at [param bone_idx]. The result is
+   * empty if the bone has no parent.
    */
   public fun getBoneParent(boneIdx: Int): StringName {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
@@ -185,7 +189,8 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Sets the bone with name [boneParent] as the parent of the bone at [boneIdx]. If an empty string is passed, then the bone has no parent.
+   * Sets the bone with name [param bone_parent] as the parent of the bone at [param bone_idx]. If
+   * an empty string is passed, then the bone has no parent.
    */
   public fun setBoneParent(boneIdx: Int, boneParent: StringName): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to boneParent)
@@ -193,7 +198,7 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Returns the tail direction of the bone at [boneIdx].
+   * Returns the tail direction of the bone at [param bone_idx].
    */
   public fun getTailDirection(boneIdx: Int): TailDirection {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
@@ -202,9 +207,9 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Sets the tail direction of the bone at [boneIdx].
-   *
-   * **Note:** This only specifies the method of calculation. The actual coordinates required should be stored in an external skeleton, so the calculation itself needs to be done externally.
+   * Sets the tail direction of the bone at [param bone_idx].
+   * **Note:** This only specifies the method of calculation. The actual coordinates required should
+   * be stored in an external skeleton, so the calculation itself needs to be done externally.
    */
   public fun setTailDirection(boneIdx: Int, tailDirection: TailDirection): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), LONG to tailDirection.id)
@@ -212,7 +217,7 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Returns the name of the bone which is the tail of the bone at [boneIdx].
+   * Returns the name of the bone which is the tail of the bone at [param bone_idx].
    */
   public fun getBoneTail(boneIdx: Int): StringName {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
@@ -221,7 +226,7 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Sets the bone with name [boneTail] as the tail of the bone at [boneIdx].
+   * Sets the bone with name [param bone_tail] as the tail of the bone at [param bone_idx].
    */
   public fun setBoneTail(boneIdx: Int, boneTail: StringName): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to boneTail)
@@ -229,7 +234,7 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Returns the reference pose transform for bone [boneIdx].
+   * Returns the reference pose transform for bone [param bone_idx].
    */
   public fun getReferencePose(boneIdx: Int): Transform3D {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
@@ -238,7 +243,7 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Sets the reference pose transform for bone [boneIdx].
+   * Sets the reference pose transform for bone [param bone_idx].
    */
   public fun setReferencePose(boneIdx: Int, boneName: Transform3D): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), TRANSFORM3D to boneName)
@@ -246,8 +251,8 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Returns the offset of the bone at [boneIdx] that will be the button position in the [godot.BoneMap] editor.
-   *
+   * Returns the offset of the bone at [param bone_idx] that will be the button position in the
+   * [BoneMap] editor.
    * This is the offset with origin at the top left corner of the square.
    */
   public fun getHandleOffset(boneIdx: Int): Vector2 {
@@ -257,8 +262,8 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Sets the offset of the bone at [boneIdx] that will be the button position in the [godot.BoneMap] editor.
-   *
+   * Sets the offset of the bone at [param bone_idx] that will be the button position in the
+   * [BoneMap] editor.
    * This is the offset with origin at the top left corner of the square.
    */
   public fun setHandleOffset(boneIdx: Int, handleOffset: Vector2): Unit {
@@ -267,7 +272,7 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Returns the group of the bone at [boneIdx].
+   * Returns the group of the bone at [param bone_idx].
    */
   public fun getGroup(boneIdx: Int): StringName {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
@@ -276,7 +281,7 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Sets the group of the bone at [boneIdx].
+   * Sets the group of the bone at [param bone_idx].
    */
   public fun setGroup(boneIdx: Int, group: StringName): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to group)

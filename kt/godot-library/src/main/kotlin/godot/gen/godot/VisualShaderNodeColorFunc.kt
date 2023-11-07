@@ -18,9 +18,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A [godot.core.Color] function to be used within the visual shader graph.
- *
- * Accept a [godot.core.Color] to the input port and transform it according to [function].
+ * Accept a [Color] to the input port and transform it according to [function].
  */
 @GodotBaseType
 public open class VisualShaderNodeColorFunc : VisualShaderNode() {
@@ -48,14 +46,13 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
   ) {
     /**
      * Converts the color to grayscale using the following formula:
-     *
-     * ```
-     * 			vec3 c = input;
-     * 			float max1 = max(c.r, c.g);
-     * 			float max2 = max(max1, c.b);
-     * 			float max3 = max(max1, max2);
-     * 			return vec3(max3, max3, max3);
-     * 			```
+     * [codeblock]
+     * vec3 c = input;
+     * float max1 = max(c.r, c.g);
+     * float max2 = max(max1, c.b);
+     * float max3 = max(max1, max2);
+     * return vec3(max3, max3, max3);
+     * [/codeblock]
      */
     FUNC_GRAYSCALE(0),
     /**
@@ -68,14 +65,13 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
     FUNC_RGB2HSV(2),
     /**
      * Applies sepia tone effect using the following formula:
-     *
-     * ```
-     * 			vec3 c = input;
-     * 			float r = (c.r * 0.393) + (c.g * 0.769) + (c.b * 0.189);
-     * 			float g = (c.r * 0.349) + (c.g * 0.686) + (c.b * 0.168);
-     * 			float b = (c.r * 0.272) + (c.g * 0.534) + (c.b * 0.131);
-     * 			return vec3(r, g, b);
-     * 			```
+     * [codeblock]
+     * vec3 c = input;
+     * float r = (c.r * 0.393) + (c.g * 0.769) + (c.b * 0.189);
+     * float g = (c.r * 0.349) + (c.g * 0.686) + (c.b * 0.168);
+     * float b = (c.r * 0.272) + (c.g * 0.534) + (c.b * 0.131);
+     * return vec3(r, g, b);
+     * [/codeblock]
      */
     FUNC_SEPIA(3),
     /**

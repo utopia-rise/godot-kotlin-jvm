@@ -11,6 +11,11 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 
+/**
+ * An implementation of [TextServer] that uses HarfBuzz, ICU and SIL Graphite to support BiDi,
+ * complex text layouts and contextual OpenType features. This is Godot's default primary [TextServer]
+ * interface.
+ */
 @GodotBaseType
 public open class TextServerAdvanced : TextServerExtension() {
   public override fun new(scriptIndex: Int): Boolean {

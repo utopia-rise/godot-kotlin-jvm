@@ -23,9 +23,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A physics joint that restricts the rotation of a 3D physics body around an axis relative to another physics body.
- *
- * A physics joint that restricts the rotation of a 3D physics body around an axis relative to another physics body. For example, Body A can be a [godot.StaticBody3D] representing a door hinge that a [godot.RigidBody3D] rotates around.
+ * A physics joint that restricts the rotation of a 3D physics body around an axis relative to
+ * another physics body. For example, Body A can be a [StaticBody3D] representing a door hinge that a
+ * [RigidBody3D] rotates around.
  */
 @GodotBaseType
 public open class HingeJoint3D : Joint3D() {
@@ -72,7 +72,8 @@ public open class HingeJoint3D : Joint3D() {
     id: Long,
   ) {
     /**
-     * The speed with which the two bodies get pulled together when they move in different directions.
+     * The speed with which the two bodies get pulled together when they move in different
+     * directions.
      */
     PARAM_BIAS(0),
     /**
@@ -87,9 +88,6 @@ public open class HingeJoint3D : Joint3D() {
      * The speed with which the rotation across the axis perpendicular to the hinge gets corrected.
      */
     PARAM_LIMIT_BIAS(3),
-    /**
-     *
-     */
     PARAM_LIMIT_SOFTNESS(4),
     /**
      * The lower this value, the more the rotation gets slowed down.
@@ -123,7 +121,8 @@ public open class HingeJoint3D : Joint3D() {
     id: Long,
   ) {
     /**
-     * If `true`, the hinges maximum and minimum rotation, defined by [angularLimit/lower] and [angularLimit/upper] has effects.
+     * If `true`, the hinges maximum and minimum rotation, defined by [angularLimit/lower] and
+     * [angularLimit/upper] has effects.
      */
     FLAG_USE_LIMIT(0),
     /**

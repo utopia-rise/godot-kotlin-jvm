@@ -24,16 +24,19 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Abstract base class for controls that represent a number within a range.
- *
- * Range is an abstract base class for controls that represent a number within a range, using a configured [step] and [page] size. See e.g. [godot.ScrollBar] and [godot.Slider] for examples of higher-level nodes using Range.
+ * Range is an abstract base class for controls that represent a number within a range, using a
+ * configured [step] and [page] size. See e.g. [ScrollBar] and [Slider] for examples of higher-level
+ * nodes using Range.
  */
 @GodotBaseType
 public open class Range : Control() {
   /**
-   * Emitted when [value] changes. When used on a [godot.Slider], this is called continuously while dragging (potentially every frame). If you are performing an expensive operation in a function connected to [valueChanged], consider using a *debouncing* [godot.Timer] to call the function less often.
-   *
-   * **Note:** Unlike signals such as [godot.LineEdit.textChanged], [valueChanged] is also emitted when [value] is set directly via code.
+   * Emitted when [value] changes. When used on a [Slider], this is called continuously while
+   * dragging (potentially every frame). If you are performing an expensive operation in a function
+   * connected to [signal value_changed], consider using a *debouncing* [Timer] to call the function
+   * less often.
+   * **Note:** Unlike signals such as [signal LineEdit.text_changed], [signal value_changed] is also
+   * emitted when [param value] is set directly via code.
    */
   public val valueChanged: Signal1<Double> by signal("value")
 
@@ -71,7 +74,9 @@ public open class Range : Control() {
     }
 
   /**
-   * If greater than 0, [value] will always be rounded to a multiple of this property's value. If [rounded] is also `true`, [value] will first be rounded to a multiple of this property's value, then rounded to the nearest integer.
+   * If greater than 0, [value] will always be rounded to a multiple of this property's value. If
+   * [rounded] is also `true`, [value] will first be rounded to a multiple of this property's value,
+   * then rounded to the nearest integer.
    */
   public var step: Double
     get() {
@@ -85,7 +90,8 @@ public open class Range : Control() {
     }
 
   /**
-   * Page size. Used mainly for [godot.ScrollBar]. ScrollBar's length is its size multiplied by [page] over the difference between [minValue] and [maxValue].
+   * Page size. Used mainly for [ScrollBar]. ScrollBar's length is its size multiplied by [page]
+   * over the difference between [minValue] and [maxValue].
    */
   public var page: Double
     get() {
@@ -99,7 +105,8 @@ public open class Range : Control() {
     }
 
   /**
-   * Range's current value. Changing this property (even via code) will trigger [valueChanged] signal. Use [setValueNoSignal] if you want to avoid it.
+   * Range's current value. Changing this property (even via code) will trigger [signal
+   * value_changed] signal. Use [setValueNoSignal] if you want to avoid it.
    */
   public var `value`: Double
     get() {
@@ -127,7 +134,8 @@ public open class Range : Control() {
     }
 
   /**
-   * If `true`, and [minValue] is greater than 0, [value] will be represented exponentially rather than linearly.
+   * If `true`, and [minValue] is greater than 0, [value] will be represented exponentially rather
+   * than linearly.
    */
   public var expEdit: Boolean
     get() {
@@ -188,13 +196,15 @@ public open class Range : Control() {
   }
 
   /**
-   * Called when the [godot.Range]'s value is changed (following the same conditions as [valueChanged]).
+   * Called when the [Range]'s value is changed (following the same conditions as [signal
+   * value_changed]).
    */
   public open fun _valueChanged(newValue: Double): Unit {
   }
 
   /**
-   * Sets the [godot.Range]'s current value to the specified [value], without emitting the [valueChanged] signal.
+   * Sets the [Range]'s current value to the specified [param value], without emitting the [signal
+   * value_changed] signal.
    */
   public fun setValueNoSignal(`value`: Double): Unit {
     TransferContext.writeArguments(DOUBLE to value)
@@ -202,7 +212,9 @@ public open class Range : Control() {
   }
 
   /**
-   * Binds two [godot.Range]s together along with any ranges previously grouped with either of them. When any of range's member variables change, it will share the new value with all other ranges in its group.
+   * Binds two [Range]s together along with any ranges previously grouped with either of them. When
+   * any of range's member variables change, it will share the new value with all other ranges in its
+   * group.
    */
   public fun share(with: Node): Unit {
     TransferContext.writeArguments(OBJECT to with)
@@ -210,7 +222,7 @@ public open class Range : Control() {
   }
 
   /**
-   * Stops the [godot.Range] from sharing its member variables with any other.
+   * Stops the [Range] from sharing its member variables with any other.
    */
   public fun unshare(): Unit {
     TransferContext.writeArguments()

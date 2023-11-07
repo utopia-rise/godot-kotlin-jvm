@@ -19,17 +19,14 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Adds a reverberation audio effect to an Audio bus.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
- *
- * Simulates the sound of acoustic environments such as rooms, concert halls, caverns, or an open spaces.
+ * Simulates the sound of acoustic environments such as rooms, concert halls, caverns, or an open
+ * spaces.
  */
 @GodotBaseType
 public open class AudioEffectReverb : AudioEffect() {
   /**
-   * Time between the original signal and the early reflections of the reverb signal, in milliseconds.
+   * Time between the original signal and the early reflections of the reverb signal, in
+   * milliseconds.
    */
   public var predelayMsec: Float
     get() {
@@ -85,7 +82,8 @@ public open class AudioEffectReverb : AudioEffect() {
     }
 
   /**
-   * Widens or narrows the stereo image of the reverb tail. 1 means fully widens. Value can range from 0 to 1.
+   * Widens or narrows the stereo image of the reverb tail. 1 means fully widens. Value can range
+   * from 0 to 1.
    */
   public var spread: Float
     get() {
@@ -99,7 +97,8 @@ public open class AudioEffectReverb : AudioEffect() {
     }
 
   /**
-   * High-pass filter passes signals with a frequency higher than a certain cutoff frequency and attenuates signals with frequencies lower than the cutoff frequency. Value can range from 0 to 1.
+   * High-pass filter passes signals with a frequency higher than a certain cutoff frequency and
+   * attenuates signals with frequencies lower than the cutoff frequency. Value can range from 0 to 1.
    */
   public var hipass: Float
     get() {
@@ -113,7 +112,8 @@ public open class AudioEffectReverb : AudioEffect() {
     }
 
   /**
-   * Output percent of original sound. At 0, only modified sound is outputted. Value can range from 0 to 1.
+   * Output percent of original sound. At 0, only modified sound is outputted. Value can range from
+   * 0 to 1.
    */
   public var dry: Float
     get() {
@@ -127,7 +127,8 @@ public open class AudioEffectReverb : AudioEffect() {
     }
 
   /**
-   * Output percent of modified sound. At 0, only original sound is outputted. Value can range from 0 to 1.
+   * Output percent of modified sound. At 0, only original sound is outputted. Value can range from
+   * 0 to 1.
    */
   public var wet: Float
     get() {

@@ -28,12 +28,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * The server responsible for language translations.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/i18n/locales.html]($DOCS_URL/tutorials/i18n/locales.html)
- *
- * The server that manages all language translations. Translations can be added to or removed from it.
+ * The server that manages all language translations. Translations can be added to or removed from
+ * it.
  */
 @GodotBaseType
 public object TranslationServer : Object() {
@@ -43,8 +39,8 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Sets the locale of the project. The [locale] string will be standardized to match known locales (e.g. `en-US` would be matched to `en_US`).
-   *
+   * Sets the locale of the project. The [param locale] string will be standardized to match known
+   * locales (e.g. `en-US` would be matched to `en_US`).
    * If translations have been loaded beforehand for the new locale, they will be applied.
    */
   public fun setLocale(locale: String): Unit {
@@ -54,8 +50,7 @@ public object TranslationServer : Object() {
 
   /**
    * Returns the current locale of the project.
-   *
-   * See also [godot.OS.getLocale] and [godot.OS.getLocaleLanguage] to query the locale of the user system.
+   * See also [OS.getLocale] and [OS.getLocaleLanguage] to query the locale of the user system.
    */
   public fun getLocale(): String {
     TransferContext.writeArguments()
@@ -65,7 +60,6 @@ public object TranslationServer : Object() {
 
   /**
    * Returns the current locale of the editor.
-   *
    * **Note:** When called from an exported project returns the same value as [getLocale].
    */
   public fun getToolLocale(): String {
@@ -75,7 +69,8 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Compares two locales and returns a similarity score between `0` (no match) and `10` (full match).
+   * Compares two locales and returns a similarity score between `0` (no match) and `10` (full
+   * match).
    */
   public fun compareLocales(localeA: String, localeB: String): Int {
     TransferContext.writeArguments(STRING to localeA, STRING to localeB)
@@ -84,7 +79,8 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns a [locale] string standardized to match known locales (e.g. `en-US` would be matched to `en_US`).
+   * Returns a [param locale] string standardized to match known locales (e.g. `en-US` would be
+   * matched to `en_US`).
    */
   public fun standardizeLocale(locale: String): String {
     TransferContext.writeArguments(STRING to locale)
@@ -102,7 +98,7 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns a readable language name for the [language] code.
+   * Returns a readable language name for the [param language] code.
    */
   public fun getLanguageName(language: String): String {
     TransferContext.writeArguments(STRING to language)
@@ -120,7 +116,7 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns a readable script name for the [script] code.
+   * Returns a readable script name for the [param script] code.
    */
   public fun getScriptName(script: String): String {
     TransferContext.writeArguments(STRING to script)
@@ -138,7 +134,7 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns a readable country name for the [country] code.
+   * Returns a readable country name for the [param country] code.
    */
   public fun getCountryName(country: String): String {
     TransferContext.writeArguments(STRING to country)
@@ -147,7 +143,8 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns a locale's language and its variant (e.g. `"en_US"` would return `"English (United States)"`).
+   * Returns a locale's language and its variant (e.g. `"en_US"` would return `"English (United
+   * States)"`).
    */
   public fun getLocaleName(locale: String): String {
     TransferContext.writeArguments(STRING to locale)
@@ -166,9 +163,10 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns the current locale's translation for the given message (key), plural message and context.
-   *
-   * The number [n] is the number or quantity of the plural object. It will be used to guide the translation system to fetch the correct plural form for the selected language.
+   * Returns the current locale's translation for the given message (key), plural message and
+   * context.
+   * The number [param n] is the number or quantity of the plural object. It will be used to guide
+   * the translation system to fetch the correct plural form for the selected language.
    */
   @JvmOverloads
   public fun translatePlural(
@@ -183,7 +181,7 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Adds a [godot.Translation] resource.
+   * Adds a [Translation] resource.
    */
   public fun addTranslation(translation: Translation): Unit {
     TransferContext.writeArguments(OBJECT to translation)
@@ -199,9 +197,8 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns the [godot.Translation] instance based on the [locale] passed in.
-   *
-   * It will return `null` if there is no [godot.Translation] instance that matches the [locale].
+   * Returns the [Translation] instance based on the [param locale] passed in.
+   * It will return `null` if there is no [Translation] instance that matches the [param locale].
    */
   public fun getTranslationObject(locale: String): Translation? {
     TransferContext.writeArguments(STRING to locale)
@@ -246,7 +243,7 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns the pseudolocalized string based on the [message] passed in.
+   * Returns the pseudolocalized string based on the [param message] passed in.
    */
   public fun pseudolocalize(message: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to message)

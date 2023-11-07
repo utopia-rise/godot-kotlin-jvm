@@ -24,21 +24,19 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * An interface to a game world that doesn't create a window or draw to the screen directly.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/586](https://godotengine.org/asset-library/asset/586)
- *
- * [godot.SubViewport] Isolates a rectangular region of a scene to be displayed independently. This can be used, for example, to display UI in 3D space.
- *
- * **Note:** [godot.SubViewport] is a [godot.Viewport] that isn't a [godot.Window], i.e. it doesn't draw anything by itself. To display anything, [godot.SubViewport] must have a non-zero size and be either put inside a [godot.SubViewportContainer] or assigned to a [godot.ViewportTexture].
+ * [SubViewport] Isolates a rectangular region of a scene to be displayed independently. This can be
+ * used, for example, to display UI in 3D space.
+ * **Note:** [SubViewport] is a [Viewport] that isn't a [Window], i.e. it doesn't draw anything by
+ * itself. To display anything, [SubViewport] must have a non-zero size and be either put inside a
+ * [SubViewportContainer] or assigned to a [ViewportTexture].
  */
 @GodotBaseType
 public open class SubViewport : Viewport() {
   /**
-   * The width and height of the sub-viewport. Must be set to a value greater than or equal to 2 pixels on both dimensions. Otherwise, nothing will be displayed.
-   *
-   * **Note:** If the parent node is a [godot.SubViewportContainer] and its [godot.SubViewportContainer.stretch] is `true`, the viewport size cannot be changed manually.
+   * The width and height of the sub-viewport. Must be set to a value greater than or equal to 2
+   * pixels on both dimensions. Otherwise, nothing will be displayed.
+   * **Note:** If the parent node is a [SubViewportContainer] and its [SubViewportContainer.stretch]
+   * is `true`, the viewport size cannot be changed manually.
    */
   @CoreTypeLocalCopy
   public var size: Vector2i
@@ -53,7 +51,8 @@ public open class SubViewport : Viewport() {
     }
 
   /**
-   * The 2D size override of the sub-viewport. If either the width or height is `0`, the override is disabled.
+   * The 2D size override of the sub-viewport. If either the width or height is `0`, the override is
+   * disabled.
    */
   @CoreTypeLocalCopy
   public var size2dOverride: Vector2i
@@ -83,7 +82,6 @@ public open class SubViewport : Viewport() {
 
   /**
    * The clear mode when the sub-viewport is used as a render target.
-   *
    * **Note:** This property is intended for 2D usage.
    */
   public var renderTargetClearMode: ClearMode
@@ -117,9 +115,10 @@ public open class SubViewport : Viewport() {
   }
 
   /**
-   * The width and height of the sub-viewport. Must be set to a value greater than or equal to 2 pixels on both dimensions. Otherwise, nothing will be displayed.
-   *
-   * **Note:** If the parent node is a [godot.SubViewportContainer] and its [godot.SubViewportContainer.stretch] is `true`, the viewport size cannot be changed manually.
+   * The width and height of the sub-viewport. Must be set to a value greater than or equal to 2
+   * pixels on both dimensions. Otherwise, nothing will be displayed.
+   * **Note:** If the parent node is a [SubViewportContainer] and its [SubViewportContainer.stretch]
+   * is `true`, the viewport size cannot be changed manually.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -143,7 +142,8 @@ public open class SubViewport : Viewport() {
 
 
   /**
-   * The 2D size override of the sub-viewport. If either the width or height is `0`, the override is disabled.
+   * The 2D size override of the sub-viewport. If either the width or height is `0`, the override is
+   * disabled.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -178,7 +178,7 @@ public open class SubViewport : Viewport() {
      */
     CLEAR_MODE_NEVER(1),
     /**
-     * Clear the render target on the next frame, then switch to [CLEAR_MODE_NEVER].
+     * Clear the render target on the next frame, then switch to [constant CLEAR_MODE_NEVER].
      */
     CLEAR_MODE_ONCE(2),
     ;
@@ -201,7 +201,7 @@ public open class SubViewport : Viewport() {
      */
     UPDATE_DISABLED(0),
     /**
-     * Update the render target once, then switch to [UPDATE_DISABLED].
+     * Update the render target once, then switch to [constant UPDATE_DISABLED].
      */
     UPDATE_ONCE(1),
     /**

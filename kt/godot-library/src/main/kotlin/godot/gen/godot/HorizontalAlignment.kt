@@ -6,9 +6,21 @@ import kotlin.Long
 public enum class HorizontalAlignment(
   id: Long,
 ) {
+  /**
+   * Horizontal left alignment, usually for text-derived classes.
+   */
   HORIZONTAL_ALIGNMENT_LEFT(0),
+  /**
+   * Horizontal center alignment, usually for text-derived classes.
+   */
   HORIZONTAL_ALIGNMENT_CENTER(1),
+  /**
+   * Horizontal right alignment, usually for text-derived classes.
+   */
   HORIZONTAL_ALIGNMENT_RIGHT(2),
+  /**
+   * Expand row to fit width, usually for text-derived classes.
+   */
   HORIZONTAL_ALIGNMENT_FILL(3),
   ;
 

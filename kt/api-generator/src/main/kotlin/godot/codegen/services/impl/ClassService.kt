@@ -64,7 +64,8 @@ class ClassService(
                     hashCompatibility = listOf(),
                     returnValue = ReturnValue(returnType, null),
                     returnType = null,
-                    arguments = arguments
+                    arguments = arguments,
+                    documentation = null
                 ),
                 clazz.engineClassDBIndexName
             )

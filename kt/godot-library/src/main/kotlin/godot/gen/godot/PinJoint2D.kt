@@ -20,9 +20,9 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A physics joint that attaches two 2D physics bodies at a single point, allowing them to freely rotate.
- *
- * A physics joint that attaches two 2D physics bodies at a single point, allowing them to freely rotate. For example, a [godot.RigidBody2D] can be attached to a [godot.StaticBody2D] to create a pendulum or a seesaw.
+ * A physics joint that attaches two 2D physics bodies at a single point, allowing them to freely
+ * rotate. For example, a [RigidBody2D] can be attached to a [StaticBody2D] to create a pendulum or a
+ * seesaw.
  */
 @GodotBaseType
 public open class PinJoint2D : Joint2D() {
@@ -41,7 +41,8 @@ public open class PinJoint2D : Joint2D() {
     }
 
   /**
-   * If `true`, the pin maximum and minimum rotation, defined by [angularLimitLower] and [angularLimitUpper] are applied.
+   * If `true`, the pin maximum and minimum rotation, defined by [angularLimitLower] and
+   * [angularLimitUpper] are applied.
    */
   public var angularLimitEnabled: Boolean
     get() {

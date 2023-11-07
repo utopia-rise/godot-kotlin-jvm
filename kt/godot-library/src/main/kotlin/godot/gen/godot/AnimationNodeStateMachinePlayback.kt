@@ -26,34 +26,21 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Provides playback control for an [godot.AnimationNodeStateMachine].
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
- *
- * Allows control of [godot.AnimationTree] state machines created with [godot.AnimationNodeStateMachine]. Retrieve with `$AnimationTree.get("parameters/playback")`.
- *
+ * Allows control of [AnimationTree] state machines created with [AnimationNodeStateMachine].
+ * Retrieve with `$AnimationTree.get("parameters/playback")`.
  * **Example:**
  *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * var state_machine = $AnimationTree.get("parameters/playback")
- *
  * state_machine.travel("some_state")
- *
- * [/gdscript]
- *
- * [csharp]
- *
- * var stateMachine = GetNode<AnimationTree>("AnimationTree").Get("parameters/playback").As<AnimationNodeStateMachinePlayback>();
- *
+ * ```
+ * csharp:
+ * ```csharp
+ * var stateMachine =
+ * GetNode<AnimationTree>("AnimationTree").Get("parameters/playback").As<AnimationNodeStateMachinePlayback>();
  * stateMachine.Travel("some_state");
- *
- * [/csharp]
- *
- * [/codeblocks]
+ * ```
  */
 @GodotBaseType
 public open class AnimationNodeStateMachinePlayback : Resource() {
@@ -64,10 +51,10 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
 
   /**
    * Transitions from the current state to another one, following the shortest path.
-   *
-   * If the path does not connect from the current state, the animation will play after the state teleports.
-   *
-   * If [resetOnTeleport] is `true`, the animation is played from the beginning when the travel cause a teleportation.
+   * If the path does not connect from the current state, the animation will play after the state
+   * teleports.
+   * If [param reset_on_teleport] is `true`, the animation is played from the beginning when the
+   * travel cause a teleportation.
    */
   @JvmOverloads
   public fun travel(toNode: StringName, resetOnTeleport: Boolean = true): Unit {
@@ -77,8 +64,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
 
   /**
    * Starts playing the given animation.
-   *
-   * If [reset] is `true`, the animation is played from the beginning.
+   * If [param reset] is `true`, the animation is played from the beginning.
    */
   @JvmOverloads
   public fun start(node: StringName, reset: Boolean = true): Unit {
@@ -87,7 +73,8 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   }
 
   /**
-   * If there is a next path by travel or auto advance, immediately transitions from the current state to the next state.
+   * If there is a next path by travel or auto advance, immediately transitions from the current
+   * state to the next state.
    */
   public fun next(): Unit {
     TransferContext.writeArguments()
@@ -113,8 +100,8 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
 
   /**
    * Returns the currently playing animation state.
-   *
-   * **Note:** When using a cross-fade, the current state changes to the next state immediately after the cross-fade begins.
+   * **Note:** When using a cross-fade, the current state changes to the next state immediately
+   * after the cross-fade begins.
    */
   public fun getCurrentNode(): StringName {
     TransferContext.writeArguments()
@@ -133,8 +120,10 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
 
   /**
    * Returns the current state length.
-   *
-   * **Note:** It is possible that any [godot.AnimationRootNode] can be nodes as well as animations. This means that there can be multiple animations within a single state. Which animation length has priority depends on the nodes connected inside it. Also, if a transition does not reset, the remaining length at that point will be returned.
+   * **Note:** It is possible that any [AnimationRootNode] can be nodes as well as animations. This
+   * means that there can be multiple animations within a single state. Which animation length has
+   * priority depends on the nodes connected inside it. Also, if a transition does not reset, the
+   * remaining length at that point will be returned.
    */
   public fun getCurrentLength(): Float {
     TransferContext.writeArguments()

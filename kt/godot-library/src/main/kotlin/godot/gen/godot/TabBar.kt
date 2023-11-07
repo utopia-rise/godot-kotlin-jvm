@@ -32,9 +32,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A control that provides a horizontal bar with tabs.
- *
- * A control that provides a horizontal bar with tabs. Similar to [godot.TabContainer] but is only in charge of drawing tabs, not interacting with children.
+ * A control that provides a horizontal bar with tabs. Similar to [TabContainer] but is only in
+ * charge of drawing tabs, not interacting with children.
  */
 @GodotBaseType
 public open class TabBar : Control() {
@@ -60,24 +59,17 @@ public open class TabBar : Control() {
 
   /**
    * Emitted when a tab's close button is pressed.
+   * **Note:** Tabs are not removed automatically once the close button is pressed, this behavior
+   * needs to be programmed manually. For example:
    *
-   * **Note:** Tabs are not removed automatically once the close button is pressed, this behavior needs to be programmed manually. For example:
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * $TabBar.tab_close_pressed.connect($TabBar.remove_tab)
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * GetNode<TabBar>("TabBar").TabClosePressed += GetNode<TabBar>("TabBar").RemoveTab;
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public val tabClosePressed: Signal1<Long> by signal("tab")
 
@@ -139,7 +131,8 @@ public open class TabBar : Control() {
     }
 
   /**
-   * If `true`, tabs overflowing this node's width will be hidden, displaying two navigation buttons instead. Otherwise, this node's minimum size is updated so that all tabs are visible.
+   * If `true`, tabs overflowing this node's width will be hidden, displaying two navigation buttons
+   * instead. Otherwise, this node's minimum size is updated so that all tabs are visible.
    */
   public var clipTabs: Boolean
     get() {
@@ -153,7 +146,8 @@ public open class TabBar : Control() {
     }
 
   /**
-   * Sets when the close button will appear on the tabs. See [enum CloseButtonDisplayPolicy] for details.
+   * Sets when the close button will appear on the tabs. See [enum CloseButtonDisplayPolicy] for
+   * details.
    */
   public var tabCloseDisplayPolicy: CloseButtonDisplayPolicy
     get() {
@@ -209,9 +203,9 @@ public open class TabBar : Control() {
     }
 
   /**
-   * [godot.TabBar]s with the same rearrange group ID will allow dragging the tabs between them. Enable drag with [dragToRearrangeEnabled].
-   *
-   * Setting this to `-1` will disable rearranging between [godot.TabBar]s.
+   * [TabBar]s with the same rearrange group ID will allow dragging the tabs between them. Enable
+   * drag with [dragToRearrangeEnabled].
+   * Setting this to `-1` will disable rearranging between [TabBar]s.
    */
   public var tabsRearrangeGroup: Int
     get() {
@@ -267,7 +261,8 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Selects the first available tab with lower index than the currently selected. Returns `true` if tab selection changed.
+   * Selects the first available tab with lower index than the currently selected. Returns `true` if
+   * tab selection changed.
    */
   public fun selectPreviousAvailable(): Boolean {
     TransferContext.writeArguments()
@@ -276,7 +271,8 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Selects the first available tab with greater index than the currently selected. Returns `true` if tab selection changed.
+   * Selects the first available tab with greater index than the currently selected. Returns `true`
+   * if tab selection changed.
    */
   public fun selectNextAvailable(): Boolean {
     TransferContext.writeArguments()
@@ -285,7 +281,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Sets a [title] for the tab at index [tabIdx].
+   * Sets a [param title] for the tab at index [param tab_idx].
    */
   public fun setTabTitle(tabIdx: Int, title: String): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), STRING to title)
@@ -293,7 +289,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns the title of the tab at index [tabIdx].
+   * Returns the title of the tab at index [param tab_idx].
    */
   public fun getTabTitle(tabIdx: Int): String {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -319,7 +315,8 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Sets language code of tab title used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
+   * Sets language code of tab title used for line-breaking and text shaping algorithms, if left
+   * empty current locale is used instead.
    */
   public fun setTabLanguage(tabIdx: Int, language: String): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), STRING to language)
@@ -336,7 +333,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Sets an [icon] for the tab at index [tabIdx].
+   * Sets an [param icon] for the tab at index [param tab_idx].
    */
   public fun setTabIcon(tabIdx: Int, icon: Texture2D): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), OBJECT to icon)
@@ -344,7 +341,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns the icon for the tab at index [tabIdx] or `null` if the tab has no icon.
+   * Returns the icon for the tab at index [param tab_idx] or `null` if the tab has no icon.
    */
   public fun getTabIcon(tabIdx: Int): Texture2D? {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -353,7 +350,9 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Sets the maximum allowed width of the icon for the tab at index [tabIdx]. This limit is applied on top of the default size of the icon and on top of [theme_item icon_max_width]. The height is adjusted according to the icon's ratio.
+   * Sets the maximum allowed width of the icon for the tab at index [param tab_idx]. This limit is
+   * applied on top of the default size of the icon and on top of [theme_item icon_max_width]. The
+   * height is adjusted according to the icon's ratio.
    */
   public fun setTabIconMaxWidth(tabIdx: Int, width: Int): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), LONG to width.toLong())
@@ -361,7 +360,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns the maximum allowed width of the icon for the tab at index [tabIdx].
+   * Returns the maximum allowed width of the icon for the tab at index [param tab_idx].
    */
   public fun getTabIconMaxWidth(tabIdx: Int): Int {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -370,7 +369,9 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Sets an [icon] for the button of the tab at index [tabIdx] (located to the right, before the close button), making it visible and clickable (See [tabButtonPressed]). Giving it a `null` value will hide the button.
+   * Sets an [param icon] for the button of the tab at index [param tab_idx] (located to the right,
+   * before the close button), making it visible and clickable (See [signal tab_button_pressed]).
+   * Giving it a `null` value will hide the button.
    */
   public fun setTabButtonIcon(tabIdx: Int, icon: Texture2D): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), OBJECT to icon)
@@ -378,7 +379,8 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns the icon for the right button of the tab at index [tabIdx] or `null` if the right button has no icon.
+   * Returns the icon for the right button of the tab at index [param tab_idx] or `null` if the
+   * right button has no icon.
    */
   public fun getTabButtonIcon(tabIdx: Int): Texture2D? {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -387,7 +389,8 @@ public open class TabBar : Control() {
   }
 
   /**
-   * If [disabled] is `true`, disables the tab at index [tabIdx], making it non-interactable.
+   * If [param disabled] is `true`, disables the tab at index [param tab_idx], making it
+   * non-interactable.
    */
   public fun setTabDisabled(tabIdx: Int, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), BOOL to disabled)
@@ -395,7 +398,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns `true` if the tab at index [tabIdx] is disabled.
+   * Returns `true` if the tab at index [param tab_idx] is disabled.
    */
   public fun isTabDisabled(tabIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -404,7 +407,8 @@ public open class TabBar : Control() {
   }
 
   /**
-   * If [hidden] is `true`, hides the tab at index [tabIdx], making it disappear from the tab area.
+   * If [param hidden] is `true`, hides the tab at index [param tab_idx], making it disappear from
+   * the tab area.
    */
   public fun setTabHidden(tabIdx: Int, hidden: Boolean): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), BOOL to hidden)
@@ -412,7 +416,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns `true` if the tab at index [tabIdx] is hidden.
+   * Returns `true` if the tab at index [param tab_idx] is hidden.
    */
   public fun isTabHidden(tabIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -421,7 +425,8 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Sets the metadata value for the tab at index [tabIdx], which can be retrieved later using [getTabMetadata].
+   * Sets the metadata value for the tab at index [param tab_idx], which can be retrieved later
+   * using [getTabMetadata].
    */
   public fun setTabMetadata(tabIdx: Int, metadata: Any?): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), ANY to metadata)
@@ -429,7 +434,8 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns the metadata value set to the tab at index [tabIdx] using [setTabMetadata]. If no metadata was previously set, returns `null` by default.
+   * Returns the metadata value set to the tab at index [param tab_idx] using [setTabMetadata]. If
+   * no metadata was previously set, returns `null` by default.
    */
   public fun getTabMetadata(tabIdx: Int): Any? {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -438,7 +444,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Removes the tab at index [tabIdx].
+   * Removes the tab at index [param tab_idx].
    */
   public fun removeTab(tabIdx: Int): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -455,7 +461,8 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns the index of the tab at local coordinates [point]. Returns `-1` if the point is outside the control boundaries or if there's no tab at the queried position.
+   * Returns the index of the tab at local coordinates [param point]. Returns `-1` if the point is
+   * outside the control boundaries or if there's no tab at the queried position.
    */
   public fun getTabIdxAtPoint(point: Vector2): Int {
     TransferContext.writeArguments(VECTOR2 to point)
@@ -473,7 +480,8 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns `true` if the offset buttons (the ones that appear when there's not enough space for all tabs) are visible.
+   * Returns `true` if the offset buttons (the ones that appear when there's not enough space for
+   * all tabs) are visible.
    */
   public fun getOffsetButtonsVisible(): Boolean {
     TransferContext.writeArguments()
@@ -490,7 +498,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns tab [godot.core.Rect2] with local position and size.
+   * Returns tab [Rect2] with local position and size.
    */
   public fun getTabRect(tabIdx: Int): Rect2 {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -499,7 +507,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Moves a tab from [from] to [to].
+   * Moves a tab from [param from] to [param to].
    */
   public fun moveTab(from: Int, to: Int): Unit {
     TransferContext.writeArguments(LONG to from.toLong(), LONG to to.toLong())

@@ -12,9 +12,8 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A visual shader node for shader parameter (uniform) of type [godot.Texture2DArray].
- *
- * This parameter allows to provide a collection of textures for the shader. You can use [godot.VisualShaderNodeTexture2DArray] to extract the textures from array.
+ * This parameter allows to provide a collection of textures for the shader. You can use
+ * [VisualShaderNodeTexture2DArray] to extract the textures from array.
  */
 @GodotBaseType
 public open class VisualShaderNodeTexture2DArrayParameter : VisualShaderNodeTextureParameter() {

@@ -28,9 +28,8 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Configuration object used to setup a [godot.RenderSceneBuffers] object.
- *
- * This configuration object is created and populated by the render engine on a viewport change and used to (re)configure a [godot.RenderSceneBuffers] object.
+ * This configuration object is created and populated by the render engine on a viewport change and
+ * used to (re)configure a [RenderSceneBuffers] object.
  */
 @GodotBaseType
 public open class RenderSceneBuffersConfiguration : RefCounted() {
@@ -93,7 +92,8 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
     }
 
   /**
-   * The requested scaling mode with which we upscale/downscale if [internalSize] and [targetSize] are not equal.
+   * The requested scaling mode with which we upscale/downscale if [internalSize] and [targetSize]
+   * are not equal.
    */
   public var scaling3dMode: RenderingServer.ViewportScaling3DMode
     get() {

@@ -23,19 +23,18 @@ import kotlin.Suppress
 import kotlin.jvm.JvmName
 
 /**
- * An input event type for actions.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
- *
- * Contains a generic action which can be targeted from several types of inputs. Actions and their events can be set in the **Input Map** tab in **Project > Project Settings**, or with the [godot.InputMap] class.
- *
- * **Note:** Unlike the other [godot.InputEvent] subclasses which map to unique physical events, this virtual one is not emitted by the engine. This class is useful to emit actions manually with [godot.Input.parseInputEvent], which are then received in [godot.Node.Input]. To check if a physical event matches an action from the Input Map, use [godot.InputEvent.isAction] and [godot.InputEvent.isActionPressed].
+ * Contains a generic action which can be targeted from several types of inputs. Actions and their
+ * events can be set in the **Input Map** tab in **Project > Project Settings**, or with the [InputMap]
+ * class.
+ * **Note:** Unlike the other [InputEvent] subclasses which map to unique physical events, this
+ * virtual one is not emitted by the engine. This class is useful to emit actions manually with
+ * [Input.parseInputEvent], which are then received in [Node.Input]. To check if a physical event
+ * matches an action from the Input Map, use [InputEvent.isAction] and [InputEvent.isActionPressed].
  */
 @GodotBaseType
 public open class InputEventAction : InputEvent() {
   /**
-   * The action's name. Actions are accessed via this [godot.String].
+   * The action's name. Actions are accessed via this [String].
    */
   public var action: StringName
     get() {
@@ -60,7 +59,9 @@ public open class InputEventAction : InputEvent() {
     }
 
   /**
-   * The action's strength between 0 and 1. This value is considered as equal to 0 if pressed is `false`. The event strength allows faking analog joypad motion events, by specifying how strongly the joypad axis is bent or pressed.
+   * The action's strength between 0 and 1. This value is considered as equal to 0 if pressed is
+   * `false`. The event strength allows faking analog joypad motion events, by specifying how strongly
+   * the joypad axis is bent or pressed.
    */
   public var strength: Float
     get() {

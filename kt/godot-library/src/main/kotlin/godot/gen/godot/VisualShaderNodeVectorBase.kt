@@ -18,8 +18,6 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A base type for the nodes that perform vector operations within the visual shader graph.
- *
  * This is an abstract class. See the derived types for descriptions of the possible operations.
  */
 @GodotBaseType

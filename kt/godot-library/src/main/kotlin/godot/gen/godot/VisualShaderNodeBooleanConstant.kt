@@ -17,11 +17,8 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A boolean constant to be used within the visual shader graph.
- *
  * Has only one output port and no inputs.
- *
- * Translated to [code skip-lint]bool` in the shader language.
+ * Translated to [code skip-lint]bool[/code] in the shader language.
  */
 @GodotBaseType
 public open class VisualShaderNodeBooleanConstant : VisualShaderNodeConstant() {

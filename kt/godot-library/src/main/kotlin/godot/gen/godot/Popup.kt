@@ -14,9 +14,8 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Base class for contextual windows and panels with fixed position.
- *
- * [godot.Popup] is a base class for contextual windows and panels with fixed position. It's a modal by default (see [godot.Window.popupWindow]) and provides methods for implementing custom popup behavior.
+ * [Popup] is a base class for contextual windows and panels with fixed position. It's a modal by
+ * default (see [Window.popupWindow]) and provides methods for implementing custom popup behavior.
  */
 @GodotBaseType
 public open class Popup : Window() {

@@ -18,8 +18,6 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A [godot.core.Color] operator to be used within the visual shader graph.
- *
  * Applies [operator] to two color inputs.
  */
 @GodotBaseType
@@ -48,98 +46,89 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
   ) {
     /**
      * Produce a screen effect with the following formula:
-     *
-     * ```
-     * 			result = vec3(1.0) - (vec3(1.0) - a) * (vec3(1.0) - b);
-     * 			```
+     * [codeblock]
+     * result = vec3(1.0) - (vec3(1.0) - a) * (vec3(1.0) - b);
+     * [/codeblock]
      */
     OP_SCREEN(0),
     /**
      * Produce a difference effect with the following formula:
-     *
-     * ```
-     * 			result = abs(a - b);
-     * 			```
+     * [codeblock]
+     * result = abs(a - b);
+     * [/codeblock]
      */
     OP_DIFFERENCE(1),
     /**
      * Produce a darken effect with the following formula:
-     *
-     * ```
-     * 			result = min(a, b);
-     * 			```
+     * [codeblock]
+     * result = min(a, b);
+     * [/codeblock]
      */
     OP_DARKEN(2),
     /**
      * Produce a lighten effect with the following formula:
-     *
-     * ```
-     * 			result = max(a, b);
-     * 			```
+     * [codeblock]
+     * result = max(a, b);
+     * [/codeblock]
      */
     OP_LIGHTEN(3),
     /**
      * Produce an overlay effect with the following formula:
-     *
-     * ```
-     * 			for (int i = 0; i < 3; i++) {
-     * 			    float base = a*;
-     * 			    float blend = b*;
-     * 			    if (base < 0.5) {
-     * 			        result* = 2.0 * base * blend;
-     * 			    } else {
-     * 			        result* = 1.0 - 2.0 * (1.0 - blend) * (1.0 - base);
-     * 			    }
-     * 			}
-     * 			```
+     * [codeblock]
+     * for (int i = 0; i < 3; i++) {
+     *     float base = a[i];
+     *     float blend = b[i];
+     *     if (base < 0.5) {
+     *         result[i] = 2.0 * base * blend;
+     *     } else {
+     *         result[i] = 1.0 - 2.0 * (1.0 - blend) * (1.0 - base);
+     *     }
+     * }
+     * [/codeblock]
      */
     OP_OVERLAY(4),
     /**
      * Produce a dodge effect with the following formula:
-     *
-     * ```
-     * 			result = a / (vec3(1.0) - b);
-     * 			```
+     * [codeblock]
+     * result = a / (vec3(1.0) - b);
+     * [/codeblock]
      */
     OP_DODGE(5),
     /**
      * Produce a burn effect with the following formula:
-     *
-     * ```
-     * 			result = vec3(1.0) - (vec3(1.0) - a) / b;
-     * 			```
+     * [codeblock]
+     * result = vec3(1.0) - (vec3(1.0) - a) / b;
+     * [/codeblock]
      */
     OP_BURN(6),
     /**
      * Produce a soft light effect with the following formula:
-     *
-     * ```
-     * 			for (int i = 0; i < 3; i++) {
-     * 			    float base = a*;
-     * 			    float blend = b*;
-     * 			    if (base < 0.5) {
-     * 			        result* = base * (blend + 0.5);
-     * 			    } else {
-     * 			        result* = 1.0 - (1.0 - base) * (1.0 - (blend - 0.5));
-     * 			    }
-     * 			}
-     * 			```
+     * [codeblock]
+     * for (int i = 0; i < 3; i++) {
+     *     float base = a[i];
+     *     float blend = b[i];
+     *     if (base < 0.5) {
+     *         result[i] = base * (blend + 0.5);
+     *     } else {
+     *         result[i] = 1.0 - (1.0 - base) * (1.0 - (blend - 0.5));
+     *     }
+     * }
+     * [/codeblock]
      */
     OP_SOFT_LIGHT(7),
     /**
      * Produce a hard light effect with the following formula:
-     *
-     * ```
-     * 			for (int i = 0; i < 3; i++) {
-     * 			    float base = a*;
-     * 			    float blend = b*;
-     * 			    if (base < 0.5) {
-     * 			        result* = base * (2.0 * blend);
-     * 			    } else {
-     * 			        result* = 1.0 - (1.0 - base) * (1.0 - 2.0 * (blend - 0.5));
-     * 			    }
-     * 			}
-     * 			```
+     * [codeblock]
+     * for (int i = 0; i < 3; i++) {
+     *     float base = a[i];
+     *     float blend = b[i];
+     *     if (base < 0.5) {
+     *         result[i] = base * (2.0 * blend);
+     *     } else {
+     *         result[i] = 1.0 - (1.0 - base) * (1.0 - 2.0 * (blend - 0.5));
+     *     }
+     * }
+     * [/codeblock]
      */
     OP_HARD_LIGHT(8),
     /**

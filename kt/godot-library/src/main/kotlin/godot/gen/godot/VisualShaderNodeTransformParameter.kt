@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A [godot.Transform3D] parameter for use within the visual shader graph.
- *
  * Translated to `uniform mat4` in the shader language.
  */
 @GodotBaseType

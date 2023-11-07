@@ -34,18 +34,20 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Stores globally-accessible variables.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/677](https://godotengine.org/asset-library/asset/677)
- *
- * Stores variables that can be accessed from everywhere. Use [getSetting], [setSetting] or [hasSetting] to access them. Variables stored in `project.godot` are also loaded into [godot.ProjectSettings], making this object very useful for reading custom game configuration options.
- *
- * When naming a Project Settings property, use the full path to the setting including the category. For example, `"application/config/name"` for the project name. Category and property names can be viewed in the Project Settings dialog.
- *
- * **Feature tags:** Project settings can be overridden for specific platforms and configurations (debug, release, ...) using [feature tags]($DOCS_URL/tutorials/export/feature_tags.html).
- *
- * **Overriding:** Any project setting can be overridden by creating a file named `override.cfg` in the project's root directory. This can also be used in exported projects by placing this file in the same directory as the project binary. Overriding will still take the base project settings' [feature tags]($DOCS_URL/tutorials/export/feature_tags.html) in account. Therefore, make sure to *also* override the setting with the desired feature tags if you want them to override base project settings on all platforms and configurations.
+ * Stores variables that can be accessed from everywhere. Use [getSetting], [setSetting] or
+ * [hasSetting] to access them. Variables stored in `project.godot` are also loaded into
+ * [ProjectSettings], making this object very useful for reading custom game configuration options.
+ * When naming a Project Settings property, use the full path to the setting including the category.
+ * For example, `"application/config/name"` for the project name. Category and property names can be
+ * viewed in the Project Settings dialog.
+ * **Feature tags:** Project settings can be overridden for specific platforms and configurations
+ * (debug, release, ...) using [url=$DOCS_URL/tutorials/export/feature_tags.html]feature tags[/url].
+ * **Overriding:** Any project setting can be overridden by creating a file named `override.cfg` in
+ * the project's root directory. This can also be used in exported projects by placing this file in the
+ * same directory as the project binary. Overriding will still take the base project settings'
+ * [url=$DOCS_URL/tutorials/export/feature_tags.html]feature tags[/url] in account. Therefore, make
+ * sure to *also* override the setting with the desired feature tags if you want them to override base
+ * project settings on all platforms and configurations.
  */
 @GodotBaseType
 public object ProjectSettings : Object() {
@@ -70,26 +72,19 @@ public object ProjectSettings : Object() {
 
   /**
    * Sets the value of a setting.
-   *
    * **Example:**
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * ProjectSettings.set_setting("application/config/name", "Example")
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * ProjectSettings.SetSetting("application/config/name", "Example");
+   * ```
    *
-   * [/csharp]
-   *
-   * [/codeblocks]
-   *
-   * This can also be used to erase custom project settings. To do this change the setting value to `null`.
+   * This can also be used to erase custom project settings. To do this change the setting value to
+   * `null`.
    */
   public fun setSetting(name: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
@@ -97,31 +92,26 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Returns the value of the setting identified by [name]. If the setting doesn't exist and [defaultValue] is specified, the value of [defaultValue] is returned. Otherwise, `null` is returned.
-   *
+   * Returns the value of the setting identified by [param name]. If the setting doesn't exist and
+   * [param default_value] is specified, the value of [param default_value] is returned. Otherwise,
+   * `null` is returned.
    * **Example:**
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * print(ProjectSettings.get_setting("application/config/name"))
-   *
-   * print(ProjectSettings.get_setting("application/config/custom_description", "No description specified."))
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * print(ProjectSettings.get_setting("application/config/custom_description", "No description
+   * specified."))
+   * ```
+   * csharp:
+   * ```csharp
    * GD.Print(ProjectSettings.GetSetting("application/config/name"));
+   * GD.Print(ProjectSettings.GetSetting("application/config/custom_description", "No description
+   * specified."));
+   * ```
    *
-   * GD.Print(ProjectSettings.GetSetting("application/config/custom_description", "No description specified."));
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
-   *
-   * **Note:** This method doesn't take potential feature overrides into account automatically. Use [getSettingWithOverride] to handle seamlessly.
+   * **Note:** This method doesn't take potential feature overrides into account automatically. Use
+   * [getSettingWithOverride] to handle seamlessly.
    */
   @JvmOverloads
   public fun getSetting(name: String, defaultValue: Any? = null): Any? {
@@ -132,28 +122,21 @@ public object ProjectSettings : Object() {
 
   /**
    * Similar to [getSetting], but applies feature tag overrides if any exists and is valid.
-   *
    * **Example:**
+   * If the following setting override exists "application/config/name.windows", and the following
+   * code is executed:
    *
-   * If the following setting override exists "application/config/name.windows", and the following code is executed:
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * print(ProjectSettings.get_setting_with_override("application/config/name"))
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * GD.Print(ProjectSettings.GetSettingWithOverride("application/config/name"));
+   * ```
    *
-   * [/csharp]
-   *
-   * [/codeblocks]
-   *
-   * Then the overridden setting will be returned instead if the project is running on the *Windows* operating system.
+   * Then the overridden setting will be returned instead if the project is running on the *Windows*
+   * operating system.
    */
   public fun getSettingWithOverride(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -162,19 +145,15 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Returns an [godot.Array] of registered global classes. Each global class is represented as a [godot.core.Dictionary] that contains the following entries:
-   *
+   * Returns an [Array] of registered global classes. Each global class is represented as a
+   * [Dictionary] that contains the following entries:
    * - `base` is a name of the base class;
-   *
    * - `class` is a name of the registered global class;
-   *
    * - `icon` is a path to a custom icon of the global class, if it has any;
-   *
    * - `language` is a name of a programming language in which the global class is written;
-   *
    * - `path` is a path to a file containing the global class.
-   *
-   * **Note:** Both the script and the icon paths are local to the project filesystem, i.e. they start with `res://`.
+   * **Note:** Both the script and the icon paths are local to the project filesystem, i.e. they
+   * start with `res://`.
    */
   public fun getGlobalClassList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
@@ -208,7 +187,9 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Defines if the specified setting is considered basic or advanced. Basic settings will always be shown in the project settings. Advanced settings will only be shown if the user enables the "Advanced Settings" option.
+   * Defines if the specified setting is considered basic or advanced. Basic settings will always be
+   * shown in the project settings. Advanced settings will only be shown if the user enables the
+   * "Advanced Settings" option.
    */
   public fun setAsBasic(name: String, basic: Boolean): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to basic)
@@ -216,7 +197,9 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Defines if the specified setting is considered internal. An internal setting won't show up in the Project Settings dialog. This is mostly useful for addons that need to store their own internal settings without exposing them directly to the user.
+   * Defines if the specified setting is considered internal. An internal setting won't show up in
+   * the Project Settings dialog. This is mostly useful for addons that need to store their own
+   * internal settings without exposing them directly to the user.
    */
   public fun setAsInternal(name: String, `internal`: Boolean): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to internal)
@@ -225,68 +208,38 @@ public object ProjectSettings : Object() {
 
   /**
    * Adds a custom property info to a property. The dictionary must contain:
-   *
-   * - `"name"`: [godot.String] (the property's name)
-   *
+   * - `"name"`: [String] (the property's name)
    * - `"type"`: [int] (see [enum Variant.Type])
-   *
-   * - optionally `"hint"`: [int] (see [enum PropertyHint]) and `"hint_string"`: [godot.String]
-   *
+   * - optionally `"hint"`: [int] (see [enum PropertyHint]) and `"hint_string"`: [String]
    * **Example:**
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * ProjectSettings.set("category/property_name", 0)
    *
-   *
-   *
    * var property_info = {
-   *
    *     "name": "category/property_name",
-   *
    *     "type": TYPE_INT,
-   *
    *     "hint": PROPERTY_HINT_ENUM,
-   *
    *     "hint_string": "one,two,three"
-   *
    * }
    *
-   *
-   *
    * ProjectSettings.add_property_info(property_info)
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * ProjectSettings.Singleton.Set("category/property_name", 0);
    *
-   *
-   *
    * var propertyInfo = new Godot.Collections.Dictionary
-   *
    * {
-   *
    *     {"name", "category/propertyName"},
-   *
    *     {"type", (int)Variant.Type.Int},
-   *
    *     {"hint", (int)PropertyHint.Enum},
-   *
    *     {"hint_string", "one,two,three"},
-   *
    * };
    *
-   *
-   *
    * ProjectSettings.AddPropertyInfo(propertyInfo);
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public fun addPropertyInfo(hint: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to hint)
@@ -295,8 +248,9 @@ public object ProjectSettings : Object() {
 
   /**
    * Sets whether a setting requires restarting the editor to properly take effect.
-   *
-   * **Note:** This is just a hint to display to the user that the editor must be restarted for changes to take effect. Enabling [setRestartIfChanged] does *not* delay the setting being set when changed.
+   * **Note:** This is just a hint to display to the user that the editor must be restarted for
+   * changes to take effect. Enabling [setRestartIfChanged] does *not* delay the setting being set when
+   * changed.
    */
   public fun setRestartIfChanged(name: String, restart: Boolean): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to restart)
@@ -312,7 +266,8 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Returns the localized path (starting with `res://`) corresponding to the absolute, native OS [path]. See also [globalizePath].
+   * Returns the localized path (starting with `res://`) corresponding to the absolute, native OS
+   * [param path]. See also [globalizePath].
    */
   public fun localizePath(path: String): String {
     TransferContext.writeArguments(STRING to path)
@@ -321,23 +276,25 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Returns the absolute, native OS path corresponding to the localized [path] (starting with `res://` or `user://`). The returned path will vary depending on the operating system and user preferences. See [godot.File paths in Godot projects]($DOCS_URL/tutorials/io/data_paths.html) to see what those paths convert to. See also [localizePath].
-   *
-   * **Note:** [globalizePath] with `res://` will not work in an exported project. Instead, prepend the executable's base directory to the path when running from an exported project:
-   *
-   * ```
-   * 				var path = ""
-   * 				if OS.has_feature("editor"):
-   * 				    # Running from an editor binary.
-   * 				    # `path` will contain the absolute path to `hello.txt` located in the project root.
-   * 				    path = ProjectSettings.globalize_path("res://hello.txt")
-   * 				else:
-   * 				    # Running from an exported project.
-   * 				    # `path` will contain the absolute path to `hello.txt` next to the executable.
-   * 				    # This is *not* identical to using `ProjectSettings.globalize_path()` with a `res://` path,
-   * 				    # but is close enough in spirit.
-   * 				    path = OS.get_executable_path().get_base_dir().path_join("hello.txt")
-   * 				```
+   * Returns the absolute, native OS path corresponding to the localized [param path] (starting with
+   * `res://` or `user://`). The returned path will vary depending on the operating system and user
+   * preferences. See [url=$DOCS_URL/tutorials/io/data_paths.html]File paths in Godot projects[/url] to
+   * see what those paths convert to. See also [localizePath].
+   * **Note:** [globalizePath] with `res://` will not work in an exported project. Instead, prepend
+   * the executable's base directory to the path when running from an exported project:
+   * [codeblock]
+   * var path = ""
+   * if OS.has_feature("editor"):
+   *     # Running from an editor binary.
+   *     # `path` will contain the absolute path to `hello.txt` located in the project root.
+   *     path = ProjectSettings.globalize_path("res://hello.txt")
+   * else:
+   *     # Running from an exported project.
+   *     # `path` will contain the absolute path to `hello.txt` next to the executable.
+   *     # This is *not* identical to using `ProjectSettings.globalize_path()` with a `res://` path,
+   *     # but is close enough in spirit.
+   *     path = OS.get_executable_path().get_base_dir().path_join("hello.txt")
+   * [/codeblock]
    */
   public fun globalizePath(path: String): String {
     TransferContext.writeArguments(STRING to path)
@@ -347,8 +304,9 @@ public object ProjectSettings : Object() {
 
   /**
    * Saves the configuration to the `project.godot` file.
-   *
-   * **Note:** This method is intended to be used by editor plugins, as modified [godot.ProjectSettings] can't be loaded back in the running app. If you want to change project settings in exported projects, use [saveCustom] to save `override.cfg` file.
+   * **Note:** This method is intended to be used by editor plugins, as modified [ProjectSettings]
+   * can't be loaded back in the running app. If you want to change project settings in exported
+   * projects, use [saveCustom] to save `override.cfg` file.
    */
   public fun save(): GodotError {
     TransferContext.writeArguments()
@@ -357,11 +315,13 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Loads the contents of the .pck or .zip file specified by [pack] into the resource filesystem (`res://`). Returns `true` on success.
-   *
-   * **Note:** If a file from [pack] shares the same path as a file already in the resource filesystem, any attempts to load that file will use the file from [pack] unless [replaceFiles] is set to `false`.
-   *
-   * **Note:** The optional [offset] parameter can be used to specify the offset in bytes to the start of the resource pack. This is only supported for .pck files.
+   * Loads the contents of the .pck or .zip file specified by [param pack] into the resource
+   * filesystem (`res://`). Returns `true` on success.
+   * **Note:** If a file from [param pack] shares the same path as a file already in the resource
+   * filesystem, any attempts to load that file will use the file from [param pack] unless [param
+   * replace_files] is set to `false`.
+   * **Note:** The optional [param offset] parameter can be used to specify the offset in bytes to
+   * the start of the resource pack. This is only supported for .pck files.
    */
   @JvmOverloads
   public fun loadResourcePack(
@@ -375,7 +335,10 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Saves the configuration to a custom file. The file extension must be `.godot` (to save in text-based [godot.ConfigFile] format) or `.binary` (to save in binary format). You can also save `override.cfg` file, which is also text, but can be used in exported projects unlike other formats.
+   * Saves the configuration to a custom file. The file extension must be `.godot` (to save in
+   * text-based [ConfigFile] format) or `.binary` (to save in binary format). You can also save
+   * `override.cfg` file, which is also text, but can be used in exported projects unlike other
+   * formats.
    */
   public fun saveCustom(`file`: String): GodotError {
     TransferContext.writeArguments(STRING to file)

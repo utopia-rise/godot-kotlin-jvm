@@ -19,9 +19,9 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A material for [godot.CanvasItem]s.
- *
- * [godot.CanvasItemMaterial]s provide a means of modifying the textures associated with a CanvasItem. They specialize in describing blend and lighting behaviors for textures. Use a [godot.ShaderMaterial] to more fully customize a material's interactions with a [godot.CanvasItem].
+ * [CanvasItemMaterial]s provide a means of modifying the textures associated with a CanvasItem.
+ * They specialize in describing blend and lighting behaviors for textures. Use a [ShaderMaterial] to
+ * more fully customize a material's interactions with a [CanvasItem].
  */
 @GodotBaseType
 public open class CanvasItemMaterial : Material() {
@@ -54,9 +54,11 @@ public open class CanvasItemMaterial : Material() {
     }
 
   /**
-   * If `true`, enable spritesheet-based animation features when assigned to [godot.GPUParticles2D] and [godot.CPUParticles2D] nodes. The [godot.ParticleProcessMaterial.animSpeedMax] or [godot.CPUParticles2D.animSpeedMax] should also be set to a positive value for the animation to play.
-   *
-   * This property (and other `particles_anim_*` properties that depend on it) has no effect on other types of nodes.
+   * If `true`, enable spritesheet-based animation features when assigned to [GPUParticles2D] and
+   * [CPUParticles2D] nodes. The [ParticleProcessMaterial.animSpeedMax] or
+   * [CPUParticles2D.animSpeedMax] should also be set to a positive value for the animation to play.
+   * This property (and other `particles_anim_*` properties that depend on it) has no effect on
+   * other types of nodes.
    */
   public var particlesAnimation: Boolean
     get() {
@@ -70,9 +72,10 @@ public open class CanvasItemMaterial : Material() {
     }
 
   /**
-   * The number of columns in the spritesheet assigned as [godot.Texture2D] for a [godot.GPUParticles2D] or [godot.CPUParticles2D].
-   *
-   * **Note:** This property is only used and visible in the editor if [particlesAnimation] is `true`.
+   * The number of columns in the spritesheet assigned as [Texture2D] for a [GPUParticles2D] or
+   * [CPUParticles2D].
+   * **Note:** This property is only used and visible in the editor if [particlesAnimation] is
+   * `true`.
    */
   public var particlesAnimHFrames: Int
     get() {
@@ -86,9 +89,10 @@ public open class CanvasItemMaterial : Material() {
     }
 
   /**
-   * The number of rows in the spritesheet assigned as [godot.Texture2D] for a [godot.GPUParticles2D] or [godot.CPUParticles2D].
-   *
-   * **Note:** This property is only used and visible in the editor if [particlesAnimation] is `true`.
+   * The number of rows in the spritesheet assigned as [Texture2D] for a [GPUParticles2D] or
+   * [CPUParticles2D].
+   * **Note:** This property is only used and visible in the editor if [particlesAnimation] is
+   * `true`.
    */
   public var particlesAnimVFrames: Int
     get() {
@@ -103,8 +107,8 @@ public open class CanvasItemMaterial : Material() {
 
   /**
    * If `true`, the particles animation will loop.
-   *
-   * **Note:** This property is only used and visible in the editor if [particlesAnimation] is `true`.
+   * **Note:** This property is only used and visible in the editor if [particlesAnimation] is
+   * `true`.
    */
   public var particlesAnimLoop: Boolean
     get() {

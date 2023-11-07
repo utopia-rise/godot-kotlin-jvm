@@ -12,11 +12,10 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Creates an idle interval in a [godot.Tween] animation.
- *
- * [godot.IntervalTweener] is used to make delays in a tweening sequence. See [godot.Tween.tweenInterval] for more usage information.
- *
- * **Note:** [godot.Tween.tweenInterval] is the only correct way to create [godot.IntervalTweener]. Any [godot.IntervalTweener] created manually will not function correctly.
+ * [IntervalTweener] is used to make delays in a tweening sequence. See [Tween.tweenInterval] for
+ * more usage information.
+ * **Note:** [Tween.tweenInterval] is the only correct way to create [IntervalTweener]. Any
+ * [IntervalTweener] created manually will not function correctly.
  */
 @GodotBaseType
 public open class IntervalTweener : Tweener() {

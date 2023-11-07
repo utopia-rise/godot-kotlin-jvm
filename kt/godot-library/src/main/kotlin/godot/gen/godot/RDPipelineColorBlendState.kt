@@ -26,9 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Pipeline color blend state (used by [godot.RenderingDevice]).
- *
- * This object is used by [godot.RenderingDevice].
+ * This object is used by [RenderingDevice].
  */
 @GodotBaseType
 public open class RDPipelineColorBlendState : RefCounted() {
@@ -61,7 +59,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
     }
 
   /**
-   * The constant color to blend with. See also [godot.RenderingDevice.drawListSetBlendConstants].
+   * The constant color to blend with. See also [RenderingDevice.drawListSetBlendConstants].
    */
   @CoreTypeLocalCopy
   public var blendConstant: Color
@@ -96,7 +94,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
   }
 
   /**
-   * The constant color to blend with. See also [godot.RenderingDevice.drawListSetBlendConstants].
+   * The constant color to blend with. See also [RenderingDevice.drawListSetBlendConstants].
    *
    * This is a helper function to make dealing with local copies easier. 
    *

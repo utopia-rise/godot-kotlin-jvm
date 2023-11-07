@@ -27,9 +27,8 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Contains baked lightmap and dynamic object probe data for [godot.LightmapGI].
- *
- * [godot.LightmapGIData] contains baked lightmap and dynamic object probe data for [godot.LightmapGI]. It is replaced every time lightmaps are baked in [godot.LightmapGI].
+ * [LightmapGIData] contains baked lightmap and dynamic object probe data for [LightmapGI]. It is
+ * replaced every time lightmaps are baked in [LightmapGI].
  */
 @GodotBaseType
 public open class LightmapGIData : Resource() {
@@ -80,7 +79,7 @@ public open class LightmapGIData : Resource() {
   }
 
   /**
-   * Adds an object that is considered baked within this [godot.LightmapGIData].
+   * Adds an object that is considered baked within this [LightmapGIData].
    */
   public fun addUser(
     path: NodePath,
@@ -93,7 +92,7 @@ public open class LightmapGIData : Resource() {
   }
 
   /**
-   * Returns the number of objects that are considered baked within this [godot.LightmapGIData].
+   * Returns the number of objects that are considered baked within this [LightmapGIData].
    */
   public fun getUserCount(): Int {
     TransferContext.writeArguments()
@@ -102,7 +101,7 @@ public open class LightmapGIData : Resource() {
   }
 
   /**
-   * Returns the [godot.core.NodePath] of the baked object at index [userIdx].
+   * Returns the [NodePath] of the baked object at index [param user_idx].
    */
   public fun getUserPath(userIdx: Int): NodePath {
     TransferContext.writeArguments(LONG to userIdx.toLong())
@@ -111,7 +110,7 @@ public open class LightmapGIData : Resource() {
   }
 
   /**
-   * Clear all objects that are considered baked within this [godot.LightmapGIData].
+   * Clear all objects that are considered baked within this [LightmapGIData].
    */
   public fun clearUsers(): Unit {
     TransferContext.writeArguments()

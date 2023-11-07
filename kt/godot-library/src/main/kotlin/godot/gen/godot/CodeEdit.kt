@@ -41,16 +41,17 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A multiline text editor designed for editing code.
- *
- * CodeEdit is a specialized [godot.TextEdit] designed for editing plain text code files. It has many features commonly found in code editors such as line numbers, line folding, code completion, indent management, and string/comment management.
- *
- * **Note:** Regardless of locale, [godot.CodeEdit] will by default always use left-to-right text direction to correctly display source code.
+ * CodeEdit is a specialized [TextEdit] designed for editing plain text code files. It has many
+ * features commonly found in code editors such as line numbers, line folding, code completion, indent
+ * management, and string/comment management.
+ * **Note:** Regardless of locale, [CodeEdit] will by default always use left-to-right text
+ * direction to correctly display source code.
  */
 @GodotBaseType
 public open class CodeEdit : TextEdit() {
   /**
-   * Emitted when a breakpoint is added or removed from a line. If the line is moved via backspace a removed is emitted at the old line.
+   * Emitted when a breakpoint is added or removed from a line. If the line is moved via backspace a
+   * removed is emitted at the old line.
    */
   public val breakpointToggled: Signal1<Long> by signal("line")
 
@@ -65,12 +66,14 @@ public open class CodeEdit : TextEdit() {
   public val symbolLookup: Signal3<String, Long, Long> by signal("symbol", "line", "column")
 
   /**
-   * Emitted when the user hovers over a symbol. The symbol should be validated and responded to, by calling [setSymbolLookupWordAsValid].
+   * Emitted when the user hovers over a symbol. The symbol should be validated and responded to, by
+   * calling [setSymbolLookupWordAsValid].
    */
   public val symbolValidate: Signal1<String> by signal("symbol")
 
   /**
-   * Set when a validated word from [symbolValidate] is clicked, the [symbolLookup] should be emitted.
+   * Set when a validated word from [signal symbol_validate] is clicked, the [signal symbol_lookup]
+   * should be emitted.
    */
   public var symbolLookupOnClick: Boolean
     get() {
@@ -98,7 +101,8 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Draws vertical lines at the provided columns. The first entry is considered a main hard guideline and is draw more prominently.
+   * Draws vertical lines at the provided columns. The first entry is considered a main hard
+   * guideline and is draw more prominently.
    */
   public var lineLengthGuidelines: VariantArray<Long>
     get() {
@@ -112,7 +116,8 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Sets if breakpoints should be drawn in the gutter. This gutter is shared with bookmarks and executing lines.
+   * Sets if breakpoints should be drawn in the gutter. This gutter is shared with bookmarks and
+   * executing lines.
    */
   public var guttersDrawBreakpointsGutter: Boolean
     get() {
@@ -126,7 +131,8 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Sets if bookmarked should be drawn in the gutter. This gutter is shared with breakpoints and executing lines.
+   * Sets if bookmarked should be drawn in the gutter. This gutter is shared with breakpoints and
+   * executing lines.
    */
   public var guttersDrawBookmarks: Boolean
     get() {
@@ -140,7 +146,8 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Sets if executing lines should be marked in the gutter. This gutter is shared with breakpoints and bookmarks lines.
+   * Sets if executing lines should be marked in the gutter. This gutter is shared with breakpoints
+   * and bookmarks lines.
    */
   public var guttersDrawExecutingLines: Boolean
     get() {
@@ -252,7 +259,8 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Size of the tabulation indent (one [kbd]Tab[/kbd] press) in characters. If [indentUseSpaces] is enabled the number of spaces to use.
+   * Size of the tabulation indent (one [kbd]Tab[/kbd] press) in characters. If [indentUseSpaces] is
+   * enabled the number of spaces to use.
    */
   public var indentSize: Int
     get() {
@@ -280,7 +288,8 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Sets whether automatic indent are enabled, this will add an extra indent if a prefix or brace is found.
+   * Sets whether automatic indent are enabled, this will add an extra indent if a prefix or brace
+   * is found.
    */
   public var indentAutomatic: Boolean
     get() {
@@ -355,21 +364,23 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Override this method to define how the selected entry should be inserted. If [replace] is true, any existing text should be replaced.
+   * Override this method to define how the selected entry should be inserted. If [param replace] is
+   * true, any existing text should be replaced.
    */
   public open fun _confirmCodeCompletion(replace: Boolean): Unit {
   }
 
   /**
-   * Override this method to define what happens when the user requests code completion. If [force] is true, any checks should be bypassed.
+   * Override this method to define what happens when the user requests code completion. If [param
+   * force] is true, any checks should be bypassed.
    */
   public open fun _requestCodeCompletion(force: Boolean): Unit {
   }
 
   /**
-   * Override this method to define what items in [candidates] should be displayed.
-   *
-   * Both [candidates] and the return is a [godot.Array] of [godot.core.Dictionary], see [getCodeCompletionOption] for [godot.core.Dictionary] content.
+   * Override this method to define what items in [param candidates] should be displayed.
+   * Both [param candidates] and the return is a [Array] of [Dictionary], see
+   * [getCodeCompletionOption] for [Dictionary] content.
    */
   public open fun _filterCodeCompletionCandidates(candidates: VariantArray<Dictionary<Any?, Any?>>):
       VariantArray<Dictionary<Any?, Any?>> {
@@ -393,7 +404,8 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Unindents selected lines, or in the case of no selection the caret line by one. Same as performing "ui_text_unindent" action.
+   * Unindents selected lines, or in the case of no selection the caret line by one. Same as
+   * performing "ui_text_unindent" action.
    */
   public fun unindentLines(): Unit {
     TransferContext.writeArguments()
@@ -401,8 +413,8 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Converts the indents of lines between [fromLine] and [toLine] to tabs or spaces as set by [indentUseSpaces].
-   *
+   * Converts the indents of lines between [param from_line] and [param to_line] to tabs or spaces
+   * as set by [indentUseSpaces].
    * Values of `-1` convert the entire text.
    */
   @JvmOverloads
@@ -413,7 +425,6 @@ public open class CodeEdit : TextEdit() {
 
   /**
    * Adds a brace pair.
-   *
    * Both the start and end keys must be symbols. Only the start key has to be unique.
    */
   public fun addAutoBraceCompletionPair(startKey: String, endKey: String): Unit {
@@ -422,7 +433,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns `true` if open key [openKey] exists.
+   * Returns `true` if open key [param open_key] exists.
    */
   public fun hasAutoBraceCompletionOpenKey(openKey: String): Boolean {
     TransferContext.writeArguments(STRING to openKey)
@@ -431,7 +442,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns `true` if close key [closeKey] exists.
+   * Returns `true` if close key [param close_key] exists.
    */
   public fun hasAutoBraceCompletionCloseKey(closeKey: String): Boolean {
     TransferContext.writeArguments(STRING to closeKey)
@@ -440,7 +451,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Gets the matching auto brace close key for [openKey].
+   * Gets the matching auto brace close key for [param open_key].
    */
   public fun getAutoBraceCompletionCloseKey(openKey: String): String {
     TransferContext.writeArguments(STRING to openKey)
@@ -551,7 +562,8 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns if the given line is foldable, that is, it has indented lines right below it or a comment / string block.
+   * Returns if the given line is foldable, that is, it has indented lines right below it or a
+   * comment / string block.
    */
   public fun canFoldLine(line: Int): Boolean {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -618,13 +630,13 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Creates a new code region with the selection. At least one single line comment delimiter have to be defined (see [addCommentDelimiter]).
-   *
-   * A code region is a part of code that is highlighted when folded and can help organize your script.
-   *
+   * Creates a new code region with the selection. At least one single line comment delimiter have
+   * to be defined (see [addCommentDelimiter]).
+   * A code region is a part of code that is highlighted when folded and can help organize your
+   * script.
    * Code region start and end tags can be customized (see [setCodeRegionTags]).
-   *
-   * Code regions are delimited using start and end tags (respectively `region` and `endregion` by default) preceded by one line comment delimiter. (eg. `#region` and `#endregion`)
+   * Code regions are delimited using start and end tags (respectively `region` and `endregion` by
+   * default) preceded by one line comment delimiter. (eg. `#region` and `#endregion`)
    */
   public fun createCodeRegion(): Unit {
     TransferContext.writeArguments()
@@ -678,10 +690,9 @@ public open class CodeEdit : TextEdit() {
 
   /**
    * Adds a string delimiter.
-   *
    * Both the start and end keys must be symbols. Only the start key has to be unique.
-   *
-   * [lineOnly] denotes if the region should continue until the end of the line or carry over on to the next line. If the end key is blank this is automatically set to `true`.
+   * [param line_only] denotes if the region should continue until the end of the line or carry over
+   * on to the next line. If the end key is blank this is automatically set to `true`.
    */
   @JvmOverloads
   public fun addStringDelimiter(
@@ -694,7 +705,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Removes the string delimiter with [startKey].
+   * Removes the string delimiter with [param start_key].
    */
   public fun removeStringDelimiter(startKey: String): Unit {
     TransferContext.writeArguments(STRING to startKey)
@@ -702,7 +713,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns `true` if string [startKey] exists.
+   * Returns `true` if string [param start_key] exists.
    */
   public fun hasStringDelimiter(startKey: String): Boolean {
     TransferContext.writeArguments(STRING to startKey)
@@ -719,7 +730,9 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns the delimiter index if [line] [column] is in a string. If [column] is not provided, will return the delimiter index if the entire [line] is a string. Otherwise `-1`.
+   * Returns the delimiter index if [param line] [param column] is in a string. If [param column] is
+   * not provided, will return the delimiter index if the entire [param line] is a string. Otherwise
+   * `-1`.
    */
   @JvmOverloads
   public fun isInString(line: Int, column: Int = -1): Int {
@@ -730,10 +743,9 @@ public open class CodeEdit : TextEdit() {
 
   /**
    * Adds a comment delimiter.
-   *
    * Both the start and end keys must be symbols. Only the start key has to be unique.
-   *
-   * [lineOnly] denotes if the region should continue until the end of the line or carry over on to the next line. If the end key is blank this is automatically set to `true`.
+   * [param line_only] denotes if the region should continue until the end of the line or carry over
+   * on to the next line. If the end key is blank this is automatically set to `true`.
    */
   @JvmOverloads
   public fun addCommentDelimiter(
@@ -746,7 +758,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Removes the comment delimiter with [startKey].
+   * Removes the comment delimiter with [param start_key].
    */
   public fun removeCommentDelimiter(startKey: String): Unit {
     TransferContext.writeArguments(STRING to startKey)
@@ -754,7 +766,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns `true` if comment [startKey] exists.
+   * Returns `true` if comment [param start_key] exists.
    */
   public fun hasCommentDelimiter(startKey: String): Boolean {
     TransferContext.writeArguments(STRING to startKey)
@@ -771,7 +783,8 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns delimiter index if [line] [column] is in a comment. If [column] is not provided, will return delimiter index if the entire [line] is a comment. Otherwise `-1`.
+   * Returns delimiter index if [param line] [param column] is in a comment. If [param column] is
+   * not provided, will return delimiter index if the entire [param line] is a comment. Otherwise `-1`.
    */
   @JvmOverloads
   public fun isInComment(line: Int, column: Int = -1): Int {
@@ -799,7 +812,8 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * If [line] [column] is in a string or comment, returns the start position of the region. If not or no start could be found, both [godot.core.Vector2] values will be `-1`.
+   * If [param line] [param column] is in a string or comment, returns the start position of the
+   * region. If not or no start could be found, both [Vector2] values will be `-1`.
    */
   public fun getDelimiterStartPosition(line: Int, column: Int): Vector2 {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to column.toLong())
@@ -808,7 +822,8 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * If [line] [column] is in a string or comment, returns the end position of the region. If not or no end could be found, both [godot.core.Vector2] values will be `-1`.
+   * If [param line] [param column] is in a string or comment, returns the end position of the
+   * region. If not or no end could be found, both [Vector2] values will be `-1`.
    */
   public fun getDelimiterEndPosition(line: Int, column: Int): Vector2 {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to column.toLong())
@@ -842,7 +857,9 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Emits [codeCompletionRequested], if [force] is true will bypass all checks. Otherwise will check that the caret is in a word or in front of a prefix. Will ignore the request if all current options are of type file path, node path or signal.
+   * Emits [signal code_completion_requested], if [param force] is true will bypass all checks.
+   * Otherwise will check that the caret is in a word or in front of a prefix. Will ignore the request
+   * if all current options are of type file path, node path or signal.
    */
   @JvmOverloads
   public fun requestCodeCompletion(force: Boolean = false): Unit {
@@ -851,10 +868,10 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Submits an item to the queue of potential candidates for the autocomplete menu. Call [updateCodeCompletionOptions] to update the list.
-   *
-   * [location] indicates location of the option relative to the location of the code completion query. See [enum CodeEdit.CodeCompletionLocation] for how to set this value.
-   *
+   * Submits an item to the queue of potential candidates for the autocomplete menu. Call
+   * [updateCodeCompletionOptions] to update the list.
+   * [param location] indicates location of the option relative to the location of the code
+   * completion query. See [enum CodeEdit.CodeCompletionLocation] for how to set this value.
    * **Note:** This list will replace all current candidates.
    */
   @JvmOverloads
@@ -872,8 +889,8 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Submits all completion options added with [addCodeCompletionOption]. Will try to force the autocomplete menu to popup, if [force] is `true`.
-   *
+   * Submits all completion options added with [addCodeCompletionOption]. Will try to force the
+   * autocomplete menu to popup, if [param force] is `true`.
    * **Note:** This will replace all current candidates.
    */
   public fun updateCodeCompletionOptions(force: Boolean): Unit {
@@ -891,18 +908,13 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Gets the completion option at [index]. The return [godot.core.Dictionary] has the following key-values:
-   *
+   * Gets the completion option at [param index]. The return [Dictionary] has the following
+   * key-values:
    * `kind`: [enum CodeCompletionKind]
-   *
    * `display_text`: Text that is shown on the autocomplete menu.
-   *
    * `insert_text`: Text that is to be inserted when this item is selected.
-   *
    * `font_color`: Color of the text on the autocomplete menu.
-   *
    * `icon`: Icon to draw on the autocomplete menu.
-   *
    * `default_value`: Value of the symbol.
    */
   public fun getCodeCompletionOption(index: Int): Dictionary<Any?, Any?> {
@@ -929,7 +941,8 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Inserts the selected entry into the text. If [replace] is true, any existing text is replaced rather than merged.
+   * Inserts the selected entry into the text. If [param replace] is true, any existing text is
+   * replaced rather than merged.
    */
   @JvmOverloads
   public fun confirmCodeCompletion(replace: Boolean = false): Unit {
@@ -964,7 +977,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Sets the symbol emitted by [symbolValidate] as a valid lookup.
+   * Sets the symbol emitted by [signal symbol_validate] as a valid lookup.
    */
   public fun setSymbolLookupWordAsValid(valid: Boolean): Unit {
     TransferContext.writeArguments(BOOL to valid)
@@ -972,7 +985,8 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Duplicates all lines currently selected with any caret. Duplicates the entire line beneath the current one no matter where the caret is within the line.
+   * Duplicates all lines currently selected with any caret. Duplicates the entire line beneath the
+   * current one no matter where the caret is within the line.
    */
   public fun duplicateLines(): Unit {
     TransferContext.writeArguments()
@@ -1038,19 +1052,26 @@ public open class CodeEdit : TextEdit() {
     id: Long,
   ) {
     /**
-     * The option is local to the location of the code completion query - e.g. a local variable. Subsequent value of location represent options from the outer class, the exact value represent how far they are (in terms of inner classes).
+     * The option is local to the location of the code completion query - e.g. a local variable.
+     * Subsequent value of location represent options from the outer class, the exact value represent
+     * how far they are (in terms of inner classes).
      */
     LOCATION_LOCAL(0),
     /**
-     * The option is from the containing class or a parent class, relative to the location of the code completion query. Perform a bitwise OR with the class depth (e.g. 0 for the local class, 1 for the parent, 2 for the grandparent, etc) to store the depth of an option in the class or a parent class.
+     * The option is from the containing class or a parent class, relative to the location of the
+     * code completion query. Perform a bitwise OR with the class depth (e.g. 0 for the local class, 1
+     * for the parent, 2 for the grandparent, etc) to store the depth of an option in the class or a
+     * parent class.
      */
     LOCATION_PARENT_MASK(256),
     /**
-     * The option is from user code which is not local and not in a derived class (e.g. Autoload Singletons).
+     * The option is from user code which is not local and not in a derived class (e.g. Autoload
+     * Singletons).
      */
     LOCATION_OTHER_USER_CODE(512),
     /**
-     * The option is from other engine code, not covered by the other enum constants - e.g. built-in classes.
+     * The option is from other engine code, not covered by the other enum constants - e.g. built-in
+     * classes.
      */
     LOCATION_OTHER(1024),
     ;

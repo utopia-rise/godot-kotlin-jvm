@@ -31,17 +31,15 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * A spatial node representing a spatially-tracked controller.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/xr/index.html]($DOCS_URL/tutorials/xr/index.html)
- *
- * This is a helper spatial node that is linked to the tracking of controllers. It also offers several handy passthroughs to the state of buttons and such on the controllers.
- *
- * Controllers are linked by their ID. You can create controller nodes before the controllers are available. If your game always uses two controllers (one for each hand), you can predefine the controllers with ID 1 and 2; they will become active as soon as the controllers are identified. If you expect additional controllers to be used, you should react to the signals and add XRController3D nodes to your scene.
- *
- * The position of the controller node is automatically updated by the [godot.XRServer]. This makes this node ideal to add child nodes to visualize the controller.
- *
+ * This is a helper spatial node that is linked to the tracking of controllers. It also offers
+ * several handy passthroughs to the state of buttons and such on the controllers.
+ * Controllers are linked by their ID. You can create controller nodes before the controllers are
+ * available. If your game always uses two controllers (one for each hand), you can predefine the
+ * controllers with ID 1 and 2; they will become active as soon as the controllers are identified. If
+ * you expect additional controllers to be used, you should react to the signals and add XRController3D
+ * nodes to your scene.
+ * The position of the controller node is automatically updated by the [XRServer]. This makes this
+ * node ideal to add child nodes to visualize the controller.
  * As many XR runtimes now use a configurable action map all inputs are named.
  */
 @GodotBaseType
@@ -72,7 +70,7 @@ public open class XRController3D : XRNode3D() {
   }
 
   /**
-   * Returns `true` if the button with the given [name] is pressed.
+   * Returns `true` if the button with the given [param name] is pressed.
    */
   public fun isButtonPressed(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -81,7 +79,8 @@ public open class XRController3D : XRNode3D() {
   }
 
   /**
-   * Returns a [Variant] for the input with the given [name]. This works for any input type, the variant will be typed according to the actions configuration.
+   * Returns a [Variant] for the input with the given [param name]. This works for any input type,
+   * the variant will be typed according to the actions configuration.
    */
   public fun getInput(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -90,7 +89,8 @@ public open class XRController3D : XRNode3D() {
   }
 
   /**
-   * Returns a numeric value for the input with the given [name]. This is used for triggers and grip sensors.
+   * Returns a numeric value for the input with the given [param name]. This is used for triggers
+   * and grip sensors.
    */
   public fun getFloat(name: StringName): Float {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -99,7 +99,8 @@ public open class XRController3D : XRNode3D() {
   }
 
   /**
-   * Returns a [godot.core.Vector2] for the input with the given [name]. This is used for thumbsticks and thumbpads found on many controllers.
+   * Returns a [Vector2] for the input with the given [param name]. This is used for thumbsticks and
+   * thumbpads found on many controllers.
    */
   public fun getVector2(name: StringName): Vector2 {
     TransferContext.writeArguments(STRING_NAME to name)

@@ -18,8 +18,6 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Performs a fused multiply-add operation within the visual shader graph.
- *
  * Uses three operands to compute `(a * b + c)` expression.
  */
 @GodotBaseType

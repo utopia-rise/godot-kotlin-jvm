@@ -32,57 +32,39 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A variation of a font with additional settings.
- *
- * Provides OpenType variations, simulated bold / slant, and additional font settings like OpenType features and extra spacing.
- *
+ * Provides OpenType variations, simulated bold / slant, and additional font settings like OpenType
+ * features and extra spacing.
  * To use simulated bold font variant:
  *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * var fv = FontVariation.new()
- *
  * fv.set_base_font(load("res://BarlowCondensed-Regular.ttf"))
- *
  * fv.set_variation_embolden(1.2)
- *
  * $Label.add_theme_font_override("font", fv)
- *
  * $Label.add_theme_font_size_override("font_size", 64)
- *
- * [/gdscript]
- *
- * [csharp]
- *
+ * ```
+ * csharp:
+ * ```csharp
  * var fv = new FontVariation();
- *
  * fv.SetBaseFont(ResourceLoader.Load<FontFile>("res://BarlowCondensed-Regular.ttf"));
- *
  * fv.SetVariationEmbolden(1.2);
- *
  * GetNode("Label").AddThemeFontOverride("font", fv);
- *
  * GetNode("Label").AddThemeFontSizeOverride("font_size", 64);
- *
- * [/csharp]
- *
- * [/codeblocks]
+ * ```
  *
  * To set the coordinate of multiple variation axes:
- *
- * ```
- * 		var fv = FontVariation.new();
- * 		var ts = TextServerManager.get_primary_interface()
- * 		fv.base_font = load("res://BarlowCondensed-Regular.ttf")
- * 		fv.variation_opentype = { ts.name_to_tag("wght"): 900, ts.name_to_tag("custom_hght"): 900 }
- * 		```
+ * [codeblock]
+ * var fv = FontVariation.new();
+ * var ts = TextServerManager.get_primary_interface()
+ * fv.base_font = load("res://BarlowCondensed-Regular.ttf")
+ * fv.variation_opentype = { ts.name_to_tag("wght"): 900, ts.name_to_tag("custom_hght"): 900 }
+ * [/codeblock]
  */
 @GodotBaseType
 public open class FontVariation : Font() {
   /**
-   * Base font used to create a variation. If not set, default [godot.Theme] font is used.
+   * Base font used to create a variation. If not set, default [Theme] font is used.
    */
   public var baseFont: Font?
     get() {
@@ -96,11 +78,15 @@ public open class FontVariation : Font() {
     }
 
   /**
-   * Font OpenType variation coordinates. More info: [godot.OpenType variation tags](https://docs.microsoft.com/en-us/typography/opentype/spec/dvaraxisreg).
-   *
-   * **Note:** This [godot.core.Dictionary] uses OpenType tags as keys. Variation axes can be identified both by tags ([int], e.g. `0x77678674`) and names ([godot.String], e.g. `wght`). Some axes might be accessible by multiple names. For example, `wght` refers to the same axis as `weight`. Tags on the other hand are unique. To convert between names and tags, use [godot.TextServer.nameToTag] and [godot.TextServer.tagToName].
-   *
-   * **Note:** To get available variation axes of a font, use [godot.Font.getSupportedVariationList].
+   * Font OpenType variation coordinates. More info:
+   * [url=https://docs.microsoft.com/en-us/typography/opentype/spec/dvaraxisreg]OpenType variation
+   * tags[/url].
+   * **Note:** This [Dictionary] uses OpenType tags as keys. Variation axes can be identified both
+   * by tags ([int], e.g. `0x77678674`) and names ([String], e.g. `wght`). Some axes might be
+   * accessible by multiple names. For example, `wght` refers to the same axis as `weight`. Tags on the
+   * other hand are unique. To convert between names and tags, use [TextServer.nameToTag] and
+   * [TextServer.tagToName].
+   * **Note:** To get available variation axes of a font, use [Font.getSupportedVariationList].
    */
   public var variationOpentype: Dictionary<Any?, Any?>
     get() {
@@ -128,9 +114,10 @@ public open class FontVariation : Font() {
     }
 
   /**
-   * If is not equal to zero, emboldens the font outlines. Negative values reduce the outline thickness.
-   *
-   * **Note:** Emboldened fonts might have self-intersecting outlines, which will prevent MSDF fonts and [godot.TextMesh] from working correctly.
+   * If is not equal to zero, emboldens the font outlines. Negative values reduce the outline
+   * thickness.
+   * **Note:** Emboldened fonts might have self-intersecting outlines, which will prevent MSDF fonts
+   * and [TextMesh] from working correctly.
    */
   public var variationEmbolden: Float
     get() {
@@ -144,9 +131,10 @@ public open class FontVariation : Font() {
     }
 
   /**
-   * 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating glyphs.
-   *
-   * For example, to simulate italic typeface by slanting, apply the following transform `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
+   * 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating
+   * glyphs.
+   * For example, to simulate italic typeface by slanting, apply the following transform
+   * `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
    */
   @CoreTypeLocalCopy
   public var variationTransform: Transform2D
@@ -161,7 +149,9 @@ public open class FontVariation : Font() {
     }
 
   /**
-   * A set of OpenType feature tags. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
+   * A set of OpenType feature tags. More info:
+   * [url=https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags]OpenType feature
+   * tags[/url].
    */
   public var opentypeFeatures: Dictionary<Any?, Any?>
     @JvmName("getOpentypeFeatures_prop")
@@ -228,9 +218,10 @@ public open class FontVariation : Font() {
   }
 
   /**
-   * 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating glyphs.
-   *
-   * For example, to simulate italic typeface by slanting, apply the following transform `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
+   * 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating
+   * glyphs.
+   * For example, to simulate italic typeface by slanting, apply the following transform
+   * `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

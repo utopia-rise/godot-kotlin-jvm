@@ -12,12 +12,8 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A humanoid [godot.SkeletonProfile] preset.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/assets_pipeline/retargeting_3d_skeletons.html]($DOCS_URL/tutorials/assets_pipeline/retargeting_3d_skeletons.html)
- *
- * A [godot.SkeletonProfile] as a preset that is optimized for the human form. This exists for standardization, so all parameters are read-only.
+ * A [SkeletonProfile] as a preset that is optimized for the human form. This exists for
+ * standardization, so all parameters are read-only.
  */
 @GodotBaseType
 public open class SkeletonProfileHumanoid : SkeletonProfile() {

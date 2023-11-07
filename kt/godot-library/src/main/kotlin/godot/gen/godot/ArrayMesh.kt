@@ -41,96 +41,52 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * [godot.Mesh] type that provides utility for constructing a surface from arrays.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/3d/procedural_geometry/arraymesh.html]($DOCS_URL/tutorials/3d/procedural_geometry/arraymesh.html)
- *
- * The [godot.ArrayMesh] is used to construct a [godot.Mesh] by specifying the attributes as arrays.
- *
+ * The [ArrayMesh] is used to construct a [Mesh] by specifying the attributes as arrays.
  * The most basic example is the creation of a single triangle:
  *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * var vertices = PackedVector3Array()
- *
  * vertices.push_back(Vector3(0, 1, 0))
- *
  * vertices.push_back(Vector3(1, 0, 0))
- *
  * vertices.push_back(Vector3(0, 0, 1))
  *
- *
- *
  * # Initialize the ArrayMesh.
- *
  * var arr_mesh = ArrayMesh.new()
- *
  * var arrays = []
- *
  * arrays.resize(Mesh.ARRAY_MAX)
- *
- * arrays[godot.Mesh.ARRAY_VERTEX] = vertices
- *
- *
+ * arrays[Mesh.ARRAY_VERTEX] = vertices
  *
  * # Create the Mesh.
- *
  * arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
- *
  * var m = MeshInstance3D.new()
- *
  * m.mesh = arr_mesh
- *
- * [/gdscript]
- *
- * [csharp]
- *
+ * ```
+ * csharp:
+ * ```csharp
  * var vertices = new Vector3[]
- *
  * {
- *
  *     new Vector3(0, 1, 0),
- *
  *     new Vector3(1, 0, 0),
- *
  *     new Vector3(0, 0, 1),
- *
  * };
  *
- *
- *
  * // Initialize the ArrayMesh.
- *
  * var arrMesh = new ArrayMesh();
- *
  * var arrays = new Godot.Collections.Array();
- *
  * arrays.Resize((int)Mesh.ArrayType.Max);
- *
  * arrays[(int)Mesh.ArrayType.Vertex] = vertices;
  *
- *
- *
  * // Create the Mesh.
- *
  * arrMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
- *
  * var m = new MeshInstance3D();
- *
  * m.Mesh = arrMesh;
+ * ```
  *
- * [/csharp]
- *
- * [/codeblocks]
- *
- * The [godot.MeshInstance3D] is ready to be added to the [godot.SceneTree] to be shown.
- *
- * See also [godot.ImmediateMesh], [godot.MeshDataTool] and [godot.SurfaceTool] for procedural geometry generation.
- *
- * **Note:** Godot uses clockwise [winding order](https://learnopengl.com/Advanced-OpenGL/Face-culling) for front faces of triangle primitive modes.
+ * The [MeshInstance3D] is ready to be added to the [SceneTree] to be shown.
+ * See also [ImmediateMesh], [MeshDataTool] and [SurfaceTool] for procedural geometry generation.
+ * **Note:** Godot uses clockwise [url=https://learnopengl.com/Advanced-OpenGL/Face-culling]winding
+ * order[/url] for front faces of triangle primitive modes.
  */
 @GodotBaseType
 public open class ArrayMesh : Mesh() {
@@ -149,7 +105,8 @@ public open class ArrayMesh : Mesh() {
     }
 
   /**
-   * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices.
+   * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful
+   * to avoid unexpected culling when using a shader to offset vertices.
    */
   @CoreTypeLocalCopy
   public var customAabb: AABB
@@ -165,7 +122,9 @@ public open class ArrayMesh : Mesh() {
     }
 
   /**
-   * An optional mesh which is used for rendering shadows and can be used for the depth prepass. Can be used to increase performance of shadow rendering by using a mesh that only contains vertex position data (without normals, UVs, colors, etc.).
+   * An optional mesh which is used for rendering shadows and can be used for the depth prepass. Can
+   * be used to increase performance of shadow rendering by using a mesh that only contains vertex
+   * position data (without normals, UVs, colors, etc.).
    */
   public var shadowMesh: ArrayMesh?
     get() {
@@ -184,7 +143,8 @@ public open class ArrayMesh : Mesh() {
   }
 
   /**
-   * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices.
+   * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful
+   * to avoid unexpected culling when using a shader to offset vertices.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -208,7 +168,8 @@ public open class ArrayMesh : Mesh() {
 
 
   /**
-   * Adds name for a blend shape that will be added with [addSurfaceFromArrays]. Must be called before surface is added.
+   * Adds name for a blend shape that will be added with [addSurfaceFromArrays]. Must be called
+   * before surface is added.
    */
   public fun addBlendShape(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -216,7 +177,7 @@ public open class ArrayMesh : Mesh() {
   }
 
   /**
-   * Returns the number of blend shapes that the [godot.ArrayMesh] holds.
+   * Returns the number of blend shapes that the [ArrayMesh] holds.
    */
   public fun getBlendShapeCount(): Int {
     TransferContext.writeArguments()
@@ -242,7 +203,7 @@ public open class ArrayMesh : Mesh() {
   }
 
   /**
-   * Removes all blend shapes from this [godot.ArrayMesh].
+   * Removes all blend shapes from this [ArrayMesh].
    */
   public fun clearBlendShapes(): Unit {
     TransferContext.writeArguments()
@@ -250,18 +211,31 @@ public open class ArrayMesh : Mesh() {
   }
 
   /**
-   * Creates a new surface. [godot.Mesh.getSurfaceCount] will become the `surf_idx` for this new surface.
-   *
-   * Surfaces are created to be rendered using a [primitive], which may be any of the values defined in [enum Mesh.PrimitiveType].
-   *
-   * The [arrays] argument is an array of arrays. Each of the [godot.Mesh.ARRAY_MAX] elements contains an array with some of the mesh data for this surface as described by the corresponding member of [enum Mesh.ArrayType] or `null` if it is not used by the surface. For example, `arrays[0]` is the array of vertices. That first vertex sub-array is always required; the others are optional. Adding an index array puts this surface into "index mode" where the vertex and other arrays become the sources of data and the index array defines the vertex order. All sub-arrays must have the same length as the vertex array (or be an exact multiple of the vertex array's length, when multiple elements of a sub-array correspond to a single vertex) or be empty, except for [godot.Mesh.ARRAY_INDEX] if it is used.
-   *
-   * The [blendShapes] argument is an array of vertex data for each blend shape. Each element is an array of the same structure as [arrays], but [godot.Mesh.ARRAY_VERTEX], [godot.Mesh.ARRAY_NORMAL], and [godot.Mesh.ARRAY_TANGENT] are set if and only if they are set in [arrays] and all other entries are `null`.
-   *
-   * The [lods] argument is a dictionary with [float] keys and [godot.PackedInt32Array] values. Each entry in the dictionary represents a LOD level of the surface, where the value is the [godot.Mesh.ARRAY_INDEX] array to use for the LOD level and the key is roughly proportional to the distance at which the LOD stats being used. I.e., increasing the key of a LOD also increases the distance that the objects has to be from the camera before the LOD is used.
-   *
-   * The [flags] argument is the bitwise or of, as required: One value of [enum Mesh.ArrayCustomFormat] left shifted by `ARRAY_FORMAT_CUSTOMn_SHIFT` for each custom channel in use, [godot.Mesh.ARRAY_FLAG_USE_DYNAMIC_UPDATE], [godot.Mesh.ARRAY_FLAG_USE_8_BONE_WEIGHTS], or [godot.Mesh.ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY].
-   *
+   * Creates a new surface. [Mesh.getSurfaceCount] will become the `surf_idx` for this new surface.
+   * Surfaces are created to be rendered using a [param primitive], which may be any of the values
+   * defined in [enum Mesh.PrimitiveType].
+   * The [param arrays] argument is an array of arrays. Each of the [constant Mesh.ARRAY_MAX]
+   * elements contains an array with some of the mesh data for this surface as described by the
+   * corresponding member of [enum Mesh.ArrayType] or `null` if it is not used by the surface. For
+   * example, `arrays[0]` is the array of vertices. That first vertex sub-array is always required; the
+   * others are optional. Adding an index array puts this surface into "index mode" where the vertex
+   * and other arrays become the sources of data and the index array defines the vertex order. All
+   * sub-arrays must have the same length as the vertex array (or be an exact multiple of the vertex
+   * array's length, when multiple elements of a sub-array correspond to a single vertex) or be empty,
+   * except for [constant Mesh.ARRAY_INDEX] if it is used.
+   * The [param blend_shapes] argument is an array of vertex data for each blend shape. Each element
+   * is an array of the same structure as [param arrays], but [constant Mesh.ARRAY_VERTEX], [constant
+   * Mesh.ARRAY_NORMAL], and [constant Mesh.ARRAY_TANGENT] are set if and only if they are set in
+   * [param arrays] and all other entries are `null`.
+   * The [param lods] argument is a dictionary with [float] keys and [PackedInt32Array] values. Each
+   * entry in the dictionary represents a LOD level of the surface, where the value is the [constant
+   * Mesh.ARRAY_INDEX] array to use for the LOD level and the key is roughly proportional to the
+   * distance at which the LOD stats being used. I.e., increasing the key of a LOD also increases the
+   * distance that the objects has to be from the camera before the LOD is used.
+   * The [param flags] argument is the bitwise or of, as required: One value of [enum
+   * Mesh.ArrayCustomFormat] left shifted by `ARRAY_FORMAT_CUSTOMn_SHIFT` for each custom channel in
+   * use, [constant Mesh.ARRAY_FLAG_USE_DYNAMIC_UPDATE], [constant Mesh.ARRAY_FLAG_USE_8_BONE_WEIGHTS],
+   * or [constant Mesh.ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY].
    * **Note:** When using indices, it is recommended to only use points, lines, or triangles.
    */
   @JvmOverloads
@@ -277,16 +251,13 @@ public open class ArrayMesh : Mesh() {
   }
 
   /**
-   * Removes all surfaces from this [godot.ArrayMesh].
+   * Removes all surfaces from this [ArrayMesh].
    */
   public fun clearSurfaces(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearSurfacesPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun surfaceUpdateVertexRegion(
     surfIdx: Int,
     offset: Int,
@@ -296,9 +267,6 @@ public open class ArrayMesh : Mesh() {
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceUpdateVertexRegionPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun surfaceUpdateAttributeRegion(
     surfIdx: Int,
     offset: Int,
@@ -308,9 +276,6 @@ public open class ArrayMesh : Mesh() {
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceUpdateAttributeRegionPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun surfaceUpdateSkinRegion(
     surfIdx: Int,
     offset: Int,
@@ -321,7 +286,8 @@ public open class ArrayMesh : Mesh() {
   }
 
   /**
-   * Returns the length in vertices of the vertex array in the requested surface (see [addSurfaceFromArrays]).
+   * Returns the length in vertices of the vertex array in the requested surface (see
+   * [addSurfaceFromArrays]).
    */
   public fun surfaceGetArrayLen(surfIdx: Int): Int {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
@@ -330,7 +296,8 @@ public open class ArrayMesh : Mesh() {
   }
 
   /**
-   * Returns the length in indices of the index array in the requested surface (see [addSurfaceFromArrays]).
+   * Returns the length in indices of the index array in the requested surface (see
+   * [addSurfaceFromArrays]).
    */
   public fun surfaceGetArrayIndexLen(surfIdx: Int): Int {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
@@ -357,7 +324,8 @@ public open class ArrayMesh : Mesh() {
   }
 
   /**
-   * Returns the index of the first surface with this name held within this [godot.ArrayMesh]. If none are found, -1 is returned.
+   * Returns the index of the first surface with this name held within this [ArrayMesh]. If none are
+   * found, -1 is returned.
    */
   public fun surfaceFindByName(name: String): Int {
     TransferContext.writeArguments(STRING to name)
@@ -383,7 +351,7 @@ public open class ArrayMesh : Mesh() {
   }
 
   /**
-   * Regenerates tangents for each of the [godot.ArrayMesh]'s surfaces.
+   * Regenerates tangents for each of the [ArrayMesh]'s surfaces.
    */
   public fun regenNormalMaps(): Unit {
     TransferContext.writeArguments()
@@ -391,7 +359,7 @@ public open class ArrayMesh : Mesh() {
   }
 
   /**
-   * Performs a UV unwrap on the [godot.ArrayMesh] to prepare the mesh for lightmapping.
+   * Performs a UV unwrap on the [ArrayMesh] to prepare the mesh for lightmapping.
    */
   public fun lightmapUnwrap(transform: Transform3D, texelSize: Float): GodotError {
     TransferContext.writeArguments(TRANSFORM3D to transform, DOUBLE to texelSize.toDouble())

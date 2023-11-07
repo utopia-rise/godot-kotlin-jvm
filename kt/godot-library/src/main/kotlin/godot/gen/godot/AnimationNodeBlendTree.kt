@@ -30,14 +30,10 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A sub-tree of many type [godot.AnimationNode]s used for complex animations. Used by [godot.AnimationTree].
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
- *
- * This animation node may contain a sub-tree of any other type animation nodes, such as [godot.AnimationNodeTransition], [godot.AnimationNodeBlend2], [godot.AnimationNodeBlend3], [godot.AnimationNodeOneShot], etc. This is one of the most commonly used animation node roots.
- *
- * An [godot.AnimationNodeOutput] node named `output` is created by default.
+ * This animation node may contain a sub-tree of any other type animation nodes, such as
+ * [AnimationNodeTransition], [AnimationNodeBlend2], [AnimationNodeBlend3], [AnimationNodeOneShot],
+ * etc. This is one of the most commonly used animation node roots.
+ * An [AnimationNodeOutput] node named `output` is created by default.
  */
 @GodotBaseType
 public open class AnimationNodeBlendTree : AnimationRootNode() {
@@ -91,7 +87,8 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
 
 
   /**
-   * Adds an [godot.AnimationNode] at the given [position]. The [name] is used to identify the created sub animation node later.
+   * Adds an [AnimationNode] at the given [param position]. The [param name] is used to identify the
+   * created sub animation node later.
    */
   @JvmOverloads
   public fun addNode(
@@ -104,7 +101,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Returns the sub animation node with the specified [name].
+   * Returns the sub animation node with the specified [param name].
    */
   public fun getNode(name: StringName): AnimationNode? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -129,7 +126,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Returns `true` if a sub animation node with specified [name] exists.
+   * Returns `true` if a sub animation node with specified [param name] exists.
    */
   public fun hasNode(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -138,7 +135,8 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Connects the output of an [godot.AnimationNode] as input for another [godot.AnimationNode], at the input port specified by [inputIndex].
+   * Connects the output of an [AnimationNode] as input for another [AnimationNode], at the input
+   * port specified by [param input_index].
    */
   public fun connectNode(
     inputNode: StringName,
@@ -166,7 +164,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Returns the position of the sub animation node with the specified [name].
+   * Returns the position of the sub animation node with the specified [param name].
    */
   public fun getNodePosition(name: StringName): Vector2 {
     TransferContext.writeArguments(STRING_NAME to name)

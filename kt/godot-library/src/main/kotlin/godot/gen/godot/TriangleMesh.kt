@@ -12,8 +12,6 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Internal mesh type.
- *
  * Mesh type used internally for collision calculations.
  */
 @GodotBaseType

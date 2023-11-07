@@ -30,26 +30,26 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A set of [godot.AnimationRootNode]s placed on 2D coordinates, crossfading between the three adjacent ones. Used by [godot.AnimationTree].
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
- *
- * A resource used by [godot.AnimationNodeBlendTree].
- *
- * [godot.AnimationNodeBlendSpace1D] represents a virtual 2D space on which [godot.AnimationRootNode]s are placed. Outputs the linear blend of the three adjacent animations using a [godot.core.Vector2] weight. Adjacent in this context means the three [godot.AnimationRootNode]s making up the triangle that contains the current value.
- *
- * You can add vertices to the blend space with [addBlendPoint] and automatically triangulate it by setting [autoTriangles] to `true`. Otherwise, use [addTriangle] and [removeTriangle] to triangulate the blend space by hand.
+ * A resource used by [AnimationNodeBlendTree].
+ * [AnimationNodeBlendSpace1D] represents a virtual 2D space on which [AnimationRootNode]s are
+ * placed. Outputs the linear blend of the three adjacent animations using a [Vector2] weight. Adjacent
+ * in this context means the three [AnimationRootNode]s making up the triangle that contains the
+ * current value.
+ * You can add vertices to the blend space with [addBlendPoint] and automatically triangulate it by
+ * setting [autoTriangles] to `true`. Otherwise, use [addTriangle] and [removeTriangle] to triangulate
+ * the blend space by hand.
  */
 @GodotBaseType
 public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   /**
-   * Emitted every time the blend space's triangles are created, removed, or when one of their vertices changes position.
+   * Emitted every time the blend space's triangles are created, removed, or when one of their
+   * vertices changes position.
    */
   public val trianglesUpdated: Signal0 by signal()
 
   /**
-   * If `true`, the blend space is triangulated automatically. The mesh updates every time you add or remove points with [addBlendPoint] and [removeBlendPoint].
+   * If `true`, the blend space is triangulated automatically. The mesh updates every time you add
+   * or remove points with [addBlendPoint] and [removeBlendPoint].
    */
   public var autoTriangles: Boolean
     get() {
@@ -151,7 +151,6 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   /**
    * If `false`, the blended animations' frame are stopped when the blend value is `0`.
-   *
    * If `true`, forcing the blended animations to advance frame.
    */
   public var sync: Boolean
@@ -243,7 +242,9 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
 
   /**
-   * Adds a new point that represents a [node] at the position set by [pos]. You can insert it at a specific index using the [atIndex] argument. If you use the default value for [atIndex], the point is inserted at the end of the blend points array.
+   * Adds a new point that represents a [param node] at the position set by [param pos]. You can
+   * insert it at a specific index using the [param at_index] argument. If you use the default value
+   * for [param at_index], the point is inserted at the end of the blend points array.
    */
   @JvmOverloads
   public fun addBlendPoint(
@@ -256,7 +257,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Updates the position of the point at index [point] on the blend axis.
+   * Updates the position of the point at index [param point] on the blend axis.
    */
   public fun setBlendPointPosition(point: Int, pos: Vector2): Unit {
     TransferContext.writeArguments(LONG to point.toLong(), VECTOR2 to pos)
@@ -264,7 +265,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Returns the position of the point at index [point].
+   * Returns the position of the point at index [param point].
    */
   public fun getBlendPointPosition(point: Int): Vector2 {
     TransferContext.writeArguments(LONG to point.toLong())
@@ -273,7 +274,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Changes the [godot.AnimationNode] referenced by the point at index [point].
+   * Changes the [AnimationNode] referenced by the point at index [param point].
    */
   public fun setBlendPointNode(point: Int, node: AnimationRootNode): Unit {
     TransferContext.writeArguments(LONG to point.toLong(), OBJECT to node)
@@ -281,7 +282,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Returns the [godot.AnimationRootNode] referenced by the point at index [point].
+   * Returns the [AnimationRootNode] referenced by the point at index [param point].
    */
   public fun getBlendPointNode(point: Int): AnimationRootNode? {
     TransferContext.writeArguments(LONG to point.toLong())
@@ -290,7 +291,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Removes the point at index [point] from the blend space.
+   * Removes the point at index [param point] from the blend space.
    */
   public fun removeBlendPoint(point: Int): Unit {
     TransferContext.writeArguments(LONG to point.toLong())
@@ -307,7 +308,10 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Creates a new triangle using three points [x], [y], and [z]. Triangles can overlap. You can insert the triangle at a specific index using the [atIndex] argument. If you use the default value for [atIndex], the point is inserted at the end of the blend points array.
+   * Creates a new triangle using three points [param x], [param y], and [param z]. Triangles can
+   * overlap. You can insert the triangle at a specific index using the [param at_index] argument. If
+   * you use the default value for [param at_index], the point is inserted at the end of the blend
+   * points array.
    */
   @JvmOverloads
   public fun addTriangle(
@@ -321,7 +325,8 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Returns the position of the point at index [point] in the triangle of index [triangle].
+   * Returns the position of the point at index [param point] in the triangle of index [param
+   * triangle].
    */
   public fun getTrianglePoint(triangle: Int, point: Int): Int {
     TransferContext.writeArguments(LONG to triangle.toLong(), LONG to point.toLong())
@@ -330,7 +335,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Removes the triangle at index [triangle] from the blend space.
+   * Removes the triangle at index [param triangle] from the blend space.
    */
   public fun removeTriangle(triangle: Int): Unit {
     TransferContext.writeArguments(LONG to triangle.toLong())
@@ -354,11 +359,13 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
      */
     BLEND_MODE_INTERPOLATED(0),
     /**
-     * The blend space plays the animation of the animation node which blending position is closest to. Useful for frame-by-frame 2D animations.
+     * The blend space plays the animation of the animation node which blending position is closest
+     * to. Useful for frame-by-frame 2D animations.
      */
     BLEND_MODE_DISCRETE(1),
     /**
-     * Similar to [BLEND_MODE_DISCRETE], but starts the new animation at the last animation's playback position.
+     * Similar to [constant BLEND_MODE_DISCRETE], but starts the new animation at the last
+     * animation's playback position.
      */
     BLEND_MODE_DISCRETE_CARRY(2),
     ;

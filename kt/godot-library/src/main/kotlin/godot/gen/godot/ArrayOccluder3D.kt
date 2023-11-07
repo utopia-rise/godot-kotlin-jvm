@@ -22,21 +22,17 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * 3D polygon shape for use with occlusion culling in [godot.OccluderInstance3D].
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/3d/occlusion_culling.html]($DOCS_URL/tutorials/3d/occlusion_culling.html)
- *
- * [godot.ArrayOccluder3D] stores an arbitrary 3D polygon shape that can be used by the engine's occlusion culling system. This is analogous to [godot.ArrayMesh], but for occluders.
- *
- * See [godot.OccluderInstance3D]'s documentation for instructions on setting up occlusion culling.
+ * [ArrayOccluder3D] stores an arbitrary 3D polygon shape that can be used by the engine's occlusion
+ * culling system. This is analogous to [ArrayMesh], but for occluders.
+ * See [OccluderInstance3D]'s documentation for instructions on setting up occlusion culling.
  */
 @GodotBaseType
 public open class ArrayOccluder3D : Occluder3D() {
   /**
    * The occluder's vertex positions in local 3D coordinates.
-   *
-   * **Note:** The occluder is always updated after setting this value. If creating occluders procedurally, consider using [setArrays] instead to avoid updating the occluder twice when it's created.
+   * **Note:** The occluder is always updated after setting this value. If creating occluders
+   * procedurally, consider using [setArrays] instead to avoid updating the occluder twice when it's
+   * created.
    */
   public var vertices: PackedVector3Array
     @JvmName("getVertices_prop")
@@ -47,9 +43,11 @@ public open class ArrayOccluder3D : Occluder3D() {
     }
 
   /**
-   * The occluder's index position. Indices determine which points from the [vertices] array should be drawn, and in which order.
-   *
-   * **Note:** The occluder is always updated after setting this value. If creating occluders procedurally, consider using [setArrays] instead to avoid updating the occluder twice when it's created.
+   * The occluder's index position. Indices determine which points from the [vertices] array should
+   * be drawn, and in which order.
+   * **Note:** The occluder is always updated after setting this value. If creating occluders
+   * procedurally, consider using [setArrays] instead to avoid updating the occluder twice when it's
+   * created.
    */
   public var indices: PackedInt32Array
     @JvmName("getIndices_prop")
@@ -65,7 +63,8 @@ public open class ArrayOccluder3D : Occluder3D() {
   }
 
   /**
-   * Sets [indices] and [vertices], while updating the final occluder only once after both values are set.
+   * Sets [indices] and [vertices], while updating the final occluder only once after both values
+   * are set.
    */
   public fun setArrays(vertices: PackedVector3Array, indices: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices, PACKED_INT_32_ARRAY to indices)

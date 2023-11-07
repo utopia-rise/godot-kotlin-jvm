@@ -22,8 +22,24 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.jvm.JvmName
 
+/**
+ * Uses the [FastNoiseLite] library or other noise generators to fill the texture data of your
+ * desired size.
+ * The class uses [Thread]s to generate the texture data internally, so [Texture3D.getData] may
+ * return `null` if the generation process has not completed yet. In that case, you need to wait for
+ * the texture to be generated before accessing the image:
+ * [codeblock]
+ * var texture = NoiseTexture3D.new()
+ * texture.noise = FastNoiseLite.new()
+ * await texture.changed
+ * var data = texture.get_data()
+ * [/codeblock]
+ */
 @GodotBaseType
 public open class NoiseTexture3D : Texture3D() {
+  /**
+   * Width of the generated texture (in pixels).
+   */
   public var width: Int
     @JvmName("getWidth_prop")
     get() = super.getWidth()
@@ -32,6 +48,9 @@ public open class NoiseTexture3D : Texture3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
     }
 
+  /**
+   * Height of the generated texture (in pixels).
+   */
   public var height: Int
     @JvmName("getHeight_prop")
     get() = super.getHeight()
@@ -40,6 +59,9 @@ public open class NoiseTexture3D : Texture3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
     }
 
+  /**
+   * Depth of the generated texture (in pixels).
+   */
   public var depth: Int
     @JvmName("getDepth_prop")
     get() = super.getDepth()
@@ -48,6 +70,9 @@ public open class NoiseTexture3D : Texture3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
     }
 
+  /**
+   * If `true`, inverts the noise texture. White becomes black, black becomes white.
+   */
   public var invert: Boolean
     get() {
       TransferContext.writeArguments()
@@ -59,6 +84,15 @@ public open class NoiseTexture3D : Texture3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setInvertPtr, NIL)
     }
 
+  /**
+   * If `true`, a seamless texture is requested from the [Noise] resource.
+   * **Note:** Seamless noise textures may take longer to generate and/or can have a lower contrast
+   * compared to non-seamless noise depending on the used [Noise] resource. This is because some
+   * implementations use higher dimensions for generating seamless noise.
+   * **Note:** The default [FastNoiseLite] implementation uses the fallback path for seamless
+   * generation. If using a [width], [height] or [depth] lower than the default, you may need to
+   * increase [seamlessBlendSkirt] to make seamless blending more effective.
+   */
   public var seamless: Boolean
     get() {
       TransferContext.writeArguments()
@@ -70,6 +104,13 @@ public open class NoiseTexture3D : Texture3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSeamlessPtr, NIL)
     }
 
+  /**
+   * Used for the default/fallback implementation of the seamless texture generation. It determines
+   * the distance over which the seams are blended. High values may result in less details and
+   * contrast. See [Noise] for further details.
+   * **Note:** If using a [width], [height] or [depth] lower than the default, you may need to
+   * increase [seamlessBlendSkirt] to make seamless blending more effective.
+   */
   public var seamlessBlendSkirt: Float
     get() {
       TransferContext.writeArguments()
@@ -81,6 +122,12 @@ public open class NoiseTexture3D : Texture3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSeamlessBlendSkirtPtr, NIL)
     }
 
+  /**
+   * If `true`, the noise image coming from the noise generator is normalized to the range `0.0` to
+   * `1.0`.
+   * Turning normalization off can affect the contrast and allows you to generate non repeating
+   * tileable noise textures.
+   */
   public var normalize: Boolean
     get() {
       TransferContext.writeArguments()
@@ -92,6 +139,9 @@ public open class NoiseTexture3D : Texture3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setNormalizePtr, NIL)
     }
 
+  /**
+   * A [Gradient] which is used to map the luminance of each pixel to a color value.
+   */
   public var colorRamp: Gradient?
     get() {
       TransferContext.writeArguments()
@@ -103,6 +153,9 @@ public open class NoiseTexture3D : Texture3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setColorRampPtr, NIL)
     }
 
+  /**
+   * The instance of the [Noise] object.
+   */
   public var noise: Noise?
     get() {
       TransferContext.writeArguments()

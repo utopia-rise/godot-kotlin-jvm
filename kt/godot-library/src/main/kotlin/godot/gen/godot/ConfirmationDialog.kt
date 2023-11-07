@@ -19,27 +19,19 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * A dialog used for confirmation of actions.
- *
- * A dialog used for confirmation of actions. This window is similar to [godot.AcceptDialog], but pressing its Cancel button can have a different outcome from pressing the OK button. The order of the two buttons varies depending on the host OS.
- *
+ * A dialog used for confirmation of actions. This window is similar to [AcceptDialog], but pressing
+ * its Cancel button can have a different outcome from pressing the OK button. The order of the two
+ * buttons varies depending on the host OS.
  * To get cancel action, you can use:
  *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * get_cancel_button().pressed.connect(self.canceled)
- *
- * [/gdscript]
- *
- * [csharp]
- *
+ * ```
+ * csharp:
+ * ```csharp
  * GetCancelButton().Pressed += Canceled;
- *
- * [/csharp]
- *
- * [/codeblocks]
+ * ```
  */
 @GodotBaseType
 public open class ConfirmationDialog : AcceptDialog() {
@@ -64,8 +56,8 @@ public open class ConfirmationDialog : AcceptDialog() {
 
   /**
    * Returns the cancel button.
-   *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
+   * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public fun getCancelButton(): Button? {
     TransferContext.writeArguments()

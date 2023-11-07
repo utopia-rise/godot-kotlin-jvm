@@ -22,9 +22,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A physics joint that restricts the movement of a 3D physics body along an axis relative to another physics body.
- *
- * A physics joint that restricts the movement of a 3D physics body along an axis relative to another physics body. For example, Body A could be a [godot.StaticBody3D] representing a piston base, while Body B could be a [godot.RigidBody3D] representing the piston head, moving up and down.
+ * A physics joint that restricts the movement of a 3D physics body along an axis relative to
+ * another physics body. For example, Body A could be a [StaticBody3D] representing a piston base,
+ * while Body B could be a [RigidBody3D] representing the piston head, moving up and down.
  */
 @GodotBaseType
 public open class SliderJoint3D : Joint3D() {
@@ -33,17 +33,11 @@ public open class SliderJoint3D : Joint3D() {
     return true
   }
 
-  /**
-   *
-   */
   public fun setParam(`param`: Param, `value`: Float): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun getParam(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
@@ -62,11 +56,13 @@ public open class SliderJoint3D : Joint3D() {
      */
     PARAM_LINEAR_LIMIT_LOWER(1),
     /**
-     * A factor applied to the movement across the slider axis once the limits get surpassed. The lower, the slower the movement.
+     * A factor applied to the movement across the slider axis once the limits get surpassed. The
+     * lower, the slower the movement.
      */
     PARAM_LINEAR_LIMIT_SOFTNESS(2),
     /**
-     * The amount of restitution once the limits are surpassed. The lower, the more velocity-energy gets lost.
+     * The amount of restitution once the limits are surpassed. The lower, the more velocity-energy
+     * gets lost.
      */
     PARAM_LINEAR_LIMIT_RESTITUTION(3),
     /**
@@ -74,7 +70,8 @@ public open class SliderJoint3D : Joint3D() {
      */
     PARAM_LINEAR_LIMIT_DAMPING(4),
     /**
-     * A factor applied to the movement across the slider axis as long as the slider is in the limits. The lower, the slower the movement.
+     * A factor applied to the movement across the slider axis as long as the slider is in the
+     * limits. The lower, the slower the movement.
      */
     PARAM_LINEAR_MOTION_SOFTNESS(5),
     /**

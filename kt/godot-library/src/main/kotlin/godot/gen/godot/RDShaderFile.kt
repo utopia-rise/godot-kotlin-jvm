@@ -25,16 +25,17 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Compiled shader file in SPIR-V form (used by [godot.RenderingDevice]). Not to be confused with Godot's own [godot.Shader].
- *
  * Compiled shader file in SPIR-V form.
- *
- * See also [godot.RDShaderSource]. [godot.RDShaderFile] is only meant to be used with the [godot.RenderingDevice] API. It should not be confused with Godot's own [godot.Shader] resource, which is what Godot's various nodes use for high-level shader programming.
+ * See also [RDShaderSource]. [RDShaderFile] is only meant to be used with the [RenderingDevice]
+ * API. It should not be confused with Godot's own [Shader] resource, which is what Godot's various
+ * nodes use for high-level shader programming.
  */
 @GodotBaseType
 public open class RDShaderFile : Resource() {
   /**
-   * The base compilation error message, which indicates errors not related to a specific shader stage if non-empty. If empty, shader compilation is not necessarily successful (check [godot.RDShaderSPIRV]'s error message members).
+   * The base compilation error message, which indicates errors not related to a specific shader
+   * stage if non-empty. If empty, shader compilation is not necessarily successful (check
+   * [RDShaderSPIRV]'s error message members).
    */
   public var baseError: String
     get() {
@@ -53,7 +54,7 @@ public open class RDShaderFile : Resource() {
   }
 
   /**
-   * Sets the SPIR-V [bytecode] that will be compiled for the specified [version].
+   * Sets the SPIR-V [param bytecode] that will be compiled for the specified [param version].
    */
   @JvmOverloads
   public fun setBytecode(bytecode: RDShaderSPIRV, version: StringName = StringName("")): Unit {
@@ -62,7 +63,7 @@ public open class RDShaderFile : Resource() {
   }
 
   /**
-   * Returns the SPIR-V intermediate representation for the specified shader [version].
+   * Returns the SPIR-V intermediate representation for the specified shader [param version].
    */
   @JvmOverloads
   public fun getSpirv(version: StringName = StringName("")): RDShaderSPIRV? {

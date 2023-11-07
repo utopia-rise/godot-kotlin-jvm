@@ -22,8 +22,18 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * This node allows you to create a sphere for use with the CSG system.
+ * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a
+ * significant CPU cost compared to creating a [MeshInstance3D] with a [PrimitiveMesh]. Moving a CSG
+ * node within another CSG node also has a significant CPU cost, so it should be avoided during
+ * gameplay.
+ */
 @GodotBaseType
 public open class CSGSphere3D : CSGPrimitive3D() {
+  /**
+   * Radius of the sphere.
+   */
   public var radius: Float
     get() {
       TransferContext.writeArguments()
@@ -35,6 +45,9 @@ public open class CSGSphere3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
     }
 
+  /**
+   * Number of vertical slices for the sphere.
+   */
   public var radialSegments: Int
     get() {
       TransferContext.writeArguments()
@@ -46,6 +59,9 @@ public open class CSGSphere3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setRadialSegmentsPtr, NIL)
     }
 
+  /**
+   * Number of horizontal slices for the sphere.
+   */
   public var rings: Int
     get() {
       TransferContext.writeArguments()
@@ -57,6 +73,10 @@ public open class CSGSphere3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setRingsPtr, NIL)
     }
 
+  /**
+   * If `true` the normals of the sphere are set to give a smooth effect making the sphere seem
+   * rounded. If `false` the sphere will have a flat shaded look.
+   */
   public var smoothFaces: Boolean
     get() {
       TransferContext.writeArguments()
@@ -68,6 +88,9 @@ public open class CSGSphere3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSmoothFacesPtr, NIL)
     }
 
+  /**
+   * The material used to render the sphere.
+   */
   public var material: Material?
     get() {
       TransferContext.writeArguments()

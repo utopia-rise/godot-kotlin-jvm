@@ -22,9 +22,6 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-/**
- *
- */
 @GodotBaseType
 public open class GDExtension : Resource() {
   public override fun new(scriptIndex: Int): Boolean {
@@ -32,44 +29,29 @@ public open class GDExtension : Resource() {
     return true
   }
 
-  /**
-   *
-   */
   public fun openLibrary(path: String, entrySymbol: String): GodotError {
     TransferContext.writeArguments(STRING to path, STRING to entrySymbol)
     TransferContext.callMethod(rawPtr, MethodBindings.openLibraryPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  /**
-   *
-   */
   public fun closeLibrary(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.closeLibraryPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun isLibraryOpen(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isLibraryOpenPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  /**
-   *
-   */
   public fun getMinimumLibraryInitializationLevel(): InitializationLevel {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinimumLibraryInitializationLevelPtr, LONG)
     return GDExtension.InitializationLevel.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  /**
-   *
-   */
   public fun initializeLibrary(level: InitializationLevel): Unit {
     TransferContext.writeArguments(LONG to level.id)
     TransferContext.callMethod(rawPtr, MethodBindings.initializeLibraryPtr, NIL)
@@ -78,21 +60,9 @@ public open class GDExtension : Resource() {
   public enum class InitializationLevel(
     id: Long,
   ) {
-    /**
-     *
-     */
     INITIALIZATION_LEVEL_CORE(0),
-    /**
-     *
-     */
     INITIALIZATION_LEVEL_SERVERS(1),
-    /**
-     *
-     */
     INITIALIZATION_LEVEL_SCENE(2),
-    /**
-     *
-     */
     INITIALIZATION_LEVEL_EDITOR(3),
     ;
 

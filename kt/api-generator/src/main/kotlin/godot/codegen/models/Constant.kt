@@ -7,5 +7,6 @@ import godot.codegen.traits.TypedTrait
 data class Constant @JsonCreator constructor(
     @JsonProperty("name") val name: String,
     @JsonProperty("type") val type: String?,
-    @JsonProperty("value") val value: String
+    @JsonProperty("value") val value: String,
+    @JsonProperty("documentation") val documentation: String?
 )

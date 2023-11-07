@@ -24,16 +24,17 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Point sampler for a [godot.Path3D].
- *
- * This node takes its parent [godot.Path3D], and returns the coordinates of a point within it, given a distance from the first vertex.
- *
- * It is useful for making other nodes follow a path, without coding the movement pattern. For that, the nodes must be children of this node. The descendant nodes will then move accordingly when setting the [progress] in this node.
+ * This node takes its parent [Path3D], and returns the coordinates of a point within it, given a
+ * distance from the first vertex.
+ * It is useful for making other nodes follow a path, without coding the movement pattern. For that,
+ * the nodes must be children of this node. The descendant nodes will then move accordingly when
+ * setting the [progress] in this node.
  */
 @GodotBaseType
 public open class PathFollow3D : Node3D() {
   /**
-   * The distance from the first vertex, measured in 3D units along the path. Changing this value sets this node's position to a point within the path.
+   * The distance from the first vertex, measured in 3D units along the path. Changing this value
+   * sets this node's position to a point within the path.
    */
   public var progress: Float
     get() {
@@ -47,7 +48,9 @@ public open class PathFollow3D : Node3D() {
     }
 
   /**
-   * The distance from the first vertex, considering 0.0 as the first vertex and 1.0 as the last. This is just another way of expressing the progress within the path, as the progress supplied is multiplied internally by the path's length.
+   * The distance from the first vertex, considering 0.0 as the first vertex and 1.0 as the last.
+   * This is just another way of expressing the progress within the path, as the progress supplied is
+   * multiplied internally by the path's length.
    */
   public var progressRatio: Float
     get() {
@@ -89,7 +92,8 @@ public open class PathFollow3D : Node3D() {
     }
 
   /**
-   * Allows or forbids rotation on one or more axes, depending on the [enum RotationMode] constants being used.
+   * Allows or forbids rotation on one or more axes, depending on the [enum RotationMode] constants
+   * being used.
    */
   public var rotationMode: RotationMode
     get() {
@@ -103,7 +107,8 @@ public open class PathFollow3D : Node3D() {
     }
 
   /**
-   * If `true`, the node moves on the travel path with orienting the +Z axis as forward. See also [godot.Vector3.FORWARD] and [godot.Vector3.MODEL_FRONT].
+   * If `true`, the node moves on the travel path with orienting the +Z axis as forward. See also
+   * [constant Vector3.FORWARD] and [constant Vector3.MODEL_FRONT].
    */
   public var useModelFront: Boolean
     get() {
@@ -117,11 +122,15 @@ public open class PathFollow3D : Node3D() {
     }
 
   /**
-   * If `true`, the position between two cached points is interpolated cubically, and linearly otherwise.
-   *
-   * The points along the [godot.Curve3D] of the [godot.Path3D] are precomputed before use, for faster calculations. The point at the requested offset is then calculated interpolating between two adjacent cached points. This may present a problem if the curve makes sharp turns, as the cached points may not follow the curve closely enough.
-   *
-   * There are two answers to this problem: either increase the number of cached points and increase memory consumption, or make a cubic interpolation between two points at the cost of (slightly) slower calculations.
+   * If `true`, the position between two cached points is interpolated cubically, and linearly
+   * otherwise.
+   * The points along the [Curve3D] of the [Path3D] are precomputed before use, for faster
+   * calculations. The point at the requested offset is then calculated interpolating between two
+   * adjacent cached points. This may present a problem if the curve makes sharp turns, as the cached
+   * points may not follow the curve closely enough.
+   * There are two answers to this problem: either increase the number of cached points and increase
+   * memory consumption, or make a cubic interpolation between two points at the cost of (slightly)
+   * slower calculations.
    */
   public var cubicInterp: Boolean
     get() {
@@ -135,7 +144,8 @@ public open class PathFollow3D : Node3D() {
     }
 
   /**
-   * If `true`, any offset outside the path's length will wrap around, instead of stopping at the ends. Use it for cyclic paths.
+   * If `true`, any offset outside the path's length will wrap around, instead of stopping at the
+   * ends. Use it for cyclic paths.
    */
   public var loop: Boolean
     get() {
@@ -149,7 +159,7 @@ public open class PathFollow3D : Node3D() {
     }
 
   /**
-   * If `true`, the tilt property of [godot.Curve3D] takes effect.
+   * If `true`, the tilt property of [Curve3D] takes effect.
    */
   public var tiltEnabled: Boolean
     get() {
@@ -187,7 +197,8 @@ public open class PathFollow3D : Node3D() {
      */
     ROTATION_XYZ(3),
     /**
-     * Uses the up vector information in a [godot.Curve3D] to enforce orientation. This rotation mode requires the [godot.Path3D]'s [godot.Curve3D.upVectorEnabled] property to be set to `true`.
+     * Uses the up vector information in a [Curve3D] to enforce orientation. This rotation mode
+     * requires the [Path3D]'s [Curve3D.upVectorEnabled] property to be set to `true`.
      */
     ROTATION_ORIENTED(4),
     ;
@@ -204,7 +215,8 @@ public open class PathFollow3D : Node3D() {
 
   public companion object {
     /**
-     * Correct the [transform]. [rotationMode] implicitly specifies how posture (forward, up and sideway direction) is calculated.
+     * Correct the [param transform]. [param rotation_mode] implicitly specifies how posture
+     * (forward, up and sideway direction) is calculated.
      */
     public fun correctPosture(transform: Transform3D, rotationMode: RotationMode): Transform3D {
       TransferContext.writeArguments(TRANSFORM3D to transform, LONG to rotationMode.id)

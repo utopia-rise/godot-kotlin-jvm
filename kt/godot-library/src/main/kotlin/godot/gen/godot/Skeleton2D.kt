@@ -29,19 +29,17 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * The parent of a hierarchy of [godot.Bone2D]s, used to create a 2D skeletal animation.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/animation/2d_skeletons.html]($DOCS_URL/tutorials/animation/2d_skeletons.html)
- *
- * [godot.Skeleton2D] parents a hierarchy of [godot.Bone2D] nodes. It holds a reference to each [godot.Bone2D]'s rest pose and acts as a single point of access to its bones.
- *
- * To set up different types of inverse kinematics for the given Skeleton2D, a [godot.SkeletonModificationStack2D] should be created. The inverse kinematics be applied by increasing [godot.SkeletonModificationStack2D.modificationCount] and creating the desired number of modifications.
+ * [Skeleton2D] parents a hierarchy of [Bone2D] nodes. It holds a reference to each [Bone2D]'s rest
+ * pose and acts as a single point of access to its bones.
+ * To set up different types of inverse kinematics for the given Skeleton2D, a
+ * [SkeletonModificationStack2D] should be created. The inverse kinematics be applied by increasing
+ * [SkeletonModificationStack2D.modificationCount] and creating the desired number of modifications.
  */
 @GodotBaseType
 public open class Skeleton2D : Node2D() {
   /**
-   * Emitted when the [godot.Bone2D] setup attached to this skeletons changes. This is primarily used internally within the skeleton.
+   * Emitted when the [Bone2D] setup attached to this skeletons changes. This is primarily used
+   * internally within the skeleton.
    */
   public val boneSetupChanged: Signal0 by signal()
 
@@ -51,7 +49,7 @@ public open class Skeleton2D : Node2D() {
   }
 
   /**
-   * Returns the number of [godot.Bone2D] nodes in the node hierarchy parented by Skeleton2D.
+   * Returns the number of [Bone2D] nodes in the node hierarchy parented by Skeleton2D.
    */
   public fun getBoneCount(): Int {
     TransferContext.writeArguments()
@@ -60,7 +58,9 @@ public open class Skeleton2D : Node2D() {
   }
 
   /**
-   * Returns a [godot.Bone2D] from the node hierarchy parented by Skeleton2D. The object to return is identified by the parameter [idx]. Bones are indexed by descending the node hierarchy from top to bottom, adding the children of each branch before moving to the next sibling.
+   * Returns a [Bone2D] from the node hierarchy parented by Skeleton2D. The object to return is
+   * identified by the parameter [param idx]. Bones are indexed by descending the node hierarchy from
+   * top to bottom, adding the children of each branch before moving to the next sibling.
    */
   public fun getBone(idx: Int): Bone2D? {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -78,7 +78,7 @@ public open class Skeleton2D : Node2D() {
   }
 
   /**
-   * Sets the [godot.SkeletonModificationStack2D] attached to this skeleton.
+   * Sets the [SkeletonModificationStack2D] attached to this skeleton.
    */
   public fun setModificationStack(modificationStack: SkeletonModificationStack2D): Unit {
     TransferContext.writeArguments(OBJECT to modificationStack)
@@ -86,7 +86,7 @@ public open class Skeleton2D : Node2D() {
   }
 
   /**
-   * Returns the [godot.SkeletonModificationStack2D] attached to this skeleton, if one exists.
+   * Returns the [SkeletonModificationStack2D] attached to this skeleton, if one exists.
    */
   public fun getModificationStack(): SkeletonModificationStack2D? {
     TransferContext.writeArguments()
@@ -95,7 +95,8 @@ public open class Skeleton2D : Node2D() {
   }
 
   /**
-   * Executes all the modifications on the [godot.SkeletonModificationStack2D], if the Skeleton2D has one assigned.
+   * Executes all the modifications on the [SkeletonModificationStack2D], if the Skeleton2D has one
+   * assigned.
    */
   public fun executeModifications(delta: Float, executionMode: Int): Unit {
     TransferContext.writeArguments(DOUBLE to delta.toDouble(), LONG to executionMode.toLong())
@@ -103,11 +104,11 @@ public open class Skeleton2D : Node2D() {
   }
 
   /**
-   * Sets the local pose transform, [overridePose], for the bone at [boneIdx].
-   *
-   * [strength] is the interpolation strength that will be used when applying the pose, and [persistent] determines if the applied pose will remain.
-   *
-   * **Note:** The pose transform needs to be a local transform relative to the [godot.Bone2D] node at [boneIdx]!
+   * Sets the local pose transform, [param override_pose], for the bone at [param bone_idx].
+   * [param strength] is the interpolation strength that will be used when applying the pose, and
+   * [param persistent] determines if the applied pose will remain.
+   * **Note:** The pose transform needs to be a local transform relative to the [Bone2D] node at
+   * [param bone_idx]!
    */
   public fun setBoneLocalPoseOverride(
     boneIdx: Int,
@@ -120,7 +121,7 @@ public open class Skeleton2D : Node2D() {
   }
 
   /**
-   * Returns the local pose override transform for [boneIdx].
+   * Returns the local pose override transform for [param bone_idx].
    */
   public fun getBoneLocalPoseOverride(boneIdx: Int): Transform2D {
     TransferContext.writeArguments(LONG to boneIdx.toLong())

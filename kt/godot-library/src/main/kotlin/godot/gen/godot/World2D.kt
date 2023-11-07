@@ -18,17 +18,13 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A resource that holds all components of a 2D world, such as a canvas and a physics space.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/physics/ray-casting.html]($DOCS_URL/tutorials/physics/ray-casting.html)
- *
- * Class that has everything pertaining to a 2D world: A physics space, a canvas, and a sound space. 2D nodes register their resources into the current 2D world.
+ * Class that has everything pertaining to a 2D world: A physics space, a canvas, and a sound space.
+ * 2D nodes register their resources into the current 2D world.
  */
 @GodotBaseType
 public open class World2D : Resource() {
   /**
-   * The [RID] of this world's canvas resource. Used by the [godot.RenderingServer] for 2D drawing.
+   * The [RID] of this world's canvas resource. Used by the [RenderingServer] for 2D drawing.
    */
   public val canvas: RID
     get() {
@@ -38,7 +34,8 @@ public open class World2D : Resource() {
     }
 
   /**
-   * The [RID] of this world's physics space resource. Used by the [godot.PhysicsServer2D] for 2D physics, treating it as both a space and an area.
+   * The [RID] of this world's physics space resource. Used by the [PhysicsServer2D] for 2D physics,
+   * treating it as both a space and an area.
    */
   public val space: RID
     get() {
@@ -48,7 +45,7 @@ public open class World2D : Resource() {
     }
 
   /**
-   * The [RID] of this world's navigation map. Used by the [godot.NavigationServer2D].
+   * The [RID] of this world's navigation map. Used by the [NavigationServer2D].
    */
   public val navigationMap: RID
     get() {
@@ -58,7 +55,9 @@ public open class World2D : Resource() {
     }
 
   /**
-   * Direct access to the world's physics 2D space state. Used for querying current and potential collisions. When using multi-threaded physics, access is limited to [godot.Node.PhysicsProcess] in the main thread.
+   * Direct access to the world's physics 2D space state. Used for querying current and potential
+   * collisions. When using multi-threaded physics, access is limited to [Node.PhysicsProcess] in the
+   * main thread.
    */
   public val directSpaceState: PhysicsDirectSpaceState2D?
     get() {
