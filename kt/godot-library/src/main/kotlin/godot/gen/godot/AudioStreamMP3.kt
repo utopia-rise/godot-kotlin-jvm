@@ -22,8 +22,36 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * MP3 audio stream driver. See [data] if you want to load an MP3 file at run-time.
+ */
 @GodotBaseType
 public open class AudioStreamMP3 : AudioStream() {
+  /**
+   * Contains the audio data in bytes.
+   * You can load a file without having to import it beforehand using the code snippet below. Keep
+   * in mind that this snippet loads the whole file into memory and may not be ideal for huge files
+   * (hundreds of megabytes or more).
+   *
+   * gdscript:
+   * ```gdscript
+   * func load_mp3(path):
+   *     var file = FileAccess.open(path, FileAccess.READ)
+   *     var sound = AudioStreamMP3.new()
+   *     sound.data = file.get_buffer(file.get_length())
+   *     return sound
+   * ```
+   * csharp:
+   * ```csharp
+   * public AudioStreamMP3 LoadMP3(string path)
+   * {
+   *     using var file = FileAccess.Open(path, FileAccess.ModeFlags.Read);
+   *     var sound = new AudioStreamMP3();
+   *     sound.Data = file.GetBuffer(file.GetLength());
+   *     return sound;
+   * }
+   * ```
+   */
   public var `data`: PackedByteArray
     get() {
       TransferContext.writeArguments()
@@ -68,6 +96,9 @@ public open class AudioStreamMP3 : AudioStream() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBarBeatsPtr, NIL)
     }
 
+  /**
+   * If `true`, the stream will automatically loop when it reaches the end.
+   */
   public var loop: Boolean
     get() {
       TransferContext.writeArguments()
@@ -79,6 +110,9 @@ public open class AudioStreamMP3 : AudioStream() {
       TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
     }
 
+  /**
+   * Time in seconds at which the stream starts after being looped.
+   */
   public var loopOffset: Double
     get() {
       TransferContext.writeArguments()

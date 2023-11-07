@@ -21,6 +21,10 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * [OpenXRExtensionWrapperExtension] allows clients to implement OpenXR extensions with GDExtension.
+ * The extension should be registered with [registerExtensionWrapper].
+ */
 @GodotBaseType
 public open class OpenXRExtensionWrapperExtension : Object() {
   public override fun new(scriptIndex: Int): Boolean {
@@ -28,64 +32,135 @@ public open class OpenXRExtensionWrapperExtension : Object() {
     return true
   }
 
+  /**
+   * Returns a [Dictionary] of OpenXR extensions related to this extension. The [Dictionary] should
+   * contain the name of the extension, mapped to a `bool *` cast to an integer:
+   * - If the `bool *` is a `nullptr` this extension is mandatory.
+   * - If the `bool *` points to a boolean, the boolean will be updated to `true` if the extension
+   * is enabled.
+   */
   public open fun _getRequestedExtensions(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_requested_extensions is not implemented for OpenXRExtensionWrapperExtension")
   }
 
+  /**
+   * Allows extensions to register additional controller metadata. This function is called even when
+   * the OpenXR API is not constructed as the metadata needs to be available to the editor.
+   * Extensions should also provide metadata regardless of whether they are supported on the host
+   * system. The controller data is used to setup action maps for users who may have access to the
+   * relevant hardware.
+   */
   public open fun _onRegisterMetadata(): Unit {
   }
 
+  /**
+   * Called before the OpenXR instance is created.
+   */
   public open fun _onBeforeInstanceCreated(): Unit {
   }
 
+  /**
+   * Called right after the OpenXR instance is created.
+   */
   public open fun _onInstanceCreated(instance: Long): Unit {
   }
 
+  /**
+   * Called right before the OpenXR instance is destroyed.
+   */
   public open fun _onInstanceDestroyed(): Unit {
   }
 
+  /**
+   * Called right after the OpenXR session is created.
+   */
   public open fun _onSessionCreated(session: Long): Unit {
   }
 
+  /**
+   * Called as part of the OpenXR process handling. This happens right before general and physics
+   * processing steps of the main loop. During this step controller data is queried and made available
+   * to game logic.
+   */
   public open fun _onProcess(): Unit {
   }
 
+  /**
+   * Called right before the XR viewports begin their rendering step.
+   */
   public open fun _onPreRender(): Unit {
   }
 
+  /**
+   * Called right before the OpenXR session is destroyed.
+   */
   public open fun _onSessionDestroyed(): Unit {
   }
 
+  /**
+   * Called when the OpenXR session state is changed to idle.
+   */
   public open fun _onStateIdle(): Unit {
   }
 
+  /**
+   * Called when the OpenXR session state is changed to ready. This means OpenXR is ready to set up
+   * the session.
+   */
   public open fun _onStateReady(): Unit {
   }
 
+  /**
+   * Called when the OpenXR session state is changed to synchronized. OpenXR also returns to this
+   * state when the application loses focus.
+   */
   public open fun _onStateSynchronized(): Unit {
   }
 
+  /**
+   * Called when the OpenXR session state is changed to visible. This means OpenXR is now ready to
+   * receive frames.
+   */
   public open fun _onStateVisible(): Unit {
   }
 
+  /**
+   * Called when the OpenXR session state is changed to focused. This state is the active state when
+   * the game runs.
+   */
   public open fun _onStateFocused(): Unit {
   }
 
+  /**
+   * Called when the OpenXR session state is changed to stopping.
+   */
   public open fun _onStateStopping(): Unit {
   }
 
+  /**
+   * Called when the OpenXR session state is changed to loss pending.
+   */
   public open fun _onStateLossPending(): Unit {
   }
 
+  /**
+   * Called when the OpenXR session state is changed to exiting.
+   */
   public open fun _onStateExiting(): Unit {
   }
 
+  /**
+   * Returns the created [OpenXRAPIExtension], which can be used to access the OpenXR API.
+   */
   public fun getOpenxrApi(): OpenXRAPIExtension? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOpenxrApiPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as OpenXRAPIExtension?)
   }
 
+  /**
+   * Registers the extension. This should happen at core module initialization level.
+   */
   public fun registerExtensionWrapper(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.registerExtensionWrapperPtr, NIL)

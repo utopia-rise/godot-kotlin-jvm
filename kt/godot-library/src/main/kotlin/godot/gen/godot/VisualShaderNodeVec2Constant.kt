@@ -21,14 +21,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A [godot.core.Vector2] constant to be used within the visual shader graph.
- *
- * A constant [godot.core.Vector2], which can be used as an input node.
+ * A constant [Vector2], which can be used as an input node.
  */
 @GodotBaseType
 public open class VisualShaderNodeVec2Constant : VisualShaderNodeConstant() {
   /**
-   * A [godot.core.Vector2] constant which represents the state of this node.
+   * A [Vector2] constant which represents the state of this node.
    */
   @CoreTypeLocalCopy
   public var constant: Vector2
@@ -48,7 +46,7 @@ public open class VisualShaderNodeVec2Constant : VisualShaderNodeConstant() {
   }
 
   /**
-   * A [godot.core.Vector2] constant which represents the state of this node.
+   * A [Vector2] constant which represents the state of this node.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

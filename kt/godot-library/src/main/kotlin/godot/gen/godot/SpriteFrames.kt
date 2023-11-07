@@ -29,9 +29,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Sprite frame library for AnimatedSprite2D and AnimatedSprite3D.
- *
- * Sprite frame library for an [godot.AnimatedSprite2D] or [godot.AnimatedSprite3D] node. Contains frames and animation data for playback.
+ * Sprite frame library for an [AnimatedSprite2D] or [AnimatedSprite3D] node. Contains frames and
+ * animation data for playback.
  */
 @GodotBaseType
 public open class SpriteFrames : Resource() {
@@ -41,7 +40,7 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Adds a new [anim] animation to the library.
+   * Adds a new [param anim] animation to the library.
    */
   public fun addAnimation(anim: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to anim)
@@ -49,7 +48,7 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Returns `true` if the [anim] animation exists.
+   * Returns `true` if the [param anim] animation exists.
    */
   public fun hasAnimation(anim: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to anim)
@@ -58,7 +57,7 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Removes the [anim] animation.
+   * Removes the [param anim] animation.
    */
   public fun removeAnimation(anim: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to anim)
@@ -66,7 +65,7 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Changes the [anim] animation's name to [newname].
+   * Changes the [param anim] animation's name to [param newname].
    */
   public fun renameAnimation(anim: StringName, newname: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, STRING_NAME to newname)
@@ -74,7 +73,8 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Returns an array containing the names associated to each animation. Values are placed in alphabetical order.
+   * Returns an array containing the names associated to each animation. Values are placed in
+   * alphabetical order.
    */
   public fun getAnimationNames(): PackedStringArray {
     TransferContext.writeArguments()
@@ -83,7 +83,7 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Sets the speed for the [anim] animation in frames per second.
+   * Sets the speed for the [param anim] animation in frames per second.
    */
   public fun setAnimationSpeed(anim: StringName, fps: Double): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, DOUBLE to fps)
@@ -91,7 +91,7 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Returns the speed in frames per second for the [anim] animation.
+   * Returns the speed in frames per second for the [param anim] animation.
    */
   public fun getAnimationSpeed(anim: StringName): Double {
     TransferContext.writeArguments(STRING_NAME to anim)
@@ -100,7 +100,8 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * If [loop] is `true`, the [anim] animation will loop when it reaches the end, or the start if it is played in reverse.
+   * If [param loop] is `true`, the [param anim] animation will loop when it reaches the end, or the
+   * start if it is played in reverse.
    */
   public fun setAnimationLoop(anim: StringName, loop: Boolean): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, BOOL to loop)
@@ -108,7 +109,8 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Returns `true` if the given animation is configured to loop when it finishes playing. Otherwise, returns `false`.
+   * Returns `true` if the given animation is configured to loop when it finishes playing.
+   * Otherwise, returns `false`.
    */
   public fun getAnimationLoop(anim: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to anim)
@@ -117,7 +119,8 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Adds a frame to the [anim] animation. If [atPosition] is `-1`, the frame will be added to the end of the animation.
+   * Adds a frame to the [param anim] animation. If [param at_position] is `-1`, the frame will be
+   * added to the end of the animation.
    */
   @JvmOverloads
   public fun addFrame(
@@ -131,7 +134,8 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Sets the [texture] and the [duration] of the frame [idx] in the [anim] animation.
+   * Sets the [param texture] and the [param duration] of the frame [param idx] in the [param anim]
+   * animation.
    */
   @JvmOverloads
   public fun setFrame(
@@ -145,7 +149,7 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Removes the [anim] animation's frame [idx].
+   * Removes the [param anim] animation's frame [param idx].
    */
   public fun removeFrame(anim: StringName, idx: Int): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, LONG to idx.toLong())
@@ -153,7 +157,7 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Returns the number of frames for the [anim] animation.
+   * Returns the number of frames for the [param anim] animation.
    */
   public fun getFrameCount(anim: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to anim)
@@ -162,7 +166,7 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Returns the texture of the frame [idx] in the [anim] animation.
+   * Returns the texture of the frame [param idx] in the [param anim] animation.
    */
   public fun getFrameTexture(anim: StringName, idx: Int): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to anim, LONG to idx.toLong())
@@ -171,13 +175,15 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Returns a relative duration of the frame [idx] in the [anim] animation (defaults to `1.0`). For example, a frame with a duration of `2.0` is displayed twice as long as a frame with a duration of `1.0`. You can calculate the absolute duration (in seconds) of a frame using the following formula:
-   *
-   * ```
-   * 				absolute_duration = relative_duration / (animation_fps * abs(playing_speed))
-   * 				```
-   *
-   * In this example, `playing_speed` refers to either [godot.AnimatedSprite2D.getPlayingSpeed] or [godot.AnimatedSprite3D.getPlayingSpeed].
+   * Returns a relative duration of the frame [param idx] in the [param anim] animation (defaults to
+   * `1.0`). For example, a frame with a duration of `2.0` is displayed twice as long as a frame with a
+   * duration of `1.0`. You can calculate the absolute duration (in seconds) of a frame using the
+   * following formula:
+   * [codeblock]
+   * absolute_duration = relative_duration / (animation_fps * abs(playing_speed))
+   * [/codeblock]
+   * In this example, `playing_speed` refers to either [AnimatedSprite2D.getPlayingSpeed] or
+   * [AnimatedSprite3D.getPlayingSpeed].
    */
   public fun getFrameDuration(anim: StringName, idx: Int): Float {
     TransferContext.writeArguments(STRING_NAME to anim, LONG to idx.toLong())
@@ -186,7 +192,7 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Removes all frames from the [anim] animation.
+   * Removes all frames from the [param anim] animation.
    */
   public fun clear(anim: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to anim)

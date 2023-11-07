@@ -18,9 +18,8 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * An unsigned scalar integer function to be used within the visual shader graph.
- *
- * Accept an unsigned integer scalar (`x`) to the input port and transform it according to [function].
+ * Accept an unsigned integer scalar (`x`) to the input port and transform it according to
+ * [function].
  */
 @GodotBaseType
 public open class VisualShaderNodeUIntFunc : VisualShaderNode() {
@@ -51,7 +50,8 @@ public open class VisualShaderNodeUIntFunc : VisualShaderNode() {
      */
     FUNC_NEGATE(0),
     /**
-     * Returns the result of bitwise `NOT` operation on the integer. Translates to `~a` in the Godot Shader Language.
+     * Returns the result of bitwise `NOT` operation on the integer. Translates to `~a` in the Godot
+     * Shader Language.
      */
     FUNC_BITWISE_NOT(1),
     /**

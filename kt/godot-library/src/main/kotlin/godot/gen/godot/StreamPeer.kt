@@ -33,16 +33,16 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Abstract base class for interacting with streams.
- *
- * StreamPeer is an abstract base class mostly used for stream-based protocols (such as TCP). It provides an API for sending and receiving data through streams as raw data or strings.
- *
- * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
+ * StreamPeer is an abstract base class mostly used for stream-based protocols (such as TCP). It
+ * provides an API for sending and receiving data through streams as raw data or strings.
+ * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
+ * export preset before exporting the project or using one-click deploy. Otherwise, network
+ * communication of any kind will be blocked by Android.
  */
 @GodotBaseType
 public open class StreamPeer internal constructor() : RefCounted() {
   /**
-   * If `true`, this [godot.StreamPeer] will using big-endian format for encoding and decoding.
+   * If `true`, this [StreamPeer] will using big-endian format for encoding and decoding.
    */
   public var bigEndian: Boolean
     get() {
@@ -61,7 +61,8 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sends a chunk of data through the connection, blocking if necessary until the data is done sending. This function returns an [enum Error] code.
+   * Sends a chunk of data through the connection, blocking if necessary until the data is done
+   * sending. This function returns an [enum Error] code.
    */
   public fun putData(`data`: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
@@ -70,7 +71,9 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sends a chunk of data through the connection. If all the data could not be sent at once, only part of it will. This function returns two values, an [enum Error] code and an integer, describing how much data was actually sent.
+   * Sends a chunk of data through the connection. If all the data could not be sent at once, only
+   * part of it will. This function returns two values, an [enum Error] code and an integer, describing
+   * how much data was actually sent.
    */
   public fun putPartialData(`data`: PackedByteArray): VariantArray<Any?> {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
@@ -79,7 +82,10 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns a chunk data with the received bytes. The number of bytes to be received can be requested in the [bytes] argument. If not enough bytes are available, the function will block until the desired amount is received. This function returns two values, an [enum Error] code and a data array.
+   * Returns a chunk data with the received bytes. The number of bytes to be received can be
+   * requested in the [param bytes] argument. If not enough bytes are available, the function will
+   * block until the desired amount is received. This function returns two values, an [enum Error] code
+   * and a data array.
    */
   public fun getData(bytes: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to bytes.toLong())
@@ -88,7 +94,10 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns a chunk data with the received bytes. The number of bytes to be received can be requested in the "bytes" argument. If not enough bytes are available, the function will return how many were actually received. This function returns two values, an [enum Error] code, and a data array.
+   * Returns a chunk data with the received bytes. The number of bytes to be received can be
+   * requested in the "bytes" argument. If not enough bytes are available, the function will return how
+   * many were actually received. This function returns two values, an [enum Error] code, and a data
+   * array.
    */
   public fun getPartialData(bytes: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to bytes.toLong())
@@ -97,7 +106,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the number of bytes this [godot.StreamPeer] has available.
+   * Returns the number of bytes this [StreamPeer] has available.
    */
   public fun getAvailableBytes(): Int {
     TransferContext.writeArguments()
@@ -186,25 +195,18 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Puts a zero-terminated ASCII string into the stream prepended by a 32-bit unsigned integer representing its size.
-   *
+   * Puts a zero-terminated ASCII string into the stream prepended by a 32-bit unsigned integer
+   * representing its size.
    * **Note:** To put an ASCII string without prepending its size, you can use [putData]:
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * put_data("Hello world".to_ascii_buffer())
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * PutData("Hello World".ToAsciiBuffer());
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public fun putString(`value`: String): Unit {
     TransferContext.writeArguments(STRING to value)
@@ -212,25 +214,18 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Puts a zero-terminated UTF-8 string into the stream prepended by a 32 bits unsigned integer representing its size.
-   *
+   * Puts a zero-terminated UTF-8 string into the stream prepended by a 32 bits unsigned integer
+   * representing its size.
    * **Note:** To put a UTF-8 string without prepending its size, you can use [putData]:
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * put_data("Hello world".to_utf8_buffer())
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * PutData("Hello World".ToUtf8Buffer());
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public fun putUtf8String(`value`: String): Unit {
     TransferContext.writeArguments(STRING to value)
@@ -238,8 +233,8 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Puts a Variant into the stream. If [fullObjects] is `true` encoding objects is allowed (and can potentially include code).
-   *
+   * Puts a Variant into the stream. If [param full_objects] is `true` encoding objects is allowed
+   * (and can potentially include code).
    * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    */
   @JvmOverloads
@@ -339,7 +334,9 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Gets an ASCII string with byte-length [bytes] from the stream. If [bytes] is negative (default) the length will be read from the stream using the reverse process of [putString].
+   * Gets an ASCII string with byte-length [param bytes] from the stream. If [param bytes] is
+   * negative (default) the length will be read from the stream using the reverse process of
+   * [putString].
    */
   @JvmOverloads
   public fun getString(bytes: Int = -1): String {
@@ -349,7 +346,9 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Gets a UTF-8 string with byte-length [bytes] from the stream (this decodes the string sent as UTF-8). If [bytes] is negative (default) the length will be read from the stream using the reverse process of [putUtf8String].
+   * Gets a UTF-8 string with byte-length [param bytes] from the stream (this decodes the string
+   * sent as UTF-8). If [param bytes] is negative (default) the length will be read from the stream
+   * using the reverse process of [putUtf8String].
    */
   @JvmOverloads
   public fun getUtf8String(bytes: Int = -1): String {
@@ -359,11 +358,12 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Gets a Variant from the stream. If [allowObjects] is `true`, decoding objects is allowed.
-   *
+   * Gets a Variant from the stream. If [param allow_objects] is `true`, decoding objects is
+   * allowed.
    * Internally, this uses the same decoding mechanism as the [@GlobalScope.bytesToVar] method.
-   *
-   * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
+   * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option
+   * if the serialized object comes from untrusted sources to avoid potential security threats such as
+   * remote code execution.
    */
   @JvmOverloads
   public fun getVar(allowObjects: Boolean = false): Any? {

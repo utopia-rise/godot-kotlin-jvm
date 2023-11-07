@@ -12,12 +12,8 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A container that keeps its child controls within the area of a [godot.StyleBox].
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/520](https://godotengine.org/asset-library/asset/520)
- *
- * A container that keeps its child controls within the area of a [godot.StyleBox]. Useful for giving controls an outline.
+ * A container that keeps its child controls within the area of a [StyleBox]. Useful for giving
+ * controls an outline.
  */
 @GodotBaseType
 public open class PanelContainer : Container() {

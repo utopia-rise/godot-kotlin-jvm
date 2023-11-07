@@ -19,20 +19,15 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A synchronization mechanism used to control access to a shared resource by [godot.Thread]s.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/performance/thread_safe_apis.html]($DOCS_URL/tutorials/performance/thread_safe_apis.html)
- *
- * A synchronization semaphore that can be used to synchronize multiple [godot.Thread]s. Initialized to zero on creation. For a binary version, see [godot.Mutex].
- *
+ * A synchronization semaphore that can be used to synchronize multiple [Thread]s. Initialized to
+ * zero on creation. For a binary version, see [Mutex].
  * **Warning:** Semaphores must be used carefully to avoid deadlocks.
- *
- * **Warning:** To guarantee that the operating system is able to perform proper cleanup (no crashes, no deadlocks), these conditions must be met:
- *
- * - When a [godot.Semaphore]'s reference count reaches zero and it is therefore destroyed, no threads must be waiting on it.
- *
- * - When a [godot.Thread]'s reference count reaches zero and it is therefore destroyed, it must not be waiting on any semaphore.
+ * **Warning:** To guarantee that the operating system is able to perform proper cleanup (no
+ * crashes, no deadlocks), these conditions must be met:
+ * - When a [Semaphore]'s reference count reaches zero and it is therefore destroyed, no threads
+ * must be waiting on it.
+ * - When a [Thread]'s reference count reaches zero and it is therefore destroyed, it must not be
+ * waiting on any semaphore.
  */
 @GodotBaseType
 public open class Semaphore : RefCounted() {
@@ -42,7 +37,7 @@ public open class Semaphore : RefCounted() {
   }
 
   /**
-   * Waits for the [godot.Semaphore], if its value is zero, blocks until non-zero.
+   * Waits for the [Semaphore], if its value is zero, blocks until non-zero.
    */
   @JvmName("semaphoreWait")
   public fun wait(): Unit {
@@ -51,7 +46,8 @@ public open class Semaphore : RefCounted() {
   }
 
   /**
-   * Like [wait], but won't block, so if the value is zero, fails immediately and returns `false`. If non-zero, it returns `true` to report success.
+   * Like [wait], but won't block, so if the value is zero, fails immediately and returns `false`.
+   * If non-zero, it returns `true` to report success.
    */
   public fun tryWait(): Boolean {
     TransferContext.writeArguments()
@@ -60,7 +56,7 @@ public open class Semaphore : RefCounted() {
   }
 
   /**
-   * Lowers the [godot.Semaphore], allowing one more thread in.
+   * Lowers the [Semaphore], allowing one more thread in.
    */
   public fun post(): Unit {
     TransferContext.writeArguments()

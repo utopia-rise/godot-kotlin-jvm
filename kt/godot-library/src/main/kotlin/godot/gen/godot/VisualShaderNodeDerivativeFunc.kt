@@ -18,8 +18,6 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Calculates a derivative within the visual shader graph.
- *
  * This node is only available in `Fragment` and `Light` visual shaders.
  */
 @GodotBaseType
@@ -53,7 +51,8 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     }
 
   /**
-   * Sets the level of precision to use for the derivative function. See [enum Precision] for options. When using the GL Compatibility renderer, this setting has no effect.
+   * Sets the level of precision to use for the derivative function. See [enum Precision] for
+   * options. When using the GL Compatibility renderer, this setting has no effect.
    */
   public var precision: Precision
     get() {
@@ -141,15 +140,22 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     id: Long,
   ) {
     /**
-     * No precision is specified, the GPU driver is allowed to use whatever level of precision it chooses. This is the default option and is equivalent to using `dFdx()` or `dFdy()` in text shaders.
+     * No precision is specified, the GPU driver is allowed to use whatever level of precision it
+     * chooses. This is the default option and is equivalent to using `dFdx()` or `dFdy()` in text
+     * shaders.
      */
     PRECISION_NONE(0),
     /**
-     * The derivative will be calculated using the current fragment's neighbors (which may not include the current fragment). This tends to be faster than using [PRECISION_FINE], but may not be suitable when more precision is needed. This is equivalent to using `dFdxCoarse()` or `dFdyCoarse()` in text shaders.
+     * The derivative will be calculated using the current fragment's neighbors (which may not
+     * include the current fragment). This tends to be faster than using [constant PRECISION_FINE], but
+     * may not be suitable when more precision is needed. This is equivalent to using `dFdxCoarse()` or
+     * `dFdyCoarse()` in text shaders.
      */
     PRECISION_COARSE(1),
     /**
-     * The derivative will be calculated using the current fragment and its immediate neighbors. This tends to be slower than using [PRECISION_COARSE], but may be necessary when more precision is needed. This is equivalent to using `dFdxFine()` or `dFdyFine()` in text shaders.
+     * The derivative will be calculated using the current fragment and its immediate neighbors.
+     * This tends to be slower than using [constant PRECISION_COARSE], but may be necessary when more
+     * precision is needed. This is equivalent to using `dFdxFine()` or `dFdyFine()` in text shaders.
      */
     PRECISION_FINE(2),
     /**

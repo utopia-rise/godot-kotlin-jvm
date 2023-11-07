@@ -22,9 +22,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Parameters to be used with a [godot.Mesh] convex decomposition operation.
- *
- * Parameters to be used with a [godot.Mesh] convex decomposition operation.
+ * Parameters to be used with a [Mesh] convex decomposition operation.
  */
 @GodotBaseType
 public open class MeshConvexDecompositionSettings : RefCounted() {
@@ -127,7 +125,8 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
     }
 
   /**
-   * Controls the precision of the convex-hull generation process during the clipping plane selection stage. Ranges from `1` to `16`.
+   * Controls the precision of the convex-hull generation process during the clipping plane
+   * selection stage. Ranges from `1` to `16`.
    */
   public var convexHullDownsampling: Long
     get() {
@@ -197,7 +196,8 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
     }
 
   /**
-   * If enabled projects output convex hull vertices onto original source mesh to increase floating point accuracy of the results.
+   * If enabled projects output convex hull vertices onto original source mesh to increase floating
+   * point accuracy of the results.
    */
   public var projectHullVertices: Boolean
     get() {

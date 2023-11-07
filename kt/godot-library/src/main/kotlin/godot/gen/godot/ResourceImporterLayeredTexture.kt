@@ -12,12 +12,9 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Imports a 3-dimensional texture ([godot.Texture3D]), a [godot.Texture2DArray], a [godot.Cubemap] or a [godot.CubemapArray].
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/assets_pipeline/importing_images.html]($DOCS_URL/tutorials/assets_pipeline/importing_images.html)
- *
- * This imports a 3-dimensional texture, which can then be used in custom shaders, as a [godot.FogMaterial] density map or as a [godot.GPUParticlesAttractorVectorField3D]. See also [godot.ResourceImporterTexture] and [godot.ResourceImporterTextureAtlas].
+ * This imports a 3-dimensional texture, which can then be used in custom shaders, as a
+ * [FogMaterial] density map or as a [GPUParticlesAttractorVectorField3D]. See also
+ * [ResourceImporterTexture] and [ResourceImporterTextureAtlas].
  */
 @GodotBaseType
 public open class ResourceImporterLayeredTexture internal constructor() : ResourceImporter() {

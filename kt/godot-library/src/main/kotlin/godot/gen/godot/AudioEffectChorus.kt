@@ -22,12 +22,8 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Adds a chorus audio effect.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
- *
- * Adds a chorus audio effect. The effect applies a filter with voices to duplicate the audio source and manipulate it through the filter.
+ * Adds a chorus audio effect. The effect applies a filter with voices to duplicate the audio source
+ * and manipulate it through the filter.
  */
 @GodotBaseType
 public open class AudioEffectChorus : AudioEffect() {
@@ -78,102 +74,66 @@ public open class AudioEffectChorus : AudioEffect() {
     return true
   }
 
-  /**
-   *
-   */
   public fun setVoiceDelayMs(voiceIdx: Int, delayMs: Float): Unit {
     TransferContext.writeArguments(LONG to voiceIdx.toLong(), DOUBLE to delayMs.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVoiceDelayMsPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun getVoiceDelayMs(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVoiceDelayMsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  /**
-   *
-   */
   public fun setVoiceRateHz(voiceIdx: Int, rateHz: Float): Unit {
     TransferContext.writeArguments(LONG to voiceIdx.toLong(), DOUBLE to rateHz.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVoiceRateHzPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun getVoiceRateHz(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVoiceRateHzPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  /**
-   *
-   */
   public fun setVoiceDepthMs(voiceIdx: Int, depthMs: Float): Unit {
     TransferContext.writeArguments(LONG to voiceIdx.toLong(), DOUBLE to depthMs.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVoiceDepthMsPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun getVoiceDepthMs(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVoiceDepthMsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  /**
-   *
-   */
   public fun setVoiceLevelDb(voiceIdx: Int, levelDb: Float): Unit {
     TransferContext.writeArguments(LONG to voiceIdx.toLong(), DOUBLE to levelDb.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVoiceLevelDbPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun getVoiceLevelDb(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVoiceLevelDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  /**
-   *
-   */
   public fun setVoiceCutoffHz(voiceIdx: Int, cutoffHz: Float): Unit {
     TransferContext.writeArguments(LONG to voiceIdx.toLong(), DOUBLE to cutoffHz.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVoiceCutoffHzPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun getVoiceCutoffHz(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVoiceCutoffHzPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  /**
-   *
-   */
   public fun setVoicePan(voiceIdx: Int, pan: Float): Unit {
     TransferContext.writeArguments(LONG to voiceIdx.toLong(), DOUBLE to pan.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVoicePanPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun getVoicePan(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVoicePanPtr, DOUBLE)

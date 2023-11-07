@@ -17,14 +17,14 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Performs a 3D texture lookup within the visual shader graph.
- *
- * Performs a lookup operation on the provided texture, with support for multiple texture sources to choose from.
+ * Performs a lookup operation on the provided texture, with support for multiple texture sources to
+ * choose from.
  */
 @GodotBaseType
 public open class VisualShaderNodeTexture3D : VisualShaderNodeSample3D() {
   /**
-   * A source texture. Used if [godot.VisualShaderNodeSample3D.source] is set to [godot.VisualShaderNodeSample3D.SOURCE_TEXTURE].
+   * A source texture. Used if [VisualShaderNodeSample3D.source] is set to [constant
+   * VisualShaderNodeSample3D.SOURCE_TEXTURE].
    */
   public var texture: Texture3D?
     get() {

@@ -21,12 +21,8 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * Base class for audio streams.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/528](https://godotengine.org/asset-library/asset/528)
- *
- * Base class for audio streams. Audio streams are used for sound effects and music playback, and support WAV (via [godot.AudioStreamWAV]) and Ogg (via [godot.AudioStreamOggVorbis]) file formats.
+ * Base class for audio streams. Audio streams are used for sound effects and music playback, and
+ * support WAV (via [AudioStreamWAV]) and Ogg (via [AudioStreamOggVorbis]) file formats.
  */
 @GodotBaseType
 public open class AudioStream : Resource() {
@@ -35,44 +31,26 @@ public open class AudioStream : Resource() {
     return true
   }
 
-  /**
-   *
-   */
   public open fun _instantiatePlayback(): AudioStreamPlayback? {
     throw NotImplementedError("_instantiate_playback is not implemented for AudioStream")
   }
 
-  /**
-   *
-   */
   public open fun _getStreamName(): String {
     throw NotImplementedError("_get_stream_name is not implemented for AudioStream")
   }
 
-  /**
-   *
-   */
   public open fun _getLength(): Double {
     throw NotImplementedError("_get_length is not implemented for AudioStream")
   }
 
-  /**
-   *
-   */
   public open fun _isMonophonic(): Boolean {
     throw NotImplementedError("_is_monophonic is not implemented for AudioStream")
   }
 
-  /**
-   *
-   */
   public open fun _getBpm(): Double {
     throw NotImplementedError("_get_bpm is not implemented for AudioStream")
   }
 
-  /**
-   *
-   */
   public open fun _getBeatCount(): Int {
     throw NotImplementedError("_get_beat_count is not implemented for AudioStream")
   }
@@ -87,7 +65,8 @@ public open class AudioStream : Resource() {
   }
 
   /**
-   * Returns true if this audio stream only supports monophonic playback, or false if the audio stream supports polyphony.
+   * Returns true if this audio stream only supports monophonic playback, or false if the audio
+   * stream supports polyphony.
    */
   public fun isMonophonic(): Boolean {
     TransferContext.writeArguments()
@@ -96,7 +75,9 @@ public open class AudioStream : Resource() {
   }
 
   /**
-   * Returns an AudioStreamPlayback. Useful for when you want to extend [_instantiatePlayback] but call [instantiatePlayback] from an internally held AudioStream subresource. An example of this can be found in the source files for `AudioStreamRandomPitch::instantiate_playback`.
+   * Returns an AudioStreamPlayback. Useful for when you want to extend [_instantiatePlayback] but
+   * call [instantiatePlayback] from an internally held AudioStream subresource. An example of this can
+   * be found in the source files for `AudioStreamRandomPitch::instantiate_playback`.
    */
   public fun instantiatePlayback(): AudioStreamPlayback? {
     TransferContext.writeArguments()

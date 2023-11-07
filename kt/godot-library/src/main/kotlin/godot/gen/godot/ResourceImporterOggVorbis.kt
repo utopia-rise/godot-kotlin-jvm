@@ -19,6 +19,16 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * Ogg Vorbis is a lossy audio format, with better audio quality compared to [ResourceImporterMP3]
+ * at a given bitrate.
+ * In most cases, it's recommended to use Ogg Vorbis over MP3. However, if you're using a MP3 sound
+ * source with no higher quality source available, then it's recommended to use the MP3 file directly
+ * to avoid double lossy compression.
+ * Ogg Vorbis requires more CPU to decode than [ResourceImporterWAV]. If you need to play a lot of
+ * simultaneous sounds, it's recommended to use WAV for those sounds instead, especially if targeting
+ * low-end devices.
+ */
 @GodotBaseType
 public open class ResourceImporterOggVorbis : ResourceImporter() {
   public override fun new(scriptIndex: Int): Boolean {
@@ -27,12 +37,20 @@ public open class ResourceImporterOggVorbis : ResourceImporter() {
   }
 
   public companion object {
+    /**
+     * This method loads audio data from a PackedByteArray buffer into an AudioStreamOggVorbis
+     * object.
+     */
     public fun loadFromBuffer(buffer: PackedByteArray): AudioStreamOggVorbis? {
       TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
       TransferContext.callMethod(0, MethodBindings.loadFromBufferPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as AudioStreamOggVorbis?)
     }
 
+    /**
+     * This method loads audio data from a file into an AudioStreamOggVorbis object. The file path
+     * is provided as a string.
+     */
     public fun loadFromFile(path: String): AudioStreamOggVorbis? {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.loadFromFilePtr, OBJECT)

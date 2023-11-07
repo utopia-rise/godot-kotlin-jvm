@@ -19,17 +19,13 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A resource that holds all components of a 3D world, such as a visual scenario and a physics space.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/physics/ray-casting.html]($DOCS_URL/tutorials/physics/ray-casting.html)
- *
- * Class that has everything pertaining to a world: A physics space, a visual scenario, and a sound space. 3D nodes register their resources into the current 3D world.
+ * Class that has everything pertaining to a world: A physics space, a visual scenario, and a sound
+ * space. 3D nodes register their resources into the current 3D world.
  */
 @GodotBaseType
 public open class World3D : Resource() {
   /**
-   * The World3D's [godot.Environment].
+   * The World3D's [Environment].
    */
   public var environment: Environment?
     get() {
@@ -57,7 +53,7 @@ public open class World3D : Resource() {
     }
 
   /**
-   * The default [godot.CameraAttributes] resource to use if none set on the [godot.Camera3D].
+   * The default [CameraAttributes] resource to use if none set on the [Camera3D].
    */
   public var cameraAttributes: Material?
     get() {
@@ -81,7 +77,7 @@ public open class World3D : Resource() {
     }
 
   /**
-   * The [RID] of this world's navigation map. Used by the [godot.NavigationServer3D].
+   * The [RID] of this world's navigation map. Used by the [NavigationServer3D].
    */
   public val navigationMap: RID
     get() {
@@ -101,7 +97,9 @@ public open class World3D : Resource() {
     }
 
   /**
-   * Direct access to the world's physics 3D space state. Used for querying current and potential collisions. When using multi-threaded physics, access is limited to [godot.Node.PhysicsProcess] in the main thread.
+   * Direct access to the world's physics 3D space state. Used for querying current and potential
+   * collisions. When using multi-threaded physics, access is limited to [Node.PhysicsProcess] in the
+   * main thread.
    */
   public val directSpaceState: PhysicsDirectSpaceState3D?
     get() {

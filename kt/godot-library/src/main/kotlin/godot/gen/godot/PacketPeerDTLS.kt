@@ -24,13 +24,14 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * DTLS packet peer.
- *
- * This class represents a DTLS peer connection. It can be used to connect to a DTLS server, and is returned by [godot.DTLSServer.takeConnection].
- *
- * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
- *
- * **Warning:** TLS certificate revocation and certificate pinning are currently not supported. Revoked certificates are accepted as long as they are otherwise valid. If this is a concern, you may want to use automatically managed certificates with a short validity period.
+ * This class represents a DTLS peer connection. It can be used to connect to a DTLS server, and is
+ * returned by [DTLSServer.takeConnection].
+ * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
+ * export preset before exporting the project or using one-click deploy. Otherwise, network
+ * communication of any kind will be blocked by Android.
+ * **Warning:** TLS certificate revocation and certificate pinning are currently not supported.
+ * Revoked certificates are accepted as long as they are otherwise valid. If this is a concern, you may
+ * want to use automatically managed certificates with a short validity period.
  */
 @GodotBaseType
 public open class PacketPeerDTLS : PacketPeer() {
@@ -40,7 +41,8 @@ public open class PacketPeerDTLS : PacketPeer() {
   }
 
   /**
-   * Poll the connection to check for incoming packets. Call this frequently to update the status and keep the connection working.
+   * Poll the connection to check for incoming packets. Call this frequently to update the status
+   * and keep the connection working.
    */
   public fun poll(): Unit {
     TransferContext.writeArguments()
@@ -48,7 +50,10 @@ public open class PacketPeerDTLS : PacketPeer() {
   }
 
   /**
-   * Connects a [packetPeer] beginning the DTLS handshake using the underlying [godot.PacketPeerUDP] which must be connected (see [godot.PacketPeerUDP.connectToHost]). You can optionally specify the [clientOptions] to be used while verifying the TLS connections. See [godot.TLSOptions.client] and [godot.TLSOptions.clientUnsafe].
+   * Connects a [param packet_peer] beginning the DTLS handshake using the underlying
+   * [PacketPeerUDP] which must be connected (see [PacketPeerUDP.connectToHost]). You can optionally
+   * specify the [param client_options] to be used while verifying the TLS connections. See
+   * [TLSOptions.client] and [TLSOptions.clientUnsafe].
    */
   @JvmOverloads
   public fun connectToPeer(
@@ -82,23 +87,25 @@ public open class PacketPeerDTLS : PacketPeer() {
     id: Long,
   ) {
     /**
-     * A status representing a [godot.PacketPeerDTLS] that is disconnected.
+     * A status representing a [PacketPeerDTLS] that is disconnected.
      */
     STATUS_DISCONNECTED(0),
     /**
-     * A status representing a [godot.PacketPeerDTLS] that is currently performing the handshake with a remote peer.
+     * A status representing a [PacketPeerDTLS] that is currently performing the handshake with a
+     * remote peer.
      */
     STATUS_HANDSHAKING(1),
     /**
-     * A status representing a [godot.PacketPeerDTLS] that is connected to a remote peer.
+     * A status representing a [PacketPeerDTLS] that is connected to a remote peer.
      */
     STATUS_CONNECTED(2),
     /**
-     * A status representing a [godot.PacketPeerDTLS] in a generic error state.
+     * A status representing a [PacketPeerDTLS] in a generic error state.
      */
     STATUS_ERROR(3),
     /**
-     * An error status that shows a mismatch in the DTLS certificate domain presented by the host and the domain requested for validation.
+     * An error status that shows a mismatch in the DTLS certificate domain presented by the host
+     * and the domain requested for validation.
      */
     STATUS_ERROR_HOSTNAME_MISMATCH(4),
     ;

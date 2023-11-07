@@ -18,14 +18,13 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Texture view (used by [godot.RenderingDevice]).
- *
- * This object is used by [godot.RenderingDevice].
+ * This object is used by [RenderingDevice].
  */
 @GodotBaseType
 public open class RDTextureView : RefCounted() {
   /**
-   * Optional override for the data format to return sampled values in. The default value of [godot.RenderingDevice.DATA_FORMAT_MAX] does not override the format.
+   * Optional override for the data format to return sampled values in. The default value of
+   * [constant RenderingDevice.DATA_FORMAT_MAX] does not override the format.
    */
   public var formatOverride: RenderingDevice.DataFormat
     get() {

@@ -39,11 +39,6 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base class for XR interface extensions (plugins).
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/xr/index.html]($DOCS_URL/tutorials/xr/index.html)
- *
  * External XR interface plugins should inherit from this class.
  */
 @GodotBaseType
@@ -88,7 +83,7 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   /**
-   * Returns a [godot.core.Dictionary] with system information related to this interface.
+   * Returns a [Dictionary] with system information related to this interface.
    */
   public open fun _getSystemInfo(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_system_info is not implemented for XRInterfaceExtension")
@@ -116,14 +111,15 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   /**
-   * Returns an [godot.PackedVector3Array] that denotes the play areas boundaries (if applicable).
+   * Returns an [PackedVector3Array] that denotes the play areas boundaries (if applicable).
    */
   public open fun _getPlayArea(): PackedVector3Array {
     throw NotImplementedError("_get_play_area is not implemented for XRInterfaceExtension")
   }
 
   /**
-   * Returns the size of our render target for this interface, this overrides the size of the [godot.Viewport] marked as the xr viewport.
+   * Returns the size of our render target for this interface, this overrides the size of the
+   * [Viewport] marked as the xr viewport.
    */
   public open fun _getRenderTargetSize(): Vector2 {
     throw NotImplementedError("_get_render_target_size is not implemented for XRInterfaceExtension")
@@ -137,21 +133,21 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   /**
-   * Returns the [godot.Transform3D] that positions the [godot.XRCamera3D] in the world.
+   * Returns the [Transform3D] that positions the [XRCamera3D] in the world.
    */
   public open fun _getCameraTransform(): Transform3D {
     throw NotImplementedError("_get_camera_transform is not implemented for XRInterfaceExtension")
   }
 
   /**
-   * Returns a [godot.Transform3D] for a given view.
+   * Returns a [Transform3D] for a given view.
    */
   public open fun _getTransformForView(view: Long, camTransform: Transform3D): Transform3D {
     throw NotImplementedError("_get_transform_for_view is not implemented for XRInterfaceExtension")
   }
 
   /**
-   * Returns the projection matrix for the given view as a [godot.PackedFloat64Array].
+   * Returns the projection matrix for the given view as a [PackedFloat64Array].
    */
   public open fun _getProjectionForView(
     view: Long,
@@ -162,34 +158,35 @@ public open class XRInterfaceExtension : XRInterface() {
     throw NotImplementedError("_get_projection_for_view is not implemented for XRInterfaceExtension")
   }
 
-  /**
-   *
-   */
   public open fun _getVrsTexture(): RID {
     throw NotImplementedError("_get_vrs_texture is not implemented for XRInterfaceExtension")
   }
 
   /**
-   * Called if this [godot.XRInterfaceExtension] is active before our physics and game process is called. Most XR interfaces will update its [godot.XRPositionalTracker]s at this point in time.
+   * Called if this [XRInterfaceExtension] is active before our physics and game process is called.
+   * Most XR interfaces will update its [XRPositionalTracker]s at this point in time.
    */
   public open fun _process(): Unit {
   }
 
   /**
-   * Called if this [godot.XRInterfaceExtension] is active before rendering starts. Most XR interfaces will sync tracking at this point in time.
+   * Called if this [XRInterfaceExtension] is active before rendering starts. Most XR interfaces
+   * will sync tracking at this point in time.
    */
   public open fun _preRender(): Unit {
   }
 
   /**
-   * Called if this is our primary [godot.XRInterfaceExtension] before we start processing a [godot.Viewport] for every active XR [godot.Viewport], returns `true` if that viewport should be rendered. An XR interface may return `false` if the user has taken off their headset and we can pause rendering.
+   * Called if this is our primary [XRInterfaceExtension] before we start processing a [Viewport]
+   * for every active XR [Viewport], returns `true` if that viewport should be rendered. An XR
+   * interface may return `false` if the user has taken off their headset and we can pause rendering.
    */
   public open fun _preDrawViewport(renderTarget: RID): Boolean {
     throw NotImplementedError("_pre_draw_viewport is not implemented for XRInterfaceExtension")
   }
 
   /**
-   * Called after the XR [godot.Viewport] draw logic has completed.
+   * Called after the XR [Viewport] draw logic has completed.
    */
   public open fun _postDrawViewport(renderTarget: RID, screenRect: Rect2): Unit {
   }
@@ -201,14 +198,16 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   /**
-   * Returns a [godot.PackedStringArray] with tracker names configured by this interface. Note that user configuration can override this list.
+   * Returns a [PackedStringArray] with tracker names configured by this interface. Note that user
+   * configuration can override this list.
    */
   public open fun _getSuggestedTrackerNames(): PackedStringArray {
     throw NotImplementedError("_get_suggested_tracker_names is not implemented for XRInterfaceExtension")
   }
 
   /**
-   * Returns a [godot.PackedStringArray] with pose names configured by this interface. Note that user configuration can override this list.
+   * Returns a [PackedStringArray] with pose names configured by this interface. Note that user
+   * configuration can override this list.
    */
   public open fun _getSuggestedPoseNames(trackerName: StringName): PackedStringArray {
     throw NotImplementedError("_get_suggested_pose_names is not implemented for XRInterfaceExtension")
@@ -248,7 +247,8 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   /**
-   * Returns the camera feed ID for the [godot.CameraFeed] registered with the [godot.CameraServer] that should be presented as the background on an AR capable device (if applicable).
+   * Returns the camera feed ID for the [CameraFeed] registered with the [CameraServer] that should
+   * be presented as the background on an AR capable device (if applicable).
    */
   public open fun _getCameraFeedId(): Int {
     throw NotImplementedError("_get_camera_feed_id is not implemented for XRInterfaceExtension")
@@ -275,27 +275,18 @@ public open class XRInterfaceExtension : XRInterface() {
     throw NotImplementedError("_get_velocity_texture is not implemented for XRInterfaceExtension")
   }
 
-  /**
-   *
-   */
   public fun getColorTexture(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  /**
-   *
-   */
   public fun getDepthTexture(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  /**
-   *
-   */
   public fun getVelocityTexture(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVelocityTexturePtr, _RID)
@@ -303,7 +294,8 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   /**
-   * Blits our render results to screen optionally applying lens distortion. This can only be called while processing `_commit_views`.
+   * Blits our render results to screen optionally applying lens distortion. This can only be called
+   * while processing `_commit_views`.
    */
   public fun addBlit(
     renderTarget: RID,
@@ -323,7 +315,8 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   /**
-   * Returns a valid [RID] for a texture to which we should render the current frame if supported by the interface.
+   * Returns a valid [RID] for a texture to which we should render the current frame if supported by
+   * the interface.
    */
   public fun getRenderTargetTexture(renderTarget: RID): RID {
     TransferContext.writeArguments(_RID to renderTarget)

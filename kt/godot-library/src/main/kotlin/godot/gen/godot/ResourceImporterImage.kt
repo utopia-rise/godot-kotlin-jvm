@@ -12,12 +12,8 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Imports a image for use in scripting, with no rendering capabilities.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/assets_pipeline/importing_images.html]($DOCS_URL/tutorials/assets_pipeline/importing_images.html)
- *
- * This importer imports [godot.Image] resources, as opposed to [godot.CompressedTexture2D]. If you need to render the image in 2D or 3D, use [godot.ResourceImporterTexture] instead.
+ * This importer imports [Image] resources, as opposed to [CompressedTexture2D]. If you need to
+ * render the image in 2D or 3D, use [ResourceImporterTexture] instead.
  */
 @GodotBaseType
 public open class ResourceImporterImage internal constructor() : ResourceImporter() {

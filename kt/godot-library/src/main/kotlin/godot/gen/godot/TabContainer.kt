@@ -30,14 +30,10 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A container that creates a tab for each child control, displaying only the active tab's control.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
- *
- * Arranges child controls into a tabbed view, creating a tab for each one. The active tab's corresponding control is made visible, while all other child controls are hidden. Ignores non-control children.
- *
- * **Note:** The drawing of the clickable tabs is handled by this node; [godot.TabBar] is not needed.
+ * Arranges child controls into a tabbed view, creating a tab for each one. The active tab's
+ * corresponding control is made visible, while all other child controls are hidden. Ignores
+ * non-control children.
+ * **Note:** The drawing of the clickable tabs is handled by this node; [TabBar] is not needed.
  */
 @GodotBaseType
 public open class TabContainer : Container() {
@@ -72,7 +68,7 @@ public open class TabContainer : Container() {
   public val tabButtonPressed: Signal1<Long> by signal("tab")
 
   /**
-   * Emitted when the [godot.TabContainer]'s [godot.Popup] button is clicked. See [setPopup] for details.
+   * Emitted when the [TabContainer]'s [Popup] button is clicked. See [setPopup] for details.
    */
   public val prePopupPressed: Signal0 by signal()
 
@@ -91,7 +87,8 @@ public open class TabContainer : Container() {
     }
 
   /**
-   * The current tab index. When set, this index's [godot.Control] node's `visible` property is set to `true` and all others are set to `false`.
+   * The current tab index. When set, this index's [Control] node's `visible` property is set to
+   * `true` and all others are set to `false`.
    */
   public var currentTab: Int
     get() {
@@ -105,7 +102,8 @@ public open class TabContainer : Container() {
     }
 
   /**
-   * If `true`, tabs overflowing this node's width will be hidden, displaying two navigation buttons instead. Otherwise, this node's minimum size is updated so that all tabs are visible.
+   * If `true`, tabs overflowing this node's width will be hidden, displaying two navigation buttons
+   * instead. Otherwise, this node's minimum size is updated so that all tabs are visible.
    */
   public var clipTabs: Boolean
     get() {
@@ -133,7 +131,8 @@ public open class TabContainer : Container() {
     }
 
   /**
-   * If `true`, all tabs are drawn in front of the panel. If `false`, inactive tabs are drawn behind the panel.
+   * If `true`, all tabs are drawn in front of the panel. If `false`, inactive tabs are drawn behind
+   * the panel.
    */
   public var allTabsInFront: Boolean
     get() {
@@ -161,9 +160,9 @@ public open class TabContainer : Container() {
     }
 
   /**
-   * [godot.TabContainer]s with the same rearrange group ID will allow dragging the tabs between them. Enable drag with [dragToRearrangeEnabled].
-   *
-   * Setting this to `-1` will disable rearranging between [godot.TabContainer]s.
+   * [TabContainer]s with the same rearrange group ID will allow dragging the tabs between them.
+   * Enable drag with [dragToRearrangeEnabled].
+   * Setting this to `-1` will disable rearranging between [TabContainer]s.
    */
   public var tabsRearrangeGroup: Int
     get() {
@@ -177,7 +176,8 @@ public open class TabContainer : Container() {
     }
 
   /**
-   * If `true`, children [godot.Control] nodes that are hidden have their minimum size take into account in the total, instead of only the currently visible one.
+   * If `true`, children [Control] nodes that are hidden have their minimum size take into account
+   * in the total, instead of only the currently visible one.
    */
   public var useHiddenTabsForMinSize: Boolean
     get() {
@@ -191,7 +191,7 @@ public open class TabContainer : Container() {
     }
 
   /**
-   * The focus access mode for the internal [godot.TabBar] node.
+   * The focus access mode for the internal [TabBar] node.
    */
   public var tabFocusMode: Control.FocusMode
     get() {
@@ -228,7 +228,8 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Selects the first available tab with lower index than the currently selected. Returns `true` if tab selection changed.
+   * Selects the first available tab with lower index than the currently selected. Returns `true` if
+   * tab selection changed.
    */
   public fun selectPreviousAvailable(): Boolean {
     TransferContext.writeArguments()
@@ -237,7 +238,8 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Selects the first available tab with greater index than the currently selected. Returns `true` if tab selection changed.
+   * Selects the first available tab with greater index than the currently selected. Returns `true`
+   * if tab selection changed.
    */
   public fun selectNextAvailable(): Boolean {
     TransferContext.writeArguments()
@@ -246,7 +248,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns the child [godot.Control] node located at the active tab index.
+   * Returns the child [Control] node located at the active tab index.
    */
   public fun getCurrentTabControl(): Control? {
     TransferContext.writeArguments()
@@ -255,9 +257,9 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns the [godot.TabBar] contained in this container.
-   *
-   * **Warning:** This is a required internal node, removing and freeing it or editing its tabs may cause a crash. If you wish to edit the tabs, use the methods provided in [godot.TabContainer].
+   * Returns the [TabBar] contained in this container.
+   * **Warning:** This is a required internal node, removing and freeing it or editing its tabs may
+   * cause a crash. If you wish to edit the tabs, use the methods provided in [TabContainer].
    */
   public fun getTabBar(): TabBar? {
     TransferContext.writeArguments()
@@ -266,7 +268,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns the [godot.Control] node from the tab at index [tabIdx].
+   * Returns the [Control] node from the tab at index [param tab_idx].
    */
   public fun getTabControl(tabIdx: Int): Control? {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -275,7 +277,8 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Sets a custom title for the tab at index [tabIdx] (tab titles default to the name of the indexed child node). Set it back to the child's name to make the tab default to it again.
+   * Sets a custom title for the tab at index [param tab_idx] (tab titles default to the name of the
+   * indexed child node). Set it back to the child's name to make the tab default to it again.
    */
   public fun setTabTitle(tabIdx: Int, title: String): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), STRING to title)
@@ -283,7 +286,8 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns the title of the tab at index [tabIdx]. Tab titles default to the name of the indexed child node, but this can be overridden with [setTabTitle].
+   * Returns the title of the tab at index [param tab_idx]. Tab titles default to the name of the
+   * indexed child node, but this can be overridden with [setTabTitle].
    */
   public fun getTabTitle(tabIdx: Int): String {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -292,7 +296,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Sets an icon for the tab at index [tabIdx].
+   * Sets an icon for the tab at index [param tab_idx].
    */
   public fun setTabIcon(tabIdx: Int, icon: Texture2D): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), OBJECT to icon)
@@ -300,7 +304,8 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns the [godot.Texture2D] for the tab at index [tabIdx] or `null` if the tab has no [godot.Texture2D].
+   * Returns the [Texture2D] for the tab at index [param tab_idx] or `null` if the tab has no
+   * [Texture2D].
    */
   public fun getTabIcon(tabIdx: Int): Texture2D? {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -309,7 +314,8 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * If [disabled] is `true`, disables the tab at index [tabIdx], making it non-interactable.
+   * If [param disabled] is `true`, disables the tab at index [param tab_idx], making it
+   * non-interactable.
    */
   public fun setTabDisabled(tabIdx: Int, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), BOOL to disabled)
@@ -317,7 +323,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns `true` if the tab at index [tabIdx] is disabled.
+   * Returns `true` if the tab at index [param tab_idx] is disabled.
    */
   public fun isTabDisabled(tabIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -326,7 +332,8 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * If [hidden] is `true`, hides the tab at index [tabIdx], making it disappear from the tab area.
+   * If [param hidden] is `true`, hides the tab at index [param tab_idx], making it disappear from
+   * the tab area.
    */
   public fun setTabHidden(tabIdx: Int, hidden: Boolean): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), BOOL to hidden)
@@ -334,7 +341,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns `true` if the tab at index [tabIdx] is hidden.
+   * Returns `true` if the tab at index [param tab_idx] is hidden.
    */
   public fun isTabHidden(tabIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -343,7 +350,8 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Sets the metadata value for the tab at index [tabIdx], which can be retrieved later using [getTabMetadata].
+   * Sets the metadata value for the tab at index [param tab_idx], which can be retrieved later
+   * using [getTabMetadata].
    */
   public fun setTabMetadata(tabIdx: Int, metadata: Any?): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), ANY to metadata)
@@ -351,7 +359,8 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns the metadata value set to the tab at index [tabIdx] using [setTabMetadata]. If no metadata was previously set, returns `null` by default.
+   * Returns the metadata value set to the tab at index [param tab_idx] using [setTabMetadata]. If
+   * no metadata was previously set, returns `null` by default.
    */
   public fun getTabMetadata(tabIdx: Int): Any? {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -360,7 +369,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Sets the button icon from the tab at index [tabIdx].
+   * Sets the button icon from the tab at index [param tab_idx].
    */
   public fun setTabButtonIcon(tabIdx: Int, icon: Texture2D): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), OBJECT to icon)
@@ -368,7 +377,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns the button icon from the tab at index [tabIdx].
+   * Returns the button icon from the tab at index [param tab_idx].
    */
   public fun getTabButtonIcon(tabIdx: Int): Texture2D? {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -377,7 +386,8 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns the index of the tab at local coordinates [point]. Returns `-1` if the point is outside the control boundaries or if there's no tab at the queried position.
+   * Returns the index of the tab at local coordinates [param point]. Returns `-1` if the point is
+   * outside the control boundaries or if there's no tab at the queried position.
    */
   public fun getTabIdxAtPoint(point: Vector2): Int {
     TransferContext.writeArguments(VECTOR2 to point)
@@ -386,7 +396,8 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns the index of the tab tied to the given [control]. The control must be a child of the [godot.TabContainer].
+   * Returns the index of the tab tied to the given [param control]. The control must be a child of
+   * the [TabContainer].
    */
   public fun getTabIdxFromControl(control: Control): Int {
     TransferContext.writeArguments(OBJECT to control)
@@ -395,7 +406,9 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * If set on a [godot.Popup] node instance, a popup menu icon appears in the top-right corner of the [godot.TabContainer] (setting it to `null` will make it go away). Clicking it will expand the [godot.Popup] node.
+   * If set on a [Popup] node instance, a popup menu icon appears in the top-right corner of the
+   * [TabContainer] (setting it to `null` will make it go away). Clicking it will expand the [Popup]
+   * node.
    */
   public fun setPopup(popup: Node): Unit {
     TransferContext.writeArguments(OBJECT to popup)
@@ -403,9 +416,9 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns the [godot.Popup] node instance if one has been set already with [setPopup].
-   *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.Window.visible] property.
+   * Returns the [Popup] node instance if one has been set already with [setPopup].
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
+   * you wish to hide it or any of its children, use their [Window.visible] property.
    */
   public fun getPopup(): Popup? {
     TransferContext.writeArguments()

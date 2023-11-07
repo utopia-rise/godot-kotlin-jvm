@@ -34,18 +34,20 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A node used for independent rendering of objects within a 2D scene.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/515](https://godotengine.org/asset-library/asset/515)
- *
- * [godot.CanvasItem]-derived nodes that are direct or indirect children of a [godot.CanvasLayer] will be drawn in that layer. The layer is a numeric index that defines the draw order. The default 2D scene renders with index `0`, so a [godot.CanvasLayer] with index `-1` will be drawn below, and a [godot.CanvasLayer] with index `1` will be drawn above. This order will hold regardless of the [godot.CanvasItem.zIndex] of the nodes within each layer.
- *
- * [godot.CanvasLayer]s can be hidden and they can also optionally follow the viewport. This makes them useful for HUDs like health bar overlays (on layers `1` and higher) or backgrounds (on layers `-1` and lower).
- *
- * **Note:** Embedded [godot.Window]s are placed on layer `1024`. [godot.CanvasItem]s on layers `1025` and higher appear in front of embedded windows.
- *
- * **Note:** Each [godot.CanvasLayer] is drawn on one specific [godot.Viewport] and cannot be shared between multiple [godot.Viewport]s, see [customViewport]. When using multiple [godot.Viewport]s, for example in a split-screen game, you need create an individual [godot.CanvasLayer] for each [godot.Viewport] you want it to be drawn on.
+ * [CanvasItem]-derived nodes that are direct or indirect children of a [CanvasLayer] will be drawn
+ * in that layer. The layer is a numeric index that defines the draw order. The default 2D scene
+ * renders with index `0`, so a [CanvasLayer] with index `-1` will be drawn below, and a [CanvasLayer]
+ * with index `1` will be drawn above. This order will hold regardless of the [CanvasItem.zIndex] of
+ * the nodes within each layer.
+ * [CanvasLayer]s can be hidden and they can also optionally follow the viewport. This makes them
+ * useful for HUDs like health bar overlays (on layers `1` and higher) or backgrounds (on layers `-1`
+ * and lower).
+ * **Note:** Embedded [Window]s are placed on layer `1024`. [CanvasItem]s on layers `1025` and
+ * higher appear in front of embedded windows.
+ * **Note:** Each [CanvasLayer] is drawn on one specific [Viewport] and cannot be shared between
+ * multiple [Viewport]s, see [customViewport]. When using multiple [Viewport]s, for example in a
+ * split-screen game, you need create an individual [CanvasLayer] for each [Viewport] you want it to be
+ * drawn on.
  */
 @GodotBaseType
 public open class CanvasLayer : Node() {
@@ -56,8 +58,9 @@ public open class CanvasLayer : Node() {
 
   /**
    * Layer index for draw order. Lower values are drawn behind higher values.
-   *
-   * **Note:** If multiple CanvasLayers have the same layer index, [godot.CanvasItem] children of one CanvasLayer are drawn behind the [godot.CanvasItem] children of the other CanvasLayer. Which CanvasLayer is drawn in front is non-deterministic.
+   * **Note:** If multiple CanvasLayers have the same layer index, [CanvasItem] children of one
+   * CanvasLayer are drawn behind the [CanvasItem] children of the other CanvasLayer. Which CanvasLayer
+   * is drawn in front is non-deterministic.
    */
   public var layer: Int
     get() {
@@ -71,9 +74,9 @@ public open class CanvasLayer : Node() {
     }
 
   /**
-   * If `false`, any [godot.CanvasItem] under this [godot.CanvasLayer] will be hidden.
-   *
-   * Unlike [godot.CanvasItem.visible], visibility of a [godot.CanvasLayer] isn't propagated to underlying layers.
+   * If `false`, any [CanvasItem] under this [CanvasLayer] will be hidden.
+   * Unlike [CanvasItem.visible], visibility of a [CanvasLayer] isn't propagated to underlying
+   * layers.
    */
   public var visible: Boolean
     get() {
@@ -146,7 +149,8 @@ public open class CanvasLayer : Node() {
     }
 
   /**
-   * The custom [godot.Viewport] node assigned to the [godot.CanvasLayer]. If `null`, uses the default viewport instead.
+   * The custom [Viewport] node assigned to the [CanvasLayer]. If `null`, uses the default viewport
+   * instead.
    */
   public var customViewport: Node?
     get() {
@@ -160,8 +164,8 @@ public open class CanvasLayer : Node() {
     }
 
   /**
-   * If enabled, the [godot.CanvasLayer] will use the viewport's transform, so it will move when camera moves instead of being anchored in a fixed position on the screen.
-   *
+   * If enabled, the [CanvasLayer] will use the viewport's transform, so it will move when camera
+   * moves instead of being anchored in a fixed position on the screen.
    * Together with [followViewportScale] it can be used for a pseudo 3D effect.
    */
   public var followViewportEnabled: Boolean
@@ -176,7 +180,8 @@ public open class CanvasLayer : Node() {
     }
 
   /**
-   * Scales the layer when using [followViewportEnabled]. Layers moving into the foreground should have increasing scales, while layers moving into the background should have decreasing scales.
+   * Scales the layer when using [followViewportEnabled]. Layers moving into the foreground should
+   * have increasing scales, while layers moving into the background should have decreasing scales.
    */
   public var followViewportScale: Float
     get() {
@@ -267,7 +272,8 @@ public open class CanvasLayer : Node() {
 
 
   /**
-   * Shows any [godot.CanvasItem] under this [godot.CanvasLayer]. This is equivalent to setting [visible] to `true`.
+   * Shows any [CanvasItem] under this [CanvasLayer]. This is equivalent to setting [visible] to
+   * `true`.
    */
   public fun show(): Unit {
     TransferContext.writeArguments()
@@ -275,7 +281,8 @@ public open class CanvasLayer : Node() {
   }
 
   /**
-   * Hides any [godot.CanvasItem] under this [godot.CanvasLayer]. This is equivalent to setting [visible] to `false`.
+   * Hides any [CanvasItem] under this [CanvasLayer]. This is equivalent to setting [visible] to
+   * `false`.
    */
   public fun hide(): Unit {
     TransferContext.writeArguments()
@@ -283,7 +290,8 @@ public open class CanvasLayer : Node() {
   }
 
   /**
-   * Returns the transform from the [godot.CanvasLayer]s coordinate system to the [godot.Viewport]s coordinate system.
+   * Returns the transform from the [CanvasLayer]s coordinate system to the [Viewport]s coordinate
+   * system.
    */
   public fun getFinalTransform(): Transform2D {
     TransferContext.writeArguments()

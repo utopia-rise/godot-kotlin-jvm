@@ -18,9 +18,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A scalar integer constant to be used within the visual shader graph.
- *
- * Translated to [code skip-lint]int` in the shader language.
+ * Translated to [code skip-lint]int[/code] in the shader language.
  */
 @GodotBaseType
 public open class VisualShaderNodeIntConstant : VisualShaderNodeConstant() {

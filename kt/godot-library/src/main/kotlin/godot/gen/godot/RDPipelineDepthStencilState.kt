@@ -22,14 +22,15 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Pipeline depth/stencil state (used by [godot.RenderingDevice]).
- *
- * [godot.RDPipelineDepthStencilState] controls the way depth and stencil comparisons are performed when sampling those values using [godot.RenderingDevice].
+ * [RDPipelineDepthStencilState] controls the way depth and stencil comparisons are performed when
+ * sampling those values using [RenderingDevice].
  */
 @GodotBaseType
 public open class RDPipelineDepthStencilState : RefCounted() {
   /**
-   * If `true`, enables depth testing which allows objects to be automatically occluded by other objects based on their depth. This also allows objects to be partially occluded by other objects. If `false`, objects will appear in the order they were drawn (like in Godot's 2D renderer).
+   * If `true`, enables depth testing which allows objects to be automatically occluded by other
+   * objects based on their depth. This also allows objects to be partially occluded by other objects.
+   * If `false`, objects will appear in the order they were drawn (like in Godot's 2D renderer).
    */
   public var enableDepthTest: Boolean
     get() {
@@ -42,9 +43,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setEnableDepthTestPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var enableDepthWrite: Boolean
     get() {
       TransferContext.writeArguments()
@@ -56,9 +54,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setEnableDepthWritePtr, NIL)
     }
 
-  /**
-   *
-   */
   public var depthCompareOperator: RenderingDevice.CompareOperator
     get() {
       TransferContext.writeArguments()
@@ -70,9 +65,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDepthCompareOperatorPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var enableDepthRange: Boolean
     get() {
       TransferContext.writeArguments()
@@ -84,9 +76,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setEnableDepthRangePtr, NIL)
     }
 
-  /**
-   *
-   */
   public var depthRangeMin: Float
     get() {
       TransferContext.writeArguments()
@@ -98,9 +87,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDepthRangeMinPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var depthRangeMax: Float
     get() {
       TransferContext.writeArguments()
@@ -112,9 +98,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDepthRangeMaxPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var enableStencil: Boolean
     get() {
       TransferContext.writeArguments()
@@ -126,9 +109,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setEnableStencilPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var frontOpFail: RenderingDevice.StencilOperation
     get() {
       TransferContext.writeArguments()
@@ -140,9 +120,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpFailPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var frontOpPass: RenderingDevice.StencilOperation
     get() {
       TransferContext.writeArguments()
@@ -154,9 +131,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpPassPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var frontOpDepthFail: RenderingDevice.StencilOperation
     get() {
       TransferContext.writeArguments()
@@ -168,9 +142,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpDepthFailPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var frontOpCompare: RenderingDevice.CompareOperator
     get() {
       TransferContext.writeArguments()
@@ -182,9 +153,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpComparePtr, NIL)
     }
 
-  /**
-   *
-   */
   public var frontOpCompareMask: Long
     get() {
       TransferContext.writeArguments()
@@ -196,9 +164,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpCompareMaskPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var frontOpWriteMask: Long
     get() {
       TransferContext.writeArguments()
@@ -210,9 +175,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpWriteMaskPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var frontOpReference: Long
     get() {
       TransferContext.writeArguments()
@@ -224,9 +186,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpReferencePtr, NIL)
     }
 
-  /**
-   *
-   */
   public var backOpFail: RenderingDevice.StencilOperation
     get() {
       TransferContext.writeArguments()
@@ -238,9 +197,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBackOpFailPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var backOpPass: RenderingDevice.StencilOperation
     get() {
       TransferContext.writeArguments()
@@ -252,9 +208,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBackOpPassPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var backOpDepthFail: RenderingDevice.StencilOperation
     get() {
       TransferContext.writeArguments()
@@ -266,9 +219,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBackOpDepthFailPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var backOpCompare: RenderingDevice.CompareOperator
     get() {
       TransferContext.writeArguments()
@@ -280,9 +230,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBackOpComparePtr, NIL)
     }
 
-  /**
-   *
-   */
   public var backOpCompareMask: Long
     get() {
       TransferContext.writeArguments()
@@ -294,9 +241,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBackOpCompareMaskPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var backOpWriteMask: Long
     get() {
       TransferContext.writeArguments()
@@ -308,9 +252,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBackOpWriteMaskPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var backOpReference: Long
     get() {
       TransferContext.writeArguments()

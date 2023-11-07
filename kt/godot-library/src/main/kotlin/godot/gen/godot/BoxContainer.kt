@@ -20,17 +20,14 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A container that arranges its child controls horizontally or vertically.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
- *
- * A container that arranges its child controls horizontally or vertically, rearranging them automatically when their minimum size changes.
+ * A container that arranges its child controls horizontally or vertically, rearranging them
+ * automatically when their minimum size changes.
  */
 @GodotBaseType
 public open class BoxContainer : Container() {
   /**
-   * The alignment of the container's children (must be one of [ALIGNMENT_BEGIN], [ALIGNMENT_CENTER], or [ALIGNMENT_END]).
+   * The alignment of the container's children (must be one of [constant ALIGNMENT_BEGIN], [constant
+   * ALIGNMENT_CENTER], or [constant ALIGNMENT_END]).
    */
   public var alignment: AlignmentMode
     get() {
@@ -44,9 +41,8 @@ public open class BoxContainer : Container() {
     }
 
   /**
-   * If `true`, the [godot.BoxContainer] will arrange its children vertically, rather than horizontally.
-   *
-   * Can't be changed when using [godot.HBoxContainer] and [godot.VBoxContainer].
+   * If `true`, the [BoxContainer] will arrange its children vertically, rather than horizontally.
+   * Can't be changed when using [HBoxContainer] and [VBoxContainer].
    */
   public var vertical: Boolean
     get() {
@@ -65,7 +61,8 @@ public open class BoxContainer : Container() {
   }
 
   /**
-   * Adds a [godot.Control] node to the box as a spacer. If [begin] is `true`, it will insert the [godot.Control] node in front of all other children.
+   * Adds a [Control] node to the box as a spacer. If [param begin] is `true`, it will insert the
+   * [Control] node in front of all other children.
    */
   public fun addSpacer(begin: Boolean): Control? {
     TransferContext.writeArguments(BOOL to begin)
@@ -77,7 +74,8 @@ public open class BoxContainer : Container() {
     id: Long,
   ) {
     /**
-     * The child controls will be arranged at the beginning of the container, i.e. top if orientation is vertical, left if orientation is horizontal (right for RTL layout).
+     * The child controls will be arranged at the beginning of the container, i.e. top if
+     * orientation is vertical, left if orientation is horizontal (right for RTL layout).
      */
     ALIGNMENT_BEGIN(0),
     /**
@@ -85,7 +83,8 @@ public open class BoxContainer : Container() {
      */
     ALIGNMENT_CENTER(1),
     /**
-     * The child controls will be arranged at the end of the container, i.e. bottom if orientation is vertical, right if orientation is horizontal (left for RTL layout).
+     * The child controls will be arranged at the end of the container, i.e. bottom if orientation
+     * is vertical, right if orientation is horizontal (left for RTL layout).
      */
     ALIGNMENT_END(2),
     ;

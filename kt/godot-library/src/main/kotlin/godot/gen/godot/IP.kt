@@ -28,19 +28,20 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Internet protocol (IP) support functions such as DNS resolution.
- *
- * IP contains support functions for the Internet Protocol (IP). TCP/IP support is in different classes (see [godot.StreamPeerTCP] and [godot.TCPServer]). IP provides DNS hostname resolution support, both blocking and threaded.
+ * IP contains support functions for the Internet Protocol (IP). TCP/IP support is in different
+ * classes (see [StreamPeerTCP] and [TCPServer]). IP provides DNS hostname resolution support, both
+ * blocking and threaded.
  */
 @GodotBaseType
 public object IP : Object() {
   /**
-   * Maximum number of concurrent DNS resolver queries allowed, [RESOLVER_INVALID_ID] is returned if exceeded.
+   * Maximum number of concurrent DNS resolver queries allowed, [constant RESOLVER_INVALID_ID] is
+   * returned if exceeded.
    */
   public final const val RESOLVER_MAX_QUERIES: Long = 256
 
   /**
-   * Invalid ID constant. Returned if [RESOLVER_MAX_QUERIES] is exceeded.
+   * Invalid ID constant. Returned if [constant RESOLVER_MAX_QUERIES] is exceeded.
    */
   public final const val RESOLVER_INVALID_ID: Long = -1
 
@@ -50,7 +51,8 @@ public object IP : Object() {
   }
 
   /**
-   * Returns a given hostname's IPv4 or IPv6 address when resolved (blocking-type method). The address type returned depends on the [enum Type] constant given as [ipType].
+   * Returns a given hostname's IPv4 or IPv6 address when resolved (blocking-type method). The
+   * address type returned depends on the [enum Type] constant given as [param ip_type].
    */
   @JvmOverloads
   public fun resolveHostname(host: String, ipType: Type = IP.Type.TYPE_ANY): String {
@@ -60,7 +62,8 @@ public object IP : Object() {
   }
 
   /**
-   * Resolves a given hostname in a blocking way. Addresses are returned as an [godot.Array] of IPv4 or IPv6 addresses depending on [ipType].
+   * Resolves a given hostname in a blocking way. Addresses are returned as an [Array] of IPv4 or
+   * IPv6 addresses depending on [param ip_type].
    */
   @JvmOverloads
   public fun resolveHostnameAddresses(host: String, ipType: Type = IP.Type.TYPE_ANY):
@@ -72,7 +75,9 @@ public object IP : Object() {
   }
 
   /**
-   * Creates a queue item to resolve a hostname to an IPv4 or IPv6 address depending on the [enum Type] constant given as [ipType]. Returns the queue ID if successful, or [RESOLVER_INVALID_ID] on error.
+   * Creates a queue item to resolve a hostname to an IPv4 or IPv6 address depending on the [enum
+   * Type] constant given as [param ip_type]. Returns the queue ID if successful, or [constant
+   * RESOLVER_INVALID_ID] on error.
    */
   @JvmOverloads
   public fun resolveHostnameQueueItem(host: String, ipType: Type = IP.Type.TYPE_ANY): Int {
@@ -82,7 +87,8 @@ public object IP : Object() {
   }
 
   /**
-   * Returns a queued hostname's status as a [enum ResolverStatus] constant, given its queue [id].
+   * Returns a queued hostname's status as a [enum ResolverStatus] constant, given its queue [param
+   * id].
    */
   public fun getResolveItemStatus(id: Int): ResolverStatus {
     TransferContext.writeArguments(LONG to id.toLong())
@@ -91,7 +97,8 @@ public object IP : Object() {
   }
 
   /**
-   * Returns a queued hostname's IP address, given its queue [id]. Returns an empty string on error or if resolution hasn't happened yet (see [getResolveItemStatus]).
+   * Returns a queued hostname's IP address, given its queue [param id]. Returns an empty string on
+   * error or if resolution hasn't happened yet (see [getResolveItemStatus]).
    */
   public fun getResolveItemAddress(id: Int): String {
     TransferContext.writeArguments(LONG to id.toLong())
@@ -100,7 +107,8 @@ public object IP : Object() {
   }
 
   /**
-   * Returns resolved addresses, or an empty array if an error happened or resolution didn't happen yet (see [getResolveItemStatus]).
+   * Returns resolved addresses, or an empty array if an error happened or resolution didn't happen
+   * yet (see [getResolveItemStatus]).
    */
   public fun getResolveItemAddresses(id: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to id.toLong())
@@ -109,7 +117,8 @@ public object IP : Object() {
   }
 
   /**
-   * Removes a given item [id] from the queue. This should be used to free a queue after it has completed to enable more queries to happen.
+   * Removes a given item [param id] from the queue. This should be used to free a queue after it
+   * has completed to enable more queries to happen.
    */
   public fun eraseResolveItem(id: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong())
@@ -127,17 +136,15 @@ public object IP : Object() {
 
   /**
    * Returns all network adapters as an array.
-   *
    * Each adapter is a dictionary of the form:
-   *
-   * ```
-   * 				{
-   * 				    "index": "1", # Interface index.
-   * 				    "name": "eth0", # Interface name.
-   * 				    "friendly": "Ethernet One", # A friendly name (might be empty).
-   * 				    "addresses": ["192.168.1.101"], # An array of IP addresses associated to this interface.
-   * 				}
-   * 				```
+   * [codeblock]
+   * {
+   *     "index": "1", # Interface index.
+   *     "name": "eth0", # Interface name.
+   *     "friendly": "Ethernet One", # A friendly name (might be empty).
+   *     "addresses": ["192.168.1.101"], # An array of IP addresses associated to this interface.
+   * }
+   * [/codeblock]
    */
   public fun getLocalInterfaces(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
@@ -146,7 +153,8 @@ public object IP : Object() {
   }
 
   /**
-   * Removes all of a [hostname]'s cached references. If no [hostname] is given, all cached IP addresses are removed.
+   * Removes all of a [param hostname]'s cached references. If no [param hostname] is given, all
+   * cached IP addresses are removed.
    */
   @JvmOverloads
   public fun clearCache(hostname: String = ""): Unit {

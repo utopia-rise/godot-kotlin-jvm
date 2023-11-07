@@ -25,8 +25,16 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.jvm.JvmOverloads
 
+/**
+ * Contains the results of a single [RegEx] match returned by [RegEx.search] and [RegEx.searchAll].
+ * It can be used to find the position and range of the match and its capturing groups, and it can
+ * extract its substring for you.
+ */
 @GodotBaseType
 public open class RegExMatch : RefCounted() {
+  /**
+   * The source string used with the search pattern to find this matching result.
+   */
   public val subject: String
     get() {
       TransferContext.writeArguments()
@@ -34,6 +42,11 @@ public open class RegExMatch : RefCounted() {
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
 
+  /**
+   * A dictionary of named groups and its corresponding group number. Only groups that were matched
+   * are included. If multiple groups have the same name, that name would refer to the first matching
+   * one.
+   */
   public val names: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
@@ -41,6 +54,9 @@ public open class RegExMatch : RefCounted() {
       return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
     }
 
+  /**
+   * An [Array] of the match and its capturing groups.
+   */
   public val strings: PackedStringArray
     get() {
       TransferContext.writeArguments()
@@ -53,12 +69,21 @@ public open class RegExMatch : RefCounted() {
     return true
   }
 
+  /**
+   * Returns the number of capturing groups.
+   */
   public fun getGroupCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGroupCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  /**
+   * Returns the substring of the match from the source string. Capturing groups can be retrieved by
+   * providing its group number as an integer or its string name (if it's a named group). The default
+   * value of 0 refers to the whole pattern.
+   * Returns an empty string if the group did not match or doesn't exist.
+   */
   @JvmOverloads
   public fun getString(name: Any? = 0): String {
     TransferContext.writeArguments(ANY to name)
@@ -66,6 +91,12 @@ public open class RegExMatch : RefCounted() {
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
+  /**
+   * Returns the starting position of the match within the source string. The starting position of
+   * capturing groups can be retrieved by providing its group number as an integer or its string name
+   * (if it's a named group). The default value of 0 refers to the whole pattern.
+   * Returns -1 if the group did not match or doesn't exist.
+   */
   @JvmOverloads
   public fun getStart(name: Any? = 0): Int {
     TransferContext.writeArguments(ANY to name)
@@ -73,6 +104,12 @@ public open class RegExMatch : RefCounted() {
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  /**
+   * Returns the end position of the match within the source string. The end position of capturing
+   * groups can be retrieved by providing its group number as an integer or its string name (if it's a
+   * named group). The default value of 0 refers to the whole pattern.
+   * Returns -1 if the group did not match or doesn't exist.
+   */
   @JvmOverloads
   public fun getEnd(name: Any? = 0): Int {
     TransferContext.writeArguments(ANY to name)

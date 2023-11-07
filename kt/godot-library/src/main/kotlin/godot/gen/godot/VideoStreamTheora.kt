@@ -11,6 +11,12 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 
+/**
+ * [VideoStream] resource handling the [url=https://www.theora.org/]Ogg Theora[/url] video format
+ * with `.ogv` extension. The Theora codec is decoded on the CPU.
+ * **Note:** While Ogg Theora videos can also have an `.ogg` extension, you will have to rename the
+ * extension to `.ogv` to use those videos within Godot.
+ */
 @GodotBaseType
 public open class VideoStreamTheora : VideoStream() {
   public override fun new(scriptIndex: Int): Boolean {

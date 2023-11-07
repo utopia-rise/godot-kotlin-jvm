@@ -12,12 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Adds a low-shelf filter to the audio bus.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
- *
- * Reduces all frequencies below the [godot.AudioEffectFilter.cutoffHz].
+ * Reduces all frequencies below the [AudioEffectFilter.cutoffHz].
  */
 @GodotBaseType
 public open class AudioEffectLowShelfFilter : AudioEffectFilter() {

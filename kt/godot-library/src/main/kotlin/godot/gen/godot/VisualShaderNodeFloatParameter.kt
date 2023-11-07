@@ -22,14 +22,13 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A scalar float parameter to be used within the visual shader graph.
- *
  * Translated to `uniform float` in the shader language.
  */
 @GodotBaseType
 public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   /**
-   * A hint applied to the uniform, which controls the values it can take when set through the Inspector.
+   * A hint applied to the uniform, which controls the values it can take when set through the
+   * Inspector.
    */
   public var hint: Hint
     get() {
@@ -43,7 +42,8 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     }
 
   /**
-   * Maximum value for range hints. Used if [hint] is set to [HINT_RANGE] or [HINT_RANGE_STEP].
+   * Maximum value for range hints. Used if [hint] is set to [constant HINT_RANGE] or [constant
+   * HINT_RANGE_STEP].
    */
   public var min: Float
     get() {
@@ -57,7 +57,8 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     }
 
   /**
-   * Minimum value for range hints. Used if [hint] is set to [HINT_RANGE] or [HINT_RANGE_STEP].
+   * Minimum value for range hints. Used if [hint] is set to [constant HINT_RANGE] or [constant
+   * HINT_RANGE_STEP].
    */
   public var max: Float
     get() {
@@ -71,7 +72,8 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     }
 
   /**
-   * Step (increment) value for the range hint with step. Used if [hint] is set to [HINT_RANGE_STEP].
+   * Step (increment) value for the range hint with step. Used if [hint] is set to [constant
+   * HINT_RANGE_STEP].
    */
   public var step: Float
     get() {
@@ -125,11 +127,14 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
      */
     HINT_NONE(0),
     /**
-     * A range hint for scalar value, which limits possible input values between [min] and [max]. Translated to `hint_range(min, max)` in shader code.
+     * A range hint for scalar value, which limits possible input values between [min] and [max].
+     * Translated to `hint_range(min, max)` in shader code.
      */
     HINT_RANGE(1),
     /**
-     * A range hint for scalar value with step, which limits possible input values between [min] and [max], with a step (increment) of [step]). Translated to `hint_range(min, max, step)` in shader code.
+     * A range hint for scalar value with step, which limits possible input values between [min] and
+     * [max], with a step (increment) of [step]). Translated to `hint_range(min, max, step)` in shader
+     * code.
      */
     HINT_RANGE_STEP(2),
     /**

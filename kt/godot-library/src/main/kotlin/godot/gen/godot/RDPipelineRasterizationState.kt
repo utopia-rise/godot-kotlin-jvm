@@ -22,15 +22,10 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Pipeline rasterization state (used by [godot.RenderingDevice]).
- *
- * This object is used by [godot.RenderingDevice].
+ * This object is used by [RenderingDevice].
  */
 @GodotBaseType
 public open class RDPipelineRasterizationState : RefCounted() {
-  /**
-   *
-   */
   public var enableDepthClamp: Boolean
     get() {
       TransferContext.writeArguments()
@@ -71,7 +66,8 @@ public open class RDPipelineRasterizationState : RefCounted() {
     }
 
   /**
-   * The cull mode to use when drawing polygons, which determines whether front faces or backfaces are hidden.
+   * The cull mode to use when drawing polygons, which determines whether front faces or backfaces
+   * are hidden.
    */
   public var cullMode: RenderingDevice.PolygonCullMode
     get() {
@@ -98,9 +94,6 @@ public open class RDPipelineRasterizationState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFrontFacePtr, NIL)
     }
 
-  /**
-   *
-   */
   public var depthBiasEnabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -112,9 +105,6 @@ public open class RDPipelineRasterizationState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDepthBiasEnabledPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var depthBiasConstantFactor: Float
     get() {
       TransferContext.writeArguments()
@@ -126,9 +116,6 @@ public open class RDPipelineRasterizationState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDepthBiasConstantFactorPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var depthBiasClamp: Float
     get() {
       TransferContext.writeArguments()
@@ -140,9 +127,6 @@ public open class RDPipelineRasterizationState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDepthBiasClampPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var depthBiasSlopeFactor: Float
     get() {
       TransferContext.writeArguments()
@@ -155,7 +139,8 @@ public open class RDPipelineRasterizationState : RefCounted() {
     }
 
   /**
-   * The line width to use when drawing lines (in pixels). Thick lines may not be supported on all hardware.
+   * The line width to use when drawing lines (in pixels). Thick lines may not be supported on all
+   * hardware.
    */
   public var lineWidth: Float
     get() {
@@ -169,7 +154,8 @@ public open class RDPipelineRasterizationState : RefCounted() {
     }
 
   /**
-   * The number of control points to use when drawing a patch with tessellation enabled. Higher values result in higher quality at the cost of performance.
+   * The number of control points to use when drawing a patch with tessellation enabled. Higher
+   * values result in higher quality at the cost of performance.
    */
   public var patchControlPoints: Long
     get() {

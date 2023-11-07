@@ -17,12 +17,8 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Meta class for playing back audio.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/526](https://godotengine.org/asset-library/asset/526)
- *
- * Can play, loop, pause a scroll through audio. See [godot.AudioStream] and [godot.AudioStreamOggVorbis] for usage.
+ * Can play, loop, pause a scroll through audio. See [AudioStream] and [AudioStreamOggVorbis] for
+ * usage.
  */
 @GodotBaseType
 public open class AudioStreamPlayback : RefCounted() {
@@ -31,48 +27,27 @@ public open class AudioStreamPlayback : RefCounted() {
     return true
   }
 
-  /**
-   *
-   */
   public open fun _start(fromPos: Double): Unit {
   }
 
-  /**
-   *
-   */
   public open fun _stop(): Unit {
   }
 
-  /**
-   *
-   */
   public open fun _isPlaying(): Boolean {
     throw NotImplementedError("_is_playing is not implemented for AudioStreamPlayback")
   }
 
-  /**
-   *
-   */
   public open fun _getLoopCount(): Int {
     throw NotImplementedError("_get_loop_count is not implemented for AudioStreamPlayback")
   }
 
-  /**
-   *
-   */
   public open fun _getPlaybackPosition(): Double {
     throw NotImplementedError("_get_playback_position is not implemented for AudioStreamPlayback")
   }
 
-  /**
-   *
-   */
   public open fun _seek(position: Double): Unit {
   }
 
-  /**
-   *
-   */
   public open fun _tagUsedStreams(): Unit {
   }
 

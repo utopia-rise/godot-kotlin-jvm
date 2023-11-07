@@ -27,12 +27,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A singleton that manages all [godot.InputEventAction]s.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/inputs/inputevent.html#inputmap]($DOCS_URL/tutorials/inputs/inputevent.html#inputmap)
- *
- * Manages all [godot.InputEventAction] which can be created/modified from the project settings menu **Project > Project Settings > Input Map** or in code with [addAction] and [actionAddEvent]. See [godot.Node.Input].
+ * Manages all [InputEventAction] which can be created/modified from the project settings menu
+ * **Project > Project Settings > Input Map** or in code with [addAction] and [actionAddEvent]. See
+ * [Node.Input].
  */
 @GodotBaseType
 public object InputMap : Object() {
@@ -42,7 +39,7 @@ public object InputMap : Object() {
   }
 
   /**
-   * Returns `true` if the [godot.InputMap] has a registered action with the given name.
+   * Returns `true` if the [InputMap] has a registered action with the given name.
    */
   public fun hasAction(action: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to action)
@@ -51,7 +48,7 @@ public object InputMap : Object() {
   }
 
   /**
-   * Returns an array of all actions in the [godot.InputMap].
+   * Returns an array of all actions in the [InputMap].
    */
   public fun getActions(): VariantArray<StringName> {
     TransferContext.writeArguments()
@@ -60,9 +57,8 @@ public object InputMap : Object() {
   }
 
   /**
-   * Adds an empty action to the [godot.InputMap] with a configurable [deadzone].
-   *
-   * An [godot.InputEvent] can then be added to this action with [actionAddEvent].
+   * Adds an empty action to the [InputMap] with a configurable [param deadzone].
+   * An [InputEvent] can then be added to this action with [actionAddEvent].
    */
   @JvmOverloads
   public fun addAction(action: StringName, deadzone: Float = 0.5f): Unit {
@@ -71,7 +67,7 @@ public object InputMap : Object() {
   }
 
   /**
-   * Removes an action from the [godot.InputMap].
+   * Removes an action from the [InputMap].
    */
   public fun eraseAction(action: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to action)
@@ -96,7 +92,7 @@ public object InputMap : Object() {
   }
 
   /**
-   * Adds an [godot.InputEvent] to an action. This [godot.InputEvent] will trigger the action.
+   * Adds an [InputEvent] to an action. This [InputEvent] will trigger the action.
    */
   public fun actionAddEvent(action: StringName, event: InputEvent): Unit {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
@@ -104,7 +100,7 @@ public object InputMap : Object() {
   }
 
   /**
-   * Returns `true` if the action has the given [godot.InputEvent] associated with it.
+   * Returns `true` if the action has the given [InputEvent] associated with it.
    */
   public fun actionHasEvent(action: StringName, event: InputEvent): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
@@ -113,7 +109,7 @@ public object InputMap : Object() {
   }
 
   /**
-   * Removes an [godot.InputEvent] from an action.
+   * Removes an [InputEvent] from an action.
    */
   public fun actionEraseEvent(action: StringName, event: InputEvent): Unit {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
@@ -129,9 +125,10 @@ public object InputMap : Object() {
   }
 
   /**
-   * Returns an array of [godot.InputEvent]s associated with a given action.
-   *
-   * **Note:** When used in the editor (e.g. a tool script or [godot.EditorPlugin]), this method will return events for the editor action. If you want to access your project's input binds from the editor, read the `input/ *` settings from [godot.ProjectSettings].
+   * Returns an array of [InputEvent]s associated with a given action.
+   * **Note:** When used in the editor (e.g. a tool script or [EditorPlugin]), this method will
+   * return events for the editor action. If you want to access your project's input binds from the
+   * editor, read the `input&#47;*` settings from [ProjectSettings].
    */
   public fun actionGetEvents(action: StringName): VariantArray<InputEvent> {
     TransferContext.writeArguments(STRING_NAME to action)
@@ -140,9 +137,11 @@ public object InputMap : Object() {
   }
 
   /**
-   * Returns `true` if the given event is part of an existing action. This method ignores keyboard modifiers if the given [godot.InputEvent] is not pressed (for proper release detection). See [actionHasEvent] if you don't want this behavior.
-   *
-   * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   * Returns `true` if the given event is part of an existing action. This method ignores keyboard
+   * modifiers if the given [InputEvent] is not pressed (for proper release detection). See
+   * [actionHasEvent] if you don't want this behavior.
+   * If [param exact_match] is `false`, it ignores additional input modifiers for [InputEventKey]
+   * and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
   @JvmOverloads
   public fun eventIsAction(
@@ -156,7 +155,7 @@ public object InputMap : Object() {
   }
 
   /**
-   * Clears all [godot.InputEventAction] in the [godot.InputMap] and load it anew from [godot.ProjectSettings].
+   * Clears all [InputEventAction] in the [InputMap] and load it anew from [ProjectSettings].
    */
   public fun loadFromProjectSettings(): Unit {
     TransferContext.writeArguments()

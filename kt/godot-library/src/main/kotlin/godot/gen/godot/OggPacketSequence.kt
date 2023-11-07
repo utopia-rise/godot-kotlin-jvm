@@ -23,8 +23,14 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 
+/**
+ * A sequence of Ogg packets.
+ */
 @GodotBaseType
 public open class OggPacketSequence : Resource() {
+  /**
+   * Contains the raw packets that make up this OggPacketSequence.
+   */
   public var packetData: VariantArray<VariantArray<Any?>>
     get() {
       TransferContext.writeArguments()
@@ -36,6 +42,9 @@ public open class OggPacketSequence : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setPacketDataPtr, NIL)
     }
 
+  /**
+   * Contains the granule positions for each page in this packet sequence.
+   */
   public var granulePositions: PackedInt64Array
     get() {
       TransferContext.writeArguments()
@@ -48,6 +57,10 @@ public open class OggPacketSequence : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setPacketGranulePositionsPtr, NIL)
     }
 
+  /**
+   * Holds sample rate information about this sequence. Must be set by another class that actually
+   * understands the codec.
+   */
   public var samplingRate: Float
     get() {
       TransferContext.writeArguments()
@@ -64,6 +77,9 @@ public open class OggPacketSequence : Resource() {
     return true
   }
 
+  /**
+   * The length of this stream, in seconds.
+   */
   public fun getLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)

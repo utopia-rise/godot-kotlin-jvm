@@ -40,81 +40,73 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A 3D agent used to pathfind to a position while avoiding obstacles.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/navigation/navigation_using_navigationagents.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationagents.html)
- *
- * A 3D agent used to pathfind to a position while avoiding static and dynamic obstacles. The calculation can be used by the parent node to dynamically move it along the path. Requires navigation data to work correctly.
- *
- * Dynamic obstacles are avoided using RVO collision avoidance. Avoidance is computed before physics, so the pathfinding information can be used safely in the physics step.
- *
- * **Note:** After setting the [targetPosition] property, the [getNextPathPosition] method must be used once every physics frame to update the internal path logic of the navigation agent. The vector position it returns should be used as the next movement position for the agent's parent node.
+ * A 3D agent used to pathfind to a position while avoiding static and dynamic obstacles. The
+ * calculation can be used by the parent node to dynamically move it along the path. Requires
+ * navigation data to work correctly.
+ * Dynamic obstacles are avoided using RVO collision avoidance. Avoidance is computed before
+ * physics, so the pathfinding information can be used safely in the physics step.
+ * **Note:** After setting the [targetPosition] property, the [getNextPathPosition] method must be
+ * used once every physics frame to update the internal path logic of the navigation agent. The vector
+ * position it returns should be used as the next movement position for the agent's parent node.
  */
 @GodotBaseType
 public open class NavigationAgent3D : Node() {
   /**
    * Emitted when the agent had to update the loaded path:
-   *
    * - because path was previously empty.
-   *
    * - because navigation map has changed.
-   *
    * - because agent pushed further away from the current path segment than the [pathMaxDistance].
    */
   public val pathChanged: Signal0 by signal()
 
   /**
-   * Emitted once per loaded path when the agent's global position is the first time within [targetDesiredDistance] to the [targetPosition].
+   * Emitted once per loaded path when the agent's global position is the first time within
+   * [targetDesiredDistance] to the [targetPosition].
    */
   public val targetReached: Signal0 by signal()
 
   /**
    * Notifies when a waypoint along the path has been reached.
-   *
-   * The details dictionary may contain the following keys depending on the value of [pathMetadataFlags]:
-   *
+   * The details dictionary may contain the following keys depending on the value of
+   * [pathMetadataFlags]:
    * - `position`: The position of the waypoint that was reached.
-   *
    * - `type`: The type of navigation primitive (region or link) that contains this waypoint.
-   *
    * - `rid`: The [RID] of the containing navigation primitive (region or link).
-   *
    * - `owner`: The object which manages the containing navigation primitive (region or link).
    */
   public val waypointReached: Signal1<Dictionary<Any?, Any?>> by signal("details")
 
   /**
    * Notifies when a navigation link has been reached.
-   *
-   * The details dictionary may contain the following keys depending on the value of [pathMetadataFlags]:
-   *
+   * The details dictionary may contain the following keys depending on the value of
+   * [pathMetadataFlags]:
    * - `position`: The start position of the link that was reached.
-   *
-   * - `type`: Always [godot.NavigationPathQueryResult3D.PATH_SEGMENT_TYPE_LINK].
-   *
+   * - `type`: Always [constant NavigationPathQueryResult3D.PATH_SEGMENT_TYPE_LINK].
    * - `rid`: The [RID] of the link.
-   *
-   * - `owner`: The object which manages the link (usually [godot.NavigationLink3D]).
-   *
-   * - `link_entry_position`: If `owner` is available and the owner is a [godot.NavigationLink3D], it will contain the global position of the link's point the agent is entering.
-   *
-   * - `link_exit_position`: If `owner` is available and the owner is a [godot.NavigationLink3D], it will contain the global position of the link's point which the agent is exiting.
+   * - `owner`: The object which manages the link (usually [NavigationLink3D]).
+   * - `link_entry_position`: If `owner` is available and the owner is a [NavigationLink3D], it will
+   * contain the global position of the link's point the agent is entering.
+   * - `link_exit_position`: If `owner` is available and the owner is a [NavigationLink3D], it will
+   * contain the global position of the link's point which the agent is exiting.
    */
   public val linkReached: Signal1<Dictionary<Any?, Any?>> by signal("details")
 
   /**
-   * Emitted once per loaded path when the agent internal navigation path index reaches the last index of the loaded path array. The agent internal navigation path index can be received with [getCurrentNavigationPathIndex].
+   * Emitted once per loaded path when the agent internal navigation path index reaches the last
+   * index of the loaded path array. The agent internal navigation path index can be received with
+   * [getCurrentNavigationPathIndex].
    */
   public val navigationFinished: Signal0 by signal()
 
   /**
-   * Notifies when the collision avoidance velocity is calculated. Emitted when [velocity] is set. Only emitted when [avoidanceEnabled] is true.
+   * Notifies when the collision avoidance velocity is calculated. Emitted when [velocity] is set.
+   * Only emitted when [avoidanceEnabled] is true.
    */
   public val velocityComputed: Signal1<Vector3> by signal("safeVelocity")
 
   /**
-   * If set, a new navigation path from the current agent position to the [targetPosition] is requested from the NavigationServer.
+   * If set, a new navigation path from the current agent position to the [targetPosition] is
+   * requested from the NavigationServer.
    */
   @CoreTypeLocalCopy
   public var targetPosition: Vector3
@@ -129,7 +121,12 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The distance threshold before a path point is considered to be reached. This allows agents to not have to hit a path point on the path exactly, but only to reach its general area. If this value is set too high, the NavigationAgent will skip points on the path, which can lead to leaving the navigation mesh. If this value is set too low, the NavigationAgent will be stuck in a repath loop because it will constantly overshoot or undershoot the distance to the next point on each physics frame update.
+   * The distance threshold before a path point is considered to be reached. This allows agents to
+   * not have to hit a path point on the path exactly, but only to reach its general area. If this
+   * value is set too high, the NavigationAgent will skip points on the path, which can lead to leaving
+   * the navigation mesh. If this value is set too low, the NavigationAgent will be stuck in a repath
+   * loop because it will constantly overshoot or undershoot the distance to the next point on each
+   * physics frame update.
    */
   public var pathDesiredDistance: Float
     get() {
@@ -143,7 +140,11 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The distance threshold before the final target point is considered to be reached. This allows agents to not have to hit the point of the final target exactly, but only to reach its general area. If this value is set too low, the NavigationAgent will be stuck in a repath loop because it will constantly overshoot or undershoot the distance to the final target point on each physics frame update.
+   * The distance threshold before the final target point is considered to be reached. This allows
+   * agents to not have to hit the point of the final target exactly, but only to reach its general
+   * area. If this value is set too low, the NavigationAgent will be stuck in a repath loop because it
+   * will constantly overshoot or undershoot the distance to the final target point on each physics
+   * frame update.
    */
   public var targetDesiredDistance: Float
     get() {
@@ -157,7 +158,11 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The height offset is subtracted from the y-axis value of any vector path position for this NavigationAgent. The NavigationAgent height offset does not change or influence the navigation mesh or pathfinding query result. Additional navigation maps that use regions with navigation meshes that the developer baked with appropriate agent radius or height values are required to support different-sized agents.
+   * The height offset is subtracted from the y-axis value of any vector path position for this
+   * NavigationAgent. The NavigationAgent height offset does not change or influence the navigation
+   * mesh or pathfinding query result. Additional navigation maps that use regions with navigation
+   * meshes that the developer baked with appropriate agent radius or height values are required to
+   * support different-sized agents.
    */
   public var pathHeightOffset: Float
     get() {
@@ -171,7 +176,9 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The maximum distance the agent is allowed away from the ideal path to the final position. This can happen due to trying to avoid collisions. When the maximum distance is exceeded, it recalculates the ideal path.
+   * The maximum distance the agent is allowed away from the ideal path to the final position. This
+   * can happen due to trying to avoid collisions. When the maximum distance is exceeded, it
+   * recalculates the ideal path.
    */
   public var pathMaxDistance: Float
     get() {
@@ -185,7 +192,9 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * A bitfield determining which navigation layers of navigation regions this agent will use to calculate a path. Changing it during runtime will clear the current navigation path and generate a new one, according to the new navigation layers.
+   * A bitfield determining which navigation layers of navigation regions this agent will use to
+   * calculate a path. Changing it during runtime will clear the current navigation path and generate a
+   * new one, according to the new navigation layers.
    */
   public var navigationLayers: Long
     get() {
@@ -241,7 +250,11 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * If `true` the agent is registered for an RVO avoidance callback on the [godot.NavigationServer3D]. When [velocity] is set and the processing is completed a `safe_velocity` Vector3 is received with a signal connection to [velocityComputed]. Avoidance processing with many registered agents has a significant performance cost and should only be enabled on agents that currently require it.
+   * If `true` the agent is registered for an RVO avoidance callback on the [NavigationServer3D].
+   * When [velocity] is set and the processing is completed a `safe_velocity` Vector3 is received with
+   * a signal connection to [signal velocity_computed]. Avoidance processing with many registered
+   * agents has a significant performance cost and should only be enabled on agents that currently
+   * require it.
    */
   public var avoidanceEnabled: Boolean
     get() {
@@ -255,7 +268,10 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * Sets the new wanted velocity for the agent. The avoidance simulation will try to fulfill this velocity if possible but will modify it to avoid collision with other agents and obstacles. When an agent is teleported to a new position, use [setVelocityForced] as well to reset the internal simulation velocity.
+   * Sets the new wanted velocity for the agent. The avoidance simulation will try to fulfill this
+   * velocity if possible but will modify it to avoid collision with other agents and obstacles. When
+   * an agent is teleported to a new position, use [setVelocityForced] as well to reset the internal
+   * simulation velocity.
    */
   @CoreTypeLocalCopy
   public var velocity: Vector3
@@ -270,7 +286,9 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The height of the avoidance agent. Agents will ignore other agents or obstacles that are above or below their current position + height in 2D avoidance. Does nothing in 3D avoidance which uses radius spheres alone.
+   * The height of the avoidance agent. Agents will ignore other agents or obstacles that are above
+   * or below their current position + height in 2D avoidance. Does nothing in 3D avoidance which uses
+   * radius spheres alone.
    */
   public var height: Float
     get() {
@@ -284,9 +302,11 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The radius of the avoidance agent. This is the "body" of the avoidance agent and not the avoidance maneuver starting radius (which is controlled by [neighborDistance]).
-   *
-   * Does not affect normal pathfinding. To change an actor's pathfinding radius bake [godot.NavigationMesh] resources with a different [godot.NavigationMesh.agentRadius] property and use different navigation maps for each actor size.
+   * The radius of the avoidance agent. This is the "body" of the avoidance agent and not the
+   * avoidance maneuver starting radius (which is controlled by [neighborDistance]).
+   * Does not affect normal pathfinding. To change an actor's pathfinding radius bake
+   * [NavigationMesh] resources with a different [NavigationMesh.agentRadius] property and use
+   * different navigation maps for each actor size.
    */
   public var radius: Float
     get() {
@@ -328,7 +348,10 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The minimal amount of time for which this agent's velocities, that are computed with the collision avoidance algorithm, are safe with respect to other agents. The larger the number, the sooner the agent will respond to other agents, but less freedom in choosing its velocities. A too high value will slow down agents movement considerably. Must be positive.
+   * The minimal amount of time for which this agent's velocities, that are computed with the
+   * collision avoidance algorithm, are safe with respect to other agents. The larger the number, the
+   * sooner the agent will respond to other agents, but less freedom in choosing its velocities. A too
+   * high value will slow down agents movement considerably. Must be positive.
    */
   public var timeHorizonAgents: Float
     get() {
@@ -342,7 +365,11 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The minimal amount of time for which this agent's velocities, that are computed with the collision avoidance algorithm, are safe with respect to static avoidance obstacles. The larger the number, the sooner the agent will respond to static avoidance obstacles, but less freedom in choosing its velocities. A too high value will slow down agents movement considerably. Must be positive.
+   * The minimal amount of time for which this agent's velocities, that are computed with the
+   * collision avoidance algorithm, are safe with respect to static avoidance obstacles. The larger the
+   * number, the sooner the agent will respond to static avoidance obstacles, but less freedom in
+   * choosing its velocities. A too high value will slow down agents movement considerably. Must be
+   * positive.
    */
   public var timeHorizonObstacles: Float
     get() {
@@ -370,9 +397,14 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * If `true`, the agent calculates avoidance velocities in 3D omnidirectionally, e.g. for games that take place in air, underwater or space. Agents using 3D avoidance only avoid other agents using 3D avoidance, and react to radius-based avoidance obstacles. They ignore any vertex-based obstacles.
-   *
-   * If `false`, the agent calculates avoidance velocities in 2D along the x and z-axes, ignoring the y-axis. Agents using 2D avoidance only avoid other agents using 2D avoidance, and react to radius-based avoidance obstacles or vertex-based avoidance obstacles. Other agents using 2D avoidance that are below or above their current position including [height] are ignored.
+   * If `true`, the agent calculates avoidance velocities in 3D omnidirectionally, e.g. for games
+   * that take place in air, underwater or space. Agents using 3D avoidance only avoid other agents
+   * using 3D avoidance, and react to radius-based avoidance obstacles. They ignore any vertex-based
+   * obstacles.
+   * If `false`, the agent calculates avoidance velocities in 2D along the x and z-axes, ignoring
+   * the y-axis. Agents using 2D avoidance only avoid other agents using 2D avoidance, and react to
+   * radius-based avoidance obstacles or vertex-based avoidance obstacles. Other agents using 2D
+   * avoidance that are below or above their current position including [height] are ignored.
    */
   public var use3dAvoidance: Boolean
     get() {
@@ -400,7 +432,8 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * A bitfield determining the avoidance layers for this NavigationAgent. Other agents with a matching bit on the [avoidanceMask] will avoid this agent.
+   * A bitfield determining the avoidance layers for this NavigationAgent. Other agents with a
+   * matching bit on the [avoidanceMask] will avoid this agent.
    */
   public var avoidanceLayers: Long
     get() {
@@ -414,7 +447,8 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * A bitfield determining what other avoidance agents and obstacles this NavigationAgent will avoid when a bit matches at least one of their [avoidanceLayers].
+   * A bitfield determining what other avoidance agents and obstacles this NavigationAgent will
+   * avoid when a bit matches at least one of their [avoidanceLayers].
    */
   public var avoidanceMask: Long
     get() {
@@ -428,7 +462,9 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The agent does not adjust the velocity for other agents that would match the [avoidanceMask] but have a lower [avoidancePriority]. This in turn makes the other agents with lower priority adjust their velocities even more to avoid collision with this agent.
+   * The agent does not adjust the velocity for other agents that would match the [avoidanceMask]
+   * but have a lower [avoidancePriority]. This in turn makes the other agents with lower priority
+   * adjust their velocities even more to avoid collision with this agent.
    */
   public var avoidancePriority: Float
     get() {
@@ -485,7 +521,8 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * If [debugUseCustom] is `true` uses this rasterized point size for rendering path points for this agent instead of global point size.
+   * If [debugUseCustom] is `true` uses this rasterized point size for rendering path points for
+   * this agent instead of global point size.
    */
   public var debugPathCustomPointSize: Float
     get() {
@@ -504,7 +541,8 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * If set, a new navigation path from the current agent position to the [targetPosition] is requested from the NavigationServer.
+   * If set, a new navigation path from the current agent position to the [targetPosition] is
+   * requested from the NavigationServer.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -528,7 +566,10 @@ public open class NavigationAgent3D : Node() {
 
 
   /**
-   * Sets the new wanted velocity for the agent. The avoidance simulation will try to fulfill this velocity if possible but will modify it to avoid collision with other agents and obstacles. When an agent is teleported to a new position, use [setVelocityForced] as well to reset the internal simulation velocity.
+   * Sets the new wanted velocity for the agent. The avoidance simulation will try to fulfill this
+   * velocity if possible but will modify it to avoid collision with other agents and obstacles. When
+   * an agent is teleported to a new position, use [setVelocityForced] as well to reset the internal
+   * simulation velocity.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -577,7 +618,7 @@ public open class NavigationAgent3D : Node() {
 
 
   /**
-   * Returns the [RID] of this agent on the [godot.NavigationServer3D].
+   * Returns the [RID] of this agent on the [NavigationServer3D].
    */
   public fun getRid(): RID {
     TransferContext.writeArguments()
@@ -586,7 +627,8 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [navigationLayers] bitmask, given a [layerNumber] between 1 and 32.
+   * Based on [param value], enables or disables the specified layer in the [navigationLayers]
+   * bitmask, given a [param layer_number] between 1 and 32.
    */
   public fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -594,7 +636,8 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [navigationLayers] bitmask is enabled, given a [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [navigationLayers] bitmask is enabled, given
+   * a [param layer_number] between 1 and 32.
    */
   public fun getNavigationLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -603,7 +646,8 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Sets the [RID] of the navigation map this NavigationAgent node should use and also updates the `agent` on the NavigationServer.
+   * Sets the [RID] of the navigation map this NavigationAgent node should use and also updates the
+   * `agent` on the NavigationServer.
    */
   public fun setNavigationMap(navigationMap: RID): Unit {
     TransferContext.writeArguments(_RID to navigationMap)
@@ -611,7 +655,11 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns the [RID] of the navigation map for this NavigationAgent node. This function returns always the map set on the NavigationAgent node and not the map of the abstract agent on the NavigationServer. If the agent map is changed directly with the NavigationServer API the NavigationAgent node will not be aware of the map change. Use [setNavigationMap] to change the navigation map for the NavigationAgent and also update the agent on the NavigationServer.
+   * Returns the [RID] of the navigation map for this NavigationAgent node. This function returns
+   * always the map set on the NavigationAgent node and not the map of the abstract agent on the
+   * NavigationServer. If the agent map is changed directly with the NavigationServer API the
+   * NavigationAgent node will not be aware of the map change. Use [setNavigationMap] to change the
+   * navigation map for the NavigationAgent and also update the agent on the NavigationServer.
    */
   public fun getNavigationMap(): RID {
     TransferContext.writeArguments()
@@ -620,7 +668,10 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns the next position in global coordinates that can be moved to, making sure that there are no static objects in the way. If the agent does not have a navigation path, it will return the position of the agent's parent. The use of this function once every physics frame is required to update the internal path logic of the NavigationAgent.
+   * Returns the next position in global coordinates that can be moved to, making sure that there
+   * are no static objects in the way. If the agent does not have a navigation path, it will return the
+   * position of the agent's parent. The use of this function once every physics frame is required to
+   * update the internal path logic of the NavigationAgent.
    */
   public fun getNextPathPosition(): Vector3 {
     TransferContext.writeArguments()
@@ -629,7 +680,9 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Replaces the internal velocity in the collision avoidance simulation with [velocity]. When an agent is teleported to a new position this function should be used in the same frame. If called frequently this function can get agents stuck.
+   * Replaces the internal velocity in the collision avoidance simulation with [param velocity].
+   * When an agent is teleported to a new position this function should be used in the same frame. If
+   * called frequently this function can get agents stuck.
    */
   public fun setVelocityForced(velocity: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to velocity)
@@ -637,7 +690,8 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns the distance to the target position, using the agent's global position. The user must set [targetPosition] in order for this to be accurate.
+   * Returns the distance to the target position, using the agent's global position. The user must
+   * set [targetPosition] in order for this to be accurate.
    */
   public fun distanceToTarget(): Float {
     TransferContext.writeArguments()
@@ -655,7 +709,12 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns this agent's current path from start to finish in global coordinates. The path only updates when the target position is changed or the agent requires a repath. The path array is not intended to be used in direct path movement as the agent has its own internal path logic that would get corrupted by changing the path array manually. Use the intended [getNextPathPosition] once every physics frame to receive the next path point for the agents movement as this function also updates the internal path logic.
+   * Returns this agent's current path from start to finish in global coordinates. The path only
+   * updates when the target position is changed or the agent requires a repath. The path array is not
+   * intended to be used in direct path movement as the agent has its own internal path logic that
+   * would get corrupted by changing the path array manually. Use the intended [getNextPathPosition]
+   * once every physics frame to receive the next path point for the agents movement as this function
+   * also updates the internal path logic.
    */
   public fun getCurrentNavigationPath(): PackedVector3Array {
     TransferContext.writeArguments()
@@ -665,7 +724,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns which index the agent is currently on in the navigation path's [godot.PackedVector3Array].
+   * Returns which index the agent is currently on in the navigation path's [PackedVector3Array].
    */
   public fun getCurrentNavigationPathIndex(): Int {
     TransferContext.writeArguments()
@@ -674,7 +733,8 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns true if [targetPosition] is reached. It may not always be possible to reach the target position. It should always be possible to reach the final position though. See [getFinalPosition].
+   * Returns true if [targetPosition] is reached. It may not always be possible to reach the target
+   * position. It should always be possible to reach the final position though. See [getFinalPosition].
    */
   public fun isTargetReached(): Boolean {
     TransferContext.writeArguments()
@@ -693,8 +753,8 @@ public open class NavigationAgent3D : Node() {
 
   /**
    * Returns `true` if the end of the currently loaded navigation path has been reached.
-   *
-   * **Note:** While true prefer to stop calling update functions like [getNextPathPosition]. This avoids jittering the standing agent due to calling repeated path updates.
+   * **Note:** While true prefer to stop calling update functions like [getNextPathPosition]. This
+   * avoids jittering the standing agent due to calling repeated path updates.
    */
   public fun isNavigationFinished(): Boolean {
     TransferContext.writeArguments()
@@ -703,7 +763,9 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns the reachable final position of the current navigation path in global coordinates. This position can change if the agent needs to update the navigation path which makes the agent emit the [pathChanged] signal.
+   * Returns the reachable final position of the current navigation path in global coordinates. This
+   * position can change if the agent needs to update the navigation path which makes the agent emit
+   * the [signal path_changed] signal.
    */
   public fun getFinalPosition(): Vector3 {
     TransferContext.writeArguments()
@@ -712,7 +774,8 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [avoidanceLayers] bitmask, given a [layerNumber] between 1 and 32.
+   * Based on [param value], enables or disables the specified layer in the [avoidanceLayers]
+   * bitmask, given a [param layer_number] between 1 and 32.
    */
   public fun setAvoidanceLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -720,7 +783,8 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [avoidanceLayers] bitmask is enabled, given a [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [avoidanceLayers] bitmask is enabled, given a
+   * [param layer_number] between 1 and 32.
    */
   public fun getAvoidanceLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -729,7 +793,8 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Based on [value], enables or disables the specified mask in the [avoidanceMask] bitmask, given a [maskNumber] between 1 and 32.
+   * Based on [param value], enables or disables the specified mask in the [avoidanceMask] bitmask,
+   * given a [param mask_number] between 1 and 32.
    */
   public fun setAvoidanceMaskValue(maskNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to maskNumber.toLong(), BOOL to value)
@@ -737,7 +802,8 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns whether or not the specified mask of the [avoidanceMask] bitmask is enabled, given a [maskNumber] between 1 and 32.
+   * Returns whether or not the specified mask of the [avoidanceMask] bitmask is enabled, given a
+   * [param mask_number] between 1 and 32.
    */
   public fun getAvoidanceMaskValue(maskNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to maskNumber.toLong())

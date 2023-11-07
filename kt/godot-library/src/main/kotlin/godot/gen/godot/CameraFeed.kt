@@ -26,11 +26,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A camera feed gives you access to a single physical camera attached to your device.
- *
- * A camera feed gives you access to a single physical camera attached to your device. When enabled, Godot will start capturing frames from the camera which can then be used. See also [godot.CameraServer].
- *
- * **Note:** Many cameras will return YCbCr images which are split into two textures and need to be combined in a shader. Godot does this automatically for you if you set the environment to show the camera image in the background.
+ * A camera feed gives you access to a single physical camera attached to your device. When enabled,
+ * Godot will start capturing frames from the camera which can then be used. See also [CameraServer].
+ * **Note:** Many cameras will return YCbCr images which are split into two textures and need to be
+ * combined in a shader. Godot does this automatically for you if you set the environment to show the
+ * camera image in the background.
  */
 @GodotBaseType
 public open class CameraFeed : RefCounted() {

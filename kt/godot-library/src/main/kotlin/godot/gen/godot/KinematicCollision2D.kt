@@ -26,11 +26,11 @@ import kotlin.Suppress
 import kotlin.jvm.JvmOverloads
 
 /**
- * Holds collision data from the movement of a [godot.PhysicsBody2D].
- *
- * Holds collision data from the movement of a [godot.PhysicsBody2D], usually from [godot.PhysicsBody2D.moveAndCollide]. When a [godot.PhysicsBody2D] is moved, it stops if it detects a collision with another body. If a collision is detected, a [godot.KinematicCollision2D] object is returned.
- *
- * The collision data includes the colliding object, the remaining motion, and the collision position. This data can be used to determine a custom response to the collision.
+ * Holds collision data from the movement of a [PhysicsBody2D], usually from
+ * [PhysicsBody2D.moveAndCollide]. When a [PhysicsBody2D] is moved, it stops if it detects a collision
+ * with another body. If a collision is detected, a [KinematicCollision2D] object is returned.
+ * The collision data includes the colliding object, the remaining motion, and the collision
+ * position. This data can be used to determine a custom response to the collision.
  */
 @GodotBaseType
 public open class KinematicCollision2D : RefCounted() {
@@ -76,7 +76,8 @@ public open class KinematicCollision2D : RefCounted() {
   }
 
   /**
-   * Returns the collision angle according to [upDirection], which is [godot.Vector2.UP] by default. This value is always positive.
+   * Returns the collision angle according to [param up_direction], which is [constant Vector2.UP]
+   * by default. This value is always positive.
    */
   @JvmOverloads
   public fun getAngle(upDirection: Vector2 = Vector2(0, -1)): Float {
@@ -104,7 +105,7 @@ public open class KinematicCollision2D : RefCounted() {
   }
 
   /**
-   * Returns the colliding body's attached [godot.Object].
+   * Returns the colliding body's attached [Object].
    */
   public fun getCollider(): Object? {
     TransferContext.writeArguments()
@@ -113,7 +114,8 @@ public open class KinematicCollision2D : RefCounted() {
   }
 
   /**
-   * Returns the unique instance ID of the colliding body's attached [godot.Object]. See [godot.Object.getInstanceId].
+   * Returns the unique instance ID of the colliding body's attached [Object]. See
+   * [Object.getInstanceId].
    */
   public fun getColliderId(): Long {
     TransferContext.writeArguments()
@@ -122,7 +124,7 @@ public open class KinematicCollision2D : RefCounted() {
   }
 
   /**
-   * Returns the colliding body's [RID] used by the [godot.PhysicsServer2D].
+   * Returns the colliding body's [RID] used by the [PhysicsServer2D].
    */
   public fun getColliderRid(): RID {
     TransferContext.writeArguments()
@@ -140,7 +142,7 @@ public open class KinematicCollision2D : RefCounted() {
   }
 
   /**
-   * Returns the colliding body's shape index. See [godot.CollisionObject2D].
+   * Returns the colliding body's shape index. See [CollisionObject2D].
    */
   public fun getColliderShapeIndex(): Int {
     TransferContext.writeArguments()

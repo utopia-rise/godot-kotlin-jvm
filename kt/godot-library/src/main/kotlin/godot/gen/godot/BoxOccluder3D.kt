@@ -21,14 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Cuboid shape for use with occlusion culling in [godot.OccluderInstance3D].
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/3d/occlusion_culling.html]($DOCS_URL/tutorials/3d/occlusion_culling.html)
- *
- * [godot.BoxOccluder3D] stores a cuboid shape that can be used by the engine's occlusion culling system.
- *
- * See [godot.OccluderInstance3D]'s documentation for instructions on setting up occlusion culling.
+ * [BoxOccluder3D] stores a cuboid shape that can be used by the engine's occlusion culling system.
+ * See [OccluderInstance3D]'s documentation for instructions on setting up occlusion culling.
  */
 @GodotBaseType
 public open class BoxOccluder3D : Occluder3D() {

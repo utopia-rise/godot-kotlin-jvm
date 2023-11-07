@@ -12,14 +12,12 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Imports an OBJ 3D model as a standalone [godot.Mesh] or scene.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/assets_pipeline/importing_3d_scenes/index.html]($DOCS_URL/tutorials/assets_pipeline/importing_3d_scenes/index.html)
- *
- * Unlike [godot.ResourceImporterScene], [godot.ResourceImporterOBJ] will import a single [godot.Mesh] resource by default instead of importing a [godot.PackedScene]. This makes it easier to use the [godot.Mesh] resource in nodes that expect direct [godot.Mesh] resources, such as [godot.GridMap], [godot.GPUParticles3D] or [godot.CPUParticles3D]. Note that it is still possible to save mesh resources from 3D scenes using the **Advanced Import Settings** dialog, regardless of the source format.
- *
- * See also [godot.ResourceImporterScene], which is used for more advanced 3D formats such as glTF.
+ * Unlike [ResourceImporterScene], [ResourceImporterOBJ] will import a single [Mesh] resource by
+ * default instead of importing a [PackedScene]. This makes it easier to use the [Mesh] resource in
+ * nodes that expect direct [Mesh] resources, such as [GridMap], [GPUParticles3D] or [CPUParticles3D].
+ * Note that it is still possible to save mesh resources from 3D scenes using the **Advanced Import
+ * Settings** dialog, regardless of the source format.
+ * See also [ResourceImporterScene], which is used for more advanced 3D formats such as glTF.
  */
 @GodotBaseType
 public open class ResourceImporterOBJ internal constructor() : ResourceImporter() {

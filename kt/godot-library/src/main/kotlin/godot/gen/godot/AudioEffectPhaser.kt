@@ -19,19 +19,14 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Adds a phaser audio effect to an audio bus.
- *
- * Combines the original signal with a copy that is slightly out of phase with the original.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
- *
- * Combines phase-shifted signals with the original signal. The movement of the phase-shifted signals is controlled using a low-frequency oscillator.
+ * Combines phase-shifted signals with the original signal. The movement of the phase-shifted
+ * signals is controlled using a low-frequency oscillator.
  */
 @GodotBaseType
 public open class AudioEffectPhaser : AudioEffect() {
   /**
-   * Determines the minimum frequency affected by the LFO modulations, in Hz. Value can range from 10 to 10000.
+   * Determines the minimum frequency affected by the LFO modulations, in Hz. Value can range from
+   * 10 to 10000.
    */
   public var rangeMinHz: Float
     get() {
@@ -45,7 +40,8 @@ public open class AudioEffectPhaser : AudioEffect() {
     }
 
   /**
-   * Determines the maximum frequency affected by the LFO modulations, in Hz. Value can range from 10 to 10000.
+   * Determines the maximum frequency affected by the LFO modulations, in Hz. Value can range from
+   * 10 to 10000.
    */
   public var rangeMaxHz: Float
     get() {
@@ -87,7 +83,8 @@ public open class AudioEffectPhaser : AudioEffect() {
     }
 
   /**
-   * Governs how high the filter frequencies sweep. Low value will primarily affect bass frequencies. High value can sweep high into the treble. Value can range from 0.1 to 4.
+   * Governs how high the filter frequencies sweep. Low value will primarily affect bass
+   * frequencies. High value can sweep high into the treble. Value can range from 0.1 to 4.
    */
   public var depth: Float
     get() {

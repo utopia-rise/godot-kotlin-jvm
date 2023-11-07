@@ -17,19 +17,16 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Node that instances a [godot.MultiMesh].
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/performance/vertex_animation/animating_thousands_of_fish.html]($DOCS_URL/tutorials/performance/vertex_animation/animating_thousands_of_fish.html)
- *
- * [godot.MultiMeshInstance3D] is a specialized node to instance [godot.GeometryInstance3D]s based on a [godot.MultiMesh] resource.
- *
- * This is useful to optimize the rendering of a high number of instances of a given mesh (for example trees in a forest or grass strands).
+ * [MultiMeshInstance3D] is a specialized node to instance [GeometryInstance3D]s based on a
+ * [MultiMesh] resource.
+ * This is useful to optimize the rendering of a high number of instances of a given mesh (for
+ * example trees in a forest or grass strands).
  */
 @GodotBaseType
 public open class MultiMeshInstance3D : GeometryInstance3D() {
   /**
-   * The [godot.MultiMesh] resource that will be used and shared among all instances of the [godot.MultiMeshInstance3D].
+   * The [MultiMesh] resource that will be used and shared among all instances of the
+   * [MultiMeshInstance3D].
    */
   public var multimesh: MultiMesh?
     get() {

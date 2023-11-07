@@ -12,22 +12,17 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Imports comma-separated values
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/assets_pipeline/importing_translations.html]($DOCS_URL/tutorials/assets_pipeline/importing_translations.html)
- *
- * Comma-separated values are a plain text table storage format. The format's simplicity makes it easy to edit in any text editor or spreadsheet software. This makes it a common choice for game localization.
- *
+ * Comma-separated values are a plain text table storage format. The format's simplicity makes it
+ * easy to edit in any text editor or spreadsheet software. This makes it a common choice for game
+ * localization.
  * **Example CSV file:**
- *
- * ```
- * 		keys,en,es,ja
- * 		GREET,"Hello, friend!","Hola, amigo!",こんにちは
- * 		ASK,How are you?,Cómo está?,元気ですか
- * 		BYE,Goodbye,Adiós,さようなら
- * 		QUOTE,"""Hello"" said the man.","""Hola"" dijo el hombre.",「こんにちは」男は言いました
- * 		```
+ * [codeblock]
+ * keys,en,es,ja
+ * GREET,"Hello, friend!","Hola, amigo!",こんにちは
+ * ASK,How are you?,Cómo está?,元気ですか
+ * BYE,Goodbye,Adiós,さようなら
+ * QUOTE,"""Hello"" said the man.","""Hola"" dijo el hombre.",「こんにちは」男は言いました
+ * [/codeblock]
  */
 @GodotBaseType
 public open class ResourceImporterCSVTranslation internal constructor() : ResourceImporter() {

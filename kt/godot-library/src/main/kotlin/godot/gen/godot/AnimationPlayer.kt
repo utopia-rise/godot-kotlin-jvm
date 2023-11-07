@@ -35,17 +35,15 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A node used for animation playback.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
- *
- * An animation player is used for general-purpose playback of animations. It contains a dictionary of [godot.AnimationLibrary] resources and custom blend times between animation transitions.
- *
- * Some methods and properties use a single key to reference an animation directly. These keys are formatted as the key for the library, followed by a forward slash, then the key for the animation within the library, for example `"movement/run"`. If the library's key is an empty string (known as the default library), the forward slash is omitted, being the same key used by the library.
- *
- * [godot.AnimationPlayer] is better-suited than [godot.Tween] for more complex animations, for example ones with non-trivial timings. It can also be used over [godot.Tween] if the animation track editor is more convenient than doing it in code.
- *
+ * An animation player is used for general-purpose playback of animations. It contains a dictionary
+ * of [AnimationLibrary] resources and custom blend times between animation transitions.
+ * Some methods and properties use a single key to reference an animation directly. These keys are
+ * formatted as the key for the library, followed by a forward slash, then the key for the animation
+ * within the library, for example `"movement/run"`. If the library's key is an empty string (known as
+ * the default library), the forward slash is omitted, being the same key used by the library.
+ * [AnimationPlayer] is better-suited than [Tween] for more complex animations, for example ones
+ * with non-trivial timings. It can also be used over [Tween] if the animation track editor is more
+ * convenient than doing it in code.
  * Updating the target properties of animations occurs at the process frame.
  */
 @GodotBaseType
@@ -56,16 +54,20 @@ public open class AnimationPlayer : AnimationMixer() {
   public val currentAnimationChanged: Signal1<String> by signal("name")
 
   /**
-   * Emitted when a queued animation plays after the previous animation finished. See also [godot.AnimationPlayer.queue].
-   *
-   * **Note:** The signal is not emitted when the animation is changed via [godot.AnimationPlayer.play] or by an [godot.AnimationTree].
+   * Emitted when a queued animation plays after the previous animation finished. See also
+   * [AnimationPlayer.queue].
+   * **Note:** The signal is not emitted when the animation is changed via [AnimationPlayer.play] or
+   * by an [AnimationTree].
    */
   public val animationChanged: Signal2<StringName, StringName> by signal("oldName", "newName")
 
   /**
-   * The key of the currently playing animation. If no animation is playing, the property's value is an empty string. Changing this value does not restart the animation. See [play] for more information on playing animations.
-   *
-   * **Note:** While this property appears in the Inspector, it's not meant to be edited, and it's not saved in the scene. This property is mainly used to get the currently playing animation, and internally for animation playback tracks. For more information, see [godot.Animation].
+   * The key of the currently playing animation. If no animation is playing, the property's value is
+   * an empty string. Changing this value does not restart the animation. See [play] for more
+   * information on playing animations.
+   * **Note:** While this property appears in the Inspector, it's not meant to be edited, and it's
+   * not saved in the scene. This property is mainly used to get the currently playing animation, and
+   * internally for animation playback tracks. For more information, see [Animation].
    */
   public var currentAnimation: String
     get() {
@@ -79,7 +81,8 @@ public open class AnimationPlayer : AnimationMixer() {
     }
 
   /**
-   * If playing, the current animation's key, otherwise, the animation last played. When set, this changes the animation, but will not play it unless already playing. See also [currentAnimation].
+   * If playing, the current animation's key, otherwise, the animation last played. When set, this
+   * changes the animation, but will not play it unless already playing. See also [currentAnimation].
    */
   public var assignedAnimation: String
     get() {
@@ -141,9 +144,10 @@ public open class AnimationPlayer : AnimationMixer() {
     }
 
   /**
-   * The speed scaling ratio. For example, if this value is `1`, then the animation plays at normal speed. If it's `0.5`, then it plays at half speed. If it's `2`, then it plays at double speed.
-   *
-   * If set to a negative value, the animation is played in reverse. If set to `0`, the animation will not advance.
+   * The speed scaling ratio. For example, if this value is `1`, then the animation plays at normal
+   * speed. If it's `0.5`, then it plays at half speed. If it's `2`, then it plays at double speed.
+   * If set to a negative value, the animation is played in reverse. If set to `0`, the animation
+   * will not advance.
    */
   public var speedScale: Float
     get() {
@@ -157,9 +161,11 @@ public open class AnimationPlayer : AnimationMixer() {
     }
 
   /**
-   * If `true` and the engine is running in Movie Maker mode (see [godot.MovieWriter]), exits the engine with [godot.SceneTree.quit] as soon as an animation is done playing in this [godot.AnimationPlayer]. A message is printed when the engine quits for this reason.
-   *
-   * **Note:** This obeys the same logic as the [godot.AnimationMixer.animationFinished] signal, so it will not quit the engine if the animation is set to be looping.
+   * If `true` and the engine is running in Movie Maker mode (see [MovieWriter]), exits the engine
+   * with [SceneTree.quit] as soon as an animation is done playing in this [AnimationPlayer]. A message
+   * is printed when the engine quits for this reason.
+   * **Note:** This obeys the same logic as the [signal AnimationMixer.animation_finished] signal,
+   * so it will not quit the engine if the animation is set to be looping.
    */
   public var movieQuitOnFinish: Boolean
     get() {
@@ -178,7 +184,8 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * Triggers the [animationTo] animation when the [animationFrom] animation completes.
+   * Triggers the [param animation_to] animation when the [param animation_from] animation
+   * completes.
    */
   public fun animationSetNext(animationFrom: StringName, animationTo: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to animationFrom, STRING_NAME to animationTo)
@@ -186,7 +193,8 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * Returns the key of the animation which is queued to play after the [animationFrom] animation.
+   * Returns the key of the animation which is queued to play after the [param animation_from]
+   * animation.
    */
   public fun animationGetNext(animationFrom: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to animationFrom)
@@ -216,13 +224,17 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * Plays the animation with key [name]. Custom blend times and speed can be set.
-   *
-   * The [fromEnd] option only affects when switching to a new animation track, or if the same track but at the start or end. It does not affect resuming playback that was paused in the middle of an animation. If [customSpeed] is negative and [fromEnd] is `true`, the animation will play backwards (which is equivalent to calling [playBackwards]).
-   *
-   * The [godot.AnimationPlayer] keeps track of its current or last played animation with [assignedAnimation]. If this method is called with that same animation [name], or with no [name] parameter, the assigned animation will resume playing if it was paused.
-   *
-   * **Note:** The animation will be updated the next time the [godot.AnimationPlayer] is processed. If other variables are updated at the same time this is called, they may be updated too early. To perform the update immediately, call `advance(0)`.
+   * Plays the animation with key [param name]. Custom blend times and speed can be set.
+   * The [param from_end] option only affects when switching to a new animation track, or if the
+   * same track but at the start or end. It does not affect resuming playback that was paused in the
+   * middle of an animation. If [param custom_speed] is negative and [param from_end] is `true`, the
+   * animation will play backwards (which is equivalent to calling [playBackwards]).
+   * The [AnimationPlayer] keeps track of its current or last played animation with
+   * [assignedAnimation]. If this method is called with that same animation [param name], or with no
+   * [param name] parameter, the assigned animation will resume playing if it was paused.
+   * **Note:** The animation will be updated the next time the [AnimationPlayer] is processed. If
+   * other variables are updated at the same time this is called, they may be updated too early. To
+   * perform the update immediately, call `advance(0)`.
    */
   @JvmOverloads
   public fun play(
@@ -236,9 +248,9 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * Plays the animation with key [name] in reverse.
-   *
-   * This method is a shorthand for [play] with `custom_speed = -1.0` and `from_end = true`, so see its description for more information.
+   * Plays the animation with key [param name] in reverse.
+   * This method is a shorthand for [play] with `custom_speed = -1.0` and `from_end = true`, so see
+   * its description for more information.
    */
   @JvmOverloads
   public fun playBackwards(name: StringName = StringName(""), customBlend: Double = -1.0): Unit {
@@ -247,8 +259,9 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * Pauses the currently playing animation. The [currentAnimationPosition] will be kept and calling [play] or [playBackwards] without arguments or with the same animation name as [assignedAnimation] will resume the animation.
-   *
+   * Pauses the currently playing animation. The [currentAnimationPosition] will be kept and calling
+   * [play] or [playBackwards] without arguments or with the same animation name as [assignedAnimation]
+   * will resume the animation.
    * See also [stop].
    */
   public fun pause(): Unit {
@@ -257,10 +270,9 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * Stops the currently playing animation. The animation position is reset to `0` and the `custom_speed` is reset to `1.0`. See also [pause].
-   *
-   * If [keepState] is `true`, the animation state is not updated visually.
-   *
+   * Stops the currently playing animation. The animation position is reset to `0` and the
+   * `custom_speed` is reset to `1.0`. See also [pause].
+   * If [param keep_state] is `true`, the animation state is not updated visually.
    * **Note:** The method / audio / animation playback tracks will not be processed by this method.
    */
   @JvmOverloads
@@ -270,7 +282,8 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * Returns `true` if an animation is currently playing (even if [speedScale] and/or `custom_speed` are `0`).
+   * Returns `true` if an animation is currently playing (even if [speedScale] and/or `custom_speed`
+   * are `0`).
    */
   public fun isPlaying(): Boolean {
     TransferContext.writeArguments()
@@ -280,8 +293,8 @@ public open class AnimationPlayer : AnimationMixer() {
 
   /**
    * Queues an animation for playback once the current one is done.
-   *
-   * **Note:** If a looped animation is currently playing, the queued animation will never play unless the looped animation is stopped somehow.
+   * **Note:** If a looped animation is currently playing, the queued animation will never play
+   * unless the looped animation is stopped somehow.
    */
   public fun queue(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -306,8 +319,9 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * Returns the actual playing speed of current animation or `0` if not playing. This speed is the [speedScale] property multiplied by `custom_speed` argument specified when calling the [play] method.
-   *
+   * Returns the actual playing speed of current animation or `0` if not playing. This speed is the
+   * [speedScale] property multiplied by `custom_speed` argument specified when calling the [play]
+   * method.
    * Returns a negative value if the current animation is playing backwards.
    */
   public fun getPlayingSpeed(): Float {
@@ -317,11 +331,14 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * Seeks the animation to the [seconds] point in time (in seconds). If [update] is `true`, the animation updates too, otherwise it updates at process time. Events between the current frame and [seconds] are skipped.
-   *
-   * If [updateOnly] is true, the method / audio / animation playback tracks will not be processed.
-   *
-   * **Note:** Seeking to the end of the animation doesn't emit [godot.AnimationMixer.animationFinished]. If you want to skip animation and emit the signal, use [godot.AnimationMixer.advance].
+   * Seeks the animation to the [param seconds] point in time (in seconds). If [param update] is
+   * `true`, the animation updates too, otherwise it updates at process time. Events between the
+   * current frame and [param seconds] are skipped.
+   * If [param update_only] is true, the method / audio / animation playback tracks will not be
+   * processed.
+   * **Note:** Seeking to the end of the animation doesn't emit [signal
+   * AnimationMixer.animation_finished]. If you want to skip animation and emit the signal, use
+   * [AnimationMixer.advance].
    */
   @JvmOverloads
   public fun seek(
@@ -368,7 +385,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * For backward compatibility. See [godot.AnimationMixer.rootNode].
+   * For backward compatibility. See [AnimationMixer.rootNode].
    */
   public fun setRoot(path: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to path)
@@ -376,7 +393,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * For backward compatibility. See [godot.AnimationMixer.rootNode].
+   * For backward compatibility. See [AnimationMixer.rootNode].
    */
   public fun getRoot(): NodePath {
     TransferContext.writeArguments()
@@ -388,15 +405,18 @@ public open class AnimationPlayer : AnimationMixer() {
     id: Long,
   ) {
     /**
-     * For backward compatibility. See [godot.AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS].
+     * For backward compatibility. See [constant
+     * AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS].
      */
     ANIMATION_PROCESS_PHYSICS(0),
     /**
-     * For backward compatibility. See [godot.AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_IDLE].
+     * For backward compatibility. See [constant
+     * AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_IDLE].
      */
     ANIMATION_PROCESS_IDLE(1),
     /**
-     * For backward compatibility. See [godot.AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL].
+     * For backward compatibility. See [constant
+     * AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL].
      */
     ANIMATION_PROCESS_MANUAL(2),
     ;
@@ -415,11 +435,13 @@ public open class AnimationPlayer : AnimationMixer() {
     id: Long,
   ) {
     /**
-     * For backward compatibility. See [godot.AnimationMixer.ANIMATION_CALLBACK_MODE_METHOD_DEFERRED].
+     * For backward compatibility. See [constant
+     * AnimationMixer.ANIMATION_CALLBACK_MODE_METHOD_DEFERRED].
      */
     ANIMATION_METHOD_CALL_DEFERRED(0),
     /**
-     * For backward compatibility. See [godot.AnimationMixer.ANIMATION_CALLBACK_MODE_METHOD_IMMEDIATE].
+     * For backward compatibility. See [constant
+     * AnimationMixer.ANIMATION_CALLBACK_MODE_METHOD_IMMEDIATE].
      */
     ANIMATION_METHOD_CALL_IMMEDIATE(1),
     ;

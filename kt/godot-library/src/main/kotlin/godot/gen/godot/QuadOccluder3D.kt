@@ -21,14 +21,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Flat plane shape for use with occlusion culling in [godot.OccluderInstance3D].
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/3d/occlusion_culling.html]($DOCS_URL/tutorials/3d/occlusion_culling.html)
- *
- * [godot.QuadOccluder3D] stores a flat plane shape that can be used by the engine's occlusion culling system. See also [godot.PolygonOccluder3D] if you need to customize the quad's shape.
- *
- * See [godot.OccluderInstance3D]'s documentation for instructions on setting up occlusion culling.
+ * [QuadOccluder3D] stores a flat plane shape that can be used by the engine's occlusion culling
+ * system. See also [PolygonOccluder3D] if you need to customize the quad's shape.
+ * See [OccluderInstance3D]'s documentation for instructions on setting up occlusion culling.
  */
 @GodotBaseType
 public open class QuadOccluder3D : Occluder3D() {

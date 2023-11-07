@@ -26,12 +26,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 
 /**
- * Provides parameters for 2D navigation path queries.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/navigation/navigation_using_navigationpathqueryobjects.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationpathqueryobjects.html)
- *
- * By changing various properties of this object, such as the start and target position, you can configure path queries to the [godot.NavigationServer2D].
+ * By changing various properties of this object, such as the start and target position, you can
+ * configure path queries to the [NavigationServer2D].
  */
 @GodotBaseType
 public open class NavigationPathQueryParameters2D : RefCounted() {
@@ -211,11 +207,17 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
     id: Long,
   ) {
     /**
-     * Applies a funnel algorithm to the raw path corridor found by the pathfinding algorithm. This will result in the shortest path possible inside the path corridor. This postprocessing very much depends on the navigation mesh polygon layout and the created corridor. Especially tile- or gridbased layouts can face artificial corners with diagonal movement due to a jagged path corridor imposed by the cell shapes.
+     * Applies a funnel algorithm to the raw path corridor found by the pathfinding algorithm. This
+     * will result in the shortest path possible inside the path corridor. This postprocessing very
+     * much depends on the navigation mesh polygon layout and the created corridor. Especially tile- or
+     * gridbased layouts can face artificial corners with diagonal movement due to a jagged path
+     * corridor imposed by the cell shapes.
      */
     PATH_POSTPROCESSING_CORRIDORFUNNEL(0),
     /**
-     * Centers every path position in the middle of the traveled navigation mesh polygon edge. This creates better paths for tile- or gridbased layouts that restrict the movement to the cells center.
+     * Centers every path position in the middle of the traveled navigation mesh polygon edge. This
+     * creates better paths for tile- or gridbased layouts that restrict the movement to the cells
+     * center.
      */
     PATH_POSTPROCESSING_EDGECENTERED(1),
     ;

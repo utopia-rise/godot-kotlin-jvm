@@ -32,175 +32,103 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Provides a high-level interface for implementing undo and redo operations.
- *
- * UndoRedo works by registering methods and property changes inside "actions". You can create an action, then provide ways to do and undo this action using function calls and property changes, then commit the action.
- *
- * When an action is committed, all of the `do_*` methods will run. If the [undo] method is used, the `undo_*` methods will run. If the [redo] method is used, once again, all of the `do_*` methods will run.
- *
+ * UndoRedo works by registering methods and property changes inside "actions". You can create an
+ * action, then provide ways to do and undo this action using function calls and property changes, then
+ * commit the action.
+ * When an action is committed, all of the `do_*` methods will run. If the [undo] method is used,
+ * the `undo_*` methods will run. If the [redo] method is used, once again, all of the `do_*` methods
+ * will run.
  * Here's an example on how to add an action:
  *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * var undo_redo = UndoRedo.new()
  *
- *
- *
  * func do_something():
- *
  *     pass # Put your code here.
  *
- *
- *
  * func undo_something():
- *
  *     pass # Put here the code that reverts what's done by "do_something()".
  *
- *
- *
  * func _on_my_button_pressed():
- *
  *     var node = get_node("MyNode2D")
- *
  *     undo_redo.create_action("Move the node")
- *
  *     undo_redo.add_do_method(do_something)
- *
  *     undo_redo.add_undo_method(undo_something)
- *
  *     undo_redo.add_do_property(node, "position", Vector2(100,100))
- *
  *     undo_redo.add_undo_property(node, "position", node.position)
- *
  *     undo_redo.commit_action()
- *
- * [/gdscript]
- *
- * [csharp]
- *
+ * ```
+ * csharp:
+ * ```csharp
  * private UndoRedo _undoRedo;
  *
- *
- *
  * public override void _Ready()
- *
  * {
- *
  *     _undoRedo = new UndoRedo();
- *
  * }
- *
- *
  *
  * public void DoSomething()
- *
  * {
- *
  *     // Put your code here.
- *
  * }
- *
- *
  *
  * public void UndoSomething()
- *
  * {
- *
  *     // Put here the code that reverts what's done by "DoSomething()".
- *
  * }
- *
- *
  *
  * private void OnMyButtonPressed()
- *
  * {
- *
  *     var node = GetNode<Node2D>("MyNode2D");
- *
  *     _undoRedo.CreateAction("Move the node");
- *
  *     _undoRedo.AddDoMethod(new Callable(this, MethodName.DoSomething));
- *
  *     _undoRedo.AddUndoMethod(new Callable(this, MethodName.UndoSomething));
- *
  *     _undoRedo.AddDoProperty(node, "position", new Vector2(100, 100));
- *
  *     _undoRedo.AddUndoProperty(node, "position", node.Position);
- *
  *     _undoRedo.CommitAction();
- *
  * }
+ * ```
  *
- * [/csharp]
+ * Before calling any of the `add_(un)do_*` methods, you need to first call [createAction].
+ * Afterwards you need to call [commitAction].
+ * If you don't need to register a method, you can leave [addDoMethod] and [addUndoMethod] out; the
+ * same goes for properties. You can also register more than one method/property.
+ * If you are making an [EditorPlugin] and want to integrate into the editor's undo history, use
+ * [EditorUndoRedoManager] instead.
+ * If you are registering multiple properties/method which depend on one another, be aware that by
+ * default undo operation are called in the same order they have been added. Therefore instead of
+ * grouping do operation with their undo operations it is better to group do on one side and undo on
+ * the other as shown below.
  *
- * [/codeblocks]
- *
- * Before calling any of the `add_(un)do_*` methods, you need to first call [createAction]. Afterwards you need to call [commitAction].
- *
- * If you don't need to register a method, you can leave [addDoMethod] and [addUndoMethod] out; the same goes for properties. You can also register more than one method/property.
- *
- * If you are making an [godot.EditorPlugin] and want to integrate into the editor's undo history, use [godot.EditorUndoRedoManager] instead.
- *
- * If you are registering multiple properties/method which depend on one another, be aware that by default undo operation are called in the same order they have been added. Therefore instead of grouping do operation with their undo operations it is better to group do on one side and undo on the other as shown below.
- *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * undo_redo.create_action("Add object")
  *
- *
- *
  * # DO
- *
  * undo_redo.add_do_method(_create_object)
- *
  * undo_redo.add_do_method(_add_object_to_singleton)
  *
- *
- *
  * # UNDO
- *
  * undo_redo.add_undo_method(_remove_object_from_singleton)
- *
  * undo_redo.add_undo_method(_destroy_that_object)
  *
- *
- *
  * undo_redo.commit_action()
- *
- * [/gdscript]
- *
- * [csharp]
- *
+ * ```
+ * csharp:
+ * ```csharp
  * _undo_redo.CreateAction("Add object");
  *
- *
- *
  * // DO
- *
  * _undo_redo.AddDoMethod(new Callable(this, MethodName.CreateObject));
- *
  * _undo_redo.AddDoMethod(new Callable(this, MethodName.AddObjectToSingleton));
  *
- *
- *
  * // UNDO
- *
  * _undo_redo.AddUndoMethod(new Callable(this, MethodName.RemoveObjectFromSingleton));
- *
  * _undo_redo.AddUndoMethod(new Callable(this, MethodName.DestroyThatObject));
  *
- *
- *
  * _undo_redo.CommitAction();
- *
- * [/csharp]
- *
- * [/codeblocks]
+ * ```
  */
 @GodotBaseType
 public open class UndoRedo : Object() {
@@ -215,11 +143,12 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Create a new action. After this is called, do all your calls to [addDoMethod], [addUndoMethod], [addDoProperty], and [addUndoProperty], then commit the action with [commitAction].
-   *
-   * The way actions are merged is dictated by [mergeMode]. See [enum MergeMode] for details.
-   *
-   * The way undo operation are ordered in actions is dictated by [backwardUndoOps]. When [backwardUndoOps] is `false` undo option are ordered in the same order they were added. Which means the first operation to be added will be the first to be undone.
+   * Create a new action. After this is called, do all your calls to [addDoMethod], [addUndoMethod],
+   * [addDoProperty], and [addUndoProperty], then commit the action with [commitAction].
+   * The way actions are merged is dictated by [param merge_mode]. See [enum MergeMode] for details.
+   * The way undo operation are ordered in actions is dictated by [param backward_undo_ops]. When
+   * [param backward_undo_ops] is `false` undo option are ordered in the same order they were added.
+   * Which means the first operation to be added will be the first to be undone.
    */
   @JvmOverloads
   public fun createAction(
@@ -232,7 +161,8 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Commit the action. If [execute] is `true` (which it is by default), all "do" methods/properties are called/set when this function is called.
+   * Commit the action. If [param execute] is `true` (which it is by default), all "do"
+   * methods/properties are called/set when this function is called.
    */
   @JvmOverloads
   public fun commitAction(execute: Boolean = true): Unit {
@@ -241,7 +171,8 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Returns `true` if the [godot.UndoRedo] is currently committing the action, i.e. running its "do" method or property change (see [commitAction]).
+   * Returns `true` if the [UndoRedo] is currently committing the action, i.e. running its "do"
+   * method or property change (see [commitAction]).
    */
   public fun isCommittingAction(): Boolean {
     TransferContext.writeArguments()
@@ -250,7 +181,7 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Register a [godot.Callable] that will be called when the action is committed.
+   * Register a [Callable] that will be called when the action is committed.
    */
   public fun addDoMethod(callable: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to callable)
@@ -258,7 +189,7 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Register a [godot.Callable] that will be called when the action is undone.
+   * Register a [Callable] that will be called when the action is undone.
    */
   public fun addUndoMethod(callable: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to callable)
@@ -266,7 +197,8 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Register a [property] that would change its value to [value] when the action is committed.
+   * Register a [param property] that would change its value to [param value] when the action is
+   * committed.
    */
   public fun addDoProperty(
     _object: Object,
@@ -278,7 +210,8 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Register a [property] that would change its value to [value] when the action is undone.
+   * Register a [param property] that would change its value to [param value] when the action is
+   * undone.
    */
   public fun addUndoProperty(
     _object: Object,
@@ -290,16 +223,16 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Register a reference for "do" that will be erased if the "do" history is lost. This is useful mostly for new nodes created for the "do" call. Do not use for resources.
-   *
-   * ```
-   * 				var node = Node2D.new()
-   * 				undo_redo.create_action("Add node")
-   * 				undo_redo.add_do_method(add_child.bind(node))
-   * 				undo_redo.add_do_reference(node)
-   * 				undo_redo.add_undo_method(remove_child.bind(node))
-   * 				undo_redo.commit_action()
-   * 				```
+   * Register a reference for "do" that will be erased if the "do" history is lost. This is useful
+   * mostly for new nodes created for the "do" call. Do not use for resources.
+   * [codeblock]
+   * var node = Node2D.new()
+   * undo_redo.create_action("Add node")
+   * undo_redo.add_do_method(add_child.bind(node))
+   * undo_redo.add_do_reference(node)
+   * undo_redo.add_undo_method(remove_child.bind(node))
+   * undo_redo.commit_action()
+   * [/codeblock]
    */
   public fun addDoReference(_object: Object): Unit {
     TransferContext.writeArguments(OBJECT to _object)
@@ -307,16 +240,16 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Register a reference for "undo" that will be erased if the "undo" history is lost. This is useful mostly for nodes removed with the "do" call (not the "undo" call!).
-   *
-   * ```
-   * 				var node = $Node2D
-   * 				undo_redo.create_action("Remove node")
-   * 				undo_redo.add_do_method(remove_child.bind(node))
-   * 				undo_redo.add_undo_method(add_child.bind(node))
-   * 				undo_redo.add_undo_reference(node)
-   * 				undo_redo.commit_action()
-   * 				```
+   * Register a reference for "undo" that will be erased if the "undo" history is lost. This is
+   * useful mostly for nodes removed with the "do" call (not the "undo" call!).
+   * [codeblock]
+   * var node = $Node2D
+   * undo_redo.create_action("Remove node")
+   * undo_redo.add_do_method(remove_child.bind(node))
+   * undo_redo.add_undo_method(add_child.bind(node))
+   * undo_redo.add_undo_reference(node)
+   * undo_redo.commit_action()
+   * [/codeblock]
    */
   public fun addUndoReference(_object: Object): Unit {
     TransferContext.writeArguments(OBJECT to _object)
@@ -324,7 +257,9 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Marks the next "do" and "undo" operations to be processed even if the action gets merged with another in the [MERGE_ENDS] mode. Return to normal operation using [endForceKeepInMergeEnds].
+   * Marks the next "do" and "undo" operations to be processed even if the action gets merged with
+   * another in the [constant MERGE_ENDS] mode. Return to normal operation using
+   * [endForceKeepInMergeEnds].
    */
   public fun startForceKeepInMergeEnds(): Unit {
     TransferContext.writeArguments()
@@ -332,7 +267,8 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Stops marking operations as to be processed even if the action gets merged with another in the [MERGE_ENDS] mode. See [startForceKeepInMergeEnds].
+   * Stops marking operations as to be processed even if the action gets merged with another in the
+   * [constant MERGE_ENDS] mode. See [startForceKeepInMergeEnds].
    */
   public fun endForceKeepInMergeEnds(): Unit {
     TransferContext.writeArguments()
@@ -368,8 +304,8 @@ public open class UndoRedo : Object() {
 
   /**
    * Clear the undo/redo history and associated references.
-   *
-   * Passing `false` to [increaseVersion] will prevent the version number from increasing when the history is cleared.
+   * Passing `false` to [param increase_version] will prevent the version number from increasing
+   * when the history is cleared.
    */
   @JvmOverloads
   public fun clearHistory(increaseVersion: Boolean = true): Unit {
@@ -405,8 +341,8 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Gets the version. Every time a new action is committed, the [godot.UndoRedo]'s version number is increased automatically.
-   *
+   * Gets the version. Every time a new action is committed, the [UndoRedo]'s version number is
+   * increased automatically.
    * This is useful mostly to check if something changed from a saved version.
    */
   public fun getVersion(): Long {
@@ -441,7 +377,8 @@ public open class UndoRedo : Object() {
      */
     MERGE_DISABLE(0),
     /**
-     * Makes so that the action's "undo" operations are from the first action created and the "do" operations are from the last subsequent action with the same name.
+     * Makes so that the action's "undo" operations are from the first action created and the "do"
+     * operations are from the last subsequent action with the same name.
      */
     MERGE_ENDS(1),
     /**

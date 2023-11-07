@@ -20,47 +20,33 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * One-shot timer.
+ * A one-shot timer managed by the scene tree, which emits [signal timeout] on completion. See also
+ * [SceneTree.createTimer].
+ * As opposed to [Timer], it does not require the instantiation of a node. Commonly used to create a
+ * one-shot delay timer as in the following example:
  *
- * A one-shot timer managed by the scene tree, which emits [timeout] on completion. See also [godot.SceneTree.createTimer].
- *
- * As opposed to [godot.Timer], it does not require the instantiation of a node. Commonly used to create a one-shot delay timer as in the following example:
- *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * func some_function():
- *
  *     print("Timer started.")
- *
  *     await get_tree().create_timer(1.0).timeout
- *
  *     print("Timer ended.")
- *
- * [/gdscript]
- *
- * [csharp]
- *
+ * ```
+ * csharp:
+ * ```csharp
  * public async Task SomeFunction()
- *
  * {
- *
  *     GD.Print("Timer started.");
- *
  *     await ToSignal(GetTree().CreateTimer(1.0f), SceneTreeTimer.SignalName.Timeout);
- *
  *     GD.Print("Timer ended.");
- *
  * }
+ * ```
  *
- * [/csharp]
- *
- * [/codeblocks]
- *
- * The timer will be dereferenced after its time elapses. To preserve the timer, you can keep a reference to it. See [godot.RefCounted].
- *
- * **Note:** The timer is processed after all of the nodes in the current frame, i.e. node's [godot.Node.Process] method would be called before the timer (or [godot.Node.PhysicsProcess] if `process_in_physics` in [godot.SceneTree.createTimer] has been set to `true`).
+ * The timer will be dereferenced after its time elapses. To preserve the timer, you can keep a
+ * reference to it. See [RefCounted].
+ * **Note:** The timer is processed after all of the nodes in the current frame, i.e. node's
+ * [Node.Process] method would be called before the timer (or [Node.PhysicsProcess] if
+ * `process_in_physics` in [SceneTree.createTimer] has been set to `true`).
  */
 @GodotBaseType
 public open class SceneTreeTimer internal constructor() : RefCounted() {

@@ -25,14 +25,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A modification that rotates a [godot.Bone2D] node to look at a target.
- *
- * This [godot.SkeletonModification2D] rotates a bone to look a target. This is extremely helpful for moving character's head to look at the player, rotating a turret to look at a target, or any other case where you want to make a bone rotate towards something quickly and easily.
+ * This [SkeletonModification2D] rotates a bone to look a target. This is extremely helpful for
+ * moving character's head to look at the player, rotating a turret to look at a target, or any other
+ * case where you want to make a bone rotate towards something quickly and easily.
  */
 @GodotBaseType
 public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   /**
-   * The index of the [godot.Bone2D] node that the modification will operate on.
+   * The index of the [Bone2D] node that the modification will operate on.
    */
   public var boneIndex: Int
     get() {
@@ -46,7 +46,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
     }
 
   /**
-   * The [godot.Bone2D] node that the modification will operate on.
+   * The [Bone2D] node that the modification will operate on.
    */
   public var bone2dNode: NodePath
     get() {
@@ -60,7 +60,8 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
     }
 
   /**
-   * The NodePath to the node that is the target for the LookAt modification. This node is what the modification will rotate the [godot.Bone2D] to.
+   * The NodePath to the node that is the target for the LookAt modification. This node is what the
+   * modification will rotate the [Bone2D] to.
    */
   public var targetNodepath: NodePath
     get() {
@@ -79,7 +80,8 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   }
 
   /**
-   * Sets the amount of additional rotation that is to be applied after executing the modification. This allows for offsetting the results by the inputted rotation amount.
+   * Sets the amount of additional rotation that is to be applied after executing the modification.
+   * This allows for offsetting the results by the inputted rotation amount.
    */
   public fun setAdditionalRotation(rotation: Float): Unit {
     TransferContext.writeArguments(DOUBLE to rotation.toDouble())
@@ -87,7 +89,8 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   }
 
   /**
-   * Returns the amount of additional rotation that is applied after the LookAt modification executes.
+   * Returns the amount of additional rotation that is applied after the LookAt modification
+   * executes.
    */
   public fun getAdditionalRotation(): Float {
     TransferContext.writeArguments()
@@ -96,7 +99,8 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   }
 
   /**
-   * Sets whether this modification will use constraints or not. When `true`, constraints will be applied when solving the LookAt modification.
+   * Sets whether this modification will use constraints or not. When `true`, constraints will be
+   * applied when solving the LookAt modification.
    */
   public fun setEnableConstraint(enableConstraint: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enableConstraint)
@@ -148,8 +152,9 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
 
   /**
    * When `true`, the modification will use an inverted joint constraint.
-   *
-   * An inverted joint constraint only constraints the [godot.Bone2D] to the angles *outside of* the inputted minimum and maximum angles. For this reason, it is referred to as an inverted joint constraint, as it constraints the joint to the outside of the inputted values.
+   * An inverted joint constraint only constraints the [Bone2D] to the angles *outside of* the
+   * inputted minimum and maximum angles. For this reason, it is referred to as an inverted joint
+   * constraint, as it constraints the joint to the outside of the inputted values.
    */
   public fun setConstraintAngleInvert(invert: Boolean): Unit {
     TransferContext.writeArguments(BOOL to invert)

@@ -25,18 +25,18 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A material that controls how volumetric fog is rendered, to be assigned to a [godot.FogVolume].
- *
- * A [godot.Material] resource that can be used by [godot.FogVolume]s to draw volumetric effects.
- *
- * If you need more advanced effects, use a custom [fog shader]($DOCS_URL/tutorials/shaders/shader_reference/fog_shader.html).
+ * A [Material] resource that can be used by [FogVolume]s to draw volumetric effects.
+ * If you need more advanced effects, use a custom
+ * [url=$DOCS_URL/tutorials/shaders/shader_reference/fog_shader.html]fog shader[/url].
  */
 @GodotBaseType
 public open class FogMaterial : Material() {
   /**
-   * The density of the [godot.FogVolume]. Denser objects are more opaque, but may suffer from under-sampling artifacts that look like stripes. Negative values can be used to subtract fog from other [godot.FogVolume]s or global volumetric fog.
-   *
-   * **Note:** Due to limited precision, [density] values between `-0.001` and `0.001` (exclusive) act like `0.0`. This does not apply to [godot.Environment.volumetricFogDensity].
+   * The density of the [FogVolume]. Denser objects are more opaque, but may suffer from
+   * under-sampling artifacts that look like stripes. Negative values can be used to subtract fog from
+   * other [FogVolume]s or global volumetric fog.
+   * **Note:** Due to limited precision, [density] values between `-0.001` and `0.001` (exclusive)
+   * act like `0.0`. This does not apply to [Environment.volumetricFogDensity].
    */
   public var density: Float
     get() {
@@ -50,7 +50,9 @@ public open class FogMaterial : Material() {
     }
 
   /**
-   * The single-scattering [godot.core.Color] of the [godot.FogVolume]. Internally, [albedo] is converted into single-scattering, which is additively blended with other [godot.FogVolume]s and the [godot.Environment.volumetricFogAlbedo].
+   * The single-scattering [Color] of the [FogVolume]. Internally, [albedo] is converted into
+   * single-scattering, which is additively blended with other [FogVolume]s and the
+   * [Environment.volumetricFogAlbedo].
    */
   @CoreTypeLocalCopy
   public var albedo: Color
@@ -65,7 +67,9 @@ public open class FogMaterial : Material() {
     }
 
   /**
-   * The [godot.core.Color] of the light emitted by the [godot.FogVolume]. Emitted light will not cast light or shadows on other objects, but can be useful for modulating the [godot.core.Color] of the [godot.FogVolume] independently from light sources.
+   * The [Color] of the light emitted by the [FogVolume]. Emitted light will not cast light or
+   * shadows on other objects, but can be useful for modulating the [Color] of the [FogVolume]
+   * independently from light sources.
    */
   @CoreTypeLocalCopy
   public var emission: Color
@@ -80,7 +84,10 @@ public open class FogMaterial : Material() {
     }
 
   /**
-   * The rate by which the height-based fog decreases in density as height increases in world space. A high falloff will result in a sharp transition, while a low falloff will result in a smoother transition. A value of `0.0` results in uniform-density fog. The height threshold is determined by the height of the associated [godot.FogVolume].
+   * The rate by which the height-based fog decreases in density as height increases in world space.
+   * A high falloff will result in a sharp transition, while a low falloff will result in a smoother
+   * transition. A value of `0.0` results in uniform-density fog. The height threshold is determined by
+   * the height of the associated [FogVolume].
    */
   public var heightFalloff: Float
     get() {
@@ -94,7 +101,8 @@ public open class FogMaterial : Material() {
     }
 
   /**
-   * The hardness of the edges of the [godot.FogVolume]. A higher value will result in softer edges, while a lower value will result in harder edges.
+   * The hardness of the edges of the [FogVolume]. A higher value will result in softer edges, while
+   * a lower value will result in harder edges.
    */
   public var edgeFade: Float
     get() {
@@ -108,7 +116,9 @@ public open class FogMaterial : Material() {
     }
 
   /**
-   * The 3D texture that is used to scale the [density] of the [godot.FogVolume]. This can be used to vary fog density within the [godot.FogVolume] with any kind of static pattern. For animated effects, consider using a custom [fog shader]($DOCS_URL/tutorials/shaders/shader_reference/fog_shader.html).
+   * The 3D texture that is used to scale the [density] of the [FogVolume]. This can be used to vary
+   * fog density within the [FogVolume] with any kind of static pattern. For animated effects, consider
+   * using a custom [url=$DOCS_URL/tutorials/shaders/shader_reference/fog_shader.html]fog shader[/url].
    */
   public var densityTexture: Texture3D?
     get() {
@@ -127,7 +137,9 @@ public open class FogMaterial : Material() {
   }
 
   /**
-   * The single-scattering [godot.core.Color] of the [godot.FogVolume]. Internally, [albedo] is converted into single-scattering, which is additively blended with other [godot.FogVolume]s and the [godot.Environment.volumetricFogAlbedo].
+   * The single-scattering [Color] of the [FogVolume]. Internally, [albedo] is converted into
+   * single-scattering, which is additively blended with other [FogVolume]s and the
+   * [Environment.volumetricFogAlbedo].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -151,7 +163,9 @@ public open class FogMaterial : Material() {
 
 
   /**
-   * The [godot.core.Color] of the light emitted by the [godot.FogVolume]. Emitted light will not cast light or shadows on other objects, but can be useful for modulating the [godot.core.Color] of the [godot.FogVolume] independently from light sources.
+   * The [Color] of the light emitted by the [FogVolume]. Emitted light will not cast light or
+   * shadows on other objects, but can be useful for modulating the [Color] of the [FogVolume]
+   * independently from light sources.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

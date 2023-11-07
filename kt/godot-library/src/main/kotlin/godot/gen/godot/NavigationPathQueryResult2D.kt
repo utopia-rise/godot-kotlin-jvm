@@ -27,17 +27,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Represents the result of a 2D pathfinding query.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/navigation/navigation_using_navigationpathqueryobjects.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationpathqueryobjects.html)
- *
- * This class stores the result of a 2D navigation path query from the [godot.NavigationServer2D].
+ * This class stores the result of a 2D navigation path query from the [NavigationServer2D].
  */
 @GodotBaseType
 public open class NavigationPathQueryResult2D : RefCounted() {
   /**
-   * The resulting path array from the navigation query. All path array positions are in global coordinates. Without customized query parameters this is the same path as returned by [godot.NavigationServer2D.mapGetPath].
+   * The resulting path array from the navigation query. All path array positions are in global
+   * coordinates. Without customized query parameters this is the same path as returned by
+   * [NavigationServer2D.mapGetPath].
    */
   public var path: PackedVector2Array
     get() {
@@ -79,7 +76,8 @@ public open class NavigationPathQueryResult2D : RefCounted() {
     }
 
   /**
-   * The `ObjectID`s of the [godot.Object]s which manage the regions and links each point of the path goes through.
+   * The `ObjectID`s of the [Object]s which manage the regions and links each point of the path goes
+   * through.
    */
   public var pathOwnerIds: PackedInt64Array
     get() {
@@ -98,7 +96,8 @@ public open class NavigationPathQueryResult2D : RefCounted() {
   }
 
   /**
-   * Reset the result object to its initial state. This is useful to reuse the object across multiple queries.
+   * Reset the result object to its initial state. This is useful to reuse the object across
+   * multiple queries.
    */
   public fun reset(): Unit {
     TransferContext.writeArguments()

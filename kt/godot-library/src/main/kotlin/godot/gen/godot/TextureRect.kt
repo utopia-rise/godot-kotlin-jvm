@@ -20,17 +20,14 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A control that displays a texture.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
- *
- * A control that displays a texture, for example an icon inside a GUI. The texture's placement can be controlled with the [stretchMode] property. It can scale, tile, or stay centered inside its bounding rectangle.
+ * A control that displays a texture, for example an icon inside a GUI. The texture's placement can
+ * be controlled with the [stretchMode] property. It can scale, tile, or stay centered inside its
+ * bounding rectangle.
  */
 @GodotBaseType
 public open class TextureRect : Control() {
   /**
-   * The node's [godot.Texture2D] resource.
+   * The node's [Texture2D] resource.
    */
   public var texture: Texture2D?
     get() {
@@ -44,9 +41,12 @@ public open class TextureRect : Control() {
     }
 
   /**
-   * Defines how minimum size is determined based on the texture's size. See [enum ExpandMode] for options.
-   *
-   * **Note:** Using [EXPAND_FIT_WIDTH], [EXPAND_FIT_WIDTH_PROPORTIONAL], [EXPAND_FIT_HEIGHT] or [EXPAND_FIT_HEIGHT_PROPORTIONAL] may result in unstable behavior in some containers. This functionality is being re-evaluated and will change in the future.
+   * Defines how minimum size is determined based on the texture's size. See [enum ExpandMode] for
+   * options.
+   * **Note:** Using [constant EXPAND_FIT_WIDTH], [constant EXPAND_FIT_WIDTH_PROPORTIONAL],
+   * [constant EXPAND_FIT_HEIGHT] or [constant EXPAND_FIT_HEIGHT_PROPORTIONAL] may result in unstable
+   * behavior in some containers. This functionality is being re-evaluated and will change in the
+   * future.
    */
   public var expandMode: ExpandMode
     get() {
@@ -60,7 +60,8 @@ public open class TextureRect : Control() {
     }
 
   /**
-   * Controls the texture's behavior when resizing the node's bounding rectangle. See [enum StretchMode].
+   * Controls the texture's behavior when resizing the node's bounding rectangle. See [enum
+   * StretchMode].
    */
   public var stretchMode: StretchMode
     get() {
@@ -110,27 +111,31 @@ public open class TextureRect : Control() {
     id: Long,
   ) {
     /**
-     * The minimum size will be equal to texture size, i.e. [godot.TextureRect] can't be smaller than the texture.
+     * The minimum size will be equal to texture size, i.e. [TextureRect] can't be smaller than the
+     * texture.
      */
     EXPAND_KEEP_SIZE(0),
     /**
-     * The size of the texture won't be considered for minimum size calculation, so the [godot.TextureRect] can be shrunk down past the texture size.
+     * The size of the texture won't be considered for minimum size calculation, so the
+     * [TextureRect] can be shrunk down past the texture size.
      */
     EXPAND_IGNORE_SIZE(1),
     /**
-     * The height of the texture will be ignored. Minimum width will be equal to the current height. Useful for horizontal layouts, e.g. inside [godot.HBoxContainer].
+     * The height of the texture will be ignored. Minimum width will be equal to the current height.
+     * Useful for horizontal layouts, e.g. inside [HBoxContainer].
      */
     EXPAND_FIT_WIDTH(2),
     /**
-     * Same as [EXPAND_FIT_WIDTH], but keeps texture's aspect ratio.
+     * Same as [constant EXPAND_FIT_WIDTH], but keeps texture's aspect ratio.
      */
     EXPAND_FIT_WIDTH_PROPORTIONAL(3),
     /**
-     * The width of the texture will be ignored. Minimum height will be equal to the current width. Useful for vertical layouts, e.g. inside [godot.VBoxContainer].
+     * The width of the texture will be ignored. Minimum height will be equal to the current width.
+     * Useful for vertical layouts, e.g. inside [VBoxContainer].
      */
     EXPAND_FIT_HEIGHT(4),
     /**
-     * Same as [EXPAND_FIT_HEIGHT], but keeps texture's aspect ratio.
+     * Same as [constant EXPAND_FIT_HEIGHT], but keeps texture's aspect ratio.
      */
     EXPAND_FIT_HEIGHT_PROPORTIONAL(5),
     ;
@@ -165,15 +170,18 @@ public open class TextureRect : Control() {
      */
     STRETCH_KEEP_CENTERED(3),
     /**
-     * Scale the texture to fit the node's bounding rectangle, but maintain the texture's aspect ratio.
+     * Scale the texture to fit the node's bounding rectangle, but maintain the texture's aspect
+     * ratio.
      */
     STRETCH_KEEP_ASPECT(4),
     /**
-     * Scale the texture to fit the node's bounding rectangle, center it and maintain its aspect ratio.
+     * Scale the texture to fit the node's bounding rectangle, center it and maintain its aspect
+     * ratio.
      */
     STRETCH_KEEP_ASPECT_CENTERED(5),
     /**
-     * Scale the texture so that the shorter side fits the bounding rectangle. The other side clips to the node's limits.
+     * Scale the texture so that the shorter side fits the bounding rectangle. The other side clips
+     * to the node's limits.
      */
     STRETCH_KEEP_ASPECT_COVERED(6),
     ;

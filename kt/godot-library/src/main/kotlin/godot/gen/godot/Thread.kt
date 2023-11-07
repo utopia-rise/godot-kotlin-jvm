@@ -28,21 +28,13 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A unit of execution in a process.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
- *
- * A unit of execution in a process. Can run methods on [godot.Object]s simultaneously. The use of synchronization via [godot.Mutex] or [godot.Semaphore] is advised if working with shared objects.
- *
+ * A unit of execution in a process. Can run methods on [Object]s simultaneously. The use of
+ * synchronization via [Mutex] or [Semaphore] is advised if working with shared objects.
  * **Warning:**
- *
- * To ensure proper cleanup without crashes or deadlocks, when a [godot.Thread]'s reference count reaches zero and it is therefore destroyed, the following conditions must be met:
- *
- * - It must not have any [godot.Mutex] objects locked.
- *
- * - It must not be waiting on any [godot.Semaphore] objects.
- *
+ * To ensure proper cleanup without crashes or deadlocks, when a [Thread]'s reference count reaches
+ * zero and it is therefore destroyed, the following conditions must be met:
+ * - It must not have any [Mutex] objects locked.
+ * - It must not be waiting on any [Semaphore] objects.
  * - [waitToFinish] should have been called on it.
  */
 @GodotBaseType
@@ -53,13 +45,11 @@ public open class Thread : RefCounted() {
   }
 
   /**
-   * Starts a new [godot.Thread] that calls [callable].
-   *
-   * If the method takes some arguments, you can pass them using [godot.Callable.bind].
-   *
-   * The [priority] of the [godot.Thread] can be changed by passing a value from the [enum Priority] enum.
-   *
-   * Returns [OK] on success, or [ERR_CANT_CREATE] on failure.
+   * Starts a new [Thread] that calls [param callable].
+   * If the method takes some arguments, you can pass them using [Callable.bind].
+   * The [param priority] of the [Thread] can be changed by passing a value from the [enum Priority]
+   * enum.
+   * Returns [constant OK] on success, or [constant ERR_CANT_CREATE] on failure.
    */
   @JvmOverloads
   public fun start(callable: Callable, priority: Priority = Thread.Priority.PRIORITY_NORMAL):
@@ -70,7 +60,8 @@ public open class Thread : RefCounted() {
   }
 
   /**
-   * Returns the current [godot.Thread]'s ID, uniquely identifying it among all threads. If the [godot.Thread] has not started running or if [waitToFinish] has been called, this returns an empty string.
+   * Returns the current [Thread]'s ID, uniquely identifying it among all threads. If the [Thread]
+   * has not started running or if [waitToFinish] has been called, this returns an empty string.
    */
   public fun getId(): String {
     TransferContext.writeArguments()
@@ -79,7 +70,9 @@ public open class Thread : RefCounted() {
   }
 
   /**
-   * Returns `true` if this [godot.Thread] has been started. Once started, this will return `true` until it is joined using [waitToFinish]. For checking if a [godot.Thread] is still executing its task, use [isAlive].
+   * Returns `true` if this [Thread] has been started. Once started, this will return `true` until
+   * it is joined using [waitToFinish]. For checking if a [Thread] is still executing its task, use
+   * [isAlive].
    */
   public fun isStarted(): Boolean {
     TransferContext.writeArguments()
@@ -88,9 +81,9 @@ public open class Thread : RefCounted() {
   }
 
   /**
-   * Returns `true` if this [godot.Thread] is currently running the provided function. This is useful for determining if [waitToFinish] can be called without blocking the calling thread.
-   *
-   * To check if a [godot.Thread] is joinable, use [isStarted].
+   * Returns `true` if this [Thread] is currently running the provided function. This is useful for
+   * determining if [waitToFinish] can be called without blocking the calling thread.
+   * To check if a [Thread] is joinable, use [isStarted].
    */
   public fun isAlive(): Boolean {
     TransferContext.writeArguments()
@@ -99,11 +92,12 @@ public open class Thread : RefCounted() {
   }
 
   /**
-   * Joins the [godot.Thread] and waits for it to finish. Returns the output of the [godot.Callable] passed to [start].
-   *
-   * Should either be used when you want to retrieve the value returned from the method called by the [godot.Thread] or before freeing the instance that contains the [godot.Thread].
-   *
-   * To determine if this can be called without blocking the calling thread, check if [isAlive] is `false`.
+   * Joins the [Thread] and waits for it to finish. Returns the output of the [Callable] passed to
+   * [start].
+   * Should either be used when you want to retrieve the value returned from the method called by
+   * the [Thread] or before freeing the instance that contains the [Thread].
+   * To determine if this can be called without blocking the calling thread, check if [isAlive] is
+   * `false`.
    */
   public fun waitToFinish(): Any? {
     TransferContext.writeArguments()
@@ -140,19 +134,23 @@ public open class Thread : RefCounted() {
 
   public companion object {
     /**
-     * Sets whether the thread safety checks the engine normally performs in methods of certain classes (e.g., [godot.Node]) should happen **on the current thread**.
-     *
-     * The default, for every thread, is that they are enabled (as if called with [enabled] being `true`).
-     *
-     * Those checks are conservative. That means that they will only succeed in considering a call thread-safe (and therefore allow it to happen) if the engine can guarantee such safety.
-     *
-     * Because of that, there may be cases where the user may want to disable them ([enabled] being `false`) to make certain operations allowed again. By doing so, it becomes the user's responsibility to ensure thread safety (e.g., by using [godot.Mutex]) for those objects that are otherwise protected by the engine.
-     *
-     * **Note:** This is an advanced usage of the engine. You are advised to use it only if you know what you are doing and there is no safer way.
-     *
-     * **Note:** This is useful for scripts running on either arbitrary [godot.Thread] objects or tasks submitted to the [godot.WorkerThreadPool]. It doesn't apply to code running during [godot.Node] group processing, where the checks will be always performed.
-     *
-     * **Note:** Even in the case of having disabled the checks in a [godot.WorkerThreadPool] task, there's no need to re-enable them at the end. The engine will do so.
+     * Sets whether the thread safety checks the engine normally performs in methods of certain
+     * classes (e.g., [Node]) should happen **on the current thread**.
+     * The default, for every thread, is that they are enabled (as if called with [param enabled]
+     * being `true`).
+     * Those checks are conservative. That means that they will only succeed in considering a call
+     * thread-safe (and therefore allow it to happen) if the engine can guarantee such safety.
+     * Because of that, there may be cases where the user may want to disable them ([param enabled]
+     * being `false`) to make certain operations allowed again. By doing so, it becomes the user's
+     * responsibility to ensure thread safety (e.g., by using [Mutex]) for those objects that are
+     * otherwise protected by the engine.
+     * **Note:** This is an advanced usage of the engine. You are advised to use it only if you know
+     * what you are doing and there is no safer way.
+     * **Note:** This is useful for scripts running on either arbitrary [Thread] objects or tasks
+     * submitted to the [WorkerThreadPool]. It doesn't apply to code running during [Node] group
+     * processing, where the checks will be always performed.
+     * **Note:** Even in the case of having disabled the checks in a [WorkerThreadPool] task,
+     * there's no need to re-enable them at the end. The engine will do so.
      */
     public fun setThreadSafetyChecksEnabled(enabled: Boolean): Unit {
       TransferContext.writeArguments(BOOL to enabled)

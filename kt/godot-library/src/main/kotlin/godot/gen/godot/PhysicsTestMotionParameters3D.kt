@@ -32,14 +32,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Provides parameters for [godot.PhysicsServer3D.bodyTestMotion].
- *
- * By changing various properties of this object, such as the motion, you can configure the parameters for [godot.PhysicsServer3D.bodyTestMotion].
+ * By changing various properties of this object, such as the motion, you can configure the
+ * parameters for [PhysicsServer3D.bodyTestMotion].
  */
 @GodotBaseType
 public open class PhysicsTestMotionParameters3D : RefCounted() {
   /**
-   * Transform in global space where the motion should start. Usually set to [godot.Node3D.globalTransform] for the current body's transform.
+   * Transform in global space where the motion should start. Usually set to
+   * [Node3D.globalTransform] for the current body's transform.
    */
   @CoreTypeLocalCopy
   public var from: Transform3D
@@ -83,7 +83,8 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     }
 
   /**
-   * Maximum number of returned collisions, between `1` and `32`. Always returns the deepest detected collisions.
+   * Maximum number of returned collisions, between `1` and `32`. Always returns the deepest
+   * detected collisions.
    */
   public var maxCollisions: Int
     get() {
@@ -97,9 +98,10 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     }
 
   /**
-   * If set to `true`, shapes of type [godot.PhysicsServer3D.SHAPE_SEPARATION_RAY] are used to detect collisions and can stop the motion. Can be useful when snapping to the ground.
-   *
-   * If set to `false`, shapes of type [godot.PhysicsServer3D.SHAPE_SEPARATION_RAY] are only used for separation when overlapping with other bodies. That's the main use for separation ray shapes.
+   * If set to `true`, shapes of type [constant PhysicsServer3D.SHAPE_SEPARATION_RAY] are used to
+   * detect collisions and can stop the motion. Can be useful when snapping to the ground.
+   * If set to `false`, shapes of type [constant PhysicsServer3D.SHAPE_SEPARATION_RAY] are only used
+   * for separation when overlapping with other bodies. That's the main use for separation ray shapes.
    */
   public var collideSeparationRay: Boolean
     get() {
@@ -113,7 +115,8 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     }
 
   /**
-   * Optional array of body [RID] to exclude from collision. Use [godot.CollisionObject3D.getRid] to get the [RID] associated with a [godot.CollisionObject3D]-derived node.
+   * Optional array of body [RID] to exclude from collision. Use [CollisionObject3D.getRid] to get
+   * the [RID] associated with a [CollisionObject3D]-derived node.
    */
   public var excludeBodies: VariantArray<RID>
     get() {
@@ -127,7 +130,8 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     }
 
   /**
-   * Optional array of object unique instance ID to exclude from collision. See [godot.Object.getInstanceId].
+   * Optional array of object unique instance ID to exclude from collision. See
+   * [Object.getInstanceId].
    */
   public var excludeObjects: VariantArray<Long>
     get() {
@@ -141,9 +145,10 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     }
 
   /**
-   * If set to `true`, any depenetration from the recovery phase is reported as a collision; this is used e.g. by [godot.CharacterBody3D] for improving floor detection during floor snapping.
-   *
-   * If set to `false`, only collisions resulting from the motion are reported, which is generally the desired behavior.
+   * If set to `true`, any depenetration from the recovery phase is reported as a collision; this is
+   * used e.g. by [CharacterBody3D] for improving floor detection during floor snapping.
+   * If set to `false`, only collisions resulting from the motion are reported, which is generally
+   * the desired behavior.
    */
   public var recoveryAsCollision: Boolean
     get() {
@@ -162,7 +167,8 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   }
 
   /**
-   * Transform in global space where the motion should start. Usually set to [godot.Node3D.globalTransform] for the current body's transform.
+   * Transform in global space where the motion should start. Usually set to
+   * [Node3D.globalTransform] for the current body's transform.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

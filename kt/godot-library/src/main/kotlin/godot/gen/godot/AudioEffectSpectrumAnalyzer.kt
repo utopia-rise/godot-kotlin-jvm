@@ -21,19 +21,15 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Audio effect that can be used for real-time audio visualizations.
- *
- * Tutorials:
- * [https://godotengine.org/article/godot-32-will-get-new-audio-features](https://godotengine.org/article/godot-32-will-get-new-audio-features)
- *
- * This audio effect does not affect sound output, but can be used for real-time audio visualizations.
- *
- * See also [godot.AudioStreamGenerator] for procedurally generating sounds.
+ * This audio effect does not affect sound output, but can be used for real-time audio
+ * visualizations.
+ * See also [AudioStreamGenerator] for procedurally generating sounds.
  */
 @GodotBaseType
 public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
   /**
-   * The length of the buffer to keep (in seconds). Higher values keep data around for longer, but require more memory.
+   * The length of the buffer to keep (in seconds). Higher values keep data around for longer, but
+   * require more memory.
    */
   public var bufferLength: Float
     get() {
@@ -46,9 +42,6 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var tapBackPos: Float
     get() {
       TransferContext.writeArguments()
@@ -61,7 +54,10 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
     }
 
   /**
-   * The size of the [godot.Fast Fourier transform](https://en.wikipedia.org/wiki/Fast_Fourier_transform) buffer. Higher values smooth out the spectrum analysis over time, but have greater latency. The effects of this higher latency are especially noticeable with sudden amplitude changes.
+   * The size of the [url=https://en.wikipedia.org/wiki/Fast_Fourier_transform]Fast Fourier
+   * transform[/url] buffer. Higher values smooth out the spectrum analysis over time, but have greater
+   * latency. The effects of this higher latency are especially noticeable with sudden amplitude
+   * changes.
    */
   public var fftSize: FFTSize
     get() {
@@ -83,23 +79,28 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
     id: Long,
   ) {
     /**
-     * Use a buffer of 256 samples for the Fast Fourier transform. Lowest latency, but least stable over time.
+     * Use a buffer of 256 samples for the Fast Fourier transform. Lowest latency, but least stable
+     * over time.
      */
     FFT_SIZE_256(0),
     /**
-     * Use a buffer of 512 samples for the Fast Fourier transform. Low latency, but less stable over time.
+     * Use a buffer of 512 samples for the Fast Fourier transform. Low latency, but less stable over
+     * time.
      */
     FFT_SIZE_512(1),
     /**
-     * Use a buffer of 1024 samples for the Fast Fourier transform. This is a compromise between latency and stability over time.
+     * Use a buffer of 1024 samples for the Fast Fourier transform. This is a compromise between
+     * latency and stability over time.
      */
     FFT_SIZE_1024(2),
     /**
-     * Use a buffer of 2048 samples for the Fast Fourier transform. High latency, but stable over time.
+     * Use a buffer of 2048 samples for the Fast Fourier transform. High latency, but stable over
+     * time.
      */
     FFT_SIZE_2048(3),
     /**
-     * Use a buffer of 4096 samples for the Fast Fourier transform. Highest latency, but most stable over time.
+     * Use a buffer of 4096 samples for the Fast Fourier transform. Highest latency, but most stable
+     * over time.
      */
     FFT_SIZE_4096(4),
     /**

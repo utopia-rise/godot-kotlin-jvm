@@ -41,16 +41,16 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base class for [godot.AnimationPlayer] and [godot.AnimationTree].
- *
- * Base class for [godot.AnimationPlayer] and [godot.AnimationTree] to manage animation lists. It also has general properties and methods for playback and blending.
- *
- * After instantiating the playback information data within the extended class, the blending is processed by the [godot.AnimationMixer].
+ * Base class for [AnimationPlayer] and [AnimationTree] to manage animation lists. It also has
+ * general properties and methods for playback and blending.
+ * After instantiating the playback information data within the extended class, the blending is
+ * processed by the [AnimationMixer].
  */
 @GodotBaseType
 public open class AnimationMixer internal constructor() : Node() {
   /**
-   * Editor only. Notifies when the property have been updated to update dummy [godot.AnimationPlayer] in animation player editor.
+   * Editor only. Notifies when the property have been updated to update dummy [AnimationPlayer] in
+   * animation player editor.
    */
   public val mixerUpdated: Signal0 by signal()
 
@@ -66,7 +66,6 @@ public open class AnimationMixer internal constructor() : Node() {
 
   /**
    * Notifies when an animation finished playing.
-   *
    * **Note:** This signal is not emitted if an animation is looping.
    */
   public val animationFinished: Signal1<StringName> by signal("animName")
@@ -77,12 +76,13 @@ public open class AnimationMixer internal constructor() : Node() {
   public val animationStarted: Signal1<StringName> by signal("animName")
 
   /**
-   * Notifies when the caches have been cleared, either automatically, or manually via [clearCaches].
+   * Notifies when the caches have been cleared, either automatically, or manually via
+   * [clearCaches].
    */
   public val cachesCleared: Signal0 by signal()
 
   /**
-   * If `true`, the [godot.AnimationMixer] will be processing.
+   * If `true`, the [AnimationMixer] will be processing.
    */
   public var active: Boolean
     get() {
@@ -96,17 +96,20 @@ public open class AnimationMixer internal constructor() : Node() {
     }
 
   /**
-   * If `true`, the blending uses the deterministic algorithm. The total weight is not normalized and the result is accumulated with an initial value (`0` or a `"RESET"` animation if present).
-   *
-   * This means that if the total amount of blending is `0.0`, the result is equal to the `"RESET"` animation.
-   *
-   * If the number of tracks between the blended animations is different, the animation with the missing track is treated as if it had the initial value.
-   *
-   * If `false`, The blend does not use the deterministic algorithm. The total weight is normalized and always `1.0`. If the number of tracks between the blended animations is different, nothing is done about the animation that is missing a track.
-   *
-   * **Note:** In [godot.AnimationTree], the blending with [godot.AnimationNodeAdd2], [godot.AnimationNodeAdd3], [godot.AnimationNodeSub2] or the weight greater than `1.0` may produce unexpected results.
-   *
-   * For example, if [godot.AnimationNodeAdd2] blends two nodes with the amount `1.0`, then total weight is `2.0` but it will be normalized to make the total amount `1.0` and the result will be equal to [godot.AnimationNodeBlend2] with the amount `0.5`.
+   * If `true`, the blending uses the deterministic algorithm. The total weight is not normalized
+   * and the result is accumulated with an initial value (`0` or a `"RESET"` animation if present).
+   * This means that if the total amount of blending is `0.0`, the result is equal to the `"RESET"`
+   * animation.
+   * If the number of tracks between the blended animations is different, the animation with the
+   * missing track is treated as if it had the initial value.
+   * If `false`, The blend does not use the deterministic algorithm. The total weight is normalized
+   * and always `1.0`. If the number of tracks between the blended animations is different, nothing is
+   * done about the animation that is missing a track.
+   * **Note:** In [AnimationTree], the blending with [AnimationNodeAdd2], [AnimationNodeAdd3],
+   * [AnimationNodeSub2] or the weight greater than `1.0` may produce unexpected results.
+   * For example, if [AnimationNodeAdd2] blends two nodes with the amount `1.0`, then total weight
+   * is `2.0` but it will be normalized to make the total amount `1.0` and the result will be equal to
+   * [AnimationNodeBlend2] with the amount `0.5`.
    */
   public var deterministic: Boolean
     get() {
@@ -120,9 +123,11 @@ public open class AnimationMixer internal constructor() : Node() {
     }
 
   /**
-   * This is used by the editor. If set to `true`, the scene will be saved with the effects of the reset animation (the animation with the key `"RESET"`) applied as if it had been seeked to time 0, with the editor keeping the values that the scene had before saving.
-   *
-   * This makes it more convenient to preview and edit animations in the editor, as changes to the scene will not be saved as long as they are set in the reset animation.
+   * This is used by the editor. If set to `true`, the scene will be saved with the effects of the
+   * reset animation (the animation with the key `"RESET"`) applied as if it had been seeked to time 0,
+   * with the editor keeping the values that the scene had before saving.
+   * This makes it more convenient to preview and edit animations in the editor, as changes to the
+   * scene will not be saved as long as they are set in the reset animation.
    */
   public var resetOnSave: Boolean
     get() {
@@ -150,9 +155,15 @@ public open class AnimationMixer internal constructor() : Node() {
     }
 
   /**
-   * The path to the Animation track used for root motion. Paths must be valid scene-tree paths to a node, and must be specified starting from the parent node of the node that will reproduce the animation. To specify a track that controls properties or bones, append its name after the path, separated by `":"`. For example, `"character/skeleton:ankle"` or `"character/mesh:transform/local"`.
-   *
-   * If the track has type [godot.Animation.TYPE_POSITION_3D], [godot.Animation.TYPE_ROTATION_3D] or [godot.Animation.TYPE_SCALE_3D] the transformation will be canceled visually, and the animation will appear to stay in place. See also [getRootMotionPosition], [getRootMotionRotation], [getRootMotionScale] and [godot.RootMotionView].
+   * The path to the Animation track used for root motion. Paths must be valid scene-tree paths to a
+   * node, and must be specified starting from the parent node of the node that will reproduce the
+   * animation. To specify a track that controls properties or bones, append its name after the path,
+   * separated by `":"`. For example, `"character/skeleton:ankle"` or
+   * `"character/mesh:transform/local"`.
+   * If the track has type [constant Animation.TYPE_POSITION_3D], [constant
+   * Animation.TYPE_ROTATION_3D] or [constant Animation.TYPE_SCALE_3D] the transformation will be
+   * canceled visually, and the animation will appear to stay in place. See also
+   * [getRootMotionPosition], [getRootMotionRotation], [getRootMotionScale] and [RootMotionView].
    */
   public var rootMotionTrack: NodePath
     get() {
@@ -167,8 +178,8 @@ public open class AnimationMixer internal constructor() : Node() {
 
   /**
    * The number of possible simultaneous sounds for each of the assigned AudioStreamPlayers.
-   *
-   * For example, if this value is `32` and the animation has two audio tracks, the two [godot.AudioStreamPlayer]s assigned can play simultaneously up to `32` voices each.
+   * For example, if this value is `32` and the animation has two audio tracks, the two
+   * [AudioStreamPlayer]s assigned can play simultaneously up to `32` voices each.
    */
   public var audioMaxPolyphony: Int
     get() {
@@ -228,7 +239,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Adds [library] to the animation player, under the key [name].
+   * Adds [param library] to the animation player, under the key [param name].
    */
   public fun addAnimationLibrary(name: StringName, library: AnimationLibrary): GodotError {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to library)
@@ -237,7 +248,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Removes the [godot.AnimationLibrary] associated with the key [name].
+   * Removes the [AnimationLibrary] associated with the key [param name].
    */
   public fun removeAnimationLibrary(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -245,7 +256,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Moves the [godot.AnimationLibrary] associated with the key [name] to the key [newname].
+   * Moves the [AnimationLibrary] associated with the key [param name] to the key [param newname].
    */
   public fun renameAnimationLibrary(name: StringName, newname: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newname)
@@ -253,7 +264,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Returns `true` if the [godot.AnimationPlayer] stores an [godot.AnimationLibrary] with key [name].
+   * Returns `true` if the [AnimationPlayer] stores an [AnimationLibrary] with key [param name].
    */
   public fun hasAnimationLibrary(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -262,9 +273,8 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Returns the first [godot.AnimationLibrary] with key [name] or `null` if not found.
-   *
-   * To get the [godot.AnimationPlayer]'s global animation library, use `get_animation_library("")`.
+   * Returns the first [AnimationLibrary] with key [param name] or `null` if not found.
+   * To get the [AnimationPlayer]'s global animation library, use `get_animation_library("")`.
    */
   public fun getAnimationLibrary(name: StringName): AnimationLibrary? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -282,7 +292,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Returns `true` if the [godot.AnimationPlayer] stores an [godot.Animation] with key [name].
+   * Returns `true` if the [AnimationPlayer] stores an [Animation] with key [param name].
    */
   public fun hasAnimation(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -291,7 +301,8 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Returns the [godot.Animation] with the key [name]. If the animation does not exist, `null` is returned and an error is logged.
+   * Returns the [Animation] with the key [param name]. If the animation does not exist, `null` is
+   * returned and an error is logged.
    */
   public fun getAnimation(name: StringName): Animation? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -309,63 +320,41 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Retrieve the motion delta of position with the [rootMotionTrack] as a [godot.core.Vector3] that can be used elsewhere.
+   * Retrieve the motion delta of position with the [rootMotionTrack] as a [Vector3] that can be
+   * used elsewhere.
+   * If [rootMotionTrack] is not a path to a track of type [constant Animation.TYPE_POSITION_3D],
+   * returns `Vector3(0, 0, 0)`.
+   * See also [rootMotionTrack] and [RootMotionView].
+   * The most basic example is applying position to [CharacterBody3D]:
    *
-   * If [rootMotionTrack] is not a path to a track of type [godot.Animation.TYPE_POSITION_3D], returns `Vector3(0, 0, 0)`.
-   *
-   * See also [rootMotionTrack] and [godot.RootMotionView].
-   *
-   * The most basic example is applying position to [godot.CharacterBody3D]:
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * var current_rotation: Quaternion
    *
-   *
-   *
    * func _process(delta):
-   *
    *     if Input.is_action_just_pressed("animate"):
-   *
    *         current_rotation = get_quaternion()
-   *
    *         state_machine.travel("Animate")
-   *
-   *     var velocity: Vector3 = current_rotation * animation_tree.get_root_motion_position() / delta
-   *
+   *     var velocity: Vector3 = current_rotation * animation_tree.get_root_motion_position() /
+   * delta
    *     set_velocity(velocity)
-   *
    *     move_and_slide()
+   * ```
    *
-   * [/gdscript]
+   * By using this in combination with [getRootMotionPositionAccumulator], you can apply the root
+   * motion position more correctly to account for the rotation of the node.
    *
-   * [/codeblocks]
-   *
-   * By using this in combination with [getRootMotionPositionAccumulator], you can apply the root motion position more correctly to account for the rotation of the node.
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * func _process(delta):
-   *
    *     if Input.is_action_just_pressed("animate"):
-   *
    *         state_machine.travel("Animate")
-   *
    *     set_quaternion(get_quaternion() * animation_tree.get_root_motion_rotation())
-   *
-   *     var velocity: Vector3 = (animation_tree.get_root_motion_rotation_accumulator().inverse() * get_quaternion()) * animation_tree.get_root_motion_position() / delta
-   *
+   *     var velocity: Vector3 = (animation_tree.get_root_motion_rotation_accumulator().inverse() *
+   * get_quaternion()) * animation_tree.get_root_motion_position() / delta
    *     set_velocity(velocity)
-   *
    *     move_and_slide()
-   *
-   * [/gdscript]
-   *
-   * [/codeblocks]
+   * ```
    */
   public fun getRootMotionPosition(): Vector3 {
     TransferContext.writeArguments()
@@ -374,29 +363,20 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Retrieve the motion delta of rotation with the [rootMotionTrack] as a [godot.Quaternion] that can be used elsewhere.
+   * Retrieve the motion delta of rotation with the [rootMotionTrack] as a [Quaternion] that can be
+   * used elsewhere.
+   * If [rootMotionTrack] is not a path to a track of type [constant Animation.TYPE_ROTATION_3D],
+   * returns `Quaternion(0, 0, 0, 1)`.
+   * See also [rootMotionTrack] and [RootMotionView].
+   * The most basic example is applying rotation to [CharacterBody3D]:
    *
-   * If [rootMotionTrack] is not a path to a track of type [godot.Animation.TYPE_ROTATION_3D], returns `Quaternion(0, 0, 0, 1)`.
-   *
-   * See also [rootMotionTrack] and [godot.RootMotionView].
-   *
-   * The most basic example is applying rotation to [godot.CharacterBody3D]:
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * func _process(delta):
-   *
    *     if Input.is_action_just_pressed("animate"):
-   *
    *         state_machine.travel("Animate")
-   *
    *     set_quaternion(get_quaternion() * animation_tree.get_root_motion_rotation())
-   *
-   * [/gdscript]
-   *
-   * [/codeblocks]
+   * ```
    */
   public fun getRootMotionRotation(): Quaternion {
     TransferContext.writeArguments()
@@ -405,41 +385,26 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Retrieve the motion delta of scale with the [rootMotionTrack] as a [godot.core.Vector3] that can be used elsewhere.
+   * Retrieve the motion delta of scale with the [rootMotionTrack] as a [Vector3] that can be used
+   * elsewhere.
+   * If [rootMotionTrack] is not a path to a track of type [constant Animation.TYPE_SCALE_3D],
+   * returns `Vector3(0, 0, 0)`.
+   * See also [rootMotionTrack] and [RootMotionView].
+   * The most basic example is applying scale to [CharacterBody3D]:
    *
-   * If [rootMotionTrack] is not a path to a track of type [godot.Animation.TYPE_SCALE_3D], returns `Vector3(0, 0, 0)`.
-   *
-   * See also [rootMotionTrack] and [godot.RootMotionView].
-   *
-   * The most basic example is applying scale to [godot.CharacterBody3D]:
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * var current_scale: Vector3 = Vector3(1, 1, 1)
-   *
    * var scale_accum: Vector3 = Vector3(1, 1, 1)
    *
-   *
-   *
    * func _process(delta):
-   *
    *     if Input.is_action_just_pressed("animate"):
-   *
    *         current_scale = get_scale()
-   *
    *         scale_accum = Vector3(1, 1, 1)
-   *
    *         state_machine.travel("Animate")
-   *
    *     scale_accum += animation_tree.get_root_motion_scale()
-   *
    *     set_scale(current_scale * scale_accum)
-   *
-   * [/gdscript]
-   *
-   * [/codeblocks]
+   * ```
    */
   public fun getRootMotionScale(): Vector3 {
     TransferContext.writeArguments()
@@ -448,39 +413,30 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Retrieve the blended value of the position tracks with the [rootMotionTrack] as a [godot.core.Vector3] that can be used elsewhere.
-   *
+   * Retrieve the blended value of the position tracks with the [rootMotionTrack] as a [Vector3]
+   * that can be used elsewhere.
    * This is useful in cases where you want to respect the initial key values of the animation.
+   * For example, if an animation with only one key `Vector3(0, 0, 0)` is played in the previous
+   * frame and then an animation with only one key `Vector3(1, 0, 1)` is played in the next frame, the
+   * difference can be calculated as follows:
    *
-   * For example, if an animation with only one key `Vector3(0, 0, 0)` is played in the previous frame and then an animation with only one key `Vector3(1, 0, 1)` is played in the next frame, the difference can be calculated as follows:
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * var prev_root_motion_position_accumulator: Vector3
    *
-   *
-   *
    * func _process(delta):
-   *
    *     if Input.is_action_just_pressed("animate"):
-   *
    *         state_machine.travel("Animate")
-   *
-   *     var current_root_motion_position_accumulator: Vector3 = animation_tree.get_root_motion_position_accumulator()
-   *
-   *     var difference: Vector3 = current_root_motion_position_accumulator - prev_root_motion_position_accumulator
-   *
+   *     var current_root_motion_position_accumulator: Vector3 =
+   * animation_tree.get_root_motion_position_accumulator()
+   *     var difference: Vector3 = current_root_motion_position_accumulator -
+   * prev_root_motion_position_accumulator
    *     prev_root_motion_position_accumulator = current_root_motion_position_accumulator
-   *
    *     transform.origin += difference
+   * ```
    *
-   * [/gdscript]
-   *
-   * [/codeblocks]
-   *
-   * However, if the animation loops, an unintended discrete change may occur, so this is only useful for some simple use cases.
+   * However, if the animation loops, an unintended discrete change may occur, so this is only
+   * useful for some simple use cases.
    */
   public fun getRootMotionPositionAccumulator(): Vector3 {
     TransferContext.writeArguments()
@@ -489,41 +445,33 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Retrieve the blended value of the rotation tracks with the [rootMotionTrack] as a [godot.Quaternion] that can be used elsewhere.
+   * Retrieve the blended value of the rotation tracks with the [rootMotionTrack] as a [Quaternion]
+   * that can be used elsewhere.
+   * This is necessary to apply the root motion position correctly, taking rotation into account.
+   * See also [getRootMotionPosition].
+   * Also, this is useful in cases where you want to respect the initial key values of the
+   * animation.
+   * For example, if an animation with only one key `Quaternion(0, 0, 0, 1)` is played in the
+   * previous frame and then an animation with only one key `Quaternion(0, 0.707, 0, 0.707)` is played
+   * in the next frame, the difference can be calculated as follows:
    *
-   * This is necessary to apply the root motion position correctly, taking rotation into account. See also [getRootMotionPosition].
-   *
-   * Also, this is useful in cases where you want to respect the initial key values of the animation.
-   *
-   * For example, if an animation with only one key `Quaternion(0, 0, 0, 1)` is played in the previous frame and then an animation with only one key `Quaternion(0, 0.707, 0, 0.707)` is played in the next frame, the difference can be calculated as follows:
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * var prev_root_motion_rotation_accumulator: Quaternion
    *
-   *
-   *
    * func _process(delta):
-   *
    *     if Input.is_action_just_pressed("animate"):
-   *
    *         state_machine.travel("Animate")
-   *
-   *     var current_root_motion_rotation_accumulator: Quaternion = animation_tree.get_root_motion_Quaternion_accumulator()
-   *
-   *     var difference: Quaternion = prev_root_motion_rotation_accumulator.inverse() * current_root_motion_rotation_accumulator
-   *
+   *     var current_root_motion_rotation_accumulator: Quaternion =
+   * animation_tree.get_root_motion_Quaternion_accumulator()
+   *     var difference: Quaternion = prev_root_motion_rotation_accumulator.inverse() *
+   * current_root_motion_rotation_accumulator
    *     prev_root_motion_rotation_accumulator = current_root_motion_rotation_accumulator
-   *
    *     transform.basis *= difference
+   * ```
    *
-   * [/gdscript]
-   *
-   * [/codeblocks]
-   *
-   * However, if the animation loops, an unintended discrete change may occur, so this is only useful for some simple use cases.
+   * However, if the animation loops, an unintended discrete change may occur, so this is only
+   * useful for some simple use cases.
    */
   public fun getRootMotionRotationAccumulator(): Quaternion {
     TransferContext.writeArguments()
@@ -533,37 +481,29 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Retrieve the blended value of the scale tracks with the [rootMotionTrack] as a [godot.core.Vector3] that can be used elsewhere.
+   * Retrieve the blended value of the scale tracks with the [rootMotionTrack] as a [Vector3] that
+   * can be used elsewhere.
+   * For example, if an animation with only one key `Vector3(1, 1, 1)` is played in the previous
+   * frame and then an animation with only one key `Vector3(2, 2, 2)` is played in the next frame, the
+   * difference can be calculated as follows:
    *
-   * For example, if an animation with only one key `Vector3(1, 1, 1)` is played in the previous frame and then an animation with only one key `Vector3(2, 2, 2)` is played in the next frame, the difference can be calculated as follows:
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * var prev_root_motion_scale_accumulator: Vector3
    *
-   *
-   *
    * func _process(delta):
-   *
    *     if Input.is_action_just_pressed("animate"):
-   *
    *         state_machine.travel("Animate")
-   *
-   *     var current_root_motion_scale_accumulator: Vector3 = animation_tree.get_root_motion_scale_accumulator()
-   *
-   *     var difference: Vector3 = current_root_motion_scale_accumulator - prev_root_motion_scale_accumulator
-   *
+   *     var current_root_motion_scale_accumulator: Vector3 =
+   * animation_tree.get_root_motion_scale_accumulator()
+   *     var difference: Vector3 = current_root_motion_scale_accumulator -
+   * prev_root_motion_scale_accumulator
    *     prev_root_motion_scale_accumulator = current_root_motion_scale_accumulator
-   *
    *     transform.basis = transform.basis.scaled(difference)
+   * ```
    *
-   * [/gdscript]
-   *
-   * [/codeblocks]
-   *
-   * However, if the animation loops, an unintended discrete change may occur, so this is only useful for some simple use cases.
+   * However, if the animation loops, an unintended discrete change may occur, so this is only
+   * useful for some simple use cases.
    */
   public fun getRootMotionScaleAccumulator(): Vector3 {
     TransferContext.writeArguments()
@@ -572,7 +512,8 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * [godot.AnimationMixer] caches animated nodes. It may not notice if a node disappears; [clearCaches] forces it to update the cache again.
+   * [AnimationMixer] caches animated nodes. It may not notice if a node disappears; [clearCaches]
+   * forces it to update the cache again.
    */
   public fun clearCaches(): Unit {
     TransferContext.writeArguments()
@@ -588,7 +529,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Returns the key of [animation] or an empty [godot.StringName] if not found.
+   * Returns the key of [param animation] or an empty [StringName] if not found.
    */
   public fun findAnimation(animation: Animation): StringName {
     TransferContext.writeArguments(OBJECT to animation)
@@ -597,7 +538,8 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Returns the key for the [godot.AnimationLibrary] that contains [animation] or an empty [godot.StringName] if not found.
+   * Returns the key for the [AnimationLibrary] that contains [param animation] or an empty
+   * [StringName] if not found.
    */
   public fun findAnimationLibrary(animation: Animation): StringName {
     TransferContext.writeArguments(OBJECT to animation)
@@ -609,11 +551,13 @@ public open class AnimationMixer internal constructor() : Node() {
     id: Long,
   ) {
     /**
-     * Process animation during physics frames (see [godot.Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]). This is especially useful when animating physics bodies.
+     * Process animation during physics frames (see [constant
+     * Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]). This is especially useful when animating physics
+     * bodies.
      */
     ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS(0),
     /**
-     * Process animation during process frames (see [godot.Node.NOTIFICATION_INTERNAL_PROCESS]).
+     * Process animation during process frames (see [constant Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
     ANIMATION_CALLBACK_MODE_PROCESS_IDLE(1),
     /**
@@ -636,7 +580,9 @@ public open class AnimationMixer internal constructor() : Node() {
     id: Long,
   ) {
     /**
-     * Batch method calls during the animation process, then do the calls after events are processed. This avoids bugs involving deleting nodes or modifying the AnimationPlayer while playing.
+     * Batch method calls during the animation process, then do the calls after events are
+     * processed. This avoids bugs involving deleting nodes or modifying the AnimationPlayer while
+     * playing.
      */
     ANIMATION_CALLBACK_MODE_METHOD_DEFERRED(0),
     /**

@@ -47,25 +47,29 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 
 /**
- * A control for displaying text that can contain different font styles, images, and basic formatting.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/677](https://godotengine.org/asset-library/asset/677)
- *
- * A control for displaying text that can contain custom fonts, images, and basic formatting. [godot.RichTextLabel] manages these as an internal tag stack. It also adapts itself to given width/heights.
- *
- * **Note:** Assignments to [text] clear the tag stack and reconstruct it from the property's contents. Any edits made to [text] will erase previous edits made from other manual sources such as [appendText] and the `push_*` / [pop] methods.
- *
- * **Note:** RichTextLabel doesn't support entangled BBCode tags. For example, instead of using [code skip-lint]**bold*bold italic**italic*`, use [code skip-lint]**bold*bold italic****italic*`.
- *
- * **Note:** `push_* / pop_*` functions won't affect BBCode.
- *
- * **Note:** Unlike [godot.Label], [godot.RichTextLabel] doesn't have a *property* to horizontally align text to the center. Instead, enable [bbcodeEnabled] and surround the text in a [code skip-lint][center]` tag as follows: [code skip-lint][center]Example[/center]`. There is currently no built-in way to vertically align text either, but this can be emulated by relying on anchors/containers and the [fitContent] property.
+ * A control for displaying text that can contain custom fonts, images, and basic formatting.
+ * [RichTextLabel] manages these as an internal tag stack. It also adapts itself to given
+ * width/heights.
+ * **Note:** Assignments to [text] clear the tag stack and reconstruct it from the property's
+ * contents. Any edits made to [text] will erase previous edits made from other manual sources such as
+ * [appendText] and the `push_*` / [pop] methods.
+ * **Note:** RichTextLabel doesn't support entangled BBCode tags. For example, instead of using
+ * [code skip-lint]**bold*bold italic**italic*[/code], use [code skip-lint]**bold*bold
+ * italic****italic*[/code].
+ * **Note:** `push_*&#92;pop_*` functions won't affect BBCode.
+ * **Note:** Unlike [Label], [RichTextLabel] doesn't have a *property* to horizontally align text to
+ * the center. Instead, enable [bbcodeEnabled] and surround the text in a [code
+ * skip-lint][center][/code] tag as follows: [code skip-lint][center]Example[/center][/code]. There is
+ * currently no built-in way to vertically align text either, but this can be emulated by relying on
+ * anchors/containers and the [fitContent] property.
  */
 @GodotBaseType
 public open class RichTextLabel : Control() {
   /**
-   * Triggered when the user clicks on content between meta tags. If the meta is defined in text, e.g. [code skip-lint][hi]({"data"="hi"})`, then the parameter for this signal will be a [godot.String] type. If a particular type or an object is desired, the [pushMeta] method must be used to manually insert the data into the tag stack.
+   * Triggered when the user clicks on content between meta tags. If the meta is defined in text,
+   * e.g. [code skip-lint][url={"data"="hi"}]hi[/url][/code], then the parameter for this signal will
+   * be a [String] type. If a particular type or an object is desired, the [pushMeta] method must be
+   * used to manually insert the data into the tag stack.
    */
   public val metaClicked: Signal1<Any?> by signal("meta")
 
@@ -99,9 +103,12 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * The label's text in BBCode format. Is not representative of manual modifications to the internal tag stack. Erases changes made by other methods when edited.
-   *
-   * **Note:** If [bbcodeEnabled] is `true`, it is unadvised to use the `+=` operator with [text] (e.g. `text += "some string"`) as it replaces the whole text and can cause slowdowns. It will also erase all BBCode that was added to stack using `push_*` methods. Use [appendText] for adding text instead, unless you absolutely need to close a tag that was opened in an earlier method call.
+   * The label's text in BBCode format. Is not representative of manual modifications to the
+   * internal tag stack. Erases changes made by other methods when edited.
+   * **Note:** If [bbcodeEnabled] is `true`, it is unadvised to use the `+=` operator with [text]
+   * (e.g. `text += "some string"`) as it replaces the whole text and can cause slowdowns. It will also
+   * erase all BBCode that was added to stack using `push_*` methods. Use [appendText] for adding text
+   * instead, unless you absolutely need to close a tag that was opened in an earlier method call.
    */
   public var text: String
     get() {
@@ -115,7 +122,8 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * If `true`, the label's minimum size will be automatically updated to fit its content, matching the behavior of [godot.Label].
+   * If `true`, the label's minimum size will be automatically updated to fit its content, matching
+   * the behavior of [Label].
    */
   public var fitContent: Boolean
     get() {
@@ -129,7 +137,8 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * If `true`, the scrollbar is visible. Setting this to `false` does not block scrolling completely. See [scrollToLine].
+   * If `true`, the scrollbar is visible. Setting this to `false` does not block scrolling
+   * completely. See [scrollToLine].
    */
   public var scrollActive: Boolean
     get() {
@@ -157,7 +166,8 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * If set to something other than [godot.TextServer.AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. To see how each mode behaves, see [enum TextServer.AutowrapMode].
+   * If set to something other than [constant TextServer.AUTOWRAP_OFF], the text gets wrapped inside
+   * the node's bounding rectangle. To see how each mode behaves, see [enum TextServer.AutowrapMode].
    */
   public var autowrapMode: TextServer.AutowrapMode
     get() {
@@ -171,7 +181,8 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * The number of spaces associated with a single tab length. Does not affect `\t` in text tags, only indent tags.
+   * The number of spaces associated with a single tab length. Does not affect `\t` in text tags,
+   * only indent tags.
    */
   public var tabSize: Int
     get() {
@@ -199,7 +210,8 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * If `true`, shortcut keys for context menu items are enabled, even if the context menu is disabled.
+   * If `true`, shortcut keys for context menu items are enabled, even if the context menu is
+   * disabled.
    */
   public var shortcutKeysEnabled: Boolean
     get() {
@@ -213,8 +225,7 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * The currently installed custom effects. This is an array of [godot.RichTextEffect]s.
-   *
+   * The currently installed custom effects. This is an array of [RichTextEffect]s.
    * To add a custom effect, it's more convenient to use [installEffect].
    */
   public var customEffects: VariantArray<Any?>
@@ -229,7 +240,7 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * If `true`, the label underlines meta tags such as [code skip-lint][url]{text}[/url]`.
+   * If `true`, the label underlines meta tags such as [code skip-lint][url]{text}[/url][/code].
    */
   public var metaUnderlined: Boolean
     get() {
@@ -243,7 +254,8 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * If `true`, the label underlines hint tags such as [code skip-lint][hint=description]{text}[/hint]`.
+   * If `true`, the label underlines hint tags such as [code
+   * skip-lint][hint=description]{text}[/hint][/code].
    */
   public var hintUnderlined: Boolean
     get() {
@@ -271,8 +283,8 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * The delay after which the loading progress bar is displayed, in milliseconds. Set to `-1` to disable progress bar entirely.
-   *
+   * The delay after which the loading progress bar is displayed, in milliseconds. Set to `-1` to
+   * disable progress bar entirely.
    * **Note:** Progress bar is displayed only if [threaded] is enabled.
    */
   public var progressBarDelay: Int
@@ -329,8 +341,8 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * The number of characters to display. If set to `-1`, all characters are displayed. This can be useful when animating the text appearing in a dialog box.
-   *
+   * The number of characters to display. If set to `-1`, all characters are displayed. This can be
+   * useful when animating the text appearing in a dialog box.
    * **Note:** Setting this property updates [visibleRatio] accordingly.
    */
   public var visibleCharacters: Int
@@ -345,7 +357,8 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * Sets the clipping behavior when [visibleCharacters] or [visibleRatio] is set. See [enum TextServer.VisibleCharactersBehavior] for more info.
+   * Sets the clipping behavior when [visibleCharacters] or [visibleRatio] is set. See [enum
+   * TextServer.VisibleCharactersBehavior] for more info.
    */
   public var visibleCharactersBehavior: TextServer.VisibleCharactersBehavior
     get() {
@@ -359,8 +372,10 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * The fraction of characters to display, relative to the total number of characters (see [getTotalCharacterCount]). If set to `1.0`, all characters are displayed. If set to `0.5`, only half of the characters will be displayed. This can be useful when animating the text appearing in a dialog box.
-   *
+   * The fraction of characters to display, relative to the total number of characters (see
+   * [getTotalCharacterCount]). If set to `1.0`, all characters are displayed. If set to `0.5`, only
+   * half of the characters will be displayed. This can be useful when animating the text appearing in
+   * a dialog box.
    * **Note:** Setting this property updates [visibleCharacters] accordingly.
    */
   public var visibleRatio: Float
@@ -389,7 +404,8 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
+   * Language code used for line-breaking and text shaping algorithms, if left empty current locale
+   * is used instead.
    */
   public var language: String
     get() {
@@ -455,17 +471,18 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds an image's opening and closing tags to the tag stack, optionally providing a [width] and [height] to resize the image, a [color] to tint the image and a [region] to only use parts of the image.
-   *
-   * If [width] or [height] is set to 0, the image size will be adjusted in order to keep the original aspect ratio.
-   *
-   * If [width] and [height] are not set, but [region] is, the region's rect will be used.
-   *
-   * [key] is an optional identifier, that can be used to modify the image via [updateImage].
-   *
-   * If [pad] is set, and the image is smaller than the size specified by [width] and [height], the image padding is added to match the size instead of upscaling.
-   *
-   * If [sizeInPercent] is set, [width] and [height] values are percentages of the control width instead of pixels.
+   * Adds an image's opening and closing tags to the tag stack, optionally providing a [param width]
+   * and [param height] to resize the image, a [param color] to tint the image and a [param region] to
+   * only use parts of the image.
+   * If [param width] or [param height] is set to 0, the image size will be adjusted in order to
+   * keep the original aspect ratio.
+   * If [param width] and [param height] are not set, but [param region] is, the region's rect will
+   * be used.
+   * [param key] is an optional identifier, that can be used to modify the image via [updateImage].
+   * If [param pad] is set, and the image is smaller than the size specified by [param width] and
+   * [param height], the image padding is added to match the size instead of upscaling.
+   * If [param size_in_percent] is set, [param width] and [param height] values are percentages of
+   * the control width instead of pixels.
    */
   @JvmOverloads
   public fun addImage(
@@ -485,7 +502,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Updates the existing images with the key [key]. Only properties specified by [mask] bits are updated. See [addImage].
+   * Updates the existing images with the key [param key]. Only properties specified by [param mask]
+   * bits are updated. See [addImage].
    */
   @JvmOverloads
   public fun updateImage(
@@ -515,8 +533,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Removes a paragraph of content from the label. Returns `true` if the paragraph exists.
-   *
-   * The [paragraph] argument is the index of the paragraph to remove, it can take values in the interval `[0, get_paragraph_count() - 1]`.
+   * The [param paragraph] argument is the index of the paragraph to remove, it can take values in
+   * the interval `[0, get_paragraph_count() - 1]`.
    */
   public fun removeParagraph(paragraph: Int): Boolean {
     TransferContext.writeArguments(LONG to paragraph.toLong())
@@ -525,9 +543,9 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint][font]` tag to the tag stack. Overrides default fonts for its duration.
-   *
-   * Passing `0` to [fontSize] will use the existing default font size.
+   * Adds a [code skip-lint][font][/code] tag to the tag stack. Overrides default fonts for its
+   * duration.
+   * Passing `0` to [param font_size] will use the existing default font size.
    */
   @JvmOverloads
   public fun pushFont(font: Font, fontSize: Int = 0): Unit {
@@ -536,7 +554,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint][font_size]` tag to the tag stack. Overrides default font size for its duration.
+   * Adds a [code skip-lint][font_size][/code] tag to the tag stack. Overrides default font size for
+   * its duration.
    */
   public fun pushFontSize(fontSize: Int): Unit {
     TransferContext.writeArguments(LONG to fontSize.toLong())
@@ -544,7 +563,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint][font]` tag with a normal font to the tag stack.
+   * Adds a [code skip-lint][font][/code] tag with a normal font to the tag stack.
    */
   public fun pushNormal(): Unit {
     TransferContext.writeArguments()
@@ -552,7 +571,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint][font]` tag with a bold font to the tag stack. This is the same as adding a [code skip-lint]**` tag if not currently in a [code skip-lint]*` tag.
+   * Adds a [code skip-lint][font][/code] tag with a bold font to the tag stack. This is the same as
+   * adding a [code skip-lint][b][/code] tag if not currently in a [code skip-lint][i][/code] tag.
    */
   public fun pushBold(): Unit {
     TransferContext.writeArguments()
@@ -560,7 +580,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint][font]` tag with a bold italics font to the tag stack.
+   * Adds a [code skip-lint][font][/code] tag with a bold italics font to the tag stack.
    */
   public fun pushBoldItalics(): Unit {
     TransferContext.writeArguments()
@@ -568,7 +588,9 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint][font]` tag with an italics font to the tag stack. This is the same as adding an [code skip-lint]*` tag if not currently in a [code skip-lint]**` tag.
+   * Adds a [code skip-lint][font][/code] tag with an italics font to the tag stack. This is the
+   * same as adding an [code skip-lint][i][/code] tag if not currently in a [code skip-lint][b][/code]
+   * tag.
    */
   public fun pushItalics(): Unit {
     TransferContext.writeArguments()
@@ -576,7 +598,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint][font]` tag with a monospace font to the tag stack.
+   * Adds a [code skip-lint][font][/code] tag with a monospace font to the tag stack.
    */
   public fun pushMono(): Unit {
     TransferContext.writeArguments()
@@ -584,7 +606,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint][color]` tag to the tag stack.
+   * Adds a [code skip-lint][color][/code] tag to the tag stack.
    */
   public fun pushColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
@@ -592,7 +614,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint][outline_size]` tag to the tag stack. Overrides default text outline size for its duration.
+   * Adds a [code skip-lint][outline_size][/code] tag to the tag stack. Overrides default text
+   * outline size for its duration.
    */
   public fun pushOutlineSize(outlineSize: Int): Unit {
     TransferContext.writeArguments(LONG to outlineSize.toLong())
@@ -600,7 +623,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint][outline_color]` tag to the tag stack. Adds text outline for its duration.
+   * Adds a [code skip-lint][outline_color][/code] tag to the tag stack. Adds text outline for its
+   * duration.
    */
   public fun pushOutlineColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
@@ -608,7 +632,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint][p]` tag to the tag stack.
+   * Adds a [code skip-lint][p][/code] tag to the tag stack.
    */
   @JvmOverloads
   public fun pushParagraph(
@@ -625,7 +649,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds an [code skip-lint][indent]` tag to the tag stack. Multiplies [level] by current [tabSize] to determine new margin length.
+   * Adds an [code skip-lint][indent][/code] tag to the tag stack. Multiplies [param level] by
+   * current [tabSize] to determine new margin length.
    */
   public fun pushIndent(level: Int): Unit {
     TransferContext.writeArguments(LONG to level.toLong())
@@ -633,7 +658,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds [code skip-lint][ol]` or [code skip-lint][ul]` tag to the tag stack. Multiplies [level] by current [tabSize] to determine new margin length.
+   * Adds [code skip-lint][ol][/code] or [code skip-lint][ul][/code] tag to the tag stack.
+   * Multiplies [param level] by current [tabSize] to determine new margin length.
    */
   @JvmOverloads
   public fun pushList(
@@ -647,7 +673,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a meta tag to the tag stack. Similar to the BBCode [code skip-lint][{text}](something)`, but supports non-[godot.String] metadata types.
+   * Adds a meta tag to the tag stack. Similar to the BBCode [code
+   * skip-lint][url=something]{text}[/url][/code], but supports non-[String] metadata types.
    */
   public fun pushMeta(`data`: Any?): Unit {
     TransferContext.writeArguments(ANY to data)
@@ -655,7 +682,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint][hint]` tag to the tag stack. Same as BBCode [code skip-lint][hint=something]{text}[/hint]`.
+   * Adds a [code skip-lint][hint][/code] tag to the tag stack. Same as BBCode [code
+   * skip-lint][hint=something]{text}[/hint][/code].
    */
   public fun pushHint(description: String): Unit {
     TransferContext.writeArguments(STRING to description)
@@ -671,7 +699,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint]<u>` tag to the tag stack.
+   * Adds a [code skip-lint][u][/code] tag to the tag stack.
    */
   public fun pushUnderline(): Unit {
     TransferContext.writeArguments()
@@ -679,7 +707,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint]~~` tag to the tag stack.
+   * Adds a [code skip-lint][s][/code] tag to the tag stack.
    */
   public fun pushStrikethrough(): Unit {
     TransferContext.writeArguments()
@@ -687,7 +715,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint][table=columns,inline_align]` tag to the tag stack.
+   * Adds a [code skip-lint][table=columns,inline_align][/code] tag to the tag stack.
    */
   @JvmOverloads
   public fun pushTable(
@@ -700,7 +728,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint][dropcap]` tag to the tag stack. Drop cap (dropped capital) is a decorative element at the beginning of a paragraph that is larger than the rest of the text.
+   * Adds a [code skip-lint][dropcap][/code] tag to the tag stack. Drop cap (dropped capital) is a
+   * decorative element at the beginning of a paragraph that is larger than the rest of the text.
    */
   @JvmOverloads
   public fun pushDropcap(
@@ -717,11 +746,11 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Edits the selected column's expansion options. If [expand] is `true`, the column expands in proportion to its expansion ratio versus the other columns' ratios.
-   *
-   * For example, 2 columns with ratios 3 and 4 plus 70 pixels in available width would expand 30 and 40 pixels, respectively.
-   *
-   * If [expand] is `false`, the column will not contribute to the total ratio.
+   * Edits the selected column's expansion options. If [param expand] is `true`, the column expands
+   * in proportion to its expansion ratio versus the other columns' ratios.
+   * For example, 2 columns with ratios 3 and 4 plus 70 pixels in available width would expand 30
+   * and 40 pixels, respectively.
+   * If [param expand] is `false`, the column will not contribute to the total ratio.
    */
   @JvmOverloads
   public fun setTableColumnExpand(
@@ -766,7 +795,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint][cell]` tag to the tag stack. Must be inside a [code skip-lint][table]` tag. See [pushTable] for details.
+   * Adds a [code skip-lint][cell][/code] tag to the tag stack. Must be inside a [code
+   * skip-lint][table][/code] tag. See [pushTable] for details.
    */
   public fun pushCell(): Unit {
     TransferContext.writeArguments()
@@ -774,7 +804,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint][fgcolor]` tag to the tag stack.
+   * Adds a [code skip-lint][fgcolor][/code] tag to the tag stack.
    */
   public fun pushFgcolor(fgcolor: Color): Unit {
     TransferContext.writeArguments(COLOR to fgcolor)
@@ -782,7 +812,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint][bgcolor]` tag to the tag stack.
+   * Adds a [code skip-lint][bgcolor][/code] tag to the tag stack.
    */
   public fun pushBgcolor(bgcolor: Color): Unit {
     TransferContext.writeArguments(COLOR to bgcolor)
@@ -790,7 +820,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a custom effect tag to the tag stack. The effect does not need to be in [customEffects]. The environment is directly passed to the effect.
+   * Adds a custom effect tag to the tag stack. The effect does not need to be in [customEffects].
+   * The environment is directly passed to the effect.
    */
   public fun pushCustomfx(effect: RichTextEffect, env: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(OBJECT to effect, DICTIONARY to env)
@@ -806,7 +837,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Terminates tags opened after the last [pushContext] call (including context marker), or all tags if there's no context marker on the stack.
+   * Terminates tags opened after the last [pushContext] call (including context marker), or all
+   * tags if there's no context marker on the stack.
    */
   public fun popContext(): Unit {
     TransferContext.writeArguments()
@@ -814,7 +846,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Terminates the current tag. Use after `push_*` methods to close BBCodes manually. Does not need to follow `add_*` methods.
+   * Terminates the current tag. Use after `push_*` methods to close BBCodes manually. Does not need
+   * to follow `add_*` methods.
    */
   public fun pop(): Unit {
     TransferContext.writeArguments()
@@ -831,8 +864,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Clears the tag stack.
-   *
-   * **Note:** This method will not modify [text], but setting [text] to an empty string also clears the stack.
+   * **Note:** This method will not modify [text], but setting [text] to an empty string also clears
+   * the stack.
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
@@ -841,8 +874,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the vertical scrollbar.
-   *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
+   * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public fun getVScrollBar(): VScrollBar? {
     TransferContext.writeArguments()
@@ -851,7 +884,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Scrolls the window's top line to match [line].
+   * Scrolls the window's top line to match [param line].
    */
   public fun scrollToLine(line: Int): Unit {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -859,7 +892,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Scrolls the window's top line to match first line of the [paragraph].
+   * Scrolls the window's top line to match first line of the [param paragraph].
    */
   public fun scrollToParagraph(paragraph: Int): Unit {
     TransferContext.writeArguments(LONG to paragraph.toLong())
@@ -875,7 +908,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Returns the current selection first character index if a selection is active, `-1` otherwise. Does not include BBCodes.
+   * Returns the current selection first character index if a selection is active, `-1` otherwise.
+   * Does not include BBCodes.
    */
   public fun getSelectionFrom(): Int {
     TransferContext.writeArguments()
@@ -884,7 +918,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Returns the current selection last character index if a selection is active, `-1` otherwise. Does not include BBCodes.
+   * Returns the current selection last character index if a selection is active, `-1` otherwise.
+   * Does not include BBCodes.
    */
   public fun getSelectionTo(): Int {
     TransferContext.writeArguments()
@@ -894,7 +929,6 @@ public open class RichTextLabel : Control() {
 
   /**
    * Select all the text.
-   *
    * If [selectionEnabled] is `false`, no selection will occur.
    */
   public fun selectAll(): Unit {
@@ -928,9 +962,11 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Parses [bbcode] and adds tags to the tag stack as needed.
-   *
-   * **Note:** Using this method, you can't close a tag that was opened in a previous [appendText] call. This is done to improve performance, especially when updating large RichTextLabels since rebuilding the whole BBCode every time would be slower. If you absolutely need to close a tag in a future method call, append the [text] instead of using [appendText].
+   * Parses [param bbcode] and adds tags to the tag stack as needed.
+   * **Note:** Using this method, you can't close a tag that was opened in a previous [appendText]
+   * call. This is done to improve performance, especially when updating large RichTextLabels since
+   * rebuilding the whole BBCode every time would be slower. If you absolutely need to close a tag in a
+   * future method call, append the [text] instead of using [appendText].
    */
   public fun appendText(bbcode: String): Unit {
     TransferContext.writeArguments(STRING to bbcode)
@@ -938,7 +974,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * If [threaded] is enabled, returns `true` if the background thread has finished text processing, otherwise always return `true`.
+   * If [threaded] is enabled, returns `true` if the background thread has finished text processing,
+   * otherwise always return `true`.
    */
   public fun isReady(): Boolean {
     TransferContext.writeArguments()
@@ -948,8 +985,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the line number of the character position provided.
-   *
-   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
+   * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
    */
   public fun getCharacterLine(character: Int): Int {
     TransferContext.writeArguments(LONG to character.toLong())
@@ -959,8 +996,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the paragraph number of the character position provided.
-   *
-   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
+   * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
    */
   public fun getCharacterParagraph(character: Int): Int {
     TransferContext.writeArguments(LONG to character.toLong())
@@ -979,8 +1016,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the total number of lines in the text. Wrapped text is counted as multiple lines.
-   *
-   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
+   * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
    */
   public fun getLineCount(): Int {
     TransferContext.writeArguments()
@@ -990,8 +1027,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the number of visible lines.
-   *
-   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
+   * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
    */
   public fun getVisibleLineCount(): Int {
     TransferContext.writeArguments()
@@ -1000,7 +1037,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Returns the total number of paragraphs (newlines or `p` tags in the tag stack's text tags). Considers wrapped text as one paragraph.
+   * Returns the total number of paragraphs (newlines or `p` tags in the tag stack's text tags).
+   * Considers wrapped text as one paragraph.
    */
   public fun getParagraphCount(): Int {
     TransferContext.writeArguments()
@@ -1009,9 +1047,10 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Returns the number of visible paragraphs. A paragraph is considered visible if at least one of its lines is visible.
-   *
-   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
+   * Returns the number of visible paragraphs. A paragraph is considered visible if at least one of
+   * its lines is visible.
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
+   * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
    */
   public fun getVisibleParagraphCount(): Int {
     TransferContext.writeArguments()
@@ -1021,8 +1060,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the height of the content.
-   *
-   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
+   * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
    */
   public fun getContentHeight(): Int {
     TransferContext.writeArguments()
@@ -1032,8 +1071,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the width of the content.
-   *
-   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
+   * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
    */
   public fun getContentWidth(): Int {
     TransferContext.writeArguments()
@@ -1043,8 +1082,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the vertical offset of the line found at the provided index.
-   *
-   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
+   * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
    */
   public fun getLineOffset(line: Int): Float {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -1054,8 +1093,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the vertical offset of the paragraph found at the provided index.
-   *
-   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
+   * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
    */
   public fun getParagraphOffset(paragraph: Int): Float {
     TransferContext.writeArguments(LONG to paragraph.toLong())
@@ -1064,7 +1103,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Parses BBCode parameter [expressions] into a dictionary.
+   * Parses BBCode parameter [param expressions] into a dictionary.
    */
   public fun parseExpressionsForValues(expressions: PackedStringArray): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to expressions)
@@ -1073,7 +1112,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Installs a custom effect. [effect] should be a valid [godot.RichTextEffect].
+   * Installs a custom effect. [param effect] should be a valid [RichTextEffect].
    */
   public fun installEffect(effect: Any?): Unit {
     TransferContext.writeArguments(ANY to effect)
@@ -1081,87 +1120,52 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Returns the [godot.PopupMenu] of this [godot.RichTextLabel]. By default, this menu is displayed when right-clicking on the [godot.RichTextLabel].
+   * Returns the [PopupMenu] of this [RichTextLabel]. By default, this menu is displayed when
+   * right-clicking on the [RichTextLabel].
+   * You can add custom menu items or remove standard ones. Make sure your IDs don't conflict with
+   * the standard ones (see [enum MenuItems]). For example:
    *
-   * You can add custom menu items or remove standard ones. Make sure your IDs don't conflict with the standard ones (see [enum MenuItems]). For example:
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * func _ready():
-   *
    *     var menu = get_menu()
-   *
    *     # Remove "Select All" item.
-   *
    *     menu.remove_item(MENU_SELECT_ALL)
-   *
    *     # Add custom items.
-   *
    *     menu.add_separator()
-   *
    *     menu.add_item("Duplicate Text", MENU_MAX + 1)
-   *
    *     # Connect callback.
-   *
    *     menu.id_pressed.connect(_on_item_pressed)
    *
-   *
-   *
    * func _on_item_pressed(id):
-   *
    *     if id == MENU_MAX + 1:
-   *
    *         add_text("\n" + get_parsed_text())
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * public override void _Ready()
-   *
    * {
-   *
    *     var menu = GetMenu();
-   *
    *     // Remove "Select All" item.
-   *
    *     menu.RemoveItem(RichTextLabel.MenuItems.SelectAll);
-   *
    *     // Add custom items.
-   *
    *     menu.AddSeparator();
-   *
    *     menu.AddItem("Duplicate Text", RichTextLabel.MenuItems.Max + 1);
-   *
    *     // Add event handler.
-   *
    *     menu.IdPressed += OnItemPressed;
-   *
    * }
-   *
-   *
    *
    * public void OnItemPressed(int id)
-   *
    * {
-   *
    *     if (id == TextEdit.MenuItems.Max + 1)
-   *
    *     {
-   *
    *         AddText("\n" + GetParsedText());
-   *
    *     }
-   *
    * }
+   * ```
    *
-   * [/csharp]
-   *
-   * [/codeblocks]
-   *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.Window.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
+   * you wish to hide it or any of its children, use their [Window.visible] property.
    */
   public fun getMenu(): PopupMenu? {
     TransferContext.writeArguments()
@@ -1170,7 +1174,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Returns whether the menu is visible. Use this instead of `get_menu().visible` to improve performance (so the creation of the menu is avoided).
+   * Returns whether the menu is visible. Use this instead of `get_menu().visible` to improve
+   * performance (so the creation of the menu is avoided).
    */
   public fun isMenuVisible(): Boolean {
     TransferContext.writeArguments()
@@ -1225,7 +1230,7 @@ public open class RichTextLabel : Control() {
      */
     MENU_COPY(0),
     /**
-     * Selects the whole [godot.RichTextLabel] text.
+     * Selects the whole [RichTextLabel] text.
      */
     MENU_SELECT_ALL(1),
     /**

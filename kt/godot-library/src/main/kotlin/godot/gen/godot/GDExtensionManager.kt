@@ -24,9 +24,6 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 
-/**
- *
- */
 @GodotBaseType
 public object GDExtensionManager : Object() {
   /**
@@ -39,54 +36,36 @@ public object GDExtensionManager : Object() {
     return false
   }
 
-  /**
-   *
-   */
   public fun loadExtension(path: String): LoadStatus {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.loadExtensionPtr, LONG)
     return GDExtensionManager.LoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  /**
-   *
-   */
   public fun reloadExtension(path: String): LoadStatus {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.reloadExtensionPtr, LONG)
     return GDExtensionManager.LoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  /**
-   *
-   */
   public fun unloadExtension(path: String): LoadStatus {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.unloadExtensionPtr, LONG)
     return GDExtensionManager.LoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  /**
-   *
-   */
   public fun isExtensionLoaded(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.isExtensionLoadedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  /**
-   *
-   */
   public fun getLoadedExtensions(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLoadedExtensionsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
-  /**
-   *
-   */
   public fun getExtension(path: String): GDExtension? {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.getExtensionPtr, OBJECT)
@@ -96,25 +75,10 @@ public object GDExtensionManager : Object() {
   public enum class LoadStatus(
     id: Long,
   ) {
-    /**
-     *
-     */
     LOAD_STATUS_OK(0),
-    /**
-     *
-     */
     LOAD_STATUS_FAILED(1),
-    /**
-     *
-     */
     LOAD_STATUS_ALREADY_LOADED(2),
-    /**
-     *
-     */
     LOAD_STATUS_NOT_LOADED(3),
-    /**
-     *
-     */
     LOAD_STATUS_NEEDS_RESTART(4),
     ;
 

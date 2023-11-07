@@ -18,9 +18,8 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A comparison function for common types within the visual shader graph.
- *
- * Compares `a` and `b` of [type] by [function]. Returns a boolean scalar. Translates to `if` instruction in shader code.
+ * Compares `a` and `b` of [type] by [function]. Returns a boolean scalar. Translates to `if`
+ * instruction in shader code.
  */
 @GodotBaseType
 public open class VisualShaderNodeCompare : VisualShaderNode() {
@@ -53,7 +52,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     }
 
   /**
-   * Extra condition which is applied if [type] is set to [godot.CTYPE_VECTOR_3D].
+   * Extra condition which is applied if [type] is set to [constant CTYPE_VECTOR_3D].
    */
   public var condition: Condition
     get() {
@@ -134,19 +133,23 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
      */
     FUNC_NOT_EQUAL(1),
     /**
-     * Comparison for greater than (`a > b`). Cannot be used if [type] set to [CTYPE_BOOLEAN] or [CTYPE_TRANSFORM].
+     * Comparison for greater than (`a > b`). Cannot be used if [type] set to [constant
+     * CTYPE_BOOLEAN] or [constant CTYPE_TRANSFORM].
      */
     FUNC_GREATER_THAN(2),
     /**
-     * Comparison for greater than or equal (`a >= b`). Cannot be used if [type] set to [CTYPE_BOOLEAN] or [CTYPE_TRANSFORM].
+     * Comparison for greater than or equal (`a >= b`). Cannot be used if [type] set to [constant
+     * CTYPE_BOOLEAN] or [constant CTYPE_TRANSFORM].
      */
     FUNC_GREATER_THAN_EQUAL(3),
     /**
-     * Comparison for less than (`a < b`). Cannot be used if [type] set to [CTYPE_BOOLEAN] or [CTYPE_TRANSFORM].
+     * Comparison for less than (`a < b`). Cannot be used if [type] set to [constant CTYPE_BOOLEAN]
+     * or [constant CTYPE_TRANSFORM].
      */
     FUNC_LESS_THAN(4),
     /**
-     * Comparison for less than or equal (`a <= b`). Cannot be used if [type] set to [CTYPE_BOOLEAN] or [CTYPE_TRANSFORM].
+     * Comparison for less than or equal (`a <= b`). Cannot be used if [type] set to [constant
+     * CTYPE_BOOLEAN] or [constant CTYPE_TRANSFORM].
      */
     FUNC_LESS_THAN_EQUAL(5),
     /**

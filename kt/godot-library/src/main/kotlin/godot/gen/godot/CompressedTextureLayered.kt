@@ -20,9 +20,9 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * Base class for texture arrays that can optionally be compressed.
- *
- * Base class for [godot.CompressedTexture2DArray] and [godot.CompressedTexture3D]. Cannot be used directly, but contains all the functions necessary for accessing the derived resource types. See also [godot.TextureLayered].
+ * Base class for [CompressedTexture2DArray] and [CompressedTexture3D]. Cannot be used directly, but
+ * contains all the functions necessary for accessing the derived resource types. See also
+ * [TextureLayered].
  */
 @GodotBaseType
 public open class CompressedTextureLayered internal constructor() : TextureLayered() {
@@ -42,7 +42,7 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
   }
 
   /**
-   * Loads the texture at [path].
+   * Loads the texture at [param path].
    */
   public fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)

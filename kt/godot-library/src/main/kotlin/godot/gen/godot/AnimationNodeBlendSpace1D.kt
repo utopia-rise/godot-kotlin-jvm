@@ -27,15 +27,10 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A set of [godot.AnimationRootNode]s placed on a virtual axis, crossfading between the two adjacent ones. Used by [godot.AnimationTree].
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
- *
- * A resource used by [godot.AnimationNodeBlendTree].
- *
- * [godot.AnimationNodeBlendSpace1D] represents a virtual axis on which any type of [godot.AnimationRootNode]s can be added using [addBlendPoint]. Outputs the linear blend of the two [godot.AnimationRootNode]s adjacent to the current value.
- *
+ * A resource used by [AnimationNodeBlendTree].
+ * [AnimationNodeBlendSpace1D] represents a virtual axis on which any type of [AnimationRootNode]s
+ * can be added using [addBlendPoint]. Outputs the linear blend of the two [AnimationRootNode]s
+ * adjacent to the current value.
  * You can set the extents of the axis with [minSpace] and [maxSpace].
  */
 @GodotBaseType
@@ -112,7 +107,6 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
 
   /**
    * If `false`, the blended animations' frame are stopped when the blend value is `0`.
-   *
    * If `true`, forcing the blended animations to advance frame.
    */
   public var sync: Boolean
@@ -132,7 +126,10 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   /**
-   * Adds a new point that represents a [node] on the virtual axis at a given position set by [pos]. You can insert it at a specific index using the [atIndex] argument. If you use the default value for [atIndex], the point is inserted at the end of the blend points array.
+   * Adds a new point that represents a [param node] on the virtual axis at a given position set by
+   * [param pos]. You can insert it at a specific index using the [param at_index] argument. If you use
+   * the default value for [param at_index], the point is inserted at the end of the blend points
+   * array.
    */
   @JvmOverloads
   public fun addBlendPoint(
@@ -145,7 +142,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   /**
-   * Updates the position of the point at index [point] on the blend axis.
+   * Updates the position of the point at index [param point] on the blend axis.
    */
   public fun setBlendPointPosition(point: Int, pos: Float): Unit {
     TransferContext.writeArguments(LONG to point.toLong(), DOUBLE to pos.toDouble())
@@ -153,7 +150,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   /**
-   * Returns the position of the point at index [point].
+   * Returns the position of the point at index [param point].
    */
   public fun getBlendPointPosition(point: Int): Float {
     TransferContext.writeArguments(LONG to point.toLong())
@@ -162,7 +159,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   /**
-   * Changes the [godot.AnimationNode] referenced by the point at index [point].
+   * Changes the [AnimationNode] referenced by the point at index [param point].
    */
   public fun setBlendPointNode(point: Int, node: AnimationRootNode): Unit {
     TransferContext.writeArguments(LONG to point.toLong(), OBJECT to node)
@@ -170,7 +167,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   /**
-   * Returns the [godot.AnimationNode] referenced by the point at index [point].
+   * Returns the [AnimationNode] referenced by the point at index [param point].
    */
   public fun getBlendPointNode(point: Int): AnimationRootNode? {
     TransferContext.writeArguments(LONG to point.toLong())
@@ -179,7 +176,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   /**
-   * Removes the point at index [point] from the blend axis.
+   * Removes the point at index [param point] from the blend axis.
    */
   public fun removeBlendPoint(point: Int): Unit {
     TransferContext.writeArguments(LONG to point.toLong())
@@ -203,11 +200,13 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
      */
     BLEND_MODE_INTERPOLATED(0),
     /**
-     * The blend space plays the animation of the animation node which blending position is closest to. Useful for frame-by-frame 2D animations.
+     * The blend space plays the animation of the animation node which blending position is closest
+     * to. Useful for frame-by-frame 2D animations.
      */
     BLEND_MODE_DISCRETE(1),
     /**
-     * Similar to [BLEND_MODE_DISCRETE], but starts the new animation at the last animation's playback position.
+     * Similar to [constant BLEND_MODE_DISCRETE], but starts the new animation at the last
+     * animation's playback position.
      */
     BLEND_MODE_DISCRETE_CARRY(2),
     ;

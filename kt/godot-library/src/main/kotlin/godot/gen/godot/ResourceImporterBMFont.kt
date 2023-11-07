@@ -12,16 +12,12 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Imports a bitmap font in the BMFont (`.fnt`) format.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/ui/gui_using_fonts.html#bitmap-fonts]($DOCS_URL/tutorials/ui/gui_using_fonts.html#bitmap-fonts)
- *
- * The BMFont format is a format created by the [godot.BMFont](https://www.angelcode.com/products/bmfont/) program. Many BMFont-compatible programs also exist, like [godot.BMGlyph](https://www.bmglyph.com/).
- *
- * Compared to [godot.ResourceImporterImageFont], [godot.ResourceImporterBMFont] supports bitmap fonts with varying glyph widths/heights.
- *
- * See also [godot.ResourceImporterDynamicFont].
+ * The BMFont format is a format created by the
+ * [url=https://www.angelcode.com/products/bmfont/]BMFont[/url] program. Many BMFont-compatible
+ * programs also exist, like [url=https://www.bmglyph.com/]BMGlyph[/url].
+ * Compared to [ResourceImporterImageFont], [ResourceImporterBMFont] supports bitmap fonts with
+ * varying glyph widths/heights.
+ * See also [ResourceImporterDynamicFont].
  */
 @GodotBaseType
 public open class ResourceImporterBMFont internal constructor() : ResourceImporter() {

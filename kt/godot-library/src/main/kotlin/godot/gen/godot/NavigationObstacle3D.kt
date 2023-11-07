@@ -31,18 +31,15 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * 3D Obstacle used in navigation to constrain avoidance controlled agents outside or inside an area.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/navigation/navigation_using_navigationobstacles.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationobstacles.html)
- *
- * 3D Obstacle used in navigation to constrain avoidance controlled agents outside or inside an area. The obstacle needs a navigation map and outline vertices defined to work correctly.
- *
- * If the obstacle's vertices are winded in clockwise order, avoidance agents will be pushed in by the obstacle, otherwise, avoidance agents will be pushed out. Outlines must not cross or overlap.
- *
- * Obstacles are **not** a replacement for a (re)baked navigation mesh. Obstacles **don't** change the resulting path from the pathfinding, obstacles only affect the navigation avoidance agent movement by altering the suggested velocity of the avoidance agent.
- *
- * Obstacles using vertices can warp to a new position but should not moved every frame as each move requires a rebuild of the avoidance map.
+ * 3D Obstacle used in navigation to constrain avoidance controlled agents outside or inside an
+ * area. The obstacle needs a navigation map and outline vertices defined to work correctly.
+ * If the obstacle's vertices are winded in clockwise order, avoidance agents will be pushed in by
+ * the obstacle, otherwise, avoidance agents will be pushed out. Outlines must not cross or overlap.
+ * Obstacles are **not** a replacement for a (re)baked navigation mesh. Obstacles **don't** change
+ * the resulting path from the pathfinding, obstacles only affect the navigation avoidance agent
+ * movement by altering the suggested velocity of the avoidance agent.
+ * Obstacles using vertices can warp to a new position but should not moved every frame as each move
+ * requires a rebuild of the avoidance map.
  */
 @GodotBaseType
 public open class NavigationObstacle3D : Node3D() {
@@ -61,7 +58,9 @@ public open class NavigationObstacle3D : Node3D() {
     }
 
   /**
-   * Sets the wanted velocity for the obstacle so other agent's can better predict the obstacle if it is moved with a velocity regularly (every frame) instead of warped to a new position. Does only affect avoidance for the obstacles [radius]. Does nothing for the obstacles static vertices.
+   * Sets the wanted velocity for the obstacle so other agent's can better predict the obstacle if
+   * it is moved with a velocity regularly (every frame) instead of warped to a new position. Does only
+   * affect avoidance for the obstacles [radius]. Does nothing for the obstacles static vertices.
    */
   @CoreTypeLocalCopy
   public var velocity: Vector3
@@ -90,7 +89,8 @@ public open class NavigationObstacle3D : Node3D() {
     }
 
   /**
-   * Sets the obstacle height used in 2D avoidance. 2D avoidance using agent's ignore obstacles that are below or above them.
+   * Sets the obstacle height used in 2D avoidance. 2D avoidance using agent's ignore obstacles that
+   * are below or above them.
    */
   public var height: Float
     get() {
@@ -104,7 +104,10 @@ public open class NavigationObstacle3D : Node3D() {
     }
 
   /**
-   * The outline vertices of the obstacle. If the vertices are winded in clockwise order agents will be pushed in by the obstacle, else they will be pushed out. Outlines can not be crossed or overlap. Should the vertices using obstacle be warped to a new position agent's can not predict this movement and may get trapped inside the obstacle.
+   * The outline vertices of the obstacle. If the vertices are winded in clockwise order agents will
+   * be pushed in by the obstacle, else they will be pushed out. Outlines can not be crossed or
+   * overlap. Should the vertices using obstacle be warped to a new position agent's can not predict
+   * this movement and may get trapped inside the obstacle.
    */
   public var vertices: PackedVector3Array
     get() {
@@ -118,7 +121,8 @@ public open class NavigationObstacle3D : Node3D() {
     }
 
   /**
-   * A bitfield determining the avoidance layers for this obstacle. Agents with a matching bit on the their avoidance mask will avoid this obstacle.
+   * A bitfield determining the avoidance layers for this obstacle. Agents with a matching bit on
+   * the their avoidance mask will avoid this obstacle.
    */
   public var avoidanceLayers: Long
     get() {
@@ -133,8 +137,8 @@ public open class NavigationObstacle3D : Node3D() {
 
   /**
    * If `true` the obstacle affects 3D avoidance using agent's with obstacle [radius].
-   *
-   * If `false` the obstacle affects 2D avoidance using agent's with both obstacle [vertices] as well as obstacle [radius].
+   * If `false` the obstacle affects 2D avoidance using agent's with both obstacle [vertices] as
+   * well as obstacle [radius].
    */
   public var use3dAvoidance: Boolean
     get() {
@@ -153,7 +157,9 @@ public open class NavigationObstacle3D : Node3D() {
   }
 
   /**
-   * Sets the wanted velocity for the obstacle so other agent's can better predict the obstacle if it is moved with a velocity regularly (every frame) instead of warped to a new position. Does only affect avoidance for the obstacles [radius]. Does nothing for the obstacles static vertices.
+   * Sets the wanted velocity for the obstacle so other agent's can better predict the obstacle if
+   * it is moved with a velocity regularly (every frame) instead of warped to a new position. Does only
+   * affect avoidance for the obstacles [radius]. Does nothing for the obstacles static vertices.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -177,7 +183,7 @@ public open class NavigationObstacle3D : Node3D() {
 
 
   /**
-   * Returns the [RID] of this obstacle on the [godot.NavigationServer3D].
+   * Returns the [RID] of this obstacle on the [NavigationServer3D].
    */
   public fun getRid(): RID {
     TransferContext.writeArguments()
@@ -186,7 +192,8 @@ public open class NavigationObstacle3D : Node3D() {
   }
 
   /**
-   * Sets the [RID] of the navigation map this NavigationObstacle node should use and also updates the `obstacle` on the NavigationServer.
+   * Sets the [RID] of the navigation map this NavigationObstacle node should use and also updates
+   * the `obstacle` on the NavigationServer.
    */
   public fun setNavigationMap(navigationMap: RID): Unit {
     TransferContext.writeArguments(_RID to navigationMap)
@@ -194,7 +201,11 @@ public open class NavigationObstacle3D : Node3D() {
   }
 
   /**
-   * Returns the [RID] of the navigation map for this NavigationObstacle node. This function returns always the map set on the NavigationObstacle node and not the map of the abstract obstacle on the NavigationServer. If the obstacle map is changed directly with the NavigationServer API the NavigationObstacle node will not be aware of the map change. Use [setNavigationMap] to change the navigation map for the NavigationObstacle and also update the obstacle on the NavigationServer.
+   * Returns the [RID] of the navigation map for this NavigationObstacle node. This function returns
+   * always the map set on the NavigationObstacle node and not the map of the abstract obstacle on the
+   * NavigationServer. If the obstacle map is changed directly with the NavigationServer API the
+   * NavigationObstacle node will not be aware of the map change. Use [setNavigationMap] to change the
+   * navigation map for the NavigationObstacle and also update the obstacle on the NavigationServer.
    */
   public fun getNavigationMap(): RID {
     TransferContext.writeArguments()
@@ -203,7 +214,8 @@ public open class NavigationObstacle3D : Node3D() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [avoidanceLayers] bitmask, given a [layerNumber] between 1 and 32.
+   * Based on [param value], enables or disables the specified layer in the [avoidanceLayers]
+   * bitmask, given a [param layer_number] between 1 and 32.
    */
   public fun setAvoidanceLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -211,7 +223,8 @@ public open class NavigationObstacle3D : Node3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [avoidanceLayers] bitmask is enabled, given a [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [avoidanceLayers] bitmask is enabled, given a
+   * [param layer_number] between 1 and 32.
    */
   public fun getAvoidanceLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())

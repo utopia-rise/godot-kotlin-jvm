@@ -20,9 +20,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-/**
- * A class used to provide [godot.PhysicsServer3DExtension.SoftBodyUpdateRenderingServer] with a rendering handler for soft bodies.
- */
 @GodotBaseType
 public open class PhysicsServer3DRenderingServerHandler : Object() {
   public override fun new(scriptIndex: Int): Boolean {
@@ -31,29 +28,29 @@ public open class PhysicsServer3DRenderingServerHandler : Object() {
   }
 
   /**
-   * Called by the [godot.PhysicsServer3D] to set the position for the [godot.SoftBody3D] vertex at the index specified by [vertexId].
-   *
-   * **Note:** The [vertex] parameter used to be of type `const void*` prior to Godot 4.2.
+   * Called by the [PhysicsServer3D] to set the position for the [SoftBody3D] vertex at the index
+   * specified by [param vertex_id].
+   * **Note:** The [param vertex] parameter used to be of type `const void*` prior to Godot 4.2.
    */
   public open fun _setVertex(vertexId: Int, vertex: Vector3): Unit {
   }
 
   /**
-   * Called by the [godot.PhysicsServer3D] to set the normal for the [godot.SoftBody3D] vertex at the index specified by [vertexId].
-   *
-   * **Note:** The [normal] parameter used to be of type `const void*` prior to Godot 4.2.
+   * Called by the [PhysicsServer3D] to set the normal for the [SoftBody3D] vertex at the index
+   * specified by [param vertex_id].
+   * **Note:** The [param normal] parameter used to be of type `const void*` prior to Godot 4.2.
    */
   public open fun _setNormal(vertexId: Int, normal: Vector3): Unit {
   }
 
   /**
-   * Called by the [godot.PhysicsServer3D] to set the bounding box for the [godot.SoftBody3D].
+   * Called by the [PhysicsServer3D] to set the bounding box for the [SoftBody3D].
    */
   public open fun _setAabb(aabb: AABB): Unit {
   }
 
   /**
-   * Sets the position for the [godot.SoftBody3D] vertex at the index specified by [vertexId].
+   * Sets the position for the [SoftBody3D] vertex at the index specified by [param vertex_id].
    */
   public fun setVertex(vertexId: Int, vertex: Vector3): Unit {
     TransferContext.writeArguments(LONG to vertexId.toLong(), VECTOR3 to vertex)
@@ -61,7 +58,7 @@ public open class PhysicsServer3DRenderingServerHandler : Object() {
   }
 
   /**
-   * Sets the normal for the [godot.SoftBody3D] vertex at the index specified by [vertexId].
+   * Sets the normal for the [SoftBody3D] vertex at the index specified by [param vertex_id].
    */
   public fun setNormal(vertexId: Int, normal: Vector3): Unit {
     TransferContext.writeArguments(LONG to vertexId.toLong(), VECTOR3 to normal)
@@ -69,7 +66,7 @@ public open class PhysicsServer3DRenderingServerHandler : Object() {
   }
 
   /**
-   * Sets the bounding box for the [godot.SoftBody3D].
+   * Sets the bounding box for the [SoftBody3D].
    */
   public fun setAabb(aabb: AABB): Unit {
     TransferContext.writeArguments(godot.core.VariantType.AABB to aabb)

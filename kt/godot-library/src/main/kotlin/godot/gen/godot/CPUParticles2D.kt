@@ -36,24 +36,23 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A CPU-based 2D particle emitter.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/2d/particle_systems_2d.html]($DOCS_URL/tutorials/2d/particle_systems_2d.html)
- *
  * CPU-based 2D particle node used to create a variety of particle systems and effects.
- *
- * See also [godot.GPUParticles2D], which provides the same functionality with hardware acceleration, but may not run on older devices.
+ * See also [GPUParticles2D], which provides the same functionality with hardware acceleration, but
+ * may not run on older devices.
  */
 @GodotBaseType
 public open class CPUParticles2D : Node2D() {
   /**
-   * Emitted when all active particles have finished processing. When [oneShot] is disabled, particles will process continuously, so this is never emitted.
+   * Emitted when all active particles have finished processing. When [oneShot] is disabled,
+   * particles will process continuously, so this is never emitted.
    */
   public val finished: Signal0 by signal()
 
   /**
-   * If `true`, particles are being emitted. [emitting] can be used to start and stop particles from emitting. However, if [oneShot] is `true` setting [emitting] to `true` will not restart the emission cycle until after all active particles finish processing. You can use the [finished] signal to be notified once all active particles finish processing.
+   * If `true`, particles are being emitted. [emitting] can be used to start and stop particles from
+   * emitting. However, if [oneShot] is `true` setting [emitting] to `true` will not restart the
+   * emission cycle until after all active particles finish processing. You can use the [signal
+   * finished] signal to be notified once all active particles finish processing.
    */
   public var emitting: Boolean
     get() {
@@ -95,7 +94,8 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at the cycle's end.
+   * If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at
+   * the cycle's end.
    */
   public var oneShot: Boolean
     get() {
@@ -123,7 +123,8 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Particle system's running speed scaling ratio. A value of `0` can be used to pause the particles.
+   * Particle system's running speed scaling ratio. A value of `0` can be used to pause the
+   * particles.
    */
   public var speedScale: Double
     get() {
@@ -137,7 +138,8 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * How rapidly particles in an emission cycle are emitted. If greater than `0`, there will be a gap in emissions before the next cycle begins.
+   * How rapidly particles in an emission cycle are emitted. If greater than `0`, there will be a
+   * gap in emissions before the next cycle begins.
    */
   public var explosiveness: Float
     get() {
@@ -179,7 +181,9 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * The particle system's frame rate is fixed to a value. For example, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself.
+   * The particle system's frame rate is fixed to a value. For example, changing the value to 2 will
+   * make the particles render at 2 frames per second. Note this does not slow down the simulation of
+   * the particle system itself.
    */
   public var fixedFps: Int
     get() {
@@ -193,7 +197,8 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * If `true`, results in fractional delta calculation which has a smoother particles display effect.
+   * If `true`, results in fractional delta calculation which has a smoother particles display
+   * effect.
    */
   public var fractDelta: Boolean
     get() {
@@ -207,7 +212,10 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * If `true`, particles use the parent node's coordinate space (known as local coordinates). This will cause particles to move and rotate along the [godot.CPUParticles2D] node (and its parents) when it is moved or rotated. If `false`, particles use global coordinates; they will not move or rotate along the [godot.CPUParticles2D] node (and its parents) when it is moved or rotated.
+   * If `true`, particles use the parent node's coordinate space (known as local coordinates). This
+   * will cause particles to move and rotate along the [CPUParticles2D] node (and its parents) when it
+   * is moved or rotated. If `false`, particles use global coordinates; they will not move or rotate
+   * along the [CPUParticles2D] node (and its parents) when it is moved or rotated.
    */
   public var localCoords: Boolean
     get() {
@@ -263,7 +271,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * The sphere's radius if [emissionShape] is set to [EMISSION_SHAPE_SPHERE].
+   * The sphere's radius if [emissionShape] is set to [constant EMISSION_SHAPE_SPHERE].
    */
   public var emissionSphereRadius: Float
     get() {
@@ -277,7 +285,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_RECTANGLE].
+   * The rectangle's extents if [emissionShape] is set to [constant EMISSION_SHAPE_RECTANGLE].
    */
   @CoreTypeLocalCopy
   public var emissionRectExtents: Vector2
@@ -292,7 +300,8 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Sets the initial positions to spawn particles when using [EMISSION_SHAPE_POINTS] or [EMISSION_SHAPE_DIRECTED_POINTS].
+   * Sets the initial positions to spawn particles when using [constant EMISSION_SHAPE_POINTS] or
+   * [constant EMISSION_SHAPE_DIRECTED_POINTS].
    */
   public var emissionPoints: PackedVector2Array
     get() {
@@ -306,7 +315,8 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Sets the direction the particles will be emitted in when using [EMISSION_SHAPE_DIRECTED_POINTS].
+   * Sets the direction the particles will be emitted in when using [constant
+   * EMISSION_SHAPE_DIRECTED_POINTS].
    */
   public var emissionNormals: PackedVector2Array
     get() {
@@ -320,7 +330,8 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Sets the [godot.core.Color]s to modulate particles by when using [EMISSION_SHAPE_POINTS] or [EMISSION_SHAPE_DIRECTED_POINTS].
+   * Sets the [Color]s to modulate particles by when using [constant EMISSION_SHAPE_POINTS] or
+   * [constant EMISSION_SHAPE_DIRECTED_POINTS].
    */
   public var emissionColors: PackedColorArray
     get() {
@@ -406,7 +417,8 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Maximum initial velocity magnitude for each particle. Direction comes from [direction] and [spread].
+   * Maximum initial velocity magnitude for each particle. Direction comes from [direction] and
+   * [spread].
    */
   public var initialVelocityMax: Float
     get() {
@@ -434,7 +446,8 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Maximum initial angular velocity (rotation speed) applied to each particle in *degrees* per second.
+   * Maximum initial angular velocity (rotation speed) applied to each particle in *degrees* per
+   * second.
    */
   public var angularVelocityMax: Float
     get() {
@@ -448,7 +461,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's angular velocity will vary along this [godot.Curve].
+   * Each particle's angular velocity will vary along this [Curve].
    */
   public var angularVelocityCurve: Curve?
     get() {
@@ -476,7 +489,8 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Maximum orbital velocity applied to each particle. Makes the particles circle around origin. Specified in number of full rotations around origin per second.
+   * Maximum orbital velocity applied to each particle. Makes the particles circle around origin.
+   * Specified in number of full rotations around origin per second.
    */
   public var orbitVelocityMax: Float
     get() {
@@ -490,7 +504,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's orbital velocity will vary along this [godot.Curve].
+   * Each particle's orbital velocity will vary along this [Curve].
    */
   public var orbitVelocityCurve: Curve?
     get() {
@@ -532,7 +546,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's linear acceleration will vary along this [godot.Curve].
+   * Each particle's linear acceleration will vary along this [Curve].
    */
   public var linearAccelCurve: Curve?
     get() {
@@ -560,7 +574,8 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Maximum radial acceleration applied to each particle. Makes particle accelerate away from the origin or towards it if negative.
+   * Maximum radial acceleration applied to each particle. Makes particle accelerate away from the
+   * origin or towards it if negative.
    */
   public var radialAccelMax: Float
     get() {
@@ -574,7 +589,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's radial acceleration will vary along this [godot.Curve].
+   * Each particle's radial acceleration will vary along this [Curve].
    */
   public var radialAccelCurve: Curve?
     get() {
@@ -602,7 +617,8 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Maximum tangential acceleration applied to each particle. Tangential acceleration is perpendicular to the particle's velocity giving the particles a swirling motion.
+   * Maximum tangential acceleration applied to each particle. Tangential acceleration is
+   * perpendicular to the particle's velocity giving the particles a swirling motion.
    */
   public var tangentialAccelMax: Float
     get() {
@@ -616,7 +632,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's tangential acceleration will vary along this [godot.Curve].
+   * Each particle's tangential acceleration will vary along this [Curve].
    */
   public var tangentialAccelCurve: Curve?
     get() {
@@ -644,7 +660,8 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * The maximum rate at which particles lose velocity. For example value of `100` means that the particle will go from `100` velocity to `0` in `1` second.
+   * The maximum rate at which particles lose velocity. For example value of `100` means that the
+   * particle will go from `100` velocity to `0` in `1` second.
    */
   public var dampingMax: Float
     get() {
@@ -658,7 +675,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Damping will vary along this [godot.Curve].
+   * Damping will vary along this [Curve].
    */
   public var dampingCurve: Curve?
     get() {
@@ -700,7 +717,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's rotation will be animated along this [godot.Curve].
+   * Each particle's rotation will be animated along this [Curve].
    */
   public var angleCurve: Curve?
     get() {
@@ -742,7 +759,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's scale will vary along this [godot.Curve].
+   * Each particle's scale will vary along this [Curve].
    */
   public var scaleAmountCurve: Curve?
     get() {
@@ -756,7 +773,8 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * If `true`, the scale curve will be split into x and y components. See [scaleCurveX] and [scaleCurveY].
+   * If `true`, the scale curve will be split into x and y components. See [scaleCurveX] and
+   * [scaleCurveY].
    */
   public var splitScale: Boolean
     get() {
@@ -770,8 +788,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's horizontal scale will vary along this [godot.Curve].
-   *
+   * Each particle's horizontal scale will vary along this [Curve].
    * [splitScale] must be enabled.
    */
   public var scaleCurveX: Curve?
@@ -786,8 +803,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's vertical scale will vary along this [godot.Curve].
-   *
+   * Each particle's vertical scale will vary along this [Curve].
    * [splitScale] must be enabled.
    */
   public var scaleCurveY: Curve?
@@ -817,7 +833,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's color will vary along this [godot.Gradient] (multiplied with [color]).
+   * Each particle's color will vary along this [Gradient] (multiplied with [color]).
    */
   public var colorRamp: Gradient?
     get() {
@@ -831,7 +847,8 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's initial color will vary along this [godot.GradientTexture1D] (multiplied with [color]).
+   * Each particle's initial color will vary along this [GradientTexture1D] (multiplied with
+   * [color]).
    */
   public var colorInitialRamp: Gradient?
     get() {
@@ -873,7 +890,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's hue will vary along this [godot.Curve].
+   * Each particle's hue will vary along this [Curve].
    */
   public var hueVariationCurve: Curve?
     get() {
@@ -901,9 +918,10 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Maximum particle animation speed. Animation speed of `1` means that the particles will make full `0` to `1` offset cycle during lifetime, `2` means `2` cycles etc.
-   *
-   * With animation speed greater than `1`, remember to enable [godot.CanvasItemMaterial.particlesAnimLoop] property if you want the animation to repeat.
+   * Maximum particle animation speed. Animation speed of `1` means that the particles will make
+   * full `0` to `1` offset cycle during lifetime, `2` means `2` cycles etc.
+   * With animation speed greater than `1`, remember to enable
+   * [CanvasItemMaterial.particlesAnimLoop] property if you want the animation to repeat.
    */
   public var animSpeedMax: Float
     get() {
@@ -917,7 +935,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's animation speed will vary along this [godot.Curve].
+   * Each particle's animation speed will vary along this [Curve].
    */
   public var animSpeedCurve: Curve?
     get() {
@@ -945,7 +963,8 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Maximum animation offset that corresponds to frame index in the texture. `0` is the first frame, `1` is the last one. See [godot.CanvasItemMaterial.particlesAnimation].
+   * Maximum animation offset that corresponds to frame index in the texture. `0` is the first
+   * frame, `1` is the last one. See [CanvasItemMaterial.particlesAnimation].
    */
   public var animOffsetMax: Float
     get() {
@@ -959,7 +978,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's animation offset will vary along this [godot.Curve].
+   * Each particle's animation offset will vary along this [Curve].
    */
   public var animOffsetCurve: Curve?
     get() {
@@ -978,7 +997,7 @@ public open class CPUParticles2D : Node2D() {
   }
 
   /**
-   * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_RECTANGLE].
+   * The rectangle's extents if [emissionShape] is set to [constant EMISSION_SHAPE_RECTANGLE].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -1083,7 +1102,8 @@ public open class CPUParticles2D : Node2D() {
   }
 
   /**
-   * Sets this node's properties to match a given [godot.GPUParticles2D] node with an assigned [godot.ParticleProcessMaterial].
+   * Sets this node's properties to match a given [GPUParticles2D] node with an assigned
+   * [ParticleProcessMaterial].
    */
   public fun convertFromParticles(particles: Node): Unit {
     TransferContext.writeArguments(OBJECT to particles)
@@ -1117,27 +1137,33 @@ public open class CPUParticles2D : Node2D() {
     id: Long,
   ) {
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set initial velocity properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set initial velocity
+     * properties.
      */
     PARAM_INITIAL_LINEAR_VELOCITY(0),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set angular velocity properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set angular velocity
+     * properties.
      */
     PARAM_ANGULAR_VELOCITY(1),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set orbital velocity properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set orbital velocity
+     * properties.
      */
     PARAM_ORBIT_VELOCITY(2),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set linear acceleration properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set linear acceleration
+     * properties.
      */
     PARAM_LINEAR_ACCEL(3),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set radial acceleration properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set radial acceleration
+     * properties.
      */
     PARAM_RADIAL_ACCEL(4),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set tangential acceleration properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set tangential acceleration
+     * properties.
      */
     PARAM_TANGENTIAL_ACCEL(5),
     /**
@@ -1161,7 +1187,8 @@ public open class CPUParticles2D : Node2D() {
      */
     PARAM_ANIM_SPEED(10),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set animation offset properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set animation offset
+     * properties.
      */
     PARAM_ANIM_OFFSET(11),
     /**
@@ -1231,11 +1258,14 @@ public open class CPUParticles2D : Node2D() {
      */
     EMISSION_SHAPE_RECTANGLE(3),
     /**
-     * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle color will be modulated by [emissionColors].
+     * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle
+     * color will be modulated by [emissionColors].
      */
     EMISSION_SHAPE_POINTS(4),
     /**
-     * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle velocity and rotation will be set based on [emissionNormals]. Particle color will be modulated by [emissionColors].
+     * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle
+     * velocity and rotation will be set based on [emissionNormals]. Particle color will be modulated
+     * by [emissionColors].
      */
     EMISSION_SHAPE_DIRECTED_POINTS(5),
     /**

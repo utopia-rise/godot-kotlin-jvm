@@ -22,11 +22,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A stream peer used to handle binary data streams.
- *
- * A data buffer stream peer that uses a byte array as the stream. This object can be used to handle binary data from network sessions. To handle binary data stored in files, [godot.FileAccess] can be used directly.
- *
- * A [godot.StreamPeerBuffer] object keeps an internal cursor which is the offset in bytes to the start of the buffer. Get and put operations are performed at the cursor position and will move the cursor accordingly.
+ * A data buffer stream peer that uses a byte array as the stream. This object can be used to handle
+ * binary data from network sessions. To handle binary data stored in files, [FileAccess] can be used
+ * directly.
+ * A [StreamPeerBuffer] object keeps an internal cursor which is the offset in bytes to the start of
+ * the buffer. Get and put operations are performed at the cursor position and will move the cursor
+ * accordingly.
  */
 @GodotBaseType
 public open class StreamPeerBuffer : StreamPeer() {
@@ -50,7 +51,8 @@ public open class StreamPeerBuffer : StreamPeer() {
   }
 
   /**
-   * Moves the cursor to the specified position. [position] must be a valid index of [dataArray].
+   * Moves the cursor to the specified position. [param position] must be a valid index of
+   * [dataArray].
    */
   public fun seek(position: Int): Unit {
     TransferContext.writeArguments(LONG to position.toLong())
@@ -92,7 +94,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   }
 
   /**
-   * Returns a new [godot.StreamPeerBuffer] with the same [dataArray] content.
+   * Returns a new [StreamPeerBuffer] with the same [dataArray] content.
    */
   public fun duplicate(): StreamPeerBuffer? {
     TransferContext.writeArguments()

@@ -19,16 +19,13 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Texture provided by a [godot.CameraFeed].
- *
- * This texture gives access to the camera texture provided by a [godot.CameraFeed].
- *
+ * This texture gives access to the camera texture provided by a [CameraFeed].
  * **Note:** Many cameras supply YCbCr images which need to be converted in a shader.
  */
 @GodotBaseType
 public open class CameraTexture : Texture2D() {
   /**
-   * The ID of the [godot.CameraFeed] for which we want to display the image.
+   * The ID of the [CameraFeed] for which we want to display the image.
    */
   public var cameraFeedId: Int
     get() {
@@ -42,7 +39,8 @@ public open class CameraTexture : Texture2D() {
     }
 
   /**
-   * Which image within the [godot.CameraFeed] we want access to, important if the camera image is split in a Y and CbCr component.
+   * Which image within the [CameraFeed] we want access to, important if the camera image is split
+   * in a Y and CbCr component.
    */
   public var whichFeed: CameraServer.FeedImage
     get() {
@@ -56,7 +54,7 @@ public open class CameraTexture : Texture2D() {
     }
 
   /**
-   * Convenience property that gives access to the active property of the [godot.CameraFeed].
+   * Convenience property that gives access to the active property of the [CameraFeed].
    */
   public var cameraIsActive: Boolean
     get() {

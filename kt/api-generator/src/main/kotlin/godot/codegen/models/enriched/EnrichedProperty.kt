@@ -10,9 +10,10 @@ import godot.codegen.models.Argument
 import godot.codegen.models.Property
 import godot.codegen.traits.CallableTrait
 import godot.codegen.traits.CastableTrait
+import godot.codegen.traits.IDocumented
 import godot.codegen.traits.NullableTrait
 
-class EnrichedProperty(val internal: Property) : CastableTrait, NullableTrait {
+class EnrichedProperty(val internal: Property) : CastableTrait, NullableTrait, IDocumented {
     val name = internal.name.replace("/", "_").convertToCamelCase()
     val getter = internal.getter.convertToCamelCase()
     val setter = internal.setter?.convertToCamelCase()
@@ -48,6 +49,7 @@ class EnrichedProperty(val internal: Property) : CastableTrait, NullableTrait {
     override val nullable = isObjectSubClass() || type == GodotTypes.variant
     override val meta: String?
         get() = getterMethod?.meta
+    override val documentation = internal.documentation
 }
 
 fun List<Property>.toEnriched() = map {

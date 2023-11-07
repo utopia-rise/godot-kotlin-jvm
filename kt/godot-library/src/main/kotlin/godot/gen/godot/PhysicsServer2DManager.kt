@@ -22,11 +22,10 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A singleton for managing [godot.PhysicsServer2D] implementations.
- *
- * [godot.PhysicsServer2DManager] is the API for registering [godot.PhysicsServer2D] implementations and for setting the default implementation.
- *
- * **Note:** It is not possible to switch physics servers at runtime. This class is only used on startup at the server initialization level, by Godot itself and possibly by GDExtensions.
+ * [PhysicsServer2DManager] is the API for registering [PhysicsServer2D] implementations and for
+ * setting the default implementation.
+ * **Note:** It is not possible to switch physics servers at runtime. This class is only used on
+ * startup at the server initialization level, by Godot itself and possibly by GDExtensions.
  */
 @GodotBaseType
 public object PhysicsServer2DManager : Object() {
@@ -36,7 +35,8 @@ public object PhysicsServer2DManager : Object() {
   }
 
   /**
-   * Register a [godot.PhysicsServer2D] implementation by passing a [name] and a [godot.Callable] that returns a [godot.PhysicsServer2D] object.
+   * Register a [PhysicsServer2D] implementation by passing a [param name] and a [Callable] that
+   * returns a [PhysicsServer2D] object.
    */
   public fun registerServer(name: String, createCallback: Callable): Unit {
     TransferContext.writeArguments(STRING to name, CALLABLE to createCallback)
@@ -44,7 +44,8 @@ public object PhysicsServer2DManager : Object() {
   }
 
   /**
-   * Set the default [godot.PhysicsServer2D] implementation to the one identified by [name], if [priority] is greater than the priority of the current default implementation.
+   * Set the default [PhysicsServer2D] implementation to the one identified by [param name], if
+   * [param priority] is greater than the priority of the current default implementation.
    */
   public fun setDefaultServer(name: String, priority: Int): Unit {
     TransferContext.writeArguments(STRING to name, LONG to priority.toLong())

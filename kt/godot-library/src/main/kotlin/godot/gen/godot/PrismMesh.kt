@@ -26,14 +26,13 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Class representing a prism-shaped [godot.PrimitiveMesh].
- *
- * Class representing a prism-shaped [godot.PrimitiveMesh].
+ * Class representing a prism-shaped [PrimitiveMesh].
  */
 @GodotBaseType
 public open class PrismMesh : PrimitiveMesh() {
   /**
-   * Displacement of the upper edge along the X axis. 0.0 positions edge straight above the bottom-left edge.
+   * Displacement of the upper edge along the X axis. 0.0 positions edge straight above the
+   * bottom-left edge.
    */
   public var leftToRight: Float
     get() {

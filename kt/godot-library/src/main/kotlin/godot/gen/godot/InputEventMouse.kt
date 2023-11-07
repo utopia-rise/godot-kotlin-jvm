@@ -24,17 +24,13 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base input event type for mouse events.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
- *
  * Stores general information about mouse events.
  */
 @GodotBaseType
 public open class InputEventMouse internal constructor() : InputEventWithModifiers() {
   /**
-   * The mouse button mask identifier, one of or a bitwise combination of the [enum MouseButton] button masks.
+   * The mouse button mask identifier, one of or a bitwise combination of the [enum MouseButton]
+   * button masks.
    */
   public var buttonMask: MouseButtonMask
     get() {
@@ -48,9 +44,10 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
     }
 
   /**
-   * When received in [godot.Node.Input] or [godot.Node.UnhandledInput], returns the mouse's position in the [godot.Viewport] this [godot.Node] is in using the coordinate system of this [godot.Viewport].
-   *
-   * When received in [godot.Control.GuiInput], returns the mouse's position in the [godot.Control] using the local coordinate system of the [godot.Control].
+   * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the
+   * [Viewport] this [Node] is in using the coordinate system of this [Viewport].
+   * When received in [Control.GuiInput], returns the mouse's position in the [Control] using the
+   * local coordinate system of the [Control].
    */
   @CoreTypeLocalCopy
   public var position: Vector2
@@ -65,9 +62,10 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
     }
 
   /**
-   * When received in [godot.Node.Input] or [godot.Node.UnhandledInput], returns the mouse's position in the root [godot.Viewport] using the coordinate system of the root [godot.Viewport].
-   *
-   * When received in [godot.Control.GuiInput], returns the mouse's position in the [godot.CanvasLayer] that the [godot.Control] is in using the coordinate system of the [godot.CanvasLayer].
+   * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the
+   * root [Viewport] using the coordinate system of the root [Viewport].
+   * When received in [Control.GuiInput], returns the mouse's position in the [CanvasLayer] that the
+   * [Control] is in using the coordinate system of the [CanvasLayer].
    */
   @CoreTypeLocalCopy
   public var globalPosition: Vector2
@@ -87,9 +85,10 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
   }
 
   /**
-   * When received in [godot.Node.Input] or [godot.Node.UnhandledInput], returns the mouse's position in the [godot.Viewport] this [godot.Node] is in using the coordinate system of this [godot.Viewport].
-   *
-   * When received in [godot.Control.GuiInput], returns the mouse's position in the [godot.Control] using the local coordinate system of the [godot.Control].
+   * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the
+   * [Viewport] this [Node] is in using the coordinate system of this [Viewport].
+   * When received in [Control.GuiInput], returns the mouse's position in the [Control] using the
+   * local coordinate system of the [Control].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -113,9 +112,10 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
 
 
   /**
-   * When received in [godot.Node.Input] or [godot.Node.UnhandledInput], returns the mouse's position in the root [godot.Viewport] using the coordinate system of the root [godot.Viewport].
-   *
-   * When received in [godot.Control.GuiInput], returns the mouse's position in the [godot.CanvasLayer] that the [godot.Control] is in using the coordinate system of the [godot.CanvasLayer].
+   * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the
+   * root [Viewport] using the coordinate system of the root [Viewport].
+   * When received in [Control.GuiInput], returns the mouse's position in the [CanvasLayer] that the
+   * [Control] is in using the coordinate system of the [CanvasLayer].
    *
    * This is a helper function to make dealing with local copies easier. 
    *

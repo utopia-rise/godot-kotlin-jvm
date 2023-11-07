@@ -22,14 +22,11 @@ import kotlin.Suppress
 import kotlin.jvm.JvmOverloads
 
 /**
- * A cryptographic key (RSA).
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/networking/ssl_certificates.html]($DOCS_URL/tutorials/networking/ssl_certificates.html)
- *
- * The CryptoKey class represents a cryptographic key. Keys can be loaded and saved like any other [godot.Resource].
- *
- * They can be used to generate a self-signed [godot.X509Certificate] via [godot.Crypto.generateSelfSignedCertificate] and as private key in [godot.StreamPeerTLS.acceptStream] along with the appropriate certificate.
+ * The CryptoKey class represents a cryptographic key. Keys can be loaded and saved like any other
+ * [Resource].
+ * They can be used to generate a self-signed [X509Certificate] via
+ * [Crypto.generateSelfSignedCertificate] and as private key in [StreamPeerTLS.acceptStream] along with
+ * the appropriate certificate.
  */
 @GodotBaseType
 public open class CryptoKey : Resource() {
@@ -39,9 +36,10 @@ public open class CryptoKey : Resource() {
   }
 
   /**
-   * Saves a key to the given [path]. If [publicOnly] is `true`, only the public key will be saved.
-   *
-   * **Note:** [path] should be a "*.pub" file if [publicOnly] is `true`, a "*.key" file otherwise.
+   * Saves a key to the given [param path]. If [param public_only] is `true`, only the public key
+   * will be saved.
+   * **Note:** [param path] should be a "*.pub" file if [param public_only] is `true`, a "*.key"
+   * file otherwise.
    */
   @JvmOverloads
   public fun save(path: String, publicOnly: Boolean = false): GodotError {
@@ -51,9 +49,10 @@ public open class CryptoKey : Resource() {
   }
 
   /**
-   * Loads a key from [path]. If [publicOnly] is `true`, only the public key will be loaded.
-   *
-   * **Note:** [path] should be a "*.pub" file if [publicOnly] is `true`, a "*.key" file otherwise.
+   * Loads a key from [param path]. If [param public_only] is `true`, only the public key will be
+   * loaded.
+   * **Note:** [param path] should be a "*.pub" file if [param public_only] is `true`, a "*.key"
+   * file otherwise.
    */
   @JvmOverloads
   public fun load(path: String, publicOnly: Boolean = false): GodotError {
@@ -72,7 +71,8 @@ public open class CryptoKey : Resource() {
   }
 
   /**
-   * Returns a string containing the key in PEM format. If [publicOnly] is `true`, only the public key will be included.
+   * Returns a string containing the key in PEM format. If [param public_only] is `true`, only the
+   * public key will be included.
    */
   @JvmOverloads
   public fun saveToString(publicOnly: Boolean = false): String {
@@ -82,7 +82,8 @@ public open class CryptoKey : Resource() {
   }
 
   /**
-   * Loads a key from the given [stringKey]. If [publicOnly] is `true`, only the public key will be loaded.
+   * Loads a key from the given [param string_key]. If [param public_only] is `true`, only the
+   * public key will be loaded.
    */
   @JvmOverloads
   public fun loadFromString(stringKey: String, publicOnly: Boolean = false): GodotError {

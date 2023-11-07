@@ -28,9 +28,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A syntax highlighter intended for code.
- *
- * By adjusting various properties of this resource, you can change the colors of strings, comments, numbers, and other text patterns inside a [godot.TextEdit] control.
+ * By adjusting various properties of this resource, you can change the colors of strings, comments,
+ * numbers, and other text patterns inside a [TextEdit] control.
  */
 @GodotBaseType
 public open class CodeHighlighter : SyntaxHighlighter() {
@@ -80,7 +79,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     }
 
   /**
-   * Sets color for member variables. A member variable is non-keyword, non-function string proceeded with a '.'.
+   * Sets color for member variables. A member variable is non-keyword, non-function string
+   * proceeded with a '.'.
    */
   @CoreTypeLocalCopy
   public var memberVariableColor: Color
@@ -95,7 +95,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     }
 
   /**
-   * Sets the keyword colors. All existing keywords will be removed. The [godot.core.Dictionary] key is the keyword. The value is the keyword color.
+   * Sets the keyword colors. All existing keywords will be removed. The [Dictionary] key is the
+   * keyword. The value is the keyword color.
    */
   public var keywordColors: Dictionary<Any?, Any?>
     get() {
@@ -109,7 +110,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     }
 
   /**
-   * Sets the member keyword colors. All existing member keyword will be removed. The [godot.core.Dictionary] key is the member keyword. The value is the member keyword color.
+   * Sets the member keyword colors. All existing member keyword will be removed. The [Dictionary]
+   * key is the member keyword. The value is the member keyword color.
    */
   public var memberKeywordColors: Dictionary<Any?, Any?>
     get() {
@@ -123,7 +125,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     }
 
   /**
-   * Sets the color regions. All existing regions will be removed. The [godot.core.Dictionary] key is the region start and end key, separated by a space. The value is the region color.
+   * Sets the color regions. All existing regions will be removed. The [Dictionary] key is the
+   * region start and end key, separated by a space. The value is the region color.
    */
   public var colorRegions: Dictionary<Any?, Any?>
     get() {
@@ -214,7 +217,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
 
 
   /**
-   * Sets color for member variables. A member variable is non-keyword, non-function string proceeded with a '.'.
+   * Sets color for member variables. A member variable is non-keyword, non-function string
+   * proceeded with a '.'.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -240,7 +244,6 @@ public open class CodeHighlighter : SyntaxHighlighter() {
 
   /**
    * Sets the color for a keyword.
-   *
    * The keyword cannot contain any symbols except '_'.
    */
   public fun addKeywordColor(keyword: String, color: Color): Unit {
@@ -284,9 +287,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
 
   /**
    * Sets the color for a member keyword.
-   *
    * The member keyword cannot contain any symbols except '_'.
-   *
    * It will not be highlighted if preceded by a '.'.
    */
   public fun addMemberKeywordColor(memberKeyword: String, color: Color): Unit {
@@ -330,10 +331,9 @@ public open class CodeHighlighter : SyntaxHighlighter() {
 
   /**
    * Adds a color region such as comments or strings.
-   *
    * Both the start and end keys must be symbols. Only the start key has to be unique.
-   *
-   * [lineOnly] denotes if the region should continue until the end of the line or carry over on to the next line. If the end key is blank this is automatically set to `true`.
+   * [param line_only] denotes if the region should continue until the end of the line or carry over
+   * on to the next line. If the end key is blank this is automatically set to `true`.
    */
   @JvmOverloads
   public fun addColorRegion(

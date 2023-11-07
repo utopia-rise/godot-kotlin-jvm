@@ -18,9 +18,8 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * A comment node to be placed on visual shader graph.
- *
- * A resizable rectangular area with changeable [title] and [description] used for better organizing of other visual shader nodes.
+ * A resizable rectangular area with changeable [title] and [description] used for better organizing
+ * of other visual shader nodes.
  */
 @GodotBaseType
 public open class VisualShaderNodeComment : VisualShaderNodeResizableBase() {

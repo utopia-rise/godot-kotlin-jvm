@@ -34,12 +34,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Server interface for low-level audio access.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/528](https://godotengine.org/asset-library/asset/528)
- *
- * [godot.AudioServer] is a low-level server interface for audio access. It is in charge of creating sample data (playable audio) as well as its playback via a voice interface.
+ * [AudioServer] is a low-level server interface for audio access. It is in charge of creating
+ * sample data (playable audio) as well as its playback via a voice interface.
  */
 @GodotBaseType
 public object AudioServer : Object() {
@@ -49,7 +45,8 @@ public object AudioServer : Object() {
   public val busLayoutChanged: Signal0 by signal()
 
   /**
-   * Emitted when the audio bus at [busIndex] is renamed from [oldName] to [newName].
+   * Emitted when the audio bus at [param bus_index] is renamed from [param old_name] to [param
+   * new_name].
    */
   public val busRenamed: Signal3<Long, StringName, StringName> by signal("busIndex", "oldName",
       "newName")
@@ -71,7 +68,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Removes the bus at index [index].
+   * Removes the bus at index [param index].
    */
   public fun removeBus(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -79,7 +76,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Adds a bus at [atPosition].
+   * Adds a bus at [param at_position].
    */
   @JvmOverloads
   public fun addBus(atPosition: Int = -1): Unit {
@@ -88,7 +85,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Moves the bus from index [index] to index [toIndex].
+   * Moves the bus from index [param index] to index [param to_index].
    */
   public fun moveBus(index: Int, toIndex: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to toIndex.toLong())
@@ -96,7 +93,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Sets the name of the bus at index [busIdx] to [name].
+   * Sets the name of the bus at index [param bus_idx] to [param name].
    */
   public fun setBusName(busIdx: Int, name: String): Unit {
     TransferContext.writeArguments(LONG to busIdx.toLong(), STRING to name)
@@ -104,7 +101,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the name of the bus with the index [busIdx].
+   * Returns the name of the bus with the index [param bus_idx].
    */
   public fun getBusName(busIdx: Int): String {
     TransferContext.writeArguments(LONG to busIdx.toLong())
@@ -113,7 +110,8 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the index of the bus with the name [busName]. Returns `-1` if no bus with the specified name exist.
+   * Returns the index of the bus with the name [param bus_name]. Returns `-1` if no bus with the
+   * specified name exist.
    */
   public fun getBusIndex(busName: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to busName)
@@ -122,7 +120,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the number of channels of the bus at index [busIdx].
+   * Returns the number of channels of the bus at index [param bus_idx].
    */
   public fun getBusChannels(busIdx: Int): Int {
     TransferContext.writeArguments(LONG to busIdx.toLong())
@@ -131,7 +129,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Sets the volume of the bus at index [busIdx] to [volumeDb].
+   * Sets the volume of the bus at index [param bus_idx] to [param volume_db].
    */
   public fun setBusVolumeDb(busIdx: Int, volumeDb: Float): Unit {
     TransferContext.writeArguments(LONG to busIdx.toLong(), DOUBLE to volumeDb.toDouble())
@@ -139,7 +137,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the volume of the bus at index [busIdx] in dB.
+   * Returns the volume of the bus at index [param bus_idx] in dB.
    */
   public fun getBusVolumeDb(busIdx: Int): Float {
     TransferContext.writeArguments(LONG to busIdx.toLong())
@@ -148,7 +146,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Connects the output of the bus at [busIdx] to the bus named [send].
+   * Connects the output of the bus at [param bus_idx] to the bus named [param send].
    */
   public fun setBusSend(busIdx: Int, send: StringName): Unit {
     TransferContext.writeArguments(LONG to busIdx.toLong(), STRING_NAME to send)
@@ -156,7 +154,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the name of the bus that the bus at index [busIdx] sends to.
+   * Returns the name of the bus that the bus at index [param bus_idx] sends to.
    */
   public fun getBusSend(busIdx: Int): StringName {
     TransferContext.writeArguments(LONG to busIdx.toLong())
@@ -165,7 +163,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * If `true`, the bus at index [busIdx] is in solo mode.
+   * If `true`, the bus at index [param bus_idx] is in solo mode.
    */
   public fun setBusSolo(busIdx: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to busIdx.toLong(), BOOL to enable)
@@ -173,7 +171,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * If `true`, the bus at index [busIdx] is in solo mode.
+   * If `true`, the bus at index [param bus_idx] is in solo mode.
    */
   public fun isBusSolo(busIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to busIdx.toLong())
@@ -182,7 +180,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * If `true`, the bus at index [busIdx] is muted.
+   * If `true`, the bus at index [param bus_idx] is muted.
    */
   public fun setBusMute(busIdx: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to busIdx.toLong(), BOOL to enable)
@@ -190,7 +188,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * If `true`, the bus at index [busIdx] is muted.
+   * If `true`, the bus at index [param bus_idx] is muted.
    */
   public fun isBusMute(busIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to busIdx.toLong())
@@ -199,7 +197,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * If `true`, the bus at index [busIdx] is bypassing effects.
+   * If `true`, the bus at index [param bus_idx] is bypassing effects.
    */
   public fun setBusBypassEffects(busIdx: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to busIdx.toLong(), BOOL to enable)
@@ -207,7 +205,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * If `true`, the bus at index [busIdx] is bypassing effects.
+   * If `true`, the bus at index [param bus_idx] is bypassing effects.
    */
   public fun isBusBypassingEffects(busIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to busIdx.toLong())
@@ -216,7 +214,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Adds an [godot.AudioEffect] effect to the bus [busIdx] at [atPosition].
+   * Adds an [AudioEffect] effect to the bus [param bus_idx] at [param at_position].
    */
   @JvmOverloads
   public fun addBusEffect(
@@ -229,7 +227,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Removes the effect at index [effectIdx] from the bus at index [busIdx].
+   * Removes the effect at index [param effect_idx] from the bus at index [param bus_idx].
    */
   public fun removeBusEffect(busIdx: Int, effectIdx: Int): Unit {
     TransferContext.writeArguments(LONG to busIdx.toLong(), LONG to effectIdx.toLong())
@@ -237,7 +235,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the number of effects on the bus at [busIdx].
+   * Returns the number of effects on the bus at [param bus_idx].
    */
   public fun getBusEffectCount(busIdx: Int): Int {
     TransferContext.writeArguments(LONG to busIdx.toLong())
@@ -246,7 +244,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the [godot.AudioEffect] at position [effectIdx] in bus [busIdx].
+   * Returns the [AudioEffect] at position [param effect_idx] in bus [param bus_idx].
    */
   public fun getBusEffect(busIdx: Int, effectIdx: Int): AudioEffect? {
     TransferContext.writeArguments(LONG to busIdx.toLong(), LONG to effectIdx.toLong())
@@ -255,7 +253,8 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the [godot.AudioEffectInstance] assigned to the given bus and effect indices (and optionally channel).
+   * Returns the [AudioEffectInstance] assigned to the given bus and effect indices (and optionally
+   * channel).
    */
   @JvmOverloads
   public fun getBusEffectInstance(
@@ -269,7 +268,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Swaps the position of two effects in bus [busIdx].
+   * Swaps the position of two effects in bus [param bus_idx].
    */
   public fun swapBusEffects(
     busIdx: Int,
@@ -281,7 +280,8 @@ public object AudioServer : Object() {
   }
 
   /**
-   * If `true`, the effect at index [effectIdx] on the bus at index [busIdx] is enabled.
+   * If `true`, the effect at index [param effect_idx] on the bus at index [param bus_idx] is
+   * enabled.
    */
   public fun setBusEffectEnabled(
     busIdx: Int,
@@ -293,7 +293,8 @@ public object AudioServer : Object() {
   }
 
   /**
-   * If `true`, the effect at index [effectIdx] on the bus at index [busIdx] is enabled.
+   * If `true`, the effect at index [param effect_idx] on the bus at index [param bus_idx] is
+   * enabled.
    */
   public fun isBusEffectEnabled(busIdx: Int, effectIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to busIdx.toLong(), LONG to effectIdx.toLong())
@@ -302,7 +303,8 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the peak volume of the left speaker at bus index [busIdx] and channel index [channel].
+   * Returns the peak volume of the left speaker at bus index [param bus_idx] and channel index
+   * [param channel].
    */
   public fun getBusPeakVolumeLeftDb(busIdx: Int, channel: Int): Float {
     TransferContext.writeArguments(LONG to busIdx.toLong(), LONG to channel.toLong())
@@ -311,7 +313,8 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the peak volume of the right speaker at bus index [busIdx] and channel index [channel].
+   * Returns the peak volume of the right speaker at bus index [param bus_idx] and channel index
+   * [param channel].
    */
   public fun getBusPeakVolumeRightDb(busIdx: Int, channel: Int): Float {
     TransferContext.writeArguments(LONG to busIdx.toLong(), LONG to channel.toLong())
@@ -332,7 +335,6 @@ public object AudioServer : Object() {
 
   /**
    * Locks the audio driver's main loop.
-   *
    * **Note:** Remember to unlock it afterwards.
    */
   public fun lock(): Unit {
@@ -358,7 +360,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the sample rate at the output of the [godot.AudioServer].
+   * Returns the sample rate at the output of the [AudioServer].
    */
   public fun getMixRate(): Float {
     TransferContext.writeArguments()
@@ -405,8 +407,9 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the audio driver's effective output latency. This is based on [godot.ProjectSettings.audio/driver/outputLatency], but the exact returned value will differ depending on the operating system and audio driver.
-   *
+   * Returns the audio driver's effective output latency. This is based on
+   * [ProjectSettings.audio/driver/outputLatency], but the exact returned value will differ depending
+   * on the operating system and audio driver.
    * **Note:** This can be expensive; it is not recommended to call [getOutputLatency] every frame.
    */
   public fun getOutputLatency(): Double {
@@ -417,8 +420,9 @@ public object AudioServer : Object() {
 
   /**
    * Returns the names of all audio input devices detected on the system.
-   *
-   * **Note:** [godot.ProjectSettings.audio/driver/enableInput] must be `true` for audio input to work. See also that setting's description for caveats related to permissions and operating system privacy settings.
+   * **Note:** [ProjectSettings.audio/driver/enableInput] must be `true` for audio input to work.
+   * See also that setting's description for caveats related to permissions and operating system
+   * privacy settings.
    */
   public fun getInputDeviceList(): PackedStringArray {
     TransferContext.writeArguments()
@@ -438,7 +442,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Overwrites the currently used [godot.AudioBusLayout].
+   * Overwrites the currently used [AudioBusLayout].
    */
   public fun setBusLayout(busLayout: AudioBusLayout): Unit {
     TransferContext.writeArguments(OBJECT to busLayout)
@@ -446,7 +450,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Generates an [godot.AudioBusLayout] using the available buses and effects.
+   * Generates an [AudioBusLayout] using the available buses and effects.
    */
   public fun generateBusLayout(): AudioBusLayout? {
     TransferContext.writeArguments()
@@ -454,9 +458,6 @@ public object AudioServer : Object() {
     return (TransferContext.readReturnValue(OBJECT, true) as AudioBusLayout?)
   }
 
-  /**
-   *
-   */
   public fun setEnableTaggingUsedAudioStreams(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnableTaggingUsedAudioStreamsPtr, NIL)

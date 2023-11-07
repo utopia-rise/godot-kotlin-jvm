@@ -22,13 +22,10 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Represents a straight ribbon-shaped [godot.PrimitiveMesh] with variable width.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/3d/particles/index.html]($DOCS_URL/tutorials/3d/particles/index.html)
- *
- * [godot.RibbonTrailMesh] represents a straight ribbon-shaped mesh with variable width. The ribbon is composed of a number of flat or cross-shaped sections, each with the same [sectionLength] and number of [sectionSegments]. A [curve] is sampled along the total length of the ribbon, meaning that the curve determines the size of the ribbon along its length.
- *
+ * [RibbonTrailMesh] represents a straight ribbon-shaped mesh with variable width. The ribbon is
+ * composed of a number of flat or cross-shaped sections, each with the same [sectionLength] and number
+ * of [sectionSegments]. A [curve] is sampled along the total length of the ribbon, meaning that the
+ * curve determines the size of the ribbon along its length.
  * This primitive mesh is usually used for particle trails.
  */
 @GodotBaseType
@@ -48,7 +45,8 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
     }
 
   /**
-   * The baseline size of the ribbon. The size of a particular section segment is obtained by multiplying this size by the value of the [curve] at the given distance.
+   * The baseline size of the ribbon. The size of a particular section segment is obtained by
+   * multiplying this size by the value of the [curve] at the given distance.
    */
   public var size: Float
     get() {
@@ -90,7 +88,8 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
     }
 
   /**
-   * The number of segments in a section. The [curve] is sampled on each segment to determine its size. Higher values result in a more detailed ribbon at the cost of performance.
+   * The number of segments in a section. The [curve] is sampled on each segment to determine its
+   * size. Higher values result in a more detailed ribbon at the cost of performance.
    */
   public var sectionSegments: Int
     get() {
@@ -104,7 +103,9 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
     }
 
   /**
-   * Determines the size of the ribbon along its length. The size of a particular section segment is obtained by multiplying the baseline [size] by the value of this curve at the given distance. For values smaller than `0`, the faces will be inverted.
+   * Determines the size of the ribbon along its length. The size of a particular section segment is
+   * obtained by multiplying the baseline [size] by the value of this curve at the given distance. For
+   * values smaller than `0`, the faces will be inverted.
    */
   public var curve: Curve?
     get() {

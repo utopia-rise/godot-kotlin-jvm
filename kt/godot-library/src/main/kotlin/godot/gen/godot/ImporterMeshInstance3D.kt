@@ -23,14 +23,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 
-/**
- *
- */
 @GodotBaseType
 public open class ImporterMeshInstance3D : Node3D() {
-  /**
-   *
-   */
   public var mesh: ImporterMesh?
     get() {
       TransferContext.writeArguments()
@@ -42,9 +36,6 @@ public open class ImporterMeshInstance3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var skin: Skin?
     get() {
       TransferContext.writeArguments()
@@ -56,9 +47,6 @@ public open class ImporterMeshInstance3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSkinPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var skeletonPath: NodePath
     get() {
       TransferContext.writeArguments()
@@ -70,9 +58,6 @@ public open class ImporterMeshInstance3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonPathPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var layerMask: Long
     get() {
       TransferContext.writeArguments()
@@ -84,9 +69,6 @@ public open class ImporterMeshInstance3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setLayerMaskPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var castShadow: GeometryInstance3D.ShadowCastingSetting
     get() {
       TransferContext.writeArguments()
@@ -98,9 +80,6 @@ public open class ImporterMeshInstance3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCastShadowsSettingPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var visibilityRangeBegin: Float
     get() {
       TransferContext.writeArguments()
@@ -112,9 +91,6 @@ public open class ImporterMeshInstance3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRangeBeginPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var visibilityRangeBeginMargin: Float
     get() {
       TransferContext.writeArguments()
@@ -126,9 +102,6 @@ public open class ImporterMeshInstance3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRangeBeginMarginPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var visibilityRangeEnd: Float
     get() {
       TransferContext.writeArguments()
@@ -140,9 +113,6 @@ public open class ImporterMeshInstance3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRangeEndPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var visibilityRangeEndMargin: Float
     get() {
       TransferContext.writeArguments()
@@ -154,9 +124,6 @@ public open class ImporterMeshInstance3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRangeEndMarginPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var visibilityRangeFadeMode: GeometryInstance3D.VisibilityRangeFadeMode
     get() {
       TransferContext.writeArguments()

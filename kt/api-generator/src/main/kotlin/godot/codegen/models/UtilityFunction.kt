@@ -2,6 +2,7 @@ package godot.codegen.models
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
+import godot.codegen.traits.IDocumented
 
 data class UtilityFunction @JsonCreator constructor (
     @JsonProperty("name") val name : String,
@@ -9,5 +10,6 @@ data class UtilityFunction @JsonCreator constructor (
     @JsonProperty("category") val category : String,
     @JsonProperty("is_vararg") val isVararg : Boolean,
     @JsonProperty("hash") val hash : Long,
-    @JsonProperty("arguments") val arguments : List<Argument>?
+    @JsonProperty("arguments") val arguments : List<Argument>?,
+    @JsonProperty("documentation") val documentation: String?
 )

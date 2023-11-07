@@ -18,9 +18,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Computes a [godot.Transform3D] function within the visual shader graph.
- *
- * Computes an inverse or transpose function on the provided [godot.Transform3D].
+ * Computes an inverse or transpose function on the provided [Transform3D].
  */
 @GodotBaseType
 public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
@@ -47,11 +45,11 @@ public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
     id: Long,
   ) {
     /**
-     * Perform the inverse operation on the [godot.Transform3D] matrix.
+     * Perform the inverse operation on the [Transform3D] matrix.
      */
     FUNC_INVERSE(0),
     /**
-     * Perform the transpose operation on the [godot.Transform3D] matrix.
+     * Perform the transpose operation on the [Transform3D] matrix.
      */
     FUNC_TRANSPOSE(1),
     /**

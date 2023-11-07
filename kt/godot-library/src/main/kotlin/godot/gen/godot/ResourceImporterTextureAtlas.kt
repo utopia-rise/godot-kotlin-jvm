@@ -12,11 +12,12 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Imports a collection of textures from a PNG image into an optimized [godot.AtlasTexture] for 2D rendering.
- *
- * This imports a collection of textures from a PNG image into an [godot.AtlasTexture] or 2D [godot.ArrayMesh]. This can be used to save memory when importing 2D animations from spritesheets. Texture atlases are only supported in 2D rendering, not 3D. See also [godot.ResourceImporterTexture] and [godot.ResourceImporterLayeredTexture].
- *
- * **Note:** [godot.ResourceImporterTextureAtlas] does not handle importing [godot.TileSetAtlasSource], which is created using the [godot.TileSet] editor instead.
+ * This imports a collection of textures from a PNG image into an [AtlasTexture] or 2D [ArrayMesh].
+ * This can be used to save memory when importing 2D animations from spritesheets. Texture atlases are
+ * only supported in 2D rendering, not 3D. See also [ResourceImporterTexture] and
+ * [ResourceImporterLayeredTexture].
+ * **Note:** [ResourceImporterTextureAtlas] does not handle importing [TileSetAtlasSource], which is
+ * created using the [TileSet] editor instead.
  */
 @GodotBaseType
 public open class ResourceImporterTextureAtlas internal constructor() : ResourceImporter() {

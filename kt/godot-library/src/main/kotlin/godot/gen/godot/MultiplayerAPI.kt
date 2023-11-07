@@ -34,45 +34,55 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * High-level multiplayer API interface.
- *
- * Base class for high-level multiplayer API implementations. See also [godot.MultiplayerPeer].
- *
- * By default, [godot.SceneTree] has a reference to an implementation of this class and uses it to provide multiplayer capabilities (i.e. RPCs) across the whole scene.
- *
- * It is possible to override the MultiplayerAPI instance used by specific tree branches by calling the [godot.SceneTree.setMultiplayer] method, effectively allowing to run both client and server in the same scene.
- *
- * It is also possible to extend or replace the default implementation via scripting or native extensions. See [godot.MultiplayerAPIExtension] for details about extensions, [godot.SceneMultiplayer] for the details about the default implementation.
+ * Base class for high-level multiplayer API implementations. See also [MultiplayerPeer].
+ * By default, [SceneTree] has a reference to an implementation of this class and uses it to provide
+ * multiplayer capabilities (i.e. RPCs) across the whole scene.
+ * It is possible to override the MultiplayerAPI instance used by specific tree branches by calling
+ * the [SceneTree.setMultiplayer] method, effectively allowing to run both client and server in the
+ * same scene.
+ * It is also possible to extend or replace the default implementation via scripting or native
+ * extensions. See [MultiplayerAPIExtension] for details about extensions, [SceneMultiplayer] for the
+ * details about the default implementation.
  */
 @GodotBaseType
 public open class MultiplayerAPI internal constructor() : RefCounted() {
   /**
-   * Emitted when this MultiplayerAPI's [multiplayerPeer] connects with a new peer. ID is the peer ID of the new peer. Clients get notified when other clients connect to the same server. Upon connecting to a server, a client also receives this signal for the server (with ID being 1).
+   * Emitted when this MultiplayerAPI's [multiplayerPeer] connects with a new peer. ID is the peer
+   * ID of the new peer. Clients get notified when other clients connect to the same server. Upon
+   * connecting to a server, a client also receives this signal for the server (with ID being 1).
    */
   public val peerConnected: Signal1<Long> by signal("id")
 
   /**
-   * Emitted when this MultiplayerAPI's [multiplayerPeer] disconnects from a peer. Clients get notified when other clients disconnect from the same server.
+   * Emitted when this MultiplayerAPI's [multiplayerPeer] disconnects from a peer. Clients get
+   * notified when other clients disconnect from the same server.
    */
   public val peerDisconnected: Signal1<Long> by signal("id")
 
   /**
-   * Emitted when this MultiplayerAPI's [multiplayerPeer] successfully connected to a server. Only emitted on clients.
+   * Emitted when this MultiplayerAPI's [multiplayerPeer] successfully connected to a server. Only
+   * emitted on clients.
    */
   public val connectedToServer: Signal0 by signal()
 
   /**
-   * Emitted when this MultiplayerAPI's [multiplayerPeer] fails to establish a connection to a server. Only emitted on clients.
+   * Emitted when this MultiplayerAPI's [multiplayerPeer] fails to establish a connection to a
+   * server. Only emitted on clients.
    */
   public val connectionFailed: Signal0 by signal()
 
   /**
-   * Emitted when this MultiplayerAPI's [multiplayerPeer] disconnects from server. Only emitted on clients.
+   * Emitted when this MultiplayerAPI's [multiplayerPeer] disconnects from server. Only emitted on
+   * clients.
    */
   public val serverDisconnected: Signal0 by signal()
 
   /**
-   * The peer object to handle the RPC system (effectively enabling networking when set). Depending on the peer itself, the MultiplayerAPI will become a network server (check with [isServer]) and will set root node's network mode to authority, or it will become a regular client peer. All child nodes are set to inherit the network mode by default. Handling of networking-related events (connection, disconnection, new clients) is done by connecting to MultiplayerAPI's signals.
+   * The peer object to handle the RPC system (effectively enabling networking when set). Depending
+   * on the peer itself, the MultiplayerAPI will become a network server (check with [isServer]) and
+   * will set root node's network mode to authority, or it will become a regular client peer. All child
+   * nodes are set to inherit the network mode by default. Handling of networking-related events
+   * (connection, disconnection, new clients) is done by connecting to MultiplayerAPI's signals.
    */
   public var multiplayerPeer: MultiplayerPeer?
     get() {
@@ -109,7 +119,8 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns `true` if this MultiplayerAPI's [multiplayerPeer] is valid and in server mode (listening for connections).
+   * Returns `true` if this MultiplayerAPI's [multiplayerPeer] is valid and in server mode
+   * (listening for connections).
    */
   public fun isServer(): Boolean {
     TransferContext.writeArguments()
@@ -119,7 +130,6 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
 
   /**
    * Returns the sender's peer ID for the RPC currently being executed.
-   *
    * **Note:** If not inside an RPC this method will return 0.
    */
   public fun getRemoteSenderId(): Int {
@@ -129,9 +139,11 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   }
 
   /**
-   * Method used for polling the MultiplayerAPI. You only need to worry about this if you set [godot.SceneTree.multiplayerPoll] to `false`. By default, [godot.SceneTree] will poll its MultiplayerAPI(s) for you.
-   *
-   * **Note:** This method results in RPCs being called, so they will be executed in the same context of this function (e.g. `_process`, `physics`, [godot.Thread]).
+   * Method used for polling the MultiplayerAPI. You only need to worry about this if you set
+   * [SceneTree.multiplayerPoll] to `false`. By default, [SceneTree] will poll its MultiplayerAPI(s)
+   * for you.
+   * **Note:** This method results in RPCs being called, so they will be executed in the same
+   * context of this function (e.g. `_process`, `physics`, [Thread]).
    */
   public fun poll(): GodotError {
     TransferContext.writeArguments()
@@ -140,9 +152,12 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   }
 
   /**
-   * Sends an RPC to the target [peer]. The given [method] will be called on the remote [object] with the provided [arguments]. The RPC may also be called locally depending on the implementation and RPC configuration. See [godot.Node.rpc] and [godot.Node.rpcConfig].
-   *
-   * **Note:** Prefer using [godot.Node.rpc], [godot.Node.rpcId], or `my_method.rpc(peer, arg1, arg2, ...)` (in GDScript), since they are faster. This method is mostly useful in conjunction with [godot.MultiplayerAPIExtension] when augmenting or replacing the multiplayer capabilities.
+   * Sends an RPC to the target [param peer]. The given [param method] will be called on the remote
+   * [param object] with the provided [param arguments]. The RPC may also be called locally depending
+   * on the implementation and RPC configuration. See [Node.rpc] and [Node.rpcConfig].
+   * **Note:** Prefer using [Node.rpc], [Node.rpcId], or `my_method.rpc(peer, arg1, arg2, ...)` (in
+   * GDScript), since they are faster. This method is mostly useful in conjunction with
+   * [MultiplayerAPIExtension] when augmenting or replacing the multiplayer capabilities.
    */
   @JvmOverloads
   public fun rpc(
@@ -157,9 +172,13 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   }
 
   /**
-   * Notifies the MultiplayerAPI of a new [configuration] for the given [object]. This method is used internally by [godot.SceneTree] to configure the root path for this MultiplayerAPI (passing `null` and a valid [godot.core.NodePath] as [configuration]). This method can be further used by MultiplayerAPI implementations to provide additional features, refer to specific implementation (e.g. [godot.SceneMultiplayer]) for details on how they use it.
-   *
-   * **Note:** This method is mostly relevant when extending or overriding the MultiplayerAPI behavior via [godot.MultiplayerAPIExtension].
+   * Notifies the MultiplayerAPI of a new [param configuration] for the given [param object]. This
+   * method is used internally by [SceneTree] to configure the root path for this MultiplayerAPI
+   * (passing `null` and a valid [NodePath] as [param configuration]). This method can be further used
+   * by MultiplayerAPI implementations to provide additional features, refer to specific implementation
+   * (e.g. [SceneMultiplayer]) for details on how they use it.
+   * **Note:** This method is mostly relevant when extending or overriding the MultiplayerAPI
+   * behavior via [MultiplayerAPIExtension].
    */
   public fun objectConfigurationAdd(_object: Object, configuration: Any?): GodotError {
     TransferContext.writeArguments(OBJECT to _object, ANY to configuration)
@@ -168,9 +187,13 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   }
 
   /**
-   * Notifies the MultiplayerAPI to remove a [configuration] for the given [object]. This method is used internally by [godot.SceneTree] to configure the root path for this MultiplayerAPI (passing `null` and an empty [godot.core.NodePath] as [configuration]). This method can be further used by MultiplayerAPI implementations to provide additional features, refer to specific implementation (e.g. [godot.SceneMultiplayer]) for details on how they use it.
-   *
-   * **Note:** This method is mostly relevant when extending or overriding the MultiplayerAPI behavior via [godot.MultiplayerAPIExtension].
+   * Notifies the MultiplayerAPI to remove a [param configuration] for the given [param object].
+   * This method is used internally by [SceneTree] to configure the root path for this MultiplayerAPI
+   * (passing `null` and an empty [NodePath] as [param configuration]). This method can be further used
+   * by MultiplayerAPI implementations to provide additional features, refer to specific implementation
+   * (e.g. [SceneMultiplayer]) for details on how they use it.
+   * **Note:** This method is mostly relevant when extending or overriding the MultiplayerAPI
+   * behavior via [MultiplayerAPIExtension].
    */
   public fun objectConfigurationRemove(_object: Object, configuration: Any?): GodotError {
     TransferContext.writeArguments(OBJECT to _object, ANY to configuration)
@@ -191,15 +214,20 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     id: Long,
   ) {
     /**
-     * Used with [godot.Node.rpcConfig] to disable a method or property for all RPC calls, making it unavailable. Default for all methods.
+     * Used with [Node.rpcConfig] to disable a method or property for all RPC calls, making it
+     * unavailable. Default for all methods.
      */
     RPC_MODE_DISABLED(0),
     /**
-     * Used with [godot.Node.rpcConfig] to set a method to be callable remotely by any peer. Analogous to the `@rpc("any_peer")` annotation. Calls are accepted from all remote peers, no matter if they are node's authority or not.
+     * Used with [Node.rpcConfig] to set a method to be callable remotely by any peer. Analogous to
+     * the `@rpc("any_peer")` annotation. Calls are accepted from all remote peers, no matter if they
+     * are node's authority or not.
      */
     RPC_MODE_ANY_PEER(1),
     /**
-     * Used with [godot.Node.rpcConfig] to set a method to be callable remotely only by the current multiplayer authority (which is the server by default). Analogous to the `@rpc("authority")` annotation. See [godot.Node.setMultiplayerAuthority].
+     * Used with [Node.rpcConfig] to set a method to be callable remotely only by the current
+     * multiplayer authority (which is the server by default). Analogous to the `@rpc("authority")`
+     * annotation. See [Node.setMultiplayerAuthority].
      */
     RPC_MODE_AUTHORITY(2),
     ;
@@ -216,7 +244,8 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
 
   public companion object {
     /**
-     * Sets the default MultiplayerAPI implementation class. This method can be used by modules and extensions to configure which implementation will be used by [godot.SceneTree] when the engine starts.
+     * Sets the default MultiplayerAPI implementation class. This method can be used by modules and
+     * extensions to configure which implementation will be used by [SceneTree] when the engine starts.
      */
     public fun setDefaultInterface(interfaceName: StringName): Unit {
       TransferContext.writeArguments(STRING_NAME to interfaceName)
@@ -224,7 +253,8 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     }
 
     /**
-     * Returns the default MultiplayerAPI implementation class name. This is usually `"SceneMultiplayer"` when [godot.SceneMultiplayer] is available. See [setDefaultInterface].
+     * Returns the default MultiplayerAPI implementation class name. This is usually
+     * `"SceneMultiplayer"` when [SceneMultiplayer] is available. See [setDefaultInterface].
      */
     public fun getDefaultInterface(): StringName {
       TransferContext.writeArguments()

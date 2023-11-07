@@ -31,8 +31,6 @@ import kotlin.Suppress
 import kotlin.jvm.JvmOverloads
 
 /**
- * A class information repository.
- *
  * Provides access to metadata stored for every available class.
  */
 @GodotBaseType
@@ -52,7 +50,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns the names of all the classes that directly or indirectly inherit from [class].
+   * Returns the names of all the classes that directly or indirectly inherit from [param class].
    */
   public fun getInheritersFromClass(_class: StringName): PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to _class)
@@ -62,7 +60,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns the parent class of [class].
+   * Returns the parent class of [param class].
    */
   public fun getParentClass(_class: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to _class)
@@ -71,7 +69,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns whether the specified [class] is available or not.
+   * Returns whether the specified [param class] is available or not.
    */
   public fun classExists(_class: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class)
@@ -80,7 +78,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns whether [inherits] is an ancestor of [class] or not.
+   * Returns whether [param inherits] is an ancestor of [param class] or not.
    */
   public fun isParentClass(_class: StringName, inherits: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to inherits)
@@ -89,7 +87,8 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns `true` if objects can be instantiated from the specified [class], otherwise returns `false`.
+   * Returns `true` if objects can be instantiated from the specified [param class], otherwise
+   * returns `false`.
    */
   public fun canInstantiate(_class: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class)
@@ -98,7 +97,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Creates an instance of [class].
+   * Creates an instance of [param class].
    */
   public fun instantiate(_class: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to _class)
@@ -107,7 +106,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns whether [class] or its ancestry has a signal called [signal] or not.
+   * Returns whether [param class] or its ancestry has a signal called [param signal] or not.
    */
   public fun classHasSignal(_class: StringName, signal: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to signal)
@@ -116,7 +115,9 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns the [signal] data of [class] or its ancestry. The returned value is a [godot.core.Dictionary] with the following keys: `args`, `default_args`, `flags`, `id`, `name`, `return: (class_name, hint, hint_string, name, type, usage)`.
+   * Returns the [param signal] data of [param class] or its ancestry. The returned value is a
+   * [Dictionary] with the following keys: `args`, `default_args`, `flags`, `id`, `name`, `return:
+   * (class_name, hint, hint_string, name, type, usage)`.
    */
   public fun classGetSignal(_class: StringName, signal: StringName): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to signal)
@@ -125,7 +126,9 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns an array with all the signals of [class] or its ancestry if [noInheritance] is `false`. Every element of the array is a [godot.core.Dictionary] as described in [classGetSignal].
+   * Returns an array with all the signals of [param class] or its ancestry if [param
+   * no_inheritance] is `false`. Every element of the array is a [Dictionary] as described in
+   * [classGetSignal].
    */
   @JvmOverloads
   public fun classGetSignalList(_class: StringName, noInheritance: Boolean = false):
@@ -136,7 +139,8 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns an array with all the properties of [class] or its ancestry if [noInheritance] is `false`.
+   * Returns an array with all the properties of [param class] or its ancestry if [param
+   * no_inheritance] is `false`.
    */
   @JvmOverloads
   public fun classGetPropertyList(_class: StringName, noInheritance: Boolean = false):
@@ -147,7 +151,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns the value of [property] of [object] or its ancestry.
+   * Returns the value of [param property] of [param object] or its ancestry.
    */
   public fun classGetProperty(_object: Object, `property`: StringName): Any? {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property)
@@ -156,7 +160,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Sets [property] value of [object] to [value].
+   * Sets [param property] value of [param object] to [param value].
    */
   public fun classSetProperty(
     _object: Object,
@@ -169,7 +173,8 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns whether [class] (or its ancestry if [noInheritance] is `false`) has a method called [method] or not.
+   * Returns whether [param class] (or its ancestry if [param no_inheritance] is `false`) has a
+   * method called [param method] or not.
    */
   @JvmOverloads
   public fun classHasMethod(
@@ -183,9 +188,12 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns an array with all the methods of [class] or its ancestry if [noInheritance] is `false`. Every element of the array is a [godot.core.Dictionary] with the following keys: `args`, `default_args`, `flags`, `id`, `name`, `return: (class_name, hint, hint_string, name, type, usage)`.
-   *
-   * **Note:** In exported release builds the debug info is not available, so the returned dictionaries will contain only method names.
+   * Returns an array with all the methods of [param class] or its ancestry if [param
+   * no_inheritance] is `false`. Every element of the array is a [Dictionary] with the following keys:
+   * `args`, `default_args`, `flags`, `id`, `name`, `return: (class_name, hint, hint_string, name,
+   * type, usage)`.
+   * **Note:** In exported release builds the debug info is not available, so the returned
+   * dictionaries will contain only method names.
    */
   @JvmOverloads
   public fun classGetMethodList(_class: StringName, noInheritance: Boolean = false):
@@ -196,7 +204,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns an array with the names all the integer constants of [class] or its ancestry.
+   * Returns an array with the names all the integer constants of [param class] or its ancestry.
    */
   @JvmOverloads
   public fun classGetIntegerConstantList(_class: StringName, noInheritance: Boolean = false):
@@ -208,7 +216,8 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns whether [class] or its ancestry has an integer constant called [name] or not.
+   * Returns whether [param class] or its ancestry has an integer constant called [param name] or
+   * not.
    */
   public fun classHasIntegerConstant(_class: StringName, name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name)
@@ -217,7 +226,8 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns the value of the integer constant [name] of [class] or its ancestry. Always returns 0 when the constant could not be found.
+   * Returns the value of the integer constant [param name] of [param class] or its ancestry. Always
+   * returns 0 when the constant could not be found.
    */
   public fun classGetIntegerConstant(_class: StringName, name: StringName): Long {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name)
@@ -226,7 +236,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns whether [class] or its ancestry has an enum called [name] or not.
+   * Returns whether [param class] or its ancestry has an enum called [param name] or not.
    */
   @JvmOverloads
   public fun classHasEnum(
@@ -240,7 +250,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns an array with all the enums of [class] or its ancestry.
+   * Returns an array with all the enums of [param class] or its ancestry.
    */
   @JvmOverloads
   public fun classGetEnumList(_class: StringName, noInheritance: Boolean = false):
@@ -251,7 +261,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns an array with all the keys in [enum] of [class] or its ancestry.
+   * Returns an array with all the keys in [param enum] of [param class] or its ancestry.
    */
   @JvmOverloads
   public fun classGetEnumConstants(
@@ -265,7 +275,8 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns which enum the integer constant [name] of [class] or its ancestry belongs to.
+   * Returns which enum the integer constant [param name] of [param class] or its ancestry belongs
+   * to.
    */
   @JvmOverloads
   public fun classGetIntegerConstantEnum(
@@ -279,7 +290,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns whether this [class] is enabled or not.
+   * Returns whether this [param class] is enabled or not.
    */
   public fun isClassEnabled(_class: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class)

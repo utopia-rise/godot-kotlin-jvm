@@ -17,21 +17,19 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Default environment properties for the entire scene (post-processing effects, lighting and background settings).
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
- *
- * The [godot.WorldEnvironment] node is used to configure the default [godot.Environment] for the scene.
- *
- * The parameters defined in the [godot.WorldEnvironment] can be overridden by an [godot.Environment] node set on the current [godot.Camera3D]. Additionally, only one [godot.WorldEnvironment] may be instantiated in a given scene at a time.
- *
- * The [godot.WorldEnvironment] allows the user to specify default lighting parameters (e.g. ambient lighting), various post-processing effects (e.g. SSAO, DOF, Tonemapping), and how to draw the background (e.g. solid color, skybox). Usually, these are added in order to improve the realism/color balance of the scene.
+ * The [WorldEnvironment] node is used to configure the default [Environment] for the scene.
+ * The parameters defined in the [WorldEnvironment] can be overridden by an [Environment] node set
+ * on the current [Camera3D]. Additionally, only one [WorldEnvironment] may be instantiated in a given
+ * scene at a time.
+ * The [WorldEnvironment] allows the user to specify default lighting parameters (e.g. ambient
+ * lighting), various post-processing effects (e.g. SSAO, DOF, Tonemapping), and how to draw the
+ * background (e.g. solid color, skybox). Usually, these are added in order to improve the
+ * realism/color balance of the scene.
  */
 @GodotBaseType
 public open class WorldEnvironment : Node() {
   /**
-   * The [godot.Environment] resource used by this [godot.WorldEnvironment], defining the default properties.
+   * The [Environment] resource used by this [WorldEnvironment], defining the default properties.
    */
   public var environment: Environment?
     get() {
@@ -45,7 +43,7 @@ public open class WorldEnvironment : Node() {
     }
 
   /**
-   * The default [godot.CameraAttributes] resource to use if none set on the [godot.Camera3D].
+   * The default [CameraAttributes] resource to use if none set on the [Camera3D].
    */
   public var cameraAttributes: Material?
     get() {

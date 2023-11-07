@@ -25,20 +25,21 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A 2D physics body that can't be moved by external forces. When moved manually, it doesn't affect other bodies in its path.
- *
- * A static 2D physics body. It can't be moved by external forces or contacts, but can be moved manually by other means such as code, [godot.AnimationMixer]s (with [godot.AnimationMixer.callbackModeProcess] set to [godot.AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS]), and [godot.RemoteTransform2D].
- *
- * When [godot.StaticBody2D] is moved, it is teleported to its new position without affecting other physics bodies in its path. If this is not desired, use [godot.AnimatableBody2D] instead.
- *
- * [godot.StaticBody2D] is useful for completely static objects like floors and walls, as well as moving surfaces like conveyor belts and circular revolving platforms (by using [constantLinearVelocity] and [constantAngularVelocity]).
+ * A static 2D physics body. It can't be moved by external forces or contacts, but can be moved
+ * manually by other means such as code, [AnimationMixer]s (with [AnimationMixer.callbackModeProcess]
+ * set to [constant AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS]), and [RemoteTransform2D].
+ * When [StaticBody2D] is moved, it is teleported to its new position without affecting other
+ * physics bodies in its path. If this is not desired, use [AnimatableBody2D] instead.
+ * [StaticBody2D] is useful for completely static objects like floors and walls, as well as moving
+ * surfaces like conveyor belts and circular revolving platforms (by using [constantLinearVelocity] and
+ * [constantAngularVelocity]).
  */
 @GodotBaseType
 public open class StaticBody2D : PhysicsBody2D() {
   /**
    * The physics material override for the body.
-   *
-   * If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.
+   * If a material is assigned to this property, it will be used instead of any other physics
+   * material, such as an inherited one.
    */
   public var physicsMaterialOverride: PhysicsMaterial?
     get() {
@@ -52,7 +53,8 @@ public open class StaticBody2D : PhysicsBody2D() {
     }
 
   /**
-   * The body's constant linear velocity. This does not move the body, but affects touching bodies, as if it were moving.
+   * The body's constant linear velocity. This does not move the body, but affects touching bodies,
+   * as if it were moving.
    */
   @CoreTypeLocalCopy
   public var constantLinearVelocity: Vector2
@@ -67,7 +69,8 @@ public open class StaticBody2D : PhysicsBody2D() {
     }
 
   /**
-   * The body's constant angular velocity. This does not rotate the body, but affects touching bodies, as if it were rotating.
+   * The body's constant angular velocity. This does not rotate the body, but affects touching
+   * bodies, as if it were rotating.
    */
   public var constantAngularVelocity: Float
     get() {
@@ -86,7 +89,8 @@ public open class StaticBody2D : PhysicsBody2D() {
   }
 
   /**
-   * The body's constant linear velocity. This does not move the body, but affects touching bodies, as if it were moving.
+   * The body's constant linear velocity. This does not move the body, but affects touching bodies,
+   * as if it were moving.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

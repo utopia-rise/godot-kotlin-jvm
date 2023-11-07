@@ -19,9 +19,8 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A visual shader node for shader parameter (uniform) of type unsigned [int].
- *
- * A [godot.VisualShaderNodeParameter] of type unsigned [int]. Offers additional customization for range of accepted values.
+ * A [VisualShaderNodeParameter] of type unsigned [int]. Offers additional customization for range
+ * of accepted values.
  */
 @GodotBaseType
 public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
@@ -40,7 +39,8 @@ public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
     }
 
   /**
-   * Default value of this parameter, which will be used if not set externally. [defaultValueEnabled] must be enabled; defaults to `0` otherwise.
+   * Default value of this parameter, which will be used if not set externally.
+   * [defaultValueEnabled] must be enabled; defaults to `0` otherwise.
    */
   public var defaultValue: Int
     get() {

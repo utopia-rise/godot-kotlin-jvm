@@ -24,9 +24,10 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Playback instance for [godot.AudioStreamPolyphonic].
- *
- * Playback instance for [godot.AudioStreamPolyphonic]. After setting the `stream` property of [godot.AudioStreamPlayer], [godot.AudioStreamPlayer2D], or [godot.AudioStreamPlayer3D], the playback instance can be obtained by calling [godot.AudioStreamPlayer.getStreamPlayback], [godot.AudioStreamPlayer2D.getStreamPlayback] or [godot.AudioStreamPlayer3D.getStreamPlayback] methods.
+ * Playback instance for [AudioStreamPolyphonic]. After setting the `stream` property of
+ * [AudioStreamPlayer], [AudioStreamPlayer2D], or [AudioStreamPlayer3D], the playback instance can be
+ * obtained by calling [AudioStreamPlayer.getStreamPlayback], [AudioStreamPlayer2D.getStreamPlayback]
+ * or [AudioStreamPlayer3D.getStreamPlayback] methods.
  */
 @GodotBaseType
 public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioStreamPlayback() {
@@ -36,13 +37,14 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
   }
 
   /**
-   * Play an [godot.AudioStream] at a given offset, volume and pitch scale. Playback starts immediately.
-   *
-   * The return value is a unique integer ID that is associated to this playback stream and which can be used to control it.
-   *
-   * This ID becomes invalid when the stream ends (if it does not loop), when the [godot.AudioStreamPlaybackPolyphonic] is stopped, or when [stopStream] is called.
-   *
-   * This function returns [INVALID_ID] if the amount of streams currently playing equals [godot.AudioStreamPolyphonic.polyphony]. If you need a higher amount of maximum polyphony, raise this value.
+   * Play an [AudioStream] at a given offset, volume and pitch scale. Playback starts immediately.
+   * The return value is a unique integer ID that is associated to this playback stream and which
+   * can be used to control it.
+   * This ID becomes invalid when the stream ends (if it does not loop), when the
+   * [AudioStreamPlaybackPolyphonic] is stopped, or when [stopStream] is called.
+   * This function returns [constant INVALID_ID] if the amount of streams currently playing equals
+   * [AudioStreamPolyphonic.polyphony]. If you need a higher amount of maximum polyphony, raise this
+   * value.
    */
   @JvmOverloads
   public fun playStream(
@@ -57,7 +59,8 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
   }
 
   /**
-   * Change the stream volume (in db). The [stream] argument is an integer ID returned by [playStream].
+   * Change the stream volume (in db). The [param stream] argument is an integer ID returned by
+   * [playStream].
    */
   public fun setStreamVolume(stream: Long, volumeDb: Float): Unit {
     TransferContext.writeArguments(LONG to stream, DOUBLE to volumeDb.toDouble())
@@ -65,7 +68,8 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
   }
 
   /**
-   * Change the stream pitch scale. The [stream] argument is an integer ID returned by [playStream].
+   * Change the stream pitch scale. The [param stream] argument is an integer ID returned by
+   * [playStream].
    */
   public fun setStreamPitchScale(stream: Long, pitchScale: Float): Unit {
     TransferContext.writeArguments(LONG to stream, DOUBLE to pitchScale.toDouble())
@@ -73,7 +77,8 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
   }
 
   /**
-   * Return true whether the stream associated with an integer ID is still playing. Check [playStream] for information on when this ID becomes invalid.
+   * Return true whether the stream associated with an integer ID is still playing. Check
+   * [playStream] for information on when this ID becomes invalid.
    */
   public fun isStreamPlaying(stream: Long): Boolean {
     TransferContext.writeArguments(LONG to stream)
@@ -82,7 +87,8 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
   }
 
   /**
-   * Stop a stream. The [stream] argument is an integer ID returned by [playStream], which becomes invalid after calling this function.
+   * Stop a stream. The [param stream] argument is an integer ID returned by [playStream], which
+   * becomes invalid after calling this function.
    */
   public fun stopStream(stream: Long): Unit {
     TransferContext.writeArguments(LONG to stream)

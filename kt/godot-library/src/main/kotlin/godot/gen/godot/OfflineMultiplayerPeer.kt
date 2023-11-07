@@ -12,11 +12,11 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A [godot.MultiplayerPeer] which is always connected and acts as a server.
- *
- * This is the default [godot.MultiplayerAPI.multiplayerPeer] for the [godot.Node.multiplayer]. It mimics the behavior of a server with no peers connected.
- *
- * This means that the [godot.SceneTree] will act as the multiplayer authority by default. Calls to [godot.MultiplayerAPI.isServer] will return `true`, and calls to [godot.MultiplayerAPI.getUniqueId] will return [godot.MultiplayerPeer.TARGET_PEER_SERVER].
+ * This is the default [MultiplayerAPI.multiplayerPeer] for the [Node.multiplayer]. It mimics the
+ * behavior of a server with no peers connected.
+ * This means that the [SceneTree] will act as the multiplayer authority by default. Calls to
+ * [MultiplayerAPI.isServer] will return `true`, and calls to [MultiplayerAPI.getUniqueId] will return
+ * [constant MultiplayerPeer.TARGET_PEER_SERVER].
  */
 @GodotBaseType
 public open class OfflineMultiplayerPeer : MultiplayerPeer() {

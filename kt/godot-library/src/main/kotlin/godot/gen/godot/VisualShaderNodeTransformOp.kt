@@ -18,8 +18,6 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A [godot.Transform3D] operator to be used within the visual shader graph.
- *
  * Applies [operator] to two transform (4x4 matrices) inputs.
  */
 @GodotBaseType

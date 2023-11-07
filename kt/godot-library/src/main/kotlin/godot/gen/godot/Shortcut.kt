@@ -23,18 +23,17 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * A shortcut for binding input.
- *
- * Shortcuts are commonly used for interacting with a [godot.Control] element from an [godot.InputEvent] (also known as hotkeys).
- *
- * One shortcut can contain multiple [godot.InputEvent]'s, allowing the possibility of triggering one action with multiple different inputs.
+ * Shortcuts are commonly used for interacting with a [Control] element from an [InputEvent] (also
+ * known as hotkeys).
+ * One shortcut can contain multiple [InputEvent]'s, allowing the possibility of triggering one
+ * action with multiple different inputs.
  */
 @GodotBaseType
 public open class Shortcut : Resource() {
   /**
-   * The shortcut's [godot.InputEvent] array.
-   *
-   * Generally the [godot.InputEvent] used is an [godot.InputEventKey], though it can be any [godot.InputEvent], including an [godot.InputEventAction].
+   * The shortcut's [InputEvent] array.
+   * Generally the [InputEvent] used is an [InputEventKey], though it can be any [InputEvent],
+   * including an [InputEventAction].
    */
   public var events: VariantArray<Any?>
     get() {
@@ -53,7 +52,7 @@ public open class Shortcut : Resource() {
   }
 
   /**
-   * Returns whether [events] contains an [godot.InputEvent] which is valid.
+   * Returns whether [events] contains an [InputEvent] which is valid.
    */
   public fun hasValidEvent(): Boolean {
     TransferContext.writeArguments()
@@ -62,7 +61,7 @@ public open class Shortcut : Resource() {
   }
 
   /**
-   * Returns whether any [godot.InputEvent] in [events] equals [event].
+   * Returns whether any [InputEvent] in [events] equals [param event].
    */
   public fun matchesEvent(event: InputEvent): Boolean {
     TransferContext.writeArguments(OBJECT to event)
@@ -71,7 +70,7 @@ public open class Shortcut : Resource() {
   }
 
   /**
-   * Returns the shortcut's first valid [godot.InputEvent] as a [godot.String].
+   * Returns the shortcut's first valid [InputEvent] as a [String].
    */
   public fun getAsText(): String {
     TransferContext.writeArguments()

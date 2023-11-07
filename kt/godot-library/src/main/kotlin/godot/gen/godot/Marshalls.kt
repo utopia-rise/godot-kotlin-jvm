@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.jvm.JvmOverloads
 
 /**
- * Data transformation (marshaling) and encoding helpers.
- *
  * Provides data transformation and encoding utility functions.
  */
 @GodotBaseType
@@ -35,8 +33,8 @@ public object Marshalls : Object() {
   }
 
   /**
-   * Returns a Base64-encoded string of the [Variant] [variant]. If [fullObjects] is `true`, encoding objects is allowed (and can potentially include code).
-   *
+   * Returns a Base64-encoded string of the [Variant] [param variant]. If [param full_objects] is
+   * `true`, encoding objects is allowed (and can potentially include code).
    * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    */
   @JvmOverloads
@@ -47,11 +45,12 @@ public object Marshalls : Object() {
   }
 
   /**
-   * Returns a decoded [Variant] corresponding to the Base64-encoded string [base64Str]. If [allowObjects] is `true`, decoding objects is allowed.
-   *
+   * Returns a decoded [Variant] corresponding to the Base64-encoded string [param base64_str]. If
+   * [param allow_objects] is `true`, decoding objects is allowed.
    * Internally, this uses the same decoding mechanism as the [@GlobalScope.bytesToVar] method.
-   *
-   * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
+   * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option
+   * if the serialized object comes from untrusted sources to avoid potential security threats such as
+   * remote code execution.
    */
   @JvmOverloads
   public fun base64ToVariant(base64Str: String, allowObjects: Boolean = false): Any? {
@@ -61,7 +60,7 @@ public object Marshalls : Object() {
   }
 
   /**
-   * Returns a Base64-encoded string of a given [godot.PackedByteArray].
+   * Returns a Base64-encoded string of a given [PackedByteArray].
    */
   public fun rawToBase64(array: PackedByteArray): String {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to array)
@@ -70,7 +69,8 @@ public object Marshalls : Object() {
   }
 
   /**
-   * Returns a decoded [godot.PackedByteArray] corresponding to the Base64-encoded string [base64Str].
+   * Returns a decoded [PackedByteArray] corresponding to the Base64-encoded string [param
+   * base64_str].
    */
   public fun base64ToRaw(base64Str: String): PackedByteArray {
     TransferContext.writeArguments(STRING to base64Str)
@@ -79,7 +79,7 @@ public object Marshalls : Object() {
   }
 
   /**
-   * Returns a Base64-encoded string of the UTF-8 string [utf8Str].
+   * Returns a Base64-encoded string of the UTF-8 string [param utf8_str].
    */
   public fun utf8ToBase64(utf8Str: String): String {
     TransferContext.writeArguments(STRING to utf8Str)
@@ -88,7 +88,7 @@ public object Marshalls : Object() {
   }
 
   /**
-   * Returns a decoded string corresponding to the Base64-encoded string [base64Str].
+   * Returns a decoded string corresponding to the Base64-encoded string [param base64_str].
    */
   public fun base64ToUtf8(base64Str: String): String {
     TransferContext.writeArguments(STRING to base64Str)

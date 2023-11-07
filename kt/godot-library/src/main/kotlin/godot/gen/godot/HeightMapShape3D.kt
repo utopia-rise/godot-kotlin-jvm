@@ -20,11 +20,12 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A 3D height map shape used for physics collision.
- *
- * A 3D heightmap shape, intended for use in physics. Usually used to provide a shape for a [godot.CollisionShape3D]. This is useful for terrain, but it is limited as overhangs (such as caves) cannot be stored. Holes in a [godot.HeightMapShape3D] are created by assigning very low values to points in the desired area.
- *
- * **Performance:** [godot.HeightMapShape3D] is faster to check collisions against than [godot.ConcavePolygonShape3D], but it is significantly slower than primitive shapes like [godot.BoxShape3D].
+ * A 3D heightmap shape, intended for use in physics. Usually used to provide a shape for a
+ * [CollisionShape3D]. This is useful for terrain, but it is limited as overhangs (such as caves)
+ * cannot be stored. Holes in a [HeightMapShape3D] are created by assigning very low values to points
+ * in the desired area.
+ * **Performance:** [HeightMapShape3D] is faster to check collisions against than
+ * [ConcavePolygonShape3D], but it is significantly slower than primitive shapes like [BoxShape3D].
  */
 @GodotBaseType
 public open class HeightMapShape3D : Shape3D() {

@@ -18,8 +18,6 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A base node for nodes which samples 3D textures in the visual shader graph.
- *
  * A virtual class, use the descendants instead.
  */
 @GodotBaseType

@@ -23,11 +23,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Texture with 3 dimensions.
- *
- * [godot.ImageTexture3D] is a 3-dimensional [godot.ImageTexture] that has a width, height, and depth. See also [godot.ImageTextureLayered].
- *
- * 3D textures are typically used to store density maps for [godot.FogMaterial], color correction LUTs for [godot.Environment], vector fields for [godot.GPUParticlesAttractorVectorField3D] and collision maps for [godot.GPUParticlesCollisionSDF3D]. 3D textures can also be used in custom shaders.
+ * [ImageTexture3D] is a 3-dimensional [ImageTexture] that has a width, height, and depth. See also
+ * [ImageTextureLayered].
+ * 3D textures are typically used to store density maps for [FogMaterial], color correction LUTs for
+ * [Environment], vector fields for [GPUParticlesAttractorVectorField3D] and collision maps for
+ * [GPUParticlesCollisionSDF3D]. 3D textures can also be used in custom shaders.
  */
 @GodotBaseType
 public open class ImageTexture3D : Texture3D() {
@@ -37,7 +37,9 @@ public open class ImageTexture3D : Texture3D() {
   }
 
   /**
-   * Creates the [godot.ImageTexture3D] with specified [width], [height], and [depth]. See [enum Image.Format] for [format] options. If [useMipmaps] is `true`, then generate mipmaps for the [godot.ImageTexture3D].
+   * Creates the [ImageTexture3D] with specified [param width], [param height], and [param depth].
+   * See [enum Image.Format] for [param format] options. If [param use_mipmaps] is `true`, then
+   * generate mipmaps for the [ImageTexture3D].
    */
   public fun create(
     format: Image.Format,
@@ -53,7 +55,9 @@ public open class ImageTexture3D : Texture3D() {
   }
 
   /**
-   * Replaces the texture's existing data with the layers specified in [data]. The size of [data] must match the parameters that were used for [create]. In other words, the texture cannot be resized or have its format changed by calling [update].
+   * Replaces the texture's existing data with the layers specified in [param data]. The size of
+   * [param data] must match the parameters that were used for [create]. In other words, the texture
+   * cannot be resized or have its format changed by calling [update].
    */
   public fun update(`data`: VariantArray<Image>): Unit {
     TransferContext.writeArguments(ARRAY to data)

@@ -12,14 +12,10 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Imports a fixed-width bitmap font where all glyphs have the same width and height.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/ui/gui_using_fonts.html#bitmap-fonts]($DOCS_URL/tutorials/ui/gui_using_fonts.html#bitmap-fonts)
- *
- * This image-based workflow can be easier to use than [godot.ResourceImporterBMFont], but it requires all glyphs to have the same width and height. This makes [godot.ResourceImporterImageFont] most suited to fixed-width fonts.
- *
- * See also [godot.ResourceImporterDynamicFont].
+ * This image-based workflow can be easier to use than [ResourceImporterBMFont], but it requires all
+ * glyphs to have the same width and height. This makes [ResourceImporterImageFont] most suited to
+ * fixed-width fonts.
+ * See also [ResourceImporterDynamicFont].
  */
 @GodotBaseType
 public open class ResourceImporterImageFont internal constructor() : ResourceImporter() {

@@ -12,9 +12,8 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Base class for all texture types.
- *
- * [godot.Texture] is the base class for all texture types. Common texture types are [godot.Texture2D] and [godot.ImageTexture]. See also [godot.Image].
+ * [Texture] is the base class for all texture types. Common texture types are [Texture2D] and
+ * [ImageTexture]. See also [Image].
  */
 @GodotBaseType
 public open class Texture : Resource() {

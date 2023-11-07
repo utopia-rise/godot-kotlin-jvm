@@ -24,13 +24,15 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * Button for touch screen devices for gameplay use.
- *
- * TouchScreenButton allows you to create on-screen buttons for touch devices. It's intended for gameplay use, such as a unit you have to touch to move. Unlike [godot.Button], TouchScreenButton supports multitouch out of the box. Several TouchScreenButtons can be pressed at the same time with touch input.
- *
- * This node inherits from [godot.Node2D]. Unlike with [godot.Control] nodes, you cannot set anchors on it. If you want to create menus or user interfaces, you may want to use [godot.Button] nodes instead. To make button nodes react to touch events, you can enable the Emulate Mouse option in the Project Settings.
- *
- * You can configure TouchScreenButton to be visible only on touch devices, helping you develop your game both for desktop and mobile devices.
+ * TouchScreenButton allows you to create on-screen buttons for touch devices. It's intended for
+ * gameplay use, such as a unit you have to touch to move. Unlike [Button], TouchScreenButton supports
+ * multitouch out of the box. Several TouchScreenButtons can be pressed at the same time with touch
+ * input.
+ * This node inherits from [Node2D]. Unlike with [Control] nodes, you cannot set anchors on it. If
+ * you want to create menus or user interfaces, you may want to use [Button] nodes instead. To make
+ * button nodes react to touch events, you can enable the Emulate Mouse option in the Project Settings.
+ * You can configure TouchScreenButton to be visible only on touch devices, helping you develop your
+ * game both for desktop and mobile devices.
  */
 @GodotBaseType
 public open class TouchScreenButton : Node2D() {
@@ -101,7 +103,8 @@ public open class TouchScreenButton : Node2D() {
     }
 
   /**
-   * If `true`, the button's shape is centered in the provided texture. If no texture is used, this property has no effect.
+   * If `true`, the button's shape is centered in the provided texture. If no texture is used, this
+   * property has no effect.
    */
   public var shapeCentered: Boolean
     get() {
@@ -129,8 +132,9 @@ public open class TouchScreenButton : Node2D() {
     }
 
   /**
-   * If `true`, the [pressed] and [released] signals are emitted whenever a pressed finger goes in and out of the button, even if the pressure started outside the active area of the button.
-   *
+   * If `true`, the [signal pressed] and [signal released] signals are emitted whenever a pressed
+   * finger goes in and out of the button, even if the pressure started outside the active area of the
+   * button.
    * **Note:** This is a "pass-by" (not "bypass") press mode.
    */
   public var passbyPress: Boolean
@@ -145,7 +149,7 @@ public open class TouchScreenButton : Node2D() {
     }
 
   /**
-   * The button's action. Actions can be handled with [godot.InputEventAction].
+   * The button's action. Actions can be handled with [InputEventAction].
    */
   public var action: String
     get() {

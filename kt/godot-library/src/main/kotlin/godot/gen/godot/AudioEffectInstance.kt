@@ -14,9 +14,6 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 
-/**
- *
- */
 @GodotBaseType
 public open class AudioEffectInstance : RefCounted() {
   public override fun new(scriptIndex: Int): Boolean {
@@ -24,9 +21,6 @@ public open class AudioEffectInstance : RefCounted() {
     return true
   }
 
-  /**
-   *
-   */
   public open fun _processSilence(): Boolean {
     throw NotImplementedError("_process_silence is not implemented for AudioEffectInstance")
   }

@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A 4D vector parameter to be used within the visual shader graph.
- *
  * Translated to `uniform vec4` in the shader language.
  */
 @GodotBaseType

@@ -34,14 +34,16 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Provides parameters for [godot.PhysicsDirectSpaceState2D.intersectShape].
- *
- * By changing various properties of this object, such as the shape, you can configure the parameters for [godot.PhysicsDirectSpaceState2D.intersectShape].
+ * By changing various properties of this object, such as the shape, you can configure the
+ * parameters for [PhysicsDirectSpaceState2D.intersectShape].
  */
 @GodotBaseType
 public open class PhysicsShapeQueryParameters2D : RefCounted() {
   /**
-   * The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The physics layers the query will detect (as a bitmask). By default, all collision layers are
+   * detected. See
+   * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
+   * layers and masks[/url] in the documentation for more information.
    */
   public var collisionMask: Long
     get() {
@@ -55,7 +57,8 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
     }
 
   /**
-   * The list of object [RID]s that will be excluded from collisions. Use [godot.CollisionObject2D.getRid] to get the [RID] associated with a [godot.CollisionObject2D]-derived node.
+   * The list of object [RID]s that will be excluded from collisions. Use [CollisionObject2D.getRid]
+   * to get the [RID] associated with a [CollisionObject2D]-derived node.
    */
   public var exclude: VariantArray<RID>
     get() {
@@ -98,7 +101,9 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
     }
 
   /**
-   * The [godot.Shape2D] that will be used for collision/intersection queries. This stores the actual reference which avoids the shape to be released while being used for queries, so always prefer using this over [shapeRid].
+   * The [Shape2D] that will be used for collision/intersection queries. This stores the actual
+   * reference which avoids the shape to be released while being used for queries, so always prefer
+   * using this over [shapeRid].
    */
   public var shape: Resource?
     get() {
@@ -112,63 +117,37 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
     }
 
   /**
-   * The queried shape's [RID] that will be used for collision/intersection queries. Use this over [shape] if you want to optimize for performance using the Servers API:
+   * The queried shape's [RID] that will be used for collision/intersection queries. Use this over
+   * [shape] if you want to optimize for performance using the Servers API:
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * var shape_rid = PhysicsServer2D.circle_shape_create()
-   *
    * var radius = 64
-   *
    * PhysicsServer2D.shape_set_data(shape_rid, radius)
    *
-   *
-   *
    * var params = PhysicsShapeQueryParameters2D.new()
-   *
    * params.shape_rid = shape_rid
-   *
-   *
    *
    * # Execute physics queries here...
    *
-   *
-   *
    * # Release the shape when done with physics queries.
-   *
    * PhysicsServer2D.free_rid(shape_rid)
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * RID shapeRid = PhysicsServer2D.CircleShapeCreate();
-   *
    * int radius = 64;
-   *
    * PhysicsServer2D.ShapeSetData(shapeRid, radius);
    *
-   *
-   *
    * var params = new PhysicsShapeQueryParameters2D();
-   *
    * params.ShapeRid = shapeRid;
-   *
-   *
    *
    * // Execute physics queries here...
    *
-   *
-   *
    * // Release the shape when done with physics queries.
-   *
    * PhysicsServer2D.FreeRid(shapeRid);
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public var shapeRid: RID
     get() {
@@ -197,7 +176,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
     }
 
   /**
-   * If `true`, the query will take [godot.PhysicsBody2D]s into account.
+   * If `true`, the query will take [PhysicsBody2D]s into account.
    */
   public var collideWithBodies: Boolean
     get() {
@@ -211,7 +190,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
     }
 
   /**
-   * If `true`, the query will take [godot.Area2D]s into account.
+   * If `true`, the query will take [Area2D]s into account.
    */
   public var collideWithAreas: Boolean
     get() {

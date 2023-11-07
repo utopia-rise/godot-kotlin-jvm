@@ -17,9 +17,8 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A visual shader helper node for multiplying position and rotation of particles.
- *
- * This node helps to multiply a position input vector by rotation using specific axis. Intended to work with emitters.
+ * This node helps to multiply a position input vector by rotation using specific axis. Intended to
+ * work with emitters.
  */
 @GodotBaseType
 public open class VisualShaderNodeParticleMultiplyByAxisAngle : VisualShaderNode() {
