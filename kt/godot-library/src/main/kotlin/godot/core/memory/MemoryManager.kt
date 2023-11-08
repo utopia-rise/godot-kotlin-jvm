@@ -3,6 +3,7 @@ package godot.core.memory
 import godot.core.KtObject
 import godot.core.NativeCoreType
 import godot.core.ObjectID
+import godot.core.StringName
 import godot.core.VariantType
 import godot.util.VoidPtr
 import godot.util.info
@@ -67,6 +68,24 @@ internal object MemoryManager {
 
     private var gcState = GCState.NONE
 
+    // A basic LRU cache.
+    private class LRUCache<K, V>(private val capacity: Int) : LinkedHashMap<K, V>(capacity, 0.75f, true) {
+        override fun removeEldestEntry(eldest: MutableMap.MutableEntry<K, V>?): Boolean {
+            return size > capacity
+        }
+    }
+
+    // Create an LRU cache for StringName objects based on a String key.
+    private val stringNameCache = LRUCache<String, StringName>(100)
+
+    fun getOrCreateStringName(key: String): StringName {
+        return synchronized(stringNameCache) {
+            stringNameCache.getOrPut(key) {
+                // Cache miss, so create and return new instance.
+                StringName(key)
+            }
+        }
+    }
     @Suppress("unused")
     val isClosed: Boolean
         get() = gcState == GCState.CLOSED
@@ -281,6 +300,9 @@ internal object MemoryManager {
                 instance.collect()
             }
         }
+
+        // Clear any cached StringName objects.
+        stringNameCache.clear()
 
         var begin = Instant.now()
         while (ObjectDB.any { it != null } || nativeCoreTypeMap.isNotEmpty()) {

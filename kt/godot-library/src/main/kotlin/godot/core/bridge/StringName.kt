@@ -64,4 +64,6 @@ class StringName : NativeCoreType {
     }
 }
 
-fun String.asStringName() = StringName(this)
+fun String.asStringName(): StringName {
+    return MemoryManager.getOrCreateStringName(this)
+}
