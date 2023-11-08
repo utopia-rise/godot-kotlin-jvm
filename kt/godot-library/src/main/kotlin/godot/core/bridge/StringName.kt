@@ -63,7 +63,3 @@ class StringName : NativeCoreType {
         external fun engine_call_operator_string(_handle: VoidPtr)
     }
 }
-
-fun String.asStringName(): StringName {
-    return MemoryManager.getOrCreateStringName(this)
-}

@@ -2,6 +2,7 @@ package godot.core.memory
 
 import godot.core.KtObject
 import godot.core.NativeCoreType
+import godot.core.NodePath
 import godot.core.ObjectID
 import godot.core.StringName
 import godot.core.VariantType
@@ -75,8 +76,10 @@ internal object MemoryManager {
         }
     }
 
-    // Create an LRU cache for StringName objects based on a String key.
+    // Create an LRU cache for StringName and NodePath objects based on a String key.
+    // TODO: Set the initial capacity from the command line.
     private val stringNameCache = LRUCache<String, StringName>(100)
+    private val nodePathCache = LRUCache<String, NodePath>(100)
 
     fun getOrCreateStringName(key: String): StringName {
         return synchronized(stringNameCache) {
@@ -86,6 +89,16 @@ internal object MemoryManager {
             }
         }
     }
+
+    fun getOrCreateNodePath(key: String): NodePath {
+        return synchronized(nodePathCache) {
+            nodePathCache.getOrPut(key) {
+                // Cache miss, so create and return new instance.
+                NodePath(key)
+            }
+        }
+    }
+
     @Suppress("unused")
     val isClosed: Boolean
         get() = gcState == GCState.CLOSED
@@ -301,8 +314,9 @@ internal object MemoryManager {
             }
         }
 
-        // Clear any cached StringName objects.
+        // Clear any cached StringName or NodePath objects.
         stringNameCache.clear()
+        nodePathCache.clear()
 
         var begin = Instant.now()
         while (ObjectDB.any { it != null } || nativeCoreTypeMap.isNotEmpty()) {
