@@ -1,6 +1,6 @@
 
 !!!warning Before starting a project
-    Before starting a project make sure you read the [Exporting](user-guide/exporting.md) documentation! Depending on your chosen platform (like native images with GraalVM or Android) there are important details to consider (like third party dependencies and host systems to compile your game on).  
+    Before starting a project make sure you read the [Exporting](../user-guide/exporting.md) documentation! Depending on your chosen platform (like native images with GraalVM or Android) there are important details to consider (like third party dependencies and host systems to compile your game on).  
     Failure to do so or understanding what is needed can lead to big problems once you're at the stage of exporting and shipping your project.  
     Also make sure to regularily test your exports on each platform. It's best to even test the exports on each platform before even writing anything else than the first test class
 
