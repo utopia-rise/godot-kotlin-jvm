@@ -1,3 +1,3 @@
 package godot.entrygenerator.model
 
-class GodotBaseTypeAnnotation(override val source: Any) : ClassAnnotation
+class GodotBaseTypeAnnotation(override val symbolProcessorSource: Any) : ClassAnnotation

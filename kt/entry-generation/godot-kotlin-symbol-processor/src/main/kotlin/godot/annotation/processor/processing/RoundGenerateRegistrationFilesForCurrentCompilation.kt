@@ -6,7 +6,7 @@ import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.symbol.KSAnnotated
 import godot.annotation.processor.Settings
-import godot.annotation.processor.ext.provideRegistrationFileDir
+import godot.annotation.processor.ext.provideRegistrationFilePathForInitialGenerationWithoutExtension
 import godot.annotation.processor.visitor.MetadataAnnotationVisitor
 import godot.entrygenerator.EntryGenerator
 import godot.tools.common.constants.FileExtensions
@@ -40,9 +40,13 @@ internal class RoundGenerateRegistrationFilesForCurrentCompilation(
                 registrationFileAppendableProvider = { metadata ->
                     blackboard.alreadyGeneratedRegistrationFiles.add(metadata.fqName)
 
-                    val resourcePathFromProjectRoot = metadata.provideRegistrationFileDir(
-                        currentCompilationProjectName = settings.projectName,
-                        registrationBaseDirPathRelativeToProjectDir = settings.registrationBaseDirPathRelativeToProjectDir
+                    val resourcePathFromProjectRoot = provideRegistrationFilePathForInitialGenerationWithoutExtension(
+                        isRegistrationFileHierarchyEnabled = settings.isRegistrationFileHierarchyEnabled,
+                        fqName = metadata.fqName,
+                        registeredName = metadata.registeredName,
+                        compilationProjectName = settings.projectName,
+                        classProjectName = metadata.projectName,
+                        registrationFileOutDir = settings.registrationBaseDirPathRelativeToProjectDir
                     )
 
                     codeGenerator.createNewFileByPath(

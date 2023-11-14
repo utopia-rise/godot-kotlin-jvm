@@ -36,8 +36,8 @@ object EntryGenerator {
         classRegistrarFromDependencyCount: Int,
         logger: Logger,
         sourceFiles: List<SourceFile>,
-        registrationFileBaseDir: String,
         jvmTypeFqNamesProvider: (JvmType) -> Set<String>,
+        compilationTimeRelativeRegistrationFilePathProvider: (RegisteredClass) -> String,
         classRegistrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
         mainBufferedWriterProvider: () -> BufferedWriter
     ) {
@@ -63,13 +63,13 @@ object EntryGenerator {
                         ClassRegistrarFileBuilder(
                             projectName = projectName,
                             registeredClass = registeredClass,
-                            registrarAppendableProvider = classRegistrarAppendableProvider
+                            registrarAppendableProvider = classRegistrarAppendableProvider,
+                            compilationTimeRelativeRegistrationFilePath = compilationTimeRelativeRegistrationFilePathProvider(registeredClass)
                         )
                     )
                 }
             }
             registerUserTypesVariantMappings(sourceFiles.flatMap { it.registeredClasses })
-            registerUserScriptsResourcePathPrefix(registrationFileBaseDir)
             registerProjectName(projectName)
             val classRegistrarsForCurrentCompilationCount = sourceFiles.flatMap { it.registeredClasses }.size
             registerClassRegistrarCount(

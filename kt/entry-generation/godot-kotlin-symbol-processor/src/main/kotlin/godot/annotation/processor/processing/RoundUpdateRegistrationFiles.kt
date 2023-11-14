@@ -23,52 +23,75 @@ internal class RoundUpdateRegistrationFiles(
 ) : BaseRound() {
     override fun executeInternal(): List<KSAnnotated> {
         if (settings.isRegistrationFileGenerationEnabled) {
-            val newRegistrationFilesBaseDir = settings.projectBasePath.resolve("build/generated/ksp/main/resources/entryFiles")
-            val currentRegistrationFilesBaseDir = settings.projectBasePath.resolve(settings.registrationBaseDirPathRelativeToProjectDir)
+            val kspRegistrationFilesBaseDir = settings.projectBaseDir.resolve("build/generated/ksp/main/resources/entryFiles").resolve(settings.registrationBaseDirPathRelativeToProjectDir)
+            val initialRegistrationFilesOutDir = settings.projectBaseDir.resolve(settings.registrationBaseDirPathRelativeToProjectDir)
 
-            deleteObsoleteRegistrationFilesAndEmptyDirs(currentRegistrationFilesBaseDir, newRegistrationFilesBaseDir)
-            createOrUpdateRegistrationFiles(newRegistrationFilesBaseDir)
+            updateRegistrationFiles(
+                kspRegistrationFilesBaseDir = kspRegistrationFilesBaseDir,
+                initialRegistrationFilesOutDir = initialRegistrationFilesOutDir,
+                existingRegistrationFilesMap = blackboard.existingRegistrationFilesMap,
+            )
         }
 
         return emptyList()
     }
 
-    private fun createOrUpdateRegistrationFiles(newRegistrationFilesBaseDir: File) {
-        newRegistrationFilesBaseDir.copyRecursively(
-            target = settings.projectBasePath,
-            overwrite = true
-        )
-    }
-
-    private fun deleteObsoleteRegistrationFilesAndEmptyDirs(
-        currentRegistrationFilesBaseDir: File,
-        newRegistrationFilesBaseDir: File,
+    private fun updateRegistrationFiles(
+        kspRegistrationFilesBaseDir: File,
+        initialRegistrationFilesOutDir: File,
+        existingRegistrationFilesMap: Map<String, File>
     ) {
-        val newRegistrationFileRelativePaths = newRegistrationFilesBaseDir
+        val kspRegistrationFiles = kspRegistrationFilesBaseDir
             .walkTopDown()
-            .filter { file -> file.extension == FileExtensions.GodotKotlinJvm.registrationFile }
-            .toList()
-            .map { file ->
-                file.relativeTo(newRegistrationFilesBaseDir)
+            .filter { file ->
+                file.extension == FileExtensions.GodotKotlinJvm.registrationFile
             }
-            .map { file ->
-                file
-                    .path // is relative path because of `relativeTo` above
-                    .substringAfter("/") // first directory is always the project name in the resource dir
+            .associateBy { file ->
+                file.name
             }
 
-        currentRegistrationFilesBaseDir
+        // compare ksp and existing registration files
+        val deletedRegistrationFiles = existingRegistrationFilesMap
+            .filterKeys { registrationFileName -> !kspRegistrationFiles.containsKey(registrationFileName) }
+            .values
+
+        val updatedRegistrationFiles = existingRegistrationFilesMap
+            .filterKeys { registrationFileName -> kspRegistrationFiles.containsKey(registrationFileName) }
+
+        val newRegistrationFiles = kspRegistrationFiles
+            .filterKeys { registrationFileName -> !existingRegistrationFilesMap.containsKey(registrationFileName) }
+
+
+        // delete obsolete registration files
+        deletedRegistrationFiles.forEach { obsoleteRegistrationFile ->
+            try {
+                obsoleteRegistrationFile.delete()
+            } catch (e: Throwable) {
+                logger.warn("Could not delete obsolete registration file. You need to delete it manually! ${obsoleteRegistrationFile.absolutePath}")
+            }
+        }
+        // delete empty dirs in the initial gdj out folder (but not anywhere else!)
+        initialRegistrationFilesOutDir
             .walkBottomUp()
-            .filter { file ->
-                !newRegistrationFileRelativePaths.contains(file.relativeTo(currentRegistrationFilesBaseDir).path)
-            }
-            .forEach { file ->
-                if (file.isFile && file.extension == FileExtensions.GodotKotlinJvm.registrationFile) {
-                    file.delete()
-                }
-                if (file.isDirectory && (file.listFiles() ?: arrayOf()).isEmpty()) {
-                    file.delete()
+            .filter { dir -> dir.isDirectory && dir.listFiles()?.isEmpty() == true }
+            .forEach { emptyDir ->
+                try {
+                    emptyDir.delete()
+                } catch (e: Throwable) {
+                    logger.warn("Could not delete seemingly empty registration directory! ${emptyDir.absolutePath}")
                 }
             }
+
+        // replace existing registration files
+        updatedRegistrationFiles.forEach { (registrationFileName, registrationFile) ->
+            kspRegistrationFiles[registrationFileName]?.copyTo(registrationFile, overwrite = true)
+        }
+
+        // copy new registration files
+        newRegistrationFiles.forEach { (_, registrationFile) ->
+            val relativePath = registrationFile.toRelativeString(kspRegistrationFilesBaseDir)
+            val targetFile = initialRegistrationFilesOutDir.resolve(relativePath)
+            registrationFile.copyTo(targetFile, overwrite = true)
+        }
     }
 }

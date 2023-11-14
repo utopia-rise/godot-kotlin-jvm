@@ -1,9 +1,9 @@
 // THIS FILE IS GENERATED! DO NOT EDIT OR DELETE IT. EDIT OR DELETE THE ASSOCIATED SOURCE CODE FILE INSTEAD
 // Note: You can however freely move this file inside your godot project if you want. Keep in mind however, that if you rename the originating source code file, this file will be deleted and regenerated as a new file instead of being updated! Other modifications to the source file however, will result in this file being updated.
 
-registeredName = CoreTypesIdentityTest
-fqName = godot.tests.CoreTypesIdentityTest
-relativeSourcePath = src/main/kotlin/godot/tests/CoreTypesIdentityTest.kt
+registeredName = FreeformRegistrationFileTestClass
+fqName = godot.tests.freeform.FreeformRegistrationFileTestClass
+relativeSourcePath = src/main/kotlin/godot/tests/freeform/FreeformRegistrationFileTestClass.kt
 baseType = Node
 supertypes = [
     godot.Node,
@@ -15,26 +15,8 @@ signals = [
     
 ]
 properties = [
-    aabb,
-	basis,
-	color,
-	plane,
-	quaternion,
-	rect2,
-	transform3_d,
-	transform2_d,
-	vector2,
-	vector3
+    
 ]
 functions = [
-    aabb,
-	basis,
-	color,
-	plane,
-	quat,
-	rect2,
-	transform,
-	transform2_d,
-	vector2,
-	vector3
+    greeting
 ]

@@ -66,7 +66,7 @@ ScriptInstance* KotlinScript::_instance_create(const Variant** p_args, int p_arg
       !is_valid(),
       vformat("Invalid script %s was attempted to be used. Make sure you have properly built your project.", get_path())
     );
-    LOG_VERBOSE(vformat("Try to create %s instance.", kotlin_class->resource_path));
+    LOG_VERBOSE(vformat("Try to create %s instance.", kotlin_class->registered_class_name));
 #endif
 
     jni::Env env = jni::Jvm::current_env();

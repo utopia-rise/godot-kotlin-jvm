@@ -16,18 +16,19 @@ import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredFunction
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.RegisteredSignal
+import java.io.File
 
 internal fun KSClassDeclaration.mapToClazz(
     isFqNameRegistrationEnabled: Boolean,
     classNamePrefix: String?,
-    localResourcePathProvider: (fqName: String, registeredName: String) -> String,
+    projectBaseDir: File,
 ): Clazz {
     val fqName = requireNotNull(qualifiedName?.asString()) {
         "Qualified name for class declaration of a registered type or it's super types cannot be null! KSClassDeclaration: $this"
     }
     val supertypeDeclarations = getAllSuperTypes()
         .mapNotNull { it.declaration as? KSClassDeclaration } //we're only interested in classes not interfaces
-        .map { it.mapToClazz(isFqNameRegistrationEnabled, classNamePrefix, localResourcePathProvider) }
+        .map { it.mapToClazz(isFqNameRegistrationEnabled, classNamePrefix, projectBaseDir) }
         .toList()
     val mappedAnnotations = annotations
         .mapNotNull { it.mapToAnnotation(this) as? ClassAnnotation }
@@ -59,6 +60,9 @@ internal fun KSClassDeclaration.mapToClazz(
         isAbstractAndContainsRegisteredMembers(registeredFunctions, registeredProperties, registeredSignals) ||
         isAbstractAndInheritsGodotBaseClass()
 
+    val absoluteSourcePath = this.containingFile?.filePath?.let { File(it) }
+    val relativeSourcePath = absoluteSourcePath?.relativeTo(projectBaseDir)?.path ?: ""
+
     return if (shouldBeRegistered) {
 
         val registeredConstructors = getConstructors()
@@ -72,8 +76,8 @@ internal fun KSClassDeclaration.mapToClazz(
 
         RegisteredClass(
             fqName = fqName,
+            relativeSourcePath = relativeSourcePath,
             supertypes = supertypeDeclarations,
-            localResourcePathProvider = { localResourcePathProvider(fqName, registeredName) },
             annotations = mappedAnnotations,
             constructors = registeredConstructors,
             functions = registeredFunctions,
@@ -82,14 +86,15 @@ internal fun KSClassDeclaration.mapToClazz(
             isAbstract = isAbstract(),
             isFqNameRegistrationEnabled = isFqNameRegistrationEnabled,
             classNamePrefix = classNamePrefix,
-            source = this
+            symbolProcessorSource = this
         )
     } else {
         Clazz(
             fqName = fqName,
+            relativeSourcePath = relativeSourcePath,
             supertypes = supertypeDeclarations,
             annotations = mappedAnnotations,
-            source = this
+            symbolProcessorSource = this
         )
     }
 }

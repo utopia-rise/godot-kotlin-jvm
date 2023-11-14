@@ -5,8 +5,8 @@ import godot.entrygenerator.ext.hasAnnotation
 
 data class RegisteredClass(
     override val fqName: String,
+    override val relativeSourcePath: String,
     override val supertypes: List<Clazz>,
-    val localResourcePathProvider: RegisteredClass.() -> String,
     override val annotations: List<ClassAnnotation> = emptyList(),
     val constructors: List<RegisteredConstructor> = emptyList(),
     val functions: List<RegisteredFunction> = emptyList(),
@@ -15,8 +15,8 @@ data class RegisteredClass(
     override val isAbstract: Boolean = false,
     private val isFqNameRegistrationEnabled: Boolean = false,
     private val classNamePrefix: String? = null,
-    override val source: Any
-) : Clazz(fqName, supertypes, isAbstract = isAbstract, source = source) {
+    override val symbolProcessorSource: Any
+) : Clazz(fqName, relativeSourcePath, supertypes, isAbstract = isAbstract, symbolProcessorSource = symbolProcessorSource) {
     val registeredName: String
         get() {
             val customName = annotations
