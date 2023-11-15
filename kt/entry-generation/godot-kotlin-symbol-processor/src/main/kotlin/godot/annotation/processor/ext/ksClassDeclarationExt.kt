@@ -61,7 +61,7 @@ internal fun KSClassDeclaration.mapToClazz(
         isAbstractAndInheritsGodotBaseClass()
 
     val absoluteSourcePath = this.containingFile?.filePath?.let { File(it) }
-    val relativeSourcePath = absoluteSourcePath?.relativeTo(projectBaseDir)?.path ?: ""
+    val relativeSourcePath = absoluteSourcePath?.relativeTo(projectBaseDir)?.invariantSeparatorsPath ?: ""
 
     return if (shouldBeRegistered) {
 
