@@ -14,6 +14,9 @@ import kotlin.Suppress
 /**
  * Identifies a supported export platform, and internally provides the functionality of exporting to that platform.
  *
+ * Tutorials:
+ * [Console support in Godot](Console support in Godot)
+ *
  * Base resource that provides the functionality of exporting a release build of a project to a platform, from the editor. Stores platform-specific metadata such as the name and supported features of the platform, and performs the exporting of projects, PCK files, and ZIP files. Uses an export template for the platform provided at the time of project exporting.
  *
  * Used in scripting by [godot.EditorExportPlugin] to configure platform-specific customization of scenes and resources. See [godot.EditorExportPlugin.BeginCustomizeScenes] and [godot.EditorExportPlugin.BeginCustomizeResources] for more details.

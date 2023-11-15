@@ -1799,7 +1799,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The width of the shape outine.
+   * The width of the shape outline.
    */
   public var msdfOutlineSize: Float
     get() {

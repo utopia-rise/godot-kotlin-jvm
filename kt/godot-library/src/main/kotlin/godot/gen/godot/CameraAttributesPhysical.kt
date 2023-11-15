@@ -19,6 +19,9 @@ import kotlin.Suppress
 /**
  * Physically-based camera settings.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/3d/physical_light_and_camera_units.html]($DOCS_URL/tutorials/3d/physical_light_and_camera_units.html)
+ *
  * [godot.CameraAttributesPhysical] is used to set rendering settings based on a physically-based camera's settings. It is responsible for exposure, auto-exposure, and depth of field.
  *
  * When used in a [godot.WorldEnvironment] it provides default settings for exposure, auto-exposure, and depth of field that will be used by all cameras without their own [godot.CameraAttributes], including the editor camera. When used in a [godot.Camera3D] it will override any [godot.CameraAttributes] set in the [godot.WorldEnvironment] and will override the [godot.Camera3D]s [godot.Camera3D.far], [godot.Camera3D.near], [godot.Camera3D.fov], and [godot.Camera3D.keepAspect] properties. When used in [godot.VoxelGI] or [godot.LightmapGI], only the exposure settings will be used.

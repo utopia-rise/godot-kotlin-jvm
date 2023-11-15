@@ -339,6 +339,7 @@ private fun registerEngineTypeMethodForInput(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUT to "get_joy_axis")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUT to "get_joy_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUT to "get_joy_guid")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_INPUT to "should_ignore_device")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUT to "get_connected_joypads")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUT to "get_joy_vibration_strength")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUT to "get_joy_vibration_duration")
@@ -9373,6 +9374,15 @@ private fun registerEngineTypeMethodForOpenXRInteractionProfile(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERACTIONPROFILE to "get_bindings")
 }
 
+private fun registerEngineTypeMethodForOpenXRInteractionProfileMetadata(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERACTIONPROFILEMETADATA to
+      "register_top_level_path")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERACTIONPROFILEMETADATA to
+      "register_interaction_profile")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERACTIONPROFILEMETADATA to
+      "register_io_path")
+}
+
 private fun registerEngineTypeMethodForOpenXRInterface(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERFACE to "get_display_refresh_rate")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERFACE to "set_display_refresh_rate")
@@ -14601,6 +14611,8 @@ private fun registerEngineTypeMethodForTreeItem(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREEITEM to "get_text_direction")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREEITEM to "set_autowrap_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREEITEM to "get_autowrap_mode")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TREEITEM to "set_text_overrun_behavior")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TREEITEM to "get_text_overrun_behavior")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREEITEM to "set_structured_text_bidi_override")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREEITEM to "get_structured_text_bidi_override")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREEITEM to
@@ -16925,6 +16937,8 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("OpenXRIPBinding", OpenXRIPBinding::class, ::OpenXRIPBinding)
   TypeManager.registerEngineType("OpenXRInteractionProfile", OpenXRInteractionProfile::class,
       ::OpenXRInteractionProfile)
+  TypeManager.registerEngineType("OpenXRInteractionProfileMetadata",
+      OpenXRInteractionProfileMetadata::class, ::OpenXRInteractionProfileMetadata)
   TypeManager.registerEngineType("OpenXRInterface", OpenXRInterface::class, ::OpenXRInterface)
   TypeManager.registerEngineType("OptimizedTranslation", OptimizedTranslation::class,
       ::OptimizedTranslation)
@@ -17969,6 +17983,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[OpenXRHand::class] = OBJECT
   variantMapper[OpenXRIPBinding::class] = OBJECT
   variantMapper[OpenXRInteractionProfile::class] = OBJECT
+  variantMapper[OpenXRInteractionProfileMetadata::class] = OBJECT
   variantMapper[OpenXRInterface::class] = OBJECT
   variantMapper[OptimizedTranslation::class] = OBJECT
   variantMapper[OptionButton::class] = OBJECT
@@ -18822,6 +18837,7 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForOpenXRHand()
   registerEngineTypeMethodForOpenXRIPBinding()
   registerEngineTypeMethodForOpenXRInteractionProfile()
+  registerEngineTypeMethodForOpenXRInteractionProfileMetadata()
   registerEngineTypeMethodForOpenXRInterface()
   registerEngineTypeMethodForOptimizedTranslation()
   registerEngineTypeMethodForOptionButton()

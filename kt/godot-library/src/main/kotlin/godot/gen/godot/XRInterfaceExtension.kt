@@ -39,6 +39,9 @@ import kotlin.Unit
 /**
  * Base class for XR interface extensions (plugins).
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/xr/index.html]($DOCS_URL/tutorials/xr/index.html)
+ *
  * External XR interface plugins should inherit from this class.
  */
 @GodotBaseType

@@ -30,6 +30,9 @@ import kotlin.Unit
 /**
  * A control used for video playback.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/animation/playing_videos.html]($DOCS_URL/tutorials/animation/playing_videos.html)
+ *
  * A control used for playback of [godot.VideoStream] resources.
  *
  * Supported video formats are [godot.Ogg Theora](https://www.theora.org/) (`.ogv`, [godot.VideoStreamTheora]) and any format exposed via a GDExtension plugin.

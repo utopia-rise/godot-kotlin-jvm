@@ -47,7 +47,7 @@ import kotlin.jvm.JvmOverloads
  * Abstraction for working with modern low-level graphics APIs.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/shaders/compute_shaders.html](https://docs.godotengine.org/en/latest/tutorials/shaders/compute_shaders.html)
+ * [$DOCS_URL/tutorials/shaders/compute_shaders.html]($DOCS_URL/tutorials/shaders/compute_shaders.html)
  *
  * [godot.RenderingDevice] is an abstraction for working with modern low-level graphics APIs such as Vulkan. Compared to [godot.RenderingServer] (which works with Godot's own rendering subsystems), [godot.RenderingDevice] is much lower-level and allows working more directly with the underlying graphics APIs. [godot.RenderingDevice] is used in Godot to provide support for several modern low-level graphics APIs while reducing the amount of code duplication required. [godot.RenderingDevice] can also be used in your own projects to perform things that are not exposed by [godot.RenderingServer] or high-level nodes, such as using compute shaders.
  *
@@ -556,7 +556,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   *
+   * Returns the internal vertex input mask. Internally, the vertex input mask is an unsigned integer consisting of the locations (specified in GLSL via. `layout(location = ...)`) of the input variables (specified in GLSL by the `in` keyword).
    */
   public fun shaderGetVertexInputAttributeMask(shader: RID): Long {
     TransferContext.writeArguments(_RID to shader)
@@ -566,7 +566,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * It can be accessed with the RID that is returned.
+   * Creates a new uniform buffer. It can be accessed with the RID that is returned.
    *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's [freeRid] method.
    */
@@ -614,7 +614,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * It can be accessed with the RID that is returned.
+   * Creates a new uniform set. It can be accessed with the RID that is returned.
    *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's [freeRid] method.
    */
@@ -630,7 +630,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   *
+   * Checks if the [uniformSet] is valid, i.e. is owned.
    */
   public fun uniformSetIsValid(uniformSet: RID): Boolean {
     TransferContext.writeArguments(_RID to uniformSet)
@@ -640,7 +640,15 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
+   * Updates a region of [sizeBytes] bytes, starting at [offset], in the buffer, with the specified [data]. Raises a memory barrier except when [postBarrier] is set to [BARRIER_MASK_NO_BARRIER].
    *
+   * Prints an error if:
+   *
+   * - the region specified by [offset] + [sizeBytes] exceeds the buffer
+   *
+   * - a draw list is currently active (created by [drawListBegin])
+   *
+   * - a compute list is currently active (created by [computeListBegin])
    */
   @JvmOverloads
   public fun bufferUpdate(
@@ -656,7 +664,17 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
+   * Clears the contents of the [buffer], clearing [sizeBytes] bytes, starting at [offset]. Always raises a memory barrier.
    *
+   * Prints an error if:
+   *
+   * - the size isn't a multiple of four
+   *
+   * - the region specified by [offset] + [sizeBytes] exceeds the buffer
+   *
+   * - a draw list is currently active (created by [drawListBegin])
+   *
+   * - a compute list is currently active (created by [computeListBegin])
    */
   @JvmOverloads
   public fun bufferClear(
@@ -1027,7 +1045,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   *
+   * Tells the GPU what compute pipeline to use when processing the compute list. If the shader has changed since the last time this function was called, Godot will unbind all descriptor sets and will re-bind them inside [computeListDispatch].
    */
   public fun computeListBindComputePipeline(computeList: Long, computePipeline: RID): Unit {
     TransferContext.writeArguments(LONG to computeList, _RID to computePipeline)
@@ -1049,7 +1067,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   *
+   * Binds the [uniformSet] to this [computeList]. Godot ensures that all textures in the uniform set have the correct Vulkan access masks. If Godot had to change access masks of textures, it will raise a Vulkan image memory barrier.
    */
   public fun computeListBindUniformSet(
     computeList: Long,
@@ -1076,7 +1094,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   *
+   * Raises a Vulkan compute barrier in the specified [computeList].
    */
   public fun computeListAddBarrier(computeList: Long): Unit {
     TransferContext.writeArguments(LONG to computeList)

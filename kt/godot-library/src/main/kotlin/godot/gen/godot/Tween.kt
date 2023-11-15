@@ -535,6 +535,8 @@ public open class Tween : RefCounted() {
 
   /**
    * Stops the tweening and resets the [godot.Tween] to its initial state. This will not remove any appended [godot.Tweener]s.
+   *
+   * **Note:** If a Tween is stopped and not bound to any node, it will exist indefinitely until manually started or invalidated. If you lose a reference to such Tween, you can retrieve it using [godot.SceneTree.getProcessedTweens].
    */
   public fun stop(): Unit {
     TransferContext.writeArguments()
@@ -543,6 +545,8 @@ public open class Tween : RefCounted() {
 
   /**
    * Pauses the tweening. The animation can be resumed by using [play].
+   *
+   * **Note:** If a Tween is paused and not bound to any node, it will exist indefinitely until manually started or invalidated. If you lose a reference to such Tween, you can retrieve it using [godot.SceneTree.getProcessedTweens].
    */
   public fun pause(): Unit {
     TransferContext.writeArguments()

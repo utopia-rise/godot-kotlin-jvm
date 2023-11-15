@@ -275,6 +275,17 @@ public object Input : Object() {
   }
 
   /**
+   * Queries whether an input device should be ignored or not. Devices can be ignored by setting the environment variable `SDL_GAMECONTROLLER_IGNORE_DEVICES`. Read the [godot.SDL documentation](https://wiki.libsdl.org/SDL2) for more information.
+   *
+   * **Note:** Some 3rd party tools can contribute to the list of ignored devices. For example, *SteamInput* creates virtual devices from physical devices for remapping purposes. To avoid handling the same input device twice, the original device is added to the ignore list.
+   */
+  public fun shouldIgnoreDevice(vendorId: Int, productId: Int): Boolean {
+    TransferContext.writeArguments(LONG to vendorId.toLong(), LONG to productId.toLong())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SHOULD_IGNORE_DEVICE, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
    * Returns an [godot.Array] containing the device IDs of all currently connected joypads.
    */
   public fun getConnectedJoypads(): VariantArray<Long> {

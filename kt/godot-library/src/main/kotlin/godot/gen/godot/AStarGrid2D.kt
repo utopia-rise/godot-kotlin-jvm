@@ -63,7 +63,7 @@ import kotlin.jvm.JvmOverloads
  *
  * AStarGrid2D astarGrid = new AStarGrid2D();
  *
- * astarGrid.Size = new Vector2I(32, 32);
+ * astarGrid.Region = new Rect2I(0, 0, 32, 32);
  *
  * astarGrid.CellSize = new Vector2I(16, 16);
  *

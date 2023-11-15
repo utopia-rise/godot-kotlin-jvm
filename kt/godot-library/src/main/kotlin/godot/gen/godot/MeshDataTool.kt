@@ -35,6 +35,9 @@ import kotlin.Unit
 /**
  * Helper tool to access and edit [godot.Mesh] data.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/3d/procedural_geometry/meshdatatool.html]($DOCS_URL/tutorials/3d/procedural_geometry/meshdatatool.html)
+ *
  * MeshDataTool provides access to individual vertices in a [godot.Mesh]. It allows users to read and edit vertex data of meshes. It also creates an array of faces and edges.
  *
  * To use MeshDataTool, load a mesh with [createFromSurface]. When you are finished editing the data commit the data to a mesh with [commitToSurface].
@@ -416,9 +419,35 @@ public open class MeshDataTool : RefCounted() {
   }
 
   /**
-   * Returns the specified vertex of the given face.
+   * Returns the specified vertex index of the given face.
    *
    * Vertex argument must be either 0, 1, or 2 because faces contain three vertices.
+   *
+   * **Example:**
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var index = mesh_data_tool.get_face_vertex(0, 1) # Gets the index of the second vertex of the first face.
+   *
+   * var position = mesh_data_tool.get_vertex(index)
+   *
+   * var normal = mesh_data_tool.get_vertex_normal(index)
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * int index = meshDataTool.GetFaceVertex(0, 1); // Gets the index of the second vertex of the first face.
+   *
+   * Vector3 position = meshDataTool.GetVertex(index);
+   *
+   * Vector3 normal = meshDataTool.GetVertexNormal(index);
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    */
   public fun getFaceVertex(idx: Int, vertex: Int): Int {
     TransferContext.writeArguments(LONG to idx.toLong(), LONG to vertex.toLong())

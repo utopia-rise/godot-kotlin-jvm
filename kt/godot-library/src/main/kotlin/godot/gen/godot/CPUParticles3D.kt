@@ -34,6 +34,9 @@ import kotlin.Unit
 /**
  * CPU-based 3D particle emitter.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/3d/particles/index.html]($DOCS_URL/tutorials/3d/particles/index.html)
+ *
  * CPU-based 3D particle node used to create a variety of particle systems and effects.
  *
  * See also [godot.GPUParticles3D], which provides the same functionality with hardware acceleration, but may not run on older devices.

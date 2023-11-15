@@ -812,19 +812,19 @@ public open class Image : Resource() {
      */
     FORMAT_RGBAF(11),
     /**
-     * OpenGL texture format `GL_R32F` where there's one component, a 16-bit "half-precision" floating-point value.
+     * OpenGL texture format `GL_R16F` where there's one component, a 16-bit "half-precision" floating-point value.
      */
     FORMAT_RH(12),
     /**
-     * OpenGL texture format `GL_RG32F` where there are two components, each a 16-bit "half-precision" floating-point value.
+     * OpenGL texture format `GL_RG16F` where there are two components, each a 16-bit "half-precision" floating-point value.
      */
     FORMAT_RGH(13),
     /**
-     * OpenGL texture format `GL_RGB32F` where there are three components, each a 16-bit "half-precision" floating-point value.
+     * OpenGL texture format `GL_RGB16F` where there are three components, each a 16-bit "half-precision" floating-point value.
      */
     FORMAT_RGBH(14),
     /**
-     * OpenGL texture format `GL_RGBA32F` where there are four components, each a 16-bit "half-precision" floating-point value.
+     * OpenGL texture format `GL_RGBA16F` where there are four components, each a 16-bit "half-precision" floating-point value.
      */
     FORMAT_RGBAH(15),
     /**

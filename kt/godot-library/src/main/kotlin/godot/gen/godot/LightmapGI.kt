@@ -28,6 +28,9 @@ import kotlin.Unit
 /**
  * Computes and stores baked lightmaps for fast global illumination.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/3d/global_illumination/using_lightmap_gi.html]($DOCS_URL/tutorials/3d/global_illumination/using_lightmap_gi.html)
+ *
  * The [godot.LightmapGI] node is used to compute and store baked lightmaps. Lightmaps are used to provide high-quality indirect lighting with very little light leaking. [godot.LightmapGI] can also provide rough reflections using spherical harmonics if [directional] is enabled. Dynamic objects can receive indirect lighting thanks to *light probes*, which can be automatically placed by setting [generateProbesSubdiv] to a value other than [GENERATE_PROBES_DISABLED]. Additional lightmap probes can also be added by creating [godot.LightmapProbe] nodes. The downside is that lightmaps are fully static and cannot be baked in an exported project. Baking a [godot.LightmapGI] node is also slower compared to [godot.VoxelGI].
  *
  * **Procedural generation:** Lightmap baking functionality is only available in the editor. This means [godot.LightmapGI] is not suited to procedurally generated or user-built levels. For procedurally generated or user-built levels, use [godot.VoxelGI] or SDFGI instead (see [godot.Environment.sdfgiEnabled]).
@@ -399,6 +402,10 @@ public open class LightmapGI : VisualInstance3D() {
      * The user aborted the lightmap baking operation (typically by clicking the **Cancel** button in the progress dialog).
      */
     BAKE_ERROR_USER_ABORTED(8),
+    /**
+     * Lightmap baking failed as the maximum texture size is too small to fit some of the meshes marked for baking.
+     */
+    BAKE_ERROR_TEXTURE_SIZE_TOO_SMALL(9),
     ;
 
     public val id: Long

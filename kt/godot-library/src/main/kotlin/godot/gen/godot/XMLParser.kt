@@ -140,7 +140,7 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Check whether the current element is empty (this only works for completely empty tags, e.g. `<element \>`).
+   * Check whether the current element is empty (this only works for completely empty tags, e.g. `<element />`).
    */
   public fun isEmpty(): Boolean {
     TransferContext.writeArguments()

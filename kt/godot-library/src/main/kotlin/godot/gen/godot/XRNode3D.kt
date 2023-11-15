@@ -25,6 +25,9 @@ import kotlin.Unit
 /**
  * A spatial node that has its position automatically updated by the [godot.XRServer].
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/xr/index.html]($DOCS_URL/tutorials/xr/index.html)
+ *
  * This node can be bound to a specific pose of a [godot.XRPositionalTracker] and will automatically have its [godot.Node3D.transform] updated by the [godot.XRServer]. Nodes of this type must be added as children of the [godot.XROrigin3D] node.
  */
 @GodotBaseType

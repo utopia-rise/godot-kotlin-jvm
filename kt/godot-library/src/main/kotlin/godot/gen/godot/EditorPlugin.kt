@@ -37,6 +37,8 @@ import kotlin.jvm.JvmOverloads
  * [$DOCS_URL/tutorials/plugins/editor/index.html]($DOCS_URL/tutorials/plugins/editor/index.html)
  *
  * Plugins are used by the editor to extend functionality. The most common types of plugins are those which edit a given node or resource type, import plugins and export plugins. See also [godot.EditorScript] to add functions to the editor.
+ *
+ * **Note:** Some names in this class contain "left" or "right" (e.g. [DOCK_SLOT_LEFT_UL]). These APIs assume left-to-right layout, and would be backwards when using right-to-left layout. These names are kept for compatibility reasons.
  */
 @GodotBaseType
 public open class EditorPlugin internal constructor() : Node() {
@@ -1139,7 +1141,7 @@ public open class EditorPlugin internal constructor() : Node() {
      */
     DOCK_SLOT_LEFT_BR(3),
     /**
-     * Dock slot, right side, upper-left (empty in default layout).
+     * Dock slot, right side, upper-left (in default layout includes Inspector, Node, and History docks).
      */
     DOCK_SLOT_RIGHT_UL(4),
     /**
@@ -1147,7 +1149,7 @@ public open class EditorPlugin internal constructor() : Node() {
      */
     DOCK_SLOT_RIGHT_BL(5),
     /**
-     * Dock slot, right side, upper-right (in default layout includes Inspector, Node and History docks).
+     * Dock slot, right side, upper-right (empty in default layout).
      */
     DOCK_SLOT_RIGHT_UR(6),
     /**

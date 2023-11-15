@@ -52,12 +52,18 @@ import kotlin.Unit
 @GodotBaseType
 public open class NavigationAgent3D : Node() {
   /**
-   * Notifies when the navigation path changes.
+   * Emitted when the agent had to update the loaded path:
+   *
+   * - because path was previously empty.
+   *
+   * - because navigation map has changed.
+   *
+   * - because agent pushed further away from the current path segment than the [pathMaxDistance].
    */
   public val pathChanged: Signal0 by signal()
 
   /**
-   * Notifies when the player-defined [targetPosition] is reached.
+   * Emitted once per loaded path when the agent's global position is the first time within [targetDesiredDistance] to the [targetPosition].
    */
   public val targetReached: Signal0 by signal()
 
@@ -96,7 +102,7 @@ public open class NavigationAgent3D : Node() {
   public val linkReached: Signal1<Dictionary<Any?, Any?>> by signal("details")
 
   /**
-   * Notifies when the final position is reached.
+   * Emitted once per loaded path when the agent internal navigation path index reaches the last index of the loaded path array. The agent internal navigation path index can be received with [getCurrentNavigationPathIndex].
    */
   public val navigationFinished: Signal0 by signal()
 
@@ -722,7 +728,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns true if [targetPosition] is reachable. The target position is set using [targetPosition].
+   * Returns `true` if [getFinalPosition] is within [targetDesiredDistance] of the [targetPosition].
    */
   public fun isTargetReachable(): Boolean {
     TransferContext.writeArguments()
@@ -732,7 +738,9 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns true if the navigation path's final position has been reached.
+   * Returns `true` if the end of the currently loaded navigation path has been reached.
+   *
+   * **Note:** While true prefer to stop calling update functions like [getNextPathPosition]. This avoids jittering the standing agent due to calling repeated path updates.
    */
   public fun isNavigationFinished(): Boolean {
     TransferContext.writeArguments()
@@ -742,7 +750,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns the reachable final position of the current navigation path in global coordinates. This position can change if the navigation path is altered in any way. Because of this, it would be best to check this each frame.
+   * Returns the reachable final position of the current navigation path in global coordinates. This position can change if the agent needs to update the navigation path which makes the agent emit the [pathChanged] signal.
    */
   public fun getFinalPosition(): Vector3 {
     TransferContext.writeArguments()

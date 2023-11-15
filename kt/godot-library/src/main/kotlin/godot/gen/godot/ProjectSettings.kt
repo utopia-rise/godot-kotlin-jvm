@@ -267,9 +267,9 @@ public object ProjectSettings : Object() {
    *
    *     {"name", "category/propertyName"},
    *
-   *     {"type", Variant.Type.Int},
+   *     {"type", (int)Variant.Type.Int},
    *
-   *     {"hint", PropertyHint.Enum},
+   *     {"hint", (int)PropertyHint.Enum},
    *
    *     {"hint_string", "one,two,three"},
    *

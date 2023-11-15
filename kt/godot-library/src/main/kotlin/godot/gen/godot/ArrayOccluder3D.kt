@@ -22,6 +22,9 @@ import kotlin.jvm.JvmName
 /**
  * 3D polygon shape for use with occlusion culling in [godot.OccluderInstance3D].
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/3d/occlusion_culling.html]($DOCS_URL/tutorials/3d/occlusion_culling.html)
+ *
  * [godot.ArrayOccluder3D] stores an arbitrary 3D polygon shape that can be used by the engine's occlusion culling system. This is analogous to [godot.ArrayMesh], but for occluders.
  *
  * See [godot.OccluderInstance3D]'s documentation for instructions on setting up occlusion culling.
