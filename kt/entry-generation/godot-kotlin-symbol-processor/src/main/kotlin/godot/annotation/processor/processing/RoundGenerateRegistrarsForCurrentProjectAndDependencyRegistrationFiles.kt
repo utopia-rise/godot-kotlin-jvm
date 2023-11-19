@@ -69,7 +69,7 @@ internal class RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistration
                         )
                     )
 
-                registrationFile.path
+                registrationFile.invariantSeparatorsPath
             },
             classRegistrarAppendableProvider = { registeredClass ->
                 codeGenerator.createNewFile(
