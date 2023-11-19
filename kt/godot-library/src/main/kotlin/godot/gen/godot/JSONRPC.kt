@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
+import godot.core.TypeManager
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DICTIONARY
@@ -16,6 +17,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -42,7 +44,7 @@ public open class JSONRPC : Object() {
    */
   public fun setScope(scope: String, target: Object): Unit {
     TransferContext.writeArguments(STRING to scope, OBJECT to target)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_SET_SCOPE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setScopePtr, NIL)
   }
 
   /**
@@ -55,7 +57,7 @@ public open class JSONRPC : Object() {
   @JvmOverloads
   public fun processAction(action: Any?, recurse: Boolean = false): Any? {
     TransferContext.writeArguments(ANY to action, BOOL to recurse)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_PROCESS_ACTION, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.processActionPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -64,7 +66,7 @@ public open class JSONRPC : Object() {
    */
   public fun processString(action: String): String {
     TransferContext.writeArguments(STRING to action)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_PROCESS_STRING, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.processStringPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -83,7 +85,7 @@ public open class JSONRPC : Object() {
     id: Any?,
   ): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to method, ANY to params, ANY to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_REQUEST, DICTIONARY)
+    TransferContext.callMethod(rawPtr, MethodBindings.makeRequestPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
@@ -96,7 +98,7 @@ public open class JSONRPC : Object() {
    */
   public fun makeResponse(result: Any?, id: Any?): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(ANY to result, ANY to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_RESPONSE, DICTIONARY)
+    TransferContext.callMethod(rawPtr, MethodBindings.makeResponsePtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
@@ -109,8 +111,7 @@ public open class JSONRPC : Object() {
    */
   public fun makeNotification(method: String, params: Any?): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to method, ANY to params)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_NOTIFICATION,
-        DICTIONARY)
+    TransferContext.callMethod(rawPtr, MethodBindings.makeNotificationPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
@@ -130,8 +131,7 @@ public open class JSONRPC : Object() {
     id: Any? = null,
   ): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to code.toLong(), STRING to message, ANY to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_RESPONSE_ERROR,
-        DICTIONARY)
+    TransferContext.callMethod(rawPtr, MethodBindings.makeResponseErrorPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
@@ -171,4 +171,22 @@ public open class JSONRPC : Object() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setScopePtr: VoidPtr = TypeManager.getMethodBindPtr("JSONRPC", "set_scope")
+
+    public val processActionPtr: VoidPtr = TypeManager.getMethodBindPtr("JSONRPC", "process_action")
+
+    public val processStringPtr: VoidPtr = TypeManager.getMethodBindPtr("JSONRPC", "process_string")
+
+    public val makeRequestPtr: VoidPtr = TypeManager.getMethodBindPtr("JSONRPC", "make_request")
+
+    public val makeResponsePtr: VoidPtr = TypeManager.getMethodBindPtr("JSONRPC", "make_response")
+
+    public val makeNotificationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JSONRPC", "make_notification")
+
+    public val makeResponseErrorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JSONRPC", "make_response_error")
+  }
 }

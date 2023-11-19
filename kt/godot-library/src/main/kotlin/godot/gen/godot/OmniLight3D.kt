@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -35,12 +37,12 @@ public open class OmniLight3D : Light3D() {
   public var omniShadowMode: ShadowMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OMNILIGHT3D_GET_SHADOW_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getShadowModePtr, LONG)
       return OmniLight3D.ShadowMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OMNILIGHT3D_SET_SHADOW_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShadowModePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -72,4 +74,12 @@ public open class OmniLight3D : Light3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setShadowModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OmniLight3D", "set_shadow_mode")
+
+    public val getShadowModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OmniLight3D", "get_shadow_mode")
+  }
 }

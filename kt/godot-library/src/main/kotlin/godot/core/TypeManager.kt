@@ -1,6 +1,7 @@
 package godot.core
 
 import godot.Object
+import godot.util.VoidPtr
 import kotlin.reflect.KClass
 
 internal object TypeManager {
@@ -11,7 +12,6 @@ internal object TypeManager {
     val engineTypeNames = LinkedHashSet<String>()
     val engineSingletonsNames = LinkedHashSet<String>()
     val engineTypesConstructors = mutableListOf<() -> KtObject>()
-    val engineTypeMethod = mutableListOf<Pair<Int, String>>()
 
     fun registerUserType(className: String, kclass: KClass<out KtObject>) {
         userTypes.add(className)
@@ -36,4 +36,6 @@ internal object TypeManager {
         userTypeToId.clear()
         userTypes.clear()
     }
+
+    internal external fun getMethodBindPtr(className: String, methodName: String): VoidPtr
 }

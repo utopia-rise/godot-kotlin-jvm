@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -38,14 +40,12 @@ public open class AudioEffectDistortion : AudioEffect() {
   public var mode: Mode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_GET_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
       return AudioEffectDistortion.Mode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_SET_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
     }
 
   /**
@@ -54,14 +54,12 @@ public open class AudioEffectDistortion : AudioEffect() {
   public var preGain: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_GET_PRE_GAIN, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPreGainPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_SET_PRE_GAIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPreGainPtr, NIL)
     }
 
   /**
@@ -70,14 +68,12 @@ public open class AudioEffectDistortion : AudioEffect() {
   public var keepHfHz: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_GET_KEEP_HF_HZ, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getKeepHfHzPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_SET_KEEP_HF_HZ, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setKeepHfHzPtr, NIL)
     }
 
   /**
@@ -86,14 +82,12 @@ public open class AudioEffectDistortion : AudioEffect() {
   public var drive: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_GET_DRIVE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDrivePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_SET_DRIVE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDrivePtr, NIL)
     }
 
   /**
@@ -102,14 +96,12 @@ public open class AudioEffectDistortion : AudioEffect() {
   public var postGain: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_GET_POST_GAIN, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPostGainPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_SET_POST_GAIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPostGainPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -153,4 +145,36 @@ public open class AudioEffectDistortion : AudioEffect() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_mode")
+
+    public val getModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_mode")
+
+    public val setPreGainPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_pre_gain")
+
+    public val getPreGainPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_pre_gain")
+
+    public val setKeepHfHzPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_keep_hf_hz")
+
+    public val getKeepHfHzPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_keep_hf_hz")
+
+    public val setDrivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_drive")
+
+    public val getDrivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_drive")
+
+    public val setPostGainPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_post_gain")
+
+    public val getPostGainPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_post_gain")
+  }
 }

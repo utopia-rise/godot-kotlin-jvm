@@ -9,10 +9,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -34,12 +36,12 @@ public open class BoxOccluder3D : Occluder3D() {
   public var size: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXOCCLUDER3D_GET_SIZE, VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXOCCLUDER3D_SET_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -72,4 +74,10 @@ public open class BoxOccluder3D : Occluder3D() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("BoxOccluder3D", "set_size")
+
+    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("BoxOccluder3D", "get_size")
+  }
 }

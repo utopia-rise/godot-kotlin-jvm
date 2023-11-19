@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.NodePath
+import godot.core.TypeManager
 import godot.core.VariantType.ANY
 import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.LONG
@@ -19,6 +20,7 @@ import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -37,40 +39,34 @@ public open class MultiplayerSpawner : Node() {
   public var spawnPath: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_SPAWN_PATH,
-          NODE_PATH)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSpawnPathPtr, NODE_PATH)
       return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_SPAWN_PATH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSpawnPathPtr, NIL)
     }
 
   public var spawnLimit: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_SPAWN_LIMIT, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSpawnLimitPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_SPAWN_LIMIT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSpawnLimitPtr, NIL)
     }
 
   public var spawnFunction: Callable
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_SPAWN_FUNCTION, CALLABLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSpawnFunctionPtr, CALLABLE)
       return (TransferContext.readReturnValue(CALLABLE, false) as Callable)
     }
     set(`value`) {
       TransferContext.writeArguments(CALLABLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_SPAWN_FUNCTION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSpawnFunctionPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -80,36 +76,66 @@ public open class MultiplayerSpawner : Node() {
 
   public fun addSpawnableScene(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_ADD_SPAWNABLE_SCENE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addSpawnableScenePtr, NIL)
   }
 
   public fun getSpawnableSceneCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_SPAWNABLE_SCENE_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSpawnableSceneCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public fun getSpawnableScene(index: Int): String {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_SPAWNABLE_SCENE, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSpawnableScenePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public fun clearSpawnableScenes(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_CLEAR_SPAWNABLE_SCENES, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearSpawnableScenesPtr, NIL)
   }
 
   @JvmOverloads
   public fun spawn(`data`: Any? = null): Node? {
     TransferContext.writeArguments(ANY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SPAWN, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.spawnPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Node?)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val addSpawnableScenePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerSpawner", "add_spawnable_scene")
+
+    public val getSpawnableSceneCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerSpawner", "get_spawnable_scene_count")
+
+    public val getSpawnableScenePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerSpawner", "get_spawnable_scene")
+
+    public val clearSpawnableScenesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerSpawner", "clear_spawnable_scenes")
+
+    public val spawnPtr: VoidPtr = TypeManager.getMethodBindPtr("MultiplayerSpawner", "spawn")
+
+    public val getSpawnPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerSpawner", "get_spawn_path")
+
+    public val setSpawnPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerSpawner", "set_spawn_path")
+
+    public val getSpawnLimitPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerSpawner", "get_spawn_limit")
+
+    public val setSpawnLimitPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerSpawner", "set_spawn_limit")
+
+    public val getSpawnFunctionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerSpawner", "get_spawn_function")
+
+    public val setSpawnFunctionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerSpawner", "set_spawn_function")
+  }
 }

@@ -8,11 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -43,7 +45,7 @@ public open class StreamPeerTCP : StreamPeer() {
   @JvmOverloads
   public fun bind(port: Int, host: String = "*"): GodotError {
     TransferContext.writeArguments(LONG to port.toLong(), STRING to host)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_BIND, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.bindPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -52,7 +54,7 @@ public open class StreamPeerTCP : StreamPeer() {
    */
   public fun connectToHost(host: String, port: Int): GodotError {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_CONNECT_TO_HOST, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.connectToHostPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -61,7 +63,7 @@ public open class StreamPeerTCP : StreamPeer() {
    */
   public fun poll(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_POLL, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.pollPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -70,7 +72,7 @@ public open class StreamPeerTCP : StreamPeer() {
    */
   public fun getStatus(): Status {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_STATUS, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getStatusPtr, LONG)
     return StreamPeerTCP.Status.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -79,8 +81,7 @@ public open class StreamPeerTCP : StreamPeer() {
    */
   public fun getConnectedHost(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_CONNECTED_HOST,
-        STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getConnectedHostPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -89,8 +90,7 @@ public open class StreamPeerTCP : StreamPeer() {
    */
   public fun getConnectedPort(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_CONNECTED_PORT,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getConnectedPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -99,7 +99,7 @@ public open class StreamPeerTCP : StreamPeer() {
    */
   public fun getLocalPort(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_LOCAL_PORT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getLocalPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -108,8 +108,7 @@ public open class StreamPeerTCP : StreamPeer() {
    */
   public fun disconnectFromHost(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_DISCONNECT_FROM_HOST,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.disconnectFromHostPtr, NIL)
   }
 
   /**
@@ -119,7 +118,7 @@ public open class StreamPeerTCP : StreamPeer() {
    */
   public fun setNoDelay(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_SET_NO_DELAY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNoDelayPtr, NIL)
   }
 
   public enum class Status(
@@ -154,4 +153,30 @@ public open class StreamPeerTCP : StreamPeer() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val bindPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerTCP", "bind")
+
+    public val connectToHostPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeerTCP", "connect_to_host")
+
+    public val pollPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerTCP", "poll")
+
+    public val getStatusPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerTCP", "get_status")
+
+    public val getConnectedHostPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_connected_host")
+
+    public val getConnectedPortPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_connected_port")
+
+    public val getLocalPortPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_local_port")
+
+    public val disconnectFromHostPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeerTCP", "disconnect_from_host")
+
+    public val setNoDelayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeerTCP", "set_no_delay")
+  }
 }

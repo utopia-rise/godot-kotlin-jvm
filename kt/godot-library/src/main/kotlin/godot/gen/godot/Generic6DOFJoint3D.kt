@@ -7,11 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -39,7 +41,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun setParamX(`param`: Param, `value`: Float): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_SET_PARAM_X, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setParamXPtr, NIL)
   }
 
   /**
@@ -47,8 +49,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun getParamX(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_GET_PARAM_X,
-        DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getParamXPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -57,7 +58,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun setParamY(`param`: Param, `value`: Float): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_SET_PARAM_Y, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setParamYPtr, NIL)
   }
 
   /**
@@ -65,8 +66,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun getParamY(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_GET_PARAM_Y,
-        DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getParamYPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -75,7 +75,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun setParamZ(`param`: Param, `value`: Float): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_SET_PARAM_Z, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setParamZPtr, NIL)
   }
 
   /**
@@ -83,8 +83,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun getParamZ(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_GET_PARAM_Z,
-        DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getParamZPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -93,7 +92,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun setFlagX(flag: Flag, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_SET_FLAG_X, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFlagXPtr, NIL)
   }
 
   /**
@@ -101,7 +100,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun getFlagX(flag: Flag): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_GET_FLAG_X, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFlagXPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -110,7 +109,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun setFlagY(flag: Flag, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_SET_FLAG_Y, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFlagYPtr, NIL)
   }
 
   /**
@@ -118,7 +117,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun getFlagY(flag: Flag): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_GET_FLAG_Y, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFlagYPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -127,7 +126,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun setFlagZ(flag: Flag, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_SET_FLAG_Z, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFlagZPtr, NIL)
   }
 
   /**
@@ -135,7 +134,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
    */
   public fun getFlagZ(flag: Flag): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT3D_GET_FLAG_Z, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFlagZPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -290,4 +289,42 @@ public open class Generic6DOFJoint3D : Joint3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setParamXPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "set_param_x")
+
+    public val getParamXPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "get_param_x")
+
+    public val setParamYPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "set_param_y")
+
+    public val getParamYPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "get_param_y")
+
+    public val setParamZPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "set_param_z")
+
+    public val getParamZPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "get_param_z")
+
+    public val setFlagXPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "set_flag_x")
+
+    public val getFlagXPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "get_flag_x")
+
+    public val setFlagYPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "set_flag_y")
+
+    public val getFlagYPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "get_flag_y")
+
+    public val setFlagZPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "set_flag_z")
+
+    public val getFlagZPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "get_flag_z")
+  }
 }

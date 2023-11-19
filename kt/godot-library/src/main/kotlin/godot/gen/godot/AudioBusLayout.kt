@@ -24,4 +24,6 @@ public open class AudioBusLayout : Resource() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

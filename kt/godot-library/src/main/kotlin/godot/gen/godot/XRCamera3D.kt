@@ -29,4 +29,6 @@ public open class XRCamera3D : Camera3D() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

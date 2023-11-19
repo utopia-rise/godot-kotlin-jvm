@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -28,14 +30,12 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
   public var source: Source
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODESAMPLE3D_GET_SOURCE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSourcePtr, LONG)
       return VisualShaderNodeSample3D.Source.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODESAMPLE3D_SET_SOURCE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSourcePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -71,4 +71,12 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setSourcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeSample3D", "set_source")
+
+    public val getSourcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeSample3D", "get_source")
+  }
 }

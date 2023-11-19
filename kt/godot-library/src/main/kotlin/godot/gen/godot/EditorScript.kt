@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -90,7 +92,7 @@ public open class EditorScript internal constructor() : RefCounted() {
    */
   public fun addRootNode(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSCRIPT_ADD_ROOT_NODE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addRootNodePtr, NIL)
   }
 
   /**
@@ -98,7 +100,7 @@ public open class EditorScript internal constructor() : RefCounted() {
    */
   public fun getScene(): Node? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSCRIPT_GET_SCENE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getScenePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Node?)
   }
 
@@ -107,10 +109,21 @@ public open class EditorScript internal constructor() : RefCounted() {
    */
   public fun getEditorInterface(): EditorInterface? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSCRIPT_GET_EDITOR_INTERFACE,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getEditorInterfacePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as EditorInterface?)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _runPtr: VoidPtr = TypeManager.getMethodBindPtr("EditorScript", "_run")
+
+    public val addRootNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorScript", "add_root_node")
+
+    public val getScenePtr: VoidPtr = TypeManager.getMethodBindPtr("EditorScript", "get_scene")
+
+    public val getEditorInterfacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorScript", "get_editor_interface")
+  }
 }

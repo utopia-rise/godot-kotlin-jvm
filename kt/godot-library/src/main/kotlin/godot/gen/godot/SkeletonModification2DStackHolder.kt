@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -34,8 +36,7 @@ public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
    */
   public fun setHeldModificationStack(heldModificationStack: SkeletonModificationStack2D): Unit {
     TransferContext.writeArguments(OBJECT to heldModificationStack)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DSTACKHOLDER_SET_HELD_MODIFICATION_STACK, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHeldModificationStackPtr, NIL)
   }
 
   /**
@@ -43,11 +44,17 @@ public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
    */
   public fun getHeldModificationStack(): SkeletonModificationStack2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DSTACKHOLDER_GET_HELD_MODIFICATION_STACK,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getHeldModificationStackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as SkeletonModificationStack2D?)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setHeldModificationStackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DStackHolder", "set_held_modification_stack")
+
+    public val getHeldModificationStackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DStackHolder", "get_held_modification_stack")
+  }
 }

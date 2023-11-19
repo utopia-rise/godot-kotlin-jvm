@@ -7,12 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
@@ -84,8 +86,12 @@ public open class ScriptCreateDialog internal constructor() : ConfirmationDialog
     loadEnabled: Boolean = true,
   ): Unit {
     TransferContext.writeArguments(STRING to inherits, STRING to path, BOOL to builtInEnabled, BOOL to loadEnabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTCREATEDIALOG_CONFIG, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.configPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val configPtr: VoidPtr = TypeManager.getMethodBindPtr("ScriptCreateDialog", "config")
+  }
 }

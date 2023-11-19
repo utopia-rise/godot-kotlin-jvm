@@ -10,11 +10,13 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -52,8 +54,7 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
     get() = super.getAabb()
     set(`value`) {
       TransferContext.writeArguments(godot.core.VariantType.AABB to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENNOTIFIER3D_SET_AABB, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAabbPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -92,10 +93,17 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
    */
   public fun isOnScreen(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENNOTIFIER3D_IS_ON_SCREEN, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isOnScreenPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier3D", "set_aabb")
+
+    public val isOnScreenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier3D", "is_on_screen")
+  }
 }

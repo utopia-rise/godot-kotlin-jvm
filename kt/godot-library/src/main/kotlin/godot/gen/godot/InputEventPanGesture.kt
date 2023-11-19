@@ -9,10 +9,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -35,14 +37,12 @@ public open class InputEventPanGesture : InputEventGesture() {
   public var delta: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTPANGESTURE_GET_DELTA,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDeltaPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTPANGESTURE_SET_DELTA,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDeltaPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -75,4 +75,12 @@ public open class InputEventPanGesture : InputEventGesture() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setDeltaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventPanGesture", "set_delta")
+
+    public val getDeltaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventPanGesture", "get_delta")
+  }
 }

@@ -17,10 +17,12 @@ import godot.core.PackedVector2Array
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.Transform2D
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.Vector3i
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -1569,4 +1571,593 @@ public open class TextServerExtension : TextServer() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _hasFeaturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_has_feature")
+
+    public val _getNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_get_name")
+
+    public val _getFeaturesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_get_features")
+
+    public val _freeRidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_free_rid")
+
+    public val _hasPtr: VoidPtr = TypeManager.getMethodBindPtr("TextServerExtension", "_has")
+
+    public val _loadSupportDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_load_support_data")
+
+    public val _getSupportDataFilenamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_get_support_data_filename")
+
+    public val _getSupportDataInfoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_get_support_data_info")
+
+    public val _saveSupportDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_save_support_data")
+
+    public val _isLocaleRightToLeftPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_is_locale_right_to_left")
+
+    public val _nameToTagPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_name_to_tag")
+
+    public val _tagToNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_tag_to_name")
+
+    public val _createFontPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_create_font")
+
+    public val _fontSetDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_data")
+
+    public val _fontSetDataPtrPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_data_ptr")
+
+    public val _fontSetFaceIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_face_index")
+
+    public val _fontGetFaceIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_face_index")
+
+    public val _fontGetFaceCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_face_count")
+
+    public val _fontSetStylePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_style")
+
+    public val _fontGetStylePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_style")
+
+    public val _fontSetNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_name")
+
+    public val _fontGetNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_name")
+
+    public val _fontGetOtNameStringsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_ot_name_strings")
+
+    public val _fontSetStyleNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_style_name")
+
+    public val _fontGetStyleNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_style_name")
+
+    public val _fontSetWeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_weight")
+
+    public val _fontGetWeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_weight")
+
+    public val _fontSetStretchPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_stretch")
+
+    public val _fontGetStretchPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_stretch")
+
+    public val _fontSetAntialiasingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_antialiasing")
+
+    public val _fontGetAntialiasingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_antialiasing")
+
+    public val _fontSetGenerateMipmapsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_generate_mipmaps")
+
+    public val _fontGetGenerateMipmapsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_generate_mipmaps")
+
+    public val _fontSetMultichannelSignedDistanceFieldPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_multichannel_signed_distance_field")
+
+    public val _fontIsMultichannelSignedDistanceFieldPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_is_multichannel_signed_distance_field")
+
+    public val _fontSetMsdfPixelRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_msdf_pixel_range")
+
+    public val _fontGetMsdfPixelRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_msdf_pixel_range")
+
+    public val _fontSetMsdfSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_msdf_size")
+
+    public val _fontGetMsdfSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_msdf_size")
+
+    public val _fontSetFixedSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_fixed_size")
+
+    public val _fontGetFixedSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_fixed_size")
+
+    public val _fontSetAllowSystemFallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_allow_system_fallback")
+
+    public val _fontIsAllowSystemFallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_is_allow_system_fallback")
+
+    public val _fontSetForceAutohinterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_force_autohinter")
+
+    public val _fontIsForceAutohinterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_is_force_autohinter")
+
+    public val _fontSetHintingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_hinting")
+
+    public val _fontGetHintingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_hinting")
+
+    public val _fontSetSubpixelPositioningPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_subpixel_positioning")
+
+    public val _fontGetSubpixelPositioningPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_subpixel_positioning")
+
+    public val _fontSetEmboldenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_embolden")
+
+    public val _fontGetEmboldenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_embolden")
+
+    public val _fontSetTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_transform")
+
+    public val _fontGetTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_transform")
+
+    public val _fontSetVariationCoordinatesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_variation_coordinates")
+
+    public val _fontGetVariationCoordinatesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_variation_coordinates")
+
+    public val _fontSetOversamplingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_oversampling")
+
+    public val _fontGetOversamplingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_oversampling")
+
+    public val _fontGetSizeCacheListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_size_cache_list")
+
+    public val _fontClearSizeCachePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_clear_size_cache")
+
+    public val _fontRemoveSizeCachePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_remove_size_cache")
+
+    public val _fontSetAscentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_ascent")
+
+    public val _fontGetAscentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_ascent")
+
+    public val _fontSetDescentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_descent")
+
+    public val _fontGetDescentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_descent")
+
+    public val _fontSetUnderlinePositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_underline_position")
+
+    public val _fontGetUnderlinePositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_underline_position")
+
+    public val _fontSetUnderlineThicknessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_underline_thickness")
+
+    public val _fontGetUnderlineThicknessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_underline_thickness")
+
+    public val _fontSetScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_scale")
+
+    public val _fontGetScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_scale")
+
+    public val _fontGetTextureCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_texture_count")
+
+    public val _fontClearTexturesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_clear_textures")
+
+    public val _fontRemoveTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_remove_texture")
+
+    public val _fontSetTextureImagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_texture_image")
+
+    public val _fontGetTextureImagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_texture_image")
+
+    public val _fontSetTextureOffsetsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_texture_offsets")
+
+    public val _fontGetTextureOffsetsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_texture_offsets")
+
+    public val _fontGetGlyphListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_glyph_list")
+
+    public val _fontClearGlyphsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_clear_glyphs")
+
+    public val _fontRemoveGlyphPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_remove_glyph")
+
+    public val _fontGetGlyphAdvancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_glyph_advance")
+
+    public val _fontSetGlyphAdvancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_glyph_advance")
+
+    public val _fontGetGlyphOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_glyph_offset")
+
+    public val _fontSetGlyphOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_glyph_offset")
+
+    public val _fontGetGlyphSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_glyph_size")
+
+    public val _fontSetGlyphSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_glyph_size")
+
+    public val _fontGetGlyphUvRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_glyph_uv_rect")
+
+    public val _fontSetGlyphUvRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_glyph_uv_rect")
+
+    public val _fontGetGlyphTextureIdxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_glyph_texture_idx")
+
+    public val _fontSetGlyphTextureIdxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_glyph_texture_idx")
+
+    public val _fontGetGlyphTextureRidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_glyph_texture_rid")
+
+    public val _fontGetGlyphTextureSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_glyph_texture_size")
+
+    public val _fontGetGlyphContoursPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_glyph_contours")
+
+    public val _fontGetKerningListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_kerning_list")
+
+    public val _fontClearKerningMapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_clear_kerning_map")
+
+    public val _fontRemoveKerningPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_remove_kerning")
+
+    public val _fontSetKerningPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_kerning")
+
+    public val _fontGetKerningPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_kerning")
+
+    public val _fontGetGlyphIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_glyph_index")
+
+    public val _fontGetCharFromGlyphIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_char_from_glyph_index")
+
+    public val _fontHasCharPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_has_char")
+
+    public val _fontGetSupportedCharsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_supported_chars")
+
+    public val _fontRenderRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_render_range")
+
+    public val _fontRenderGlyphPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_render_glyph")
+
+    public val _fontDrawGlyphPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_draw_glyph")
+
+    public val _fontDrawGlyphOutlinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_draw_glyph_outline")
+
+    public val _fontIsLanguageSupportedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_is_language_supported")
+
+    public val _fontSetLanguageSupportOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_language_support_override")
+
+    public val _fontGetLanguageSupportOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_language_support_override")
+
+    public val _fontRemoveLanguageSupportOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_remove_language_support_override")
+
+    public val _fontGetLanguageSupportOverridesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_language_support_overrides")
+
+    public val _fontIsScriptSupportedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_is_script_supported")
+
+    public val _fontSetScriptSupportOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_script_support_override")
+
+    public val _fontGetScriptSupportOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_script_support_override")
+
+    public val _fontRemoveScriptSupportOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_remove_script_support_override")
+
+    public val _fontGetScriptSupportOverridesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_script_support_overrides")
+
+    public val _fontSetOpentypeFeatureOverridesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_opentype_feature_overrides")
+
+    public val _fontGetOpentypeFeatureOverridesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_opentype_feature_overrides")
+
+    public val _fontSupportedFeatureListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_supported_feature_list")
+
+    public val _fontSupportedVariationListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_supported_variation_list")
+
+    public val _fontGetGlobalOversamplingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_global_oversampling")
+
+    public val _fontSetGlobalOversamplingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_global_oversampling")
+
+    public val _getHexCodeBoxSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_get_hex_code_box_size")
+
+    public val _drawHexCodeBoxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_draw_hex_code_box")
+
+    public val _createShapedTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_create_shaped_text")
+
+    public val _shapedTextClearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_clear")
+
+    public val _shapedTextSetDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_set_direction")
+
+    public val _shapedTextGetDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_direction")
+
+    public val _shapedTextGetInferredDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_inferred_direction")
+
+    public val _shapedTextSetBidiOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_set_bidi_override")
+
+    public val _shapedTextSetCustomPunctuationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_set_custom_punctuation")
+
+    public val _shapedTextGetCustomPunctuationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_custom_punctuation")
+
+    public val _shapedTextSetOrientationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_set_orientation")
+
+    public val _shapedTextGetOrientationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_orientation")
+
+    public val _shapedTextSetPreserveInvalidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_set_preserve_invalid")
+
+    public val _shapedTextGetPreserveInvalidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_preserve_invalid")
+
+    public val _shapedTextSetPreserveControlPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_set_preserve_control")
+
+    public val _shapedTextGetPreserveControlPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_preserve_control")
+
+    public val _shapedTextSetSpacingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_set_spacing")
+
+    public val _shapedTextGetSpacingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_spacing")
+
+    public val _shapedTextAddStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_add_string")
+
+    public val _shapedTextAddObjectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_add_object")
+
+    public val _shapedTextResizeObjectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_resize_object")
+
+    public val _shapedGetSpanCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_get_span_count")
+
+    public val _shapedGetSpanMetaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_get_span_meta")
+
+    public val _shapedSetSpanUpdateFontPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_set_span_update_font")
+
+    public val _shapedTextSubstrPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_substr")
+
+    public val _shapedTextGetParentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_parent")
+
+    public val _shapedTextFitToWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_fit_to_width")
+
+    public val _shapedTextTabAlignPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_tab_align")
+
+    public val _shapedTextShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_shape")
+
+    public val _shapedTextUpdateBreaksPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_update_breaks")
+
+    public val _shapedTextUpdateJustificationOpsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_update_justification_ops")
+
+    public val _shapedTextIsReadyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_is_ready")
+
+    public val _shapedTextGetGlyphsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_glyphs")
+
+    public val _shapedTextSortLogicalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_sort_logical")
+
+    public val _shapedTextGetGlyphCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_glyph_count")
+
+    public val _shapedTextGetRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_range")
+
+    public val _shapedTextGetLineBreaksAdvPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_line_breaks_adv")
+
+    public val _shapedTextGetLineBreaksPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_line_breaks")
+
+    public val _shapedTextGetWordBreaksPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_word_breaks")
+
+    public val _shapedTextGetTrimPosPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_trim_pos")
+
+    public val _shapedTextGetEllipsisPosPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_ellipsis_pos")
+
+    public val _shapedTextGetEllipsisGlyphCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_ellipsis_glyph_count")
+
+    public val _shapedTextGetEllipsisGlyphsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_ellipsis_glyphs")
+
+    public val _shapedTextOverrunTrimToWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_overrun_trim_to_width")
+
+    public val _shapedTextGetObjectsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_objects")
+
+    public val _shapedTextGetObjectRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_object_rect")
+
+    public val _shapedTextGetSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_size")
+
+    public val _shapedTextGetAscentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_ascent")
+
+    public val _shapedTextGetDescentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_descent")
+
+    public val _shapedTextGetWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_width")
+
+    public val _shapedTextGetUnderlinePositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_underline_position")
+
+    public val _shapedTextGetUnderlineThicknessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_underline_thickness")
+
+    public val _shapedTextGetDominantDirectionInRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_dominant_direction_in_range")
+
+    public val _shapedTextGetCaretsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_carets")
+
+    public val _shapedTextGetSelectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_selection")
+
+    public val _shapedTextHitTestGraphemePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_hit_test_grapheme")
+
+    public val _shapedTextHitTestPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_hit_test_position")
+
+    public val _shapedTextDrawPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_draw")
+
+    public val _shapedTextDrawOutlinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_draw_outline")
+
+    public val _shapedTextGetGraphemeBoundsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_grapheme_bounds")
+
+    public val _shapedTextNextGraphemePosPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_next_grapheme_pos")
+
+    public val _shapedTextPrevGraphemePosPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_prev_grapheme_pos")
+
+    public val _formatNumberPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_format_number")
+
+    public val _parseNumberPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_parse_number")
+
+    public val _percentSignPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_percent_sign")
+
+    public val _stripDiacriticsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_strip_diacritics")
+
+    public val _isValidIdentifierPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_is_valid_identifier")
+
+    public val _stringGetWordBreaksPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_string_get_word_breaks")
+
+    public val _isConfusablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_is_confusable")
+
+    public val _spoofCheckPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_spoof_check")
+
+    public val _stringToUpperPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_string_to_upper")
+
+    public val _stringToLowerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_string_to_lower")
+
+    public val _parseStructuredTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_parse_structured_text")
+
+    public val _cleanupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_cleanup")
+  }
 }

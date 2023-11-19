@@ -7,12 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -40,14 +42,12 @@ public open class SplitContainer : Container() {
   public var splitOffset: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_GET_SPLIT_OFFSET,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSplitOffsetPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_SPLIT_OFFSET,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSplitOffsetPtr, NIL)
     }
 
   /**
@@ -56,12 +56,12 @@ public open class SplitContainer : Container() {
   public var collapsed: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_IS_COLLAPSED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isCollapsedPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_COLLAPSED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCollapsedPtr, NIL)
     }
 
   /**
@@ -70,14 +70,12 @@ public open class SplitContainer : Container() {
   public var draggerVisibility: DraggerVisibility
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_GET_DRAGGER_VISIBILITY, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDraggerVisibilityPtr, LONG)
       return SplitContainer.DraggerVisibility.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_DRAGGER_VISIBILITY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDraggerVisibilityPtr, NIL)
     }
 
   /**
@@ -88,12 +86,12 @@ public open class SplitContainer : Container() {
   public var vertical: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_IS_VERTICAL, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_VERTICAL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -106,8 +104,7 @@ public open class SplitContainer : Container() {
    */
   public fun clampSplitOffset(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_CLAMP_SPLIT_OFFSET,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clampSplitOffsetPtr, NIL)
   }
 
   public enum class DraggerVisibility(
@@ -138,4 +135,33 @@ public open class SplitContainer : Container() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setSplitOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "set_split_offset")
+
+    public val getSplitOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "get_split_offset")
+
+    public val clampSplitOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "clamp_split_offset")
+
+    public val setCollapsedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "set_collapsed")
+
+    public val isCollapsedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "is_collapsed")
+
+    public val setDraggerVisibilityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "set_dragger_visibility")
+
+    public val getDraggerVisibilityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "get_dragger_visibility")
+
+    public val setVerticalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "set_vertical")
+
+    public val isVerticalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "is_vertical")
+  }
 }

@@ -10,12 +10,14 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -39,14 +41,12 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   public var map: RID
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_GET_MAP, _RID)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMapPtr, _RID)
       return (TransferContext.readReturnValue(_RID, false) as RID)
     }
     set(`value`) {
       TransferContext.writeArguments(_RID to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_SET_MAP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMapPtr, NIL)
     }
 
   /**
@@ -56,14 +56,12 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   public var startPosition: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_GET_START_POSITION, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getStartPositionPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_SET_START_POSITION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setStartPositionPtr, NIL)
     }
 
   /**
@@ -73,14 +71,12 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   public var targetPosition: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_GET_TARGET_POSITION, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTargetPositionPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_SET_TARGET_POSITION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTargetPositionPtr, NIL)
     }
 
   /**
@@ -89,14 +85,12 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   public var navigationLayers: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_GET_NAVIGATION_LAYERS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_SET_NAVIGATION_LAYERS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayersPtr, NIL)
     }
 
   /**
@@ -105,14 +99,12 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   public var pathfindingAlgorithm: PathfindingAlgorithm
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_GET_PATHFINDING_ALGORITHM, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPathfindingAlgorithmPtr, LONG)
       return NavigationPathQueryParameters2D.PathfindingAlgorithm.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_SET_PATHFINDING_ALGORITHM, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPathfindingAlgorithmPtr, NIL)
     }
 
   /**
@@ -121,14 +113,12 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   public var pathPostprocessing: PathPostProcessing
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_GET_PATH_POSTPROCESSING, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPathPostprocessingPtr, LONG)
       return NavigationPathQueryParameters2D.PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_SET_PATH_POSTPROCESSING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPathPostprocessingPtr, NIL)
     }
 
   /**
@@ -137,14 +127,12 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   public var metadataFlags: PathMetadataFlags
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_GET_METADATA_FLAGS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMetadataFlagsPtr, LONG)
       return PathMetadataFlagsValue(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.flag)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D_SET_METADATA_FLAGS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMetadataFlagsPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -321,6 +309,50 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   ) : PathMetadataFlags
 
   public companion object
+
+  internal object MethodBindings {
+    public val setPathfindingAlgorithmPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "set_pathfinding_algorithm")
+
+    public val getPathfindingAlgorithmPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "get_pathfinding_algorithm")
+
+    public val setPathPostprocessingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "set_path_postprocessing")
+
+    public val getPathPostprocessingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "get_path_postprocessing")
+
+    public val setMapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "set_map")
+
+    public val getMapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "get_map")
+
+    public val setStartPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "set_start_position")
+
+    public val getStartPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "get_start_position")
+
+    public val setTargetPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "set_target_position")
+
+    public val getTargetPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "get_target_position")
+
+    public val setNavigationLayersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "set_navigation_layers")
+
+    public val getNavigationLayersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "get_navigation_layers")
+
+    public val setMetadataFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "set_metadata_flags")
+
+    public val getMetadataFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "get_metadata_flags")
+  }
 }
 
 public infix fun Long.or(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long =

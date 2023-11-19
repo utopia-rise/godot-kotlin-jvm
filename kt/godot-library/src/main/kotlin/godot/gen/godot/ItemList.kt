@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedInt32Array
 import godot.core.Rect2
+import godot.core.TypeManager
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
@@ -31,6 +32,7 @@ import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.Signal3
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -93,12 +95,12 @@ public open class ItemList : Control() {
   public var selectMode: SelectMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_SELECT_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSelectModePtr, LONG)
       return ItemList.SelectMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_SELECT_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSelectModePtr, NIL)
     }
 
   /**
@@ -107,12 +109,12 @@ public open class ItemList : Control() {
   public var allowReselect: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ALLOW_RESELECT, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAllowReselectPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ALLOW_RESELECT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAllowReselectPtr, NIL)
     }
 
   /**
@@ -121,14 +123,12 @@ public open class ItemList : Control() {
   public var allowRmbSelect: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ALLOW_RMB_SELECT,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAllowRmbSelectPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ALLOW_RMB_SELECT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAllowRmbSelectPtr, NIL)
     }
 
   /**
@@ -137,12 +137,12 @@ public open class ItemList : Control() {
   public var allowSearch: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ALLOW_SEARCH, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAllowSearchPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ALLOW_SEARCH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAllowSearchPtr, NIL)
     }
 
   /**
@@ -153,12 +153,12 @@ public open class ItemList : Control() {
   public var maxTextLines: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_MAX_TEXT_LINES, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMaxTextLinesPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_MAX_TEXT_LINES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMaxTextLinesPtr, NIL)
     }
 
   /**
@@ -167,12 +167,12 @@ public open class ItemList : Control() {
   public var autoHeight: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_HAS_AUTO_HEIGHT, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.hasAutoHeightPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_AUTO_HEIGHT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAutoHeightPtr, NIL)
     }
 
   /**
@@ -181,14 +181,12 @@ public open class ItemList : Control() {
   public var textOverrunBehavior: TextServer.OverrunBehavior
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_TEXT_OVERRUN_BEHAVIOR, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
       return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_TEXT_OVERRUN_BEHAVIOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
     }
 
   /**
@@ -197,12 +195,12 @@ public open class ItemList : Control() {
   public var itemCount: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_COUNT, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getItemCountPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_COUNT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setItemCountPtr, NIL)
     }
 
   /**
@@ -215,12 +213,12 @@ public open class ItemList : Control() {
   public var maxColumns: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_MAX_COLUMNS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMaxColumnsPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_MAX_COLUMNS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMaxColumnsPtr, NIL)
     }
 
   /**
@@ -231,14 +229,12 @@ public open class ItemList : Control() {
   public var sameColumnWidth: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_SAME_COLUMN_WIDTH,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isSameColumnWidthPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_SAME_COLUMN_WIDTH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSameColumnWidthPtr, NIL)
     }
 
   /**
@@ -249,14 +245,12 @@ public open class ItemList : Control() {
   public var fixedColumnWidth: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_FIXED_COLUMN_WIDTH,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFixedColumnWidthPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_FIXED_COLUMN_WIDTH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFixedColumnWidthPtr, NIL)
     }
 
   /**
@@ -265,12 +259,12 @@ public open class ItemList : Control() {
   public var iconMode: IconMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ICON_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getIconModePtr, LONG)
       return ItemList.IconMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ICON_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setIconModePtr, NIL)
     }
 
   /**
@@ -279,12 +273,12 @@ public open class ItemList : Control() {
   public var iconScale: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ICON_SCALE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getIconScalePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ICON_SCALE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setIconScalePtr, NIL)
     }
 
   /**
@@ -296,13 +290,12 @@ public open class ItemList : Control() {
   public var fixedIconSize: Vector2i
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_FIXED_ICON_SIZE,
-          VECTOR2I)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFixedIconSizePtr, VECTOR2I)
       return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_FIXED_ICON_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFixedIconSizePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -350,7 +343,7 @@ public open class ItemList : Control() {
     selectable: Boolean = true,
   ): Int {
     TransferContext.writeArguments(STRING to text, OBJECT to icon, BOOL to selectable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_ADD_ITEM, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.addItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -360,7 +353,7 @@ public open class ItemList : Control() {
   @JvmOverloads
   public fun addIconItem(icon: Texture2D, selectable: Boolean = true): Int {
     TransferContext.writeArguments(OBJECT to icon, BOOL to selectable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_ADD_ICON_ITEM, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.addIconItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -369,7 +362,7 @@ public open class ItemList : Control() {
    */
   public fun setItemText(idx: Int, text: String): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), STRING to text)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_TEXT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemTextPtr, NIL)
   }
 
   /**
@@ -377,7 +370,7 @@ public open class ItemList : Control() {
    */
   public fun getItemText(idx: Int): String {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_TEXT, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -386,7 +379,7 @@ public open class ItemList : Control() {
    */
   public fun setItemIcon(idx: Int, icon: Texture2D): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), OBJECT to icon)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_ICON, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemIconPtr, NIL)
   }
 
   /**
@@ -394,7 +387,7 @@ public open class ItemList : Control() {
    */
   public fun getItemIcon(idx: Int): Texture2D? {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_ICON, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemIconPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
@@ -403,8 +396,7 @@ public open class ItemList : Control() {
    */
   public fun setItemTextDirection(idx: Int, direction: Control.TextDirection): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), LONG to direction.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_TEXT_DIRECTION,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemTextDirectionPtr, NIL)
   }
 
   /**
@@ -412,8 +404,7 @@ public open class ItemList : Control() {
    */
   public fun getItemTextDirection(idx: Int): Control.TextDirection {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_TEXT_DIRECTION,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemTextDirectionPtr, LONG)
     return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -422,7 +413,7 @@ public open class ItemList : Control() {
    */
   public fun setItemLanguage(idx: Int, language: String): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), STRING to language)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_LANGUAGE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemLanguagePtr, NIL)
   }
 
   /**
@@ -430,7 +421,7 @@ public open class ItemList : Control() {
    */
   public fun getItemLanguage(idx: Int): String {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_LANGUAGE, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemLanguagePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -439,8 +430,7 @@ public open class ItemList : Control() {
    */
   public fun setItemIconTransposed(idx: Int, transposed: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to transposed)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_ICON_TRANSPOSED,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemIconTransposedPtr, NIL)
   }
 
   /**
@@ -448,8 +438,7 @@ public open class ItemList : Control() {
    */
   public fun isItemIconTransposed(idx: Int): Boolean {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_ITEM_ICON_TRANSPOSED,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isItemIconTransposedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -458,7 +447,7 @@ public open class ItemList : Control() {
    */
   public fun setItemIconRegion(idx: Int, rect: Rect2): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), RECT2 to rect)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_ICON_REGION, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemIconRegionPtr, NIL)
   }
 
   /**
@@ -466,8 +455,7 @@ public open class ItemList : Control() {
    */
   public fun getItemIconRegion(idx: Int): Rect2 {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_ICON_REGION,
-        RECT2)
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemIconRegionPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)
   }
 
@@ -476,8 +464,7 @@ public open class ItemList : Control() {
    */
   public fun setItemIconModulate(idx: Int, modulate: Color): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), COLOR to modulate)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_ICON_MODULATE,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemIconModulatePtr, NIL)
   }
 
   /**
@@ -485,8 +472,7 @@ public open class ItemList : Control() {
    */
   public fun getItemIconModulate(idx: Int): Color {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_ICON_MODULATE,
-        COLOR)
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemIconModulatePtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
@@ -495,7 +481,7 @@ public open class ItemList : Control() {
    */
   public fun setItemSelectable(idx: Int, selectable: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to selectable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_SELECTABLE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemSelectablePtr, NIL)
   }
 
   /**
@@ -503,7 +489,7 @@ public open class ItemList : Control() {
    */
   public fun isItemSelectable(idx: Int): Boolean {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_ITEM_SELECTABLE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isItemSelectablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -514,7 +500,7 @@ public open class ItemList : Control() {
    */
   public fun setItemDisabled(idx: Int, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to disabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_DISABLED, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemDisabledPtr, NIL)
   }
 
   /**
@@ -522,7 +508,7 @@ public open class ItemList : Control() {
    */
   public fun isItemDisabled(idx: Int): Boolean {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_ITEM_DISABLED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isItemDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -531,7 +517,7 @@ public open class ItemList : Control() {
    */
   public fun setItemMetadata(idx: Int, metadata: Any?): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), ANY to metadata)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_METADATA, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemMetadataPtr, NIL)
   }
 
   /**
@@ -539,7 +525,7 @@ public open class ItemList : Control() {
    */
   public fun getItemMetadata(idx: Int): Any? {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_METADATA, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemMetadataPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -548,8 +534,7 @@ public open class ItemList : Control() {
    */
   public fun setItemCustomBgColor(idx: Int, customBgColor: Color): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), COLOR to customBgColor)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_CUSTOM_BG_COLOR,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemCustomBgColorPtr, NIL)
   }
 
   /**
@@ -557,8 +542,7 @@ public open class ItemList : Control() {
    */
   public fun getItemCustomBgColor(idx: Int): Color {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_CUSTOM_BG_COLOR,
-        COLOR)
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemCustomBgColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
@@ -567,8 +551,7 @@ public open class ItemList : Control() {
    */
   public fun setItemCustomFgColor(idx: Int, customFgColor: Color): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), COLOR to customFgColor)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_CUSTOM_FG_COLOR,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemCustomFgColorPtr, NIL)
   }
 
   /**
@@ -576,8 +559,7 @@ public open class ItemList : Control() {
    */
   public fun getItemCustomFgColor(idx: Int): Color {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_CUSTOM_FG_COLOR,
-        COLOR)
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemCustomFgColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
@@ -589,7 +571,7 @@ public open class ItemList : Control() {
   @JvmOverloads
   public fun getItemRect(idx: Int, expand: Boolean = true): Rect2 {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to expand)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_RECT, RECT2)
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)
   }
 
@@ -598,8 +580,7 @@ public open class ItemList : Control() {
    */
   public fun setItemTooltipEnabled(idx: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_TOOLTIP_ENABLED,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemTooltipEnabledPtr, NIL)
   }
 
   /**
@@ -607,8 +588,7 @@ public open class ItemList : Control() {
    */
   public fun isItemTooltipEnabled(idx: Int): Boolean {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_ITEM_TOOLTIP_ENABLED,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isItemTooltipEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -617,7 +597,7 @@ public open class ItemList : Control() {
    */
   public fun setItemTooltip(idx: Int, tooltip: String): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), STRING to tooltip)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_TOOLTIP, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemTooltipPtr, NIL)
   }
 
   /**
@@ -625,7 +605,7 @@ public open class ItemList : Control() {
    */
   public fun getItemTooltip(idx: Int): String {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_TOOLTIP, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemTooltipPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -637,7 +617,7 @@ public open class ItemList : Control() {
   @JvmOverloads
   public fun select(idx: Int, single: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to single)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SELECT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.selectPtr, NIL)
   }
 
   /**
@@ -645,7 +625,7 @@ public open class ItemList : Control() {
    */
   public fun deselect(idx: Int): Unit {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_DESELECT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.deselectPtr, NIL)
   }
 
   /**
@@ -653,7 +633,7 @@ public open class ItemList : Control() {
    */
   public fun deselectAll(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_DESELECT_ALL, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.deselectAllPtr, NIL)
   }
 
   /**
@@ -661,7 +641,7 @@ public open class ItemList : Control() {
    */
   public fun isSelected(idx: Int): Boolean {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_SELECTED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isSelectedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -670,8 +650,7 @@ public open class ItemList : Control() {
    */
   public fun getSelectedItems(): PackedInt32Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_SELECTED_ITEMS,
-        PACKED_INT_32_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSelectedItemsPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
@@ -680,7 +659,7 @@ public open class ItemList : Control() {
    */
   public fun moveItem(fromIdx: Int, toIdx: Int): Unit {
     TransferContext.writeArguments(LONG to fromIdx.toLong(), LONG to toIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_MOVE_ITEM, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.moveItemPtr, NIL)
   }
 
   /**
@@ -688,7 +667,7 @@ public open class ItemList : Control() {
    */
   public fun removeItem(idx: Int): Unit {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_REMOVE_ITEM, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeItemPtr, NIL)
   }
 
   /**
@@ -696,7 +675,7 @@ public open class ItemList : Control() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_CLEAR, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   /**
@@ -704,7 +683,7 @@ public open class ItemList : Control() {
    */
   public fun sortItemsByText(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SORT_ITEMS_BY_TEXT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.sortItemsByTextPtr, NIL)
   }
 
   /**
@@ -712,7 +691,7 @@ public open class ItemList : Control() {
    */
   public fun isAnythingSelected(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_ANYTHING_SELECTED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isAnythingSelectedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -726,7 +705,7 @@ public open class ItemList : Control() {
   @JvmOverloads
   public fun getItemAtPosition(position: Vector2, exact: Boolean = false): Int {
     TransferContext.writeArguments(VECTOR2 to position, BOOL to exact)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_AT_POSITION, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemAtPositionPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -735,8 +714,7 @@ public open class ItemList : Control() {
    */
   public fun ensureCurrentIsVisible(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_ENSURE_CURRENT_IS_VISIBLE,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.ensureCurrentIsVisiblePtr, NIL)
   }
 
   /**
@@ -746,7 +724,7 @@ public open class ItemList : Control() {
    */
   public fun getVScrollBar(): VScrollBar? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_V_SCROLL_BAR, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getVScrollBarPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as VScrollBar?)
   }
 
@@ -797,4 +775,202 @@ public open class ItemList : Control() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val addItemPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "add_item")
+
+    public val addIconItemPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "add_icon_item")
+
+    public val setItemTextPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "set_item_text")
+
+    public val getItemTextPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "get_item_text")
+
+    public val setItemIconPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "set_item_icon")
+
+    public val getItemIconPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "get_item_icon")
+
+    public val setItemTextDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_item_text_direction")
+
+    public val getItemTextDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_item_text_direction")
+
+    public val setItemLanguagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_item_language")
+
+    public val getItemLanguagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_item_language")
+
+    public val setItemIconTransposedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_item_icon_transposed")
+
+    public val isItemIconTransposedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "is_item_icon_transposed")
+
+    public val setItemIconRegionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_item_icon_region")
+
+    public val getItemIconRegionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_item_icon_region")
+
+    public val setItemIconModulatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_item_icon_modulate")
+
+    public val getItemIconModulatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_item_icon_modulate")
+
+    public val setItemSelectablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_item_selectable")
+
+    public val isItemSelectablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "is_item_selectable")
+
+    public val setItemDisabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_item_disabled")
+
+    public val isItemDisabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "is_item_disabled")
+
+    public val setItemMetadataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_item_metadata")
+
+    public val getItemMetadataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_item_metadata")
+
+    public val setItemCustomBgColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_item_custom_bg_color")
+
+    public val getItemCustomBgColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_item_custom_bg_color")
+
+    public val setItemCustomFgColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_item_custom_fg_color")
+
+    public val getItemCustomFgColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_item_custom_fg_color")
+
+    public val getItemRectPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "get_item_rect")
+
+    public val setItemTooltipEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_item_tooltip_enabled")
+
+    public val isItemTooltipEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "is_item_tooltip_enabled")
+
+    public val setItemTooltipPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_item_tooltip")
+
+    public val getItemTooltipPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_item_tooltip")
+
+    public val selectPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "select")
+
+    public val deselectPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "deselect")
+
+    public val deselectAllPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "deselect_all")
+
+    public val isSelectedPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "is_selected")
+
+    public val getSelectedItemsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_selected_items")
+
+    public val moveItemPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "move_item")
+
+    public val setItemCountPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "set_item_count")
+
+    public val getItemCountPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "get_item_count")
+
+    public val removeItemPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "remove_item")
+
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "clear")
+
+    public val sortItemsByTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "sort_items_by_text")
+
+    public val setFixedColumnWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_fixed_column_width")
+
+    public val getFixedColumnWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_fixed_column_width")
+
+    public val setSameColumnWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_same_column_width")
+
+    public val isSameColumnWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "is_same_column_width")
+
+    public val setMaxTextLinesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_max_text_lines")
+
+    public val getMaxTextLinesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_max_text_lines")
+
+    public val setMaxColumnsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_max_columns")
+
+    public val getMaxColumnsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_max_columns")
+
+    public val setSelectModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_select_mode")
+
+    public val getSelectModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_select_mode")
+
+    public val setIconModePtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "set_icon_mode")
+
+    public val getIconModePtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "get_icon_mode")
+
+    public val setFixedIconSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_fixed_icon_size")
+
+    public val getFixedIconSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_fixed_icon_size")
+
+    public val setIconScalePtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "set_icon_scale")
+
+    public val getIconScalePtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "get_icon_scale")
+
+    public val setAllowRmbSelectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_allow_rmb_select")
+
+    public val getAllowRmbSelectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_allow_rmb_select")
+
+    public val setAllowReselectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_allow_reselect")
+
+    public val getAllowReselectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_allow_reselect")
+
+    public val setAllowSearchPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_allow_search")
+
+    public val getAllowSearchPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_allow_search")
+
+    public val setAutoHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_auto_height")
+
+    public val hasAutoHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "has_auto_height")
+
+    public val isAnythingSelectedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "is_anything_selected")
+
+    public val getItemAtPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_item_at_position")
+
+    public val ensureCurrentIsVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "ensure_current_is_visible")
+
+    public val getVScrollBarPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_v_scroll_bar")
+
+    public val setTextOverrunBehaviorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_text_overrun_behavior")
+
+    public val getTextOverrunBehaviorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_text_overrun_behavior")
+  }
 }

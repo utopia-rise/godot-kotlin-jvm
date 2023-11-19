@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -29,14 +31,12 @@ public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
   public var defaultValueEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEUINTPARAMETER_IS_DEFAULT_VALUE_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEUINTPARAMETER_SET_DEFAULT_VALUE_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
     }
 
   /**
@@ -45,14 +45,12 @@ public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
   public var defaultValue: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEUINTPARAMETER_GET_DEFAULT_VALUE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEUINTPARAMETER_SET_DEFAULT_VALUE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -61,4 +59,18 @@ public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setDefaultValueEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeUIntParameter", "set_default_value_enabled")
+
+    public val isDefaultValueEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeUIntParameter", "is_default_value_enabled")
+
+    public val setDefaultValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeUIntParameter", "set_default_value")
+
+    public val getDefaultValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeUIntParameter", "get_default_value")
+  }
 }

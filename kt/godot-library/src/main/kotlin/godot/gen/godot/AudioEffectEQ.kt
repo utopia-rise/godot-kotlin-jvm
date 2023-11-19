@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -41,7 +43,7 @@ public open class AudioEffectEQ : AudioEffect() {
    */
   public fun setBandGainDb(bandIdx: Int, volumeDb: Float): Unit {
     TransferContext.writeArguments(LONG to bandIdx.toLong(), DOUBLE to volumeDb.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTEQ_SET_BAND_GAIN_DB, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBandGainDbPtr, NIL)
   }
 
   /**
@@ -49,8 +51,7 @@ public open class AudioEffectEQ : AudioEffect() {
    */
   public fun getBandGainDb(bandIdx: Int): Float {
     TransferContext.writeArguments(LONG to bandIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTEQ_GET_BAND_GAIN_DB,
-        DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBandGainDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -59,9 +60,20 @@ public open class AudioEffectEQ : AudioEffect() {
    */
   public fun getBandCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTEQ_GET_BAND_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBandCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setBandGainDbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectEQ", "set_band_gain_db")
+
+    public val getBandGainDbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectEQ", "get_band_gain_db")
+
+    public val getBandCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectEQ", "get_band_count")
+  }
 }

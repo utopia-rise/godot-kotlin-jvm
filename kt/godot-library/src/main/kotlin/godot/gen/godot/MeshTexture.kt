@@ -9,11 +9,13 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -32,12 +34,12 @@ public open class MeshTexture : Texture2D() {
   public var mesh: Mesh?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHTEXTURE_GET_MESH, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHTEXTURE_SET_MESH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
     }
 
   /**
@@ -46,13 +48,12 @@ public open class MeshTexture : Texture2D() {
   public var baseTexture: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHTEXTURE_GET_BASE_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBaseTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHTEXTURE_SET_BASE_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBaseTexturePtr, NIL)
     }
 
   /**
@@ -62,13 +63,12 @@ public open class MeshTexture : Texture2D() {
   public var imageSize: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHTEXTURE_GET_IMAGE_SIZE,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getImageSizePtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHTEXTURE_SET_IMAGE_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setImageSizePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -101,4 +101,22 @@ public open class MeshTexture : Texture2D() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshTexture", "set_mesh")
+
+    public val getMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshTexture", "get_mesh")
+
+    public val setImageSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshTexture", "set_image_size")
+
+    public val getImageSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshTexture", "get_image_size")
+
+    public val setBaseTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshTexture", "set_base_texture")
+
+    public val getBaseTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshTexture", "get_base_texture")
+  }
 }

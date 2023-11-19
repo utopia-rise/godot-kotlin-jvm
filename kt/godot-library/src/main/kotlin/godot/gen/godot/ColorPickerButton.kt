@@ -10,6 +10,7 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.NIL
@@ -18,6 +19,7 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -59,14 +61,12 @@ public open class ColorPickerButton : Button() {
   public var color: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_PICK_COLOR,
-          COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPickColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_SET_PICK_COLOR,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPickColorPtr, NIL)
     }
 
   /**
@@ -75,14 +75,12 @@ public open class ColorPickerButton : Button() {
   public var editAlpha: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_IS_EDITING_ALPHA, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isEditingAlphaPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_SET_EDIT_ALPHA,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEditAlphaPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -121,8 +119,7 @@ public open class ColorPickerButton : Button() {
    */
   public fun getPicker(): ColorPicker? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_PICKER,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getPickerPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as ColorPicker?)
   }
 
@@ -133,9 +130,28 @@ public open class ColorPickerButton : Button() {
    */
   public fun getPopup(): PopupPanel? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_POPUP, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getPopupPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PopupPanel?)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setPickColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPickerButton", "set_pick_color")
+
+    public val getPickColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPickerButton", "get_pick_color")
+
+    public val getPickerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPickerButton", "get_picker")
+
+    public val getPopupPtr: VoidPtr = TypeManager.getMethodBindPtr("ColorPickerButton", "get_popup")
+
+    public val setEditAlphaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPickerButton", "set_edit_alpha")
+
+    public val isEditingAlphaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPickerButton", "is_editing_alpha")
+  }
 }

@@ -11,6 +11,7 @@ import godot.core.Dictionary
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
@@ -20,6 +21,7 @@ import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -184,8 +186,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
     target: String,
   ): Unit {
     TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to tags, STRING to target)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_SHARED_OBJECT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addSharedObjectPtr, NIL)
   }
 
   /**
@@ -193,8 +194,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    */
   public fun addIosProjectStaticLib(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_PROJECT_STATIC_LIB, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addIosProjectStaticLibPtr, NIL)
   }
 
   /**
@@ -208,7 +208,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
     remap: Boolean,
   ): Unit {
     TransferContext.writeArguments(STRING to path, PACKED_BYTE_ARRAY to file, BOOL to remap)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_FILE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addFilePtr, NIL)
   }
 
   /**
@@ -216,8 +216,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    */
   public fun addIosFramework(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_FRAMEWORK, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addIosFrameworkPtr, NIL)
   }
 
   /**
@@ -229,8 +228,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    */
   public fun addIosEmbeddedFramework(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_EMBEDDED_FRAMEWORK, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addIosEmbeddedFrameworkPtr, NIL)
   }
 
   /**
@@ -238,8 +236,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    */
   public fun addIosPlistContent(plistContent: String): Unit {
     TransferContext.writeArguments(STRING to plistContent)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_PLIST_CONTENT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addIosPlistContentPtr, NIL)
   }
 
   /**
@@ -247,8 +244,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    */
   public fun addIosLinkerFlags(flags: String): Unit {
     TransferContext.writeArguments(STRING to flags)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_LINKER_FLAGS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addIosLinkerFlagsPtr, NIL)
   }
 
   /**
@@ -256,8 +252,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    */
   public fun addIosBundleFile(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_BUNDLE_FILE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addIosBundleFilePtr, NIL)
   }
 
   /**
@@ -265,8 +260,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    */
   public fun addIosCppCode(code: String): Unit {
     TransferContext.writeArguments(STRING to code)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_CPP_CODE,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addIosCppCodePtr, NIL)
   }
 
   /**
@@ -276,8 +270,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    */
   public fun addMacosPluginFile(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_MACOS_PLUGIN_FILE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addMacosPluginFilePtr, NIL)
   }
 
   /**
@@ -285,7 +278,7 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    */
   public fun skip(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_SKIP, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.skipPtr, NIL)
   }
 
   /**
@@ -293,9 +286,87 @@ public open class EditorExportPlugin internal constructor() : RefCounted() {
    */
   public fun getOption(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_GET_OPTION, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getOptionPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _exportFilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "_export_file")
+
+    public val _exportBeginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "_export_begin")
+
+    public val _exportEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "_export_end")
+
+    public val _beginCustomizeResourcesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "_begin_customize_resources")
+
+    public val _customizeResourcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "_customize_resource")
+
+    public val _beginCustomizeScenesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "_begin_customize_scenes")
+
+    public val _customizeScenePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "_customize_scene")
+
+    public val _getCustomizationConfigurationHashPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "_get_customization_configuration_hash")
+
+    public val _endCustomizeScenesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "_end_customize_scenes")
+
+    public val _endCustomizeResourcesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "_end_customize_resources")
+
+    public val _getExportOptionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "_get_export_options")
+
+    public val _shouldUpdateExportOptionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "_should_update_export_options")
+
+    public val _getExportFeaturesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "_get_export_features")
+
+    public val _getNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "_get_name")
+
+    public val addSharedObjectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "add_shared_object")
+
+    public val addIosProjectStaticLibPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "add_ios_project_static_lib")
+
+    public val addFilePtr: VoidPtr = TypeManager.getMethodBindPtr("EditorExportPlugin", "add_file")
+
+    public val addIosFrameworkPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "add_ios_framework")
+
+    public val addIosEmbeddedFrameworkPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "add_ios_embedded_framework")
+
+    public val addIosPlistContentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "add_ios_plist_content")
+
+    public val addIosLinkerFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "add_ios_linker_flags")
+
+    public val addIosBundleFilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "add_ios_bundle_file")
+
+    public val addIosCppCodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "add_ios_cpp_code")
+
+    public val addMacosPluginFilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "add_macos_plugin_file")
+
+    public val skipPtr: VoidPtr = TypeManager.getMethodBindPtr("EditorExportPlugin", "skip")
+
+    public val getOptionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorExportPlugin", "get_option")
+  }
 }

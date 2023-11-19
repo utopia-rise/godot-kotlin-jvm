@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PackedStringArray
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
@@ -22,6 +23,7 @@ import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -95,7 +97,7 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun hasSetting(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_HAS_SETTING, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hasSettingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -104,7 +106,7 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun setSetting(name: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_SETTING, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSettingPtr, NIL)
   }
 
   /**
@@ -112,7 +114,7 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun getSetting(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_SETTING, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSettingPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -121,7 +123,7 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun erase(`property`: String): Unit {
     TransferContext.writeArguments(STRING to property)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_ERASE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.erasePtr, NIL)
   }
 
   /**
@@ -133,8 +135,7 @@ public open class EditorSettings internal constructor() : Resource() {
     updateCurrent: Boolean,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value, BOOL to updateCurrent)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_INITIAL_VALUE,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInitialValuePtr, NIL)
   }
 
   /**
@@ -208,8 +209,7 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun addPropertyInfo(info: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to info)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_ADD_PROPERTY_INFO,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addPropertyInfoPtr, NIL)
   }
 
   /**
@@ -221,8 +221,7 @@ public open class EditorSettings internal constructor() : Resource() {
     `data`: Any?,
   ): Unit {
     TransferContext.writeArguments(STRING to section, STRING to key, ANY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_PROJECT_METADATA,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setProjectMetadataPtr, NIL)
   }
 
   /**
@@ -235,8 +234,7 @@ public open class EditorSettings internal constructor() : Resource() {
     default: Any? = null,
   ): Any? {
     TransferContext.writeArguments(STRING to section, STRING to key, ANY to default)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_PROJECT_METADATA,
-        ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getProjectMetadataPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -245,7 +243,7 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun setFavorites(dirs: PackedStringArray): Unit {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to dirs)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_FAVORITES, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFavoritesPtr, NIL)
   }
 
   /**
@@ -253,8 +251,7 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun getFavorites(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_FAVORITES,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFavoritesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
@@ -263,7 +260,7 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun setRecentDirs(dirs: PackedStringArray): Unit {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to dirs)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_RECENT_DIRS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRecentDirsPtr, NIL)
   }
 
   /**
@@ -271,8 +268,7 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun getRecentDirs(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_RECENT_DIRS,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getRecentDirsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
@@ -281,8 +277,7 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun setBuiltinActionOverride(name: String, actionsList: VariantArray<InputEvent>): Unit {
     TransferContext.writeArguments(STRING to name, ARRAY to actionsList)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_BUILTIN_ACTION_OVERRIDE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBuiltinActionOverridePtr, NIL)
   }
 
   /**
@@ -290,8 +285,7 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun checkChangedSettingsInGroup(settingPrefix: String): Boolean {
     TransferContext.writeArguments(STRING to settingPrefix)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_CHECK_CHANGED_SETTINGS_IN_GROUP, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.checkChangedSettingsInGroupPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -300,8 +294,7 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun getChangedSettings(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_CHANGED_SETTINGS,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getChangedSettingsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
@@ -310,8 +303,7 @@ public open class EditorSettings internal constructor() : Resource() {
    */
   public fun markSettingChanged(setting: String): Unit {
     TransferContext.writeArguments(STRING to setting)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_MARK_SETTING_CHANGED,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.markSettingChangedPtr, NIL)
   }
 
   public companion object {
@@ -319,5 +311,54 @@ public open class EditorSettings internal constructor() : Resource() {
      * Emitted after any editor setting has changed. It's used by various editor plugins to update their visuals on theme changes or logic on configuration changes.
      */
     public final const val NOTIFICATION_EDITOR_SETTINGS_CHANGED: Long = 10000
+  }
+
+  internal object MethodBindings {
+    public val hasSettingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSettings", "has_setting")
+
+    public val setSettingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSettings", "set_setting")
+
+    public val getSettingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSettings", "get_setting")
+
+    public val erasePtr: VoidPtr = TypeManager.getMethodBindPtr("EditorSettings", "erase")
+
+    public val setInitialValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSettings", "set_initial_value")
+
+    public val addPropertyInfoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSettings", "add_property_info")
+
+    public val setProjectMetadataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSettings", "set_project_metadata")
+
+    public val getProjectMetadataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSettings", "get_project_metadata")
+
+    public val setFavoritesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSettings", "set_favorites")
+
+    public val getFavoritesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSettings", "get_favorites")
+
+    public val setRecentDirsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSettings", "set_recent_dirs")
+
+    public val getRecentDirsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSettings", "get_recent_dirs")
+
+    public val setBuiltinActionOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSettings", "set_builtin_action_override")
+
+    public val checkChangedSettingsInGroupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSettings", "check_changed_settings_in_group")
+
+    public val getChangedSettingsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSettings", "get_changed_settings")
+
+    public val markSettingChangedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSettings", "mark_setting_changed")
   }
 }

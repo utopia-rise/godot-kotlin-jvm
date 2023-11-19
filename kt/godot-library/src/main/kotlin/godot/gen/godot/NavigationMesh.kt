@@ -13,6 +13,7 @@ import godot.core.AABB
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -24,6 +25,7 @@ import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -45,13 +47,12 @@ public open class NavigationMesh : Resource() {
   public var vertices: PackedVector3Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_VERTICES,
-          PACKED_VECTOR3_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_VECTOR3_ARRAY)
       return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_VERTICES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
     }
 
   /**
@@ -60,14 +61,12 @@ public open class NavigationMesh : Resource() {
   public var samplePartitionType: SamplePartitionType
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_SAMPLE_PARTITION_TYPE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSamplePartitionTypePtr, LONG)
       return NavigationMesh.SamplePartitionType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_SAMPLE_PARTITION_TYPE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSamplePartitionTypePtr, NIL)
     }
 
   /**
@@ -76,14 +75,12 @@ public open class NavigationMesh : Resource() {
   public var geometryParsedGeometryType: ParsedGeometryType
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_PARSED_GEOMETRY_TYPE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParsedGeometryTypePtr, LONG)
       return NavigationMesh.ParsedGeometryType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_PARSED_GEOMETRY_TYPE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParsedGeometryTypePtr, NIL)
     }
 
   /**
@@ -94,14 +91,12 @@ public open class NavigationMesh : Resource() {
   public var geometryCollisionMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_COLLISION_MASK,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_COLLISION_MASK,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
     }
 
   /**
@@ -110,14 +105,12 @@ public open class NavigationMesh : Resource() {
   public var geometrySourceGeometryMode: SourceGeometryMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_SOURCE_GEOMETRY_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSourceGeometryModePtr, LONG)
       return NavigationMesh.SourceGeometryMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_SOURCE_GEOMETRY_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSourceGeometryModePtr, NIL)
     }
 
   /**
@@ -128,14 +121,12 @@ public open class NavigationMesh : Resource() {
   public var geometrySourceGroupName: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_SOURCE_GROUP_NAME, STRING_NAME)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSourceGroupNamePtr, STRING_NAME)
       return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_SOURCE_GROUP_NAME, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSourceGroupNamePtr, NIL)
     }
 
   /**
@@ -144,13 +135,12 @@ public open class NavigationMesh : Resource() {
   public var cellSize: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_CELL_SIZE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_CELL_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
     }
 
   /**
@@ -159,14 +149,12 @@ public open class NavigationMesh : Resource() {
   public var cellHeight: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_CELL_HEIGHT,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCellHeightPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_CELL_HEIGHT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCellHeightPtr, NIL)
     }
 
   /**
@@ -177,14 +165,12 @@ public open class NavigationMesh : Resource() {
   public var agentHeight: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_AGENT_HEIGHT,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAgentHeightPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_AGENT_HEIGHT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAgentHeightPtr, NIL)
     }
 
   /**
@@ -195,14 +181,12 @@ public open class NavigationMesh : Resource() {
   public var agentRadius: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_AGENT_RADIUS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAgentRadiusPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_AGENT_RADIUS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAgentRadiusPtr, NIL)
     }
 
   /**
@@ -213,14 +197,12 @@ public open class NavigationMesh : Resource() {
   public var agentMaxClimb: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_AGENT_MAX_CLIMB, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAgentMaxClimbPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_AGENT_MAX_CLIMB, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAgentMaxClimbPtr, NIL)
     }
 
   /**
@@ -229,14 +211,12 @@ public open class NavigationMesh : Resource() {
   public var agentMaxSlope: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_AGENT_MAX_SLOPE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAgentMaxSlopePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_AGENT_MAX_SLOPE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAgentMaxSlopePtr, NIL)
     }
 
   /**
@@ -247,14 +227,12 @@ public open class NavigationMesh : Resource() {
   public var regionMinSize: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_REGION_MIN_SIZE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRegionMinSizePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_REGION_MIN_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRegionMinSizePtr, NIL)
     }
 
   /**
@@ -265,14 +243,12 @@ public open class NavigationMesh : Resource() {
   public var regionMergeSize: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_REGION_MERGE_SIZE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRegionMergeSizePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_REGION_MERGE_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRegionMergeSizePtr, NIL)
     }
 
   /**
@@ -283,14 +259,12 @@ public open class NavigationMesh : Resource() {
   public var edgeMaxLength: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_EDGE_MAX_LENGTH, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEdgeMaxLengthPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_EDGE_MAX_LENGTH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEdgeMaxLengthPtr, NIL)
     }
 
   /**
@@ -299,14 +273,12 @@ public open class NavigationMesh : Resource() {
   public var edgeMaxError: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_EDGE_MAX_ERROR,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEdgeMaxErrorPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_EDGE_MAX_ERROR,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEdgeMaxErrorPtr, NIL)
     }
 
   /**
@@ -315,14 +287,12 @@ public open class NavigationMesh : Resource() {
   public var verticesPerPolygon: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_VERTICES_PER_POLYGON, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPerPolygonPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_VERTICES_PER_POLYGON, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPerPolygonPtr, NIL)
     }
 
   /**
@@ -331,14 +301,12 @@ public open class NavigationMesh : Resource() {
   public var detailSampleDistance: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_DETAIL_SAMPLE_DISTANCE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDetailSampleDistancePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_DETAIL_SAMPLE_DISTANCE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDetailSampleDistancePtr, NIL)
     }
 
   /**
@@ -347,14 +315,12 @@ public open class NavigationMesh : Resource() {
   public var detailSampleMaxError: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_DETAIL_SAMPLE_MAX_ERROR, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDetailSampleMaxErrorPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_DETAIL_SAMPLE_MAX_ERROR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDetailSampleMaxErrorPtr, NIL)
     }
 
   /**
@@ -363,14 +329,12 @@ public open class NavigationMesh : Resource() {
   public var filterLowHangingObstacles: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_FILTER_LOW_HANGING_OBSTACLES, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFilterLowHangingObstaclesPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_FILTER_LOW_HANGING_OBSTACLES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFilterLowHangingObstaclesPtr, NIL)
     }
 
   /**
@@ -379,14 +343,12 @@ public open class NavigationMesh : Resource() {
   public var filterLedgeSpans: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_FILTER_LEDGE_SPANS, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFilterLedgeSpansPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_FILTER_LEDGE_SPANS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFilterLedgeSpansPtr, NIL)
     }
 
   /**
@@ -395,14 +357,12 @@ public open class NavigationMesh : Resource() {
   public var filterWalkableLowHeightSpans: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_FILTER_WALKABLE_LOW_HEIGHT_SPANS, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFilterWalkableLowHeightSpansPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_FILTER_WALKABLE_LOW_HEIGHT_SPANS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFilterWalkableLowHeightSpansPtr, NIL)
     }
 
   /**
@@ -412,15 +372,13 @@ public open class NavigationMesh : Resource() {
   public var filterBakingAabb: AABB
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_FILTER_BAKING_AABB,
+      TransferContext.callMethod(rawPtr, MethodBindings.getFilterBakingAabbPtr,
           godot.core.VariantType.AABB)
       return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
     }
     set(`value`) {
       TransferContext.writeArguments(godot.core.VariantType.AABB to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_FILTER_BAKING_AABB, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFilterBakingAabbPtr, NIL)
     }
 
   /**
@@ -430,14 +388,12 @@ public open class NavigationMesh : Resource() {
   public var filterBakingAabbOffset: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_FILTER_BAKING_AABB_OFFSET, VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFilterBakingAabbOffsetPtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_FILTER_BAKING_AABB_OFFSET, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFilterBakingAabbOffsetPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -499,8 +455,7 @@ public open class NavigationMesh : Resource() {
    */
   public fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_COLLISION_MASK_VALUE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskValuePtr, NIL)
   }
 
   /**
@@ -508,8 +463,7 @@ public open class NavigationMesh : Resource() {
    */
   public fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_COLLISION_MASK_VALUE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -518,7 +472,7 @@ public open class NavigationMesh : Resource() {
    */
   public fun addPolygon(polygon: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to polygon)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_ADD_POLYGON, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addPolygonPtr, NIL)
   }
 
   /**
@@ -526,8 +480,7 @@ public open class NavigationMesh : Resource() {
    */
   public fun getPolygonCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_POLYGON_COUNT,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getPolygonCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -536,8 +489,7 @@ public open class NavigationMesh : Resource() {
    */
   public fun getPolygon(idx: Int): PackedInt32Array {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_POLYGON,
-        PACKED_INT_32_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
@@ -546,7 +498,7 @@ public open class NavigationMesh : Resource() {
    */
   public fun clearPolygons(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_CLEAR_POLYGONS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearPolygonsPtr, NIL)
   }
 
   /**
@@ -556,8 +508,7 @@ public open class NavigationMesh : Resource() {
    */
   public fun createFromMesh(mesh: Mesh): Unit {
     TransferContext.writeArguments(OBJECT to mesh)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_CREATE_FROM_MESH,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.createFromMeshPtr, NIL)
   }
 
   public enum class SamplePartitionType(
@@ -654,4 +605,171 @@ public open class NavigationMesh : Resource() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setSamplePartitionTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_sample_partition_type")
+
+    public val getSamplePartitionTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_sample_partition_type")
+
+    public val setParsedGeometryTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_parsed_geometry_type")
+
+    public val getParsedGeometryTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_parsed_geometry_type")
+
+    public val setCollisionMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_collision_mask")
+
+    public val getCollisionMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_collision_mask")
+
+    public val setCollisionMaskValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_collision_mask_value")
+
+    public val getCollisionMaskValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_collision_mask_value")
+
+    public val setSourceGeometryModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_source_geometry_mode")
+
+    public val getSourceGeometryModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_source_geometry_mode")
+
+    public val setSourceGroupNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_source_group_name")
+
+    public val getSourceGroupNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_source_group_name")
+
+    public val setCellSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_cell_size")
+
+    public val getCellSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_cell_size")
+
+    public val setCellHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_cell_height")
+
+    public val getCellHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_cell_height")
+
+    public val setAgentHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_height")
+
+    public val getAgentHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_height")
+
+    public val setAgentRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_radius")
+
+    public val getAgentRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_radius")
+
+    public val setAgentMaxClimbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_max_climb")
+
+    public val getAgentMaxClimbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_max_climb")
+
+    public val setAgentMaxSlopePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_max_slope")
+
+    public val getAgentMaxSlopePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_max_slope")
+
+    public val setRegionMinSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_region_min_size")
+
+    public val getRegionMinSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_region_min_size")
+
+    public val setRegionMergeSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_region_merge_size")
+
+    public val getRegionMergeSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_region_merge_size")
+
+    public val setEdgeMaxLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_edge_max_length")
+
+    public val getEdgeMaxLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_edge_max_length")
+
+    public val setEdgeMaxErrorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_edge_max_error")
+
+    public val getEdgeMaxErrorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_edge_max_error")
+
+    public val setVerticesPerPolygonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_vertices_per_polygon")
+
+    public val getVerticesPerPolygonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_vertices_per_polygon")
+
+    public val setDetailSampleDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_detail_sample_distance")
+
+    public val getDetailSampleDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_detail_sample_distance")
+
+    public val setDetailSampleMaxErrorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_detail_sample_max_error")
+
+    public val getDetailSampleMaxErrorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_detail_sample_max_error")
+
+    public val setFilterLowHangingObstaclesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_low_hanging_obstacles")
+
+    public val getFilterLowHangingObstaclesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_low_hanging_obstacles")
+
+    public val setFilterLedgeSpansPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_ledge_spans")
+
+    public val getFilterLedgeSpansPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_ledge_spans")
+
+    public val setFilterWalkableLowHeightSpansPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_walkable_low_height_spans")
+
+    public val getFilterWalkableLowHeightSpansPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_walkable_low_height_spans")
+
+    public val setFilterBakingAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_baking_aabb")
+
+    public val getFilterBakingAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_baking_aabb")
+
+    public val setFilterBakingAabbOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_baking_aabb_offset")
+
+    public val getFilterBakingAabbOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_baking_aabb_offset")
+
+    public val setVerticesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_vertices")
+
+    public val getVerticesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_vertices")
+
+    public val addPolygonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "add_polygon")
+
+    public val getPolygonCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_polygon_count")
+
+    public val getPolygonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_polygon")
+
+    public val clearPolygonsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "clear_polygons")
+
+    public val createFromMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "create_from_mesh")
+  }
 }

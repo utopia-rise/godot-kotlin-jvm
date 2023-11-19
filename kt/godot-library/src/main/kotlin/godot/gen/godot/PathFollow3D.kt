@@ -8,12 +8,14 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform3D
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.TRANSFORM3D
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -36,12 +38,12 @@ public open class PathFollow3D : Node3D() {
   public var progress: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_PROGRESS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getProgressPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_PROGRESS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setProgressPtr, NIL)
     }
 
   /**
@@ -50,14 +52,12 @@ public open class PathFollow3D : Node3D() {
   public var progressRatio: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_PROGRESS_RATIO,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getProgressRatioPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_PROGRESS_RATIO,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setProgressRatioPtr, NIL)
     }
 
   /**
@@ -66,12 +66,12 @@ public open class PathFollow3D : Node3D() {
   public var hOffset: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_H_OFFSET, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHOffsetPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_H_OFFSET, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHOffsetPtr, NIL)
     }
 
   /**
@@ -80,12 +80,12 @@ public open class PathFollow3D : Node3D() {
   public var vOffset: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_V_OFFSET, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVOffsetPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_V_OFFSET, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVOffsetPtr, NIL)
     }
 
   /**
@@ -94,14 +94,12 @@ public open class PathFollow3D : Node3D() {
   public var rotationMode: RotationMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_ROTATION_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRotationModePtr, LONG)
       return PathFollow3D.RotationMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_ROTATION_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRotationModePtr, NIL)
     }
 
   /**
@@ -110,14 +108,12 @@ public open class PathFollow3D : Node3D() {
   public var useModelFront: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_IS_USING_MODEL_FRONT,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isUsingModelFrontPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_USE_MODEL_FRONT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseModelFrontPtr, NIL)
     }
 
   /**
@@ -130,14 +126,12 @@ public open class PathFollow3D : Node3D() {
   public var cubicInterp: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_GET_CUBIC_INTERPOLATION, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCubicInterpolationPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_CUBIC_INTERPOLATION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCubicInterpolationPtr, NIL)
     }
 
   /**
@@ -146,12 +140,12 @@ public open class PathFollow3D : Node3D() {
   public var loop: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_HAS_LOOP, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_LOOP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
     }
 
   /**
@@ -160,14 +154,12 @@ public open class PathFollow3D : Node3D() {
   public var tiltEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_IS_TILT_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isTiltEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_SET_TILT_ENABLED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTiltEnabledPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -216,9 +208,61 @@ public open class PathFollow3D : Node3D() {
      */
     public fun correctPosture(transform: Transform3D, rotationMode: RotationMode): Transform3D {
       TransferContext.writeArguments(TRANSFORM3D to transform, LONG to rotationMode.id)
-      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW3D_CORRECT_POSTURE,
-          TRANSFORM3D)
+      TransferContext.callMethod(0, MethodBindings.correctPosturePtr, TRANSFORM3D)
       return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
     }
+  }
+
+  internal object MethodBindings {
+    public val setProgressPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_progress")
+
+    public val getProgressPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow3D", "get_progress")
+
+    public val setHOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("PathFollow3D", "set_h_offset")
+
+    public val getHOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("PathFollow3D", "get_h_offset")
+
+    public val setVOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("PathFollow3D", "set_v_offset")
+
+    public val getVOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("PathFollow3D", "get_v_offset")
+
+    public val setProgressRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_progress_ratio")
+
+    public val getProgressRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow3D", "get_progress_ratio")
+
+    public val setRotationModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_rotation_mode")
+
+    public val getRotationModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow3D", "get_rotation_mode")
+
+    public val setCubicInterpolationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_cubic_interpolation")
+
+    public val getCubicInterpolationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow3D", "get_cubic_interpolation")
+
+    public val setUseModelFrontPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_use_model_front")
+
+    public val isUsingModelFrontPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow3D", "is_using_model_front")
+
+    public val setLoopPtr: VoidPtr = TypeManager.getMethodBindPtr("PathFollow3D", "set_loop")
+
+    public val hasLoopPtr: VoidPtr = TypeManager.getMethodBindPtr("PathFollow3D", "has_loop")
+
+    public val setTiltEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_tilt_enabled")
+
+    public val isTiltEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow3D", "is_tilt_enabled")
+
+    public val correctPosturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow3D", "correct_posture")
   }
 }

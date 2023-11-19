@@ -8,12 +8,14 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -35,14 +37,12 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   public var boneIndex: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_GET_BONE_INDEX, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBoneIndexPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_SET_BONE_INDEX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBoneIndexPtr, NIL)
     }
 
   /**
@@ -51,14 +51,12 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   public var bone2dNode: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_GET_BONE2D_NODE, NODE_PATH)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBone2dNodePtr, NODE_PATH)
       return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_SET_BONE2D_NODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBone2dNodePtr, NIL)
     }
 
   /**
@@ -67,14 +65,12 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   public var targetNodepath: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_GET_TARGET_NODE, NODE_PATH)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
       return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_SET_TARGET_NODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -87,8 +83,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
    */
   public fun setAdditionalRotation(rotation: Float): Unit {
     TransferContext.writeArguments(DOUBLE to rotation.toDouble())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_SET_ADDITIONAL_ROTATION, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAdditionalRotationPtr, NIL)
   }
 
   /**
@@ -96,8 +91,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
    */
   public fun getAdditionalRotation(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_GET_ADDITIONAL_ROTATION, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAdditionalRotationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -106,8 +100,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
    */
   public fun setEnableConstraint(enableConstraint: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enableConstraint)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_SET_ENABLE_CONSTRAINT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnableConstraintPtr, NIL)
   }
 
   /**
@@ -115,8 +108,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
    */
   public fun getEnableConstraint(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_GET_ENABLE_CONSTRAINT, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnableConstraintPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -125,8 +117,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
    */
   public fun setConstraintAngleMin(angleMin: Float): Unit {
     TransferContext.writeArguments(DOUBLE to angleMin.toDouble())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_SET_CONSTRAINT_ANGLE_MIN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setConstraintAngleMinPtr, NIL)
   }
 
   /**
@@ -134,8 +125,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
    */
   public fun getConstraintAngleMin(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_GET_CONSTRAINT_ANGLE_MIN, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getConstraintAngleMinPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -144,8 +134,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
    */
   public fun setConstraintAngleMax(angleMax: Float): Unit {
     TransferContext.writeArguments(DOUBLE to angleMax.toDouble())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_SET_CONSTRAINT_ANGLE_MAX, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setConstraintAngleMaxPtr, NIL)
   }
 
   /**
@@ -153,8 +142,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
    */
   public fun getConstraintAngleMax(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_GET_CONSTRAINT_ANGLE_MAX, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getConstraintAngleMaxPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -165,8 +153,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
    */
   public fun setConstraintAngleInvert(invert: Boolean): Unit {
     TransferContext.writeArguments(BOOL to invert)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_SET_CONSTRAINT_ANGLE_INVERT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setConstraintAngleInvertPtr, NIL)
   }
 
   /**
@@ -174,10 +161,59 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
    */
   public fun getConstraintAngleInvert(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DLOOKAT_GET_CONSTRAINT_ANGLE_INVERT, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.getConstraintAngleInvertPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setBone2dNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_bone2d_node")
+
+    public val getBone2dNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_bone2d_node")
+
+    public val setBoneIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_bone_index")
+
+    public val getBoneIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_bone_index")
+
+    public val setTargetNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_target_node")
+
+    public val getTargetNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_target_node")
+
+    public val setAdditionalRotationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_additional_rotation")
+
+    public val getAdditionalRotationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_additional_rotation")
+
+    public val setEnableConstraintPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_enable_constraint")
+
+    public val getEnableConstraintPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_enable_constraint")
+
+    public val setConstraintAngleMinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_constraint_angle_min")
+
+    public val getConstraintAngleMinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_constraint_angle_min")
+
+    public val setConstraintAngleMaxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_constraint_angle_max")
+
+    public val getConstraintAngleMaxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_constraint_angle_max")
+
+    public val setConstraintAngleInvertPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_constraint_angle_invert")
+
+    public val getConstraintAngleInvertPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_constraint_angle_invert")
+  }
 }

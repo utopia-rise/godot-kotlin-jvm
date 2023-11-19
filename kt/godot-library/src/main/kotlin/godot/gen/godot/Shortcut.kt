@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -14,6 +15,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -37,12 +39,12 @@ public open class Shortcut : Resource() {
   public var events: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_GET_EVENTS, ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEventsPtr, ARRAY)
       return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_SET_EVENTS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEventsPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -55,7 +57,7 @@ public open class Shortcut : Resource() {
    */
   public fun hasValidEvent(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_HAS_VALID_EVENT, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hasValidEventPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -64,7 +66,7 @@ public open class Shortcut : Resource() {
    */
   public fun matchesEvent(event: InputEvent): Boolean {
     TransferContext.writeArguments(OBJECT to event)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_MATCHES_EVENT, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.matchesEventPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -73,9 +75,22 @@ public open class Shortcut : Resource() {
    */
   public fun getAsText(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_GET_AS_TEXT, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAsTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setEventsPtr: VoidPtr = TypeManager.getMethodBindPtr("Shortcut", "set_events")
+
+    public val getEventsPtr: VoidPtr = TypeManager.getMethodBindPtr("Shortcut", "get_events")
+
+    public val hasValidEventPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Shortcut", "has_valid_event")
+
+    public val matchesEventPtr: VoidPtr = TypeManager.getMethodBindPtr("Shortcut", "matches_event")
+
+    public val getAsTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Shortcut", "get_as_text")
+  }
 }

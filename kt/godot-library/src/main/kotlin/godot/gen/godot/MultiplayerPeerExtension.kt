@@ -9,6 +9,8 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedByteArray
+import godot.core.TypeManager
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -168,4 +170,74 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _getPacketPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_get_packet")
+
+    public val _putPacketPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_put_packet")
+
+    public val _getAvailablePacketCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_get_available_packet_count")
+
+    public val _getMaxPacketSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_get_max_packet_size")
+
+    public val _getPacketScriptPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_get_packet_script")
+
+    public val _putPacketScriptPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_put_packet_script")
+
+    public val _getPacketChannelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_get_packet_channel")
+
+    public val _getPacketModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_get_packet_mode")
+
+    public val _setTransferChannelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_set_transfer_channel")
+
+    public val _getTransferChannelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_get_transfer_channel")
+
+    public val _setTransferModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_set_transfer_mode")
+
+    public val _getTransferModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_get_transfer_mode")
+
+    public val _setTargetPeerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_set_target_peer")
+
+    public val _getPacketPeerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_get_packet_peer")
+
+    public val _isServerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_is_server")
+
+    public val _pollPtr: VoidPtr = TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_poll")
+
+    public val _closePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_close")
+
+    public val _disconnectPeerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_disconnect_peer")
+
+    public val _getUniqueIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_get_unique_id")
+
+    public val _setRefuseNewConnectionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_set_refuse_new_connections")
+
+    public val _isRefusingNewConnectionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_is_refusing_new_connections")
+
+    public val _isServerRelaySupportedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_is_server_relay_supported")
+
+    public val _getConnectionStatusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerPeerExtension", "_get_connection_status")
+  }
 }

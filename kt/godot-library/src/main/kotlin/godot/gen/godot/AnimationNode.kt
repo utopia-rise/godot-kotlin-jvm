@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.NodePath
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
@@ -25,6 +26,7 @@ import godot.signals.Signal0
 import godot.signals.Signal2
 import godot.signals.Signal3
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -71,14 +73,12 @@ public open class AnimationNode : Resource() {
   public var filterEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_IS_FILTER_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isFilterEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_SET_FILTER_ENABLED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFilterEnabledPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -156,7 +156,7 @@ public open class AnimationNode : Resource() {
    */
   public fun addInput(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_ADD_INPUT, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addInputPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -165,7 +165,7 @@ public open class AnimationNode : Resource() {
    */
   public fun removeInput(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_REMOVE_INPUT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeInputPtr, NIL)
   }
 
   /**
@@ -173,7 +173,7 @@ public open class AnimationNode : Resource() {
    */
   public fun setInputName(input: Int, name: String): Boolean {
     TransferContext.writeArguments(LONG to input.toLong(), STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_SET_INPUT_NAME, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInputNamePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -182,8 +182,7 @@ public open class AnimationNode : Resource() {
    */
   public fun getInputName(input: Int): String {
     TransferContext.writeArguments(LONG to input.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_GET_INPUT_NAME,
-        STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getInputNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -192,7 +191,7 @@ public open class AnimationNode : Resource() {
    */
   public fun getInputCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_GET_INPUT_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getInputCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -201,7 +200,7 @@ public open class AnimationNode : Resource() {
    */
   public fun findInput(name: String): Int {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_FIND_INPUT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.findInputPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -210,7 +209,7 @@ public open class AnimationNode : Resource() {
    */
   public fun setFilterPath(path: NodePath, enable: Boolean): Unit {
     TransferContext.writeArguments(NODE_PATH to path, BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_SET_FILTER_PATH, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFilterPathPtr, NIL)
   }
 
   /**
@@ -218,8 +217,7 @@ public open class AnimationNode : Resource() {
    */
   public fun isPathFiltered(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_IS_PATH_FILTERED,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isPathFilteredPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -239,7 +237,7 @@ public open class AnimationNode : Resource() {
     loopedFlag: Animation.LoopedFlag = Animation.LoopedFlag.LOOPED_FLAG_NONE,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to animation, DOUBLE to time, DOUBLE to delta, BOOL to seeked, BOOL to isExternalSeeking, DOUBLE to blend.toDouble(), LONG to loopedFlag.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_BLEND_ANIMATION, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.blendAnimationPtr, NIL)
   }
 
   /**
@@ -258,7 +256,7 @@ public open class AnimationNode : Resource() {
     testOnly: Boolean = false,
   ): Double {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to node, DOUBLE to time, BOOL to seek, BOOL to isExternalSeeking, DOUBLE to blend.toDouble(), LONG to filter.id, BOOL to sync, BOOL to testOnly)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_BLEND_NODE, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.blendNodePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
@@ -277,7 +275,7 @@ public open class AnimationNode : Resource() {
     testOnly: Boolean = false,
   ): Double {
     TransferContext.writeArguments(LONG to inputIndex.toLong(), DOUBLE to time, BOOL to seek, BOOL to isExternalSeeking, DOUBLE to blend.toDouble(), LONG to filter.id, BOOL to sync, BOOL to testOnly)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_BLEND_INPUT, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.blendInputPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
@@ -286,7 +284,7 @@ public open class AnimationNode : Resource() {
    */
   public fun setParameter(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_SET_PARAMETER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setParameterPtr, NIL)
   }
 
   /**
@@ -294,7 +292,7 @@ public open class AnimationNode : Resource() {
    */
   public fun getParameter(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_GET_PARAMETER, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getParameterPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -330,4 +328,69 @@ public open class AnimationNode : Resource() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _getChildNodesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "_get_child_nodes")
+
+    public val _getParameterListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "_get_parameter_list")
+
+    public val _getChildByNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "_get_child_by_name")
+
+    public val _getParameterDefaultValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "_get_parameter_default_value")
+
+    public val _isParameterReadOnlyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "_is_parameter_read_only")
+
+    public val _processPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationNode", "_process")
+
+    public val _getCaptionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "_get_caption")
+
+    public val _hasFilterPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationNode", "_has_filter")
+
+    public val addInputPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationNode", "add_input")
+
+    public val removeInputPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "remove_input")
+
+    public val setInputNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "set_input_name")
+
+    public val getInputNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "get_input_name")
+
+    public val getInputCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "get_input_count")
+
+    public val findInputPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationNode", "find_input")
+
+    public val setFilterPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "set_filter_path")
+
+    public val isPathFilteredPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "is_path_filtered")
+
+    public val setFilterEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "set_filter_enabled")
+
+    public val isFilterEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "is_filter_enabled")
+
+    public val blendAnimationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "blend_animation")
+
+    public val blendNodePtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationNode", "blend_node")
+
+    public val blendInputPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationNode", "blend_input")
+
+    public val setParameterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "set_parameter")
+
+    public val getParameterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "get_parameter")
+  }
 }

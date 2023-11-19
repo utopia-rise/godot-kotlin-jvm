@@ -7,11 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -37,12 +39,12 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   public var shape: Shape
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIBBONTRAILMESH_GET_SHAPE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, LONG)
       return RibbonTrailMesh.Shape.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIBBONTRAILMESH_SET_SHAPE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
     }
 
   /**
@@ -51,12 +53,12 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   public var size: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIBBONTRAILMESH_GET_SIZE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIBBONTRAILMESH_SET_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
     }
 
   /**
@@ -65,13 +67,12 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   public var sections: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIBBONTRAILMESH_GET_SECTIONS,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSectionsPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIBBONTRAILMESH_SET_SECTIONS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSectionsPtr, NIL)
     }
 
   /**
@@ -80,14 +81,12 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   public var sectionLength: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIBBONTRAILMESH_GET_SECTION_LENGTH, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSectionLengthPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIBBONTRAILMESH_SET_SECTION_LENGTH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSectionLengthPtr, NIL)
     }
 
   /**
@@ -96,14 +95,12 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   public var sectionSegments: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIBBONTRAILMESH_GET_SECTION_SEGMENTS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSectionSegmentsPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIBBONTRAILMESH_SET_SECTION_SEGMENTS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSectionSegmentsPtr, NIL)
     }
 
   /**
@@ -112,12 +109,12 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   public var curve: Curve?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIBBONTRAILMESH_GET_CURVE, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIBBONTRAILMESH_SET_CURVE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -149,4 +146,36 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_size")
+
+    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_size")
+
+    public val setSectionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_sections")
+
+    public val getSectionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_sections")
+
+    public val setSectionLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_section_length")
+
+    public val getSectionLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_section_length")
+
+    public val setSectionSegmentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_section_segments")
+
+    public val getSectionSegmentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_section_segments")
+
+    public val setCurvePtr: VoidPtr = TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_curve")
+
+    public val getCurvePtr: VoidPtr = TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_curve")
+
+    public val setShapePtr: VoidPtr = TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_shape")
+
+    public val getShapePtr: VoidPtr = TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_shape")
+  }
 }

@@ -7,11 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -30,14 +32,12 @@ public open class GradientTexture1D : Texture2D() {
   public var gradient: Gradient?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE1D_GET_GRADIENT,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGradientPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Gradient?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE1D_SET_GRADIENT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGradientPtr, NIL)
     }
 
   /**
@@ -49,7 +49,7 @@ public open class GradientTexture1D : Texture2D() {
     get() = super.getWidth()
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE1D_SET_WIDTH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
     }
 
   /**
@@ -58,14 +58,12 @@ public open class GradientTexture1D : Texture2D() {
   public var useHdr: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE1D_IS_USING_HDR,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isUsingHdrPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE1D_SET_USE_HDR,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseHdrPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -74,4 +72,20 @@ public open class GradientTexture1D : Texture2D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setGradientPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GradientTexture1D", "set_gradient")
+
+    public val getGradientPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GradientTexture1D", "get_gradient")
+
+    public val setWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("GradientTexture1D", "set_width")
+
+    public val setUseHdrPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GradientTexture1D", "set_use_hdr")
+
+    public val isUsingHdrPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GradientTexture1D", "is_using_hdr")
+  }
 }

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.LONG
@@ -15,6 +16,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -52,7 +54,7 @@ public object CameraServer : Object() {
    */
   public fun getFeed(index: Int): CameraFeed? {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_GET_FEED, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFeedPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as CameraFeed?)
   }
 
@@ -61,7 +63,7 @@ public object CameraServer : Object() {
    */
   public fun getFeedCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_GET_FEED_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFeedCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -70,7 +72,7 @@ public object CameraServer : Object() {
    */
   public fun feeds(): VariantArray<CameraFeed> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_FEEDS, ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.feedsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<CameraFeed>)
   }
 
@@ -79,7 +81,7 @@ public object CameraServer : Object() {
    */
   public fun addFeed(feed: CameraFeed): Unit {
     TransferContext.writeArguments(OBJECT to feed)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_ADD_FEED, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addFeedPtr, NIL)
   }
 
   /**
@@ -87,7 +89,7 @@ public object CameraServer : Object() {
    */
   public fun removeFeed(feed: CameraFeed): Unit {
     TransferContext.writeArguments(OBJECT to feed)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_REMOVE_FEED, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeFeedPtr, NIL)
   }
 
   public enum class FeedImage(
@@ -119,5 +121,18 @@ public object CameraServer : Object() {
     public companion object {
       public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
+  }
+
+  internal object MethodBindings {
+    public val getFeedPtr: VoidPtr = TypeManager.getMethodBindPtr("CameraServer", "get_feed")
+
+    public val getFeedCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CameraServer", "get_feed_count")
+
+    public val feedsPtr: VoidPtr = TypeManager.getMethodBindPtr("CameraServer", "feeds")
+
+    public val addFeedPtr: VoidPtr = TypeManager.getMethodBindPtr("CameraServer", "add_feed")
+
+    public val removeFeedPtr: VoidPtr = TypeManager.getMethodBindPtr("CameraServer", "remove_feed")
   }
 }

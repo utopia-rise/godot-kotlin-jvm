@@ -38,7 +38,7 @@ void load_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
     classes.delete_local_ref(env);
 }
 
-void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types, jobjectArray p_singleton_names, jobjectArray p_method_names, jobjectArray p_types_of_methods) {
+void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types, jobjectArray p_singleton_names) {
 #ifdef DEV_ENABLED
     LOG_VERBOSE("Starting to register managed engine types...");
 #endif
@@ -50,16 +50,10 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
     jni::JObjectArray singleton_names {p_singleton_names};
     TypeManager::get_instance().register_engine_singletons(env, singleton_names);
 
-    jni::JObjectArray method_names {p_method_names};
-    jni::JObjectArray types_of_methods {p_types_of_methods};
-    TypeManager::get_instance().register_methods(env, method_names, types_of_methods);
-
     jni::JObject j_object {p_this};
     j_object.delete_local_ref(env);
     engine_types.delete_local_ref(env);
     singleton_names.delete_local_ref(env);
-    method_names.delete_local_ref(env);
-    types_of_methods.delete_local_ref(env);
 #ifdef DEV_ENABLED
     LOG_VERBOSE("Done registering managed engine types...");
 #endif
@@ -247,6 +241,8 @@ void GDKotlin::init() {
 
     initialize_classes();
 
+    TypeManager::get_instance();
+
     jni::JClass transfer_ctx_cls = env.load_class("godot.core.memory.TransferContext", class_loader);
     jni::FieldId transfer_ctx_instance_field = transfer_ctx_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/memory/TransferContext;");
     jni::JObject transfer_ctx_instance = transfer_ctx_cls.get_static_object_field(env, transfer_ctx_instance_field);
@@ -364,6 +360,7 @@ void GDKotlin::finish() {
 
     LongStringQueue::destroy();
     BridgesManager::get_instance().delete_bridges();
+    TypeManager::destroy();
 
     ClassLoader::delete_default_loader(env);
     jni::Jvm::destroy();
@@ -491,6 +488,7 @@ const Vector<Pair<String, String>>& GDKotlin::get_configuration_errors() const {
 }
 
 void GDKotlin::initialize_classes() {
+    TypeManager::initialize_class("godot.core.TypeManager");
     TransferContext::initialize_class("godot.core.memory.TransferContext");
     LongStringQueue::initialize_class("godot.core.LongStringQueue");
 

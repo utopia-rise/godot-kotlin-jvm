@@ -10,6 +10,7 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -19,6 +20,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -40,14 +42,12 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   public var from: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D_GET_FROM, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFromPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D_SET_FROM, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFromPtr, NIL)
     }
 
   /**
@@ -57,14 +57,12 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   public var to: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D_GET_TO, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getToPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D_SET_TO, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setToPtr, NIL)
     }
 
   /**
@@ -73,14 +71,12 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   public var collisionMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D_GET_COLLISION_MASK, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D_SET_COLLISION_MASK, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
     }
 
   /**
@@ -89,14 +85,12 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   public var exclude: VariantArray<RID>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D_GET_EXCLUDE, ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getExcludePtr, ARRAY)
       return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D_SET_EXCLUDE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setExcludePtr, NIL)
     }
 
   /**
@@ -105,14 +99,12 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   public var collideWithBodies: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D_IS_COLLIDE_WITH_BODIES_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D_SET_COLLIDE_WITH_BODIES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithBodiesPtr, NIL)
     }
 
   /**
@@ -121,14 +113,12 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   public var collideWithAreas: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D_IS_COLLIDE_WITH_AREAS_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D_SET_COLLIDE_WITH_AREAS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithAreasPtr, NIL)
     }
 
   /**
@@ -137,14 +127,12 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   public var hitFromInside: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D_IS_HIT_FROM_INSIDE_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isHitFromInsideEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D_SET_HIT_FROM_INSIDE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHitFromInsidePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -217,9 +205,55 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
       exclude: VariantArray<RID> = godot.core.variantArrayOf(),
     ): PhysicsRayQueryParameters2D? {
       TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to, LONG to collisionMask, ARRAY to exclude)
-      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D_CREATE,
-          OBJECT)
+      TransferContext.callMethod(0, MethodBindings.createPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as PhysicsRayQueryParameters2D?)
     }
+  }
+
+  internal object MethodBindings {
+    public val createPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "create")
+
+    public val setFromPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "set_from")
+
+    public val getFromPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "get_from")
+
+    public val setToPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "set_to")
+
+    public val getToPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "get_to")
+
+    public val setCollisionMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "set_collision_mask")
+
+    public val getCollisionMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "get_collision_mask")
+
+    public val setExcludePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "set_exclude")
+
+    public val getExcludePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "get_exclude")
+
+    public val setCollideWithBodiesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "set_collide_with_bodies")
+
+    public val isCollideWithBodiesEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "is_collide_with_bodies_enabled")
+
+    public val setCollideWithAreasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "set_collide_with_areas")
+
+    public val isCollideWithAreasEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "is_collide_with_areas_enabled")
+
+    public val setHitFromInsidePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "set_hit_from_inside")
+
+    public val isHitFromInsideEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "is_hit_from_inside_enabled")
   }
 }

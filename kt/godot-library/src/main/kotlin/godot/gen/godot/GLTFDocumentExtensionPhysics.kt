@@ -19,4 +19,6 @@ public open class GLTFDocumentExtensionPhysics internal constructor() : GLTFDocu
   }
 
   public companion object
+
+  internal object MethodBindings
 }

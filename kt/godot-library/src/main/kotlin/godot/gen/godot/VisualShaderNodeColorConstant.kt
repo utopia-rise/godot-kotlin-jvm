@@ -10,9 +10,11 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
+import godot.core.TypeManager
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -34,14 +36,12 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
   public var constant: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOLORCONSTANT_GET_CONSTANT, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOLORCONSTANT_SET_CONSTANT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -74,4 +74,12 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorConstant", "set_constant")
+
+    public val getConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorConstant", "get_constant")
+  }
 }

@@ -14,6 +14,7 @@ import godot.core.Color
 import godot.core.Dictionary
 import godot.core.PackedVector2Array
 import godot.core.RID
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
@@ -28,6 +29,7 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -112,14 +114,12 @@ public open class NavigationAgent2D : Node() {
   public var targetPosition: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_TARGET_POSITION, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTargetPositionPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_TARGET_POSITION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTargetPositionPtr, NIL)
     }
 
   /**
@@ -128,14 +128,12 @@ public open class NavigationAgent2D : Node() {
   public var pathDesiredDistance: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_PATH_DESIRED_DISTANCE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPathDesiredDistancePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_PATH_DESIRED_DISTANCE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPathDesiredDistancePtr, NIL)
     }
 
   /**
@@ -144,14 +142,12 @@ public open class NavigationAgent2D : Node() {
   public var targetDesiredDistance: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_TARGET_DESIRED_DISTANCE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTargetDesiredDistancePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_TARGET_DESIRED_DISTANCE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTargetDesiredDistancePtr, NIL)
     }
 
   /**
@@ -160,14 +156,12 @@ public open class NavigationAgent2D : Node() {
   public var pathMaxDistance: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_PATH_MAX_DISTANCE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPathMaxDistancePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_PATH_MAX_DISTANCE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPathMaxDistancePtr, NIL)
     }
 
   /**
@@ -176,14 +170,12 @@ public open class NavigationAgent2D : Node() {
   public var navigationLayers: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_NAVIGATION_LAYERS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_NAVIGATION_LAYERS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayersPtr, NIL)
     }
 
   /**
@@ -192,14 +184,12 @@ public open class NavigationAgent2D : Node() {
   public var pathfindingAlgorithm: NavigationPathQueryParameters2D.PathfindingAlgorithm
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_PATHFINDING_ALGORITHM, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPathfindingAlgorithmPtr, LONG)
       return NavigationPathQueryParameters2D.PathfindingAlgorithm.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_PATHFINDING_ALGORITHM, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPathfindingAlgorithmPtr, NIL)
     }
 
   /**
@@ -208,14 +198,12 @@ public open class NavigationAgent2D : Node() {
   public var pathPostprocessing: NavigationPathQueryParameters2D.PathPostProcessing
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_PATH_POSTPROCESSING, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPathPostprocessingPtr, LONG)
       return NavigationPathQueryParameters2D.PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_PATH_POSTPROCESSING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPathPostprocessingPtr, NIL)
     }
 
   /**
@@ -224,14 +212,12 @@ public open class NavigationAgent2D : Node() {
   public var pathMetadataFlags: NavigationPathQueryParameters2D.PathMetadataFlags
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_PATH_METADATA_FLAGS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPathMetadataFlagsPtr, LONG)
       return PathMetadataFlagsValue(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.flag)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_PATH_METADATA_FLAGS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPathMetadataFlagsPtr, NIL)
     }
 
   /**
@@ -240,14 +226,12 @@ public open class NavigationAgent2D : Node() {
   public var avoidanceEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_AVOIDANCE_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_AVOIDANCE_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceEnabledPtr, NIL)
     }
 
   /**
@@ -257,14 +241,12 @@ public open class NavigationAgent2D : Node() {
   public var velocity: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_VELOCITY,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_VELOCITY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
     }
 
   /**
@@ -275,13 +257,12 @@ public open class NavigationAgent2D : Node() {
   public var radius: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_RADIUS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_RADIUS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
     }
 
   /**
@@ -290,14 +271,12 @@ public open class NavigationAgent2D : Node() {
   public var neighborDistance: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_NEIGHBOR_DISTANCE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getNeighborDistancePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_NEIGHBOR_DISTANCE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setNeighborDistancePtr, NIL)
     }
 
   /**
@@ -306,14 +285,12 @@ public open class NavigationAgent2D : Node() {
   public var maxNeighbors: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_MAX_NEIGHBORS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMaxNeighborsPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_MAX_NEIGHBORS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMaxNeighborsPtr, NIL)
     }
 
   /**
@@ -322,14 +299,12 @@ public open class NavigationAgent2D : Node() {
   public var timeHorizonAgents: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_TIME_HORIZON_AGENTS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTimeHorizonAgentsPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_TIME_HORIZON_AGENTS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTimeHorizonAgentsPtr, NIL)
     }
 
   /**
@@ -338,14 +313,12 @@ public open class NavigationAgent2D : Node() {
   public var timeHorizonObstacles: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_TIME_HORIZON_OBSTACLES, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTimeHorizonObstaclesPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_TIME_HORIZON_OBSTACLES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTimeHorizonObstaclesPtr, NIL)
     }
 
   /**
@@ -354,14 +327,12 @@ public open class NavigationAgent2D : Node() {
   public var maxSpeed: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_MAX_SPEED,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMaxSpeedPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_MAX_SPEED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMaxSpeedPtr, NIL)
     }
 
   /**
@@ -370,14 +341,12 @@ public open class NavigationAgent2D : Node() {
   public var avoidanceLayers: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_AVOIDANCE_LAYERS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceLayersPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_AVOIDANCE_LAYERS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceLayersPtr, NIL)
     }
 
   /**
@@ -386,14 +355,12 @@ public open class NavigationAgent2D : Node() {
   public var avoidanceMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_AVOIDANCE_MASK, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceMaskPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_AVOIDANCE_MASK, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceMaskPtr, NIL)
     }
 
   /**
@@ -402,14 +369,12 @@ public open class NavigationAgent2D : Node() {
   public var avoidancePriority: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_AVOIDANCE_PRIORITY, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAvoidancePriorityPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_AVOIDANCE_PRIORITY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAvoidancePriorityPtr, NIL)
     }
 
   /**
@@ -418,14 +383,12 @@ public open class NavigationAgent2D : Node() {
   public var debugEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_DEBUG_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDebugEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_DEBUG_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDebugEnabledPtr, NIL)
     }
 
   /**
@@ -434,14 +397,12 @@ public open class NavigationAgent2D : Node() {
   public var debugUseCustom: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_DEBUG_USE_CUSTOM, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDebugUseCustomPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_DEBUG_USE_CUSTOM, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDebugUseCustomPtr, NIL)
     }
 
   /**
@@ -451,14 +412,12 @@ public open class NavigationAgent2D : Node() {
   public var debugPathCustomColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_DEBUG_PATH_CUSTOM_COLOR, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDebugPathCustomColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_DEBUG_PATH_CUSTOM_COLOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDebugPathCustomColorPtr, NIL)
     }
 
   /**
@@ -467,14 +426,12 @@ public open class NavigationAgent2D : Node() {
   public var debugPathCustomPointSize: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_DEBUG_PATH_CUSTOM_POINT_SIZE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDebugPathCustomPointSizePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_DEBUG_PATH_CUSTOM_POINT_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDebugPathCustomPointSizePtr, NIL)
     }
 
   /**
@@ -483,14 +440,12 @@ public open class NavigationAgent2D : Node() {
   public var debugPathCustomLineWidth: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_DEBUG_PATH_CUSTOM_LINE_WIDTH, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDebugPathCustomLineWidthPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_DEBUG_PATH_CUSTOM_LINE_WIDTH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDebugPathCustomLineWidthPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -576,7 +531,7 @@ public open class NavigationAgent2D : Node() {
    */
   public fun getRid(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_RID, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -585,8 +540,7 @@ public open class NavigationAgent2D : Node() {
    */
   public fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_NAVIGATION_LAYER_VALUE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayerValuePtr, NIL)
   }
 
   /**
@@ -594,8 +548,7 @@ public open class NavigationAgent2D : Node() {
    */
   public fun getNavigationLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_NAVIGATION_LAYER_VALUE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayerValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -604,8 +557,7 @@ public open class NavigationAgent2D : Node() {
    */
   public fun setNavigationMap(navigationMap: RID): Unit {
     TransferContext.writeArguments(_RID to navigationMap)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_NAVIGATION_MAP, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationMapPtr, NIL)
   }
 
   /**
@@ -613,8 +565,7 @@ public open class NavigationAgent2D : Node() {
    */
   public fun getNavigationMap(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_NAVIGATION_MAP, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -623,8 +574,7 @@ public open class NavigationAgent2D : Node() {
    */
   public fun getNextPathPosition(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_NEXT_PATH_POSITION, VECTOR2)
+    TransferContext.callMethod(rawPtr, MethodBindings.getNextPathPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
@@ -633,8 +583,7 @@ public open class NavigationAgent2D : Node() {
    */
   public fun setVelocityForced(velocity: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to velocity)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_VELOCITY_FORCED, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVelocityForcedPtr, NIL)
   }
 
   /**
@@ -642,8 +591,7 @@ public open class NavigationAgent2D : Node() {
    */
   public fun distanceToTarget(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_DISTANCE_TO_TARGET, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.distanceToTargetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -652,8 +600,7 @@ public open class NavigationAgent2D : Node() {
    */
   public fun getCurrentNavigationResult(): NavigationPathQueryResult2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_CURRENT_NAVIGATION_RESULT, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentNavigationResultPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as NavigationPathQueryResult2D?)
   }
 
@@ -662,8 +609,7 @@ public open class NavigationAgent2D : Node() {
    */
   public fun getCurrentNavigationPath(): PackedVector2Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_CURRENT_NAVIGATION_PATH,
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentNavigationPathPtr,
         PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
   }
@@ -673,8 +619,7 @@ public open class NavigationAgent2D : Node() {
    */
   public fun getCurrentNavigationPathIndex(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_CURRENT_NAVIGATION_PATH_INDEX, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentNavigationPathIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -683,8 +628,7 @@ public open class NavigationAgent2D : Node() {
    */
   public fun isTargetReached(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_IS_TARGET_REACHED,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isTargetReachedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -693,8 +637,7 @@ public open class NavigationAgent2D : Node() {
    */
   public fun isTargetReachable(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_IS_TARGET_REACHABLE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isTargetReachablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -703,8 +646,7 @@ public open class NavigationAgent2D : Node() {
    */
   public fun isNavigationFinished(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_IS_NAVIGATION_FINISHED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isNavigationFinishedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -713,8 +655,7 @@ public open class NavigationAgent2D : Node() {
    */
   public fun getFinalPosition(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_FINAL_POSITION, VECTOR2)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFinalPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
@@ -723,8 +664,7 @@ public open class NavigationAgent2D : Node() {
    */
   public fun setAvoidanceLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_AVOIDANCE_LAYER_VALUE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceLayerValuePtr, NIL)
   }
 
   /**
@@ -732,8 +672,7 @@ public open class NavigationAgent2D : Node() {
    */
   public fun getAvoidanceLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_AVOIDANCE_LAYER_VALUE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceLayerValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -742,8 +681,7 @@ public open class NavigationAgent2D : Node() {
    */
   public fun setAvoidanceMaskValue(maskNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to maskNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_SET_AVOIDANCE_MASK_VALUE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceMaskValuePtr, NIL)
   }
 
   /**
@@ -751,10 +689,211 @@ public open class NavigationAgent2D : Node() {
    */
   public fun getAvoidanceMaskValue(maskNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to maskNumber.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT2D_GET_AVOIDANCE_MASK_VALUE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceMaskValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationAgent2D", "get_rid")
+
+    public val setAvoidanceEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_enabled")
+
+    public val getAvoidanceEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_enabled")
+
+    public val setPathDesiredDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_path_desired_distance")
+
+    public val getPathDesiredDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_path_desired_distance")
+
+    public val setTargetDesiredDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_target_desired_distance")
+
+    public val getTargetDesiredDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_target_desired_distance")
+
+    public val setRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_radius")
+
+    public val getRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_radius")
+
+    public val setNeighborDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_neighbor_distance")
+
+    public val getNeighborDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_neighbor_distance")
+
+    public val setMaxNeighborsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_max_neighbors")
+
+    public val getMaxNeighborsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_max_neighbors")
+
+    public val setTimeHorizonAgentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_time_horizon_agents")
+
+    public val getTimeHorizonAgentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_time_horizon_agents")
+
+    public val setTimeHorizonObstaclesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_time_horizon_obstacles")
+
+    public val getTimeHorizonObstaclesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_time_horizon_obstacles")
+
+    public val setMaxSpeedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_max_speed")
+
+    public val getMaxSpeedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_max_speed")
+
+    public val setPathMaxDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_path_max_distance")
+
+    public val getPathMaxDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_path_max_distance")
+
+    public val setNavigationLayersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_navigation_layers")
+
+    public val getNavigationLayersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_navigation_layers")
+
+    public val setNavigationLayerValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_navigation_layer_value")
+
+    public val getNavigationLayerValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_navigation_layer_value")
+
+    public val setPathfindingAlgorithmPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_pathfinding_algorithm")
+
+    public val getPathfindingAlgorithmPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_pathfinding_algorithm")
+
+    public val setPathPostprocessingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_path_postprocessing")
+
+    public val getPathPostprocessingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_path_postprocessing")
+
+    public val setPathMetadataFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_path_metadata_flags")
+
+    public val getPathMetadataFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_path_metadata_flags")
+
+    public val setNavigationMapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_navigation_map")
+
+    public val getNavigationMapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_navigation_map")
+
+    public val setTargetPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_target_position")
+
+    public val getTargetPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_target_position")
+
+    public val getNextPathPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_next_path_position")
+
+    public val setVelocityForcedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_velocity_forced")
+
+    public val setVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_velocity")
+
+    public val getVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_velocity")
+
+    public val distanceToTargetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "distance_to_target")
+
+    public val getCurrentNavigationResultPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_current_navigation_result")
+
+    public val getCurrentNavigationPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_current_navigation_path")
+
+    public val getCurrentNavigationPathIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_current_navigation_path_index")
+
+    public val isTargetReachedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "is_target_reached")
+
+    public val isTargetReachablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "is_target_reachable")
+
+    public val isNavigationFinishedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "is_navigation_finished")
+
+    public val getFinalPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_final_position")
+
+    public val setAvoidanceLayersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_layers")
+
+    public val getAvoidanceLayersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_layers")
+
+    public val setAvoidanceMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_mask")
+
+    public val getAvoidanceMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_mask")
+
+    public val setAvoidanceLayerValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_layer_value")
+
+    public val getAvoidanceLayerValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_layer_value")
+
+    public val setAvoidanceMaskValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_mask_value")
+
+    public val getAvoidanceMaskValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_mask_value")
+
+    public val setAvoidancePriorityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_priority")
+
+    public val getAvoidancePriorityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_priority")
+
+    public val setDebugEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_debug_enabled")
+
+    public val getDebugEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_debug_enabled")
+
+    public val setDebugUseCustomPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_debug_use_custom")
+
+    public val getDebugUseCustomPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_debug_use_custom")
+
+    public val setDebugPathCustomColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_debug_path_custom_color")
+
+    public val getDebugPathCustomColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_debug_path_custom_color")
+
+    public val setDebugPathCustomPointSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_debug_path_custom_point_size")
+
+    public val getDebugPathCustomPointSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_debug_path_custom_point_size")
+
+    public val setDebugPathCustomLineWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_debug_path_custom_line_width")
+
+    public val getDebugPathCustomLineWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_debug_path_custom_line_width")
+  }
 }

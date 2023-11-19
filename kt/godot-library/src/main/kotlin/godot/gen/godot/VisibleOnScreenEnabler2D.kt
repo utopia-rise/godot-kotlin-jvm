@@ -8,10 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -30,14 +32,12 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
   public var enableMode: EnableMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENENABLER2D_GET_ENABLE_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnableModePtr, LONG)
       return VisibleOnScreenEnabler2D.EnableMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENENABLER2D_SET_ENABLE_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnableModePtr, NIL)
     }
 
   /**
@@ -46,14 +46,12 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
   public var enableNodePath: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENENABLER2D_GET_ENABLE_NODE_PATH, NODE_PATH)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnableNodePathPtr, NODE_PATH)
       return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISIBLEONSCREENENABLER2D_SET_ENABLE_NODE_PATH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnableNodePathPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -89,4 +87,18 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setEnableModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisibleOnScreenEnabler2D", "set_enable_mode")
+
+    public val getEnableModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisibleOnScreenEnabler2D", "get_enable_mode")
+
+    public val setEnableNodePathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisibleOnScreenEnabler2D", "set_enable_node_path")
+
+    public val getEnableNodePathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisibleOnScreenEnabler2D", "get_enable_node_path")
+  }
 }

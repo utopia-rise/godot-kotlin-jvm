@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
@@ -14,6 +15,7 @@ import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -83,8 +85,7 @@ public open class ScriptEditorBase internal constructor() : VBoxContainer() {
    */
   public fun getBaseEditor(): Control? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITORBASE_GET_BASE_EDITOR,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBaseEditorPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Control?)
   }
 
@@ -93,9 +94,16 @@ public open class ScriptEditorBase internal constructor() : VBoxContainer() {
    */
   public fun addSyntaxHighlighter(highlighter: EditorSyntaxHighlighter): Unit {
     TransferContext.writeArguments(OBJECT to highlighter)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SCRIPTEDITORBASE_ADD_SYNTAX_HIGHLIGHTER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addSyntaxHighlighterPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getBaseEditorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptEditorBase", "get_base_editor")
+
+    public val addSyntaxHighlighterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptEditorBase", "add_syntax_highlighter")
+  }
 }

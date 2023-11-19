@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -40,14 +42,12 @@ public open class VehicleBody3D : RigidBody3D() {
   public var engineForce: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_GET_ENGINE_FORCE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEngineForcePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_SET_ENGINE_FORCE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEngineForcePtr, NIL)
     }
 
   /**
@@ -56,12 +56,12 @@ public open class VehicleBody3D : RigidBody3D() {
   public var brake: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_GET_BRAKE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBrakePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_SET_BRAKE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBrakePtr, NIL)
     }
 
   /**
@@ -72,13 +72,12 @@ public open class VehicleBody3D : RigidBody3D() {
   public var steering: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_GET_STEERING,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSteeringPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEBODY3D_SET_STEERING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSteeringPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -87,4 +86,22 @@ public open class VehicleBody3D : RigidBody3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setEngineForcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VehicleBody3D", "set_engine_force")
+
+    public val getEngineForcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VehicleBody3D", "get_engine_force")
+
+    public val setBrakePtr: VoidPtr = TypeManager.getMethodBindPtr("VehicleBody3D", "set_brake")
+
+    public val getBrakePtr: VoidPtr = TypeManager.getMethodBindPtr("VehicleBody3D", "get_brake")
+
+    public val setSteeringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VehicleBody3D", "set_steering")
+
+    public val getSteeringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VehicleBody3D", "get_steering")
+  }
 }

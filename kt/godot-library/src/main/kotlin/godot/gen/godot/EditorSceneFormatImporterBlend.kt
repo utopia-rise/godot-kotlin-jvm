@@ -20,4 +20,6 @@ public open class EditorSceneFormatImporterBlend internal constructor() :
   }
 
   public companion object
+
+  internal object MethodBindings
 }

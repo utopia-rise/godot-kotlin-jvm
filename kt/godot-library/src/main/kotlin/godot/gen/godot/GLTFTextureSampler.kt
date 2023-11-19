@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -20,53 +22,45 @@ public open class GLTFTextureSampler : Resource() {
   public var magFilter: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFTEXTURESAMPLER_GET_MAG_FILTER,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMagFilterPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFTEXTURESAMPLER_SET_MAG_FILTER,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMagFilterPtr, NIL)
     }
 
   public var minFilter: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFTEXTURESAMPLER_GET_MIN_FILTER,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMinFilterPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFTEXTURESAMPLER_SET_MIN_FILTER,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMinFilterPtr, NIL)
     }
 
   public var wrapS: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFTEXTURESAMPLER_GET_WRAP_S,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getWrapSPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFTEXTURESAMPLER_SET_WRAP_S,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setWrapSPtr, NIL)
     }
 
   public var wrapT: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFTEXTURESAMPLER_GET_WRAP_T,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getWrapTPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFTEXTURESAMPLER_SET_WRAP_T,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setWrapTPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -75,4 +69,30 @@ public open class GLTFTextureSampler : Resource() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getMagFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_mag_filter")
+
+    public val setMagFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_mag_filter")
+
+    public val getMinFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_min_filter")
+
+    public val setMinFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_min_filter")
+
+    public val getWrapSPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_wrap_s")
+
+    public val setWrapSPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_wrap_s")
+
+    public val getWrapTPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_wrap_t")
+
+    public val setWrapTPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_wrap_t")
+  }
 }

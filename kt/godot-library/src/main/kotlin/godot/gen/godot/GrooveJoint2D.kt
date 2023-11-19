@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -29,12 +31,12 @@ public open class GrooveJoint2D : Joint2D() {
   public var length: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GROOVEJOINT2D_GET_LENGTH, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GROOVEJOINT2D_SET_LENGTH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
     }
 
   /**
@@ -43,14 +45,12 @@ public open class GrooveJoint2D : Joint2D() {
   public var initialOffset: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GROOVEJOINT2D_GET_INITIAL_OFFSET,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getInitialOffsetPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GROOVEJOINT2D_SET_INITIAL_OFFSET,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setInitialOffsetPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -59,4 +59,16 @@ public open class GrooveJoint2D : Joint2D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setLengthPtr: VoidPtr = TypeManager.getMethodBindPtr("GrooveJoint2D", "set_length")
+
+    public val getLengthPtr: VoidPtr = TypeManager.getMethodBindPtr("GrooveJoint2D", "get_length")
+
+    public val setInitialOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GrooveJoint2D", "set_initial_offset")
+
+    public val getInitialOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GrooveJoint2D", "get_initial_offset")
+  }
 }

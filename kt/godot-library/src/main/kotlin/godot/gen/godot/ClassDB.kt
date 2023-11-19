@@ -11,6 +11,7 @@ import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
@@ -21,6 +22,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -45,8 +47,7 @@ public object ClassDB : Object() {
    */
   public fun getClassList(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_GET_CLASS_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getClassListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
@@ -55,7 +56,7 @@ public object ClassDB : Object() {
    */
   public fun getInheritersFromClass(_class: StringName): PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to _class)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_GET_INHERITERS_FROM_CLASS,
+    TransferContext.callMethod(rawPtr, MethodBindings.getInheritersFromClassPtr,
         PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
@@ -65,8 +66,7 @@ public object ClassDB : Object() {
    */
   public fun getParentClass(_class: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to _class)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_GET_PARENT_CLASS,
-        STRING_NAME)
+    TransferContext.callMethod(rawPtr, MethodBindings.getParentClassPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
@@ -75,7 +75,7 @@ public object ClassDB : Object() {
    */
   public fun classExists(_class: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_EXISTS, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.classExistsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -84,7 +84,7 @@ public object ClassDB : Object() {
    */
   public fun isParentClass(_class: StringName, inherits: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to inherits)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_IS_PARENT_CLASS, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isParentClassPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -93,7 +93,7 @@ public object ClassDB : Object() {
    */
   public fun canInstantiate(_class: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CAN_INSTANTIATE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.canInstantiatePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -102,7 +102,7 @@ public object ClassDB : Object() {
    */
   public fun instantiate(_class: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to _class)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_INSTANTIATE, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.instantiatePtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -111,7 +111,7 @@ public object ClassDB : Object() {
    */
   public fun classHasSignal(_class: StringName, signal: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to signal)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_HAS_SIGNAL, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.classHasSignalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -120,8 +120,7 @@ public object ClassDB : Object() {
    */
   public fun classGetSignal(_class: StringName, signal: StringName): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to signal)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_SIGNAL,
-        DICTIONARY)
+    TransferContext.callMethod(rawPtr, MethodBindings.classGetSignalPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
@@ -132,8 +131,7 @@ public object ClassDB : Object() {
   public fun classGetSignalList(_class: StringName, noInheritance: Boolean = false):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_SIGNAL_LIST,
-        ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.classGetSignalListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -144,8 +142,7 @@ public object ClassDB : Object() {
   public fun classGetPropertyList(_class: StringName, noInheritance: Boolean = false):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_PROPERTY_LIST,
-        ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.classGetPropertyListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -154,7 +151,7 @@ public object ClassDB : Object() {
    */
   public fun classGetProperty(_object: Object, `property`: StringName): Any? {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_PROPERTY, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.classGetPropertyPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -167,7 +164,7 @@ public object ClassDB : Object() {
     `value`: Any?,
   ): GodotError {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_SET_PROPERTY, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.classSetPropertyPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -181,7 +178,7 @@ public object ClassDB : Object() {
     noInheritance: Boolean = false,
   ): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to method, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_HAS_METHOD, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.classHasMethodPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -194,8 +191,7 @@ public object ClassDB : Object() {
   public fun classGetMethodList(_class: StringName, noInheritance: Boolean = false):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_METHOD_LIST,
-        ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.classGetMethodListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -206,8 +202,8 @@ public object ClassDB : Object() {
   public fun classGetIntegerConstantList(_class: StringName, noInheritance: Boolean = false):
       PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_INTEGER_CONSTANT_LIST, PACKED_STRING_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.classGetIntegerConstantListPtr,
+        PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
@@ -216,8 +212,7 @@ public object ClassDB : Object() {
    */
   public fun classHasIntegerConstant(_class: StringName, name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_HAS_INTEGER_CONSTANT,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.classHasIntegerConstantPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -226,8 +221,7 @@ public object ClassDB : Object() {
    */
   public fun classGetIntegerConstant(_class: StringName, name: StringName): Long {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_INTEGER_CONSTANT,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.classGetIntegerConstantPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -241,7 +235,7 @@ public object ClassDB : Object() {
     noInheritance: Boolean = false,
   ): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_HAS_ENUM, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.classHasEnumPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -252,8 +246,7 @@ public object ClassDB : Object() {
   public fun classGetEnumList(_class: StringName, noInheritance: Boolean = false):
       PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_ENUM_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.classGetEnumListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
@@ -267,8 +260,7 @@ public object ClassDB : Object() {
     noInheritance: Boolean = false,
   ): PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to _enum, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_ENUM_CONSTANTS,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.classGetEnumConstantsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
@@ -282,8 +274,7 @@ public object ClassDB : Object() {
     noInheritance: Boolean = false,
   ): StringName {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_INTEGER_CONSTANT_ENUM, STRING_NAME)
+    TransferContext.callMethod(rawPtr, MethodBindings.classGetIntegerConstantEnumPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
@@ -292,7 +283,74 @@ public object ClassDB : Object() {
    */
   public fun isClassEnabled(_class: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_IS_CLASS_ENABLED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isClassEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  internal object MethodBindings {
+    public val getClassListPtr: VoidPtr = TypeManager.getMethodBindPtr("ClassDB", "get_class_list")
+
+    public val getInheritersFromClassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "get_inheriters_from_class")
+
+    public val getParentClassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "get_parent_class")
+
+    public val classExistsPtr: VoidPtr = TypeManager.getMethodBindPtr("ClassDB", "class_exists")
+
+    public val isParentClassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "is_parent_class")
+
+    public val canInstantiatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "can_instantiate")
+
+    public val instantiatePtr: VoidPtr = TypeManager.getMethodBindPtr("ClassDB", "instantiate")
+
+    public val classHasSignalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "class_has_signal")
+
+    public val classGetSignalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_signal")
+
+    public val classGetSignalListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_signal_list")
+
+    public val classGetPropertyListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_property_list")
+
+    public val classGetPropertyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_property")
+
+    public val classSetPropertyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "class_set_property")
+
+    public val classHasMethodPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "class_has_method")
+
+    public val classGetMethodListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_method_list")
+
+    public val classGetIntegerConstantListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_integer_constant_list")
+
+    public val classHasIntegerConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "class_has_integer_constant")
+
+    public val classGetIntegerConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_integer_constant")
+
+    public val classHasEnumPtr: VoidPtr = TypeManager.getMethodBindPtr("ClassDB", "class_has_enum")
+
+    public val classGetEnumListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_enum_list")
+
+    public val classGetEnumConstantsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_enum_constants")
+
+    public val classGetIntegerConstantEnumPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_integer_constant_enum")
+
+    public val isClassEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "is_class_enabled")
   }
 }

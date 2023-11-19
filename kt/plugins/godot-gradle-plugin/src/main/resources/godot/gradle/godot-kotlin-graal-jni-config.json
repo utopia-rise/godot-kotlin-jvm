@@ -51,12 +51,21 @@
       { "name" : "INSTANCE" }
     ],
     "methods" : [
-      { "name" : "icall", "parameterTypes" : ["long", "int", "int"] },
+      { "name" : "icall", "parameterTypes" : ["long", "long", "int"] },
       { "name" : "createNativeObject", "parameterTypes" : ["int", "godot.core.KtObject", "int"] },
       { "name" : "getSingleton", "parameterTypes" : ["int"] },
       { "name" : "freeObject", "parameterTypes" : ["long"] },
       { "name" : "getBuffer", "parameterTypes" : [] },
       { "name" : "removeScriptInstance", "parameterTypes" : ["long"] }
+    ]
+  },
+  {
+    "name" : "godot.core.TypeManager",
+    "fields" : [
+      { "name" : "INSTANCE" }
+    ],
+    "methods" : [
+      { "name" : "getMethodBindPtr$godot_library", "parameterTypes" : ["java.lang.String", "java.lang.String"] }
     ]
   },
   {
@@ -664,7 +673,7 @@
       { "name" : "<init>", "parameterTypes" : [] },
       { "name" : "loadClasses", "parameterTypes" : ["godot.core.KtClass[]"] },
       { "name" : "unloadClasses", "parameterTypes" : ["godot.core.KtClass[]"] },
-      { "name" : "registerManagedEngineTypes", "parameterTypes" : ["java.lang.String[]", "java.lang.String[]", "java.lang.String[]", "java.lang.Integer[]"] },
+      { "name" : "registerManagedEngineTypes", "parameterTypes" : ["java.lang.String[]", "java.lang.String[]"] },
       { "name" : "registerUserTypesNames", "parameterTypes" : ["java.lang.String[]"] },
       { "name" : "registerUserTypesMembers", "parameterTypes" : [] },
       { "name" : "init", "parameterTypes": ["boolean", "java.lang.String", "java.lang.String", "java.lang.String", "java.lang.ClassLoader"]},

@@ -8,7 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
+import godot.core.TypeManager
 import godot.core.VariantArray
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -229,4 +231,12 @@ public open class EditorTranslationParserPlugin internal constructor() : RefCoun
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _parseFilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorTranslationParserPlugin", "_parse_file")
+
+    public val _getRecognizedExtensionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorTranslationParserPlugin", "_get_recognized_extensions")
+  }
 }

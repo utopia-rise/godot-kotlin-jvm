@@ -31,4 +31,6 @@ public open class Tweener internal constructor() : RefCounted() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

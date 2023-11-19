@@ -9,12 +9,14 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -37,16 +39,12 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
   public var physicalBoneChainLength: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_GET_PHYSICAL_BONE_CHAIN_LENGTH,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPhysicalBoneChainLengthPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_SET_PHYSICAL_BONE_CHAIN_LENGTH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPhysicalBoneChainLengthPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -61,8 +59,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    */
   public fun setPhysicalBoneNode(jointIdx: Int, physicalbone2dNode: NodePath): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), NODE_PATH to physicalbone2dNode)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_SET_PHYSICAL_BONE_NODE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPhysicalBoneNodePtr, NIL)
   }
 
   /**
@@ -70,9 +67,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    */
   public fun getPhysicalBoneNode(jointIdx: Int): NodePath {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_GET_PHYSICAL_BONE_NODE,
-        NODE_PATH)
+    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicalBoneNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
@@ -81,8 +76,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    */
   public fun fetchPhysicalBones(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_FETCH_PHYSICAL_BONES, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.fetchPhysicalBonesPtr, NIL)
   }
 
   /**
@@ -93,8 +87,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
   @JvmOverloads
   public fun startSimulation(bones: VariantArray<StringName> = godot.core.variantArrayOf()): Unit {
     TransferContext.writeArguments(ARRAY to bones)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_START_SIMULATION, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.startSimulationPtr, NIL)
   }
 
   /**
@@ -105,9 +98,31 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
   @JvmOverloads
   public fun stopSimulation(bones: VariantArray<StringName> = godot.core.variantArrayOf()): Unit {
     TransferContext.writeArguments(ARRAY to bones)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_STOP_SIMULATION, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.stopSimulationPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setPhysicalBoneChainLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "set_physical_bone_chain_length")
+
+    public val getPhysicalBoneChainLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "get_physical_bone_chain_length")
+
+    public val setPhysicalBoneNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "set_physical_bone_node")
+
+    public val getPhysicalBoneNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "get_physical_bone_node")
+
+    public val fetchPhysicalBonesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "fetch_physical_bones")
+
+    public val startSimulationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "start_simulation")
+
+    public val stopSimulationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "stop_simulation")
+  }
 }

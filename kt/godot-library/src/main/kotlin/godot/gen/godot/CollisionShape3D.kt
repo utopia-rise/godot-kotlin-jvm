@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -34,13 +36,12 @@ public open class CollisionShape3D : Node3D() {
   public var shape: Shape3D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_GET_SHAPE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Shape3D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_SET_SHAPE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
     }
 
   /**
@@ -49,14 +50,12 @@ public open class CollisionShape3D : Node3D() {
   public var disabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_IS_DISABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_SET_DISABLED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDisabledPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -69,8 +68,7 @@ public open class CollisionShape3D : Node3D() {
    */
   public fun resourceChanged(resource: Resource): Unit {
     TransferContext.writeArguments(OBJECT to resource)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_RESOURCE_CHANGED,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.resourceChangedPtr, NIL)
   }
 
   /**
@@ -78,9 +76,26 @@ public open class CollisionShape3D : Node3D() {
    */
   public fun makeConvexFromSiblings(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_MAKE_CONVEX_FROM_SIBLINGS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.makeConvexFromSiblingsPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val resourceChangedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionShape3D", "resource_changed")
+
+    public val setShapePtr: VoidPtr = TypeManager.getMethodBindPtr("CollisionShape3D", "set_shape")
+
+    public val getShapePtr: VoidPtr = TypeManager.getMethodBindPtr("CollisionShape3D", "get_shape")
+
+    public val setDisabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionShape3D", "set_disabled")
+
+    public val isDisabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionShape3D", "is_disabled")
+
+    public val makeConvexFromSiblingsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionShape3D", "make_convex_from_siblings")
+  }
 }

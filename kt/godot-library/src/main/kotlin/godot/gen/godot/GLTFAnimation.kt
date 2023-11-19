@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -19,12 +21,12 @@ public open class GLTFAnimation : Resource() {
   public var loop: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFANIMATION_GET_LOOP, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLoopPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFANIMATION_SET_LOOP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -33,4 +35,10 @@ public open class GLTFAnimation : Resource() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getLoopPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFAnimation", "get_loop")
+
+    public val setLoopPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFAnimation", "set_loop")
+  }
 }

@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -19,6 +20,7 @@ import godot.core.Vector2
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -52,14 +54,12 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   public var autoTriangles: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_AUTO_TRIANGLES, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAutoTrianglesPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_AUTO_TRIANGLES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAutoTrianglesPtr, NIL)
     }
 
   /**
@@ -69,14 +69,12 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   public var minSpace: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_MIN_SPACE, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMinSpacePtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_MIN_SPACE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMinSpacePtr, NIL)
     }
 
   /**
@@ -86,14 +84,12 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   public var maxSpace: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_MAX_SPACE, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMaxSpacePtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_MAX_SPACE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMaxSpacePtr, NIL)
     }
 
   /**
@@ -103,14 +99,12 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   public var snap: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_SNAP, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSnapPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_SNAP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSnapPtr, NIL)
     }
 
   /**
@@ -119,14 +113,12 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   public var xLabel: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_X_LABEL, STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getXLabelPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_X_LABEL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setXLabelPtr, NIL)
     }
 
   /**
@@ -135,14 +127,12 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   public var yLabel: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_Y_LABEL, STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getYLabelPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_Y_LABEL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setYLabelPtr, NIL)
     }
 
   /**
@@ -151,14 +141,12 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   public var blendMode: BlendMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBlendModePtr, LONG)
       return AnimationNodeBlendSpace2D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBlendModePtr, NIL)
     }
 
   /**
@@ -169,14 +157,12 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   public var sync: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_IS_USING_SYNC, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isUsingSyncPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_USE_SYNC, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseSyncPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -266,8 +252,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     atIndex: Int = -1,
   ): Unit {
     TransferContext.writeArguments(OBJECT to node, VECTOR2 to pos, LONG to atIndex.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_ADD_BLEND_POINT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addBlendPointPtr, NIL)
   }
 
   /**
@@ -275,8 +260,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    */
   public fun setBlendPointPosition(point: Int, pos: Vector2): Unit {
     TransferContext.writeArguments(LONG to point.toLong(), VECTOR2 to pos)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_POSITION, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBlendPointPositionPtr, NIL)
   }
 
   /**
@@ -284,8 +268,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    */
   public fun getBlendPointPosition(point: Int): Vector2 {
     TransferContext.writeArguments(LONG to point.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_POSITION, VECTOR2)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBlendPointPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
@@ -294,8 +277,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    */
   public fun setBlendPointNode(point: Int, node: AnimationRootNode): Unit {
     TransferContext.writeArguments(LONG to point.toLong(), OBJECT to node)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_NODE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBlendPointNodePtr, NIL)
   }
 
   /**
@@ -303,8 +285,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    */
   public fun getBlendPointNode(point: Int): AnimationRootNode? {
     TransferContext.writeArguments(LONG to point.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_NODE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBlendPointNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?)
   }
 
@@ -313,8 +294,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    */
   public fun removeBlendPoint(point: Int): Unit {
     TransferContext.writeArguments(LONG to point.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_REMOVE_BLEND_POINT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeBlendPointPtr, NIL)
   }
 
   /**
@@ -322,8 +302,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    */
   public fun getBlendPointCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_BLEND_POINT_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBlendPointCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -338,8 +317,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     atIndex: Int = -1,
   ): Unit {
     TransferContext.writeArguments(LONG to x.toLong(), LONG to y.toLong(), LONG to z.toLong(), LONG to atIndex.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_ADD_TRIANGLE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addTrianglePtr, NIL)
   }
 
   /**
@@ -347,8 +325,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    */
   public fun getTrianglePoint(triangle: Int, point: Int): Int {
     TransferContext.writeArguments(LONG to triangle.toLong(), LONG to point.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_TRIANGLE_POINT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getTrianglePointPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -357,8 +334,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    */
   public fun removeTriangle(triangle: Int): Unit {
     TransferContext.writeArguments(LONG to triangle.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_REMOVE_TRIANGLE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeTrianglePtr, NIL)
   }
 
   /**
@@ -366,8 +342,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    */
   public fun getTriangleCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_GET_TRIANGLE_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getTriangleCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -399,4 +374,87 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val addBlendPointPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "add_blend_point")
+
+    public val setBlendPointPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_blend_point_position")
+
+    public val getBlendPointPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_blend_point_position")
+
+    public val setBlendPointNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_blend_point_node")
+
+    public val getBlendPointNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_blend_point_node")
+
+    public val removeBlendPointPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "remove_blend_point")
+
+    public val getBlendPointCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_blend_point_count")
+
+    public val addTrianglePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "add_triangle")
+
+    public val getTrianglePointPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_triangle_point")
+
+    public val removeTrianglePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "remove_triangle")
+
+    public val getTriangleCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_triangle_count")
+
+    public val setMinSpacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_min_space")
+
+    public val getMinSpacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_min_space")
+
+    public val setMaxSpacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_max_space")
+
+    public val getMaxSpacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_max_space")
+
+    public val setSnapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_snap")
+
+    public val getSnapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_snap")
+
+    public val setXLabelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_x_label")
+
+    public val getXLabelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_x_label")
+
+    public val setYLabelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_y_label")
+
+    public val getYLabelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_y_label")
+
+    public val setAutoTrianglesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_auto_triangles")
+
+    public val getAutoTrianglesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_auto_triangles")
+
+    public val setBlendModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_blend_mode")
+
+    public val getBlendModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_blend_mode")
+
+    public val setUseSyncPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_use_sync")
+
+    public val isUsingSyncPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "is_using_sync")
+  }
 }

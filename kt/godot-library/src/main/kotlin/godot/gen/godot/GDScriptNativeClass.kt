@@ -7,8 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.ANY
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -23,9 +25,13 @@ public open class GDScriptNativeClass internal constructor() : RefCounted() {
 
   public fun new(): Any? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDSCRIPTNATIVECLASS_NEW, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.newPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val newPtr: VoidPtr = TypeManager.getMethodBindPtr("GDScriptNativeClass", "new")
+  }
 }

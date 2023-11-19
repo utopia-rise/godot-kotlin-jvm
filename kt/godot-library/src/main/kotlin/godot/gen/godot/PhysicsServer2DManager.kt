@@ -8,11 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
+import godot.core.TypeManager
 import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
@@ -38,8 +40,7 @@ public object PhysicsServer2DManager : Object() {
    */
   public fun registerServer(name: String, createCallback: Callable): Unit {
     TransferContext.writeArguments(STRING to name, CALLABLE to createCallback)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2DMANAGER_REGISTER_SERVER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.registerServerPtr, NIL)
   }
 
   /**
@@ -47,7 +48,14 @@ public object PhysicsServer2DManager : Object() {
    */
   public fun setDefaultServer(name: String, priority: Int): Unit {
     TransferContext.writeArguments(STRING to name, LONG to priority.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2DMANAGER_SET_DEFAULT_SERVER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultServerPtr, NIL)
+  }
+
+  internal object MethodBindings {
+    public val registerServerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer2DManager", "register_server")
+
+    public val setDefaultServerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer2DManager", "set_default_server")
   }
 }

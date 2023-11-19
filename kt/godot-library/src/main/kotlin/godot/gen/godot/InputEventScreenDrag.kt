@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -16,6 +17,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -40,14 +42,12 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   public var index: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_GET_INDEX,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getIndexPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_SET_INDEX,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setIndexPtr, NIL)
     }
 
   /**
@@ -57,14 +57,12 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   public var tilt: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_GET_TILT,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTiltPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_SET_TILT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTiltPtr, NIL)
     }
 
   /**
@@ -73,14 +71,12 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   public var pressure: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_GET_PRESSURE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPressurePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_SET_PRESSURE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPressurePtr, NIL)
     }
 
   /**
@@ -89,14 +85,12 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   public var penInverted: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_GET_PEN_INVERTED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPenInvertedPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_SET_PEN_INVERTED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPenInvertedPtr, NIL)
     }
 
   /**
@@ -106,14 +100,12 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   public var position: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_GET_POSITION,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_SET_POSITION,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
     }
 
   /**
@@ -123,14 +115,12 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   public var relative: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_GET_RELATIVE,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRelativePtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_SET_RELATIVE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRelativePtr, NIL)
     }
 
   /**
@@ -140,14 +130,12 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   public var velocity: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_GET_VELOCITY,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_SET_VELOCITY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -252,4 +240,48 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_index")
+
+    public val getIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_index")
+
+    public val setTiltPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_tilt")
+
+    public val getTiltPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_tilt")
+
+    public val setPressurePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_pressure")
+
+    public val getPressurePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_pressure")
+
+    public val setPenInvertedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_pen_inverted")
+
+    public val getPenInvertedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_pen_inverted")
+
+    public val setPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_position")
+
+    public val getPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_position")
+
+    public val setRelativePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_relative")
+
+    public val getRelativePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_relative")
+
+    public val setVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_velocity")
+
+    public val getVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_velocity")
+  }
 }

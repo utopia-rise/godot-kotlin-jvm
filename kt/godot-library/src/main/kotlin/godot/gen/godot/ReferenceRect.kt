@@ -10,11 +10,13 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -36,14 +38,12 @@ public open class ReferenceRect : Control() {
   public var borderColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFERENCERECT_GET_BORDER_COLOR,
-          COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBorderColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFERENCERECT_SET_BORDER_COLOR,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBorderColorPtr, NIL)
     }
 
   /**
@@ -52,14 +52,12 @@ public open class ReferenceRect : Control() {
   public var borderWidth: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFERENCERECT_GET_BORDER_WIDTH,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBorderWidthPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFERENCERECT_SET_BORDER_WIDTH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBorderWidthPtr, NIL)
     }
 
   /**
@@ -68,14 +66,12 @@ public open class ReferenceRect : Control() {
   public var editorOnly: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFERENCERECT_GET_EDITOR_ONLY,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEditorOnlyPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFERENCERECT_SET_EDITOR_ONLY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEditorOnlyPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -108,4 +104,24 @@ public open class ReferenceRect : Control() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val getBorderColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReferenceRect", "get_border_color")
+
+    public val setBorderColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReferenceRect", "set_border_color")
+
+    public val getBorderWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReferenceRect", "get_border_width")
+
+    public val setBorderWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReferenceRect", "set_border_width")
+
+    public val getEditorOnlyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReferenceRect", "get_editor_only")
+
+    public val setEditorOnlyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReferenceRect", "set_editor_only")
+  }
 }

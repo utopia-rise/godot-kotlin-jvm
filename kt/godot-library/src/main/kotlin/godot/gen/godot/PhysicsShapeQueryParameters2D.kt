@@ -11,6 +11,7 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Transform2D
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -23,6 +24,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -44,14 +46,12 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   public var collisionMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D_GET_COLLISION_MASK, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D_SET_COLLISION_MASK, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
     }
 
   /**
@@ -60,14 +60,12 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   public var exclude: VariantArray<RID>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D_GET_EXCLUDE, ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getExcludePtr, ARRAY)
       return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D_SET_EXCLUDE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setExcludePtr, NIL)
     }
 
   /**
@@ -76,14 +74,12 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   public var margin: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D_GET_MARGIN, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D_SET_MARGIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
     }
 
   /**
@@ -93,14 +89,12 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   public var motion: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D_GET_MOTION, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMotionPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D_SET_MOTION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMotionPtr, NIL)
     }
 
   /**
@@ -109,14 +103,12 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   public var shape: Resource?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D_GET_SHAPE, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D_SET_SHAPE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
     }
 
   /**
@@ -181,14 +173,12 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   public var shapeRid: RID
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D_GET_SHAPE_RID, _RID)
+      TransferContext.callMethod(rawPtr, MethodBindings.getShapeRidPtr, _RID)
       return (TransferContext.readReturnValue(_RID, false) as RID)
     }
     set(`value`) {
       TransferContext.writeArguments(_RID to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D_SET_SHAPE_RID, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShapeRidPtr, NIL)
     }
 
   /**
@@ -198,14 +188,12 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   public var transform: Transform2D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D_GET_TRANSFORM, TRANSFORM2D)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM2D)
       return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D_SET_TRANSFORM, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
     }
 
   /**
@@ -214,15 +202,12 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   public var collideWithBodies: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D_IS_COLLIDE_WITH_BODIES_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D_SET_COLLIDE_WITH_BODIES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithBodiesPtr, NIL)
     }
 
   /**
@@ -231,15 +216,12 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   public var collideWithAreas: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D_IS_COLLIDE_WITH_AREAS_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS2D_SET_COLLIDE_WITH_AREAS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithAreasPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -296,4 +278,60 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters2D", "set_shape")
+
+    public val getShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters2D", "get_shape")
+
+    public val setShapeRidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters2D", "set_shape_rid")
+
+    public val getShapeRidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters2D", "get_shape_rid")
+
+    public val setTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters2D", "set_transform")
+
+    public val getTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters2D", "get_transform")
+
+    public val setMotionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters2D", "set_motion")
+
+    public val getMotionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters2D", "get_motion")
+
+    public val setMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters2D", "set_margin")
+
+    public val getMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters2D", "get_margin")
+
+    public val setCollisionMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters2D", "set_collision_mask")
+
+    public val getCollisionMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters2D", "get_collision_mask")
+
+    public val setExcludePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters2D", "set_exclude")
+
+    public val getExcludePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters2D", "get_exclude")
+
+    public val setCollideWithBodiesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters2D", "set_collide_with_bodies")
+
+    public val isCollideWithBodiesEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters2D", "is_collide_with_bodies_enabled")
+
+    public val setCollideWithAreasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters2D", "set_collide_with_areas")
+
+    public val isCollideWithAreasEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters2D", "is_collide_with_areas_enabled")
+  }
 }

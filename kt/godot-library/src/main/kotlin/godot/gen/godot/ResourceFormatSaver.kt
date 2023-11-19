@@ -9,6 +9,8 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedStringArray
+import godot.core.TypeManager
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -74,4 +76,19 @@ public open class ResourceFormatSaver : RefCounted() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _savePtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceFormatSaver", "_save")
+
+    public val _setUidPtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceFormatSaver", "_set_uid")
+
+    public val _recognizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceFormatSaver", "_recognize")
+
+    public val _getRecognizedExtensionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceFormatSaver", "_get_recognized_extensions")
+
+    public val _recognizePathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceFormatSaver", "_recognize_path")
+  }
 }

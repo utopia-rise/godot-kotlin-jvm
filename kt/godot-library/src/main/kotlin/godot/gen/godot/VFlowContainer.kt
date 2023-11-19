@@ -27,4 +27,6 @@ public open class VFlowContainer : FlowContainer() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

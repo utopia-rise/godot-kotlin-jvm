@@ -10,9 +10,11 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Quaternion
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.QUATERNION
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -32,14 +34,12 @@ public open class VisualShaderNodeVec4Constant : VisualShaderNodeConstant() {
   public var constant: Quaternion
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVEC4CONSTANT_GET_CONSTANT, QUATERNION)
+      TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, QUATERNION)
       return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
     }
     set(`value`) {
       TransferContext.writeArguments(QUATERNION to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVEC4CONSTANT_SET_CONSTANT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -72,4 +72,12 @@ public open class VisualShaderNodeVec4Constant : VisualShaderNodeConstant() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeVec4Constant", "set_constant")
+
+    public val getConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeVec4Constant", "get_constant")
+  }
 }

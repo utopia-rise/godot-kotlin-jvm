@@ -8,9 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -36,7 +38,7 @@ public open class X509Certificate : Resource() {
    */
   public fun save(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_X509CERTIFICATE_SAVE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.savePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -45,7 +47,7 @@ public open class X509Certificate : Resource() {
    */
   public fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_X509CERTIFICATE_LOAD, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -54,8 +56,7 @@ public open class X509Certificate : Resource() {
    */
   public fun saveToString(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_X509CERTIFICATE_SAVE_TO_STRING,
-        STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.saveToStringPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -64,10 +65,21 @@ public open class X509Certificate : Resource() {
    */
   public fun loadFromString(string: String): GodotError {
     TransferContext.writeArguments(STRING to string)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_X509CERTIFICATE_LOAD_FROM_STRING,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.loadFromStringPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val savePtr: VoidPtr = TypeManager.getMethodBindPtr("X509Certificate", "save")
+
+    public val loadPtr: VoidPtr = TypeManager.getMethodBindPtr("X509Certificate", "load")
+
+    public val saveToStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("X509Certificate", "save_to_string")
+
+    public val loadFromStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("X509Certificate", "load_from_string")
+  }
 }

@@ -9,11 +9,13 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -35,14 +37,12 @@ public open class WorldBoundaryShape2D : Shape2D() {
   public var normal: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDBOUNDARYSHAPE2D_GET_NORMAL,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getNormalPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDBOUNDARYSHAPE2D_SET_NORMAL,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setNormalPtr, NIL)
     }
 
   /**
@@ -53,14 +53,12 @@ public open class WorldBoundaryShape2D : Shape2D() {
   public var distance: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDBOUNDARYSHAPE2D_GET_DISTANCE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDistancePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDBOUNDARYSHAPE2D_SET_DISTANCE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDistancePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -93,4 +91,18 @@ public open class WorldBoundaryShape2D : Shape2D() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setNormalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WorldBoundaryShape2D", "set_normal")
+
+    public val getNormalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WorldBoundaryShape2D", "get_normal")
+
+    public val setDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WorldBoundaryShape2D", "set_distance")
+
+    public val getDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WorldBoundaryShape2D", "get_distance")
+  }
 }

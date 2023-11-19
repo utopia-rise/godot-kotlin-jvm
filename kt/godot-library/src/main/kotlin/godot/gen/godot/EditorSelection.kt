@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.NIL
@@ -14,6 +15,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -43,7 +45,7 @@ public open class EditorSelection internal constructor() : Object() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_CLEAR, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   /**
@@ -53,7 +55,7 @@ public open class EditorSelection internal constructor() : Object() {
    */
   public fun addNode(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_ADD_NODE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addNodePtr, NIL)
   }
 
   /**
@@ -61,7 +63,7 @@ public open class EditorSelection internal constructor() : Object() {
    */
   public fun removeNode(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_REMOVE_NODE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeNodePtr, NIL)
   }
 
   /**
@@ -69,8 +71,7 @@ public open class EditorSelection internal constructor() : Object() {
    */
   public fun getSelectedNodes(): VariantArray<Node> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_GET_SELECTED_NODES,
-        ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSelectedNodesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node>)
   }
 
@@ -79,10 +80,24 @@ public open class EditorSelection internal constructor() : Object() {
    */
   public fun getTransformableSelectedNodes(): VariantArray<Node> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_GET_TRANSFORMABLE_SELECTED_NODES, ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getTransformableSelectedNodesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node>)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("EditorSelection", "clear")
+
+    public val addNodePtr: VoidPtr = TypeManager.getMethodBindPtr("EditorSelection", "add_node")
+
+    public val removeNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSelection", "remove_node")
+
+    public val getSelectedNodesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSelection", "get_selected_nodes")
+
+    public val getTransformableSelectedNodesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSelection", "get_transformable_selected_nodes")
+  }
 }

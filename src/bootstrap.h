@@ -9,8 +9,7 @@ public:
     typedef void (*LoadClassesHook)(JNIEnv* p_env, jobject p_this, jobjectArray classes);
     typedef void (*RegisterManagedEngineTypesHook)(
       JNIEnv* p_env, jobject p_this, jobjectArray classes_names,
-      jobjectArray singleton_names, jobjectArray method_names,
-      jobjectArray types_of_methods
+      jobjectArray singleton_names
       );
     // clang-format on
 

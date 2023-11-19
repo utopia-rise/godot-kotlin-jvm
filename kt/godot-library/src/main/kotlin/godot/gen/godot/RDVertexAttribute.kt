@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -28,14 +30,12 @@ public open class RDVertexAttribute : RefCounted() {
   public var location: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDVERTEXATTRIBUTE_GET_LOCATION,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLocationPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDVERTEXATTRIBUTE_SET_LOCATION,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLocationPtr, NIL)
     }
 
   /**
@@ -44,13 +44,12 @@ public open class RDVertexAttribute : RefCounted() {
   public var offset: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDVERTEXATTRIBUTE_GET_OFFSET,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDVERTEXATTRIBUTE_SET_OFFSET, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
     }
 
   /**
@@ -59,13 +58,12 @@ public open class RDVertexAttribute : RefCounted() {
   public var format: RenderingDevice.DataFormat
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDVERTEXATTRIBUTE_GET_FORMAT,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
       return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDVERTEXATTRIBUTE_SET_FORMAT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
     }
 
   /**
@@ -74,13 +72,12 @@ public open class RDVertexAttribute : RefCounted() {
   public var stride: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDVERTEXATTRIBUTE_GET_STRIDE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getStridePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDVERTEXATTRIBUTE_SET_STRIDE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setStridePtr, NIL)
     }
 
   /**
@@ -89,14 +86,12 @@ public open class RDVertexAttribute : RefCounted() {
   public var frequency: RenderingDevice.VertexFrequency
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDVERTEXATTRIBUTE_GET_FREQUENCY,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFrequencyPtr, LONG)
       return RenderingDevice.VertexFrequency.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDVERTEXATTRIBUTE_SET_FREQUENCY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFrequencyPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -105,4 +100,36 @@ public open class RDVertexAttribute : RefCounted() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setLocationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_location")
+
+    public val getLocationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_location")
+
+    public val setOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_offset")
+
+    public val getOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_offset")
+
+    public val setFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_format")
+
+    public val getFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_format")
+
+    public val setStridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_stride")
+
+    public val getStridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_stride")
+
+    public val setFrequencyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_frequency")
+
+    public val getFrequencyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_frequency")
+  }
 }

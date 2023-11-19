@@ -9,7 +9,9 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Transform2D
+import godot.core.TypeManager
 import godot.core.Vector2
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
@@ -325,4 +327,138 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _getTotalGravityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_total_gravity")
+
+    public val _getTotalLinearDampPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_total_linear_damp")
+
+    public val _getTotalAngularDampPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_total_angular_damp")
+
+    public val _getCenterOfMassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_center_of_mass")
+
+    public val _getCenterOfMassLocalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_center_of_mass_local")
+
+    public val _getInverseMassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_inverse_mass")
+
+    public val _getInverseInertiaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_inverse_inertia")
+
+    public val _setLinearVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_set_linear_velocity")
+
+    public val _getLinearVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_linear_velocity")
+
+    public val _setAngularVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_set_angular_velocity")
+
+    public val _getAngularVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_angular_velocity")
+
+    public val _setTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_set_transform")
+
+    public val _getTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_transform")
+
+    public val _getVelocityAtLocalPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_velocity_at_local_position")
+
+    public val _applyCentralImpulsePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_apply_central_impulse")
+
+    public val _applyImpulsePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_apply_impulse")
+
+    public val _applyTorqueImpulsePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_apply_torque_impulse")
+
+    public val _applyCentralForcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_apply_central_force")
+
+    public val _applyForcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_apply_force")
+
+    public val _applyTorquePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_apply_torque")
+
+    public val _addConstantCentralForcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_add_constant_central_force")
+
+    public val _addConstantForcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_add_constant_force")
+
+    public val _addConstantTorquePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_add_constant_torque")
+
+    public val _setConstantForcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_set_constant_force")
+
+    public val _getConstantForcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_constant_force")
+
+    public val _setConstantTorquePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_set_constant_torque")
+
+    public val _getConstantTorquePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_constant_torque")
+
+    public val _setSleepStatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_set_sleep_state")
+
+    public val _isSleepingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_is_sleeping")
+
+    public val _getContactCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_contact_count")
+
+    public val _getContactLocalPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_contact_local_position")
+
+    public val _getContactLocalNormalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_contact_local_normal")
+
+    public val _getContactLocalShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_contact_local_shape")
+
+    public val _getContactLocalVelocityAtPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_contact_local_velocity_at_position")
+
+    public val _getContactColliderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_contact_collider")
+
+    public val _getContactColliderPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_contact_collider_position")
+
+    public val _getContactColliderIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_contact_collider_id")
+
+    public val _getContactColliderObjectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_contact_collider_object")
+
+    public val _getContactColliderShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_contact_collider_shape")
+
+    public val _getContactColliderVelocityAtPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_contact_collider_velocity_at_position")
+
+    public val _getContactImpulsePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_contact_impulse")
+
+    public val _getStepPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_step")
+
+    public val _integrateForcesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_integrate_forces")
+
+    public val _getSpaceStatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2DExtension", "_get_space_state")
+  }
 }

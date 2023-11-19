@@ -27,4 +27,6 @@ public open class AudioEffectLowShelfFilter : AudioEffectFilter() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

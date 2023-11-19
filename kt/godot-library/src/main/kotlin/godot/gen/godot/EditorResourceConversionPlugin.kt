@@ -7,6 +7,8 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -83,4 +85,15 @@ public open class EditorResourceConversionPlugin internal constructor() : RefCou
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _convertsToPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorResourceConversionPlugin", "_converts_to")
+
+    public val _handlesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorResourceConversionPlugin", "_handles")
+
+    public val _convertPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorResourceConversionPlugin", "_convert")
+  }
 }

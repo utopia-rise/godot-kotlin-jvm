@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -29,14 +31,12 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   public var textureType: TextureType
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_GET_TEXTURE_TYPE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureTypePtr, LONG)
       return VisualShaderNodeTextureParameter.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_SET_TEXTURE_TYPE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureTypePtr, NIL)
     }
 
   /**
@@ -45,14 +45,12 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   public var colorDefault: ColorDefault
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_GET_COLOR_DEFAULT, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getColorDefaultPtr, LONG)
       return VisualShaderNodeTextureParameter.ColorDefault.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_SET_COLOR_DEFAULT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setColorDefaultPtr, NIL)
     }
 
   /**
@@ -61,14 +59,12 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   public var textureFilter: TextureFilter
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_GET_TEXTURE_FILTER, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
       return VisualShaderNodeTextureParameter.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_SET_TEXTURE_FILTER, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
     }
 
   /**
@@ -77,14 +73,12 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   public var textureRepeat: TextureRepeat
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_GET_TEXTURE_REPEAT, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureRepeatPtr, LONG)
       return VisualShaderNodeTextureParameter.TextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_SET_TEXTURE_REPEAT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureRepeatPtr, NIL)
     }
 
   /**
@@ -93,14 +87,12 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   public var textureSource: TextureSource
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_GET_TEXTURE_SOURCE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureSourcePtr, LONG)
       return VisualShaderNodeTextureParameter.TextureSource.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER_SET_TEXTURE_SOURCE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureSourcePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -292,4 +284,36 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setTextureTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_type")
+
+    public val getTextureTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_type")
+
+    public val setColorDefaultPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_color_default")
+
+    public val getColorDefaultPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_color_default")
+
+    public val setTextureFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_filter")
+
+    public val getTextureFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_filter")
+
+    public val setTextureRepeatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_repeat")
+
+    public val getTextureRepeatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_repeat")
+
+    public val setTextureSourcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_source")
+
+    public val getTextureSourcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_source")
+  }
 }

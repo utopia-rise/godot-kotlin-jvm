@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -15,6 +16,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -39,14 +41,12 @@ public open class ButtonGroup : Resource() {
   public var allowUnpress: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTONGROUP_IS_ALLOW_UNPRESS,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isAllowUnpressPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTONGROUP_SET_ALLOW_UNPRESS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAllowUnpressPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -59,8 +59,7 @@ public open class ButtonGroup : Resource() {
    */
   public fun getPressedButton(): BaseButton? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTONGROUP_GET_PRESSED_BUTTON,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getPressedButtonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as BaseButton?)
   }
 
@@ -69,9 +68,22 @@ public open class ButtonGroup : Resource() {
    */
   public fun getButtons(): VariantArray<BaseButton> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTONGROUP_GET_BUTTONS, ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getButtonsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<BaseButton>)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getPressedButtonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ButtonGroup", "get_pressed_button")
+
+    public val getButtonsPtr: VoidPtr = TypeManager.getMethodBindPtr("ButtonGroup", "get_buttons")
+
+    public val setAllowUnpressPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ButtonGroup", "set_allow_unpress")
+
+    public val isAllowUnpressPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ButtonGroup", "is_allow_unpress")
+  }
 }

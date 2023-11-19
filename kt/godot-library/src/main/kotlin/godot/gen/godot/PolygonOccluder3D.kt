@@ -8,9 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -32,14 +34,12 @@ public open class PolygonOccluder3D : Occluder3D() {
   public var polygon: PackedVector2Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONOCCLUDER3D_GET_POLYGON,
-          PACKED_VECTOR2_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
       return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONOCCLUDER3D_SET_POLYGON,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -48,4 +48,12 @@ public open class PolygonOccluder3D : Occluder3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setPolygonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PolygonOccluder3D", "set_polygon")
+
+    public val getPolygonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PolygonOccluder3D", "get_polygon")
+  }
 }

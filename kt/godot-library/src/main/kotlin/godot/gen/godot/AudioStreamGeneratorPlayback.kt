@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -15,6 +16,7 @@ import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -42,8 +44,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    */
   public fun pushFrame(frame: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to frame)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_PUSH_FRAME, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.pushFramePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -52,8 +53,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    */
   public fun canPushBuffer(amount: Int): Boolean {
     TransferContext.writeArguments(LONG to amount.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_CAN_PUSH_BUFFER, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.canPushBufferPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -62,8 +62,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    */
   public fun pushBuffer(frames: PackedVector2Array): Boolean {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to frames)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_PUSH_BUFFER, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.pushBufferPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -72,8 +71,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    */
   public fun getFramesAvailable(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_GET_FRAMES_AVAILABLE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFramesAvailablePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -82,8 +80,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    */
   public fun getSkips(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_GET_SKIPS, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSkipsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -92,9 +89,28 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    */
   public fun clearBuffer(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_CLEAR_BUFFER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearBufferPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val pushFramePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamGeneratorPlayback", "push_frame")
+
+    public val canPushBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamGeneratorPlayback", "can_push_buffer")
+
+    public val pushBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamGeneratorPlayback", "push_buffer")
+
+    public val getFramesAvailablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamGeneratorPlayback", "get_frames_available")
+
+    public val getSkipsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamGeneratorPlayback", "get_skips")
+
+    public val clearBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamGeneratorPlayback", "clear_buffer")
+  }
 }

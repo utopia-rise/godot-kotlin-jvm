@@ -10,6 +10,7 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
@@ -17,6 +18,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -50,12 +52,12 @@ public open class LightmapGI : VisualInstance3D() {
   public var quality: BakeQuality
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_BAKE_QUALITY, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBakeQualityPtr, LONG)
       return LightmapGI.BakeQuality.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_BAKE_QUALITY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBakeQualityPtr, NIL)
     }
 
   /**
@@ -64,12 +66,12 @@ public open class LightmapGI : VisualInstance3D() {
   public var bounces: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_BOUNCES, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBouncesPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_BOUNCES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBouncesPtr, NIL)
     }
 
   /**
@@ -80,12 +82,12 @@ public open class LightmapGI : VisualInstance3D() {
   public var directional: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_IS_DIRECTIONAL, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isDirectionalPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_DIRECTIONAL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDirectionalPtr, NIL)
     }
 
   /**
@@ -94,12 +96,12 @@ public open class LightmapGI : VisualInstance3D() {
   public var interior: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_IS_INTERIOR, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isInteriorPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_INTERIOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setInteriorPtr, NIL)
     }
 
   /**
@@ -110,13 +112,12 @@ public open class LightmapGI : VisualInstance3D() {
   public var useDenoiser: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_IS_USING_DENOISER,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isUsingDenoiserPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_USE_DENOISER, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseDenoiserPtr, NIL)
     }
 
   /**
@@ -125,12 +126,12 @@ public open class LightmapGI : VisualInstance3D() {
   public var bias: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_BIAS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBiasPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_BIAS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBiasPtr, NIL)
     }
 
   /**
@@ -139,14 +140,12 @@ public open class LightmapGI : VisualInstance3D() {
   public var maxTextureSize: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_MAX_TEXTURE_SIZE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMaxTextureSizePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_MAX_TEXTURE_SIZE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMaxTextureSizePtr, NIL)
     }
 
   /**
@@ -155,14 +154,12 @@ public open class LightmapGI : VisualInstance3D() {
   public var environmentMode: EnvironmentMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_ENVIRONMENT_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentModePtr, LONG)
       return LightmapGI.EnvironmentMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_ENVIRONMENT_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentModePtr, NIL)
     }
 
   /**
@@ -171,14 +168,12 @@ public open class LightmapGI : VisualInstance3D() {
   public var environmentCustomSky: Sky?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_ENVIRONMENT_CUSTOM_SKY, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentCustomSkyPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Sky?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_ENVIRONMENT_CUSTOM_SKY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentCustomSkyPtr, NIL)
     }
 
   /**
@@ -188,14 +183,12 @@ public open class LightmapGI : VisualInstance3D() {
   public var environmentCustomColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_ENVIRONMENT_CUSTOM_COLOR, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentCustomColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_ENVIRONMENT_CUSTOM_COLOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentCustomColorPtr, NIL)
     }
 
   /**
@@ -204,14 +197,12 @@ public open class LightmapGI : VisualInstance3D() {
   public var environmentCustomEnergy: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_ENVIRONMENT_CUSTOM_ENERGY, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentCustomEnergyPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_ENVIRONMENT_CUSTOM_ENERGY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentCustomEnergyPtr, NIL)
     }
 
   /**
@@ -220,14 +211,12 @@ public open class LightmapGI : VisualInstance3D() {
   public var cameraAttributes: Material?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_CAMERA_ATTRIBUTES,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Material?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_CAMERA_ATTRIBUTES,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCameraAttributesPtr, NIL)
     }
 
   /**
@@ -240,14 +229,12 @@ public open class LightmapGI : VisualInstance3D() {
   public var generateProbesSubdiv: GenerateProbes
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_GENERATE_PROBES,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGenerateProbesPtr, LONG)
       return LightmapGI.GenerateProbes.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_GENERATE_PROBES,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGenerateProbesPtr, NIL)
     }
 
   /**
@@ -256,12 +243,12 @@ public open class LightmapGI : VisualInstance3D() {
   public var lightData: LightmapGIData?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_LIGHT_DATA, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLightDataPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as LightmapGIData?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_LIGHT_DATA, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLightDataPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -445,4 +432,84 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setLightDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_light_data")
+
+    public val getLightDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "get_light_data")
+
+    public val setBakeQualityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_bake_quality")
+
+    public val getBakeQualityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "get_bake_quality")
+
+    public val setBouncesPtr: VoidPtr = TypeManager.getMethodBindPtr("LightmapGI", "set_bounces")
+
+    public val getBouncesPtr: VoidPtr = TypeManager.getMethodBindPtr("LightmapGI", "get_bounces")
+
+    public val setGenerateProbesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_generate_probes")
+
+    public val getGenerateProbesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "get_generate_probes")
+
+    public val setBiasPtr: VoidPtr = TypeManager.getMethodBindPtr("LightmapGI", "set_bias")
+
+    public val getBiasPtr: VoidPtr = TypeManager.getMethodBindPtr("LightmapGI", "get_bias")
+
+    public val setEnvironmentModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_mode")
+
+    public val getEnvironmentModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_mode")
+
+    public val setEnvironmentCustomSkyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_custom_sky")
+
+    public val getEnvironmentCustomSkyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_custom_sky")
+
+    public val setEnvironmentCustomColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_custom_color")
+
+    public val getEnvironmentCustomColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_custom_color")
+
+    public val setEnvironmentCustomEnergyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_custom_energy")
+
+    public val getEnvironmentCustomEnergyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_custom_energy")
+
+    public val setMaxTextureSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_max_texture_size")
+
+    public val getMaxTextureSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "get_max_texture_size")
+
+    public val setUseDenoiserPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_use_denoiser")
+
+    public val isUsingDenoiserPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "is_using_denoiser")
+
+    public val setInteriorPtr: VoidPtr = TypeManager.getMethodBindPtr("LightmapGI", "set_interior")
+
+    public val isInteriorPtr: VoidPtr = TypeManager.getMethodBindPtr("LightmapGI", "is_interior")
+
+    public val setDirectionalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_directional")
+
+    public val isDirectionalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "is_directional")
+
+    public val setCameraAttributesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_camera_attributes")
+
+    public val getCameraAttributesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "get_camera_attributes")
+  }
 }

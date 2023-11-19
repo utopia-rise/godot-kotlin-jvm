@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -41,13 +43,12 @@ public open class XROrigin3D : Node3D() {
   public var worldScale: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRORIGIN3D_GET_WORLD_SCALE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getWorldScalePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRORIGIN3D_SET_WORLD_SCALE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setWorldScalePtr, NIL)
     }
 
   /**
@@ -56,12 +57,12 @@ public open class XROrigin3D : Node3D() {
   public var current: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRORIGIN3D_IS_CURRENT, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isCurrentPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRORIGIN3D_SET_CURRENT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCurrentPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -70,4 +71,16 @@ public open class XROrigin3D : Node3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setWorldScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XROrigin3D", "set_world_scale")
+
+    public val getWorldScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XROrigin3D", "get_world_scale")
+
+    public val setCurrentPtr: VoidPtr = TypeManager.getMethodBindPtr("XROrigin3D", "set_current")
+
+    public val isCurrentPtr: VoidPtr = TypeManager.getMethodBindPtr("XROrigin3D", "is_current")
+  }
 }

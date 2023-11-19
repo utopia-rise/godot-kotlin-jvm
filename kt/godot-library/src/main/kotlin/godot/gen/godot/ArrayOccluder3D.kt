@@ -9,10 +9,12 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.PACKED_VECTOR3_ARRAY
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -39,7 +41,7 @@ public open class ArrayOccluder3D : Occluder3D() {
     get() = super.getVertices()
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYOCCLUDER3D_SET_VERTICES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
     }
 
   /**
@@ -53,7 +55,7 @@ public open class ArrayOccluder3D : Occluder3D() {
     get() = super.getIndices()
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYOCCLUDER3D_SET_INDICES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setIndicesPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -66,8 +68,18 @@ public open class ArrayOccluder3D : Occluder3D() {
    */
   public fun setArrays(vertices: PackedVector3Array, indices: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices, PACKED_INT_32_ARRAY to indices)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYOCCLUDER3D_SET_ARRAYS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setArraysPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setArraysPtr: VoidPtr = TypeManager.getMethodBindPtr("ArrayOccluder3D", "set_arrays")
+
+    public val setVerticesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ArrayOccluder3D", "set_vertices")
+
+    public val setIndicesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ArrayOccluder3D", "set_indices")
+  }
 }

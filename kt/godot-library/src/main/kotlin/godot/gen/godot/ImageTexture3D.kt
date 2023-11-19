@@ -8,12 +8,14 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -46,7 +48,7 @@ public open class ImageTexture3D : Texture3D() {
     `data`: VariantArray<Image>,
   ): GodotError {
     TransferContext.writeArguments(LONG to format.id, LONG to width.toLong(), LONG to height.toLong(), LONG to depth.toLong(), BOOL to useMipmaps, ARRAY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE3D_CREATE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.createPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -55,8 +57,14 @@ public open class ImageTexture3D : Texture3D() {
    */
   public fun update(`data`: VariantArray<Image>): Unit {
     TransferContext.writeArguments(ARRAY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE3D_UPDATE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.updatePtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val createPtr: VoidPtr = TypeManager.getMethodBindPtr("ImageTexture3D", "create")
+
+    public val updatePtr: VoidPtr = TypeManager.getMethodBindPtr("ImageTexture3D", "update")
+  }
 }

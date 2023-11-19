@@ -9,12 +9,14 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -41,14 +43,12 @@ public open class InputEventMouseMotion : InputEventMouse() {
   public var tilt: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_GET_TILT,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTiltPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_SET_TILT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTiltPtr, NIL)
     }
 
   /**
@@ -57,14 +57,12 @@ public open class InputEventMouseMotion : InputEventMouse() {
   public var pressure: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_GET_PRESSURE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPressurePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_SET_PRESSURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPressurePtr, NIL)
     }
 
   /**
@@ -75,14 +73,12 @@ public open class InputEventMouseMotion : InputEventMouse() {
   public var penInverted: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_GET_PEN_INVERTED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPenInvertedPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_SET_PEN_INVERTED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPenInvertedPtr, NIL)
     }
 
   /**
@@ -94,14 +90,12 @@ public open class InputEventMouseMotion : InputEventMouse() {
   public var relative: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_GET_RELATIVE, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRelativePtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_SET_RELATIVE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRelativePtr, NIL)
     }
 
   /**
@@ -111,14 +105,12 @@ public open class InputEventMouseMotion : InputEventMouse() {
   public var velocity: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_GET_VELOCITY, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_SET_VELOCITY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -201,4 +193,36 @@ public open class InputEventMouseMotion : InputEventMouse() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setTiltPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "set_tilt")
+
+    public val getTiltPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "get_tilt")
+
+    public val setPressurePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "set_pressure")
+
+    public val getPressurePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "get_pressure")
+
+    public val setPenInvertedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "set_pen_inverted")
+
+    public val getPenInvertedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "get_pen_inverted")
+
+    public val setRelativePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "set_relative")
+
+    public val getRelativePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "get_relative")
+
+    public val setVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "set_velocity")
+
+    public val getVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "get_velocity")
+  }
 }

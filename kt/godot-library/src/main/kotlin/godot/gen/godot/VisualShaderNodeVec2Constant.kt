@@ -9,10 +9,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -32,14 +34,12 @@ public open class VisualShaderNodeVec2Constant : VisualShaderNodeConstant() {
   public var constant: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVEC2CONSTANT_GET_CONSTANT, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVEC2CONSTANT_SET_CONSTANT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -72,4 +72,12 @@ public open class VisualShaderNodeVec2Constant : VisualShaderNodeConstant() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeVec2Constant", "set_constant")
+
+    public val getConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeVec2Constant", "get_constant")
+  }
 }

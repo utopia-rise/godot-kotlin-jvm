@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -36,14 +38,12 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
   public var bufferLength: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER_GET_BUFFER_LENGTH, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBufferLengthPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER_SET_BUFFER_LENGTH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
     }
 
   /**
@@ -52,14 +52,12 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
   public var tapBackPos: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER_GET_TAP_BACK_POS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTapBackPosPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER_SET_TAP_BACK_POS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTapBackPosPtr, NIL)
     }
 
   /**
@@ -68,14 +66,12 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
   public var fftSize: FFTSize
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER_GET_FFT_SIZE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFftSizePtr, LONG)
       return AudioEffectSpectrumAnalyzer.FFTSize.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER_SET_FFT_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFftSizePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -123,4 +119,24 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setBufferLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "set_buffer_length")
+
+    public val getBufferLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "get_buffer_length")
+
+    public val setTapBackPosPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "set_tap_back_pos")
+
+    public val getTapBackPosPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "get_tap_back_pos")
+
+    public val setFftSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "set_fft_size")
+
+    public val getFftSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "get_fft_size")
+  }
 }

@@ -24,4 +24,6 @@ public open class VisualShaderNodeTextureSDFNormal : VisualShaderNode() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

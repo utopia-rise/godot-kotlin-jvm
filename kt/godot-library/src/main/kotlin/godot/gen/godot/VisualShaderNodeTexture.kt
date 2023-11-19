@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -29,14 +31,12 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   public var source: Source
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTURE_GET_SOURCE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSourcePtr, LONG)
       return VisualShaderNodeTexture.Source.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTURE_SET_SOURCE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSourcePtr, NIL)
     }
 
   /**
@@ -45,14 +45,12 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTURE_GET_TEXTURE, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTURE_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -61,14 +59,12 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   public var textureType: TextureType
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTURE_GET_TEXTURE_TYPE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureTypePtr, LONG)
       return VisualShaderNodeTexture.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTURE_SET_TEXTURE_TYPE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureTypePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -159,4 +155,24 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setSourcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeTexture", "set_source")
+
+    public val getSourcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeTexture", "get_source")
+
+    public val setTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeTexture", "set_texture")
+
+    public val getTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeTexture", "get_texture")
+
+    public val setTextureTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeTexture", "set_texture_type")
+
+    public val getTextureTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeTexture", "get_texture_type")
+  }
 }

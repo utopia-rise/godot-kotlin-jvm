@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -14,6 +15,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -46,7 +48,7 @@ public object ThemeDB : Object() {
    */
   public fun getDefaultTheme(): Theme? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEMEDB_GET_DEFAULT_THEME, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultThemePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Theme?)
   }
 
@@ -57,66 +59,100 @@ public object ThemeDB : Object() {
    */
   public fun getProjectTheme(): Theme? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEMEDB_GET_PROJECT_THEME, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getProjectThemePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Theme?)
   }
 
   public fun setFallbackBaseScale(baseScale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to baseScale.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEMEDB_SET_FALLBACK_BASE_SCALE,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFallbackBaseScalePtr, NIL)
   }
 
   public fun getFallbackBaseScale(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEMEDB_GET_FALLBACK_BASE_SCALE,
-        DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFallbackBaseScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public fun setFallbackFont(font: Font): Unit {
     TransferContext.writeArguments(OBJECT to font)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEMEDB_SET_FALLBACK_FONT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFallbackFontPtr, NIL)
   }
 
   public fun getFallbackFont(): Font? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEMEDB_GET_FALLBACK_FONT, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFallbackFontPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Font?)
   }
 
   public fun setFallbackFontSize(fontSize: Int): Unit {
     TransferContext.writeArguments(LONG to fontSize.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEMEDB_SET_FALLBACK_FONT_SIZE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFallbackFontSizePtr, NIL)
   }
 
   public fun getFallbackFontSize(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEMEDB_GET_FALLBACK_FONT_SIZE,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFallbackFontSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public fun setFallbackIcon(icon: Texture2D): Unit {
     TransferContext.writeArguments(OBJECT to icon)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEMEDB_SET_FALLBACK_ICON, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFallbackIconPtr, NIL)
   }
 
   public fun getFallbackIcon(): Texture2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEMEDB_GET_FALLBACK_ICON, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFallbackIconPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
   public fun setFallbackStylebox(stylebox: StyleBox): Unit {
     TransferContext.writeArguments(OBJECT to stylebox)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEMEDB_SET_FALLBACK_STYLEBOX, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFallbackStyleboxPtr, NIL)
   }
 
   public fun getFallbackStylebox(): StyleBox? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEMEDB_GET_FALLBACK_STYLEBOX,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFallbackStyleboxPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as StyleBox?)
+  }
+
+  internal object MethodBindings {
+    public val getDefaultThemePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ThemeDB", "get_default_theme")
+
+    public val getProjectThemePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ThemeDB", "get_project_theme")
+
+    public val setFallbackBaseScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ThemeDB", "set_fallback_base_scale")
+
+    public val getFallbackBaseScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ThemeDB", "get_fallback_base_scale")
+
+    public val setFallbackFontPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ThemeDB", "set_fallback_font")
+
+    public val getFallbackFontPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ThemeDB", "get_fallback_font")
+
+    public val setFallbackFontSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ThemeDB", "set_fallback_font_size")
+
+    public val getFallbackFontSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ThemeDB", "get_fallback_font_size")
+
+    public val setFallbackIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ThemeDB", "set_fallback_icon")
+
+    public val getFallbackIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ThemeDB", "get_fallback_icon")
+
+    public val setFallbackStyleboxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ThemeDB", "set_fallback_stylebox")
+
+    public val getFallbackStyleboxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ThemeDB", "get_fallback_stylebox")
   }
 }

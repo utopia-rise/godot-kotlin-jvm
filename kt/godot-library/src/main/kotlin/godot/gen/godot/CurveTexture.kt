@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -35,7 +37,7 @@ public open class CurveTexture : Texture2D() {
     get() = super.getWidth()
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_SET_WIDTH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
     }
 
   /**
@@ -44,14 +46,12 @@ public open class CurveTexture : Texture2D() {
   public var textureMode: TextureMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_GET_TEXTURE_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureModePtr, LONG)
       return CurveTexture.TextureMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_SET_TEXTURE_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureModePtr, NIL)
     }
 
   /**
@@ -60,12 +60,12 @@ public open class CurveTexture : Texture2D() {
   public var curve: Curve?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_GET_CURVE, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_SET_CURVE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -97,4 +97,18 @@ public open class CurveTexture : Texture2D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("CurveTexture", "set_width")
+
+    public val setCurvePtr: VoidPtr = TypeManager.getMethodBindPtr("CurveTexture", "set_curve")
+
+    public val getCurvePtr: VoidPtr = TypeManager.getMethodBindPtr("CurveTexture", "get_curve")
+
+    public val setTextureModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CurveTexture", "set_texture_mode")
+
+    public val getTextureModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CurveTexture", "get_texture_mode")
+  }
 }

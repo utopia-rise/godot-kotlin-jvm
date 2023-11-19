@@ -7,11 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -30,14 +32,12 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
   public var mesh: Mesh?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_GET_MESH, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_SET_MESH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
     }
 
   /**
@@ -46,14 +46,12 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
   public var useAllSurfaces: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_IS_USE_ALL_SURFACES, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isUseAllSurfacesPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_SET_USE_ALL_SURFACES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseAllSurfacesPtr, NIL)
     }
 
   /**
@@ -62,14 +60,12 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
   public var surfaceIndex: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_GET_SURFACE_INDEX, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceIndexPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_SET_SURFACE_INDEX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSurfaceIndexPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -78,4 +74,24 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_mesh")
+
+    public val getMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "get_mesh")
+
+    public val setUseAllSurfacesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_use_all_surfaces")
+
+    public val isUseAllSurfacesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "is_use_all_surfaces")
+
+    public val setSurfaceIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_surface_index")
+
+    public val getSurfaceIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "get_surface_index")
+  }
 }

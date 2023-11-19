@@ -24,4 +24,6 @@ public open class VisualShaderNodeParticleConeVelocity : VisualShaderNode() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

@@ -10,12 +10,14 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -40,14 +42,12 @@ public open class PhysicalSkyMaterial : Material() {
   public var rayleighCoefficient: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_RAYLEIGH_COEFFICIENT, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRayleighCoefficientPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_RAYLEIGH_COEFFICIENT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRayleighCoefficientPtr, NIL)
     }
 
   /**
@@ -57,14 +57,12 @@ public open class PhysicalSkyMaterial : Material() {
   public var rayleighColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_RAYLEIGH_COLOR, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRayleighColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_RAYLEIGH_COLOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRayleighColorPtr, NIL)
     }
 
   /**
@@ -73,14 +71,12 @@ public open class PhysicalSkyMaterial : Material() {
   public var mieCoefficient: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_MIE_COEFFICIENT, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMieCoefficientPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_MIE_COEFFICIENT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMieCoefficientPtr, NIL)
     }
 
   /**
@@ -89,14 +85,12 @@ public open class PhysicalSkyMaterial : Material() {
   public var mieEccentricity: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_MIE_ECCENTRICITY, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMieEccentricityPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_MIE_ECCENTRICITY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMieEccentricityPtr, NIL)
     }
 
   /**
@@ -106,14 +100,12 @@ public open class PhysicalSkyMaterial : Material() {
   public var mieColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_MIE_COLOR,
-          COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMieColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_MIE_COLOR,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMieColorPtr, NIL)
     }
 
   /**
@@ -122,14 +114,12 @@ public open class PhysicalSkyMaterial : Material() {
   public var turbidity: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_TURBIDITY,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTurbidityPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_TURBIDITY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTurbidityPtr, NIL)
     }
 
   /**
@@ -138,14 +128,12 @@ public open class PhysicalSkyMaterial : Material() {
   public var sunDiskScale: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_SUN_DISK_SCALE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSunDiskScalePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_SUN_DISK_SCALE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSunDiskScalePtr, NIL)
     }
 
   /**
@@ -155,14 +143,12 @@ public open class PhysicalSkyMaterial : Material() {
   public var groundColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_GROUND_COLOR, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGroundColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_GROUND_COLOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGroundColorPtr, NIL)
     }
 
   /**
@@ -171,14 +157,12 @@ public open class PhysicalSkyMaterial : Material() {
   public var energyMultiplier: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_ENERGY_MULTIPLIER, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnergyMultiplierPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_ENERGY_MULTIPLIER, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnergyMultiplierPtr, NIL)
     }
 
   /**
@@ -187,14 +171,12 @@ public open class PhysicalSkyMaterial : Material() {
   public var useDebanding: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_USE_DEBANDING, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getUseDebandingPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_USE_DEBANDING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseDebandingPtr, NIL)
     }
 
   /**
@@ -203,14 +185,12 @@ public open class PhysicalSkyMaterial : Material() {
   public var nightSky: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_GET_NIGHT_SKY,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getNightSkyPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALSKYMATERIAL_SET_NIGHT_SKY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setNightSkyPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -291,4 +271,72 @@ public open class PhysicalSkyMaterial : Material() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setRayleighCoefficientPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_rayleigh_coefficient")
+
+    public val getRayleighCoefficientPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_rayleigh_coefficient")
+
+    public val setRayleighColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_rayleigh_color")
+
+    public val getRayleighColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_rayleigh_color")
+
+    public val setMieCoefficientPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_mie_coefficient")
+
+    public val getMieCoefficientPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_mie_coefficient")
+
+    public val setMieEccentricityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_mie_eccentricity")
+
+    public val getMieEccentricityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_mie_eccentricity")
+
+    public val setMieColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_mie_color")
+
+    public val getMieColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_mie_color")
+
+    public val setTurbidityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_turbidity")
+
+    public val getTurbidityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_turbidity")
+
+    public val setSunDiskScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_sun_disk_scale")
+
+    public val getSunDiskScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_sun_disk_scale")
+
+    public val setGroundColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_ground_color")
+
+    public val getGroundColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_ground_color")
+
+    public val setEnergyMultiplierPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_energy_multiplier")
+
+    public val getEnergyMultiplierPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_energy_multiplier")
+
+    public val setUseDebandingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_use_debanding")
+
+    public val getUseDebandingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_use_debanding")
+
+    public val setNightSkyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_night_sky")
+
+    public val getNightSkyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_night_sky")
+  }
 }

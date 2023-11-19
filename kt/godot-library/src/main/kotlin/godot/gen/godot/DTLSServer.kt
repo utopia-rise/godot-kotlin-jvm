@@ -8,9 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -313,7 +315,7 @@ public open class DTLSServer : RefCounted() {
    */
   public fun setup(serverOptions: TLSOptions): GodotError {
     TransferContext.writeArguments(OBJECT to serverOptions)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DTLSSERVER_SETUP, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.setupPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -324,9 +326,16 @@ public open class DTLSServer : RefCounted() {
    */
   public fun takeConnection(udpPeer: PacketPeerUDP): PacketPeerDTLS? {
     TransferContext.writeArguments(OBJECT to udpPeer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DTLSSERVER_TAKE_CONNECTION, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.takeConnectionPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PacketPeerDTLS?)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setupPtr: VoidPtr = TypeManager.getMethodBindPtr("DTLSServer", "setup")
+
+    public val takeConnectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DTLSServer", "take_connection")
+  }
 }

@@ -20,4 +20,6 @@ public open class EditorSceneFormatImporterGLTF internal constructor() : EditorS
   }
 
   public companion object
+
+  internal object MethodBindings
 }

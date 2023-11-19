@@ -11,6 +11,7 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedVector2Array
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
@@ -21,6 +22,7 @@ import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -46,13 +48,12 @@ public open class Line2D : Node2D() {
   public var points: PackedVector2Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_POINTS,
-          PACKED_VECTOR2_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPointsPtr, PACKED_VECTOR2_ARRAY)
       return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_POINTS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPointsPtr, NIL)
     }
 
   /**
@@ -61,12 +62,12 @@ public open class Line2D : Node2D() {
   public var width: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_WIDTH, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_WIDTH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
     }
 
   /**
@@ -75,12 +76,12 @@ public open class Line2D : Node2D() {
   public var widthCurve: Curve?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_CURVE, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_CURVE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
     }
 
   /**
@@ -90,12 +91,12 @@ public open class Line2D : Node2D() {
   public var defaultColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_DEFAULT_COLOR, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDefaultColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_DEFAULT_COLOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultColorPtr, NIL)
     }
 
   /**
@@ -104,12 +105,12 @@ public open class Line2D : Node2D() {
   public var gradient: Gradient?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_GRADIENT, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGradientPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Gradient?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_GRADIENT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGradientPtr, NIL)
     }
 
   /**
@@ -118,12 +119,12 @@ public open class Line2D : Node2D() {
   public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_TEXTURE, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -132,12 +133,12 @@ public open class Line2D : Node2D() {
   public var textureMode: LineTextureMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_TEXTURE_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureModePtr, LONG)
       return Line2D.LineTextureMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_TEXTURE_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureModePtr, NIL)
     }
 
   /**
@@ -146,12 +147,12 @@ public open class Line2D : Node2D() {
   public var jointMode: LineJointMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_JOINT_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getJointModePtr, LONG)
       return Line2D.LineJointMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_JOINT_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setJointModePtr, NIL)
     }
 
   /**
@@ -160,12 +161,12 @@ public open class Line2D : Node2D() {
   public var beginCapMode: LineCapMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_BEGIN_CAP_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBeginCapModePtr, LONG)
       return Line2D.LineCapMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_BEGIN_CAP_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBeginCapModePtr, NIL)
     }
 
   /**
@@ -174,12 +175,12 @@ public open class Line2D : Node2D() {
   public var endCapMode: LineCapMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_END_CAP_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEndCapModePtr, LONG)
       return Line2D.LineCapMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_END_CAP_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEndCapModePtr, NIL)
     }
 
   /**
@@ -188,12 +189,12 @@ public open class Line2D : Node2D() {
   public var sharpLimit: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_SHARP_LIMIT, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSharpLimitPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_SHARP_LIMIT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSharpLimitPtr, NIL)
     }
 
   /**
@@ -204,12 +205,12 @@ public open class Line2D : Node2D() {
   public var roundPrecision: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_ROUND_PRECISION, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRoundPrecisionPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_ROUND_PRECISION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRoundPrecisionPtr, NIL)
     }
 
   /**
@@ -220,12 +221,12 @@ public open class Line2D : Node2D() {
   public var antialiased: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_ANTIALIASED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAntialiasedPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_ANTIALIASED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAntialiasedPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -262,7 +263,7 @@ public open class Line2D : Node2D() {
    */
   public fun setPointPosition(index: Int, position: Vector2): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_POINT_POSITION, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPointPositionPtr, NIL)
   }
 
   /**
@@ -270,7 +271,7 @@ public open class Line2D : Node2D() {
    */
   public fun getPointPosition(index: Int): Vector2 {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_POINT_POSITION, VECTOR2)
+    TransferContext.callMethod(rawPtr, MethodBindings.getPointPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
@@ -279,7 +280,7 @@ public open class Line2D : Node2D() {
    */
   public fun getPointCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_POINT_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getPointCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -291,7 +292,7 @@ public open class Line2D : Node2D() {
   @JvmOverloads
   public fun addPoint(position: Vector2, index: Int = -1): Unit {
     TransferContext.writeArguments(VECTOR2 to position, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_ADD_POINT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addPointPtr, NIL)
   }
 
   /**
@@ -299,7 +300,7 @@ public open class Line2D : Node2D() {
    */
   public fun removePoint(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_REMOVE_POINT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removePointPtr, NIL)
   }
 
   /**
@@ -307,7 +308,7 @@ public open class Line2D : Node2D() {
    */
   public fun clearPoints(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_CLEAR_POINTS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearPointsPtr, NIL)
   }
 
   public enum class LineJointMode(
@@ -392,4 +393,84 @@ public open class Line2D : Node2D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setPointsPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "set_points")
+
+    public val getPointsPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "get_points")
+
+    public val setPointPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "set_point_position")
+
+    public val getPointPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "get_point_position")
+
+    public val getPointCountPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "get_point_count")
+
+    public val addPointPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "add_point")
+
+    public val removePointPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "remove_point")
+
+    public val clearPointsPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "clear_points")
+
+    public val setWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "set_width")
+
+    public val getWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "get_width")
+
+    public val setCurvePtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "set_curve")
+
+    public val getCurvePtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "get_curve")
+
+    public val setDefaultColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "set_default_color")
+
+    public val getDefaultColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "get_default_color")
+
+    public val setGradientPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "set_gradient")
+
+    public val getGradientPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "get_gradient")
+
+    public val setTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "set_texture")
+
+    public val getTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "get_texture")
+
+    public val setTextureModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "set_texture_mode")
+
+    public val getTextureModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "get_texture_mode")
+
+    public val setJointModePtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "set_joint_mode")
+
+    public val getJointModePtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "get_joint_mode")
+
+    public val setBeginCapModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "set_begin_cap_mode")
+
+    public val getBeginCapModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "get_begin_cap_mode")
+
+    public val setEndCapModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "set_end_cap_mode")
+
+    public val getEndCapModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "get_end_cap_mode")
+
+    public val setSharpLimitPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "set_sharp_limit")
+
+    public val getSharpLimitPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "get_sharp_limit")
+
+    public val setRoundPrecisionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "set_round_precision")
+
+    public val getRoundPrecisionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "get_round_precision")
+
+    public val setAntialiasedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "set_antialiased")
+
+    public val getAntialiasedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "get_antialiased")
+  }
 }

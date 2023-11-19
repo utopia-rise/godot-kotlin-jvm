@@ -24,4 +24,6 @@ public open class VisualShaderNodeCubemapParameter : VisualShaderNodeTexturePara
   }
 
   public companion object
+
+  internal object MethodBindings
 }

@@ -19,4 +19,6 @@ public open class EditorExportPlatformLinuxBSD internal constructor() : EditorEx
   }
 
   public companion object
+
+  internal object MethodBindings
 }

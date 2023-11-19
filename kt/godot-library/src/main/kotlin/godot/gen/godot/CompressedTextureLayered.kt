@@ -8,9 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -30,8 +32,7 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
   public val loadPath: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_COMPRESSEDTEXTURELAYERED_GET_LOAD_PATH, STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLoadPathPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
 
@@ -45,9 +46,16 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
    */
   public fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COMPRESSEDTEXTURELAYERED_LOAD, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val loadPtr: VoidPtr = TypeManager.getMethodBindPtr("CompressedTextureLayered", "load")
+
+    public val getLoadPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CompressedTextureLayered", "get_load_path")
+  }
 }

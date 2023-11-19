@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -32,14 +34,12 @@ public open class InputEventMagnifyGesture : InputEventGesture() {
   public var factor: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMAGNIFYGESTURE_GET_FACTOR, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFactorPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMAGNIFYGESTURE_SET_FACTOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFactorPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -48,4 +48,12 @@ public open class InputEventMagnifyGesture : InputEventGesture() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setFactorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMagnifyGesture", "set_factor")
+
+    public val getFactorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMagnifyGesture", "get_factor")
+  }
 }

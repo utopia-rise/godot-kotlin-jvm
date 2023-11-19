@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -27,14 +29,12 @@ public open class VisualShaderNodeParticleEmitter internal constructor() : Visua
   public var mode2d: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEEMITTER_IS_MODE_2D, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isMode2dPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEEMITTER_SET_MODE_2D, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMode2dPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -43,4 +43,12 @@ public open class VisualShaderNodeParticleEmitter internal constructor() : Visua
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setMode2dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleEmitter", "set_mode_2d")
+
+    public val isMode2dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleEmitter", "is_mode_2d")
+  }
 }

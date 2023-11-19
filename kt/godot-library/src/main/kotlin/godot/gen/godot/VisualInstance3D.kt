@@ -9,12 +9,14 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.RID
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType._RID
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -45,14 +47,12 @@ public open class VisualInstance3D : Node3D() {
   public var layers: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_LAYER_MASK,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLayerMaskPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_SET_LAYER_MASK,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLayerMaskPtr, NIL)
     }
 
   /**
@@ -61,14 +61,12 @@ public open class VisualInstance3D : Node3D() {
   public var sortingOffset: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_SORTING_OFFSET, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSortingOffsetPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_SET_SORTING_OFFSET, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSortingOffsetPtr, NIL)
     }
 
   /**
@@ -79,14 +77,12 @@ public open class VisualInstance3D : Node3D() {
   public var sortingUseAabbCenter: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_IS_SORTING_USE_AABB_CENTER, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isSortingUseAabbCenterPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_SET_SORTING_USE_AABB_CENTER, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSortingUseAabbCenterPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -106,7 +102,7 @@ public open class VisualInstance3D : Node3D() {
    */
   public fun setBase(base: RID): Unit {
     TransferContext.writeArguments(_RID to base)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_SET_BASE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBasePtr, NIL)
   }
 
   /**
@@ -114,7 +110,7 @@ public open class VisualInstance3D : Node3D() {
    */
   public fun getBase(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_BASE, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBasePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -123,7 +119,7 @@ public open class VisualInstance3D : Node3D() {
    */
   public fun getInstance(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_INSTANCE, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.getInstancePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -132,8 +128,7 @@ public open class VisualInstance3D : Node3D() {
    */
   public fun setLayerMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_SET_LAYER_MASK_VALUE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLayerMaskValuePtr, NIL)
   }
 
   /**
@@ -141,8 +136,7 @@ public open class VisualInstance3D : Node3D() {
    */
   public fun getLayerMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_LAYER_MASK_VALUE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.getLayerMaskValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -151,10 +145,46 @@ public open class VisualInstance3D : Node3D() {
    */
   public fun getAabb(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_AABB,
-        godot.core.VariantType.AABB)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAabbPtr, godot.core.VariantType.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _getAabbPtr: VoidPtr = TypeManager.getMethodBindPtr("VisualInstance3D", "_get_aabb")
+
+    public val setBasePtr: VoidPtr = TypeManager.getMethodBindPtr("VisualInstance3D", "set_base")
+
+    public val getBasePtr: VoidPtr = TypeManager.getMethodBindPtr("VisualInstance3D", "get_base")
+
+    public val getInstancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualInstance3D", "get_instance")
+
+    public val setLayerMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualInstance3D", "set_layer_mask")
+
+    public val getLayerMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualInstance3D", "get_layer_mask")
+
+    public val setLayerMaskValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualInstance3D", "set_layer_mask_value")
+
+    public val getLayerMaskValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualInstance3D", "get_layer_mask_value")
+
+    public val setSortingOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualInstance3D", "set_sorting_offset")
+
+    public val getSortingOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualInstance3D", "get_sorting_offset")
+
+    public val setSortingUseAabbCenterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualInstance3D", "set_sorting_use_aabb_center")
+
+    public val isSortingUseAabbCenterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualInstance3D", "is_sorting_use_aabb_center")
+
+    public val getAabbPtr: VoidPtr = TypeManager.getMethodBindPtr("VisualInstance3D", "get_aabb")
+  }
 }

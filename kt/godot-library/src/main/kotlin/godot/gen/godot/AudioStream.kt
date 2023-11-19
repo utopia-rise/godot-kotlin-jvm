@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -80,7 +82,7 @@ public open class AudioStream : Resource() {
    */
   public fun getLength(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_GET_LENGTH, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
@@ -89,7 +91,7 @@ public open class AudioStream : Resource() {
    */
   public fun isMonophonic(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_IS_MONOPHONIC, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isMonophonicPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -98,10 +100,35 @@ public open class AudioStream : Resource() {
    */
   public fun instantiatePlayback(): AudioStreamPlayback? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_INSTANTIATE_PLAYBACK,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.instantiatePlaybackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as AudioStreamPlayback?)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _instantiatePlaybackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStream", "_instantiate_playback")
+
+    public val _getStreamNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStream", "_get_stream_name")
+
+    public val _getLengthPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStream", "_get_length")
+
+    public val _isMonophonicPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStream", "_is_monophonic")
+
+    public val _getBpmPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStream", "_get_bpm")
+
+    public val _getBeatCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStream", "_get_beat_count")
+
+    public val getLengthPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStream", "get_length")
+
+    public val isMonophonicPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStream", "is_monophonic")
+
+    public val instantiatePlaybackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStream", "instantiate_playback")
+  }
 }

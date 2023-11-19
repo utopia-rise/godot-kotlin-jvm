@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -14,6 +15,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -40,14 +42,12 @@ public open class MenuButton : Button() {
   public var switchOnHover: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_IS_SWITCH_ON_HOVER,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isSwitchOnHoverPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_SET_SWITCH_ON_HOVER,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSwitchOnHoverPtr, NIL)
     }
 
   /**
@@ -56,12 +56,12 @@ public open class MenuButton : Button() {
   public var itemCount: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_GET_ITEM_COUNT, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getItemCountPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_SET_ITEM_COUNT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setItemCountPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -76,7 +76,7 @@ public open class MenuButton : Button() {
    */
   public fun getPopup(): PopupMenu? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_GET_POPUP, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getPopupPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PopupMenu?)
   }
 
@@ -85,7 +85,7 @@ public open class MenuButton : Button() {
    */
   public fun showPopup(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_SHOW_POPUP, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.showPopupPtr, NIL)
   }
 
   /**
@@ -93,9 +93,29 @@ public open class MenuButton : Button() {
    */
   public fun setDisableShortcuts(disabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to disabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_SET_DISABLE_SHORTCUTS,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDisableShortcutsPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getPopupPtr: VoidPtr = TypeManager.getMethodBindPtr("MenuButton", "get_popup")
+
+    public val showPopupPtr: VoidPtr = TypeManager.getMethodBindPtr("MenuButton", "show_popup")
+
+    public val setSwitchOnHoverPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MenuButton", "set_switch_on_hover")
+
+    public val isSwitchOnHoverPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MenuButton", "is_switch_on_hover")
+
+    public val setDisableShortcutsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MenuButton", "set_disable_shortcuts")
+
+    public val setItemCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MenuButton", "set_item_count")
+
+    public val getItemCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MenuButton", "get_item_count")
+  }
 }

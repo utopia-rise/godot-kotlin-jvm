@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Plane
+import godot.core.TypeManager
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -19,6 +20,7 @@ import godot.core.VariantType.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -70,7 +72,7 @@ public open class ImmediateMesh : Mesh() {
   @JvmOverloads
   public fun surfaceBegin(primitive: Mesh.PrimitiveType, material: Material? = null): Unit {
     TransferContext.writeArguments(LONG to primitive.id, OBJECT to material)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_BEGIN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.surfaceBeginPtr, NIL)
   }
 
   /**
@@ -78,8 +80,7 @@ public open class ImmediateMesh : Mesh() {
    */
   public fun surfaceSetColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_SET_COLOR,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.surfaceSetColorPtr, NIL)
   }
 
   /**
@@ -87,8 +88,7 @@ public open class ImmediateMesh : Mesh() {
    */
   public fun surfaceSetNormal(normal: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to normal)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_SET_NORMAL,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.surfaceSetNormalPtr, NIL)
   }
 
   /**
@@ -96,8 +96,7 @@ public open class ImmediateMesh : Mesh() {
    */
   public fun surfaceSetTangent(tangent: Plane): Unit {
     TransferContext.writeArguments(PLANE to tangent)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_SET_TANGENT,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.surfaceSetTangentPtr, NIL)
   }
 
   /**
@@ -105,7 +104,7 @@ public open class ImmediateMesh : Mesh() {
    */
   public fun surfaceSetUv(uv: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to uv)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_SET_UV, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.surfaceSetUvPtr, NIL)
   }
 
   /**
@@ -113,7 +112,7 @@ public open class ImmediateMesh : Mesh() {
    */
   public fun surfaceSetUv2(uv2: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to uv2)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_SET_UV2, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.surfaceSetUv2Ptr, NIL)
   }
 
   /**
@@ -121,8 +120,7 @@ public open class ImmediateMesh : Mesh() {
    */
   public fun surfaceAddVertex(vertex: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to vertex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_ADD_VERTEX,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.surfaceAddVertexPtr, NIL)
   }
 
   /**
@@ -130,8 +128,7 @@ public open class ImmediateMesh : Mesh() {
    */
   public fun surfaceAddVertex2d(vertex: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to vertex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_ADD_VERTEX_2D,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.surfaceAddVertex2dPtr, NIL)
   }
 
   /**
@@ -139,7 +136,7 @@ public open class ImmediateMesh : Mesh() {
    */
   public fun surfaceEnd(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_SURFACE_END, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.surfaceEndPtr, NIL)
   }
 
   /**
@@ -147,8 +144,39 @@ public open class ImmediateMesh : Mesh() {
    */
   public fun clearSurfaces(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEMESH_CLEAR_SURFACES, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearSurfacesPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val surfaceBeginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_begin")
+
+    public val surfaceSetColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_color")
+
+    public val surfaceSetNormalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_normal")
+
+    public val surfaceSetTangentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_tangent")
+
+    public val surfaceSetUvPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_uv")
+
+    public val surfaceSetUv2Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_uv2")
+
+    public val surfaceAddVertexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_add_vertex")
+
+    public val surfaceAddVertex2dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_add_vertex_2d")
+
+    public val surfaceEndPtr: VoidPtr = TypeManager.getMethodBindPtr("ImmediateMesh", "surface_end")
+
+    public val clearSurfacesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImmediateMesh", "clear_surfaces")
+  }
 }

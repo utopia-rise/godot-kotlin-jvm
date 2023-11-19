@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -32,14 +34,12 @@ public open class DirectionalLight3D : Light3D() {
   public var directionalShadowMode: ShadowMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_GET_SHADOW_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getShadowModePtr, LONG)
       return DirectionalLight3D.ShadowMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_SET_SHADOW_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShadowModePtr, NIL)
     }
 
   /**
@@ -48,14 +48,12 @@ public open class DirectionalLight3D : Light3D() {
   public var directionalShadowBlendSplits: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_IS_BLEND_SPLITS_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isBlendSplitsEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_SET_BLEND_SPLITS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBlendSplitsPtr, NIL)
     }
 
   /**
@@ -64,14 +62,12 @@ public open class DirectionalLight3D : Light3D() {
   public var skyMode: SkyMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_GET_SKY_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSkyModePtr, LONG)
       return DirectionalLight3D.SkyMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_SET_SKY_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSkyModePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -134,4 +130,24 @@ public open class DirectionalLight3D : Light3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setShadowModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirectionalLight3D", "set_shadow_mode")
+
+    public val getShadowModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirectionalLight3D", "get_shadow_mode")
+
+    public val setBlendSplitsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirectionalLight3D", "set_blend_splits")
+
+    public val isBlendSplitsEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirectionalLight3D", "is_blend_splits_enabled")
+
+    public val setSkyModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirectionalLight3D", "set_sky_mode")
+
+    public val getSkyModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirectionalLight3D", "get_sky_mode")
+  }
 }

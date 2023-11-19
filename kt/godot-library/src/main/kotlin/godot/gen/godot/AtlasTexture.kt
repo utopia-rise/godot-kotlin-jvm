@@ -10,11 +10,13 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.RECT2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -37,12 +39,12 @@ public open class AtlasTexture : Texture2D() {
   public var atlas: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_GET_ATLAS, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAtlasPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_SET_ATLAS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAtlasPtr, NIL)
     }
 
   /**
@@ -52,12 +54,12 @@ public open class AtlasTexture : Texture2D() {
   public var region: Rect2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_GET_REGION, RECT2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRegionPtr, RECT2)
       return (TransferContext.readReturnValue(RECT2, false) as Rect2)
     }
     set(`value`) {
       TransferContext.writeArguments(RECT2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_SET_REGION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRegionPtr, NIL)
     }
 
   /**
@@ -67,12 +69,12 @@ public open class AtlasTexture : Texture2D() {
   public var margin: Rect2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_GET_MARGIN, RECT2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, RECT2)
       return (TransferContext.readReturnValue(RECT2, false) as Rect2)
     }
     set(`value`) {
       TransferContext.writeArguments(RECT2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_SET_MARGIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
     }
 
   /**
@@ -81,13 +83,12 @@ public open class AtlasTexture : Texture2D() {
   public var filterClip: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_HAS_FILTER_CLIP,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.hasFilterClipPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_SET_FILTER_CLIP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFilterClipPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -144,4 +145,24 @@ public open class AtlasTexture : Texture2D() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setAtlasPtr: VoidPtr = TypeManager.getMethodBindPtr("AtlasTexture", "set_atlas")
+
+    public val getAtlasPtr: VoidPtr = TypeManager.getMethodBindPtr("AtlasTexture", "get_atlas")
+
+    public val setRegionPtr: VoidPtr = TypeManager.getMethodBindPtr("AtlasTexture", "set_region")
+
+    public val getRegionPtr: VoidPtr = TypeManager.getMethodBindPtr("AtlasTexture", "get_region")
+
+    public val setMarginPtr: VoidPtr = TypeManager.getMethodBindPtr("AtlasTexture", "set_margin")
+
+    public val getMarginPtr: VoidPtr = TypeManager.getMethodBindPtr("AtlasTexture", "get_margin")
+
+    public val setFilterClipPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AtlasTexture", "set_filter_clip")
+
+    public val hasFilterClipPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AtlasTexture", "has_filter_clip")
+  }
 }

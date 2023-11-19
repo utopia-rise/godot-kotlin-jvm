@@ -24,4 +24,6 @@ public open class VisualShaderNodeFresnel : VisualShaderNode() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

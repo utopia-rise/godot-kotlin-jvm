@@ -8,10 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
+import godot.core.TypeManager
 import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
@@ -82,8 +84,7 @@ public open class EditorCommandPalette internal constructor() : ConfirmationDial
     shortcutText: String = "None",
   ): Unit {
     TransferContext.writeArguments(STRING to commandName, STRING to keyName, CALLABLE to bindedCallable, STRING to shortcutText)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORCOMMANDPALETTE_ADD_COMMAND,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addCommandPtr, NIL)
   }
 
   /**
@@ -93,9 +94,16 @@ public open class EditorCommandPalette internal constructor() : ConfirmationDial
    */
   public fun removeCommand(keyName: String): Unit {
     TransferContext.writeArguments(STRING to keyName)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORCOMMANDPALETTE_REMOVE_COMMAND,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeCommandPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val addCommandPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorCommandPalette", "add_command")
+
+    public val removeCommandPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorCommandPalette", "remove_command")
+  }
 }

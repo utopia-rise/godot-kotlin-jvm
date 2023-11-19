@@ -28,4 +28,6 @@ public open class ShaderGlobalsOverride : Node() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

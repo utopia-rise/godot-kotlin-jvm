@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -19,23 +21,23 @@ public open class CSGMesh3D : CSGPrimitive3D() {
   public var mesh: Mesh?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGMESH3D_GET_MESH, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGMESH3D_SET_MESH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
     }
 
   public var material: Material?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGMESH3D_GET_MATERIAL, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Material?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGMESH3D_SET_MATERIAL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -44,4 +46,14 @@ public open class CSGMesh3D : CSGPrimitive3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGMesh3D", "set_mesh")
+
+    public val getMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGMesh3D", "get_mesh")
+
+    public val setMaterialPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGMesh3D", "set_material")
+
+    public val getMaterialPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGMesh3D", "get_material")
+  }
 }

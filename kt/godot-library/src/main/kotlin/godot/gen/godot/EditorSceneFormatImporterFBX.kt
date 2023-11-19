@@ -20,4 +20,6 @@ public open class EditorSceneFormatImporterFBX internal constructor() : EditorSc
   }
 
   public companion object
+
+  internal object MethodBindings
 }

@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -31,12 +33,12 @@ public open class CapsuleMesh : PrimitiveMesh() {
   public var radius: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULEMESH_GET_RADIUS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULEMESH_SET_RADIUS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
     }
 
   /**
@@ -45,12 +47,12 @@ public open class CapsuleMesh : PrimitiveMesh() {
   public var height: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULEMESH_GET_HEIGHT, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULEMESH_SET_HEIGHT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
     }
 
   /**
@@ -59,14 +61,12 @@ public open class CapsuleMesh : PrimitiveMesh() {
   public var radialSegments: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULEMESH_GET_RADIAL_SEGMENTS,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRadialSegmentsPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULEMESH_SET_RADIAL_SEGMENTS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRadialSegmentsPtr, NIL)
     }
 
   /**
@@ -75,12 +75,12 @@ public open class CapsuleMesh : PrimitiveMesh() {
   public var rings: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULEMESH_GET_RINGS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULEMESH_SET_RINGS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRingsPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -89,4 +89,24 @@ public open class CapsuleMesh : PrimitiveMesh() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setRadiusPtr: VoidPtr = TypeManager.getMethodBindPtr("CapsuleMesh", "set_radius")
+
+    public val getRadiusPtr: VoidPtr = TypeManager.getMethodBindPtr("CapsuleMesh", "get_radius")
+
+    public val setHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("CapsuleMesh", "set_height")
+
+    public val getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("CapsuleMesh", "get_height")
+
+    public val setRadialSegmentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CapsuleMesh", "set_radial_segments")
+
+    public val getRadialSegmentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CapsuleMesh", "get_radial_segments")
+
+    public val setRingsPtr: VoidPtr = TypeManager.getMethodBindPtr("CapsuleMesh", "set_rings")
+
+    public val getRingsPtr: VoidPtr = TypeManager.getMethodBindPtr("CapsuleMesh", "get_rings")
+  }
 }

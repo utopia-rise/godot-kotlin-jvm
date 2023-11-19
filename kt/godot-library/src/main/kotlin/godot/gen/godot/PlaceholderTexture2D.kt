@@ -9,10 +9,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -42,8 +44,7 @@ public open class PlaceholderTexture2D : Texture2D() {
     get() = super.getSize()
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLACEHOLDERTEXTURE2D_SET_SIZE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -76,4 +77,9 @@ public open class PlaceholderTexture2D : Texture2D() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PlaceholderTexture2D", "set_size")
+  }
 }

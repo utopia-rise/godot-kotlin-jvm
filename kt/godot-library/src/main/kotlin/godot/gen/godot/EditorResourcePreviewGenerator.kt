@@ -8,7 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
+import godot.core.TypeManager
 import godot.core.Vector2i
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -88,4 +90,21 @@ public open class EditorResourcePreviewGenerator internal constructor() : RefCou
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _handlesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorResourcePreviewGenerator", "_handles")
+
+    public val _generatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorResourcePreviewGenerator", "_generate")
+
+    public val _generateFromPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorResourcePreviewGenerator", "_generate_from_path")
+
+    public val _generateSmallPreviewAutomaticallyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorResourcePreviewGenerator", "_generate_small_preview_automatically")
+
+    public val _canGenerateSmallPreviewPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorResourcePreviewGenerator", "_can_generate_small_preview")
+  }
 }

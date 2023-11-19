@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.StringName
 import godot.core.Transform3D
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -25,6 +26,7 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -76,25 +78,24 @@ public object XRServer : Object() {
 
   public fun getWorldScale(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_WORLD_SCALE, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getWorldScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
   public fun setWorldScale(scale: Double): Unit {
     TransferContext.writeArguments(DOUBLE to scale)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_SET_WORLD_SCALE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setWorldScalePtr, NIL)
   }
 
   public fun getWorldOrigin(): Transform3D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_WORLD_ORIGIN,
-        TRANSFORM3D)
+    TransferContext.callMethod(rawPtr, MethodBindings.getWorldOriginPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
   public fun setWorldOrigin(worldOrigin: Transform3D): Unit {
     TransferContext.writeArguments(TRANSFORM3D to worldOrigin)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_SET_WORLD_ORIGIN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setWorldOriginPtr, NIL)
   }
 
   /**
@@ -102,8 +103,7 @@ public object XRServer : Object() {
    */
   public fun getReferenceFrame(): Transform3D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_REFERENCE_FRAME,
-        TRANSFORM3D)
+    TransferContext.callMethod(rawPtr, MethodBindings.getReferenceFramePtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
@@ -122,7 +122,7 @@ public object XRServer : Object() {
    */
   public fun centerOnHmd(rotationMode: RotationMode, keepHeight: Boolean): Unit {
     TransferContext.writeArguments(LONG to rotationMode.id, BOOL to keepHeight)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_CENTER_ON_HMD, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.centerOnHmdPtr, NIL)
   }
 
   /**
@@ -130,8 +130,7 @@ public object XRServer : Object() {
    */
   public fun getHmdTransform(): Transform3D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_HMD_TRANSFORM,
-        TRANSFORM3D)
+    TransferContext.callMethod(rawPtr, MethodBindings.getHmdTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
@@ -140,7 +139,7 @@ public object XRServer : Object() {
    */
   public fun addInterface(_interface: XRInterface): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_ADD_INTERFACE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addInterfacePtr, NIL)
   }
 
   /**
@@ -148,7 +147,7 @@ public object XRServer : Object() {
    */
   public fun getInterfaceCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_INTERFACE_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getInterfaceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -157,7 +156,7 @@ public object XRServer : Object() {
    */
   public fun removeInterface(_interface: XRInterface): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_REMOVE_INTERFACE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeInterfacePtr, NIL)
   }
 
   /**
@@ -165,7 +164,7 @@ public object XRServer : Object() {
    */
   public fun getInterface(idx: Int): XRInterface? {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_INTERFACE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getInterfacePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as XRInterface?)
   }
 
@@ -174,7 +173,7 @@ public object XRServer : Object() {
    */
   public fun getInterfaces(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_INTERFACES, ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getInterfacesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -183,7 +182,7 @@ public object XRServer : Object() {
    */
   public fun findInterface(name: String): XRInterface? {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_FIND_INTERFACE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.findInterfacePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as XRInterface?)
   }
 
@@ -192,7 +191,7 @@ public object XRServer : Object() {
    */
   public fun addTracker(tracker: XRPositionalTracker): Unit {
     TransferContext.writeArguments(OBJECT to tracker)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_ADD_TRACKER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addTrackerPtr, NIL)
   }
 
   /**
@@ -200,7 +199,7 @@ public object XRServer : Object() {
    */
   public fun removeTracker(tracker: XRPositionalTracker): Unit {
     TransferContext.writeArguments(OBJECT to tracker)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_REMOVE_TRACKER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeTrackerPtr, NIL)
   }
 
   /**
@@ -208,7 +207,7 @@ public object XRServer : Object() {
    */
   public fun getTrackers(trackerTypes: Int): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to trackerTypes.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_TRACKERS, DICTIONARY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getTrackersPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
@@ -217,20 +216,19 @@ public object XRServer : Object() {
    */
   public fun getTracker(trackerName: StringName): XRPositionalTracker? {
     TransferContext.writeArguments(STRING_NAME to trackerName)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_TRACKER, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getTrackerPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as XRPositionalTracker?)
   }
 
   public fun getPrimaryInterface(): XRInterface? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_GET_PRIMARY_INTERFACE,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getPrimaryInterfacePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as XRInterface?)
   }
 
   public fun setPrimaryInterface(_interface: XRInterface): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRSERVER_SET_PRIMARY_INTERFACE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPrimaryInterfacePtr, NIL)
   }
 
   public enum class TrackerType(
@@ -301,5 +299,58 @@ public object XRServer : Object() {
     public companion object {
       public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
+  }
+
+  internal object MethodBindings {
+    public val getWorldScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRServer", "get_world_scale")
+
+    public val setWorldScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRServer", "set_world_scale")
+
+    public val getWorldOriginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRServer", "get_world_origin")
+
+    public val setWorldOriginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRServer", "set_world_origin")
+
+    public val getReferenceFramePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRServer", "get_reference_frame")
+
+    public val centerOnHmdPtr: VoidPtr = TypeManager.getMethodBindPtr("XRServer", "center_on_hmd")
+
+    public val getHmdTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRServer", "get_hmd_transform")
+
+    public val addInterfacePtr: VoidPtr = TypeManager.getMethodBindPtr("XRServer", "add_interface")
+
+    public val getInterfaceCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRServer", "get_interface_count")
+
+    public val removeInterfacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRServer", "remove_interface")
+
+    public val getInterfacePtr: VoidPtr = TypeManager.getMethodBindPtr("XRServer", "get_interface")
+
+    public val getInterfacesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRServer", "get_interfaces")
+
+    public val findInterfacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRServer", "find_interface")
+
+    public val addTrackerPtr: VoidPtr = TypeManager.getMethodBindPtr("XRServer", "add_tracker")
+
+    public val removeTrackerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRServer", "remove_tracker")
+
+    public val getTrackersPtr: VoidPtr = TypeManager.getMethodBindPtr("XRServer", "get_trackers")
+
+    public val getTrackerPtr: VoidPtr = TypeManager.getMethodBindPtr("XRServer", "get_tracker")
+
+    public val getPrimaryInterfacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRServer", "get_primary_interface")
+
+    public val setPrimaryInterfacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRServer", "set_primary_interface")
   }
 }

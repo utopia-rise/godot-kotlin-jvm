@@ -9,12 +9,14 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt32Array
 import godot.core.Rect2
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.RECT2
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -70,7 +72,7 @@ public open class Container : Control() {
    */
   public fun queueSort(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTAINER_QUEUE_SORT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.queueSortPtr, NIL)
   }
 
   /**
@@ -78,7 +80,7 @@ public open class Container : Control() {
    */
   public fun fitChildInRect(child: Control, rect: Rect2): Unit {
     TransferContext.writeArguments(OBJECT to child, RECT2 to rect)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTAINER_FIT_CHILD_IN_RECT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.fitChildInRectPtr, NIL)
   }
 
   public companion object {
@@ -91,5 +93,18 @@ public open class Container : Control() {
      * Notification for when sorting the children, it must be obeyed immediately.
      */
     public final const val NOTIFICATION_SORT_CHILDREN: Long = 51
+  }
+
+  internal object MethodBindings {
+    public val _getAllowedSizeFlagsHorizontalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Container", "_get_allowed_size_flags_horizontal")
+
+    public val _getAllowedSizeFlagsVerticalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Container", "_get_allowed_size_flags_vertical")
+
+    public val queueSortPtr: VoidPtr = TypeManager.getMethodBindPtr("Container", "queue_sort")
+
+    public val fitChildInRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Container", "fit_child_in_rect")
   }
 }

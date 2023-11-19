@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.PackedStringArray
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -19,6 +20,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -54,7 +56,7 @@ public object OS : Object() {
    */
   public fun getConnectedMidiInputs(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CONNECTED_MIDI_INPUTS,
+    TransferContext.callMethod(rawPtr, MethodBindings.getConnectedMidiInputsPtr,
         PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
@@ -66,7 +68,7 @@ public object OS : Object() {
    */
   public fun openMidiInputs(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_OPEN_MIDI_INPUTS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.openMidiInputsPtr, NIL)
   }
 
   /**
@@ -76,7 +78,7 @@ public object OS : Object() {
    */
   public fun closeMidiInputs(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CLOSE_MIDI_INPUTS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.closeMidiInputsPtr, NIL)
   }
 
   /**
@@ -85,7 +87,7 @@ public object OS : Object() {
   @JvmOverloads
   public fun alert(text: String, title: String = "Alert!"): Unit {
     TransferContext.writeArguments(STRING to text, STRING to title)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_ALERT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.alertPtr, NIL)
   }
 
   /**
@@ -93,43 +95,39 @@ public object OS : Object() {
    */
   public fun crash(message: String): Unit {
     TransferContext.writeArguments(STRING to message)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CRASH, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.crashPtr, NIL)
   }
 
   public fun setLowProcessorUsageMode(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SET_LOW_PROCESSOR_USAGE_MODE,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLowProcessorUsageModePtr, NIL)
   }
 
   public fun isInLowProcessorUsageMode(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_IN_LOW_PROCESSOR_USAGE_MODE,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isInLowProcessorUsageModePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public fun setLowProcessorUsageModeSleepUsec(usec: Int): Unit {
     TransferContext.writeArguments(LONG to usec.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_OS_SET_LOW_PROCESSOR_USAGE_MODE_SLEEP_USEC, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLowProcessorUsageModeSleepUsecPtr, NIL)
   }
 
   public fun getLowProcessorUsageModeSleepUsec(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_OS_GET_LOW_PROCESSOR_USAGE_MODE_SLEEP_USEC, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getLowProcessorUsageModeSleepUsecPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public fun setDeltaSmoothing(deltaSmoothingEnabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to deltaSmoothingEnabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SET_DELTA_SMOOTHING, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDeltaSmoothingPtr, NIL)
   }
 
   public fun isDeltaSmoothingEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_DELTA_SMOOTHING_ENABLED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isDeltaSmoothingEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -138,7 +136,7 @@ public object OS : Object() {
    */
   public fun getProcessorCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_PROCESSOR_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getProcessorCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -149,7 +147,7 @@ public object OS : Object() {
    */
   public fun getProcessorName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_PROCESSOR_NAME, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getProcessorNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -160,8 +158,7 @@ public object OS : Object() {
    */
   public fun getSystemFonts(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_SYSTEM_FONTS,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSystemFontsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
@@ -182,7 +179,7 @@ public object OS : Object() {
     italic: Boolean = false,
   ): String {
     TransferContext.writeArguments(STRING to fontName, LONG to weight.toLong(), LONG to stretch.toLong(), BOOL to italic)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_SYSTEM_FONT_PATH, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSystemFontPathPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -208,7 +205,7 @@ public object OS : Object() {
     italic: Boolean = false,
   ): PackedStringArray {
     TransferContext.writeArguments(STRING to fontName, STRING to text, STRING to locale, STRING to script, LONG to weight.toLong(), LONG to stretch.toLong(), BOOL to italic)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_SYSTEM_FONT_PATH_FOR_TEXT,
+    TransferContext.callMethod(rawPtr, MethodBindings.getSystemFontPathForTextPtr,
         PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
@@ -220,7 +217,7 @@ public object OS : Object() {
    */
   public fun getExecutablePath(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_EXECUTABLE_PATH, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getExecutablePathPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -231,7 +228,7 @@ public object OS : Object() {
    */
   public fun readStringFromStdin(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_READ_STRING_FROM_STDIN, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.readStringFromStdinPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -307,7 +304,7 @@ public object OS : Object() {
     openConsole: Boolean = false,
   ): Int {
     TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to arguments, ARRAY to output, BOOL to readStderr, BOOL to openConsole)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_EXECUTE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.executePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -349,7 +346,7 @@ public object OS : Object() {
     openConsole: Boolean = false,
   ): Int {
     TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to arguments, BOOL to openConsole)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CREATE_PROCESS, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.createProcessPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -362,7 +359,7 @@ public object OS : Object() {
    */
   public fun createInstance(arguments: PackedStringArray): Int {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to arguments)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_CREATE_INSTANCE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.createInstancePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -375,7 +372,7 @@ public object OS : Object() {
    */
   public fun kill(pid: Int): GodotError {
     TransferContext.writeArguments(LONG to pid.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_KILL, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.killPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -396,7 +393,7 @@ public object OS : Object() {
    */
   public fun shellOpen(uri: String): GodotError {
     TransferContext.writeArguments(STRING to uri)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SHELL_OPEN, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.shellOpenPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -412,7 +409,7 @@ public object OS : Object() {
   @JvmOverloads
   public fun shellShowInFileManager(fileOrDirPath: String, openFolder: Boolean = true): GodotError {
     TransferContext.writeArguments(STRING to fileOrDirPath, BOOL to openFolder)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SHELL_SHOW_IN_FILE_MANAGER, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.shellShowInFileManagerPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -425,7 +422,7 @@ public object OS : Object() {
    */
   public fun isProcessRunning(pid: Int): Boolean {
     TransferContext.writeArguments(LONG to pid.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_PROCESS_RUNNING, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isProcessRunningPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -436,7 +433,7 @@ public object OS : Object() {
    */
   public fun getProcessId(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_PROCESS_ID, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getProcessIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -447,7 +444,7 @@ public object OS : Object() {
    */
   public fun hasEnvironment(variable: String): Boolean {
     TransferContext.writeArguments(STRING to variable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_HAS_ENVIRONMENT, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hasEnvironmentPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -458,7 +455,7 @@ public object OS : Object() {
    */
   public fun getEnvironment(variable: String): String {
     TransferContext.writeArguments(STRING to variable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_ENVIRONMENT, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -469,7 +466,7 @@ public object OS : Object() {
    */
   public fun setEnvironment(variable: String, `value`: String): Unit {
     TransferContext.writeArguments(STRING to variable, STRING to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SET_ENVIRONMENT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentPtr, NIL)
   }
 
   /**
@@ -479,7 +476,7 @@ public object OS : Object() {
    */
   public fun unsetEnvironment(variable: String): Unit {
     TransferContext.writeArguments(STRING to variable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_UNSET_ENVIRONMENT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.unsetEnvironmentPtr, NIL)
   }
 
   /**
@@ -593,7 +590,7 @@ public object OS : Object() {
    */
   public fun getName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_NAME, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -608,7 +605,7 @@ public object OS : Object() {
    */
   public fun getDistributionName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_DISTRIBUTION_NAME, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getDistributionNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -629,7 +626,7 @@ public object OS : Object() {
    */
   public fun getVersion(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_VERSION, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getVersionPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -708,8 +705,7 @@ public object OS : Object() {
    */
   public fun getCmdlineArgs(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CMDLINE_ARGS,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCmdlineArgsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
@@ -726,8 +722,7 @@ public object OS : Object() {
    */
   public fun getCmdlineUserArgs(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CMDLINE_USER_ARGS,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCmdlineUserArgsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
@@ -742,7 +737,7 @@ public object OS : Object() {
    */
   public fun getVideoAdapterDriverInfo(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_VIDEO_ADAPTER_DRIVER_INFO,
+    TransferContext.callMethod(rawPtr, MethodBindings.getVideoAdapterDriverInfoPtr,
         PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
@@ -760,7 +755,7 @@ public object OS : Object() {
   public fun setRestartOnExit(restart: Boolean, arguments: PackedStringArray = PackedStringArray()):
       Unit {
     TransferContext.writeArguments(BOOL to restart, PACKED_STRING_ARRAY to arguments)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SET_RESTART_ON_EXIT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRestartOnExitPtr, NIL)
   }
 
   /**
@@ -768,7 +763,7 @@ public object OS : Object() {
    */
   public fun isRestartOnExitSet(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_RESTART_ON_EXIT_SET, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isRestartOnExitSetPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -777,7 +772,7 @@ public object OS : Object() {
    */
   public fun getRestartOnExitArguments(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_RESTART_ON_EXIT_ARGUMENTS,
+    TransferContext.callMethod(rawPtr, MethodBindings.getRestartOnExitArgumentsPtr,
         PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
@@ -791,7 +786,7 @@ public object OS : Object() {
    */
   public fun delayUsec(usec: Int): Unit {
     TransferContext.writeArguments(LONG to usec.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_DELAY_USEC, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.delayUsecPtr, NIL)
   }
 
   /**
@@ -803,7 +798,7 @@ public object OS : Object() {
    */
   public fun delayMsec(msec: Int): Unit {
     TransferContext.writeArguments(LONG to msec.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_DELAY_MSEC, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.delayMsecPtr, NIL)
   }
 
   /**
@@ -821,7 +816,7 @@ public object OS : Object() {
    */
   public fun getLocale(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_LOCALE, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getLocalePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -832,7 +827,7 @@ public object OS : Object() {
    */
   public fun getLocaleLanguage(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_LOCALE_LANGUAGE, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getLocaleLanguagePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -843,7 +838,7 @@ public object OS : Object() {
    */
   public fun getModelName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_MODEL_NAME, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getModelNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -852,7 +847,7 @@ public object OS : Object() {
    */
   public fun isUserfsPersistent(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_USERFS_PERSISTENT, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isUserfsPersistentPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -861,7 +856,7 @@ public object OS : Object() {
    */
   public fun isStdoutVerbose(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_STDOUT_VERBOSE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isStdoutVerbosePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -874,7 +869,7 @@ public object OS : Object() {
    */
   public fun isDebugBuild(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_DEBUG_BUILD, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isDebugBuildPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -883,7 +878,7 @@ public object OS : Object() {
    */
   public fun getStaticMemoryUsage(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_STATIC_MEMORY_USAGE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getStaticMemoryUsagePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -892,8 +887,7 @@ public object OS : Object() {
    */
   public fun getStaticMemoryPeakUsage(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_STATIC_MEMORY_PEAK_USAGE,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getStaticMemoryPeakUsagePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -910,7 +904,7 @@ public object OS : Object() {
    */
   public fun getMemoryInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_MEMORY_INFO, DICTIONARY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getMemoryInfoPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
@@ -943,7 +937,7 @@ public object OS : Object() {
    */
   public fun moveToTrash(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_MOVE_TO_TRASH, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.moveToTrashPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -966,7 +960,7 @@ public object OS : Object() {
    */
   public fun getUserDataDir(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_USER_DATA_DIR, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getUserDataDirPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -980,7 +974,7 @@ public object OS : Object() {
   @JvmOverloads
   public fun getSystemDir(dir: SystemDir, sharedStorage: Boolean = true): String {
     TransferContext.writeArguments(LONG to dir.id, BOOL to sharedStorage)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_SYSTEM_DIR, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSystemDirPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -991,7 +985,7 @@ public object OS : Object() {
    */
   public fun getConfigDir(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CONFIG_DIR, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getConfigDirPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -1002,7 +996,7 @@ public object OS : Object() {
    */
   public fun getDataDir(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_DATA_DIR, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getDataDirPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -1013,7 +1007,7 @@ public object OS : Object() {
    */
   public fun getCacheDir(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_CACHE_DIR, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCacheDirPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -1026,7 +1020,7 @@ public object OS : Object() {
    */
   public fun getUniqueId(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_UNIQUE_ID, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getUniqueIdPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -1037,7 +1031,7 @@ public object OS : Object() {
    */
   public fun getKeycodeString(code: Key): String {
     TransferContext.writeArguments(LONG to code.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_KEYCODE_STRING, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getKeycodeStringPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -1046,7 +1040,7 @@ public object OS : Object() {
    */
   public fun isKeycodeUnicode(code: Long): Boolean {
     TransferContext.writeArguments(LONG to code)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_KEYCODE_UNICODE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isKeycodeUnicodePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -1055,7 +1049,7 @@ public object OS : Object() {
    */
   public fun findKeycodeFromString(string: String): Key {
     TransferContext.writeArguments(STRING to string)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_FIND_KEYCODE_FROM_STRING, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.findKeycodeFromStringPtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -1064,8 +1058,7 @@ public object OS : Object() {
    */
   public fun setUseFileAccessSaveAndSwap(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_OS_SET_USE_FILE_ACCESS_SAVE_AND_SWAP, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseFileAccessSaveAndSwapPtr, NIL)
   }
 
   /**
@@ -1073,7 +1066,7 @@ public object OS : Object() {
    */
   public fun setThreadName(name: String): GodotError {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_SET_THREAD_NAME, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.setThreadNamePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -1084,7 +1077,7 @@ public object OS : Object() {
    */
   public fun getThreadCallerId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_THREAD_CALLER_ID, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getThreadCallerIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -1095,7 +1088,7 @@ public object OS : Object() {
    */
   public fun getMainThreadId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_MAIN_THREAD_ID, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getMainThreadIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -1108,7 +1101,7 @@ public object OS : Object() {
    */
   public fun hasFeature(tagName: String): Boolean {
     TransferContext.writeArguments(STRING to tagName)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_HAS_FEATURE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hasFeaturePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -1117,7 +1110,7 @@ public object OS : Object() {
    */
   public fun requestPermission(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_REQUEST_PERMISSION, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.requestPermissionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -1128,7 +1121,7 @@ public object OS : Object() {
    */
   public fun requestPermissions(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_REQUEST_PERMISSIONS, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.requestPermissionsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -1139,8 +1132,7 @@ public object OS : Object() {
    */
   public fun getGrantedPermissions(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_GRANTED_PERMISSIONS,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getGrantedPermissionsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
@@ -1212,5 +1204,178 @@ public object OS : Object() {
     public companion object {
       public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
+  }
+
+  internal object MethodBindings {
+    public val getConnectedMidiInputsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_connected_midi_inputs")
+
+    public val openMidiInputsPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "open_midi_inputs")
+
+    public val closeMidiInputsPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "close_midi_inputs")
+
+    public val alertPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "alert")
+
+    public val crashPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "crash")
+
+    public val setLowProcessorUsageModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "set_low_processor_usage_mode")
+
+    public val isInLowProcessorUsageModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "is_in_low_processor_usage_mode")
+
+    public val setLowProcessorUsageModeSleepUsecPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "set_low_processor_usage_mode_sleep_usec")
+
+    public val getLowProcessorUsageModeSleepUsecPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_low_processor_usage_mode_sleep_usec")
+
+    public val setDeltaSmoothingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "set_delta_smoothing")
+
+    public val isDeltaSmoothingEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "is_delta_smoothing_enabled")
+
+    public val getProcessorCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_processor_count")
+
+    public val getProcessorNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_processor_name")
+
+    public val getSystemFontsPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_system_fonts")
+
+    public val getSystemFontPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_system_font_path")
+
+    public val getSystemFontPathForTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_system_font_path_for_text")
+
+    public val getExecutablePathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_executable_path")
+
+    public val readStringFromStdinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "read_string_from_stdin")
+
+    public val executePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "execute")
+
+    public val createProcessPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "create_process")
+
+    public val createInstancePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "create_instance")
+
+    public val killPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "kill")
+
+    public val shellOpenPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "shell_open")
+
+    public val shellShowInFileManagerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "shell_show_in_file_manager")
+
+    public val isProcessRunningPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "is_process_running")
+
+    public val getProcessIdPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_process_id")
+
+    public val hasEnvironmentPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "has_environment")
+
+    public val getEnvironmentPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_environment")
+
+    public val setEnvironmentPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "set_environment")
+
+    public val unsetEnvironmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "unset_environment")
+
+    public val getNamePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_name")
+
+    public val getDistributionNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_distribution_name")
+
+    public val getVersionPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_version")
+
+    public val getCmdlineArgsPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_cmdline_args")
+
+    public val getCmdlineUserArgsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_cmdline_user_args")
+
+    public val getVideoAdapterDriverInfoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_video_adapter_driver_info")
+
+    public val setRestartOnExitPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "set_restart_on_exit")
+
+    public val isRestartOnExitSetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "is_restart_on_exit_set")
+
+    public val getRestartOnExitArgumentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_restart_on_exit_arguments")
+
+    public val delayUsecPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "delay_usec")
+
+    public val delayMsecPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "delay_msec")
+
+    public val getLocalePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_locale")
+
+    public val getLocaleLanguagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_locale_language")
+
+    public val getModelNamePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_model_name")
+
+    public val isUserfsPersistentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "is_userfs_persistent")
+
+    public val isStdoutVerbosePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "is_stdout_verbose")
+
+    public val isDebugBuildPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "is_debug_build")
+
+    public val getStaticMemoryUsagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_static_memory_usage")
+
+    public val getStaticMemoryPeakUsagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_static_memory_peak_usage")
+
+    public val getMemoryInfoPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_memory_info")
+
+    public val moveToTrashPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "move_to_trash")
+
+    public val getUserDataDirPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_user_data_dir")
+
+    public val getSystemDirPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_system_dir")
+
+    public val getConfigDirPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_config_dir")
+
+    public val getDataDirPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_data_dir")
+
+    public val getCacheDirPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_cache_dir")
+
+    public val getUniqueIdPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_unique_id")
+
+    public val getKeycodeStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_keycode_string")
+
+    public val isKeycodeUnicodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "is_keycode_unicode")
+
+    public val findKeycodeFromStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "find_keycode_from_string")
+
+    public val setUseFileAccessSaveAndSwapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "set_use_file_access_save_and_swap")
+
+    public val setThreadNamePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "set_thread_name")
+
+    public val getThreadCallerIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_thread_caller_id")
+
+    public val getMainThreadIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_main_thread_id")
+
+    public val hasFeaturePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "has_feature")
+
+    public val requestPermissionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "request_permission")
+
+    public val requestPermissionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "request_permissions")
+
+    public val getGrantedPermissionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_granted_permissions")
   }
 }

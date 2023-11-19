@@ -8,10 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -33,14 +35,12 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   public var animation: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEANIMATION_GET_ANIMATION, STRING_NAME)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPtr, STRING_NAME)
       return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEANIMATION_SET_ANIMATION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAnimationPtr, NIL)
     }
 
   /**
@@ -49,14 +49,12 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   public var playMode: PlayMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEANIMATION_GET_PLAY_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPlayModePtr, LONG)
       return AnimationNodeAnimation.PlayMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEANIMATION_SET_PLAY_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPlayModePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -88,4 +86,18 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setAnimationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_animation")
+
+    public val getAnimationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_animation")
+
+    public val setPlayModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_play_mode")
+
+    public val getPlayModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_play_mode")
+  }
 }

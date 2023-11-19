@@ -8,9 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
+import godot.core.TypeManager
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType._RID
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -30,7 +32,7 @@ public open class SkinReference internal constructor() : RefCounted() {
    */
   public fun getSkeleton(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKINREFERENCE_GET_SKELETON, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -39,9 +41,16 @@ public open class SkinReference internal constructor() : RefCounted() {
    */
   public fun getSkin(): Skin? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKINREFERENCE_GET_SKIN, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSkinPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Skin?)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getSkeletonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkinReference", "get_skeleton")
+
+    public val getSkinPtr: VoidPtr = TypeManager.getMethodBindPtr("SkinReference", "get_skin")
+  }
 }

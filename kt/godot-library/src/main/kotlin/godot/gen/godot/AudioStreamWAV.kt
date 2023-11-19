@@ -9,12 +9,14 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedByteArray
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -38,13 +40,12 @@ public open class AudioStreamWAV : AudioStream() {
   public var `data`: PackedByteArray
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMWAV_GET_DATA,
-          PACKED_BYTE_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDataPtr, PACKED_BYTE_ARRAY)
       return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_BYTE_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMWAV_SET_DATA, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDataPtr, NIL)
     }
 
   /**
@@ -53,12 +54,12 @@ public open class AudioStreamWAV : AudioStream() {
   public var format: Format
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMWAV_GET_FORMAT, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
       return AudioStreamWAV.Format.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMWAV_SET_FORMAT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
     }
 
   /**
@@ -67,13 +68,12 @@ public open class AudioStreamWAV : AudioStream() {
   public var loopMode: LoopMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMWAV_GET_LOOP_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLoopModePtr, LONG)
       return AudioStreamWAV.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMWAV_SET_LOOP_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLoopModePtr, NIL)
     }
 
   /**
@@ -82,14 +82,12 @@ public open class AudioStreamWAV : AudioStream() {
   public var loopBegin: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMWAV_GET_LOOP_BEGIN,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLoopBeginPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMWAV_SET_LOOP_BEGIN,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLoopBeginPtr, NIL)
     }
 
   /**
@@ -98,12 +96,12 @@ public open class AudioStreamWAV : AudioStream() {
   public var loopEnd: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMWAV_GET_LOOP_END, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLoopEndPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMWAV_SET_LOOP_END, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLoopEndPtr, NIL)
     }
 
   /**
@@ -116,12 +114,12 @@ public open class AudioStreamWAV : AudioStream() {
   public var mixRate: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMWAV_GET_MIX_RATE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMixRatePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMWAV_SET_MIX_RATE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMixRatePtr, NIL)
     }
 
   /**
@@ -130,12 +128,12 @@ public open class AudioStreamWAV : AudioStream() {
   public var stereo: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMWAV_IS_STEREO, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isStereoPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMWAV_SET_STEREO, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setStereoPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -150,7 +148,7 @@ public open class AudioStreamWAV : AudioStream() {
    */
   public fun saveToWav(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMWAV_SAVE_TO_WAV, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.saveToWavPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -213,4 +211,44 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setDataPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamWAV", "set_data")
+
+    public val getDataPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamWAV", "get_data")
+
+    public val setFormatPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamWAV", "set_format")
+
+    public val getFormatPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamWAV", "get_format")
+
+    public val setLoopModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "set_loop_mode")
+
+    public val getLoopModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "get_loop_mode")
+
+    public val setLoopBeginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "set_loop_begin")
+
+    public val getLoopBeginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "get_loop_begin")
+
+    public val setLoopEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "set_loop_end")
+
+    public val getLoopEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "get_loop_end")
+
+    public val setMixRatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "set_mix_rate")
+
+    public val getMixRatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "get_mix_rate")
+
+    public val setStereoPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamWAV", "set_stereo")
+
+    public val isStereoPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamWAV", "is_stereo")
+
+    public val saveToWavPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamWAV", "save_to_wav")
+  }
 }

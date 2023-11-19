@@ -11,6 +11,7 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -25,6 +26,7 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.Signal4
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -143,12 +145,12 @@ public open class Area2D : CollisionObject2D() {
   public var monitoring: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_IS_MONITORING, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isMonitoringPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_MONITORING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMonitoringPtr, NIL)
     }
 
   /**
@@ -157,12 +159,12 @@ public open class Area2D : CollisionObject2D() {
   public var monitorable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_IS_MONITORABLE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isMonitorablePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_MONITORABLE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMonitorablePtr, NIL)
     }
 
   /**
@@ -171,12 +173,12 @@ public open class Area2D : CollisionObject2D() {
   public var priority: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_PRIORITY, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPriorityPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_PRIORITY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPriorityPtr, NIL)
     }
 
   /**
@@ -185,14 +187,12 @@ public open class Area2D : CollisionObject2D() {
   public var gravitySpaceOverride: SpaceOverride
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA2D_GET_GRAVITY_SPACE_OVERRIDE_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGravitySpaceOverrideModePtr, LONG)
       return Area2D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA2D_SET_GRAVITY_SPACE_OVERRIDE_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGravitySpaceOverrideModePtr, NIL)
     }
 
   /**
@@ -201,12 +201,12 @@ public open class Area2D : CollisionObject2D() {
   public var gravityPoint: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_IS_GRAVITY_A_POINT, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isGravityAPointPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_GRAVITY_IS_POINT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGravityIsPointPtr, NIL)
     }
 
   /**
@@ -217,14 +217,12 @@ public open class Area2D : CollisionObject2D() {
   public var gravityPointUnitDistance: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA2D_GET_GRAVITY_POINT_UNIT_DISTANCE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGravityPointUnitDistancePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA2D_SET_GRAVITY_POINT_UNIT_DISTANCE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGravityPointUnitDistancePtr, NIL)
     }
 
   /**
@@ -234,14 +232,12 @@ public open class Area2D : CollisionObject2D() {
   public var gravityPointCenter: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_GRAVITY_POINT_CENTER,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGravityPointCenterPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_GRAVITY_POINT_CENTER,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGravityPointCenterPtr, NIL)
     }
 
   /**
@@ -251,13 +247,12 @@ public open class Area2D : CollisionObject2D() {
   public var gravityDirection: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_GRAVITY_DIRECTION,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGravityDirectionPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_GRAVITY_DIRECTION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGravityDirectionPtr, NIL)
     }
 
   /**
@@ -266,12 +261,12 @@ public open class Area2D : CollisionObject2D() {
   public var gravity: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_GRAVITY, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_GRAVITY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGravityPtr, NIL)
     }
 
   /**
@@ -280,14 +275,12 @@ public open class Area2D : CollisionObject2D() {
   public var linearDampSpaceOverride: SpaceOverride
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA2D_GET_LINEAR_DAMP_SPACE_OVERRIDE_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampSpaceOverrideModePtr, LONG)
       return Area2D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA2D_SET_LINEAR_DAMP_SPACE_OVERRIDE_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampSpaceOverrideModePtr, NIL)
     }
 
   /**
@@ -298,12 +291,12 @@ public open class Area2D : CollisionObject2D() {
   public var linearDamp: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_LINEAR_DAMP, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_LINEAR_DAMP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampPtr, NIL)
     }
 
   /**
@@ -312,14 +305,12 @@ public open class Area2D : CollisionObject2D() {
   public var angularDampSpaceOverride: SpaceOverride
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA2D_GET_ANGULAR_DAMP_SPACE_OVERRIDE_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampSpaceOverrideModePtr, LONG)
       return Area2D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA2D_SET_ANGULAR_DAMP_SPACE_OVERRIDE_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampSpaceOverrideModePtr, NIL)
     }
 
   /**
@@ -330,12 +321,12 @@ public open class Area2D : CollisionObject2D() {
   public var angularDamp: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_ANGULAR_DAMP, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_ANGULAR_DAMP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampPtr, NIL)
     }
 
   /**
@@ -344,14 +335,12 @@ public open class Area2D : CollisionObject2D() {
   public var audioBusOverride: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_IS_OVERRIDING_AUDIO_BUS,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isOverridingAudioBusPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_AUDIO_BUS_OVERRIDE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAudioBusOverridePtr, NIL)
     }
 
   /**
@@ -360,13 +349,12 @@ public open class Area2D : CollisionObject2D() {
   public var audioBusName: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_AUDIO_BUS_NAME,
-          STRING_NAME)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAudioBusNamePtr, STRING_NAME)
       return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_AUDIO_BUS_NAME, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAudioBusNamePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -431,8 +419,7 @@ public open class Area2D : CollisionObject2D() {
    */
   public fun getOverlappingBodies(): VariantArray<Node2D> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_OVERLAPPING_BODIES,
-        ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getOverlappingBodiesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node2D>)
   }
 
@@ -443,7 +430,7 @@ public open class Area2D : CollisionObject2D() {
    */
   public fun getOverlappingAreas(): VariantArray<Area2D> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_OVERLAPPING_AREAS, ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getOverlappingAreasPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Area2D>)
   }
 
@@ -454,7 +441,7 @@ public open class Area2D : CollisionObject2D() {
    */
   public fun hasOverlappingBodies(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_HAS_OVERLAPPING_BODIES, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hasOverlappingBodiesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -465,7 +452,7 @@ public open class Area2D : CollisionObject2D() {
    */
   public fun hasOverlappingAreas(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_HAS_OVERLAPPING_AREAS, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hasOverlappingAreasPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -478,7 +465,7 @@ public open class Area2D : CollisionObject2D() {
    */
   public fun overlapsBody(body: Node): Boolean {
     TransferContext.writeArguments(OBJECT to body)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_OVERLAPS_BODY, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.overlapsBodyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -489,7 +476,7 @@ public open class Area2D : CollisionObject2D() {
    */
   public fun overlapsArea(area: Node): Boolean {
     TransferContext.writeArguments(OBJECT to area)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_OVERLAPS_AREA, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.overlapsAreaPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -529,4 +516,103 @@ public open class Area2D : CollisionObject2D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setGravitySpaceOverrideModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "set_gravity_space_override_mode")
+
+    public val getGravitySpaceOverrideModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "get_gravity_space_override_mode")
+
+    public val setGravityIsPointPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "set_gravity_is_point")
+
+    public val isGravityAPointPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "is_gravity_a_point")
+
+    public val setGravityPointUnitDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "set_gravity_point_unit_distance")
+
+    public val getGravityPointUnitDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "get_gravity_point_unit_distance")
+
+    public val setGravityPointCenterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "set_gravity_point_center")
+
+    public val getGravityPointCenterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "get_gravity_point_center")
+
+    public val setGravityDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "set_gravity_direction")
+
+    public val getGravityDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "get_gravity_direction")
+
+    public val setGravityPtr: VoidPtr = TypeManager.getMethodBindPtr("Area2D", "set_gravity")
+
+    public val getGravityPtr: VoidPtr = TypeManager.getMethodBindPtr("Area2D", "get_gravity")
+
+    public val setLinearDampSpaceOverrideModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "set_linear_damp_space_override_mode")
+
+    public val getLinearDampSpaceOverrideModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "get_linear_damp_space_override_mode")
+
+    public val setAngularDampSpaceOverrideModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "set_angular_damp_space_override_mode")
+
+    public val getAngularDampSpaceOverrideModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "get_angular_damp_space_override_mode")
+
+    public val setLinearDampPtr: VoidPtr = TypeManager.getMethodBindPtr("Area2D", "set_linear_damp")
+
+    public val getLinearDampPtr: VoidPtr = TypeManager.getMethodBindPtr("Area2D", "get_linear_damp")
+
+    public val setAngularDampPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "set_angular_damp")
+
+    public val getAngularDampPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "get_angular_damp")
+
+    public val setPriorityPtr: VoidPtr = TypeManager.getMethodBindPtr("Area2D", "set_priority")
+
+    public val getPriorityPtr: VoidPtr = TypeManager.getMethodBindPtr("Area2D", "get_priority")
+
+    public val setMonitoringPtr: VoidPtr = TypeManager.getMethodBindPtr("Area2D", "set_monitoring")
+
+    public val isMonitoringPtr: VoidPtr = TypeManager.getMethodBindPtr("Area2D", "is_monitoring")
+
+    public val setMonitorablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "set_monitorable")
+
+    public val isMonitorablePtr: VoidPtr = TypeManager.getMethodBindPtr("Area2D", "is_monitorable")
+
+    public val getOverlappingBodiesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "get_overlapping_bodies")
+
+    public val getOverlappingAreasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "get_overlapping_areas")
+
+    public val hasOverlappingBodiesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "has_overlapping_bodies")
+
+    public val hasOverlappingAreasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "has_overlapping_areas")
+
+    public val overlapsBodyPtr: VoidPtr = TypeManager.getMethodBindPtr("Area2D", "overlaps_body")
+
+    public val overlapsAreaPtr: VoidPtr = TypeManager.getMethodBindPtr("Area2D", "overlaps_area")
+
+    public val setAudioBusNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "set_audio_bus_name")
+
+    public val getAudioBusNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "get_audio_bus_name")
+
+    public val setAudioBusOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "set_audio_bus_override")
+
+    public val isOverridingAudioBusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area2D", "is_overriding_audio_bus")
+  }
 }

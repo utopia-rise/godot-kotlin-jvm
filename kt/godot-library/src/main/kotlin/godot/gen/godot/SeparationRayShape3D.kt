@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -30,14 +32,12 @@ public open class SeparationRayShape3D : Shape3D() {
   public var length: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEPARATIONRAYSHAPE3D_GET_LENGTH,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEPARATIONRAYSHAPE3D_SET_LENGTH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
     }
 
   /**
@@ -48,14 +48,12 @@ public open class SeparationRayShape3D : Shape3D() {
   public var slideOnSlope: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SEPARATIONRAYSHAPE3D_GET_SLIDE_ON_SLOPE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSlideOnSlopePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SEPARATIONRAYSHAPE3D_SET_SLIDE_ON_SLOPE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSlideOnSlopePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -64,4 +62,18 @@ public open class SeparationRayShape3D : Shape3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SeparationRayShape3D", "set_length")
+
+    public val getLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SeparationRayShape3D", "get_length")
+
+    public val setSlideOnSlopePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SeparationRayShape3D", "set_slide_on_slope")
+
+    public val getSlideOnSlopePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SeparationRayShape3D", "get_slide_on_slope")
+  }
 }

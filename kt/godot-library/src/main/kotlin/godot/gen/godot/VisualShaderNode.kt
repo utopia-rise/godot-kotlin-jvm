@@ -7,12 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -37,27 +39,23 @@ public open class VisualShaderNode internal constructor() : Resource() {
   public var outputPortForPreview: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_GET_OUTPUT_PORT_FOR_PREVIEW, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getOutputPortForPreviewPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_SET_OUTPUT_PORT_FOR_PREVIEW, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOutputPortForPreviewPtr, NIL)
     }
 
   public var defaultInputValues: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_GET_DEFAULT_INPUT_VALUES, ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDefaultInputValuesPtr, ARRAY)
       return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_SET_DEFAULT_INPUT_VALUES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultInputValuesPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -75,8 +73,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
     prevValue: Any? = null,
   ): Unit {
     TransferContext.writeArguments(LONG to port.toLong(), ANY to value, ANY to prevValue)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_SET_INPUT_PORT_DEFAULT_VALUE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInputPortDefaultValuePtr, NIL)
   }
 
   /**
@@ -84,8 +81,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
    */
   public fun getInputPortDefaultValue(port: Int): Any? {
     TransferContext.writeArguments(LONG to port.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_GET_INPUT_PORT_DEFAULT_VALUE, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getInputPortDefaultValuePtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -94,8 +90,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
    */
   public fun removeInputPortDefaultValue(port: Int): Unit {
     TransferContext.writeArguments(LONG to port.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_REMOVE_INPUT_PORT_DEFAULT_VALUE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeInputPortDefaultValuePtr, NIL)
   }
 
   /**
@@ -103,8 +98,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
    */
   public fun clearDefaultInputValues(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_CLEAR_DEFAULT_INPUT_VALUES, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearDefaultInputValuesPtr, NIL)
   }
 
   public enum class PortType(
@@ -163,4 +157,30 @@ public open class VisualShaderNode internal constructor() : Resource() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setOutputPortForPreviewPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNode", "set_output_port_for_preview")
+
+    public val getOutputPortForPreviewPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNode", "get_output_port_for_preview")
+
+    public val setInputPortDefaultValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNode", "set_input_port_default_value")
+
+    public val getInputPortDefaultValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNode", "get_input_port_default_value")
+
+    public val removeInputPortDefaultValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNode", "remove_input_port_default_value")
+
+    public val clearDefaultInputValuesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNode", "clear_default_input_values")
+
+    public val setDefaultInputValuesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNode", "set_default_input_values")
+
+    public val getDefaultInputValuesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNode", "get_default_input_values")
+  }
 }

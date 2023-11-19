@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -20,23 +22,23 @@ public open class GLTFTexture : Resource() {
   public var srcImage: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFTEXTURE_GET_SRC_IMAGE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSrcImagePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFTEXTURE_SET_SRC_IMAGE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSrcImagePtr, NIL)
     }
 
   public var sampler: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFTEXTURE_GET_SAMPLER, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSamplerPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFTEXTURE_SET_SAMPLER, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSamplerPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -45,4 +47,16 @@ public open class GLTFTexture : Resource() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getSrcImagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFTexture", "get_src_image")
+
+    public val setSrcImagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFTexture", "set_src_image")
+
+    public val getSamplerPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFTexture", "get_sampler")
+
+    public val setSamplerPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFTexture", "set_sampler")
+  }
 }

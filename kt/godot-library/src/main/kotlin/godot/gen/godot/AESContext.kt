@@ -9,10 +9,12 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedByteArray
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -182,7 +184,7 @@ public open class AESContext : RefCounted() {
     iv: PackedByteArray = PackedByteArray(),
   ): GodotError {
     TransferContext.writeArguments(LONG to mode.id, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to iv)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_START, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.startPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -193,8 +195,7 @@ public open class AESContext : RefCounted() {
    */
   public fun update(src: PackedByteArray): PackedByteArray {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to src)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_UPDATE,
-        PACKED_BYTE_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.updatePtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
@@ -205,8 +206,7 @@ public open class AESContext : RefCounted() {
    */
   public fun getIvState(): PackedByteArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_GET_IV_STATE,
-        PACKED_BYTE_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getIvStatePtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
@@ -215,7 +215,7 @@ public open class AESContext : RefCounted() {
    */
   public fun finish(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AESCONTEXT_FINISH, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.finishPtr, NIL)
   }
 
   public enum class Mode(
@@ -254,4 +254,14 @@ public open class AESContext : RefCounted() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val startPtr: VoidPtr = TypeManager.getMethodBindPtr("AESContext", "start")
+
+    public val updatePtr: VoidPtr = TypeManager.getMethodBindPtr("AESContext", "update")
+
+    public val getIvStatePtr: VoidPtr = TypeManager.getMethodBindPtr("AESContext", "get_iv_state")
+
+    public val finishPtr: VoidPtr = TypeManager.getMethodBindPtr("AESContext", "finish")
+  }
 }

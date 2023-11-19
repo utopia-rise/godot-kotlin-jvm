@@ -15,7 +15,7 @@ class EnrichedMethod(val internal: Method, engineClassIndexName: String) : Calla
     override val arguments = internal.arguments?.toEnriched() ?: listOf()
     override val isVararg = internal.isVararg
     val name: String
-    override val engineIndexName = "ENGINEMETHOD_${engineClassIndexName}_${internal.name.uppercase(Locale.US)}"
+    override val voidPtrVariableName: String
 
     init {
         var kotlinName = internal.name.convertToCamelCase()
@@ -24,6 +24,7 @@ class EnrichedMethod(val internal: Method, engineClassIndexName: String) : Calla
         }
 
         name = kotlinName
+        voidPtrVariableName = "${name}Ptr"
         if (arguments.size > Constraints.MAX_FUNCTION_ARG_COUNT) {
             throw TooManyMethodArgument(this)
         }

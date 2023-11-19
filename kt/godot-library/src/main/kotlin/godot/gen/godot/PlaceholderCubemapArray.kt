@@ -30,4 +30,6 @@ public open class PlaceholderCubemapArray : PlaceholderTextureLayered() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

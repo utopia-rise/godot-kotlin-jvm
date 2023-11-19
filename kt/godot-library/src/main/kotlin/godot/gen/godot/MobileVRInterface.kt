@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -20,86 +22,78 @@ public open class MobileVRInterface : XRInterface() {
   public var eyeHeight: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_GET_EYE_HEIGHT,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEyeHeightPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_SET_EYE_HEIGHT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEyeHeightPtr, NIL)
     }
 
   public var iod: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_GET_IOD, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getIodPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_SET_IOD, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setIodPtr, NIL)
     }
 
   public var displayWidth: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_GET_DISPLAY_WIDTH, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDisplayWidthPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_SET_DISPLAY_WIDTH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDisplayWidthPtr, NIL)
     }
 
   public var displayToLens: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_GET_DISPLAY_TO_LENS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDisplayToLensPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_SET_DISPLAY_TO_LENS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDisplayToLensPtr, NIL)
     }
 
   public var oversample: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_GET_OVERSAMPLE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getOversamplePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_SET_OVERSAMPLE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOversamplePtr, NIL)
     }
 
   public var k1: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_GET_K1, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getK1Ptr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_SET_K1, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setK1Ptr, NIL)
     }
 
   public var k2: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_GET_K2, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getK2Ptr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MOBILEVRINTERFACE_SET_K2, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setK2Ptr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -108,4 +102,42 @@ public open class MobileVRInterface : XRInterface() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setEyeHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_eye_height")
+
+    public val getEyeHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_eye_height")
+
+    public val setIodPtr: VoidPtr = TypeManager.getMethodBindPtr("MobileVRInterface", "set_iod")
+
+    public val getIodPtr: VoidPtr = TypeManager.getMethodBindPtr("MobileVRInterface", "get_iod")
+
+    public val setDisplayWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_display_width")
+
+    public val getDisplayWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_display_width")
+
+    public val setDisplayToLensPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_display_to_lens")
+
+    public val getDisplayToLensPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_display_to_lens")
+
+    public val setOversamplePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_oversample")
+
+    public val getOversamplePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_oversample")
+
+    public val setK1Ptr: VoidPtr = TypeManager.getMethodBindPtr("MobileVRInterface", "set_k1")
+
+    public val getK1Ptr: VoidPtr = TypeManager.getMethodBindPtr("MobileVRInterface", "get_k1")
+
+    public val setK2Ptr: VoidPtr = TypeManager.getMethodBindPtr("MobileVRInterface", "set_k2")
+
+    public val getK2Ptr: VoidPtr = TypeManager.getMethodBindPtr("MobileVRInterface", "get_k2")
+  }
 }

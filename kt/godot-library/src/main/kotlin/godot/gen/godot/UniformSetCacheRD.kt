@@ -19,4 +19,6 @@ public open class UniformSetCacheRD internal constructor() : Object() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

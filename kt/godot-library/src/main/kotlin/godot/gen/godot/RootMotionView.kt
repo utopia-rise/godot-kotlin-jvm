@@ -11,12 +11,14 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.NodePath
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -42,14 +44,12 @@ public open class RootMotionView : VisualInstance3D() {
   public var animationPath: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ROOTMOTIONVIEW_GET_ANIMATION_PATH,
-          NODE_PATH)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPathPtr, NODE_PATH)
       return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ROOTMOTIONVIEW_SET_ANIMATION_PATH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAnimationPathPtr, NIL)
     }
 
   /**
@@ -59,12 +59,12 @@ public open class RootMotionView : VisualInstance3D() {
   public var color: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ROOTMOTIONVIEW_GET_COLOR, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ROOTMOTIONVIEW_SET_COLOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
     }
 
   /**
@@ -73,13 +73,12 @@ public open class RootMotionView : VisualInstance3D() {
   public var cellSize: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ROOTMOTIONVIEW_GET_CELL_SIZE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ROOTMOTIONVIEW_SET_CELL_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
     }
 
   /**
@@ -88,12 +87,12 @@ public open class RootMotionView : VisualInstance3D() {
   public var radius: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ROOTMOTIONVIEW_GET_RADIUS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ROOTMOTIONVIEW_SET_RADIUS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
     }
 
   /**
@@ -102,12 +101,12 @@ public open class RootMotionView : VisualInstance3D() {
   public var zeroY: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ROOTMOTIONVIEW_GET_ZERO_Y, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getZeroYPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ROOTMOTIONVIEW_SET_ZERO_Y, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setZeroYPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -140,4 +139,30 @@ public open class RootMotionView : VisualInstance3D() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setAnimationPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RootMotionView", "set_animation_path")
+
+    public val getAnimationPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RootMotionView", "get_animation_path")
+
+    public val setColorPtr: VoidPtr = TypeManager.getMethodBindPtr("RootMotionView", "set_color")
+
+    public val getColorPtr: VoidPtr = TypeManager.getMethodBindPtr("RootMotionView", "get_color")
+
+    public val setCellSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RootMotionView", "set_cell_size")
+
+    public val getCellSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RootMotionView", "get_cell_size")
+
+    public val setRadiusPtr: VoidPtr = TypeManager.getMethodBindPtr("RootMotionView", "set_radius")
+
+    public val getRadiusPtr: VoidPtr = TypeManager.getMethodBindPtr("RootMotionView", "get_radius")
+
+    public val setZeroYPtr: VoidPtr = TypeManager.getMethodBindPtr("RootMotionView", "set_zero_y")
+
+    public val getZeroYPtr: VoidPtr = TypeManager.getMethodBindPtr("RootMotionView", "get_zero_y")
+  }
 }

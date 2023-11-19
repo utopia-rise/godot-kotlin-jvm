@@ -7,11 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -42,7 +44,7 @@ public open class InputEventKey : InputEventWithModifiers() {
     get() = super.isPressed()
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_PRESSED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
     }
 
   /**
@@ -60,12 +62,12 @@ public open class InputEventKey : InputEventWithModifiers() {
   public var keycode: Key
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_KEYCODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getKeycodePtr, LONG)
       return Key.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_KEYCODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setKeycodePtr, NIL)
     }
 
   /**
@@ -76,14 +78,12 @@ public open class InputEventKey : InputEventWithModifiers() {
   public var physicalKeycode: Key
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_PHYSICAL_KEYCODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPhysicalKeycodePtr, LONG)
       return Key.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_PHYSICAL_KEYCODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPhysicalKeycodePtr, NIL)
     }
 
   /**
@@ -103,12 +103,12 @@ public open class InputEventKey : InputEventWithModifiers() {
   public var keyLabel: Key
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_KEY_LABEL, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getKeyLabelPtr, LONG)
       return Key.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_KEY_LABEL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setKeyLabelPtr, NIL)
     }
 
   /**
@@ -117,12 +117,12 @@ public open class InputEventKey : InputEventWithModifiers() {
   public var unicode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_UNICODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getUnicodePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_UNICODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUnicodePtr, NIL)
     }
 
   /**
@@ -134,7 +134,7 @@ public open class InputEventKey : InputEventWithModifiers() {
     get() = super.isEcho()
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_ECHO, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEchoPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -149,8 +149,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    */
   public fun getKeycodeWithModifiers(): Key {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_KEYCODE_WITH_MODIFIERS, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getKeycodeWithModifiersPtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -161,8 +160,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    */
   public fun getPhysicalKeycodeWithModifiers(): Key {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_PHYSICAL_KEYCODE_WITH_MODIFIERS, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicalKeycodeWithModifiersPtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -173,8 +171,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    */
   public fun getKeyLabelWithModifiers(): Key {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_KEY_LABEL_WITH_MODIFIERS, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getKeyLabelWithModifiersPtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -183,8 +180,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    */
   public fun asTextKeycode(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_AS_TEXT_KEYCODE,
-        STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.asTextKeycodePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -193,8 +189,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    */
   public fun asTextPhysicalKeycode(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_AS_TEXT_PHYSICAL_KEYCODE, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.asTextPhysicalKeycodePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -203,10 +198,53 @@ public open class InputEventKey : InputEventWithModifiers() {
    */
   public fun asTextKeyLabel(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_AS_TEXT_KEY_LABEL,
-        STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.asTextKeyLabelPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setPressedPtr: VoidPtr = TypeManager.getMethodBindPtr("InputEventKey", "set_pressed")
+
+    public val setKeycodePtr: VoidPtr = TypeManager.getMethodBindPtr("InputEventKey", "set_keycode")
+
+    public val getKeycodePtr: VoidPtr = TypeManager.getMethodBindPtr("InputEventKey", "get_keycode")
+
+    public val setPhysicalKeycodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventKey", "set_physical_keycode")
+
+    public val getPhysicalKeycodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventKey", "get_physical_keycode")
+
+    public val setKeyLabelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventKey", "set_key_label")
+
+    public val getKeyLabelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventKey", "get_key_label")
+
+    public val setUnicodePtr: VoidPtr = TypeManager.getMethodBindPtr("InputEventKey", "set_unicode")
+
+    public val getUnicodePtr: VoidPtr = TypeManager.getMethodBindPtr("InputEventKey", "get_unicode")
+
+    public val setEchoPtr: VoidPtr = TypeManager.getMethodBindPtr("InputEventKey", "set_echo")
+
+    public val getKeycodeWithModifiersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventKey", "get_keycode_with_modifiers")
+
+    public val getPhysicalKeycodeWithModifiersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventKey", "get_physical_keycode_with_modifiers")
+
+    public val getKeyLabelWithModifiersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventKey", "get_key_label_with_modifiers")
+
+    public val asTextKeycodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventKey", "as_text_keycode")
+
+    public val asTextPhysicalKeycodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventKey", "as_text_physical_keycode")
+
+    public val asTextKeyLabelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventKey", "as_text_key_label")
+  }
 }

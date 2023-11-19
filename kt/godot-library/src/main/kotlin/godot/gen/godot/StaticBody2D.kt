@@ -9,12 +9,14 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -41,14 +43,12 @@ public open class StaticBody2D : PhysicsBody2D() {
   public var physicsMaterialOverride: PhysicsMaterial?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STATICBODY2D_GET_PHYSICS_MATERIAL_OVERRIDE, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsMaterialOverridePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STATICBODY2D_SET_PHYSICS_MATERIAL_OVERRIDE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsMaterialOverridePtr, NIL)
     }
 
   /**
@@ -58,14 +58,12 @@ public open class StaticBody2D : PhysicsBody2D() {
   public var constantLinearVelocity: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STATICBODY2D_GET_CONSTANT_LINEAR_VELOCITY, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getConstantLinearVelocityPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STATICBODY2D_SET_CONSTANT_LINEAR_VELOCITY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setConstantLinearVelocityPtr, NIL)
     }
 
   /**
@@ -74,14 +72,12 @@ public open class StaticBody2D : PhysicsBody2D() {
   public var constantAngularVelocity: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STATICBODY2D_GET_CONSTANT_ANGULAR_VELOCITY, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getConstantAngularVelocityPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STATICBODY2D_SET_CONSTANT_ANGULAR_VELOCITY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setConstantAngularVelocityPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -115,4 +111,24 @@ public open class StaticBody2D : PhysicsBody2D() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setConstantLinearVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StaticBody2D", "set_constant_linear_velocity")
+
+    public val setConstantAngularVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StaticBody2D", "set_constant_angular_velocity")
+
+    public val getConstantLinearVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StaticBody2D", "get_constant_linear_velocity")
+
+    public val getConstantAngularVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StaticBody2D", "get_constant_angular_velocity")
+
+    public val setPhysicsMaterialOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StaticBody2D", "set_physics_material_override")
+
+    public val getPhysicsMaterialOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StaticBody2D", "get_physics_material_override")
+  }
 }

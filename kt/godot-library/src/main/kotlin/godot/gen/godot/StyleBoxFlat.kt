@@ -10,6 +10,7 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
@@ -18,6 +19,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -57,12 +59,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var bgColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BG_COLOR, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBgColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BG_COLOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBgColorPtr, NIL)
     }
 
   /**
@@ -71,13 +73,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var drawCenter: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_IS_DRAW_CENTER_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isDrawCenterEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_DRAW_CENTER, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDrawCenterPtr, NIL)
     }
 
   /**
@@ -89,12 +90,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var skew: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_SKEW, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSkewPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_SKEW, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSkewPtr, NIL)
     }
 
   /**
@@ -103,14 +104,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var borderWidthLeft: Int
     get() {
       TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBorderWidthPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 0L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBorderWidthPtr, NIL)
     }
 
   /**
@@ -119,14 +118,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var borderWidthTop: Int
     get() {
       TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBorderWidthPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 1L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBorderWidthPtr, NIL)
     }
 
   /**
@@ -135,14 +132,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var borderWidthRight: Int
     get() {
       TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBorderWidthPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 2L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBorderWidthPtr, NIL)
     }
 
   /**
@@ -151,14 +146,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var borderWidthBottom: Int
     get() {
       TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBorderWidthPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 3L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBorderWidthPtr, NIL)
     }
 
   /**
@@ -168,14 +161,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var borderColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_COLOR,
-          COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBorderColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_COLOR,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBorderColorPtr, NIL)
     }
 
   /**
@@ -184,14 +175,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var borderBlend: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_BLEND,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBorderBlendPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_BLEND,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBorderBlendPtr, NIL)
     }
 
   /**
@@ -200,14 +189,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var cornerRadiusTopLeft: Int
     get() {
       TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_RADIUS,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCornerRadiusPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 0L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCornerRadiusPtr, NIL)
     }
 
   /**
@@ -216,14 +203,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var cornerRadiusTopRight: Int
     get() {
       TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_RADIUS,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCornerRadiusPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 1L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCornerRadiusPtr, NIL)
     }
 
   /**
@@ -232,14 +217,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var cornerRadiusBottomRight: Int
     get() {
       TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_RADIUS,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCornerRadiusPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 2L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCornerRadiusPtr, NIL)
     }
 
   /**
@@ -248,14 +231,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var cornerRadiusBottomLeft: Int
     get() {
       TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_RADIUS,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCornerRadiusPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 3L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCornerRadiusPtr, NIL)
     }
 
   /**
@@ -268,14 +249,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var cornerDetail: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_DETAIL,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCornerDetailPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_DETAIL,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCornerDetailPtr, NIL)
     }
 
   /**
@@ -286,14 +265,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var expandMarginLeft: Float
     get() {
       TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_EXPAND_MARGIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getExpandMarginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 0L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setExpandMarginPtr, NIL)
     }
 
   /**
@@ -304,14 +281,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var expandMarginTop: Float
     get() {
       TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_EXPAND_MARGIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getExpandMarginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 1L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setExpandMarginPtr, NIL)
     }
 
   /**
@@ -322,14 +297,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var expandMarginRight: Float
     get() {
       TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_EXPAND_MARGIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getExpandMarginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 2L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setExpandMarginPtr, NIL)
     }
 
   /**
@@ -340,14 +313,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var expandMarginBottom: Float
     get() {
       TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_EXPAND_MARGIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getExpandMarginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 3L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setExpandMarginPtr, NIL)
     }
 
   /**
@@ -357,14 +328,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var shadowColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_SHADOW_COLOR,
-          COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getShadowColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_SHADOW_COLOR,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShadowColorPtr, NIL)
     }
 
   /**
@@ -373,13 +342,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var shadowSize: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_SHADOW_SIZE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getShadowSizePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_SHADOW_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShadowSizePtr, NIL)
     }
 
   /**
@@ -389,14 +357,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var shadowOffset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_SHADOW_OFFSET,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getShadowOffsetPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_SHADOW_OFFSET,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShadowOffsetPtr, NIL)
     }
 
   /**
@@ -407,14 +373,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var antiAliasing: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_IS_ANTI_ALIASED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isAntiAliasedPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_ANTI_ALIASED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAntiAliasedPtr, NIL)
     }
 
   /**
@@ -425,12 +389,12 @@ public open class StyleBoxFlat : StyleBox() {
   public var antiAliasingSize: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_AA_SIZE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAaSizePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_AA_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAaSizePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -565,8 +529,7 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public fun setBorderWidthAll(width: Int): Unit {
     TransferContext.writeArguments(LONG to width.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH_ALL,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBorderWidthAllPtr, NIL)
   }
 
   /**
@@ -574,8 +537,7 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public fun getBorderWidthMin(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH_MIN,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBorderWidthMinPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -584,8 +546,7 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public fun setCornerRadiusAll(radius: Int): Unit {
     TransferContext.writeArguments(LONG to radius.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS_ALL,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCornerRadiusAllPtr, NIL)
   }
 
   /**
@@ -593,9 +554,100 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public fun setExpandMarginAll(size: Float): Unit {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN_ALL,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setExpandMarginAllPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setBgColorPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBoxFlat", "set_bg_color")
+
+    public val getBgColorPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBoxFlat", "get_bg_color")
+
+    public val setBorderColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_border_color")
+
+    public val getBorderColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_border_color")
+
+    public val setBorderWidthAllPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_border_width_all")
+
+    public val getBorderWidthMinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_border_width_min")
+
+    public val setBorderWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_border_width")
+
+    public val getBorderWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_border_width")
+
+    public val setBorderBlendPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_border_blend")
+
+    public val getBorderBlendPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_border_blend")
+
+    public val setCornerRadiusAllPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_corner_radius_all")
+
+    public val setCornerRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_corner_radius")
+
+    public val getCornerRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_corner_radius")
+
+    public val setExpandMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_expand_margin")
+
+    public val setExpandMarginAllPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_expand_margin_all")
+
+    public val getExpandMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_expand_margin")
+
+    public val setDrawCenterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_draw_center")
+
+    public val isDrawCenterEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "is_draw_center_enabled")
+
+    public val setSkewPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBoxFlat", "set_skew")
+
+    public val getSkewPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBoxFlat", "get_skew")
+
+    public val setShadowColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_shadow_color")
+
+    public val getShadowColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_shadow_color")
+
+    public val setShadowSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_shadow_size")
+
+    public val getShadowSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_shadow_size")
+
+    public val setShadowOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_shadow_offset")
+
+    public val getShadowOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_shadow_offset")
+
+    public val setAntiAliasedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_anti_aliased")
+
+    public val isAntiAliasedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "is_anti_aliased")
+
+    public val setAaSizePtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBoxFlat", "set_aa_size")
+
+    public val getAaSizePtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBoxFlat", "get_aa_size")
+
+    public val setCornerDetailPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_corner_detail")
+
+    public val getCornerDetailPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_corner_detail")
+  }
 }

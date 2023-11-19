@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -32,14 +34,12 @@ public open class AudioEffectReverb : AudioEffect() {
   public var predelayMsec: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_PREDELAY_MSEC, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPredelayMsecPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_PREDELAY_MSEC, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPredelayMsecPtr, NIL)
     }
 
   /**
@@ -48,14 +48,12 @@ public open class AudioEffectReverb : AudioEffect() {
   public var predelayFeedback: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_PREDELAY_FEEDBACK, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPredelayFeedbackPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_PREDELAY_FEEDBACK, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPredelayFeedbackPtr, NIL)
     }
 
   /**
@@ -64,14 +62,12 @@ public open class AudioEffectReverb : AudioEffect() {
   public var roomSize: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_ROOM_SIZE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRoomSizePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_ROOM_SIZE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRoomSizePtr, NIL)
     }
 
   /**
@@ -80,14 +76,12 @@ public open class AudioEffectReverb : AudioEffect() {
   public var damping: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_DAMPING,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDampingPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_DAMPING,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDampingPtr, NIL)
     }
 
   /**
@@ -96,13 +90,12 @@ public open class AudioEffectReverb : AudioEffect() {
   public var spread: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_SPREAD,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSpreadPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_SPREAD, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSpreadPtr, NIL)
     }
 
   /**
@@ -111,12 +104,12 @@ public open class AudioEffectReverb : AudioEffect() {
   public var hipass: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_HPF, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHpfPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_HPF, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHpfPtr, NIL)
     }
 
   /**
@@ -125,12 +118,12 @@ public open class AudioEffectReverb : AudioEffect() {
   public var dry: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_DRY, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDryPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_DRY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDryPtr, NIL)
     }
 
   /**
@@ -139,12 +132,12 @@ public open class AudioEffectReverb : AudioEffect() {
   public var wet: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_WET, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getWetPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_WET, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setWetPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -153,4 +146,48 @@ public open class AudioEffectReverb : AudioEffect() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setPredelayMsecPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_predelay_msec")
+
+    public val getPredelayMsecPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_predelay_msec")
+
+    public val setPredelayFeedbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_predelay_feedback")
+
+    public val getPredelayFeedbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_predelay_feedback")
+
+    public val setRoomSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_room_size")
+
+    public val getRoomSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_room_size")
+
+    public val setDampingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_damping")
+
+    public val getDampingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_damping")
+
+    public val setSpreadPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_spread")
+
+    public val getSpreadPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_spread")
+
+    public val setDryPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioEffectReverb", "set_dry")
+
+    public val getDryPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioEffectReverb", "get_dry")
+
+    public val setWetPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioEffectReverb", "set_wet")
+
+    public val getWetPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioEffectReverb", "get_wet")
+
+    public val setHpfPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioEffectReverb", "set_hpf")
+
+    public val getHpfPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioEffectReverb", "get_hpf")
+  }
 }

@@ -7,12 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -36,14 +38,12 @@ public open class SkeletonModification2D : Resource() {
   public var enabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_GET_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_SET_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
     }
 
   /**
@@ -52,14 +52,12 @@ public open class SkeletonModification2D : Resource() {
   public var executionMode: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_GET_EXECUTION_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getExecutionModePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_SET_EXECUTION_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setExecutionModePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -92,8 +90,7 @@ public open class SkeletonModification2D : Resource() {
    */
   public fun getModificationStack(): SkeletonModificationStack2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_GET_MODIFICATION_STACK, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getModificationStackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as SkeletonModificationStack2D?)
   }
 
@@ -102,8 +99,7 @@ public open class SkeletonModification2D : Resource() {
    */
   public fun setIsSetup(isSetup: Boolean): Unit {
     TransferContext.writeArguments(BOOL to isSetup)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_SET_IS_SETUP,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setIsSetupPtr, NIL)
   }
 
   /**
@@ -111,8 +107,7 @@ public open class SkeletonModification2D : Resource() {
    */
   public fun getIsSetup(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_GET_IS_SETUP,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.getIsSetupPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -126,8 +121,7 @@ public open class SkeletonModification2D : Resource() {
     invert: Boolean,
   ): Float {
     TransferContext.writeArguments(DOUBLE to angle.toDouble(), DOUBLE to min.toDouble(), DOUBLE to max.toDouble(), BOOL to invert)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_CLAMP_ANGLE,
-        DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.clampAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -136,8 +130,7 @@ public open class SkeletonModification2D : Resource() {
    */
   public fun setEditorDrawGizmo(drawGizmo: Boolean): Unit {
     TransferContext.writeArguments(BOOL to drawGizmo)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_SET_EDITOR_DRAW_GIZMO, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEditorDrawGizmoPtr, NIL)
   }
 
   /**
@@ -145,10 +138,50 @@ public open class SkeletonModification2D : Resource() {
    */
   public fun getEditorDrawGizmo(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2D_GET_EDITOR_DRAW_GIZMO, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.getEditorDrawGizmoPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _executePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "_execute")
+
+    public val _setupModificationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "_setup_modification")
+
+    public val _drawEditorGizmoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "_draw_editor_gizmo")
+
+    public val setEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_enabled")
+
+    public val getEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_enabled")
+
+    public val getModificationStackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_modification_stack")
+
+    public val setIsSetupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_is_setup")
+
+    public val getIsSetupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_is_setup")
+
+    public val setExecutionModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_execution_mode")
+
+    public val getExecutionModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_execution_mode")
+
+    public val clampAnglePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "clamp_angle")
+
+    public val setEditorDrawGizmoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_editor_draw_gizmo")
+
+    public val getEditorDrawGizmoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_editor_draw_gizmo")
+  }
 }

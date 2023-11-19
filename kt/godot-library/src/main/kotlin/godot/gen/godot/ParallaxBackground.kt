@@ -9,11 +9,13 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -35,14 +37,12 @@ public open class ParallaxBackground : CanvasLayer() {
   public var scrollOffset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_SCROLL_OFFSET, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getScrollOffsetPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_SCROLL_OFFSET, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setScrollOffsetPtr, NIL)
     }
 
   /**
@@ -52,14 +52,12 @@ public open class ParallaxBackground : CanvasLayer() {
   public var scrollBaseOffset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_SCROLL_BASE_OFFSET, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getScrollBaseOffsetPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_SCROLL_BASE_OFFSET, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setScrollBaseOffsetPtr, NIL)
     }
 
   /**
@@ -69,14 +67,12 @@ public open class ParallaxBackground : CanvasLayer() {
   public var scrollBaseScale: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_SCROLL_BASE_SCALE, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getScrollBaseScalePtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_SCROLL_BASE_SCALE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setScrollBaseScalePtr, NIL)
     }
 
   /**
@@ -86,14 +82,12 @@ public open class ParallaxBackground : CanvasLayer() {
   public var scrollLimitBegin: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_LIMIT_BEGIN, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLimitBeginPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_LIMIT_BEGIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLimitBeginPtr, NIL)
     }
 
   /**
@@ -103,14 +97,12 @@ public open class ParallaxBackground : CanvasLayer() {
   public var scrollLimitEnd: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_LIMIT_END,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLimitEndPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_LIMIT_END,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLimitEndPtr, NIL)
     }
 
   /**
@@ -119,14 +111,12 @@ public open class ParallaxBackground : CanvasLayer() {
   public var scrollIgnoreCameraZoom: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_IS_IGNORE_CAMERA_ZOOM, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isIgnoreCameraZoomPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_IGNORE_CAMERA_ZOOM, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreCameraZoomPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -257,4 +247,42 @@ public open class ParallaxBackground : CanvasLayer() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setScrollOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParallaxBackground", "set_scroll_offset")
+
+    public val getScrollOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParallaxBackground", "get_scroll_offset")
+
+    public val setScrollBaseOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParallaxBackground", "set_scroll_base_offset")
+
+    public val getScrollBaseOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParallaxBackground", "get_scroll_base_offset")
+
+    public val setScrollBaseScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParallaxBackground", "set_scroll_base_scale")
+
+    public val getScrollBaseScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParallaxBackground", "get_scroll_base_scale")
+
+    public val setLimitBeginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParallaxBackground", "set_limit_begin")
+
+    public val getLimitBeginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParallaxBackground", "get_limit_begin")
+
+    public val setLimitEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParallaxBackground", "set_limit_end")
+
+    public val getLimitEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParallaxBackground", "get_limit_end")
+
+    public val setIgnoreCameraZoomPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParallaxBackground", "set_ignore_camera_zoom")
+
+    public val isIgnoreCameraZoomPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParallaxBackground", "is_ignore_camera_zoom")
+  }
 }

@@ -7,12 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -96,14 +98,12 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   public var xfadeTime: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_XFADE_TIME, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getXfadeTimePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_SET_XFADE_TIME, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setXfadeTimePtr, NIL)
     }
 
   /**
@@ -112,14 +112,12 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   public var xfadeCurve: Curve?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_XFADE_CURVE, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getXfadeCurvePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_SET_XFADE_CURVE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setXfadeCurvePtr, NIL)
     }
 
   /**
@@ -128,14 +126,12 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   public var allowTransitionToSelf: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_ALLOW_TRANSITION_TO_SELF, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isAllowTransitionToSelfPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_SET_ALLOW_TRANSITION_TO_SELF, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAllowTransitionToSelfPtr, NIL)
     }
 
   /**
@@ -147,8 +143,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
     get() = super.getInputCount()
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_SET_INPUT_COUNT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setInputCountPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -161,8 +156,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
    */
   public fun setInputAsAutoAdvance(input: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to input.toLong(), BOOL to enable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_SET_INPUT_AS_AUTO_ADVANCE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInputAsAutoAdvancePtr, NIL)
   }
 
   /**
@@ -170,8 +164,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
    */
   public fun isInputSetAsAutoAdvance(input: Int): Boolean {
     TransferContext.writeArguments(LONG to input.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isInputSetAsAutoAdvancePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -180,8 +173,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
    */
   public fun setInputReset(input: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to input.toLong(), BOOL to enable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_SET_INPUT_RESET, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInputResetPtr, NIL)
   }
 
   /**
@@ -189,10 +181,44 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
    */
   public fun isInputReset(input: Int): Boolean {
     TransferContext.writeArguments(LONG to input.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_RESET, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isInputResetPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setInputCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_input_count")
+
+    public val setInputAsAutoAdvancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_input_as_auto_advance")
+
+    public val isInputSetAsAutoAdvancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "is_input_set_as_auto_advance")
+
+    public val setInputResetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_input_reset")
+
+    public val isInputResetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "is_input_reset")
+
+    public val setXfadeTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_xfade_time")
+
+    public val getXfadeTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "get_xfade_time")
+
+    public val setXfadeCurvePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_xfade_curve")
+
+    public val getXfadeCurvePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "get_xfade_curve")
+
+    public val setAllowTransitionToSelfPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_allow_transition_to_self")
+
+    public val isAllowTransitionToSelfPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "is_allow_transition_to_self")
+  }
 }

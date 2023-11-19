@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -28,14 +30,12 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
   public var function: Function
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATFUNC_GET_FUNCTION, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFunctionPtr, LONG)
       return VisualShaderNodeFloatFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEFLOATFUNC_SET_FUNCTION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFunctionPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -191,4 +191,12 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setFunctionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatFunc", "set_function")
+
+    public val getFunctionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatFunc", "get_function")
+  }
 }

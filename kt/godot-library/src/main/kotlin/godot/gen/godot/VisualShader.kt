@@ -13,6 +13,7 @@ import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.PackedInt32Array
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -25,6 +26,7 @@ import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -49,14 +51,12 @@ public open class VisualShader : Shader() {
   public var graphOffset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_GRAPH_OFFSET,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGraphOffsetPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_SET_GRAPH_OFFSET,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGraphOffsetPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -93,7 +93,7 @@ public open class VisualShader : Shader() {
    */
   public fun setMode(mode: Shader.Mode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_SET_MODE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
   }
 
   /**
@@ -106,7 +106,7 @@ public open class VisualShader : Shader() {
     id: Int,
   ): Unit {
     TransferContext.writeArguments(LONG to type.id, OBJECT to node, VECTOR2 to position, LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_ADD_NODE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addNodePtr, NIL)
   }
 
   /**
@@ -114,7 +114,7 @@ public open class VisualShader : Shader() {
    */
   public fun getNode(type: Type, id: Int): VisualShaderNode? {
     TransferContext.writeArguments(LONG to type.id, LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as VisualShaderNode?)
   }
 
@@ -127,7 +127,7 @@ public open class VisualShader : Shader() {
     position: Vector2,
   ): Unit {
     TransferContext.writeArguments(LONG to type.id, LONG to id.toLong(), VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_SET_NODE_POSITION, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNodePositionPtr, NIL)
   }
 
   /**
@@ -135,8 +135,7 @@ public open class VisualShader : Shader() {
    */
   public fun getNodePosition(type: Type, id: Int): Vector2 {
     TransferContext.writeArguments(LONG to type.id, LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_POSITION,
-        VECTOR2)
+    TransferContext.callMethod(rawPtr, MethodBindings.getNodePositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
@@ -145,8 +144,7 @@ public open class VisualShader : Shader() {
    */
   public fun getNodeList(type: Type): PackedInt32Array {
     TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_LIST,
-        PACKED_INT_32_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getNodeListPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
@@ -155,8 +153,7 @@ public open class VisualShader : Shader() {
    */
   public fun getValidNodeId(type: Type): Int {
     TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_VALID_NODE_ID,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getValidNodeIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -165,7 +162,7 @@ public open class VisualShader : Shader() {
    */
   public fun removeNode(type: Type, id: Int): Unit {
     TransferContext.writeArguments(LONG to type.id, LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_REMOVE_NODE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeNodePtr, NIL)
   }
 
   /**
@@ -177,7 +174,7 @@ public open class VisualShader : Shader() {
     newClass: StringName,
   ): Unit {
     TransferContext.writeArguments(LONG to type.id, LONG to id.toLong(), STRING_NAME to newClass)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_REPLACE_NODE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.replaceNodePtr, NIL)
   }
 
   /**
@@ -191,8 +188,7 @@ public open class VisualShader : Shader() {
     toPort: Int,
   ): Boolean {
     TransferContext.writeArguments(LONG to type.id, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_IS_NODE_CONNECTION,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isNodeConnectionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -207,8 +203,7 @@ public open class VisualShader : Shader() {
     toPort: Int,
   ): Boolean {
     TransferContext.writeArguments(LONG to type.id, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_CAN_CONNECT_NODES,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.canConnectNodesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -223,7 +218,7 @@ public open class VisualShader : Shader() {
     toPort: Int,
   ): GodotError {
     TransferContext.writeArguments(LONG to type.id, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_CONNECT_NODES, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.connectNodesPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -238,7 +233,7 @@ public open class VisualShader : Shader() {
     toPort: Int,
   ): Unit {
     TransferContext.writeArguments(LONG to type.id, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_DISCONNECT_NODES, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.disconnectNodesPtr, NIL)
   }
 
   /**
@@ -252,8 +247,7 @@ public open class VisualShader : Shader() {
     toPort: Int,
   ): Unit {
     TransferContext.writeArguments(LONG to type.id, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_CONNECT_NODES_FORCED,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.connectNodesForcedPtr, NIL)
   }
 
   /**
@@ -261,8 +255,7 @@ public open class VisualShader : Shader() {
    */
   public fun getNodeConnections(type: Type): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_CONNECTIONS,
-        ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getNodeConnectionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -275,7 +268,7 @@ public open class VisualShader : Shader() {
     type: VaryingType,
   ): Unit {
     TransferContext.writeArguments(STRING to name, LONG to mode.id, LONG to type.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_ADD_VARYING, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addVaryingPtr, NIL)
   }
 
   /**
@@ -283,7 +276,7 @@ public open class VisualShader : Shader() {
    */
   public fun removeVarying(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_REMOVE_VARYING, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeVaryingPtr, NIL)
   }
 
   /**
@@ -291,7 +284,7 @@ public open class VisualShader : Shader() {
    */
   public fun hasVarying(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_HAS_VARYING, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hasVaryingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -442,5 +435,61 @@ public open class VisualShader : Shader() {
      * Denotes output node of [godot.VisualShader].
      */
     public final const val NODE_ID_OUTPUT: Long = 0
+  }
+
+  internal object MethodBindings {
+    public val setModePtr: VoidPtr = TypeManager.getMethodBindPtr("VisualShader", "set_mode")
+
+    public val addNodePtr: VoidPtr = TypeManager.getMethodBindPtr("VisualShader", "add_node")
+
+    public val getNodePtr: VoidPtr = TypeManager.getMethodBindPtr("VisualShader", "get_node")
+
+    public val setNodePositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "set_node_position")
+
+    public val getNodePositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "get_node_position")
+
+    public val getNodeListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "get_node_list")
+
+    public val getValidNodeIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "get_valid_node_id")
+
+    public val removeNodePtr: VoidPtr = TypeManager.getMethodBindPtr("VisualShader", "remove_node")
+
+    public val replaceNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "replace_node")
+
+    public val isNodeConnectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "is_node_connection")
+
+    public val canConnectNodesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "can_connect_nodes")
+
+    public val connectNodesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "connect_nodes")
+
+    public val disconnectNodesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "disconnect_nodes")
+
+    public val connectNodesForcedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "connect_nodes_forced")
+
+    public val getNodeConnectionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "get_node_connections")
+
+    public val setGraphOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "set_graph_offset")
+
+    public val getGraphOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "get_graph_offset")
+
+    public val addVaryingPtr: VoidPtr = TypeManager.getMethodBindPtr("VisualShader", "add_varying")
+
+    public val removeVaryingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "remove_varying")
+
+    public val hasVaryingPtr: VoidPtr = TypeManager.getMethodBindPtr("VisualShader", "has_varying")
   }
 }
