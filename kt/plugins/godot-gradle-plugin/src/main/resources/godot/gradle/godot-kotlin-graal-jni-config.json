@@ -672,10 +672,7 @@
     "methods" : [
       { "name" : "<init>", "parameterTypes" : [] },
       { "name" : "loadClasses", "parameterTypes" : ["godot.core.KtClass[]"] },
-      { "name" : "unloadClasses", "parameterTypes" : ["godot.core.KtClass[]"] },
       { "name" : "registerManagedEngineTypes", "parameterTypes" : ["java.lang.String[]", "java.lang.String[]"] },
-      { "name" : "registerUserTypesNames", "parameterTypes" : ["java.lang.String[]"] },
-      { "name" : "registerUserTypesMembers", "parameterTypes" : [] },
       { "name" : "init", "parameterTypes": ["boolean", "java.lang.String", "java.lang.String", "java.lang.String", "java.lang.ClassLoader"]},
       { "name" : "finish", "parameterTypes" : [] }
     ]
@@ -683,7 +680,8 @@
   {
     "name":"godot.core.KtClass",
     "methods":[
-      {"name":"getResourcePath","parameterTypes":[] },
+      {"name":"getRelativeSourcePath","parameterTypes":[] },
+      {"name":"getCompilationTimeRelativeRegistrationFilePath","parameterTypes":[] },
       {"name":"getBaseGodotClass","parameterTypes":[] },
       {"name":"getConstructors","parameterTypes":[] },
       {"name":"getFunctions","parameterTypes":[] },
