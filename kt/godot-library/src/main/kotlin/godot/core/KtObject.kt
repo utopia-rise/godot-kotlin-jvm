@@ -92,6 +92,8 @@ abstract class KtObject {
         TransferContext.initializeKtObject(this)
     }
 
+    open fun _notification(notification: Int) = Unit
+
     open fun _onDestroy() = Unit
 
     fun free() {
