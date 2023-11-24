@@ -11,12 +11,14 @@ import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Float
@@ -416,10 +418,49 @@ public open class EditorImportPlugin internal constructor() : ResourceImporter()
     generatorParameters: Any? = null,
   ): GodotError {
     TransferContext.writeArguments(STRING to path, DICTIONARY to customOptions, STRING to customImporter, ANY to generatorParameters)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORIMPORTPLUGIN_APPEND_IMPORT_EXTERNAL_RESOURCE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.appendImportExternalResourcePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _getImporterNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorImportPlugin", "_get_importer_name")
+
+    public val _getVisibleNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorImportPlugin", "_get_visible_name")
+
+    public val _getPresetCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorImportPlugin", "_get_preset_count")
+
+    public val _getPresetNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorImportPlugin", "_get_preset_name")
+
+    public val _getRecognizedExtensionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorImportPlugin", "_get_recognized_extensions")
+
+    public val _getImportOptionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorImportPlugin", "_get_import_options")
+
+    public val _getSaveExtensionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorImportPlugin", "_get_save_extension")
+
+    public val _getResourceTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorImportPlugin", "_get_resource_type")
+
+    public val _getPriorityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorImportPlugin", "_get_priority")
+
+    public val _getImportOrderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorImportPlugin", "_get_import_order")
+
+    public val _getOptionVisibilityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorImportPlugin", "_get_option_visibility")
+
+    public val _importPtr: VoidPtr = TypeManager.getMethodBindPtr("EditorImportPlugin", "_import")
+
+    public val appendImportExternalResourcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorImportPlugin", "append_import_external_resource")
+  }
 }

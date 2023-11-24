@@ -8,11 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedByteArray
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -34,14 +36,12 @@ public open class StreamPeerBuffer : StreamPeer() {
   public var dataArray: PackedByteArray
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_GET_DATA_ARRAY,
-          PACKED_BYTE_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDataArrayPtr, PACKED_BYTE_ARRAY)
       return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_BYTE_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_SET_DATA_ARRAY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDataArrayPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -54,7 +54,7 @@ public open class StreamPeerBuffer : StreamPeer() {
    */
   public fun seek(position: Int): Unit {
     TransferContext.writeArguments(LONG to position.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_SEEK, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.seekPtr, NIL)
   }
 
   /**
@@ -62,7 +62,7 @@ public open class StreamPeerBuffer : StreamPeer() {
    */
   public fun getSize(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_GET_SIZE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -71,7 +71,7 @@ public open class StreamPeerBuffer : StreamPeer() {
    */
   public fun getPosition(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_GET_POSITION, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -80,7 +80,7 @@ public open class StreamPeerBuffer : StreamPeer() {
    */
   public fun resize(size: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_RESIZE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.resizePtr, NIL)
   }
 
   /**
@@ -88,7 +88,7 @@ public open class StreamPeerBuffer : StreamPeer() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_CLEAR, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   /**
@@ -96,9 +96,30 @@ public open class StreamPeerBuffer : StreamPeer() {
    */
   public fun duplicate(): StreamPeerBuffer? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_DUPLICATE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.duplicatePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as StreamPeerBuffer?)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val seekPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerBuffer", "seek")
+
+    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerBuffer", "get_size")
+
+    public val getPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeerBuffer", "get_position")
+
+    public val resizePtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerBuffer", "resize")
+
+    public val setDataArrayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeerBuffer", "set_data_array")
+
+    public val getDataArrayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeerBuffer", "get_data_array")
+
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerBuffer", "clear")
+
+    public val duplicatePtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerBuffer", "duplicate")
+  }
 }

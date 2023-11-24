@@ -26,4 +26,6 @@ public open class CheckButton : Button() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

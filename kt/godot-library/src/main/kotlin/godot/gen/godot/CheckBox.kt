@@ -28,4 +28,6 @@ public open class CheckBox : Button() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

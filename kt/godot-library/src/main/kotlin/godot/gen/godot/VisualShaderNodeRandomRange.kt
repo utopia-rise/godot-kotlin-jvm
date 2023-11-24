@@ -24,4 +24,6 @@ public open class VisualShaderNodeRandomRange : VisualShaderNode() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -28,14 +30,12 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   public var type: ComparisonType
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_GET_COMPARISON_TYPE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getComparisonTypePtr, LONG)
       return VisualShaderNodeCompare.ComparisonType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_SET_COMPARISON_TYPE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setComparisonTypePtr, NIL)
     }
 
   /**
@@ -44,14 +44,12 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   public var function: Function
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_GET_FUNCTION, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFunctionPtr, LONG)
       return VisualShaderNodeCompare.Function.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_SET_FUNCTION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFunctionPtr, NIL)
     }
 
   /**
@@ -60,14 +58,12 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   public var condition: Condition
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_GET_CONDITION, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getConditionPtr, LONG)
       return VisualShaderNodeCompare.Condition.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMPARE_SET_CONDITION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setConditionPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -197,4 +193,24 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setComparisonTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "set_comparison_type")
+
+    public val getComparisonTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "get_comparison_type")
+
+    public val setFunctionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "set_function")
+
+    public val getFunctionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "get_function")
+
+    public val setConditionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "set_condition")
+
+    public val getConditionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "get_condition")
+  }
 }

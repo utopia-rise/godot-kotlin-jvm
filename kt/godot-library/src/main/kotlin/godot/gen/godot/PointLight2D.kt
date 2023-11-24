@@ -9,12 +9,14 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -39,12 +41,12 @@ public open class PointLight2D : Light2D() {
   public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POINTLIGHT2D_GET_TEXTURE, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POINTLIGHT2D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -54,14 +56,12 @@ public open class PointLight2D : Light2D() {
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POINTLIGHT2D_GET_TEXTURE_OFFSET,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureOffsetPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POINTLIGHT2D_SET_TEXTURE_OFFSET,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureOffsetPtr, NIL)
     }
 
   /**
@@ -70,14 +70,12 @@ public open class PointLight2D : Light2D() {
   public var textureScale: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POINTLIGHT2D_GET_TEXTURE_SCALE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureScalePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POINTLIGHT2D_SET_TEXTURE_SCALE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureScalePtr, NIL)
     }
 
   /**
@@ -123,4 +121,22 @@ public open class PointLight2D : Light2D() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("PointLight2D", "set_texture")
+
+    public val getTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("PointLight2D", "get_texture")
+
+    public val setTextureOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PointLight2D", "set_texture_offset")
+
+    public val getTextureOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PointLight2D", "get_texture_offset")
+
+    public val setTextureScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PointLight2D", "set_texture_scale")
+
+    public val getTextureScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PointLight2D", "get_texture_scale")
+  }
 }

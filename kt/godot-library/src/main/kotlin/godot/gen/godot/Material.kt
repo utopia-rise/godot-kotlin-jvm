@@ -8,10 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -39,13 +41,12 @@ public open class Material : Resource() {
   public var renderPriority: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MATERIAL_GET_RENDER_PRIORITY,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRenderPriorityPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MATERIAL_SET_RENDER_PRIORITY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRenderPriorityPtr, NIL)
     }
 
   /**
@@ -56,12 +57,12 @@ public open class Material : Resource() {
   public var nextPass: Material?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MATERIAL_GET_NEXT_PASS, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getNextPassPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Material?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MATERIAL_SET_NEXT_PASS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setNextPassPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -102,8 +103,7 @@ public open class Material : Resource() {
    */
   public fun inspectNativeShaderCode(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MATERIAL_INSPECT_NATIVE_SHADER_CODE,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.inspectNativeShaderCodePtr, NIL)
   }
 
   /**
@@ -111,7 +111,7 @@ public open class Material : Resource() {
    */
   public fun createPlaceholder(): Resource? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MATERIAL_CREATE_PLACEHOLDER, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.createPlaceholderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
   }
 
@@ -125,5 +125,35 @@ public open class Material : Resource() {
      * Minimum value for the [renderPriority] parameter.
      */
     public final const val RENDER_PRIORITY_MIN: Long = -128
+  }
+
+  internal object MethodBindings {
+    public val _getShaderRidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Material", "_get_shader_rid")
+
+    public val _getShaderModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Material", "_get_shader_mode")
+
+    public val _canDoNextPassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Material", "_can_do_next_pass")
+
+    public val _canUseRenderPriorityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Material", "_can_use_render_priority")
+
+    public val setNextPassPtr: VoidPtr = TypeManager.getMethodBindPtr("Material", "set_next_pass")
+
+    public val getNextPassPtr: VoidPtr = TypeManager.getMethodBindPtr("Material", "get_next_pass")
+
+    public val setRenderPriorityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Material", "set_render_priority")
+
+    public val getRenderPriorityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Material", "get_render_priority")
+
+    public val inspectNativeShaderCodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Material", "inspect_native_shader_code")
+
+    public val createPlaceholderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Material", "create_placeholder")
   }
 }

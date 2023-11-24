@@ -8,9 +8,11 @@ package godot
 
 import godot.RenderingDevice.TextureUsageBitsValue
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -30,12 +32,12 @@ public open class RDTextureFormat : RefCounted() {
   public var format: RenderingDevice.DataFormat
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_FORMAT, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
       return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_SET_FORMAT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
     }
 
   /**
@@ -44,12 +46,12 @@ public open class RDTextureFormat : RefCounted() {
   public var width: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_WIDTH, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_SET_WIDTH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
     }
 
   /**
@@ -58,12 +60,12 @@ public open class RDTextureFormat : RefCounted() {
   public var height: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_HEIGHT, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_SET_HEIGHT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
     }
 
   /**
@@ -72,12 +74,12 @@ public open class RDTextureFormat : RefCounted() {
   public var depth: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_DEPTH, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDepthPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_SET_DEPTH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
     }
 
   /**
@@ -86,14 +88,12 @@ public open class RDTextureFormat : RefCounted() {
   public var arrayLayers: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_ARRAY_LAYERS,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getArrayLayersPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_SET_ARRAY_LAYERS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setArrayLayersPtr, NIL)
     }
 
   /**
@@ -102,12 +102,12 @@ public open class RDTextureFormat : RefCounted() {
   public var mipmaps: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_MIPMAPS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMipmapsPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_SET_MIPMAPS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMipmapsPtr, NIL)
     }
 
   /**
@@ -116,14 +116,12 @@ public open class RDTextureFormat : RefCounted() {
   public var textureType: RenderingDevice.TextureType
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_TEXTURE_TYPE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureTypePtr, LONG)
       return RenderingDevice.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_SET_TEXTURE_TYPE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureTypePtr, NIL)
     }
 
   /**
@@ -132,12 +130,12 @@ public open class RDTextureFormat : RefCounted() {
   public var samples: RenderingDevice.TextureSamples
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_SAMPLES, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSamplesPtr, LONG)
       return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_SET_SAMPLES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSamplesPtr, NIL)
     }
 
   /**
@@ -146,14 +144,12 @@ public open class RDTextureFormat : RefCounted() {
   public var usageBits: RenderingDevice.TextureUsageBits
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_GET_USAGE_BITS,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getUsageBitsPtr, LONG)
       return TextureUsageBitsValue(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.flag)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_SET_USAGE_BITS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUsageBitsPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -166,8 +162,7 @@ public open class RDTextureFormat : RefCounted() {
    */
   public fun addShareableFormat(format: RenderingDevice.DataFormat): Unit {
     TransferContext.writeArguments(LONG to format.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_ADD_SHAREABLE_FORMAT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addShareableFormatPtr, NIL)
   }
 
   /**
@@ -175,9 +170,62 @@ public open class RDTextureFormat : RefCounted() {
    */
   public fun removeShareableFormat(format: RenderingDevice.DataFormat): Unit {
     TransferContext.writeArguments(LONG to format.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RDTEXTUREFORMAT_REMOVE_SHAREABLE_FORMAT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeShareableFormatPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setFormatPtr: VoidPtr = TypeManager.getMethodBindPtr("RDTextureFormat", "set_format")
+
+    public val getFormatPtr: VoidPtr = TypeManager.getMethodBindPtr("RDTextureFormat", "get_format")
+
+    public val setWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("RDTextureFormat", "set_width")
+
+    public val getWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("RDTextureFormat", "get_width")
+
+    public val setHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("RDTextureFormat", "set_height")
+
+    public val getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("RDTextureFormat", "get_height")
+
+    public val setDepthPtr: VoidPtr = TypeManager.getMethodBindPtr("RDTextureFormat", "set_depth")
+
+    public val getDepthPtr: VoidPtr = TypeManager.getMethodBindPtr("RDTextureFormat", "get_depth")
+
+    public val setArrayLayersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "set_array_layers")
+
+    public val getArrayLayersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "get_array_layers")
+
+    public val setMipmapsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "set_mipmaps")
+
+    public val getMipmapsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "get_mipmaps")
+
+    public val setTextureTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "set_texture_type")
+
+    public val getTextureTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "get_texture_type")
+
+    public val setSamplesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "set_samples")
+
+    public val getSamplesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "get_samples")
+
+    public val setUsageBitsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "set_usage_bits")
+
+    public val getUsageBitsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "get_usage_bits")
+
+    public val addShareableFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "add_shareable_format")
+
+    public val removeShareableFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "remove_shareable_format")
+  }
 }

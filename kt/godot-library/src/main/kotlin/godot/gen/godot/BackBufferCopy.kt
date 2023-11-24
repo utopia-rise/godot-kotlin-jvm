@@ -10,10 +10,12 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.RECT2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -35,13 +37,12 @@ public open class BackBufferCopy : Node2D() {
   public var copyMode: CopyMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BACKBUFFERCOPY_GET_COPY_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCopyModePtr, LONG)
       return BackBufferCopy.CopyMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BACKBUFFERCOPY_SET_COPY_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCopyModePtr, NIL)
     }
 
   /**
@@ -51,12 +52,12 @@ public open class BackBufferCopy : Node2D() {
   public var rect: Rect2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BACKBUFFERCOPY_GET_RECT, RECT2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
       return (TransferContext.readReturnValue(RECT2, false) as Rect2)
     }
     set(`value`) {
       TransferContext.writeArguments(RECT2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BACKBUFFERCOPY_SET_RECT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRectPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -116,4 +117,16 @@ public open class BackBufferCopy : Node2D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setRectPtr: VoidPtr = TypeManager.getMethodBindPtr("BackBufferCopy", "set_rect")
+
+    public val getRectPtr: VoidPtr = TypeManager.getMethodBindPtr("BackBufferCopy", "get_rect")
+
+    public val setCopyModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BackBufferCopy", "set_copy_mode")
+
+    public val getCopyModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BackBufferCopy", "get_copy_mode")
+  }
 }

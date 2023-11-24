@@ -19,4 +19,6 @@ public open class EditorExportPlatformWeb internal constructor() : EditorExportP
   }
 
   public companion object
+
+  internal object MethodBindings
 }

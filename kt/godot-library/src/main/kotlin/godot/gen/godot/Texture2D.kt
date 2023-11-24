@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.RID
 import godot.core.Rect2
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.LONG
@@ -20,6 +21,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -121,7 +123,7 @@ public open class Texture2D : Texture() {
    */
   public fun getWidth(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_GET_WIDTH, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -130,7 +132,7 @@ public open class Texture2D : Texture() {
    */
   public fun getHeight(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_GET_HEIGHT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -139,7 +141,7 @@ public open class Texture2D : Texture() {
    */
   public fun getSize(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_GET_SIZE, VECTOR2)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
@@ -148,7 +150,7 @@ public open class Texture2D : Texture() {
    */
   public fun hasAlpha(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_HAS_ALPHA, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hasAlphaPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -163,7 +165,7 @@ public open class Texture2D : Texture() {
     transpose: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to position, COLOR to modulate, BOOL to transpose)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_DRAW, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.drawPtr, NIL)
   }
 
   /**
@@ -178,7 +180,7 @@ public open class Texture2D : Texture() {
     transpose: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect, BOOL to tile, COLOR to modulate, BOOL to transpose)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_DRAW_RECT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.drawRectPtr, NIL)
   }
 
   /**
@@ -194,7 +196,7 @@ public open class Texture2D : Texture() {
     clipUv: Boolean = true,
   ): Unit {
     TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect, RECT2 to srcRect, COLOR to modulate, BOOL to transpose, BOOL to clipUv)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_DRAW_RECT_REGION, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.drawRectRegionPtr, NIL)
   }
 
   /**
@@ -204,7 +206,7 @@ public open class Texture2D : Texture() {
    */
   public fun getImage(): Image? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_GET_IMAGE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getImagePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Image?)
   }
 
@@ -213,10 +215,47 @@ public open class Texture2D : Texture() {
    */
   public fun createPlaceholder(): Resource? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2D_CREATE_PLACEHOLDER,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.createPlaceholderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _getWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "_get_width")
+
+    public val _getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "_get_height")
+
+    public val _isPixelOpaquePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Texture2D", "_is_pixel_opaque")
+
+    public val _hasAlphaPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "_has_alpha")
+
+    public val _drawPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "_draw")
+
+    public val _drawRectPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "_draw_rect")
+
+    public val _drawRectRegionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Texture2D", "_draw_rect_region")
+
+    public val getWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "get_width")
+
+    public val getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "get_height")
+
+    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "get_size")
+
+    public val hasAlphaPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "has_alpha")
+
+    public val drawPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "draw")
+
+    public val drawRectPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "draw_rect")
+
+    public val drawRectRegionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Texture2D", "draw_rect_region")
+
+    public val getImagePtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "get_image")
+
+    public val createPlaceholderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Texture2D", "create_placeholder")
+  }
 }

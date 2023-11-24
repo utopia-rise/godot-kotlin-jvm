@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -37,14 +39,12 @@ public open class Shape3D internal constructor() : Resource() {
   public var customSolverBias: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_GET_CUSTOM_SOLVER_BIAS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCustomSolverBiasPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_SET_CUSTOM_SOLVER_BIAS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCustomSolverBiasPtr, NIL)
     }
 
   /**
@@ -55,12 +55,12 @@ public open class Shape3D internal constructor() : Resource() {
   public var margin: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_GET_MARGIN, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_SET_MARGIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -73,9 +73,23 @@ public open class Shape3D internal constructor() : Resource() {
    */
   public fun getDebugMesh(): ArrayMesh? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE3D_GET_DEBUG_MESH, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getDebugMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setCustomSolverBiasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Shape3D", "set_custom_solver_bias")
+
+    public val getCustomSolverBiasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Shape3D", "get_custom_solver_bias")
+
+    public val setMarginPtr: VoidPtr = TypeManager.getMethodBindPtr("Shape3D", "set_margin")
+
+    public val getMarginPtr: VoidPtr = TypeManager.getMethodBindPtr("Shape3D", "get_margin")
+
+    public val getDebugMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("Shape3D", "get_debug_mesh")
+  }
 }

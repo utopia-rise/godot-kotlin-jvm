@@ -7,12 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -26,37 +28,34 @@ public open class UPNP : RefCounted() {
   public var discoverMulticastIf: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_GET_DISCOVER_MULTICAST_IF,
-          STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDiscoverMulticastIfPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_SET_DISCOVER_MULTICAST_IF,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDiscoverMulticastIfPtr, NIL)
     }
 
   public var discoverLocalPort: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_GET_DISCOVER_LOCAL_PORT,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDiscoverLocalPortPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_SET_DISCOVER_LOCAL_PORT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDiscoverLocalPortPtr, NIL)
     }
 
   public var discoverIpv6: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_IS_DISCOVER_IPV6, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isDiscoverIpv6Ptr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_SET_DISCOVER_IPV6, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDiscoverIpv6Ptr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -66,39 +65,39 @@ public open class UPNP : RefCounted() {
 
   public fun getDeviceCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_GET_DEVICE_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getDeviceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public fun getDevice(index: Int): UPNPDevice? {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_GET_DEVICE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getDevicePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as UPNPDevice?)
   }
 
   public fun addDevice(device: UPNPDevice): Unit {
     TransferContext.writeArguments(OBJECT to device)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_ADD_DEVICE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addDevicePtr, NIL)
   }
 
   public fun setDevice(index: Int, device: UPNPDevice): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), OBJECT to device)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_SET_DEVICE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDevicePtr, NIL)
   }
 
   public fun removeDevice(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_REMOVE_DEVICE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeDevicePtr, NIL)
   }
 
   public fun clearDevices(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_CLEAR_DEVICES, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearDevicesPtr, NIL)
   }
 
   public fun getGateway(): UPNPDevice? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_GET_GATEWAY, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getGatewayPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as UPNPDevice?)
   }
 
@@ -109,13 +108,13 @@ public open class UPNP : RefCounted() {
     deviceFilter: String = "InternetGatewayDevice",
   ): Int {
     TransferContext.writeArguments(LONG to timeout.toLong(), LONG to ttl.toLong(), STRING to deviceFilter)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_DISCOVER, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.discoverPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public fun queryExternalAddress(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_QUERY_EXTERNAL_ADDRESS, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.queryExternalAddressPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -128,14 +127,14 @@ public open class UPNP : RefCounted() {
     duration: Int = 0,
   ): Int {
     TransferContext.writeArguments(LONG to port.toLong(), LONG to portInternal.toLong(), STRING to desc, STRING to proto, LONG to duration.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_ADD_PORT_MAPPING, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.addPortMappingPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   @JvmOverloads
   public fun deletePortMapping(port: Int, proto: String = "UDP"): Int {
     TransferContext.writeArguments(LONG to port.toLong(), STRING to proto)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_DELETE_PORT_MAPPING, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.deletePortMappingPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -184,4 +183,47 @@ public open class UPNP : RefCounted() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getDeviceCountPtr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "get_device_count")
+
+    public val getDevicePtr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "get_device")
+
+    public val addDevicePtr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "add_device")
+
+    public val setDevicePtr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "set_device")
+
+    public val removeDevicePtr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "remove_device")
+
+    public val clearDevicesPtr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "clear_devices")
+
+    public val getGatewayPtr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "get_gateway")
+
+    public val discoverPtr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "discover")
+
+    public val queryExternalAddressPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("UPNP", "query_external_address")
+
+    public val addPortMappingPtr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "add_port_mapping")
+
+    public val deletePortMappingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("UPNP", "delete_port_mapping")
+
+    public val setDiscoverMulticastIfPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("UPNP", "set_discover_multicast_if")
+
+    public val getDiscoverMulticastIfPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("UPNP", "get_discover_multicast_if")
+
+    public val setDiscoverLocalPortPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("UPNP", "set_discover_local_port")
+
+    public val getDiscoverLocalPortPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("UPNP", "get_discover_local_port")
+
+    public val setDiscoverIpv6Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("UPNP", "set_discover_ipv6")
+
+    public val isDiscoverIpv6Ptr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "is_discover_ipv6")
+  }
 }

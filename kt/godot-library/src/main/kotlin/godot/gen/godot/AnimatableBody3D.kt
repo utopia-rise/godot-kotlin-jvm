@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -32,14 +34,12 @@ public open class AnimatableBody3D : StaticBody3D() {
   public var syncToPhysics: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATABLEBODY3D_IS_SYNC_TO_PHYSICS_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isSyncToPhysicsEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATABLEBODY3D_SET_SYNC_TO_PHYSICS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSyncToPhysicsPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -48,4 +48,12 @@ public open class AnimatableBody3D : StaticBody3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setSyncToPhysicsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimatableBody3D", "set_sync_to_physics")
+
+    public val isSyncToPhysicsEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimatableBody3D", "is_sync_to_physics_enabled")
+  }
 }

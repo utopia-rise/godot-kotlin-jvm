@@ -7,11 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -137,8 +139,7 @@ public open class EditorDebuggerPlugin internal constructor() : RefCounted() {
    */
   public fun getSession(id: Int): EditorDebuggerSession? {
     TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_GET_SESSION,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSessionPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as EditorDebuggerSession?)
   }
 
@@ -149,10 +150,26 @@ public open class EditorDebuggerPlugin internal constructor() : RefCounted() {
    */
   public fun getSessions(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_GET_SESSIONS,
-        ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSessionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _setupSessionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorDebuggerPlugin", "_setup_session")
+
+    public val _hasCapturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorDebuggerPlugin", "_has_capture")
+
+    public val _capturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorDebuggerPlugin", "_capture")
+
+    public val getSessionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorDebuggerPlugin", "get_session")
+
+    public val getSessionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorDebuggerPlugin", "get_sessions")
+  }
 }

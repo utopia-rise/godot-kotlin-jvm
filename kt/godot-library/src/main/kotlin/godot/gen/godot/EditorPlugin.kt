@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.Dictionary
 import godot.core.PackedStringArray
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.LONG
@@ -20,6 +21,7 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -603,8 +605,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addControlToContainer(container: CustomControlContainer, control: Control): Unit {
     TransferContext.writeArguments(LONG to container.id, OBJECT to control)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_CONTROL_TO_CONTAINER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addControlToContainerPtr, NIL)
   }
 
   /**
@@ -612,8 +613,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addControlToBottomPanel(control: Control, title: String): Button? {
     TransferContext.writeArguments(OBJECT to control, STRING to title)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_CONTROL_TO_BOTTOM_PANEL, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.addControlToBottomPanelPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Button?)
   }
 
@@ -626,8 +626,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addControlToDock(slot: DockSlot, control: Control): Unit {
     TransferContext.writeArguments(LONG to slot.id, OBJECT to control)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_CONTROL_TO_DOCK,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addControlToDockPtr, NIL)
   }
 
   /**
@@ -635,8 +634,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeControlFromDocks(control: Control): Unit {
     TransferContext.writeArguments(OBJECT to control)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_CONTROL_FROM_DOCKS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeControlFromDocksPtr, NIL)
   }
 
   /**
@@ -644,8 +642,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeControlFromBottomPanel(control: Control): Unit {
     TransferContext.writeArguments(OBJECT to control)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_CONTROL_FROM_BOTTOM_PANEL, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeControlFromBottomPanelPtr, NIL)
   }
 
   /**
@@ -653,8 +650,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeControlFromContainer(container: CustomControlContainer, control: Control): Unit {
     TransferContext.writeArguments(LONG to container.id, OBJECT to control)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_CONTROL_FROM_CONTAINER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeControlFromContainerPtr, NIL)
   }
 
   /**
@@ -662,8 +658,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addToolMenuItem(name: String, callable: Callable): Unit {
     TransferContext.writeArguments(STRING to name, CALLABLE to callable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_TOOL_MENU_ITEM,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addToolMenuItemPtr, NIL)
   }
 
   /**
@@ -671,8 +666,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addToolSubmenuItem(name: String, submenu: PopupMenu): Unit {
     TransferContext.writeArguments(STRING to name, OBJECT to submenu)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_TOOL_SUBMENU_ITEM,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addToolSubmenuItemPtr, NIL)
   }
 
   /**
@@ -680,8 +674,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeToolMenuItem(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_TOOL_MENU_ITEM,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeToolMenuItemPtr, NIL)
   }
 
   /**
@@ -689,8 +682,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun getExportAsMenu(): PopupMenu? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_GET_EXPORT_AS_MENU,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getExportAsMenuPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PopupMenu?)
   }
 
@@ -714,7 +706,7 @@ public open class EditorPlugin internal constructor() : Node() {
     icon: Texture2D,
   ): Unit {
     TransferContext.writeArguments(STRING to type, STRING to base, OBJECT to script, OBJECT to icon)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_CUSTOM_TYPE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addCustomTypePtr, NIL)
   }
 
   /**
@@ -722,8 +714,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeCustomType(type: String): Unit {
     TransferContext.writeArguments(STRING to type)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_CUSTOM_TYPE,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeCustomTypePtr, NIL)
   }
 
   /**
@@ -731,8 +722,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addAutoloadSingleton(name: String, path: String): Unit {
     TransferContext.writeArguments(STRING to name, STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_AUTOLOAD_SINGLETON,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addAutoloadSingletonPtr, NIL)
   }
 
   /**
@@ -740,8 +730,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeAutoloadSingleton(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_AUTOLOAD_SINGLETON, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeAutoloadSingletonPtr, NIL)
   }
 
   /**
@@ -749,7 +738,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun updateOverlays(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_UPDATE_OVERLAYS, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.updateOverlaysPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -758,8 +747,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun makeBottomPanelItemVisible(item: Control): Unit {
     TransferContext.writeArguments(OBJECT to item)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_MAKE_BOTTOM_PANEL_ITEM_VISIBLE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.makeBottomPanelItemVisiblePtr, NIL)
   }
 
   /**
@@ -767,7 +755,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun hideBottomPanel(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_HIDE_BOTTOM_PANEL, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hideBottomPanelPtr, NIL)
   }
 
   /**
@@ -775,7 +763,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun getUndoRedo(): EditorUndoRedoManager? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_GET_UNDO_REDO, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getUndoRedoPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as EditorUndoRedoManager?)
   }
 
@@ -786,8 +774,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addUndoRedoInspectorHookCallback(callable: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to callable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_UNDO_REDO_INSPECTOR_HOOK_CALLBACK, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addUndoRedoInspectorHookCallbackPtr, NIL)
   }
 
   /**
@@ -795,8 +782,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeUndoRedoInspectorHookCallback(callable: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to callable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_UNDO_REDO_INSPECTOR_HOOK_CALLBACK, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeUndoRedoInspectorHookCallbackPtr, NIL)
   }
 
   /**
@@ -804,7 +790,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun queueSaveLayout(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_QUEUE_SAVE_LAYOUT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.queueSaveLayoutPtr, NIL)
   }
 
   /**
@@ -812,8 +798,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addTranslationParserPlugin(parser: EditorTranslationParserPlugin): Unit {
     TransferContext.writeArguments(OBJECT to parser)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_TRANSLATION_PARSER_PLUGIN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addTranslationParserPluginPtr, NIL)
   }
 
   /**
@@ -821,8 +806,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeTranslationParserPlugin(parser: EditorTranslationParserPlugin): Unit {
     TransferContext.writeArguments(OBJECT to parser)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_TRANSLATION_PARSER_PLUGIN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeTranslationParserPluginPtr, NIL)
   }
 
   /**
@@ -837,7 +821,7 @@ public open class EditorPlugin internal constructor() : Node() {
   @JvmOverloads
   public fun addImportPlugin(importer: EditorImportPlugin, firstPriority: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to importer, BOOL to firstPriority)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_IMPORT_PLUGIN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addImportPluginPtr, NIL)
   }
 
   /**
@@ -845,8 +829,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeImportPlugin(importer: EditorImportPlugin): Unit {
     TransferContext.writeArguments(OBJECT to importer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_IMPORT_PLUGIN,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeImportPluginPtr, NIL)
   }
 
   /**
@@ -858,8 +841,7 @@ public open class EditorPlugin internal constructor() : Node() {
   public fun addSceneFormatImporterPlugin(sceneFormatImporter: EditorSceneFormatImporter,
       firstPriority: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to sceneFormatImporter, BOOL to firstPriority)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_SCENE_FORMAT_IMPORTER_PLUGIN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addSceneFormatImporterPluginPtr, NIL)
   }
 
   /**
@@ -867,8 +849,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeSceneFormatImporterPlugin(sceneFormatImporter: EditorSceneFormatImporter): Unit {
     TransferContext.writeArguments(OBJECT to sceneFormatImporter)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_SCENE_FORMAT_IMPORTER_PLUGIN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeSceneFormatImporterPluginPtr, NIL)
   }
 
   /**
@@ -880,8 +861,7 @@ public open class EditorPlugin internal constructor() : Node() {
   public fun addScenePostImportPlugin(sceneImportPlugin: EditorScenePostImportPlugin,
       firstPriority: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to sceneImportPlugin, BOOL to firstPriority)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_SCENE_POST_IMPORT_PLUGIN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addScenePostImportPluginPtr, NIL)
   }
 
   /**
@@ -889,8 +869,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeScenePostImportPlugin(sceneImportPlugin: EditorScenePostImportPlugin): Unit {
     TransferContext.writeArguments(OBJECT to sceneImportPlugin)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_SCENE_POST_IMPORT_PLUGIN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeScenePostImportPluginPtr, NIL)
   }
 
   /**
@@ -900,7 +879,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addExportPlugin(plugin: EditorExportPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_EXPORT_PLUGIN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addExportPluginPtr, NIL)
   }
 
   /**
@@ -908,8 +887,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeExportPlugin(plugin: EditorExportPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_EXPORT_PLUGIN,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeExportPluginPtr, NIL)
   }
 
   /**
@@ -919,8 +897,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addNode3dGizmoPlugin(plugin: EditorNode3DGizmoPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_NODE_3D_GIZMO_PLUGIN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addNode3dGizmoPluginPtr, NIL)
   }
 
   /**
@@ -928,8 +905,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeNode3dGizmoPlugin(plugin: EditorNode3DGizmoPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_NODE_3D_GIZMO_PLUGIN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeNode3dGizmoPluginPtr, NIL)
   }
 
   /**
@@ -963,8 +939,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addInspectorPlugin(plugin: EditorInspectorPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_INSPECTOR_PLUGIN,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addInspectorPluginPtr, NIL)
   }
 
   /**
@@ -972,8 +947,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeInspectorPlugin(plugin: EditorInspectorPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_INSPECTOR_PLUGIN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeInspectorPluginPtr, NIL)
   }
 
   /**
@@ -983,8 +957,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addResourceConversionPlugin(plugin: EditorResourceConversionPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_RESOURCE_CONVERSION_PLUGIN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addResourceConversionPluginPtr, NIL)
   }
 
   /**
@@ -992,8 +965,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeResourceConversionPlugin(plugin: EditorResourceConversionPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_RESOURCE_CONVERSION_PLUGIN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeResourceConversionPluginPtr, NIL)
   }
 
   /**
@@ -1001,8 +973,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun setInputEventForwardingAlwaysEnabled(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_SET_INPUT_EVENT_FORWARDING_ALWAYS_ENABLED, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInputEventForwardingAlwaysEnabledPtr, NIL)
   }
 
   /**
@@ -1010,8 +981,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun setForceDrawOverForwardingEnabled(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_SET_FORCE_DRAW_OVER_FORWARDING_ENABLED, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setForceDrawOverForwardingEnabledPtr, NIL)
   }
 
   /**
@@ -1019,8 +989,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun getEditorInterface(): EditorInterface? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_GET_EDITOR_INTERFACE,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getEditorInterfacePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as EditorInterface?)
   }
 
@@ -1033,8 +1002,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun getScriptCreateDialog(): ScriptCreateDialog? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_GET_SCRIPT_CREATE_DIALOG, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getScriptCreateDialogPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as ScriptCreateDialog?)
   }
 
@@ -1043,8 +1011,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun addDebuggerPlugin(script: EditorDebuggerPlugin): Unit {
     TransferContext.writeArguments(OBJECT to script)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_DEBUGGER_PLUGIN,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addDebuggerPluginPtr, NIL)
   }
 
   /**
@@ -1052,8 +1019,7 @@ public open class EditorPlugin internal constructor() : Node() {
    */
   public fun removeDebuggerPlugin(script: EditorDebuggerPlugin): Unit {
     TransferContext.writeArguments(OBJECT to script)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_DEBUGGER_PLUGIN,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeDebuggerPluginPtr, NIL)
   }
 
   public enum class CustomControlContainer(
@@ -1198,4 +1164,198 @@ public open class EditorPlugin internal constructor() : Node() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _forwardCanvasGuiInputPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "_forward_canvas_gui_input")
+
+    public val _forwardCanvasDrawOverViewportPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "_forward_canvas_draw_over_viewport")
+
+    public val _forwardCanvasForceDrawOverViewportPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "_forward_canvas_force_draw_over_viewport")
+
+    public val _forward3dGuiInputPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "_forward_3d_gui_input")
+
+    public val _forward3dDrawOverViewportPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "_forward_3d_draw_over_viewport")
+
+    public val _forward3dForceDrawOverViewportPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "_forward_3d_force_draw_over_viewport")
+
+    public val _getPluginNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "_get_plugin_name")
+
+    public val _getPluginIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "_get_plugin_icon")
+
+    public val _hasMainScreenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "_has_main_screen")
+
+    public val _makeVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "_make_visible")
+
+    public val _editPtr: VoidPtr = TypeManager.getMethodBindPtr("EditorPlugin", "_edit")
+
+    public val _handlesPtr: VoidPtr = TypeManager.getMethodBindPtr("EditorPlugin", "_handles")
+
+    public val _getStatePtr: VoidPtr = TypeManager.getMethodBindPtr("EditorPlugin", "_get_state")
+
+    public val _setStatePtr: VoidPtr = TypeManager.getMethodBindPtr("EditorPlugin", "_set_state")
+
+    public val _clearPtr: VoidPtr = TypeManager.getMethodBindPtr("EditorPlugin", "_clear")
+
+    public val _saveExternalDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "_save_external_data")
+
+    public val _applyChangesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "_apply_changes")
+
+    public val _getBreakpointsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "_get_breakpoints")
+
+    public val _setWindowLayoutPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "_set_window_layout")
+
+    public val _getWindowLayoutPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "_get_window_layout")
+
+    public val _buildPtr: VoidPtr = TypeManager.getMethodBindPtr("EditorPlugin", "_build")
+
+    public val _enablePluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "_enable_plugin")
+
+    public val _disablePluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "_disable_plugin")
+
+    public val addControlToContainerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "add_control_to_container")
+
+    public val addControlToBottomPanelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "add_control_to_bottom_panel")
+
+    public val addControlToDockPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "add_control_to_dock")
+
+    public val removeControlFromDocksPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "remove_control_from_docks")
+
+    public val removeControlFromBottomPanelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "remove_control_from_bottom_panel")
+
+    public val removeControlFromContainerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "remove_control_from_container")
+
+    public val addToolMenuItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "add_tool_menu_item")
+
+    public val addToolSubmenuItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "add_tool_submenu_item")
+
+    public val removeToolMenuItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "remove_tool_menu_item")
+
+    public val getExportAsMenuPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "get_export_as_menu")
+
+    public val addCustomTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "add_custom_type")
+
+    public val removeCustomTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "remove_custom_type")
+
+    public val addAutoloadSingletonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "add_autoload_singleton")
+
+    public val removeAutoloadSingletonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "remove_autoload_singleton")
+
+    public val updateOverlaysPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "update_overlays")
+
+    public val makeBottomPanelItemVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "make_bottom_panel_item_visible")
+
+    public val hideBottomPanelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "hide_bottom_panel")
+
+    public val getUndoRedoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "get_undo_redo")
+
+    public val addUndoRedoInspectorHookCallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "add_undo_redo_inspector_hook_callback")
+
+    public val removeUndoRedoInspectorHookCallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "remove_undo_redo_inspector_hook_callback")
+
+    public val queueSaveLayoutPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "queue_save_layout")
+
+    public val addTranslationParserPluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "add_translation_parser_plugin")
+
+    public val removeTranslationParserPluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "remove_translation_parser_plugin")
+
+    public val addImportPluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "add_import_plugin")
+
+    public val removeImportPluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "remove_import_plugin")
+
+    public val addSceneFormatImporterPluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "add_scene_format_importer_plugin")
+
+    public val removeSceneFormatImporterPluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "remove_scene_format_importer_plugin")
+
+    public val addScenePostImportPluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "add_scene_post_import_plugin")
+
+    public val removeScenePostImportPluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "remove_scene_post_import_plugin")
+
+    public val addExportPluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "add_export_plugin")
+
+    public val removeExportPluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "remove_export_plugin")
+
+    public val addNode3dGizmoPluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "add_node_3d_gizmo_plugin")
+
+    public val removeNode3dGizmoPluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "remove_node_3d_gizmo_plugin")
+
+    public val addInspectorPluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "add_inspector_plugin")
+
+    public val removeInspectorPluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "remove_inspector_plugin")
+
+    public val addResourceConversionPluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "add_resource_conversion_plugin")
+
+    public val removeResourceConversionPluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "remove_resource_conversion_plugin")
+
+    public val setInputEventForwardingAlwaysEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "set_input_event_forwarding_always_enabled")
+
+    public val setForceDrawOverForwardingEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "set_force_draw_over_forwarding_enabled")
+
+    public val getEditorInterfacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "get_editor_interface")
+
+    public val getScriptCreateDialogPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "get_script_create_dialog")
+
+    public val addDebuggerPluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "add_debugger_plugin")
+
+    public val removeDebuggerPluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPlugin", "remove_debugger_plugin")
+  }
 }

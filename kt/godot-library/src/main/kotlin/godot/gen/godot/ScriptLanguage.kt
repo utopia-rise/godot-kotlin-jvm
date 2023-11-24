@@ -22,4 +22,6 @@ public open class ScriptLanguage internal constructor() : Object() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

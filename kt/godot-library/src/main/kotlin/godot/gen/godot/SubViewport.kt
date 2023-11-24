@@ -9,12 +9,14 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2I
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -42,12 +44,12 @@ public open class SubViewport : Viewport() {
   public var size: Vector2i
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_SIZE, VECTOR2I)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
       return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_SET_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
     }
 
   /**
@@ -57,14 +59,12 @@ public open class SubViewport : Viewport() {
   public var size2dOverride: Vector2i
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_SIZE_2D_OVERRIDE,
-          VECTOR2I)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSize2dOverridePtr, VECTOR2I)
       return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_SET_SIZE_2D_OVERRIDE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSize2dOverridePtr, NIL)
     }
 
   /**
@@ -73,14 +73,12 @@ public open class SubViewport : Viewport() {
   public var size2dOverrideStretch: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_IS_SIZE_2D_OVERRIDE_STRETCH_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isSize2dOverrideStretchEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_SET_SIZE_2D_OVERRIDE_STRETCH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSize2dOverrideStretchPtr, NIL)
     }
 
   /**
@@ -91,12 +89,12 @@ public open class SubViewport : Viewport() {
   public var renderTargetClearMode: ClearMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_CLEAR_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getClearModePtr, LONG)
       return SubViewport.ClearMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_SET_CLEAR_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setClearModePtr, NIL)
     }
 
   /**
@@ -105,12 +103,12 @@ public open class SubViewport : Viewport() {
   public var renderTargetUpdateMode: UpdateMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_UPDATE_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getUpdateModePtr, LONG)
       return SubViewport.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_SET_UPDATE_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUpdateModePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -231,4 +229,34 @@ public open class SubViewport : Viewport() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("SubViewport", "set_size")
+
+    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("SubViewport", "get_size")
+
+    public val setSize2dOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SubViewport", "set_size_2d_override")
+
+    public val getSize2dOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SubViewport", "get_size_2d_override")
+
+    public val setSize2dOverrideStretchPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SubViewport", "set_size_2d_override_stretch")
+
+    public val isSize2dOverrideStretchEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SubViewport", "is_size_2d_override_stretch_enabled")
+
+    public val setUpdateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SubViewport", "set_update_mode")
+
+    public val getUpdateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SubViewport", "get_update_mode")
+
+    public val setClearModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SubViewport", "set_clear_mode")
+
+    public val getClearModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SubViewport", "get_clear_mode")
+  }
 }

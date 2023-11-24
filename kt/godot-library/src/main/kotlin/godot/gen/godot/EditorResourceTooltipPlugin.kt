@@ -8,10 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -73,9 +75,19 @@ public open class EditorResourceTooltipPlugin internal constructor() : RefCounte
    */
   public fun requestThumbnail(path: String, control: TextureRect): Unit {
     TransferContext.writeArguments(STRING to path, OBJECT to control)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORRESOURCETOOLTIPPLUGIN_REQUEST_THUMBNAIL, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.requestThumbnailPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _handlesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorResourceTooltipPlugin", "_handles")
+
+    public val _makeTooltipForPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorResourceTooltipPlugin", "_make_tooltip_for_path")
+
+    public val requestThumbnailPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorResourceTooltipPlugin", "request_thumbnail")
+  }
 }

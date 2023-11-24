@@ -54,4 +54,6 @@ public open class JavaScriptObject internal constructor() : RefCounted() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

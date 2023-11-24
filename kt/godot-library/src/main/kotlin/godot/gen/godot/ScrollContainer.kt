@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -15,6 +16,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -53,14 +55,12 @@ public open class ScrollContainer : Container() {
   public var followFocus: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_IS_FOLLOWING_FOCUS, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isFollowingFocusPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_FOLLOW_FOCUS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFollowFocusPtr, NIL)
     }
 
   /**
@@ -76,13 +76,12 @@ public open class ScrollContainer : Container() {
   public var scrollHorizontal: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_H_SCROLL,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHScrollPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_H_SCROLL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHScrollPtr, NIL)
     }
 
   /**
@@ -98,13 +97,12 @@ public open class ScrollContainer : Container() {
   public var scrollVertical: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_V_SCROLL,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVScrollPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_V_SCROLL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVScrollPtr, NIL)
     }
 
   /**
@@ -113,14 +111,12 @@ public open class ScrollContainer : Container() {
   public var scrollHorizontalCustomStep: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_HORIZONTAL_CUSTOM_STEP, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalCustomStepPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_HORIZONTAL_CUSTOM_STEP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalCustomStepPtr, NIL)
     }
 
   /**
@@ -129,14 +125,12 @@ public open class ScrollContainer : Container() {
   public var scrollVerticalCustomStep: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_VERTICAL_CUSTOM_STEP, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVerticalCustomStepPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_VERTICAL_CUSTOM_STEP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVerticalCustomStepPtr, NIL)
     }
 
   /**
@@ -145,14 +139,12 @@ public open class ScrollContainer : Container() {
   public var horizontalScrollMode: ScrollMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_HORIZONTAL_SCROLL_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalScrollModePtr, LONG)
       return ScrollContainer.ScrollMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_HORIZONTAL_SCROLL_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalScrollModePtr, NIL)
     }
 
   /**
@@ -161,14 +153,12 @@ public open class ScrollContainer : Container() {
   public var verticalScrollMode: ScrollMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_VERTICAL_SCROLL_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVerticalScrollModePtr, LONG)
       return ScrollContainer.ScrollMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_VERTICAL_SCROLL_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVerticalScrollModePtr, NIL)
     }
 
   /**
@@ -177,13 +167,12 @@ public open class ScrollContainer : Container() {
   public var scrollDeadzone: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_DEADZONE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDeadzonePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_DEADZONE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDeadzonePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -198,8 +187,7 @@ public open class ScrollContainer : Container() {
    */
   public fun getHScrollBar(): HScrollBar? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_H_SCROLL_BAR,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getHScrollBarPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as HScrollBar?)
   }
 
@@ -210,8 +198,7 @@ public open class ScrollContainer : Container() {
    */
   public fun getVScrollBar(): VScrollBar? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_V_SCROLL_BAR,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getVScrollBarPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as VScrollBar?)
   }
 
@@ -228,8 +215,7 @@ public open class ScrollContainer : Container() {
    */
   public fun ensureControlVisible(control: Control): Unit {
     TransferContext.writeArguments(OBJECT to control)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_ENSURE_CONTROL_VISIBLE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.ensureControlVisiblePtr, NIL)
   }
 
   public enum class ScrollMode(
@@ -264,4 +250,63 @@ public open class ScrollContainer : Container() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setHScrollPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "set_h_scroll")
+
+    public val getHScrollPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "get_h_scroll")
+
+    public val setVScrollPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "set_v_scroll")
+
+    public val getVScrollPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "get_v_scroll")
+
+    public val setHorizontalCustomStepPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "set_horizontal_custom_step")
+
+    public val getHorizontalCustomStepPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "get_horizontal_custom_step")
+
+    public val setVerticalCustomStepPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "set_vertical_custom_step")
+
+    public val getVerticalCustomStepPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "get_vertical_custom_step")
+
+    public val setHorizontalScrollModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "set_horizontal_scroll_mode")
+
+    public val getHorizontalScrollModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "get_horizontal_scroll_mode")
+
+    public val setVerticalScrollModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "set_vertical_scroll_mode")
+
+    public val getVerticalScrollModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "get_vertical_scroll_mode")
+
+    public val setDeadzonePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "set_deadzone")
+
+    public val getDeadzonePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "get_deadzone")
+
+    public val setFollowFocusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "set_follow_focus")
+
+    public val isFollowingFocusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "is_following_focus")
+
+    public val getHScrollBarPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "get_h_scroll_bar")
+
+    public val getVScrollBarPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "get_v_scroll_bar")
+
+    public val ensureControlVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "ensure_control_visible")
+  }
 }

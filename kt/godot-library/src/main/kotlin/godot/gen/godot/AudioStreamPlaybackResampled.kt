@@ -7,8 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
@@ -38,9 +40,19 @@ public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
    */
   public fun beginResample(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYBACKRESAMPLED_BEGIN_RESAMPLE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.beginResamplePtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _mixResampledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlaybackResampled", "_mix_resampled")
+
+    public val _getStreamSamplingRatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlaybackResampled", "_get_stream_sampling_rate")
+
+    public val beginResamplePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlaybackResampled", "begin_resample")
+  }
 }

@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -36,7 +38,7 @@ public open class SliderJoint3D : Joint3D() {
    */
   public fun setParam(`param`: Param, `value`: Float): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDERJOINT3D_SET_PARAM, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
   }
 
   /**
@@ -44,7 +46,7 @@ public open class SliderJoint3D : Joint3D() {
    */
   public fun getParam(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDERJOINT3D_GET_PARAM, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -156,4 +158,10 @@ public open class SliderJoint3D : Joint3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setParamPtr: VoidPtr = TypeManager.getMethodBindPtr("SliderJoint3D", "set_param")
+
+    public val getParamPtr: VoidPtr = TypeManager.getMethodBindPtr("SliderJoint3D", "get_param")
+  }
 }

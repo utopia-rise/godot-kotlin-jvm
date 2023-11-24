@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -34,12 +36,12 @@ public open class CapsuleShape3D : Shape3D() {
   public var radius: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULESHAPE3D_GET_RADIUS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULESHAPE3D_SET_RADIUS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
     }
 
   /**
@@ -48,12 +50,12 @@ public open class CapsuleShape3D : Shape3D() {
   public var height: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULESHAPE3D_GET_HEIGHT, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULESHAPE3D_SET_HEIGHT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -62,4 +64,14 @@ public open class CapsuleShape3D : Shape3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setRadiusPtr: VoidPtr = TypeManager.getMethodBindPtr("CapsuleShape3D", "set_radius")
+
+    public val getRadiusPtr: VoidPtr = TypeManager.getMethodBindPtr("CapsuleShape3D", "get_radius")
+
+    public val setHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("CapsuleShape3D", "set_height")
+
+    public val getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("CapsuleShape3D", "get_height")
+  }
 }

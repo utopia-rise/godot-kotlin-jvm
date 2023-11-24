@@ -24,4 +24,6 @@ public open class VisualShaderNodeScreenUVToSDF : VisualShaderNode() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

@@ -27,4 +27,6 @@ public open class PanelContainer : Container() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

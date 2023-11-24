@@ -31,4 +31,6 @@ public open class Popup : Window() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

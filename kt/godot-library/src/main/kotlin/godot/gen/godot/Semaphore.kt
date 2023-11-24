@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -45,7 +47,7 @@ public open class Semaphore : RefCounted() {
   @JvmName("semaphoreWait")
   public fun wait(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEMAPHORE_WAIT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.waitPtr, NIL)
   }
 
   /**
@@ -53,7 +55,7 @@ public open class Semaphore : RefCounted() {
    */
   public fun tryWait(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEMAPHORE_TRY_WAIT, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.tryWaitPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -62,8 +64,16 @@ public open class Semaphore : RefCounted() {
    */
   public fun post(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEMAPHORE_POST, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.postPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val waitPtr: VoidPtr = TypeManager.getMethodBindPtr("Semaphore", "wait")
+
+    public val tryWaitPtr: VoidPtr = TypeManager.getMethodBindPtr("Semaphore", "try_wait")
+
+    public val postPtr: VoidPtr = TypeManager.getMethodBindPtr("Semaphore", "post")
+  }
 }

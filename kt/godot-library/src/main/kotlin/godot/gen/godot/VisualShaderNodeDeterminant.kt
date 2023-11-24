@@ -24,4 +24,6 @@ public open class VisualShaderNodeDeterminant : VisualShaderNode() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

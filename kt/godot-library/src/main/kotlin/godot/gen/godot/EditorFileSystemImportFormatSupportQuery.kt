@@ -8,6 +8,8 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
+import godot.core.TypeManager
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -47,4 +49,15 @@ public open class EditorFileSystemImportFormatSupportQuery internal constructor(
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _isActivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorFileSystemImportFormatSupportQuery", "_is_active")
+
+    public val _getFileExtensionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorFileSystemImportFormatSupportQuery", "_get_file_extensions")
+
+    public val _queryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorFileSystemImportFormatSupportQuery", "_query")
+  }
 }

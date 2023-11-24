@@ -24,4 +24,6 @@ public open class TriangleMesh : RefCounted() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

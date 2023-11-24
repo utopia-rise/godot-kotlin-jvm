@@ -14,6 +14,7 @@ import godot.core.NodePath
 import godot.core.PackedColorArray
 import godot.core.PackedFloat32Array
 import godot.core.PackedVector2Array
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -29,6 +30,7 @@ import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -52,12 +54,12 @@ public open class Polygon2D : Node2D() {
   public var color: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_COLOR, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_COLOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
     }
 
   /**
@@ -67,12 +69,12 @@ public open class Polygon2D : Node2D() {
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_OFFSET, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_OFFSET, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
     }
 
   /**
@@ -81,12 +83,12 @@ public open class Polygon2D : Node2D() {
   public var antialiased: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_ANTIALIASED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAntialiasedPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_ANTIALIASED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAntialiasedPtr, NIL)
     }
 
   /**
@@ -95,12 +97,12 @@ public open class Polygon2D : Node2D() {
   public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_TEXTURE, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -110,13 +112,12 @@ public open class Polygon2D : Node2D() {
   public var textureOffset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_TEXTURE_OFFSET,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureOffsetPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_TEXTURE_OFFSET, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureOffsetPtr, NIL)
     }
 
   /**
@@ -126,13 +127,12 @@ public open class Polygon2D : Node2D() {
   public var textureScale: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_TEXTURE_SCALE,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureScalePtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_TEXTURE_SCALE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureScalePtr, NIL)
     }
 
   /**
@@ -141,14 +141,12 @@ public open class Polygon2D : Node2D() {
   public var textureRotation: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_TEXTURE_ROTATION,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureRotationPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_TEXTURE_ROTATION,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureRotationPtr, NIL)
     }
 
   /**
@@ -157,12 +155,12 @@ public open class Polygon2D : Node2D() {
   public var skeleton: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_SKELETON, NODE_PATH)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPtr, NODE_PATH)
       return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_SKELETON, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonPtr, NIL)
     }
 
   /**
@@ -171,13 +169,12 @@ public open class Polygon2D : Node2D() {
   public var invertEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_INVERT_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getInvertEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_INVERT_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setInvertEnabledPtr, NIL)
     }
 
   /**
@@ -186,13 +183,12 @@ public open class Polygon2D : Node2D() {
   public var invertBorder: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_INVERT_BORDER,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getInvertBorderPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_INVERT_BORDER, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setInvertBorderPtr, NIL)
     }
 
   /**
@@ -203,13 +199,12 @@ public open class Polygon2D : Node2D() {
   public var polygon: PackedVector2Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_POLYGON,
-          PACKED_VECTOR2_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
       return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_POLYGON, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
     }
 
   /**
@@ -218,13 +213,12 @@ public open class Polygon2D : Node2D() {
   public var uv: PackedVector2Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_UV,
-          PACKED_VECTOR2_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getUvPtr, PACKED_VECTOR2_ARRAY)
       return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_UV, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUvPtr, NIL)
     }
 
   /**
@@ -233,13 +227,12 @@ public open class Polygon2D : Node2D() {
   public var vertexColors: PackedColorArray
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_VERTEX_COLORS,
-          PACKED_COLOR_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVertexColorsPtr, PACKED_COLOR_ARRAY)
       return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_COLOR_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_VERTEX_COLORS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVertexColorsPtr, NIL)
     }
 
   /**
@@ -248,12 +241,12 @@ public open class Polygon2D : Node2D() {
   public var polygons: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_POLYGONS, ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPolygonsPtr, ARRAY)
       return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_POLYGONS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPolygonsPtr, NIL)
     }
 
   /**
@@ -262,14 +255,12 @@ public open class Polygon2D : Node2D() {
   public var internalVertexCount: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_INTERNAL_VERTEX_COUNT, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getInternalVertexCountPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_INTERNAL_VERTEX_COUNT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setInternalVertexCountPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -378,7 +369,7 @@ public open class Polygon2D : Node2D() {
    */
   public fun addBone(path: NodePath, weights: PackedFloat32Array): Unit {
     TransferContext.writeArguments(NODE_PATH to path, PACKED_FLOAT_32_ARRAY to weights)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_ADD_BONE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addBonePtr, NIL)
   }
 
   /**
@@ -386,7 +377,7 @@ public open class Polygon2D : Node2D() {
    */
   public fun getBoneCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_BONE_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBoneCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -395,7 +386,7 @@ public open class Polygon2D : Node2D() {
    */
   public fun getBonePath(index: Int): NodePath {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_BONE_PATH, NODE_PATH)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBonePathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
@@ -404,8 +395,7 @@ public open class Polygon2D : Node2D() {
    */
   public fun getBoneWeights(index: Int): PackedFloat32Array {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_BONE_WEIGHTS,
-        PACKED_FLOAT_32_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBoneWeightsPtr, PACKED_FLOAT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
   }
 
@@ -414,7 +404,7 @@ public open class Polygon2D : Node2D() {
    */
   public fun eraseBone(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_ERASE_BONE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.eraseBonePtr, NIL)
   }
 
   /**
@@ -422,7 +412,7 @@ public open class Polygon2D : Node2D() {
    */
   public fun clearBones(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_CLEAR_BONES, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearBonesPtr, NIL)
   }
 
   /**
@@ -430,7 +420,7 @@ public open class Polygon2D : Node2D() {
    */
   public fun setBonePath(index: Int, path: NodePath): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_BONE_PATH, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBonePathPtr, NIL)
   }
 
   /**
@@ -438,8 +428,105 @@ public open class Polygon2D : Node2D() {
    */
   public fun setBoneWeights(index: Int, weights: PackedFloat32Array): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), PACKED_FLOAT_32_ARRAY to weights)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_BONE_WEIGHTS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBoneWeightsPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setPolygonPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "set_polygon")
+
+    public val getPolygonPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "get_polygon")
+
+    public val setUvPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "set_uv")
+
+    public val getUvPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "get_uv")
+
+    public val setColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "set_color")
+
+    public val getColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "get_color")
+
+    public val setPolygonsPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "set_polygons")
+
+    public val getPolygonsPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "get_polygons")
+
+    public val setVertexColorsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "set_vertex_colors")
+
+    public val getVertexColorsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "get_vertex_colors")
+
+    public val setTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "set_texture")
+
+    public val getTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "get_texture")
+
+    public val setTextureOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "set_texture_offset")
+
+    public val getTextureOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "get_texture_offset")
+
+    public val setTextureRotationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "set_texture_rotation")
+
+    public val getTextureRotationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "get_texture_rotation")
+
+    public val setTextureScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "set_texture_scale")
+
+    public val getTextureScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "get_texture_scale")
+
+    public val setInvertEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "set_invert_enabled")
+
+    public val getInvertEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "get_invert_enabled")
+
+    public val setAntialiasedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "set_antialiased")
+
+    public val getAntialiasedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "get_antialiased")
+
+    public val setInvertBorderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "set_invert_border")
+
+    public val getInvertBorderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "get_invert_border")
+
+    public val setOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "set_offset")
+
+    public val getOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "get_offset")
+
+    public val addBonePtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "add_bone")
+
+    public val getBoneCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "get_bone_count")
+
+    public val getBonePathPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "get_bone_path")
+
+    public val getBoneWeightsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "get_bone_weights")
+
+    public val eraseBonePtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "erase_bone")
+
+    public val clearBonesPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "clear_bones")
+
+    public val setBonePathPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "set_bone_path")
+
+    public val setBoneWeightsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "set_bone_weights")
+
+    public val setSkeletonPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "set_skeleton")
+
+    public val getSkeletonPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "get_skeleton")
+
+    public val setInternalVertexCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "set_internal_vertex_count")
+
+    public val getInternalVertexCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "get_internal_vertex_count")
+  }
 }

@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -18,6 +19,7 @@ import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -80,8 +82,7 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
     backwardUndoOps: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(STRING to name, LONG to mergeMode.id, OBJECT to customContext, BOOL to backwardUndoOps)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORUNDOREDOMANAGER_CREATE_ACTION,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.createActionPtr, NIL)
   }
 
   /**
@@ -90,8 +91,7 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
   @JvmOverloads
   public fun commitAction(execute: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to execute)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORUNDOREDOMANAGER_COMMIT_ACTION,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.commitActionPtr, NIL)
   }
 
   /**
@@ -99,8 +99,7 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
    */
   public fun isCommittingAction(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORUNDOREDOMANAGER_IS_COMMITTING_ACTION, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isCommittingActionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -115,8 +114,7 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
     vararg __var_args: Any?,
   ): Unit {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORUNDOREDOMANAGER_ADD_DO_METHOD,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addDoMethodPtr, NIL)
   }
 
   /**
@@ -130,8 +128,7 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
     vararg __var_args: Any?,
   ): Unit {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORUNDOREDOMANAGER_ADD_UNDO_METHOD, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addUndoMethodPtr, NIL)
   }
 
   /**
@@ -145,8 +142,7 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
     `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property, ANY to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORUNDOREDOMANAGER_ADD_DO_PROPERTY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addDoPropertyPtr, NIL)
   }
 
   /**
@@ -160,8 +156,7 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
     `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property, ANY to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORUNDOREDOMANAGER_ADD_UNDO_PROPERTY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addUndoPropertyPtr, NIL)
   }
 
   /**
@@ -169,8 +164,7 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
    */
   public fun addDoReference(_object: Object): Unit {
     TransferContext.writeArguments(OBJECT to _object)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORUNDOREDOMANAGER_ADD_DO_REFERENCE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addDoReferencePtr, NIL)
   }
 
   /**
@@ -178,8 +172,7 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
    */
   public fun addUndoReference(_object: Object): Unit {
     TransferContext.writeArguments(OBJECT to _object)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORUNDOREDOMANAGER_ADD_UNDO_REFERENCE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addUndoReferencePtr, NIL)
   }
 
   /**
@@ -187,8 +180,7 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
    */
   public fun getObjectHistoryId(_object: Object): Int {
     TransferContext.writeArguments(OBJECT to _object)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORUNDOREDOMANAGER_GET_OBJECT_HISTORY_ID, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getObjectHistoryIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -201,8 +193,7 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
    */
   public fun getHistoryUndoRedo(id: Int): UndoRedo? {
     TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORUNDOREDOMANAGER_GET_HISTORY_UNDO_REDO, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getHistoryUndoRedoPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as UndoRedo?)
   }
 
@@ -234,4 +225,39 @@ public open class EditorUndoRedoManager internal constructor() : Object() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val createActionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorUndoRedoManager", "create_action")
+
+    public val commitActionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorUndoRedoManager", "commit_action")
+
+    public val isCommittingActionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorUndoRedoManager", "is_committing_action")
+
+    public val addDoMethodPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorUndoRedoManager", "add_do_method")
+
+    public val addUndoMethodPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorUndoRedoManager", "add_undo_method")
+
+    public val addDoPropertyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorUndoRedoManager", "add_do_property")
+
+    public val addUndoPropertyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorUndoRedoManager", "add_undo_property")
+
+    public val addDoReferencePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorUndoRedoManager", "add_do_reference")
+
+    public val addUndoReferencePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorUndoRedoManager", "add_undo_reference")
+
+    public val getObjectHistoryIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorUndoRedoManager", "get_object_history_id")
+
+    public val getHistoryUndoRedoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorUndoRedoManager", "get_history_undo_redo")
+  }
 }

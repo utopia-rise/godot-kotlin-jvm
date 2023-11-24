@@ -7,6 +7,8 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -35,4 +37,9 @@ public open class AudioEffect : Resource() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _instantiatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffect", "_instantiate")
+  }
 }

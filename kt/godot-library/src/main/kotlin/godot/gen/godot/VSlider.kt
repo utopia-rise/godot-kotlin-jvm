@@ -24,4 +24,6 @@ public open class VSlider : Slider() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

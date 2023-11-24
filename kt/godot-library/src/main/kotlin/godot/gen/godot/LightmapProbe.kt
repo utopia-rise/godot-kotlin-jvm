@@ -26,4 +26,6 @@ public open class LightmapProbe : Node3D() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

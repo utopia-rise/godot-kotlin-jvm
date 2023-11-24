@@ -24,4 +24,6 @@ public open class VisualShaderNodeFaceForward : VisualShaderNodeVectorBase() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

@@ -10,9 +10,11 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform3D
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.TRANSFORM3D
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -32,14 +34,12 @@ public open class VisualShaderNodeTransformConstant : VisualShaderNodeConstant()
   public var constant: Transform3D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETRANSFORMCONSTANT_GET_CONSTANT, TRANSFORM3D)
+      TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, TRANSFORM3D)
       return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM3D to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETRANSFORMCONSTANT_SET_CONSTANT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -72,4 +72,12 @@ public open class VisualShaderNodeTransformConstant : VisualShaderNodeConstant()
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeTransformConstant", "set_constant")
+
+    public val getConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeTransformConstant", "get_constant")
+  }
 }

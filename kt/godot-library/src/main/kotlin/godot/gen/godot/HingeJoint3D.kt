@@ -7,11 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -37,7 +39,7 @@ public open class HingeJoint3D : Joint3D() {
    */
   public fun setParam(`param`: Param, `value`: Float): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HINGEJOINT3D_SET_PARAM, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
   }
 
   /**
@@ -45,7 +47,7 @@ public open class HingeJoint3D : Joint3D() {
    */
   public fun getParam(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HINGEJOINT3D_GET_PARAM, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -54,7 +56,7 @@ public open class HingeJoint3D : Joint3D() {
    */
   public fun setFlag(flag: Flag, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HINGEJOINT3D_SET_FLAG, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
   }
 
   /**
@@ -62,7 +64,7 @@ public open class HingeJoint3D : Joint3D() {
    */
   public fun getFlag(flag: Flag): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HINGEJOINT3D_GET_FLAG, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -145,4 +147,14 @@ public open class HingeJoint3D : Joint3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setParamPtr: VoidPtr = TypeManager.getMethodBindPtr("HingeJoint3D", "set_param")
+
+    public val getParamPtr: VoidPtr = TypeManager.getMethodBindPtr("HingeJoint3D", "get_param")
+
+    public val setFlagPtr: VoidPtr = TypeManager.getMethodBindPtr("HingeJoint3D", "set_flag")
+
+    public val getFlagPtr: VoidPtr = TypeManager.getMethodBindPtr("HingeJoint3D", "get_flag")
+  }
 }

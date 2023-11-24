@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -16,6 +17,7 @@ import godot.core.VariantType._RID
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
@@ -57,12 +59,12 @@ public open class Resource : RefCounted() {
   public var resourceLocalToScene: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_IS_LOCAL_TO_SCENE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isLocalToScenePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_SET_LOCAL_TO_SCENE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLocalToScenePtr, NIL)
     }
 
   /**
@@ -73,12 +75,12 @@ public open class Resource : RefCounted() {
   public var resourcePath: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_PATH, STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPathPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_SET_PATH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPathPtr, NIL)
     }
 
   /**
@@ -87,12 +89,12 @@ public open class Resource : RefCounted() {
   public var resourceName: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_NAME, STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_SET_NAME, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setNamePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -105,7 +107,7 @@ public open class Resource : RefCounted() {
    */
   public fun takeOverPath(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_TAKE_OVER_PATH, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.takeOverPathPtr, NIL)
   }
 
   /**
@@ -113,7 +115,7 @@ public open class Resource : RefCounted() {
    */
   public fun getRid(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_RID, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -122,7 +124,7 @@ public open class Resource : RefCounted() {
    */
   public fun getLocalScene(): Node? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_LOCAL_SCENE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getLocalScenePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Node?)
   }
 
@@ -147,7 +149,7 @@ public open class Resource : RefCounted() {
    */
   public fun setupLocalToScene(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_SETUP_LOCAL_TO_SCENE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setupLocalToScenePtr, NIL)
   }
 
   /**
@@ -165,7 +167,7 @@ public open class Resource : RefCounted() {
    */
   public fun emitChanged(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_EMIT_CHANGED, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.emitChangedPtr, NIL)
   }
 
   /**
@@ -180,9 +182,39 @@ public open class Resource : RefCounted() {
   @JvmOverloads
   public fun duplicate(subresources: Boolean = false): Resource? {
     TransferContext.writeArguments(BOOL to subresources)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_DUPLICATE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.duplicatePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setPathPtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "set_path")
+
+    public val takeOverPathPtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "take_over_path")
+
+    public val getPathPtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "get_path")
+
+    public val setNamePtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "set_name")
+
+    public val getNamePtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "get_name")
+
+    public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "get_rid")
+
+    public val setLocalToScenePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Resource", "set_local_to_scene")
+
+    public val isLocalToScenePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Resource", "is_local_to_scene")
+
+    public val getLocalScenePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Resource", "get_local_scene")
+
+    public val setupLocalToScenePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Resource", "setup_local_to_scene")
+
+    public val emitChangedPtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "emit_changed")
+
+    public val duplicatePtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "duplicate")
+  }
 }

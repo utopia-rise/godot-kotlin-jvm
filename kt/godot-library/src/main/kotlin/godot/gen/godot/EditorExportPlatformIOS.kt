@@ -19,4 +19,6 @@ public open class EditorExportPlatformIOS internal constructor() : EditorExportP
   }
 
   public companion object
+
+  internal object MethodBindings
 }

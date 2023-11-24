@@ -22,4 +22,6 @@ public open class EditorExportPlatformPC internal constructor() : EditorExportPl
   }
 
   public companion object
+
+  internal object MethodBindings
 }

@@ -9,8 +9,10 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedStringArray
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
@@ -56,8 +58,7 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
    */
   public fun addFormatLoader(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_IMAGEFORMATLOADEREXTENSION_ADD_FORMAT_LOADER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addFormatLoaderPtr, NIL)
   }
 
   /**
@@ -65,9 +66,22 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
    */
   public fun removeFormatLoader(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_IMAGEFORMATLOADEREXTENSION_REMOVE_FORMAT_LOADER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeFormatLoaderPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _getRecognizedExtensionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImageFormatLoaderExtension", "_get_recognized_extensions")
+
+    public val _loadImagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImageFormatLoaderExtension", "_load_image")
+
+    public val addFormatLoaderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImageFormatLoaderExtension", "add_format_loader")
+
+    public val removeFormatLoaderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImageFormatLoaderExtension", "remove_format_loader")
+  }
 }

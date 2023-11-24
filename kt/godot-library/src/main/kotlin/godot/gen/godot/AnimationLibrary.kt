@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -20,6 +21,7 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -68,8 +70,7 @@ public open class AnimationLibrary : Resource() {
    */
   public fun addAnimation(name: StringName, animation: Animation): GodotError {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to animation)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONLIBRARY_ADD_ANIMATION,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.addAnimationPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -78,8 +79,7 @@ public open class AnimationLibrary : Resource() {
    */
   public fun removeAnimation(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONLIBRARY_REMOVE_ANIMATION,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeAnimationPtr, NIL)
   }
 
   /**
@@ -87,8 +87,7 @@ public open class AnimationLibrary : Resource() {
    */
   public fun renameAnimation(name: StringName, newname: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newname)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONLIBRARY_RENAME_ANIMATION,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.renameAnimationPtr, NIL)
   }
 
   /**
@@ -96,8 +95,7 @@ public open class AnimationLibrary : Resource() {
    */
   public fun hasAnimation(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONLIBRARY_HAS_ANIMATION,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hasAnimationPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -106,8 +104,7 @@ public open class AnimationLibrary : Resource() {
    */
   public fun getAnimation(name: StringName): Animation? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONLIBRARY_GET_ANIMATION,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Animation?)
   }
 
@@ -116,10 +113,29 @@ public open class AnimationLibrary : Resource() {
    */
   public fun getAnimationList(): VariantArray<StringName> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONLIBRARY_GET_ANIMATION_LIST,
-        ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val addAnimationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationLibrary", "add_animation")
+
+    public val removeAnimationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationLibrary", "remove_animation")
+
+    public val renameAnimationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationLibrary", "rename_animation")
+
+    public val hasAnimationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationLibrary", "has_animation")
+
+    public val getAnimationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationLibrary", "get_animation")
+
+    public val getAnimationListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationLibrary", "get_animation_list")
+  }
 }

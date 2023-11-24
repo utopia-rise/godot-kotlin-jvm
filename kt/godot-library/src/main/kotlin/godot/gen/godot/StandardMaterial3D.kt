@@ -27,4 +27,6 @@ public open class StandardMaterial3D : BaseMaterial3D() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

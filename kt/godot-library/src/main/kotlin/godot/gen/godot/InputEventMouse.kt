@@ -10,11 +10,13 @@ import godot.MouseButtonMaskValue
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -37,14 +39,12 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
   public var buttonMask: MouseButtonMask
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSE_GET_BUTTON_MASK,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getButtonMaskPtr, LONG)
       return MouseButtonMaskValue(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.flag)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSE_SET_BUTTON_MASK,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setButtonMaskPtr, NIL)
     }
 
   /**
@@ -56,13 +56,12 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
   public var position: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSE_GET_POSITION,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSE_SET_POSITION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
     }
 
   /**
@@ -74,14 +73,12 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
   public var globalPosition: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSE_GET_GLOBAL_POSITION, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGlobalPositionPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSE_SET_GLOBAL_POSITION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGlobalPositionPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -142,4 +139,24 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setButtonMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouse", "set_button_mask")
+
+    public val getButtonMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouse", "get_button_mask")
+
+    public val setPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouse", "set_position")
+
+    public val getPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouse", "get_position")
+
+    public val setGlobalPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouse", "set_global_position")
+
+    public val getGlobalPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouse", "get_global_position")
+  }
 }

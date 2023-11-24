@@ -12,6 +12,7 @@ import godot.core.Color
 import godot.core.PackedFloat32Array
 import godot.core.Transform2D
 import godot.core.Transform3D
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.LONG
@@ -21,6 +22,7 @@ import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.TRANSFORM3D
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -53,14 +55,12 @@ public open class MultiMesh : Resource() {
   public var transformFormat: TransformFormat
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_TRANSFORM_FORMAT,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTransformFormatPtr, LONG)
       return MultiMesh.TransformFormat.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_TRANSFORM_FORMAT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTransformFormatPtr, NIL)
     }
 
   /**
@@ -69,12 +69,12 @@ public open class MultiMesh : Resource() {
   public var useColors: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_IS_USING_COLORS, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isUsingColorsPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_USE_COLORS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseColorsPtr, NIL)
     }
 
   /**
@@ -83,14 +83,12 @@ public open class MultiMesh : Resource() {
   public var useCustomData: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_IS_USING_CUSTOM_DATA,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isUsingCustomDataPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_USE_CUSTOM_DATA,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseCustomDataPtr, NIL)
     }
 
   /**
@@ -101,13 +99,12 @@ public open class MultiMesh : Resource() {
   public var instanceCount: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_COUNT,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getInstanceCountPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_COUNT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setInstanceCountPtr, NIL)
     }
 
   /**
@@ -116,14 +113,12 @@ public open class MultiMesh : Resource() {
   public var visibleInstanceCount: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_VISIBLE_INSTANCE_COUNT, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVisibleInstanceCountPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_VISIBLE_INSTANCE_COUNT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVisibleInstanceCountPtr, NIL)
     }
 
   /**
@@ -134,12 +129,12 @@ public open class MultiMesh : Resource() {
   public var mesh: Mesh?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_MESH, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_MESH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
     }
 
   /**
@@ -148,13 +143,12 @@ public open class MultiMesh : Resource() {
   public var buffer: PackedFloat32Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_BUFFER,
-          PACKED_FLOAT_32_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBufferPtr, PACKED_FLOAT_32_ARRAY)
       return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_BUFFER, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBufferPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -167,8 +161,7 @@ public open class MultiMesh : Resource() {
    */
   public fun setInstanceTransform(instance: Int, transform: Transform3D): Unit {
     TransferContext.writeArguments(LONG to instance.toLong(), TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_TRANSFORM,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInstanceTransformPtr, NIL)
   }
 
   /**
@@ -176,8 +169,7 @@ public open class MultiMesh : Resource() {
    */
   public fun setInstanceTransform2d(instance: Int, transform: Transform2D): Unit {
     TransferContext.writeArguments(LONG to instance.toLong(), TRANSFORM2D to transform)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_TRANSFORM_2D,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInstanceTransform2dPtr, NIL)
   }
 
   /**
@@ -185,8 +177,7 @@ public open class MultiMesh : Resource() {
    */
   public fun getInstanceTransform(instance: Int): Transform3D {
     TransferContext.writeArguments(LONG to instance.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_TRANSFORM,
-        TRANSFORM3D)
+    TransferContext.callMethod(rawPtr, MethodBindings.getInstanceTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
@@ -195,8 +186,7 @@ public open class MultiMesh : Resource() {
    */
   public fun getInstanceTransform2d(instance: Int): Transform2D {
     TransferContext.writeArguments(LONG to instance.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_TRANSFORM_2D,
-        TRANSFORM2D)
+    TransferContext.callMethod(rawPtr, MethodBindings.getInstanceTransform2dPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
   }
 
@@ -207,7 +197,7 @@ public open class MultiMesh : Resource() {
    */
   public fun setInstanceColor(instance: Int, color: Color): Unit {
     TransferContext.writeArguments(LONG to instance.toLong(), COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_COLOR, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInstanceColorPtr, NIL)
   }
 
   /**
@@ -215,7 +205,7 @@ public open class MultiMesh : Resource() {
    */
   public fun getInstanceColor(instance: Int): Color {
     TransferContext.writeArguments(LONG to instance.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_COLOR, COLOR)
+    TransferContext.callMethod(rawPtr, MethodBindings.getInstanceColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
@@ -228,8 +218,7 @@ public open class MultiMesh : Resource() {
    */
   public fun setInstanceCustomData(instance: Int, customData: Color): Unit {
     TransferContext.writeArguments(LONG to instance.toLong(), COLOR to customData)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_INSTANCE_CUSTOM_DATA,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInstanceCustomDataPtr, NIL)
   }
 
   /**
@@ -237,8 +226,7 @@ public open class MultiMesh : Resource() {
    */
   public fun getInstanceCustomData(instance: Int): Color {
     TransferContext.writeArguments(LONG to instance.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_INSTANCE_CUSTOM_DATA,
-        COLOR)
+    TransferContext.callMethod(rawPtr, MethodBindings.getInstanceCustomDataPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
@@ -247,8 +235,7 @@ public open class MultiMesh : Resource() {
    */
   public fun getAabb(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_AABB,
-        godot.core.VariantType.AABB)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAabbPtr, godot.core.VariantType.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
   }
 
@@ -276,4 +263,70 @@ public open class MultiMesh : Resource() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("MultiMesh", "set_mesh")
+
+    public val getMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("MultiMesh", "get_mesh")
+
+    public val setUseColorsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "set_use_colors")
+
+    public val isUsingColorsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "is_using_colors")
+
+    public val setUseCustomDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "set_use_custom_data")
+
+    public val isUsingCustomDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "is_using_custom_data")
+
+    public val setTransformFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "set_transform_format")
+
+    public val getTransformFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "get_transform_format")
+
+    public val setInstanceCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_count")
+
+    public val getInstanceCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_count")
+
+    public val setVisibleInstanceCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "set_visible_instance_count")
+
+    public val getVisibleInstanceCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "get_visible_instance_count")
+
+    public val setInstanceTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_transform")
+
+    public val setInstanceTransform2dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_transform_2d")
+
+    public val getInstanceTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_transform")
+
+    public val getInstanceTransform2dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_transform_2d")
+
+    public val setInstanceColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_color")
+
+    public val getInstanceColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_color")
+
+    public val setInstanceCustomDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_custom_data")
+
+    public val getInstanceCustomDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_custom_data")
+
+    public val getAabbPtr: VoidPtr = TypeManager.getMethodBindPtr("MultiMesh", "get_aabb")
+
+    public val getBufferPtr: VoidPtr = TypeManager.getMethodBindPtr("MultiMesh", "get_buffer")
+
+    public val setBufferPtr: VoidPtr = TypeManager.getMethodBindPtr("MultiMesh", "set_buffer")
+  }
 }

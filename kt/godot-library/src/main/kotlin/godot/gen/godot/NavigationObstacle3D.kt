@@ -11,6 +11,7 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector3Array
 import godot.core.RID
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -20,6 +21,7 @@ import godot.core.VariantType.VECTOR3
 import godot.core.VariantType._RID
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -50,14 +52,12 @@ public open class NavigationObstacle3D : Node3D() {
   public var avoidanceEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_GET_AVOIDANCE_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_SET_AVOIDANCE_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceEnabledPtr, NIL)
     }
 
   /**
@@ -67,14 +67,12 @@ public open class NavigationObstacle3D : Node3D() {
   public var velocity: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_GET_VELOCITY,
-          VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_SET_VELOCITY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
     }
 
   /**
@@ -83,14 +81,12 @@ public open class NavigationObstacle3D : Node3D() {
   public var radius: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_GET_RADIUS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_SET_RADIUS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
     }
 
   /**
@@ -99,14 +95,12 @@ public open class NavigationObstacle3D : Node3D() {
   public var height: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_GET_HEIGHT,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_SET_HEIGHT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
     }
 
   /**
@@ -115,14 +109,12 @@ public open class NavigationObstacle3D : Node3D() {
   public var vertices: PackedVector3Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_GET_VERTICES,
-          PACKED_VECTOR3_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_VECTOR3_ARRAY)
       return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_SET_VERTICES,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
     }
 
   /**
@@ -131,14 +123,12 @@ public open class NavigationObstacle3D : Node3D() {
   public var avoidanceLayers: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_GET_AVOIDANCE_LAYERS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceLayersPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_SET_AVOIDANCE_LAYERS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceLayersPtr, NIL)
     }
 
   /**
@@ -149,14 +139,12 @@ public open class NavigationObstacle3D : Node3D() {
   public var use3dAvoidance: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_GET_USE_3D_AVOIDANCE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getUse3dAvoidancePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_SET_USE_3D_AVOIDANCE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUse3dAvoidancePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -193,7 +181,7 @@ public open class NavigationObstacle3D : Node3D() {
    */
   public fun getRid(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_GET_RID, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -202,8 +190,7 @@ public open class NavigationObstacle3D : Node3D() {
    */
   public fun setNavigationMap(navigationMap: RID): Unit {
     TransferContext.writeArguments(_RID to navigationMap)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_SET_NAVIGATION_MAP, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationMapPtr, NIL)
   }
 
   /**
@@ -211,8 +198,7 @@ public open class NavigationObstacle3D : Node3D() {
    */
   public fun getNavigationMap(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_GET_NAVIGATION_MAP, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -221,8 +207,7 @@ public open class NavigationObstacle3D : Node3D() {
    */
   public fun setAvoidanceLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_SET_AVOIDANCE_LAYER_VALUE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceLayerValuePtr, NIL)
   }
 
   /**
@@ -230,10 +215,67 @@ public open class NavigationObstacle3D : Node3D() {
    */
   public fun getAvoidanceLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_GET_AVOIDANCE_LAYER_VALUE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceLayerValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationObstacle3D", "get_rid")
+
+    public val setAvoidanceEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle3D", "set_avoidance_enabled")
+
+    public val getAvoidanceEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle3D", "get_avoidance_enabled")
+
+    public val setNavigationMapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle3D", "set_navigation_map")
+
+    public val getNavigationMapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle3D", "get_navigation_map")
+
+    public val setRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle3D", "set_radius")
+
+    public val getRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle3D", "get_radius")
+
+    public val setHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle3D", "set_height")
+
+    public val getHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle3D", "get_height")
+
+    public val setVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle3D", "set_velocity")
+
+    public val getVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle3D", "get_velocity")
+
+    public val setVerticesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle3D", "set_vertices")
+
+    public val getVerticesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle3D", "get_vertices")
+
+    public val setAvoidanceLayersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle3D", "set_avoidance_layers")
+
+    public val getAvoidanceLayersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle3D", "get_avoidance_layers")
+
+    public val setAvoidanceLayerValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle3D", "set_avoidance_layer_value")
+
+    public val getAvoidanceLayerValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle3D", "get_avoidance_layer_value")
+
+    public val setUse3dAvoidancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle3D", "set_use_3d_avoidance")
+
+    public val getUse3dAvoidancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle3D", "get_use_3d_avoidance")
+  }
 }

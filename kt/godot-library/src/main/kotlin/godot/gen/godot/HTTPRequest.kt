@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -21,6 +22,7 @@ import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.signals.Signal4
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -344,14 +346,12 @@ public open class HTTPRequest : Node() {
   public var downloadFile: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_DOWNLOAD_FILE,
-          STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDownloadFilePtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_DOWNLOAD_FILE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDownloadFilePtr, NIL)
     }
 
   /**
@@ -362,14 +362,12 @@ public open class HTTPRequest : Node() {
   public var downloadChunkSize: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_DOWNLOAD_CHUNK_SIZE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDownloadChunkSizePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_DOWNLOAD_CHUNK_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDownloadChunkSizePtr, NIL)
     }
 
   /**
@@ -378,13 +376,12 @@ public open class HTTPRequest : Node() {
   public var useThreads: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_IS_USING_THREADS,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isUsingThreadsPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_USE_THREADS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseThreadsPtr, NIL)
     }
 
   /**
@@ -399,13 +396,12 @@ public open class HTTPRequest : Node() {
   public var acceptGzip: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_IS_ACCEPTING_GZIP,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isAcceptingGzipPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_ACCEPT_GZIP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAcceptGzipPtr, NIL)
     }
 
   /**
@@ -414,14 +410,12 @@ public open class HTTPRequest : Node() {
   public var bodySizeLimit: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_BODY_SIZE_LIMIT,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBodySizeLimitPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_BODY_SIZE_LIMIT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBodySizeLimitPtr, NIL)
     }
 
   /**
@@ -430,14 +424,12 @@ public open class HTTPRequest : Node() {
   public var maxRedirects: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_MAX_REDIRECTS,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMaxRedirectsPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_MAX_REDIRECTS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMaxRedirectsPtr, NIL)
     }
 
   /**
@@ -446,12 +438,12 @@ public open class HTTPRequest : Node() {
   public var timeout: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_TIMEOUT, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTimeoutPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_TIMEOUT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTimeoutPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -476,7 +468,7 @@ public open class HTTPRequest : Node() {
     requestData: String = "",
   ): GodotError {
     TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, LONG to method.id, STRING to requestData)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_REQUEST, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.requestPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -493,7 +485,7 @@ public open class HTTPRequest : Node() {
     requestDataRaw: PackedByteArray = PackedByteArray(),
   ): GodotError {
     TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, LONG to method.id, PACKED_BYTE_ARRAY to requestDataRaw)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_REQUEST_RAW, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.requestRawPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -502,7 +494,7 @@ public open class HTTPRequest : Node() {
    */
   public fun cancelRequest(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_CANCEL_REQUEST, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.cancelRequestPtr, NIL)
   }
 
   /**
@@ -510,7 +502,7 @@ public open class HTTPRequest : Node() {
    */
   public fun setTlsOptions(clientOptions: TLSOptions): Unit {
     TransferContext.writeArguments(OBJECT to clientOptions)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_TLS_OPTIONS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTlsOptionsPtr, NIL)
   }
 
   /**
@@ -518,8 +510,7 @@ public open class HTTPRequest : Node() {
    */
   public fun getHttpClientStatus(): HTTPClient.Status {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_HTTP_CLIENT_STATUS,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getHttpClientStatusPtr, LONG)
     return HTTPClient.Status.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -528,8 +519,7 @@ public open class HTTPRequest : Node() {
    */
   public fun getDownloadedBytes(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_DOWNLOADED_BYTES,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getDownloadedBytesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -540,7 +530,7 @@ public open class HTTPRequest : Node() {
    */
   public fun getBodySize(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_BODY_SIZE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBodySizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -551,7 +541,7 @@ public open class HTTPRequest : Node() {
    */
   public fun setHttpProxy(host: String, port: Int): Unit {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_HTTP_PROXY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHttpProxyPtr, NIL)
   }
 
   /**
@@ -561,7 +551,7 @@ public open class HTTPRequest : Node() {
    */
   public fun setHttpsProxy(host: String, port: Int): Unit {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_HTTPS_PROXY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHttpsProxyPtr, NIL)
   }
 
   public enum class Result(
@@ -636,4 +626,71 @@ public open class HTTPRequest : Node() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val requestPtr: VoidPtr = TypeManager.getMethodBindPtr("HTTPRequest", "request")
+
+    public val requestRawPtr: VoidPtr = TypeManager.getMethodBindPtr("HTTPRequest", "request_raw")
+
+    public val cancelRequestPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "cancel_request")
+
+    public val setTlsOptionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "set_tls_options")
+
+    public val getHttpClientStatusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "get_http_client_status")
+
+    public val setUseThreadsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "set_use_threads")
+
+    public val isUsingThreadsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "is_using_threads")
+
+    public val setAcceptGzipPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "set_accept_gzip")
+
+    public val isAcceptingGzipPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "is_accepting_gzip")
+
+    public val setBodySizeLimitPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "set_body_size_limit")
+
+    public val getBodySizeLimitPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "get_body_size_limit")
+
+    public val setMaxRedirectsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "set_max_redirects")
+
+    public val getMaxRedirectsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "get_max_redirects")
+
+    public val setDownloadFilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "set_download_file")
+
+    public val getDownloadFilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "get_download_file")
+
+    public val getDownloadedBytesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "get_downloaded_bytes")
+
+    public val getBodySizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "get_body_size")
+
+    public val setTimeoutPtr: VoidPtr = TypeManager.getMethodBindPtr("HTTPRequest", "set_timeout")
+
+    public val getTimeoutPtr: VoidPtr = TypeManager.getMethodBindPtr("HTTPRequest", "get_timeout")
+
+    public val setDownloadChunkSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "set_download_chunk_size")
+
+    public val getDownloadChunkSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "get_download_chunk_size")
+
+    public val setHttpProxyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "set_http_proxy")
+
+    public val setHttpsProxyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "set_https_proxy")
+  }
 }

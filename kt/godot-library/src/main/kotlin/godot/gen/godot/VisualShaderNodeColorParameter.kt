@@ -10,10 +10,12 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -32,14 +34,12 @@ public open class VisualShaderNodeColorParameter : VisualShaderNodeParameter() {
   public var defaultValueEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOLORPARAMETER_IS_DEFAULT_VALUE_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOLORPARAMETER_SET_DEFAULT_VALUE_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
     }
 
   /**
@@ -49,14 +49,12 @@ public open class VisualShaderNodeColorParameter : VisualShaderNodeParameter() {
   public var defaultValue: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOLORPARAMETER_GET_DEFAULT_VALUE, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOLORPARAMETER_SET_DEFAULT_VALUE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -89,4 +87,18 @@ public open class VisualShaderNodeColorParameter : VisualShaderNodeParameter() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setDefaultValueEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorParameter", "set_default_value_enabled")
+
+    public val isDefaultValueEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorParameter", "is_default_value_enabled")
+
+    public val setDefaultValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorParameter", "set_default_value")
+
+    public val getDefaultValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorParameter", "get_default_value")
+  }
 }

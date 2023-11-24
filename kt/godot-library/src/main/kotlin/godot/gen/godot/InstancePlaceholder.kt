@@ -8,11 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -42,8 +44,7 @@ public open class InstancePlaceholder internal constructor() : Node() {
   @JvmOverloads
   public fun getStoredValues(withOrder: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to withOrder)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_INSTANCEPLACEHOLDER_GET_STORED_VALUES, DICTIONARY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getStoredValuesPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
@@ -55,8 +56,7 @@ public open class InstancePlaceholder internal constructor() : Node() {
   @JvmOverloads
   public fun createInstance(replace: Boolean = false, customScene: PackedScene? = null): Node? {
     TransferContext.writeArguments(BOOL to replace, OBJECT to customScene)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INSTANCEPLACEHOLDER_CREATE_INSTANCE,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.createInstancePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Node?)
   }
 
@@ -65,10 +65,20 @@ public open class InstancePlaceholder internal constructor() : Node() {
    */
   public fun getInstancePath(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_INSTANCEPLACEHOLDER_GET_INSTANCE_PATH, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getInstancePathPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getStoredValuesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InstancePlaceholder", "get_stored_values")
+
+    public val createInstancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InstancePlaceholder", "create_instance")
+
+    public val getInstancePathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InstancePlaceholder", "get_instance_path")
+  }
 }

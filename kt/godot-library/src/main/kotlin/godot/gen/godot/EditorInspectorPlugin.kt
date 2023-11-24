@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
+import godot.core.TypeManager
 import godot.core.VariantType
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
@@ -15,6 +16,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -101,8 +103,7 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
    */
   public fun addCustomControl(control: Control): Unit {
     TransferContext.writeArguments(OBJECT to control)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINSPECTORPLUGIN_ADD_CUSTOM_CONTROL, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addCustomControlPtr, NIL)
   }
 
   /**
@@ -115,8 +116,7 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
     addToEnd: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(STRING to property, OBJECT to editor, BOOL to addToEnd)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINSPECTORPLUGIN_ADD_PROPERTY_EDITOR, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addPropertyEditorPtr, NIL)
   }
 
   /**
@@ -128,10 +128,38 @@ public open class EditorInspectorPlugin internal constructor() : RefCounted() {
     editor: Control,
   ): Unit {
     TransferContext.writeArguments(STRING to label, PACKED_STRING_ARRAY to properties, OBJECT to editor)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINSPECTORPLUGIN_ADD_PROPERTY_EDITOR_FOR_MULTIPLE_PROPERTIES,
+    TransferContext.callMethod(rawPtr, MethodBindings.addPropertyEditorForMultiplePropertiesPtr,
         NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _canHandlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorInspectorPlugin", "_can_handle")
+
+    public val _parseBeginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorInspectorPlugin", "_parse_begin")
+
+    public val _parseCategoryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorInspectorPlugin", "_parse_category")
+
+    public val _parseGroupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorInspectorPlugin", "_parse_group")
+
+    public val _parsePropertyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorInspectorPlugin", "_parse_property")
+
+    public val _parseEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorInspectorPlugin", "_parse_end")
+
+    public val addCustomControlPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorInspectorPlugin", "add_custom_control")
+
+    public val addPropertyEditorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorInspectorPlugin", "add_property_editor")
+
+    public val addPropertyEditorForMultiplePropertiesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorInspectorPlugin", "add_property_editor_for_multiple_properties")
+  }
 }

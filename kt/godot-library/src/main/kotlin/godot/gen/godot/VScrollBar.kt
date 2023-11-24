@@ -24,4 +24,6 @@ public open class VScrollBar : ScrollBar() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

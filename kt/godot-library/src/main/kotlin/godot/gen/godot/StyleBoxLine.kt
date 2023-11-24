@@ -10,12 +10,14 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -38,12 +40,12 @@ public open class StyleBoxLine : StyleBox() {
   public var color: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_GET_COLOR, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_COLOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
     }
 
   /**
@@ -52,13 +54,12 @@ public open class StyleBoxLine : StyleBox() {
   public var growBegin: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_GET_GROW_BEGIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGrowBeginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_GROW_BEGIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGrowBeginPtr, NIL)
     }
 
   /**
@@ -67,12 +68,12 @@ public open class StyleBoxLine : StyleBox() {
   public var growEnd: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_GET_GROW_END, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGrowEndPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_GROW_END, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGrowEndPtr, NIL)
     }
 
   /**
@@ -81,12 +82,12 @@ public open class StyleBoxLine : StyleBox() {
   public var thickness: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_GET_THICKNESS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getThicknessPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_THICKNESS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setThicknessPtr, NIL)
     }
 
   /**
@@ -95,12 +96,12 @@ public open class StyleBoxLine : StyleBox() {
   public var vertical: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_IS_VERTICAL, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_VERTICAL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -133,4 +134,31 @@ public open class StyleBoxLine : StyleBox() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setColorPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBoxLine", "set_color")
+
+    public val getColorPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBoxLine", "get_color")
+
+    public val setThicknessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxLine", "set_thickness")
+
+    public val getThicknessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxLine", "get_thickness")
+
+    public val setGrowBeginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxLine", "set_grow_begin")
+
+    public val getGrowBeginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxLine", "get_grow_begin")
+
+    public val setGrowEndPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBoxLine", "set_grow_end")
+
+    public val getGrowEndPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBoxLine", "get_grow_end")
+
+    public val setVerticalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxLine", "set_vertical")
+
+    public val isVerticalPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBoxLine", "is_vertical")
+  }
 }

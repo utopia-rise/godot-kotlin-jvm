@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedStringArray
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
@@ -18,6 +19,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -134,7 +136,7 @@ public open class Expression : RefCounted() {
   public fun parse(expression: String, inputNames: PackedStringArray = PackedStringArray()):
       GodotError {
     TransferContext.writeArguments(STRING to expression, PACKED_STRING_ARRAY to inputNames)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EXPRESSION_PARSE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.parsePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -151,7 +153,7 @@ public open class Expression : RefCounted() {
     constCallsOnly: Boolean = false,
   ): Any? {
     TransferContext.writeArguments(ARRAY to inputs, OBJECT to baseInstance, BOOL to showError, BOOL to constCallsOnly)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EXPRESSION_EXECUTE, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.executePtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -160,7 +162,7 @@ public open class Expression : RefCounted() {
    */
   public fun hasExecuteFailed(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EXPRESSION_HAS_EXECUTE_FAILED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hasExecuteFailedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -169,9 +171,21 @@ public open class Expression : RefCounted() {
    */
   public fun getErrorText(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EXPRESSION_GET_ERROR_TEXT, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getErrorTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val parsePtr: VoidPtr = TypeManager.getMethodBindPtr("Expression", "parse")
+
+    public val executePtr: VoidPtr = TypeManager.getMethodBindPtr("Expression", "execute")
+
+    public val hasExecuteFailedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Expression", "has_execute_failed")
+
+    public val getErrorTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Expression", "get_error_text")
+  }
 }

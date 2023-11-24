@@ -10,9 +10,11 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Plane
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PLANE
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -32,14 +34,12 @@ public open class WorldBoundaryShape3D : Shape3D() {
   public var plane: Plane
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDBOUNDARYSHAPE3D_GET_PLANE,
-          PLANE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPlanePtr, PLANE)
       return (TransferContext.readReturnValue(PLANE, false) as Plane)
     }
     set(`value`) {
       TransferContext.writeArguments(PLANE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDBOUNDARYSHAPE3D_SET_PLANE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPlanePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -72,4 +72,12 @@ public open class WorldBoundaryShape3D : Shape3D() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setPlanePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WorldBoundaryShape3D", "set_plane")
+
+    public val getPlanePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WorldBoundaryShape3D", "get_plane")
+  }
 }

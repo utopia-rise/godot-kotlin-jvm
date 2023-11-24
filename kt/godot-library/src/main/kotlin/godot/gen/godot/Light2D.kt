@@ -10,12 +10,14 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -40,12 +42,12 @@ public open class Light2D internal constructor() : Node2D() {
   public var enabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_IS_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
     }
 
   /**
@@ -54,12 +56,12 @@ public open class Light2D internal constructor() : Node2D() {
   public var editorOnly: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_IS_EDITOR_ONLY, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isEditorOnlyPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_EDITOR_ONLY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEditorOnlyPtr, NIL)
     }
 
   /**
@@ -69,12 +71,12 @@ public open class Light2D internal constructor() : Node2D() {
   public var color: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_COLOR, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_COLOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
     }
 
   /**
@@ -83,12 +85,12 @@ public open class Light2D internal constructor() : Node2D() {
   public var energy: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_ENERGY, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnergyPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_ENERGY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnergyPtr, NIL)
     }
 
   /**
@@ -97,12 +99,12 @@ public open class Light2D internal constructor() : Node2D() {
   public var blendMode: BlendMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_BLEND_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBlendModePtr, LONG)
       return Light2D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_BLEND_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBlendModePtr, NIL)
     }
 
   /**
@@ -111,12 +113,12 @@ public open class Light2D internal constructor() : Node2D() {
   public var rangeZMin: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_Z_RANGE_MIN, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getZRangeMinPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_Z_RANGE_MIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setZRangeMinPtr, NIL)
     }
 
   /**
@@ -125,12 +127,12 @@ public open class Light2D internal constructor() : Node2D() {
   public var rangeZMax: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_Z_RANGE_MAX, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getZRangeMaxPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_Z_RANGE_MAX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setZRangeMaxPtr, NIL)
     }
 
   /**
@@ -139,12 +141,12 @@ public open class Light2D internal constructor() : Node2D() {
   public var rangeLayerMin: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_LAYER_RANGE_MIN, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLayerRangeMinPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_LAYER_RANGE_MIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLayerRangeMinPtr, NIL)
     }
 
   /**
@@ -153,12 +155,12 @@ public open class Light2D internal constructor() : Node2D() {
   public var rangeLayerMax: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_LAYER_RANGE_MAX, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLayerRangeMaxPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_LAYER_RANGE_MAX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLayerRangeMaxPtr, NIL)
     }
 
   /**
@@ -169,12 +171,12 @@ public open class Light2D internal constructor() : Node2D() {
   public var rangeItemCullMask: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_ITEM_CULL_MASK, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getItemCullMaskPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_ITEM_CULL_MASK, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setItemCullMaskPtr, NIL)
     }
 
   /**
@@ -183,12 +185,12 @@ public open class Light2D internal constructor() : Node2D() {
   public var shadowEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_IS_SHADOW_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isShadowEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_SHADOW_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShadowEnabledPtr, NIL)
     }
 
   /**
@@ -198,12 +200,12 @@ public open class Light2D internal constructor() : Node2D() {
   public var shadowColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_SHADOW_COLOR, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getShadowColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_SHADOW_COLOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShadowColorPtr, NIL)
     }
 
   /**
@@ -212,12 +214,12 @@ public open class Light2D internal constructor() : Node2D() {
   public var shadowFilter: ShadowFilter
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_SHADOW_FILTER, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getShadowFilterPtr, LONG)
       return Light2D.ShadowFilter.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_SHADOW_FILTER, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShadowFilterPtr, NIL)
     }
 
   /**
@@ -226,12 +228,12 @@ public open class Light2D internal constructor() : Node2D() {
   public var shadowFilterSmooth: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_SHADOW_SMOOTH, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getShadowSmoothPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_SHADOW_SMOOTH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShadowSmoothPtr, NIL)
     }
 
   /**
@@ -240,14 +242,12 @@ public open class Light2D internal constructor() : Node2D() {
   public var shadowItemCullMask: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_ITEM_SHADOW_CULL_MASK,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getItemShadowCullMaskPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_ITEM_SHADOW_CULL_MASK,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setItemShadowCullMaskPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -308,7 +308,7 @@ public open class Light2D internal constructor() : Node2D() {
    */
   public fun setHeight(height: Float): Unit {
     TransferContext.writeArguments(DOUBLE to height.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_HEIGHT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
   }
 
   /**
@@ -316,7 +316,7 @@ public open class Light2D internal constructor() : Node2D() {
    */
   public fun getHeight(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_HEIGHT, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -375,4 +375,87 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setEnabledPtr: VoidPtr = TypeManager.getMethodBindPtr("Light2D", "set_enabled")
+
+    public val isEnabledPtr: VoidPtr = TypeManager.getMethodBindPtr("Light2D", "is_enabled")
+
+    public val setEditorOnlyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light2D", "set_editor_only")
+
+    public val isEditorOnlyPtr: VoidPtr = TypeManager.getMethodBindPtr("Light2D", "is_editor_only")
+
+    public val setColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Light2D", "set_color")
+
+    public val getColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Light2D", "get_color")
+
+    public val setEnergyPtr: VoidPtr = TypeManager.getMethodBindPtr("Light2D", "set_energy")
+
+    public val getEnergyPtr: VoidPtr = TypeManager.getMethodBindPtr("Light2D", "get_energy")
+
+    public val setZRangeMinPtr: VoidPtr = TypeManager.getMethodBindPtr("Light2D", "set_z_range_min")
+
+    public val getZRangeMinPtr: VoidPtr = TypeManager.getMethodBindPtr("Light2D", "get_z_range_min")
+
+    public val setZRangeMaxPtr: VoidPtr = TypeManager.getMethodBindPtr("Light2D", "set_z_range_max")
+
+    public val getZRangeMaxPtr: VoidPtr = TypeManager.getMethodBindPtr("Light2D", "get_z_range_max")
+
+    public val setLayerRangeMinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light2D", "set_layer_range_min")
+
+    public val getLayerRangeMinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light2D", "get_layer_range_min")
+
+    public val setLayerRangeMaxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light2D", "set_layer_range_max")
+
+    public val getLayerRangeMaxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light2D", "get_layer_range_max")
+
+    public val setItemCullMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light2D", "set_item_cull_mask")
+
+    public val getItemCullMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light2D", "get_item_cull_mask")
+
+    public val setItemShadowCullMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light2D", "set_item_shadow_cull_mask")
+
+    public val getItemShadowCullMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light2D", "get_item_shadow_cull_mask")
+
+    public val setShadowEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light2D", "set_shadow_enabled")
+
+    public val isShadowEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light2D", "is_shadow_enabled")
+
+    public val setShadowSmoothPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light2D", "set_shadow_smooth")
+
+    public val getShadowSmoothPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light2D", "get_shadow_smooth")
+
+    public val setShadowFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light2D", "set_shadow_filter")
+
+    public val getShadowFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light2D", "get_shadow_filter")
+
+    public val setShadowColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light2D", "set_shadow_color")
+
+    public val getShadowColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light2D", "get_shadow_color")
+
+    public val setBlendModePtr: VoidPtr = TypeManager.getMethodBindPtr("Light2D", "set_blend_mode")
+
+    public val getBlendModePtr: VoidPtr = TypeManager.getMethodBindPtr("Light2D", "get_blend_mode")
+
+    public val setHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("Light2D", "set_height")
+
+    public val getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("Light2D", "get_height")
+  }
 }

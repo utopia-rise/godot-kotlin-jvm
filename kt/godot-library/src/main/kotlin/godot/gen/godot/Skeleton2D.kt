@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Transform2D
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -19,6 +20,7 @@ import godot.core.VariantType._RID
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
@@ -53,7 +55,7 @@ public open class Skeleton2D : Node2D() {
    */
   public fun getBoneCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_BONE_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBoneCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -62,7 +64,7 @@ public open class Skeleton2D : Node2D() {
    */
   public fun getBone(idx: Int): Bone2D? {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_BONE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBonePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Bone2D?)
   }
 
@@ -71,7 +73,7 @@ public open class Skeleton2D : Node2D() {
    */
   public fun getSkeleton(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_SKELETON, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -80,8 +82,7 @@ public open class Skeleton2D : Node2D() {
    */
   public fun setModificationStack(modificationStack: SkeletonModificationStack2D): Unit {
     TransferContext.writeArguments(OBJECT to modificationStack)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_SET_MODIFICATION_STACK,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setModificationStackPtr, NIL)
   }
 
   /**
@@ -89,8 +90,7 @@ public open class Skeleton2D : Node2D() {
    */
   public fun getModificationStack(): SkeletonModificationStack2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_MODIFICATION_STACK,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getModificationStackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as SkeletonModificationStack2D?)
   }
 
@@ -99,8 +99,7 @@ public open class Skeleton2D : Node2D() {
    */
   public fun executeModifications(delta: Float, executionMode: Int): Unit {
     TransferContext.writeArguments(DOUBLE to delta.toDouble(), LONG to executionMode.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_EXECUTE_MODIFICATIONS,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.executeModificationsPtr, NIL)
   }
 
   /**
@@ -117,8 +116,7 @@ public open class Skeleton2D : Node2D() {
     persistent: Boolean,
   ): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), TRANSFORM2D to overridePose, DOUBLE to strength.toDouble(), BOOL to persistent)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETON2D_SET_BONE_LOCAL_POSE_OVERRIDE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBoneLocalPoseOverridePtr, NIL)
   }
 
   /**
@@ -126,10 +124,33 @@ public open class Skeleton2D : Node2D() {
    */
   public fun getBoneLocalPoseOverride(boneIdx: Int): Transform2D {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_BONE_LOCAL_POSE_OVERRIDE, TRANSFORM2D)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBoneLocalPoseOverridePtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getBoneCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Skeleton2D", "get_bone_count")
+
+    public val getBonePtr: VoidPtr = TypeManager.getMethodBindPtr("Skeleton2D", "get_bone")
+
+    public val getSkeletonPtr: VoidPtr = TypeManager.getMethodBindPtr("Skeleton2D", "get_skeleton")
+
+    public val setModificationStackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Skeleton2D", "set_modification_stack")
+
+    public val getModificationStackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Skeleton2D", "get_modification_stack")
+
+    public val executeModificationsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Skeleton2D", "execute_modifications")
+
+    public val setBoneLocalPoseOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Skeleton2D", "set_bone_local_pose_override")
+
+    public val getBoneLocalPoseOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Skeleton2D", "get_bone_local_pose_override")
+  }
 }

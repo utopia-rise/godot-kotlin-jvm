@@ -8,10 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -170,7 +172,7 @@ public open class PackedScene : Resource() {
    */
   public fun pack(path: Node): GodotError {
     TransferContext.writeArguments(OBJECT to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDSCENE_PACK, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.packPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -181,7 +183,7 @@ public open class PackedScene : Resource() {
   public fun instantiate(editState: GenEditState =
       PackedScene.GenEditState.GEN_EDIT_STATE_DISABLED): Node? {
     TransferContext.writeArguments(LONG to editState.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDSCENE_INSTANTIATE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.instantiatePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Node?)
   }
 
@@ -190,7 +192,7 @@ public open class PackedScene : Resource() {
    */
   public fun canInstantiate(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDSCENE_CAN_INSTANTIATE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.canInstantiatePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -199,7 +201,7 @@ public open class PackedScene : Resource() {
    */
   public fun getState(): SceneState? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDSCENE_GET_STATE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getStatePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as SceneState?)
   }
 
@@ -241,4 +243,15 @@ public open class PackedScene : Resource() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val packPtr: VoidPtr = TypeManager.getMethodBindPtr("PackedScene", "pack")
+
+    public val instantiatePtr: VoidPtr = TypeManager.getMethodBindPtr("PackedScene", "instantiate")
+
+    public val canInstantiatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PackedScene", "can_instantiate")
+
+    public val getStatePtr: VoidPtr = TypeManager.getMethodBindPtr("PackedScene", "get_state")
+  }
 }

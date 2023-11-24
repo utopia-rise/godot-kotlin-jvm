@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -34,14 +36,12 @@ public open class WorldEnvironment : Node() {
   public var environment: Environment?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDENVIRONMENT_GET_ENVIRONMENT,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Environment?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDENVIRONMENT_SET_ENVIRONMENT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentPtr, NIL)
     }
 
   /**
@@ -50,14 +50,12 @@ public open class WorldEnvironment : Node() {
   public var cameraAttributes: Material?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WORLDENVIRONMENT_GET_CAMERA_ATTRIBUTES, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Material?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WORLDENVIRONMENT_SET_CAMERA_ATTRIBUTES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCameraAttributesPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -66,4 +64,18 @@ public open class WorldEnvironment : Node() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setEnvironmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WorldEnvironment", "set_environment")
+
+    public val getEnvironmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WorldEnvironment", "get_environment")
+
+    public val setCameraAttributesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WorldEnvironment", "set_camera_attributes")
+
+    public val getCameraAttributesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WorldEnvironment", "get_camera_attributes")
+  }
 }

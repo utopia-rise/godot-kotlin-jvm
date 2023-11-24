@@ -75,10 +75,10 @@ internal object TransferContext {
         return type.toKotlin(buffer, isNullable)
     }
 
-    fun callMethod(ptr: VoidPtr, methodIndex: Int, expectedReturnType: VariantType) {
+    fun callMethod(ptr: VoidPtr, methodPtr: VoidPtr, expectedReturnType: VariantType) {
         icall(
             ptr,
-            methodIndex,
+            methodPtr,
             expectedReturnType.ordinal
         )
     }
@@ -101,5 +101,5 @@ internal object TransferContext {
     external fun getSingleton(classIndex: Int)
     external fun freeObject(rawPtr: VoidPtr)
 
-    private external fun icall(ptr: VoidPtr, methodIndex: Int, expectedReturnType: Int)
+    private external fun icall(ptr: VoidPtr, methodPtr: VoidPtr, expectedReturnType: Int)
 }

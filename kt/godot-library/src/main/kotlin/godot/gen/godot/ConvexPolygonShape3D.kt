@@ -8,9 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector3Array
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_VECTOR3_ARRAY
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -37,14 +39,12 @@ public open class ConvexPolygonShape3D : Shape3D() {
   public var points: PackedVector3Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONVEXPOLYGONSHAPE3D_GET_POINTS,
-          PACKED_VECTOR3_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPointsPtr, PACKED_VECTOR3_ARRAY)
       return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONVEXPOLYGONSHAPE3D_SET_POINTS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPointsPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -53,4 +53,12 @@ public open class ConvexPolygonShape3D : Shape3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setPointsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ConvexPolygonShape3D", "set_points")
+
+    public val getPointsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ConvexPolygonShape3D", "get_points")
+  }
 }

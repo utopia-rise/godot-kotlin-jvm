@@ -11,7 +11,9 @@ import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantArray
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -567,4 +569,167 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _getNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_get_name")
+
+    public val _initPtr: VoidPtr = TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_init")
+
+    public val _getTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_get_type")
+
+    public val _getExtensionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_get_extension")
+
+    public val _finishPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_finish")
+
+    public val _getReservedWordsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_get_reserved_words")
+
+    public val _isControlFlowKeywordPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_is_control_flow_keyword")
+
+    public val _getCommentDelimitersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_get_comment_delimiters")
+
+    public val _getStringDelimitersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_get_string_delimiters")
+
+    public val _makeTemplatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_make_template")
+
+    public val _getBuiltInTemplatesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_get_built_in_templates")
+
+    public val _isUsingTemplatesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_is_using_templates")
+
+    public val _validatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_validate")
+
+    public val _validatePathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_validate_path")
+
+    public val _createScriptPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_create_script")
+
+    public val _hasNamedClassesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_has_named_classes")
+
+    public val _supportsBuiltinModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_supports_builtin_mode")
+
+    public val _supportsDocumentationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_supports_documentation")
+
+    public val _canInheritFromFilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_can_inherit_from_file")
+
+    public val _findFunctionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_find_function")
+
+    public val _makeFunctionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_make_function")
+
+    public val _openInExternalEditorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_open_in_external_editor")
+
+    public val _overridesExternalEditorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_overrides_external_editor")
+
+    public val _completeCodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_complete_code")
+
+    public val _lookupCodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_lookup_code")
+
+    public val _autoIndentCodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_auto_indent_code")
+
+    public val _addGlobalConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_add_global_constant")
+
+    public val _addNamedGlobalConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_add_named_global_constant")
+
+    public val _removeNamedGlobalConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_remove_named_global_constant")
+
+    public val _threadEnterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_thread_enter")
+
+    public val _threadExitPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_thread_exit")
+
+    public val _debugGetErrorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_debug_get_error")
+
+    public val _debugGetStackLevelCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_debug_get_stack_level_count")
+
+    public val _debugGetStackLevelLinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_debug_get_stack_level_line")
+
+    public val _debugGetStackLevelFunctionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_debug_get_stack_level_function")
+
+    public val _debugGetStackLevelLocalsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_debug_get_stack_level_locals")
+
+    public val _debugGetStackLevelMembersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_debug_get_stack_level_members")
+
+    public val _debugGetStackLevelInstancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_debug_get_stack_level_instance")
+
+    public val _debugGetGlobalsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_debug_get_globals")
+
+    public val _debugParseStackLevelExpressionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_debug_parse_stack_level_expression")
+
+    public val _debugGetCurrentStackInfoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_debug_get_current_stack_info")
+
+    public val _reloadAllScriptsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_reload_all_scripts")
+
+    public val _reloadToolScriptPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_reload_tool_script")
+
+    public val _getRecognizedExtensionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_get_recognized_extensions")
+
+    public val _getPublicFunctionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_get_public_functions")
+
+    public val _getPublicConstantsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_get_public_constants")
+
+    public val _getPublicAnnotationsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_get_public_annotations")
+
+    public val _profilingStartPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_profiling_start")
+
+    public val _profilingStopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_profiling_stop")
+
+    public val _profilingGetAccumulatedDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_profiling_get_accumulated_data")
+
+    public val _profilingGetFrameDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_profiling_get_frame_data")
+
+    public val _framePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_frame")
+
+    public val _handlesGlobalClassTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_handles_global_class_type")
+
+    public val _getGlobalClassNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_get_global_class_name")
+  }
 }

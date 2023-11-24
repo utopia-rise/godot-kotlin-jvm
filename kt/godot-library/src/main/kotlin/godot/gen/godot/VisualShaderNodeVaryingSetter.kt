@@ -24,4 +24,6 @@ public open class VisualShaderNodeVaryingSetter : VisualShaderNodeVarying() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

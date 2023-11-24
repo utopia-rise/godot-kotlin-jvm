@@ -8,11 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantType.ANY
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -35,12 +37,12 @@ public open class ShaderMaterial : Material() {
   public var shader: Shader?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_GET_SHADER, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getShaderPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Shader?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShaderPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -57,8 +59,7 @@ public open class ShaderMaterial : Material() {
    */
   public fun setShaderParameter(`param`: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to param, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER_PARAMETER,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShaderParameterPtr, NIL)
   }
 
   /**
@@ -66,10 +67,21 @@ public open class ShaderMaterial : Material() {
    */
   public fun getShaderParameter(`param`: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to param)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_GET_SHADER_PARAMETER,
-        ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getShaderParameterPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setShaderPtr: VoidPtr = TypeManager.getMethodBindPtr("ShaderMaterial", "set_shader")
+
+    public val getShaderPtr: VoidPtr = TypeManager.getMethodBindPtr("ShaderMaterial", "get_shader")
+
+    public val setShaderParameterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ShaderMaterial", "set_shader_parameter")
+
+    public val getShaderParameterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ShaderMaterial", "get_shader_parameter")
+  }
 }

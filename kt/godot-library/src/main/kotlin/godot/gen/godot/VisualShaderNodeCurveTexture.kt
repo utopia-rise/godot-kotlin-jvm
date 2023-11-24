@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -27,14 +29,12 @@ public open class VisualShaderNodeCurveTexture : VisualShaderNodeResizableBase()
   public var texture: CurveTexture?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECURVETEXTURE_GET_TEXTURE, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as CurveTexture?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECURVETEXTURE_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -43,4 +43,12 @@ public open class VisualShaderNodeCurveTexture : VisualShaderNodeResizableBase()
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeCurveTexture", "set_texture")
+
+    public val getTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeCurveTexture", "get_texture")
+  }
 }

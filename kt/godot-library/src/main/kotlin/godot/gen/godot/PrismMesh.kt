@@ -9,12 +9,14 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -36,13 +38,12 @@ public open class PrismMesh : PrimitiveMesh() {
   public var leftToRight: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_GET_LEFT_TO_RIGHT,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLeftToRightPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_SET_LEFT_TO_RIGHT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLeftToRightPtr, NIL)
     }
 
   /**
@@ -52,12 +53,12 @@ public open class PrismMesh : PrimitiveMesh() {
   public var size: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_GET_SIZE, VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_SET_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
     }
 
   /**
@@ -66,14 +67,12 @@ public open class PrismMesh : PrimitiveMesh() {
   public var subdivideWidth: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_GET_SUBDIVIDE_WIDTH,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideWidthPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_SET_SUBDIVIDE_WIDTH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideWidthPtr, NIL)
     }
 
   /**
@@ -82,14 +81,12 @@ public open class PrismMesh : PrimitiveMesh() {
   public var subdivideHeight: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_GET_SUBDIVIDE_HEIGHT,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideHeightPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_SET_SUBDIVIDE_HEIGHT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideHeightPtr, NIL)
     }
 
   /**
@@ -98,14 +95,12 @@ public open class PrismMesh : PrimitiveMesh() {
   public var subdivideDepth: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_GET_SUBDIVIDE_DEPTH,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideDepthPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_SET_SUBDIVIDE_DEPTH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideDepthPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -138,4 +133,34 @@ public open class PrismMesh : PrimitiveMesh() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setLeftToRightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrismMesh", "set_left_to_right")
+
+    public val getLeftToRightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrismMesh", "get_left_to_right")
+
+    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("PrismMesh", "set_size")
+
+    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("PrismMesh", "get_size")
+
+    public val setSubdivideWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrismMesh", "set_subdivide_width")
+
+    public val getSubdivideWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrismMesh", "get_subdivide_width")
+
+    public val setSubdivideHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrismMesh", "set_subdivide_height")
+
+    public val getSubdivideHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrismMesh", "get_subdivide_height")
+
+    public val setSubdivideDepthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrismMesh", "set_subdivide_depth")
+
+    public val getSubdivideDepthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrismMesh", "get_subdivide_depth")
+  }
 }

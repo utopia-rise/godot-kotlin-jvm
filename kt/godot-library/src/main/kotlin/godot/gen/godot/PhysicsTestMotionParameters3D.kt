@@ -11,6 +11,7 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Transform3D
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -21,6 +22,7 @@ import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -43,14 +45,12 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   public var from: Transform3D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_GET_FROM, TRANSFORM3D)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFromPtr, TRANSFORM3D)
       return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM3D to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_SET_FROM, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFromPtr, NIL)
     }
 
   /**
@@ -60,14 +60,12 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   public var motion: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_GET_MOTION, VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMotionPtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_SET_MOTION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMotionPtr, NIL)
     }
 
   /**
@@ -76,14 +74,12 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   public var margin: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_GET_MARGIN, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_SET_MARGIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
     }
 
   /**
@@ -92,14 +88,12 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   public var maxCollisions: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_GET_MAX_COLLISIONS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMaxCollisionsPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_SET_MAX_COLLISIONS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMaxCollisionsPtr, NIL)
     }
 
   /**
@@ -110,16 +104,12 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   public var collideSeparationRay: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_IS_COLLIDE_SEPARATION_RAY_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isCollideSeparationRayEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_SET_COLLIDE_SEPARATION_RAY_ENABLED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCollideSeparationRayEnabledPtr, NIL)
     }
 
   /**
@@ -128,14 +118,12 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   public var excludeBodies: VariantArray<RID>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_GET_EXCLUDE_BODIES, ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getExcludeBodiesPtr, ARRAY)
       return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_SET_EXCLUDE_BODIES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setExcludeBodiesPtr, NIL)
     }
 
   /**
@@ -144,14 +132,12 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   public var excludeObjects: VariantArray<Long>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_GET_EXCLUDE_OBJECTS, ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getExcludeObjectsPtr, ARRAY)
       return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Long>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_SET_EXCLUDE_OBJECTS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setExcludeObjectsPtr, NIL)
     }
 
   /**
@@ -162,16 +148,12 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   public var recoveryAsCollision: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_IS_RECOVERY_AS_COLLISION_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isRecoveryAsCollisionEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_SET_RECOVERY_AS_COLLISION_ENABLED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRecoveryAsCollisionEnabledPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -228,4 +210,54 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val getFromPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_from")
+
+    public val setFromPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_from")
+
+    public val getMotionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_motion")
+
+    public val setMotionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_motion")
+
+    public val getMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_margin")
+
+    public val setMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_margin")
+
+    public val getMaxCollisionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_max_collisions")
+
+    public val setMaxCollisionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_max_collisions")
+
+    public val isCollideSeparationRayEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "is_collide_separation_ray_enabled")
+
+    public val setCollideSeparationRayEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_collide_separation_ray_enabled")
+
+    public val getExcludeBodiesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_exclude_bodies")
+
+    public val setExcludeBodiesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_exclude_bodies")
+
+    public val getExcludeObjectsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_exclude_objects")
+
+    public val setExcludeObjectsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_exclude_objects")
+
+    public val isRecoveryAsCollisionEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "is_recovery_as_collision_enabled")
+
+    public val setRecoveryAsCollisionEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_recovery_as_collision_enabled")
+  }
 }

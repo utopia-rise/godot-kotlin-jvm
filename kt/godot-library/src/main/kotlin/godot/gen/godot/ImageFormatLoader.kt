@@ -92,6 +92,8 @@ public open class ImageFormatLoader internal constructor() : RefCounted() {
   ) : LoaderFlags
 
   public companion object
+
+  internal object MethodBindings
 }
 
 public infix fun Long.or(other: godot.ImageFormatLoader.LoaderFlags): Long = this.or(other.flag)

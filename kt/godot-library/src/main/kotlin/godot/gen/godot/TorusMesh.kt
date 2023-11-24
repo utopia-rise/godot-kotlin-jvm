@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -31,13 +33,12 @@ public open class TorusMesh : PrimitiveMesh() {
   public var innerRadius: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TORUSMESH_GET_INNER_RADIUS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getInnerRadiusPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TORUSMESH_SET_INNER_RADIUS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setInnerRadiusPtr, NIL)
     }
 
   /**
@@ -46,13 +47,12 @@ public open class TorusMesh : PrimitiveMesh() {
   public var outerRadius: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TORUSMESH_GET_OUTER_RADIUS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getOuterRadiusPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TORUSMESH_SET_OUTER_RADIUS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOuterRadiusPtr, NIL)
     }
 
   /**
@@ -61,12 +61,12 @@ public open class TorusMesh : PrimitiveMesh() {
   public var rings: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TORUSMESH_GET_RINGS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TORUSMESH_SET_RINGS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRingsPtr, NIL)
     }
 
   /**
@@ -75,12 +75,12 @@ public open class TorusMesh : PrimitiveMesh() {
   public var ringSegments: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TORUSMESH_GET_RING_SEGMENTS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRingSegmentsPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TORUSMESH_SET_RING_SEGMENTS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRingSegmentsPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -89,4 +89,28 @@ public open class TorusMesh : PrimitiveMesh() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setInnerRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TorusMesh", "set_inner_radius")
+
+    public val getInnerRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TorusMesh", "get_inner_radius")
+
+    public val setOuterRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TorusMesh", "set_outer_radius")
+
+    public val getOuterRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TorusMesh", "get_outer_radius")
+
+    public val setRingsPtr: VoidPtr = TypeManager.getMethodBindPtr("TorusMesh", "set_rings")
+
+    public val getRingsPtr: VoidPtr = TypeManager.getMethodBindPtr("TorusMesh", "get_rings")
+
+    public val setRingSegmentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TorusMesh", "set_ring_segments")
+
+    public val getRingSegmentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TorusMesh", "get_ring_segments")
+  }
 }

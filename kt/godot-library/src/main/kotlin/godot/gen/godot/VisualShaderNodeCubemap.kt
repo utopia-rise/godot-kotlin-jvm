@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -29,14 +31,12 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   public var source: Source
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECUBEMAP_GET_SOURCE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSourcePtr, LONG)
       return VisualShaderNodeCubemap.Source.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECUBEMAP_SET_SOURCE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSourcePtr, NIL)
     }
 
   /**
@@ -45,14 +45,12 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   public var cubeMap: Cubemap?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECUBEMAP_GET_CUBE_MAP, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCubeMapPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Cubemap?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECUBEMAP_SET_CUBE_MAP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCubeMapPtr, NIL)
     }
 
   /**
@@ -61,14 +59,12 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   public var textureType: TextureType
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECUBEMAP_GET_TEXTURE_TYPE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureTypePtr, LONG)
       return VisualShaderNodeCubemap.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECUBEMAP_SET_TEXTURE_TYPE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureTypePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -135,4 +131,24 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setSourcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "set_source")
+
+    public val getSourcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "get_source")
+
+    public val setCubeMapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "set_cube_map")
+
+    public val getCubeMapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "get_cube_map")
+
+    public val setTextureTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "set_texture_type")
+
+    public val getTextureTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "get_texture_type")
+  }
 }

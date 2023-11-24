@@ -11,6 +11,7 @@ import godot.core.PackedInt32Array
 import godot.core.PackedInt64Array
 import godot.core.PackedVector3Array
 import godot.core.RID
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.NIL
@@ -18,6 +19,7 @@ import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.PACKED_INT_64_ARRAY
 import godot.core.VariantType.PACKED_VECTOR3_ARRAY
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -40,14 +42,12 @@ public open class NavigationPathQueryResult3D : RefCounted() {
   public var path: PackedVector3Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYRESULT3D_GET_PATH, PACKED_VECTOR3_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPathPtr, PACKED_VECTOR3_ARRAY)
       return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYRESULT3D_SET_PATH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPathPtr, NIL)
     }
 
   /**
@@ -56,14 +56,12 @@ public open class NavigationPathQueryResult3D : RefCounted() {
   public var pathTypes: PackedInt32Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYRESULT3D_GET_PATH_TYPES, PACKED_INT_32_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPathTypesPtr, PACKED_INT_32_ARRAY)
       return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYRESULT3D_SET_PATH_TYPES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPathTypesPtr, NIL)
     }
 
   /**
@@ -72,14 +70,12 @@ public open class NavigationPathQueryResult3D : RefCounted() {
   public var pathRids: VariantArray<RID>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYRESULT3D_GET_PATH_RIDS, ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPathRidsPtr, ARRAY)
       return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYRESULT3D_SET_PATH_RIDS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPathRidsPtr, NIL)
     }
 
   /**
@@ -88,15 +84,12 @@ public open class NavigationPathQueryResult3D : RefCounted() {
   public var pathOwnerIds: PackedInt64Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYRESULT3D_GET_PATH_OWNER_IDS,
-          PACKED_INT_64_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPathOwnerIdsPtr, PACKED_INT_64_ARRAY)
       return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_64_ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYRESULT3D_SET_PATH_OWNER_IDS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPathOwnerIdsPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -109,8 +102,7 @@ public open class NavigationPathQueryResult3D : RefCounted() {
    */
   public fun reset(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPATHQUERYRESULT3D_RESET,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.resetPtr, NIL)
   }
 
   public enum class PathSegmentType(
@@ -137,4 +129,33 @@ public open class NavigationPathQueryResult3D : RefCounted() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "set_path")
+
+    public val getPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "get_path")
+
+    public val setPathTypesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "set_path_types")
+
+    public val getPathTypesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "get_path_types")
+
+    public val setPathRidsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "set_path_rids")
+
+    public val getPathRidsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "get_path_rids")
+
+    public val setPathOwnerIdsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "set_path_owner_ids")
+
+    public val getPathOwnerIdsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "get_path_owner_ids")
+
+    public val resetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "reset")
+  }
 }

@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
@@ -19,6 +20,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -71,7 +73,7 @@ public object Performance : Object() {
    */
   public fun getMonitor(monitor: Monitor): Double {
     TransferContext.writeArguments(LONG to monitor.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PERFORMANCE_GET_MONITOR, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getMonitorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
@@ -183,7 +185,7 @@ public object Performance : Object() {
     arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to id, CALLABLE to callable, ARRAY to arguments)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PERFORMANCE_ADD_CUSTOM_MONITOR, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addCustomMonitorPtr, NIL)
   }
 
   /**
@@ -191,8 +193,7 @@ public object Performance : Object() {
    */
   public fun removeCustomMonitor(id: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PERFORMANCE_REMOVE_CUSTOM_MONITOR,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeCustomMonitorPtr, NIL)
   }
 
   /**
@@ -200,8 +201,7 @@ public object Performance : Object() {
    */
   public fun hasCustomMonitor(id: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PERFORMANCE_HAS_CUSTOM_MONITOR,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hasCustomMonitorPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -210,7 +210,7 @@ public object Performance : Object() {
    */
   public fun getCustomMonitor(id: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PERFORMANCE_GET_CUSTOM_MONITOR, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCustomMonitorPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -219,8 +219,7 @@ public object Performance : Object() {
    */
   public fun getMonitorModificationTime(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PERFORMANCE_GET_MONITOR_MODIFICATION_TIME, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getMonitorModificationTimePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -229,8 +228,7 @@ public object Performance : Object() {
    */
   public fun getCustomMonitorNames(): VariantArray<StringName> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PERFORMANCE_GET_CUSTOM_MONITOR_NAMES, ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCustomMonitorNamesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>)
   }
 
@@ -383,5 +381,27 @@ public object Performance : Object() {
     public companion object {
       public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
+  }
+
+  internal object MethodBindings {
+    public val getMonitorPtr: VoidPtr = TypeManager.getMethodBindPtr("Performance", "get_monitor")
+
+    public val addCustomMonitorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Performance", "add_custom_monitor")
+
+    public val removeCustomMonitorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Performance", "remove_custom_monitor")
+
+    public val hasCustomMonitorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Performance", "has_custom_monitor")
+
+    public val getCustomMonitorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Performance", "get_custom_monitor")
+
+    public val getMonitorModificationTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Performance", "get_monitor_modification_time")
+
+    public val getCustomMonitorNamesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Performance", "get_custom_monitor_names")
   }
 }

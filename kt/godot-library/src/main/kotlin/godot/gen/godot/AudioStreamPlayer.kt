@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -17,6 +18,7 @@ import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -49,13 +51,12 @@ public open class AudioStreamPlayer : Node() {
   public var stream: AudioStream?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_STREAM,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getStreamPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_SET_STREAM, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setStreamPtr, NIL)
     }
 
   /**
@@ -64,14 +65,12 @@ public open class AudioStreamPlayer : Node() {
   public var volumeDb: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_VOLUME_DB,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVolumeDbPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_SET_VOLUME_DB,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVolumeDbPtr, NIL)
     }
 
   /**
@@ -80,14 +79,12 @@ public open class AudioStreamPlayer : Node() {
   public var pitchScale: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_PITCH_SCALE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPitchScalePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_SET_PITCH_SCALE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPitchScalePtr, NIL)
     }
 
   /**
@@ -96,8 +93,7 @@ public open class AudioStreamPlayer : Node() {
   public val playing: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_IS_PLAYING,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isPlayingPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
 
@@ -107,14 +103,12 @@ public open class AudioStreamPlayer : Node() {
   public var autoplay: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_IS_AUTOPLAY_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isAutoplayEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_SET_AUTOPLAY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAutoplayPtr, NIL)
     }
 
   /**
@@ -123,14 +117,12 @@ public open class AudioStreamPlayer : Node() {
   public var streamPaused: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_STREAM_PAUSED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getStreamPausedPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_SET_STREAM_PAUSED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setStreamPausedPtr, NIL)
     }
 
   /**
@@ -139,14 +131,12 @@ public open class AudioStreamPlayer : Node() {
   public var mixTarget: MixTarget
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_MIX_TARGET,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMixTargetPtr, LONG)
       return AudioStreamPlayer.MixTarget.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_SET_MIX_TARGET,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMixTargetPtr, NIL)
     }
 
   /**
@@ -155,14 +145,12 @@ public open class AudioStreamPlayer : Node() {
   public var maxPolyphony: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_MAX_POLYPHONY, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMaxPolyphonyPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_SET_MAX_POLYPHONY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMaxPolyphonyPtr, NIL)
     }
 
   /**
@@ -173,13 +161,12 @@ public open class AudioStreamPlayer : Node() {
   public var bus: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_BUS,
-          STRING_NAME)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBusPtr, STRING_NAME)
       return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_SET_BUS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBusPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -193,7 +180,7 @@ public open class AudioStreamPlayer : Node() {
   @JvmOverloads
   public fun play(fromPosition: Float = 0.0f): Unit {
     TransferContext.writeArguments(DOUBLE to fromPosition.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_PLAY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.playPtr, NIL)
   }
 
   /**
@@ -201,7 +188,7 @@ public open class AudioStreamPlayer : Node() {
    */
   public fun seek(toPosition: Float): Unit {
     TransferContext.writeArguments(DOUBLE to toPosition.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_SEEK, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.seekPtr, NIL)
   }
 
   /**
@@ -209,7 +196,7 @@ public open class AudioStreamPlayer : Node() {
    */
   public fun stop(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_STOP, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
   }
 
   /**
@@ -217,8 +204,7 @@ public open class AudioStreamPlayer : Node() {
    */
   public fun getPlaybackPosition(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_PLAYBACK_POSITION, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getPlaybackPositionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -227,8 +213,7 @@ public open class AudioStreamPlayer : Node() {
    */
   public fun hasStreamPlayback(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_HAS_STREAM_PLAYBACK, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hasStreamPlaybackPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -237,8 +222,7 @@ public open class AudioStreamPlayer : Node() {
    */
   public fun getStreamPlayback(): AudioStreamPlayback? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_GET_STREAM_PLAYBACK, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getStreamPlaybackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as AudioStreamPlayback?)
   }
 
@@ -270,4 +254,70 @@ public open class AudioStreamPlayer : Node() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setStreamPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_stream")
+
+    public val getStreamPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_stream")
+
+    public val setVolumeDbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_volume_db")
+
+    public val getVolumeDbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_volume_db")
+
+    public val setPitchScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_pitch_scale")
+
+    public val getPitchScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_pitch_scale")
+
+    public val playPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamPlayer", "play")
+
+    public val seekPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamPlayer", "seek")
+
+    public val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamPlayer", "stop")
+
+    public val isPlayingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "is_playing")
+
+    public val getPlaybackPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_playback_position")
+
+    public val setBusPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_bus")
+
+    public val getBusPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_bus")
+
+    public val setAutoplayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_autoplay")
+
+    public val isAutoplayEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "is_autoplay_enabled")
+
+    public val setMixTargetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_mix_target")
+
+    public val getMixTargetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_mix_target")
+
+    public val setStreamPausedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_stream_paused")
+
+    public val getStreamPausedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_stream_paused")
+
+    public val setMaxPolyphonyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_max_polyphony")
+
+    public val getMaxPolyphonyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_max_polyphony")
+
+    public val hasStreamPlaybackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "has_stream_playback")
+
+    public val getStreamPlaybackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_stream_playback")
+  }
 }

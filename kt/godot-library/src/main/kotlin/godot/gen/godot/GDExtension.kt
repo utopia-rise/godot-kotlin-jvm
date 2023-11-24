@@ -8,11 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -35,7 +37,7 @@ public open class GDExtension : Resource() {
    */
   public fun openLibrary(path: String, entrySymbol: String): GodotError {
     TransferContext.writeArguments(STRING to path, STRING to entrySymbol)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDEXTENSION_OPEN_LIBRARY, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.openLibraryPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -44,7 +46,7 @@ public open class GDExtension : Resource() {
    */
   public fun closeLibrary(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDEXTENSION_CLOSE_LIBRARY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.closeLibraryPtr, NIL)
   }
 
   /**
@@ -52,7 +54,7 @@ public open class GDExtension : Resource() {
    */
   public fun isLibraryOpen(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDEXTENSION_IS_LIBRARY_OPEN, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isLibraryOpenPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -61,8 +63,7 @@ public open class GDExtension : Resource() {
    */
   public fun getMinimumLibraryInitializationLevel(): InitializationLevel {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GDEXTENSION_GET_MINIMUM_LIBRARY_INITIALIZATION_LEVEL, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getMinimumLibraryInitializationLevelPtr, LONG)
     return GDExtension.InitializationLevel.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -71,7 +72,7 @@ public open class GDExtension : Resource() {
    */
   public fun initializeLibrary(level: InitializationLevel): Unit {
     TransferContext.writeArguments(LONG to level.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDEXTENSION_INITIALIZE_LIBRARY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.initializeLibraryPtr, NIL)
   }
 
   public enum class InitializationLevel(
@@ -106,4 +107,20 @@ public open class GDExtension : Resource() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val openLibraryPtr: VoidPtr = TypeManager.getMethodBindPtr("GDExtension", "open_library")
+
+    public val closeLibraryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GDExtension", "close_library")
+
+    public val isLibraryOpenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GDExtension", "is_library_open")
+
+    public val getMinimumLibraryInitializationLevelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GDExtension", "get_minimum_library_initialization_level")
+
+    public val initializeLibraryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GDExtension", "initialize_library")
+  }
 }

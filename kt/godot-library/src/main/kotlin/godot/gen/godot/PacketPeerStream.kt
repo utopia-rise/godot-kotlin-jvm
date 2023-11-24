@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -31,14 +33,12 @@ public open class PacketPeerStream : PacketPeer() {
   public var inputBufferMaxSize: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PACKETPEERSTREAM_GET_INPUT_BUFFER_MAX_SIZE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getInputBufferMaxSizePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PACKETPEERSTREAM_SET_INPUT_BUFFER_MAX_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setInputBufferMaxSizePtr, NIL)
     }
 
   /**
@@ -47,14 +47,12 @@ public open class PacketPeerStream : PacketPeer() {
   public var outputBufferMaxSize: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PACKETPEERSTREAM_GET_OUTPUT_BUFFER_MAX_SIZE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getOutputBufferMaxSizePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PACKETPEERSTREAM_SET_OUTPUT_BUFFER_MAX_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOutputBufferMaxSizePtr, NIL)
     }
 
   /**
@@ -63,14 +61,12 @@ public open class PacketPeerStream : PacketPeer() {
   public var streamPeer: StreamPeer?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERSTREAM_GET_STREAM_PEER,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getStreamPeerPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as StreamPeer?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERSTREAM_SET_STREAM_PEER,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setStreamPeerPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -79,4 +75,24 @@ public open class PacketPeerStream : PacketPeer() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setStreamPeerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PacketPeerStream", "set_stream_peer")
+
+    public val getStreamPeerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PacketPeerStream", "get_stream_peer")
+
+    public val setInputBufferMaxSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PacketPeerStream", "set_input_buffer_max_size")
+
+    public val setOutputBufferMaxSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PacketPeerStream", "set_output_buffer_max_size")
+
+    public val getInputBufferMaxSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PacketPeerStream", "get_input_buffer_max_size")
+
+    public val getOutputBufferMaxSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PacketPeerStream", "get_output_buffer_max_size")
+  }
 }

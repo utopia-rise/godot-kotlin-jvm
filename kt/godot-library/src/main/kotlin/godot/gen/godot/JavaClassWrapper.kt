@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
@@ -30,7 +32,11 @@ public object JavaClassWrapper : Object() {
    */
   public fun wrap(name: String): JavaClass? {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVACLASSWRAPPER_WRAP, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.wrapPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as JavaClass?)
+  }
+
+  internal object MethodBindings {
+    public val wrapPtr: VoidPtr = TypeManager.getMethodBindPtr("JavaClassWrapper", "wrap")
   }
 }

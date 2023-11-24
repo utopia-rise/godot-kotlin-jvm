@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -18,6 +19,7 @@ import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -51,14 +53,12 @@ public open class VideoStreamPlayer : Control() {
   public var audioTrack: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_AUDIO_TRACK,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAudioTrackPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_AUDIO_TRACK,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAudioTrackPtr, NIL)
     }
 
   /**
@@ -67,13 +67,12 @@ public open class VideoStreamPlayer : Control() {
   public var stream: VideoStream?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_STREAM,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getStreamPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as VideoStream?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_STREAM, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setStreamPtr, NIL)
     }
 
   /**
@@ -82,14 +81,12 @@ public open class VideoStreamPlayer : Control() {
   public var volumeDb: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_VOLUME_DB,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVolumeDbPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_VOLUME_DB,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVolumeDbPtr, NIL)
     }
 
   /**
@@ -98,13 +95,12 @@ public open class VideoStreamPlayer : Control() {
   public var volume: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_VOLUME,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVolumePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_VOLUME, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVolumePtr, NIL)
     }
 
   /**
@@ -113,14 +109,12 @@ public open class VideoStreamPlayer : Control() {
   public var autoplay: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_HAS_AUTOPLAY,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.hasAutoplayPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_AUTOPLAY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAutoplayPtr, NIL)
     }
 
   /**
@@ -129,12 +123,12 @@ public open class VideoStreamPlayer : Control() {
   public var paused: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_IS_PAUSED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isPausedPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_PAUSED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPausedPtr, NIL)
     }
 
   /**
@@ -143,13 +137,12 @@ public open class VideoStreamPlayer : Control() {
   public var expand: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_HAS_EXPAND,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.hasExpandPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_EXPAND, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setExpandPtr, NIL)
     }
 
   /**
@@ -158,14 +151,12 @@ public open class VideoStreamPlayer : Control() {
   public var bufferingMsec: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_BUFFERING_MSEC, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBufferingMsecPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_BUFFERING_MSEC, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBufferingMsecPtr, NIL)
     }
 
   /**
@@ -176,14 +167,12 @@ public open class VideoStreamPlayer : Control() {
   public var streamPosition: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_STREAM_POSITION, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getStreamPositionPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_STREAM_POSITION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setStreamPositionPtr, NIL)
     }
 
   /**
@@ -192,13 +181,12 @@ public open class VideoStreamPlayer : Control() {
   public var bus: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_BUS,
-          STRING_NAME)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBusPtr, STRING_NAME)
       return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_BUS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBusPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -211,7 +199,7 @@ public open class VideoStreamPlayer : Control() {
    */
   public fun play(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_PLAY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.playPtr, NIL)
   }
 
   /**
@@ -221,7 +209,7 @@ public open class VideoStreamPlayer : Control() {
    */
   public fun stop(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_STOP, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
   }
 
   /**
@@ -231,7 +219,7 @@ public open class VideoStreamPlayer : Control() {
    */
   public fun isPlaying(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_IS_PLAYING, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isPlayingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -240,8 +228,7 @@ public open class VideoStreamPlayer : Control() {
    */
   public fun getStreamName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_STREAM_NAME,
-        STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getStreamNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -250,10 +237,81 @@ public open class VideoStreamPlayer : Control() {
    */
   public fun getVideoTexture(): Texture2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_VIDEO_TEXTURE,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getVideoTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setStreamPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_stream")
+
+    public val getStreamPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream")
+
+    public val playPtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStreamPlayer", "play")
+
+    public val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStreamPlayer", "stop")
+
+    public val isPlayingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "is_playing")
+
+    public val setPausedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_paused")
+
+    public val isPausedPtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStreamPlayer", "is_paused")
+
+    public val setVolumePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_volume")
+
+    public val getVolumePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_volume")
+
+    public val setVolumeDbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_volume_db")
+
+    public val getVolumeDbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_volume_db")
+
+    public val setAudioTrackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_audio_track")
+
+    public val getAudioTrackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_audio_track")
+
+    public val getStreamNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream_name")
+
+    public val setStreamPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_stream_position")
+
+    public val getStreamPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream_position")
+
+    public val setAutoplayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_autoplay")
+
+    public val hasAutoplayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "has_autoplay")
+
+    public val setExpandPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_expand")
+
+    public val hasExpandPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "has_expand")
+
+    public val setBufferingMsecPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_buffering_msec")
+
+    public val getBufferingMsecPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_buffering_msec")
+
+    public val setBusPtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_bus")
+
+    public val getBusPtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_bus")
+
+    public val getVideoTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_video_texture")
+  }
 }

@@ -20,4 +20,6 @@ public open class GLTFDocumentExtensionTextureWebP internal constructor() : GLTF
   }
 
   public companion object
+
+  internal object MethodBindings
 }

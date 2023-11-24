@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantType.ANY
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -16,6 +17,7 @@ import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -54,8 +56,7 @@ public open class EditorResourcePreview internal constructor() : Node() {
     userdata: Any?,
   ): Unit {
     TransferContext.writeArguments(STRING to path, OBJECT to receiver, STRING_NAME to receiverFunc, ANY to userdata)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_QUEUE_RESOURCE_PREVIEW, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.queueResourcePreviewPtr, NIL)
   }
 
   /**
@@ -70,8 +71,7 @@ public open class EditorResourcePreview internal constructor() : Node() {
     userdata: Any?,
   ): Unit {
     TransferContext.writeArguments(OBJECT to resource, OBJECT to receiver, STRING_NAME to receiverFunc, ANY to userdata)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_QUEUE_EDITED_RESOURCE_PREVIEW, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.queueEditedResourcePreviewPtr, NIL)
   }
 
   /**
@@ -79,8 +79,7 @@ public open class EditorResourcePreview internal constructor() : Node() {
    */
   public fun addPreviewGenerator(generator: EditorResourcePreviewGenerator): Unit {
     TransferContext.writeArguments(OBJECT to generator)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_ADD_PREVIEW_GENERATOR, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addPreviewGeneratorPtr, NIL)
   }
 
   /**
@@ -88,8 +87,7 @@ public open class EditorResourcePreview internal constructor() : Node() {
    */
   public fun removePreviewGenerator(generator: EditorResourcePreviewGenerator): Unit {
     TransferContext.writeArguments(OBJECT to generator)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_REMOVE_PREVIEW_GENERATOR, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removePreviewGeneratorPtr, NIL)
   }
 
   /**
@@ -97,9 +95,25 @@ public open class EditorResourcePreview internal constructor() : Node() {
    */
   public fun checkForInvalidation(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_CHECK_FOR_INVALIDATION, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.checkForInvalidationPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val queueResourcePreviewPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorResourcePreview", "queue_resource_preview")
+
+    public val queueEditedResourcePreviewPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorResourcePreview", "queue_edited_resource_preview")
+
+    public val addPreviewGeneratorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorResourcePreview", "add_preview_generator")
+
+    public val removePreviewGeneratorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorResourcePreview", "remove_preview_generator")
+
+    public val checkForInvalidationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorResourcePreview", "check_for_invalidation")
+  }
 }

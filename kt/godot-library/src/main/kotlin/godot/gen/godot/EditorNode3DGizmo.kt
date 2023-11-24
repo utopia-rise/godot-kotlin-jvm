@@ -12,6 +12,7 @@ import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
 import godot.core.Plane
 import godot.core.Transform3D
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
@@ -24,6 +25,7 @@ import godot.core.VariantType.PACKED_VECTOR3_ARRAY
 import godot.core.VariantType.TRANSFORM3D
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Float
@@ -158,7 +160,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
     modulate: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to lines, OBJECT to material, BOOL to billboard, COLOR to modulate)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_LINES, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addLinesPtr, NIL)
   }
 
   /**
@@ -172,7 +174,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
     skeleton: SkinReference? = null,
   ): Unit {
     TransferContext.writeArguments(OBJECT to mesh, OBJECT to material, TRANSFORM3D to transform, OBJECT to skeleton)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_MESH, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addMeshPtr, NIL)
   }
 
   /**
@@ -180,8 +182,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    */
   public fun addCollisionSegments(segments: PackedVector3Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to segments)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_COLLISION_SEGMENTS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addCollisionSegmentsPtr, NIL)
   }
 
   /**
@@ -189,8 +190,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    */
   public fun addCollisionTriangles(triangles: TriangleMesh): Unit {
     TransferContext.writeArguments(OBJECT to triangles)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_COLLISION_TRIANGLES, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addCollisionTrianglesPtr, NIL)
   }
 
   /**
@@ -203,8 +203,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
     modulate: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(OBJECT to material, DOUBLE to defaultScale.toDouble(), COLOR to modulate)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_UNSCALED_BILLBOARD, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addUnscaledBillboardPtr, NIL)
   }
 
   /**
@@ -223,7 +222,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
     secondary: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to handles, OBJECT to material, PACKED_INT_32_ARRAY to ids, BOOL to billboard, BOOL to secondary)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_ADD_HANDLES, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addHandlesPtr, NIL)
   }
 
   /**
@@ -231,7 +230,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    */
   public fun setNode3d(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_SET_NODE_3D, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNode3dPtr, NIL)
   }
 
   /**
@@ -239,8 +238,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    */
   public fun getNode3d(): Node3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_GET_NODE_3D,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getNode3dPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Node3D?)
   }
 
@@ -249,8 +247,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    */
   public fun getPlugin(): EditorNode3DGizmoPlugin? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_GET_PLUGIN,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getPluginPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as EditorNode3DGizmoPlugin?)
   }
 
@@ -259,7 +256,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_CLEAR, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   /**
@@ -267,7 +264,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    */
   public fun setHidden(hidden: Boolean): Unit {
     TransferContext.writeArguments(BOOL to hidden)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_SET_HIDDEN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHiddenPtr, NIL)
   }
 
   /**
@@ -275,8 +272,7 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    */
   public fun isSubgizmoSelected(id: Int): Boolean {
     TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_IS_SUBGIZMO_SELECTED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isSubgizmoSelectedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -285,10 +281,79 @@ public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
    */
   public fun getSubgizmoSelection(): PackedInt32Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORNODE3DGIZMO_GET_SUBGIZMO_SELECTION, PACKED_INT_32_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSubgizmoSelectionPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _redrawPtr: VoidPtr = TypeManager.getMethodBindPtr("EditorNode3DGizmo", "_redraw")
+
+    public val _getHandleNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorNode3DGizmo", "_get_handle_name")
+
+    public val _isHandleHighlightedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorNode3DGizmo", "_is_handle_highlighted")
+
+    public val _getHandleValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorNode3DGizmo", "_get_handle_value")
+
+    public val _setHandlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorNode3DGizmo", "_set_handle")
+
+    public val _commitHandlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorNode3DGizmo", "_commit_handle")
+
+    public val _subgizmosIntersectRayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorNode3DGizmo", "_subgizmos_intersect_ray")
+
+    public val _subgizmosIntersectFrustumPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorNode3DGizmo", "_subgizmos_intersect_frustum")
+
+    public val _setSubgizmoTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorNode3DGizmo", "_set_subgizmo_transform")
+
+    public val _getSubgizmoTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorNode3DGizmo", "_get_subgizmo_transform")
+
+    public val _commitSubgizmosPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorNode3DGizmo", "_commit_subgizmos")
+
+    public val addLinesPtr: VoidPtr = TypeManager.getMethodBindPtr("EditorNode3DGizmo", "add_lines")
+
+    public val addMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("EditorNode3DGizmo", "add_mesh")
+
+    public val addCollisionSegmentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorNode3DGizmo", "add_collision_segments")
+
+    public val addCollisionTrianglesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorNode3DGizmo", "add_collision_triangles")
+
+    public val addUnscaledBillboardPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorNode3DGizmo", "add_unscaled_billboard")
+
+    public val addHandlesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorNode3DGizmo", "add_handles")
+
+    public val setNode3dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorNode3DGizmo", "set_node_3d")
+
+    public val getNode3dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorNode3DGizmo", "get_node_3d")
+
+    public val getPluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorNode3DGizmo", "get_plugin")
+
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("EditorNode3DGizmo", "clear")
+
+    public val setHiddenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorNode3DGizmo", "set_hidden")
+
+    public val isSubgizmoSelectedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorNode3DGizmo", "is_subgizmo_selected")
+
+    public val getSubgizmoSelectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorNode3DGizmo", "get_subgizmo_selection")
+  }
 }

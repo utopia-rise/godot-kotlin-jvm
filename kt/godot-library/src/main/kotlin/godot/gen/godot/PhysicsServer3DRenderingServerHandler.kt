@@ -8,6 +8,8 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
+import godot.core.TypeManager
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -30,4 +32,15 @@ public open class PhysicsServer3DRenderingServerHandler : Object() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _setVertexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3DRenderingServerHandler", "_set_vertex")
+
+    public val _setNormalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3DRenderingServerHandler", "_set_normal")
+
+    public val _setAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3DRenderingServerHandler", "_set_aabb")
+  }
 }

@@ -27,4 +27,6 @@ public open class AnimationNodeOutput : AnimationNode() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

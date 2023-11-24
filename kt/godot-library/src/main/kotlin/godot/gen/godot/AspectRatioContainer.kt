@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -34,14 +36,12 @@ public open class AspectRatioContainer : Container() {
   public var ratio: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_GET_RATIO,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRatioPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_SET_RATIO,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRatioPtr, NIL)
     }
 
   /**
@@ -50,14 +50,12 @@ public open class AspectRatioContainer : Container() {
   public var stretchMode: StretchMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_GET_STRETCH_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getStretchModePtr, LONG)
       return AspectRatioContainer.StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_SET_STRETCH_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setStretchModePtr, NIL)
     }
 
   /**
@@ -66,14 +64,12 @@ public open class AspectRatioContainer : Container() {
   public var alignmentHorizontal: AlignmentMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_GET_ALIGNMENT_HORIZONTAL, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAlignmentHorizontalPtr, LONG)
       return AspectRatioContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_SET_ALIGNMENT_HORIZONTAL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAlignmentHorizontalPtr, NIL)
     }
 
   /**
@@ -82,14 +78,12 @@ public open class AspectRatioContainer : Container() {
   public var alignmentVertical: AlignmentMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_GET_ALIGNMENT_VERTICAL, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAlignmentVerticalPtr, LONG)
       return AspectRatioContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ASPECTRATIOCONTAINER_SET_ALIGNMENT_VERTICAL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAlignmentVerticalPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -158,4 +152,30 @@ public open class AspectRatioContainer : Container() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AspectRatioContainer", "set_ratio")
+
+    public val getRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AspectRatioContainer", "get_ratio")
+
+    public val setStretchModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AspectRatioContainer", "set_stretch_mode")
+
+    public val getStretchModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AspectRatioContainer", "get_stretch_mode")
+
+    public val setAlignmentHorizontalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AspectRatioContainer", "set_alignment_horizontal")
+
+    public val getAlignmentHorizontalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AspectRatioContainer", "get_alignment_horizontal")
+
+    public val setAlignmentVerticalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AspectRatioContainer", "set_alignment_vertical")
+
+    public val getAlignmentVerticalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AspectRatioContainer", "get_alignment_vertical")
+  }
 }

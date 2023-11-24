@@ -24,4 +24,6 @@ public open class VisualShaderNodeOutput internal constructor() : VisualShaderNo
   }
 
   public companion object
+
+  internal object MethodBindings
 }

@@ -9,9 +9,11 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
+import godot.core.TypeManager
 import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.PACKED_VECTOR3_ARRAY
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -35,8 +37,7 @@ public open class Occluder3D internal constructor() : Resource() {
    */
   public fun getVertices(): PackedVector3Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDER3D_GET_VERTICES,
-        PACKED_VECTOR3_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
@@ -45,10 +46,15 @@ public open class Occluder3D internal constructor() : Resource() {
    */
   public fun getIndices(): PackedInt32Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDER3D_GET_INDICES,
-        PACKED_INT_32_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getIndicesPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getVerticesPtr: VoidPtr = TypeManager.getMethodBindPtr("Occluder3D", "get_vertices")
+
+    public val getIndicesPtr: VoidPtr = TypeManager.getMethodBindPtr("Occluder3D", "get_indices")
+  }
 }

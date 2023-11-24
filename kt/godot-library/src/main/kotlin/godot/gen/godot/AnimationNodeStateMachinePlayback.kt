@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -15,6 +16,7 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -70,8 +72,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   @JvmOverloads
   public fun travel(toNode: StringName, resetOnTeleport: Boolean = true): Unit {
     TransferContext.writeArguments(STRING_NAME to toNode, BOOL to resetOnTeleport)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_TRAVEL, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.travelPtr, NIL)
   }
 
   /**
@@ -82,8 +83,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   @JvmOverloads
   public fun start(node: StringName, reset: Boolean = true): Unit {
     TransferContext.writeArguments(STRING_NAME to node, BOOL to reset)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_START, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.startPtr, NIL)
   }
 
   /**
@@ -91,8 +91,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public fun next(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_NEXT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.nextPtr, NIL)
   }
 
   /**
@@ -100,8 +99,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public fun stop(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_STOP, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
   }
 
   /**
@@ -109,8 +107,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public fun isPlaying(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_IS_PLAYING, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isPlayingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -121,8 +118,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public fun getCurrentNode(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_NODE, STRING_NAME)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentNodePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
@@ -131,9 +127,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public fun getCurrentPlayPosition(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_PLAY_POSITION,
-        DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentPlayPositionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -144,8 +138,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public fun getCurrentLength(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_LENGTH, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -154,9 +147,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public fun getFadingFromNode(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_FADING_FROM_NODE,
-        STRING_NAME)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFadingFromNodePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
@@ -165,10 +156,41 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public fun getTravelPath(): VariantArray<StringName> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_TRAVEL_PATH, ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getTravelPathPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val travelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "travel")
+
+    public val startPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "start")
+
+    public val nextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "next")
+
+    public val stopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "stop")
+
+    public val isPlayingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "is_playing")
+
+    public val getCurrentNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_current_node")
+
+    public val getCurrentPlayPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_current_play_position")
+
+    public val getCurrentLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_current_length")
+
+    public val getFadingFromNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_fading_from_node")
+
+    public val getTravelPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_travel_path")
+  }
 }

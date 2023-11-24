@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -29,14 +31,12 @@ public open class EditorScriptPicker internal constructor() : EditorResourcePick
   public var scriptOwner: Node?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_EDITORSCRIPTPICKER_GET_SCRIPT_OWNER, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getScriptOwnerPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Node?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_EDITORSCRIPTPICKER_SET_SCRIPT_OWNER, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setScriptOwnerPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -45,4 +45,12 @@ public open class EditorScriptPicker internal constructor() : EditorResourcePick
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setScriptOwnerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorScriptPicker", "set_script_owner")
+
+    public val getScriptOwnerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorScriptPicker", "get_script_owner")
+  }
 }

@@ -7,12 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -125,14 +127,12 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   public var mixMode: MixMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_MIX_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMixModePtr, LONG)
       return AnimationNodeOneShot.MixMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_MIX_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMixModePtr, NIL)
     }
 
   /**
@@ -141,14 +141,12 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   public var fadeinTime: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_FADEIN_TIME, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFadeinTimePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_FADEIN_TIME, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFadeinTimePtr, NIL)
     }
 
   /**
@@ -157,14 +155,12 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   public var fadeinCurve: Curve?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_FADEIN_CURVE, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFadeinCurvePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_FADEIN_CURVE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFadeinCurvePtr, NIL)
     }
 
   /**
@@ -173,14 +169,12 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   public var fadeoutTime: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_FADEOUT_TIME, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFadeoutTimePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_FADEOUT_TIME, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFadeoutTimePtr, NIL)
     }
 
   /**
@@ -189,14 +183,12 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   public var fadeoutCurve: Curve?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_FADEOUT_CURVE, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFadeoutCurvePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_FADEOUT_CURVE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFadeoutCurvePtr, NIL)
     }
 
   /**
@@ -207,14 +199,12 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   public var autorestart: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_HAS_AUTORESTART, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.hasAutorestartPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_AUTORESTART, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAutorestartPtr, NIL)
     }
 
   /**
@@ -223,14 +213,12 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   public var autorestartDelay: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_AUTORESTART_DELAY, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAutorestartDelayPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_AUTORESTART_DELAY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAutorestartDelayPtr, NIL)
     }
 
   /**
@@ -239,14 +227,12 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   public var autorestartRandomDelay: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_AUTORESTART_RANDOM_DELAY, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAutorestartRandomDelayPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_AUTORESTART_RANDOM_DELAY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAutorestartRandomDelayPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -309,4 +295,54 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setFadeinTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadein_time")
+
+    public val getFadeinTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadein_time")
+
+    public val setFadeinCurvePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadein_curve")
+
+    public val getFadeinCurvePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadein_curve")
+
+    public val setFadeoutTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadeout_time")
+
+    public val getFadeoutTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadeout_time")
+
+    public val setFadeoutCurvePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadeout_curve")
+
+    public val getFadeoutCurvePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadeout_curve")
+
+    public val setAutorestartPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart")
+
+    public val hasAutorestartPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "has_autorestart")
+
+    public val setAutorestartDelayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart_delay")
+
+    public val getAutorestartDelayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_autorestart_delay")
+
+    public val setAutorestartRandomDelayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart_random_delay")
+
+    public val getAutorestartRandomDelayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_autorestart_random_delay")
+
+    public val setMixModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_mix_mode")
+
+    public val getMixModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_mix_mode")
+  }
 }

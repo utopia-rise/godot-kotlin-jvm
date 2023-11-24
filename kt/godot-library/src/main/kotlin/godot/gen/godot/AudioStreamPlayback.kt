@@ -7,6 +7,8 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -75,4 +77,26 @@ public open class AudioStreamPlayback : RefCounted() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _startPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamPlayback", "_start")
+
+    public val _stopPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamPlayback", "_stop")
+
+    public val _isPlayingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayback", "_is_playing")
+
+    public val _getLoopCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayback", "_get_loop_count")
+
+    public val _getPlaybackPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayback", "_get_playback_position")
+
+    public val _seekPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamPlayback", "_seek")
+
+    public val _mixPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamPlayback", "_mix")
+
+    public val _tagUsedStreamsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayback", "_tag_used_streams")
+  }
 }

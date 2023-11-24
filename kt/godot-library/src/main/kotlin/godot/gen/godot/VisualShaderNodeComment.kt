@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
@@ -28,14 +30,12 @@ public open class VisualShaderNodeComment : VisualShaderNodeResizableBase() {
   public var title: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMMENT_GET_TITLE,
-          STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMMENT_SET_TITLE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTitlePtr, NIL)
     }
 
   /**
@@ -44,14 +44,12 @@ public open class VisualShaderNodeComment : VisualShaderNodeResizableBase() {
   public var description: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMMENT_GET_DESCRIPTION, STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDescriptionPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOMMENT_SET_DESCRIPTION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDescriptionPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -60,4 +58,18 @@ public open class VisualShaderNodeComment : VisualShaderNodeResizableBase() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setTitlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeComment", "set_title")
+
+    public val getTitlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeComment", "get_title")
+
+    public val setDescriptionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeComment", "set_description")
+
+    public val getDescriptionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeComment", "get_description")
+  }
 }

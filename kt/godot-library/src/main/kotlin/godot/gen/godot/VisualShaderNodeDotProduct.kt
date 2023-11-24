@@ -24,4 +24,6 @@ public open class VisualShaderNodeDotProduct : VisualShaderNode() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

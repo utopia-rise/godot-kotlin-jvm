@@ -11,6 +11,7 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.Transform2D
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.DOUBLE
@@ -19,6 +20,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.TRANSFORM2D
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -86,13 +88,12 @@ public open class FontVariation : Font() {
   public var baseFont: Font?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTVARIATION_GET_BASE_FONT,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBaseFontPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Font?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_BASE_FONT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBaseFontPtr, NIL)
     }
 
   /**
@@ -118,14 +119,12 @@ public open class FontVariation : Font() {
   public var variationOpentype: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_FONTVARIATION_GET_VARIATION_OPENTYPE, DICTIONARY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVariationOpentypePtr, DICTIONARY)
       return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
     }
     set(`value`) {
       TransferContext.writeArguments(DICTIONARY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_VARIATION_OPENTYPE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVariationOpentypePtr, NIL)
     }
 
   /**
@@ -134,14 +133,12 @@ public open class FontVariation : Font() {
   public var variationFaceIndex: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_FONTVARIATION_GET_VARIATION_FACE_INDEX, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVariationFaceIndexPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_VARIATION_FACE_INDEX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVariationFaceIndexPtr, NIL)
     }
 
   /**
@@ -152,14 +149,12 @@ public open class FontVariation : Font() {
   public var variationEmbolden: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_FONTVARIATION_GET_VARIATION_EMBOLDEN, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVariationEmboldenPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_VARIATION_EMBOLDEN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVariationEmboldenPtr, NIL)
     }
 
   /**
@@ -171,14 +166,12 @@ public open class FontVariation : Font() {
   public var variationTransform: Transform2D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_FONTVARIATION_GET_VARIATION_TRANSFORM, TRANSFORM2D)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVariationTransformPtr, TRANSFORM2D)
       return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_VARIATION_TRANSFORM, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVariationTransformPtr, NIL)
     }
 
   /**
@@ -190,8 +183,7 @@ public open class FontVariation : Font() {
     get() = super.getOpentypeFeatures()
     set(`value`) {
       TransferContext.writeArguments(DICTIONARY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_OPENTYPE_FEATURES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOpentypeFeaturesPtr, NIL)
     }
 
   /**
@@ -204,7 +196,7 @@ public open class FontVariation : Font() {
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 0L, LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_SPACING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSpacingPtr, NIL)
     }
 
   /**
@@ -217,7 +209,7 @@ public open class FontVariation : Font() {
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 1L, LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_SPACING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSpacingPtr, NIL)
     }
 
   /**
@@ -229,7 +221,7 @@ public open class FontVariation : Font() {
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 2L, LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_SPACING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSpacingPtr, NIL)
     }
 
   /**
@@ -242,7 +234,7 @@ public open class FontVariation : Font() {
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 3L, LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTVARIATION_SET_SPACING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSpacingPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -278,4 +270,41 @@ public open class FontVariation : Font() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setBaseFontPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontVariation", "set_base_font")
+
+    public val getBaseFontPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontVariation", "get_base_font")
+
+    public val setVariationOpentypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontVariation", "set_variation_opentype")
+
+    public val getVariationOpentypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontVariation", "get_variation_opentype")
+
+    public val setVariationEmboldenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontVariation", "set_variation_embolden")
+
+    public val getVariationEmboldenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontVariation", "get_variation_embolden")
+
+    public val setVariationFaceIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontVariation", "set_variation_face_index")
+
+    public val getVariationFaceIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontVariation", "get_variation_face_index")
+
+    public val setVariationTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontVariation", "set_variation_transform")
+
+    public val getVariationTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontVariation", "get_variation_transform")
+
+    public val setOpentypeFeaturesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontVariation", "set_opentype_features")
+
+    public val setSpacingPtr: VoidPtr = TypeManager.getMethodBindPtr("FontVariation", "set_spacing")
+  }
 }

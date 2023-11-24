@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -28,14 +30,12 @@ public open class RDTextureView : RefCounted() {
   public var formatOverride: RenderingDevice.DataFormat
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREVIEW_GET_FORMAT_OVERRIDE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFormatOverridePtr, LONG)
       return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREVIEW_SET_FORMAT_OVERRIDE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFormatOverridePtr, NIL)
     }
 
   /**
@@ -44,12 +44,12 @@ public open class RDTextureView : RefCounted() {
   public var swizzleR: RenderingDevice.TextureSwizzle
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREVIEW_GET_SWIZZLE_R, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSwizzleRPtr, LONG)
       return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREVIEW_SET_SWIZZLE_R, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSwizzleRPtr, NIL)
     }
 
   /**
@@ -58,12 +58,12 @@ public open class RDTextureView : RefCounted() {
   public var swizzleG: RenderingDevice.TextureSwizzle
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREVIEW_GET_SWIZZLE_G, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSwizzleGPtr, LONG)
       return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREVIEW_SET_SWIZZLE_G, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSwizzleGPtr, NIL)
     }
 
   /**
@@ -72,12 +72,12 @@ public open class RDTextureView : RefCounted() {
   public var swizzleB: RenderingDevice.TextureSwizzle
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREVIEW_GET_SWIZZLE_B, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSwizzleBPtr, LONG)
       return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREVIEW_SET_SWIZZLE_B, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSwizzleBPtr, NIL)
     }
 
   /**
@@ -86,12 +86,12 @@ public open class RDTextureView : RefCounted() {
   public var swizzleA: RenderingDevice.TextureSwizzle
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREVIEW_GET_SWIZZLE_A, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSwizzleAPtr, LONG)
       return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDTEXTUREVIEW_SET_SWIZZLE_A, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSwizzleAPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -100,4 +100,36 @@ public open class RDTextureView : RefCounted() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setFormatOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureView", "set_format_override")
+
+    public val getFormatOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureView", "get_format_override")
+
+    public val setSwizzleRPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureView", "set_swizzle_r")
+
+    public val getSwizzleRPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureView", "get_swizzle_r")
+
+    public val setSwizzleGPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureView", "set_swizzle_g")
+
+    public val getSwizzleGPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureView", "get_swizzle_g")
+
+    public val setSwizzleBPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureView", "set_swizzle_b")
+
+    public val getSwizzleBPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureView", "get_swizzle_b")
+
+    public val setSwizzleAPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureView", "set_swizzle_a")
+
+    public val getSwizzleAPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureView", "get_swizzle_a")
+  }
 }

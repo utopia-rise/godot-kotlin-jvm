@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -29,12 +31,12 @@ public open class ProgressBar : Range() {
   public var fillMode: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROGRESSBAR_GET_FILL_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFillModePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROGRESSBAR_SET_FILL_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFillModePtr, NIL)
     }
 
   /**
@@ -43,14 +45,12 @@ public open class ProgressBar : Range() {
   public var showPercentage: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROGRESSBAR_IS_PERCENTAGE_SHOWN,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isPercentageShownPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROGRESSBAR_SET_SHOW_PERCENTAGE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShowPercentagePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -90,4 +90,18 @@ public open class ProgressBar : Range() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setFillModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProgressBar", "set_fill_mode")
+
+    public val getFillModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProgressBar", "get_fill_mode")
+
+    public val setShowPercentagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProgressBar", "set_show_percentage")
+
+    public val isPercentageShownPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProgressBar", "is_percentage_shown")
+  }
 }

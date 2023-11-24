@@ -9,6 +9,7 @@ package godot
 import godot.MouseButtonMaskValue
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -25,6 +26,7 @@ import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.signals.Signal2
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -62,7 +64,7 @@ public object Input : Object() {
    */
   public fun isAnythingPressed(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ANYTHING_PRESSED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isAnythingPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -75,7 +77,7 @@ public object Input : Object() {
    */
   public fun isKeyPressed(keycode: Key): Boolean {
     TransferContext.writeArguments(LONG to keycode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_KEY_PRESSED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isKeyPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -88,7 +90,7 @@ public object Input : Object() {
    */
   public fun isPhysicalKeyPressed(keycode: Key): Boolean {
     TransferContext.writeArguments(LONG to keycode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_PHYSICAL_KEY_PRESSED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isPhysicalKeyPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -97,7 +99,7 @@ public object Input : Object() {
    */
   public fun isKeyLabelPressed(keycode: Key): Boolean {
     TransferContext.writeArguments(LONG to keycode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_KEY_LABEL_PRESSED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isKeyLabelPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -106,7 +108,7 @@ public object Input : Object() {
    */
   public fun isMouseButtonPressed(button: MouseButton): Boolean {
     TransferContext.writeArguments(LONG to button.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_MOUSE_BUTTON_PRESSED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isMouseButtonPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -115,7 +117,7 @@ public object Input : Object() {
    */
   public fun isJoyButtonPressed(device: Int, button: JoyButton): Boolean {
     TransferContext.writeArguments(LONG to device.toLong(), LONG to button.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_JOY_BUTTON_PRESSED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isJoyButtonPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -129,7 +131,7 @@ public object Input : Object() {
   @JvmOverloads
   public fun isActionPressed(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ACTION_PRESSED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isActionPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -147,7 +149,7 @@ public object Input : Object() {
   @JvmOverloads
   public fun isActionJustPressed(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ACTION_JUST_PRESSED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isActionJustPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -161,7 +163,7 @@ public object Input : Object() {
   @JvmOverloads
   public fun isActionJustReleased(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ACTION_JUST_RELEASED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isActionJustReleasedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -173,7 +175,7 @@ public object Input : Object() {
   @JvmOverloads
   public fun getActionStrength(action: StringName, exactMatch: Boolean = false): Float {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_ACTION_STRENGTH, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getActionStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -185,8 +187,7 @@ public object Input : Object() {
   @JvmOverloads
   public fun getActionRawStrength(action: StringName, exactMatch: Boolean = false): Float {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_ACTION_RAW_STRENGTH,
-        DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getActionRawStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -197,7 +198,7 @@ public object Input : Object() {
    */
   public fun getAxis(negativeAction: StringName, positiveAction: StringName): Float {
     TransferContext.writeArguments(STRING_NAME to negativeAction, STRING_NAME to positiveAction)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_AXIS, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAxisPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -217,7 +218,7 @@ public object Input : Object() {
     deadzone: Float = -1.0f,
   ): Vector2 {
     TransferContext.writeArguments(STRING_NAME to negativeX, STRING_NAME to positiveX, STRING_NAME to negativeY, STRING_NAME to positiveY, DOUBLE to deadzone.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_VECTOR, VECTOR2)
+    TransferContext.callMethod(rawPtr, MethodBindings.getVectorPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
@@ -227,7 +228,7 @@ public object Input : Object() {
   @JvmOverloads
   public fun addJoyMapping(mapping: String, updateExisting: Boolean = false): Unit {
     TransferContext.writeArguments(STRING to mapping, BOOL to updateExisting)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_ADD_JOY_MAPPING, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addJoyMappingPtr, NIL)
   }
 
   /**
@@ -235,7 +236,7 @@ public object Input : Object() {
    */
   public fun removeJoyMapping(guid: String): Unit {
     TransferContext.writeArguments(STRING to guid)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_REMOVE_JOY_MAPPING, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeJoyMappingPtr, NIL)
   }
 
   /**
@@ -243,7 +244,7 @@ public object Input : Object() {
    */
   public fun isJoyKnown(device: Int): Boolean {
     TransferContext.writeArguments(LONG to device.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_JOY_KNOWN, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isJoyKnownPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -252,7 +253,7 @@ public object Input : Object() {
    */
   public fun getJoyAxis(device: Int, axis: JoyAxis): Float {
     TransferContext.writeArguments(LONG to device.toLong(), LONG to axis.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_AXIS, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getJoyAxisPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -261,7 +262,7 @@ public object Input : Object() {
    */
   public fun getJoyName(device: Int): String {
     TransferContext.writeArguments(LONG to device.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_NAME, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getJoyNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -270,7 +271,7 @@ public object Input : Object() {
    */
   public fun getJoyGuid(device: Int): String {
     TransferContext.writeArguments(LONG to device.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_GUID, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getJoyGuidPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -279,7 +280,7 @@ public object Input : Object() {
    */
   public fun getConnectedJoypads(): VariantArray<Long> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_CONNECTED_JOYPADS, ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getConnectedJoypadsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Long>)
   }
 
@@ -288,8 +289,7 @@ public object Input : Object() {
    */
   public fun getJoyVibrationStrength(device: Int): Vector2 {
     TransferContext.writeArguments(LONG to device.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_VIBRATION_STRENGTH,
-        VECTOR2)
+    TransferContext.callMethod(rawPtr, MethodBindings.getJoyVibrationStrengthPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
@@ -298,8 +298,7 @@ public object Input : Object() {
    */
   public fun getJoyVibrationDuration(device: Int): Float {
     TransferContext.writeArguments(LONG to device.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_VIBRATION_DURATION,
-        DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getJoyVibrationDurationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -316,7 +315,7 @@ public object Input : Object() {
     duration: Float = 0.0f,
   ): Unit {
     TransferContext.writeArguments(LONG to device.toLong(), DOUBLE to weakMagnitude.toDouble(), DOUBLE to strongMagnitude.toDouble(), DOUBLE to duration.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_START_JOY_VIBRATION, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.startJoyVibrationPtr, NIL)
   }
 
   /**
@@ -324,7 +323,7 @@ public object Input : Object() {
    */
   public fun stopJoyVibration(device: Int): Unit {
     TransferContext.writeArguments(LONG to device.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_STOP_JOY_VIBRATION, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.stopJoyVibrationPtr, NIL)
   }
 
   /**
@@ -341,7 +340,7 @@ public object Input : Object() {
   @JvmOverloads
   public fun vibrateHandheld(durationMs: Int = 500): Unit {
     TransferContext.writeArguments(LONG to durationMs.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_VIBRATE_HANDHELD, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.vibrateHandheldPtr, NIL)
   }
 
   /**
@@ -351,7 +350,7 @@ public object Input : Object() {
    */
   public fun getGravity(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_GRAVITY, VECTOR3)
+    TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
@@ -364,7 +363,7 @@ public object Input : Object() {
    */
   public fun getAccelerometer(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_ACCELEROMETER, VECTOR3)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAccelerometerPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
@@ -375,7 +374,7 @@ public object Input : Object() {
    */
   public fun getMagnetometer(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MAGNETOMETER, VECTOR3)
+    TransferContext.callMethod(rawPtr, MethodBindings.getMagnetometerPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
@@ -386,7 +385,7 @@ public object Input : Object() {
    */
   public fun getGyroscope(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_GYROSCOPE, VECTOR3)
+    TransferContext.callMethod(rawPtr, MethodBindings.getGyroscopePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
@@ -397,7 +396,7 @@ public object Input : Object() {
    */
   public fun setGravity(`value`: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_GRAVITY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGravityPtr, NIL)
   }
 
   /**
@@ -407,7 +406,7 @@ public object Input : Object() {
    */
   public fun setAccelerometer(`value`: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_ACCELEROMETER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAccelerometerPtr, NIL)
   }
 
   /**
@@ -417,7 +416,7 @@ public object Input : Object() {
    */
   public fun setMagnetometer(`value`: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_MAGNETOMETER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMagnetometerPtr, NIL)
   }
 
   /**
@@ -427,7 +426,7 @@ public object Input : Object() {
    */
   public fun setGyroscope(`value`: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_GYROSCOPE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGyroscopePtr, NIL)
   }
 
   /**
@@ -435,8 +434,7 @@ public object Input : Object() {
    */
   public fun getLastMouseVelocity(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_LAST_MOUSE_VELOCITY,
-        VECTOR2)
+    TransferContext.callMethod(rawPtr, MethodBindings.getLastMouseVelocityPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
@@ -445,18 +443,18 @@ public object Input : Object() {
    */
   public fun getMouseButtonMask(): MouseButtonMask {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MOUSE_BUTTON_MASK, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getMouseButtonMaskPtr, LONG)
     return MouseButtonMaskValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun setMouseMode(mode: MouseMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_MOUSE_MODE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMouseModePtr, NIL)
   }
 
   public fun getMouseMode(): MouseMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MOUSE_MODE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getMouseModePtr, LONG)
     return Input.MouseMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -469,7 +467,7 @@ public object Input : Object() {
    */
   public fun warpMouse(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_WARP_MOUSE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.warpMousePtr, NIL)
   }
 
   /**
@@ -482,7 +480,7 @@ public object Input : Object() {
   @JvmOverloads
   public fun actionPress(action: StringName, strength: Float = 1.0f): Unit {
     TransferContext.writeArguments(STRING_NAME to action, DOUBLE to strength.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_ACTION_PRESS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.actionPressPtr, NIL)
   }
 
   /**
@@ -490,7 +488,7 @@ public object Input : Object() {
    */
   public fun actionRelease(action: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to action)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_ACTION_RELEASE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.actionReleasePtr, NIL)
   }
 
   /**
@@ -503,7 +501,7 @@ public object Input : Object() {
   @JvmOverloads
   public fun setDefaultCursorShape(shape: CursorShape = Input.CursorShape.CURSOR_ARROW): Unit {
     TransferContext.writeArguments(LONG to shape.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_DEFAULT_CURSOR_SHAPE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultCursorShapePtr, NIL)
   }
 
   /**
@@ -511,8 +509,7 @@ public object Input : Object() {
    */
   public fun getCurrentCursorShape(): CursorShape {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_CURRENT_CURSOR_SHAPE,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentCursorShapePtr, LONG)
     return Input.CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -536,7 +533,7 @@ public object Input : Object() {
     hotspot: Vector2 = Vector2(0, 0),
   ): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to shape.id, VECTOR2 to hotspot)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_CUSTOM_MOUSE_CURSOR, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCustomMouseCursorPtr, NIL)
   }
 
   /**
@@ -574,19 +571,17 @@ public object Input : Object() {
    */
   public fun parseInputEvent(event: InputEvent): Unit {
     TransferContext.writeArguments(OBJECT to event)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_PARSE_INPUT_EVENT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.parseInputEventPtr, NIL)
   }
 
   public fun setUseAccumulatedInput(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_USE_ACCUMULATED_INPUT,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseAccumulatedInputPtr, NIL)
   }
 
   public fun isUsingAccumulatedInput(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_USING_ACCUMULATED_INPUT,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isUsingAccumulatedInputPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -597,7 +592,7 @@ public object Input : Object() {
    */
   public fun flushBufferedEvents(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_FLUSH_BUFFERED_EVENTS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.flushBufferedEventsPtr, NIL)
   }
 
   public enum class MouseMode(
@@ -720,5 +715,131 @@ public object Input : Object() {
     public companion object {
       public fun from(`value`: Long) = entries.single { it.id == `value` }
     }
+  }
+
+  internal object MethodBindings {
+    public val isAnythingPressedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "is_anything_pressed")
+
+    public val isKeyPressedPtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "is_key_pressed")
+
+    public val isPhysicalKeyPressedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "is_physical_key_pressed")
+
+    public val isKeyLabelPressedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "is_key_label_pressed")
+
+    public val isMouseButtonPressedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "is_mouse_button_pressed")
+
+    public val isJoyButtonPressedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "is_joy_button_pressed")
+
+    public val isActionPressedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "is_action_pressed")
+
+    public val isActionJustPressedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "is_action_just_pressed")
+
+    public val isActionJustReleasedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "is_action_just_released")
+
+    public val getActionStrengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_action_strength")
+
+    public val getActionRawStrengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_action_raw_strength")
+
+    public val getAxisPtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "get_axis")
+
+    public val getVectorPtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "get_vector")
+
+    public val addJoyMappingPtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "add_joy_mapping")
+
+    public val removeJoyMappingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "remove_joy_mapping")
+
+    public val isJoyKnownPtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "is_joy_known")
+
+    public val getJoyAxisPtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "get_joy_axis")
+
+    public val getJoyNamePtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "get_joy_name")
+
+    public val getJoyGuidPtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "get_joy_guid")
+
+    public val getConnectedJoypadsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_connected_joypads")
+
+    public val getJoyVibrationStrengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_joy_vibration_strength")
+
+    public val getJoyVibrationDurationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_joy_vibration_duration")
+
+    public val startJoyVibrationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "start_joy_vibration")
+
+    public val stopJoyVibrationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "stop_joy_vibration")
+
+    public val vibrateHandheldPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "vibrate_handheld")
+
+    public val getGravityPtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "get_gravity")
+
+    public val getAccelerometerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_accelerometer")
+
+    public val getMagnetometerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_magnetometer")
+
+    public val getGyroscopePtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "get_gyroscope")
+
+    public val setGravityPtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "set_gravity")
+
+    public val setAccelerometerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "set_accelerometer")
+
+    public val setMagnetometerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "set_magnetometer")
+
+    public val setGyroscopePtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "set_gyroscope")
+
+    public val getLastMouseVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_last_mouse_velocity")
+
+    public val getMouseButtonMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_mouse_button_mask")
+
+    public val setMouseModePtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "set_mouse_mode")
+
+    public val getMouseModePtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "get_mouse_mode")
+
+    public val warpMousePtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "warp_mouse")
+
+    public val actionPressPtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "action_press")
+
+    public val actionReleasePtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "action_release")
+
+    public val setDefaultCursorShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "set_default_cursor_shape")
+
+    public val getCurrentCursorShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_current_cursor_shape")
+
+    public val setCustomMouseCursorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "set_custom_mouse_cursor")
+
+    public val parseInputEventPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "parse_input_event")
+
+    public val setUseAccumulatedInputPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "set_use_accumulated_input")
+
+    public val isUsingAccumulatedInputPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "is_using_accumulated_input")
+
+    public val flushBufferedEventsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "flush_buffered_events")
   }
 }

@@ -8,10 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -27,14 +29,12 @@ public open class ImporterMeshInstance3D : Node3D() {
   public var mesh: ImporterMesh?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESHINSTANCE3D_GET_MESH,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as ImporterMesh?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESHINSTANCE3D_SET_MESH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
     }
 
   /**
@@ -43,14 +43,12 @@ public open class ImporterMeshInstance3D : Node3D() {
   public var skin: Skin?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESHINSTANCE3D_GET_SKIN,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSkinPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Skin?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMPORTERMESHINSTANCE3D_SET_SKIN,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSkinPtr, NIL)
     }
 
   /**
@@ -59,14 +57,12 @@ public open class ImporterMeshInstance3D : Node3D() {
   public var skeletonPath: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_IMPORTERMESHINSTANCE3D_GET_SKELETON_PATH, NODE_PATH)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPathPtr, NODE_PATH)
       return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_IMPORTERMESHINSTANCE3D_SET_SKELETON_PATH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonPathPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -75,4 +71,24 @@ public open class ImporterMeshInstance3D : Node3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_mesh")
+
+    public val getMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_mesh")
+
+    public val setSkinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_skin")
+
+    public val getSkinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_skin")
+
+    public val setSkeletonPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_skeleton_path")
+
+    public val getSkeletonPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_skeleton_path")
+  }
 }

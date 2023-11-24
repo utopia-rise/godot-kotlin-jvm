@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -17,6 +18,7 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -66,8 +68,7 @@ public open class EditorDebuggerSession internal constructor() : RefCounted() {
   public fun sendMessage(message: String, `data`: VariantArray<Any?> = godot.core.variantArrayOf()):
       Unit {
     TransferContext.writeArguments(STRING to message, ARRAY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERSESSION_SEND_MESSAGE,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.sendMessagePtr, NIL)
   }
 
   /**
@@ -80,8 +81,7 @@ public open class EditorDebuggerSession internal constructor() : RefCounted() {
     `data`: VariantArray<Any?> = godot.core.variantArrayOf(),
   ): Unit {
     TransferContext.writeArguments(STRING to profiler, BOOL to enable, ARRAY to data)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERSESSION_TOGGLE_PROFILER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.toggleProfilerPtr, NIL)
   }
 
   /**
@@ -89,8 +89,7 @@ public open class EditorDebuggerSession internal constructor() : RefCounted() {
    */
   public fun isBreaked(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERSESSION_IS_BREAKED,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isBreakedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -99,8 +98,7 @@ public open class EditorDebuggerSession internal constructor() : RefCounted() {
    */
   public fun isDebuggable(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERSESSION_IS_DEBUGGABLE,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isDebuggablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -109,8 +107,7 @@ public open class EditorDebuggerSession internal constructor() : RefCounted() {
    */
   public fun isActive(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERSESSION_IS_ACTIVE,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -119,8 +116,7 @@ public open class EditorDebuggerSession internal constructor() : RefCounted() {
    */
   public fun addSessionTab(control: Control): Unit {
     TransferContext.writeArguments(OBJECT to control)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERSESSION_ADD_SESSION_TAB, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addSessionTabPtr, NIL)
   }
 
   /**
@@ -128,9 +124,31 @@ public open class EditorDebuggerSession internal constructor() : RefCounted() {
    */
   public fun removeSessionTab(control: Control): Unit {
     TransferContext.writeArguments(OBJECT to control)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERSESSION_REMOVE_SESSION_TAB, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeSessionTabPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val sendMessagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorDebuggerSession", "send_message")
+
+    public val toggleProfilerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorDebuggerSession", "toggle_profiler")
+
+    public val isBreakedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorDebuggerSession", "is_breaked")
+
+    public val isDebuggablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorDebuggerSession", "is_debuggable")
+
+    public val isActivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorDebuggerSession", "is_active")
+
+    public val addSessionTabPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorDebuggerSession", "add_session_tab")
+
+    public val removeSessionTabPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorDebuggerSession", "remove_session_tab")
+  }
 }

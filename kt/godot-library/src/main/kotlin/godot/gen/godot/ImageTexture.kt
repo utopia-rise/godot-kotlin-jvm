@@ -7,12 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR2I
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -67,7 +69,7 @@ public open class ImageTexture : Texture2D() {
    */
   public fun getFormat(): Image.Format {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_GET_FORMAT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
     return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -78,7 +80,7 @@ public open class ImageTexture : Texture2D() {
    */
   public fun setImage(image: Image): Unit {
     TransferContext.writeArguments(OBJECT to image)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_SET_IMAGE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setImagePtr, NIL)
   }
 
   /**
@@ -90,7 +92,7 @@ public open class ImageTexture : Texture2D() {
    */
   public fun update(image: Image): Unit {
     TransferContext.writeArguments(OBJECT to image)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_UPDATE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.updatePtr, NIL)
   }
 
   /**
@@ -98,7 +100,7 @@ public open class ImageTexture : Texture2D() {
    */
   public fun setSizeOverride(size: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_SET_SIZE_OVERRIDE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSizeOverridePtr, NIL)
   }
 
   public companion object {
@@ -107,8 +109,22 @@ public open class ImageTexture : Texture2D() {
      */
     public fun createFromImage(image: Image): ImageTexture? {
       TransferContext.writeArguments(OBJECT to image)
-      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_CREATE_FROM_IMAGE, OBJECT)
+      TransferContext.callMethod(0, MethodBindings.createFromImagePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as ImageTexture?)
     }
+  }
+
+  internal object MethodBindings {
+    public val createFromImagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImageTexture", "create_from_image")
+
+    public val getFormatPtr: VoidPtr = TypeManager.getMethodBindPtr("ImageTexture", "get_format")
+
+    public val setImagePtr: VoidPtr = TypeManager.getMethodBindPtr("ImageTexture", "set_image")
+
+    public val updatePtr: VoidPtr = TypeManager.getMethodBindPtr("ImageTexture", "update")
+
+    public val setSizeOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImageTexture", "set_size_override")
   }
 }

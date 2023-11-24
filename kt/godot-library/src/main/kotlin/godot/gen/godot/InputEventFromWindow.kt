@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -28,14 +30,12 @@ public open class InputEventFromWindow internal constructor() : InputEvent() {
   public var windowId: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTFROMWINDOW_GET_WINDOW_ID, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getWindowIdPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTFROMWINDOW_SET_WINDOW_ID, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setWindowIdPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -44,4 +44,12 @@ public open class InputEventFromWindow internal constructor() : InputEvent() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setWindowIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventFromWindow", "set_window_id")
+
+    public val getWindowIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventFromWindow", "get_window_id")
+  }
 }

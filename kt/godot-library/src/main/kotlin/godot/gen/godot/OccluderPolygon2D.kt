@@ -8,11 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -31,12 +33,12 @@ public open class OccluderPolygon2D : Resource() {
   public var closed: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERPOLYGON2D_IS_CLOSED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isClosedPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERPOLYGON2D_SET_CLOSED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setClosedPtr, NIL)
     }
 
   /**
@@ -45,14 +47,12 @@ public open class OccluderPolygon2D : Resource() {
   public var cullMode: CullMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERPOLYGON2D_GET_CULL_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCullModePtr, LONG)
       return OccluderPolygon2D.CullMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERPOLYGON2D_SET_CULL_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCullModePtr, NIL)
     }
 
   /**
@@ -63,14 +63,12 @@ public open class OccluderPolygon2D : Resource() {
   public var polygon: PackedVector2Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERPOLYGON2D_GET_POLYGON,
-          PACKED_VECTOR2_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
       return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERPOLYGON2D_SET_POLYGON,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -106,4 +104,23 @@ public open class OccluderPolygon2D : Resource() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setClosedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OccluderPolygon2D", "set_closed")
+
+    public val isClosedPtr: VoidPtr = TypeManager.getMethodBindPtr("OccluderPolygon2D", "is_closed")
+
+    public val setCullModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OccluderPolygon2D", "set_cull_mode")
+
+    public val getCullModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OccluderPolygon2D", "get_cull_mode")
+
+    public val setPolygonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OccluderPolygon2D", "set_polygon")
+
+    public val getPolygonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OccluderPolygon2D", "get_polygon")
+  }
 }

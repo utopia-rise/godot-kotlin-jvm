@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -17,6 +18,7 @@ import godot.core.VariantType._RID
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -64,14 +66,12 @@ public open class NavigationRegion3D : Node3D() {
   public var navigationMesh: NavigationMesh?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_GET_NAVIGATION_MESH, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMeshPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as NavigationMesh?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_SET_NAVIGATION_MESH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setNavigationMeshPtr, NIL)
     }
 
   /**
@@ -80,14 +80,12 @@ public open class NavigationRegion3D : Node3D() {
   public var enabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_IS_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_SET_ENABLED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
     }
 
   /**
@@ -96,14 +94,12 @@ public open class NavigationRegion3D : Node3D() {
   public var useEdgeConnections: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_GET_USE_EDGE_CONNECTIONS, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getUseEdgeConnectionsPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_SET_USE_EDGE_CONNECTIONS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseEdgeConnectionsPtr, NIL)
     }
 
   /**
@@ -112,14 +108,12 @@ public open class NavigationRegion3D : Node3D() {
   public var navigationLayers: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_GET_NAVIGATION_LAYERS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_SET_NAVIGATION_LAYERS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayersPtr, NIL)
     }
 
   /**
@@ -128,14 +122,12 @@ public open class NavigationRegion3D : Node3D() {
   public var enterCost: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_GET_ENTER_COST,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnterCostPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_SET_ENTER_COST,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnterCostPtr, NIL)
     }
 
   /**
@@ -144,14 +136,12 @@ public open class NavigationRegion3D : Node3D() {
   public var travelCost: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_GET_TRAVEL_COST, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTravelCostPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_SET_TRAVEL_COST, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTravelCostPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -164,8 +154,7 @@ public open class NavigationRegion3D : Node3D() {
    */
   public fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_SET_NAVIGATION_LAYER_VALUE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayerValuePtr, NIL)
   }
 
   /**
@@ -173,8 +162,7 @@ public open class NavigationRegion3D : Node3D() {
    */
   public fun getNavigationLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_GET_NAVIGATION_LAYER_VALUE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayerValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -183,8 +171,7 @@ public open class NavigationRegion3D : Node3D() {
    */
   public fun getRegionRid(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_GET_REGION_RID,
-        _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.getRegionRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -194,9 +181,58 @@ public open class NavigationRegion3D : Node3D() {
   @JvmOverloads
   public fun bakeNavigationMesh(onThread: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to onThread)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_BAKE_NAVIGATION_MESH, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.bakeNavigationMeshPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setNavigationMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion3D", "set_navigation_mesh")
+
+    public val getNavigationMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion3D", "get_navigation_mesh")
+
+    public val setEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion3D", "set_enabled")
+
+    public val isEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion3D", "is_enabled")
+
+    public val setUseEdgeConnectionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion3D", "set_use_edge_connections")
+
+    public val getUseEdgeConnectionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion3D", "get_use_edge_connections")
+
+    public val setNavigationLayersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion3D", "set_navigation_layers")
+
+    public val getNavigationLayersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion3D", "get_navigation_layers")
+
+    public val setNavigationLayerValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion3D", "set_navigation_layer_value")
+
+    public val getNavigationLayerValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion3D", "get_navigation_layer_value")
+
+    public val getRegionRidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion3D", "get_region_rid")
+
+    public val setEnterCostPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion3D", "set_enter_cost")
+
+    public val getEnterCostPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion3D", "get_enter_cost")
+
+    public val setTravelCostPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion3D", "set_travel_cost")
+
+    public val getTravelCostPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion3D", "get_travel_cost")
+
+    public val bakeNavigationMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion3D", "bake_navigation_mesh")
+  }
 }

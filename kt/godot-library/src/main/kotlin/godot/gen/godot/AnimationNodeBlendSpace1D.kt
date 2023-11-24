@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -14,6 +15,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -44,14 +46,12 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   public var minSpace: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_MIN_SPACE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMinSpacePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_SET_MIN_SPACE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMinSpacePtr, NIL)
     }
 
   /**
@@ -60,14 +60,12 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   public var maxSpace: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_MAX_SPACE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMaxSpacePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_SET_MAX_SPACE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMaxSpacePtr, NIL)
     }
 
   /**
@@ -76,14 +74,12 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   public var snap: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_SNAP, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSnapPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_SET_SNAP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSnapPtr, NIL)
     }
 
   /**
@@ -92,14 +88,12 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   public var valueLabel: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_VALUE_LABEL, STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getValueLabelPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_SET_VALUE_LABEL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setValueLabelPtr, NIL)
     }
 
   /**
@@ -108,14 +102,12 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   public var blendMode: BlendMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBlendModePtr, LONG)
       return AnimationNodeBlendSpace1D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_SET_BLEND_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBlendModePtr, NIL)
     }
 
   /**
@@ -126,14 +118,12 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   public var sync: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_IS_USING_SYNC, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isUsingSyncPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_SET_USE_SYNC, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseSyncPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -151,8 +141,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     atIndex: Int = -1,
   ): Unit {
     TransferContext.writeArguments(OBJECT to node, DOUBLE to pos.toDouble(), LONG to atIndex.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_ADD_BLEND_POINT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addBlendPointPtr, NIL)
   }
 
   /**
@@ -160,8 +149,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
    */
   public fun setBlendPointPosition(point: Int, pos: Float): Unit {
     TransferContext.writeArguments(LONG to point.toLong(), DOUBLE to pos.toDouble())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_SET_BLEND_POINT_POSITION, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBlendPointPositionPtr, NIL)
   }
 
   /**
@@ -169,8 +157,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
    */
   public fun getBlendPointPosition(point: Int): Float {
     TransferContext.writeArguments(LONG to point.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBlendPointPositionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -179,8 +166,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
    */
   public fun setBlendPointNode(point: Int, node: AnimationRootNode): Unit {
     TransferContext.writeArguments(LONG to point.toLong(), OBJECT to node)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_SET_BLEND_POINT_NODE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBlendPointNodePtr, NIL)
   }
 
   /**
@@ -188,8 +174,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
    */
   public fun getBlendPointNode(point: Int): AnimationRootNode? {
     TransferContext.writeArguments(LONG to point.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBlendPointNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?)
   }
 
@@ -198,8 +183,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
    */
   public fun removeBlendPoint(point: Int): Unit {
     TransferContext.writeArguments(LONG to point.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_REMOVE_BLEND_POINT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeBlendPointPtr, NIL)
   }
 
   /**
@@ -207,8 +191,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
    */
   public fun getBlendPointCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBlendPointCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -240,4 +223,63 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val addBlendPointPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "add_blend_point")
+
+    public val setBlendPointPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_blend_point_position")
+
+    public val getBlendPointPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_blend_point_position")
+
+    public val setBlendPointNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_blend_point_node")
+
+    public val getBlendPointNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_blend_point_node")
+
+    public val removeBlendPointPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "remove_blend_point")
+
+    public val getBlendPointCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_blend_point_count")
+
+    public val setMinSpacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_min_space")
+
+    public val getMinSpacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_min_space")
+
+    public val setMaxSpacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_max_space")
+
+    public val getMaxSpacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_max_space")
+
+    public val setSnapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_snap")
+
+    public val getSnapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_snap")
+
+    public val setValueLabelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_value_label")
+
+    public val getValueLabelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_value_label")
+
+    public val setBlendModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_blend_mode")
+
+    public val getBlendModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_blend_mode")
+
+    public val setUseSyncPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_use_sync")
+
+    public val isUsingSyncPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "is_using_sync")
+  }
 }

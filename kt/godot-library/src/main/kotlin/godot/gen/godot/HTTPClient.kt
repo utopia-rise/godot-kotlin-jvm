@@ -11,6 +11,7 @@ import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.LONG
@@ -20,6 +21,7 @@ import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -63,13 +65,12 @@ public open class HTTPClient : RefCounted() {
   public var blockingModeEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_IS_BLOCKING_MODE_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isBlockingModeEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_BLOCKING_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBlockingModePtr, NIL)
     }
 
   /**
@@ -78,12 +79,12 @@ public open class HTTPClient : RefCounted() {
   public var connection: StreamPeer?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_CONNECTION, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getConnectionPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as StreamPeer?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_CONNECTION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setConnectionPtr, NIL)
     }
 
   /**
@@ -92,14 +93,12 @@ public open class HTTPClient : RefCounted() {
   public var readChunkSize: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_READ_CHUNK_SIZE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getReadChunkSizePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_READ_CHUNK_SIZE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setReadChunkSizePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -119,7 +118,7 @@ public open class HTTPClient : RefCounted() {
     tlsOptions: TLSOptions? = null,
   ): GodotError {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong(), OBJECT to tlsOptions)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_CONNECT_TO_HOST, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.connectToHostPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -139,7 +138,7 @@ public open class HTTPClient : RefCounted() {
     body: PackedByteArray,
   ): GodotError {
     TransferContext.writeArguments(LONG to method.id, STRING to url, PACKED_STRING_ARRAY to headers, PACKED_BYTE_ARRAY to body)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_REQUEST_RAW, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.requestRawPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -190,7 +189,7 @@ public open class HTTPClient : RefCounted() {
     body: String = "",
   ): GodotError {
     TransferContext.writeArguments(LONG to method.id, STRING to url, PACKED_STRING_ARRAY to headers, STRING to body)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_REQUEST, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.requestPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -199,7 +198,7 @@ public open class HTTPClient : RefCounted() {
    */
   public fun close(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_CLOSE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.closePtr, NIL)
   }
 
   /**
@@ -207,7 +206,7 @@ public open class HTTPClient : RefCounted() {
    */
   public fun hasResponse(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_HAS_RESPONSE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hasResponsePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -216,8 +215,7 @@ public open class HTTPClient : RefCounted() {
    */
   public fun isResponseChunked(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_IS_RESPONSE_CHUNKED,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isResponseChunkedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -226,7 +224,7 @@ public open class HTTPClient : RefCounted() {
    */
   public fun getResponseCode(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_RESPONSE_CODE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getResponseCodePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -235,8 +233,7 @@ public open class HTTPClient : RefCounted() {
    */
   public fun getResponseHeaders(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_RESPONSE_HEADERS,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getResponseHeadersPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
@@ -254,8 +251,7 @@ public open class HTTPClient : RefCounted() {
    */
   public fun getResponseHeadersAsDictionary(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_RESPONSE_HEADERS_AS_DICTIONARY, DICTIONARY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getResponseHeadersAsDictionaryPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
@@ -268,8 +264,7 @@ public open class HTTPClient : RefCounted() {
    */
   public fun getResponseBodyLength(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_RESPONSE_BODY_LENGTH,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getResponseBodyLengthPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -278,8 +273,7 @@ public open class HTTPClient : RefCounted() {
    */
   public fun readResponseBodyChunk(): PackedByteArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_READ_RESPONSE_BODY_CHUNK,
-        PACKED_BYTE_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.readResponseBodyChunkPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
@@ -288,7 +282,7 @@ public open class HTTPClient : RefCounted() {
    */
   public fun getStatus(): Status {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_STATUS, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getStatusPtr, LONG)
     return HTTPClient.Status.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -297,7 +291,7 @@ public open class HTTPClient : RefCounted() {
    */
   public fun poll(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_POLL, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.pollPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -308,7 +302,7 @@ public open class HTTPClient : RefCounted() {
    */
   public fun setHttpProxy(host: String, port: Int): Unit {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_HTTP_PROXY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHttpProxyPtr, NIL)
   }
 
   /**
@@ -318,7 +312,7 @@ public open class HTTPClient : RefCounted() {
    */
   public fun setHttpsProxy(host: String, port: Int): Unit {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_HTTPS_PROXY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHttpsProxyPtr, NIL)
   }
 
   /**
@@ -386,8 +380,7 @@ public open class HTTPClient : RefCounted() {
    */
   public fun queryStringFromDict(fields: Dictionary<Any?, Any?>): String {
     TransferContext.writeArguments(DICTIONARY to fields)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_QUERY_STRING_FROM_DICT,
-        STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.queryStringFromDictPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -761,4 +754,66 @@ public open class HTTPClient : RefCounted() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val connectToHostPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPClient", "connect_to_host")
+
+    public val setConnectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPClient", "set_connection")
+
+    public val getConnectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPClient", "get_connection")
+
+    public val requestRawPtr: VoidPtr = TypeManager.getMethodBindPtr("HTTPClient", "request_raw")
+
+    public val requestPtr: VoidPtr = TypeManager.getMethodBindPtr("HTTPClient", "request")
+
+    public val closePtr: VoidPtr = TypeManager.getMethodBindPtr("HTTPClient", "close")
+
+    public val hasResponsePtr: VoidPtr = TypeManager.getMethodBindPtr("HTTPClient", "has_response")
+
+    public val isResponseChunkedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPClient", "is_response_chunked")
+
+    public val getResponseCodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPClient", "get_response_code")
+
+    public val getResponseHeadersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPClient", "get_response_headers")
+
+    public val getResponseHeadersAsDictionaryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPClient", "get_response_headers_as_dictionary")
+
+    public val getResponseBodyLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPClient", "get_response_body_length")
+
+    public val readResponseBodyChunkPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPClient", "read_response_body_chunk")
+
+    public val setReadChunkSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPClient", "set_read_chunk_size")
+
+    public val getReadChunkSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPClient", "get_read_chunk_size")
+
+    public val setBlockingModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPClient", "set_blocking_mode")
+
+    public val isBlockingModeEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPClient", "is_blocking_mode_enabled")
+
+    public val getStatusPtr: VoidPtr = TypeManager.getMethodBindPtr("HTTPClient", "get_status")
+
+    public val pollPtr: VoidPtr = TypeManager.getMethodBindPtr("HTTPClient", "poll")
+
+    public val setHttpProxyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPClient", "set_http_proxy")
+
+    public val setHttpsProxyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPClient", "set_https_proxy")
+
+    public val queryStringFromDictPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPClient", "query_string_from_dict")
+  }
 }

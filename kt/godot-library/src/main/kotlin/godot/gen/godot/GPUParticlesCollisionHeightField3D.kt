@@ -9,12 +9,14 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -43,14 +45,12 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   public var size: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_GET_SIZE, VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_SET_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
     }
 
   /**
@@ -59,14 +59,12 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   public var resolution: Resolution
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_GET_RESOLUTION, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getResolutionPtr, LONG)
       return GPUParticlesCollisionHeightField3D.Resolution.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_SET_RESOLUTION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setResolutionPtr, NIL)
     }
 
   /**
@@ -75,14 +73,12 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   public var updateMode: UpdateMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_GET_UPDATE_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getUpdateModePtr, LONG)
       return GPUParticlesCollisionHeightField3D.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_SET_UPDATE_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUpdateModePtr, NIL)
     }
 
   /**
@@ -93,16 +89,12 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   public var followCameraEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_IS_FOLLOW_CAMERA_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isFollowCameraEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_SET_FOLLOW_CAMERA_ENABLED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFollowCameraEnabledPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -201,4 +193,30 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_size")
+
+    public val getSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_size")
+
+    public val setResolutionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_resolution")
+
+    public val getResolutionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_resolution")
+
+    public val setUpdateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_update_mode")
+
+    public val getUpdateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_update_mode")
+
+    public val setFollowCameraEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_follow_camera_enabled")
+
+    public val isFollowCameraEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "is_follow_camera_enabled")
+  }
 }

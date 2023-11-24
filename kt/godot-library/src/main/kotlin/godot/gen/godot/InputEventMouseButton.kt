@@ -7,11 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -36,14 +38,12 @@ public open class InputEventMouseButton : InputEventMouse() {
   public var factor: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_GET_FACTOR,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFactorPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_SET_FACTOR,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFactorPtr, NIL)
     }
 
   /**
@@ -52,14 +52,12 @@ public open class InputEventMouseButton : InputEventMouse() {
   public var buttonIndex: MouseButton
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_GET_BUTTON_INDEX, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getButtonIndexPtr, LONG)
       return MouseButton.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_SET_BUTTON_INDEX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setButtonIndexPtr, NIL)
     }
 
   /**
@@ -71,8 +69,7 @@ public open class InputEventMouseButton : InputEventMouse() {
     get() = super.isCanceled()
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_SET_CANCELED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCanceledPtr, NIL)
     }
 
   /**
@@ -84,8 +81,7 @@ public open class InputEventMouseButton : InputEventMouse() {
     get() = super.isPressed()
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_SET_PRESSED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
     }
 
   /**
@@ -94,14 +90,12 @@ public open class InputEventMouseButton : InputEventMouse() {
   public var doubleClick: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_IS_DOUBLE_CLICK, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isDoubleClickPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_SET_DOUBLE_CLICK, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDoubleClickPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -110,4 +104,30 @@ public open class InputEventMouseButton : InputEventMouse() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setFactorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouseButton", "set_factor")
+
+    public val getFactorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouseButton", "get_factor")
+
+    public val setButtonIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouseButton", "set_button_index")
+
+    public val getButtonIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouseButton", "get_button_index")
+
+    public val setPressedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouseButton", "set_pressed")
+
+    public val setCanceledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouseButton", "set_canceled")
+
+    public val setDoubleClickPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouseButton", "set_double_click")
+
+    public val isDoubleClickPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventMouseButton", "is_double_click")
+  }
 }

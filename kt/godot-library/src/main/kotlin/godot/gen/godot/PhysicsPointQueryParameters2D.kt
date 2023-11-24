@@ -10,6 +10,7 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -18,6 +19,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -38,14 +40,12 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   public var position: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_GET_POSITION, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_SET_POSITION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
     }
 
   /**
@@ -56,14 +56,12 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   public var canvasInstanceId: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_GET_CANVAS_INSTANCE_ID, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCanvasInstanceIdPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_SET_CANVAS_INSTANCE_ID, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCanvasInstanceIdPtr, NIL)
     }
 
   /**
@@ -72,14 +70,12 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   public var collisionMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_GET_COLLISION_MASK, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_SET_COLLISION_MASK, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
     }
 
   /**
@@ -88,14 +84,12 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   public var exclude: VariantArray<RID>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_GET_EXCLUDE, ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getExcludePtr, ARRAY)
       return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_SET_EXCLUDE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setExcludePtr, NIL)
     }
 
   /**
@@ -104,15 +98,12 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   public var collideWithBodies: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_IS_COLLIDE_WITH_BODIES_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_SET_COLLIDE_WITH_BODIES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithBodiesPtr, NIL)
     }
 
   /**
@@ -121,15 +112,12 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   public var collideWithAreas: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_IS_COLLIDE_WITH_AREAS_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_SET_COLLIDE_WITH_AREAS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithAreasPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -162,4 +150,42 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_position")
+
+    public val getPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "get_position")
+
+    public val setCanvasInstanceIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_canvas_instance_id")
+
+    public val getCanvasInstanceIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "get_canvas_instance_id")
+
+    public val setCollisionMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_collision_mask")
+
+    public val getCollisionMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "get_collision_mask")
+
+    public val setExcludePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_exclude")
+
+    public val getExcludePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "get_exclude")
+
+    public val setCollideWithBodiesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_collide_with_bodies")
+
+    public val isCollideWithBodiesEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "is_collide_with_bodies_enabled")
+
+    public val setCollideWithAreasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_collide_with_areas")
+
+    public val isCollideWithAreasEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "is_collide_with_areas_enabled")
+  }
 }

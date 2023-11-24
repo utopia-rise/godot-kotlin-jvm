@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
@@ -21,6 +22,7 @@ import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.Signal4
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -103,12 +105,12 @@ public open class EditorProperty internal constructor() : Container() {
   public var label: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_GET_LABEL, STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLabelPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_LABEL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLabelPtr, NIL)
     }
 
   /**
@@ -117,12 +119,12 @@ public open class EditorProperty internal constructor() : Container() {
   public var readOnly: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_READ_ONLY, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isReadOnlyPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_READ_ONLY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setReadOnlyPtr, NIL)
     }
 
   /**
@@ -131,12 +133,12 @@ public open class EditorProperty internal constructor() : Container() {
   public var checkable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_CHECKABLE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isCheckablePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_CHECKABLE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCheckablePtr, NIL)
     }
 
   /**
@@ -145,12 +147,12 @@ public open class EditorProperty internal constructor() : Container() {
   public var checked: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_CHECKED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isCheckedPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_CHECKED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCheckedPtr, NIL)
     }
 
   /**
@@ -159,14 +161,12 @@ public open class EditorProperty internal constructor() : Container() {
   public var drawWarning: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_DRAW_WARNING,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isDrawWarningPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_DRAW_WARNING,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDrawWarningPtr, NIL)
     }
 
   /**
@@ -175,12 +175,12 @@ public open class EditorProperty internal constructor() : Container() {
   public var keying: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_KEYING, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isKeyingPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_KEYING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setKeyingPtr, NIL)
     }
 
   /**
@@ -189,12 +189,12 @@ public open class EditorProperty internal constructor() : Container() {
   public var deletable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_IS_DELETABLE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isDeletablePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_DELETABLE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDeletablePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -219,8 +219,7 @@ public open class EditorProperty internal constructor() : Container() {
    */
   public fun getEditedProperty(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_GET_EDITED_PROPERTY,
-        STRING_NAME)
+    TransferContext.callMethod(rawPtr, MethodBindings.getEditedPropertyPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
@@ -229,8 +228,7 @@ public open class EditorProperty internal constructor() : Container() {
    */
   public fun getEditedObject(): Object? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_GET_EDITED_OBJECT,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getEditedObjectPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Object?)
   }
 
@@ -239,7 +237,7 @@ public open class EditorProperty internal constructor() : Container() {
    */
   public fun updateProperty(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_UPDATE_PROPERTY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.updatePropertyPtr, NIL)
   }
 
   /**
@@ -247,7 +245,7 @@ public open class EditorProperty internal constructor() : Container() {
    */
   public fun addFocusable(control: Control): Unit {
     TransferContext.writeArguments(OBJECT to control)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_ADD_FOCUSABLE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addFocusablePtr, NIL)
   }
 
   /**
@@ -255,8 +253,7 @@ public open class EditorProperty internal constructor() : Container() {
    */
   public fun setBottomEditor(editor: Control): Unit {
     TransferContext.writeArguments(OBJECT to editor)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_SET_BOTTOM_EDITOR,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBottomEditorPtr, NIL)
   }
 
   /**
@@ -270,8 +267,71 @@ public open class EditorProperty internal constructor() : Container() {
     changing: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to property, ANY to value, STRING_NAME to field, BOOL to changing)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPROPERTY_EMIT_CHANGED, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.emitChangedPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _updatePropertyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorProperty", "_update_property")
+
+    public val _setReadOnlyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorProperty", "_set_read_only")
+
+    public val setLabelPtr: VoidPtr = TypeManager.getMethodBindPtr("EditorProperty", "set_label")
+
+    public val getLabelPtr: VoidPtr = TypeManager.getMethodBindPtr("EditorProperty", "get_label")
+
+    public val setReadOnlyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorProperty", "set_read_only")
+
+    public val isReadOnlyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorProperty", "is_read_only")
+
+    public val setCheckablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorProperty", "set_checkable")
+
+    public val isCheckablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorProperty", "is_checkable")
+
+    public val setCheckedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorProperty", "set_checked")
+
+    public val isCheckedPtr: VoidPtr = TypeManager.getMethodBindPtr("EditorProperty", "is_checked")
+
+    public val setDrawWarningPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorProperty", "set_draw_warning")
+
+    public val isDrawWarningPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorProperty", "is_draw_warning")
+
+    public val setKeyingPtr: VoidPtr = TypeManager.getMethodBindPtr("EditorProperty", "set_keying")
+
+    public val isKeyingPtr: VoidPtr = TypeManager.getMethodBindPtr("EditorProperty", "is_keying")
+
+    public val setDeletablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorProperty", "set_deletable")
+
+    public val isDeletablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorProperty", "is_deletable")
+
+    public val getEditedPropertyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorProperty", "get_edited_property")
+
+    public val getEditedObjectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorProperty", "get_edited_object")
+
+    public val updatePropertyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorProperty", "update_property")
+
+    public val addFocusablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorProperty", "add_focusable")
+
+    public val setBottomEditorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorProperty", "set_bottom_editor")
+
+    public val emitChangedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorProperty", "emit_changed")
+  }
 }

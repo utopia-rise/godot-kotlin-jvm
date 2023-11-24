@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -30,14 +32,12 @@ public open class VisualShaderNodeStep : VisualShaderNode() {
   public var opType: OpType
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODESTEP_GET_OP_TYPE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getOpTypePtr, LONG)
       return VisualShaderNodeStep.OpType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODESTEP_SET_OP_TYPE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -93,4 +93,12 @@ public open class VisualShaderNodeStep : VisualShaderNode() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setOpTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeStep", "set_op_type")
+
+    public val getOpTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeStep", "get_op_type")
+  }
 }

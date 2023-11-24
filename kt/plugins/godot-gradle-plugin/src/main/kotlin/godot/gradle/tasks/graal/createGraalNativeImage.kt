@@ -90,9 +90,7 @@ fun Project.createGraalNativeImageTask(
                         "-H:Name=usercode",
                         jniConfigurationFilesArgument,
                         "--no-fallback",
-                        verboseArgument,
-
-                        ")"
+                        verboseArgument
                     )
 
                 } else {
@@ -115,6 +113,10 @@ fun Project.createGraalNativeImageTask(
 
                 if(resourceConfigFiles.isNotEmpty()){
                     arguments.add(resourceConfigurationFilesArgument)
+                }
+
+                if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
+                    arguments.add(")")
                 }
 
                 println(arguments.joinToString(" "))

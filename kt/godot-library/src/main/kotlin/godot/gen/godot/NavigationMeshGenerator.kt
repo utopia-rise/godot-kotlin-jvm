@@ -8,10 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
+import godot.core.TypeManager
 import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -46,7 +48,7 @@ public object NavigationMeshGenerator : Object() {
    */
   public fun bake(navigationMesh: NavigationMesh, rootNode: Node): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to rootNode)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESHGENERATOR_BAKE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.bakePtr, NIL)
   }
 
   /**
@@ -54,7 +56,7 @@ public object NavigationMeshGenerator : Object() {
    */
   public fun clear(navigationMesh: NavigationMesh): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESHGENERATOR_CLEAR, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   /**
@@ -72,8 +74,7 @@ public object NavigationMeshGenerator : Object() {
     callback: Callable = Callable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, OBJECT to rootNode, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESHGENERATOR_PARSE_SOURCE_GEOMETRY_DATA, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.parseSourceGeometryDataPtr, NIL)
   }
 
   /**
@@ -86,7 +87,18 @@ public object NavigationMeshGenerator : Object() {
     callback: Callable = Callable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESHGENERATOR_BAKE_FROM_SOURCE_GEOMETRY_DATA, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.bakeFromSourceGeometryDataPtr, NIL)
+  }
+
+  internal object MethodBindings {
+    public val bakePtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationMeshGenerator", "bake")
+
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationMeshGenerator", "clear")
+
+    public val parseSourceGeometryDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMeshGenerator", "parse_source_geometry_data")
+
+    public val bakeFromSourceGeometryDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMeshGenerator", "bake_from_source_geometry_data")
   }
 }

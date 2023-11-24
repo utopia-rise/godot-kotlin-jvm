@@ -24,4 +24,6 @@ public open class VisualShaderNodeParticleOutput : VisualShaderNodeOutput() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

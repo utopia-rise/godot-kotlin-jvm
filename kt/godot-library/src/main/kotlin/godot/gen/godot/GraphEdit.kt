@@ -13,6 +13,7 @@ import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.PackedVector2Array
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -30,6 +31,7 @@ import godot.signals.Signal1
 import godot.signals.Signal3
 import godot.signals.Signal4
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -142,14 +144,12 @@ public open class GraphEdit : Control() {
   public var rightDisconnects: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_RIGHT_DISCONNECTS_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isRightDisconnectsEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_RIGHT_DISCONNECTS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRightDisconnectsPtr, NIL)
     }
 
   /**
@@ -159,12 +159,12 @@ public open class GraphEdit : Control() {
   public var scrollOffset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_SCROLL_OFS, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getScrollOfsPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SCROLL_OFS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setScrollOfsPtr, NIL)
     }
 
   /**
@@ -173,12 +173,12 @@ public open class GraphEdit : Control() {
   public var snapDistance: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_SNAP, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSnapPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SNAP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSnapPtr, NIL)
     }
 
   /**
@@ -187,12 +187,12 @@ public open class GraphEdit : Control() {
   public var useSnap: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_USING_SNAP, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isUsingSnapPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_USE_SNAP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseSnapPtr, NIL)
     }
 
   /**
@@ -201,13 +201,12 @@ public open class GraphEdit : Control() {
   public var panningScheme: PanningScheme
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_PANNING_SCHEME,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPanningSchemePtr, LONG)
       return GraphEdit.PanningScheme.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_PANNING_SCHEME, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPanningSchemePtr, NIL)
     }
 
   /**
@@ -216,14 +215,12 @@ public open class GraphEdit : Control() {
   public var connectionLinesCurvature: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_CONNECTION_LINES_CURVATURE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getConnectionLinesCurvaturePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_CONNECTION_LINES_CURVATURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setConnectionLinesCurvaturePtr, NIL)
     }
 
   /**
@@ -232,14 +229,12 @@ public open class GraphEdit : Control() {
   public var connectionLinesThickness: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_CONNECTION_LINES_THICKNESS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getConnectionLinesThicknessPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_CONNECTION_LINES_THICKNESS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setConnectionLinesThicknessPtr, NIL)
     }
 
   /**
@@ -248,14 +243,12 @@ public open class GraphEdit : Control() {
   public var connectionLinesAntialiased: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_CONNECTION_LINES_ANTIALIASED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isConnectionLinesAntialiasedPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_CONNECTION_LINES_ANTIALIASED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setConnectionLinesAntialiasedPtr, NIL)
     }
 
   /**
@@ -264,12 +257,12 @@ public open class GraphEdit : Control() {
   public var zoom: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getZoomPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_ZOOM, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setZoomPtr, NIL)
     }
 
   /**
@@ -278,12 +271,12 @@ public open class GraphEdit : Control() {
   public var zoomMin: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM_MIN, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getZoomMinPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_ZOOM_MIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setZoomMinPtr, NIL)
     }
 
   /**
@@ -292,12 +285,12 @@ public open class GraphEdit : Control() {
   public var zoomMax: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM_MAX, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getZoomMaxPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_ZOOM_MAX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setZoomMaxPtr, NIL)
     }
 
   /**
@@ -306,12 +299,12 @@ public open class GraphEdit : Control() {
   public var zoomStep: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM_STEP, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getZoomStepPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_ZOOM_STEP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setZoomStepPtr, NIL)
     }
 
   /**
@@ -320,14 +313,12 @@ public open class GraphEdit : Control() {
   public var showZoomLabel: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_SHOWING_ZOOM_LABEL,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isShowingZoomLabelPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SHOW_ZOOM_LABEL,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShowZoomLabelPtr, NIL)
     }
 
   /**
@@ -336,14 +327,12 @@ public open class GraphEdit : Control() {
   public var minimapEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_MINIMAP_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isMinimapEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_MINIMAP_ENABLED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMinimapEnabledPtr, NIL)
     }
 
   /**
@@ -353,13 +342,12 @@ public open class GraphEdit : Control() {
   public var minimapSize: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_MINIMAP_SIZE,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMinimapSizePtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_MINIMAP_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMinimapSizePtr, NIL)
     }
 
   /**
@@ -368,14 +356,12 @@ public open class GraphEdit : Control() {
   public var minimapOpacity: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_MINIMAP_OPACITY,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMinimapOpacityPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_MINIMAP_OPACITY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMinimapOpacityPtr, NIL)
     }
 
   /**
@@ -384,14 +370,12 @@ public open class GraphEdit : Control() {
   public var arrangeNodesButtonHidden: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_ARRANGE_NODES_BUTTON_HIDDEN, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isArrangeNodesButtonHiddenPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_ARRANGE_NODES_BUTTON_HIDDEN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setArrangeNodesButtonHiddenPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -551,7 +535,7 @@ public open class GraphEdit : Control() {
     toPort: Int,
   ): GodotError {
     TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong(), STRING_NAME to toNode, LONG to toPort.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_CONNECT_NODE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.connectNodePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -565,7 +549,7 @@ public open class GraphEdit : Control() {
     toPort: Int,
   ): Boolean {
     TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong(), STRING_NAME to toNode, LONG to toPort.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_NODE_CONNECTED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isNodeConnectedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -579,7 +563,7 @@ public open class GraphEdit : Control() {
     toPort: Int,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong(), STRING_NAME to toNode, LONG to toPort.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_DISCONNECT_NODE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.disconnectNodePtr, NIL)
   }
 
   /**
@@ -593,8 +577,7 @@ public open class GraphEdit : Control() {
     amount: Float,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong(), STRING_NAME to toNode, LONG to toPort.toLong(), DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_CONNECTION_ACTIVITY,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setConnectionActivityPtr, NIL)
   }
 
   /**
@@ -602,8 +585,7 @@ public open class GraphEdit : Control() {
    */
   public fun getConnectionList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_CONNECTION_LIST,
-        ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getConnectionListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -612,7 +594,7 @@ public open class GraphEdit : Control() {
    */
   public fun clearConnections(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_CLEAR_CONNECTIONS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearConnectionsPtr, NIL)
   }
 
   /**
@@ -624,8 +606,7 @@ public open class GraphEdit : Control() {
    */
   public fun forceConnectionDragEnd(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_FORCE_CONNECTION_DRAG_END,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.forceConnectionDragEndPtr, NIL)
   }
 
   /**
@@ -633,8 +614,7 @@ public open class GraphEdit : Control() {
    */
   public fun addValidRightDisconnectType(type: Int): Unit {
     TransferContext.writeArguments(LONG to type.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_ADD_VALID_RIGHT_DISCONNECT_TYPE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addValidRightDisconnectTypePtr, NIL)
   }
 
   /**
@@ -642,8 +622,7 @@ public open class GraphEdit : Control() {
    */
   public fun removeValidRightDisconnectType(type: Int): Unit {
     TransferContext.writeArguments(LONG to type.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_REMOVE_VALID_RIGHT_DISCONNECT_TYPE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeValidRightDisconnectTypePtr, NIL)
   }
 
   /**
@@ -651,8 +630,7 @@ public open class GraphEdit : Control() {
    */
   public fun addValidLeftDisconnectType(type: Int): Unit {
     TransferContext.writeArguments(LONG to type.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_ADD_VALID_LEFT_DISCONNECT_TYPE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addValidLeftDisconnectTypePtr, NIL)
   }
 
   /**
@@ -660,8 +638,7 @@ public open class GraphEdit : Control() {
    */
   public fun removeValidLeftDisconnectType(type: Int): Unit {
     TransferContext.writeArguments(LONG to type.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_REMOVE_VALID_LEFT_DISCONNECT_TYPE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeValidLeftDisconnectTypePtr, NIL)
   }
 
   /**
@@ -671,8 +648,7 @@ public open class GraphEdit : Control() {
    */
   public fun addValidConnectionType(fromType: Int, toType: Int): Unit {
     TransferContext.writeArguments(LONG to fromType.toLong(), LONG to toType.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_ADD_VALID_CONNECTION_TYPE,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addValidConnectionTypePtr, NIL)
   }
 
   /**
@@ -682,8 +658,7 @@ public open class GraphEdit : Control() {
    */
   public fun removeValidConnectionType(fromType: Int, toType: Int): Unit {
     TransferContext.writeArguments(LONG to fromType.toLong(), LONG to toType.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_REMOVE_VALID_CONNECTION_TYPE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeValidConnectionTypePtr, NIL)
   }
 
   /**
@@ -693,8 +668,7 @@ public open class GraphEdit : Control() {
    */
   public fun isValidConnectionType(fromType: Int, toType: Int): Boolean {
     TransferContext.writeArguments(LONG to fromType.toLong(), LONG to toType.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_IS_VALID_CONNECTION_TYPE,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isValidConnectionTypePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -703,8 +677,7 @@ public open class GraphEdit : Control() {
    */
   public fun getConnectionLine(fromNode: Vector2, toNode: Vector2): PackedVector2Array {
     TransferContext.writeArguments(VECTOR2 to fromNode, VECTOR2 to toNode)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_CONNECTION_LINE,
-        PACKED_VECTOR2_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getConnectionLinePtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
   }
 
@@ -715,7 +688,7 @@ public open class GraphEdit : Control() {
    */
   public fun getZoomHbox(): HBoxContainer? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_ZOOM_HBOX, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getZoomHboxPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as HBoxContainer?)
   }
 
@@ -724,7 +697,7 @@ public open class GraphEdit : Control() {
    */
   public fun arrangeNodes(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_ARRANGE_NODES, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.arrangeNodesPtr, NIL)
   }
 
   /**
@@ -732,7 +705,7 @@ public open class GraphEdit : Control() {
    */
   public fun setSelected(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SELECTED, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSelectedPtr, NIL)
   }
 
   public enum class PanningScheme(
@@ -759,4 +732,158 @@ public open class GraphEdit : Control() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _isInInputHotzonePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "_is_in_input_hotzone")
+
+    public val _isInOutputHotzonePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "_is_in_output_hotzone")
+
+    public val _getConnectionLinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "_get_connection_line")
+
+    public val _isNodeHoverValidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "_is_node_hover_valid")
+
+    public val connectNodePtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "connect_node")
+
+    public val isNodeConnectedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "is_node_connected")
+
+    public val disconnectNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "disconnect_node")
+
+    public val setConnectionActivityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_connection_activity")
+
+    public val getConnectionListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "get_connection_list")
+
+    public val clearConnectionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "clear_connections")
+
+    public val forceConnectionDragEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "force_connection_drag_end")
+
+    public val getScrollOfsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "get_scroll_ofs")
+
+    public val setScrollOfsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_scroll_ofs")
+
+    public val addValidRightDisconnectTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "add_valid_right_disconnect_type")
+
+    public val removeValidRightDisconnectTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "remove_valid_right_disconnect_type")
+
+    public val addValidLeftDisconnectTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "add_valid_left_disconnect_type")
+
+    public val removeValidLeftDisconnectTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "remove_valid_left_disconnect_type")
+
+    public val addValidConnectionTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "add_valid_connection_type")
+
+    public val removeValidConnectionTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "remove_valid_connection_type")
+
+    public val isValidConnectionTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "is_valid_connection_type")
+
+    public val getConnectionLinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "get_connection_line")
+
+    public val setPanningSchemePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_panning_scheme")
+
+    public val getPanningSchemePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "get_panning_scheme")
+
+    public val setZoomPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "set_zoom")
+
+    public val getZoomPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "get_zoom")
+
+    public val setZoomMinPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "set_zoom_min")
+
+    public val getZoomMinPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "get_zoom_min")
+
+    public val setZoomMaxPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "set_zoom_max")
+
+    public val getZoomMaxPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "get_zoom_max")
+
+    public val setZoomStepPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "set_zoom_step")
+
+    public val getZoomStepPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "get_zoom_step")
+
+    public val setShowZoomLabelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_show_zoom_label")
+
+    public val isShowingZoomLabelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_zoom_label")
+
+    public val setSnapPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "set_snap")
+
+    public val getSnapPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "get_snap")
+
+    public val setUseSnapPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "set_use_snap")
+
+    public val isUsingSnapPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "is_using_snap")
+
+    public val setConnectionLinesCurvaturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_connection_lines_curvature")
+
+    public val getConnectionLinesCurvaturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "get_connection_lines_curvature")
+
+    public val setConnectionLinesThicknessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_connection_lines_thickness")
+
+    public val getConnectionLinesThicknessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "get_connection_lines_thickness")
+
+    public val setConnectionLinesAntialiasedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_connection_lines_antialiased")
+
+    public val isConnectionLinesAntialiasedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "is_connection_lines_antialiased")
+
+    public val setMinimapSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_minimap_size")
+
+    public val getMinimapSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "get_minimap_size")
+
+    public val setMinimapOpacityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_minimap_opacity")
+
+    public val getMinimapOpacityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "get_minimap_opacity")
+
+    public val setMinimapEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_minimap_enabled")
+
+    public val isMinimapEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "is_minimap_enabled")
+
+    public val setArrangeNodesButtonHiddenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_arrange_nodes_button_hidden")
+
+    public val isArrangeNodesButtonHiddenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "is_arrange_nodes_button_hidden")
+
+    public val setRightDisconnectsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_right_disconnects")
+
+    public val isRightDisconnectsEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "is_right_disconnects_enabled")
+
+    public val getZoomHboxPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "get_zoom_hbox")
+
+    public val arrangeNodesPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "arrange_nodes")
+
+    public val setSelectedPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "set_selected")
+  }
 }

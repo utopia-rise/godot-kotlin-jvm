@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -51,13 +53,12 @@ public open class CanvasGroup : Node2D() {
   public var fitMargin: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASGROUP_GET_FIT_MARGIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFitMarginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASGROUP_SET_FIT_MARGIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFitMarginPtr, NIL)
     }
 
   /**
@@ -66,13 +67,12 @@ public open class CanvasGroup : Node2D() {
   public var clearMargin: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASGROUP_GET_CLEAR_MARGIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getClearMarginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASGROUP_SET_CLEAR_MARGIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setClearMarginPtr, NIL)
     }
 
   /**
@@ -81,13 +81,12 @@ public open class CanvasGroup : Node2D() {
   public var useMipmaps: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASGROUP_IS_USING_MIPMAPS,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isUsingMipmapsPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASGROUP_SET_USE_MIPMAPS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseMipmapsPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -96,4 +95,24 @@ public open class CanvasGroup : Node2D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setFitMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasGroup", "set_fit_margin")
+
+    public val getFitMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasGroup", "get_fit_margin")
+
+    public val setClearMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasGroup", "set_clear_margin")
+
+    public val getClearMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasGroup", "get_clear_margin")
+
+    public val setUseMipmapsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasGroup", "set_use_mipmaps")
+
+    public val isUsingMipmapsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasGroup", "is_using_mipmaps")
+  }
 }

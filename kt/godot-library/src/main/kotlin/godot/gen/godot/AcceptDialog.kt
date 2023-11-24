@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -16,6 +17,7 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
@@ -51,14 +53,12 @@ public open class AcceptDialog : Window() {
   public var okButtonText: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_OK_BUTTON_TEXT,
-          STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getOkButtonTextPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_SET_OK_BUTTON_TEXT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOkButtonTextPtr, NIL)
     }
 
   /**
@@ -67,12 +67,12 @@ public open class AcceptDialog : Window() {
   public var dialogText: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_TEXT, STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_SET_TEXT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
     }
 
   /**
@@ -83,12 +83,12 @@ public open class AcceptDialog : Window() {
   public var dialogHideOnOk: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_HIDE_ON_OK, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHideOnOkPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_SET_HIDE_ON_OK, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHideOnOkPtr, NIL)
     }
 
   /**
@@ -97,14 +97,12 @@ public open class AcceptDialog : Window() {
   public var dialogCloseOnEscape: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_CLOSE_ON_ESCAPE,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCloseOnEscapePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_SET_CLOSE_ON_ESCAPE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCloseOnEscapePtr, NIL)
     }
 
   /**
@@ -113,12 +111,12 @@ public open class AcceptDialog : Window() {
   public var dialogAutowrap: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_HAS_AUTOWRAP, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.hasAutowrapPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_SET_AUTOWRAP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -133,7 +131,7 @@ public open class AcceptDialog : Window() {
    */
   public fun getOkButton(): Button? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_OK_BUTTON, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getOkButtonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Button?)
   }
 
@@ -144,7 +142,7 @@ public open class AcceptDialog : Window() {
    */
   public fun getLabel(): Label? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_GET_LABEL, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getLabelPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Label?)
   }
 
@@ -162,7 +160,7 @@ public open class AcceptDialog : Window() {
     action: String = "",
   ): Button? {
     TransferContext.writeArguments(STRING to text, BOOL to right, STRING to action)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_ADD_BUTTON, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.addButtonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Button?)
   }
 
@@ -173,8 +171,7 @@ public open class AcceptDialog : Window() {
    */
   public fun addCancelButton(name: String): Button? {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_ADD_CANCEL_BUTTON,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.addCancelButtonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Button?)
   }
 
@@ -183,7 +180,7 @@ public open class AcceptDialog : Window() {
    */
   public fun removeButton(button: Control): Unit {
     TransferContext.writeArguments(OBJECT to button)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_REMOVE_BUTTON, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeButtonPtr, NIL)
   }
 
   /**
@@ -191,9 +188,54 @@ public open class AcceptDialog : Window() {
    */
   public fun registerTextEnter(lineEdit: Control): Unit {
     TransferContext.writeArguments(OBJECT to lineEdit)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_REGISTER_TEXT_ENTER,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.registerTextEnterPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getOkButtonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AcceptDialog", "get_ok_button")
+
+    public val getLabelPtr: VoidPtr = TypeManager.getMethodBindPtr("AcceptDialog", "get_label")
+
+    public val setHideOnOkPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AcceptDialog", "set_hide_on_ok")
+
+    public val getHideOnOkPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AcceptDialog", "get_hide_on_ok")
+
+    public val setCloseOnEscapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AcceptDialog", "set_close_on_escape")
+
+    public val getCloseOnEscapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AcceptDialog", "get_close_on_escape")
+
+    public val addButtonPtr: VoidPtr = TypeManager.getMethodBindPtr("AcceptDialog", "add_button")
+
+    public val addCancelButtonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AcceptDialog", "add_cancel_button")
+
+    public val removeButtonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AcceptDialog", "remove_button")
+
+    public val registerTextEnterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AcceptDialog", "register_text_enter")
+
+    public val setTextPtr: VoidPtr = TypeManager.getMethodBindPtr("AcceptDialog", "set_text")
+
+    public val getTextPtr: VoidPtr = TypeManager.getMethodBindPtr("AcceptDialog", "get_text")
+
+    public val setAutowrapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AcceptDialog", "set_autowrap")
+
+    public val hasAutowrapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AcceptDialog", "has_autowrap")
+
+    public val setOkButtonTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AcceptDialog", "set_ok_button_text")
+
+    public val getOkButtonTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AcceptDialog", "get_ok_button_text")
+  }
 }

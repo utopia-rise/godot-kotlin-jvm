@@ -9,9 +9,11 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedByteArray
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -132,7 +134,7 @@ public open class HashingContext : RefCounted() {
    */
   public fun start(type: HashType): GodotError {
     TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HASHINGCONTEXT_START, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.startPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -141,7 +143,7 @@ public open class HashingContext : RefCounted() {
    */
   public fun update(chunk: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to chunk)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HASHINGCONTEXT_UPDATE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.updatePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -150,8 +152,7 @@ public open class HashingContext : RefCounted() {
    */
   public fun finish(): PackedByteArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HASHINGCONTEXT_FINISH,
-        PACKED_BYTE_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.finishPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
@@ -183,4 +184,12 @@ public open class HashingContext : RefCounted() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val startPtr: VoidPtr = TypeManager.getMethodBindPtr("HashingContext", "start")
+
+    public val updatePtr: VoidPtr = TypeManager.getMethodBindPtr("HashingContext", "update")
+
+    public val finishPtr: VoidPtr = TypeManager.getMethodBindPtr("HashingContext", "finish")
+  }
 }

@@ -11,6 +11,7 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Rect2
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
@@ -19,6 +20,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.RECT2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -40,13 +42,12 @@ public open class StyleBoxTexture : StyleBox() {
   public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -59,14 +60,12 @@ public open class StyleBoxTexture : StyleBox() {
   public var textureMarginLeft: Float
     get() {
       TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_TEXTURE_MARGIN, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureMarginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 0L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_TEXTURE_MARGIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureMarginPtr, NIL)
     }
 
   /**
@@ -79,14 +78,12 @@ public open class StyleBoxTexture : StyleBox() {
   public var textureMarginTop: Float
     get() {
       TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_TEXTURE_MARGIN, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureMarginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 1L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_TEXTURE_MARGIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureMarginPtr, NIL)
     }
 
   /**
@@ -99,14 +96,12 @@ public open class StyleBoxTexture : StyleBox() {
   public var textureMarginRight: Float
     get() {
       TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_TEXTURE_MARGIN, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureMarginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 2L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_TEXTURE_MARGIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureMarginPtr, NIL)
     }
 
   /**
@@ -119,14 +114,12 @@ public open class StyleBoxTexture : StyleBox() {
   public var textureMarginBottom: Float
     get() {
       TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_TEXTURE_MARGIN, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureMarginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 3L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_TEXTURE_MARGIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureMarginPtr, NIL)
     }
 
   /**
@@ -135,14 +128,12 @@ public open class StyleBoxTexture : StyleBox() {
   public var expandMarginLeft: Float
     get() {
       TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_EXPAND_MARGIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getExpandMarginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 0L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setExpandMarginPtr, NIL)
     }
 
   /**
@@ -151,14 +142,12 @@ public open class StyleBoxTexture : StyleBox() {
   public var expandMarginTop: Float
     get() {
       TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_EXPAND_MARGIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getExpandMarginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 1L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setExpandMarginPtr, NIL)
     }
 
   /**
@@ -167,14 +156,12 @@ public open class StyleBoxTexture : StyleBox() {
   public var expandMarginRight: Float
     get() {
       TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_EXPAND_MARGIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getExpandMarginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 2L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setExpandMarginPtr, NIL)
     }
 
   /**
@@ -183,14 +170,12 @@ public open class StyleBoxTexture : StyleBox() {
   public var expandMarginBottom: Float
     get() {
       TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_EXPAND_MARGIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getExpandMarginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 3L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setExpandMarginPtr, NIL)
     }
 
   /**
@@ -199,14 +184,12 @@ public open class StyleBoxTexture : StyleBox() {
   public var axisStretchHorizontal: AxisStretchMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_H_AXIS_STRETCH_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHAxisStretchModePtr, LONG)
       return StyleBoxTexture.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_H_AXIS_STRETCH_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHAxisStretchModePtr, NIL)
     }
 
   /**
@@ -215,14 +198,12 @@ public open class StyleBoxTexture : StyleBox() {
   public var axisStretchVertical: AxisStretchMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_V_AXIS_STRETCH_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVAxisStretchModePtr, LONG)
       return StyleBoxTexture.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_V_AXIS_STRETCH_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVAxisStretchModePtr, NIL)
     }
 
   /**
@@ -236,14 +217,12 @@ public open class StyleBoxTexture : StyleBox() {
   public var regionRect: Rect2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_REGION_RECT,
-          RECT2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRegionRectPtr, RECT2)
       return (TransferContext.readReturnValue(RECT2, false) as Rect2)
     }
     set(`value`) {
       TransferContext.writeArguments(RECT2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_REGION_RECT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRegionRectPtr, NIL)
     }
 
   /**
@@ -253,13 +232,12 @@ public open class StyleBoxTexture : StyleBox() {
   public var modulateColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_GET_MODULATE,
-          COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_MODULATE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setModulatePtr, NIL)
     }
 
   /**
@@ -268,14 +246,12 @@ public open class StyleBoxTexture : StyleBox() {
   public var drawCenter: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_IS_DRAW_CENTER_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isDrawCenterEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_DRAW_CENTER,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDrawCenterPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -340,8 +316,7 @@ public open class StyleBoxTexture : StyleBox() {
    */
   public fun setTextureMarginAll(size: Float): Unit {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_TEXTURE_MARGIN_ALL, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureMarginAllPtr, NIL)
   }
 
   /**
@@ -349,8 +324,7 @@ public open class StyleBoxTexture : StyleBox() {
    */
   public fun setExpandMarginAll(size: Float): Unit {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_EXPAND_MARGIN_ALL, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setExpandMarginAllPtr, NIL)
   }
 
   public enum class AxisStretchMode(
@@ -381,4 +355,60 @@ public open class StyleBoxTexture : StyleBox() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_texture")
+
+    public val getTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_texture")
+
+    public val setTextureMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_texture_margin")
+
+    public val setTextureMarginAllPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_texture_margin_all")
+
+    public val getTextureMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_texture_margin")
+
+    public val setExpandMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_expand_margin")
+
+    public val setExpandMarginAllPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_expand_margin_all")
+
+    public val getExpandMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_expand_margin")
+
+    public val setRegionRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_region_rect")
+
+    public val getRegionRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_region_rect")
+
+    public val setDrawCenterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_draw_center")
+
+    public val isDrawCenterEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "is_draw_center_enabled")
+
+    public val setModulatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_modulate")
+
+    public val getModulatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_modulate")
+
+    public val setHAxisStretchModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_h_axis_stretch_mode")
+
+    public val getHAxisStretchModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_h_axis_stretch_mode")
+
+    public val setVAxisStretchModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_v_axis_stretch_mode")
+
+    public val getVAxisStretchModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_v_axis_stretch_mode")
+  }
 }

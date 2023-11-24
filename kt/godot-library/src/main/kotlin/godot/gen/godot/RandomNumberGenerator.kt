@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -58,14 +60,12 @@ public open class RandomNumberGenerator : RefCounted() {
   public var seed: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_GET_SEED,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSeedPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_SET_SEED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSeedPtr, NIL)
     }
 
   /**
@@ -87,14 +87,12 @@ public open class RandomNumberGenerator : RefCounted() {
   public var state: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_GET_STATE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getStatePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_SET_STATE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setStatePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -107,7 +105,7 @@ public open class RandomNumberGenerator : RefCounted() {
    */
   public fun randi(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDI, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.randiPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -116,7 +114,7 @@ public open class RandomNumberGenerator : RefCounted() {
    */
   public fun randf(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDF, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.randfPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -126,8 +124,7 @@ public open class RandomNumberGenerator : RefCounted() {
   @JvmOverloads
   public fun randfn(mean: Float = 0.0f, deviation: Float = 1.0f): Float {
     TransferContext.writeArguments(DOUBLE to mean.toDouble(), DOUBLE to deviation.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDFN,
-        DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.randfnPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -136,8 +133,7 @@ public open class RandomNumberGenerator : RefCounted() {
    */
   public fun randfRange(from: Float, to: Float): Float {
     TransferContext.writeArguments(DOUBLE to from.toDouble(), DOUBLE to to.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDF_RANGE,
-        DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.randfRangePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -146,8 +142,7 @@ public open class RandomNumberGenerator : RefCounted() {
    */
   public fun randiRange(from: Int, to: Int): Int {
     TransferContext.writeArguments(LONG to from.toLong(), LONG to to.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDI_RANGE,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.randiRangePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -156,9 +151,37 @@ public open class RandomNumberGenerator : RefCounted() {
    */
   public fun randomize(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDOMIZE,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.randomizePtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setSeedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "set_seed")
+
+    public val getSeedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "get_seed")
+
+    public val setStatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "set_state")
+
+    public val getStatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "get_state")
+
+    public val randiPtr: VoidPtr = TypeManager.getMethodBindPtr("RandomNumberGenerator", "randi")
+
+    public val randfPtr: VoidPtr = TypeManager.getMethodBindPtr("RandomNumberGenerator", "randf")
+
+    public val randfnPtr: VoidPtr = TypeManager.getMethodBindPtr("RandomNumberGenerator", "randfn")
+
+    public val randfRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randf_range")
+
+    public val randiRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randi_range")
+
+    public val randomizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randomize")
+  }
 }

@@ -10,6 +10,7 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
@@ -19,6 +20,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -51,12 +53,12 @@ public open class Environment : Resource() {
   public var backgroundMode: BGMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BACKGROUND, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBackgroundPtr, LONG)
       return Environment.BGMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BACKGROUND, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBackgroundPtr, NIL)
     }
 
   /**
@@ -66,12 +68,12 @@ public open class Environment : Resource() {
   public var backgroundColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BG_COLOR, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBgColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BG_COLOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBgColorPtr, NIL)
     }
 
   /**
@@ -80,14 +82,12 @@ public open class Environment : Resource() {
   public var backgroundEnergyMultiplier: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BG_ENERGY_MULTIPLIER, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBgEnergyMultiplierPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BG_ENERGY_MULTIPLIER, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBgEnergyMultiplierPtr, NIL)
     }
 
   /**
@@ -96,13 +96,12 @@ public open class Environment : Resource() {
   public var backgroundIntensity: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BG_INTENSITY,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBgIntensityPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BG_INTENSITY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBgIntensityPtr, NIL)
     }
 
   /**
@@ -111,14 +110,12 @@ public open class Environment : Resource() {
   public var backgroundCanvasMaxLayer: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_CANVAS_MAX_LAYER,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCanvasMaxLayerPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_CANVAS_MAX_LAYER,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCanvasMaxLayerPtr, NIL)
     }
 
   /**
@@ -127,14 +124,12 @@ public open class Environment : Resource() {
   public var backgroundCameraFeedId: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_CAMERA_FEED_ID,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCameraFeedIdPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_CAMERA_FEED_ID,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCameraFeedIdPtr, NIL)
     }
 
   /**
@@ -143,12 +138,12 @@ public open class Environment : Resource() {
   public var sky: Sky?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SKY, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSkyPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Sky?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SKY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSkyPtr, NIL)
     }
 
   /**
@@ -157,14 +152,12 @@ public open class Environment : Resource() {
   public var skyCustomFov: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SKY_CUSTOM_FOV,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSkyCustomFovPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SKY_CUSTOM_FOV,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSkyCustomFovPtr, NIL)
     }
 
   /**
@@ -174,13 +167,12 @@ public open class Environment : Resource() {
   public var skyRotation: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SKY_ROTATION,
-          VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSkyRotationPtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SKY_ROTATION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSkyRotationPtr, NIL)
     }
 
   /**
@@ -189,14 +181,12 @@ public open class Environment : Resource() {
   public var ambientLightSource: AmbientSource
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AMBIENT_SOURCE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAmbientSourcePtr, LONG)
       return Environment.AmbientSource.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_AMBIENT_SOURCE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAmbientSourcePtr, NIL)
     }
 
   /**
@@ -206,14 +196,12 @@ public open class Environment : Resource() {
   public var ambientLightColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AMBIENT_LIGHT_COLOR, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAmbientLightColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_AMBIENT_LIGHT_COLOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAmbientLightColorPtr, NIL)
     }
 
   /**
@@ -224,14 +212,12 @@ public open class Environment : Resource() {
   public var ambientLightSkyContribution: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AMBIENT_LIGHT_SKY_CONTRIBUTION, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAmbientLightSkyContributionPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_AMBIENT_LIGHT_SKY_CONTRIBUTION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAmbientLightSkyContributionPtr, NIL)
     }
 
   /**
@@ -240,14 +226,12 @@ public open class Environment : Resource() {
   public var ambientLightEnergy: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AMBIENT_LIGHT_ENERGY, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAmbientLightEnergyPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_AMBIENT_LIGHT_ENERGY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAmbientLightEnergyPtr, NIL)
     }
 
   /**
@@ -256,14 +240,12 @@ public open class Environment : Resource() {
   public var reflectedLightSource: ReflectionSource
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_REFLECTION_SOURCE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getReflectionSourcePtr, LONG)
       return Environment.ReflectionSource.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_REFLECTION_SOURCE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setReflectionSourcePtr, NIL)
     }
 
   /**
@@ -272,12 +254,12 @@ public open class Environment : Resource() {
   public var tonemapMode: ToneMapper
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAPPER, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTonemapperPtr, LONG)
       return Environment.ToneMapper.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAPPER, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTonemapperPtr, NIL)
     }
 
   /**
@@ -286,14 +268,12 @@ public open class Environment : Resource() {
   public var tonemapExposure: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_EXPOSURE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTonemapExposurePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_EXPOSURE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTonemapExposurePtr, NIL)
     }
 
   /**
@@ -302,14 +282,12 @@ public open class Environment : Resource() {
   public var tonemapWhite: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_WHITE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTonemapWhitePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_WHITE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTonemapWhitePtr, NIL)
     }
 
   /**
@@ -320,12 +298,12 @@ public open class Environment : Resource() {
   public var ssrEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SSR_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isSsrEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSR_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSsrEnabledPtr, NIL)
     }
 
   /**
@@ -334,14 +312,12 @@ public open class Environment : Resource() {
   public var ssrMaxSteps: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSR_MAX_STEPS,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSsrMaxStepsPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSR_MAX_STEPS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSsrMaxStepsPtr, NIL)
     }
 
   /**
@@ -350,13 +326,12 @@ public open class Environment : Resource() {
   public var ssrFadeIn: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSR_FADE_IN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSsrFadeInPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSR_FADE_IN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSsrFadeInPtr, NIL)
     }
 
   /**
@@ -365,13 +340,12 @@ public open class Environment : Resource() {
   public var ssrFadeOut: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSR_FADE_OUT,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSsrFadeOutPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSR_FADE_OUT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSsrFadeOutPtr, NIL)
     }
 
   /**
@@ -380,14 +354,12 @@ public open class Environment : Resource() {
   public var ssrDepthTolerance: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSR_DEPTH_TOLERANCE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSsrDepthTolerancePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSR_DEPTH_TOLERANCE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSsrDepthTolerancePtr, NIL)
     }
 
   /**
@@ -398,12 +370,12 @@ public open class Environment : Resource() {
   public var ssaoEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SSAO_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isSsaoEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSsaoEnabledPtr, NIL)
     }
 
   /**
@@ -412,13 +384,12 @@ public open class Environment : Resource() {
   public var ssaoRadius: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_RADIUS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSsaoRadiusPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_RADIUS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSsaoRadiusPtr, NIL)
     }
 
   /**
@@ -427,14 +398,12 @@ public open class Environment : Resource() {
   public var ssaoIntensity: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_INTENSITY,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSsaoIntensityPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_INTENSITY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSsaoIntensityPtr, NIL)
     }
 
   /**
@@ -443,13 +412,12 @@ public open class Environment : Resource() {
   public var ssaoPower: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_POWER,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSsaoPowerPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_POWER, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSsaoPowerPtr, NIL)
     }
 
   /**
@@ -458,13 +426,12 @@ public open class Environment : Resource() {
   public var ssaoDetail: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_DETAIL,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSsaoDetailPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_DETAIL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSsaoDetailPtr, NIL)
     }
 
   /**
@@ -473,13 +440,12 @@ public open class Environment : Resource() {
   public var ssaoHorizon: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_HORIZON,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSsaoHorizonPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_HORIZON, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSsaoHorizonPtr, NIL)
     }
 
   /**
@@ -488,14 +454,12 @@ public open class Environment : Resource() {
   public var ssaoSharpness: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_SHARPNESS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSsaoSharpnessPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_SHARPNESS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSsaoSharpnessPtr, NIL)
     }
 
   /**
@@ -504,14 +468,12 @@ public open class Environment : Resource() {
   public var ssaoLightAffect: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_DIRECT_LIGHT_AFFECT, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSsaoDirectLightAffectPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_DIRECT_LIGHT_AFFECT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSsaoDirectLightAffectPtr, NIL)
     }
 
   /**
@@ -520,14 +482,12 @@ public open class Environment : Resource() {
   public var ssaoAoChannelAffect: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_AO_CHANNEL_AFFECT, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSsaoAoChannelAffectPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_AO_CHANNEL_AFFECT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSsaoAoChannelAffectPtr, NIL)
     }
 
   /**
@@ -538,12 +498,12 @@ public open class Environment : Resource() {
   public var ssilEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SSIL_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isSsilEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSIL_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSsilEnabledPtr, NIL)
     }
 
   /**
@@ -552,13 +512,12 @@ public open class Environment : Resource() {
   public var ssilRadius: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSIL_RADIUS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSsilRadiusPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSIL_RADIUS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSsilRadiusPtr, NIL)
     }
 
   /**
@@ -567,14 +526,12 @@ public open class Environment : Resource() {
   public var ssilIntensity: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSIL_INTENSITY,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSsilIntensityPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSIL_INTENSITY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSsilIntensityPtr, NIL)
     }
 
   /**
@@ -583,14 +540,12 @@ public open class Environment : Resource() {
   public var ssilSharpness: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSIL_SHARPNESS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSsilSharpnessPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSIL_SHARPNESS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSsilSharpnessPtr, NIL)
     }
 
   /**
@@ -599,14 +554,12 @@ public open class Environment : Resource() {
   public var ssilNormalRejection: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSIL_NORMAL_REJECTION, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSsilNormalRejectionPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSIL_NORMAL_REJECTION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSsilNormalRejectionPtr, NIL)
     }
 
   /**
@@ -621,14 +574,12 @@ public open class Environment : Resource() {
   public var sdfgiEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SDFGI_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isSdfgiEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_ENABLED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiEnabledPtr, NIL)
     }
 
   /**
@@ -637,14 +588,12 @@ public open class Environment : Resource() {
   public var sdfgiUseOcclusion: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SDFGI_USING_OCCLUSION, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isSdfgiUsingOcclusionPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_USE_OCCLUSION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiUseOcclusionPtr, NIL)
     }
 
   /**
@@ -653,14 +602,12 @@ public open class Environment : Resource() {
   public var sdfgiReadSkyLight: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SDFGI_READING_SKY_LIGHT, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isSdfgiReadingSkyLightPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_READ_SKY_LIGHT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiReadSkyLightPtr, NIL)
     }
 
   /**
@@ -673,14 +620,12 @@ public open class Environment : Resource() {
   public var sdfgiBounceFeedback: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_BOUNCE_FEEDBACK, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiBounceFeedbackPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_BOUNCE_FEEDBACK, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiBounceFeedbackPtr, NIL)
     }
 
   /**
@@ -689,14 +634,12 @@ public open class Environment : Resource() {
   public var sdfgiCascades: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_CASCADES,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiCascadesPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_CASCADES,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiCascadesPtr, NIL)
     }
 
   /**
@@ -707,14 +650,12 @@ public open class Environment : Resource() {
   public var sdfgiMinCellSize: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_MIN_CELL_SIZE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiMinCellSizePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_MIN_CELL_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiMinCellSizePtr, NIL)
     }
 
   /**
@@ -723,14 +664,12 @@ public open class Environment : Resource() {
   public var sdfgiCascade0Distance: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_CASCADE0_DISTANCE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiCascade0DistancePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_CASCADE0_DISTANCE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiCascade0DistancePtr, NIL)
     }
 
   /**
@@ -741,14 +680,12 @@ public open class Environment : Resource() {
   public var sdfgiMaxDistance: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_MAX_DISTANCE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiMaxDistancePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_MAX_DISTANCE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiMaxDistancePtr, NIL)
     }
 
   /**
@@ -757,14 +694,12 @@ public open class Environment : Resource() {
   public var sdfgiYScale: SDFGIYScale
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_Y_SCALE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiYScalePtr, LONG)
       return Environment.SDFGIYScale.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_Y_SCALE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiYScalePtr, NIL)
     }
 
   /**
@@ -773,13 +708,12 @@ public open class Environment : Resource() {
   public var sdfgiEnergy: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_ENERGY,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiEnergyPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_ENERGY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiEnergyPtr, NIL)
     }
 
   /**
@@ -788,14 +722,12 @@ public open class Environment : Resource() {
   public var sdfgiNormalBias: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_NORMAL_BIAS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiNormalBiasPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_NORMAL_BIAS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiNormalBiasPtr, NIL)
     }
 
   /**
@@ -804,14 +736,12 @@ public open class Environment : Resource() {
   public var sdfgiProbeBias: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_PROBE_BIAS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiProbeBiasPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SDFGI_PROBE_BIAS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiProbeBiasPtr, NIL)
     }
 
   /**
@@ -822,12 +752,12 @@ public open class Environment : Resource() {
   public var glowEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_GLOW_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isGlowEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGlowEnabledPtr, NIL)
     }
 
   /**
@@ -836,14 +766,12 @@ public open class Environment : Resource() {
   public var glowNormalized: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_GLOW_NORMALIZED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isGlowNormalizedPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_NORMALIZED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGlowNormalizedPtr, NIL)
     }
 
   /**
@@ -852,14 +780,12 @@ public open class Environment : Resource() {
   public var glowIntensity: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_INTENSITY,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGlowIntensityPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_INTENSITY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGlowIntensityPtr, NIL)
     }
 
   /**
@@ -868,14 +794,12 @@ public open class Environment : Resource() {
   public var glowStrength: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_STRENGTH,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGlowStrengthPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_STRENGTH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGlowStrengthPtr, NIL)
     }
 
   /**
@@ -884,12 +808,12 @@ public open class Environment : Resource() {
   public var glowMix: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_MIX, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGlowMixPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_MIX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGlowMixPtr, NIL)
     }
 
   /**
@@ -898,13 +822,12 @@ public open class Environment : Resource() {
   public var glowBloom: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_BLOOM,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGlowBloomPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_BLOOM, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGlowBloomPtr, NIL)
     }
 
   /**
@@ -913,14 +836,12 @@ public open class Environment : Resource() {
   public var glowBlendMode: GlowBlendMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_BLEND_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGlowBlendModePtr, LONG)
       return Environment.GlowBlendMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_BLEND_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGlowBlendModePtr, NIL)
     }
 
   /**
@@ -929,14 +850,12 @@ public open class Environment : Resource() {
   public var glowHdrThreshold: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_HDR_BLEED_THRESHOLD, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGlowHdrBleedThresholdPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_HDR_BLEED_THRESHOLD, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGlowHdrBleedThresholdPtr, NIL)
     }
 
   /**
@@ -945,14 +864,12 @@ public open class Environment : Resource() {
   public var glowHdrScale: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_HDR_BLEED_SCALE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGlowHdrBleedScalePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_HDR_BLEED_SCALE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGlowHdrBleedScalePtr, NIL)
     }
 
   /**
@@ -961,14 +878,12 @@ public open class Environment : Resource() {
   public var glowHdrLuminanceCap: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_HDR_LUMINANCE_CAP, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGlowHdrLuminanceCapPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_HDR_LUMINANCE_CAP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGlowHdrLuminanceCapPtr, NIL)
     }
 
   /**
@@ -977,14 +892,12 @@ public open class Environment : Resource() {
   public var glowMapStrength: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_MAP_STRENGTH,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGlowMapStrengthPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_MAP_STRENGTH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGlowMapStrengthPtr, NIL)
     }
 
   /**
@@ -995,12 +908,12 @@ public open class Environment : Resource() {
   public var glowMap: Texture?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_MAP, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGlowMapPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_MAP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGlowMapPtr, NIL)
     }
 
   /**
@@ -1009,12 +922,12 @@ public open class Environment : Resource() {
   public var fogEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_FOG_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isFogEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFogEnabledPtr, NIL)
     }
 
   /**
@@ -1024,14 +937,12 @@ public open class Environment : Resource() {
   public var fogLightColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_LIGHT_COLOR,
-          COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFogLightColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_LIGHT_COLOR,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFogLightColorPtr, NIL)
     }
 
   /**
@@ -1040,14 +951,12 @@ public open class Environment : Resource() {
   public var fogLightEnergy: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_LIGHT_ENERGY,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFogLightEnergyPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_LIGHT_ENERGY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFogLightEnergyPtr, NIL)
     }
 
   /**
@@ -1056,14 +965,12 @@ public open class Environment : Resource() {
   public var fogSunScatter: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_SUN_SCATTER,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFogSunScatterPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_SUN_SCATTER,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFogSunScatterPtr, NIL)
     }
 
   /**
@@ -1072,13 +979,12 @@ public open class Environment : Resource() {
   public var fogDensity: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_DENSITY,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFogDensityPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_DENSITY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFogDensityPtr, NIL)
     }
 
   /**
@@ -1089,14 +995,12 @@ public open class Environment : Resource() {
   public var fogAerialPerspective: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_AERIAL_PERSPECTIVE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFogAerialPerspectivePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_AERIAL_PERSPECTIVE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFogAerialPerspectivePtr, NIL)
     }
 
   /**
@@ -1107,14 +1011,12 @@ public open class Environment : Resource() {
   public var fogSkyAffect: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_SKY_AFFECT,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFogSkyAffectPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_SKY_AFFECT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFogSkyAffectPtr, NIL)
     }
 
   /**
@@ -1123,13 +1025,12 @@ public open class Environment : Resource() {
   public var fogHeight: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_HEIGHT,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFogHeightPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_HEIGHT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFogHeightPtr, NIL)
     }
 
   /**
@@ -1138,14 +1039,12 @@ public open class Environment : Resource() {
   public var fogHeightDensity: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_HEIGHT_DENSITY, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFogHeightDensityPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_FOG_HEIGHT_DENSITY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFogHeightDensityPtr, NIL)
     }
 
   /**
@@ -1156,14 +1055,12 @@ public open class Environment : Resource() {
   public var volumetricFogEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_VOLUMETRIC_FOG_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isVolumetricFogEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogEnabledPtr, NIL)
     }
 
   /**
@@ -1176,14 +1073,12 @@ public open class Environment : Resource() {
   public var volumetricFogDensity: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_DENSITY, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogDensityPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_DENSITY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogDensityPtr, NIL)
     }
 
   /**
@@ -1193,14 +1088,12 @@ public open class Environment : Resource() {
   public var volumetricFogAlbedo: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_ALBEDO, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogAlbedoPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_ALBEDO, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogAlbedoPtr, NIL)
     }
 
   /**
@@ -1210,14 +1103,12 @@ public open class Environment : Resource() {
   public var volumetricFogEmission: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_EMISSION, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogEmissionPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_EMISSION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogEmissionPtr, NIL)
     }
 
   /**
@@ -1226,14 +1117,12 @@ public open class Environment : Resource() {
   public var volumetricFogEmissionEnergy: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_EMISSION_ENERGY, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogEmissionEnergyPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_EMISSION_ENERGY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogEmissionEnergyPtr, NIL)
     }
 
   /**
@@ -1246,14 +1135,12 @@ public open class Environment : Resource() {
   public var volumetricFogGiInject: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_GI_INJECT, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogGiInjectPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_GI_INJECT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogGiInjectPtr, NIL)
     }
 
   /**
@@ -1262,14 +1149,12 @@ public open class Environment : Resource() {
   public var volumetricFogAnisotropy: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_ANISOTROPY, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogAnisotropyPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_ANISOTROPY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogAnisotropyPtr, NIL)
     }
 
   /**
@@ -1278,14 +1163,12 @@ public open class Environment : Resource() {
   public var volumetricFogLength: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_LENGTH, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogLengthPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_LENGTH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogLengthPtr, NIL)
     }
 
   /**
@@ -1294,14 +1177,12 @@ public open class Environment : Resource() {
   public var volumetricFogDetailSpread: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_DETAIL_SPREAD, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogDetailSpreadPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_DETAIL_SPREAD, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogDetailSpreadPtr, NIL)
     }
 
   /**
@@ -1312,14 +1193,12 @@ public open class Environment : Resource() {
   public var volumetricFogAmbientInject: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_AMBIENT_INJECT, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogAmbientInjectPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_AMBIENT_INJECT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogAmbientInjectPtr, NIL)
     }
 
   /**
@@ -1330,14 +1209,12 @@ public open class Environment : Resource() {
   public var volumetricFogSkyAffect: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_SKY_AFFECT, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogSkyAffectPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_SKY_AFFECT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogSkyAffectPtr, NIL)
     }
 
   /**
@@ -1347,15 +1224,13 @@ public open class Environment : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_VOLUMETRIC_FOG_TEMPORAL_REPROJECTION_ENABLED,
-          BOOL)
+          MethodBindings.isVolumetricFogTemporalReprojectionEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_TEMPORAL_REPROJECTION_ENABLED,
-          NIL)
+          MethodBindings.setVolumetricFogTemporalReprojectionEnabledPtr, NIL)
     }
 
   /**
@@ -1365,14 +1240,13 @@ public open class Environment : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_TEMPORAL_REPROJECTION_AMOUNT,
-          DOUBLE)
+          MethodBindings.getVolumetricFogTemporalReprojectionAmountPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_VOLUMETRIC_FOG_TEMPORAL_REPROJECTION_AMOUNT, NIL)
+          MethodBindings.setVolumetricFogTemporalReprojectionAmountPtr, NIL)
     }
 
   /**
@@ -1383,14 +1257,12 @@ public open class Environment : Resource() {
   public var adjustmentEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_ADJUSTMENT_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isAdjustmentEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_ADJUSTMENT_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAdjustmentEnabledPtr, NIL)
     }
 
   /**
@@ -1399,14 +1271,12 @@ public open class Environment : Resource() {
   public var adjustmentBrightness: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_ADJUSTMENT_BRIGHTNESS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAdjustmentBrightnessPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_ADJUSTMENT_BRIGHTNESS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAdjustmentBrightnessPtr, NIL)
     }
 
   /**
@@ -1415,14 +1285,12 @@ public open class Environment : Resource() {
   public var adjustmentContrast: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_ADJUSTMENT_CONTRAST, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAdjustmentContrastPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_ADJUSTMENT_CONTRAST, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAdjustmentContrastPtr, NIL)
     }
 
   /**
@@ -1431,14 +1299,12 @@ public open class Environment : Resource() {
   public var adjustmentSaturation: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_ADJUSTMENT_SATURATION, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAdjustmentSaturationPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_ADJUSTMENT_SATURATION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAdjustmentSaturationPtr, NIL)
     }
 
   /**
@@ -1447,14 +1313,12 @@ public open class Environment : Resource() {
   public var adjustmentColorCorrection: Material?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_ADJUSTMENT_COLOR_CORRECTION, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAdjustmentColorCorrectionPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Material?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_ADJUSTMENT_COLOR_CORRECTION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAdjustmentColorCorrectionPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -1613,7 +1477,7 @@ public open class Environment : Resource() {
    */
   public fun setGlowLevel(idx: Int, intensity: Float): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), DOUBLE to intensity.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_LEVEL, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGlowLevelPtr, NIL)
   }
 
   /**
@@ -1621,7 +1485,7 @@ public open class Environment : Resource() {
    */
   public fun getGlowLevel(idx: Int): Float {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getGlowLevelPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -1822,4 +1686,526 @@ public open class Environment : Resource() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setBackgroundPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_background")
+
+    public val getBackgroundPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_background")
+
+    public val setSkyPtr: VoidPtr = TypeManager.getMethodBindPtr("Environment", "set_sky")
+
+    public val getSkyPtr: VoidPtr = TypeManager.getMethodBindPtr("Environment", "get_sky")
+
+    public val setSkyCustomFovPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_sky_custom_fov")
+
+    public val getSkyCustomFovPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_sky_custom_fov")
+
+    public val setSkyRotationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_sky_rotation")
+
+    public val getSkyRotationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_sky_rotation")
+
+    public val setBgColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Environment", "set_bg_color")
+
+    public val getBgColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Environment", "get_bg_color")
+
+    public val setBgEnergyMultiplierPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_bg_energy_multiplier")
+
+    public val getBgEnergyMultiplierPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_bg_energy_multiplier")
+
+    public val setBgIntensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_bg_intensity")
+
+    public val getBgIntensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_bg_intensity")
+
+    public val setCanvasMaxLayerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_canvas_max_layer")
+
+    public val getCanvasMaxLayerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_canvas_max_layer")
+
+    public val setCameraFeedIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_camera_feed_id")
+
+    public val getCameraFeedIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_camera_feed_id")
+
+    public val setAmbientLightColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ambient_light_color")
+
+    public val getAmbientLightColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_ambient_light_color")
+
+    public val setAmbientSourcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ambient_source")
+
+    public val getAmbientSourcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_ambient_source")
+
+    public val setAmbientLightEnergyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ambient_light_energy")
+
+    public val getAmbientLightEnergyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_ambient_light_energy")
+
+    public val setAmbientLightSkyContributionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ambient_light_sky_contribution")
+
+    public val getAmbientLightSkyContributionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_ambient_light_sky_contribution")
+
+    public val setReflectionSourcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_reflection_source")
+
+    public val getReflectionSourcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_reflection_source")
+
+    public val setTonemapperPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_tonemapper")
+
+    public val getTonemapperPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_tonemapper")
+
+    public val setTonemapExposurePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_tonemap_exposure")
+
+    public val getTonemapExposurePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_tonemap_exposure")
+
+    public val setTonemapWhitePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_tonemap_white")
+
+    public val getTonemapWhitePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_tonemap_white")
+
+    public val setSsrEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ssr_enabled")
+
+    public val isSsrEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "is_ssr_enabled")
+
+    public val setSsrMaxStepsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ssr_max_steps")
+
+    public val getSsrMaxStepsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_ssr_max_steps")
+
+    public val setSsrFadeInPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ssr_fade_in")
+
+    public val getSsrFadeInPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_ssr_fade_in")
+
+    public val setSsrFadeOutPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ssr_fade_out")
+
+    public val getSsrFadeOutPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_ssr_fade_out")
+
+    public val setSsrDepthTolerancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ssr_depth_tolerance")
+
+    public val getSsrDepthTolerancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_ssr_depth_tolerance")
+
+    public val setSsaoEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_enabled")
+
+    public val isSsaoEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "is_ssao_enabled")
+
+    public val setSsaoRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_radius")
+
+    public val getSsaoRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_radius")
+
+    public val setSsaoIntensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_intensity")
+
+    public val getSsaoIntensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_intensity")
+
+    public val setSsaoPowerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_power")
+
+    public val getSsaoPowerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_power")
+
+    public val setSsaoDetailPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_detail")
+
+    public val getSsaoDetailPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_detail")
+
+    public val setSsaoHorizonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_horizon")
+
+    public val getSsaoHorizonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_horizon")
+
+    public val setSsaoSharpnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_sharpness")
+
+    public val getSsaoSharpnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_sharpness")
+
+    public val setSsaoDirectLightAffectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_direct_light_affect")
+
+    public val getSsaoDirectLightAffectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_direct_light_affect")
+
+    public val setSsaoAoChannelAffectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_ao_channel_affect")
+
+    public val getSsaoAoChannelAffectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_ao_channel_affect")
+
+    public val setSsilEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ssil_enabled")
+
+    public val isSsilEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "is_ssil_enabled")
+
+    public val setSsilRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ssil_radius")
+
+    public val getSsilRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_ssil_radius")
+
+    public val setSsilIntensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ssil_intensity")
+
+    public val getSsilIntensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_ssil_intensity")
+
+    public val setSsilSharpnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ssil_sharpness")
+
+    public val getSsilSharpnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_ssil_sharpness")
+
+    public val setSsilNormalRejectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_ssil_normal_rejection")
+
+    public val getSsilNormalRejectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_ssil_normal_rejection")
+
+    public val setSdfgiEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_enabled")
+
+    public val isSdfgiEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "is_sdfgi_enabled")
+
+    public val setSdfgiCascadesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_cascades")
+
+    public val getSdfgiCascadesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_cascades")
+
+    public val setSdfgiMinCellSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_min_cell_size")
+
+    public val getSdfgiMinCellSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_min_cell_size")
+
+    public val setSdfgiMaxDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_max_distance")
+
+    public val getSdfgiMaxDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_max_distance")
+
+    public val setSdfgiCascade0DistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_cascade0_distance")
+
+    public val getSdfgiCascade0DistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_cascade0_distance")
+
+    public val setSdfgiYScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_y_scale")
+
+    public val getSdfgiYScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_y_scale")
+
+    public val setSdfgiUseOcclusionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_use_occlusion")
+
+    public val isSdfgiUsingOcclusionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "is_sdfgi_using_occlusion")
+
+    public val setSdfgiBounceFeedbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_bounce_feedback")
+
+    public val getSdfgiBounceFeedbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_bounce_feedback")
+
+    public val setSdfgiReadSkyLightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_read_sky_light")
+
+    public val isSdfgiReadingSkyLightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "is_sdfgi_reading_sky_light")
+
+    public val setSdfgiEnergyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_energy")
+
+    public val getSdfgiEnergyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_energy")
+
+    public val setSdfgiNormalBiasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_normal_bias")
+
+    public val getSdfgiNormalBiasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_normal_bias")
+
+    public val setSdfgiProbeBiasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_probe_bias")
+
+    public val getSdfgiProbeBiasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_probe_bias")
+
+    public val setGlowEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_glow_enabled")
+
+    public val isGlowEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "is_glow_enabled")
+
+    public val setGlowLevelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_glow_level")
+
+    public val getGlowLevelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_glow_level")
+
+    public val setGlowNormalizedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_glow_normalized")
+
+    public val isGlowNormalizedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "is_glow_normalized")
+
+    public val setGlowIntensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_glow_intensity")
+
+    public val getGlowIntensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_glow_intensity")
+
+    public val setGlowStrengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_glow_strength")
+
+    public val getGlowStrengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_glow_strength")
+
+    public val setGlowMixPtr: VoidPtr = TypeManager.getMethodBindPtr("Environment", "set_glow_mix")
+
+    public val getGlowMixPtr: VoidPtr = TypeManager.getMethodBindPtr("Environment", "get_glow_mix")
+
+    public val setGlowBloomPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_glow_bloom")
+
+    public val getGlowBloomPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_glow_bloom")
+
+    public val setGlowBlendModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_glow_blend_mode")
+
+    public val getGlowBlendModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_glow_blend_mode")
+
+    public val setGlowHdrBleedThresholdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_glow_hdr_bleed_threshold")
+
+    public val getGlowHdrBleedThresholdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_glow_hdr_bleed_threshold")
+
+    public val setGlowHdrBleedScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_glow_hdr_bleed_scale")
+
+    public val getGlowHdrBleedScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_glow_hdr_bleed_scale")
+
+    public val setGlowHdrLuminanceCapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_glow_hdr_luminance_cap")
+
+    public val getGlowHdrLuminanceCapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_glow_hdr_luminance_cap")
+
+    public val setGlowMapStrengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_glow_map_strength")
+
+    public val getGlowMapStrengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_glow_map_strength")
+
+    public val setGlowMapPtr: VoidPtr = TypeManager.getMethodBindPtr("Environment", "set_glow_map")
+
+    public val getGlowMapPtr: VoidPtr = TypeManager.getMethodBindPtr("Environment", "get_glow_map")
+
+    public val setFogEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_fog_enabled")
+
+    public val isFogEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "is_fog_enabled")
+
+    public val setFogLightColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_fog_light_color")
+
+    public val getFogLightColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_fog_light_color")
+
+    public val setFogLightEnergyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_fog_light_energy")
+
+    public val getFogLightEnergyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_fog_light_energy")
+
+    public val setFogSunScatterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_fog_sun_scatter")
+
+    public val getFogSunScatterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_fog_sun_scatter")
+
+    public val setFogDensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_fog_density")
+
+    public val getFogDensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_fog_density")
+
+    public val setFogHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_fog_height")
+
+    public val getFogHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_fog_height")
+
+    public val setFogHeightDensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_fog_height_density")
+
+    public val getFogHeightDensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_fog_height_density")
+
+    public val setFogAerialPerspectivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_fog_aerial_perspective")
+
+    public val getFogAerialPerspectivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_fog_aerial_perspective")
+
+    public val setFogSkyAffectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_fog_sky_affect")
+
+    public val getFogSkyAffectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_fog_sky_affect")
+
+    public val setVolumetricFogEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_enabled")
+
+    public val isVolumetricFogEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "is_volumetric_fog_enabled")
+
+    public val setVolumetricFogEmissionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_emission")
+
+    public val getVolumetricFogEmissionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_emission")
+
+    public val setVolumetricFogAlbedoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_albedo")
+
+    public val getVolumetricFogAlbedoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_albedo")
+
+    public val setVolumetricFogDensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_density")
+
+    public val getVolumetricFogDensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_density")
+
+    public val setVolumetricFogEmissionEnergyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_emission_energy")
+
+    public val getVolumetricFogEmissionEnergyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_emission_energy")
+
+    public val setVolumetricFogAnisotropyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_anisotropy")
+
+    public val getVolumetricFogAnisotropyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_anisotropy")
+
+    public val setVolumetricFogLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_length")
+
+    public val getVolumetricFogLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_length")
+
+    public val setVolumetricFogDetailSpreadPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_detail_spread")
+
+    public val getVolumetricFogDetailSpreadPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_detail_spread")
+
+    public val setVolumetricFogGiInjectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_gi_inject")
+
+    public val getVolumetricFogGiInjectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_gi_inject")
+
+    public val setVolumetricFogAmbientInjectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_ambient_inject")
+
+    public val getVolumetricFogAmbientInjectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_ambient_inject")
+
+    public val setVolumetricFogSkyAffectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_sky_affect")
+
+    public val getVolumetricFogSkyAffectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_sky_affect")
+
+    public val setVolumetricFogTemporalReprojectionEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_temporal_reprojection_enabled")
+
+    public val isVolumetricFogTemporalReprojectionEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "is_volumetric_fog_temporal_reprojection_enabled")
+
+    public val setVolumetricFogTemporalReprojectionAmountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_temporal_reprojection_amount")
+
+    public val getVolumetricFogTemporalReprojectionAmountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_temporal_reprojection_amount")
+
+    public val setAdjustmentEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_adjustment_enabled")
+
+    public val isAdjustmentEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "is_adjustment_enabled")
+
+    public val setAdjustmentBrightnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_adjustment_brightness")
+
+    public val getAdjustmentBrightnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_adjustment_brightness")
+
+    public val setAdjustmentContrastPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_adjustment_contrast")
+
+    public val getAdjustmentContrastPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_adjustment_contrast")
+
+    public val setAdjustmentSaturationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_adjustment_saturation")
+
+    public val getAdjustmentSaturationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_adjustment_saturation")
+
+    public val setAdjustmentColorCorrectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_adjustment_color_correction")
+
+    public val getAdjustmentColorCorrectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_adjustment_color_correction")
+  }
 }

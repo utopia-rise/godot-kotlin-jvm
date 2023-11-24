@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.Quaternion
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
@@ -26,6 +27,7 @@ import godot.core.VariantType.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -98,12 +100,12 @@ public open class Animation : Resource() {
   public var length: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_GET_LENGTH, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_SET_LENGTH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
     }
 
   /**
@@ -112,12 +114,12 @@ public open class Animation : Resource() {
   public var loopMode: LoopMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_GET_LOOP_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLoopModePtr, LONG)
       return Animation.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_SET_LOOP_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLoopModePtr, NIL)
     }
 
   /**
@@ -126,12 +128,12 @@ public open class Animation : Resource() {
   public var step: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_GET_STEP, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getStepPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_SET_STEP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setStepPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -145,7 +147,7 @@ public open class Animation : Resource() {
   @JvmOverloads
   public fun addTrack(type: TrackType, atPosition: Int = -1): Int {
     TransferContext.writeArguments(LONG to type.id, LONG to atPosition.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_ADD_TRACK, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.addTrackPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -154,7 +156,7 @@ public open class Animation : Resource() {
    */
   public fun removeTrack(trackIdx: Int): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_REMOVE_TRACK, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeTrackPtr, NIL)
   }
 
   /**
@@ -162,7 +164,7 @@ public open class Animation : Resource() {
    */
   public fun getTrackCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_GET_TRACK_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getTrackCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -171,7 +173,7 @@ public open class Animation : Resource() {
    */
   public fun trackGetType(trackIdx: Int): TrackType {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_GET_TYPE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackGetTypePtr, LONG)
     return Animation.TrackType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -180,7 +182,7 @@ public open class Animation : Resource() {
    */
   public fun trackGetPath(trackIdx: Int): NodePath {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_GET_PATH, NODE_PATH)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackGetPathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
@@ -191,7 +193,7 @@ public open class Animation : Resource() {
    */
   public fun trackSetPath(trackIdx: Int, path: NodePath): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_SET_PATH, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackSetPathPtr, NIL)
   }
 
   /**
@@ -199,7 +201,7 @@ public open class Animation : Resource() {
    */
   public fun findTrack(path: NodePath, type: TrackType): Int {
     TransferContext.writeArguments(NODE_PATH to path, LONG to type.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_FIND_TRACK, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.findTrackPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -208,7 +210,7 @@ public open class Animation : Resource() {
    */
   public fun trackMoveUp(trackIdx: Int): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_MOVE_UP, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackMoveUpPtr, NIL)
   }
 
   /**
@@ -216,7 +218,7 @@ public open class Animation : Resource() {
    */
   public fun trackMoveDown(trackIdx: Int): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_MOVE_DOWN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackMoveDownPtr, NIL)
   }
 
   /**
@@ -224,7 +226,7 @@ public open class Animation : Resource() {
    */
   public fun trackMoveTo(trackIdx: Int, toIdx: Int): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to toIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_MOVE_TO, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackMoveToPtr, NIL)
   }
 
   /**
@@ -232,7 +234,7 @@ public open class Animation : Resource() {
    */
   public fun trackSwap(trackIdx: Int, withIdx: Int): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to withIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_SWAP, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackSwapPtr, NIL)
   }
 
   /**
@@ -240,7 +242,7 @@ public open class Animation : Resource() {
    */
   public fun trackSetImported(trackIdx: Int, imported: Boolean): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), BOOL to imported)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_SET_IMPORTED, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackSetImportedPtr, NIL)
   }
 
   /**
@@ -248,7 +250,7 @@ public open class Animation : Resource() {
    */
   public fun trackIsImported(trackIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_IS_IMPORTED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackIsImportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -257,7 +259,7 @@ public open class Animation : Resource() {
    */
   public fun trackSetEnabled(trackIdx: Int, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_SET_ENABLED, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackSetEnabledPtr, NIL)
   }
 
   /**
@@ -265,7 +267,7 @@ public open class Animation : Resource() {
    */
   public fun trackIsEnabled(trackIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_IS_ENABLED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackIsEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -278,8 +280,7 @@ public open class Animation : Resource() {
     position: Vector3,
   ): Int {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time, VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_POSITION_TRACK_INSERT_KEY,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.positionTrackInsertKeyPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -292,8 +293,7 @@ public open class Animation : Resource() {
     rotation: Quaternion,
   ): Int {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time, QUATERNION to rotation)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_ROTATION_TRACK_INSERT_KEY,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.rotationTrackInsertKeyPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -306,8 +306,7 @@ public open class Animation : Resource() {
     scale: Vector3,
   ): Int {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time, VECTOR3 to scale)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_SCALE_TRACK_INSERT_KEY,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.scaleTrackInsertKeyPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -320,8 +319,7 @@ public open class Animation : Resource() {
     amount: Float,
   ): Int {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time, DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_BLEND_SHAPE_TRACK_INSERT_KEY, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.blendShapeTrackInsertKeyPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -330,8 +328,7 @@ public open class Animation : Resource() {
    */
   public fun positionTrackInterpolate(trackIdx: Int, timeSec: Double): Vector3 {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_POSITION_TRACK_INTERPOLATE, VECTOR3)
+    TransferContext.callMethod(rawPtr, MethodBindings.positionTrackInterpolatePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
@@ -340,8 +337,7 @@ public open class Animation : Resource() {
    */
   public fun rotationTrackInterpolate(trackIdx: Int, timeSec: Double): Quaternion {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_ROTATION_TRACK_INTERPOLATE, QUATERNION)
+    TransferContext.callMethod(rawPtr, MethodBindings.rotationTrackInterpolatePtr, QUATERNION)
     return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
   }
 
@@ -350,8 +346,7 @@ public open class Animation : Resource() {
    */
   public fun scaleTrackInterpolate(trackIdx: Int, timeSec: Double): Vector3 {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_SCALE_TRACK_INTERPOLATE,
-        VECTOR3)
+    TransferContext.callMethod(rawPtr, MethodBindings.scaleTrackInterpolatePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
@@ -360,8 +355,7 @@ public open class Animation : Resource() {
    */
   public fun blendShapeTrackInterpolate(trackIdx: Int, timeSec: Double): Float {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_BLEND_SHAPE_TRACK_INTERPOLATE, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.blendShapeTrackInterpolatePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -376,7 +370,7 @@ public open class Animation : Resource() {
     transition: Float = 1.0f,
   ): Int {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time, ANY to key, DOUBLE to transition.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_INSERT_KEY, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackInsertKeyPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -385,7 +379,7 @@ public open class Animation : Resource() {
    */
   public fun trackRemoveKey(trackIdx: Int, keyIdx: Int): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_REMOVE_KEY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackRemoveKeyPtr, NIL)
   }
 
   /**
@@ -393,8 +387,7 @@ public open class Animation : Resource() {
    */
   public fun trackRemoveKeyAtTime(trackIdx: Int, time: Double): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_REMOVE_KEY_AT_TIME,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackRemoveKeyAtTimePtr, NIL)
   }
 
   /**
@@ -406,7 +399,7 @@ public open class Animation : Resource() {
     `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to key.toLong(), ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_SET_KEY_VALUE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackSetKeyValuePtr, NIL)
   }
 
   /**
@@ -418,8 +411,7 @@ public open class Animation : Resource() {
     transition: Float,
   ): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong(), DOUBLE to transition.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_SET_KEY_TRANSITION,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackSetKeyTransitionPtr, NIL)
   }
 
   /**
@@ -431,7 +423,7 @@ public open class Animation : Resource() {
     time: Double,
   ): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong(), DOUBLE to time)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_SET_KEY_TIME, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackSetKeyTimePtr, NIL)
   }
 
   /**
@@ -439,8 +431,7 @@ public open class Animation : Resource() {
    */
   public fun trackGetKeyTransition(trackIdx: Int, keyIdx: Int): Float {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_GET_KEY_TRANSITION,
-        DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackGetKeyTransitionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -449,7 +440,7 @@ public open class Animation : Resource() {
    */
   public fun trackGetKeyCount(trackIdx: Int): Int {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_GET_KEY_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackGetKeyCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -458,7 +449,7 @@ public open class Animation : Resource() {
    */
   public fun trackGetKeyValue(trackIdx: Int, keyIdx: Int): Any? {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_GET_KEY_VALUE, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackGetKeyValuePtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -467,8 +458,7 @@ public open class Animation : Resource() {
    */
   public fun trackGetKeyTime(trackIdx: Int, keyIdx: Int): Double {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_GET_KEY_TIME,
-        DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackGetKeyTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
@@ -482,7 +472,7 @@ public open class Animation : Resource() {
     findMode: FindMode = Animation.FindMode.FIND_MODE_NEAREST,
   ): Int {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time, LONG to findMode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_FIND_KEY, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackFindKeyPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -491,8 +481,7 @@ public open class Animation : Resource() {
    */
   public fun trackSetInterpolationType(trackIdx: Int, interpolation: InterpolationType): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to interpolation.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_SET_INTERPOLATION_TYPE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackSetInterpolationTypePtr, NIL)
   }
 
   /**
@@ -500,8 +489,7 @@ public open class Animation : Resource() {
    */
   public fun trackGetInterpolationType(trackIdx: Int): InterpolationType {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_GET_INTERPOLATION_TYPE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackGetInterpolationTypePtr, LONG)
     return Animation.InterpolationType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -510,8 +498,7 @@ public open class Animation : Resource() {
    */
   public fun trackSetInterpolationLoopWrap(trackIdx: Int, interpolation: Boolean): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), BOOL to interpolation)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_SET_INTERPOLATION_LOOP_WRAP, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackSetInterpolationLoopWrapPtr, NIL)
   }
 
   /**
@@ -519,8 +506,7 @@ public open class Animation : Resource() {
    */
   public fun trackGetInterpolationLoopWrap(trackIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_GET_INTERPOLATION_LOOP_WRAP, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackGetInterpolationLoopWrapPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -529,7 +515,7 @@ public open class Animation : Resource() {
    */
   public fun trackIsCompressed(trackIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_IS_COMPRESSED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.trackIsCompressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -538,8 +524,7 @@ public open class Animation : Resource() {
    */
   public fun valueTrackSetUpdateMode(trackIdx: Int, mode: UpdateMode): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to mode.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_VALUE_TRACK_SET_UPDATE_MODE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.valueTrackSetUpdateModePtr, NIL)
   }
 
   /**
@@ -547,8 +532,7 @@ public open class Animation : Resource() {
    */
   public fun valueTrackGetUpdateMode(trackIdx: Int): UpdateMode {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_VALUE_TRACK_GET_UPDATE_MODE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.valueTrackGetUpdateModePtr, LONG)
     return Animation.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -557,8 +541,7 @@ public open class Animation : Resource() {
    */
   public fun valueTrackInterpolate(trackIdx: Int, timeSec: Double): Any? {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_VALUE_TRACK_INTERPOLATE,
-        ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.valueTrackInterpolatePtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -567,8 +550,7 @@ public open class Animation : Resource() {
    */
   public fun methodTrackGetName(trackIdx: Int, keyIdx: Int): StringName {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_METHOD_TRACK_GET_NAME,
-        STRING_NAME)
+    TransferContext.callMethod(rawPtr, MethodBindings.methodTrackGetNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
@@ -577,8 +559,7 @@ public open class Animation : Resource() {
    */
   public fun methodTrackGetParams(trackIdx: Int, keyIdx: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_METHOD_TRACK_GET_PARAMS,
-        ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.methodTrackGetParamsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
@@ -596,8 +577,7 @@ public open class Animation : Resource() {
     outHandle: Vector2 = Vector2(0, 0),
   ): Int {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time, DOUBLE to value.toDouble(), VECTOR2 to inHandle, VECTOR2 to outHandle)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_BEZIER_TRACK_INSERT_KEY,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.bezierTrackInsertKeyPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -610,8 +590,7 @@ public open class Animation : Resource() {
     `value`: Float,
   ): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong(), DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_BEZIER_TRACK_SET_KEY_VALUE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.bezierTrackSetKeyValuePtr, NIL)
   }
 
   /**
@@ -625,8 +604,7 @@ public open class Animation : Resource() {
     balancedValueTimeRatio: Float = 1.0f,
   ): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong(), VECTOR2 to inHandle, DOUBLE to balancedValueTimeRatio.toDouble())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_BEZIER_TRACK_SET_KEY_IN_HANDLE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.bezierTrackSetKeyInHandlePtr, NIL)
   }
 
   /**
@@ -640,8 +618,7 @@ public open class Animation : Resource() {
     balancedValueTimeRatio: Float = 1.0f,
   ): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong(), VECTOR2 to outHandle, DOUBLE to balancedValueTimeRatio.toDouble())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_BEZIER_TRACK_SET_KEY_OUT_HANDLE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.bezierTrackSetKeyOutHandlePtr, NIL)
   }
 
   /**
@@ -649,8 +626,7 @@ public open class Animation : Resource() {
    */
   public fun bezierTrackGetKeyValue(trackIdx: Int, keyIdx: Int): Float {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_BEZIER_TRACK_GET_KEY_VALUE, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.bezierTrackGetKeyValuePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -659,8 +635,7 @@ public open class Animation : Resource() {
    */
   public fun bezierTrackGetKeyInHandle(trackIdx: Int, keyIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_BEZIER_TRACK_GET_KEY_IN_HANDLE, VECTOR2)
+    TransferContext.callMethod(rawPtr, MethodBindings.bezierTrackGetKeyInHandlePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
@@ -669,8 +644,7 @@ public open class Animation : Resource() {
    */
   public fun bezierTrackGetKeyOutHandle(trackIdx: Int, keyIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_BEZIER_TRACK_GET_KEY_OUT_HANDLE, VECTOR2)
+    TransferContext.callMethod(rawPtr, MethodBindings.bezierTrackGetKeyOutHandlePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
@@ -679,8 +653,7 @@ public open class Animation : Resource() {
    */
   public fun bezierTrackInterpolate(trackIdx: Int, time: Double): Float {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_BEZIER_TRACK_INTERPOLATE,
-        DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.bezierTrackInterpolatePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -698,8 +671,7 @@ public open class Animation : Resource() {
     endOffset: Float = 0.0f,
   ): Int {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time, OBJECT to stream, DOUBLE to startOffset.toDouble(), DOUBLE to endOffset.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_AUDIO_TRACK_INSERT_KEY,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.audioTrackInsertKeyPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -712,8 +684,7 @@ public open class Animation : Resource() {
     stream: Resource,
   ): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong(), OBJECT to stream)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_AUDIO_TRACK_SET_KEY_STREAM, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.audioTrackSetKeyStreamPtr, NIL)
   }
 
   /**
@@ -725,8 +696,7 @@ public open class Animation : Resource() {
     offset: Float,
   ): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong(), DOUBLE to offset.toDouble())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_AUDIO_TRACK_SET_KEY_START_OFFSET, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.audioTrackSetKeyStartOffsetPtr, NIL)
   }
 
   /**
@@ -738,8 +708,7 @@ public open class Animation : Resource() {
     offset: Float,
   ): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong(), DOUBLE to offset.toDouble())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_AUDIO_TRACK_SET_KEY_END_OFFSET, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.audioTrackSetKeyEndOffsetPtr, NIL)
   }
 
   /**
@@ -747,8 +716,7 @@ public open class Animation : Resource() {
    */
   public fun audioTrackGetKeyStream(trackIdx: Int, keyIdx: Int): Resource? {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_AUDIO_TRACK_GET_KEY_STREAM, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.audioTrackGetKeyStreamPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
   }
 
@@ -759,8 +727,7 @@ public open class Animation : Resource() {
    */
   public fun audioTrackGetKeyStartOffset(trackIdx: Int, keyIdx: Int): Float {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_AUDIO_TRACK_GET_KEY_START_OFFSET, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.audioTrackGetKeyStartOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -771,8 +738,7 @@ public open class Animation : Resource() {
    */
   public fun audioTrackGetKeyEndOffset(trackIdx: Int, keyIdx: Int): Float {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_AUDIO_TRACK_GET_KEY_END_OFFSET, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.audioTrackGetKeyEndOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -781,8 +747,7 @@ public open class Animation : Resource() {
    */
   public fun audioTrackSetUseBlend(trackIdx: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_AUDIO_TRACK_SET_USE_BLEND,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.audioTrackSetUseBlendPtr, NIL)
   }
 
   /**
@@ -790,8 +755,7 @@ public open class Animation : Resource() {
    */
   public fun audioTrackIsUseBlend(trackIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_AUDIO_TRACK_IS_USE_BLEND,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.audioTrackIsUseBlendPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -804,8 +768,7 @@ public open class Animation : Resource() {
     animation: StringName,
   ): Int {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time, STRING_NAME to animation)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_ANIMATION_TRACK_INSERT_KEY, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.animationTrackInsertKeyPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -818,8 +781,7 @@ public open class Animation : Resource() {
     animation: StringName,
   ): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong(), STRING_NAME to animation)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_ANIMATION_TRACK_SET_KEY_ANIMATION, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.animationTrackSetKeyAnimationPtr, NIL)
   }
 
   /**
@@ -827,8 +789,7 @@ public open class Animation : Resource() {
    */
   public fun animationTrackGetKeyAnimation(trackIdx: Int, keyIdx: Int): StringName {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATION_ANIMATION_TRACK_GET_KEY_ANIMATION, STRING_NAME)
+    TransferContext.callMethod(rawPtr, MethodBindings.animationTrackGetKeyAnimationPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
@@ -837,7 +798,7 @@ public open class Animation : Resource() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_CLEAR, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   /**
@@ -845,7 +806,7 @@ public open class Animation : Resource() {
    */
   public fun copyTrack(trackIdx: Int, toAnimation: Animation): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), OBJECT to toAnimation)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_COPY_TRACK, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.copyTrackPtr, NIL)
   }
 
   /**
@@ -860,7 +821,7 @@ public open class Animation : Resource() {
     splitTolerance: Float = 4.0f,
   ): Unit {
     TransferContext.writeArguments(LONG to pageSize, LONG to fps, DOUBLE to splitTolerance.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_COMPRESS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.compressPtr, NIL)
   }
 
   public enum class TrackType(
@@ -1062,4 +1023,210 @@ public open class Animation : Resource() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val addTrackPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "add_track")
+
+    public val removeTrackPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "remove_track")
+
+    public val getTrackCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "get_track_count")
+
+    public val trackGetTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_get_type")
+
+    public val trackGetPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_get_path")
+
+    public val trackSetPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_set_path")
+
+    public val findTrackPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "find_track")
+
+    public val trackMoveUpPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "track_move_up")
+
+    public val trackMoveDownPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_move_down")
+
+    public val trackMoveToPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "track_move_to")
+
+    public val trackSwapPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "track_swap")
+
+    public val trackSetImportedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_set_imported")
+
+    public val trackIsImportedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_is_imported")
+
+    public val trackSetEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_set_enabled")
+
+    public val trackIsEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_is_enabled")
+
+    public val positionTrackInsertKeyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "position_track_insert_key")
+
+    public val rotationTrackInsertKeyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "rotation_track_insert_key")
+
+    public val scaleTrackInsertKeyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "scale_track_insert_key")
+
+    public val blendShapeTrackInsertKeyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "blend_shape_track_insert_key")
+
+    public val positionTrackInterpolatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "position_track_interpolate")
+
+    public val rotationTrackInterpolatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "rotation_track_interpolate")
+
+    public val scaleTrackInterpolatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "scale_track_interpolate")
+
+    public val blendShapeTrackInterpolatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "blend_shape_track_interpolate")
+
+    public val trackInsertKeyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_insert_key")
+
+    public val trackRemoveKeyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_remove_key")
+
+    public val trackRemoveKeyAtTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_remove_key_at_time")
+
+    public val trackSetKeyValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_set_key_value")
+
+    public val trackSetKeyTransitionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_set_key_transition")
+
+    public val trackSetKeyTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_set_key_time")
+
+    public val trackGetKeyTransitionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_get_key_transition")
+
+    public val trackGetKeyCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_get_key_count")
+
+    public val trackGetKeyValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_get_key_value")
+
+    public val trackGetKeyTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_get_key_time")
+
+    public val trackFindKeyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_find_key")
+
+    public val trackSetInterpolationTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_set_interpolation_type")
+
+    public val trackGetInterpolationTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_get_interpolation_type")
+
+    public val trackSetInterpolationLoopWrapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_set_interpolation_loop_wrap")
+
+    public val trackGetInterpolationLoopWrapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_get_interpolation_loop_wrap")
+
+    public val trackIsCompressedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_is_compressed")
+
+    public val valueTrackSetUpdateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "value_track_set_update_mode")
+
+    public val valueTrackGetUpdateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "value_track_get_update_mode")
+
+    public val valueTrackInterpolatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "value_track_interpolate")
+
+    public val methodTrackGetNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "method_track_get_name")
+
+    public val methodTrackGetParamsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "method_track_get_params")
+
+    public val bezierTrackInsertKeyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_insert_key")
+
+    public val bezierTrackSetKeyValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_set_key_value")
+
+    public val bezierTrackSetKeyInHandlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_set_key_in_handle")
+
+    public val bezierTrackSetKeyOutHandlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_set_key_out_handle")
+
+    public val bezierTrackGetKeyValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_get_key_value")
+
+    public val bezierTrackGetKeyInHandlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_get_key_in_handle")
+
+    public val bezierTrackGetKeyOutHandlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_get_key_out_handle")
+
+    public val bezierTrackInterpolatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_interpolate")
+
+    public val audioTrackInsertKeyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "audio_track_insert_key")
+
+    public val audioTrackSetKeyStreamPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "audio_track_set_key_stream")
+
+    public val audioTrackSetKeyStartOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "audio_track_set_key_start_offset")
+
+    public val audioTrackSetKeyEndOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "audio_track_set_key_end_offset")
+
+    public val audioTrackGetKeyStreamPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "audio_track_get_key_stream")
+
+    public val audioTrackGetKeyStartOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "audio_track_get_key_start_offset")
+
+    public val audioTrackGetKeyEndOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "audio_track_get_key_end_offset")
+
+    public val audioTrackSetUseBlendPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "audio_track_set_use_blend")
+
+    public val audioTrackIsUseBlendPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "audio_track_is_use_blend")
+
+    public val animationTrackInsertKeyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "animation_track_insert_key")
+
+    public val animationTrackSetKeyAnimationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "animation_track_set_key_animation")
+
+    public val animationTrackGetKeyAnimationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "animation_track_get_key_animation")
+
+    public val setLengthPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "set_length")
+
+    public val getLengthPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "get_length")
+
+    public val setLoopModePtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "set_loop_mode")
+
+    public val getLoopModePtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "get_loop_mode")
+
+    public val setStepPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "set_step")
+
+    public val getStepPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "get_step")
+
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "clear")
+
+    public val copyTrackPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "copy_track")
+
+    public val compressPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "compress")
+  }
 }

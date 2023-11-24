@@ -9,10 +9,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -32,12 +34,12 @@ public open class SegmentShape2D : Shape2D() {
   public var a: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEGMENTSHAPE2D_GET_A, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEGMENTSHAPE2D_SET_A, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAPtr, NIL)
     }
 
   /**
@@ -47,12 +49,12 @@ public open class SegmentShape2D : Shape2D() {
   public var b: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEGMENTSHAPE2D_GET_B, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEGMENTSHAPE2D_SET_B, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -109,4 +111,14 @@ public open class SegmentShape2D : Shape2D() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setAPtr: VoidPtr = TypeManager.getMethodBindPtr("SegmentShape2D", "set_a")
+
+    public val getAPtr: VoidPtr = TypeManager.getMethodBindPtr("SegmentShape2D", "get_a")
+
+    public val setBPtr: VoidPtr = TypeManager.getMethodBindPtr("SegmentShape2D", "set_b")
+
+    public val getBPtr: VoidPtr = TypeManager.getMethodBindPtr("SegmentShape2D", "get_b")
+  }
 }

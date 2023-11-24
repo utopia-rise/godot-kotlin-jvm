@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -64,14 +66,12 @@ public open class AudioStreamGenerator : AudioStream() {
   public var mixRate: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATOR_GET_MIX_RATE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMixRatePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATOR_SET_MIX_RATE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMixRatePtr, NIL)
     }
 
   /**
@@ -80,14 +80,12 @@ public open class AudioStreamGenerator : AudioStream() {
   public var bufferLength: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATOR_GET_BUFFER_LENGTH, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBufferLengthPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATOR_SET_BUFFER_LENGTH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -96,4 +94,18 @@ public open class AudioStreamGenerator : AudioStream() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setMixRatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamGenerator", "set_mix_rate")
+
+    public val getMixRatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamGenerator", "get_mix_rate")
+
+    public val setBufferLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamGenerator", "set_buffer_length")
+
+    public val getBufferLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamGenerator", "get_buffer_length")
+  }
 }

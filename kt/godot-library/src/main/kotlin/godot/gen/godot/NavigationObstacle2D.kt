@@ -11,6 +11,7 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
 import godot.core.RID
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -20,6 +21,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -50,14 +52,12 @@ public open class NavigationObstacle2D : Node2D() {
   public var avoidanceEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_GET_AVOIDANCE_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_SET_AVOIDANCE_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceEnabledPtr, NIL)
     }
 
   /**
@@ -67,14 +67,12 @@ public open class NavigationObstacle2D : Node2D() {
   public var velocity: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_GET_VELOCITY,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_SET_VELOCITY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
     }
 
   /**
@@ -83,14 +81,12 @@ public open class NavigationObstacle2D : Node2D() {
   public var radius: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_GET_RADIUS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_SET_RADIUS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
     }
 
   /**
@@ -99,14 +95,12 @@ public open class NavigationObstacle2D : Node2D() {
   public var vertices: PackedVector2Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_GET_VERTICES,
-          PACKED_VECTOR2_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_VECTOR2_ARRAY)
       return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_SET_VERTICES,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
     }
 
   /**
@@ -115,14 +109,12 @@ public open class NavigationObstacle2D : Node2D() {
   public var avoidanceLayers: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_GET_AVOIDANCE_LAYERS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceLayersPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_SET_AVOIDANCE_LAYERS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceLayersPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -159,7 +151,7 @@ public open class NavigationObstacle2D : Node2D() {
    */
   public fun getRid(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_GET_RID, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -168,8 +160,7 @@ public open class NavigationObstacle2D : Node2D() {
    */
   public fun setNavigationMap(navigationMap: RID): Unit {
     TransferContext.writeArguments(_RID to navigationMap)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_SET_NAVIGATION_MAP, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationMapPtr, NIL)
   }
 
   /**
@@ -177,8 +168,7 @@ public open class NavigationObstacle2D : Node2D() {
    */
   public fun getNavigationMap(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_GET_NAVIGATION_MAP, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -187,8 +177,7 @@ public open class NavigationObstacle2D : Node2D() {
    */
   public fun setAvoidanceLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_SET_AVOIDANCE_LAYER_VALUE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceLayerValuePtr, NIL)
   }
 
   /**
@@ -196,10 +185,55 @@ public open class NavigationObstacle2D : Node2D() {
    */
   public fun getAvoidanceLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE2D_GET_AVOIDANCE_LAYER_VALUE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceLayerValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_rid")
+
+    public val setAvoidanceEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_avoidance_enabled")
+
+    public val getAvoidanceEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_avoidance_enabled")
+
+    public val setNavigationMapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_navigation_map")
+
+    public val getNavigationMapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_navigation_map")
+
+    public val setRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_radius")
+
+    public val getRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_radius")
+
+    public val setVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_velocity")
+
+    public val getVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_velocity")
+
+    public val setVerticesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_vertices")
+
+    public val getVerticesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_vertices")
+
+    public val setAvoidanceLayersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_avoidance_layers")
+
+    public val getAvoidanceLayersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_avoidance_layers")
+
+    public val setAvoidanceLayerValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_avoidance_layer_value")
+
+    public val getAvoidanceLayerValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_avoidance_layer_value")
+  }
 }

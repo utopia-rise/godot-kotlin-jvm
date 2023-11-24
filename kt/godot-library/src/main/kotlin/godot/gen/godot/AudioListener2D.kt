@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -36,7 +38,7 @@ public open class AudioListener2D : Node2D() {
    */
   public fun makeCurrent(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOLISTENER2D_MAKE_CURRENT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.makeCurrentPtr, NIL)
   }
 
   /**
@@ -44,7 +46,7 @@ public open class AudioListener2D : Node2D() {
    */
   public fun clearCurrent(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOLISTENER2D_CLEAR_CURRENT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearCurrentPtr, NIL)
   }
 
   /**
@@ -52,9 +54,19 @@ public open class AudioListener2D : Node2D() {
    */
   public fun isCurrent(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOLISTENER2D_IS_CURRENT, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isCurrentPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val makeCurrentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioListener2D", "make_current")
+
+    public val clearCurrentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioListener2D", "clear_current")
+
+    public val isCurrentPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioListener2D", "is_current")
+  }
 }

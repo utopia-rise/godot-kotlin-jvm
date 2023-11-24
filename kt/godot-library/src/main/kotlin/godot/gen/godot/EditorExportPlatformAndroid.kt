@@ -19,4 +19,6 @@ public open class EditorExportPlatformAndroid internal constructor() : EditorExp
   }
 
   public companion object
+
+  internal object MethodBindings
 }

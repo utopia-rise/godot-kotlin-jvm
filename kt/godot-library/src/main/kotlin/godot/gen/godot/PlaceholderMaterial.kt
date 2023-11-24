@@ -28,4 +28,6 @@ public open class PlaceholderMaterial : Material() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

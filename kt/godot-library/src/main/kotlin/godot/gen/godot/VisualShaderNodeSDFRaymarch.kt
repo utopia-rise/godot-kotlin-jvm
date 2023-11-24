@@ -24,4 +24,6 @@ public open class VisualShaderNodeSDFRaymarch : VisualShaderNode() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }
