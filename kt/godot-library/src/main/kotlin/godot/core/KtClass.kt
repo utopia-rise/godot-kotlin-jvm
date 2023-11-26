@@ -1,7 +1,6 @@
 package godot.core
 
 import godot.core.memory.TransferContext
-import kotlin.reflect.KFunction2
 
 @Suppress("unused")
 data class KtClass<T : KtObject>(
@@ -11,7 +10,7 @@ data class KtClass<T : KtObject>(
     private val _constructors: List<KtConstructor<T>?>,
     private val _properties: Map<String, KtProperty<T, *>>,
     private val _functions: Map<String, KtFunction<T, *>>,
-    private val _notificationFunctions: List<KFunction2<T, Int, Unit>>,
+    private val _notificationFunctions: List<Any.(Int) -> Unit>,
     private val _signalInfos: Map<String, KtSignalInfo>,
     val baseGodotClass: String
 ) {

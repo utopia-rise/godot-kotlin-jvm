@@ -34,7 +34,7 @@ internal fun KSClassDeclaration.mapToClazz(
         .toList()
 
     val registeredFunctions = getAllFunctions()
-        .mapNotNull { it.mapToRegisteredFunction() }
+        .mapNotNull { it.mapToRegisteredFunction(this) }
         .toList()
 
     val declaredProperties = getDeclaredProperties()

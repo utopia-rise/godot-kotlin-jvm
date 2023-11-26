@@ -14,6 +14,7 @@ import godot.entrygenerator.generator.PropertyRegistrationGenerator
 import godot.entrygenerator.generator.SignalRegistrationGenerator
 import godot.entrygenerator.model.RegisteredClass
 import godot.tools.common.constants.GENERATED_COMMENT
+import godot.tools.common.constants.GodotFunctions
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.godotEntryBasePackage
 import godot.tools.common.constants.godotRegistrationPackage
@@ -40,7 +41,7 @@ class ClassRegistrarFileBuilder(
                         .addMember("\"${registeredClass.supertypes.joinToString(",") { it.fqName }}\"")
                         .addMember("\"${registeredClass.signals.joinToString(",") { it.fqName }}\"")
                         .addMember("\"${registeredClass.properties.joinToString(",") { it.fqName }}\"")
-                        .addMember("\"${registeredClass.functions.joinToString(",") { it.fqName }}\"")
+                        .addMember("\"${registeredClass.functions.filter { it.name != GodotFunctions.notification }.joinToString(",") { it.fqName }}\"")
                         .build()
                 )
             }

@@ -12,11 +12,39 @@ import godot.entrygenerator.model.RpcAnnotation
 import godot.entrygenerator.model.RpcMode
 import godot.entrygenerator.model.Sync
 import godot.entrygenerator.model.TransferMode
-import godot.tools.common.constants.*
+import godot.tools.common.constants.GodotFunctions
+import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotTypes
+import godot.tools.common.constants.KOTLIN_LIST_OF
+import godot.tools.common.constants.godotApiPackage
+import godot.tools.common.constants.godotCorePackage
+import godot.tools.common.constants.godotRegistrationPackage
 
 object FunctionRegistrationGenerator {
     fun generate(registeredClass: RegisteredClass, className: ClassName, registerClassControlFlow: FunSpec.Builder) {
-        registeredClass.functions.forEach { registeredFunction ->
+        val notificationFunctions = mapOf(
+            *registeredClass.functions.filter { registeredFunction ->
+                registeredFunction.isNotificationFunction() && registeredFunction.isDeclaredInThisClass
+            }.map { registeredClass to it }.toTypedArray(),
+            *registeredClass.supertypes.filterIsInstance<RegisteredClass>().flatMap { registeredSuperClass -> registeredSuperClass.functions.filter { registeredSuperClassFunction -> registeredSuperClassFunction.isNotificationFunction() }.map { registeredSuperClass to it } }.toTypedArray()
+        )
+        val otherFunctions = registeredClass.functions.filter { it.name != GodotFunctions.notification }
+
+        registerClassControlFlow
+            .addStatement(
+                "notificationFunctions(%M(${(0..<notificationFunctions.size).joinToString(",·") { _ -> "%T().%L().%L" }}))",
+                KOTLIN_LIST_OF,
+                *notificationFunctions.flatMap { notificationFunction ->
+                    val containingClassName = ClassName(notificationFunction.key.containingPackage, notificationFunction.key.name)
+                    listOf(
+                        containingClassName,
+                        GodotFunctions.notification,
+                        "block"
+                    )
+                }.toTypedArray()
+            )
+
+        otherFunctions.forEach { registeredFunction ->
             registerClassControlFlow
                 .addStatement(
                     getFunctionTemplateString(registeredFunction),
@@ -24,6 +52,9 @@ object FunctionRegistrationGenerator {
                 )
         }
     }
+
+    private fun RegisteredFunction.isNotificationFunction() =
+        this.isOverridee && this.name == GodotFunctions.notification
 
     private fun getFunctionTemplateString(registeredFunction: RegisteredFunction) = buildString {
         append("function(%L,·%T") //functionReference, returnTypeConverterReference

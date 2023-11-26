@@ -2,6 +2,8 @@ package godot.entrygenerator.model
 
 data class RegisteredFunction(
     val fqName: String,
+    val isOverridee: Boolean,
+    val isDeclaredInThisClass: Boolean,
     val parameters: List<ValueParameter> = emptyList(),
     val returnType: Type? = null,
     val annotations: List<FunctionAnnotation> = emptyList(),
