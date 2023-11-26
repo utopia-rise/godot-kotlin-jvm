@@ -1,6 +1,8 @@
 #include "kt_class.h"
 
 #include "jni/class_loader.h"
+#include "memory/transfer_context.h"
+#include "gd_kotlin.h"
 
 // clang-format off
 JNI_INIT_STATICS_FOR_CLASS(
@@ -14,18 +16,22 @@ JNI_INIT_STATICS_FOR_CLASS(
     INIT_JNI_METHOD(GET_PROPERTIES)
     INIT_JNI_METHOD(GET_SIGNAL_INFOS)
     INIT_JNI_METHOD(GET_CONSTRUCTORS)
+    INIT_JNI_METHOD(GET_HAS_NOTIFICATION)
+    INIT_JNI_METHOD(DO_NOTIFICATION)
 )
 
 // clang-format on
 
 KtClass::KtClass(jni::JObject p_wrapped) :
   JavaInstanceWrapper(p_wrapped),
-  constructors {} {
+  constructors {},
+  _has_notification() {
     jni::Env env {jni::Jvm::current_env()};
     LOCAL_FRAME(3);
     resource_path = get_resource_path(env);
     registered_class_name = get_registered_name(env);
     base_godot_class = get_base_godot_class(env);
+    _has_notification = get_has_notification(env);
 }
 
 KtClass::~KtClass() {
@@ -91,6 +97,11 @@ StringName KtClass::get_base_godot_class(jni::Env& env) {
     jni::MethodId getter {jni_methods.GET_BASE_GODOT_CLASS.method_id};
     jni::JObject ret {wrapped.call_object_method(env, getter)};
     return StringName(env.from_jstring(jni::JString((jstring) ret.obj)));
+}
+
+bool KtClass::get_has_notification(jni::Env& env) {
+    jni::MethodId getter {jni_methods.GET_HAS_NOTIFICATION.method_id};
+    return static_cast<bool>(wrapped.call_boolean_method(env, getter));
 }
 
 void KtClass::fetch_registered_supertypes(jni::Env& env) {
@@ -183,6 +194,24 @@ const Dictionary KtClass::get_rpc_config() {
     }
 
     return rpc_configs;
+}
+
+void KtClass::do_notification(KtObject* p_instance, int p_notification, bool p_reversed) {
+    if (!_has_notification) {
+        return;
+    }
+
+    jni::Env env { jni::Jvm::current_env() };
+    Variant notification = p_notification;
+    Variant reversed = p_reversed;
+    const int arg_size = 2;
+    const Variant* args[arg_size] = {&notification, &reversed};
+    TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
+    transfer_context->write_args(env, args, arg_size);
+
+    jni::MethodId do_notification_method { jni_methods.DO_NOTIFICATION.method_id };
+    jvalue call_args[1] = {jni::to_jni_arg(p_instance->get_wrapped())};
+    wrapped.call_void_method(env, do_notification_method, call_args);
 }
 
 void KtClass::fetch_members() {

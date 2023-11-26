@@ -681,7 +681,9 @@
       {"name":"getProperties","parameterTypes":[] },
       {"name":"getRegisteredName","parameterTypes":[] },
       {"name":"getSignalInfos","parameterTypes":[] },
-      {"name":"getRegisteredSupertypes","parameterTypes":[] }
+      {"name":"getRegisteredSupertypes","parameterTypes":[] },
+      {"name":"getHasNotification","parameterTypes":[] },
+      {"name":"doNotification","parameterTypes": ["godot.core.KtObject"] }
     ]
   },
   {

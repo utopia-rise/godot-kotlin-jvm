@@ -42,17 +42,22 @@ public:
 
     const Dictionary get_rpc_config();
 
+    void do_notification(KtObject* p_instance, int p_notification, bool p_reversed);
+
 private:
     HashMap<StringName, KtFunction*> methods;
     HashMap<StringName, KtProperty*> properties;
     HashMap<StringName, KtSignalInfo*> signal_infos;
     KtConstructor* constructors[MAX_CONSTRUCTOR_SIZE];
+    bool _has_notification;
 
     StringName get_resource_path(jni::Env& env);
 
     String get_registered_name(jni::Env& env);
 
     StringName get_base_godot_class(jni::Env& env);
+
+    bool get_has_notification(jni::Env& env);
 
     void fetch_registered_supertypes(jni::Env& env);
 
@@ -89,6 +94,8 @@ private:
             JNI_METHOD(GET_PROPERTIES, "getProperties", "()[Lgodot/core/KtProperty;")
             JNI_METHOD(GET_SIGNAL_INFOS, "getSignalInfos", "()[Lgodot/core/KtSignalInfo;")
             JNI_METHOD(GET_CONSTRUCTORS, "getConstructors", "()[Lgodot/core/KtConstructor;")
+            JNI_METHOD(GET_HAS_NOTIFICATION, "getHasNotification", "()Z")
+            JNI_METHOD(DO_NOTIFICATION, "doNotification", "(Lgodot/core/KtObject;)V")
     )
     // clang-format on
 };
