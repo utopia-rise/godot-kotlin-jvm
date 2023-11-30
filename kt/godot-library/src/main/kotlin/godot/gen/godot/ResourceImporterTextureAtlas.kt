@@ -19,7 +19,7 @@ import kotlin.Suppress
  * **Note:** [godot.ResourceImporterTextureAtlas] does not handle importing [godot.TileSetAtlasSource], which is created using the [godot.TileSet] editor instead.
  */
 @GodotBaseType
-public open class ResourceImporterTextureAtlas internal constructor() : ResourceImporter() {
+public open class ResourceImporterTextureAtlas : ResourceImporter() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RESOURCEIMPORTERTEXTUREATLAS, scriptIndex)
     return true

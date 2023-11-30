@@ -59,7 +59,7 @@ import kotlin.jvm.JvmOverloads
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getCommandPalette].
  */
 @GodotBaseType
-public open class EditorCommandPalette internal constructor() : ConfirmationDialog() {
+public open class EditorCommandPalette : ConfirmationDialog() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORCOMMANDPALETTE, scriptIndex)
     return true

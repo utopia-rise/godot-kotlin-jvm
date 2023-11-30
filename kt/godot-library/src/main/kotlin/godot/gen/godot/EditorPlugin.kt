@@ -43,7 +43,7 @@ import kotlin.jvm.JvmOverloads
  * **Note:** Some names in this class contain "left" or "right" (e.g. [DOCK_SLOT_LEFT_UL]). These APIs assume left-to-right layout, and would be backwards when using right-to-left layout. These names are kept for compatibility reasons.
  */
 @GodotBaseType
-public open class EditorPlugin internal constructor() : Node() {
+public open class EditorPlugin : Node() {
   /**
    * Emitted when the scene is changed in the editor. The argument will return the root node of the scene that has just become active. If this scene is new and empty, the argument will be `null`.
    */
@@ -701,7 +701,7 @@ public open class EditorPlugin internal constructor() : Node() {
   }
 
   /**
-   * Adds a custom [godot.PopupMenu] submenu under **Project > Tools >** [name]. Use `remove_tool_menu_item(name)` on plugin clean up to remove the menu.
+   * Adds a custom [godot.PopupMenu] submenu under **Project > Tools >** [name]. Use [removeToolMenuItem] on plugin clean up to remove the menu.
    */
   public fun addToolSubmenuItem(name: String, submenu: PopupMenu): Unit {
     TransferContext.writeArguments(STRING to name, OBJECT to submenu)

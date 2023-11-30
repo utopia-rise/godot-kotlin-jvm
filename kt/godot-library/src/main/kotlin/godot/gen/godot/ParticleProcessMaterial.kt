@@ -395,7 +395,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   *
+   * A pivot point used to calculate radial and orbital velocity of particles.
    */
   @CoreTypeLocalCopy
   public var velocityPivot: Vector3
@@ -932,7 +932,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * True if the interaction with particle attractors is enabled.
+   * If `true`, interaction with particle attractors is enabled. In 3D, attraction only occurs within the area defined by the [godot.GPUParticles3D] node's [godot.GPUParticles3D.visibilityAabb].
    */
   public var attractorInteractionEnabled: Boolean
     get() {
@@ -1463,7 +1463,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * The particles' collision mode.
    *
-   * **Note:** 3D Particles can only collide with [godot.GPUParticlesCollision3D] nodes, not [godot.PhysicsBody3D] nodes. To make particles collide with various objects, you can add [godot.GPUParticlesCollision3D] nodes as children of [godot.PhysicsBody3D] nodes.
+   * **Note:** 3D Particles can only collide with [godot.GPUParticlesCollision3D] nodes, not [godot.PhysicsBody3D] nodes. To make particles collide with various objects, you can add [godot.GPUParticlesCollision3D] nodes as children of [godot.PhysicsBody3D] nodes. In 3D, collisions only occur within the area defined by the [godot.GPUParticles3D] node's [godot.GPUParticles3D.visibilityAabb].
    *
    * **Note:** 2D Particles can only collide with [godot.LightOccluder2D] nodes, not [godot.PhysicsBody2D] nodes.
    */
@@ -1513,7 +1513,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Should collision take scale into account.
+   * If `true`, [godot.GPUParticles3D.collisionBaseSize] is multiplied by the particle's effective scale (see [scaleMin], [scaleMax], [scaleCurve], and [scaleOverVelocityCurve]).
    */
   public var collisionUseScale: Boolean
     get() {
@@ -1529,7 +1529,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   *
+   * The particle subemitter mode (see [godot.GPUParticles2D.subEmitter] and [godot.GPUParticles3D.subEmitter]).
    */
   public var subEmitterMode: SubEmitterMode
     get() {
@@ -1545,7 +1545,9 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
+   * The frequency at which particles should be emitted from the subemitter node. One particle will be spawned every [subEmitterFrequency] seconds.
    *
+   * **Note:** This value shouldn't exceed [godot.GPUParticles2D.amount] or [godot.GPUParticles3D.amount] defined on the *subemitter node* (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.
    */
   public var subEmitterFrequency: Double
     get() {
@@ -1561,7 +1563,9 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
+   * The amount of particles to spawn from the subemitter node when the particle expires.
    *
+   * **Note:** This value shouldn't exceed [godot.GPUParticles2D.amount] or [godot.GPUParticles3D.amount] defined on the *subemitter node* (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.
    */
   public var subEmitterAmountAtEnd: Int
     get() {
@@ -1577,9 +1581,9 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Sub particle amount on collision.
+   * The amount of particles to spawn from the subemitter node when a collision occurs. When combined with [COLLISION_HIDE_ON_CONTACT] on the main particles material, this can be used to achieve effects such as raindrops hitting the ground.
    *
-   * Maximum amount set in the sub particles emitter.
+   * **Note:** This value shouldn't exceed [godot.GPUParticles2D.amount] or [godot.GPUParticles3D.amount] defined on the *subemitter node* (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.
    */
   public var subEmitterAmountAtCollision: Int
     get() {
@@ -1596,7 +1600,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   *
+   * If `true`, the subemitter inherits the parent particle's velocity when it spawns.
    */
   public var subEmitterKeepVelocity: Boolean
     get() {
@@ -1717,7 +1721,7 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
-   *
+   * A pivot point used to calculate radial and orbital velocity of particles.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

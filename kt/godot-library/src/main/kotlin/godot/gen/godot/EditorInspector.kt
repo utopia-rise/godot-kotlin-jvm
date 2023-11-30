@@ -38,7 +38,7 @@ import kotlin.Suppress
  * **Note:** Unlike sections created from path-like property names, [godot.EditorInspector] won't capitalize the name for sections created from groups. So properties with group usage usually use capitalized names instead of snake_cased names.
  */
 @GodotBaseType
-public open class EditorInspector internal constructor() : ScrollContainer() {
+public open class EditorInspector : ScrollContainer() {
   /**
    * Emitted when a property is selected in the inspector.
    */

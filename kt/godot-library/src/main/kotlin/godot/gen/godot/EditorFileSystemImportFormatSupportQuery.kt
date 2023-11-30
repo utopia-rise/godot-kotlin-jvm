@@ -21,7 +21,7 @@ import kotlin.Suppress
  * This class is used to query and configure a certain import format. It is used in conjunction with asset format import plugins.
  */
 @GodotBaseType
-public open class EditorFileSystemImportFormatSupportQuery internal constructor() : RefCounted() {
+public open class EditorFileSystemImportFormatSupportQuery : RefCounted() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORFILESYSTEMIMPORTFORMATSUPPORTQUERY, scriptIndex)
     return true

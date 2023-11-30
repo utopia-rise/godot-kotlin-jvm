@@ -20,7 +20,7 @@ import kotlin.Suppress
  * This importer imports [godot.CompressedTexture2D] resources. If you need to process the image in scripts in a more convenient way, use [godot.ResourceImporterImage] instead. See also [godot.ResourceImporterLayeredTexture].
  */
 @GodotBaseType
-public open class ResourceImporterTexture internal constructor() : ResourceImporter() {
+public open class ResourceImporterTexture : ResourceImporter() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RESOURCEIMPORTERTEXTURE, scriptIndex)
     return true

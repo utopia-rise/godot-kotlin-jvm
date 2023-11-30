@@ -367,6 +367,17 @@ public open class DirAccess internal constructor() : RefCounted() {
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  /**
+   * Returns `true` if the file system or directory use case sensitive file names.
+   *
+   * **Note:** This method is implemented on macOS, Linux (for EXT4 and F2FS filesystems only) and Windows. On other platforms, it always returns `true`.
+   */
+  public fun isCaseSensitive(path: String): Boolean {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRACCESS_IS_CASE_SENSITIVE, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   public companion object {
     /**
      * Creates a new [godot.DirAccess] object and opens an existing directory of the filesystem. The [path] argument can be within the project tree (`res://folder`), the user directory (`user://folder`) or an absolute path of the user filesystem (e.g. `/tmp/folder` or `C:\tmp\folder`).

@@ -104,7 +104,7 @@ import kotlin.Unit
  * [/codeblocks]
  */
 @GodotBaseType
-public open class EditorDebuggerPlugin internal constructor() : RefCounted() {
+public open class EditorDebuggerPlugin : RefCounted() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORDEBUGGERPLUGIN, scriptIndex)
     return true

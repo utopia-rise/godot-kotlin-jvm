@@ -664,7 +664,7 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Sets the coloration of the connection between [fromNode]'s [fromPort] and [toNode]'s [toPort] with the color provided in the [theme_item activity] theme property.
+   * Sets the coloration of the connection between [fromNode]'s [fromPort] and [toNode]'s [toPort] with the color provided in the [theme_item activity] theme property. The color is linearly interpolated between the connection color and the activity color using [amount] as weight.
    */
   public fun setConnectionActivity(
     fromNode: StringName,

@@ -78,7 +78,25 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * If `true`, bakes lightmaps to contain directional information as spherical harmonics. This results in more realistic lighting appearance, especially with normal mapped materials and for lights that have their direct light baked ([godot.Light3D.lightBakeMode] set to [godot.Light3D.BAKE_STATIC]). The directional information is also used to provide rough reflections for static and dynamic objects. This has a small run-time performance cost as the shader has to perform more work to interpret the direction information from the lightmap. Directional lightmaps also take longer to bake and result in larger file sizes.
+   * The energy multiplier for each bounce. Higher values will make indirect lighting brighter. A value of `1.0` represents physically accurate behavior, but higher values can be used to make indirect lighting propagate more visibly when using a low number of bounces. This can be used to speed up bake times by lowering the number of [bounces] then increasing [bounceIndirectEnergy].
+   *
+   * **Note:** [bounceIndirectEnergy] only has an effect if [bounces] is set to a value greater than or equal to `1`.
+   */
+  public var bounceIndirectEnergy: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_BOUNCE_INDIRECT_ENERGY, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_BOUNCE_INDIRECT_ENERGY, NIL)
+    }
+
+  /**
+   * If `true`, bakes lightmaps to contain directional information as spherical harmonics. This results in more realistic lighting appearance, especially with normal mapped materials and for lights that have their direct light baked ([godot.Light3D.lightBakeMode] set to [godot.Light3D.BAKE_STATIC] and with [godot.Light3D.editorOnly] set to `false`). The directional information is also used to provide rough reflections for static and dynamic objects. This has a small run-time performance cost as the shader has to perform more work to interpret the direction information from the lightmap. Directional lightmaps also take longer to bake and result in larger file sizes.
    *
    * **Note:** The property's name has no relationship with [godot.DirectionalLight3D]. [directional] works with all light types.
    */
@@ -91,6 +109,24 @@ public open class LightmapGI : VisualInstance3D() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setDirectionalPtr, NIL)
+    }
+
+  /**
+   * If `true`, a texture with the lighting information will be generated to speed up the generation of indirect lighting at the cost of some accuracy. The geometry might exhibit extra light leak artifacts when using low resolution lightmaps or UVs that stretch the lightmap significantly across surfaces. Leave [useTextureForBounces] at its default value of `true` if unsure.
+   *
+   * **Note:** [useTextureForBounces] only has an effect if [bounces] is set to a value greater than or equal to `1`.
+   */
+  public var useTextureForBounces: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_IS_USING_TEXTURE_FOR_BOUNCES, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_USE_TEXTURE_FOR_BOUNCES, NIL)
     }
 
   /**

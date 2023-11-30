@@ -122,7 +122,7 @@ import kotlin.Suppress
  * [/codeblocks]
  */
 @GodotBaseType
-public open class EditorScenePostImport internal constructor() : RefCounted() {
+public open class EditorScenePostImport : RefCounted() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORSCENEPOSTIMPORT, scriptIndex)
     return true

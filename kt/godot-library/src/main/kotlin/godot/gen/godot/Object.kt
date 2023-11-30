@@ -46,7 +46,7 @@ import kotlin.jvm.JvmOverloads
  *
  * An advanced [Variant] type. All classes in the engine inherit from Object. Each class may define new properties, methods or signals, which are available to all inheriting classes. For example, a [godot.Sprite2D] instance is able to call [godot.Node.addChild] because it inherits from [godot.Node].
  *
- * You can create new instances, using `Object.new()` in GDScript, or `new Object` in C#.
+ * You can create new instances, using `Object.new()` in GDScript, or `new GodotObject` in C#.
  *
  * To delete an Object instance, call [free]. This is necessary for most classes inheriting Object, because they do not manage memory on their own, and will otherwise cause memory leaks when no longer in use. There are a few classes that perform memory management. For example, [godot.RefCounted] (and by extension [godot.Resource]) deletes itself when no longer referenced, and [godot.Node] deletes its children when freed.
  *

@@ -572,6 +572,8 @@ public open class Mesh : Resource() {
       public val ARRAY_FLAG_USE_8_BONE_WEIGHTS: ArrayFormat = ArrayFormatValue(134217728)
 
       public val ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY: ArrayFormat = ArrayFormatValue(268435456)
+
+      public val ARRAY_FLAG_COMPRESS_ATTRIBUTES: ArrayFormat = ArrayFormatValue(536870912)
     }
   }
 

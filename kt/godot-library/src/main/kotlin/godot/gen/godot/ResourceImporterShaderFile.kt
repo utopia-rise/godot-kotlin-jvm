@@ -17,7 +17,7 @@ import kotlin.Suppress
  * This imports native GLSL shaders as [godot.RDShaderFile] resources, for use with low-level [godot.RenderingDevice] operations. This importer does *not* handle `.gdshader` files.
  */
 @GodotBaseType
-public open class ResourceImporterShaderFile internal constructor() : ResourceImporter() {
+public open class ResourceImporterShaderFile : ResourceImporter() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RESOURCEIMPORTERSHADERFILE, scriptIndex)
     return true

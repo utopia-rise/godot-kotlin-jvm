@@ -24,7 +24,7 @@ import kotlin.Suppress
  * See also [godot.ResourceImporterBMFont] and [godot.ResourceImporterImageFont].
  */
 @GodotBaseType
-public open class ResourceImporterDynamicFont internal constructor() : ResourceImporter() {
+public open class ResourceImporterDynamicFont : ResourceImporter() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RESOURCEIMPORTERDYNAMICFONT, scriptIndex)
     return true

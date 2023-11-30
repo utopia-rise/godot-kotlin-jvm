@@ -491,7 +491,7 @@ public open class SceneTree : MainLoop() {
    *
    * Returns [OK] on success, [ERR_CANT_OPEN] if the [path] cannot be loaded into a [godot.PackedScene], or [ERR_CANT_CREATE] if that scene cannot be instantiated.
    *
-   * **Note:** The new scene node is added to the tree at the end of the frame. This ensures that both scenes aren't running at the same time, while still freeing the previous scene in a safe way similar to [godot.Node.queueFree]. As such, you won't be able to access the loaded scene immediately after the [changeSceneToFile] call.
+   * **Note:** See [changeSceneToPacked] for details on the order of operations.
    */
   public fun changeSceneToFile(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
@@ -504,7 +504,13 @@ public open class SceneTree : MainLoop() {
    *
    * Returns [OK] on success, [ERR_CANT_CREATE] if the scene cannot be instantiated, or [ERR_INVALID_PARAMETER] if the scene is invalid.
    *
-   * **Note:** The new scene node is added to the tree at the end of the frame. You won't be able to access it immediately after the [changeSceneToPacked] call.
+   * **Note:** Operations happen in the following order when [changeSceneToPacked] is called:
+   *
+   * 1. The current scene node is immediately removed from the tree. From that point, [godot.Node.getTree] called on the current (outgoing) scene will return `null`. [currentScene] will be `null`, too, because the new scene is not available yet.
+   *
+   * 2. At the end of the frame, the formerly current scene, already removed from the tree, will be deleted (freed from memory) and then the new scene will be instantiated and added to the tree. [godot.Node.getTree] and [currentScene] will be back to working as usual.
+   *
+   * This ensures that both scenes aren't running at the same time, while still freeing the previous scene in a safe way similar to [godot.Node.queueFree].
    */
   public fun changeSceneToPacked(packedScene: PackedScene): GodotError {
     TransferContext.writeArguments(OBJECT to packedScene)

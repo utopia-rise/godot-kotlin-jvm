@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 
 @GodotBaseType
-public open class EditorExportPlatformLinuxBSD internal constructor() : EditorExportPlatformPC() {
+public open class EditorExportPlatformLinuxBSD : EditorExportPlatformPC() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITOREXPORTPLATFORMLINUXBSD, scriptIndex)
     return true

@@ -24,7 +24,7 @@ import kotlin.Suppress
  * Add a syntax highlighter to an individual script by calling [godot.ScriptEditorBase.addSyntaxHighlighter]. To apply to all scripts on open, call [godot.ScriptEditor.registerSyntaxHighlighter].
  */
 @GodotBaseType
-public open class EditorSyntaxHighlighter internal constructor() : SyntaxHighlighter() {
+public open class EditorSyntaxHighlighter : SyntaxHighlighter() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORSYNTAXHIGHLIGHTER, scriptIndex)
     return true

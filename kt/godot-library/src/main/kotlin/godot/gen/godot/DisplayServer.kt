@@ -1694,6 +1694,8 @@ public object DisplayServer : Object() {
 
   /**
    * Sets the [callback] that will be called when the window specified by [windowId] is moved or resized.
+   *
+   * **Warning:** Advanced users only! Adding such a callback to a [godot.Window] node will override its default implementation, which can introduce bugs.
    */
   @JvmOverloads
   public fun windowSetRectChangedCallback(callback: Callable, windowId: Int = 0): Unit {
@@ -1703,6 +1705,8 @@ public object DisplayServer : Object() {
 
   /**
    * Sets the [callback] that will be called when an event occurs in the window specified by [windowId].
+   *
+   * **Warning:** Advanced users only! Adding such a callback to a [godot.Window] node will override its default implementation, which can introduce bugs.
    */
   @JvmOverloads
   public fun windowSetWindowEventCallback(callback: Callable, windowId: Int = 0): Unit {
@@ -1712,6 +1716,8 @@ public object DisplayServer : Object() {
 
   /**
    * Sets the [callback] that should be called when any [godot.InputEvent] is sent to the window specified by [windowId].
+   *
+   * **Warning:** Advanced users only! Adding such a callback to a [godot.Window] node will override its default implementation, which can introduce bugs.
    */
   @JvmOverloads
   public fun windowSetInputEventCallback(callback: Callable, windowId: Int = 0): Unit {
@@ -1721,6 +1727,8 @@ public object DisplayServer : Object() {
 
   /**
    * Sets the [callback] that should be called when text is entered using the virtual keyboard to the window specified by [windowId].
+   *
+   * **Warning:** Advanced users only! Adding such a callback to a [godot.Window] node will override its default implementation, which can introduce bugs.
    */
   @JvmOverloads
   public fun windowSetInputTextCallback(callback: Callable, windowId: Int = 0): Unit {
@@ -1730,6 +1738,8 @@ public object DisplayServer : Object() {
 
   /**
    * Sets the [callback] that should be called when files are dropped from the operating system's file manager to the window specified by [windowId].
+   *
+   * **Warning:** Advanced users only! Adding such a callback to a [godot.Window] node will override its default implementation, which can introduce bugs.
    *
    * **Note:** This method is implemented on Windows, macOS, Linux (X11) and Web.
    */
@@ -2815,39 +2825,39 @@ public object DisplayServer : Object() {
     id: Long,
   ) {
     /**
-     * Sent when the mouse pointer enters the window, see [windowSetWindowEventCallback].
+     * Sent when the mouse pointer enters the window.
      */
     WINDOW_EVENT_MOUSE_ENTER(0),
     /**
-     * Sent when the mouse pointer exits the window, see [windowSetWindowEventCallback].
+     * Sent when the mouse pointer exits the window.
      */
     WINDOW_EVENT_MOUSE_EXIT(1),
     /**
-     * Sent when the window grabs focus, see [windowSetWindowEventCallback].
+     * Sent when the window grabs focus.
      */
     WINDOW_EVENT_FOCUS_IN(2),
     /**
-     * Sent when the window loses focus, see [windowSetWindowEventCallback].
+     * Sent when the window loses focus.
      */
     WINDOW_EVENT_FOCUS_OUT(3),
     /**
-     * Sent when the user has attempted to close the window (e.g. close button is pressed), see [windowSetWindowEventCallback].
+     * Sent when the user has attempted to close the window (e.g. close button is pressed).
      */
     WINDOW_EVENT_CLOSE_REQUEST(4),
     /**
-     * Sent when the device "Back" button is pressed, see [windowSetWindowEventCallback].
+     * Sent when the device "Back" button is pressed.
      *
      * **Note:** This event is implemented only on Android.
      */
     WINDOW_EVENT_GO_BACK_REQUEST(5),
     /**
-     * Sent when the window is moved to the display with different DPI, or display DPI is changed, see [windowSetWindowEventCallback].
+     * Sent when the window is moved to the display with different DPI, or display DPI is changed.
      *
      * **Note:** This flag is implemented only on macOS.
      */
     WINDOW_EVENT_DPI_CHANGE(6),
     /**
-     * Sent when the window title bar decoration is changed (e.g. [WINDOW_FLAG_EXTEND_TO_TITLE] is set or window entered/exited full screen mode), see [windowSetWindowEventCallback].
+     * Sent when the window title bar decoration is changed (e.g. [WINDOW_FLAG_EXTEND_TO_TITLE] is set or window entered/exited full screen mode).
      *
      * **Note:** This flag is implemented only on macOS.
      */

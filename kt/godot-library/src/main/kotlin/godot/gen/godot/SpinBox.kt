@@ -67,6 +67,8 @@ import kotlin.Unit
  *
  * See [godot.Range] class for more options over the [godot.SpinBox].
  *
+ * **Note:** With the [godot.SpinBox]'s context menu disabled, you can right-click the bottom half of the spinbox to set the value to its minimum, while right-clicking the top half sets the value to its maximum.
+ *
  * **Note:** [godot.SpinBox] relies on an underlying [godot.LineEdit] node. To theme a [godot.SpinBox]'s background, add theme items for [godot.LineEdit] and customize them.
  *
  * **Note:** If you want to implement drag and drop for the underlying [godot.LineEdit], you can use [godot.Control.setDragForwarding] on the node returned by [getLineEdit].

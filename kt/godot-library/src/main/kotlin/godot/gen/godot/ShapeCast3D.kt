@@ -142,7 +142,7 @@ public open class ShapeCast3D : Node3D() {
     }
 
   /**
-   * If `true`, collision with [godot.Area3D]s will be reported.
+   * If `true`, collisions with [godot.Area3D]s will be reported.
    */
   public var collideWithAreas: Boolean
     get() {
@@ -156,7 +156,7 @@ public open class ShapeCast3D : Node3D() {
     }
 
   /**
-   * If `true`, collision with [godot.PhysicsBody3D]s will be reported.
+   * If `true`, collisions with [godot.PhysicsBody3D]s will be reported.
    */
   public var collideWithBodies: Boolean
     get() {
@@ -269,7 +269,7 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * Updates the collision information for the shape. Use this method to update the collision information immediately instead of waiting for the next `_physics_process` call, for example if the shape or its parent has changed state.
+   * Updates the collision information for the shape immediately, without waiting for the next `_physics_process` call. Use this method, for example, when the shape or its parent has changed state.
    *
    * **Note:** `enabled == true` is not required for this to work.
    */

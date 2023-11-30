@@ -87,6 +87,8 @@ public open class Resource : RefCounted() {
 
   /**
    * An optional name for this resource. When defined, its value is displayed to represent the resource in the Inspector dock. For built-in scripts, the name is displayed as part of the tab name in the script editor.
+   *
+   * **Note:** Some resource formats do not support resource names. You can still set the name in the editor or via code, but it will be lost when the resource is reloaded. For example, only built-in scripts can have a resource name, while scripts stored in separate files cannot.
    */
   public var resourceName: String
     get() {

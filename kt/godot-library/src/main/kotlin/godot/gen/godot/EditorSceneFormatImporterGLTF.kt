@@ -12,8 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 
 @GodotBaseType
-public open class EditorSceneFormatImporterGLTF internal constructor() : EditorSceneFormatImporter()
-    {
+public open class EditorSceneFormatImporterGLTF : EditorSceneFormatImporter() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORSCENEFORMATIMPORTERGLTF, scriptIndex)
     return true

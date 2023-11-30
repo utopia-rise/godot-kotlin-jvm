@@ -20,7 +20,7 @@ import kotlin.Suppress
  * WAV is an uncompressed format, which can provide higher quality compared to Ogg Vorbis and MP3. It also has the lowest CPU cost to decode. This means high numbers of WAV sounds can be played at the same time, even on low-end deviceS.
  */
 @GodotBaseType
-public open class ResourceImporterWAV internal constructor() : ResourceImporter() {
+public open class ResourceImporterWAV : ResourceImporter() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RESOURCEIMPORTERWAV, scriptIndex)
     return true

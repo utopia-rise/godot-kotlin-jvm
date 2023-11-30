@@ -24,7 +24,7 @@ import kotlin.Suppress
  * **Note:** [godot.ResourceImporterScene] is *not* used for [godot.PackedScene]s, such as `.tscn` and `.scn` files.
  */
 @GodotBaseType
-public open class ResourceImporterScene internal constructor() : ResourceImporter() {
+public open class ResourceImporterScene : ResourceImporter() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RESOURCEIMPORTERSCENE, scriptIndex)
     return true

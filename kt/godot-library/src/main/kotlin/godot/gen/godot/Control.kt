@@ -88,14 +88,14 @@ public open class Control : CanvasItem() {
   public val guiInput: Signal1<InputEvent> by signal("event")
 
   /**
-   * Emitted when the mouse cursor enters the control's visible area, that is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if it's currently focused or not.
+   * Emitted when the mouse cursor enters the control's (or any child control's) visible area, that is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if it's currently focused or not.
    *
    * **Note:** [godot.CanvasItem.zIndex] doesn't affect, which Control receives the signal.
    */
   public val mouseEntered: Signal0 by signal()
 
   /**
-   * Emitted when the mouse cursor leaves the control's visible area, that is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if it's currently focused or not.
+   * Emitted when the mouse cursor leaves the control's (and all child control's) visible area, that is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if it's currently focused or not.
    *
    * **Note:** [godot.CanvasItem.zIndex] doesn't affect, which Control receives the signal.
    *
@@ -2399,6 +2399,8 @@ public open class Control : CanvasItem() {
     MOUSE_FILTER_PASS(1),
     /**
      * The control will not receive mouse movement input events and mouse button input events if clicked on through [_guiInput]. The control will also not receive the [mouseEntered] nor [mouseExited] signals. This will not block other controls from receiving these events or firing the signals. Ignored events will not be handled automatically.
+     *
+     * **Note:** If the control has received [mouseEntered] but not [mouseExited], changing the [mouseFilter] to [MOUSE_FILTER_IGNORE] will cause [mouseExited] to be emitted.
      */
     MOUSE_FILTER_IGNORE(2),
     ;
@@ -2532,18 +2534,40 @@ public open class Control : CanvasItem() {
     public final const val NOTIFICATION_RESIZED: Long = 40
 
     /**
-     * Sent when the mouse cursor enters the control's visible area, that is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if it's currently focused or not.
+     * Sent when the mouse cursor enters the control's (or any child control's) visible area, that is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if it's currently focused or not.
      *
-     * **Note:** [godot.CanvasItem.zIndex] doesn't affect, which Control receives the notification.
+     * **Note:** [godot.CanvasItem.zIndex] doesn't affect which Control receives the notification.
+     *
+     * See also [NOTIFICATION_MOUSE_ENTER_SELF].
      */
     public final const val NOTIFICATION_MOUSE_ENTER: Long = 41
 
     /**
-     * Sent when the mouse cursor leaves the control's visible area, that is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if it's currently focused or not.
+     * Sent when the mouse cursor leaves the control's (and all child control's) visible area, that is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if it's currently focused or not.
      *
-     * **Note:** [godot.CanvasItem.zIndex] doesn't affect, which Control receives the notification.
+     * **Note:** [godot.CanvasItem.zIndex] doesn't affect which Control receives the notification.
+     *
+     * See also [NOTIFICATION_MOUSE_EXIT_SELF].
      */
     public final const val NOTIFICATION_MOUSE_EXIT: Long = 42
+
+    /**
+     * Sent when the mouse cursor enters the control's visible area, that is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if it's currently focused or not.
+     *
+     * **Note:** [godot.CanvasItem.zIndex] doesn't affect which Control receives the notification.
+     *
+     * See also [NOTIFICATION_MOUSE_ENTER].
+     */
+    public final const val NOTIFICATION_MOUSE_ENTER_SELF: Long = 60
+
+    /**
+     * Sent when the mouse cursor leaves the control's visible area, that is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if it's currently focused or not.
+     *
+     * **Note:** [godot.CanvasItem.zIndex] doesn't affect which Control receives the notification.
+     *
+     * See also [NOTIFICATION_MOUSE_EXIT].
+     */
+    public final const val NOTIFICATION_MOUSE_EXIT_SELF: Long = 61
 
     /**
      * Sent when the node grabs focus.
@@ -2571,12 +2595,16 @@ public open class Control : CanvasItem() {
     public final const val NOTIFICATION_THEME_CHANGED: Long = 45
 
     /**
-     * Sent when this node is inside a [godot.ScrollContainer] which has begun being scrolled.
+     * Sent when this node is inside a [godot.ScrollContainer] which has begun being scrolled when dragging the scrollable area *with a touch event*. This notification is *not* sent when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.
+     *
+     * **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [godot.ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is enabled.
      */
     public final const val NOTIFICATION_SCROLL_BEGIN: Long = 47
 
     /**
-     * Sent when this node is inside a [godot.ScrollContainer] which has stopped being scrolled.
+     * Sent when this node is inside a [godot.ScrollContainer] which has stopped being scrolled when dragging the scrollable area *with a touch event*. This notification is *not* sent when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.
+     *
+     * **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [godot.ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is enabled.
      */
     public final const val NOTIFICATION_SCROLL_END: Long = 48
 

@@ -30,7 +30,7 @@ import kotlin.Unit
  * A plugin must be first registered with [godot.FileSystemDock.addResourceTooltipPlugin]. When the user hovers a resource in filesystem dock which is handled by the plugin, [_makeTooltipForPath] is called to create the tooltip. It works similarly to [godot.Control.MakeCustomTooltip].
  */
 @GodotBaseType
-public open class EditorResourceTooltipPlugin internal constructor() : RefCounted() {
+public open class EditorResourceTooltipPlugin : RefCounted() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORRESOURCETOOLTIPPLUGIN, scriptIndex)
     return true

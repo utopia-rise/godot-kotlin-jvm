@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.Rect2i
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -24,7 +23,6 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2I
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -61,38 +59,10 @@ import kotlin.jvm.JvmOverloads
  * [/codeblocks]
  */
 @GodotBaseType
-public open class EditorInterface internal constructor() : Object() {
-  /**
-   * If `true`, enables distraction-free mode which hides side docks to increase the space available for the main view.
-   */
-  public var distractionFreeMode: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDistractionFreeModeEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDistractionFreeModePtr, NIL)
-    }
-
-  /**
-   * If `true`, the Movie Maker mode is enabled in the editor. See [godot.MovieWriter] for more information.
-   */
-  public var movieMakerEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isMovieMakerEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMovieMakerEnabledPtr, NIL)
-    }
-
+public object EditorInterface : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    callConstructor(ENGINECLASS_EDITORINTERFACE, scriptIndex)
-    return true
+    getSingleton(ENGINECLASS_EDITORINTERFACE)
+    return false
   }
 
   /**
@@ -101,7 +71,7 @@ public open class EditorInterface internal constructor() : Object() {
   @JvmOverloads
   public fun restartEditor(save: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to save)
-    TransferContext.callMethod(rawPtr, MethodBindings.restartEditorPtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_RESTART_EDITOR, NIL)
   }
 
   /**
@@ -111,7 +81,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun getCommandPalette(): EditorCommandPalette? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCommandPalettePtr, OBJECT)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_COMMAND_PALETTE,
+        OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as EditorCommandPalette?)
   }
 
@@ -120,7 +91,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun getResourceFilesystem(): EditorFileSystem? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getResourceFilesystemPtr, OBJECT)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_RESOURCE_FILESYSTEM, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as EditorFileSystem?)
   }
 
@@ -129,7 +101,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun getEditorPaths(): EditorPaths? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEditorPathsPtr, OBJECT)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_PATHS,
+        OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as EditorPaths?)
   }
 
@@ -138,7 +111,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun getResourcePreviewer(): EditorResourcePreview? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getResourcePreviewerPtr, OBJECT)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_RESOURCE_PREVIEWER, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as EditorResourcePreview?)
   }
 
@@ -147,7 +121,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun getSelection(): EditorSelection? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSelectionPtr, OBJECT)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SELECTION,
+        OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as EditorSelection?)
   }
 
@@ -156,7 +131,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun getEditorSettings(): EditorSettings? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEditorSettingsPtr, OBJECT)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_SETTINGS,
+        OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as EditorSettings?)
   }
 
@@ -166,7 +142,8 @@ public open class EditorInterface internal constructor() : Object() {
   public fun makeMeshPreviews(meshes: VariantArray<Mesh>, previewSize: Int):
       VariantArray<Texture2D> {
     TransferContext.writeArguments(ARRAY to meshes, LONG to previewSize.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.makeMeshPreviewsPtr, ARRAY)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_MAKE_MESH_PREVIEWS,
+        ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Texture2D>)
   }
 
@@ -175,7 +152,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun setPluginEnabled(plugin: String, enabled: Boolean): Unit {
     TransferContext.writeArguments(STRING to plugin, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPluginEnabledPtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_PLUGIN_ENABLED,
+        NIL)
   }
 
   /**
@@ -183,7 +161,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun isPluginEnabled(plugin: String): Boolean {
     TransferContext.writeArguments(STRING to plugin)
-    TransferContext.callMethod(rawPtr, MethodBindings.isPluginEnabledPtr, BOOL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_PLUGIN_ENABLED,
+        BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -206,7 +185,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun getBaseControl(): Control? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBaseControlPtr, OBJECT)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_BASE_CONTROL,
+        OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Control?)
   }
 
@@ -217,7 +197,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun getEditorMainScreen(): VBoxContainer? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEditorMainScreenPtr, OBJECT)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_MAIN_SCREEN, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as VBoxContainer?)
   }
 
@@ -228,7 +209,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun getScriptEditor(): ScriptEditor? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScriptEditorPtr, OBJECT)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SCRIPT_EDITOR,
+        OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as ScriptEditor?)
   }
 
@@ -258,7 +240,21 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun setMainScreenEditor(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMainScreenEditorPtr, NIL)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_MAIN_SCREEN_EDITOR, NIL)
+  }
+
+  public fun setDistractionFreeMode(enter: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enter)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_DISTRACTION_FREE_MODE, NIL)
+  }
+
+  public fun isDistractionFreeModeEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_DISTRACTION_FREE_MODE_ENABLED, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -268,7 +264,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun getEditorScale(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEditorScalePtr, DOUBLE)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_SCALE,
+        DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -280,7 +277,7 @@ public open class EditorInterface internal constructor() : Object() {
   @JvmOverloads
   public fun popupDialog(dialog: Window, rect: Rect2i = Rect2i(0, 0, 0, 0)): Unit {
     TransferContext.writeArguments(OBJECT to dialog, RECT2I to rect)
-    TransferContext.callMethod(rawPtr, MethodBindings.popupDialogPtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_POPUP_DIALOG, NIL)
   }
 
   /**
@@ -291,7 +288,8 @@ public open class EditorInterface internal constructor() : Object() {
   @JvmOverloads
   public fun popupDialogCentered(dialog: Window, minsize: Vector2i = Vector2i(0, 0)): Unit {
     TransferContext.writeArguments(OBJECT to dialog, VECTOR2I to minsize)
-    TransferContext.callMethod(rawPtr, MethodBindings.popupDialogCenteredPtr, NIL)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_POPUP_DIALOG_CENTERED, NIL)
   }
 
   /**
@@ -302,7 +300,8 @@ public open class EditorInterface internal constructor() : Object() {
   @JvmOverloads
   public fun popupDialogCenteredRatio(dialog: Window, ratio: Float = 0.8f): Unit {
     TransferContext.writeArguments(OBJECT to dialog, DOUBLE to ratio.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.popupDialogCenteredRatioPtr, NIL)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_POPUP_DIALOG_CENTERED_RATIO, NIL)
   }
 
   /**
@@ -317,7 +316,8 @@ public open class EditorInterface internal constructor() : Object() {
     fallbackRatio: Float = 0.75f,
   ): Unit {
     TransferContext.writeArguments(OBJECT to dialog, VECTOR2I to minsize, DOUBLE to fallbackRatio.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.popupDialogCenteredClampedPtr, NIL)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_POPUP_DIALOG_CENTERED_CLAMPED, NIL)
   }
 
   /**
@@ -354,7 +354,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun getFileSystemDock(): FileSystemDock? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFileSystemDockPtr, OBJECT)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_FILE_SYSTEM_DOCK, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as FileSystemDock?)
   }
 
@@ -363,7 +364,7 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun selectFile(`file`: String): Unit {
     TransferContext.writeArguments(STRING to file)
-    TransferContext.callMethod(rawPtr, MethodBindings.selectFilePtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SELECT_FILE, NIL)
   }
 
   /**
@@ -371,7 +372,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun getSelectedPaths(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSelectedPathsPtr, PACKED_STRING_ARRAY)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SELECTED_PATHS,
+        PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
@@ -380,7 +382,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun getCurrentPath(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentPathPtr, STRING)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_CURRENT_PATH,
+        STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -389,7 +392,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun getCurrentDirectory(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentDirectoryPtr, STRING)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_CURRENT_DIRECTORY, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -400,7 +404,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun getInspector(): EditorInspector? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInspectorPtr, OBJECT)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_INSPECTOR,
+        OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as EditorInspector?)
   }
 
@@ -414,7 +419,7 @@ public open class EditorInterface internal constructor() : Object() {
     inspectorOnly: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(OBJECT to _object, STRING to forProperty, BOOL to inspectorOnly)
-    TransferContext.callMethod(rawPtr, MethodBindings.inspectObjectPtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_INSPECT_OBJECT, NIL)
   }
 
   /**
@@ -422,7 +427,7 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun editResource(resource: Resource): Unit {
     TransferContext.writeArguments(OBJECT to resource)
-    TransferContext.callMethod(rawPtr, MethodBindings.editResourcePtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_EDIT_RESOURCE, NIL)
   }
 
   /**
@@ -430,7 +435,7 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun editNode(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, MethodBindings.editNodePtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_EDIT_NODE, NIL)
   }
 
   /**
@@ -444,7 +449,7 @@ public open class EditorInterface internal constructor() : Object() {
     grabFocus: Boolean = true,
   ): Unit {
     TransferContext.writeArguments(OBJECT to script, LONG to line.toLong(), LONG to column.toLong(), BOOL to grabFocus)
-    TransferContext.callMethod(rawPtr, MethodBindings.editScriptPtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_EDIT_SCRIPT, NIL)
   }
 
   /**
@@ -452,7 +457,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun openSceneFromPath(sceneFilepath: String): Unit {
     TransferContext.writeArguments(STRING to sceneFilepath)
-    TransferContext.callMethod(rawPtr, MethodBindings.openSceneFromPathPtr, NIL)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_OPEN_SCENE_FROM_PATH, NIL)
   }
 
   /**
@@ -460,7 +466,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun reloadSceneFromPath(sceneFilepath: String): Unit {
     TransferContext.writeArguments(STRING to sceneFilepath)
-    TransferContext.callMethod(rawPtr, MethodBindings.reloadSceneFromPathPtr, NIL)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_RELOAD_SCENE_FROM_PATH, NIL)
   }
 
   /**
@@ -468,7 +475,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun getOpenScenes(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOpenScenesPtr, PACKED_STRING_ARRAY)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_OPEN_SCENES,
+        PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
@@ -477,7 +485,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun getEditedSceneRoot(): Node? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEditedSceneRootPtr, OBJECT)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITED_SCENE_ROOT, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Node?)
   }
 
@@ -486,7 +495,7 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun saveScene(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.saveScenePtr, LONG)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SAVE_SCENE, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -496,7 +505,7 @@ public open class EditorInterface internal constructor() : Object() {
   @JvmOverloads
   public fun saveSceneAs(path: String, withPreview: Boolean = true): Unit {
     TransferContext.writeArguments(STRING to path, BOOL to withPreview)
-    TransferContext.callMethod(rawPtr, MethodBindings.saveSceneAsPtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SAVE_SCENE_AS, NIL)
   }
 
   /**
@@ -513,7 +522,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun markSceneAsUnsaved(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.markSceneAsUnsavedPtr, NIL)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_MARK_SCENE_AS_UNSAVED, NIL)
   }
 
   /**
@@ -521,7 +531,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun playMainScene(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.playMainScenePtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_PLAY_MAIN_SCENE,
+        NIL)
   }
 
   /**
@@ -529,7 +540,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun playCurrentScene(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.playCurrentScenePtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_PLAY_CURRENT_SCENE,
+        NIL)
   }
 
   /**
@@ -537,7 +549,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun playCustomScene(sceneFilepath: String): Unit {
     TransferContext.writeArguments(STRING to sceneFilepath)
-    TransferContext.callMethod(rawPtr, MethodBindings.playCustomScenePtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_PLAY_CUSTOM_SCENE,
+        NIL)
   }
 
   /**
@@ -545,7 +558,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun stopPlayingScene(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.stopPlayingScenePtr, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_STOP_PLAYING_SCENE,
+        NIL)
   }
 
   /**
@@ -553,7 +567,8 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun isPlayingScene(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPlayingScenePtr, BOOL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_PLAYING_SCENE,
+        BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -562,147 +577,21 @@ public open class EditorInterface internal constructor() : Object() {
    */
   public fun getPlayingScene(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPlayingScenePtr, STRING)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_PLAYING_SCENE,
+        STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public companion object
+  public fun setMovieMakerEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_MOVIE_MAKER_ENABLED, NIL)
+  }
 
-  internal object MethodBindings {
-    public val restartEditorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "restart_editor")
-
-    public val getCommandPalettePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "get_command_palette")
-
-    public val getResourceFilesystemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "get_resource_filesystem")
-
-    public val getEditorPathsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "get_editor_paths")
-
-    public val getResourcePreviewerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "get_resource_previewer")
-
-    public val getSelectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "get_selection")
-
-    public val getEditorSettingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "get_editor_settings")
-
-    public val makeMeshPreviewsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "make_mesh_previews")
-
-    public val setPluginEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "set_plugin_enabled")
-
-    public val isPluginEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "is_plugin_enabled")
-
-    public val getBaseControlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "get_base_control")
-
-    public val getEditorMainScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "get_editor_main_screen")
-
-    public val getScriptEditorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "get_script_editor")
-
-    public val setMainScreenEditorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "set_main_screen_editor")
-
-    public val setDistractionFreeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "set_distraction_free_mode")
-
-    public val isDistractionFreeModeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "is_distraction_free_mode_enabled")
-
-    public val getEditorScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "get_editor_scale")
-
-    public val popupDialogPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "popup_dialog")
-
-    public val popupDialogCenteredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "popup_dialog_centered")
-
-    public val popupDialogCenteredRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "popup_dialog_centered_ratio")
-
-    public val popupDialogCenteredClampedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "popup_dialog_centered_clamped")
-
-    public val getFileSystemDockPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "get_file_system_dock")
-
-    public val selectFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "select_file")
-
-    public val getSelectedPathsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "get_selected_paths")
-
-    public val getCurrentPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "get_current_path")
-
-    public val getCurrentDirectoryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "get_current_directory")
-
-    public val getInspectorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "get_inspector")
-
-    public val inspectObjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "inspect_object")
-
-    public val editResourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "edit_resource")
-
-    public val editNodePtr: VoidPtr = TypeManager.getMethodBindPtr("EditorInterface", "edit_node")
-
-    public val editScriptPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "edit_script")
-
-    public val openSceneFromPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "open_scene_from_path")
-
-    public val reloadSceneFromPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "reload_scene_from_path")
-
-    public val getOpenScenesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "get_open_scenes")
-
-    public val getEditedSceneRootPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "get_edited_scene_root")
-
-    public val saveScenePtr: VoidPtr = TypeManager.getMethodBindPtr("EditorInterface", "save_scene")
-
-    public val saveSceneAsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "save_scene_as")
-
-    public val markSceneAsUnsavedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "mark_scene_as_unsaved")
-
-    public val playMainScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "play_main_scene")
-
-    public val playCurrentScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "play_current_scene")
-
-    public val playCustomScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "play_custom_scene")
-
-    public val stopPlayingScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "stop_playing_scene")
-
-    public val isPlayingScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "is_playing_scene")
-
-    public val getPlayingScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "get_playing_scene")
-
-    public val setMovieMakerEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "set_movie_maker_enabled")
-
-    public val isMovieMakerEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EditorInterface", "is_movie_maker_enabled")
+  public fun isMovieMakerEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_MOVIE_MAKER_ENABLED, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 }

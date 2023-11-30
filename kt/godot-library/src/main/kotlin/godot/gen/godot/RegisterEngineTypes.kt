@@ -475,6 +475,62 @@ private fun registerEngineTypeMethodForThemeDB(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_THEMEDB to "get_fallback_stylebox")
 }
 
+private fun registerEngineTypeMethodForEditorInterface(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "restart_editor")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_command_palette")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_resource_filesystem")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_editor_paths")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_resource_previewer")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_selection")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_editor_settings")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "make_mesh_previews")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "set_plugin_enabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "is_plugin_enabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_editor_theme")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_base_control")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_editor_main_screen")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_script_editor")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_editor_viewport_2d")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_editor_viewport_3d")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "set_main_screen_editor")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "set_distraction_free_mode")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to
+      "is_distraction_free_mode_enabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_editor_scale")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "popup_dialog")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "popup_dialog_centered")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "popup_dialog_centered_ratio")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "popup_dialog_centered_clamped")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_current_feature_profile")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "set_current_feature_profile")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_file_system_dock")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "select_file")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_selected_paths")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_current_path")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_current_directory")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_inspector")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "inspect_object")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "edit_resource")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "edit_node")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "edit_script")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "open_scene_from_path")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "reload_scene_from_path")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_open_scenes")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_edited_scene_root")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "save_scene")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "save_scene_as")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "save_all_scenes")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "mark_scene_as_unsaved")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "play_main_scene")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "play_current_scene")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "play_custom_scene")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "stop_playing_scene")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "is_playing_scene")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_playing_scene")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "set_movie_maker_enabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "is_movie_maker_enabled")
+}
+
 private fun registerEngineTypeMethodForJavaClassWrapper(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_JAVACLASSWRAPPER to "wrap")
 }
@@ -5056,6 +5112,7 @@ private fun registerEngineTypeMethodForDirAccess(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_DIRACCESS to "get_include_navigational")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DIRACCESS to "set_include_hidden")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DIRACCESS to "get_include_hidden")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DIRACCESS to "is_case_sensitive")
 }
 
 private fun registerEngineTypeMethodForDirectionalLight2D(): Unit {
@@ -5326,62 +5383,6 @@ private fun registerEngineTypeMethodForEditorInspectorPlugin(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTORPLUGIN to "add_property_editor")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTORPLUGIN to
       "add_property_editor_for_multiple_properties")
-}
-
-private fun registerEngineTypeMethodForEditorInterface(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "restart_editor")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_command_palette")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_resource_filesystem")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_editor_paths")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_resource_previewer")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_selection")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_editor_settings")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "make_mesh_previews")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "set_plugin_enabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "is_plugin_enabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_editor_theme")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_base_control")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_editor_main_screen")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_script_editor")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_editor_viewport_2d")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_editor_viewport_3d")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "set_main_screen_editor")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "set_distraction_free_mode")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to
-      "is_distraction_free_mode_enabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_editor_scale")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "popup_dialog")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "popup_dialog_centered")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "popup_dialog_centered_ratio")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "popup_dialog_centered_clamped")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_current_feature_profile")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "set_current_feature_profile")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_file_system_dock")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "select_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_selected_paths")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_current_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_current_directory")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_inspector")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "inspect_object")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "edit_resource")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "edit_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "edit_script")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "open_scene_from_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "reload_scene_from_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_open_scenes")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_edited_scene_root")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "save_scene")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "save_scene_as")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "save_all_scenes")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "mark_scene_as_unsaved")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "play_main_scene")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "play_current_scene")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "play_custom_scene")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "stop_playing_scene")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "is_playing_scene")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_playing_scene")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "set_movie_maker_enabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "is_movie_maker_enabled")
 }
 
 private fun registerEngineTypeMethodForEditorNode3DGizmo(): Unit {
@@ -6189,6 +6190,8 @@ private fun registerEngineTypeMethodForFontFile(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONTFILE to "get_msdf_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONTFILE to "set_fixed_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONTFILE to "get_fixed_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FONTFILE to "set_fixed_size_scale_mode")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FONTFILE to "get_fixed_size_scale_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONTFILE to "set_allow_system_fallback")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONTFILE to "is_allow_system_fallback")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONTFILE to "set_force_autohinter")
@@ -7944,6 +7947,8 @@ private fun registerEngineTypeMethodForLightmapGI(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGI to "get_bake_quality")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGI to "set_bounces")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGI to "get_bounces")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGI to "set_bounce_indirect_energy")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGI to "get_bounce_indirect_energy")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGI to "set_generate_probes")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGI to "get_generate_probes")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGI to "set_bias")
@@ -7966,19 +7971,23 @@ private fun registerEngineTypeMethodForLightmapGI(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGI to "is_interior")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGI to "set_directional")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGI to "is_directional")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGI to "set_use_texture_for_bounces")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGI to "is_using_texture_for_bounces")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGI to "set_camera_attributes")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGI to "get_camera_attributes")
 }
 
 private fun registerEngineTypeMethodForLightmapGIData(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGIDATA to "set_light_texture")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGIDATA to "get_light_texture")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGIDATA to "set_lightmap_textures")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGIDATA to "get_lightmap_textures")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGIDATA to "set_uses_spherical_harmonics")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGIDATA to "is_using_spherical_harmonics")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGIDATA to "add_user")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGIDATA to "get_user_count")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGIDATA to "get_user_path")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGIDATA to "clear_users")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGIDATA to "set_light_texture")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTMAPGIDATA to "get_light_texture")
 }
 
 private fun registerEngineTypeMethodForLightmapProbe(): Unit {
@@ -8685,6 +8694,8 @@ private fun registerEngineTypeMethodForNavigationAgent3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT3D to "get_path_height_offset")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT3D to "set_use_3d_avoidance")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT3D to "get_use_3d_avoidance")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT3D to "set_keep_y_velocity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT3D to "get_keep_y_velocity")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT3D to "set_neighbor_distance")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT3D to "get_neighbor_distance")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT3D to "set_max_neighbors")
@@ -14008,6 +14019,8 @@ private fun registerEngineTypeMethodForTextServer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVER to "font_get_msdf_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVER to "font_set_fixed_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVER to "font_get_fixed_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVER to "font_set_fixed_size_scale_mode")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVER to "font_get_fixed_size_scale_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVER to "font_set_allow_system_fallback")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVER to "font_is_allow_system_fallback")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVER to "font_set_force_autohinter")
@@ -14224,6 +14237,10 @@ private fun registerEngineTypeMethodForTextServerExtension(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_msdf_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_fixed_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_fixed_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
+      "_font_set_fixed_size_scale_mode")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
+      "_font_get_fixed_size_scale_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
       "_font_set_allow_system_fallback")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
@@ -14751,6 +14768,8 @@ private fun registerEngineTypeMethodForTileMap(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TILEMAP to "get_layer_y_sort_origin")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TILEMAP to "set_layer_z_index")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TILEMAP to "get_layer_z_index")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TILEMAP to "set_layer_navigation_enabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TILEMAP to "is_layer_navigation_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TILEMAP to "set_layer_navigation_map")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TILEMAP to "get_layer_navigation_map")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TILEMAP to "set_collision_animatable")
@@ -15552,8 +15571,6 @@ private fun registerEngineTypeMethodForViewport(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "get_camera_3d")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "set_as_audio_listener_3d")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "is_audio_listener_3d")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "set_disable_2d")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "is_2d_disabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "set_disable_3d")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "is_3d_disabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "set_use_xr")
@@ -16875,6 +16892,8 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerSingleton("WorkerThreadPool")
   TypeManager.registerEngineType("ThemeDB", ThemeDB::class) { ThemeDB }
   TypeManager.registerSingleton("ThemeDB")
+  TypeManager.registerEngineType("EditorInterface", EditorInterface::class) { EditorInterface }
+  TypeManager.registerSingleton("EditorInterface")
   TypeManager.registerEngineType("JavaClassWrapper", JavaClassWrapper::class) { JavaClassWrapper }
   TypeManager.registerSingleton("JavaClassWrapper")
   TypeManager.registerEngineType("JavaScriptBridge", JavaScriptBridge::class) { JavaScriptBridge }
@@ -17182,7 +17201,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("EditorInspector", EditorInspector::class, ::EditorInspector)
   TypeManager.registerEngineType("EditorInspectorPlugin", EditorInspectorPlugin::class,
       ::EditorInspectorPlugin)
-  TypeManager.registerEngineType("EditorInterface", EditorInterface::class, ::EditorInterface)
   TypeManager.registerEngineType("EditorNode3DGizmo", EditorNode3DGizmo::class, ::EditorNode3DGizmo)
   TypeManager.registerEngineType("EditorNode3DGizmoPlugin", EditorNode3DGizmoPlugin::class,
       ::EditorNode3DGizmoPlugin)
@@ -18131,6 +18149,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[ResourceUID::class] = OBJECT
   variantMapper[WorkerThreadPool::class] = OBJECT
   variantMapper[ThemeDB::class] = OBJECT
+  variantMapper[EditorInterface::class] = OBJECT
   variantMapper[JavaClassWrapper::class] = OBJECT
   variantMapper[JavaScriptBridge::class] = OBJECT
   variantMapper[DisplayServer::class] = OBJECT
@@ -18345,7 +18364,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[EditorImportPlugin::class] = OBJECT
   variantMapper[EditorInspector::class] = OBJECT
   variantMapper[EditorInspectorPlugin::class] = OBJECT
-  variantMapper[EditorInterface::class] = OBJECT
   variantMapper[EditorNode3DGizmo::class] = OBJECT
   variantMapper[EditorNode3DGizmoPlugin::class] = OBJECT
   variantMapper[EditorPaths::class] = OBJECT
@@ -19009,6 +19027,7 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForResourceUID()
   registerEngineTypeMethodForWorkerThreadPool()
   registerEngineTypeMethodForThemeDB()
+  registerEngineTypeMethodForEditorInterface()
   registerEngineTypeMethodForJavaClassWrapper()
   registerEngineTypeMethodForJavaScriptBridge()
   registerEngineTypeMethodForDisplayServer()
@@ -19223,7 +19242,6 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForEditorImportPlugin()
   registerEngineTypeMethodForEditorInspector()
   registerEngineTypeMethodForEditorInspectorPlugin()
-  registerEngineTypeMethodForEditorInterface()
   registerEngineTypeMethodForEditorNode3DGizmo()
   registerEngineTypeMethodForEditorNode3DGizmoPlugin()
   registerEngineTypeMethodForEditorPaths()

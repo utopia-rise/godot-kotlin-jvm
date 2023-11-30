@@ -1461,7 +1461,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Returns the [godot.SceneTree] that contains this node.
+   * Returns the [godot.SceneTree] that contains this node. Returns `null` and prints an error if this node is not inside the scene tree. See also [isInsideTree].
    */
   public fun getTree(): SceneTree? {
     TransferContext.writeArguments()
@@ -2034,7 +2034,7 @@ public open class Node : Object() {
     public final const val NOTIFICATION_INTERNAL_PHYSICS_PROCESS: Long = 26
 
     /**
-     * Notification received when the node is ready, just before [NOTIFICATION_READY] is received. Unlike the latter, it's sent every time the node enters tree, instead of only once.
+     * Notification received when the node is ready, just before [NOTIFICATION_READY] is received. Unlike the latter, it's sent every time the node enters the tree, instead of only once.
      */
     public final const val NOTIFICATION_POST_ENTER_TREE: Long = 27
 
@@ -2047,11 +2047,6 @@ public open class Node : Object() {
      * Notification received when the node is enabled again after being disabled. See [PROCESS_MODE_DISABLED].
      */
     public final const val NOTIFICATION_ENABLED: Long = 29
-
-    /**
-     * Notification received when other nodes in the tree may have been removed/replaced and node pointers may require re-caching.
-     */
-    public final const val NOTIFICATION_NODE_RECACHE_REQUESTED: Long = 30
 
     /**
      * Notification received right before the scene with the node is saved in the editor. This notification is only sent in the Godot editor and will not occur in exported projects.

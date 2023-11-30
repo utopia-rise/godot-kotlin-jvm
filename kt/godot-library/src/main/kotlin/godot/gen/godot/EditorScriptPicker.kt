@@ -24,7 +24,7 @@ import kotlin.Suppress
  * **Note:** You must set the [scriptOwner] for the custom context menu items to work.
  */
 @GodotBaseType
-public open class EditorScriptPicker internal constructor() : EditorResourcePicker() {
+public open class EditorScriptPicker : EditorResourcePicker() {
   /**
    * The owner [godot.Node] of the script property that holds the edited resource.
    */

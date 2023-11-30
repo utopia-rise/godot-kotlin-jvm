@@ -406,7 +406,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds an item that will act as a submenu of the parent [godot.PopupMenu] node when clicked. The [submenu] argument is the name of the child [godot.PopupMenu] node that will be shown when the item is clicked.
+   * Adds an item that will act as a submenu of the parent [godot.PopupMenu] node when clicked. The [submenu] argument must be the name of an existing [godot.PopupMenu] that has been added as a child to this node. This submenu will be shown when the item is clicked, hovered for long enough, or activated using the `ui_select` or `ui_right` input actions.
    *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    */

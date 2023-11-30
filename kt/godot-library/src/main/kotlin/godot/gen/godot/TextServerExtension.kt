@@ -322,6 +322,20 @@ public open class TextServerExtension : TextServer() {
   /**
    *
    */
+  public open fun _fontSetFixedSizeScaleMode(fontRid: RID,
+      fixedSizeScaleMode: TextServer.FixedSizeScaleMode): Unit {
+  }
+
+  /**
+   *
+   */
+  public open fun _fontGetFixedSizeScaleMode(fontRid: RID): TextServer.FixedSizeScaleMode {
+    throw NotImplementedError("_font_get_fixed_size_scale_mode is not implemented for TextServerExtension")
+  }
+
+  /**
+   *
+   */
   public open fun _fontSetAllowSystemFallback(fontRid: RID, allowSystemFallback: Boolean): Unit {
   }
 

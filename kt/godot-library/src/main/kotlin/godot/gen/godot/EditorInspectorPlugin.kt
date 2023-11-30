@@ -46,7 +46,7 @@ import kotlin.jvm.JvmOverloads
  * To use [godot.EditorInspectorPlugin], register it using the [godot.EditorPlugin.addInspectorPlugin] method first.
  */
 @GodotBaseType
-public open class EditorInspectorPlugin internal constructor() : RefCounted() {
+public open class EditorInspectorPlugin : RefCounted() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORINSPECTORPLUGIN, scriptIndex)
     return true

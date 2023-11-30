@@ -455,7 +455,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws interconnected line segments with a uniform [color] and [width] and optional antialiasing (supported only for positive [width]). When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultiline] instead. See also [drawPolygon].
    *
-   * If [width] is negative, the polyline is drawn using [godot.RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the polyline will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
+   * If [width] is negative, it will be ignored and the polyline will be drawn using [godot.RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the polyline will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
    */
   @JvmOverloads
   public fun drawPolyline(
@@ -471,7 +471,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws interconnected line segments with a uniform [width], point-by-point coloring, and optional antialiasing (supported only for positive [width]). Colors assigned to line points match by index between [points] and [colors], i.e. each line segment is filled with a gradient between the colors of the endpoints. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultilineColors] instead. See also [drawPolygon].
    *
-   * If [width] is negative, then the polyline is drawn using [godot.RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the polyline will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
+   * If [width] is negative, it will be ignored and the polyline will be drawn using [godot.RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the polyline will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
    */
   @JvmOverloads
   public fun drawPolylineColors(
@@ -487,7 +487,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws an unfilled arc between the given angles with a uniform [color] and [width] and optional antialiasing (supported only for positive [width]). The larger the value of [pointCount], the smoother the curve. See also [drawCircle].
    *
-   * If [width] is negative, then the arc is drawn using [godot.RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the arc will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
+   * If [width] is negative, it will be ignored and the arc will be drawn using [godot.RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the arc will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
    *
    * The arc is drawn from [startAngle] towards the value of [endAngle] so in clockwise direction if `start_angle < end_angle` and counter-clockwise otherwise. Passing the same angles but in reversed order will produce the same arc. If absolute difference of [startAngle] and [endAngle] is greater than [@GDScript.TAU] radians, then a full circle arc is drawn (i.e. arc will not overlap itself).
    */
