@@ -62,7 +62,7 @@ import kotlin.jvm.JvmOverloads
  * [/codeblocks]
  */
 @GodotBaseType
-public open class ScriptCreateDialog internal constructor() : ConfirmationDialog() {
+public open class ScriptCreateDialog : ConfirmationDialog() {
   /**
    * Emitted when the user clicks the OK button.
    */

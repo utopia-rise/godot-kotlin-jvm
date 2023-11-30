@@ -841,7 +841,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Adds a new track that is a copy of the given track from [toAnimation].
+   * Adds a new track to [toAnimation] that is a copy of the given track from this animation.
    */
   public fun copyTrack(trackIdx: Int, toAnimation: Animation): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), OBJECT to toAnimation)

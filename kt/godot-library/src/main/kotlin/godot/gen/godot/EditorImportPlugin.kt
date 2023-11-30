@@ -256,7 +256,7 @@ import kotlin.jvm.JvmOverloads
  * To use [godot.EditorImportPlugin], register it using the [godot.EditorPlugin.addImportPlugin] method first.
  */
 @GodotBaseType
-public open class EditorImportPlugin internal constructor() : ResourceImporter() {
+public open class EditorImportPlugin : ResourceImporter() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORIMPORTPLUGIN, scriptIndex)
     return true

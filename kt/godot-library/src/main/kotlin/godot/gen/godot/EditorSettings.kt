@@ -79,7 +79,7 @@ import kotlin.jvm.JvmOverloads
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getEditorSettings].
  */
 @GodotBaseType
-public open class EditorSettings internal constructor() : Resource() {
+public open class EditorSettings : Resource() {
   /**
    * Emitted after any editor setting has changed.
    */

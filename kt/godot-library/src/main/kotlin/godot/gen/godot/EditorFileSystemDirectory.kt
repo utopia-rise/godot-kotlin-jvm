@@ -26,7 +26,7 @@ import kotlin.Suppress
  * A more generalized, low-level variation of the directory concept.
  */
 @GodotBaseType
-public open class EditorFileSystemDirectory internal constructor() : Object() {
+public open class EditorFileSystemDirectory : Object() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORFILESYSTEMDIRECTORY, scriptIndex)
     return true

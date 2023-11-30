@@ -22,7 +22,7 @@ import kotlin.Suppress
  * Custom code to generate previews. Please check `file_dialog/thumbnail_size` in [godot.EditorSettings] to find out the right size to do previews at.
  */
 @GodotBaseType
-public open class EditorResourcePreviewGenerator internal constructor() : RefCounted() {
+public open class EditorResourcePreviewGenerator : RefCounted() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORRESOURCEPREVIEWGENERATOR, scriptIndex)
     return true

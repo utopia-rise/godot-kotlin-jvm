@@ -78,7 +78,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
   }
 
   /**
-   *
+   * Returns the number of times the playback skipped due to a buffer underrun in the audio sample data. This value is reset at the start of the playback.
    */
   public fun getSkips(): Int {
     TransferContext.writeArguments()

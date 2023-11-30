@@ -4,17 +4,17 @@ registeredName = ScriptInOtherSourceDir
 fqName = ScriptInOtherSourceDir
 baseType = Node
 supertypes = [
-    godot.Node,
+	godot.Node,
 	godot.Object,
 	godot.core.KtObject,
 	kotlin.Any
 ]
 signals = [
-    
+	
 ]
 properties = [
-    
+	
 ]
 functions = [
-    greeting
+	greeting
 ]

@@ -25,6 +25,8 @@ import kotlin.Suppress
  *
  * Unlike other [godot.Object] types, [godot.RefCounted]s keep an internal reference counter so that they are automatically released when no longer in use, and only then. [godot.RefCounted]s therefore do not need to be freed manually with [godot.Object.free].
  *
+ * [godot.RefCounted] instances caught in a cyclic reference will **not** be freed automatically. For example, if a node holds a reference to instance `A`, which directly or indirectly holds a reference back to `A`, `A`'s reference count will be 2. Destruction of the node will leave `A` dangling with a reference count of 1, and there will be a memory leak. To prevent this, one of the references in the cycle can be made weak with [@GlobalScope.weakref].
+ *
  * In the vast majority of use cases, instantiating and using [godot.RefCounted]-derived types is all you need to do. The methods provided in this class are only for advanced users, and can cause issues if misused.
  *
  * **Note:** In C#, reference-counted objects will not be freed instantly after they are no longer in use. Instead, garbage collection will run periodically and will free reference-counted objects that are no longer in use. This means that unused ones will linger on for a while before being removed.

@@ -44,7 +44,7 @@ public open class LightOccluder2D : Node2D() {
     }
 
   /**
-   *
+   * If enabled, the occluder will be part of a real-time generated signed distance field that can be used in custom shaders.
    */
   public var sdfCollision: Boolean
     get() {

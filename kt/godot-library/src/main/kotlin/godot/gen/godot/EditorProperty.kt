@@ -36,7 +36,7 @@ import kotlin.jvm.JvmOverloads
  * A custom control for editing properties that can be added to the [godot.EditorInspector]. It is added via [godot.EditorInspectorPlugin].
  */
 @GodotBaseType
-public open class EditorProperty internal constructor() : Container() {
+public open class EditorProperty : Container() {
   /**
    * Do not emit this manually, use the [emitChanged] method instead.
    */

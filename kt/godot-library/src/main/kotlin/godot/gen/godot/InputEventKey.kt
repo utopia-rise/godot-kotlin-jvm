@@ -71,7 +71,43 @@ public open class InputEventKey : InputEventWithModifiers() {
   /**
    * Represents the physical location of a key on the 101/102-key US QWERTY keyboard, which corresponds to one of the [enum Key] constants.
    *
-   * To get a human-readable representation of the [godot.InputEventKey], use `OS.get_keycode_string(event.keycode)` where `event` is the [godot.InputEventKey].
+   * To get a human-readable representation of the [godot.InputEventKey], use [godot.OS.getKeycodeString] in combination with [godot.DisplayServer.keyboardGetKeycodeFromPhysical]:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * func _input(event):
+   *
+   *     if event is InputEventKey:
+   *
+   *         var keycode = DisplayServer.keyboard_get_keycode_from_physical(event.physical_keycode)
+   *
+   *         print(OS.get_keycode_string(keycode))
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * public override void _Input(InputEvent @event)
+   *
+   * {
+   *
+   *     if (@event is InputEventKey inputEventKey)
+   *
+   *     {
+   *
+   *         var keycode = DisplayServer.KeyboardGetKeycodeFromPhysical(inputEventKey.PhysicalKeycode);
+   *
+   *         GD.Print(OS.GetKeycodeString(keycode));
+   *
+   *     }
+   *
+   * }
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    */
   public var physicalKeycode: Key
     get() {

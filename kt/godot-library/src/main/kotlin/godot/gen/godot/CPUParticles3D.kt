@@ -1344,7 +1344,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
      */
     DRAW_ORDER_INDEX(0),
     /**
-     * Particles are drawn in order of remaining lifetime.
+     * Particles are drawn in order of remaining lifetime. In other words, the particle with the highest lifetime is drawn at the front.
      */
     DRAW_ORDER_LIFETIME(1),
     /**

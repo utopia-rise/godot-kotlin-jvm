@@ -71,7 +71,9 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * Number of particles emitted in one emission cycle.
+   * The number of particles to emit in one emission cycle. The effective emission rate is `(amount * amount_ratio) / lifetime` particles per second. Higher values will increase GPU requirements, even if not all particles are visible at a given time or if [amountRatio] is decreased.
+   *
+   * **Note:** Changing this value will cause the particle system to restart. To avoid this, change [amountRatio] instead.
    */
   public var amount: Int
     get() {
@@ -87,7 +89,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * The ratio of particles that should actually be emitted. If set to a value lower than `1.0`, this will set the amount of emitted particles throughout the lifetime to `amount * amount_ratio`. Unlike changing [amount], changing [amountRatio] while emitting does not affect already-emitted particles and doesn't cause the particle system to restart. [amountRatio] can be used to create effects that make the number of emitted particles vary over time.
    *
-   * **Note:** Reducing the [amountRatio] has no performance benefit, since resources need to be allocated and processed for the total [amount] of particles regardless of the [amountRatio].
+   * **Note:** Reducing the [amountRatio] has no performance benefit, since resources need to be allocated and processed for the total [amount] of particles regardless of the [amountRatio]. If you don't intend to change the number of particles emitted while the particles are emitting, make sure [amountRatio] is set to `1` and change [amount] to your liking instead.
    */
   public var amountRatio: Float
     get() {
@@ -103,7 +105,9 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * The [godot.core.NodePath] to the [godot.GPUParticles2D] used for sub-emissions.
+   * Path to another [godot.GPUParticles2D] node that will be used as a subemitter (see [godot.ParticleProcessMaterial.subEmitterMode]). Subemitters can be used to achieve effects such as fireworks, sparks on collision, bubbles popping into water drops, and more.
+   *
+   * **Note:** When [subEmitter] is set, the target [godot.GPUParticles2D] node will no longer emit particles on its own.
    */
   public var subEmitter: NodePath
     get() {
@@ -135,7 +139,9 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * Particle texture. If `null`, particles will be squares.
+   * Particle texture. If `null`, particles will be squares with a size of 1×1 pixels.
+   *
+   * **Note:** To use a flipbook texture, assign a new [godot.CanvasItemMaterial] to the [godot.GPUParticles2D]'s [godot.CanvasItem.material] property, then enable [godot.CanvasItemMaterial.particlesAnimation] and set [godot.CanvasItemMaterial.particlesAnimHFrames], [godot.CanvasItemMaterial.particlesAnimVFrames], and [godot.CanvasItemMaterial.particlesAnimLoop] to match the flipbook texture.
    */
   public var texture: Texture2D?
     get() {
@@ -150,7 +156,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * Amount of time each particle will exist.
+   * The amount of time each particle will exist (in seconds). The effective emission rate is `(amount * amount_ratio) / lifetime` particles per second.
    */
   public var lifetime: Double
     get() {
@@ -292,7 +298,7 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Causes all the particles in this node to interpolate towards the end of their lifetime.
    *
-   * **Note**: This only works when used with a [godot.ParticleProcessMaterial]. It needs to be manually implemented for custom process shaders.
+   * **Note:** This only works when used with a [godot.ParticleProcessMaterial]. It needs to be manually implemented for custom process shaders.
    */
   public var interpToEnd: Float
     get() {
@@ -308,7 +314,9 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * Multiplier for particle's collision radius. `1.0` corresponds to the size of the sprite.
+   * Multiplier for particle's collision radius. `1.0` corresponds to the size of the sprite. If particles appear to sink into the ground when colliding, increase this value. If particles appear to float when colliding, decrease this value. Only effective if [godot.ParticleProcessMaterial.collisionMode] is [godot.ParticleProcessMaterial.COLLISION_RIGID] or [godot.ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT].
+   *
+   * **Note:** Particles always have a spherical collision shape.
    */
   public var collisionBaseSize: Float
     get() {
@@ -521,11 +529,11 @@ public open class GPUParticles2D : Node2D() {
      */
     DRAW_ORDER_INDEX(0),
     /**
-     * Particles are drawn in order of remaining lifetime.
+     * Particles are drawn in order of remaining lifetime. In other words, the particle with the highest lifetime is drawn at the front.
      */
     DRAW_ORDER_LIFETIME(1),
     /**
-     *
+     * Particles are drawn in reverse order of remaining lifetime. In other words, the particle with the lowest lifetime is drawn at the front.
      */
     DRAW_ORDER_REVERSE_LIFETIME(2),
     ;

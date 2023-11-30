@@ -20,7 +20,7 @@ import kotlin.Suppress
  * This imports a 3-dimensional texture, which can then be used in custom shaders, as a [godot.FogMaterial] density map or as a [godot.GPUParticlesAttractorVectorField3D]. See also [godot.ResourceImporterTexture] and [godot.ResourceImporterTextureAtlas].
  */
 @GodotBaseType
-public open class ResourceImporterLayeredTexture internal constructor() : ResourceImporter() {
+public open class ResourceImporterLayeredTexture : ResourceImporter() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RESOURCEIMPORTERLAYEREDTEXTURE, scriptIndex)
     return true

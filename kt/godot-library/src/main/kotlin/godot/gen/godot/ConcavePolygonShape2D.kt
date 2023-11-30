@@ -20,7 +20,7 @@ import kotlin.Suppress
  *
  * A 2D polyline shape, intended for use in physics. Used internally in [godot.CollisionPolygon2D] when it's in [godot.CollisionPolygon2D.BUILD_SEGMENTS] mode.
  *
- * Being just a collection of interconnected line segments, [godot.ConcavePolygonShape2D] is the most freely configurable single 2D shape. It can be used to form polygons of any nature, or even shapes that don't enclose an area. However, [godot.ConvexPolygonShape2D] is *hollow* even if the interconnected line segments do enclose an area, which often makes it unsuitable for physics or detection.
+ * Being just a collection of interconnected line segments, [godot.ConcavePolygonShape2D] is the most freely configurable single 2D shape. It can be used to form polygons of any nature, or even shapes that don't enclose an area. However, [godot.ConcavePolygonShape2D] is *hollow* even if the interconnected line segments do enclose an area, which often makes it unsuitable for physics or detection.
  *
  * **Note:** When used for collision, [godot.ConcavePolygonShape2D] is intended to work with static [godot.CollisionShape2D] nodes like [godot.StaticBody2D] and will likely not behave well for [godot.CharacterBody2D]s or [godot.RigidBody2D]s in a mode other than Static.
  *

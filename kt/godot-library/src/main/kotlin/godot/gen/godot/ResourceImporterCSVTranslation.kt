@@ -30,7 +30,7 @@ import kotlin.Suppress
  * 		```
  */
 @GodotBaseType
-public open class ResourceImporterCSVTranslation internal constructor() : ResourceImporter() {
+public open class ResourceImporterCSVTranslation : ResourceImporter() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RESOURCEIMPORTERCSVTRANSLATION, scriptIndex)
     return true

@@ -55,7 +55,7 @@ import kotlin.Suppress
  * To use an [godot.EditorResourceConversionPlugin], register it using the [godot.EditorPlugin.addResourceConversionPlugin] method first.
  */
 @GodotBaseType
-public open class EditorResourceConversionPlugin internal constructor() : RefCounted() {
+public open class EditorResourceConversionPlugin : RefCounted() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORRESOURCECONVERSIONPLUGIN, scriptIndex)
     return true

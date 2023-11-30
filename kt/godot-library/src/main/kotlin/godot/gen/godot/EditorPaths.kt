@@ -28,7 +28,7 @@ import kotlin.Suppress
  * **Note:** On the Linux/BSD platform, Godot complies with the [godot.XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html). You can override environment variables following the specification to change the editor and project data paths.
  */
 @GodotBaseType
-public open class EditorPaths internal constructor() : Object() {
+public open class EditorPaths : Object() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORPATHS, scriptIndex)
     return true

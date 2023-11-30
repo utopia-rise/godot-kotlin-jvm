@@ -22,7 +22,7 @@ import kotlin.Suppress
  * See also [godot.ResourceImporterScene], which is used for more advanced 3D formats such as glTF.
  */
 @GodotBaseType
-public open class ResourceImporterOBJ internal constructor() : ResourceImporter() {
+public open class ResourceImporterOBJ : ResourceImporter() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RESOURCEIMPORTEROBJ, scriptIndex)
     return true

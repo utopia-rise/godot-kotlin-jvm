@@ -71,7 +71,7 @@ import kotlin.Unit
  * **Note:** EditorScript is [godot.RefCounted], meaning it is destroyed when nothing references it. This can cause errors during asynchronous operations if there are no references to the script.
  */
 @GodotBaseType
-public open class EditorScript internal constructor() : RefCounted() {
+public open class EditorScript : RefCounted() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORSCRIPT, scriptIndex)
     return true

@@ -31,7 +31,7 @@ import kotlin.jvm.JvmOverloads
  * This plugin type exists to modify the process of importing scenes, allowing to change the content as well as add importer options at every stage of the process.
  */
 @GodotBaseType
-public open class EditorScenePostImportPlugin internal constructor() : RefCounted() {
+public open class EditorScenePostImportPlugin : RefCounted() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN, scriptIndex)
     return true

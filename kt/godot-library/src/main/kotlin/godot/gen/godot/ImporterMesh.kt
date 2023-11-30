@@ -153,7 +153,7 @@ public open class ImporterMesh : Resource() {
   }
 
   /**
-   * Returns the arrays for the vertices, normals, uvs, etc. that make up the requested surface. See [addSurface].
+   * Returns the arrays for the vertices, normals, UVs, etc. that make up the requested surface. See [addSurface].
    */
   public fun getSurfaceArrays(surfaceIdx: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to surfaceIdx.toLong())

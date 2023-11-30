@@ -215,7 +215,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Recturns an active face index in the TrueType / OpenType collection.
+   * Returns an active face index in the TrueType / OpenType collection.
    */
   public fun fontGetFaceIndex(fontRid: RID): Long {
     TransferContext.writeArguments(_RID to fontRid)
@@ -447,6 +447,25 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_FIXED_SIZE,
         LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  /**
+   * Sets bitmap font scaling mode. This property is used only if `fixed_size` is greater than zero.
+   */
+  public fun fontSetFixedSizeScaleMode(fontRid: RID, fixedSizeScaleMode: FixedSizeScaleMode): Unit {
+    TransferContext.writeArguments(_RID to fontRid, LONG to fixedSizeScaleMode.id)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_FIXED_SIZE_SCALE_MODE, NIL)
+  }
+
+  /**
+   * Returns bitmap font scaling mode.
+   */
+  public fun fontGetFixedSizeScaleMode(fontRid: RID): FixedSizeScaleMode {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_FIXED_SIZE_SCALE_MODE, LONG)
+    return TextServer.FixedSizeScaleMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -3199,6 +3218,33 @@ public open class TextServer internal constructor() : RefCounted() {
      * User defined structured text BiDi override function.
      */
     STRUCTURED_TEXT_CUSTOM(6),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
+  }
+
+  public enum class FixedSizeScaleMode(
+    id: Long,
+  ) {
+    /**
+     * Bitmap font is not scaled.
+     */
+    FIXED_SIZE_SCALE_DISABLE(0),
+    /**
+     * Bitmap font is scaled to the closest integer multiple of the font's fixed size. This is the recommended option for pixel art fonts.
+     */
+    FIXED_SIZE_SCALE_INTEGER_ONLY(1),
+    /**
+     * Bitmap font is scaled to an arbitrary (fractional) size. This is the recommended option for non-pixel art fonts.
+     */
+    FIXED_SIZE_SCALE_ENABLED(2),
     ;
 
     public val id: Long

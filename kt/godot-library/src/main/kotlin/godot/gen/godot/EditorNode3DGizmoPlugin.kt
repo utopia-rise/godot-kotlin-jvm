@@ -39,7 +39,7 @@ import kotlin.jvm.JvmOverloads
  * To use [godot.EditorNode3DGizmoPlugin], register it using the [godot.EditorPlugin.addNode3dGizmoPlugin] method first.
  */
 @GodotBaseType
-public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
+public open class EditorNode3DGizmoPlugin : Resource() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN, scriptIndex)
     return true

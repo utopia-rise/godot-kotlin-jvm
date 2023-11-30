@@ -40,7 +40,7 @@ import kotlin.jvm.JvmOverloads
  * Gizmo that is used for providing custom visualization and editing (handles and subgizmos) for [godot.Node3D] objects. Can be overridden to create custom gizmos, but for simple gizmos creating a [godot.EditorNode3DGizmoPlugin] is usually recommended.
  */
 @GodotBaseType
-public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
+public open class EditorNode3DGizmo : Node3DGizmo() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_EDITORNODE3DGIZMO, scriptIndex)
     return true

@@ -365,6 +365,25 @@ public open class TileMap : Node2D() {
   }
 
   /**
+   * Enables or disables a layer's built-in navigation regions generation. Disable this if you need to bake navigation regions from a TileMap using a [godot.NavigationRegion2D] node.
+   */
+  public fun setLayerNavigationEnabled(layer: Int, enabled: Boolean): Unit {
+    TransferContext.writeArguments(LONG to layer.toLong(), BOOL to enabled)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_NAVIGATION_ENABLED, NIL)
+  }
+
+  /**
+   * Returns if a layer's built-in navigation regions generation is enabled.
+   */
+  public fun isLayerNavigationEnabled(layer: Int): Boolean {
+    TransferContext.writeArguments(LONG to layer.toLong())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_IS_LAYER_NAVIGATION_ENABLED,
+        BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
    * Assigns a [godot.NavigationServer2D] navigation map [RID] to the specified TileMap [layer].
    *
    * By default the TileMap uses the default [godot.World2D] navigation map for the first TileMap layer. For each additional TileMap layer a new navigation map is created for the additional layer.

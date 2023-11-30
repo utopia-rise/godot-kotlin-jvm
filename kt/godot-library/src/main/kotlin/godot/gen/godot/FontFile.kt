@@ -47,6 +47,9 @@ import kotlin.jvm.JvmName
 /**
  * Holds font source data and prerendered glyph cache, imported from a dynamic or a bitmap font.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/io/runtime_file_loading_and_saving.html]($DOCS_URL/tutorials/io/runtime_file_loading_and_saving.html)
+ *
  * [godot.FontFile] contains a set of glyphs to represent Unicode characters imported from a font file, as well as a cache of rasterized glyphs, and a set of fallback [godot.Font]s to use.
  *
  * Use [godot.FontVariation] to access specific OpenType variation of the font, create simulated bold / slanted version, and draw lines of text.
@@ -336,6 +339,22 @@ public open class FontFile : Font() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_FIXED_SIZE, NIL)
+    }
+
+  /**
+   * Scaling mode, used only for the bitmap fonts with [fixedSize] greater than zero.
+   */
+  public var fixedSizeScaleMode: TextServer.FixedSizeScaleMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_FIXED_SIZE_SCALE_MODE, LONG)
+      return TextServer.FixedSizeScaleMode.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_FIXED_SIZE_SCALE_MODE, NIL)
     }
 
   /**

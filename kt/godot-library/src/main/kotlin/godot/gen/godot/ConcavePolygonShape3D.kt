@@ -24,7 +24,7 @@ import kotlin.Suppress
  *
  * A 3D trimesh shape, intended for use in physics. Usually used to provide a shape for a [godot.CollisionShape3D].
  *
- * Being just a collection of interconnected triangles, [godot.ConcavePolygonShape3D] is the most freely configurable single 3D shape. It can be used to form polyhedra of any nature, or even shapes that don't enclose a volume. However, [godot.ConvexPolygonShape3D] is *hollow* even if the interconnected triangles do enclose a volume, which often makes it unsuitable for physics or detection.
+ * Being just a collection of interconnected triangles, [godot.ConcavePolygonShape3D] is the most freely configurable single 3D shape. It can be used to form polyhedra of any nature, or even shapes that don't enclose a volume. However, [godot.ConcavePolygonShape3D] is *hollow* even if the interconnected triangles do enclose a volume, which often makes it unsuitable for physics or detection.
  *
  * **Note:** When used for collision, [godot.ConcavePolygonShape3D] is intended to work with static [godot.CollisionShape3D] nodes like [godot.StaticBody3D] and will likely not behave well for [godot.CharacterBody3D]s or [godot.RigidBody3D]s in a mode other than Static.
  *

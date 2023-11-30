@@ -70,21 +70,7 @@ public open class Viewport internal constructor() : Node() {
   public val guiFocusChanged: Signal1<Control> by signal("node")
 
   /**
-   * If `true`, disables 2D rendering while keeping 3D rendering. See also [disable3d].
-   */
-  public var disable2d: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_2D_DISABLED, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DISABLE_2D, NIL)
-    }
-
-  /**
-   * If `true`, disables 3D rendering while keeping 2D rendering. See also [disable2d].
+   * Disable 3D rendering (but keep 2D rendering).
    */
   public var disable3d: Boolean
     get() {

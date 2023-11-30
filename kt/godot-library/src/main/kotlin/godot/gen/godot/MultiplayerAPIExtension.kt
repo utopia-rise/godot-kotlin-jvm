@@ -43,7 +43,7 @@ import kotlin.Unit
  *
  * func _init():
  *
- *     # Just passthourgh base signals (copied to var to avoid cyclic reference)
+ *     # Just passthrough base signals (copied to var to avoid cyclic reference)
  *
  *     var cts = connected_to_server
  *
@@ -63,9 +63,15 @@ import kotlin.Unit
  *
  *
  *
+ * func _poll():
+ *
+ *     return base_multiplayer.poll()
+ *
+ *
+ *
  * # Log RPC being made and forward it to the default multiplayer.
  *
- * func _rpc(peer: int, object: Object, method: StringName, args: Array) -> int: # Error
+ * func _rpc(peer: int, object: Object, method: StringName, args: Array) -> Error:
  *
  *     print("Got RPC for %d: %s::%s(%s)" % [peer, object, method, args])
  *
@@ -75,7 +81,7 @@ import kotlin.Unit
  *
  * # Log configuration add. E.g. root path (nullptr, NodePath), replication (Node, Spawner|Synchronizer), custom.
  *
- * func _object_configuration_add(object, config: Variant) -> int: # Error
+ * func _object_configuration_add(object, config: Variant) -> Error:
  *
  *     if config is MultiplayerSynchronizer:
  *
@@ -91,7 +97,7 @@ import kotlin.Unit
  *
  * # Log configuration remove. E.g. root path (nullptr, NodePath), replication (Node, Spawner|Synchronizer), custom.
  *
- * func _object_configuration_remove(object, config: Variant) -> int: # Error
+ * func _object_configuration_remove(object, config: Variant) -> Error:
  *
  *     if config is MultiplayerSynchronizer:
  *

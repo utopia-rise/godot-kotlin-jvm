@@ -6434,11 +6434,11 @@ public object RenderingServer : Object() {
      */
     PARTICLES_DRAW_ORDER_INDEX(0),
     /**
-     * Sort particles based on their lifetime.
+     * Sort particles based on their lifetime. In other words, the particle with the highest lifetime is drawn at the front.
      */
     PARTICLES_DRAW_ORDER_LIFETIME(1),
     /**
-     *
+     * Sort particles based on the inverse of their lifetime. In other words, the particle with the lowest lifetime is drawn at the front.
      */
     PARTICLES_DRAW_ORDER_REVERSE_LIFETIME(2),
     /**

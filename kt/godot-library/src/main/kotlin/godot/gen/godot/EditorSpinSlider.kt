@@ -22,9 +22,11 @@ import kotlin.Suppress
  * Godot editor's control for editing numeric values.
  *
  * This [godot.Control] node is used in the editor's Inspector dock to allow editing of numeric values. Can be used with [godot.EditorInspectorPlugin] to recreate the same behavior.
+ *
+ * If the [godot.Range.step] value is `1`, the [godot.EditorSpinSlider] will display up/down arrows, similar to [godot.SpinBox]. If the [godot.Range.step] value is not `1`, a slider will be displayed instead.
  */
 @GodotBaseType
-public open class EditorSpinSlider internal constructor() : Range() {
+public open class EditorSpinSlider : Range() {
   /**
    * Emitted when the spinner/slider is grabbed.
    */
@@ -106,7 +108,7 @@ public open class EditorSpinSlider internal constructor() : Range() {
     }
 
   /**
-   * If `true`, the slider is hidden.
+   * If `true`, the slider and up/down arrows are hidden.
    */
   public var hideSlider: Boolean
     get() {

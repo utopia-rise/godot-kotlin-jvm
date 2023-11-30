@@ -31,7 +31,7 @@ import kotlin.jvm.JvmOverloads
  * [godot.EditorFileDialog] is an enhanced version of [godot.FileDialog] available only to editor plugins. Additional features include list of favorited/recent files and the ability to see files as thumbnails grid instead of list.
  */
 @GodotBaseType
-public open class EditorFileDialog internal constructor() : ConfirmationDialog() {
+public open class EditorFileDialog : ConfirmationDialog() {
   /**
    * Emitted when a file is selected.
    */

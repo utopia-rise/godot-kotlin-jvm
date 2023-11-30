@@ -30,7 +30,7 @@ godot {
 //            projectDir.resolve("graal").resolve("reflect-config.json").absolutePath,
 //        )
 //    )
-//    windowsDeveloperVCVarsPath.set(System.getenv("VC_VARS_PATH"))
+//    windowsDeveloperVCVarsPath.set(File(System.getenv("VC_VARS_PATH")))
 
     // uncomment to test ios
 //    isIOSExportEnabled.set(true)

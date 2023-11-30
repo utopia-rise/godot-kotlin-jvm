@@ -20,7 +20,7 @@ import kotlin.Suppress
  * This importer imports [godot.Image] resources, as opposed to [godot.CompressedTexture2D]. If you need to render the image in 2D or 3D, use [godot.ResourceImporterTexture] instead.
  */
 @GodotBaseType
-public open class ResourceImporterImage internal constructor() : ResourceImporter() {
+public open class ResourceImporterImage : ResourceImporter() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RESOURCEIMPORTERIMAGE, scriptIndex)
     return true

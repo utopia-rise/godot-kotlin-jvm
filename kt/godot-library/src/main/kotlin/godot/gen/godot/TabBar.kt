@@ -37,7 +37,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class TabBar : Control() {
   /**
-   * Emitted when a tab is selected via click or script, even if it is the current tab.
+   * Emitted when a tab is selected via click, directional input, or script, even if it is the current tab.
    */
   public val tabSelected: Signal1<Long> by signal("tab")
 
@@ -93,6 +93,20 @@ public open class TabBar : Control() {
    * Emitted when the active tab is rearranged via mouse drag. See [dragToRearrangeEnabled].
    */
   public val activeTabRearranged: Signal1<Long> by signal("idxTo")
+
+  /**
+   * The number of tabs currently in the bar.
+   */
+  public var tabCount: Int
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_COUNT, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_COUNT, NIL)
+    }
 
   /**
    * Select tab at index `tab_idx`.
@@ -243,20 +257,6 @@ public open class TabBar : Control() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_SELECT_WITH_RMB, NIL)
-    }
-
-  /**
-   * The number of tabs currently in the bar.
-   */
-  public var tabCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_COUNT, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TAB_COUNT, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {

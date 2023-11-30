@@ -23,6 +23,8 @@ import kotlin.Suppress
  * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
  *
  * Stores the factor of a magnifying touch gesture. This is usually performed when the user pinches the touch screen and used for zooming in/out.
+ *
+ * **Note:** On Android, this requires the [godot.ProjectSettings.inputDevices/pointing/android/enablePanAndScaleGestures] project setting to be enabled.
  */
 @GodotBaseType
 public open class InputEventMagnifyGesture : InputEventGesture() {

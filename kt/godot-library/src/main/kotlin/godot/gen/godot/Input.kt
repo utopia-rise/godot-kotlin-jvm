@@ -146,6 +146,8 @@ public object Input : Object() {
    * **Note:** Returning `true` does not imply that the action is *still* pressed. An action can be pressed and released again rapidly, and `true` will still be returned so as not to miss input.
    *
    * **Note:** Due to keyboard ghosting, [isActionJustPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples]($DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
+   *
+   * **Note:** During input handling (e.g. [godot.Node.Input]), use [godot.InputEvent.isActionPressed] instead to query the action state of the current event.
    */
   @JvmOverloads
   public fun isActionJustPressed(action: StringName, exactMatch: Boolean = false): Boolean {
@@ -160,6 +162,8 @@ public object Input : Object() {
    * **Note:** Returning `true` does not imply that the action is *still* not pressed. An action can be released and pressed again rapidly, and `true` will still be returned so as not to miss input.
    *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   *
+   * **Note:** During input handling (e.g. [godot.Node.Input]), use [godot.InputEvent.isActionReleased] instead to query the action state of the current event.
    */
   @JvmOverloads
   public fun isActionJustReleased(action: StringName, exactMatch: Boolean = false): Boolean {

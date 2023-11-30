@@ -236,7 +236,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Clears the specified [texture] by replacing all of its pixels with the specified [color]. [baseMipmap] and [mipmapCount] determine which mipmaps of the texture are affected by this clear operation, while [baseLayer] and [layerCount] determine which layers of a 3D texture (or texture array) are affected by this clear operation. For 2D textures (which only have one layer by design), [baseLayer] and [layerCount] must both be `0`.
+   * Clears the specified [texture] by replacing all of its pixels with the specified [color]. [baseMipmap] and [mipmapCount] determine which mipmaps of the texture are affected by this clear operation, while [baseLayer] and [layerCount] determine which layers of a 3D texture (or texture array) are affected by this clear operation. For 2D textures (which only have one layer by design), [baseLayer] must be `0` and [layerCount] must be `1`.
    *
    * **Note:** [texture] can't be cleared while a draw list that uses it as part of a framebuffer is being created. Ensure the draw list is finalized (and that the color/depth texture using it is not set to [FINAL_ACTION_CONTINUE]) to clear this texture.
    */

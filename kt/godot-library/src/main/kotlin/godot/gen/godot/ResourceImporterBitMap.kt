@@ -20,7 +20,7 @@ import kotlin.Suppress
  * [godot.BitMap] resources are typically used as click masks in [godot.TextureButton] and [godot.TouchScreenButton].
  */
 @GodotBaseType
-public open class ResourceImporterBitMap internal constructor() : ResourceImporter() {
+public open class ResourceImporterBitMap : ResourceImporter() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RESOURCEIMPORTERBITMAP, scriptIndex)
     return true

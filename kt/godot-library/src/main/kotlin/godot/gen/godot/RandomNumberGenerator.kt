@@ -152,7 +152,7 @@ public open class RandomNumberGenerator : RefCounted() {
   }
 
   /**
-   * Setups a time-based seed to for this [godot.RandomNumberGenerator] instance. Unlike the [@GlobalScope] random number generation functions, different [godot.RandomNumberGenerator] instances can use different seeds.
+   * Sets up a time-based seed for this [godot.RandomNumberGenerator] instance. Unlike the [@GlobalScope] random number generation functions, different [godot.RandomNumberGenerator] instances can use different seeds.
    */
   public fun randomize(): Unit {
     TransferContext.writeArguments()

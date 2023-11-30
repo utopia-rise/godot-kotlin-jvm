@@ -59,42 +59,10 @@ import kotlin.jvm.JvmOverloads
  * [/codeblocks]
  */
 @GodotBaseType
-public open class EditorInterface internal constructor() : Object() {
-  /**
-   * If `true`, enables distraction-free mode which hides side docks to increase the space available for the main view.
-   */
-  public var distractionFreeMode: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_DISTRACTION_FREE_MODE_ENABLED, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_DISTRACTION_FREE_MODE, NIL)
-    }
-
-  /**
-   * If `true`, the Movie Maker mode is enabled in the editor. See [godot.MovieWriter] for more information.
-   */
-  public var movieMakerEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_MOVIE_MAKER_ENABLED, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_MOVIE_MAKER_ENABLED, NIL)
-    }
-
+public object EditorInterface : Object() {
   public override fun new(scriptIndex: Int): Boolean {
-    callConstructor(ENGINECLASS_EDITORINTERFACE, scriptIndex)
-    return true
+    getSingleton(ENGINECLASS_EDITORINTERFACE)
+    return false
   }
 
   /**
@@ -274,6 +242,19 @@ public open class EditorInterface internal constructor() : Object() {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_MAIN_SCREEN_EDITOR, NIL)
+  }
+
+  public fun setDistractionFreeMode(enter: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enter)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_DISTRACTION_FREE_MODE, NIL)
+  }
+
+  public fun isDistractionFreeModeEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_DISTRACTION_FREE_MODE_ENABLED, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -601,5 +582,16 @@ public open class EditorInterface internal constructor() : Object() {
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public companion object
+  public fun setMovieMakerEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_MOVIE_MAKER_ENABLED, NIL)
+  }
+
+  public fun isMovieMakerEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_MOVIE_MAKER_ENABLED, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
 }

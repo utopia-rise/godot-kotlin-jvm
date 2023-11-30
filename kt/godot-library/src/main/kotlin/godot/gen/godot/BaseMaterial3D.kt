@@ -2671,7 +2671,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     BILLBOARD_FIXED_Y(2),
     /**
-     * Used for particle systems when assigned to [godot.GPUParticles3D] and [godot.CPUParticles3D] nodes. Enables `particles_anim_*` properties.
+     * Used for particle systems when assigned to [godot.GPUParticles3D] and [godot.CPUParticles3D] nodes (flipbook animation). Enables `particles_anim_*` properties.
      *
      * The [godot.ParticleProcessMaterial.animSpeedMin] or [godot.CPUParticles3D.animSpeedMin] should also be set to a value bigger than zero for the animation to play.
      */
