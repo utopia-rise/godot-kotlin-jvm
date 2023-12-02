@@ -22,8 +22,8 @@ import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
-import godot.core.asStringName
 import godot.core.memory.TransferContext
+import godot.extensions.asStringName
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal

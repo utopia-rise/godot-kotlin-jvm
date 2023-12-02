@@ -5,7 +5,7 @@ import godot.core.Callable
 import godot.core.CoreType
 import godot.core.GodotError
 import godot.core.StringName
-import godot.core.asStringName
+import godot.extensions.asStringName
 import godot.global.GD
 import godot.util.camelToSnakeCase
 import kotlin.reflect.KCallable
