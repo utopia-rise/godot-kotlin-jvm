@@ -78,8 +78,8 @@ internal object MemoryManager {
 
     // Create an LRU cache for StringName and NodePath objects based on a String key.
     // TODO: Set the initial capacity from the command line.
-    private val stringNameCache = LRUCache<String, StringName>(100)
-    private val nodePathCache = LRUCache<String, NodePath>(100)
+    private val stringNameCache = LRUCache<String, StringName>(256)
+    private val nodePathCache = LRUCache<String, NodePath>(256)
 
     fun getOrCreateStringName(key: String): StringName {
         return synchronized(stringNameCache) {
