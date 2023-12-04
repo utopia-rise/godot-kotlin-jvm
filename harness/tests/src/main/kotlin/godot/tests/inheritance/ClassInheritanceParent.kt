@@ -6,6 +6,7 @@ import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.core.GodotNotification
+import godot.global.GD
 import godot.signals.signal
 
 @RegisterClass
@@ -43,9 +44,13 @@ open class ClassInheritanceParent : Node() {
         parentOpenFunctionHasBeenCalled = true
     }
 
-    private var notificationCalled = false
+    @RegisterProperty
+    var notificationCallBitFlag = 0
+
     @RegisterFunction
     override fun _notification(): GodotNotification = godotNotification {
-        notificationCalled = true
+        GD.print("Called ClassInheritanceParent::_notification on $this with $it")
+        notificationCallBitFlag = notificationCallBitFlag or 1
+        GD.print(notificationCallBitFlag)
     }
 }
