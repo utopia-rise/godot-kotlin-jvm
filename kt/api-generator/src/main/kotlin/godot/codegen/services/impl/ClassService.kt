@@ -4,6 +4,7 @@ import com.squareup.kotlinpoet.UNIT
 import godot.codegen.exceptions.NoMatchingClassFoundException
 import godot.codegen.extensions.getTypeClassName
 import godot.codegen.extensions.isEnum
+import godot.codegen.models.ApiType
 import godot.codegen.models.Argument
 import godot.codegen.models.Method
 import godot.codegen.models.ReturnValue
@@ -19,16 +20,22 @@ class ClassService(
     private val singletonRepository: SingletonRepository,
     private val classGraphService: IClassGraphService
 ) : IClassService{
-    override fun getSingletons() = singletonRepository.list().map {
-        classRepository.findByClassName(it.type)?.copy(it.name) ?: throw NoMatchingClassFoundException(it.type)
-    }
-
-    override fun getClasses() = classRepository.list().filter {
-        for (singleton in singletonRepository.list()) {
-            if (singleton.type == it.type || classGraphService.doClassInherits(it, singleton.type)) return@filter false
+    override fun getSingletons() = singletonRepository
+        .list()
+        .map {
+            classRepository.findByClassName(it.type)?.copy(it.name) ?: throw NoMatchingClassFoundException(it.type)
         }
-        true
-    }
+        .filter { it.apiType == ApiType.CORE }
+
+    override fun getClasses() = classRepository
+        .list()
+        .filter { it.apiType == ApiType.CORE }
+        .filter {
+            for (singleton in singletonRepository.list()) {
+                if (singleton.type == it.type || classGraphService.doClassInherits(it, singleton.type)) return@filter false
+            }
+            true
+        }
 
     override fun updatePropertyIfShouldUseSuper(className: String, propertyName: String) {
         fun inner(className: String, propertyName: String, isSetter: Boolean) {

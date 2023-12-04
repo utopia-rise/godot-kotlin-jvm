@@ -475,62 +475,6 @@ private fun registerEngineTypeMethodForThemeDB(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_THEMEDB to "get_fallback_stylebox")
 }
 
-private fun registerEngineTypeMethodForEditorInterface(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "restart_editor")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_command_palette")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_resource_filesystem")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_editor_paths")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_resource_previewer")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_selection")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_editor_settings")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "make_mesh_previews")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "set_plugin_enabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "is_plugin_enabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_editor_theme")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_base_control")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_editor_main_screen")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_script_editor")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_editor_viewport_2d")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_editor_viewport_3d")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "set_main_screen_editor")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "set_distraction_free_mode")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to
-      "is_distraction_free_mode_enabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_editor_scale")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "popup_dialog")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "popup_dialog_centered")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "popup_dialog_centered_ratio")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "popup_dialog_centered_clamped")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_current_feature_profile")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "set_current_feature_profile")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_file_system_dock")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "select_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_selected_paths")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_current_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_current_directory")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_inspector")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "inspect_object")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "edit_resource")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "edit_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "edit_script")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "open_scene_from_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "reload_scene_from_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_open_scenes")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_edited_scene_root")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "save_scene")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "save_scene_as")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "save_all_scenes")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "mark_scene_as_unsaved")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "play_main_scene")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "play_current_scene")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "play_custom_scene")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "stop_playing_scene")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "is_playing_scene")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_playing_scene")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "set_movie_maker_enabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "is_movie_maker_enabled")
-}
-
 private fun registerEngineTypeMethodForJavaClassWrapper(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_JAVACLASSWRAPPER to "wrap")
 }
@@ -5178,585 +5122,6 @@ private fun registerEngineTypeMethodForENetPacketPeer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ENETPACKETPEER to "is_active")
 }
 
-private fun registerEngineTypeMethodForEditorCommandPalette(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORCOMMANDPALETTE to "add_command")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORCOMMANDPALETTE to "remove_command")
-}
-
-private fun registerEngineTypeMethodForEditorDebuggerPlugin(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORDEBUGGERPLUGIN to "_setup_session")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORDEBUGGERPLUGIN to "_has_capture")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORDEBUGGERPLUGIN to "_capture")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORDEBUGGERPLUGIN to "get_session")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORDEBUGGERPLUGIN to "get_sessions")
-}
-
-private fun registerEngineTypeMethodForEditorDebuggerSession(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORDEBUGGERSESSION to "send_message")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORDEBUGGERSESSION to "toggle_profiler")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORDEBUGGERSESSION to "is_breaked")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORDEBUGGERSESSION to "is_debuggable")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORDEBUGGERSESSION to "is_active")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORDEBUGGERSESSION to "add_session_tab")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORDEBUGGERSESSION to "remove_session_tab")
-}
-
-private fun registerEngineTypeMethodForEditorExportPlatform(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLATFORM to "get_os_name")
-}
-
-private fun registerEngineTypeMethodForEditorExportPlatformAndroid(): Unit {
-}
-
-private fun registerEngineTypeMethodForEditorExportPlatformIOS(): Unit {
-}
-
-private fun registerEngineTypeMethodForEditorExportPlatformLinuxBSD(): Unit {
-}
-
-private fun registerEngineTypeMethodForEditorExportPlatformMacOS(): Unit {
-}
-
-private fun registerEngineTypeMethodForEditorExportPlatformPC(): Unit {
-}
-
-private fun registerEngineTypeMethodForEditorExportPlatformWeb(): Unit {
-}
-
-private fun registerEngineTypeMethodForEditorExportPlatformWindows(): Unit {
-}
-
-private fun registerEngineTypeMethodForEditorExportPlugin(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "_export_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "_export_begin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "_export_end")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "_begin_customize_resources")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "_customize_resource")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "_begin_customize_scenes")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "_customize_scene")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to
-      "_get_customization_configuration_hash")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "_end_customize_scenes")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "_end_customize_resources")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "_get_export_options")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to
-      "_should_update_export_options")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "_get_export_option_warning")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "_get_export_features")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "_get_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "_supports_platform")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "_get_android_dependencies")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to
-      "_get_android_dependencies_maven_repos")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "_get_android_libraries")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to
-      "_get_android_manifest_activity_element_contents")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to
-      "_get_android_manifest_application_element_contents")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to
-      "_get_android_manifest_element_contents")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "add_shared_object")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "add_ios_project_static_lib")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "add_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "add_ios_framework")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "add_ios_embedded_framework")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "add_ios_plist_content")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "add_ios_linker_flags")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "add_ios_bundle_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "add_ios_cpp_code")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "add_macos_plugin_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "skip")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "get_option")
-}
-
-private fun registerEngineTypeMethodForEditorFeatureProfile(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFEATUREPROFILE to "set_disable_class")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFEATUREPROFILE to "is_class_disabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFEATUREPROFILE to "set_disable_class_editor")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFEATUREPROFILE to "is_class_editor_disabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFEATUREPROFILE to "set_disable_class_property")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFEATUREPROFILE to "is_class_property_disabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFEATUREPROFILE to "set_disable_feature")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFEATUREPROFILE to "is_feature_disabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFEATUREPROFILE to "get_feature_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFEATUREPROFILE to "save_to_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFEATUREPROFILE to "load_from_file")
-}
-
-private fun registerEngineTypeMethodForEditorFileDialog(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "clear_filters")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "add_filter")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "set_filters")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "get_filters")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "get_current_dir")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "get_current_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "get_current_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "set_current_dir")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "set_current_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "set_current_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "set_file_mode")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "get_file_mode")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "get_vbox")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "get_line_edit")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "set_access")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "get_access")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "set_show_hidden_files")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "is_showing_hidden_files")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "set_display_mode")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "get_display_mode")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "set_disable_overwrite_warning")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "is_overwrite_warning_disabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "add_side_menu")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "invalidate")
-}
-
-private fun registerEngineTypeMethodForEditorFileSystem(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEM to "get_filesystem")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEM to "is_scanning")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEM to "get_scanning_progress")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEM to "scan")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEM to "scan_sources")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEM to "update_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEM to "get_filesystem_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEM to "get_file_type")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEM to "reimport_files")
-}
-
-private fun registerEngineTypeMethodForEditorFileSystemDirectory(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEMDIRECTORY to "get_subdir_count")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEMDIRECTORY to "get_subdir")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEMDIRECTORY to "get_file_count")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEMDIRECTORY to "get_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEMDIRECTORY to "get_file_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEMDIRECTORY to "get_file_type")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEMDIRECTORY to
-      "get_file_script_class_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEMDIRECTORY to
-      "get_file_script_class_extends")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEMDIRECTORY to
-      "get_file_import_is_valid")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEMDIRECTORY to "get_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEMDIRECTORY to "get_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEMDIRECTORY to "get_parent")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEMDIRECTORY to "find_file_index")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEMDIRECTORY to "find_dir_index")
-}
-
-private fun registerEngineTypeMethodForEditorFileSystemImportFormatSupportQuery(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEMIMPORTFORMATSUPPORTQUERY to
-      "_is_active")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEMIMPORTFORMATSUPPORTQUERY to
-      "_get_file_extensions")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEMIMPORTFORMATSUPPORTQUERY to "_query")
-}
-
-private fun registerEngineTypeMethodForEditorImportPlugin(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORIMPORTPLUGIN to "_get_importer_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORIMPORTPLUGIN to "_get_visible_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORIMPORTPLUGIN to "_get_preset_count")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORIMPORTPLUGIN to "_get_preset_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORIMPORTPLUGIN to "_get_recognized_extensions")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORIMPORTPLUGIN to "_get_import_options")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORIMPORTPLUGIN to "_get_save_extension")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORIMPORTPLUGIN to "_get_resource_type")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORIMPORTPLUGIN to "_get_priority")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORIMPORTPLUGIN to "_get_import_order")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORIMPORTPLUGIN to "_get_option_visibility")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORIMPORTPLUGIN to "_import")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORIMPORTPLUGIN to
-      "append_import_external_resource")
-}
-
-private fun registerEngineTypeMethodForEditorInspector(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTOR to "get_selected_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTOR to "get_edited_object")
-}
-
-private fun registerEngineTypeMethodForEditorInspectorPlugin(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTORPLUGIN to "_can_handle")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTORPLUGIN to "_parse_begin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTORPLUGIN to "_parse_category")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTORPLUGIN to "_parse_group")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTORPLUGIN to "_parse_property")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTORPLUGIN to "_parse_end")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTORPLUGIN to "add_custom_control")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTORPLUGIN to "add_property_editor")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTORPLUGIN to
-      "add_property_editor_for_multiple_properties")
-}
-
-private fun registerEngineTypeMethodForEditorNode3DGizmo(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "_redraw")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "_get_handle_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "_is_handle_highlighted")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "_get_handle_value")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "_set_handle")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "_commit_handle")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "_subgizmos_intersect_ray")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "_subgizmos_intersect_frustum")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "_set_subgizmo_transform")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "_get_subgizmo_transform")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "_commit_subgizmos")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "add_lines")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "add_mesh")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "add_collision_segments")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "add_collision_triangles")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "add_unscaled_billboard")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "add_handles")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "set_node_3d")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "get_node_3d")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "get_plugin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "clear")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "set_hidden")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "is_subgizmo_selected")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMO to "get_subgizmo_selection")
-}
-
-private fun registerEngineTypeMethodForEditorNode3DGizmoPlugin(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN to "_has_gizmo")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN to "_create_gizmo")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN to "_get_gizmo_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN to "_get_priority")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN to "_can_be_hidden")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN to
-      "_is_selectable_when_hidden")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN to "_redraw")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN to "_get_handle_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN to "_is_handle_highlighted")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN to "_get_handle_value")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN to "_set_handle")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN to "_commit_handle")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN to
-      "_subgizmos_intersect_ray")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN to
-      "_subgizmos_intersect_frustum")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN to "_get_subgizmo_transform")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN to "_set_subgizmo_transform")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN to "_commit_subgizmos")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN to "create_material")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN to "create_icon_material")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN to "create_handle_material")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN to "add_material")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN to "get_material")
-}
-
-private fun registerEngineTypeMethodForEditorPaths(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPATHS to "get_data_dir")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPATHS to "get_config_dir")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPATHS to "get_cache_dir")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPATHS to "is_self_contained")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPATHS to "get_self_contained_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPATHS to "get_project_settings_dir")
-}
-
-private fun registerEngineTypeMethodForEditorPlugin(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "_forward_canvas_gui_input")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "_forward_canvas_draw_over_viewport")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to
-      "_forward_canvas_force_draw_over_viewport")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "_forward_3d_gui_input")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "_forward_3d_draw_over_viewport")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to
-      "_forward_3d_force_draw_over_viewport")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "_get_plugin_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "_get_plugin_icon")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "_has_main_screen")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "_make_visible")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "_edit")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "_handles")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "_get_state")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "_set_state")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "_clear")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "_get_unsaved_status")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "_save_external_data")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "_apply_changes")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "_get_breakpoints")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "_set_window_layout")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "_get_window_layout")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "_build")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "_enable_plugin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "_disable_plugin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "add_control_to_container")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "add_control_to_bottom_panel")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "add_control_to_dock")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "remove_control_from_docks")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "remove_control_from_bottom_panel")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "remove_control_from_container")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "add_tool_menu_item")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "add_tool_submenu_item")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "remove_tool_menu_item")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "get_export_as_menu")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "add_custom_type")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "remove_custom_type")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "add_autoload_singleton")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "remove_autoload_singleton")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "update_overlays")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "make_bottom_panel_item_visible")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "hide_bottom_panel")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "get_undo_redo")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to
-      "add_undo_redo_inspector_hook_callback")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to
-      "remove_undo_redo_inspector_hook_callback")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "queue_save_layout")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "add_translation_parser_plugin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "remove_translation_parser_plugin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "add_import_plugin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "remove_import_plugin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "add_scene_format_importer_plugin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to
-      "remove_scene_format_importer_plugin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "add_scene_post_import_plugin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "remove_scene_post_import_plugin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "add_export_plugin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "remove_export_plugin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "add_node_3d_gizmo_plugin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "remove_node_3d_gizmo_plugin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "add_inspector_plugin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "remove_inspector_plugin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "add_resource_conversion_plugin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "remove_resource_conversion_plugin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to
-      "set_input_event_forwarding_always_enabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to
-      "set_force_draw_over_forwarding_enabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "get_editor_interface")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "get_script_create_dialog")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "add_debugger_plugin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "remove_debugger_plugin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "get_plugin_version")
-}
-
-private fun registerEngineTypeMethodForEditorProperty(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "_update_property")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "_set_read_only")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "set_label")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "get_label")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "set_read_only")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "is_read_only")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "set_checkable")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "is_checkable")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "set_checked")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "is_checked")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "set_draw_warning")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "is_draw_warning")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "set_keying")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "is_keying")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "set_deletable")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "is_deletable")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "get_edited_property")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "get_edited_object")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "update_property")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "add_focusable")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "set_bottom_editor")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "emit_changed")
-}
-
-private fun registerEngineTypeMethodForEditorResourceConversionPlugin(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCECONVERSIONPLUGIN to "_converts_to")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCECONVERSIONPLUGIN to "_handles")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCECONVERSIONPLUGIN to "_convert")
-}
-
-private fun registerEngineTypeMethodForEditorResourcePicker(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPICKER to "_set_create_options")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPICKER to "_handle_menu_selected")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPICKER to "set_base_type")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPICKER to "get_base_type")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPICKER to "get_allowed_types")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPICKER to "set_edited_resource")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPICKER to "get_edited_resource")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPICKER to "set_toggle_mode")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPICKER to "is_toggle_mode")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPICKER to "set_toggle_pressed")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPICKER to "set_editable")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPICKER to "is_editable")
-}
-
-private fun registerEngineTypeMethodForEditorResourcePreview(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPREVIEW to "queue_resource_preview")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPREVIEW to
-      "queue_edited_resource_preview")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPREVIEW to "add_preview_generator")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPREVIEW to "remove_preview_generator")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPREVIEW to "check_for_invalidation")
-}
-
-private fun registerEngineTypeMethodForEditorResourcePreviewGenerator(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPREVIEWGENERATOR to "_handles")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPREVIEWGENERATOR to "_generate")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPREVIEWGENERATOR to
-      "_generate_from_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPREVIEWGENERATOR to
-      "_generate_small_preview_automatically")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPREVIEWGENERATOR to
-      "_can_generate_small_preview")
-}
-
-private fun registerEngineTypeMethodForEditorResourceTooltipPlugin(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCETOOLTIPPLUGIN to "_handles")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCETOOLTIPPLUGIN to
-      "_make_tooltip_for_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCETOOLTIPPLUGIN to "request_thumbnail")
-}
-
-private fun registerEngineTypeMethodForEditorSceneFormatImporter(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEFORMATIMPORTER to "_get_import_flags")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEFORMATIMPORTER to "_get_extensions")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEFORMATIMPORTER to "_import_scene")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEFORMATIMPORTER to "_get_import_options")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEFORMATIMPORTER to
-      "_get_option_visibility")
-}
-
-private fun registerEngineTypeMethodForEditorSceneFormatImporterBlend(): Unit {
-}
-
-private fun registerEngineTypeMethodForEditorSceneFormatImporterFBX(): Unit {
-}
-
-private fun registerEngineTypeMethodForEditorSceneFormatImporterGLTF(): Unit {
-}
-
-private fun registerEngineTypeMethodForEditorScenePostImport(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEPOSTIMPORT to "_post_import")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEPOSTIMPORT to "get_source_file")
-}
-
-private fun registerEngineTypeMethodForEditorScenePostImportPlugin(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN to
-      "_get_internal_import_options")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN to
-      "_get_internal_option_visibility")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN to
-      "_get_internal_option_update_view_required")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN to "_internal_process")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN to "_get_import_options")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN to
-      "_get_option_visibility")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN to "_pre_process")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN to "_post_process")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN to "get_option_value")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN to "add_import_option")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN to
-      "add_import_option_advanced")
-}
-
-private fun registerEngineTypeMethodForEditorScript(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCRIPT to "_run")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCRIPT to "add_root_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCRIPT to "get_scene")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCRIPT to "get_editor_interface")
-}
-
-private fun registerEngineTypeMethodForEditorScriptPicker(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCRIPTPICKER to "set_script_owner")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCRIPTPICKER to "get_script_owner")
-}
-
-private fun registerEngineTypeMethodForEditorSelection(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSELECTION to "clear")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSELECTION to "add_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSELECTION to "remove_node")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSELECTION to "get_selected_nodes")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSELECTION to
-      "get_transformable_selected_nodes")
-}
-
-private fun registerEngineTypeMethodForEditorSettings(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "has_setting")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "set_setting")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "get_setting")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "erase")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "set_initial_value")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "add_property_info")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "set_project_metadata")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "get_project_metadata")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "set_favorites")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "get_favorites")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "set_recent_dirs")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "get_recent_dirs")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "set_builtin_action_override")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "check_changed_settings_in_group")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "get_changed_settings")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "mark_setting_changed")
-}
-
-private fun registerEngineTypeMethodForEditorSpinSlider(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSPINSLIDER to "set_label")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSPINSLIDER to "get_label")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSPINSLIDER to "set_suffix")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSPINSLIDER to "get_suffix")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSPINSLIDER to "set_read_only")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSPINSLIDER to "is_read_only")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSPINSLIDER to "set_flat")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSPINSLIDER to "is_flat")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSPINSLIDER to "set_hide_slider")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSPINSLIDER to "is_hiding_slider")
-}
-
-private fun registerEngineTypeMethodForEditorSyntaxHighlighter(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSYNTAXHIGHLIGHTER to "_get_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSYNTAXHIGHLIGHTER to
-      "_get_supported_languages")
-}
-
-private fun registerEngineTypeMethodForEditorTranslationParserPlugin(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORTRANSLATIONPARSERPLUGIN to "_parse_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORTRANSLATIONPARSERPLUGIN to
-      "_get_recognized_extensions")
-}
-
-private fun registerEngineTypeMethodForEditorUndoRedoManager(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORUNDOREDOMANAGER to "create_action")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORUNDOREDOMANAGER to "commit_action")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORUNDOREDOMANAGER to "is_committing_action")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORUNDOREDOMANAGER to "add_do_method")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORUNDOREDOMANAGER to "add_undo_method")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORUNDOREDOMANAGER to "add_do_property")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORUNDOREDOMANAGER to "add_undo_property")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORUNDOREDOMANAGER to "add_do_reference")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORUNDOREDOMANAGER to "add_undo_reference")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORUNDOREDOMANAGER to "get_object_history_id")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORUNDOREDOMANAGER to "get_history_undo_redo")
-}
-
-private fun registerEngineTypeMethodForEditorVCSInterface(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_initialize")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_set_credentials")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_get_modified_files_data")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_stage_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_unstage_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_discard_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_commit")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_get_diff")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_shut_down")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_get_vcs_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_get_previous_commits")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_get_branch_list")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_get_remotes")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_create_branch")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_remove_branch")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_create_remote")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_remove_remote")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_get_current_branch_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_checkout_branch")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_pull")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_push")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_fetch")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_get_line_diff")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "create_diff_line")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "create_diff_hunk")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "create_diff_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "create_commit")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "create_status_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to
-      "add_diff_hunks_into_diff_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to
-      "add_line_diffs_into_diff_hunk")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "popup_error")
-}
-
 private fun registerEngineTypeMethodForEncodedObjectAsID(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ENCODEDOBJECTASID to "set_object_id")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ENCODEDOBJECTASID to "get_object_id")
@@ -6091,12 +5456,6 @@ private fun registerEngineTypeMethodForFileDialog(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_FILEDIALOG to "get_use_native_dialog")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FILEDIALOG to "deselect_all")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FILEDIALOG to "invalidate")
-}
-
-private fun registerEngineTypeMethodForFileSystemDock(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_FILESYSTEMDOCK to "navigate_to_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_FILESYSTEMDOCK to "add_resource_tooltip_plugin")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_FILESYSTEMDOCK to "remove_resource_tooltip_plugin")
 }
 
 private fun registerEngineTypeMethodForFlowContainer(): Unit {
@@ -11795,51 +11154,12 @@ private fun registerEngineTypeMethodForResourceFormatSaver(): Unit {
 private fun registerEngineTypeMethodForResourceImporter(): Unit {
 }
 
-private fun registerEngineTypeMethodForResourceImporterBMFont(): Unit {
-}
-
-private fun registerEngineTypeMethodForResourceImporterBitMap(): Unit {
-}
-
-private fun registerEngineTypeMethodForResourceImporterCSVTranslation(): Unit {
-}
-
-private fun registerEngineTypeMethodForResourceImporterDynamicFont(): Unit {
-}
-
-private fun registerEngineTypeMethodForResourceImporterImage(): Unit {
-}
-
-private fun registerEngineTypeMethodForResourceImporterImageFont(): Unit {
-}
-
-private fun registerEngineTypeMethodForResourceImporterLayeredTexture(): Unit {
-}
-
 private fun registerEngineTypeMethodForResourceImporterMP3(): Unit {
-}
-
-private fun registerEngineTypeMethodForResourceImporterOBJ(): Unit {
 }
 
 private fun registerEngineTypeMethodForResourceImporterOggVorbis(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEIMPORTEROGGVORBIS to "load_from_buffer")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEIMPORTEROGGVORBIS to "load_from_file")
-}
-
-private fun registerEngineTypeMethodForResourceImporterScene(): Unit {
-}
-
-private fun registerEngineTypeMethodForResourceImporterShaderFile(): Unit {
-}
-
-private fun registerEngineTypeMethodForResourceImporterTexture(): Unit {
-}
-
-private fun registerEngineTypeMethodForResourceImporterTextureAtlas(): Unit {
-}
-
-private fun registerEngineTypeMethodForResourceImporterWAV(): Unit {
 }
 
 private fun registerEngineTypeMethodForResourcePreloader(): Unit {
@@ -12269,26 +11589,6 @@ private fun registerEngineTypeMethodForScript(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPT to "get_property_default_value")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPT to "is_tool")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPT to "is_abstract")
-}
-
-private fun registerEngineTypeMethodForScriptCreateDialog(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTCREATEDIALOG to "config")
-}
-
-private fun registerEngineTypeMethodForScriptEditor(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "get_current_editor")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "get_open_script_editors")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "register_syntax_highlighter")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "unregister_syntax_highlighter")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "goto_line")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "get_current_script")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "get_open_scripts")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "open_script_create_dialog")
-}
-
-private fun registerEngineTypeMethodForScriptEditorBase(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITORBASE to "get_base_editor")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITORBASE to "add_syntax_highlighter")
 }
 
 private fun registerEngineTypeMethodForScriptExtension(): Unit {
@@ -16892,8 +16192,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerSingleton("WorkerThreadPool")
   TypeManager.registerEngineType("ThemeDB", ThemeDB::class) { ThemeDB }
   TypeManager.registerSingleton("ThemeDB")
-  TypeManager.registerEngineType("EditorInterface", EditorInterface::class) { EditorInterface }
-  TypeManager.registerSingleton("EditorInterface")
   TypeManager.registerEngineType("JavaClassWrapper", JavaClassWrapper::class) { JavaClassWrapper }
   TypeManager.registerSingleton("JavaClassWrapper")
   TypeManager.registerEngineType("JavaScriptBridge", JavaScriptBridge::class) { JavaScriptBridge }
@@ -17164,85 +16462,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("ENetMultiplayerPeer", ENetMultiplayerPeer::class,
       ::ENetMultiplayerPeer)
   TypeManager.registerEngineType("ENetPacketPeer", ENetPacketPeer::class, ::ENetPacketPeer)
-  TypeManager.registerEngineType("EditorCommandPalette", EditorCommandPalette::class,
-      ::EditorCommandPalette)
-  TypeManager.registerEngineType("EditorDebuggerPlugin", EditorDebuggerPlugin::class,
-      ::EditorDebuggerPlugin)
-  TypeManager.registerEngineType("EditorDebuggerSession", EditorDebuggerSession::class,
-      ::EditorDebuggerSession)
-  TypeManager.registerEngineType("EditorExportPlatform", EditorExportPlatform::class,
-      ::EditorExportPlatform)
-  TypeManager.registerEngineType("EditorExportPlatformAndroid", EditorExportPlatformAndroid::class,
-      ::EditorExportPlatformAndroid)
-  TypeManager.registerEngineType("EditorExportPlatformIOS", EditorExportPlatformIOS::class,
-      ::EditorExportPlatformIOS)
-  TypeManager.registerEngineType("EditorExportPlatformLinuxBSD",
-      EditorExportPlatformLinuxBSD::class, ::EditorExportPlatformLinuxBSD)
-  TypeManager.registerEngineType("EditorExportPlatformMacOS", EditorExportPlatformMacOS::class,
-      ::EditorExportPlatformMacOS)
-  TypeManager.registerEngineType("EditorExportPlatformPC", EditorExportPlatformPC::class,
-      ::EditorExportPlatformPC)
-  TypeManager.registerEngineType("EditorExportPlatformWeb", EditorExportPlatformWeb::class,
-      ::EditorExportPlatformWeb)
-  TypeManager.registerEngineType("EditorExportPlatformWindows", EditorExportPlatformWindows::class,
-      ::EditorExportPlatformWindows)
-  TypeManager.registerEngineType("EditorExportPlugin", EditorExportPlugin::class,
-      ::EditorExportPlugin)
-  TypeManager.registerEngineType("EditorFeatureProfile", EditorFeatureProfile::class,
-      ::EditorFeatureProfile)
-  TypeManager.registerEngineType("EditorFileDialog", EditorFileDialog::class, ::EditorFileDialog)
-  TypeManager.registerEngineType("EditorFileSystem", EditorFileSystem::class, ::EditorFileSystem)
-  TypeManager.registerEngineType("EditorFileSystemDirectory", EditorFileSystemDirectory::class,
-      ::EditorFileSystemDirectory)
-  TypeManager.registerEngineType("EditorFileSystemImportFormatSupportQuery",
-      EditorFileSystemImportFormatSupportQuery::class, ::EditorFileSystemImportFormatSupportQuery)
-  TypeManager.registerEngineType("EditorImportPlugin", EditorImportPlugin::class,
-      ::EditorImportPlugin)
-  TypeManager.registerEngineType("EditorInspector", EditorInspector::class, ::EditorInspector)
-  TypeManager.registerEngineType("EditorInspectorPlugin", EditorInspectorPlugin::class,
-      ::EditorInspectorPlugin)
-  TypeManager.registerEngineType("EditorNode3DGizmo", EditorNode3DGizmo::class, ::EditorNode3DGizmo)
-  TypeManager.registerEngineType("EditorNode3DGizmoPlugin", EditorNode3DGizmoPlugin::class,
-      ::EditorNode3DGizmoPlugin)
-  TypeManager.registerEngineType("EditorPaths", EditorPaths::class, ::EditorPaths)
-  TypeManager.registerEngineType("EditorPlugin", EditorPlugin::class, ::EditorPlugin)
-  TypeManager.registerEngineType("EditorProperty", EditorProperty::class, ::EditorProperty)
-  TypeManager.registerEngineType("EditorResourceConversionPlugin",
-      EditorResourceConversionPlugin::class, ::EditorResourceConversionPlugin)
-  TypeManager.registerEngineType("EditorResourcePicker", EditorResourcePicker::class,
-      ::EditorResourcePicker)
-  TypeManager.registerEngineType("EditorResourcePreview", EditorResourcePreview::class,
-      ::EditorResourcePreview)
-  TypeManager.registerEngineType("EditorResourcePreviewGenerator",
-      EditorResourcePreviewGenerator::class, ::EditorResourcePreviewGenerator)
-  TypeManager.registerEngineType("EditorResourceTooltipPlugin", EditorResourceTooltipPlugin::class,
-      ::EditorResourceTooltipPlugin)
-  TypeManager.registerEngineType("EditorSceneFormatImporter", EditorSceneFormatImporter::class,
-      ::EditorSceneFormatImporter)
-  TypeManager.registerEngineType("EditorSceneFormatImporterBlend",
-      EditorSceneFormatImporterBlend::class, ::EditorSceneFormatImporterBlend)
-  TypeManager.registerEngineType("EditorSceneFormatImporterFBX",
-      EditorSceneFormatImporterFBX::class, ::EditorSceneFormatImporterFBX)
-  TypeManager.registerEngineType("EditorSceneFormatImporterGLTF",
-      EditorSceneFormatImporterGLTF::class, ::EditorSceneFormatImporterGLTF)
-  TypeManager.registerEngineType("EditorScenePostImport", EditorScenePostImport::class,
-      ::EditorScenePostImport)
-  TypeManager.registerEngineType("EditorScenePostImportPlugin", EditorScenePostImportPlugin::class,
-      ::EditorScenePostImportPlugin)
-  TypeManager.registerEngineType("EditorScript", EditorScript::class, ::EditorScript)
-  TypeManager.registerEngineType("EditorScriptPicker", EditorScriptPicker::class,
-      ::EditorScriptPicker)
-  TypeManager.registerEngineType("EditorSelection", EditorSelection::class, ::EditorSelection)
-  TypeManager.registerEngineType("EditorSettings", EditorSettings::class, ::EditorSettings)
-  TypeManager.registerEngineType("EditorSpinSlider", EditorSpinSlider::class, ::EditorSpinSlider)
-  TypeManager.registerEngineType("EditorSyntaxHighlighter", EditorSyntaxHighlighter::class,
-      ::EditorSyntaxHighlighter)
-  TypeManager.registerEngineType("EditorTranslationParserPlugin",
-      EditorTranslationParserPlugin::class, ::EditorTranslationParserPlugin)
-  TypeManager.registerEngineType("EditorUndoRedoManager", EditorUndoRedoManager::class,
-      ::EditorUndoRedoManager)
-  TypeManager.registerEngineType("EditorVCSInterface", EditorVCSInterface::class,
-      ::EditorVCSInterface)
   TypeManager.registerEngineType("EncodedObjectAsID", EncodedObjectAsID::class, ::EncodedObjectAsID)
   TypeManager.registerEngineType("EngineProfiler", EngineProfiler::class, ::EngineProfiler)
   TypeManager.registerEngineType("Environment", Environment::class, ::Environment)
@@ -17250,7 +16469,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("FastNoiseLite", FastNoiseLite::class, ::FastNoiseLite)
   TypeManager.registerEngineType("FileAccess", FileAccess::class, ::FileAccess)
   TypeManager.registerEngineType("FileDialog", FileDialog::class, ::FileDialog)
-  TypeManager.registerEngineType("FileSystemDock", FileSystemDock::class, ::FileSystemDock)
   TypeManager.registerEngineType("FlowContainer", FlowContainer::class, ::FlowContainer)
   TypeManager.registerEngineType("FogMaterial", FogMaterial::class, ::FogMaterial)
   TypeManager.registerEngineType("FogVolume", FogVolume::class, ::FogVolume)
@@ -17651,36 +16869,10 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("ResourceFormatSaver", ResourceFormatSaver::class,
       ::ResourceFormatSaver)
   TypeManager.registerEngineType("ResourceImporter", ResourceImporter::class, ::ResourceImporter)
-  TypeManager.registerEngineType("ResourceImporterBMFont", ResourceImporterBMFont::class,
-      ::ResourceImporterBMFont)
-  TypeManager.registerEngineType("ResourceImporterBitMap", ResourceImporterBitMap::class,
-      ::ResourceImporterBitMap)
-  TypeManager.registerEngineType("ResourceImporterCSVTranslation",
-      ResourceImporterCSVTranslation::class, ::ResourceImporterCSVTranslation)
-  TypeManager.registerEngineType("ResourceImporterDynamicFont", ResourceImporterDynamicFont::class,
-      ::ResourceImporterDynamicFont)
-  TypeManager.registerEngineType("ResourceImporterImage", ResourceImporterImage::class,
-      ::ResourceImporterImage)
-  TypeManager.registerEngineType("ResourceImporterImageFont", ResourceImporterImageFont::class,
-      ::ResourceImporterImageFont)
-  TypeManager.registerEngineType("ResourceImporterLayeredTexture",
-      ResourceImporterLayeredTexture::class, ::ResourceImporterLayeredTexture)
   TypeManager.registerEngineType("ResourceImporterMP3", ResourceImporterMP3::class,
       ::ResourceImporterMP3)
-  TypeManager.registerEngineType("ResourceImporterOBJ", ResourceImporterOBJ::class,
-      ::ResourceImporterOBJ)
   TypeManager.registerEngineType("ResourceImporterOggVorbis", ResourceImporterOggVorbis::class,
       ::ResourceImporterOggVorbis)
-  TypeManager.registerEngineType("ResourceImporterScene", ResourceImporterScene::class,
-      ::ResourceImporterScene)
-  TypeManager.registerEngineType("ResourceImporterShaderFile", ResourceImporterShaderFile::class,
-      ::ResourceImporterShaderFile)
-  TypeManager.registerEngineType("ResourceImporterTexture", ResourceImporterTexture::class,
-      ::ResourceImporterTexture)
-  TypeManager.registerEngineType("ResourceImporterTextureAtlas",
-      ResourceImporterTextureAtlas::class, ::ResourceImporterTextureAtlas)
-  TypeManager.registerEngineType("ResourceImporterWAV", ResourceImporterWAV::class,
-      ::ResourceImporterWAV)
   TypeManager.registerEngineType("ResourcePreloader", ResourcePreloader::class, ::ResourcePreloader)
   TypeManager.registerEngineType("RibbonTrailMesh", RibbonTrailMesh::class, ::RibbonTrailMesh)
   TypeManager.registerEngineType("RichTextEffect", RichTextEffect::class, ::RichTextEffect)
@@ -17695,10 +16887,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("SceneTree", SceneTree::class, ::SceneTree)
   TypeManager.registerEngineType("SceneTreeTimer", SceneTreeTimer::class, ::SceneTreeTimer)
   TypeManager.registerEngineType("Script", Script::class, ::Script)
-  TypeManager.registerEngineType("ScriptCreateDialog", ScriptCreateDialog::class,
-      ::ScriptCreateDialog)
-  TypeManager.registerEngineType("ScriptEditor", ScriptEditor::class, ::ScriptEditor)
-  TypeManager.registerEngineType("ScriptEditorBase", ScriptEditorBase::class, ::ScriptEditorBase)
   TypeManager.registerEngineType("ScriptExtension", ScriptExtension::class, ::ScriptExtension)
   TypeManager.registerEngineType("ScriptLanguage", ScriptLanguage::class, ::ScriptLanguage)
   TypeManager.registerEngineType("ScriptLanguageExtension", ScriptLanguageExtension::class,
@@ -18149,7 +17337,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[ResourceUID::class] = OBJECT
   variantMapper[WorkerThreadPool::class] = OBJECT
   variantMapper[ThemeDB::class] = OBJECT
-  variantMapper[EditorInterface::class] = OBJECT
   variantMapper[JavaClassWrapper::class] = OBJECT
   variantMapper[JavaScriptBridge::class] = OBJECT
   variantMapper[DisplayServer::class] = OBJECT
@@ -18344,51 +17531,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[ENetConnection::class] = OBJECT
   variantMapper[ENetMultiplayerPeer::class] = OBJECT
   variantMapper[ENetPacketPeer::class] = OBJECT
-  variantMapper[EditorCommandPalette::class] = OBJECT
-  variantMapper[EditorDebuggerPlugin::class] = OBJECT
-  variantMapper[EditorDebuggerSession::class] = OBJECT
-  variantMapper[EditorExportPlatform::class] = OBJECT
-  variantMapper[EditorExportPlatformAndroid::class] = OBJECT
-  variantMapper[EditorExportPlatformIOS::class] = OBJECT
-  variantMapper[EditorExportPlatformLinuxBSD::class] = OBJECT
-  variantMapper[EditorExportPlatformMacOS::class] = OBJECT
-  variantMapper[EditorExportPlatformPC::class] = OBJECT
-  variantMapper[EditorExportPlatformWeb::class] = OBJECT
-  variantMapper[EditorExportPlatformWindows::class] = OBJECT
-  variantMapper[EditorExportPlugin::class] = OBJECT
-  variantMapper[EditorFeatureProfile::class] = OBJECT
-  variantMapper[EditorFileDialog::class] = OBJECT
-  variantMapper[EditorFileSystem::class] = OBJECT
-  variantMapper[EditorFileSystemDirectory::class] = OBJECT
-  variantMapper[EditorFileSystemImportFormatSupportQuery::class] = OBJECT
-  variantMapper[EditorImportPlugin::class] = OBJECT
-  variantMapper[EditorInspector::class] = OBJECT
-  variantMapper[EditorInspectorPlugin::class] = OBJECT
-  variantMapper[EditorNode3DGizmo::class] = OBJECT
-  variantMapper[EditorNode3DGizmoPlugin::class] = OBJECT
-  variantMapper[EditorPaths::class] = OBJECT
-  variantMapper[EditorPlugin::class] = OBJECT
-  variantMapper[EditorProperty::class] = OBJECT
-  variantMapper[EditorResourceConversionPlugin::class] = OBJECT
-  variantMapper[EditorResourcePicker::class] = OBJECT
-  variantMapper[EditorResourcePreview::class] = OBJECT
-  variantMapper[EditorResourcePreviewGenerator::class] = OBJECT
-  variantMapper[EditorResourceTooltipPlugin::class] = OBJECT
-  variantMapper[EditorSceneFormatImporter::class] = OBJECT
-  variantMapper[EditorSceneFormatImporterBlend::class] = OBJECT
-  variantMapper[EditorSceneFormatImporterFBX::class] = OBJECT
-  variantMapper[EditorSceneFormatImporterGLTF::class] = OBJECT
-  variantMapper[EditorScenePostImport::class] = OBJECT
-  variantMapper[EditorScenePostImportPlugin::class] = OBJECT
-  variantMapper[EditorScript::class] = OBJECT
-  variantMapper[EditorScriptPicker::class] = OBJECT
-  variantMapper[EditorSelection::class] = OBJECT
-  variantMapper[EditorSettings::class] = OBJECT
-  variantMapper[EditorSpinSlider::class] = OBJECT
-  variantMapper[EditorSyntaxHighlighter::class] = OBJECT
-  variantMapper[EditorTranslationParserPlugin::class] = OBJECT
-  variantMapper[EditorUndoRedoManager::class] = OBJECT
-  variantMapper[EditorVCSInterface::class] = OBJECT
   variantMapper[EncodedObjectAsID::class] = OBJECT
   variantMapper[EngineProfiler::class] = OBJECT
   variantMapper[Environment::class] = OBJECT
@@ -18396,7 +17538,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[FastNoiseLite::class] = OBJECT
   variantMapper[FileAccess::class] = OBJECT
   variantMapper[FileDialog::class] = OBJECT
-  variantMapper[FileSystemDock::class] = OBJECT
   variantMapper[FlowContainer::class] = OBJECT
   variantMapper[FogMaterial::class] = OBJECT
   variantMapper[FogVolume::class] = OBJECT
@@ -18692,21 +17833,8 @@ public fun registerVariantMapping(): Unit {
   variantMapper[ResourceFormatLoader::class] = OBJECT
   variantMapper[ResourceFormatSaver::class] = OBJECT
   variantMapper[ResourceImporter::class] = OBJECT
-  variantMapper[ResourceImporterBMFont::class] = OBJECT
-  variantMapper[ResourceImporterBitMap::class] = OBJECT
-  variantMapper[ResourceImporterCSVTranslation::class] = OBJECT
-  variantMapper[ResourceImporterDynamicFont::class] = OBJECT
-  variantMapper[ResourceImporterImage::class] = OBJECT
-  variantMapper[ResourceImporterImageFont::class] = OBJECT
-  variantMapper[ResourceImporterLayeredTexture::class] = OBJECT
   variantMapper[ResourceImporterMP3::class] = OBJECT
-  variantMapper[ResourceImporterOBJ::class] = OBJECT
   variantMapper[ResourceImporterOggVorbis::class] = OBJECT
-  variantMapper[ResourceImporterScene::class] = OBJECT
-  variantMapper[ResourceImporterShaderFile::class] = OBJECT
-  variantMapper[ResourceImporterTexture::class] = OBJECT
-  variantMapper[ResourceImporterTextureAtlas::class] = OBJECT
-  variantMapper[ResourceImporterWAV::class] = OBJECT
   variantMapper[ResourcePreloader::class] = OBJECT
   variantMapper[RibbonTrailMesh::class] = OBJECT
   variantMapper[RichTextEffect::class] = OBJECT
@@ -18720,9 +17848,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[SceneTree::class] = OBJECT
   variantMapper[SceneTreeTimer::class] = OBJECT
   variantMapper[Script::class] = OBJECT
-  variantMapper[ScriptCreateDialog::class] = OBJECT
-  variantMapper[ScriptEditor::class] = OBJECT
-  variantMapper[ScriptEditorBase::class] = OBJECT
   variantMapper[ScriptExtension::class] = OBJECT
   variantMapper[ScriptLanguage::class] = OBJECT
   variantMapper[ScriptLanguageExtension::class] = OBJECT
@@ -19027,7 +18152,6 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForResourceUID()
   registerEngineTypeMethodForWorkerThreadPool()
   registerEngineTypeMethodForThemeDB()
-  registerEngineTypeMethodForEditorInterface()
   registerEngineTypeMethodForJavaClassWrapper()
   registerEngineTypeMethodForJavaScriptBridge()
   registerEngineTypeMethodForDisplayServer()
@@ -19222,51 +18346,6 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForENetConnection()
   registerEngineTypeMethodForENetMultiplayerPeer()
   registerEngineTypeMethodForENetPacketPeer()
-  registerEngineTypeMethodForEditorCommandPalette()
-  registerEngineTypeMethodForEditorDebuggerPlugin()
-  registerEngineTypeMethodForEditorDebuggerSession()
-  registerEngineTypeMethodForEditorExportPlatform()
-  registerEngineTypeMethodForEditorExportPlatformAndroid()
-  registerEngineTypeMethodForEditorExportPlatformIOS()
-  registerEngineTypeMethodForEditorExportPlatformLinuxBSD()
-  registerEngineTypeMethodForEditorExportPlatformMacOS()
-  registerEngineTypeMethodForEditorExportPlatformPC()
-  registerEngineTypeMethodForEditorExportPlatformWeb()
-  registerEngineTypeMethodForEditorExportPlatformWindows()
-  registerEngineTypeMethodForEditorExportPlugin()
-  registerEngineTypeMethodForEditorFeatureProfile()
-  registerEngineTypeMethodForEditorFileDialog()
-  registerEngineTypeMethodForEditorFileSystem()
-  registerEngineTypeMethodForEditorFileSystemDirectory()
-  registerEngineTypeMethodForEditorFileSystemImportFormatSupportQuery()
-  registerEngineTypeMethodForEditorImportPlugin()
-  registerEngineTypeMethodForEditorInspector()
-  registerEngineTypeMethodForEditorInspectorPlugin()
-  registerEngineTypeMethodForEditorNode3DGizmo()
-  registerEngineTypeMethodForEditorNode3DGizmoPlugin()
-  registerEngineTypeMethodForEditorPaths()
-  registerEngineTypeMethodForEditorPlugin()
-  registerEngineTypeMethodForEditorProperty()
-  registerEngineTypeMethodForEditorResourceConversionPlugin()
-  registerEngineTypeMethodForEditorResourcePicker()
-  registerEngineTypeMethodForEditorResourcePreview()
-  registerEngineTypeMethodForEditorResourcePreviewGenerator()
-  registerEngineTypeMethodForEditorResourceTooltipPlugin()
-  registerEngineTypeMethodForEditorSceneFormatImporter()
-  registerEngineTypeMethodForEditorSceneFormatImporterBlend()
-  registerEngineTypeMethodForEditorSceneFormatImporterFBX()
-  registerEngineTypeMethodForEditorSceneFormatImporterGLTF()
-  registerEngineTypeMethodForEditorScenePostImport()
-  registerEngineTypeMethodForEditorScenePostImportPlugin()
-  registerEngineTypeMethodForEditorScript()
-  registerEngineTypeMethodForEditorScriptPicker()
-  registerEngineTypeMethodForEditorSelection()
-  registerEngineTypeMethodForEditorSettings()
-  registerEngineTypeMethodForEditorSpinSlider()
-  registerEngineTypeMethodForEditorSyntaxHighlighter()
-  registerEngineTypeMethodForEditorTranslationParserPlugin()
-  registerEngineTypeMethodForEditorUndoRedoManager()
-  registerEngineTypeMethodForEditorVCSInterface()
   registerEngineTypeMethodForEncodedObjectAsID()
   registerEngineTypeMethodForEngineProfiler()
   registerEngineTypeMethodForEnvironment()
@@ -19274,7 +18353,6 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForFastNoiseLite()
   registerEngineTypeMethodForFileAccess()
   registerEngineTypeMethodForFileDialog()
-  registerEngineTypeMethodForFileSystemDock()
   registerEngineTypeMethodForFlowContainer()
   registerEngineTypeMethodForFogMaterial()
   registerEngineTypeMethodForFogVolume()
@@ -19570,21 +18648,8 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForResourceFormatLoader()
   registerEngineTypeMethodForResourceFormatSaver()
   registerEngineTypeMethodForResourceImporter()
-  registerEngineTypeMethodForResourceImporterBMFont()
-  registerEngineTypeMethodForResourceImporterBitMap()
-  registerEngineTypeMethodForResourceImporterCSVTranslation()
-  registerEngineTypeMethodForResourceImporterDynamicFont()
-  registerEngineTypeMethodForResourceImporterImage()
-  registerEngineTypeMethodForResourceImporterImageFont()
-  registerEngineTypeMethodForResourceImporterLayeredTexture()
   registerEngineTypeMethodForResourceImporterMP3()
-  registerEngineTypeMethodForResourceImporterOBJ()
   registerEngineTypeMethodForResourceImporterOggVorbis()
-  registerEngineTypeMethodForResourceImporterScene()
-  registerEngineTypeMethodForResourceImporterShaderFile()
-  registerEngineTypeMethodForResourceImporterTexture()
-  registerEngineTypeMethodForResourceImporterTextureAtlas()
-  registerEngineTypeMethodForResourceImporterWAV()
   registerEngineTypeMethodForResourcePreloader()
   registerEngineTypeMethodForRibbonTrailMesh()
   registerEngineTypeMethodForRichTextEffect()
@@ -19598,9 +18663,6 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForSceneTree()
   registerEngineTypeMethodForSceneTreeTimer()
   registerEngineTypeMethodForScript()
-  registerEngineTypeMethodForScriptCreateDialog()
-  registerEngineTypeMethodForScriptEditor()
-  registerEngineTypeMethodForScriptEditorBase()
   registerEngineTypeMethodForScriptExtension()
   registerEngineTypeMethodForScriptLanguage()
   registerEngineTypeMethodForScriptLanguageExtension()
