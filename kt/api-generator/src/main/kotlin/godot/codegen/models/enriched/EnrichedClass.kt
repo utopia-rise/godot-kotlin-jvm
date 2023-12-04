@@ -1,5 +1,6 @@
 package godot.codegen.models.enriched
 
+import godot.codegen.models.ApiType
 import godot.codegen.models.Class
 import godot.codegen.models.custom.AdditionalImport
 import godot.codegen.traits.TypedTrait
@@ -14,6 +15,7 @@ class EnrichedClass(val internal: Class) : TypedTrait {
     val engineClassDBIndexName = "ENGINECLASS_${internal.name.uppercase(Locale.US)}"
     val properties= internal.properties?.toEnriched() ?: listOf()
     val methods = internal.methods?.toEnriched(engineClassDBIndexName) ?: listOf()
+    val apiType = ApiType.from(internal.apiType)
 
     override val type = name
 
