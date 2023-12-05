@@ -99,6 +99,10 @@ internal object MemoryManager {
         }
     }
 
+    fun getOrCreateNodePath(key: StringName): NodePath {
+        return getOrCreateNodePath(key.toString())
+    }
+
     @Suppress("unused")
     val isClosed: Boolean
         get() = gcState == GCState.CLOSED

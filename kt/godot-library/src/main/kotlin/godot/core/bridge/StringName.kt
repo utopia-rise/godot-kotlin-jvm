@@ -63,3 +63,8 @@ class StringName : NativeCoreType {
         external fun engine_call_operator_string(_handle: VoidPtr)
     }
 }
+
+@Suppress("NOTHING_TO_INLINE")
+fun String.asStringName(): StringName {
+    return MemoryManager.getOrCreateStringName(this)
+}

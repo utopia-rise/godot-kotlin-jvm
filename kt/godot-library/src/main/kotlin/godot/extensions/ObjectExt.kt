@@ -4,7 +4,7 @@ package godot.extensions
 import godot.Object
 import godot.core.Callable
 import godot.core.VariantArray
-import godot.extensions.asStringName
+import godot.core.asStringName
 import godot.signals.Signal
 import godot.util.camelToSnakeCase
 import kotlin.reflect.KFunction

@@ -38,7 +38,6 @@ import godot.tools.common.constants.VARIANT_TYPE_ANY
 import godot.tools.common.constants.VARIANT_TYPE_LONG
 import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
-import godot.tools.common.constants.godotExtensionsPackage
 import godot.tools.common.constants.godotUtilPackage
 import godot.tools.common.constants.signalPackage
 import java.util.*
@@ -736,7 +735,7 @@ class GenerationService(
 
     private fun TypeSpec.Builder.generateTypesafeRpc() {
         val camelToSnakeCaseUtilFunction = MemberName(godotUtilPackage, "camelToSnakeCase")
-        val asStringNameUtilFunction = MemberName(godotExtensionsPackage, "asStringName")
+        val asStringNameUtilFunction = MemberName(godotCorePackage, "asStringName")
         for (i in 0..10) {
             val kFunctionTypeParameters = mutableListOf<TypeVariableName>()
             if (i != 0) {

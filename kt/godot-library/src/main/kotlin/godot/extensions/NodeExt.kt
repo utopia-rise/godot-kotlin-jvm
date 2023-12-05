@@ -4,6 +4,7 @@ package godot.extensions
 import godot.Node
 import godot.core.NodePath
 import godot.core.StringName
+import godot.core.asNodePath
 
 @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
 inline fun <T : Node> Node.getNodeAs(path: String) = getNode(path.asNodePath()) as T?
