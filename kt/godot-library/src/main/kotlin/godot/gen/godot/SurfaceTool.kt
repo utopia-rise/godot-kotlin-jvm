@@ -16,6 +16,7 @@ import godot.core.PackedVector2Array
 import godot.core.PackedVector3Array
 import godot.core.Plane
 import godot.core.Transform3D
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -37,6 +38,7 @@ import godot.core.VariantType.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Float
@@ -113,8 +115,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun setSkinWeightCount(count: SkinWeightCount): Unit {
     TransferContext.writeArguments(LONG to count.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_SKIN_WEIGHT_COUNT,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSkinWeightCountPtr, NIL)
   }
 
   /**
@@ -126,8 +127,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun getSkinWeightCount(): SkinWeightCount {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_SKIN_WEIGHT_COUNT,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSkinWeightCountPtr, LONG)
     return SurfaceTool.SkinWeightCount.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -138,7 +138,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun setCustomFormat(channelIndex: Int, format: CustomFormat): Unit {
     TransferContext.writeArguments(LONG to channelIndex.toLong(), LONG to format.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_CUSTOM_FORMAT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCustomFormatPtr, NIL)
   }
 
   /**
@@ -146,7 +146,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun getCustomFormat(channelIndex: Int): CustomFormat {
     TransferContext.writeArguments(LONG to channelIndex.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_CUSTOM_FORMAT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCustomFormatPtr, LONG)
     return SurfaceTool.CustomFormat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -155,7 +155,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun begin(primitive: Mesh.PrimitiveType): Unit {
     TransferContext.writeArguments(LONG to primitive.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_BEGIN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.beginPtr, NIL)
   }
 
   /**
@@ -163,7 +163,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun addVertex(vertex: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to vertex)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_VERTEX, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addVertexPtr, NIL)
   }
 
   /**
@@ -173,7 +173,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun setColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_COLOR, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
   }
 
   /**
@@ -181,7 +181,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun setNormal(normal: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to normal)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_NORMAL, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNormalPtr, NIL)
   }
 
   /**
@@ -189,7 +189,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun setTangent(tangent: Plane): Unit {
     TransferContext.writeArguments(PLANE to tangent)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_TANGENT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTangentPtr, NIL)
   }
 
   /**
@@ -197,7 +197,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun setUv(uv: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to uv)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_UV, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUvPtr, NIL)
   }
 
   /**
@@ -205,7 +205,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun setUv2(uv2: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to uv2)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_UV2, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUv2Ptr, NIL)
   }
 
   /**
@@ -213,7 +213,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun setBones(bones: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to bones)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_BONES, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBonesPtr, NIL)
   }
 
   /**
@@ -221,7 +221,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun setWeights(weights: PackedFloat32Array): Unit {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to weights)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_WEIGHTS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setWeightsPtr, NIL)
   }
 
   /**
@@ -231,7 +231,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun setCustom(channelIndex: Int, customColor: Color): Unit {
     TransferContext.writeArguments(LONG to channelIndex.toLong(), COLOR to customColor)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_CUSTOM, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCustomPtr, NIL)
   }
 
   /**
@@ -241,7 +241,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun setSmoothGroup(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_SMOOTH_GROUP, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSmoothGroupPtr, NIL)
   }
 
   /**
@@ -259,7 +259,7 @@ public open class SurfaceTool : RefCounted() {
     tangents: VariantArray<Plane> = godot.core.variantArrayOf(),
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices, PACKED_VECTOR2_ARRAY to uvs, PACKED_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uv2s, PACKED_VECTOR3_ARRAY to normals, ARRAY to tangents)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_TRIANGLE_FAN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addTriangleFanPtr, NIL)
   }
 
   /**
@@ -267,7 +267,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun addIndex(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_INDEX, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addIndexPtr, NIL)
   }
 
   /**
@@ -275,7 +275,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun index(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_INDEX, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.indexPtr, NIL)
   }
 
   /**
@@ -283,7 +283,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun deindex(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_DEINDEX, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.deindexPtr, NIL)
   }
 
   /**
@@ -296,7 +296,7 @@ public open class SurfaceTool : RefCounted() {
   @JvmOverloads
   public fun generateNormals(flip: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to flip)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GENERATE_NORMALS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.generateNormalsPtr, NIL)
   }
 
   /**
@@ -304,7 +304,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun generateTangents(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GENERATE_TANGENTS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.generateTangentsPtr, NIL)
   }
 
   /**
@@ -312,8 +312,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun optimizeIndicesForCache(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SURFACETOOL_OPTIMIZE_INDICES_FOR_CACHE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.optimizeIndicesForCachePtr, NIL)
   }
 
   /**
@@ -321,8 +320,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun getAabb(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_AABB,
-        godot.core.VariantType.AABB)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAabbPtr, godot.core.VariantType.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
   }
 
@@ -334,8 +332,7 @@ public open class SurfaceTool : RefCounted() {
   @JvmOverloads
   public fun generateLod(ndThreshold: Float, targetIndexCount: Int = 3): PackedInt32Array {
     TransferContext.writeArguments(DOUBLE to ndThreshold.toDouble(), LONG to targetIndexCount.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GENERATE_LOD,
-        PACKED_INT_32_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.generateLodPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
@@ -344,7 +341,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun setMaterial(material: Material): Unit {
     TransferContext.writeArguments(OBJECT to material)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_MATERIAL, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
   }
 
   /**
@@ -352,8 +349,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun getPrimitiveType(): Mesh.PrimitiveType {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GET_PRIMITIVE_TYPE,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getPrimitiveTypePtr, LONG)
     return Mesh.PrimitiveType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -362,7 +358,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_CLEAR, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   /**
@@ -370,7 +366,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun createFrom(existing: Mesh, surface: Int): Unit {
     TransferContext.writeArguments(OBJECT to existing, LONG to surface.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_CREATE_FROM, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.createFromPtr, NIL)
   }
 
   /**
@@ -382,8 +378,7 @@ public open class SurfaceTool : RefCounted() {
     blendShape: String,
   ): Unit {
     TransferContext.writeArguments(OBJECT to existing, LONG to surface.toLong(), STRING to blendShape)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_CREATE_FROM_BLEND_SHAPE,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.createFromBlendShapePtr, NIL)
   }
 
   /**
@@ -395,7 +390,7 @@ public open class SurfaceTool : RefCounted() {
     transform: Transform3D,
   ): Unit {
     TransferContext.writeArguments(OBJECT to existing, LONG to surface.toLong(), TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_APPEND_FROM, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.appendFromPtr, NIL)
   }
 
   /**
@@ -406,7 +401,7 @@ public open class SurfaceTool : RefCounted() {
   @JvmOverloads
   public fun commit(existing: ArrayMesh? = null, flags: Long = 0): ArrayMesh? {
     TransferContext.writeArguments(OBJECT to existing, LONG to flags)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_COMMIT, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.commitPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?)
   }
 
@@ -415,7 +410,7 @@ public open class SurfaceTool : RefCounted() {
    */
   public fun commitToArrays(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_COMMIT_TO_ARRAYS, ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.commitToArraysPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
@@ -494,4 +489,82 @@ public open class SurfaceTool : RefCounted() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setSkinWeightCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_skin_weight_count")
+
+    public val getSkinWeightCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "get_skin_weight_count")
+
+    public val setCustomFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_custom_format")
+
+    public val getCustomFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "get_custom_format")
+
+    public val beginPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "begin")
+
+    public val addVertexPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "add_vertex")
+
+    public val setColorPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "set_color")
+
+    public val setNormalPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "set_normal")
+
+    public val setTangentPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "set_tangent")
+
+    public val setUvPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "set_uv")
+
+    public val setUv2Ptr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "set_uv2")
+
+    public val setBonesPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "set_bones")
+
+    public val setWeightsPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "set_weights")
+
+    public val setCustomPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "set_custom")
+
+    public val setSmoothGroupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_smooth_group")
+
+    public val addTriangleFanPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "add_triangle_fan")
+
+    public val addIndexPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "add_index")
+
+    public val indexPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "index")
+
+    public val deindexPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "deindex")
+
+    public val generateNormalsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "generate_normals")
+
+    public val generateTangentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "generate_tangents")
+
+    public val optimizeIndicesForCachePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "optimize_indices_for_cache")
+
+    public val getAabbPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "get_aabb")
+
+    public val generateLodPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "generate_lod")
+
+    public val setMaterialPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "set_material")
+
+    public val getPrimitiveTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "get_primitive_type")
+
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "clear")
+
+    public val createFromPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "create_from")
+
+    public val createFromBlendShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "create_from_blend_shape")
+
+    public val appendFromPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "append_from")
+
+    public val commitPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "commit")
+
+    public val commitToArraysPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "commit_to_arrays")
+  }
 }

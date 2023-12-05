@@ -7,11 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -33,12 +35,12 @@ public open class BoxContainer : Container() {
   public var alignment: AlignmentMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_GET_ALIGNMENT, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAlignmentPtr, LONG)
       return BoxContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_SET_ALIGNMENT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAlignmentPtr, NIL)
     }
 
   /**
@@ -49,12 +51,12 @@ public open class BoxContainer : Container() {
   public var vertical: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_IS_VERTICAL, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_SET_VERTICAL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -67,7 +69,7 @@ public open class BoxContainer : Container() {
    */
   public fun addSpacer(begin: Boolean): Control? {
     TransferContext.writeArguments(BOOL to begin)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXCONTAINER_ADD_SPACER, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.addSpacerPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Control?)
   }
 
@@ -99,4 +101,19 @@ public open class BoxContainer : Container() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val addSpacerPtr: VoidPtr = TypeManager.getMethodBindPtr("BoxContainer", "add_spacer")
+
+    public val setAlignmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BoxContainer", "set_alignment")
+
+    public val getAlignmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BoxContainer", "get_alignment")
+
+    public val setVerticalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BoxContainer", "set_vertical")
+
+    public val isVerticalPtr: VoidPtr = TypeManager.getMethodBindPtr("BoxContainer", "is_vertical")
+  }
 }

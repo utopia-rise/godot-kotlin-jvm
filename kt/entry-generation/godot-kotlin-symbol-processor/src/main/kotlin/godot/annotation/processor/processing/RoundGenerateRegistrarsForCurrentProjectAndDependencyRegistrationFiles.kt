@@ -6,7 +6,7 @@ import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.symbol.KSAnnotated
 import godot.annotation.processor.Settings
-import godot.annotation.processor.ext.provideRegistrationFileDir
+import godot.annotation.processor.ext.provideRegistrationFilePathForInitialGenerationWithoutExtension
 import godot.annotation.processor.utils.JvmTypeProvider
 import godot.annotation.processor.utils.LoggerWrapper
 import godot.annotation.processor.visitor.MetadataAnnotationVisitor
@@ -14,6 +14,7 @@ import godot.annotation.processor.visitor.RegistrationAnnotationVisitor
 import godot.entrygenerator.EntryGenerator
 import godot.tools.common.constants.FileExtensions
 import godot.tools.common.constants.godotEntryBasePackage
+import java.io.File
 
 /**
  * First round:
@@ -31,14 +32,7 @@ internal class RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistration
         val registerAnnotationVisitor = RegistrationAnnotationVisitor(
             isFqNameRegistrationEnabled = settings.isFqNameRegistrationEnabled,
             classNamePrefix = settings.classPrefix,
-            localResourcePathProvider = { fqName, registeredName ->
-                //  if the fqName does not contain a '.' it means the class is in the root package
-                if (settings.isRegistrationFileHierarchyEnabled && fqName.contains(".")) {
-                    "${fqName.substringBeforeLast(".").replace(".", "/")}/$registeredName"
-                } else {
-                    registeredName
-                }.let { localPath -> "$localPath.${FileExtensions.GodotKotlinJvm.registrationFile}" }
-            }
+            projectBaseDir = settings.projectBaseDir,
         )
 
         resolver.getNewFiles().ifEmpty { resolver.getAllFiles() }.toList().map {
@@ -54,13 +48,29 @@ internal class RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistration
         // generate entry files for this compilation
         EntryGenerator.generateEntryFiles(
             projectName = settings.projectName,
-            projectDir = settings.projectBasePath.absolutePath,
+            projectDir = settings.projectBaseDir.absolutePath,
             // in this first round, the received metadata containers are all from dependencies as the ones from this compilation will only be present in the next processing round
             classRegistrarFromDependencyCount = metadataAnnotationVisitor.registeredClassMetadataContainers.size,
             logger = LoggerWrapper(logger),
             sourceFiles = registerAnnotationVisitor.sourceFilesContainingRegisteredClasses,
-            registrationFileBaseDir = settings.registrationBaseDirPathRelativeToProjectDir,
             jvmTypeFqNamesProvider = JvmTypeProvider(),
+            compilationTimeRelativeRegistrationFilePathProvider = { registeredClass ->
+                val registrationFile = blackboard
+                    .existingRegistrationFilesMap["${registeredClass.registeredName}.${FileExtensions.GodotKotlinJvm.registrationFile}"]
+                    ?.relativeTo(settings.projectBaseDir)
+                    ?: File(
+                        provideRegistrationFilePathForInitialGenerationWithoutExtension(
+                            isRegistrationFileHierarchyEnabled = settings.isRegistrationFileHierarchyEnabled,
+                            fqName = registeredClass.fqName,
+                            registeredName = registeredClass.registeredName,
+                            compilationProjectName = settings.projectName,
+                            classProjectName = settings.projectName, // same as project name as no registration file exists for this class, hence it is new / renamed
+                            registrationFileOutDir = settings.registrationBaseDirPathRelativeToProjectDir
+                        )
+                    )
+
+                registrationFile.invariantSeparatorsPath
+            },
             classRegistrarAppendableProvider = { registeredClass ->
                 codeGenerator.createNewFile(
                     Dependencies(
@@ -91,14 +101,18 @@ internal class RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistration
                 registrationFileAppendableProvider = { metadata ->
                     blackboard.alreadyGeneratedRegistrationFiles.add(metadata.fqName)
 
-                    val resourcePathFromProjectRoot = metadata.provideRegistrationFileDir(
-                        currentCompilationProjectName = settings.projectName,
-                        registrationBaseDirPathRelativeToProjectDir = settings.registrationBaseDirPathRelativeToProjectDir
+                    val registrationFile = provideRegistrationFilePathForInitialGenerationWithoutExtension(
+                        isRegistrationFileHierarchyEnabled = settings.isRegistrationFileHierarchyEnabled,
+                        fqName = metadata.fqName,
+                        registeredName = metadata.registeredName,
+                        compilationProjectName = settings.projectName,
+                        classProjectName = metadata.projectName,
+                        registrationFileOutDir = settings.registrationBaseDirPathRelativeToProjectDir
                     )
 
                     codeGenerator.createNewFileByPath(
                         Dependencies.ALL_FILES,
-                        "entryFiles/${resourcePathFromProjectRoot.removeSuffix(".${FileExtensions.GodotKotlinJvm.registrationFile}")}", // suffix will be added by the codeGenerator of KSP and is defined one line below
+                        "entryFiles/${registrationFile.removeSuffix(".${FileExtensions.GodotKotlinJvm.registrationFile}")}", // suffix will be added by the codeGenerator of KSP and is defined one line below
                         FileExtensions.GodotKotlinJvm.registrationFile
                     ).bufferedWriter()
                 }

@@ -11,6 +11,8 @@ import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.StringName
+import godot.core.TypeManager
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -157,4 +159,37 @@ public open class ResourceFormatLoader : RefCounted() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _getRecognizedExtensionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceFormatLoader", "_get_recognized_extensions")
+
+    public val _recognizePathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceFormatLoader", "_recognize_path")
+
+    public val _handlesTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceFormatLoader", "_handles_type")
+
+    public val _getResourceTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceFormatLoader", "_get_resource_type")
+
+    public val _getResourceScriptClassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceFormatLoader", "_get_resource_script_class")
+
+    public val _getResourceUidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceFormatLoader", "_get_resource_uid")
+
+    public val _getDependenciesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceFormatLoader", "_get_dependencies")
+
+    public val _renameDependenciesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceFormatLoader", "_rename_dependencies")
+
+    public val _existsPtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceFormatLoader", "_exists")
+
+    public val _getClassesUsedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceFormatLoader", "_get_classes_used")
+
+    public val _loadPtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceFormatLoader", "_load")
+  }
 }

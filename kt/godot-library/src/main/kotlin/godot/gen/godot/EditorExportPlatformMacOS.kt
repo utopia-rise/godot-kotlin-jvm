@@ -19,4 +19,6 @@ public open class EditorExportPlatformMacOS internal constructor() : EditorExpor
   }
 
   public companion object
+
+  internal object MethodBindings
 }

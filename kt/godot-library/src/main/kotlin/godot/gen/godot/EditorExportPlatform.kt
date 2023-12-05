@@ -26,4 +26,6 @@ public open class EditorExportPlatform internal constructor() : RefCounted() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

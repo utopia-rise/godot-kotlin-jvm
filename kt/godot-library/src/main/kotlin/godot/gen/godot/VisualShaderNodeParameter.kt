@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -30,14 +32,12 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
   public var parameterName: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARAMETER_GET_PARAMETER_NAME, STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParameterNamePtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARAMETER_SET_PARAMETER_NAME, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParameterNamePtr, NIL)
     }
 
   /**
@@ -46,14 +46,12 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
   public var qualifier: Qualifier
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARAMETER_GET_QUALIFIER, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getQualifierPtr, LONG)
       return VisualShaderNodeParameter.Qualifier.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARAMETER_SET_QUALIFIER, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setQualifierPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -93,4 +91,18 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setParameterNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "set_parameter_name")
+
+    public val getParameterNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "get_parameter_name")
+
+    public val setQualifierPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "set_qualifier")
+
+    public val getQualifierPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "get_qualifier")
+  }
 }

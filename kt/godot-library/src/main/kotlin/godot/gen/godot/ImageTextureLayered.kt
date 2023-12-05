@@ -8,12 +8,14 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -39,8 +41,7 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
    */
   public fun createFromImages(images: VariantArray<Image>): GodotError {
     TransferContext.writeArguments(ARRAY to images)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_IMAGETEXTURELAYERED_CREATE_FROM_IMAGES, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.createFromImagesPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -55,9 +56,16 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
    */
   public fun updateLayer(image: Image, layer: Int): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to layer.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURELAYERED_UPDATE_LAYER,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.updateLayerPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val createFromImagesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImageTextureLayered", "create_from_images")
+
+    public val updateLayerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImageTextureLayered", "update_layer")
+  }
 }

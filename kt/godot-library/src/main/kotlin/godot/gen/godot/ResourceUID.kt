@@ -7,11 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -45,7 +47,7 @@ public object ResourceUID : Object() {
    */
   public fun idToText(id: Long): String {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_ID_TO_TEXT, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.idToTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -54,7 +56,7 @@ public object ResourceUID : Object() {
    */
   public fun textToId(textId: String): Long {
     TransferContext.writeArguments(STRING to textId)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_TEXT_TO_ID, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.textToIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -65,7 +67,7 @@ public object ResourceUID : Object() {
    */
   public fun createId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_CREATE_ID, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.createIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -74,7 +76,7 @@ public object ResourceUID : Object() {
    */
   public fun hasId(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_HAS_ID, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hasIdPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -85,7 +87,7 @@ public object ResourceUID : Object() {
    */
   public fun addId(id: Long, path: String): Unit {
     TransferContext.writeArguments(LONG to id, STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_ADD_ID, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addIdPtr, NIL)
   }
 
   /**
@@ -95,7 +97,7 @@ public object ResourceUID : Object() {
    */
   public fun setId(id: Long, path: String): Unit {
     TransferContext.writeArguments(LONG to id, STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_SET_ID, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setIdPtr, NIL)
   }
 
   /**
@@ -105,7 +107,7 @@ public object ResourceUID : Object() {
    */
   public fun getIdPath(id: Long): String {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_GET_ID_PATH, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getIdPathPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -116,6 +118,24 @@ public object ResourceUID : Object() {
    */
   public fun removeId(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEUID_REMOVE_ID, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeIdPtr, NIL)
+  }
+
+  internal object MethodBindings {
+    public val idToTextPtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceUID", "id_to_text")
+
+    public val textToIdPtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceUID", "text_to_id")
+
+    public val createIdPtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceUID", "create_id")
+
+    public val hasIdPtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceUID", "has_id")
+
+    public val addIdPtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceUID", "add_id")
+
+    public val setIdPtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceUID", "set_id")
+
+    public val getIdPathPtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceUID", "get_id_path")
+
+    public val removeIdPtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceUID", "remove_id")
   }
 }

@@ -27,4 +27,6 @@ public open class VSplitContainer : SplitContainer() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

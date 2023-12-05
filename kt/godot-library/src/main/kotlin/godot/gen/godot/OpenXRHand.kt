@@ -8,10 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -22,35 +24,34 @@ public open class OpenXRHand : Node3D() {
   public var hand: Hands
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRHAND_GET_HAND, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHandPtr, LONG)
       return OpenXRHand.Hands.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRHAND_SET_HAND, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHandPtr, NIL)
     }
 
   public var motionRange: MotionRange
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRHAND_GET_MOTION_RANGE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMotionRangePtr, LONG)
       return OpenXRHand.MotionRange.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRHAND_SET_MOTION_RANGE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMotionRangePtr, NIL)
     }
 
   public var handSkeleton: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRHAND_GET_HAND_SKELETON,
-          NODE_PATH)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHandSkeletonPtr, NODE_PATH)
       return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRHAND_SET_HAND_SKELETON, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHandSkeletonPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -95,4 +96,22 @@ public open class OpenXRHand : Node3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setHandPtr: VoidPtr = TypeManager.getMethodBindPtr("OpenXRHand", "set_hand")
+
+    public val getHandPtr: VoidPtr = TypeManager.getMethodBindPtr("OpenXRHand", "get_hand")
+
+    public val setHandSkeletonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRHand", "set_hand_skeleton")
+
+    public val getHandSkeletonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRHand", "get_hand_skeleton")
+
+    public val setMotionRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRHand", "set_motion_range")
+
+    public val getMotionRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRHand", "get_motion_range")
+  }
 }

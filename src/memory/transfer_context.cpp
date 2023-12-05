@@ -8,7 +8,7 @@ JNI_INIT_STATICS_FOR_CLASS(
     TransferContext,
     INIT_JNI_METHOD(GET_BUFFER)
     INIT_JNI_METHOD(REMOVE_SCRIPT)
-    INIT_NATIVE_METHOD("icall", "(JII)V", TransferContext::icall)
+    INIT_NATIVE_METHOD("icall", "(JJI)V", TransferContext::icall)
     INIT_NATIVE_METHOD("createNativeObject", "(ILgodot/core/KtObject;I)V", TransferContext::create_native_object)
     INIT_NATIVE_METHOD("getSingleton", "(I)V", TransferContext::get_singleton)
     INIT_NATIVE_METHOD("freeObject", "(J)V", TransferContext::free_object)
@@ -80,7 +80,7 @@ void TransferContext::write_return_value(jni::Env& p_env, Variant& variant) {
     ktvariant::send_variant_to_buffer(variant, get_and_rewind_buffer(p_env));
 }
 
-void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint p_method_index, jint expectedReturnType) {
+void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong j_method_ptr, jint expectedReturnType) {
     if (unlikely(stack_offset == -1)) {
         for (int i = 0; i < MAX_STACK_SIZE; i++) {
             variant_args_ptr[i] = &variant_args[i];
@@ -96,15 +96,10 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint 
 
     auto* ptr {reinterpret_cast<Object*>(static_cast<uintptr_t>(j_ptr))};
 
-    int method_index {static_cast<int>(p_method_index)};
-    MethodBind* methodBind {TypeManager::get_instance().get_engine_type_method_for_index(method_index)};
+    MethodBind* method_bind {reinterpret_cast<MethodBind*>(static_cast<uintptr_t>(j_method_ptr))};
 
 #ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(!methodBind, vformat("Cannot find method with id %s", method_index));
-#endif
-
-#ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(args_size > MAX_FUNCTION_ARG_COUNT, vformat("Cannot have more than %s arguments for method call but tried to call method \"%s::%s\" with %s args", MAX_FUNCTION_ARG_COUNT, methodBind->get_instance_class(), methodBind->get_name(), args_size));
+    JVM_CRASH_COND_MSG(args_size > MAX_FUNCTION_ARG_COUNT, vformat("Cannot have more than %s arguments for method call but tried to call method \"%s::%s\" with %s args", MAX_FUNCTION_ARG_COUNT, method_bind->get_instance_class(), method_bind->get_name(), args_size));
 #endif
 
     Callable::CallError r_error {Callable::CallError::CALL_OK};
@@ -118,7 +113,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint 
             args_ptr[i] = &args[i];
         }
 
-        const Variant& ret_value {methodBind->call(ptr, args_ptr, args_size, r_error)};
+        const Variant& ret_value {method_bind->call(ptr, args_ptr, args_size, r_error)};
 
         buffer->rewind();
         ktvariant::send_variant_to_buffer(ret_value, buffer);
@@ -130,7 +125,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint 
         const Variant** args_ptr {variant_args_ptr + stack_offset};
 
         stack_offset += args_size;
-        const Variant& ret_value {methodBind->call(ptr, args_ptr, args_size, r_error)};
+        const Variant& ret_value {method_bind->call(ptr, args_ptr, args_size, r_error)};
         stack_offset -= args_size;
 
         buffer->rewind();
@@ -138,7 +133,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint 
     }
 
 #ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(r_error.error != Callable::CallError::CALL_OK, vformat("Call to method with id %s failed.", method_index));
+    JVM_CRASH_COND_MSG(r_error.error != Callable::CallError::CALL_OK, vformat("Call to method %s failed.", method_bind->get_name()));
 #endif
 }
 

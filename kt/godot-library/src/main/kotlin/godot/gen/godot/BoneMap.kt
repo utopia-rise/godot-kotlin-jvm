@@ -8,12 +8,14 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -47,12 +49,12 @@ public open class BoneMap : Resource() {
   public var profile: SkeletonProfile?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEMAP_GET_PROFILE, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getProfilePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as SkeletonProfile?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEMAP_SET_PROFILE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setProfilePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -67,8 +69,7 @@ public open class BoneMap : Resource() {
    */
   public fun getSkeletonBoneName(profileBoneName: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to profileBoneName)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEMAP_GET_SKELETON_BONE_NAME,
-        STRING_NAME)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonBoneNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
@@ -79,7 +80,7 @@ public open class BoneMap : Resource() {
    */
   public fun setSkeletonBoneName(profileBoneName: StringName, skeletonBoneName: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to profileBoneName, STRING_NAME to skeletonBoneName)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEMAP_SET_SKELETON_BONE_NAME, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonBoneNamePtr, NIL)
   }
 
   /**
@@ -89,10 +90,24 @@ public open class BoneMap : Resource() {
    */
   public fun findProfileBoneName(skeletonBoneName: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to skeletonBoneName)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONEMAP_FIND_PROFILE_BONE_NAME,
-        STRING_NAME)
+    TransferContext.callMethod(rawPtr, MethodBindings.findProfileBoneNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getProfilePtr: VoidPtr = TypeManager.getMethodBindPtr("BoneMap", "get_profile")
+
+    public val setProfilePtr: VoidPtr = TypeManager.getMethodBindPtr("BoneMap", "set_profile")
+
+    public val getSkeletonBoneNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BoneMap", "get_skeleton_bone_name")
+
+    public val setSkeletonBoneNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BoneMap", "set_skeleton_bone_name")
+
+    public val findProfileBoneNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BoneMap", "find_profile_bone_name")
+  }
 }

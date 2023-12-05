@@ -10,6 +10,7 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -17,6 +18,7 @@ import godot.core.VariantType.COLOR
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -36,14 +38,12 @@ public open class RDPipelineColorBlendState : RefCounted() {
   public var enableLogicOp: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATE_GET_ENABLE_LOGIC_OP, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnableLogicOpPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATE_SET_ENABLE_LOGIC_OP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnableLogicOpPtr, NIL)
     }
 
   /**
@@ -52,14 +52,12 @@ public open class RDPipelineColorBlendState : RefCounted() {
   public var logicOp: RenderingDevice.LogicOperation
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATE_GET_LOGIC_OP, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLogicOpPtr, LONG)
       return RenderingDevice.LogicOperation.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATE_SET_LOGIC_OP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLogicOpPtr, NIL)
     }
 
   /**
@@ -69,14 +67,12 @@ public open class RDPipelineColorBlendState : RefCounted() {
   public var blendConstant: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATE_GET_BLEND_CONSTANT, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBlendConstantPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATE_SET_BLEND_CONSTANT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBlendConstantPtr, NIL)
     }
 
   /**
@@ -85,15 +81,13 @@ public open class RDPipelineColorBlendState : RefCounted() {
   public var attachments: VariantArray<RDPipelineColorBlendStateAttachment>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATE_GET_ATTACHMENTS, ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAttachmentsPtr, ARRAY)
       return (TransferContext.readReturnValue(ARRAY,
           false) as VariantArray<RDPipelineColorBlendStateAttachment>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINECOLORBLENDSTATE_SET_ATTACHMENTS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAttachmentsPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -126,4 +120,30 @@ public open class RDPipelineColorBlendState : RefCounted() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setEnableLogicOpPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_enable_logic_op")
+
+    public val getEnableLogicOpPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_enable_logic_op")
+
+    public val setLogicOpPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_logic_op")
+
+    public val getLogicOpPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_logic_op")
+
+    public val setBlendConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_blend_constant")
+
+    public val getBlendConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_blend_constant")
+
+    public val setAttachmentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_attachments")
+
+    public val getAttachmentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_attachments")
+  }
 }

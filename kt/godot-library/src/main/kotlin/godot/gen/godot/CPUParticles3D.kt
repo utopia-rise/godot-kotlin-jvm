@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedColorArray
 import godot.core.PackedVector3Array
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
@@ -23,6 +24,7 @@ import godot.core.VariantType.PACKED_VECTOR3_ARRAY
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -46,12 +48,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var emitting: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_IS_EMITTING, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isEmittingPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_EMITTING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEmittingPtr, NIL)
     }
 
   /**
@@ -60,12 +62,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var amount: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_AMOUNT, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAmountPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_AMOUNT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAmountPtr, NIL)
     }
 
   /**
@@ -74,13 +76,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var lifetime: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_LIFETIME,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLifetimePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_LIFETIME, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLifetimePtr, NIL)
     }
 
   /**
@@ -89,12 +90,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var oneShot: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_ONE_SHOT, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getOneShotPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_ONE_SHOT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOneShotPtr, NIL)
     }
 
   /**
@@ -103,14 +104,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var preprocess: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PRE_PROCESS_TIME, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPreProcessTimePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PRE_PROCESS_TIME, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPreProcessTimePtr, NIL)
     }
 
   /**
@@ -119,14 +118,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var speedScale: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_SPEED_SCALE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_SPEED_SCALE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
     }
 
   /**
@@ -135,14 +132,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var explosiveness: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_EXPLOSIVENESS_RATIO, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getExplosivenessRatioPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_EXPLOSIVENESS_RATIO, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setExplosivenessRatioPtr, NIL)
     }
 
   /**
@@ -151,14 +146,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var randomness: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_RANDOMNESS_RATIO, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRandomnessRatioPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_RANDOMNESS_RATIO, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRandomnessRatioPtr, NIL)
     }
 
   /**
@@ -167,14 +160,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var lifetimeRandomness: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_LIFETIME_RANDOMNESS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLifetimeRandomnessPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_LIFETIME_RANDOMNESS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLifetimeRandomnessPtr, NIL)
     }
 
   /**
@@ -183,13 +174,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var fixedFps: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_FIXED_FPS,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFixedFpsPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_FIXED_FPS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFixedFpsPtr, NIL)
     }
 
   /**
@@ -198,14 +188,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var fractDelta: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_FRACTIONAL_DELTA, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFractionalDeltaPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_FRACTIONAL_DELTA, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFractionalDeltaPtr, NIL)
     }
 
   /**
@@ -214,14 +202,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var localCoords: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_USE_LOCAL_COORDINATES, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getUseLocalCoordinatesPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_USE_LOCAL_COORDINATES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseLocalCoordinatesPtr, NIL)
     }
 
   /**
@@ -230,14 +216,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var drawOrder: DrawOrder
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_DRAW_ORDER,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDrawOrderPtr, LONG)
       return CPUParticles3D.DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_DRAW_ORDER,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDrawOrderPtr, NIL)
     }
 
   /**
@@ -246,12 +230,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var mesh: Mesh?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_MESH, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_MESH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
     }
 
   /**
@@ -260,14 +244,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var emissionShape: EmissionShape
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_EMISSION_SHAPE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEmissionShapePtr, LONG)
       return CPUParticles3D.EmissionShape.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_EMISSION_SHAPE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionShapePtr, NIL)
     }
 
   /**
@@ -276,14 +258,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var emissionSphereRadius: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_EMISSION_SPHERE_RADIUS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEmissionSphereRadiusPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_EMISSION_SPHERE_RADIUS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionSphereRadiusPtr, NIL)
     }
 
   /**
@@ -293,14 +273,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var emissionBoxExtents: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_EMISSION_BOX_EXTENTS, VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEmissionBoxExtentsPtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_EMISSION_BOX_EXTENTS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionBoxExtentsPtr, NIL)
     }
 
   /**
@@ -309,14 +287,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var emissionPoints: PackedVector3Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_EMISSION_POINTS, PACKED_VECTOR3_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEmissionPointsPtr, PACKED_VECTOR3_ARRAY)
       return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_EMISSION_POINTS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionPointsPtr, NIL)
     }
 
   /**
@@ -325,14 +301,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var emissionNormals: PackedVector3Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_EMISSION_NORMALS, PACKED_VECTOR3_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEmissionNormalsPtr, PACKED_VECTOR3_ARRAY)
       return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_EMISSION_NORMALS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionNormalsPtr, NIL)
     }
 
   /**
@@ -343,14 +317,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var emissionColors: PackedColorArray
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_EMISSION_COLORS, PACKED_COLOR_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEmissionColorsPtr, PACKED_COLOR_ARRAY)
       return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_COLOR_ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_EMISSION_COLORS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionColorsPtr, NIL)
     }
 
   /**
@@ -360,14 +332,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var emissionRingAxis: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_EMISSION_RING_AXIS, VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEmissionRingAxisPtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_EMISSION_RING_AXIS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionRingAxisPtr, NIL)
     }
 
   /**
@@ -376,14 +346,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var emissionRingHeight: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_EMISSION_RING_HEIGHT, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEmissionRingHeightPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_EMISSION_RING_HEIGHT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionRingHeightPtr, NIL)
     }
 
   /**
@@ -392,14 +360,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var emissionRingRadius: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_EMISSION_RING_RADIUS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEmissionRingRadiusPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_EMISSION_RING_RADIUS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionRingRadiusPtr, NIL)
     }
 
   /**
@@ -408,14 +374,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var emissionRingInnerRadius: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_EMISSION_RING_INNER_RADIUS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEmissionRingInnerRadiusPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_EMISSION_RING_INNER_RADIUS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionRingInnerRadiusPtr, NIL)
     }
 
   /**
@@ -424,14 +388,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var particleFlagAlignY: Boolean
     get() {
       TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARTICLE_FLAG,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParticleFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 0L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARTICLE_FLAG,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParticleFlagPtr, NIL)
     }
 
   /**
@@ -440,14 +402,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var particleFlagRotateY: Boolean
     get() {
       TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARTICLE_FLAG,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParticleFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 1L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARTICLE_FLAG,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParticleFlagPtr, NIL)
     }
 
   /**
@@ -456,14 +416,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var particleFlagDisableZ: Boolean
     get() {
       TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARTICLE_FLAG,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParticleFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 2L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARTICLE_FLAG,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParticleFlagPtr, NIL)
     }
 
   /**
@@ -473,13 +431,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var direction: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_DIRECTION,
-          VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDirectionPtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_DIRECTION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDirectionPtr, NIL)
     }
 
   /**
@@ -488,12 +445,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var spread: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_SPREAD, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSpreadPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_SPREAD, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSpreadPtr, NIL)
     }
 
   /**
@@ -502,13 +459,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var flatness: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_FLATNESS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlatnessPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_FLATNESS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlatnessPtr, NIL)
     }
 
   /**
@@ -518,13 +474,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var gravity: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_GRAVITY,
-          VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_GRAVITY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGravityPtr, NIL)
     }
 
   /**
@@ -533,13 +488,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var initialVelocityMin: Float
     get() {
       TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMinPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 0L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMinPtr, NIL)
     }
 
   /**
@@ -548,13 +502,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var initialVelocityMax: Float
     get() {
       TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MAX,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMaxPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 0L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MAX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMaxPtr, NIL)
     }
 
   /**
@@ -563,13 +516,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var angularVelocityMin: Float
     get() {
       TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMinPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 1L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMinPtr, NIL)
     }
 
   /**
@@ -578,13 +530,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var angularVelocityMax: Float
     get() {
       TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MAX,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMaxPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 1L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MAX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMaxPtr, NIL)
     }
 
   /**
@@ -593,14 +544,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var angularVelocityCurve: Curve?
     get() {
       TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_CURVE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamCurvePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 1L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_CURVE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamCurvePtr, NIL)
     }
 
   /**
@@ -609,13 +558,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var orbitVelocityMin: Float
     get() {
       TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMinPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 2L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMinPtr, NIL)
     }
 
   /**
@@ -624,13 +572,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var orbitVelocityMax: Float
     get() {
       TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MAX,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMaxPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 2L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MAX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMaxPtr, NIL)
     }
 
   /**
@@ -639,14 +586,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var orbitVelocityCurve: Curve?
     get() {
       TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_CURVE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamCurvePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 2L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_CURVE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamCurvePtr, NIL)
     }
 
   /**
@@ -655,13 +600,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var linearAccelMin: Float
     get() {
       TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMinPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 3L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMinPtr, NIL)
     }
 
   /**
@@ -670,13 +614,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var linearAccelMax: Float
     get() {
       TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MAX,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMaxPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 3L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MAX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMaxPtr, NIL)
     }
 
   /**
@@ -685,14 +628,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var linearAccelCurve: Curve?
     get() {
       TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_CURVE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamCurvePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 3L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_CURVE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamCurvePtr, NIL)
     }
 
   /**
@@ -701,13 +642,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var radialAccelMin: Float
     get() {
       TransferContext.writeArguments(LONG to 4L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMinPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 4L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMinPtr, NIL)
     }
 
   /**
@@ -716,13 +656,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var radialAccelMax: Float
     get() {
       TransferContext.writeArguments(LONG to 4L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MAX,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMaxPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 4L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MAX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMaxPtr, NIL)
     }
 
   /**
@@ -731,14 +670,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var radialAccelCurve: Curve?
     get() {
       TransferContext.writeArguments(LONG to 4L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_CURVE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamCurvePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 4L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_CURVE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamCurvePtr, NIL)
     }
 
   /**
@@ -747,13 +684,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var tangentialAccelMin: Float
     get() {
       TransferContext.writeArguments(LONG to 5L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMinPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 5L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMinPtr, NIL)
     }
 
   /**
@@ -762,13 +698,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var tangentialAccelMax: Float
     get() {
       TransferContext.writeArguments(LONG to 5L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MAX,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMaxPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 5L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MAX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMaxPtr, NIL)
     }
 
   /**
@@ -777,14 +712,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var tangentialAccelCurve: Curve?
     get() {
       TransferContext.writeArguments(LONG to 5L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_CURVE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamCurvePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 5L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_CURVE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamCurvePtr, NIL)
     }
 
   /**
@@ -793,13 +726,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var dampingMin: Float
     get() {
       TransferContext.writeArguments(LONG to 6L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMinPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 6L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMinPtr, NIL)
     }
 
   /**
@@ -808,13 +740,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var dampingMax: Float
     get() {
       TransferContext.writeArguments(LONG to 6L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MAX,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMaxPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 6L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MAX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMaxPtr, NIL)
     }
 
   /**
@@ -823,14 +754,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var dampingCurve: Curve?
     get() {
       TransferContext.writeArguments(LONG to 6L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_CURVE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamCurvePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 6L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_CURVE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamCurvePtr, NIL)
     }
 
   /**
@@ -839,13 +768,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var angleMin: Float
     get() {
       TransferContext.writeArguments(LONG to 7L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMinPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 7L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMinPtr, NIL)
     }
 
   /**
@@ -854,13 +782,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var angleMax: Float
     get() {
       TransferContext.writeArguments(LONG to 7L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MAX,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMaxPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 7L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MAX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMaxPtr, NIL)
     }
 
   /**
@@ -869,14 +796,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var angleCurve: Curve?
     get() {
       TransferContext.writeArguments(LONG to 7L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_CURVE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamCurvePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 7L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_CURVE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamCurvePtr, NIL)
     }
 
   /**
@@ -885,13 +810,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var scaleAmountMin: Float
     get() {
       TransferContext.writeArguments(LONG to 8L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMinPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 8L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMinPtr, NIL)
     }
 
   /**
@@ -900,13 +824,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var scaleAmountMax: Float
     get() {
       TransferContext.writeArguments(LONG to 8L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MAX,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMaxPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 8L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MAX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMaxPtr, NIL)
     }
 
   /**
@@ -915,14 +838,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var scaleAmountCurve: Curve?
     get() {
       TransferContext.writeArguments(LONG to 8L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_CURVE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamCurvePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 8L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_CURVE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamCurvePtr, NIL)
     }
 
   /**
@@ -931,14 +852,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var splitScale: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_SPLIT_SCALE,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSplitScalePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_SPLIT_SCALE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSplitScalePtr, NIL)
     }
 
   /**
@@ -947,14 +866,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var scaleCurveX: Curve?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_SCALE_CURVE_X,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getScaleCurveXPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_SCALE_CURVE_X,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setScaleCurveXPtr, NIL)
     }
 
   /**
@@ -963,14 +880,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var scaleCurveY: Curve?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_SCALE_CURVE_Y,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getScaleCurveYPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_SCALE_CURVE_Y,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setScaleCurveYPtr, NIL)
     }
 
   /**
@@ -979,14 +894,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var scaleCurveZ: Curve?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_SCALE_CURVE_Z,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getScaleCurveZPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_SCALE_CURVE_Z,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setScaleCurveZPtr, NIL)
     }
 
   /**
@@ -998,12 +911,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var color: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_COLOR, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_COLOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
     }
 
   /**
@@ -1014,14 +927,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var colorRamp: Gradient?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_COLOR_RAMP,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getColorRampPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Gradient?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_COLOR_RAMP,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setColorRampPtr, NIL)
     }
 
   /**
@@ -1032,14 +943,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var colorInitialRamp: Gradient?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_COLOR_INITIAL_RAMP, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getColorInitialRampPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Gradient?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_COLOR_INITIAL_RAMP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setColorInitialRampPtr, NIL)
     }
 
   /**
@@ -1048,13 +957,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var hueVariationMin: Float
     get() {
       TransferContext.writeArguments(LONG to 9L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMinPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 9L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMinPtr, NIL)
     }
 
   /**
@@ -1063,13 +971,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var hueVariationMax: Float
     get() {
       TransferContext.writeArguments(LONG to 9L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MAX,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMaxPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 9L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MAX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMaxPtr, NIL)
     }
 
   /**
@@ -1078,14 +985,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var hueVariationCurve: Curve?
     get() {
       TransferContext.writeArguments(LONG to 9L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_CURVE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamCurvePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 9L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_CURVE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamCurvePtr, NIL)
     }
 
   /**
@@ -1094,13 +999,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var animSpeedMin: Float
     get() {
       TransferContext.writeArguments(LONG to 10L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMinPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 10L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMinPtr, NIL)
     }
 
   /**
@@ -1109,13 +1013,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var animSpeedMax: Float
     get() {
       TransferContext.writeArguments(LONG to 10L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MAX,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMaxPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 10L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MAX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMaxPtr, NIL)
     }
 
   /**
@@ -1124,14 +1027,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var animSpeedCurve: Curve?
     get() {
       TransferContext.writeArguments(LONG to 10L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_CURVE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamCurvePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 10L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_CURVE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamCurvePtr, NIL)
     }
 
   /**
@@ -1140,13 +1041,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var animOffsetMin: Float
     get() {
       TransferContext.writeArguments(LONG to 11L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMinPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 11L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMinPtr, NIL)
     }
 
   /**
@@ -1155,13 +1055,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var animOffsetMax: Float
     get() {
       TransferContext.writeArguments(LONG to 11L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_MAX,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamMaxPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 11L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_MAX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamMaxPtr, NIL)
     }
 
   /**
@@ -1170,14 +1069,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public var animOffsetCurve: Curve?
     get() {
       TransferContext.writeArguments(LONG to 11L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_PARAM_CURVE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamCurvePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 11L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_PARAM_CURVE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamCurvePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -1314,7 +1211,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public fun restart(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_RESTART, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.restartPtr, NIL)
   }
 
   /**
@@ -1322,8 +1219,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public fun convertFromParticles(particles: Node): Unit {
     TransferContext.writeArguments(OBJECT to particles)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_CONVERT_FROM_PARTICLES, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.convertFromParticlesPtr, NIL)
   }
 
   public enum class DrawOrder(
@@ -1499,4 +1395,237 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setEmittingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emitting")
+
+    public val setAmountPtr: VoidPtr = TypeManager.getMethodBindPtr("CPUParticles3D", "set_amount")
+
+    public val setLifetimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_lifetime")
+
+    public val setOneShotPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_one_shot")
+
+    public val setPreProcessTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_pre_process_time")
+
+    public val setExplosivenessRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_explosiveness_ratio")
+
+    public val setRandomnessRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_randomness_ratio")
+
+    public val setLifetimeRandomnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_lifetime_randomness")
+
+    public val setUseLocalCoordinatesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_use_local_coordinates")
+
+    public val setFixedFpsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_fixed_fps")
+
+    public val setFractionalDeltaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_fractional_delta")
+
+    public val setSpeedScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_speed_scale")
+
+    public val isEmittingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "is_emitting")
+
+    public val getAmountPtr: VoidPtr = TypeManager.getMethodBindPtr("CPUParticles3D", "get_amount")
+
+    public val getLifetimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_lifetime")
+
+    public val getOneShotPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_one_shot")
+
+    public val getPreProcessTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_pre_process_time")
+
+    public val getExplosivenessRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_explosiveness_ratio")
+
+    public val getRandomnessRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_randomness_ratio")
+
+    public val getLifetimeRandomnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_lifetime_randomness")
+
+    public val getUseLocalCoordinatesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_use_local_coordinates")
+
+    public val getFixedFpsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_fixed_fps")
+
+    public val getFractionalDeltaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_fractional_delta")
+
+    public val getSpeedScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_speed_scale")
+
+    public val setDrawOrderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_draw_order")
+
+    public val getDrawOrderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_draw_order")
+
+    public val setMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("CPUParticles3D", "set_mesh")
+
+    public val getMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("CPUParticles3D", "get_mesh")
+
+    public val restartPtr: VoidPtr = TypeManager.getMethodBindPtr("CPUParticles3D", "restart")
+
+    public val setDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_direction")
+
+    public val getDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_direction")
+
+    public val setSpreadPtr: VoidPtr = TypeManager.getMethodBindPtr("CPUParticles3D", "set_spread")
+
+    public val getSpreadPtr: VoidPtr = TypeManager.getMethodBindPtr("CPUParticles3D", "get_spread")
+
+    public val setFlatnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_flatness")
+
+    public val getFlatnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_flatness")
+
+    public val setParamMinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_param_min")
+
+    public val getParamMinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_param_min")
+
+    public val setParamMaxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_param_max")
+
+    public val getParamMaxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_param_max")
+
+    public val setParamCurvePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_param_curve")
+
+    public val getParamCurvePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_param_curve")
+
+    public val setColorPtr: VoidPtr = TypeManager.getMethodBindPtr("CPUParticles3D", "set_color")
+
+    public val getColorPtr: VoidPtr = TypeManager.getMethodBindPtr("CPUParticles3D", "get_color")
+
+    public val setColorRampPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_color_ramp")
+
+    public val getColorRampPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_color_ramp")
+
+    public val setColorInitialRampPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_color_initial_ramp")
+
+    public val getColorInitialRampPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_color_initial_ramp")
+
+    public val setParticleFlagPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_particle_flag")
+
+    public val getParticleFlagPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_particle_flag")
+
+    public val setEmissionShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emission_shape")
+
+    public val getEmissionShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_emission_shape")
+
+    public val setEmissionSphereRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emission_sphere_radius")
+
+    public val getEmissionSphereRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_emission_sphere_radius")
+
+    public val setEmissionBoxExtentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emission_box_extents")
+
+    public val getEmissionBoxExtentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_emission_box_extents")
+
+    public val setEmissionPointsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emission_points")
+
+    public val getEmissionPointsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_emission_points")
+
+    public val setEmissionNormalsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emission_normals")
+
+    public val getEmissionNormalsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_emission_normals")
+
+    public val setEmissionColorsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emission_colors")
+
+    public val getEmissionColorsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_emission_colors")
+
+    public val setEmissionRingAxisPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emission_ring_axis")
+
+    public val getEmissionRingAxisPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_emission_ring_axis")
+
+    public val setEmissionRingHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emission_ring_height")
+
+    public val getEmissionRingHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_emission_ring_height")
+
+    public val setEmissionRingRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emission_ring_radius")
+
+    public val getEmissionRingRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_emission_ring_radius")
+
+    public val setEmissionRingInnerRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emission_ring_inner_radius")
+
+    public val getEmissionRingInnerRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_emission_ring_inner_radius")
+
+    public val getGravityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_gravity")
+
+    public val setGravityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_gravity")
+
+    public val getSplitScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_split_scale")
+
+    public val setSplitScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_split_scale")
+
+    public val getScaleCurveXPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_scale_curve_x")
+
+    public val setScaleCurveXPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_scale_curve_x")
+
+    public val getScaleCurveYPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_scale_curve_y")
+
+    public val setScaleCurveYPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_scale_curve_y")
+
+    public val getScaleCurveZPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_scale_curve_z")
+
+    public val setScaleCurveZPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_scale_curve_z")
+
+    public val convertFromParticlesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "convert_from_particles")
+  }
 }

@@ -9,10 +9,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -37,13 +39,12 @@ public open class RectangleShape2D : Shape2D() {
   public var size: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RECTANGLESHAPE2D_GET_SIZE,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RECTANGLESHAPE2D_SET_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -76,4 +77,10 @@ public open class RectangleShape2D : Shape2D() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("RectangleShape2D", "set_size")
+
+    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("RectangleShape2D", "get_size")
+  }
 }

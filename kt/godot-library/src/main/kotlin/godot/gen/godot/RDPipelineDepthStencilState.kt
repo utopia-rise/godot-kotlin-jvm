@@ -7,11 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -32,14 +34,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   public var enableDepthTest: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_ENABLE_DEPTH_TEST, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnableDepthTestPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_SET_ENABLE_DEPTH_TEST, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnableDepthTestPtr, NIL)
     }
 
   /**
@@ -48,14 +48,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   public var enableDepthWrite: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_ENABLE_DEPTH_WRITE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnableDepthWritePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_SET_ENABLE_DEPTH_WRITE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnableDepthWritePtr, NIL)
     }
 
   /**
@@ -64,14 +62,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   public var depthCompareOperator: RenderingDevice.CompareOperator
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_DEPTH_COMPARE_OPERATOR, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDepthCompareOperatorPtr, LONG)
       return RenderingDevice.CompareOperator.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_SET_DEPTH_COMPARE_OPERATOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDepthCompareOperatorPtr, NIL)
     }
 
   /**
@@ -80,14 +76,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   public var enableDepthRange: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_ENABLE_DEPTH_RANGE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnableDepthRangePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_SET_ENABLE_DEPTH_RANGE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnableDepthRangePtr, NIL)
     }
 
   /**
@@ -96,14 +90,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   public var depthRangeMin: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_DEPTH_RANGE_MIN, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDepthRangeMinPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_SET_DEPTH_RANGE_MIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDepthRangeMinPtr, NIL)
     }
 
   /**
@@ -112,14 +104,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   public var depthRangeMax: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_DEPTH_RANGE_MAX, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDepthRangeMaxPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_SET_DEPTH_RANGE_MAX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDepthRangeMaxPtr, NIL)
     }
 
   /**
@@ -128,14 +118,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   public var enableStencil: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_ENABLE_STENCIL, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnableStencilPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_SET_ENABLE_STENCIL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnableStencilPtr, NIL)
     }
 
   /**
@@ -144,14 +132,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   public var frontOpFail: RenderingDevice.StencilOperation
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_FRONT_OP_FAIL, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFrontOpFailPtr, LONG)
       return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_SET_FRONT_OP_FAIL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpFailPtr, NIL)
     }
 
   /**
@@ -160,14 +146,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   public var frontOpPass: RenderingDevice.StencilOperation
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_FRONT_OP_PASS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFrontOpPassPtr, LONG)
       return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_SET_FRONT_OP_PASS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpPassPtr, NIL)
     }
 
   /**
@@ -176,14 +160,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   public var frontOpDepthFail: RenderingDevice.StencilOperation
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_FRONT_OP_DEPTH_FAIL, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFrontOpDepthFailPtr, LONG)
       return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_SET_FRONT_OP_DEPTH_FAIL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpDepthFailPtr, NIL)
     }
 
   /**
@@ -192,14 +174,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   public var frontOpCompare: RenderingDevice.CompareOperator
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_FRONT_OP_COMPARE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFrontOpComparePtr, LONG)
       return RenderingDevice.CompareOperator.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_SET_FRONT_OP_COMPARE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpComparePtr, NIL)
     }
 
   /**
@@ -208,14 +188,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   public var frontOpCompareMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_FRONT_OP_COMPARE_MASK, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFrontOpCompareMaskPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_SET_FRONT_OP_COMPARE_MASK, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpCompareMaskPtr, NIL)
     }
 
   /**
@@ -224,14 +202,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   public var frontOpWriteMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_FRONT_OP_WRITE_MASK, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFrontOpWriteMaskPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_SET_FRONT_OP_WRITE_MASK, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpWriteMaskPtr, NIL)
     }
 
   /**
@@ -240,14 +216,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   public var frontOpReference: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_FRONT_OP_REFERENCE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFrontOpReferencePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_SET_FRONT_OP_REFERENCE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpReferencePtr, NIL)
     }
 
   /**
@@ -256,14 +230,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   public var backOpFail: RenderingDevice.StencilOperation
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_BACK_OP_FAIL, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBackOpFailPtr, LONG)
       return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_SET_BACK_OP_FAIL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBackOpFailPtr, NIL)
     }
 
   /**
@@ -272,14 +244,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   public var backOpPass: RenderingDevice.StencilOperation
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_BACK_OP_PASS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBackOpPassPtr, LONG)
       return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_SET_BACK_OP_PASS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBackOpPassPtr, NIL)
     }
 
   /**
@@ -288,14 +258,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   public var backOpDepthFail: RenderingDevice.StencilOperation
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_BACK_OP_DEPTH_FAIL, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBackOpDepthFailPtr, LONG)
       return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_SET_BACK_OP_DEPTH_FAIL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBackOpDepthFailPtr, NIL)
     }
 
   /**
@@ -304,14 +272,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   public var backOpCompare: RenderingDevice.CompareOperator
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_BACK_OP_COMPARE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBackOpComparePtr, LONG)
       return RenderingDevice.CompareOperator.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_SET_BACK_OP_COMPARE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBackOpComparePtr, NIL)
     }
 
   /**
@@ -320,14 +286,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   public var backOpCompareMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_BACK_OP_COMPARE_MASK, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBackOpCompareMaskPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_SET_BACK_OP_COMPARE_MASK, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBackOpCompareMaskPtr, NIL)
     }
 
   /**
@@ -336,14 +300,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   public var backOpWriteMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_BACK_OP_WRITE_MASK, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBackOpWriteMaskPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_SET_BACK_OP_WRITE_MASK, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBackOpWriteMaskPtr, NIL)
     }
 
   /**
@@ -352,14 +314,12 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   public var backOpReference: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_GET_BACK_OP_REFERENCE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBackOpReferencePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE_SET_BACK_OP_REFERENCE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBackOpReferencePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -368,4 +328,132 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setEnableDepthTestPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_enable_depth_test")
+
+    public val getEnableDepthTestPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_enable_depth_test")
+
+    public val setEnableDepthWritePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_enable_depth_write")
+
+    public val getEnableDepthWritePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_enable_depth_write")
+
+    public val setDepthCompareOperatorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_depth_compare_operator")
+
+    public val getDepthCompareOperatorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_depth_compare_operator")
+
+    public val setEnableDepthRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_enable_depth_range")
+
+    public val getEnableDepthRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_enable_depth_range")
+
+    public val setDepthRangeMinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_depth_range_min")
+
+    public val getDepthRangeMinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_depth_range_min")
+
+    public val setDepthRangeMaxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_depth_range_max")
+
+    public val getDepthRangeMaxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_depth_range_max")
+
+    public val setEnableStencilPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_enable_stencil")
+
+    public val getEnableStencilPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_enable_stencil")
+
+    public val setFrontOpFailPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_fail")
+
+    public val getFrontOpFailPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_fail")
+
+    public val setFrontOpPassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_pass")
+
+    public val getFrontOpPassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_pass")
+
+    public val setFrontOpDepthFailPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_depth_fail")
+
+    public val getFrontOpDepthFailPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_depth_fail")
+
+    public val setFrontOpComparePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_compare")
+
+    public val getFrontOpComparePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_compare")
+
+    public val setFrontOpCompareMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_compare_mask")
+
+    public val getFrontOpCompareMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_compare_mask")
+
+    public val setFrontOpWriteMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_write_mask")
+
+    public val getFrontOpWriteMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_write_mask")
+
+    public val setFrontOpReferencePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_reference")
+
+    public val getFrontOpReferencePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_reference")
+
+    public val setBackOpFailPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_fail")
+
+    public val getBackOpFailPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_fail")
+
+    public val setBackOpPassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_pass")
+
+    public val getBackOpPassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_pass")
+
+    public val setBackOpDepthFailPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_depth_fail")
+
+    public val getBackOpDepthFailPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_depth_fail")
+
+    public val setBackOpComparePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_compare")
+
+    public val getBackOpComparePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_compare")
+
+    public val setBackOpCompareMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_compare_mask")
+
+    public val getBackOpCompareMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_compare_mask")
+
+    public val setBackOpWriteMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_write_mask")
+
+    public val getBackOpWriteMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_write_mask")
+
+    public val setBackOpReferencePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_reference")
+
+    public val getBackOpReferencePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_reference")
+  }
 }

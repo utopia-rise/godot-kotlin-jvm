@@ -1,5 +1,5 @@
 package godot.entrygenerator.model
 
 class ToolAnnotation(
-    override val source: Any
+    override val symbolProcessorSource: Any
 ) : ClassAnnotation

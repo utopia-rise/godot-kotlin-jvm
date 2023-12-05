@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -28,14 +30,12 @@ public open class RDAttachmentFormat : RefCounted() {
   public var format: RenderingDevice.DataFormat
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDATTACHMENTFORMAT_GET_FORMAT,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
       return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDATTACHMENTFORMAT_SET_FORMAT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
     }
 
   /**
@@ -44,14 +44,12 @@ public open class RDAttachmentFormat : RefCounted() {
   public var samples: RenderingDevice.TextureSamples
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDATTACHMENTFORMAT_GET_SAMPLES,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSamplesPtr, LONG)
       return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDATTACHMENTFORMAT_SET_SAMPLES,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSamplesPtr, NIL)
     }
 
   /**
@@ -60,14 +58,12 @@ public open class RDAttachmentFormat : RefCounted() {
   public var usageFlags: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDATTACHMENTFORMAT_GET_USAGE_FLAGS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getUsageFlagsPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDATTACHMENTFORMAT_SET_USAGE_FLAGS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUsageFlagsPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -76,4 +72,24 @@ public open class RDAttachmentFormat : RefCounted() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDAttachmentFormat", "set_format")
+
+    public val getFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDAttachmentFormat", "get_format")
+
+    public val setSamplesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDAttachmentFormat", "set_samples")
+
+    public val getSamplesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDAttachmentFormat", "get_samples")
+
+    public val setUsageFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDAttachmentFormat", "set_usage_flags")
+
+    public val getUsageFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDAttachmentFormat", "get_usage_flags")
+  }
 }

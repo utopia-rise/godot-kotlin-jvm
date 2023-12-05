@@ -24,4 +24,6 @@ public open class VisualShaderNodeParticleBoxEmitter : VisualShaderNodeParticleE
   }
 
   public companion object
+
+  internal object MethodBindings
 }

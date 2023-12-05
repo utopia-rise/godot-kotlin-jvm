@@ -24,4 +24,6 @@ public open class VisualShaderNodeGlobalExpression : VisualShaderNodeExpression(
   }
 
   public companion object
+
+  internal object MethodBindings
 }

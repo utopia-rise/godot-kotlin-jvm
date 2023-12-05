@@ -24,4 +24,6 @@ public open class HSlider : Slider() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

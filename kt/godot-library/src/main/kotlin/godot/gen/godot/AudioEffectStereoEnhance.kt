@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -32,14 +34,12 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
   public var panPullout: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSTEREOENHANCE_GET_PAN_PULLOUT, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPanPulloutPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSTEREOENHANCE_SET_PAN_PULLOUT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPanPulloutPtr, NIL)
     }
 
   /**
@@ -48,14 +48,12 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
   public var timePulloutMs: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSTEREOENHANCE_GET_TIME_PULLOUT, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTimePulloutPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSTEREOENHANCE_SET_TIME_PULLOUT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTimePulloutPtr, NIL)
     }
 
   /**
@@ -64,14 +62,12 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
   public var surround: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSTEREOENHANCE_GET_SURROUND, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSurroundPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSTEREOENHANCE_SET_SURROUND, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSurroundPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -80,4 +76,24 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setPanPulloutPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "set_pan_pullout")
+
+    public val getPanPulloutPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "get_pan_pullout")
+
+    public val setTimePulloutPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "set_time_pullout")
+
+    public val getTimePulloutPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "get_time_pullout")
+
+    public val setSurroundPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "set_surround")
+
+    public val getSurroundPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "get_surround")
+  }
 }

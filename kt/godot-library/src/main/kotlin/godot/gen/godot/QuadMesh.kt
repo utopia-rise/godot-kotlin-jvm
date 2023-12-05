@@ -27,4 +27,6 @@ public open class QuadMesh : PlaneMesh() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

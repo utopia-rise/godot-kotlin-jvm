@@ -6,7 +6,7 @@ JNI_INIT_STATICS_FOR_CLASS(
     INIT_JNI_METHOD(INIT)
     INIT_JNI_METHOD(FINISH)
     INIT_NATIVE_METHOD("loadClasses", "([Lgodot/core/KtClass;)V", Bootstrap::load_classes)
-    INIT_NATIVE_METHOD("registerManagedEngineTypes", "([Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/Integer;)V", Bootstrap::register_engine_type)
+    INIT_NATIVE_METHOD("registerManagedEngineTypes", "([Ljava/lang/String;[Ljava/lang/String;)V", Bootstrap::register_engine_type)
 )
 // clang-format on
 

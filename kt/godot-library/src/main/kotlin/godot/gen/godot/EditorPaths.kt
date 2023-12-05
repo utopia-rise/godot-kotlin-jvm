@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
@@ -47,7 +49,7 @@ public open class EditorPaths internal constructor() : Object() {
    */
   public fun getDataDir(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_DATA_DIR, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getDataDirPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -64,7 +66,7 @@ public open class EditorPaths internal constructor() : Object() {
    */
   public fun getConfigDir(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_CONFIG_DIR, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getConfigDirPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -81,7 +83,7 @@ public open class EditorPaths internal constructor() : Object() {
    */
   public fun getCacheDir(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_CACHE_DIR, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCacheDirPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -98,7 +100,7 @@ public open class EditorPaths internal constructor() : Object() {
    */
   public fun isSelfContained(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_IS_SELF_CONTAINED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isSelfContainedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -107,8 +109,7 @@ public open class EditorPaths internal constructor() : Object() {
    */
   public fun getSelfContainedFile(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_SELF_CONTAINED_FILE,
-        STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSelfContainedFilePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -117,10 +118,28 @@ public open class EditorPaths internal constructor() : Object() {
    */
   public fun getProjectSettingsDir(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORPATHS_GET_PROJECT_SETTINGS_DIR, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getProjectSettingsDirPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getDataDirPtr: VoidPtr = TypeManager.getMethodBindPtr("EditorPaths", "get_data_dir")
+
+    public val getConfigDirPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPaths", "get_config_dir")
+
+    public val getCacheDirPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPaths", "get_cache_dir")
+
+    public val isSelfContainedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPaths", "is_self_contained")
+
+    public val getSelfContainedFilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPaths", "get_self_contained_file")
+
+    public val getProjectSettingsDirPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorPaths", "get_project_settings_dir")
+  }
 }

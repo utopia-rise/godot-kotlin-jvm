@@ -7,11 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -33,12 +35,12 @@ public open class TextureRect : Control() {
   public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_GET_TEXTURE, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -49,12 +51,12 @@ public open class TextureRect : Control() {
   public var expandMode: ExpandMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_GET_EXPAND_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getExpandModePtr, LONG)
       return TextureRect.ExpandMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_SET_EXPAND_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setExpandModePtr, NIL)
     }
 
   /**
@@ -63,13 +65,12 @@ public open class TextureRect : Control() {
   public var stretchMode: StretchMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_GET_STRETCH_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getStretchModePtr, LONG)
       return TextureRect.StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_SET_STRETCH_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setStretchModePtr, NIL)
     }
 
   /**
@@ -78,12 +79,12 @@ public open class TextureRect : Control() {
   public var flipH: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_IS_FLIPPED_H, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isFlippedHPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_SET_FLIP_H, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlipHPtr, NIL)
     }
 
   /**
@@ -92,12 +93,12 @@ public open class TextureRect : Control() {
   public var flipV: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_IS_FLIPPED_V, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isFlippedVPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURERECT_SET_FLIP_V, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlipVPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -188,4 +189,30 @@ public open class TextureRect : Control() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("TextureRect", "set_texture")
+
+    public val getTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("TextureRect", "get_texture")
+
+    public val setExpandModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureRect", "set_expand_mode")
+
+    public val getExpandModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureRect", "get_expand_mode")
+
+    public val setFlipHPtr: VoidPtr = TypeManager.getMethodBindPtr("TextureRect", "set_flip_h")
+
+    public val isFlippedHPtr: VoidPtr = TypeManager.getMethodBindPtr("TextureRect", "is_flipped_h")
+
+    public val setFlipVPtr: VoidPtr = TypeManager.getMethodBindPtr("TextureRect", "set_flip_v")
+
+    public val isFlippedVPtr: VoidPtr = TypeManager.getMethodBindPtr("TextureRect", "is_flipped_v")
+
+    public val setStretchModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureRect", "set_stretch_mode")
+
+    public val getStretchModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureRect", "get_stretch_mode")
+  }
 }

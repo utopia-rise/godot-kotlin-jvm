@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -29,14 +31,12 @@ public open class CanvasItemMaterial : Material() {
   public var blendMode: BlendMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_GET_BLEND_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBlendModePtr, LONG)
       return CanvasItemMaterial.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_SET_BLEND_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBlendModePtr, NIL)
     }
 
   /**
@@ -45,14 +45,12 @@ public open class CanvasItemMaterial : Material() {
   public var lightMode: LightMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_GET_LIGHT_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLightModePtr, LONG)
       return CanvasItemMaterial.LightMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_SET_LIGHT_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLightModePtr, NIL)
     }
 
   /**
@@ -63,14 +61,12 @@ public open class CanvasItemMaterial : Material() {
   public var particlesAnimation: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_GET_PARTICLES_ANIMATION, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimationPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_SET_PARTICLES_ANIMATION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimationPtr, NIL)
     }
 
   /**
@@ -81,14 +77,12 @@ public open class CanvasItemMaterial : Material() {
   public var particlesAnimHFrames: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_GET_PARTICLES_ANIM_H_FRAMES, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimHFramesPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_SET_PARTICLES_ANIM_H_FRAMES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimHFramesPtr, NIL)
     }
 
   /**
@@ -99,14 +93,12 @@ public open class CanvasItemMaterial : Material() {
   public var particlesAnimVFrames: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_GET_PARTICLES_ANIM_V_FRAMES, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimVFramesPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_SET_PARTICLES_ANIM_V_FRAMES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimVFramesPtr, NIL)
     }
 
   /**
@@ -117,14 +109,12 @@ public open class CanvasItemMaterial : Material() {
   public var particlesAnimLoop: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_GET_PARTICLES_ANIM_LOOP, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimLoopPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_SET_PARTICLES_ANIM_LOOP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimLoopPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -195,4 +185,42 @@ public open class CanvasItemMaterial : Material() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setBlendModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_blend_mode")
+
+    public val getBlendModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_blend_mode")
+
+    public val setLightModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_light_mode")
+
+    public val getLightModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_light_mode")
+
+    public val setParticlesAnimationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_particles_animation")
+
+    public val getParticlesAnimationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_particles_animation")
+
+    public val setParticlesAnimHFramesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_particles_anim_h_frames")
+
+    public val getParticlesAnimHFramesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_particles_anim_h_frames")
+
+    public val setParticlesAnimVFramesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_particles_anim_v_frames")
+
+    public val getParticlesAnimVFramesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_particles_anim_v_frames")
+
+    public val setParticlesAnimLoopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_particles_anim_loop")
+
+    public val getParticlesAnimLoopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_particles_anim_loop")
+  }
 }

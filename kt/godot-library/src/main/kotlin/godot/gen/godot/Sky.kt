@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -29,12 +31,12 @@ public open class Sky : Resource() {
   public var skyMaterial: Material?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKY_GET_MATERIAL, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Material?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKY_SET_MATERIAL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
     }
 
   /**
@@ -43,12 +45,12 @@ public open class Sky : Resource() {
   public var processMode: ProcessMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKY_GET_PROCESS_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getProcessModePtr, LONG)
       return Sky.ProcessMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKY_SET_PROCESS_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setProcessModePtr, NIL)
     }
 
   /**
@@ -61,12 +63,12 @@ public open class Sky : Resource() {
   public var radianceSize: RadianceSize
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKY_GET_RADIANCE_SIZE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRadianceSizePtr, LONG)
       return Sky.RadianceSize.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKY_SET_RADIANCE_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRadianceSizePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -155,4 +157,20 @@ public open class Sky : Resource() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setRadianceSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sky", "set_radiance_size")
+
+    public val getRadianceSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sky", "get_radiance_size")
+
+    public val setProcessModePtr: VoidPtr = TypeManager.getMethodBindPtr("Sky", "set_process_mode")
+
+    public val getProcessModePtr: VoidPtr = TypeManager.getMethodBindPtr("Sky", "get_process_mode")
+
+    public val setMaterialPtr: VoidPtr = TypeManager.getMethodBindPtr("Sky", "set_material")
+
+    public val getMaterialPtr: VoidPtr = TypeManager.getMethodBindPtr("Sky", "get_material")
+  }
 }

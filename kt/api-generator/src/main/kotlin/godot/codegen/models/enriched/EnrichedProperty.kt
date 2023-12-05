@@ -72,7 +72,7 @@ fun EnrichedProperty.toSetterCallable() = object : CallableTrait {
         )
     }
     override val isVararg = false
-    override val engineIndexName = setterMethod!!.engineIndexName
+    override val voidPtrVariableName = setterMethod!!.voidPtrVariableName
     override val type = ""
     override val meta: String? = null
     override val nullable = false
@@ -89,7 +89,7 @@ fun EnrichedProperty.toGetterCallable() = object : CallableTrait {
         listOf()
     }
     override val isVararg = false
-    override val engineIndexName = getterMethod!!.engineIndexName
+    override val voidPtrVariableName = getterMethod!!.voidPtrVariableName
     override val type = this@toGetterCallable.type
     override val meta: String? = getterMethod!!.meta
     override val nullable = this@toGetterCallable.nullable

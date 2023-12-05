@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -41,9 +43,13 @@ public open class CallbackTweener : Tweener() {
    */
   public fun setDelay(delay: Double): CallbackTweener? {
     TransferContext.writeArguments(DOUBLE to delay)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CALLBACKTWEENER_SET_DELAY, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDelayPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as CallbackTweener?)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setDelayPtr: VoidPtr = TypeManager.getMethodBindPtr("CallbackTweener", "set_delay")
+  }
 }

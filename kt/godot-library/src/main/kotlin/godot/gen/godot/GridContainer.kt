@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -33,12 +35,12 @@ public open class GridContainer : Container() {
   public var columns: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDCONTAINER_GET_COLUMNS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getColumnsPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDCONTAINER_SET_COLUMNS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setColumnsPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -47,4 +49,10 @@ public open class GridContainer : Container() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setColumnsPtr: VoidPtr = TypeManager.getMethodBindPtr("GridContainer", "set_columns")
+
+    public val getColumnsPtr: VoidPtr = TypeManager.getMethodBindPtr("GridContainer", "get_columns")
+  }
 }

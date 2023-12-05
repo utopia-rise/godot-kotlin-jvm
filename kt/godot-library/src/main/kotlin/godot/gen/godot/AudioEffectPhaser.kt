@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -34,14 +36,12 @@ public open class AudioEffectPhaser : AudioEffect() {
   public var rangeMinHz: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPHASER_GET_RANGE_MIN_HZ, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRangeMinHzPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPHASER_SET_RANGE_MIN_HZ, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRangeMinHzPtr, NIL)
     }
 
   /**
@@ -50,14 +50,12 @@ public open class AudioEffectPhaser : AudioEffect() {
   public var rangeMaxHz: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPHASER_GET_RANGE_MAX_HZ, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRangeMaxHzPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPHASER_SET_RANGE_MAX_HZ, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRangeMaxHzPtr, NIL)
     }
 
   /**
@@ -66,14 +64,12 @@ public open class AudioEffectPhaser : AudioEffect() {
   public var rateHz: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPHASER_GET_RATE_HZ,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRateHzPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPHASER_SET_RATE_HZ,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRateHzPtr, NIL)
     }
 
   /**
@@ -82,14 +78,12 @@ public open class AudioEffectPhaser : AudioEffect() {
   public var feedback: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPHASER_GET_FEEDBACK,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFeedbackPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPHASER_SET_FEEDBACK,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFeedbackPtr, NIL)
     }
 
   /**
@@ -98,13 +92,12 @@ public open class AudioEffectPhaser : AudioEffect() {
   public var depth: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPHASER_GET_DEPTH,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDepthPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPHASER_SET_DEPTH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -113,4 +106,34 @@ public open class AudioEffectPhaser : AudioEffect() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setRangeMinHzPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectPhaser", "set_range_min_hz")
+
+    public val getRangeMinHzPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectPhaser", "get_range_min_hz")
+
+    public val setRangeMaxHzPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectPhaser", "set_range_max_hz")
+
+    public val getRangeMaxHzPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectPhaser", "get_range_max_hz")
+
+    public val setRateHzPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectPhaser", "set_rate_hz")
+
+    public val getRateHzPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectPhaser", "get_rate_hz")
+
+    public val setFeedbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectPhaser", "set_feedback")
+
+    public val getFeedbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectPhaser", "get_feedback")
+
+    public val setDepthPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioEffectPhaser", "set_depth")
+
+    public val getDepthPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioEffectPhaser", "get_depth")
+  }
 }

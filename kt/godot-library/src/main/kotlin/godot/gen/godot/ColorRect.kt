@@ -10,9 +10,11 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
+import godot.core.TypeManager
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -35,12 +37,12 @@ public open class ColorRect : Control() {
   public var color: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORRECT_GET_COLOR, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORRECT_SET_COLOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -73,4 +75,10 @@ public open class ColorRect : Control() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setColorPtr: VoidPtr = TypeManager.getMethodBindPtr("ColorRect", "set_color")
+
+    public val getColorPtr: VoidPtr = TypeManager.getMethodBindPtr("ColorRect", "get_color")
+  }
 }

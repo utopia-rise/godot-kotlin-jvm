@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -35,7 +37,7 @@ public open class MethodTweener : Tweener() {
    */
   public fun setDelay(delay: Double): MethodTweener? {
     TransferContext.writeArguments(DOUBLE to delay)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_METHODTWEENER_SET_DELAY, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDelayPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as MethodTweener?)
   }
 
@@ -44,7 +46,7 @@ public open class MethodTweener : Tweener() {
    */
   public fun setTrans(trans: Tween.TransitionType): MethodTweener? {
     TransferContext.writeArguments(LONG to trans.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_METHODTWEENER_SET_TRANS, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTransPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as MethodTweener?)
   }
 
@@ -53,9 +55,17 @@ public open class MethodTweener : Tweener() {
    */
   public fun setEase(ease: Tween.EaseType): MethodTweener? {
     TransferContext.writeArguments(LONG to ease.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_METHODTWEENER_SET_EASE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEasePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as MethodTweener?)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setDelayPtr: VoidPtr = TypeManager.getMethodBindPtr("MethodTweener", "set_delay")
+
+    public val setTransPtr: VoidPtr = TypeManager.getMethodBindPtr("MethodTweener", "set_trans")
+
+    public val setEasePtr: VoidPtr = TypeManager.getMethodBindPtr("MethodTweener", "set_ease")
+  }
 }

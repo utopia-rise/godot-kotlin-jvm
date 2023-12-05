@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
@@ -16,6 +17,7 @@ import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
@@ -81,8 +83,7 @@ public open class FileSystemDock internal constructor() : VBoxContainer() {
    */
   public fun navigateToPath(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILESYSTEMDOCK_NAVIGATE_TO_PATH,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.navigateToPathPtr, NIL)
   }
 
   /**
@@ -90,8 +91,7 @@ public open class FileSystemDock internal constructor() : VBoxContainer() {
    */
   public fun addResourceTooltipPlugin(plugin: EditorResourceTooltipPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_FILESYSTEMDOCK_ADD_RESOURCE_TOOLTIP_PLUGIN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addResourceTooltipPluginPtr, NIL)
   }
 
   /**
@@ -99,9 +99,19 @@ public open class FileSystemDock internal constructor() : VBoxContainer() {
    */
   public fun removeResourceTooltipPlugin(plugin: EditorResourceTooltipPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_FILESYSTEMDOCK_REMOVE_RESOURCE_TOOLTIP_PLUGIN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeResourceTooltipPluginPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val navigateToPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileSystemDock", "navigate_to_path")
+
+    public val addResourceTooltipPluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileSystemDock", "add_resource_tooltip_plugin")
+
+    public val removeResourceTooltipPluginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileSystemDock", "remove_resource_tooltip_plugin")
+  }
 }

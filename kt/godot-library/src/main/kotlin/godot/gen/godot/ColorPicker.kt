@@ -11,6 +11,7 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedColorArray
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.LONG
@@ -19,6 +20,7 @@ import godot.core.VariantType.PACKED_COLOR_ARRAY
 import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -59,12 +61,12 @@ public open class ColorPicker : VBoxContainer() {
   public var color: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_PICK_COLOR, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPickColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_PICK_COLOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPickColorPtr, NIL)
     }
 
   /**
@@ -73,13 +75,12 @@ public open class ColorPicker : VBoxContainer() {
   public var editAlpha: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_IS_EDITING_ALPHA,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isEditingAlphaPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_EDIT_ALPHA, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEditAlphaPtr, NIL)
     }
 
   /**
@@ -88,12 +89,12 @@ public open class ColorPicker : VBoxContainer() {
   public var colorMode: ColorModeType
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_COLOR_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getColorModePtr, LONG)
       return ColorPicker.ColorModeType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_COLOR_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setColorModePtr, NIL)
     }
 
   /**
@@ -102,14 +103,12 @@ public open class ColorPicker : VBoxContainer() {
   public var deferredMode: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_IS_DEFERRED_MODE,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isDeferredModePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_DEFERRED_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDeferredModePtr, NIL)
     }
 
   /**
@@ -118,13 +117,12 @@ public open class ColorPicker : VBoxContainer() {
   public var pickerShape: PickerShapeType
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_PICKER_SHAPE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPickerShapePtr, LONG)
       return ColorPicker.PickerShapeType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_PICKER_SHAPE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPickerShapePtr, NIL)
     }
 
   /**
@@ -133,14 +131,12 @@ public open class ColorPicker : VBoxContainer() {
   public var canAddSwatches: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_ARE_SWATCHES_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.areSwatchesEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_CAN_ADD_SWATCHES,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCanAddSwatchesPtr, NIL)
     }
 
   /**
@@ -149,14 +145,12 @@ public open class ColorPicker : VBoxContainer() {
   public var samplerVisible: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_IS_SAMPLER_VISIBLE,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isSamplerVisiblePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_SAMPLER_VISIBLE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSamplerVisiblePtr, NIL)
     }
 
   /**
@@ -165,14 +159,12 @@ public open class ColorPicker : VBoxContainer() {
   public var colorModesVisible: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_ARE_MODES_VISIBLE,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.areModesVisiblePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_MODES_VISIBLE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setModesVisiblePtr, NIL)
     }
 
   /**
@@ -181,14 +173,12 @@ public open class ColorPicker : VBoxContainer() {
   public var slidersVisible: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_ARE_SLIDERS_VISIBLE,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.areSlidersVisiblePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_SLIDERS_VISIBLE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSlidersVisiblePtr, NIL)
     }
 
   /**
@@ -197,12 +187,12 @@ public open class ColorPicker : VBoxContainer() {
   public var hexVisible: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_IS_HEX_VISIBLE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isHexVisiblePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_HEX_VISIBLE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHexVisiblePtr, NIL)
     }
 
   /**
@@ -211,14 +201,12 @@ public open class ColorPicker : VBoxContainer() {
   public var presetsVisible: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_ARE_PRESETS_VISIBLE,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.arePresetsVisiblePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_PRESETS_VISIBLE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPresetsVisiblePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -257,7 +245,7 @@ public open class ColorPicker : VBoxContainer() {
    */
   public fun addPreset(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_ADD_PRESET, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addPresetPtr, NIL)
   }
 
   /**
@@ -265,7 +253,7 @@ public open class ColorPicker : VBoxContainer() {
    */
   public fun erasePreset(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_ERASE_PRESET, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.erasePresetPtr, NIL)
   }
 
   /**
@@ -273,8 +261,7 @@ public open class ColorPicker : VBoxContainer() {
    */
   public fun getPresets(): PackedColorArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_PRESETS,
-        PACKED_COLOR_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getPresetsPtr, PACKED_COLOR_ARRAY)
     return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray)
   }
 
@@ -285,7 +272,7 @@ public open class ColorPicker : VBoxContainer() {
    */
   public fun addRecentPreset(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_ADD_RECENT_PRESET, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addRecentPresetPtr, NIL)
   }
 
   /**
@@ -293,8 +280,7 @@ public open class ColorPicker : VBoxContainer() {
    */
   public fun eraseRecentPreset(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_ERASE_RECENT_PRESET,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.eraseRecentPresetPtr, NIL)
   }
 
   /**
@@ -302,8 +288,7 @@ public open class ColorPicker : VBoxContainer() {
    */
   public fun getRecentPresets(): PackedColorArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_RECENT_PRESETS,
-        PACKED_COLOR_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getRecentPresetsPtr, PACKED_COLOR_ARRAY)
     return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray)
   }
 
@@ -378,4 +363,87 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setPickColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "set_pick_color")
+
+    public val getPickColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "get_pick_color")
+
+    public val setDeferredModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "set_deferred_mode")
+
+    public val isDeferredModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "is_deferred_mode")
+
+    public val setColorModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "set_color_mode")
+
+    public val getColorModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "get_color_mode")
+
+    public val setEditAlphaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "set_edit_alpha")
+
+    public val isEditingAlphaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "is_editing_alpha")
+
+    public val setCanAddSwatchesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "set_can_add_swatches")
+
+    public val areSwatchesEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "are_swatches_enabled")
+
+    public val setPresetsVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "set_presets_visible")
+
+    public val arePresetsVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "are_presets_visible")
+
+    public val setModesVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "set_modes_visible")
+
+    public val areModesVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "are_modes_visible")
+
+    public val setSamplerVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "set_sampler_visible")
+
+    public val isSamplerVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "is_sampler_visible")
+
+    public val setSlidersVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "set_sliders_visible")
+
+    public val areSlidersVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "are_sliders_visible")
+
+    public val setHexVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "set_hex_visible")
+
+    public val isHexVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "is_hex_visible")
+
+    public val addPresetPtr: VoidPtr = TypeManager.getMethodBindPtr("ColorPicker", "add_preset")
+
+    public val erasePresetPtr: VoidPtr = TypeManager.getMethodBindPtr("ColorPicker", "erase_preset")
+
+    public val getPresetsPtr: VoidPtr = TypeManager.getMethodBindPtr("ColorPicker", "get_presets")
+
+    public val addRecentPresetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "add_recent_preset")
+
+    public val eraseRecentPresetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "erase_recent_preset")
+
+    public val getRecentPresetsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "get_recent_presets")
+
+    public val setPickerShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "set_picker_shape")
+
+    public val getPickerShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "get_picker_shape")
+  }
 }

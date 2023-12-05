@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -27,16 +29,12 @@ public open class VisualShaderNodeParticleMultiplyByAxisAngle : VisualShaderNode
   public var degreesMode: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMULTIPLYBYAXISANGLE_IS_DEGREES_MODE,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isDegreesModePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMULTIPLYBYAXISANGLE_SET_DEGREES_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDegreesModePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -45,4 +43,12 @@ public open class VisualShaderNodeParticleMultiplyByAxisAngle : VisualShaderNode
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setDegreesModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMultiplyByAxisAngle", "set_degrees_mode")
+
+    public val isDegreesModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMultiplyByAxisAngle", "is_degrees_mode")
+  }
 }

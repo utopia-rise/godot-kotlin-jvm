@@ -11,6 +11,7 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Rect2
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
@@ -22,6 +23,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -43,12 +45,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public var centered: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_IS_CENTERED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isCenteredPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_CENTERED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCenteredPtr, NIL)
     }
 
   /**
@@ -58,12 +60,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_OFFSET, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_OFFSET, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
     }
 
   /**
@@ -72,12 +74,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public var flipH: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_IS_FLIPPED_H, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isFlippedHPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_FLIP_H, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlipHPtr, NIL)
     }
 
   /**
@@ -86,12 +88,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public var flipV: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_IS_FLIPPED_V, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isFlippedVPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_FLIP_V, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlipVPtr, NIL)
     }
 
   /**
@@ -103,12 +105,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public var modulate: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_MODULATE, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_MODULATE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setModulatePtr, NIL)
     }
 
   /**
@@ -117,13 +119,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public var pixelSize: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_PIXEL_SIZE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPixelSizePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_PIXEL_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPixelSizePtr, NIL)
     }
 
   /**
@@ -132,12 +133,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public var axis: Vector3.Axis
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_AXIS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAxisPtr, LONG)
       return Vector3.Axis.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_AXIS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAxisPtr, NIL)
     }
 
   /**
@@ -146,14 +147,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public var billboard: BaseMaterial3D.BillboardMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_BILLBOARD_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBillboardModePtr, LONG)
       return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_BILLBOARD_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBillboardModePtr, NIL)
     }
 
   /**
@@ -162,12 +161,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public var transparent: Boolean
     get() {
       TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_DRAW_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 0L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_DRAW_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDrawFlagPtr, NIL)
     }
 
   /**
@@ -176,12 +175,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public var shaded: Boolean
     get() {
       TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_DRAW_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 1L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_DRAW_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDrawFlagPtr, NIL)
     }
 
   /**
@@ -190,12 +189,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public var doubleSided: Boolean
     get() {
       TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_DRAW_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 2L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_DRAW_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDrawFlagPtr, NIL)
     }
 
   /**
@@ -204,12 +203,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public var noDepthTest: Boolean
     get() {
       TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_DRAW_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 3L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_DRAW_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDrawFlagPtr, NIL)
     }
 
   /**
@@ -218,12 +217,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public var fixedSize: Boolean
     get() {
       TransferContext.writeArguments(LONG to 4L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_DRAW_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 4L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_DRAW_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDrawFlagPtr, NIL)
     }
 
   /**
@@ -232,14 +231,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public var alphaCut: AlphaCutMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_ALPHA_CUT_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaCutModePtr, LONG)
       return SpriteBase3D.AlphaCutMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_ALPHA_CUT_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaCutModePtr, NIL)
     }
 
   /**
@@ -248,14 +245,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public var alphaScissorThreshold: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_ALPHA_SCISSOR_THRESHOLD, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaScissorThresholdPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_ALPHA_SCISSOR_THRESHOLD, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaScissorThresholdPtr, NIL)
     }
 
   /**
@@ -264,14 +259,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public var alphaHashScale: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_ALPHA_HASH_SCALE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaHashScalePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_ALPHA_HASH_SCALE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaHashScalePtr, NIL)
     }
 
   /**
@@ -280,14 +273,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public var alphaAntialiasingMode: BaseMaterial3D.AlphaAntiAliasing
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_ALPHA_ANTIALIASING, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingPtr, LONG)
       return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_ALPHA_ANTIALIASING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingPtr, NIL)
     }
 
   /**
@@ -296,14 +287,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public var alphaAntialiasingEdge: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_ALPHA_ANTIALIASING_EDGE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingEdgePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_ALPHA_ANTIALIASING_EDGE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingEdgePtr, NIL)
     }
 
   /**
@@ -312,14 +301,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public var textureFilter: BaseMaterial3D.TextureFilter
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_TEXTURE_FILTER,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
       return BaseMaterial3D.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_TEXTURE_FILTER,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
     }
 
   /**
@@ -332,14 +319,12 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public var renderPriority: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_RENDER_PRIORITY,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRenderPriorityPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_RENDER_PRIORITY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRenderPriorityPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -402,7 +387,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    */
   public fun getItemRect(): Rect2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_ITEM_RECT, RECT2)
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)
   }
 
@@ -411,8 +396,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    */
   public fun generateTriangleMesh(): TriangleMesh? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GENERATE_TRIANGLE_MESH,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.generateTriangleMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as TriangleMesh?)
   }
 
@@ -487,4 +471,99 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setCenteredPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_centered")
+
+    public val isCenteredPtr: VoidPtr = TypeManager.getMethodBindPtr("SpriteBase3D", "is_centered")
+
+    public val setOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("SpriteBase3D", "set_offset")
+
+    public val getOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("SpriteBase3D", "get_offset")
+
+    public val setFlipHPtr: VoidPtr = TypeManager.getMethodBindPtr("SpriteBase3D", "set_flip_h")
+
+    public val isFlippedHPtr: VoidPtr = TypeManager.getMethodBindPtr("SpriteBase3D", "is_flipped_h")
+
+    public val setFlipVPtr: VoidPtr = TypeManager.getMethodBindPtr("SpriteBase3D", "set_flip_v")
+
+    public val isFlippedVPtr: VoidPtr = TypeManager.getMethodBindPtr("SpriteBase3D", "is_flipped_v")
+
+    public val setModulatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_modulate")
+
+    public val getModulatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_modulate")
+
+    public val setRenderPriorityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_render_priority")
+
+    public val getRenderPriorityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_render_priority")
+
+    public val setPixelSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_pixel_size")
+
+    public val getPixelSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_pixel_size")
+
+    public val setAxisPtr: VoidPtr = TypeManager.getMethodBindPtr("SpriteBase3D", "set_axis")
+
+    public val getAxisPtr: VoidPtr = TypeManager.getMethodBindPtr("SpriteBase3D", "get_axis")
+
+    public val setDrawFlagPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_draw_flag")
+
+    public val getDrawFlagPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_draw_flag")
+
+    public val setAlphaCutModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_alpha_cut_mode")
+
+    public val getAlphaCutModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_alpha_cut_mode")
+
+    public val setAlphaScissorThresholdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_alpha_scissor_threshold")
+
+    public val getAlphaScissorThresholdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_alpha_scissor_threshold")
+
+    public val setAlphaHashScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_alpha_hash_scale")
+
+    public val getAlphaHashScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_alpha_hash_scale")
+
+    public val setAlphaAntialiasingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_alpha_antialiasing")
+
+    public val getAlphaAntialiasingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_alpha_antialiasing")
+
+    public val setAlphaAntialiasingEdgePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_alpha_antialiasing_edge")
+
+    public val getAlphaAntialiasingEdgePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_alpha_antialiasing_edge")
+
+    public val setBillboardModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_billboard_mode")
+
+    public val getBillboardModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_billboard_mode")
+
+    public val setTextureFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "set_texture_filter")
+
+    public val getTextureFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_texture_filter")
+
+    public val getItemRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "get_item_rect")
+
+    public val generateTriangleMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteBase3D", "generate_triangle_mesh")
+  }
 }

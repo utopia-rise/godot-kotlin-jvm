@@ -7,12 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -33,12 +35,12 @@ public open class MenuBar : Control() {
   public var flat: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_IS_FLAT, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isFlatPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_SET_FLAT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlatPtr, NIL)
     }
 
   /**
@@ -47,12 +49,12 @@ public open class MenuBar : Control() {
   public var startIndex: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_GET_START_INDEX, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getStartIndexPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_SET_START_INDEX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setStartIndexPtr, NIL)
     }
 
   /**
@@ -61,12 +63,12 @@ public open class MenuBar : Control() {
   public var switchOnHover: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_IS_SWITCH_ON_HOVER, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isSwitchOnHoverPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_SET_SWITCH_ON_HOVER, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSwitchOnHoverPtr, NIL)
     }
 
   /**
@@ -75,14 +77,12 @@ public open class MenuBar : Control() {
   public var preferGlobalMenu: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_IS_PREFER_GLOBAL_MENU,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isPreferGlobalMenuPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_SET_PREFER_GLOBAL_MENU,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPreferGlobalMenuPtr, NIL)
     }
 
   /**
@@ -91,12 +91,12 @@ public open class MenuBar : Control() {
   public var textDirection: Control.TextDirection
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_GET_TEXT_DIRECTION, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
       return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_SET_TEXT_DIRECTION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
     }
 
   /**
@@ -105,12 +105,12 @@ public open class MenuBar : Control() {
   public var language: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_GET_LANGUAGE, STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_SET_LANGUAGE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -123,7 +123,7 @@ public open class MenuBar : Control() {
    */
   public fun setDisableShortcuts(disabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to disabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_SET_DISABLE_SHORTCUTS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDisableShortcutsPtr, NIL)
   }
 
   /**
@@ -131,7 +131,7 @@ public open class MenuBar : Control() {
    */
   public fun isNativeMenu(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_IS_NATIVE_MENU, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isNativeMenuPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -140,7 +140,7 @@ public open class MenuBar : Control() {
    */
   public fun getMenuCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_GET_MENU_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getMenuCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -149,7 +149,7 @@ public open class MenuBar : Control() {
    */
   public fun setMenuTitle(menu: Int, title: String): Unit {
     TransferContext.writeArguments(LONG to menu.toLong(), STRING to title)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_SET_MENU_TITLE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMenuTitlePtr, NIL)
   }
 
   /**
@@ -157,7 +157,7 @@ public open class MenuBar : Control() {
    */
   public fun getMenuTitle(menu: Int): String {
     TransferContext.writeArguments(LONG to menu.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_GET_MENU_TITLE, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getMenuTitlePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -166,7 +166,7 @@ public open class MenuBar : Control() {
    */
   public fun setMenuTooltip(menu: Int, tooltip: String): Unit {
     TransferContext.writeArguments(LONG to menu.toLong(), STRING to tooltip)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_SET_MENU_TOOLTIP, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMenuTooltipPtr, NIL)
   }
 
   /**
@@ -174,7 +174,7 @@ public open class MenuBar : Control() {
    */
   public fun getMenuTooltip(menu: Int): String {
     TransferContext.writeArguments(LONG to menu.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_GET_MENU_TOOLTIP, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getMenuTooltipPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -183,7 +183,7 @@ public open class MenuBar : Control() {
    */
   public fun setMenuDisabled(menu: Int, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to menu.toLong(), BOOL to disabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_SET_MENU_DISABLED, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMenuDisabledPtr, NIL)
   }
 
   /**
@@ -191,7 +191,7 @@ public open class MenuBar : Control() {
    */
   public fun isMenuDisabled(menu: Int): Boolean {
     TransferContext.writeArguments(LONG to menu.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_IS_MENU_DISABLED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isMenuDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -200,7 +200,7 @@ public open class MenuBar : Control() {
    */
   public fun setMenuHidden(menu: Int, hidden: Boolean): Unit {
     TransferContext.writeArguments(LONG to menu.toLong(), BOOL to hidden)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_SET_MENU_HIDDEN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMenuHiddenPtr, NIL)
   }
 
   /**
@@ -208,7 +208,7 @@ public open class MenuBar : Control() {
    */
   public fun isMenuHidden(menu: Int): Boolean {
     TransferContext.writeArguments(LONG to menu.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_IS_MENU_HIDDEN, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isMenuHiddenPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -217,9 +217,73 @@ public open class MenuBar : Control() {
    */
   public fun getMenuPopup(menu: Int): PopupMenu? {
     TransferContext.writeArguments(LONG to menu.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBAR_GET_MENU_POPUP, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getMenuPopupPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PopupMenu?)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setSwitchOnHoverPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MenuBar", "set_switch_on_hover")
+
+    public val isSwitchOnHoverPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MenuBar", "is_switch_on_hover")
+
+    public val setDisableShortcutsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MenuBar", "set_disable_shortcuts")
+
+    public val setPreferGlobalMenuPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MenuBar", "set_prefer_global_menu")
+
+    public val isPreferGlobalMenuPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MenuBar", "is_prefer_global_menu")
+
+    public val isNativeMenuPtr: VoidPtr = TypeManager.getMethodBindPtr("MenuBar", "is_native_menu")
+
+    public val getMenuCountPtr: VoidPtr = TypeManager.getMethodBindPtr("MenuBar", "get_menu_count")
+
+    public val setTextDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MenuBar", "set_text_direction")
+
+    public val getTextDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MenuBar", "get_text_direction")
+
+    public val setLanguagePtr: VoidPtr = TypeManager.getMethodBindPtr("MenuBar", "set_language")
+
+    public val getLanguagePtr: VoidPtr = TypeManager.getMethodBindPtr("MenuBar", "get_language")
+
+    public val setFlatPtr: VoidPtr = TypeManager.getMethodBindPtr("MenuBar", "set_flat")
+
+    public val isFlatPtr: VoidPtr = TypeManager.getMethodBindPtr("MenuBar", "is_flat")
+
+    public val setStartIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MenuBar", "set_start_index")
+
+    public val getStartIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MenuBar", "get_start_index")
+
+    public val setMenuTitlePtr: VoidPtr = TypeManager.getMethodBindPtr("MenuBar", "set_menu_title")
+
+    public val getMenuTitlePtr: VoidPtr = TypeManager.getMethodBindPtr("MenuBar", "get_menu_title")
+
+    public val setMenuTooltipPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MenuBar", "set_menu_tooltip")
+
+    public val getMenuTooltipPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MenuBar", "get_menu_tooltip")
+
+    public val setMenuDisabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MenuBar", "set_menu_disabled")
+
+    public val isMenuDisabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MenuBar", "is_menu_disabled")
+
+    public val setMenuHiddenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MenuBar", "set_menu_hidden")
+
+    public val isMenuHiddenPtr: VoidPtr = TypeManager.getMethodBindPtr("MenuBar", "is_menu_hidden")
+
+    public val getMenuPopupPtr: VoidPtr = TypeManager.getMethodBindPtr("MenuBar", "get_menu_popup")
+  }
 }

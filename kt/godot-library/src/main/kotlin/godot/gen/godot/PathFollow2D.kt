@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -32,12 +34,12 @@ public open class PathFollow2D : Node2D() {
   public var progress: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_GET_PROGRESS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getProgressPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_SET_PROGRESS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setProgressPtr, NIL)
     }
 
   /**
@@ -46,14 +48,12 @@ public open class PathFollow2D : Node2D() {
   public var progressRatio: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_GET_PROGRESS_RATIO,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getProgressRatioPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_SET_PROGRESS_RATIO,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setProgressRatioPtr, NIL)
     }
 
   /**
@@ -62,12 +62,12 @@ public open class PathFollow2D : Node2D() {
   public var hOffset: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_GET_H_OFFSET, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHOffsetPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_SET_H_OFFSET, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHOffsetPtr, NIL)
     }
 
   /**
@@ -76,12 +76,12 @@ public open class PathFollow2D : Node2D() {
   public var vOffset: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_GET_V_OFFSET, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVOffsetPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_SET_V_OFFSET, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVOffsetPtr, NIL)
     }
 
   /**
@@ -90,12 +90,12 @@ public open class PathFollow2D : Node2D() {
   public var rotates: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_IS_ROTATING, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isRotatingPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_SET_ROTATES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRotatesPtr, NIL)
     }
 
   /**
@@ -108,14 +108,12 @@ public open class PathFollow2D : Node2D() {
   public var cubicInterp: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_GET_CUBIC_INTERPOLATION, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCubicInterpolationPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_SET_CUBIC_INTERPOLATION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCubicInterpolationPtr, NIL)
     }
 
   /**
@@ -124,12 +122,12 @@ public open class PathFollow2D : Node2D() {
   public var loop: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_HAS_LOOP, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATHFOLLOW2D_SET_LOOP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -138,4 +136,40 @@ public open class PathFollow2D : Node2D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setProgressPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow2D", "set_progress")
+
+    public val getProgressPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow2D", "get_progress")
+
+    public val setHOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("PathFollow2D", "set_h_offset")
+
+    public val getHOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("PathFollow2D", "get_h_offset")
+
+    public val setVOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("PathFollow2D", "set_v_offset")
+
+    public val getVOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("PathFollow2D", "get_v_offset")
+
+    public val setProgressRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow2D", "set_progress_ratio")
+
+    public val getProgressRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow2D", "get_progress_ratio")
+
+    public val setRotatesPtr: VoidPtr = TypeManager.getMethodBindPtr("PathFollow2D", "set_rotates")
+
+    public val isRotatingPtr: VoidPtr = TypeManager.getMethodBindPtr("PathFollow2D", "is_rotating")
+
+    public val setCubicInterpolationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow2D", "set_cubic_interpolation")
+
+    public val getCubicInterpolationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow2D", "get_cubic_interpolation")
+
+    public val setLoopPtr: VoidPtr = TypeManager.getMethodBindPtr("PathFollow2D", "set_loop")
+
+    public val hasLoopPtr: VoidPtr = TypeManager.getMethodBindPtr("PathFollow2D", "has_loop")
+  }
 }

@@ -9,6 +9,7 @@ package godot
 import godot.TextServer.JustificationFlagValue
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedFloat32Array
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -19,6 +20,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -45,12 +47,12 @@ public open class Label : Control() {
   public var text: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_TEXT, STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_TEXT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
     }
 
   /**
@@ -59,12 +61,12 @@ public open class Label : Control() {
   public var labelSettings: LabelSettings?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_LABEL_SETTINGS, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLabelSettingsPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as LabelSettings?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_LABEL_SETTINGS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLabelSettingsPtr, NIL)
     }
 
   /**
@@ -73,14 +75,12 @@ public open class Label : Control() {
   public var horizontalAlignment: HorizontalAlignment
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_HORIZONTAL_ALIGNMENT,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
       return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_HORIZONTAL_ALIGNMENT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
     }
 
   /**
@@ -89,13 +89,12 @@ public open class Label : Control() {
   public var verticalAlignment: VerticalAlignment
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_VERTICAL_ALIGNMENT,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVerticalAlignmentPtr, LONG)
       return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_VERTICAL_ALIGNMENT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVerticalAlignmentPtr, NIL)
     }
 
   /**
@@ -104,12 +103,12 @@ public open class Label : Control() {
   public var autowrapMode: TextServer.AutowrapMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_AUTOWRAP_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAutowrapModePtr, LONG)
       return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_AUTOWRAP_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
     }
 
   /**
@@ -118,14 +117,12 @@ public open class Label : Control() {
   public var justificationFlags: TextServer.JustificationFlag
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_JUSTIFICATION_FLAGS,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getJustificationFlagsPtr, LONG)
       return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.flag)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_JUSTIFICATION_FLAGS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setJustificationFlagsPtr, NIL)
     }
 
   /**
@@ -134,12 +131,12 @@ public open class Label : Control() {
   public var clipText: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_IS_CLIPPING_TEXT, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isClippingTextPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_CLIP_TEXT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setClipTextPtr, NIL)
     }
 
   /**
@@ -148,14 +145,12 @@ public open class Label : Control() {
   public var textOverrunBehavior: TextServer.OverrunBehavior
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_TEXT_OVERRUN_BEHAVIOR,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
       return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_TEXT_OVERRUN_BEHAVIOR,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
     }
 
   /**
@@ -164,12 +159,12 @@ public open class Label : Control() {
   public var uppercase: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_IS_UPPERCASE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isUppercasePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_UPPERCASE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUppercasePtr, NIL)
     }
 
   /**
@@ -178,13 +173,12 @@ public open class Label : Control() {
   public var tabStops: PackedFloat32Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_TAB_STOPS,
-          PACKED_FLOAT_32_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTabStopsPtr, PACKED_FLOAT_32_ARRAY)
       return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_TAB_STOPS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTabStopsPtr, NIL)
     }
 
   /**
@@ -193,12 +187,12 @@ public open class Label : Control() {
   public var linesSkipped: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_LINES_SKIPPED, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLinesSkippedPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_LINES_SKIPPED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLinesSkippedPtr, NIL)
     }
 
   /**
@@ -207,12 +201,12 @@ public open class Label : Control() {
   public var maxLinesVisible: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_MAX_LINES_VISIBLE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMaxLinesVisiblePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_MAX_LINES_VISIBLE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMaxLinesVisiblePtr, NIL)
     }
 
   /**
@@ -223,13 +217,12 @@ public open class Label : Control() {
   public var visibleCharacters: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_VISIBLE_CHARACTERS,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVisibleCharactersPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_VISIBLE_CHARACTERS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVisibleCharactersPtr, NIL)
     }
 
   /**
@@ -238,14 +231,12 @@ public open class Label : Control() {
   public var visibleCharactersBehavior: TextServer.VisibleCharactersBehavior
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LABEL_GET_VISIBLE_CHARACTERS_BEHAVIOR, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVisibleCharactersBehaviorPtr, LONG)
       return TextServer.VisibleCharactersBehavior.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LABEL_SET_VISIBLE_CHARACTERS_BEHAVIOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVisibleCharactersBehaviorPtr, NIL)
     }
 
   /**
@@ -256,12 +247,12 @@ public open class Label : Control() {
   public var visibleRatio: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_VISIBLE_RATIO, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVisibleRatioPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_VISIBLE_RATIO, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVisibleRatioPtr, NIL)
     }
 
   /**
@@ -270,12 +261,12 @@ public open class Label : Control() {
   public var textDirection: Control.TextDirection
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_TEXT_DIRECTION, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
       return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_TEXT_DIRECTION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
     }
 
   /**
@@ -284,12 +275,12 @@ public open class Label : Control() {
   public var language: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_LANGUAGE, STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_SET_LANGUAGE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
     }
 
   /**
@@ -298,14 +289,12 @@ public open class Label : Control() {
   public var structuredTextBidiOverride: TextServer.StructuredTextParser
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LABEL_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
       return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LABEL_SET_STRUCTURED_TEXT_BIDI_OVERRIDE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
     }
 
   /**
@@ -314,14 +303,14 @@ public open class Label : Control() {
   public var structuredTextBidiOverrideOptions: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LABEL_GET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
+          ARRAY)
       return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LABEL_SET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr,
+          NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -339,7 +328,7 @@ public open class Label : Control() {
   @JvmOverloads
   public fun getLineHeight(line: Int = -1): Int {
     TransferContext.writeArguments(LONG to line.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_LINE_HEIGHT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getLineHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -348,7 +337,7 @@ public open class Label : Control() {
    */
   public fun getLineCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_LINE_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getLineCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -357,7 +346,7 @@ public open class Label : Control() {
    */
   public fun getVisibleLineCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_VISIBLE_LINE_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getVisibleLineCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -366,10 +355,126 @@ public open class Label : Control() {
    */
   public fun getTotalCharacterCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LABEL_GET_TOTAL_CHARACTER_COUNT,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getTotalCharacterCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setHorizontalAlignmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "set_horizontal_alignment")
+
+    public val getHorizontalAlignmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_horizontal_alignment")
+
+    public val setVerticalAlignmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "set_vertical_alignment")
+
+    public val getVerticalAlignmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_vertical_alignment")
+
+    public val setTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "set_text")
+
+    public val getTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "get_text")
+
+    public val setLabelSettingsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "set_label_settings")
+
+    public val getLabelSettingsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_label_settings")
+
+    public val setTextDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "set_text_direction")
+
+    public val getTextDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_text_direction")
+
+    public val setLanguagePtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "set_language")
+
+    public val getLanguagePtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "get_language")
+
+    public val setAutowrapModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "set_autowrap_mode")
+
+    public val getAutowrapModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_autowrap_mode")
+
+    public val setJustificationFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "set_justification_flags")
+
+    public val getJustificationFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_justification_flags")
+
+    public val setClipTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "set_clip_text")
+
+    public val isClippingTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "is_clipping_text")
+
+    public val setTabStopsPtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "set_tab_stops")
+
+    public val getTabStopsPtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "get_tab_stops")
+
+    public val setTextOverrunBehaviorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "set_text_overrun_behavior")
+
+    public val getTextOverrunBehaviorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_text_overrun_behavior")
+
+    public val setUppercasePtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "set_uppercase")
+
+    public val isUppercasePtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "is_uppercase")
+
+    public val getLineHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "get_line_height")
+
+    public val getLineCountPtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "get_line_count")
+
+    public val getVisibleLineCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_visible_line_count")
+
+    public val getTotalCharacterCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_total_character_count")
+
+    public val setVisibleCharactersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "set_visible_characters")
+
+    public val getVisibleCharactersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_visible_characters")
+
+    public val getVisibleCharactersBehaviorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_visible_characters_behavior")
+
+    public val setVisibleCharactersBehaviorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "set_visible_characters_behavior")
+
+    public val setVisibleRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "set_visible_ratio")
+
+    public val getVisibleRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_visible_ratio")
+
+    public val setLinesSkippedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "set_lines_skipped")
+
+    public val getLinesSkippedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_lines_skipped")
+
+    public val setMaxLinesVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "set_max_lines_visible")
+
+    public val getMaxLinesVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_max_lines_visible")
+
+    public val setStructuredTextBidiOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "set_structured_text_bidi_override")
+
+    public val getStructuredTextBidiOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_structured_text_bidi_override")
+
+    public val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "set_structured_text_bidi_override_options")
+
+    public val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_structured_text_bidi_override_options")
+  }
 }

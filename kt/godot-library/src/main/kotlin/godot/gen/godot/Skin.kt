@@ -9,12 +9,14 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.Transform3D
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.TRANSFORM3D
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -37,7 +39,7 @@ public open class Skin : Resource() {
    */
   public fun setBindCount(bindCount: Int): Unit {
     TransferContext.writeArguments(LONG to bindCount.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_SET_BIND_COUNT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBindCountPtr, NIL)
   }
 
   /**
@@ -45,7 +47,7 @@ public open class Skin : Resource() {
    */
   public fun getBindCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_GET_BIND_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBindCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -54,7 +56,7 @@ public open class Skin : Resource() {
    */
   public fun addBind(bone: Int, pose: Transform3D): Unit {
     TransferContext.writeArguments(LONG to bone.toLong(), TRANSFORM3D to pose)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_ADD_BIND, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addBindPtr, NIL)
   }
 
   /**
@@ -62,7 +64,7 @@ public open class Skin : Resource() {
    */
   public fun addNamedBind(name: String, pose: Transform3D): Unit {
     TransferContext.writeArguments(STRING to name, TRANSFORM3D to pose)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_ADD_NAMED_BIND, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addNamedBindPtr, NIL)
   }
 
   /**
@@ -70,7 +72,7 @@ public open class Skin : Resource() {
    */
   public fun setBindPose(bindIndex: Int, pose: Transform3D): Unit {
     TransferContext.writeArguments(LONG to bindIndex.toLong(), TRANSFORM3D to pose)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_SET_BIND_POSE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBindPosePtr, NIL)
   }
 
   /**
@@ -78,7 +80,7 @@ public open class Skin : Resource() {
    */
   public fun getBindPose(bindIndex: Int): Transform3D {
     TransferContext.writeArguments(LONG to bindIndex.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_GET_BIND_POSE, TRANSFORM3D)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBindPosePtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
@@ -87,7 +89,7 @@ public open class Skin : Resource() {
    */
   public fun setBindName(bindIndex: Int, name: StringName): Unit {
     TransferContext.writeArguments(LONG to bindIndex.toLong(), STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_SET_BIND_NAME, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBindNamePtr, NIL)
   }
 
   /**
@@ -95,7 +97,7 @@ public open class Skin : Resource() {
    */
   public fun getBindName(bindIndex: Int): StringName {
     TransferContext.writeArguments(LONG to bindIndex.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_GET_BIND_NAME, STRING_NAME)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBindNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
@@ -104,7 +106,7 @@ public open class Skin : Resource() {
    */
   public fun setBindBone(bindIndex: Int, bone: Int): Unit {
     TransferContext.writeArguments(LONG to bindIndex.toLong(), LONG to bone.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_SET_BIND_BONE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBindBonePtr, NIL)
   }
 
   /**
@@ -112,7 +114,7 @@ public open class Skin : Resource() {
    */
   public fun getBindBone(bindIndex: Int): Int {
     TransferContext.writeArguments(LONG to bindIndex.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_GET_BIND_BONE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBindBonePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -121,8 +123,32 @@ public open class Skin : Resource() {
    */
   public fun clearBinds(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_CLEAR_BINDS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearBindsPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setBindCountPtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "set_bind_count")
+
+    public val getBindCountPtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "get_bind_count")
+
+    public val addBindPtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "add_bind")
+
+    public val addNamedBindPtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "add_named_bind")
+
+    public val setBindPosePtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "set_bind_pose")
+
+    public val getBindPosePtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "get_bind_pose")
+
+    public val setBindNamePtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "set_bind_name")
+
+    public val getBindNamePtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "get_bind_name")
+
+    public val setBindBonePtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "set_bind_bone")
+
+    public val getBindBonePtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "get_bind_bone")
+
+    public val clearBindsPtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "clear_binds")
+  }
 }

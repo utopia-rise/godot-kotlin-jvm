@@ -7,11 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -32,13 +34,12 @@ public open class CylinderMesh : PrimitiveMesh() {
   public var topRadius: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERMESH_GET_TOP_RADIUS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTopRadiusPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERMESH_SET_TOP_RADIUS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTopRadiusPtr, NIL)
     }
 
   /**
@@ -47,14 +48,12 @@ public open class CylinderMesh : PrimitiveMesh() {
   public var bottomRadius: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERMESH_GET_BOTTOM_RADIUS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBottomRadiusPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERMESH_SET_BOTTOM_RADIUS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBottomRadiusPtr, NIL)
     }
 
   /**
@@ -63,12 +62,12 @@ public open class CylinderMesh : PrimitiveMesh() {
   public var height: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERMESH_GET_HEIGHT, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERMESH_SET_HEIGHT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
     }
 
   /**
@@ -77,14 +76,12 @@ public open class CylinderMesh : PrimitiveMesh() {
   public var radialSegments: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERMESH_GET_RADIAL_SEGMENTS,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRadialSegmentsPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERMESH_SET_RADIAL_SEGMENTS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRadialSegmentsPtr, NIL)
     }
 
   /**
@@ -93,12 +90,12 @@ public open class CylinderMesh : PrimitiveMesh() {
   public var rings: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERMESH_GET_RINGS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERMESH_SET_RINGS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRingsPtr, NIL)
     }
 
   /**
@@ -109,12 +106,12 @@ public open class CylinderMesh : PrimitiveMesh() {
   public var capTop: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERMESH_IS_CAP_TOP, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isCapTopPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERMESH_SET_CAP_TOP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCapTopPtr, NIL)
     }
 
   /**
@@ -125,12 +122,12 @@ public open class CylinderMesh : PrimitiveMesh() {
   public var capBottom: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERMESH_IS_CAP_BOTTOM, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isCapBottomPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERMESH_SET_CAP_BOTTOM, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCapBottomPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -139,4 +136,42 @@ public open class CylinderMesh : PrimitiveMesh() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setTopRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CylinderMesh", "set_top_radius")
+
+    public val getTopRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CylinderMesh", "get_top_radius")
+
+    public val setBottomRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CylinderMesh", "set_bottom_radius")
+
+    public val getBottomRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CylinderMesh", "get_bottom_radius")
+
+    public val setHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("CylinderMesh", "set_height")
+
+    public val getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("CylinderMesh", "get_height")
+
+    public val setRadialSegmentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CylinderMesh", "set_radial_segments")
+
+    public val getRadialSegmentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CylinderMesh", "get_radial_segments")
+
+    public val setRingsPtr: VoidPtr = TypeManager.getMethodBindPtr("CylinderMesh", "set_rings")
+
+    public val getRingsPtr: VoidPtr = TypeManager.getMethodBindPtr("CylinderMesh", "get_rings")
+
+    public val setCapTopPtr: VoidPtr = TypeManager.getMethodBindPtr("CylinderMesh", "set_cap_top")
+
+    public val isCapTopPtr: VoidPtr = TypeManager.getMethodBindPtr("CylinderMesh", "is_cap_top")
+
+    public val setCapBottomPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CylinderMesh", "set_cap_bottom")
+
+    public val isCapBottomPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CylinderMesh", "is_cap_bottom")
+  }
 }

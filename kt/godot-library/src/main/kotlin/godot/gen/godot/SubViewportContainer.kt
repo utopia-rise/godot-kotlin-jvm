@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -35,14 +37,12 @@ public open class SubViewportContainer : Container() {
   public var stretch: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SUBVIEWPORTCONTAINER_IS_STRETCH_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isStretchEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORTCONTAINER_SET_STRETCH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setStretchPtr, NIL)
     }
 
   /**
@@ -55,14 +55,12 @@ public open class SubViewportContainer : Container() {
   public var stretchShrink: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SUBVIEWPORTCONTAINER_GET_STRETCH_SHRINK, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getStretchShrinkPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SUBVIEWPORTCONTAINER_SET_STRETCH_SHRINK, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setStretchShrinkPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -71,4 +69,18 @@ public open class SubViewportContainer : Container() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setStretchPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SubViewportContainer", "set_stretch")
+
+    public val isStretchEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SubViewportContainer", "is_stretch_enabled")
+
+    public val setStretchShrinkPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SubViewportContainer", "set_stretch_shrink")
+
+    public val getStretchShrinkPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SubViewportContainer", "get_stretch_shrink")
+  }
 }

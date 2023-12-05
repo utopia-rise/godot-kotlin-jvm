@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -28,14 +30,12 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
   public var `operator`: Operator
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVECTOROP_GET_OPERATOR, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getOperatorPtr, LONG)
       return VisualShaderNodeVectorOp.Operator.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVECTOROP_SET_OPERATOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOperatorPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -111,4 +111,12 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setOperatorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeVectorOp", "set_operator")
+
+    public val getOperatorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeVectorOp", "get_operator")
+  }
 }

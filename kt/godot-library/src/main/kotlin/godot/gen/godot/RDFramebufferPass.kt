@@ -8,10 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt32Array
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -34,14 +36,12 @@ public open class RDFramebufferPass : RefCounted() {
   public var colorAttachments: PackedInt32Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_GET_COLOR_ATTACHMENTS, PACKED_INT_32_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getColorAttachmentsPtr, PACKED_INT_32_ARRAY)
       return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_SET_COLOR_ATTACHMENTS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setColorAttachmentsPtr, NIL)
     }
 
   /**
@@ -50,14 +50,12 @@ public open class RDFramebufferPass : RefCounted() {
   public var inputAttachments: PackedInt32Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_GET_INPUT_ATTACHMENTS, PACKED_INT_32_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getInputAttachmentsPtr, PACKED_INT_32_ARRAY)
       return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_SET_INPUT_ATTACHMENTS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setInputAttachmentsPtr, NIL)
     }
 
   /**
@@ -66,14 +64,13 @@ public open class RDFramebufferPass : RefCounted() {
   public var resolveAttachments: PackedInt32Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_GET_RESOLVE_ATTACHMENTS, PACKED_INT_32_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getResolveAttachmentsPtr,
+          PACKED_INT_32_ARRAY)
       return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_SET_RESOLVE_ATTACHMENTS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setResolveAttachmentsPtr, NIL)
     }
 
   /**
@@ -82,14 +79,13 @@ public open class RDFramebufferPass : RefCounted() {
   public var preserveAttachments: PackedInt32Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_GET_PRESERVE_ATTACHMENTS, PACKED_INT_32_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPreserveAttachmentsPtr,
+          PACKED_INT_32_ARRAY)
       return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_SET_PRESERVE_ATTACHMENTS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPreserveAttachmentsPtr, NIL)
     }
 
   /**
@@ -98,14 +94,12 @@ public open class RDFramebufferPass : RefCounted() {
   public var depthAttachment: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_GET_DEPTH_ATTACHMENT, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDepthAttachmentPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDFRAMEBUFFERPASS_SET_DEPTH_ATTACHMENT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDepthAttachmentPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -118,5 +112,37 @@ public open class RDFramebufferPass : RefCounted() {
      * Attachment is unused.
      */
     public final const val ATTACHMENT_UNUSED: Long = -1
+  }
+
+  internal object MethodBindings {
+    public val setColorAttachmentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_color_attachments")
+
+    public val getColorAttachmentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_color_attachments")
+
+    public val setInputAttachmentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_input_attachments")
+
+    public val getInputAttachmentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_input_attachments")
+
+    public val setResolveAttachmentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_resolve_attachments")
+
+    public val getResolveAttachmentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_resolve_attachments")
+
+    public val setPreserveAttachmentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_preserve_attachments")
+
+    public val getPreserveAttachmentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_preserve_attachments")
+
+    public val setDepthAttachmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_depth_attachment")
+
+    public val getDepthAttachmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_depth_attachment")
   }
 }

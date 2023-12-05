@@ -13,6 +13,7 @@ import godot.core.AABB
 import godot.core.Dictionary
 import godot.core.PackedVector3Array
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -24,6 +25,7 @@ import godot.core.VariantType.PACKED_VECTOR3_ARRAY
 import godot.core.VariantType.VECTOR2I
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Float
@@ -52,13 +54,12 @@ public open class Mesh : Resource() {
   public var lightmapSizeHint: Vector2i
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_GET_LIGHTMAP_SIZE_HINT,
-          VECTOR2I)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLightmapSizeHintPtr, VECTOR2I)
       return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_SET_LIGHTMAP_SIZE_HINT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLightmapSizeHintPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -194,8 +195,7 @@ public open class Mesh : Resource() {
    */
   public fun getAabb(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_GET_AABB,
-        godot.core.VariantType.AABB)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAabbPtr, godot.core.VariantType.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
   }
 
@@ -204,8 +204,7 @@ public open class Mesh : Resource() {
    */
   public fun getFaces(): PackedVector3Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_GET_FACES,
-        PACKED_VECTOR3_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFacesPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
@@ -214,7 +213,7 @@ public open class Mesh : Resource() {
    */
   public fun getSurfaceCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_GET_SURFACE_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -223,7 +222,7 @@ public open class Mesh : Resource() {
    */
   public fun surfaceGetArrays(surfIdx: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_SURFACE_GET_ARRAYS, ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.surfaceGetArraysPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
@@ -232,8 +231,7 @@ public open class Mesh : Resource() {
    */
   public fun surfaceGetBlendShapeArrays(surfIdx: Int): VariantArray<VariantArray<Any?>> {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_SURFACE_GET_BLEND_SHAPE_ARRAYS,
-        ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.surfaceGetBlendShapeArraysPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<VariantArray<Any?>>)
   }
 
@@ -242,7 +240,7 @@ public open class Mesh : Resource() {
    */
   public fun surfaceSetMaterial(surfIdx: Int, material: Material): Unit {
     TransferContext.writeArguments(LONG to surfIdx.toLong(), OBJECT to material)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_SURFACE_SET_MATERIAL, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.surfaceSetMaterialPtr, NIL)
   }
 
   /**
@@ -250,7 +248,7 @@ public open class Mesh : Resource() {
    */
   public fun surfaceGetMaterial(surfIdx: Int): Material? {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_SURFACE_GET_MATERIAL, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.surfaceGetMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Material?)
   }
 
@@ -259,7 +257,7 @@ public open class Mesh : Resource() {
    */
   public fun createPlaceholder(): Resource? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_CREATE_PLACEHOLDER, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.createPlaceholderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
   }
 
@@ -268,7 +266,7 @@ public open class Mesh : Resource() {
    */
   public fun createTrimeshShape(): ConcavePolygonShape3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_CREATE_TRIMESH_SHAPE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.createTrimeshShapePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as ConcavePolygonShape3D?)
   }
 
@@ -283,7 +281,7 @@ public open class Mesh : Resource() {
   public fun createConvexShape(clean: Boolean = true, simplify: Boolean = false):
       ConvexPolygonShape3D? {
     TransferContext.writeArguments(BOOL to clean, BOOL to simplify)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_CREATE_CONVEX_SHAPE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.createConvexShapePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as ConvexPolygonShape3D?)
   }
 
@@ -294,7 +292,7 @@ public open class Mesh : Resource() {
    */
   public fun createOutline(margin: Float): Mesh? {
     TransferContext.writeArguments(DOUBLE to margin.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_CREATE_OUTLINE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.createOutlinePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
   }
 
@@ -303,7 +301,7 @@ public open class Mesh : Resource() {
    */
   public fun generateTriangleMesh(): TriangleMesh? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_GENERATE_TRIANGLE_MESH, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.generateTriangleMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as TriangleMesh?)
   }
 
@@ -602,6 +600,88 @@ public open class Mesh : Resource() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _getSurfaceCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "_get_surface_count")
+
+    public val _surfaceGetArrayLenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "_surface_get_array_len")
+
+    public val _surfaceGetArrayIndexLenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "_surface_get_array_index_len")
+
+    public val _surfaceGetArraysPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "_surface_get_arrays")
+
+    public val _surfaceGetBlendShapeArraysPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "_surface_get_blend_shape_arrays")
+
+    public val _surfaceGetLodsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "_surface_get_lods")
+
+    public val _surfaceGetFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "_surface_get_format")
+
+    public val _surfaceGetPrimitiveTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "_surface_get_primitive_type")
+
+    public val _surfaceSetMaterialPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "_surface_set_material")
+
+    public val _surfaceGetMaterialPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "_surface_get_material")
+
+    public val _getBlendShapeCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "_get_blend_shape_count")
+
+    public val _getBlendShapeNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "_get_blend_shape_name")
+
+    public val _setBlendShapeNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "_set_blend_shape_name")
+
+    public val _getAabbPtr: VoidPtr = TypeManager.getMethodBindPtr("Mesh", "_get_aabb")
+
+    public val setLightmapSizeHintPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "set_lightmap_size_hint")
+
+    public val getLightmapSizeHintPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "get_lightmap_size_hint")
+
+    public val getAabbPtr: VoidPtr = TypeManager.getMethodBindPtr("Mesh", "get_aabb")
+
+    public val getFacesPtr: VoidPtr = TypeManager.getMethodBindPtr("Mesh", "get_faces")
+
+    public val getSurfaceCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "get_surface_count")
+
+    public val surfaceGetArraysPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "surface_get_arrays")
+
+    public val surfaceGetBlendShapeArraysPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "surface_get_blend_shape_arrays")
+
+    public val surfaceSetMaterialPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "surface_set_material")
+
+    public val surfaceGetMaterialPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "surface_get_material")
+
+    public val createPlaceholderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "create_placeholder")
+
+    public val createTrimeshShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "create_trimesh_shape")
+
+    public val createConvexShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "create_convex_shape")
+
+    public val createOutlinePtr: VoidPtr = TypeManager.getMethodBindPtr("Mesh", "create_outline")
+
+    public val generateTriangleMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "generate_triangle_mesh")
+  }
 }
 
 public infix fun Long.or(other: godot.Mesh.ArrayFormat): Long = this.or(other.flag)

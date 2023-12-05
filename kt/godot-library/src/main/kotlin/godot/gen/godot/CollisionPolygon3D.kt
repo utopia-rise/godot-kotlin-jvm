@@ -8,11 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -34,13 +36,12 @@ public open class CollisionPolygon3D : Node3D() {
   public var depth: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_GET_DEPTH,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDepthPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_SET_DEPTH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
     }
 
   /**
@@ -49,14 +50,12 @@ public open class CollisionPolygon3D : Node3D() {
   public var disabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_IS_DISABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_SET_DISABLED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDisabledPtr, NIL)
     }
 
   /**
@@ -67,14 +66,12 @@ public open class CollisionPolygon3D : Node3D() {
   public var polygon: PackedVector2Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_GET_POLYGON,
-          PACKED_VECTOR2_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
       return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_SET_POLYGON,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
     }
 
   /**
@@ -83,14 +80,12 @@ public open class CollisionPolygon3D : Node3D() {
   public var margin: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_GET_MARGIN,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_SET_MARGIN,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -99,4 +94,30 @@ public open class CollisionPolygon3D : Node3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setDepthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionPolygon3D", "set_depth")
+
+    public val getDepthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionPolygon3D", "get_depth")
+
+    public val setPolygonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionPolygon3D", "set_polygon")
+
+    public val getPolygonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionPolygon3D", "get_polygon")
+
+    public val setDisabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionPolygon3D", "set_disabled")
+
+    public val isDisabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionPolygon3D", "is_disabled")
+
+    public val setMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionPolygon3D", "set_margin")
+
+    public val getMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionPolygon3D", "get_margin")
+  }
 }

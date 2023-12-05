@@ -19,4 +19,6 @@ public open class MovieWriterMJPEG internal constructor() : MovieWriter() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

@@ -10,6 +10,7 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -22,6 +23,7 @@ import godot.core.Vector2i
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -54,12 +56,12 @@ public open class Sprite2D : Node2D() {
   public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_GET_TEXTURE, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -68,12 +70,12 @@ public open class Sprite2D : Node2D() {
   public var centered: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_IS_CENTERED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isCenteredPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_SET_CENTERED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCenteredPtr, NIL)
     }
 
   /**
@@ -83,12 +85,12 @@ public open class Sprite2D : Node2D() {
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_GET_OFFSET, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_SET_OFFSET, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
     }
 
   /**
@@ -97,12 +99,12 @@ public open class Sprite2D : Node2D() {
   public var flipH: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_IS_FLIPPED_H, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isFlippedHPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_SET_FLIP_H, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlipHPtr, NIL)
     }
 
   /**
@@ -111,12 +113,12 @@ public open class Sprite2D : Node2D() {
   public var flipV: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_IS_FLIPPED_V, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isFlippedVPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_SET_FLIP_V, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlipVPtr, NIL)
     }
 
   /**
@@ -125,12 +127,12 @@ public open class Sprite2D : Node2D() {
   public var hframes: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_GET_HFRAMES, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHframesPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_SET_HFRAMES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHframesPtr, NIL)
     }
 
   /**
@@ -139,12 +141,12 @@ public open class Sprite2D : Node2D() {
   public var vframes: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_GET_VFRAMES, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVframesPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_SET_VFRAMES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVframesPtr, NIL)
     }
 
   /**
@@ -153,12 +155,12 @@ public open class Sprite2D : Node2D() {
   public var frame: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_GET_FRAME, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFramePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_SET_FRAME, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFramePtr, NIL)
     }
 
   /**
@@ -168,13 +170,12 @@ public open class Sprite2D : Node2D() {
   public var frameCoords: Vector2i
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_GET_FRAME_COORDS,
-          VECTOR2I)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFrameCoordsPtr, VECTOR2I)
       return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_SET_FRAME_COORDS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFrameCoordsPtr, NIL)
     }
 
   /**
@@ -183,12 +184,12 @@ public open class Sprite2D : Node2D() {
   public var regionEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_IS_REGION_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isRegionEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_SET_REGION_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRegionEnabledPtr, NIL)
     }
 
   /**
@@ -198,12 +199,12 @@ public open class Sprite2D : Node2D() {
   public var regionRect: Rect2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_GET_REGION_RECT, RECT2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRegionRectPtr, RECT2)
       return (TransferContext.readReturnValue(RECT2, false) as Rect2)
     }
     set(`value`) {
       TransferContext.writeArguments(RECT2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_SET_REGION_RECT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRegionRectPtr, NIL)
     }
 
   /**
@@ -212,14 +213,12 @@ public open class Sprite2D : Node2D() {
   public var regionFilterClipEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SPRITE2D_IS_REGION_FILTER_CLIP_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isRegionFilterClipEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SPRITE2D_SET_REGION_FILTER_CLIP_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRegionFilterClipEnabledPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -306,7 +305,7 @@ public open class Sprite2D : Node2D() {
    */
   public fun isPixelOpaque(pos: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to pos)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_IS_PIXEL_OPAQUE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isPixelOpaquePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -363,9 +362,72 @@ public open class Sprite2D : Node2D() {
    */
   public fun getRect(): Rect2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_GET_RECT, RECT2)
+    TransferContext.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite2D", "set_texture")
+
+    public val getTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite2D", "get_texture")
+
+    public val setCenteredPtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite2D", "set_centered")
+
+    public val isCenteredPtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite2D", "is_centered")
+
+    public val setOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite2D", "set_offset")
+
+    public val getOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite2D", "get_offset")
+
+    public val setFlipHPtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite2D", "set_flip_h")
+
+    public val isFlippedHPtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite2D", "is_flipped_h")
+
+    public val setFlipVPtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite2D", "set_flip_v")
+
+    public val isFlippedVPtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite2D", "is_flipped_v")
+
+    public val setRegionEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sprite2D", "set_region_enabled")
+
+    public val isRegionEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sprite2D", "is_region_enabled")
+
+    public val isPixelOpaquePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sprite2D", "is_pixel_opaque")
+
+    public val setRegionRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sprite2D", "set_region_rect")
+
+    public val getRegionRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sprite2D", "get_region_rect")
+
+    public val setRegionFilterClipEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sprite2D", "set_region_filter_clip_enabled")
+
+    public val isRegionFilterClipEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sprite2D", "is_region_filter_clip_enabled")
+
+    public val setFramePtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite2D", "set_frame")
+
+    public val getFramePtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite2D", "get_frame")
+
+    public val setFrameCoordsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sprite2D", "set_frame_coords")
+
+    public val getFrameCoordsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sprite2D", "get_frame_coords")
+
+    public val setVframesPtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite2D", "set_vframes")
+
+    public val getVframesPtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite2D", "get_vframes")
+
+    public val setHframesPtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite2D", "set_hframes")
+
+    public val getHframesPtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite2D", "get_hframes")
+
+    public val getRectPtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite2D", "get_rect")
+  }
 }

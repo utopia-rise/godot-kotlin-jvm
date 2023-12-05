@@ -37,4 +37,6 @@ public open class AnimationNodeAdd3 : AnimationNodeSync() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

@@ -10,6 +10,7 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
@@ -18,6 +19,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -50,14 +52,12 @@ public open class ReflectionProbe : VisualInstance3D() {
   public var updateMode: UpdateMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_UPDATE_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getUpdateModePtr, LONG)
       return ReflectionProbe.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_UPDATE_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUpdateModePtr, NIL)
     }
 
   /**
@@ -66,14 +66,12 @@ public open class ReflectionProbe : VisualInstance3D() {
   public var intensity: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_INTENSITY,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getIntensityPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_INTENSITY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setIntensityPtr, NIL)
     }
 
   /**
@@ -84,14 +82,12 @@ public open class ReflectionProbe : VisualInstance3D() {
   public var maxDistance: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_MAX_DISTANCE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMaxDistancePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_MAX_DISTANCE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMaxDistancePtr, NIL)
     }
 
   /**
@@ -103,12 +99,12 @@ public open class ReflectionProbe : VisualInstance3D() {
   public var size: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_SIZE, VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
     }
 
   /**
@@ -118,14 +114,12 @@ public open class ReflectionProbe : VisualInstance3D() {
   public var originOffset: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_ORIGIN_OFFSET,
-          VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getOriginOffsetPtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_ORIGIN_OFFSET,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOriginOffsetPtr, NIL)
     }
 
   /**
@@ -136,14 +130,12 @@ public open class ReflectionProbe : VisualInstance3D() {
   public var boxProjection: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_IS_BOX_PROJECTION_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isBoxProjectionEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_ENABLE_BOX_PROJECTION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnableBoxProjectionPtr, NIL)
     }
 
   /**
@@ -152,14 +144,12 @@ public open class ReflectionProbe : VisualInstance3D() {
   public var interior: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_IS_SET_AS_INTERIOR, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isSetAsInteriorPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_AS_INTERIOR,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAsInteriorPtr, NIL)
     }
 
   /**
@@ -168,14 +158,12 @@ public open class ReflectionProbe : VisualInstance3D() {
   public var enableShadows: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_ARE_SHADOWS_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.areShadowsEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_ENABLE_SHADOWS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnableShadowsPtr, NIL)
     }
 
   /**
@@ -184,14 +172,12 @@ public open class ReflectionProbe : VisualInstance3D() {
   public var cullMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_CULL_MASK,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_CULL_MASK,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
     }
 
   /**
@@ -202,14 +188,12 @@ public open class ReflectionProbe : VisualInstance3D() {
   public var meshLodThreshold: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_MESH_LOD_THRESHOLD, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMeshLodThresholdPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_MESH_LOD_THRESHOLD, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMeshLodThresholdPtr, NIL)
     }
 
   /**
@@ -218,14 +202,12 @@ public open class ReflectionProbe : VisualInstance3D() {
   public var ambientMode: AmbientMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_AMBIENT_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAmbientModePtr, LONG)
       return ReflectionProbe.AmbientMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_AMBIENT_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAmbientModePtr, NIL)
     }
 
   /**
@@ -235,14 +217,12 @@ public open class ReflectionProbe : VisualInstance3D() {
   public var ambientColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_AMBIENT_COLOR,
-          COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAmbientColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_AMBIENT_COLOR,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAmbientColorPtr, NIL)
     }
 
   /**
@@ -251,14 +231,12 @@ public open class ReflectionProbe : VisualInstance3D() {
   public var ambientColorEnergy: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_AMBIENT_COLOR_ENERGY, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAmbientColorEnergyPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_AMBIENT_COLOR_ENERGY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAmbientColorEnergyPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -391,4 +369,82 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setIntensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_intensity")
+
+    public val getIntensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "get_intensity")
+
+    public val setAmbientModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_ambient_mode")
+
+    public val getAmbientModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "get_ambient_mode")
+
+    public val setAmbientColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_ambient_color")
+
+    public val getAmbientColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "get_ambient_color")
+
+    public val setAmbientColorEnergyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_ambient_color_energy")
+
+    public val getAmbientColorEnergyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "get_ambient_color_energy")
+
+    public val setMaxDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_max_distance")
+
+    public val getMaxDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "get_max_distance")
+
+    public val setMeshLodThresholdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_mesh_lod_threshold")
+
+    public val getMeshLodThresholdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "get_mesh_lod_threshold")
+
+    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("ReflectionProbe", "set_size")
+
+    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("ReflectionProbe", "get_size")
+
+    public val setOriginOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_origin_offset")
+
+    public val getOriginOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "get_origin_offset")
+
+    public val setAsInteriorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_as_interior")
+
+    public val isSetAsInteriorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "is_set_as_interior")
+
+    public val setEnableBoxProjectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_enable_box_projection")
+
+    public val isBoxProjectionEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "is_box_projection_enabled")
+
+    public val setEnableShadowsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_enable_shadows")
+
+    public val areShadowsEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "are_shadows_enabled")
+
+    public val setCullMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_cull_mask")
+
+    public val getCullMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "get_cull_mask")
+
+    public val setUpdateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_update_mode")
+
+    public val getUpdateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "get_update_mode")
+  }
 }

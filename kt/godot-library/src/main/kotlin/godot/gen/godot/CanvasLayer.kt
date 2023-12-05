@@ -11,6 +11,7 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Transform2D
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -23,6 +24,7 @@ import godot.core.Vector2
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -58,12 +60,12 @@ public open class CanvasLayer : Node() {
   public var layer: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_LAYER, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLayerPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_SET_LAYER, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLayerPtr, NIL)
     }
 
   /**
@@ -74,12 +76,12 @@ public open class CanvasLayer : Node() {
   public var visible: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_IS_VISIBLE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isVisiblePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_SET_VISIBLE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVisiblePtr, NIL)
     }
 
   /**
@@ -89,12 +91,12 @@ public open class CanvasLayer : Node() {
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_OFFSET, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_SET_OFFSET, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
     }
 
   /**
@@ -103,12 +105,12 @@ public open class CanvasLayer : Node() {
   public var rotation: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_ROTATION, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRotationPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_SET_ROTATION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRotationPtr, NIL)
     }
 
   /**
@@ -118,12 +120,12 @@ public open class CanvasLayer : Node() {
   public var scale: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_SCALE, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getScalePtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_SET_SCALE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setScalePtr, NIL)
     }
 
   /**
@@ -133,13 +135,12 @@ public open class CanvasLayer : Node() {
   public var transform: Transform2D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_TRANSFORM,
-          TRANSFORM2D)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM2D)
       return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_SET_TRANSFORM, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
     }
 
   /**
@@ -148,14 +149,12 @@ public open class CanvasLayer : Node() {
   public var customViewport: Node?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_CUSTOM_VIEWPORT,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCustomViewportPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Node?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_SET_CUSTOM_VIEWPORT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCustomViewportPtr, NIL)
     }
 
   /**
@@ -166,14 +165,12 @@ public open class CanvasLayer : Node() {
   public var followViewportEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_IS_FOLLOWING_VIEWPORT,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isFollowingViewportPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_SET_FOLLOW_VIEWPORT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFollowViewportPtr, NIL)
     }
 
   /**
@@ -182,14 +179,12 @@ public open class CanvasLayer : Node() {
   public var followViewportScale: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_FOLLOW_VIEWPORT_SCALE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFollowViewportScalePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CANVASLAYER_SET_FOLLOW_VIEWPORT_SCALE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFollowViewportScalePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -274,7 +269,7 @@ public open class CanvasLayer : Node() {
    */
   public fun show(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_SHOW, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.showPtr, NIL)
   }
 
   /**
@@ -282,7 +277,7 @@ public open class CanvasLayer : Node() {
    */
   public fun hide(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_HIDE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hidePtr, NIL)
   }
 
   /**
@@ -290,8 +285,7 @@ public open class CanvasLayer : Node() {
    */
   public fun getFinalTransform(): Transform2D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_FINAL_TRANSFORM,
-        TRANSFORM2D)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFinalTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
   }
 
@@ -300,9 +294,64 @@ public open class CanvasLayer : Node() {
    */
   public fun getCanvas(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_CANVAS, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCanvasPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setLayerPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "set_layer")
+
+    public val getLayerPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "get_layer")
+
+    public val setVisiblePtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "set_visible")
+
+    public val isVisiblePtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "is_visible")
+
+    public val showPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "show")
+
+    public val hidePtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "hide")
+
+    public val setTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasLayer", "set_transform")
+
+    public val getTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasLayer", "get_transform")
+
+    public val getFinalTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasLayer", "get_final_transform")
+
+    public val setOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "set_offset")
+
+    public val getOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "get_offset")
+
+    public val setRotationPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "set_rotation")
+
+    public val getRotationPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "get_rotation")
+
+    public val setScalePtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "set_scale")
+
+    public val getScalePtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "get_scale")
+
+    public val setFollowViewportPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasLayer", "set_follow_viewport")
+
+    public val isFollowingViewportPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasLayer", "is_following_viewport")
+
+    public val setFollowViewportScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasLayer", "set_follow_viewport_scale")
+
+    public val getFollowViewportScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasLayer", "get_follow_viewport_scale")
+
+    public val setCustomViewportPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasLayer", "set_custom_viewport")
+
+    public val getCustomViewportPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasLayer", "get_custom_viewport")
+
+    public val getCanvasPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "get_canvas")
+  }
 }

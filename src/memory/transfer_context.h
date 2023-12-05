@@ -25,7 +25,7 @@ public:
 
     void remove_script_instance(uint64_t id);
 
-    static void icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jint p_method_index, jint expectedReturnType);
+    static void icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong j_method_ptr, jint expectedReturnType);
 
     static void create_native_object(JNIEnv* p_raw_env, jobject instance, jint p_class_index, jobject p_object, jint p_script_index);
 

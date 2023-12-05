@@ -9,12 +9,14 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -38,14 +40,12 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
   public var index: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENTOUCH_GET_INDEX,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getIndexPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENTOUCH_SET_INDEX,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setIndexPtr, NIL)
     }
 
   /**
@@ -55,14 +55,12 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
   public var position: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENTOUCH_GET_POSITION, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENTOUCH_SET_POSITION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
     }
 
   /**
@@ -74,8 +72,7 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
     get() = super.isCanceled()
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENTOUCH_SET_CANCELED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCanceledPtr, NIL)
     }
 
   /**
@@ -87,8 +84,7 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
     get() = super.isPressed()
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENTOUCH_SET_PRESSED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
     }
 
   /**
@@ -97,14 +93,12 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
   public var doubleTap: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENTOUCH_IS_DOUBLE_TAP, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isDoubleTapPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENTOUCH_SET_DOUBLE_TAP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDoubleTapPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -137,4 +131,30 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_index")
+
+    public val getIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "get_index")
+
+    public val setPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_position")
+
+    public val getPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "get_position")
+
+    public val setPressedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_pressed")
+
+    public val setCanceledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_canceled")
+
+    public val setDoubleTapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_double_tap")
+
+    public val isDoubleTapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "is_double_tap")
+  }
 }

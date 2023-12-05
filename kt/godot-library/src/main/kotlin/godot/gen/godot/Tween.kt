@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.NodePath
+import godot.core.TypeManager
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.CALLABLE
@@ -21,6 +22,7 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -296,7 +298,7 @@ public open class Tween : RefCounted() {
     duration: Double,
   ): PropertyTweener? {
     TransferContext.writeArguments(OBJECT to _object, NODE_PATH to property, ANY to finalVal, DOUBLE to duration)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_TWEEN_PROPERTY, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.tweenPropertyPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?)
   }
 
@@ -373,7 +375,7 @@ public open class Tween : RefCounted() {
    */
   public fun tweenInterval(time: Double): IntervalTweener? {
     TransferContext.writeArguments(DOUBLE to time)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_TWEEN_INTERVAL, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.tweenIntervalPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as IntervalTweener?)
   }
 
@@ -432,7 +434,7 @@ public open class Tween : RefCounted() {
    */
   public fun tweenCallback(callback: Callable): CallbackTweener? {
     TransferContext.writeArguments(CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_TWEEN_CALLBACK, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.tweenCallbackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as CallbackTweener?)
   }
 
@@ -518,7 +520,7 @@ public open class Tween : RefCounted() {
     duration: Double,
   ): MethodTweener? {
     TransferContext.writeArguments(CALLABLE to method, ANY to from, ANY to to, DOUBLE to duration)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_TWEEN_METHOD, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.tweenMethodPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as MethodTweener?)
   }
 
@@ -529,7 +531,7 @@ public open class Tween : RefCounted() {
    */
   public fun customStep(delta: Double): Boolean {
     TransferContext.writeArguments(DOUBLE to delta)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_CUSTOM_STEP, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.customStepPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -538,7 +540,7 @@ public open class Tween : RefCounted() {
    */
   public fun stop(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_STOP, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
   }
 
   /**
@@ -546,7 +548,7 @@ public open class Tween : RefCounted() {
    */
   public fun pause(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_PAUSE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.pausePtr, NIL)
   }
 
   /**
@@ -554,7 +556,7 @@ public open class Tween : RefCounted() {
    */
   public fun play(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_PLAY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.playPtr, NIL)
   }
 
   /**
@@ -562,7 +564,7 @@ public open class Tween : RefCounted() {
    */
   public fun kill(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_KILL, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.killPtr, NIL)
   }
 
   /**
@@ -572,8 +574,7 @@ public open class Tween : RefCounted() {
    */
   public fun getTotalElapsedTime(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_GET_TOTAL_ELAPSED_TIME,
-        DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getTotalElapsedTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
@@ -582,7 +583,7 @@ public open class Tween : RefCounted() {
    */
   public fun isRunning(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_IS_RUNNING, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isRunningPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -591,7 +592,7 @@ public open class Tween : RefCounted() {
    */
   public fun isValid(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_IS_VALID, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isValidPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -602,7 +603,7 @@ public open class Tween : RefCounted() {
    */
   public fun bindNode(node: Node): Tween? {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_BIND_NODE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.bindNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
@@ -613,7 +614,7 @@ public open class Tween : RefCounted() {
    */
   public fun setProcessMode(mode: TweenProcessMode): Tween? {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_PROCESS_MODE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.setProcessModePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
@@ -624,7 +625,7 @@ public open class Tween : RefCounted() {
    */
   public fun setPauseMode(mode: TweenPauseMode): Tween? {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_PAUSE_MODE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPauseModePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
@@ -634,7 +635,7 @@ public open class Tween : RefCounted() {
   @JvmOverloads
   public fun setParallel(parallel: Boolean = true): Tween? {
     TransferContext.writeArguments(BOOL to parallel)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_PARALLEL, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.setParallelPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
@@ -648,7 +649,7 @@ public open class Tween : RefCounted() {
   @JvmOverloads
   public fun setLoops(loops: Int = 0): Tween? {
     TransferContext.writeArguments(LONG to loops.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_LOOPS, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLoopsPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
@@ -657,7 +658,7 @@ public open class Tween : RefCounted() {
    */
   public fun getLoopsLeft(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_GET_LOOPS_LEFT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getLoopsLeftPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -666,7 +667,7 @@ public open class Tween : RefCounted() {
    */
   public fun setSpeedScale(speed: Float): Tween? {
     TransferContext.writeArguments(DOUBLE to speed.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_SPEED_SCALE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
@@ -677,7 +678,7 @@ public open class Tween : RefCounted() {
    */
   public fun setTrans(trans: TransitionType): Tween? {
     TransferContext.writeArguments(LONG to trans.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_TRANS, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTransPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
@@ -688,7 +689,7 @@ public open class Tween : RefCounted() {
    */
   public fun setEase(ease: EaseType): Tween? {
     TransferContext.writeArguments(LONG to ease.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_EASE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEasePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
@@ -731,7 +732,7 @@ public open class Tween : RefCounted() {
    */
   public fun parallel(): Tween? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_PARALLEL, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.parallelPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
@@ -768,7 +769,7 @@ public open class Tween : RefCounted() {
    */
   public fun chain(): Tween? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_CHAIN, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.chainPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
   }
 
@@ -939,8 +940,61 @@ public open class Tween : RefCounted() {
       easeType: EaseType,
     ): Any? {
       TransferContext.writeArguments(ANY to initialValue, ANY to deltaValue, DOUBLE to elapsedTime, DOUBLE to duration, LONG to transType.id, LONG to easeType.id)
-      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_TWEEN_INTERPOLATE_VALUE, ANY)
+      TransferContext.callMethod(0, MethodBindings.interpolateValuePtr, ANY)
       return (TransferContext.readReturnValue(ANY, true) as Any?)
     }
+  }
+
+  internal object MethodBindings {
+    public val tweenPropertyPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "tween_property")
+
+    public val tweenIntervalPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "tween_interval")
+
+    public val tweenCallbackPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "tween_callback")
+
+    public val tweenMethodPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "tween_method")
+
+    public val customStepPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "custom_step")
+
+    public val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "stop")
+
+    public val pausePtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "pause")
+
+    public val playPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "play")
+
+    public val killPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "kill")
+
+    public val getTotalElapsedTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tween", "get_total_elapsed_time")
+
+    public val isRunningPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "is_running")
+
+    public val isValidPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "is_valid")
+
+    public val bindNodePtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "bind_node")
+
+    public val setProcessModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tween", "set_process_mode")
+
+    public val setPauseModePtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "set_pause_mode")
+
+    public val setParallelPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "set_parallel")
+
+    public val setLoopsPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "set_loops")
+
+    public val getLoopsLeftPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "get_loops_left")
+
+    public val setSpeedScalePtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "set_speed_scale")
+
+    public val setTransPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "set_trans")
+
+    public val setEasePtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "set_ease")
+
+    public val parallelPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "parallel")
+
+    public val chainPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "chain")
+
+    public val interpolateValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tween", "interpolate_value")
   }
 }

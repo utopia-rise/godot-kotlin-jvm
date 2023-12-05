@@ -8,10 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector3Array
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_VECTOR3_ARRAY
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -37,14 +39,12 @@ public open class ConcavePolygonShape3D : Shape3D() {
   public var `data`: PackedVector3Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_GET_FACES,
-          PACKED_VECTOR3_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFacesPtr, PACKED_VECTOR3_ARRAY)
       return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_SET_FACES,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFacesPtr, NIL)
     }
 
   /**
@@ -53,14 +53,12 @@ public open class ConcavePolygonShape3D : Shape3D() {
   public var backfaceCollision: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_IS_BACKFACE_COLLISION_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isBackfaceCollisionEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_SET_BACKFACE_COLLISION_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBackfaceCollisionEnabledPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -69,4 +67,18 @@ public open class ConcavePolygonShape3D : Shape3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setFacesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ConcavePolygonShape3D", "set_faces")
+
+    public val getFacesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ConcavePolygonShape3D", "get_faces")
+
+    public val setBackfaceCollisionEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ConcavePolygonShape3D", "set_backface_collision_enabled")
+
+    public val isBackfaceCollisionEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ConcavePolygonShape3D", "is_backface_collision_enabled")
+  }
 }

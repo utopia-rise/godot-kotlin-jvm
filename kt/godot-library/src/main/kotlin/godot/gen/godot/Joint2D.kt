@@ -8,11 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -32,12 +34,12 @@ public open class Joint2D internal constructor() : Node2D() {
   public var nodeA: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT2D_GET_NODE_A, NODE_PATH)
+      TransferContext.callMethod(rawPtr, MethodBindings.getNodeAPtr, NODE_PATH)
       return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT2D_SET_NODE_A, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setNodeAPtr, NIL)
     }
 
   /**
@@ -46,12 +48,12 @@ public open class Joint2D internal constructor() : Node2D() {
   public var nodeB: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT2D_GET_NODE_B, NODE_PATH)
+      TransferContext.callMethod(rawPtr, MethodBindings.getNodeBPtr, NODE_PATH)
       return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT2D_SET_NODE_B, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setNodeBPtr, NIL)
     }
 
   /**
@@ -62,12 +64,12 @@ public open class Joint2D internal constructor() : Node2D() {
   public var bias: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT2D_GET_BIAS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBiasPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT2D_SET_BIAS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBiasPtr, NIL)
     }
 
   /**
@@ -76,14 +78,12 @@ public open class Joint2D internal constructor() : Node2D() {
   public var disableCollision: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_JOINT2D_GET_EXCLUDE_NODES_FROM_COLLISION, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getExcludeNodesFromCollisionPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_JOINT2D_SET_EXCLUDE_NODES_FROM_COLLISION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setExcludeNodesFromCollisionPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -92,4 +92,24 @@ public open class Joint2D internal constructor() : Node2D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setNodeAPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint2D", "set_node_a")
+
+    public val getNodeAPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint2D", "get_node_a")
+
+    public val setNodeBPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint2D", "set_node_b")
+
+    public val getNodeBPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint2D", "get_node_b")
+
+    public val setBiasPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint2D", "set_bias")
+
+    public val getBiasPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint2D", "get_bias")
+
+    public val setExcludeNodesFromCollisionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Joint2D", "set_exclude_nodes_from_collision")
+
+    public val getExcludeNodesFromCollisionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Joint2D", "get_exclude_nodes_from_collision")
+  }
 }

@@ -8,9 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
+import godot.core.TypeManager
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType._RID
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -31,7 +33,7 @@ public open class World2D : Resource() {
   public val canvas: RID
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD2D_GET_CANVAS, _RID)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCanvasPtr, _RID)
       return (TransferContext.readReturnValue(_RID, false) as RID)
     }
 
@@ -41,7 +43,7 @@ public open class World2D : Resource() {
   public val space: RID
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD2D_GET_SPACE, _RID)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSpacePtr, _RID)
       return (TransferContext.readReturnValue(_RID, false) as RID)
     }
 
@@ -51,7 +53,7 @@ public open class World2D : Resource() {
   public val navigationMap: RID
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD2D_GET_NAVIGATION_MAP, _RID)
+      TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
       return (TransferContext.readReturnValue(_RID, false) as RID)
     }
 
@@ -61,8 +63,7 @@ public open class World2D : Resource() {
   public val directSpaceState: PhysicsDirectSpaceState2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD2D_GET_DIRECT_SPACE_STATE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDirectSpaceStatePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState2D?)
     }
 
@@ -72,4 +73,16 @@ public open class World2D : Resource() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getCanvasPtr: VoidPtr = TypeManager.getMethodBindPtr("World2D", "get_canvas")
+
+    public val getSpacePtr: VoidPtr = TypeManager.getMethodBindPtr("World2D", "get_space")
+
+    public val getNavigationMapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("World2D", "get_navigation_map")
+
+    public val getDirectSpaceStatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("World2D", "get_direct_space_state")
+  }
 }

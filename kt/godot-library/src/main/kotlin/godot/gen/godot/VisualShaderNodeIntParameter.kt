@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -29,14 +31,12 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   public var hint: Hint
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_GET_HINT, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHintPtr, LONG)
       return VisualShaderNodeIntParameter.Hint.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_SET_HINT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHintPtr, NIL)
     }
 
   /**
@@ -45,14 +45,12 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   public var min: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_GET_MIN, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMinPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_SET_MIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMinPtr, NIL)
     }
 
   /**
@@ -61,14 +59,12 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   public var max: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_GET_MAX, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMaxPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_SET_MAX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMaxPtr, NIL)
     }
 
   /**
@@ -77,14 +73,12 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   public var step: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_GET_STEP, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getStepPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_SET_STEP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setStepPtr, NIL)
     }
 
   /**
@@ -93,14 +87,12 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   public var defaultValueEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_IS_DEFAULT_VALUE_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_SET_DEFAULT_VALUE_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
     }
 
   /**
@@ -109,14 +101,12 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   public var defaultValue: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_GET_DEFAULT_VALUE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTPARAMETER_SET_DEFAULT_VALUE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -156,4 +146,42 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setHintPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_hint")
+
+    public val getHintPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_hint")
+
+    public val setMinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_min")
+
+    public val getMinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_min")
+
+    public val setMaxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_max")
+
+    public val getMaxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_max")
+
+    public val setStepPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_step")
+
+    public val getStepPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_step")
+
+    public val setDefaultValueEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_default_value_enabled")
+
+    public val isDefaultValueEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "is_default_value_enabled")
+
+    public val setDefaultValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_default_value")
+
+    public val getDefaultValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_default_value")
+  }
 }

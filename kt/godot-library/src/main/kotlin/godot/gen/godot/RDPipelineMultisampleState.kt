@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -14,6 +15,7 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -34,14 +36,12 @@ public open class RDPipelineMultisampleState : RefCounted() {
   public var sampleCount: RenderingDevice.TextureSamples
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_GET_SAMPLE_COUNT, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSampleCountPtr, LONG)
       return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_SET_SAMPLE_COUNT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSampleCountPtr, NIL)
     }
 
   /**
@@ -50,14 +50,12 @@ public open class RDPipelineMultisampleState : RefCounted() {
   public var enableSampleShading: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_GET_ENABLE_SAMPLE_SHADING, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnableSampleShadingPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_SET_ENABLE_SAMPLE_SHADING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnableSampleShadingPtr, NIL)
     }
 
   /**
@@ -66,14 +64,12 @@ public open class RDPipelineMultisampleState : RefCounted() {
   public var minSampleShading: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_GET_MIN_SAMPLE_SHADING, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMinSampleShadingPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_SET_MIN_SAMPLE_SHADING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMinSampleShadingPtr, NIL)
     }
 
   /**
@@ -82,14 +78,12 @@ public open class RDPipelineMultisampleState : RefCounted() {
   public var enableAlphaToCoverage: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_GET_ENABLE_ALPHA_TO_COVERAGE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnableAlphaToCoveragePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_SET_ENABLE_ALPHA_TO_COVERAGE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnableAlphaToCoveragePtr, NIL)
     }
 
   /**
@@ -98,14 +92,12 @@ public open class RDPipelineMultisampleState : RefCounted() {
   public var enableAlphaToOne: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_GET_ENABLE_ALPHA_TO_ONE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnableAlphaToOnePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_SET_ENABLE_ALPHA_TO_ONE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnableAlphaToOnePtr, NIL)
     }
 
   /**
@@ -114,14 +106,12 @@ public open class RDPipelineMultisampleState : RefCounted() {
   public var sampleMasks: VariantArray<Long>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_GET_SAMPLE_MASKS, ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSampleMasksPtr, ARRAY)
       return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Long>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RDPIPELINEMULTISAMPLESTATE_SET_SAMPLE_MASKS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSampleMasksPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -130,4 +120,42 @@ public open class RDPipelineMultisampleState : RefCounted() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setSampleCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_sample_count")
+
+    public val getSampleCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_sample_count")
+
+    public val setEnableSampleShadingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_enable_sample_shading")
+
+    public val getEnableSampleShadingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_enable_sample_shading")
+
+    public val setMinSampleShadingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_min_sample_shading")
+
+    public val getMinSampleShadingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_min_sample_shading")
+
+    public val setEnableAlphaToCoveragePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_enable_alpha_to_coverage")
+
+    public val getEnableAlphaToCoveragePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_enable_alpha_to_coverage")
+
+    public val setEnableAlphaToOnePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_enable_alpha_to_one")
+
+    public val getEnableAlphaToOnePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_enable_alpha_to_one")
+
+    public val setSampleMasksPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_sample_masks")
+
+    public val getSampleMasksPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_sample_masks")
+  }
 }

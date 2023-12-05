@@ -24,4 +24,6 @@ public open class VSeparator : Separator() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

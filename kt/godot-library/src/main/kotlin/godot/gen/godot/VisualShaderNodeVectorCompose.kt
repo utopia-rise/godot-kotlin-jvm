@@ -24,4 +24,6 @@ public open class VisualShaderNodeVectorCompose : VisualShaderNodeVectorBase() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

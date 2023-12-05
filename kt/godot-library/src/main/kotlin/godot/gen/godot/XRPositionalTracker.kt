@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.Transform3D
+import godot.core.TypeManager
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -24,6 +25,7 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -83,14 +85,12 @@ public open class XRPositionalTracker : RefCounted() {
   public var type: XRServer.TrackerType
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_TYPE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTrackerTypePtr, LONG)
       return XRServer.TrackerType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_TRACKER_TYPE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTrackerTypePtr, NIL)
     }
 
   /**
@@ -103,14 +103,12 @@ public open class XRPositionalTracker : RefCounted() {
   public var name: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_NAME, STRING_NAME)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTrackerNamePtr, STRING_NAME)
       return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_TRACKER_NAME, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTrackerNamePtr, NIL)
     }
 
   /**
@@ -119,14 +117,12 @@ public open class XRPositionalTracker : RefCounted() {
   public var description: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_DESC, STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTrackerDescPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_TRACKER_DESC, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTrackerDescPtr, NIL)
     }
 
   /**
@@ -135,14 +131,12 @@ public open class XRPositionalTracker : RefCounted() {
   public var profile: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_PROFILE, STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTrackerProfilePtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_TRACKER_PROFILE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTrackerProfilePtr, NIL)
     }
 
   /**
@@ -151,14 +145,12 @@ public open class XRPositionalTracker : RefCounted() {
   public var hand: TrackerHand
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_HAND, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTrackerHandPtr, LONG)
       return XRPositionalTracker.TrackerHand.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_TRACKER_HAND, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTrackerHandPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -171,7 +163,7 @@ public open class XRPositionalTracker : RefCounted() {
    */
   public fun hasPose(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_HAS_POSE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hasPosePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -180,8 +172,7 @@ public open class XRPositionalTracker : RefCounted() {
    */
   public fun getPose(name: StringName): XRPose? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_POSE,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getPosePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as XRPose?)
   }
 
@@ -190,8 +181,7 @@ public open class XRPositionalTracker : RefCounted() {
    */
   public fun invalidatePose(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_INVALIDATE_POSE,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.invalidatePosePtr, NIL)
   }
 
   /**
@@ -205,7 +195,7 @@ public open class XRPositionalTracker : RefCounted() {
     trackingConfidence: XRPose.TrackingConfidence,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, TRANSFORM3D to transform, VECTOR3 to linearVelocity, VECTOR3 to angularVelocity, LONG to trackingConfidence.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_POSE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPosePtr, NIL)
   }
 
   /**
@@ -213,7 +203,7 @@ public open class XRPositionalTracker : RefCounted() {
    */
   public fun getInput(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_INPUT, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getInputPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -222,7 +212,7 @@ public open class XRPositionalTracker : RefCounted() {
    */
   public fun setInput(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_INPUT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInputPtr, NIL)
   }
 
   public enum class TrackerHand(
@@ -253,4 +243,51 @@ public open class XRPositionalTracker : RefCounted() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getTrackerTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_tracker_type")
+
+    public val setTrackerTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_tracker_type")
+
+    public val getTrackerNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_tracker_name")
+
+    public val setTrackerNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_tracker_name")
+
+    public val getTrackerDescPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_tracker_desc")
+
+    public val setTrackerDescPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_tracker_desc")
+
+    public val getTrackerProfilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_tracker_profile")
+
+    public val setTrackerProfilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_tracker_profile")
+
+    public val getTrackerHandPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_tracker_hand")
+
+    public val setTrackerHandPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_tracker_hand")
+
+    public val hasPosePtr: VoidPtr = TypeManager.getMethodBindPtr("XRPositionalTracker", "has_pose")
+
+    public val getPosePtr: VoidPtr = TypeManager.getMethodBindPtr("XRPositionalTracker", "get_pose")
+
+    public val invalidatePosePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "invalidate_pose")
+
+    public val setPosePtr: VoidPtr = TypeManager.getMethodBindPtr("XRPositionalTracker", "set_pose")
+
+    public val getInputPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_input")
+
+    public val setInputPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_input")
+  }
 }

@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -30,14 +32,12 @@ public open class EncodedObjectAsID : RefCounted() {
   public var objectId: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENCODEDOBJECTASID_GET_OBJECT_ID,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getObjectIdPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENCODEDOBJECTASID_SET_OBJECT_ID,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setObjectIdPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -46,4 +46,12 @@ public open class EncodedObjectAsID : RefCounted() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setObjectIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EncodedObjectAsID", "set_object_id")
+
+    public val getObjectIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EncodedObjectAsID", "get_object_id")
+  }
 }

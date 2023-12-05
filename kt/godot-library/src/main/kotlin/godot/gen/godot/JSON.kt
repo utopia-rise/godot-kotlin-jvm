@@ -8,12 +8,14 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
+import godot.core.TypeManager
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -75,12 +77,12 @@ public open class JSON : Resource() {
   public var `data`: Any?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_GET_DATA, ANY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDataPtr, ANY)
       return (TransferContext.readReturnValue(ANY, true) as Any?)
     }
     set(`value`) {
       TransferContext.writeArguments(ANY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_SET_DATA, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDataPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -100,7 +102,7 @@ public open class JSON : Resource() {
   @JvmOverloads
   public fun parse(jsonText: String, keepText: Boolean = false): GodotError {
     TransferContext.writeArguments(STRING to jsonText, BOOL to keepText)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_PARSE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.parsePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -109,7 +111,7 @@ public open class JSON : Resource() {
    */
   public fun getParsedText(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_GET_PARSED_TEXT, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getParsedTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -118,7 +120,7 @@ public open class JSON : Resource() {
    */
   public fun getErrorLine(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_GET_ERROR_LINE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getErrorLinePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -127,7 +129,7 @@ public open class JSON : Resource() {
    */
   public fun getErrorMessage(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSON_GET_ERROR_MESSAGE, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getErrorMessagePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -188,7 +190,7 @@ public open class JSON : Resource() {
       fullPrecision: Boolean = false,
     ): String {
       TransferContext.writeArguments(ANY to data, STRING to indent, BOOL to sortKeys, BOOL to fullPrecision)
-      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_JSON_STRINGIFY, STRING)
+      TransferContext.callMethod(0, MethodBindings.stringifyPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
 
@@ -197,8 +199,27 @@ public open class JSON : Resource() {
      */
     public fun parseString(jsonString: String): Any? {
       TransferContext.writeArguments(STRING to jsonString)
-      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_JSON_PARSE_STRING, ANY)
+      TransferContext.callMethod(0, MethodBindings.parseStringPtr, ANY)
       return (TransferContext.readReturnValue(ANY, true) as Any?)
     }
+  }
+
+  internal object MethodBindings {
+    public val stringifyPtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "stringify")
+
+    public val parseStringPtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "parse_string")
+
+    public val parsePtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "parse")
+
+    public val getDataPtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "get_data")
+
+    public val setDataPtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "set_data")
+
+    public val getParsedTextPtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "get_parsed_text")
+
+    public val getErrorLinePtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "get_error_line")
+
+    public val getErrorMessagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JSON", "get_error_message")
   }
 }

@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
@@ -18,6 +19,7 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -70,8 +72,7 @@ public open class EditorFileSystem internal constructor() : Node() {
    */
   public fun getFilesystem(): EditorFileSystemDirectory? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_FILESYSTEM,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFilesystemPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as EditorFileSystemDirectory?)
   }
 
@@ -80,7 +81,7 @@ public open class EditorFileSystem internal constructor() : Node() {
    */
   public fun isScanning(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_IS_SCANNING, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isScanningPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -89,8 +90,7 @@ public open class EditorFileSystem internal constructor() : Node() {
    */
   public fun getScanningProgress(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_SCANNING_PROGRESS, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getScanningProgressPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -99,7 +99,7 @@ public open class EditorFileSystem internal constructor() : Node() {
    */
   public fun scan(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_SCAN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.scanPtr, NIL)
   }
 
   /**
@@ -107,7 +107,7 @@ public open class EditorFileSystem internal constructor() : Node() {
    */
   public fun scanSources(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_SCAN_SOURCES, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.scanSourcesPtr, NIL)
   }
 
   /**
@@ -117,7 +117,7 @@ public open class EditorFileSystem internal constructor() : Node() {
    */
   public fun updateFile(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_UPDATE_FILE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.updateFilePtr, NIL)
   }
 
   /**
@@ -125,8 +125,7 @@ public open class EditorFileSystem internal constructor() : Node() {
    */
   public fun getFilesystemPath(path: String): EditorFileSystemDirectory? {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_FILESYSTEM_PATH, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFilesystemPathPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as EditorFileSystemDirectory?)
   }
 
@@ -135,8 +134,7 @@ public open class EditorFileSystem internal constructor() : Node() {
    */
   public fun getFileType(path: String): String {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_FILE_TYPE,
-        STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFileTypePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -149,9 +147,36 @@ public open class EditorFileSystem internal constructor() : Node() {
    */
   public fun reimportFiles(files: PackedStringArray): Unit {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to files)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_REIMPORT_FILES,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.reimportFilesPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getFilesystemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorFileSystem", "get_filesystem")
+
+    public val isScanningPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorFileSystem", "is_scanning")
+
+    public val getScanningProgressPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorFileSystem", "get_scanning_progress")
+
+    public val scanPtr: VoidPtr = TypeManager.getMethodBindPtr("EditorFileSystem", "scan")
+
+    public val scanSourcesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorFileSystem", "scan_sources")
+
+    public val updateFilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorFileSystem", "update_file")
+
+    public val getFilesystemPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorFileSystem", "get_filesystem_path")
+
+    public val getFileTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorFileSystem", "get_file_type")
+
+    public val reimportFilesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorFileSystem", "reimport_files")
+  }
 }

@@ -9,10 +9,12 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedByteArray
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -31,31 +33,31 @@ public open class ZIPPacker : RefCounted() {
   public fun `open`(path: String, append: ZipAppend = ZIPPacker.ZipAppend.APPEND_CREATE):
       GodotError {
     TransferContext.writeArguments(STRING to path, LONG to append.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ZIPPACKER_OPEN, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.openPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun startFile(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ZIPPACKER_START_FILE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.startFilePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun writeFile(`data`: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ZIPPACKER_WRITE_FILE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.writeFilePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun closeFile(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ZIPPACKER_CLOSE_FILE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.closeFilePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun close(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ZIPPACKER_CLOSE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.closePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -78,4 +80,16 @@ public open class ZIPPacker : RefCounted() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val openPtr: VoidPtr = TypeManager.getMethodBindPtr("ZIPPacker", "open")
+
+    public val startFilePtr: VoidPtr = TypeManager.getMethodBindPtr("ZIPPacker", "start_file")
+
+    public val writeFilePtr: VoidPtr = TypeManager.getMethodBindPtr("ZIPPacker", "write_file")
+
+    public val closeFilePtr: VoidPtr = TypeManager.getMethodBindPtr("ZIPPacker", "close_file")
+
+    public val closePtr: VoidPtr = TypeManager.getMethodBindPtr("ZIPPacker", "close")
+  }
 }

@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -27,14 +29,12 @@ public open class VisualShaderNodeTexture2DArray : VisualShaderNodeSample3D() {
   public var textureArray: Texture2DArray?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTURE2DARRAY_GET_TEXTURE_ARRAY, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureArrayPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2DArray?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTURE2DARRAY_SET_TEXTURE_ARRAY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureArrayPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -43,4 +43,12 @@ public open class VisualShaderNodeTexture2DArray : VisualShaderNodeSample3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setTextureArrayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeTexture2DArray", "set_texture_array")
+
+    public val getTextureArrayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeTexture2DArray", "get_texture_array")
+  }
 }

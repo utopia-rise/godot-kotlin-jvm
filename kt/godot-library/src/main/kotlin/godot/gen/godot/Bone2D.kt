@@ -10,12 +10,14 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform2D
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.TRANSFORM2D
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -44,12 +46,12 @@ public open class Bone2D : Node2D() {
   public var rest: Transform2D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_REST, TRANSFORM2D)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRestPtr, TRANSFORM2D)
       return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_REST, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRestPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -86,7 +88,7 @@ public open class Bone2D : Node2D() {
    */
   public fun applyRest(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_APPLY_REST, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.applyRestPtr, NIL)
   }
 
   /**
@@ -94,8 +96,7 @@ public open class Bone2D : Node2D() {
    */
   public fun getSkeletonRest(): Transform2D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_SKELETON_REST,
-        TRANSFORM2D)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonRestPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
   }
 
@@ -104,7 +105,7 @@ public open class Bone2D : Node2D() {
    */
   public fun getIndexInSkeleton(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_INDEX_IN_SKELETON, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getIndexInSkeletonPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -113,8 +114,7 @@ public open class Bone2D : Node2D() {
    */
   public fun setAutocalculateLengthAndAngle(autoCalculate: Boolean): Unit {
     TransferContext.writeArguments(BOOL to autoCalculate)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_BONE2D_SET_AUTOCALCULATE_LENGTH_AND_ANGLE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutocalculateLengthAndAnglePtr, NIL)
   }
 
   /**
@@ -122,8 +122,7 @@ public open class Bone2D : Node2D() {
    */
   public fun getAutocalculateLengthAndAngle(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_BONE2D_GET_AUTOCALCULATE_LENGTH_AND_ANGLE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAutocalculateLengthAndAnglePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -132,7 +131,7 @@ public open class Bone2D : Node2D() {
    */
   public fun setLength(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_LENGTH, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
   }
 
   /**
@@ -140,7 +139,7 @@ public open class Bone2D : Node2D() {
    */
   public fun getLength(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_LENGTH, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -151,7 +150,7 @@ public open class Bone2D : Node2D() {
    */
   public fun setBoneAngle(angle: Float): Unit {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_BONE_ANGLE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBoneAnglePtr, NIL)
   }
 
   /**
@@ -161,9 +160,37 @@ public open class Bone2D : Node2D() {
    */
   public fun getBoneAngle(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_BONE_ANGLE, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBoneAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setRestPtr: VoidPtr = TypeManager.getMethodBindPtr("Bone2D", "set_rest")
+
+    public val getRestPtr: VoidPtr = TypeManager.getMethodBindPtr("Bone2D", "get_rest")
+
+    public val applyRestPtr: VoidPtr = TypeManager.getMethodBindPtr("Bone2D", "apply_rest")
+
+    public val getSkeletonRestPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Bone2D", "get_skeleton_rest")
+
+    public val getIndexInSkeletonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Bone2D", "get_index_in_skeleton")
+
+    public val setAutocalculateLengthAndAnglePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Bone2D", "set_autocalculate_length_and_angle")
+
+    public val getAutocalculateLengthAndAnglePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Bone2D", "get_autocalculate_length_and_angle")
+
+    public val setLengthPtr: VoidPtr = TypeManager.getMethodBindPtr("Bone2D", "set_length")
+
+    public val getLengthPtr: VoidPtr = TypeManager.getMethodBindPtr("Bone2D", "get_length")
+
+    public val setBoneAnglePtr: VoidPtr = TypeManager.getMethodBindPtr("Bone2D", "set_bone_angle")
+
+    public val getBoneAnglePtr: VoidPtr = TypeManager.getMethodBindPtr("Bone2D", "get_bone_angle")
+  }
 }

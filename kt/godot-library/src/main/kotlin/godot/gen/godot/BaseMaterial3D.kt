@@ -10,6 +10,7 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
@@ -19,6 +20,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -43,14 +45,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var transparency: Transparency
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TRANSPARENCY,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTransparencyPtr, LONG)
       return BaseMaterial3D.Transparency.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TRANSPARENCY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTransparencyPtr, NIL)
     }
 
   /**
@@ -59,14 +59,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var alphaScissorThreshold: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ALPHA_SCISSOR_THRESHOLD, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaScissorThresholdPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ALPHA_SCISSOR_THRESHOLD, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaScissorThresholdPtr, NIL)
     }
 
   /**
@@ -75,14 +73,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var alphaHashScale: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ALPHA_HASH_SCALE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaHashScalePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ALPHA_HASH_SCALE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaHashScalePtr, NIL)
     }
 
   /**
@@ -91,14 +87,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var alphaAntialiasingMode: AlphaAntiAliasing
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ALPHA_ANTIALIASING, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingPtr, LONG)
       return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ALPHA_ANTIALIASING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingPtr, NIL)
     }
 
   /**
@@ -107,14 +101,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var alphaAntialiasingEdge: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ALPHA_ANTIALIASING_EDGE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingEdgePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ALPHA_ANTIALIASING_EDGE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingEdgePtr, NIL)
     }
 
   /**
@@ -125,14 +117,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var blendMode: BlendMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_BLEND_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBlendModePtr, LONG)
       return BaseMaterial3D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_BLEND_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBlendModePtr, NIL)
     }
 
   /**
@@ -141,13 +131,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var cullMode: CullMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_CULL_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCullModePtr, LONG)
       return BaseMaterial3D.CullMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_CULL_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCullModePtr, NIL)
     }
 
   /**
@@ -156,14 +145,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var depthDrawMode: DepthDrawMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DEPTH_DRAW_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDepthDrawModePtr, LONG)
       return BaseMaterial3D.DepthDrawMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DEPTH_DRAW_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDepthDrawModePtr, NIL)
     }
 
   /**
@@ -172,12 +159,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var noDepthTest: Boolean
     get() {
       TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 0L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
     }
 
   /**
@@ -188,14 +175,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var shadingMode: ShadingMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_SHADING_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getShadingModePtr, LONG)
       return BaseMaterial3D.ShadingMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_SHADING_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShadingModePtr, NIL)
     }
 
   /**
@@ -204,14 +189,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var diffuseMode: DiffuseMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DIFFUSE_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDiffuseModePtr, LONG)
       return BaseMaterial3D.DiffuseMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DIFFUSE_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDiffuseModePtr, NIL)
     }
 
   /**
@@ -222,14 +205,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var specularMode: SpecularMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_SPECULAR_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSpecularModePtr, LONG)
       return BaseMaterial3D.SpecularMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_SPECULAR_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSpecularModePtr, NIL)
     }
 
   /**
@@ -238,12 +219,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var disableAmbientLight: Boolean
     get() {
       TransferContext.writeArguments(LONG to 14L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 14L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
     }
 
   /**
@@ -252,12 +233,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var vertexColorUseAsAlbedo: Boolean
     get() {
       TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 1L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
     }
 
   /**
@@ -268,12 +249,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var vertexColorIsSrgb: Boolean
     get() {
       TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 2L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
     }
 
   /**
@@ -285,12 +266,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var albedoColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ALBEDO, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAlbedoPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ALBEDO, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAlbedoPtr, NIL)
     }
 
   /**
@@ -301,13 +282,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var albedoTexture: Texture2D?
     get() {
       TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 0L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -318,12 +298,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var albedoTextureForceSrgb: Boolean
     get() {
       TransferContext.writeArguments(LONG to 12L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 12L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
     }
 
   /**
@@ -332,12 +312,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var albedoTextureMsdf: Boolean
     get() {
       TransferContext.writeArguments(LONG to 20L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 20L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
     }
 
   /**
@@ -346,13 +326,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var ormTexture: Texture2D?
     get() {
       TransferContext.writeArguments(LONG to 17L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 17L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -361,13 +340,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var metallic: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_METALLIC,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMetallicPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_METALLIC, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMetallicPtr, NIL)
     }
 
   /**
@@ -378,13 +356,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var metallicSpecular: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_SPECULAR,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSpecularPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_SPECULAR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSpecularPtr, NIL)
     }
 
   /**
@@ -393,13 +370,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var metallicTexture: Texture2D?
     get() {
       TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 1L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -408,14 +384,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var metallicTextureChannel: TextureChannel
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_METALLIC_TEXTURE_CHANNEL, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMetallicTextureChannelPtr, LONG)
       return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_METALLIC_TEXTURE_CHANNEL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMetallicTextureChannelPtr, NIL)
     }
 
   /**
@@ -424,13 +398,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var roughness: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ROUGHNESS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRoughnessPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ROUGHNESS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRoughnessPtr, NIL)
     }
 
   /**
@@ -439,13 +412,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var roughnessTexture: Texture2D?
     get() {
       TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 2L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -454,14 +426,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var roughnessTextureChannel: TextureChannel
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ROUGHNESS_TEXTURE_CHANNEL, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRoughnessTextureChannelPtr, LONG)
       return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ROUGHNESS_TEXTURE_CHANNEL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRoughnessTextureChannelPtr, NIL)
     }
 
   /**
@@ -470,12 +440,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var emissionEnabled: Boolean
     get() {
       TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 0L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
     }
 
   /**
@@ -485,13 +455,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var emission: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_EMISSION,
-          COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEmissionPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_EMISSION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionPtr, NIL)
     }
 
   /**
@@ -500,14 +469,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var emissionEnergyMultiplier: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_EMISSION_ENERGY_MULTIPLIER, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEmissionEnergyMultiplierPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_EMISSION_ENERGY_MULTIPLIER, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionEnergyMultiplierPtr, NIL)
     }
 
   /**
@@ -516,14 +483,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var emissionIntensity: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_EMISSION_INTENSITY, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEmissionIntensityPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_EMISSION_INTENSITY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionIntensityPtr, NIL)
     }
 
   /**
@@ -532,14 +497,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var emissionOperator: EmissionOperator
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_EMISSION_OPERATOR, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEmissionOperatorPtr, LONG)
       return BaseMaterial3D.EmissionOperator.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_EMISSION_OPERATOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionOperatorPtr, NIL)
     }
 
   /**
@@ -548,12 +511,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var emissionOnUv2: Boolean
     get() {
       TransferContext.writeArguments(LONG to 11L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 11L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
     }
 
   /**
@@ -562,13 +525,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var emissionTexture: Texture2D?
     get() {
       TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 3L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -577,12 +539,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var normalEnabled: Boolean
     get() {
       TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 1L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
     }
 
   /**
@@ -591,14 +553,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var normalScale: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_NORMAL_SCALE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getNormalScalePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_NORMAL_SCALE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setNormalScalePtr, NIL)
     }
 
   /**
@@ -613,13 +573,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var normalTexture: Texture2D?
     get() {
       TransferContext.writeArguments(LONG to 4L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 4L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -630,12 +589,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var rimEnabled: Boolean
     get() {
       TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 2L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
     }
 
   /**
@@ -644,12 +603,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var rim: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_RIM, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRimPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_RIM, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRimPtr, NIL)
     }
 
   /**
@@ -658,13 +617,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var rimTint: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_RIM_TINT,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRimTintPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_RIM_TINT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRimTintPtr, NIL)
     }
 
   /**
@@ -673,13 +631,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var rimTexture: Texture2D?
     get() {
       TransferContext.writeArguments(LONG to 5L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 5L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -690,12 +647,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var clearcoatEnabled: Boolean
     get() {
       TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 3L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
     }
 
   /**
@@ -704,13 +661,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var clearcoat: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_CLEARCOAT,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getClearcoatPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_CLEARCOAT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setClearcoatPtr, NIL)
     }
 
   /**
@@ -719,14 +675,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var clearcoatRoughness: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_CLEARCOAT_ROUGHNESS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getClearcoatRoughnessPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_CLEARCOAT_ROUGHNESS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setClearcoatRoughnessPtr, NIL)
     }
 
   /**
@@ -735,13 +689,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var clearcoatTexture: Texture2D?
     get() {
       TransferContext.writeArguments(LONG to 6L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 6L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -754,12 +707,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var anisotropyEnabled: Boolean
     get() {
       TransferContext.writeArguments(LONG to 4L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 4L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
     }
 
   /**
@@ -768,14 +721,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var anisotropy: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_ANISOTROPY,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAnisotropyPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_ANISOTROPY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAnisotropyPtr, NIL)
     }
 
   /**
@@ -786,13 +737,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var anisotropyFlowmap: Texture2D?
     get() {
       TransferContext.writeArguments(LONG to 7L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 7L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -801,12 +751,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var aoEnabled: Boolean
     get() {
       TransferContext.writeArguments(LONG to 5L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 5L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
     }
 
   /**
@@ -815,14 +765,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var aoLightAffect: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_AO_LIGHT_AFFECT, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAoLightAffectPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_AO_LIGHT_AFFECT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAoLightAffectPtr, NIL)
     }
 
   /**
@@ -831,13 +779,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var aoTexture: Texture2D?
     get() {
       TransferContext.writeArguments(LONG to 8L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 8L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -846,12 +793,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var aoOnUv2: Boolean
     get() {
       TransferContext.writeArguments(LONG to 10L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 10L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
     }
 
   /**
@@ -860,14 +807,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var aoTextureChannel: TextureChannel
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_AO_TEXTURE_CHANNEL, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAoTextureChannelPtr, LONG)
       return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_AO_TEXTURE_CHANNEL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAoTextureChannelPtr, NIL)
     }
 
   /**
@@ -878,12 +823,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var heightmapEnabled: Boolean
     get() {
       TransferContext.writeArguments(LONG to 6L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 6L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
     }
 
   /**
@@ -894,14 +839,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var heightmapScale: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_HEIGHTMAP_SCALE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapScalePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_HEIGHTMAP_SCALE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapScalePtr, NIL)
     }
 
   /**
@@ -910,14 +853,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var heightmapDeepParallax: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_IS_HEIGHTMAP_DEEP_PARALLAX_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isHeightmapDeepParallaxEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_HEIGHTMAP_DEEP_PARALLAX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxPtr, NIL)
     }
 
   /**
@@ -928,14 +869,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var heightmapMinLayers: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_HEIGHTMAP_DEEP_PARALLAX_MIN_LAYERS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxMinLayersPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_HEIGHTMAP_DEEP_PARALLAX_MIN_LAYERS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxMinLayersPtr, NIL)
     }
 
   /**
@@ -946,14 +885,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var heightmapMaxLayers: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_HEIGHTMAP_DEEP_PARALLAX_MAX_LAYERS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxMaxLayersPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_HEIGHTMAP_DEEP_PARALLAX_MAX_LAYERS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxMaxLayersPtr, NIL)
     }
 
   /**
@@ -962,14 +899,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var heightmapFlipTangent: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_HEIGHTMAP_DEEP_PARALLAX_FLIP_TANGENT, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxFlipTangentPtr,
+          BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_HEIGHTMAP_DEEP_PARALLAX_FLIP_TANGENT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxFlipTangentPtr, NIL)
     }
 
   /**
@@ -978,14 +914,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var heightmapFlipBinormal: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_HEIGHTMAP_DEEP_PARALLAX_FLIP_BINORMAL, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxFlipBinormalPtr,
+          BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_HEIGHTMAP_DEEP_PARALLAX_FLIP_BINORMAL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxFlipBinormalPtr,
+          NIL)
     }
 
   /**
@@ -998,13 +934,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var heightmapTexture: Texture2D?
     get() {
       TransferContext.writeArguments(LONG to 9L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 9L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -1015,12 +950,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var heightmapFlipTexture: Boolean
     get() {
       TransferContext.writeArguments(LONG to 17L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 17L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
     }
 
   /**
@@ -1029,12 +964,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var subsurfScatterEnabled: Boolean
     get() {
       TransferContext.writeArguments(LONG to 7L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 7L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
     }
 
   /**
@@ -1043,14 +978,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var subsurfScatterStrength: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_SUBSURFACE_SCATTERING_STRENGTH, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSubsurfaceScatteringStrengthPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_SUBSURFACE_SCATTERING_STRENGTH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSubsurfaceScatteringStrengthPtr, NIL)
     }
 
   /**
@@ -1059,12 +992,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var subsurfScatterSkinMode: Boolean
     get() {
       TransferContext.writeArguments(LONG to 18L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 18L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
     }
 
   /**
@@ -1073,13 +1006,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var subsurfScatterTexture: Texture2D?
     get() {
       TransferContext.writeArguments(LONG to 10L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 10L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -1088,12 +1020,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var subsurfScatterTransmittanceEnabled: Boolean
     get() {
       TransferContext.writeArguments(LONG to 8L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 8L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
     }
 
   /**
@@ -1103,14 +1035,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var subsurfScatterTransmittanceColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TRANSMITTANCE_COLOR, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTransmittanceColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TRANSMITTANCE_COLOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTransmittanceColorPtr, NIL)
     }
 
   /**
@@ -1119,13 +1049,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var subsurfScatterTransmittanceTexture: Texture2D?
     get() {
       TransferContext.writeArguments(LONG to 11L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 11L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -1134,14 +1063,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var subsurfScatterTransmittanceDepth: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TRANSMITTANCE_DEPTH, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTransmittanceDepthPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TRANSMITTANCE_DEPTH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTransmittanceDepthPtr, NIL)
     }
 
   /**
@@ -1150,14 +1077,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var subsurfScatterTransmittanceBoost: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TRANSMITTANCE_BOOST, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTransmittanceBoostPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TRANSMITTANCE_BOOST, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTransmittanceBoostPtr, NIL)
     }
 
   /**
@@ -1166,12 +1091,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var backlightEnabled: Boolean
     get() {
       TransferContext.writeArguments(LONG to 9L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 9L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
     }
 
   /**
@@ -1181,13 +1106,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var backlight: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_BACKLIGHT,
-          COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBacklightPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_BACKLIGHT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBacklightPtr, NIL)
     }
 
   /**
@@ -1196,13 +1120,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var backlightTexture: Texture2D?
     get() {
       TransferContext.writeArguments(LONG to 12L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 12L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -1211,12 +1134,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var refractionEnabled: Boolean
     get() {
       TransferContext.writeArguments(LONG to 10L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 10L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
     }
 
   /**
@@ -1225,14 +1148,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var refractionScale: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_REFRACTION,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRefractionPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_REFRACTION,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRefractionPtr, NIL)
     }
 
   /**
@@ -1241,13 +1162,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var refractionTexture: Texture2D?
     get() {
       TransferContext.writeArguments(LONG to 13L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 13L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -1256,14 +1176,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var refractionTextureChannel: TextureChannel
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_REFRACTION_TEXTURE_CHANNEL, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRefractionTextureChannelPtr, LONG)
       return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_REFRACTION_TEXTURE_CHANNEL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRefractionTextureChannelPtr, NIL)
     }
 
   /**
@@ -1272,12 +1190,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var detailEnabled: Boolean
     get() {
       TransferContext.writeArguments(LONG to 11L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FEATURE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 11L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FEATURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
     }
 
   /**
@@ -1286,13 +1204,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var detailMask: Texture2D?
     get() {
       TransferContext.writeArguments(LONG to 14L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 14L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -1301,14 +1218,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var detailBlendMode: BlendMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DETAIL_BLEND_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDetailBlendModePtr, LONG)
       return BaseMaterial3D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DETAIL_BLEND_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDetailBlendModePtr, NIL)
     }
 
   /**
@@ -1317,13 +1232,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var detailUvLayer: DetailUV
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DETAIL_UV,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDetailUvPtr, LONG)
       return BaseMaterial3D.DetailUV.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DETAIL_UV, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDetailUvPtr, NIL)
     }
 
   /**
@@ -1334,13 +1248,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var detailAlbedo: Texture2D?
     get() {
       TransferContext.writeArguments(LONG to 15L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 15L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -1351,13 +1264,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var detailNormal: Texture2D?
     get() {
       TransferContext.writeArguments(LONG to 16L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 16L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   /**
@@ -1367,13 +1279,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var uv1Scale: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_UV1_SCALE,
-          VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getUv1ScalePtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_UV1_SCALE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUv1ScalePtr, NIL)
     }
 
   /**
@@ -1383,14 +1294,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var uv1Offset: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_UV1_OFFSET,
-          VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getUv1OffsetPtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_UV1_OFFSET,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUv1OffsetPtr, NIL)
     }
 
   /**
@@ -1399,12 +1308,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var uv1Triplanar: Boolean
     get() {
       TransferContext.writeArguments(LONG to 6L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 6L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
     }
 
   /**
@@ -1415,14 +1324,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var uv1TriplanarSharpness: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_UV1_TRIPLANAR_BLEND_SHARPNESS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getUv1TriplanarBlendSharpnessPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_UV1_TRIPLANAR_BLEND_SHARPNESS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUv1TriplanarBlendSharpnessPtr, NIL)
     }
 
   /**
@@ -1431,12 +1338,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var uv1WorldTriplanar: Boolean
     get() {
       TransferContext.writeArguments(LONG to 8L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 8L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
     }
 
   /**
@@ -1446,13 +1353,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var uv2Scale: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_UV2_SCALE,
-          VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getUv2ScalePtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_UV2_SCALE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUv2ScalePtr, NIL)
     }
 
   /**
@@ -1462,14 +1368,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var uv2Offset: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_UV2_OFFSET,
-          VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getUv2OffsetPtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_UV2_OFFSET,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUv2OffsetPtr, NIL)
     }
 
   /**
@@ -1478,12 +1382,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var uv2Triplanar: Boolean
     get() {
       TransferContext.writeArguments(LONG to 7L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 7L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
     }
 
   /**
@@ -1494,14 +1398,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var uv2TriplanarSharpness: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_UV2_TRIPLANAR_BLEND_SHARPNESS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getUv2TriplanarBlendSharpnessPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_UV2_TRIPLANAR_BLEND_SHARPNESS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUv2TriplanarBlendSharpnessPtr, NIL)
     }
 
   /**
@@ -1510,12 +1412,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var uv2WorldTriplanar: Boolean
     get() {
       TransferContext.writeArguments(LONG to 9L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 9L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
     }
 
   /**
@@ -1526,14 +1428,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var textureFilter: TextureFilter
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_TEXTURE_FILTER,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
       return BaseMaterial3D.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_TEXTURE_FILTER,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
     }
 
   /**
@@ -1542,12 +1442,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var textureRepeat: Boolean
     get() {
       TransferContext.writeArguments(LONG to 16L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 16L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
     }
 
   /**
@@ -1556,12 +1456,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var disableReceiveShadows: Boolean
     get() {
       TransferContext.writeArguments(LONG to 13L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 13L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
     }
 
   /**
@@ -1570,12 +1470,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var shadowToOpacity: Boolean
     get() {
       TransferContext.writeArguments(LONG to 15L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 15L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
     }
 
   /**
@@ -1586,14 +1486,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var billboardMode: BillboardMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_BILLBOARD_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBillboardModePtr, LONG)
       return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_BILLBOARD_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBillboardModePtr, NIL)
     }
 
   /**
@@ -1602,12 +1500,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var billboardKeepScale: Boolean
     get() {
       TransferContext.writeArguments(LONG to 5L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 5L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
     }
 
   /**
@@ -1616,14 +1514,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var particlesAnimHFrames: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_PARTICLES_ANIM_H_FRAMES, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimHFramesPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_PARTICLES_ANIM_H_FRAMES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimHFramesPtr, NIL)
     }
 
   /**
@@ -1632,14 +1528,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var particlesAnimVFrames: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_PARTICLES_ANIM_V_FRAMES, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimVFramesPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_PARTICLES_ANIM_V_FRAMES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimVFramesPtr, NIL)
     }
 
   /**
@@ -1648,14 +1542,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var particlesAnimLoop: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_PARTICLES_ANIM_LOOP, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimLoopPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_PARTICLES_ANIM_LOOP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimLoopPtr, NIL)
     }
 
   /**
@@ -1666,14 +1558,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var grow: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_IS_GROW_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isGrowEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_GROW_ENABLED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGrowEnabledPtr, NIL)
     }
 
   /**
@@ -1682,12 +1572,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var growAmount: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_GROW, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGrowPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_GROW, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGrowPtr, NIL)
     }
 
   /**
@@ -1696,12 +1586,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var fixedSize: Boolean
     get() {
       TransferContext.writeArguments(LONG to 4L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 4L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
     }
 
   /**
@@ -1712,12 +1602,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var usePointSize: Boolean
     get() {
       TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 3L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
     }
 
   /**
@@ -1726,14 +1616,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var pointSize: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_POINT_SIZE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPointSizePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_POINT_SIZE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPointSizePtr, NIL)
     }
 
   /**
@@ -1742,12 +1630,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var useParticleTrails: Boolean
     get() {
       TransferContext.writeArguments(LONG to 19L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 19L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
     }
 
   /**
@@ -1756,14 +1644,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var proximityFadeEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_IS_PROXIMITY_FADE_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isProximityFadeEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_PROXIMITY_FADE_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setProximityFadeEnabledPtr, NIL)
     }
 
   /**
@@ -1772,14 +1658,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var proximityFadeDistance: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_PROXIMITY_FADE_DISTANCE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getProximityFadeDistancePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_PROXIMITY_FADE_DISTANCE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setProximityFadeDistancePtr, NIL)
     }
 
   /**
@@ -1788,14 +1672,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var msdfPixelRange: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_MSDF_PIXEL_RANGE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMsdfPixelRangePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_MSDF_PIXEL_RANGE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMsdfPixelRangePtr, NIL)
     }
 
   /**
@@ -1804,14 +1686,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var msdfOutlineSize: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_MSDF_OUTLINE_SIZE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMsdfOutlineSizePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_MSDF_OUTLINE_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMsdfOutlineSizePtr, NIL)
     }
 
   /**
@@ -1820,14 +1700,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var distanceFadeMode: DistanceFadeMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DISTANCE_FADE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadePtr, LONG)
       return BaseMaterial3D.DistanceFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DISTANCE_FADE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadePtr, NIL)
     }
 
   /**
@@ -1838,14 +1716,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var distanceFadeMinDistance: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DISTANCE_FADE_MIN_DISTANCE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeMinDistancePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DISTANCE_FADE_MIN_DISTANCE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeMinDistancePtr, NIL)
     }
 
   /**
@@ -1856,14 +1732,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var distanceFadeMaxDistance: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_DISTANCE_FADE_MAX_DISTANCE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeMaxDistancePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_DISTANCE_FADE_MAX_DISTANCE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeMaxDistancePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -2760,4 +2634,406 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setAlbedoPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseMaterial3D", "set_albedo")
+
+    public val getAlbedoPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseMaterial3D", "get_albedo")
+
+    public val setTransparencyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transparency")
+
+    public val getTransparencyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transparency")
+
+    public val setAlphaAntialiasingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_antialiasing")
+
+    public val getAlphaAntialiasingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_antialiasing")
+
+    public val setAlphaAntialiasingEdgePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_antialiasing_edge")
+
+    public val getAlphaAntialiasingEdgePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_antialiasing_edge")
+
+    public val setShadingModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_shading_mode")
+
+    public val getShadingModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_shading_mode")
+
+    public val setSpecularPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_specular")
+
+    public val getSpecularPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_specular")
+
+    public val setMetallicPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_metallic")
+
+    public val getMetallicPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_metallic")
+
+    public val setRoughnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_roughness")
+
+    public val getRoughnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_roughness")
+
+    public val setEmissionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission")
+
+    public val getEmissionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission")
+
+    public val setEmissionEnergyMultiplierPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission_energy_multiplier")
+
+    public val getEmissionEnergyMultiplierPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission_energy_multiplier")
+
+    public val setEmissionIntensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission_intensity")
+
+    public val getEmissionIntensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission_intensity")
+
+    public val setNormalScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_normal_scale")
+
+    public val getNormalScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_normal_scale")
+
+    public val setRimPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseMaterial3D", "set_rim")
+
+    public val getRimPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseMaterial3D", "get_rim")
+
+    public val setRimTintPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_rim_tint")
+
+    public val getRimTintPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_rim_tint")
+
+    public val setClearcoatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_clearcoat")
+
+    public val getClearcoatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_clearcoat")
+
+    public val setClearcoatRoughnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_clearcoat_roughness")
+
+    public val getClearcoatRoughnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_clearcoat_roughness")
+
+    public val setAnisotropyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_anisotropy")
+
+    public val getAnisotropyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_anisotropy")
+
+    public val setHeightmapScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_scale")
+
+    public val getHeightmapScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_scale")
+
+    public val setSubsurfaceScatteringStrengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_subsurface_scattering_strength")
+
+    public val getSubsurfaceScatteringStrengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_subsurface_scattering_strength")
+
+    public val setTransmittanceColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transmittance_color")
+
+    public val getTransmittanceColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transmittance_color")
+
+    public val setTransmittanceDepthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transmittance_depth")
+
+    public val getTransmittanceDepthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transmittance_depth")
+
+    public val setTransmittanceBoostPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transmittance_boost")
+
+    public val getTransmittanceBoostPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transmittance_boost")
+
+    public val setBacklightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_backlight")
+
+    public val getBacklightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_backlight")
+
+    public val setRefractionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_refraction")
+
+    public val getRefractionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_refraction")
+
+    public val setPointSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_point_size")
+
+    public val getPointSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_point_size")
+
+    public val setDetailUvPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_detail_uv")
+
+    public val getDetailUvPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_detail_uv")
+
+    public val setBlendModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_blend_mode")
+
+    public val getBlendModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_blend_mode")
+
+    public val setDepthDrawModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_depth_draw_mode")
+
+    public val getDepthDrawModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_depth_draw_mode")
+
+    public val setCullModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_cull_mode")
+
+    public val getCullModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_cull_mode")
+
+    public val setDiffuseModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_diffuse_mode")
+
+    public val getDiffuseModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_diffuse_mode")
+
+    public val setSpecularModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_specular_mode")
+
+    public val getSpecularModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_specular_mode")
+
+    public val setFlagPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseMaterial3D", "set_flag")
+
+    public val getFlagPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseMaterial3D", "get_flag")
+
+    public val setTextureFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_texture_filter")
+
+    public val getTextureFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_texture_filter")
+
+    public val setFeaturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_feature")
+
+    public val getFeaturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_feature")
+
+    public val setTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_texture")
+
+    public val getTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_texture")
+
+    public val setDetailBlendModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_detail_blend_mode")
+
+    public val getDetailBlendModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_detail_blend_mode")
+
+    public val setUv1ScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv1_scale")
+
+    public val getUv1ScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv1_scale")
+
+    public val setUv1OffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv1_offset")
+
+    public val getUv1OffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv1_offset")
+
+    public val setUv1TriplanarBlendSharpnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv1_triplanar_blend_sharpness")
+
+    public val getUv1TriplanarBlendSharpnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv1_triplanar_blend_sharpness")
+
+    public val setUv2ScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv2_scale")
+
+    public val getUv2ScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv2_scale")
+
+    public val setUv2OffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv2_offset")
+
+    public val getUv2OffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv2_offset")
+
+    public val setUv2TriplanarBlendSharpnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv2_triplanar_blend_sharpness")
+
+    public val getUv2TriplanarBlendSharpnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv2_triplanar_blend_sharpness")
+
+    public val setBillboardModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_billboard_mode")
+
+    public val getBillboardModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_billboard_mode")
+
+    public val setParticlesAnimHFramesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_particles_anim_h_frames")
+
+    public val getParticlesAnimHFramesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_particles_anim_h_frames")
+
+    public val setParticlesAnimVFramesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_particles_anim_v_frames")
+
+    public val getParticlesAnimVFramesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_particles_anim_v_frames")
+
+    public val setParticlesAnimLoopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_particles_anim_loop")
+
+    public val getParticlesAnimLoopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_particles_anim_loop")
+
+    public val setHeightmapDeepParallaxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax")
+
+    public val isHeightmapDeepParallaxEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "is_heightmap_deep_parallax_enabled")
+
+    public val setHeightmapDeepParallaxMinLayersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_min_layers")
+
+    public val getHeightmapDeepParallaxMinLayersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_min_layers")
+
+    public val setHeightmapDeepParallaxMaxLayersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_max_layers")
+
+    public val getHeightmapDeepParallaxMaxLayersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_max_layers")
+
+    public val setHeightmapDeepParallaxFlipTangentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_flip_tangent")
+
+    public val getHeightmapDeepParallaxFlipTangentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_flip_tangent")
+
+    public val setHeightmapDeepParallaxFlipBinormalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_flip_binormal")
+
+    public val getHeightmapDeepParallaxFlipBinormalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_flip_binormal")
+
+    public val setGrowPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseMaterial3D", "set_grow")
+
+    public val getGrowPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseMaterial3D", "get_grow")
+
+    public val setEmissionOperatorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission_operator")
+
+    public val getEmissionOperatorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission_operator")
+
+    public val setAoLightAffectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_ao_light_affect")
+
+    public val getAoLightAffectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_ao_light_affect")
+
+    public val setAlphaScissorThresholdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_scissor_threshold")
+
+    public val getAlphaScissorThresholdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_scissor_threshold")
+
+    public val setAlphaHashScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_hash_scale")
+
+    public val getAlphaHashScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_hash_scale")
+
+    public val setGrowEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_grow_enabled")
+
+    public val isGrowEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "is_grow_enabled")
+
+    public val setMetallicTextureChannelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_metallic_texture_channel")
+
+    public val getMetallicTextureChannelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_metallic_texture_channel")
+
+    public val setRoughnessTextureChannelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_roughness_texture_channel")
+
+    public val getRoughnessTextureChannelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_roughness_texture_channel")
+
+    public val setAoTextureChannelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_ao_texture_channel")
+
+    public val getAoTextureChannelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_ao_texture_channel")
+
+    public val setRefractionTextureChannelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_refraction_texture_channel")
+
+    public val getRefractionTextureChannelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_refraction_texture_channel")
+
+    public val setProximityFadeEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_proximity_fade_enabled")
+
+    public val isProximityFadeEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "is_proximity_fade_enabled")
+
+    public val setProximityFadeDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_proximity_fade_distance")
+
+    public val getProximityFadeDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_proximity_fade_distance")
+
+    public val setMsdfPixelRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_msdf_pixel_range")
+
+    public val getMsdfPixelRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_msdf_pixel_range")
+
+    public val setMsdfOutlineSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_msdf_outline_size")
+
+    public val getMsdfOutlineSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_msdf_outline_size")
+
+    public val setDistanceFadePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_distance_fade")
+
+    public val getDistanceFadePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_distance_fade")
+
+    public val setDistanceFadeMaxDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_distance_fade_max_distance")
+
+    public val getDistanceFadeMaxDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_distance_fade_max_distance")
+
+    public val setDistanceFadeMinDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_distance_fade_min_distance")
+
+    public val getDistanceFadeMinDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_distance_fade_min_distance")
+  }
 }

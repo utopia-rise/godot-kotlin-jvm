@@ -26,4 +26,6 @@ public open class IntervalTweener : Tweener() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

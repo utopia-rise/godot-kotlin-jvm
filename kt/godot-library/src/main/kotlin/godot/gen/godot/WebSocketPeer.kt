@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -18,6 +19,7 @@ import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -31,66 +33,57 @@ public open class WebSocketPeer : PacketPeer() {
   public var supportedProtocols: PackedStringArray
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_GET_SUPPORTED_PROTOCOLS, PACKED_STRING_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSupportedProtocolsPtr,
+          PACKED_STRING_ARRAY)
       return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_SET_SUPPORTED_PROTOCOLS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSupportedProtocolsPtr, NIL)
     }
 
   public var handshakeHeaders: PackedStringArray
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_GET_HANDSHAKE_HEADERS, PACKED_STRING_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHandshakeHeadersPtr, PACKED_STRING_ARRAY)
       return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_SET_HANDSHAKE_HEADERS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHandshakeHeadersPtr, NIL)
     }
 
   public var inboundBufferSize: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_GET_INBOUND_BUFFER_SIZE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getInboundBufferSizePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_SET_INBOUND_BUFFER_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setInboundBufferSizePtr, NIL)
     }
 
   public var outboundBufferSize: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_GET_OUTBOUND_BUFFER_SIZE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getOutboundBufferSizePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_SET_OUTBOUND_BUFFER_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOutboundBufferSizePtr, NIL)
     }
 
   public var maxQueuedPackets: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_GET_MAX_QUEUED_PACKETS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMaxQueuedPacketsPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_SET_MAX_QUEUED_PACKETS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMaxQueuedPacketsPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -101,13 +94,13 @@ public open class WebSocketPeer : PacketPeer() {
   @JvmOverloads
   public fun connectToUrl(url: String, tlsClientOptions: TLSOptions? = null): GodotError {
     TransferContext.writeArguments(STRING to url, OBJECT to tlsClientOptions)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_CONNECT_TO_URL, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.connectToUrlPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun acceptStream(stream: StreamPeer): GodotError {
     TransferContext.writeArguments(OBJECT to stream)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_ACCEPT_STREAM, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.acceptStreamPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -115,90 +108,83 @@ public open class WebSocketPeer : PacketPeer() {
   public fun send(message: PackedByteArray, writeMode: WriteMode =
       WebSocketPeer.WriteMode.WRITE_MODE_BINARY): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to message, LONG to writeMode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_SEND, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.sendPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun sendText(message: String): GodotError {
     TransferContext.writeArguments(STRING to message)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_SEND_TEXT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.sendTextPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun wasStringPacket(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_WAS_STRING_PACKET,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.wasStringPacketPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public fun poll(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_POLL, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.pollPtr, NIL)
   }
 
   @JvmOverloads
   public fun close(code: Int = 1000, reason: String = ""): Unit {
     TransferContext.writeArguments(LONG to code.toLong(), STRING to reason)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_CLOSE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.closePtr, NIL)
   }
 
   public fun getConnectedHost(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_GET_CONNECTED_HOST,
-        STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getConnectedHostPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public fun getConnectedPort(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_GET_CONNECTED_PORT,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getConnectedPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public fun getSelectedProtocol(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_GET_SELECTED_PROTOCOL,
-        STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSelectedProtocolPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public fun getRequestedUrl(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_GET_REQUESTED_URL,
-        STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getRequestedUrlPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public fun setNoDelay(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_SET_NO_DELAY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNoDelayPtr, NIL)
   }
 
   public fun getCurrentOutboundBufferedAmount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_GET_CURRENT_OUTBOUND_BUFFERED_AMOUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentOutboundBufferedAmountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public fun getReadyState(): State {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_GET_READY_STATE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getReadyStatePtr, LONG)
     return WebSocketPeer.State.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun getCloseCode(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_GET_CLOSE_CODE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCloseCodePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public fun getCloseReason(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_GET_CLOSE_REASON,
-        STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCloseReasonPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -239,4 +225,80 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val connectToUrlPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "connect_to_url")
+
+    public val acceptStreamPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "accept_stream")
+
+    public val sendPtr: VoidPtr = TypeManager.getMethodBindPtr("WebSocketPeer", "send")
+
+    public val sendTextPtr: VoidPtr = TypeManager.getMethodBindPtr("WebSocketPeer", "send_text")
+
+    public val wasStringPacketPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "was_string_packet")
+
+    public val pollPtr: VoidPtr = TypeManager.getMethodBindPtr("WebSocketPeer", "poll")
+
+    public val closePtr: VoidPtr = TypeManager.getMethodBindPtr("WebSocketPeer", "close")
+
+    public val getConnectedHostPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_connected_host")
+
+    public val getConnectedPortPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_connected_port")
+
+    public val getSelectedProtocolPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_selected_protocol")
+
+    public val getRequestedUrlPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_requested_url")
+
+    public val setNoDelayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "set_no_delay")
+
+    public val getCurrentOutboundBufferedAmountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_current_outbound_buffered_amount")
+
+    public val getReadyStatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_ready_state")
+
+    public val getCloseCodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_close_code")
+
+    public val getCloseReasonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_close_reason")
+
+    public val getSupportedProtocolsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_supported_protocols")
+
+    public val setSupportedProtocolsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "set_supported_protocols")
+
+    public val getHandshakeHeadersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_handshake_headers")
+
+    public val setHandshakeHeadersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "set_handshake_headers")
+
+    public val getInboundBufferSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_inbound_buffer_size")
+
+    public val setInboundBufferSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "set_inbound_buffer_size")
+
+    public val getOutboundBufferSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_outbound_buffer_size")
+
+    public val setOutboundBufferSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "set_outbound_buffer_size")
+
+    public val setMaxQueuedPacketsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "set_max_queued_packets")
+
+    public val getMaxQueuedPacketsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_max_queued_packets")
+  }
 }

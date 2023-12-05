@@ -27,4 +27,6 @@ public open class JNISingleton : Object() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

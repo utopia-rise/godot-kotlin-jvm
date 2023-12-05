@@ -18,7 +18,7 @@ internal fun KSFunctionDeclaration.mapToRegisteredConstructor(): RegisteredConst
         annotations = annotations
             .mapNotNull { it.mapToAnnotation(this) as? ConstructorAnnotation }
             .toList(),
-        source = this
+        symbolProcessorSource = this
     )
 }
 
@@ -35,7 +35,7 @@ internal fun KSFunctionDeclaration.mapToRegisteredFunction(): RegisteredFunction
             parameters = parameters,
             returnType = returnType?.mapToType(),
             annotations = annotations.toList(),
-            source = this
+            symbolProcessorSource = this
         )
     } else null
 }

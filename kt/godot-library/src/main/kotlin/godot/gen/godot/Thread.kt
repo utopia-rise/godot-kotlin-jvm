@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.GodotError
+import godot.core.TypeManager
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.CALLABLE
@@ -16,6 +17,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -65,7 +67,7 @@ public open class Thread : RefCounted() {
   public fun start(callable: Callable, priority: Priority = Thread.Priority.PRIORITY_NORMAL):
       GodotError {
     TransferContext.writeArguments(CALLABLE to callable, LONG to priority.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_START, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.startPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -74,7 +76,7 @@ public open class Thread : RefCounted() {
    */
   public fun getId(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_GET_ID, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getIdPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -83,7 +85,7 @@ public open class Thread : RefCounted() {
    */
   public fun isStarted(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_IS_STARTED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isStartedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -94,7 +96,7 @@ public open class Thread : RefCounted() {
    */
   public fun isAlive(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_IS_ALIVE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isAlivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -107,7 +109,7 @@ public open class Thread : RefCounted() {
    */
   public fun waitToFinish(): Any? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_WAIT_TO_FINISH, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.waitToFinishPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -156,8 +158,22 @@ public open class Thread : RefCounted() {
      */
     public fun setThreadSafetyChecksEnabled(enabled: Boolean): Unit {
       TransferContext.writeArguments(BOOL to enabled)
-      TransferContext.callMethod(0,
-          ENGINEMETHOD_ENGINECLASS_THREAD_SET_THREAD_SAFETY_CHECKS_ENABLED, NIL)
+      TransferContext.callMethod(0, MethodBindings.setThreadSafetyChecksEnabledPtr, NIL)
     }
+  }
+
+  internal object MethodBindings {
+    public val startPtr: VoidPtr = TypeManager.getMethodBindPtr("Thread", "start")
+
+    public val getIdPtr: VoidPtr = TypeManager.getMethodBindPtr("Thread", "get_id")
+
+    public val isStartedPtr: VoidPtr = TypeManager.getMethodBindPtr("Thread", "is_started")
+
+    public val isAlivePtr: VoidPtr = TypeManager.getMethodBindPtr("Thread", "is_alive")
+
+    public val waitToFinishPtr: VoidPtr = TypeManager.getMethodBindPtr("Thread", "wait_to_finish")
+
+    public val setThreadSafetyChecksEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Thread", "set_thread_safety_checks_enabled")
   }
 }

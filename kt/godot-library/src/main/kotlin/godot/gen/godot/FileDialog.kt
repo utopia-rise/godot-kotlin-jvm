@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -17,6 +18,7 @@ import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -53,14 +55,12 @@ public open class FileDialog : ConfirmationDialog() {
   public var modeOverridesTitle: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_FILEDIALOG_IS_MODE_OVERRIDING_TITLE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isModeOverridingTitlePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_MODE_OVERRIDES_TITLE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setModeOverridesTitlePtr, NIL)
     }
 
   /**
@@ -69,12 +69,12 @@ public open class FileDialog : ConfirmationDialog() {
   public var fileMode: FileMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_FILE_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFileModePtr, LONG)
       return FileDialog.FileMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_FILE_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFileModePtr, NIL)
     }
 
   /**
@@ -85,12 +85,12 @@ public open class FileDialog : ConfirmationDialog() {
   public var access: Access
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_ACCESS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAccessPtr, LONG)
       return FileDialog.Access.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_ACCESS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAccessPtr, NIL)
     }
 
   /**
@@ -99,14 +99,12 @@ public open class FileDialog : ConfirmationDialog() {
   public var rootSubfolder: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_ROOT_SUBFOLDER,
-          STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRootSubfolderPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_ROOT_SUBFOLDER,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRootSubfolderPtr, NIL)
     }
 
   /**
@@ -115,13 +113,12 @@ public open class FileDialog : ConfirmationDialog() {
   public var filters: PackedStringArray
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_FILTERS,
-          PACKED_STRING_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFiltersPtr, PACKED_STRING_ARRAY)
       return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_FILTERS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFiltersPtr, NIL)
     }
 
   /**
@@ -130,14 +127,12 @@ public open class FileDialog : ConfirmationDialog() {
   public var showHiddenFiles: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_FILEDIALOG_IS_SHOWING_HIDDEN_FILES, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isShowingHiddenFilesPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_SHOW_HIDDEN_FILES,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShowHiddenFilesPtr, NIL)
     }
 
   /**
@@ -146,13 +141,12 @@ public open class FileDialog : ConfirmationDialog() {
   public var currentDir: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_CURRENT_DIR,
-          STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCurrentDirPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_CURRENT_DIR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCurrentDirPtr, NIL)
     }
 
   /**
@@ -161,13 +155,12 @@ public open class FileDialog : ConfirmationDialog() {
   public var currentFile: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_CURRENT_FILE,
-          STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCurrentFilePtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_CURRENT_FILE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCurrentFilePtr, NIL)
     }
 
   /**
@@ -176,13 +169,12 @@ public open class FileDialog : ConfirmationDialog() {
   public var currentPath: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_CURRENT_PATH,
-          STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCurrentPathPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_CURRENT_PATH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCurrentPathPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -195,7 +187,7 @@ public open class FileDialog : ConfirmationDialog() {
    */
   public fun clearFilters(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_CLEAR_FILTERS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearFiltersPtr, NIL)
   }
 
   /**
@@ -208,7 +200,7 @@ public open class FileDialog : ConfirmationDialog() {
   @JvmOverloads
   public fun addFilter(filter: String, description: String = ""): Unit {
     TransferContext.writeArguments(STRING to filter, STRING to description)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_ADD_FILTER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addFilterPtr, NIL)
   }
 
   /**
@@ -218,7 +210,7 @@ public open class FileDialog : ConfirmationDialog() {
    */
   public fun getVbox(): VBoxContainer? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_VBOX, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getVboxPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as VBoxContainer?)
   }
 
@@ -229,7 +221,7 @@ public open class FileDialog : ConfirmationDialog() {
    */
   public fun getLineEdit(): LineEdit? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_LINE_EDIT, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getLineEditPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as LineEdit?)
   }
 
@@ -238,7 +230,7 @@ public open class FileDialog : ConfirmationDialog() {
    */
   public fun deselectAll(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_DESELECT_ALL, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.deselectAllPtr, NIL)
   }
 
   /**
@@ -246,7 +238,7 @@ public open class FileDialog : ConfirmationDialog() {
    */
   public fun invalidate(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_INVALIDATE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.invalidatePtr, NIL)
   }
 
   public enum class FileMode(
@@ -312,4 +304,67 @@ public open class FileDialog : ConfirmationDialog() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val clearFiltersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "clear_filters")
+
+    public val addFilterPtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "add_filter")
+
+    public val setFiltersPtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "set_filters")
+
+    public val getFiltersPtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "get_filters")
+
+    public val getCurrentDirPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "get_current_dir")
+
+    public val getCurrentFilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "get_current_file")
+
+    public val getCurrentPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "get_current_path")
+
+    public val setCurrentDirPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "set_current_dir")
+
+    public val setCurrentFilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "set_current_file")
+
+    public val setCurrentPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "set_current_path")
+
+    public val setModeOverridesTitlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "set_mode_overrides_title")
+
+    public val isModeOverridingTitlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "is_mode_overriding_title")
+
+    public val setFileModePtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "set_file_mode")
+
+    public val getFileModePtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "get_file_mode")
+
+    public val getVboxPtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "get_vbox")
+
+    public val getLineEditPtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "get_line_edit")
+
+    public val setAccessPtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "set_access")
+
+    public val getAccessPtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "get_access")
+
+    public val setRootSubfolderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "set_root_subfolder")
+
+    public val getRootSubfolderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "get_root_subfolder")
+
+    public val setShowHiddenFilesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "set_show_hidden_files")
+
+    public val isShowingHiddenFilesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "is_showing_hidden_files")
+
+    public val deselectAllPtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "deselect_all")
+
+    public val invalidatePtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "invalidate")
+  }
 }

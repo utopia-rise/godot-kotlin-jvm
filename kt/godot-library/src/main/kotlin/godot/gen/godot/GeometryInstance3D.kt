@@ -11,6 +11,7 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -19,6 +20,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -43,14 +45,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var materialOverride: Material?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_MATERIAL_OVERRIDE, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMaterialOverridePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Material?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_MATERIAL_OVERRIDE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMaterialOverridePtr, NIL)
     }
 
   /**
@@ -61,14 +61,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var materialOverlay: Material?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_MATERIAL_OVERLAY, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMaterialOverlayPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Material?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_MATERIAL_OVERLAY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMaterialOverlayPtr, NIL)
     }
 
   /**
@@ -81,14 +79,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var transparency: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_TRANSPARENCY, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTransparencyPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_TRANSPARENCY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTransparencyPtr, NIL)
     }
 
   /**
@@ -97,14 +93,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var castShadow: ShadowCastingSetting
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_CAST_SHADOWS_SETTING, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCastShadowsSettingPtr, LONG)
       return GeometryInstance3D.ShadowCastingSetting.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_CAST_SHADOWS_SETTING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCastShadowsSettingPtr, NIL)
     }
 
   /**
@@ -113,14 +107,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var extraCullMargin: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_EXTRA_CULL_MARGIN, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getExtraCullMarginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_EXTRA_CULL_MARGIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setExtraCullMarginPtr, NIL)
     }
 
   /**
@@ -130,14 +122,13 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var customAabb: AABB
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_CUSTOM_AABB, godot.core.VariantType.AABB)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCustomAabbPtr,
+          godot.core.VariantType.AABB)
       return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
     }
     set(`value`) {
       TransferContext.writeArguments(godot.core.VariantType.AABB to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_CUSTOM_AABB, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCustomAabbPtr, NIL)
     }
 
   /**
@@ -148,14 +139,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var lodBias: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_LOD_BIAS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLodBiasPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_LOD_BIAS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLodBiasPtr, NIL)
     }
 
   /**
@@ -166,14 +155,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var ignoreOcclusionCulling: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_IS_IGNORING_OCCLUSION_CULLING, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isIgnoringOcclusionCullingPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_IGNORE_OCCLUSION_CULLING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreOcclusionCullingPtr, NIL)
     }
 
   /**
@@ -184,14 +171,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var giMode: GIMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_GI_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGiModePtr, LONG)
       return GeometryInstance3D.GIMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_GI_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGiModePtr, NIL)
     }
 
   /**
@@ -200,14 +185,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var giLightmapScale: LightmapScale
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_LIGHTMAP_SCALE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLightmapScalePtr, LONG)
       return GeometryInstance3D.LightmapScale.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_LIGHTMAP_SCALE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLightmapScalePtr, NIL)
     }
 
   /**
@@ -216,14 +199,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var visibilityRangeBegin: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_VISIBILITY_RANGE_BEGIN, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityRangeBeginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_VISIBILITY_RANGE_BEGIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRangeBeginPtr, NIL)
     }
 
   /**
@@ -234,14 +215,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var visibilityRangeBeginMargin: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_VISIBILITY_RANGE_BEGIN_MARGIN, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityRangeBeginMarginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_VISIBILITY_RANGE_BEGIN_MARGIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRangeBeginMarginPtr, NIL)
     }
 
   /**
@@ -250,14 +229,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var visibilityRangeEnd: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_VISIBILITY_RANGE_END, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityRangeEndPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_VISIBILITY_RANGE_END, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRangeEndPtr, NIL)
     }
 
   /**
@@ -268,14 +245,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var visibilityRangeEndMargin: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_VISIBILITY_RANGE_END_MARGIN, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityRangeEndMarginPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_VISIBILITY_RANGE_END_MARGIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRangeEndMarginPtr, NIL)
     }
 
   /**
@@ -284,14 +259,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public var visibilityRangeFadeMode: VisibilityRangeFadeMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_VISIBILITY_RANGE_FADE_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityRangeFadeModePtr, LONG)
       return GeometryInstance3D.VisibilityRangeFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_VISIBILITY_RANGE_FADE_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRangeFadeModePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -334,8 +307,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    */
   public fun setInstanceShaderParameter(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_INSTANCE_SHADER_PARAMETER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInstanceShaderParameterPtr, NIL)
   }
 
   /**
@@ -343,8 +315,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    */
   public fun getInstanceShaderParameter(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_INSTANCE_SHADER_PARAMETER, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getInstanceShaderParameterPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -475,4 +446,102 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setMaterialOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_material_override")
+
+    public val getMaterialOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_material_override")
+
+    public val setMaterialOverlayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_material_overlay")
+
+    public val getMaterialOverlayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_material_overlay")
+
+    public val setCastShadowsSettingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_cast_shadows_setting")
+
+    public val getCastShadowsSettingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_cast_shadows_setting")
+
+    public val setLodBiasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_lod_bias")
+
+    public val getLodBiasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_lod_bias")
+
+    public val setTransparencyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_transparency")
+
+    public val getTransparencyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_transparency")
+
+    public val setVisibilityRangeEndMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_end_margin")
+
+    public val getVisibilityRangeEndMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_end_margin")
+
+    public val setVisibilityRangeEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_end")
+
+    public val getVisibilityRangeEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_end")
+
+    public val setVisibilityRangeBeginMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_begin_margin")
+
+    public val getVisibilityRangeBeginMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_begin_margin")
+
+    public val setVisibilityRangeBeginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_begin")
+
+    public val getVisibilityRangeBeginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_begin")
+
+    public val setVisibilityRangeFadeModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_fade_mode")
+
+    public val getVisibilityRangeFadeModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_fade_mode")
+
+    public val setInstanceShaderParameterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_instance_shader_parameter")
+
+    public val getInstanceShaderParameterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_instance_shader_parameter")
+
+    public val setExtraCullMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_extra_cull_margin")
+
+    public val getExtraCullMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_extra_cull_margin")
+
+    public val setLightmapScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_lightmap_scale")
+
+    public val getLightmapScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_lightmap_scale")
+
+    public val setGiModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_gi_mode")
+
+    public val getGiModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_gi_mode")
+
+    public val setIgnoreOcclusionCullingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_ignore_occlusion_culling")
+
+    public val isIgnoringOcclusionCullingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "is_ignoring_occlusion_culling")
+
+    public val setCustomAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_custom_aabb")
+
+    public val getCustomAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_custom_aabb")
+  }
 }

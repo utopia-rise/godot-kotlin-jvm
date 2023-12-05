@@ -30,4 +30,6 @@ public open class PlaceholderTexture2DArray : PlaceholderTextureLayered() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

@@ -7,8 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.ANY
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -31,9 +33,13 @@ public open class WeakRef : RefCounted() {
    */
   public fun getRef(): Any? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEAKREF_GET_REF, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getRefPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getRefPtr: VoidPtr = TypeManager.getMethodBindPtr("WeakRef", "get_ref")
+  }
 }

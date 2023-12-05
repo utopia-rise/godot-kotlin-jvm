@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -28,14 +30,12 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
   public var flags: EmitFlags
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEEMIT_GET_FLAGS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagsPtr, LONG)
       return VisualShaderNodeParticleEmit.EmitFlags.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEEMIT_SET_FLAGS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagsPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -79,4 +79,12 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleEmit", "set_flags")
+
+    public val getFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleEmit", "get_flags")
+  }
 }

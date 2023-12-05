@@ -7,11 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -36,12 +38,12 @@ public open class ScrollBar internal constructor() : Range() {
   public var customStep: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLBAR_GET_CUSTOM_STEP, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCustomStepPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLBAR_SET_CUSTOM_STEP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCustomStepPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -50,4 +52,12 @@ public open class ScrollBar internal constructor() : Range() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setCustomStepPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollBar", "set_custom_step")
+
+    public val getCustomStepPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollBar", "get_custom_step")
+  }
 }

@@ -24,4 +24,6 @@ public open class VisualShaderNodeTextureParameterTriplanar : VisualShaderNodeTe
   }
 
   public companion object
+
+  internal object MethodBindings
 }

@@ -27,4 +27,6 @@ public open class HSplitContainer : SplitContainer() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

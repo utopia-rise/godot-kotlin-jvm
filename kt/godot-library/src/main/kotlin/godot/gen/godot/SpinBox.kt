@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -14,6 +15,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -77,14 +79,12 @@ public open class SpinBox : Range() {
   public var alignment: HorizontalAlignment
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_HORIZONTAL_ALIGNMENT,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
       return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_HORIZONTAL_ALIGNMENT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
     }
 
   /**
@@ -93,12 +93,12 @@ public open class SpinBox : Range() {
   public var editable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_IS_EDITABLE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isEditablePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_EDITABLE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEditablePtr, NIL)
     }
 
   /**
@@ -107,14 +107,12 @@ public open class SpinBox : Range() {
   public var updateOnTextChanged: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_UPDATE_ON_TEXT_CHANGED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getUpdateOnTextChangedPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_UPDATE_ON_TEXT_CHANGED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUpdateOnTextChangedPtr, NIL)
     }
 
   /**
@@ -123,12 +121,12 @@ public open class SpinBox : Range() {
   public var prefix: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_PREFIX, STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPrefixPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_PREFIX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPrefixPtr, NIL)
     }
 
   /**
@@ -137,12 +135,12 @@ public open class SpinBox : Range() {
   public var suffix: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_SUFFIX, STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSuffixPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_SUFFIX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSuffixPtr, NIL)
     }
 
   /**
@@ -151,14 +149,12 @@ public open class SpinBox : Range() {
   public var customArrowStep: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_CUSTOM_ARROW_STEP,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCustomArrowStepPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_CUSTOM_ARROW_STEP,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCustomArrowStepPtr, NIL)
     }
 
   /**
@@ -167,14 +163,12 @@ public open class SpinBox : Range() {
   public var selectAllOnFocus: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_IS_SELECT_ALL_ON_FOCUS,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isSelectAllOnFocusPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_SELECT_ALL_ON_FOCUS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSelectAllOnFocusPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -187,7 +181,7 @@ public open class SpinBox : Range() {
    */
   public fun apply(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_APPLY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.applyPtr, NIL)
   }
 
   /**
@@ -197,9 +191,51 @@ public open class SpinBox : Range() {
    */
   public fun getLineEdit(): LineEdit? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_LINE_EDIT, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getLineEditPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as LineEdit?)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setHorizontalAlignmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpinBox", "set_horizontal_alignment")
+
+    public val getHorizontalAlignmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpinBox", "get_horizontal_alignment")
+
+    public val setSuffixPtr: VoidPtr = TypeManager.getMethodBindPtr("SpinBox", "set_suffix")
+
+    public val getSuffixPtr: VoidPtr = TypeManager.getMethodBindPtr("SpinBox", "get_suffix")
+
+    public val setPrefixPtr: VoidPtr = TypeManager.getMethodBindPtr("SpinBox", "set_prefix")
+
+    public val getPrefixPtr: VoidPtr = TypeManager.getMethodBindPtr("SpinBox", "get_prefix")
+
+    public val setEditablePtr: VoidPtr = TypeManager.getMethodBindPtr("SpinBox", "set_editable")
+
+    public val setCustomArrowStepPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpinBox", "set_custom_arrow_step")
+
+    public val getCustomArrowStepPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpinBox", "get_custom_arrow_step")
+
+    public val isEditablePtr: VoidPtr = TypeManager.getMethodBindPtr("SpinBox", "is_editable")
+
+    public val setUpdateOnTextChangedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpinBox", "set_update_on_text_changed")
+
+    public val getUpdateOnTextChangedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpinBox", "get_update_on_text_changed")
+
+    public val setSelectAllOnFocusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpinBox", "set_select_all_on_focus")
+
+    public val isSelectAllOnFocusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpinBox", "is_select_all_on_focus")
+
+    public val applyPtr: VoidPtr = TypeManager.getMethodBindPtr("SpinBox", "apply")
+
+    public val getLineEditPtr: VoidPtr = TypeManager.getMethodBindPtr("SpinBox", "get_line_edit")
+  }
 }

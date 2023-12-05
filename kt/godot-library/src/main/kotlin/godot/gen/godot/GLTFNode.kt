@@ -13,6 +13,7 @@ import godot.core.PackedInt32Array
 import godot.core.Quaternion
 import godot.core.StringName
 import godot.core.Transform3D
+import godot.core.TypeManager
 import godot.core.VariantType.ANY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -23,6 +24,7 @@ import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -35,138 +37,137 @@ public open class GLTFNode : Resource() {
   public var parent: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_GET_PARENT, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParentPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_PARENT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParentPtr, NIL)
     }
 
   public var height: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_GET_HEIGHT, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_HEIGHT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
     }
 
   @CoreTypeLocalCopy
   public var xform: Transform3D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_GET_XFORM, TRANSFORM3D)
+      TransferContext.callMethod(rawPtr, MethodBindings.getXformPtr, TRANSFORM3D)
       return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM3D to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_XFORM, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setXformPtr, NIL)
     }
 
   public var mesh: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_GET_MESH, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_MESH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
     }
 
   public var camera: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_GET_CAMERA, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCameraPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_CAMERA, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCameraPtr, NIL)
     }
 
   public var skin: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_GET_SKIN, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSkinPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_SKIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSkinPtr, NIL)
     }
 
   public var skeleton: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_GET_SKELETON, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_SKELETON, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonPtr, NIL)
     }
 
   @CoreTypeLocalCopy
   public var position: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_GET_POSITION, VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_POSITION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
     }
 
   @CoreTypeLocalCopy
   public var rotation: Quaternion
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_GET_ROTATION, QUATERNION)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRotationPtr, QUATERNION)
       return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
     }
     set(`value`) {
       TransferContext.writeArguments(QUATERNION to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_ROTATION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRotationPtr, NIL)
     }
 
   @CoreTypeLocalCopy
   public var scale: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_GET_SCALE, VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getScalePtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_SCALE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setScalePtr, NIL)
     }
 
   public var children: PackedInt32Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_GET_CHILDREN,
-          PACKED_INT_32_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getChildrenPtr, PACKED_INT_32_ARRAY)
       return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_CHILDREN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setChildrenPtr, NIL)
     }
 
   public var light: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_GET_LIGHT, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLightPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_LIGHT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLightPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -264,14 +265,70 @@ public open class GLTFNode : Resource() {
 
   public fun getAdditionalData(extensionName: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to extensionName)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_GET_ADDITIONAL_DATA, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAdditionalDataPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
   public fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFNODE_SET_ADDITIONAL_DATA, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAdditionalDataPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getParentPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_parent")
+
+    public val setParentPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_parent")
+
+    public val getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_height")
+
+    public val setHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_height")
+
+    public val getXformPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_xform")
+
+    public val setXformPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_xform")
+
+    public val getMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_mesh")
+
+    public val setMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_mesh")
+
+    public val getCameraPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_camera")
+
+    public val setCameraPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_camera")
+
+    public val getSkinPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_skin")
+
+    public val setSkinPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_skin")
+
+    public val getSkeletonPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_skeleton")
+
+    public val setSkeletonPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_skeleton")
+
+    public val getPositionPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_position")
+
+    public val setPositionPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_position")
+
+    public val getRotationPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_rotation")
+
+    public val setRotationPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_rotation")
+
+    public val getScalePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_scale")
+
+    public val setScalePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_scale")
+
+    public val getChildrenPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_children")
+
+    public val setChildrenPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_children")
+
+    public val getLightPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_light")
+
+    public val setLightPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_light")
+
+    public val getAdditionalDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "get_additional_data")
+
+    public val setAdditionalDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "set_additional_data")
+  }
 }

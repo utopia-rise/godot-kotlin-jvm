@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.GodotError
 import godot.core.PackedByteArray
+import godot.core.TypeManager
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.CALLABLE
@@ -21,6 +22,7 @@ import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -60,7 +62,7 @@ public object JavaScriptBridge : Object() {
   @JvmOverloads
   public fun eval(code: String, useGlobalExecutionContext: Boolean = false): Any? {
     TransferContext.writeArguments(STRING to code, BOOL to useGlobalExecutionContext)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPTBRIDGE_EVAL, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.evalPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -69,8 +71,7 @@ public object JavaScriptBridge : Object() {
    */
   public fun getInterface(_interface: String): JavaScriptObject? {
     TransferContext.writeArguments(STRING to _interface)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPTBRIDGE_GET_INTERFACE,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getInterfacePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as JavaScriptObject?)
   }
 
@@ -79,8 +80,7 @@ public object JavaScriptBridge : Object() {
    */
   public fun createCallback(callable: Callable): JavaScriptObject? {
     TransferContext.writeArguments(CALLABLE to callable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPTBRIDGE_CREATE_CALLBACK,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.createCallbackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as JavaScriptObject?)
   }
 
@@ -89,7 +89,7 @@ public object JavaScriptBridge : Object() {
    */
   public fun createObject(_object: String, vararg __var_args: Any?): Any? {
     TransferContext.writeArguments(STRING to _object,  *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPTBRIDGE_CREATE_OBJECT, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.createObjectPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -109,8 +109,7 @@ public object JavaScriptBridge : Object() {
     mime: String = "application/octet-stream",
   ): Unit {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer, STRING to name, STRING to mime)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPTBRIDGE_DOWNLOAD_BUFFER,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.downloadBufferPtr, NIL)
   }
 
   /**
@@ -120,8 +119,7 @@ public object JavaScriptBridge : Object() {
    */
   public fun pwaNeedsUpdate(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPTBRIDGE_PWA_NEEDS_UPDATE,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.pwaNeedsUpdatePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -134,7 +132,7 @@ public object JavaScriptBridge : Object() {
    */
   public fun pwaUpdate(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPTBRIDGE_PWA_UPDATE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.pwaUpdatePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -145,6 +143,31 @@ public object JavaScriptBridge : Object() {
    */
   public fun forceFsSync(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPTBRIDGE_FORCE_FS_SYNC, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.forceFsSyncPtr, NIL)
+  }
+
+  internal object MethodBindings {
+    public val evalPtr: VoidPtr = TypeManager.getMethodBindPtr("JavaScriptBridge", "eval")
+
+    public val getInterfacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "get_interface")
+
+    public val createCallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "create_callback")
+
+    public val createObjectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "create_object")
+
+    public val downloadBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "download_buffer")
+
+    public val pwaNeedsUpdatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "pwa_needs_update")
+
+    public val pwaUpdatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "pwa_update")
+
+    public val forceFsSyncPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "force_fs_sync")
   }
 }

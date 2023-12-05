@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -28,14 +30,12 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
   public var opType: OpType
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC_GET_OP_TYPE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getOpTypePtr, LONG)
       return VisualShaderNodeDerivativeFunc.OpType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC_SET_OP_TYPE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
     }
 
   /**
@@ -44,14 +44,12 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
   public var function: Function
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC_GET_FUNCTION, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFunctionPtr, LONG)
       return VisualShaderNodeDerivativeFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC_SET_FUNCTION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFunctionPtr, NIL)
     }
 
   /**
@@ -60,14 +58,12 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
   public var precision: Precision
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC_GET_PRECISION, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPrecisionPtr, LONG)
       return VisualShaderNodeDerivativeFunc.Precision.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC_SET_PRECISION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPrecisionPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -173,4 +169,24 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setOpTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "set_op_type")
+
+    public val getOpTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "get_op_type")
+
+    public val setFunctionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "set_function")
+
+    public val getFunctionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "get_function")
+
+    public val setPrecisionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "set_precision")
+
+    public val getPrecisionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "get_precision")
+  }
 }

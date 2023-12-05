@@ -19,4 +19,6 @@ public open class FramebufferCacheRD internal constructor() : Object() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

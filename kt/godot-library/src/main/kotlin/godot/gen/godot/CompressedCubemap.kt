@@ -40,4 +40,6 @@ public open class CompressedCubemap : CompressedTextureLayered() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

@@ -20,4 +20,6 @@ public open class GDScriptEditorTranslationParserPlugin internal constructor() :
   }
 
   public companion object
+
+  internal object MethodBindings
 }

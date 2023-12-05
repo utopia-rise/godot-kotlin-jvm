@@ -2,7 +2,7 @@ package godot.codegen.services.impl
 
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import godot.codegen.constants.jvmMethodToNotGenerate
+import godot.codegen.constants.VOID_PTR
 import godot.codegen.constants.jvmReservedMethods
 import godot.codegen.exceptions.ClassGenerationException
 import godot.codegen.extensions.*
@@ -42,6 +42,8 @@ import godot.tools.common.constants.godotUtilPackage
 import godot.tools.common.constants.signalPackage
 import java.util.*
 
+private const val methodBindingsInnerClassName = "MethodBindings"
+
 class GenerationService(
     private val docRepository: IDocRepository,
     private val classGraphService: IClassGraphService,
@@ -60,7 +62,11 @@ class GenerationService(
 
         classTypeBuilder.generateSingletonConstructor(singletonClass.engineClassDBIndexName)
 
-        return generateCommonsForClass(classTypeBuilder, singletonClass, classTypeBuilder)
+        return generateCommonsForClass(
+            classTypeBuilder,
+            singletonClass,
+            classTypeBuilder
+        )
     }
 
     override fun generateClass(clazz: EnrichedClass): FileSpec {
@@ -91,6 +97,9 @@ class GenerationService(
         constantsTypeReceiver: TypeSpec.Builder = TypeSpec.companionObjectBuilder()
     ): FileSpec {
         val name = enrichedClass.name
+        val methodBindPtrReceiver = TypeSpec
+            .objectBuilder(methodBindingsInnerClassName)
+            .addModifiers(KModifier.INTERNAL)
 
         docRepository.findByClassName(name)?.let { classDoc ->
             classTypeBuilder.addKdoc(
@@ -134,6 +143,10 @@ class GenerationService(
             constantsTypeReceiver.addProperty(generateConstant(constant, name))
         }
 
+        for (method in enrichedClass.methods) {
+            methodBindPtrReceiver.addProperty(generateMethodVoidPtr(enrichedClass, method))
+        }
+
         for (method in enrichedClass.methods.filter { it.internal.isStatic }) {
             constantsTypeReceiver.addFunction(generateMethod(enrichedClass, method, true))
         }
@@ -169,7 +182,9 @@ class GenerationService(
             }
         }
 
-        val generatedClass = classTypeBuilder.build()
+        val generatedClass = classTypeBuilder
+            .addType(methodBindPtrReceiver.build())
+            .build()
 
         val fileBuilder = FileSpec
             .builder(godotApiPackage, generatedClass.name ?: throw ClassGenerationException(enrichedClass))
@@ -199,15 +214,6 @@ class GenerationService(
                 .build()
         )
 
-        for (method in clazz.methods) {
-            if (!jvmMethodToNotGenerate.contains(method.engineIndexName)) {
-                fileSpecBuilder.addProperty(
-                    PropertySpec.builder(method.engineIndexName, INT, KModifier.CONST)
-                        .initializer("%L", nextEngineMethodIndex).addModifiers(KModifier.INTERNAL).build()
-                )
-                ++nextEngineMethodIndex
-            }
-        }
         ++nextEngineClassIndex
     }
 
@@ -522,6 +528,7 @@ class GenerationService(
                 FunSpec.setterBuilder()
                     .addParameter("value", propertyType)
                     .generateJvmMethodCall(
+                        clazz = enrichedClass,
                         callable = property.toSetterCallable(),
                         callArgumentsAsString = argumentStringTemplate,
                         isStatic = false
@@ -547,6 +554,7 @@ class GenerationService(
             propertySpecBuilder.getter(
                 FunSpec.getterBuilder()
                     .generateJvmMethodCall(
+                        clazz = enrichedClass,
                         callable = property.toGetterCallable(),
                         callArgumentsAsString = argumentStringTemplate,
                         isStatic = false
@@ -715,6 +723,16 @@ class GenerationService(
         return generatedFunBuilder.build()
     }
 
+    private fun generateMethodVoidPtr(enrichedClass: EnrichedClass, method: EnrichedMethod) = PropertySpec
+        .builder("${method.name}Ptr", VOID_PTR)
+        .initializer(
+            "%T.getMethodBindPtr(%S,·%S)",
+            ClassName("godot.core", "TypeManager"),
+            enrichedClass.internal.name,
+            method.internal.name
+        )
+        .build()
+
     private fun TypeSpec.Builder.generateTypesafeRpc() {
         val camelToSnakeCaseUtilFunction = MemberName(godotUtilPackage, "camelToSnakeCase")
         val asStringNameUtilFunction = MemberName(godotCorePackage, "asStringName")
@@ -857,6 +875,7 @@ class GenerationService(
     ) {
         if (!enrichedMethod.internal.isVirtual) {
             generateJvmMethodCall(
+                clazz,
                 callable = enrichedMethod,
                 callArgumentsAsString = callArgumentsAsString,
                 isStatic = isStatic
@@ -872,6 +891,7 @@ class GenerationService(
     }
 
     private fun <T : CallableTrait> FunSpec.Builder.generateJvmMethodCall(
+        clazz: EnrichedClass,
         callable: T,
         callArgumentsAsString: String,
         isStatic: Boolean
@@ -904,9 +924,10 @@ class GenerationService(
         }
 
         addStatement(
-            "%T.callMethod($rawPtr, %M, %T)",
+            "%T.callMethod($rawPtr, %T.%M, %T)",
             TRANSFER_CONTEXT,
-            MemberName("godot", callable.engineIndexName),
+            clazz.getTypeClassName().className.nestedClass(methodBindingsInnerClassName),
+            MemberName("godot", callable.voidPtrVariableName),
             returnTypeVariantTypeClass
         )
 
@@ -963,22 +984,9 @@ class GenerationService(
         registrationFileSpec.registrationFunc(clazz)
         registrationFileSpec.addVariantMapping(clazz)
 
-        val registerMethodForClassFun = FunSpec.builder("registerEngineTypeMethodFor${clazz.name}")
-        registerMethodForClassFun.addModifiers(KModifier.PRIVATE)
-        for (method in clazz.methods) {
-            if (!jvmMethodToNotGenerate.contains(method.engineIndexName)) {
-                registerMethodForClassFun.addEngineTypeMethod(clazz.engineClassDBIndexName, method.internal.name)
-            }
-        }
-        registrationFileSpec.registrationFile.addFunction(registerMethodForClassFun.build())
-        registrationFileSpec.registerMethodsFunBuilder.addStatement("registerEngineTypeMethodFor${clazz.name}()")
-    }
-
-    private fun FunSpec.Builder.addEngineTypeMethod(classIndexName: String, methodEngineName: String) {
-        addStatement(
-            "%T.engineTypeMethod.add(%M to \"${methodEngineName}\")",
-            TYPE_MANAGER,
-            MemberName(godotApiPackage, classIndexName)
+        registrationFileSpec.registerMethodsFunBuilder.addStatement(
+            "%T",
+            clazz.getTypeClassName().className.nestedClass(methodBindingsInnerClassName)
         )
     }
 

@@ -26,4 +26,6 @@ public open class VisualShaderNodeVectorDistance : VisualShaderNodeVectorBase() 
   }
 
   public companion object
+
+  internal object MethodBindings
 }

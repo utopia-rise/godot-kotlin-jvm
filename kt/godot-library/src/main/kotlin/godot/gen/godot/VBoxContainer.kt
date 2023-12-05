@@ -27,4 +27,6 @@ public open class VBoxContainer : BoxContainer() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

@@ -10,12 +10,14 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
+import godot.core.TypeManager
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -39,14 +41,12 @@ public open class CanvasTexture : Texture2D() {
   public var diffuseTexture: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_DIFFUSE_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDiffuseTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_SET_DIFFUSE_TEXTURE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDiffuseTexturePtr, NIL)
     }
 
   /**
@@ -57,14 +57,12 @@ public open class CanvasTexture : Texture2D() {
   public var normalTexture: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_NORMAL_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getNormalTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_SET_NORMAL_TEXTURE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setNormalTexturePtr, NIL)
     }
 
   /**
@@ -73,14 +71,12 @@ public open class CanvasTexture : Texture2D() {
   public var specularTexture: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_SPECULAR_TEXTURE, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSpecularTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_SET_SPECULAR_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSpecularTexturePtr, NIL)
     }
 
   /**
@@ -90,14 +86,12 @@ public open class CanvasTexture : Texture2D() {
   public var specularColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_SPECULAR_COLOR,
-          COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSpecularColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_SET_SPECULAR_COLOR,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSpecularColorPtr, NIL)
     }
 
   /**
@@ -106,14 +100,12 @@ public open class CanvasTexture : Texture2D() {
   public var specularShininess: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_SPECULAR_SHININESS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSpecularShininessPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_SET_SPECULAR_SHININESS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSpecularShininessPtr, NIL)
     }
 
   /**
@@ -122,14 +114,12 @@ public open class CanvasTexture : Texture2D() {
   public var textureFilter: CanvasItem.TextureFilter
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_TEXTURE_FILTER,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
       return CanvasItem.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_SET_TEXTURE_FILTER,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
     }
 
   /**
@@ -138,14 +128,12 @@ public open class CanvasTexture : Texture2D() {
   public var textureRepeat: CanvasItem.TextureRepeat
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_GET_TEXTURE_REPEAT,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureRepeatPtr, LONG)
       return CanvasItem.TextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASTEXTURE_SET_TEXTURE_REPEAT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureRepeatPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -178,4 +166,48 @@ public open class CanvasTexture : Texture2D() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setDiffuseTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasTexture", "set_diffuse_texture")
+
+    public val getDiffuseTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasTexture", "get_diffuse_texture")
+
+    public val setNormalTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasTexture", "set_normal_texture")
+
+    public val getNormalTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasTexture", "get_normal_texture")
+
+    public val setSpecularTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasTexture", "set_specular_texture")
+
+    public val getSpecularTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasTexture", "get_specular_texture")
+
+    public val setSpecularColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasTexture", "set_specular_color")
+
+    public val getSpecularColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasTexture", "get_specular_color")
+
+    public val setSpecularShininessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasTexture", "set_specular_shininess")
+
+    public val getSpecularShininessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasTexture", "get_specular_shininess")
+
+    public val setTextureFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasTexture", "set_texture_filter")
+
+    public val getTextureFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasTexture", "get_texture_filter")
+
+    public val setTextureRepeatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasTexture", "set_texture_repeat")
+
+    public val getTextureRepeatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasTexture", "get_texture_repeat")
+  }
 }

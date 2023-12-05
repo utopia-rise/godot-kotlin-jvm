@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -91,7 +93,7 @@ public open class TextureLayered : Texture() {
    */
   public fun getFormat(): Image.Format {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_GET_FORMAT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
     return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -100,8 +102,7 @@ public open class TextureLayered : Texture() {
    */
   public fun getLayeredType(): LayeredType {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_GET_LAYERED_TYPE,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getLayeredTypePtr, LONG)
     return TextureLayered.LayeredType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -110,7 +111,7 @@ public open class TextureLayered : Texture() {
    */
   public fun getWidth(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_GET_WIDTH, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -119,7 +120,7 @@ public open class TextureLayered : Texture() {
    */
   public fun getHeight(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_GET_HEIGHT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -128,7 +129,7 @@ public open class TextureLayered : Texture() {
    */
   public fun getLayers(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_GET_LAYERS, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -137,7 +138,7 @@ public open class TextureLayered : Texture() {
    */
   public fun hasMipmaps(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_HAS_MIPMAPS, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hasMipmapsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -146,8 +147,7 @@ public open class TextureLayered : Texture() {
    */
   public fun getLayerData(layer: Int): Image? {
     TransferContext.writeArguments(LONG to layer.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_GET_LAYER_DATA,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getLayerDataPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Image?)
   }
 
@@ -179,4 +179,43 @@ public open class TextureLayered : Texture() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _getFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureLayered", "_get_format")
+
+    public val _getLayeredTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureLayered", "_get_layered_type")
+
+    public val _getWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("TextureLayered", "_get_width")
+
+    public val _getHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureLayered", "_get_height")
+
+    public val _getLayersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureLayered", "_get_layers")
+
+    public val _hasMipmapsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureLayered", "_has_mipmaps")
+
+    public val _getLayerDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureLayered", "_get_layer_data")
+
+    public val getFormatPtr: VoidPtr = TypeManager.getMethodBindPtr("TextureLayered", "get_format")
+
+    public val getLayeredTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureLayered", "get_layered_type")
+
+    public val getWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("TextureLayered", "get_width")
+
+    public val getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("TextureLayered", "get_height")
+
+    public val getLayersPtr: VoidPtr = TypeManager.getMethodBindPtr("TextureLayered", "get_layers")
+
+    public val hasMipmapsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureLayered", "has_mipmaps")
+
+    public val getLayerDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureLayered", "get_layer_data")
+  }
 }

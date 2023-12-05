@@ -9,10 +9,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -36,14 +38,12 @@ public open class ParallaxLayer : Node2D() {
   public var motionScale: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXLAYER_GET_MOTION_SCALE,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMotionScalePtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXLAYER_SET_MOTION_SCALE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMotionScalePtr, NIL)
     }
 
   /**
@@ -53,14 +53,12 @@ public open class ParallaxLayer : Node2D() {
   public var motionOffset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXLAYER_GET_MOTION_OFFSET,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMotionOffsetPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXLAYER_SET_MOTION_OFFSET,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMotionOffsetPtr, NIL)
     }
 
   /**
@@ -74,13 +72,12 @@ public open class ParallaxLayer : Node2D() {
   public var motionMirroring: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXLAYER_GET_MIRRORING,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMirroringPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXLAYER_SET_MIRRORING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMirroringPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -165,4 +162,24 @@ public open class ParallaxLayer : Node2D() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setMotionScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParallaxLayer", "set_motion_scale")
+
+    public val getMotionScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParallaxLayer", "get_motion_scale")
+
+    public val setMotionOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParallaxLayer", "set_motion_offset")
+
+    public val getMotionOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParallaxLayer", "get_motion_offset")
+
+    public val setMirroringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParallaxLayer", "set_mirroring")
+
+    public val getMirroringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParallaxLayer", "get_mirroring")
+  }
 }

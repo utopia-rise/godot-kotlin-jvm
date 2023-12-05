@@ -7,11 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -38,13 +40,12 @@ public open class AudioEffectRecord : AudioEffect() {
   public var format: AudioStreamWAV.Format
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTRECORD_GET_FORMAT,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
       return AudioStreamWAV.Format.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTRECORD_SET_FORMAT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -57,8 +58,7 @@ public open class AudioEffectRecord : AudioEffect() {
    */
   public fun setRecordingActive(record: Boolean): Unit {
     TransferContext.writeArguments(BOOL to record)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTRECORD_SET_RECORDING_ACTIVE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRecordingActivePtr, NIL)
   }
 
   /**
@@ -66,8 +66,7 @@ public open class AudioEffectRecord : AudioEffect() {
    */
   public fun isRecordingActive(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTRECORD_IS_RECORDING_ACTIVE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isRecordingActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -76,10 +75,26 @@ public open class AudioEffectRecord : AudioEffect() {
    */
   public fun getRecording(): AudioStreamWAV? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTRECORD_GET_RECORDING,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getRecordingPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as AudioStreamWAV?)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setRecordingActivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectRecord", "set_recording_active")
+
+    public val isRecordingActivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectRecord", "is_recording_active")
+
+    public val setFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectRecord", "set_format")
+
+    public val getFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectRecord", "get_format")
+
+    public val getRecordingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectRecord", "get_recording")
+  }
 }

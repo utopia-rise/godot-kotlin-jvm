@@ -39,4 +39,6 @@ public open class TextServerDummy : TextServerExtension() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

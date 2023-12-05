@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt32Array
 import godot.core.PackedVector2Array
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -16,6 +17,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -109,14 +111,12 @@ public open class NavigationPolygon : Resource() {
   public var vertices: PackedVector2Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_VERTICES,
-          PACKED_VECTOR2_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_VECTOR2_ARRAY)
       return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_SET_VERTICES,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
     }
 
   /**
@@ -125,14 +125,12 @@ public open class NavigationPolygon : Resource() {
   public var cellSize: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_CELL_SIZE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_SET_CELL_SIZE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -145,7 +143,7 @@ public open class NavigationPolygon : Resource() {
    */
   public fun addPolygon(polygon: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to polygon)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_ADD_POLYGON, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addPolygonPtr, NIL)
   }
 
   /**
@@ -153,8 +151,7 @@ public open class NavigationPolygon : Resource() {
    */
   public fun getPolygonCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_POLYGON_COUNT,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getPolygonCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -163,8 +160,7 @@ public open class NavigationPolygon : Resource() {
    */
   public fun getPolygon(idx: Int): PackedInt32Array {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_POLYGON,
-        PACKED_INT_32_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
@@ -173,8 +169,7 @@ public open class NavigationPolygon : Resource() {
    */
   public fun clearPolygons(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_CLEAR_POLYGONS,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearPolygonsPtr, NIL)
   }
 
   /**
@@ -182,8 +177,7 @@ public open class NavigationPolygon : Resource() {
    */
   public fun getNavigationMesh(): NavigationMesh? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_NAVIGATION_MESH, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as NavigationMesh?)
   }
 
@@ -192,7 +186,7 @@ public open class NavigationPolygon : Resource() {
    */
   public fun addOutline(outline: PackedVector2Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to outline)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_ADD_OUTLINE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addOutlinePtr, NIL)
   }
 
   /**
@@ -200,8 +194,7 @@ public open class NavigationPolygon : Resource() {
    */
   public fun addOutlineAtIndex(outline: PackedVector2Array, index: Int): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to outline, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_ADD_OUTLINE_AT_INDEX, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addOutlineAtIndexPtr, NIL)
   }
 
   /**
@@ -209,8 +202,7 @@ public open class NavigationPolygon : Resource() {
    */
   public fun getOutlineCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_OUTLINE_COUNT,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getOutlineCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -219,7 +211,7 @@ public open class NavigationPolygon : Resource() {
    */
   public fun setOutline(idx: Int, outline: PackedVector2Array): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), PACKED_VECTOR2_ARRAY to outline)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_SET_OUTLINE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOutlinePtr, NIL)
   }
 
   /**
@@ -227,8 +219,7 @@ public open class NavigationPolygon : Resource() {
    */
   public fun getOutline(idx: Int): PackedVector2Array {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_OUTLINE,
-        PACKED_VECTOR2_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getOutlinePtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
   }
 
@@ -237,8 +228,7 @@ public open class NavigationPolygon : Resource() {
    */
   public fun removeOutline(idx: Int): Unit {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_REMOVE_OUTLINE,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeOutlinePtr, NIL)
   }
 
   /**
@@ -246,8 +236,7 @@ public open class NavigationPolygon : Resource() {
    */
   public fun clearOutlines(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_CLEAR_OUTLINES,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearOutlinesPtr, NIL)
   }
 
   /**
@@ -255,9 +244,61 @@ public open class NavigationPolygon : Resource() {
    */
   public fun makePolygonsFromOutlines(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_MAKE_POLYGONS_FROM_OUTLINES, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.makePolygonsFromOutlinesPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setVerticesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "set_vertices")
+
+    public val getVerticesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_vertices")
+
+    public val addPolygonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "add_polygon")
+
+    public val getPolygonCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_polygon_count")
+
+    public val getPolygonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_polygon")
+
+    public val clearPolygonsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "clear_polygons")
+
+    public val getNavigationMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_navigation_mesh")
+
+    public val addOutlinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "add_outline")
+
+    public val addOutlineAtIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "add_outline_at_index")
+
+    public val getOutlineCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_outline_count")
+
+    public val setOutlinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "set_outline")
+
+    public val getOutlinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_outline")
+
+    public val removeOutlinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "remove_outline")
+
+    public val clearOutlinesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "clear_outlines")
+
+    public val makePolygonsFromOutlinesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "make_polygons_from_outlines")
+
+    public val setCellSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "set_cell_size")
+
+    public val getCellSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_cell_size")
+  }
 }

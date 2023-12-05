@@ -9,11 +9,13 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -38,12 +40,12 @@ public open class BoxMesh : PrimitiveMesh() {
   public var size: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_GET_SIZE, VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_SET_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
     }
 
   /**
@@ -52,12 +54,12 @@ public open class BoxMesh : PrimitiveMesh() {
   public var subdivideWidth: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_GET_SUBDIVIDE_WIDTH, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideWidthPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_SET_SUBDIVIDE_WIDTH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideWidthPtr, NIL)
     }
 
   /**
@@ -66,13 +68,12 @@ public open class BoxMesh : PrimitiveMesh() {
   public var subdivideHeight: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_GET_SUBDIVIDE_HEIGHT,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideHeightPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_SET_SUBDIVIDE_HEIGHT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideHeightPtr, NIL)
     }
 
   /**
@@ -81,12 +82,12 @@ public open class BoxMesh : PrimitiveMesh() {
   public var subdivideDepth: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_GET_SUBDIVIDE_DEPTH, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideDepthPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXMESH_SET_SUBDIVIDE_DEPTH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideDepthPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -119,4 +120,28 @@ public open class BoxMesh : PrimitiveMesh() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("BoxMesh", "set_size")
+
+    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("BoxMesh", "get_size")
+
+    public val setSubdivideWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BoxMesh", "set_subdivide_width")
+
+    public val getSubdivideWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BoxMesh", "get_subdivide_width")
+
+    public val setSubdivideHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BoxMesh", "set_subdivide_height")
+
+    public val getSubdivideHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BoxMesh", "get_subdivide_height")
+
+    public val setSubdivideDepthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BoxMesh", "set_subdivide_depth")
+
+    public val getSubdivideDepthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BoxMesh", "get_subdivide_depth")
+  }
 }

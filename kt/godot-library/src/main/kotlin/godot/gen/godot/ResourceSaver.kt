@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedStringArray
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -16,6 +17,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -53,7 +55,7 @@ public object ResourceSaver : Object() {
     flags: SaverFlags = ResourceSaver.SaverFlags.FLAG_NONE,
   ): GodotError {
     TransferContext.writeArguments(OBJECT to resource, STRING to path, LONG to flags.flag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCESAVER_SAVE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.savePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -62,8 +64,8 @@ public object ResourceSaver : Object() {
    */
   public fun getRecognizedExtensions(type: Resource): PackedStringArray {
     TransferContext.writeArguments(OBJECT to type)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RESOURCESAVER_GET_RECOGNIZED_EXTENSIONS, PACKED_STRING_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getRecognizedExtensionsPtr,
+        PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
@@ -76,8 +78,7 @@ public object ResourceSaver : Object() {
   public fun addResourceFormatSaver(formatSaver: ResourceFormatSaver, atFront: Boolean = false):
       Unit {
     TransferContext.writeArguments(OBJECT to formatSaver, BOOL to atFront)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RESOURCESAVER_ADD_RESOURCE_FORMAT_SAVER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addResourceFormatSaverPtr, NIL)
   }
 
   /**
@@ -85,8 +86,7 @@ public object ResourceSaver : Object() {
    */
   public fun removeResourceFormatSaver(formatSaver: ResourceFormatSaver): Unit {
     TransferContext.writeArguments(OBJECT to formatSaver)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RESOURCESAVER_REMOVE_RESOURCE_FORMAT_SAVER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeResourceFormatSaverPtr, NIL)
   }
 
   public sealed interface SaverFlags {
@@ -161,6 +161,19 @@ public object ResourceSaver : Object() {
   internal value class SaverFlagsValue internal constructor(
     public override val flag: Long,
   ) : SaverFlags
+
+  internal object MethodBindings {
+    public val savePtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceSaver", "save")
+
+    public val getRecognizedExtensionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceSaver", "get_recognized_extensions")
+
+    public val addResourceFormatSaverPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceSaver", "add_resource_format_saver")
+
+    public val removeResourceFormatSaverPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceSaver", "remove_resource_format_saver")
+  }
 }
 
 public infix fun Long.or(other: godot.ResourceSaver.SaverFlags): Long = this.or(other.flag)

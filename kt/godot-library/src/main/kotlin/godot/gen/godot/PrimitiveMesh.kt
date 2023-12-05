@@ -10,6 +10,7 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -17,6 +18,7 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -39,13 +41,12 @@ public open class PrimitiveMesh : Mesh() {
   public var material: Material?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_GET_MATERIAL,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Material?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_SET_MATERIAL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
     }
 
   /**
@@ -55,14 +56,13 @@ public open class PrimitiveMesh : Mesh() {
   public var customAabb: AABB
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_GET_CUSTOM_AABB,
+      TransferContext.callMethod(rawPtr, MethodBindings.getCustomAabbPtr,
           godot.core.VariantType.AABB)
       return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
     }
     set(`value`) {
       TransferContext.writeArguments(godot.core.VariantType.AABB to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_SET_CUSTOM_AABB,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCustomAabbPtr, NIL)
     }
 
   /**
@@ -73,13 +73,12 @@ public open class PrimitiveMesh : Mesh() {
   public var flipFaces: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_GET_FLIP_FACES,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlipFacesPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_SET_FLIP_FACES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlipFacesPtr, NIL)
     }
 
   /**
@@ -88,12 +87,12 @@ public open class PrimitiveMesh : Mesh() {
   public var addUv2: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_GET_ADD_UV2, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAddUv2Ptr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_SET_ADD_UV2, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAddUv2Ptr, NIL)
     }
 
   /**
@@ -104,14 +103,12 @@ public open class PrimitiveMesh : Mesh() {
   public var uv2Padding: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_GET_UV2_PADDING,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getUv2PaddingPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_SET_UV2_PADDING,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUv2PaddingPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -179,10 +176,45 @@ public open class PrimitiveMesh : Mesh() {
    */
   public fun getMeshArrays(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_GET_MESH_ARRAYS,
-        ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getMeshArraysPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _createMeshArrayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "_create_mesh_array")
+
+    public val setMaterialPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "set_material")
+
+    public val getMaterialPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "get_material")
+
+    public val getMeshArraysPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "get_mesh_arrays")
+
+    public val setCustomAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "set_custom_aabb")
+
+    public val getCustomAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "get_custom_aabb")
+
+    public val setFlipFacesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "set_flip_faces")
+
+    public val getFlipFacesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "get_flip_faces")
+
+    public val setAddUv2Ptr: VoidPtr = TypeManager.getMethodBindPtr("PrimitiveMesh", "set_add_uv2")
+
+    public val getAddUv2Ptr: VoidPtr = TypeManager.getMethodBindPtr("PrimitiveMesh", "get_add_uv2")
+
+    public val setUv2PaddingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "set_uv2_padding")
+
+    public val getUv2PaddingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "get_uv2_padding")
+  }
 }

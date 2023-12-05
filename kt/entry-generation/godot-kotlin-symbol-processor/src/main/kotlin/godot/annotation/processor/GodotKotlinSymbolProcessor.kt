@@ -11,6 +11,7 @@ import godot.annotation.processor.processing.ProcessingRoundsBlackboard
 import godot.annotation.processor.processing.RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistrationFiles
 import godot.annotation.processor.processing.RoundGenerateRegistrationFilesForCurrentCompilation
 import godot.annotation.processor.processing.RoundUpdateRegistrationFiles
+import godot.tools.common.constants.FileExtensions
 import java.io.File
 
 /**
@@ -25,7 +26,11 @@ class GodotKotlinSymbolProcessor(
     private val kspLogger: KSPLogger
 ) : SymbolProcessor {
     private lateinit var settings: Settings
-    private val processingRoundsBlackboard = ProcessingRoundsBlackboard()
+    private val processingRoundsBlackboard by lazy {
+        ProcessingRoundsBlackboard(
+            existingRegistrationFilesMap = provideExistingRegistrationFiles()
+        )
+    }
     private var processingRound = -1
 
     companion object {
@@ -84,7 +89,7 @@ class GodotKotlinSymbolProcessor(
     private fun provideSettingsFromArguments(): Settings {
         return Settings(
             projectName = options["projectName"] ?: throw IllegalStateException("No projectName option provided"),
-            projectBasePath = options["projectBasePath"]?.let { absolutePath -> File(absolutePath) }
+            projectBaseDir = options["projectBasePath"]?.let { absolutePath -> File(absolutePath) }
                 ?: throw IllegalStateException("No projectBasePath option provided"),
             registrationBaseDirPathRelativeToProjectDir = options["registrationFileBaseDir"]
                 ?: throw IllegalStateException("No registrationFileBaseDir option provided"),
@@ -102,5 +107,25 @@ class GodotKotlinSymbolProcessor(
             isRegistrationFileGenerationEnabled = options["isRegistrationFileGenerationEnabled"]?.toBooleanStrictOrNull()
                 ?: throw IllegalStateException("No isRegistrationFileGenerationEnabled option provided or not a boolean"),
         )
+    }
+
+    private fun provideExistingRegistrationFiles(): Map<String, File> {
+        val excludedDirs = listOf(
+            "build", // needs to be excluded so the registration files generated from ksp are not counted as existing registration files
+        )
+        return settings
+            .projectBaseDir
+            .walkTopDown()
+            .onEnter { directory ->
+                // do not enter excluded directories or hidden directories
+                !excludedDirs.contains(directory.toRelativeString(settings.projectBaseDir))
+                    && !directory.name.startsWith(".")
+            }
+            .filter { file ->
+                file.extension == FileExtensions.GodotKotlinJvm.registrationFile
+            }
+            .associateBy { file ->
+                file.name
+            }
     }
 }

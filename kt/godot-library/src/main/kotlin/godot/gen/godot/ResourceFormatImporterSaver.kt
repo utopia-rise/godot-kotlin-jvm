@@ -19,4 +19,6 @@ public open class ResourceFormatImporterSaver internal constructor() : ResourceF
   }
 
   public companion object
+
+  internal object MethodBindings
 }

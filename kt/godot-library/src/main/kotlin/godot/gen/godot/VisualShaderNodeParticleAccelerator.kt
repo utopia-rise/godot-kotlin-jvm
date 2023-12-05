@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -28,14 +30,12 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
   public var mode: Mode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEACCELERATOR_GET_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
       return VisualShaderNodeParticleAccelerator.Mode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEACCELERATOR_SET_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -75,4 +75,12 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleAccelerator", "set_mode")
+
+    public val getModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleAccelerator", "get_mode")
+  }
 }

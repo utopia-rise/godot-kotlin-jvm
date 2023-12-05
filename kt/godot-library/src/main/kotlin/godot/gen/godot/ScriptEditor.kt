@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.LONG
@@ -16,6 +17,7 @@ import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
@@ -51,8 +53,7 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
    */
   public fun getCurrentEditor(): ScriptEditorBase? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_CURRENT_EDITOR,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentEditorPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as ScriptEditorBase?)
   }
 
@@ -61,8 +62,7 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
    */
   public fun getOpenScriptEditors(): VariantArray<ScriptEditorBase> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_OPEN_SCRIPT_EDITORS, ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getOpenScriptEditorsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<ScriptEditorBase>)
   }
 
@@ -73,8 +73,7 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
    */
   public fun registerSyntaxHighlighter(syntaxHighlighter: EditorSyntaxHighlighter): Unit {
     TransferContext.writeArguments(OBJECT to syntaxHighlighter)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_REGISTER_SYNTAX_HIGHLIGHTER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.registerSyntaxHighlighterPtr, NIL)
   }
 
   /**
@@ -84,8 +83,7 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
    */
   public fun unregisterSyntaxHighlighter(syntaxHighlighter: EditorSyntaxHighlighter): Unit {
     TransferContext.writeArguments(OBJECT to syntaxHighlighter)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_UNREGISTER_SYNTAX_HIGHLIGHTER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.unregisterSyntaxHighlighterPtr, NIL)
   }
 
   /**
@@ -93,7 +91,7 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
    */
   public fun gotoLine(lineNumber: Int): Unit {
     TransferContext.writeArguments(LONG to lineNumber.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GOTO_LINE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.gotoLinePtr, NIL)
   }
 
   /**
@@ -101,8 +99,7 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
    */
   public fun getCurrentScript(): Script? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_CURRENT_SCRIPT,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentScriptPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Script?)
   }
 
@@ -111,8 +108,7 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
    */
   public fun getOpenScripts(): VariantArray<Script> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_OPEN_SCRIPTS,
-        ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getOpenScriptsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Script>)
   }
 
@@ -121,9 +117,33 @@ public open class ScriptEditor internal constructor() : PanelContainer() {
    */
   public fun openScriptCreateDialog(baseName: String, basePath: String): Unit {
     TransferContext.writeArguments(STRING to baseName, STRING to basePath)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_OPEN_SCRIPT_CREATE_DIALOG, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.openScriptCreateDialogPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val getCurrentEditorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptEditor", "get_current_editor")
+
+    public val getOpenScriptEditorsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptEditor", "get_open_script_editors")
+
+    public val registerSyntaxHighlighterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptEditor", "register_syntax_highlighter")
+
+    public val unregisterSyntaxHighlighterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptEditor", "unregister_syntax_highlighter")
+
+    public val gotoLinePtr: VoidPtr = TypeManager.getMethodBindPtr("ScriptEditor", "goto_line")
+
+    public val getCurrentScriptPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptEditor", "get_current_script")
+
+    public val getOpenScriptsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptEditor", "get_open_scripts")
+
+    public val openScriptCreateDialogPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptEditor", "open_script_create_dialog")
+  }
 }

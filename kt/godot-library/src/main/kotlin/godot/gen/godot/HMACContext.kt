@@ -9,9 +9,11 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedByteArray
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -122,7 +124,7 @@ public open class HMACContext : RefCounted() {
    */
   public fun start(hashType: HashingContext.HashType, key: PackedByteArray): GodotError {
     TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to key)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HMACCONTEXT_START, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.startPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -131,7 +133,7 @@ public open class HMACContext : RefCounted() {
    */
   public fun update(`data`: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HMACCONTEXT_UPDATE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.updatePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -140,10 +142,17 @@ public open class HMACContext : RefCounted() {
    */
   public fun finish(): PackedByteArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HMACCONTEXT_FINISH,
-        PACKED_BYTE_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.finishPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val startPtr: VoidPtr = TypeManager.getMethodBindPtr("HMACContext", "start")
+
+    public val updatePtr: VoidPtr = TypeManager.getMethodBindPtr("HMACContext", "update")
+
+    public val finishPtr: VoidPtr = TypeManager.getMethodBindPtr("HMACContext", "finish")
+  }
 }

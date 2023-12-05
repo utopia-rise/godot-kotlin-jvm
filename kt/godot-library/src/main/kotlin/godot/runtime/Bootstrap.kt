@@ -129,7 +129,6 @@ internal class Bootstrap {
             val registry = ClassRegistry(
                 projectName = entry.projectName,
                 isDependency = !isMainEntry,
-                baseResourcePath = mainEntry.userScriptResourcePathPrefix
             )
             classRegistries.add(registry)
 
@@ -143,9 +142,7 @@ internal class Bootstrap {
                     }
                     registerManagedEngineTypes(
                         TypeManager.engineTypeNames.toTypedArray(),
-                        TypeManager.engineSingletonsNames.toTypedArray(),
-                        TypeManager.engineTypeMethod.map { it.second }.toTypedArray(),
-                        TypeManager.engineTypeMethod.map { it.first }.toTypedArray()
+                        TypeManager.engineSingletonsNames.toTypedArray()
                     )
                     engineTypesRegistered = true
                 }
@@ -193,8 +190,6 @@ internal class Bootstrap {
 
     private external fun registerManagedEngineTypes(
         engineTypesNames: Array<String>,
-        engineSingletonNames: Array<String>,
-        engineTypeMethodNames: Array<String>,
-        typeOfMethods: Array<Int>
+        engineSingletonNames: Array<String>
     )
 }

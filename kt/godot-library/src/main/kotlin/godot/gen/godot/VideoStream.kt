@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -31,12 +33,12 @@ public open class VideoStream : Resource() {
   public var `file`: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAM_GET_FILE, STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFilePtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAM_SET_FILE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFilePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -52,4 +54,13 @@ public open class VideoStream : Resource() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _instantiatePlaybackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStream", "_instantiate_playback")
+
+    public val setFilePtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStream", "set_file")
+
+    public val getFilePtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStream", "get_file")
+  }
 }

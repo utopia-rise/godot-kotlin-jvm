@@ -19,4 +19,6 @@ public open class MovieWriterPNGWAV internal constructor() : MovieWriter() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

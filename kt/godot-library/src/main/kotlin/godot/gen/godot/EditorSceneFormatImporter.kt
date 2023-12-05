@@ -9,6 +9,8 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PackedStringArray
+import godot.core.TypeManager
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -104,5 +106,22 @@ public open class EditorSceneFormatImporter internal constructor() : RefCounted(
      *
      */
     public final const val IMPORT_DISCARD_MESHES_AND_MATERIALS: Long = 32
+  }
+
+  internal object MethodBindings {
+    public val _getImportFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSceneFormatImporter", "_get_import_flags")
+
+    public val _getExtensionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSceneFormatImporter", "_get_extensions")
+
+    public val _importScenePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSceneFormatImporter", "_import_scene")
+
+    public val _getImportOptionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSceneFormatImporter", "_get_import_options")
+
+    public val _getOptionVisibilityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSceneFormatImporter", "_get_option_visibility")
   }
 }

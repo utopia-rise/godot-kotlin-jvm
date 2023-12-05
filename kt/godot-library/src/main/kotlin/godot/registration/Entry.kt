@@ -8,7 +8,6 @@ abstract class Entry {
     abstract fun Context.initEngineTypes()
     abstract fun Context.getRegisteredClasses(): List<KClass<*>>
 
-    abstract val userScriptResourcePathPrefix: String
     abstract val classRegistrarCount: Int
     abstract val projectName: String
 }

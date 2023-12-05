@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -16,6 +17,7 @@ import godot.core.VariantType.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -38,12 +40,12 @@ public open class PlaneMesh : PrimitiveMesh() {
   public var size: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_GET_SIZE, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_SET_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
     }
 
   /**
@@ -52,14 +54,12 @@ public open class PlaneMesh : PrimitiveMesh() {
   public var subdivideWidth: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_GET_SUBDIVIDE_WIDTH,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideWidthPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_SET_SUBDIVIDE_WIDTH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideWidthPtr, NIL)
     }
 
   /**
@@ -68,14 +68,12 @@ public open class PlaneMesh : PrimitiveMesh() {
   public var subdivideDepth: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_GET_SUBDIVIDE_DEPTH,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideDepthPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_SET_SUBDIVIDE_DEPTH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideDepthPtr, NIL)
     }
 
   /**
@@ -85,13 +83,12 @@ public open class PlaneMesh : PrimitiveMesh() {
   public var centerOffset: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_GET_CENTER_OFFSET,
-          VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCenterOffsetPtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_SET_CENTER_OFFSET, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCenterOffsetPtr, NIL)
     }
 
   /**
@@ -100,12 +97,12 @@ public open class PlaneMesh : PrimitiveMesh() {
   public var orientation: Orientation
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_GET_ORIENTATION, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getOrientationPtr, LONG)
       return PlaneMesh.Orientation.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANEMESH_SET_ORIENTATION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOrientationPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -189,4 +186,34 @@ public open class PlaneMesh : PrimitiveMesh() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("PlaneMesh", "set_size")
+
+    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("PlaneMesh", "get_size")
+
+    public val setSubdivideWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PlaneMesh", "set_subdivide_width")
+
+    public val getSubdivideWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PlaneMesh", "get_subdivide_width")
+
+    public val setSubdivideDepthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PlaneMesh", "set_subdivide_depth")
+
+    public val getSubdivideDepthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PlaneMesh", "get_subdivide_depth")
+
+    public val setCenterOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PlaneMesh", "set_center_offset")
+
+    public val getCenterOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PlaneMesh", "get_center_offset")
+
+    public val setOrientationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PlaneMesh", "set_orientation")
+
+    public val getOrientationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PlaneMesh", "get_orientation")
+  }
 }

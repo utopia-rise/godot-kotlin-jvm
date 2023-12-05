@@ -7,11 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -37,12 +39,12 @@ public open class MeshInstance2D : Node2D() {
   public var mesh: Mesh?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE2D_GET_MESH, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE2D_SET_MESH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
     }
 
   /**
@@ -51,13 +53,12 @@ public open class MeshInstance2D : Node2D() {
   public var texture: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE2D_GET_TEXTURE,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE2D_SET_TEXTURE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -66,4 +67,16 @@ public open class MeshInstance2D : Node2D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshInstance2D", "set_mesh")
+
+    public val getMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshInstance2D", "get_mesh")
+
+    public val setTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshInstance2D", "set_texture")
+
+    public val getTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshInstance2D", "get_texture")
+  }
 }

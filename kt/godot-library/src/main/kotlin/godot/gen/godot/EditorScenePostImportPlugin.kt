@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantType
 import godot.core.VariantType.ANY
 import godot.core.VariantType.LONG
@@ -15,6 +16,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -106,8 +108,7 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
    */
   public fun getOptionValue(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN_GET_OPTION_VALUE, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getOptionValuePtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -116,8 +117,7 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
    */
   public fun addImportOption(name: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN_ADD_IMPORT_OPTION, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addImportOptionPtr, NIL)
   }
 
   /**
@@ -133,8 +133,7 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
     usageFlags: Int = 6,
   ): Unit {
     TransferContext.writeArguments(LONG to type.id, STRING to name, ANY to defaultValue, LONG to hint.id, STRING to hintString, LONG to usageFlags.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN_ADD_IMPORT_OPTION_ADVANCED, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addImportOptionAdvancedPtr, NIL)
   }
 
   public enum class InternalImportCategory(
@@ -185,4 +184,39 @@ public open class EditorScenePostImportPlugin internal constructor() : RefCounte
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _getInternalImportOptionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorScenePostImportPlugin", "_get_internal_import_options")
+
+    public val _getInternalOptionVisibilityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorScenePostImportPlugin", "_get_internal_option_visibility")
+
+    public val _getInternalOptionUpdateViewRequiredPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorScenePostImportPlugin", "_get_internal_option_update_view_required")
+
+    public val _internalProcessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorScenePostImportPlugin", "_internal_process")
+
+    public val _getImportOptionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorScenePostImportPlugin", "_get_import_options")
+
+    public val _getOptionVisibilityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorScenePostImportPlugin", "_get_option_visibility")
+
+    public val _preProcessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorScenePostImportPlugin", "_pre_process")
+
+    public val _postProcessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorScenePostImportPlugin", "_post_process")
+
+    public val getOptionValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorScenePostImportPlugin", "get_option_value")
+
+    public val addImportOptionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorScenePostImportPlugin", "add_import_option")
+
+    public val addImportOptionAdvancedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorScenePostImportPlugin", "add_import_option_advanced")
+  }
 }

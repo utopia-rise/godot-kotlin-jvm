@@ -27,4 +27,6 @@ public open class AudioEffectBandPassFilter : AudioEffectFilter() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

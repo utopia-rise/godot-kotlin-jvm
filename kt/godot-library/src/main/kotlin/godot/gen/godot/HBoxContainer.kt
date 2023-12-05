@@ -27,4 +27,6 @@ public open class HBoxContainer : BoxContainer() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

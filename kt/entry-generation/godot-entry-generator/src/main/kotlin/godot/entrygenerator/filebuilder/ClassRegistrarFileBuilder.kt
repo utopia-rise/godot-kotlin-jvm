@@ -22,6 +22,7 @@ import java.io.BufferedWriter
 class ClassRegistrarFileBuilder(
     projectName: String,
     private val registeredClass: RegisteredClass,
+    private val compilationTimeRelativeRegistrationFilePath: String,
     private val registrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
 ) {
     private val classRegistrarBuilder = TypeSpec
@@ -32,15 +33,16 @@ class ClassRegistrarFileBuilder(
                 addAnnotation(
                     AnnotationSpec
                         .builder(RegisteredClassMetadata::class.asClassName())
-                        .addMember("\"${registeredClass.registeredName}\"")
-                        .addMember("\"${registeredClass.godotBaseClass}\"")
-                        .addMember("\"${registeredClass.fqName}\"")
-                        .addMember("\"${registeredClass.localResourcePathProvider(registeredClass)}\"")
-                        .addMember("\"$projectName\"")
-                        .addMember("\"${registeredClass.supertypes.joinToString(",") { it.fqName }}\"")
-                        .addMember("\"${registeredClass.signals.joinToString(",") { it.fqName }}\"")
-                        .addMember("\"${registeredClass.properties.joinToString(",") { it.fqName }}\"")
-                        .addMember("\"${registeredClass.functions.joinToString(",") { it.fqName }}\"")
+                        .addMember("%S", registeredClass.registeredName)
+                        .addMember("%S", registeredClass.godotBaseClass)
+                        .addMember("%S", registeredClass.fqName)
+                        .addMember("%S", registeredClass.relativeSourcePath)
+                        .addMember("%S", compilationTimeRelativeRegistrationFilePath)
+                        .addMember("%S", projectName)
+                        .addMember("%S", registeredClass.supertypes.joinToString(",") { it.fqName })
+                        .addMember("%S", registeredClass.signals.joinToString(",") { it.fqName })
+                        .addMember("%S", registeredClass.properties.joinToString(",") { it.fqName })
+                        .addMember("%S", registeredClass.functions.joinToString(",") { it.fqName })
                         .build()
                 )
             }
@@ -70,12 +72,13 @@ class ClassRegistrarFileBuilder(
                     value
                 }.reduceOrNull { statement, name -> "$statement,$name" } ?: ""
                 funSpecBuilder.beginControlFlow(
-                    "registerClass<%T>(%S, listOf($superClasses),·%T::class,·${registeredClass.isTool},·%S,·%S)·{",
+                    "registerClass<%T>(listOf($superClasses),·%T::class,·${registeredClass.isTool},·%S,·%S,·%S,·%S)·{",
                     className,
-                    registeredClass.localResourcePathProvider(registeredClass),
                     className,
                     registeredClass.godotBaseClass,
-                    registeredClass.registeredName
+                    registeredClass.registeredName,
+                    registeredClass.relativeSourcePath,
+                    compilationTimeRelativeRegistrationFilePath,
                 ) //START: registerClass
             } else {
                 funSpecBuilder

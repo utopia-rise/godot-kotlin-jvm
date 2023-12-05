@@ -24,4 +24,6 @@ public open class VisualShaderNodeLinearSceneDepth : VisualShaderNode() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

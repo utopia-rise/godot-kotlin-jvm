@@ -7,8 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -38,10 +40,14 @@ public open class CubemapArray : ImageTextureLayered() {
    */
   public fun createPlaceholder(): Resource? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CUBEMAPARRAY_CREATE_PLACEHOLDER,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.createPlaceholderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val createPlaceholderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CubemapArray", "create_placeholder")
+  }
 }

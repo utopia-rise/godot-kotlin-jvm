@@ -8,6 +8,8 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
+import godot.core.TypeManager
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -43,4 +45,12 @@ public open class EditorSyntaxHighlighter internal constructor() : SyntaxHighlig
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _getNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSyntaxHighlighter", "_get_name")
+
+    public val _getSupportedLanguagesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EditorSyntaxHighlighter", "_get_supported_languages")
+  }
 }

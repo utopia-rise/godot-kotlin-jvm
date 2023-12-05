@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -16,6 +17,7 @@ import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -60,12 +62,12 @@ public open class OptionButton : Button() {
   public var itemCount: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_ITEM_COUNT, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getItemCountPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_COUNT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setItemCountPtr, NIL)
     }
 
   /**
@@ -74,7 +76,7 @@ public open class OptionButton : Button() {
   public val selected: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_SELECTED, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSelectedPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
 
@@ -86,14 +88,12 @@ public open class OptionButton : Button() {
   public var fitToLongestItem: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_IS_FIT_TO_LONGEST_ITEM, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isFitToLongestItemPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_FIT_TO_LONGEST_ITEM, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFitToLongestItemPtr, NIL)
     }
 
   /**
@@ -102,14 +102,12 @@ public open class OptionButton : Button() {
   public var allowReselect: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_ALLOW_RESELECT,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAllowReselectPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ALLOW_RESELECT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAllowReselectPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -123,7 +121,7 @@ public open class OptionButton : Button() {
   @JvmOverloads
   public fun addItem(label: String, id: Int = -1): Unit {
     TransferContext.writeArguments(STRING to label, LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_ADD_ITEM, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addItemPtr, NIL)
   }
 
   /**
@@ -136,7 +134,7 @@ public open class OptionButton : Button() {
     id: Int = -1,
   ): Unit {
     TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_ADD_ICON_ITEM, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addIconItemPtr, NIL)
   }
 
   /**
@@ -144,7 +142,7 @@ public open class OptionButton : Button() {
    */
   public fun setItemText(idx: Int, text: String): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), STRING to text)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_TEXT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemTextPtr, NIL)
   }
 
   /**
@@ -152,7 +150,7 @@ public open class OptionButton : Button() {
    */
   public fun setItemIcon(idx: Int, texture: Texture2D): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), OBJECT to texture)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_ICON, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemIconPtr, NIL)
   }
 
   /**
@@ -162,7 +160,7 @@ public open class OptionButton : Button() {
    */
   public fun setItemDisabled(idx: Int, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to disabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_DISABLED, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemDisabledPtr, NIL)
   }
 
   /**
@@ -170,7 +168,7 @@ public open class OptionButton : Button() {
    */
   public fun setItemId(idx: Int, id: Int): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_ID, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemIdPtr, NIL)
   }
 
   /**
@@ -178,7 +176,7 @@ public open class OptionButton : Button() {
    */
   public fun setItemMetadata(idx: Int, metadata: Any?): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), ANY to metadata)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_METADATA, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemMetadataPtr, NIL)
   }
 
   /**
@@ -186,7 +184,7 @@ public open class OptionButton : Button() {
    */
   public fun setItemTooltip(idx: Int, tooltip: String): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), STRING to tooltip)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_TOOLTIP, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemTooltipPtr, NIL)
   }
 
   /**
@@ -194,7 +192,7 @@ public open class OptionButton : Button() {
    */
   public fun getItemText(idx: Int): String {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_ITEM_TEXT, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -203,7 +201,7 @@ public open class OptionButton : Button() {
    */
   public fun getItemIcon(idx: Int): Texture2D? {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_ITEM_ICON, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemIconPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
@@ -212,7 +210,7 @@ public open class OptionButton : Button() {
    */
   public fun getItemId(idx: Int): Int {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_ITEM_ID, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -221,7 +219,7 @@ public open class OptionButton : Button() {
    */
   public fun getItemIndex(id: Int): Int {
     TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_ITEM_INDEX, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -230,7 +228,7 @@ public open class OptionButton : Button() {
    */
   public fun getItemMetadata(idx: Int): Any? {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_ITEM_METADATA, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemMetadataPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -239,8 +237,7 @@ public open class OptionButton : Button() {
    */
   public fun getItemTooltip(idx: Int): String {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_ITEM_TOOLTIP,
-        STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemTooltipPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -249,7 +246,7 @@ public open class OptionButton : Button() {
    */
   public fun isItemDisabled(idx: Int): Boolean {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_IS_ITEM_DISABLED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isItemDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -258,8 +255,7 @@ public open class OptionButton : Button() {
    */
   public fun isItemSeparator(idx: Int): Boolean {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_IS_ITEM_SEPARATOR,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isItemSeparatorPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -269,7 +265,7 @@ public open class OptionButton : Button() {
   @JvmOverloads
   public fun addSeparator(text: String = ""): Unit {
     TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_ADD_SEPARATOR, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addSeparatorPtr, NIL)
   }
 
   /**
@@ -277,7 +273,7 @@ public open class OptionButton : Button() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_CLEAR, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   /**
@@ -287,7 +283,7 @@ public open class OptionButton : Button() {
    */
   public fun select(idx: Int): Unit {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SELECT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.selectPtr, NIL)
   }
 
   /**
@@ -295,7 +291,7 @@ public open class OptionButton : Button() {
    */
   public fun getSelectedId(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_SELECTED_ID, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSelectedIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -304,8 +300,7 @@ public open class OptionButton : Button() {
    */
   public fun getSelectedMetadata(): Any? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_SELECTED_METADATA,
-        ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSelectedMetadataPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -314,7 +309,7 @@ public open class OptionButton : Button() {
    */
   public fun removeItem(idx: Int): Unit {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_REMOVE_ITEM, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeItemPtr, NIL)
   }
 
   /**
@@ -324,7 +319,7 @@ public open class OptionButton : Button() {
    */
   public fun getPopup(): PopupMenu? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_POPUP, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getPopupPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PopupMenu?)
   }
 
@@ -333,7 +328,7 @@ public open class OptionButton : Button() {
    */
   public fun showPopup(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SHOW_POPUP, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.showPopupPtr, NIL)
   }
 
   /**
@@ -341,8 +336,7 @@ public open class OptionButton : Button() {
    */
   public fun hasSelectableItems(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_HAS_SELECTABLE_ITEMS,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hasSelectableItemsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -354,10 +348,102 @@ public open class OptionButton : Button() {
   @JvmOverloads
   public fun getSelectableItem(fromLast: Boolean = false): Int {
     TransferContext.writeArguments(BOOL to fromLast)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_SELECTABLE_ITEM,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSelectableItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val addItemPtr: VoidPtr = TypeManager.getMethodBindPtr("OptionButton", "add_item")
+
+    public val addIconItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "add_icon_item")
+
+    public val setItemTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "set_item_text")
+
+    public val setItemIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "set_item_icon")
+
+    public val setItemDisabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "set_item_disabled")
+
+    public val setItemIdPtr: VoidPtr = TypeManager.getMethodBindPtr("OptionButton", "set_item_id")
+
+    public val setItemMetadataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "set_item_metadata")
+
+    public val setItemTooltipPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "set_item_tooltip")
+
+    public val getItemTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "get_item_text")
+
+    public val getItemIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "get_item_icon")
+
+    public val getItemIdPtr: VoidPtr = TypeManager.getMethodBindPtr("OptionButton", "get_item_id")
+
+    public val getItemIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "get_item_index")
+
+    public val getItemMetadataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "get_item_metadata")
+
+    public val getItemTooltipPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "get_item_tooltip")
+
+    public val isItemDisabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "is_item_disabled")
+
+    public val isItemSeparatorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "is_item_separator")
+
+    public val addSeparatorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "add_separator")
+
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("OptionButton", "clear")
+
+    public val selectPtr: VoidPtr = TypeManager.getMethodBindPtr("OptionButton", "select")
+
+    public val getSelectedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "get_selected")
+
+    public val getSelectedIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "get_selected_id")
+
+    public val getSelectedMetadataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "get_selected_metadata")
+
+    public val removeItemPtr: VoidPtr = TypeManager.getMethodBindPtr("OptionButton", "remove_item")
+
+    public val getPopupPtr: VoidPtr = TypeManager.getMethodBindPtr("OptionButton", "get_popup")
+
+    public val showPopupPtr: VoidPtr = TypeManager.getMethodBindPtr("OptionButton", "show_popup")
+
+    public val setItemCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "set_item_count")
+
+    public val getItemCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "get_item_count")
+
+    public val hasSelectableItemsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "has_selectable_items")
+
+    public val getSelectableItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "get_selectable_item")
+
+    public val setFitToLongestItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "set_fit_to_longest_item")
+
+    public val isFitToLongestItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "is_fit_to_longest_item")
+
+    public val setAllowReselectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "set_allow_reselect")
+
+    public val getAllowReselectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "get_allow_reselect")
+  }
 }

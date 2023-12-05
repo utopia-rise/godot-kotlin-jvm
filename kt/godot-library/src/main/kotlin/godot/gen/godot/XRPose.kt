@@ -11,6 +11,7 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.Transform3D
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -19,6 +20,7 @@ import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -40,13 +42,12 @@ public open class XRPose : RefCounted() {
   public var hasTrackingData: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_HAS_TRACKING_DATA,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_HAS_TRACKING_DATA, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHasTrackingDataPtr, NIL)
     }
 
   /**
@@ -63,12 +64,12 @@ public open class XRPose : RefCounted() {
   public var name: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_NAME, STRING_NAME)
+      TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING_NAME)
       return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_NAME, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setNamePtr, NIL)
     }
 
   /**
@@ -78,12 +79,12 @@ public open class XRPose : RefCounted() {
   public var transform: Transform3D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_TRANSFORM, TRANSFORM3D)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM3D)
       return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM3D to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_TRANSFORM, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
     }
 
   /**
@@ -93,13 +94,12 @@ public open class XRPose : RefCounted() {
   public var linearVelocity: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_LINEAR_VELOCITY,
-          VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_LINEAR_VELOCITY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLinearVelocityPtr, NIL)
     }
 
   /**
@@ -109,13 +109,12 @@ public open class XRPose : RefCounted() {
   public var angularVelocity: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_ANGULAR_VELOCITY,
-          VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_ANGULAR_VELOCITY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAngularVelocityPtr, NIL)
     }
 
   /**
@@ -124,14 +123,12 @@ public open class XRPose : RefCounted() {
   public var trackingConfidence: TrackingConfidence
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_TRACKING_CONFIDENCE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTrackingConfidencePtr, LONG)
       return XRPose.TrackingConfidence.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_SET_TRACKING_CONFIDENCE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTrackingConfidencePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -216,8 +213,7 @@ public open class XRPose : RefCounted() {
    */
   public fun getAdjustedTransform(): Transform3D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSE_GET_ADJUSTED_TRANSFORM,
-        TRANSFORM3D)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAdjustedTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
@@ -249,4 +245,41 @@ public open class XRPose : RefCounted() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setHasTrackingDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPose", "set_has_tracking_data")
+
+    public val getHasTrackingDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPose", "get_has_tracking_data")
+
+    public val setNamePtr: VoidPtr = TypeManager.getMethodBindPtr("XRPose", "set_name")
+
+    public val getNamePtr: VoidPtr = TypeManager.getMethodBindPtr("XRPose", "get_name")
+
+    public val setTransformPtr: VoidPtr = TypeManager.getMethodBindPtr("XRPose", "set_transform")
+
+    public val getTransformPtr: VoidPtr = TypeManager.getMethodBindPtr("XRPose", "get_transform")
+
+    public val getAdjustedTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPose", "get_adjusted_transform")
+
+    public val setLinearVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPose", "set_linear_velocity")
+
+    public val getLinearVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPose", "get_linear_velocity")
+
+    public val setAngularVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPose", "set_angular_velocity")
+
+    public val getAngularVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPose", "get_angular_velocity")
+
+    public val setTrackingConfidencePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPose", "set_tracking_confidence")
+
+    public val getTrackingConfidencePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPose", "get_tracking_confidence")
+  }
 }
