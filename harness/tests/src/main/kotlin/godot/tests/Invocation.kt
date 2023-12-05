@@ -37,9 +37,9 @@ import godot.core.RID
 import godot.core.VariantArray
 import godot.core.Vector2
 import godot.core.Vector3
-import godot.core.asStringName
 import godot.core.dictionaryOf
 import godot.core.variantArrayOf
+import godot.extensions.asStringName
 import godot.extensions.getNodeAs
 import godot.registration.Range
 import godot.signals.signal
