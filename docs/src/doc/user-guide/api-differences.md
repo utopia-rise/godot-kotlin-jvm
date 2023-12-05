@@ -107,7 +107,8 @@ However, syntax is a bit different:
     override fun _notification() = godotNotification {
         ...
     }
-```
+```  
+Currently this feature except abstract classes.  
 
 ## Logging
 If you want logs to appear both in CLI and in the Godot Editor you will have to use the print functions inside the `GD` singleton like:
