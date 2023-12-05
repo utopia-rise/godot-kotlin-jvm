@@ -1,8 +1,10 @@
 package godot.tests.memory
 
 import godot.Node
-import godot.core.memory.MemoryManager
+import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
+import godot.core.StringName
+import godot.core.memory.MemoryManager
 
 @RegisterClass
 class MemoryManagerTest: Node() {
