@@ -97,6 +97,18 @@ In Kotlin, they are available inside the `GD` singleton. Don't forget that some 
 
 For comfort, some Objects got some additional functions to enjoy some Kotlin syntax sugar. You can find them all [in this folder](https://github.com/utopia-rise/godot-kotlin-jvm/tree/master/kt/godot-library/src/main/kotlin/godot/extensions)
 
+## Notifications
+
+You can implement [_notification](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-private-method-notification)
+and have class hierarchy notification call without using `super` call, as in GDScript and C++.  
+However, syntax is a bit different:  
+```kotlin
+    @RegisterFunction
+    override fun _notification() = godotNotification {
+        ...
+    }
+```
+
 ## Logging
 If you want logs to appear both in CLI and in the Godot Editor you will have to use the print functions inside the `GD` singleton like:
 
