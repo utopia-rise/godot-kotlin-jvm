@@ -25,5 +25,6 @@ functions = [
 	get_longest_short_string,
 	get_shortest_long_string,
 	get_long_string,
-	get_length
+	get_length,
+	get_as_string_name
 ]

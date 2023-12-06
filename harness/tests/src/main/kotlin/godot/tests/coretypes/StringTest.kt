@@ -71,4 +71,8 @@ class StringTest : Node() {
   
     @RegisterFunction
     fun getLength(str: String) = str.length
+
+    @RegisterFunction
+    fun getAsStringName(str: String) = str.asStringName()
+
 }
