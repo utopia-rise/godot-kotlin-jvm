@@ -97,6 +97,10 @@ In Kotlin, they are available inside the `GD` singleton. Don't forget that some 
 
 For comfort, some Objects got some additional functions to enjoy some Kotlin syntax sugar. You can find them all [in this folder](https://github.com/utopia-rise/godot-kotlin-jvm/tree/master/kt/godot-library/src/main/kotlin/godot/extensions)
 
+## Caching
+
+Several Godot functions take `StringName` or `NodePath` as a parameter. Extension functions have been provided to allow for the easy creation of these from a `String`. As an optimisation, these `StringName` and `NodePath` instances are cached to reduce the amount of memory used, and to reduce the overhead of creating new instances unnecessarily.
+
 ## Logging
 If you want logs to appear both in CLI and in the Godot Editor you will have to use the print functions inside the `GD` singleton like:
 
