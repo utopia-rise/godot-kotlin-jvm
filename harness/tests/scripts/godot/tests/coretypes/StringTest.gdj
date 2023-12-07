@@ -9,7 +9,6 @@ supertypes = [
     godot.Node,
 	godot.Object,
 	godot.core.KtObject,
-	godot.core.StringName,
 	kotlin.Any
 ]
 signals = [

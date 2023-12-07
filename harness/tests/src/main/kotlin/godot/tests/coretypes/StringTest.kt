@@ -4,6 +4,7 @@ import godot.Node
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.core.StringName
+import godot.core.asStringName
 import godot.core.Vector2
 
 @RegisterClass
