@@ -99,7 +99,18 @@ For comfort, some Objects got some additional functions to enjoy some Kotlin syn
 
 ## Caching
 
-Several Godot functions take `StringName` or `NodePath` as a parameter. Extension functions have been provided to allow for the easy creation of these from a `String`. As an optimisation, these `StringName` and `NodePath` instances are cached to reduce the amount of memory used, and to reduce the overhead of creating new instances unnecessarily.
+Several Godot functions take `StringName` or `NodePath` as a parameter. Extension functions have been provided `String.asStringName()`, `String.asNodePath()` and `StringName.asNodePath()`, to allow for the easy creation of these. As an optimisation, these `StringName` and `NodePath` instances are cached to reduce the overhead of creating new instances unnecessarily.
+
+```kotlin
+  // This first call to the extension function creates the cache entry.
+  val firstCall = "Test".asStringName()
+
+  // This second call for the same String value, will return the previously cached instance.
+  val secondCall = "Test".asStringName()
+
+  // This third call will create a second entry in the cache due to the different key value.
+  val thirdCall = "OtherTest".asStringName()
+```
 
 ## Logging
 If you want logs to appear both in CLI and in the Godot Editor you will have to use the print functions inside the `GD` singleton like:
