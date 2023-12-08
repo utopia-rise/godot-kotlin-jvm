@@ -64,4 +64,7 @@ class StringName : NativeCoreType {
     }
 }
 
-fun String.asStringName() = StringName(this)
+@Suppress("NOTHING_TO_INLINE")
+fun String.asStringName(): StringName {
+    return MemoryManager.getOrCreateStringName(this)
+}

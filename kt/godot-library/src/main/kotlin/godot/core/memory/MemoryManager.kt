@@ -2,7 +2,9 @@ package godot.core.memory
 
 import godot.core.KtObject
 import godot.core.NativeCoreType
+import godot.core.NodePath
 import godot.core.ObjectID
+import godot.core.StringName
 import godot.core.VariantType
 import godot.util.VoidPtr
 import godot.util.info
@@ -66,6 +68,40 @@ internal object MemoryManager {
     var shouldDisplayLeakInstancesOnClose = true
 
     private var gcState = GCState.NONE
+
+    // A basic LRU cache.
+    private class LRUCache<K, V>(private val capacity: Int) : LinkedHashMap<K, V>(capacity, 0.75f, true) {
+        override fun removeEldestEntry(eldest: MutableMap.MutableEntry<K, V>?): Boolean {
+            return size > capacity
+        }
+    }
+
+    // Create an LRU cache for StringName and NodePath objects based on a String key.
+    // TODO: Set the initial capacity from the command line.
+    private val stringNameCache = LRUCache<String, StringName>(256)
+    private val nodePathCache = LRUCache<String, NodePath>(256)
+
+    fun getOrCreateStringName(key: String): StringName {
+        return synchronized(stringNameCache) {
+            stringNameCache.getOrPut(key) {
+                // Cache miss, so create and return new instance.
+                StringName(key)
+            }
+        }
+    }
+
+    fun getOrCreateNodePath(key: String): NodePath {
+        return synchronized(nodePathCache) {
+            nodePathCache.getOrPut(key) {
+                // Cache miss, so create and return new instance.
+                NodePath(key)
+            }
+        }
+    }
+
+    fun getOrCreateNodePath(key: StringName): NodePath {
+        return getOrCreateNodePath(key.toString())
+    }
 
     @Suppress("unused")
     val isClosed: Boolean
@@ -281,6 +317,10 @@ internal object MemoryManager {
                 instance.collect()
             }
         }
+
+        // Clear any cached StringName or NodePath objects.
+        stringNameCache.clear()
+        nodePathCache.clear()
 
         var begin = Instant.now()
         while (ObjectDB.any { it != null } || nativeCoreTypeMap.isNotEmpty()) {

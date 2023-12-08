@@ -3,6 +3,8 @@ package godot.tests.coretypes
 import godot.Node
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
+import godot.core.StringName
+import godot.core.asStringName
 import godot.core.Vector2
 
 @RegisterClass
@@ -71,4 +73,8 @@ class StringTest : Node() {
   
     @RegisterFunction
     fun getLength(str: String) = str.length
+
+    @RegisterFunction
+    fun getAsStringName(str: String) = str.asStringName()
+
 }

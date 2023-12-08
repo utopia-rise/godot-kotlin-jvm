@@ -70,3 +70,9 @@ func test_string_length() -> void:
 	assert_eq("", script.identity(""), "String on JVM side should be same as gdscript one.")
 	assert_eq("A", script.identity("A"), "String on JVM side should be same as gdscript one.")
 	script.free()
+
+func test_string_as_string_name() -> void:
+	var script = StringTest.new()
+	assert_eq(script.get_as_string_name("test1"), script.get_as_string_name("test1"), "Should return the same StringName instance")
+	assert_ne(script.get_as_string_name("test1"), script.get_as_string_name("test2"), "Should return the different StringName instances")
+	script.free()

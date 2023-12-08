@@ -167,3 +167,11 @@ class NodePath : NativeCoreType {
         external fun engine_call_equals(_handle: VoidPtr)
     }
 }
+
+fun String.asNodePath(): NodePath {
+    return MemoryManager.getOrCreateNodePath(this)
+}
+
+fun StringName.asNodePath(): NodePath {
+    return MemoryManager.getOrCreateNodePath(this)
+}
