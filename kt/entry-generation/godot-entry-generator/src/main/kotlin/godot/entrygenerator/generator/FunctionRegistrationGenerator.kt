@@ -30,19 +30,38 @@ object FunctionRegistrationGenerator {
         )
         val otherFunctions = registeredClass.functions.filter { it.name != GodotFunctions.notification }
 
+        val notificationClasses = notificationFunctions.keys.toList()
+
+        for (i in notificationClasses.indices) {
+            val notificationClass = notificationClasses[i]
+            registerClassControlFlow
+                .addStatement(
+                    "val notificationFunctionClass$i = %T()",
+                    ClassName(notificationClass.containingPackage, notificationClass.name)
+                )
+        }
+
         registerClassControlFlow
             .addStatement(
-                "notificationFunctions(%M(${(0..<notificationFunctions.size).joinToString(",·") { _ -> "%T().%L().%L" }}))",
+                "notificationFunctions(%M(${(0..<notificationFunctions.size).joinToString(",·") { _ -> "%L.%L().%L" }}))",
                 KOTLIN_LIST_OF,
-                *notificationFunctions.flatMap { notificationFunction ->
-                    val containingClassName = ClassName(notificationFunction.key.containingPackage, notificationFunction.key.name)
+                *notificationClasses.indices.flatMap {
                     listOf(
-                        containingClassName,
+                        "notificationFunctionClass${it}",
                         GodotFunctions.notification,
                         "block"
                     )
                 }.toTypedArray()
             )
+
+        for (i in notificationClasses.indices) {
+            val notificationClass = notificationClasses[i]
+            if (notificationClass.inheritsRefCounted) {
+                continue
+            }
+            registerClassControlFlow
+                .addStatement("notificationFunctionClass$i.free()")
+        }
 
         otherFunctions.forEach { registeredFunction ->
             registerClassControlFlow

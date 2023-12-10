@@ -1,6 +1,8 @@
 package godot.entrygenerator.model
 
 import godot.entrygenerator.ext.hasAnnotation
+import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.godotApiPackage
 
 open class Clazz(
     open val fqName: String,
@@ -21,4 +23,7 @@ open class Clazz(
             .firstOrNull()
             ?.annotations
             ?.hasAnnotation<GodotBaseTypeAnnotation>() == true
+
+    internal val inheritsRefCounted: Boolean
+        get() = supertypes.any { it.fqName == "$godotApiPackage.${GodotKotlinJvmTypes.refCounted}" }
 }
