@@ -1,4 +1,5 @@
 import org.apache.tools.ant.filters.ReplaceTokens
+import versioninfo.fullGodotKotlinJvmVersion
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -15,6 +16,7 @@ tasks {
     val processResources by getting(Copy::class) {
         outputs.upToDateWhen { false }
         val tokens = mapOf(
+            "godot.kotlin.jvm.assembled.version" to fullGodotKotlinJvmVersion,
             "godot.kotlin.jvm.version" to libs.versions.godotKotlinJvm.get(),
             "godot.version" to libs.versions.godot.get(),
             "kotlin.version" to libs.versions.kotlin.get(),
