@@ -15,6 +15,7 @@ import godot.core.TypeManager
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Float
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.String
@@ -51,6 +52,10 @@ public open class GLTFDocumentExtension : Resource() {
     retImage: Image,
   ): GodotError {
     throw NotImplementedError("_parse_image_data is not implemented for GLTFDocumentExtension")
+  }
+
+  public open fun _getImageFileExtension(): String {
+    throw NotImplementedError("_get_image_file_extension is not implemented for GLTFDocumentExtension")
   }
 
   public open fun _parseTextureJson(
@@ -97,6 +102,43 @@ public open class GLTFDocumentExtension : Resource() {
   ): Unit {
   }
 
+  public open fun _exportPreserialize(state: GLTFState): GodotError {
+    throw NotImplementedError("_export_preserialize is not implemented for GLTFDocumentExtension")
+  }
+
+  public open fun _getSaveableImageFormats(): PackedStringArray {
+    throw NotImplementedError("_get_saveable_image_formats is not implemented for GLTFDocumentExtension")
+  }
+
+  public open fun _serializeImageToBytes(
+    state: GLTFState,
+    image: Image,
+    imageDict: Dictionary<Any?, Any?>,
+    imageFormat: String,
+    lossyQuality: Float,
+  ): PackedByteArray {
+    throw NotImplementedError("_serialize_image_to_bytes is not implemented for GLTFDocumentExtension")
+  }
+
+  public open fun _saveImageAtPath(
+    state: GLTFState,
+    image: Image,
+    filePath: String,
+    imageFormat: String,
+    lossyQuality: Float,
+  ): GodotError {
+    throw NotImplementedError("_save_image_at_path is not implemented for GLTFDocumentExtension")
+  }
+
+  public open fun _serializeTextureJson(
+    state: GLTFState,
+    textureJson: Dictionary<Any?, Any?>,
+    gltfTexture: GLTFTexture,
+    imageFormat: String,
+  ): GodotError {
+    throw NotImplementedError("_serialize_texture_json is not implemented for GLTFDocumentExtension")
+  }
+
   public open fun _exportNode(
     state: GLTFState,
     gltfNode: GLTFNode,
@@ -125,6 +167,9 @@ public open class GLTFDocumentExtension : Resource() {
     public val _parseImageDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_parse_image_data")
 
+    public val _getImageFileExtensionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_get_image_file_extension")
+
     public val _parseTextureJsonPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_parse_texture_json")
 
@@ -145,6 +190,21 @@ public open class GLTFDocumentExtension : Resource() {
 
     public val _convertSceneNodePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_convert_scene_node")
+
+    public val _exportPreserializePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_export_preserialize")
+
+    public val _getSaveableImageFormatsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_get_saveable_image_formats")
+
+    public val _serializeImageToBytesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_serialize_image_to_bytes")
+
+    public val _saveImageAtPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_save_image_at_path")
+
+    public val _serializeTextureJsonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_serialize_texture_json")
 
     public val _exportNodePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_export_node")

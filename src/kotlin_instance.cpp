@@ -26,13 +26,21 @@ Object* KotlinInstance::get_owner() {
 bool KotlinInstance::set(const StringName& p_name, const Variant& p_value) {
     jni::LocalFrame localFrame(1000);
 
-    KtProperty* ktProperty {kt_class->get_property(p_name)};
-    if (ktProperty) {
+    if (KtProperty* ktProperty {kt_class->get_property(p_name)}) {
         ktProperty->call_set(kt_object, p_value);
         return true;
-    } else {
-        return false;
     }
+
+    if (KtFunction* function {kt_class->get_method(SNAME("_set"))}) {
+        Variant ret;
+        const int arg_count = 2;
+        Variant name = p_name;
+        const Variant* args[arg_count] {&name, &p_value};
+        function->invoke(kt_object, args, arg_count, ret);
+        return true;
+    }
+
+    return false;
 }
 
 bool KotlinInstance::get(const StringName& p_name, Variant& r_ret) const {
@@ -49,6 +57,15 @@ bool KotlinInstance::get(const StringName& p_name, Variant& r_ret) const {
         r_ret = Signal(owner, p_name);
         return true;
     }
+
+    if (KtFunction* function {kt_class->get_method(SNAME("_get"))}) {
+        const int arg_count = 1;
+        Variant name = p_name;
+        const Variant* args[arg_count] = {&name};
+        function->invoke(kt_object, args, arg_count, r_ret);
+        return true;
+    }
+
     return false;
 }
 
@@ -68,6 +85,15 @@ bool KotlinInstance::get_or_default(const StringName& p_name, Variant& r_ret) co
 
 void KotlinInstance::get_property_list(List<PropertyInfo>* p_properties) const {
     kt_class->get_property_list(p_properties);
+
+    if (KtFunction* function {kt_class->get_method(SNAME("_get_property_list"))}) {
+        Variant ret_var;
+        function->invoke(kt_object, {}, 0, ret_var);
+        Array ret_array = ret_var;
+        for (int i = 0; i < ret_array.size(); ++i) {
+            p_properties->push_back(PropertyInfo::from_dict(ret_array.get(i)));
+        }
+    }
 }
 
 Variant::Type KotlinInstance::get_property_type(const StringName& p_name, bool* r_is_valid) const {
@@ -97,16 +123,20 @@ Variant KotlinInstance::callp(const StringName& p_method, const Variant** p_args
     return ret_var;
 }
 
-void KotlinInstance::notification(int p_notification) {
+void KotlinInstance::notification(int p_notification, bool p_reversed) {
     if (p_notification == Object::NOTIFICATION_PREDELETE) { delete_flag = false; }
 
-    KtFunction* function {kt_class->get_method(CoreStringNames::get_singleton()->notification)};
+    kt_class->do_notification(kt_object, p_notification, p_reversed);
+}
 
-    if (function) {
+void KotlinInstance::validate_property(PropertyInfo& p_property) const {
+    if (KtFunction* function { kt_class->get_method(SNAME("_validate_property")) }) {
         Variant ret_var;
-        Variant value = p_notification;
-        const Variant* args[1] = {&value};
-        function->invoke(kt_object, args, 1, ret_var);
+        Variant property_arg = (Dictionary) p_property;
+        const int arg_count {1};
+        const Variant* args[arg_count] = { &property_arg };
+        function->invoke(kt_object, args, arg_count, ret_var);
+        p_property = PropertyInfo::from_dict(property_arg);
     }
 }
 
@@ -145,11 +175,26 @@ ScriptLanguage* KotlinInstance::get_language() {
 }
 
 bool KotlinInstance::property_can_revert(const StringName& p_name) const {
-    // TODO/4.0: Implement
+    if (KtFunction* function {kt_class->get_method(SNAME("_property_can_revert"))}) {
+        const int arg_count = 1;
+        Variant ret;
+        Variant name = p_name;
+        const Variant* args[arg_count] = {&name};
+        function->invoke(kt_object, args, arg_count, ret);
+        return ret.operator bool();
+    }
+
     return false;
 }
 
 bool KotlinInstance::property_get_revert(const StringName& p_name, Variant& r_ret) const {
-    // TODO/4.0: Implement
+    if (KtFunction* function {kt_class->get_method(SNAME("_property_get_revert"))}) {
+        const int arg_count = 1;
+        Variant name = p_name;
+        const Variant* args[arg_count] = {&name};
+        function->invoke(kt_object, args, arg_count, r_ret);
+        return true;
+    }
+
     return false;
 }

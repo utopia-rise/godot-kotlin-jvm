@@ -105,7 +105,7 @@ public open class Tree : Control() {
   public val cellSelected: Signal0 by signal()
 
   /**
-   * Emitted instead of `item_selected` if `select_mode` is [SELECT_MULTI].
+   * Emitted instead of [itemSelected] if [selectMode] is set to [SELECT_MULTI].
    */
   public val multiSelected: Signal3<TreeItem, Long, Boolean> by signal("item", "column", "selected")
 

@@ -105,9 +105,9 @@ public object Time : Object() {
   }
 
   /**
-   * Converts the given ISO 8601 date and time string (YYYY-MM-DDTHH:MM:SS) to a dictionary of keys: `year`, `month`, `day`, `weekday`, `hour`, `minute`, and `second`.
+   * Converts the given ISO 8601 date and time string (YYYY-MM-DDTHH:MM:SS) to a dictionary of keys: `year`, `month`, `day`, [code skip-lint]weekday`, `hour`, `minute`, and `second`.
    *
-   * If [weekday] is `false`, then the `weekday` entry is excluded (the calculation is relatively expensive).
+   * If [weekday] is `false`, then the [code skip-lint]weekday` entry is excluded (the calculation is relatively expensive).
    *
    * **Note:** Any decimal fraction in the time string will be ignored silently.
    */
@@ -247,7 +247,11 @@ public object Time : Object() {
   }
 
   /**
-   * Returns the current time zone as a dictionary of keys: `bias` and `name`. The `bias` value is the offset from UTC in minutes, since not all time zones are multiples of an hour from UTC.
+   * Returns the current time zone as a dictionary of keys: `bias` and `name`. 
+   *
+   * - `bias` is the offset from UTC in minutes, since not all time zones are multiples of an hour from UTC.
+   *
+   * - `name` is the localized name of the time zone, according to the OS locale settings of the current user.
    */
   public fun getTimeZoneFromSystem(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()

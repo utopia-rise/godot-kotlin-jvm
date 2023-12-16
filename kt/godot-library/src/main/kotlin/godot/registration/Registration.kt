@@ -82,6 +82,7 @@ class ClassBuilderDsl<T : KtObject>(
     private val constructors = mutableMapOf<Int, KtConstructor<T>>()
 
     private val functions = mutableMapOf<String, KtFunction<T, *>>()
+    private var notificationFunctions = listOf<Any.(Int) -> Unit>()
 
     @PublishedApi
     internal val properties = mutableMapOf<String, KtProperty<T, *>>()
@@ -244,6 +245,22 @@ class ClassBuilderDsl<T : KtObject>(
                 enums
             }
         )
+    }
+
+    /**
+     * Notification functions of class hierarchy
+     *
+     * Order: child to parent
+     *
+     * Only present if the notification function is registered and is overriding [KtObject._notification].
+     *
+     * **Note:** Manually declared functions with name `_notification` are not supposed to be added to this list even if
+     * the return type and parameters match!
+     */
+    fun notificationFunctions(
+        notificationFunctionsOfClassHierarchy: List<Any.(Int) -> Unit>
+    ) {
+        notificationFunctions = notificationFunctionsOfClassHierarchy
     }
 
     fun <R : Any?> function(
@@ -1272,15 +1289,16 @@ class ClassBuilderDsl<T : KtObject>(
             constructorArray[it.key] = it.value
         }
         return KtClass(
-            registeredName,
-            relativeSourcePath,
-            compilationTimeRelativeRegistrationFilePath,
-            superClasses,
-            constructorArray.toList(),
-            properties,
-            functions,
-            signals,
-            baseGodotClass
+            registeredName = registeredName,
+            relativeSourcePath = relativeSourcePath,
+            compilationTimeRelativeRegistrationFilePath = compilationTimeRelativeRegistrationFilePath,
+            _registeredSupertypes = superClasses,
+            _constructors = constructorArray.toList(),
+            _properties = properties,
+            _functions = functions,
+            _notificationFunctions = notificationFunctions,
+            _signalInfos = signals,
+            baseGodotClass = baseGodotClass
         )
     }
 }

@@ -26,6 +26,9 @@ import kotlin.Unit
 /**
  * Provides occlusion culling for 3D nodes, which improves performance in closed areas.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/3d/occlusion_culling.html]($DOCS_URL/tutorials/3d/occlusion_culling.html)
+ *
  * Occlusion culling can improve rendering performance in closed/semi-open areas by hiding geometry that is occluded by other objects.
  *
  * The occlusion culling system is mostly static. [godot.OccluderInstance3D]s can be moved or hidden at run-time, but doing so will trigger a background recomputation that can take several frames. It is recommended to only move [godot.OccluderInstance3D]s sporadically (e.g. for procedural generation purposes), rather than doing so every frame.

@@ -59,12 +59,12 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerSingleton("ResourceUID")
   TypeManager.registerEngineType("WorkerThreadPool", WorkerThreadPool::class) { WorkerThreadPool }
   TypeManager.registerSingleton("WorkerThreadPool")
+  TypeManager.registerEngineType("ThemeDB", ThemeDB::class) { ThemeDB }
+  TypeManager.registerSingleton("ThemeDB")
   TypeManager.registerEngineType("JavaClassWrapper", JavaClassWrapper::class) { JavaClassWrapper }
   TypeManager.registerSingleton("JavaClassWrapper")
   TypeManager.registerEngineType("JavaScriptBridge", JavaScriptBridge::class) { JavaScriptBridge }
   TypeManager.registerSingleton("JavaScriptBridge")
-  TypeManager.registerEngineType("ThemeDB", ThemeDB::class) { ThemeDB }
-  TypeManager.registerSingleton("ThemeDB")
   TypeManager.registerEngineType("DisplayServer", DisplayServer::class) { DisplayServer }
   TypeManager.registerSingleton("DisplayServer")
   TypeManager.registerEngineType("RenderingServer", RenderingServer::class) { RenderingServer }
@@ -97,6 +97,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("AnimatedTexture", AnimatedTexture::class, ::AnimatedTexture)
   TypeManager.registerEngineType("Animation", Animation::class, ::Animation)
   TypeManager.registerEngineType("AnimationLibrary", AnimationLibrary::class, ::AnimationLibrary)
+  TypeManager.registerEngineType("AnimationMixer", AnimationMixer::class, ::AnimationMixer)
   TypeManager.registerEngineType("AnimationNode", AnimationNode::class, ::AnimationNode)
   TypeManager.registerEngineType("AnimationNodeAdd2", AnimationNodeAdd2::class, ::AnimationNodeAdd2)
   TypeManager.registerEngineType("AnimationNodeAdd3", AnimationNodeAdd3::class, ::AnimationNodeAdd3)
@@ -330,86 +331,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("ENetMultiplayerPeer", ENetMultiplayerPeer::class,
       ::ENetMultiplayerPeer)
   TypeManager.registerEngineType("ENetPacketPeer", ENetPacketPeer::class, ::ENetPacketPeer)
-  TypeManager.registerEngineType("EditorCommandPalette", EditorCommandPalette::class,
-      ::EditorCommandPalette)
-  TypeManager.registerEngineType("EditorDebuggerPlugin", EditorDebuggerPlugin::class,
-      ::EditorDebuggerPlugin)
-  TypeManager.registerEngineType("EditorDebuggerSession", EditorDebuggerSession::class,
-      ::EditorDebuggerSession)
-  TypeManager.registerEngineType("EditorExportPlatform", EditorExportPlatform::class,
-      ::EditorExportPlatform)
-  TypeManager.registerEngineType("EditorExportPlatformAndroid", EditorExportPlatformAndroid::class,
-      ::EditorExportPlatformAndroid)
-  TypeManager.registerEngineType("EditorExportPlatformIOS", EditorExportPlatformIOS::class,
-      ::EditorExportPlatformIOS)
-  TypeManager.registerEngineType("EditorExportPlatformLinuxBSD",
-      EditorExportPlatformLinuxBSD::class, ::EditorExportPlatformLinuxBSD)
-  TypeManager.registerEngineType("EditorExportPlatformMacOS", EditorExportPlatformMacOS::class,
-      ::EditorExportPlatformMacOS)
-  TypeManager.registerEngineType("EditorExportPlatformPC", EditorExportPlatformPC::class,
-      ::EditorExportPlatformPC)
-  TypeManager.registerEngineType("EditorExportPlatformWeb", EditorExportPlatformWeb::class,
-      ::EditorExportPlatformWeb)
-  TypeManager.registerEngineType("EditorExportPlatformWindows", EditorExportPlatformWindows::class,
-      ::EditorExportPlatformWindows)
-  TypeManager.registerEngineType("EditorExportPlugin", EditorExportPlugin::class,
-      ::EditorExportPlugin)
-  TypeManager.registerEngineType("EditorFeatureProfile", EditorFeatureProfile::class,
-      ::EditorFeatureProfile)
-  TypeManager.registerEngineType("EditorFileDialog", EditorFileDialog::class, ::EditorFileDialog)
-  TypeManager.registerEngineType("EditorFileSystem", EditorFileSystem::class, ::EditorFileSystem)
-  TypeManager.registerEngineType("EditorFileSystemDirectory", EditorFileSystemDirectory::class,
-      ::EditorFileSystemDirectory)
-  TypeManager.registerEngineType("EditorFileSystemImportFormatSupportQuery",
-      EditorFileSystemImportFormatSupportQuery::class, ::EditorFileSystemImportFormatSupportQuery)
-  TypeManager.registerEngineType("EditorImportPlugin", EditorImportPlugin::class,
-      ::EditorImportPlugin)
-  TypeManager.registerEngineType("EditorInspector", EditorInspector::class, ::EditorInspector)
-  TypeManager.registerEngineType("EditorInspectorPlugin", EditorInspectorPlugin::class,
-      ::EditorInspectorPlugin)
-  TypeManager.registerEngineType("EditorInterface", EditorInterface::class, ::EditorInterface)
-  TypeManager.registerEngineType("EditorNode3DGizmo", EditorNode3DGizmo::class, ::EditorNode3DGizmo)
-  TypeManager.registerEngineType("EditorNode3DGizmoPlugin", EditorNode3DGizmoPlugin::class,
-      ::EditorNode3DGizmoPlugin)
-  TypeManager.registerEngineType("EditorPaths", EditorPaths::class, ::EditorPaths)
-  TypeManager.registerEngineType("EditorPlugin", EditorPlugin::class, ::EditorPlugin)
-  TypeManager.registerEngineType("EditorProperty", EditorProperty::class, ::EditorProperty)
-  TypeManager.registerEngineType("EditorResourceConversionPlugin",
-      EditorResourceConversionPlugin::class, ::EditorResourceConversionPlugin)
-  TypeManager.registerEngineType("EditorResourcePicker", EditorResourcePicker::class,
-      ::EditorResourcePicker)
-  TypeManager.registerEngineType("EditorResourcePreview", EditorResourcePreview::class,
-      ::EditorResourcePreview)
-  TypeManager.registerEngineType("EditorResourcePreviewGenerator",
-      EditorResourcePreviewGenerator::class, ::EditorResourcePreviewGenerator)
-  TypeManager.registerEngineType("EditorResourceTooltipPlugin", EditorResourceTooltipPlugin::class,
-      ::EditorResourceTooltipPlugin)
-  TypeManager.registerEngineType("EditorSceneFormatImporter", EditorSceneFormatImporter::class,
-      ::EditorSceneFormatImporter)
-  TypeManager.registerEngineType("EditorSceneFormatImporterBlend",
-      EditorSceneFormatImporterBlend::class, ::EditorSceneFormatImporterBlend)
-  TypeManager.registerEngineType("EditorSceneFormatImporterFBX",
-      EditorSceneFormatImporterFBX::class, ::EditorSceneFormatImporterFBX)
-  TypeManager.registerEngineType("EditorSceneFormatImporterGLTF",
-      EditorSceneFormatImporterGLTF::class, ::EditorSceneFormatImporterGLTF)
-  TypeManager.registerEngineType("EditorScenePostImport", EditorScenePostImport::class,
-      ::EditorScenePostImport)
-  TypeManager.registerEngineType("EditorScenePostImportPlugin", EditorScenePostImportPlugin::class,
-      ::EditorScenePostImportPlugin)
-  TypeManager.registerEngineType("EditorScript", EditorScript::class, ::EditorScript)
-  TypeManager.registerEngineType("EditorScriptPicker", EditorScriptPicker::class,
-      ::EditorScriptPicker)
-  TypeManager.registerEngineType("EditorSelection", EditorSelection::class, ::EditorSelection)
-  TypeManager.registerEngineType("EditorSettings", EditorSettings::class, ::EditorSettings)
-  TypeManager.registerEngineType("EditorSpinSlider", EditorSpinSlider::class, ::EditorSpinSlider)
-  TypeManager.registerEngineType("EditorSyntaxHighlighter", EditorSyntaxHighlighter::class,
-      ::EditorSyntaxHighlighter)
-  TypeManager.registerEngineType("EditorTranslationParserPlugin",
-      EditorTranslationParserPlugin::class, ::EditorTranslationParserPlugin)
-  TypeManager.registerEngineType("EditorUndoRedoManager", EditorUndoRedoManager::class,
-      ::EditorUndoRedoManager)
-  TypeManager.registerEngineType("EditorVCSInterface", EditorVCSInterface::class,
-      ::EditorVCSInterface)
   TypeManager.registerEngineType("EncodedObjectAsID", EncodedObjectAsID::class, ::EncodedObjectAsID)
   TypeManager.registerEngineType("EngineProfiler", EngineProfiler::class, ::EngineProfiler)
   TypeManager.registerEngineType("Environment", Environment::class, ::Environment)
@@ -417,21 +338,14 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("FastNoiseLite", FastNoiseLite::class, ::FastNoiseLite)
   TypeManager.registerEngineType("FileAccess", FileAccess::class, ::FileAccess)
   TypeManager.registerEngineType("FileDialog", FileDialog::class, ::FileDialog)
-  TypeManager.registerEngineType("FileSystemDock", FileSystemDock::class, ::FileSystemDock)
   TypeManager.registerEngineType("FlowContainer", FlowContainer::class, ::FlowContainer)
   TypeManager.registerEngineType("FogMaterial", FogMaterial::class, ::FogMaterial)
   TypeManager.registerEngineType("FogVolume", FogVolume::class, ::FogVolume)
   TypeManager.registerEngineType("Font", Font::class, ::Font)
   TypeManager.registerEngineType("FontFile", FontFile::class, ::FontFile)
   TypeManager.registerEngineType("FontVariation", FontVariation::class, ::FontVariation)
-  TypeManager.registerEngineType("FramebufferCacheRD", FramebufferCacheRD::class,
-      ::FramebufferCacheRD)
   TypeManager.registerEngineType("GDExtension", GDExtension::class, ::GDExtension)
   TypeManager.registerEngineType("GDScript", GDScript::class, ::GDScript)
-  TypeManager.registerEngineType("GDScriptEditorTranslationParserPlugin",
-      GDScriptEditorTranslationParserPlugin::class, ::GDScriptEditorTranslationParserPlugin)
-  TypeManager.registerEngineType("GDScriptNativeClass", GDScriptNativeClass::class,
-      ::GDScriptNativeClass)
   TypeManager.registerEngineType("GLTFAccessor", GLTFAccessor::class, ::GLTFAccessor)
   TypeManager.registerEngineType("GLTFAnimation", GLTFAnimation::class, ::GLTFAnimation)
   TypeManager.registerEngineType("GLTFBufferView", GLTFBufferView::class, ::GLTFBufferView)
@@ -441,10 +355,6 @@ public fun registerEngineTypes(): Unit {
       ::GLTFDocumentExtension)
   TypeManager.registerEngineType("GLTFDocumentExtensionConvertImporterMesh",
       GLTFDocumentExtensionConvertImporterMesh::class, ::GLTFDocumentExtensionConvertImporterMesh)
-  TypeManager.registerEngineType("GLTFDocumentExtensionPhysics",
-      GLTFDocumentExtensionPhysics::class, ::GLTFDocumentExtensionPhysics)
-  TypeManager.registerEngineType("GLTFDocumentExtensionTextureWebP",
-      GLTFDocumentExtensionTextureWebP::class, ::GLTFDocumentExtensionTextureWebP)
   TypeManager.registerEngineType("GLTFLight", GLTFLight::class, ::GLTFLight)
   TypeManager.registerEngineType("GLTFMesh", GLTFMesh::class, ::GLTFMesh)
   TypeManager.registerEngineType("GLTFNode", GLTFNode::class, ::GLTFNode)
@@ -485,6 +395,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("GradientTexture1D", GradientTexture1D::class, ::GradientTexture1D)
   TypeManager.registerEngineType("GradientTexture2D", GradientTexture2D::class, ::GradientTexture2D)
   TypeManager.registerEngineType("GraphEdit", GraphEdit::class, ::GraphEdit)
+  TypeManager.registerEngineType("GraphElement", GraphElement::class, ::GraphElement)
   TypeManager.registerEngineType("GraphNode", GraphNode::class, ::GraphNode)
   TypeManager.registerEngineType("GridContainer", GridContainer::class, ::GridContainer)
   TypeManager.registerEngineType("GridMap", GridMap::class, ::GridMap)
@@ -591,8 +502,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("MissingResource", MissingResource::class, ::MissingResource)
   TypeManager.registerEngineType("MobileVRInterface", MobileVRInterface::class, ::MobileVRInterface)
   TypeManager.registerEngineType("MovieWriter", MovieWriter::class, ::MovieWriter)
-  TypeManager.registerEngineType("MovieWriterMJPEG", MovieWriterMJPEG::class, ::MovieWriterMJPEG)
-  TypeManager.registerEngineType("MovieWriterPNGWAV", MovieWriterPNGWAV::class, ::MovieWriterPNGWAV)
   TypeManager.registerEngineType("MultiMesh", MultiMesh::class, ::MultiMesh)
   TypeManager.registerEngineType("MultiMeshInstance2D", MultiMeshInstance2D::class,
       ::MultiMeshInstance2D)
@@ -614,6 +523,8 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("NavigationLink2D", NavigationLink2D::class, ::NavigationLink2D)
   TypeManager.registerEngineType("NavigationLink3D", NavigationLink3D::class, ::NavigationLink3D)
   TypeManager.registerEngineType("NavigationMesh", NavigationMesh::class, ::NavigationMesh)
+  TypeManager.registerEngineType("NavigationMeshSourceGeometryData2D",
+      NavigationMeshSourceGeometryData2D::class, ::NavigationMeshSourceGeometryData2D)
   TypeManager.registerEngineType("NavigationMeshSourceGeometryData3D",
       NavigationMeshSourceGeometryData3D::class, ::NavigationMeshSourceGeometryData3D)
   TypeManager.registerEngineType("NavigationObstacle2D", NavigationObstacle2D::class,
@@ -653,13 +564,19 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("OggPacketSequencePlayback", OggPacketSequencePlayback::class,
       ::OggPacketSequencePlayback)
   TypeManager.registerEngineType("OmniLight3D", OmniLight3D::class, ::OmniLight3D)
+  TypeManager.registerEngineType("OpenXRAPIExtension", OpenXRAPIExtension::class,
+      ::OpenXRAPIExtension)
   TypeManager.registerEngineType("OpenXRAction", OpenXRAction::class, ::OpenXRAction)
   TypeManager.registerEngineType("OpenXRActionMap", OpenXRActionMap::class, ::OpenXRActionMap)
   TypeManager.registerEngineType("OpenXRActionSet", OpenXRActionSet::class, ::OpenXRActionSet)
+  TypeManager.registerEngineType("OpenXRExtensionWrapperExtension",
+      OpenXRExtensionWrapperExtension::class, ::OpenXRExtensionWrapperExtension)
   TypeManager.registerEngineType("OpenXRHand", OpenXRHand::class, ::OpenXRHand)
   TypeManager.registerEngineType("OpenXRIPBinding", OpenXRIPBinding::class, ::OpenXRIPBinding)
   TypeManager.registerEngineType("OpenXRInteractionProfile", OpenXRInteractionProfile::class,
       ::OpenXRInteractionProfile)
+  TypeManager.registerEngineType("OpenXRInteractionProfileMetadata",
+      OpenXRInteractionProfileMetadata::class, ::OpenXRInteractionProfileMetadata)
   TypeManager.registerEngineType("OpenXRInterface", OpenXRInterface::class, ::OpenXRInterface)
   TypeManager.registerEngineType("OptimizedTranslation", OptimizedTranslation::class,
       ::OptimizedTranslation)
@@ -806,15 +723,25 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("RegExMatch", RegExMatch::class, ::RegExMatch)
   TypeManager.registerEngineType("RemoteTransform2D", RemoteTransform2D::class, ::RemoteTransform2D)
   TypeManager.registerEngineType("RemoteTransform3D", RemoteTransform3D::class, ::RemoteTransform3D)
+  TypeManager.registerEngineType("RenderSceneBuffers", RenderSceneBuffers::class,
+      ::RenderSceneBuffers)
+  TypeManager.registerEngineType("RenderSceneBuffersConfiguration",
+      RenderSceneBuffersConfiguration::class, ::RenderSceneBuffersConfiguration)
+  TypeManager.registerEngineType("RenderSceneBuffersExtension", RenderSceneBuffersExtension::class,
+      ::RenderSceneBuffersExtension)
+  TypeManager.registerEngineType("RenderSceneBuffersRD", RenderSceneBuffersRD::class,
+      ::RenderSceneBuffersRD)
   TypeManager.registerEngineType("RenderingDevice", RenderingDevice::class, ::RenderingDevice)
   TypeManager.registerEngineType("Resource", Resource::class, ::Resource)
-  TypeManager.registerEngineType("ResourceFormatImporterSaver", ResourceFormatImporterSaver::class,
-      ::ResourceFormatImporterSaver)
   TypeManager.registerEngineType("ResourceFormatLoader", ResourceFormatLoader::class,
       ::ResourceFormatLoader)
   TypeManager.registerEngineType("ResourceFormatSaver", ResourceFormatSaver::class,
       ::ResourceFormatSaver)
   TypeManager.registerEngineType("ResourceImporter", ResourceImporter::class, ::ResourceImporter)
+  TypeManager.registerEngineType("ResourceImporterMP3", ResourceImporterMP3::class,
+      ::ResourceImporterMP3)
+  TypeManager.registerEngineType("ResourceImporterOggVorbis", ResourceImporterOggVorbis::class,
+      ::ResourceImporterOggVorbis)
   TypeManager.registerEngineType("ResourcePreloader", ResourcePreloader::class, ::ResourcePreloader)
   TypeManager.registerEngineType("RibbonTrailMesh", RibbonTrailMesh::class, ::RibbonTrailMesh)
   TypeManager.registerEngineType("RichTextEffect", RichTextEffect::class, ::RichTextEffect)
@@ -829,10 +756,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("SceneTree", SceneTree::class, ::SceneTree)
   TypeManager.registerEngineType("SceneTreeTimer", SceneTreeTimer::class, ::SceneTreeTimer)
   TypeManager.registerEngineType("Script", Script::class, ::Script)
-  TypeManager.registerEngineType("ScriptCreateDialog", ScriptCreateDialog::class,
-      ::ScriptCreateDialog)
-  TypeManager.registerEngineType("ScriptEditor", ScriptEditor::class, ::ScriptEditor)
-  TypeManager.registerEngineType("ScriptEditorBase", ScriptEditorBase::class, ::ScriptEditorBase)
   TypeManager.registerEngineType("ScriptExtension", ScriptExtension::class, ::ScriptExtension)
   TypeManager.registerEngineType("ScriptLanguage", ScriptLanguage::class, ::ScriptLanguage)
   TypeManager.registerEngineType("ScriptLanguageExtension", ScriptLanguageExtension::class,
@@ -936,9 +859,16 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("Texture", Texture::class, ::Texture)
   TypeManager.registerEngineType("Texture2D", Texture2D::class, ::Texture2D)
   TypeManager.registerEngineType("Texture2DArray", Texture2DArray::class, ::Texture2DArray)
+  TypeManager.registerEngineType("Texture2DArrayRD", Texture2DArrayRD::class, ::Texture2DArrayRD)
+  TypeManager.registerEngineType("Texture2DRD", Texture2DRD::class, ::Texture2DRD)
   TypeManager.registerEngineType("Texture3D", Texture3D::class, ::Texture3D)
+  TypeManager.registerEngineType("Texture3DRD", Texture3DRD::class, ::Texture3DRD)
   TypeManager.registerEngineType("TextureButton", TextureButton::class, ::TextureButton)
+  TypeManager.registerEngineType("TextureCubemapArrayRD", TextureCubemapArrayRD::class,
+      ::TextureCubemapArrayRD)
+  TypeManager.registerEngineType("TextureCubemapRD", TextureCubemapRD::class, ::TextureCubemapRD)
   TypeManager.registerEngineType("TextureLayered", TextureLayered::class, ::TextureLayered)
+  TypeManager.registerEngineType("TextureLayeredRD", TextureLayeredRD::class, ::TextureLayeredRD)
   TypeManager.registerEngineType("TextureProgressBar", TextureProgressBar::class,
       ::TextureProgressBar)
   TypeManager.registerEngineType("TextureRect", TextureRect::class, ::TextureRect)
@@ -967,7 +897,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("UPNP", UPNP::class, ::UPNP)
   TypeManager.registerEngineType("UPNPDevice", UPNPDevice::class, ::UPNPDevice)
   TypeManager.registerEngineType("UndoRedo", UndoRedo::class, ::UndoRedo)
-  TypeManager.registerEngineType("UniformSetCacheRD", UniformSetCacheRD::class, ::UniformSetCacheRD)
   TypeManager.registerEngineType("VBoxContainer", VBoxContainer::class, ::VBoxContainer)
   TypeManager.registerEngineType("VFlowContainer", VFlowContainer::class, ::VFlowContainer)
   TypeManager.registerEngineType("VScrollBar", VScrollBar::class, ::VScrollBar)
@@ -1111,12 +1040,16 @@ public fun registerEngineTypes(): Unit {
       ::VisualShaderNodeRemap)
   TypeManager.registerEngineType("VisualShaderNodeResizableBase",
       VisualShaderNodeResizableBase::class, ::VisualShaderNodeResizableBase)
+  TypeManager.registerEngineType("VisualShaderNodeRotationByAxis",
+      VisualShaderNodeRotationByAxis::class, ::VisualShaderNodeRotationByAxis)
   TypeManager.registerEngineType("VisualShaderNodeSDFRaymarch", VisualShaderNodeSDFRaymarch::class,
       ::VisualShaderNodeSDFRaymarch)
   TypeManager.registerEngineType("VisualShaderNodeSDFToScreenUV",
       VisualShaderNodeSDFToScreenUV::class, ::VisualShaderNodeSDFToScreenUV)
   TypeManager.registerEngineType("VisualShaderNodeSample3D", VisualShaderNodeSample3D::class,
       ::VisualShaderNodeSample3D)
+  TypeManager.registerEngineType("VisualShaderNodeScreenNormalWorldSpace",
+      VisualShaderNodeScreenNormalWorldSpace::class, ::VisualShaderNodeScreenNormalWorldSpace)
   TypeManager.registerEngineType("VisualShaderNodeScreenUVToSDF",
       VisualShaderNodeScreenUVToSDF::class, ::VisualShaderNodeScreenUVToSDF)
   TypeManager.registerEngineType("VisualShaderNodeSmoothStep", VisualShaderNodeSmoothStep::class,
@@ -1205,6 +1138,8 @@ public fun registerEngineTypes(): Unit {
       ::VisualShaderNodeVectorOp)
   TypeManager.registerEngineType("VisualShaderNodeVectorRefract",
       VisualShaderNodeVectorRefract::class, ::VisualShaderNodeVectorRefract)
+  TypeManager.registerEngineType("VisualShaderNodeWorldPositionFromDepth",
+      VisualShaderNodeWorldPositionFromDepth::class, ::VisualShaderNodeWorldPositionFromDepth)
   TypeManager.registerEngineType("VoxelGI", VoxelGI::class, ::VoxelGI)
   TypeManager.registerEngineType("VoxelGIData", VoxelGIData::class, ::VoxelGIData)
   TypeManager.registerEngineType("WeakRef", WeakRef::class, ::WeakRef)
@@ -1270,9 +1205,9 @@ public fun registerVariantMapping(): Unit {
   variantMapper[GDExtensionManager::class] = OBJECT
   variantMapper[ResourceUID::class] = OBJECT
   variantMapper[WorkerThreadPool::class] = OBJECT
+  variantMapper[ThemeDB::class] = OBJECT
   variantMapper[JavaClassWrapper::class] = OBJECT
   variantMapper[JavaScriptBridge::class] = OBJECT
-  variantMapper[ThemeDB::class] = OBJECT
   variantMapper[DisplayServer::class] = OBJECT
   variantMapper[RenderingServer::class] = OBJECT
   variantMapper[AudioServer::class] = OBJECT
@@ -1294,6 +1229,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[AnimatedTexture::class] = OBJECT
   variantMapper[Animation::class] = OBJECT
   variantMapper[AnimationLibrary::class] = OBJECT
+  variantMapper[AnimationMixer::class] = OBJECT
   variantMapper[AnimationNode::class] = OBJECT
   variantMapper[AnimationNodeAdd2::class] = OBJECT
   variantMapper[AnimationNodeAdd3::class] = OBJECT
@@ -1464,52 +1400,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[ENetConnection::class] = OBJECT
   variantMapper[ENetMultiplayerPeer::class] = OBJECT
   variantMapper[ENetPacketPeer::class] = OBJECT
-  variantMapper[EditorCommandPalette::class] = OBJECT
-  variantMapper[EditorDebuggerPlugin::class] = OBJECT
-  variantMapper[EditorDebuggerSession::class] = OBJECT
-  variantMapper[EditorExportPlatform::class] = OBJECT
-  variantMapper[EditorExportPlatformAndroid::class] = OBJECT
-  variantMapper[EditorExportPlatformIOS::class] = OBJECT
-  variantMapper[EditorExportPlatformLinuxBSD::class] = OBJECT
-  variantMapper[EditorExportPlatformMacOS::class] = OBJECT
-  variantMapper[EditorExportPlatformPC::class] = OBJECT
-  variantMapper[EditorExportPlatformWeb::class] = OBJECT
-  variantMapper[EditorExportPlatformWindows::class] = OBJECT
-  variantMapper[EditorExportPlugin::class] = OBJECT
-  variantMapper[EditorFeatureProfile::class] = OBJECT
-  variantMapper[EditorFileDialog::class] = OBJECT
-  variantMapper[EditorFileSystem::class] = OBJECT
-  variantMapper[EditorFileSystemDirectory::class] = OBJECT
-  variantMapper[EditorFileSystemImportFormatSupportQuery::class] = OBJECT
-  variantMapper[EditorImportPlugin::class] = OBJECT
-  variantMapper[EditorInspector::class] = OBJECT
-  variantMapper[EditorInspectorPlugin::class] = OBJECT
-  variantMapper[EditorInterface::class] = OBJECT
-  variantMapper[EditorNode3DGizmo::class] = OBJECT
-  variantMapper[EditorNode3DGizmoPlugin::class] = OBJECT
-  variantMapper[EditorPaths::class] = OBJECT
-  variantMapper[EditorPlugin::class] = OBJECT
-  variantMapper[EditorProperty::class] = OBJECT
-  variantMapper[EditorResourceConversionPlugin::class] = OBJECT
-  variantMapper[EditorResourcePicker::class] = OBJECT
-  variantMapper[EditorResourcePreview::class] = OBJECT
-  variantMapper[EditorResourcePreviewGenerator::class] = OBJECT
-  variantMapper[EditorResourceTooltipPlugin::class] = OBJECT
-  variantMapper[EditorSceneFormatImporter::class] = OBJECT
-  variantMapper[EditorSceneFormatImporterBlend::class] = OBJECT
-  variantMapper[EditorSceneFormatImporterFBX::class] = OBJECT
-  variantMapper[EditorSceneFormatImporterGLTF::class] = OBJECT
-  variantMapper[EditorScenePostImport::class] = OBJECT
-  variantMapper[EditorScenePostImportPlugin::class] = OBJECT
-  variantMapper[EditorScript::class] = OBJECT
-  variantMapper[EditorScriptPicker::class] = OBJECT
-  variantMapper[EditorSelection::class] = OBJECT
-  variantMapper[EditorSettings::class] = OBJECT
-  variantMapper[EditorSpinSlider::class] = OBJECT
-  variantMapper[EditorSyntaxHighlighter::class] = OBJECT
-  variantMapper[EditorTranslationParserPlugin::class] = OBJECT
-  variantMapper[EditorUndoRedoManager::class] = OBJECT
-  variantMapper[EditorVCSInterface::class] = OBJECT
   variantMapper[EncodedObjectAsID::class] = OBJECT
   variantMapper[EngineProfiler::class] = OBJECT
   variantMapper[Environment::class] = OBJECT
@@ -1517,18 +1407,14 @@ public fun registerVariantMapping(): Unit {
   variantMapper[FastNoiseLite::class] = OBJECT
   variantMapper[FileAccess::class] = OBJECT
   variantMapper[FileDialog::class] = OBJECT
-  variantMapper[FileSystemDock::class] = OBJECT
   variantMapper[FlowContainer::class] = OBJECT
   variantMapper[FogMaterial::class] = OBJECT
   variantMapper[FogVolume::class] = OBJECT
   variantMapper[Font::class] = OBJECT
   variantMapper[FontFile::class] = OBJECT
   variantMapper[FontVariation::class] = OBJECT
-  variantMapper[FramebufferCacheRD::class] = OBJECT
   variantMapper[GDExtension::class] = OBJECT
   variantMapper[GDScript::class] = OBJECT
-  variantMapper[GDScriptEditorTranslationParserPlugin::class] = OBJECT
-  variantMapper[GDScriptNativeClass::class] = OBJECT
   variantMapper[GLTFAccessor::class] = OBJECT
   variantMapper[GLTFAnimation::class] = OBJECT
   variantMapper[GLTFBufferView::class] = OBJECT
@@ -1536,8 +1422,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[GLTFDocument::class] = OBJECT
   variantMapper[GLTFDocumentExtension::class] = OBJECT
   variantMapper[GLTFDocumentExtensionConvertImporterMesh::class] = OBJECT
-  variantMapper[GLTFDocumentExtensionPhysics::class] = OBJECT
-  variantMapper[GLTFDocumentExtensionTextureWebP::class] = OBJECT
   variantMapper[GLTFLight::class] = OBJECT
   variantMapper[GLTFMesh::class] = OBJECT
   variantMapper[GLTFNode::class] = OBJECT
@@ -1566,6 +1450,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[GradientTexture1D::class] = OBJECT
   variantMapper[GradientTexture2D::class] = OBJECT
   variantMapper[GraphEdit::class] = OBJECT
+  variantMapper[GraphElement::class] = OBJECT
   variantMapper[GraphNode::class] = OBJECT
   variantMapper[GridContainer::class] = OBJECT
   variantMapper[GridMap::class] = OBJECT
@@ -1654,8 +1539,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[MissingResource::class] = OBJECT
   variantMapper[MobileVRInterface::class] = OBJECT
   variantMapper[MovieWriter::class] = OBJECT
-  variantMapper[MovieWriterMJPEG::class] = OBJECT
-  variantMapper[MovieWriterPNGWAV::class] = OBJECT
   variantMapper[MultiMesh::class] = OBJECT
   variantMapper[MultiMeshInstance2D::class] = OBJECT
   variantMapper[MultiMeshInstance3D::class] = OBJECT
@@ -1671,6 +1554,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[NavigationLink2D::class] = OBJECT
   variantMapper[NavigationLink3D::class] = OBJECT
   variantMapper[NavigationMesh::class] = OBJECT
+  variantMapper[NavigationMeshSourceGeometryData2D::class] = OBJECT
   variantMapper[NavigationMeshSourceGeometryData3D::class] = OBJECT
   variantMapper[NavigationObstacle2D::class] = OBJECT
   variantMapper[NavigationObstacle3D::class] = OBJECT
@@ -1698,12 +1582,15 @@ public fun registerVariantMapping(): Unit {
   variantMapper[OggPacketSequence::class] = OBJECT
   variantMapper[OggPacketSequencePlayback::class] = OBJECT
   variantMapper[OmniLight3D::class] = OBJECT
+  variantMapper[OpenXRAPIExtension::class] = OBJECT
   variantMapper[OpenXRAction::class] = OBJECT
   variantMapper[OpenXRActionMap::class] = OBJECT
   variantMapper[OpenXRActionSet::class] = OBJECT
+  variantMapper[OpenXRExtensionWrapperExtension::class] = OBJECT
   variantMapper[OpenXRHand::class] = OBJECT
   variantMapper[OpenXRIPBinding::class] = OBJECT
   variantMapper[OpenXRInteractionProfile::class] = OBJECT
+  variantMapper[OpenXRInteractionProfileMetadata::class] = OBJECT
   variantMapper[OpenXRInterface::class] = OBJECT
   variantMapper[OptimizedTranslation::class] = OBJECT
   variantMapper[OptionButton::class] = OBJECT
@@ -1806,12 +1693,17 @@ public fun registerVariantMapping(): Unit {
   variantMapper[RegExMatch::class] = OBJECT
   variantMapper[RemoteTransform2D::class] = OBJECT
   variantMapper[RemoteTransform3D::class] = OBJECT
+  variantMapper[RenderSceneBuffers::class] = OBJECT
+  variantMapper[RenderSceneBuffersConfiguration::class] = OBJECT
+  variantMapper[RenderSceneBuffersExtension::class] = OBJECT
+  variantMapper[RenderSceneBuffersRD::class] = OBJECT
   variantMapper[RenderingDevice::class] = OBJECT
   variantMapper[Resource::class] = OBJECT
-  variantMapper[ResourceFormatImporterSaver::class] = OBJECT
   variantMapper[ResourceFormatLoader::class] = OBJECT
   variantMapper[ResourceFormatSaver::class] = OBJECT
   variantMapper[ResourceImporter::class] = OBJECT
+  variantMapper[ResourceImporterMP3::class] = OBJECT
+  variantMapper[ResourceImporterOggVorbis::class] = OBJECT
   variantMapper[ResourcePreloader::class] = OBJECT
   variantMapper[RibbonTrailMesh::class] = OBJECT
   variantMapper[RichTextEffect::class] = OBJECT
@@ -1825,9 +1717,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[SceneTree::class] = OBJECT
   variantMapper[SceneTreeTimer::class] = OBJECT
   variantMapper[Script::class] = OBJECT
-  variantMapper[ScriptCreateDialog::class] = OBJECT
-  variantMapper[ScriptEditor::class] = OBJECT
-  variantMapper[ScriptEditorBase::class] = OBJECT
   variantMapper[ScriptExtension::class] = OBJECT
   variantMapper[ScriptLanguage::class] = OBJECT
   variantMapper[ScriptLanguageExtension::class] = OBJECT
@@ -1912,9 +1801,15 @@ public fun registerVariantMapping(): Unit {
   variantMapper[Texture::class] = OBJECT
   variantMapper[Texture2D::class] = OBJECT
   variantMapper[Texture2DArray::class] = OBJECT
+  variantMapper[Texture2DArrayRD::class] = OBJECT
+  variantMapper[Texture2DRD::class] = OBJECT
   variantMapper[Texture3D::class] = OBJECT
+  variantMapper[Texture3DRD::class] = OBJECT
   variantMapper[TextureButton::class] = OBJECT
+  variantMapper[TextureCubemapArrayRD::class] = OBJECT
+  variantMapper[TextureCubemapRD::class] = OBJECT
   variantMapper[TextureLayered::class] = OBJECT
+  variantMapper[TextureLayeredRD::class] = OBJECT
   variantMapper[TextureProgressBar::class] = OBJECT
   variantMapper[TextureRect::class] = OBJECT
   variantMapper[Theme::class] = OBJECT
@@ -1940,7 +1835,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[UPNP::class] = OBJECT
   variantMapper[UPNPDevice::class] = OBJECT
   variantMapper[UndoRedo::class] = OBJECT
-  variantMapper[UniformSetCacheRD::class] = OBJECT
   variantMapper[VBoxContainer::class] = OBJECT
   variantMapper[VFlowContainer::class] = OBJECT
   variantMapper[VScrollBar::class] = OBJECT
@@ -2020,9 +1914,11 @@ public fun registerVariantMapping(): Unit {
   variantMapper[VisualShaderNodeRandomRange::class] = OBJECT
   variantMapper[VisualShaderNodeRemap::class] = OBJECT
   variantMapper[VisualShaderNodeResizableBase::class] = OBJECT
+  variantMapper[VisualShaderNodeRotationByAxis::class] = OBJECT
   variantMapper[VisualShaderNodeSDFRaymarch::class] = OBJECT
   variantMapper[VisualShaderNodeSDFToScreenUV::class] = OBJECT
   variantMapper[VisualShaderNodeSample3D::class] = OBJECT
+  variantMapper[VisualShaderNodeScreenNormalWorldSpace::class] = OBJECT
   variantMapper[VisualShaderNodeScreenUVToSDF::class] = OBJECT
   variantMapper[VisualShaderNodeSmoothStep::class] = OBJECT
   variantMapper[VisualShaderNodeStep::class] = OBJECT
@@ -2067,6 +1963,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[VisualShaderNodeVectorLen::class] = OBJECT
   variantMapper[VisualShaderNodeVectorOp::class] = OBJECT
   variantMapper[VisualShaderNodeVectorRefract::class] = OBJECT
+  variantMapper[VisualShaderNodeWorldPositionFromDepth::class] = OBJECT
   variantMapper[VoxelGI::class] = OBJECT
   variantMapper[VoxelGIData::class] = OBJECT
   variantMapper[WeakRef::class] = OBJECT
@@ -2123,9 +2020,9 @@ public fun registerEngineTypeMethods(): Unit {
   GDExtensionManager.MethodBindings
   ResourceUID.MethodBindings
   WorkerThreadPool.MethodBindings
+  ThemeDB.MethodBindings
   JavaClassWrapper.MethodBindings
   JavaScriptBridge.MethodBindings
-  ThemeDB.MethodBindings
   DisplayServer.MethodBindings
   RenderingServer.MethodBindings
   AudioServer.MethodBindings
@@ -2147,6 +2044,7 @@ public fun registerEngineTypeMethods(): Unit {
   AnimatedTexture.MethodBindings
   Animation.MethodBindings
   AnimationLibrary.MethodBindings
+  AnimationMixer.MethodBindings
   AnimationNode.MethodBindings
   AnimationNodeAdd2.MethodBindings
   AnimationNodeAdd3.MethodBindings
@@ -2317,52 +2215,6 @@ public fun registerEngineTypeMethods(): Unit {
   ENetConnection.MethodBindings
   ENetMultiplayerPeer.MethodBindings
   ENetPacketPeer.MethodBindings
-  EditorCommandPalette.MethodBindings
-  EditorDebuggerPlugin.MethodBindings
-  EditorDebuggerSession.MethodBindings
-  EditorExportPlatform.MethodBindings
-  EditorExportPlatformAndroid.MethodBindings
-  EditorExportPlatformIOS.MethodBindings
-  EditorExportPlatformLinuxBSD.MethodBindings
-  EditorExportPlatformMacOS.MethodBindings
-  EditorExportPlatformPC.MethodBindings
-  EditorExportPlatformWeb.MethodBindings
-  EditorExportPlatformWindows.MethodBindings
-  EditorExportPlugin.MethodBindings
-  EditorFeatureProfile.MethodBindings
-  EditorFileDialog.MethodBindings
-  EditorFileSystem.MethodBindings
-  EditorFileSystemDirectory.MethodBindings
-  EditorFileSystemImportFormatSupportQuery.MethodBindings
-  EditorImportPlugin.MethodBindings
-  EditorInspector.MethodBindings
-  EditorInspectorPlugin.MethodBindings
-  EditorInterface.MethodBindings
-  EditorNode3DGizmo.MethodBindings
-  EditorNode3DGizmoPlugin.MethodBindings
-  EditorPaths.MethodBindings
-  EditorPlugin.MethodBindings
-  EditorProperty.MethodBindings
-  EditorResourceConversionPlugin.MethodBindings
-  EditorResourcePicker.MethodBindings
-  EditorResourcePreview.MethodBindings
-  EditorResourcePreviewGenerator.MethodBindings
-  EditorResourceTooltipPlugin.MethodBindings
-  EditorSceneFormatImporter.MethodBindings
-  EditorSceneFormatImporterBlend.MethodBindings
-  EditorSceneFormatImporterFBX.MethodBindings
-  EditorSceneFormatImporterGLTF.MethodBindings
-  EditorScenePostImport.MethodBindings
-  EditorScenePostImportPlugin.MethodBindings
-  EditorScript.MethodBindings
-  EditorScriptPicker.MethodBindings
-  EditorSelection.MethodBindings
-  EditorSettings.MethodBindings
-  EditorSpinSlider.MethodBindings
-  EditorSyntaxHighlighter.MethodBindings
-  EditorTranslationParserPlugin.MethodBindings
-  EditorUndoRedoManager.MethodBindings
-  EditorVCSInterface.MethodBindings
   EncodedObjectAsID.MethodBindings
   EngineProfiler.MethodBindings
   Environment.MethodBindings
@@ -2370,18 +2222,14 @@ public fun registerEngineTypeMethods(): Unit {
   FastNoiseLite.MethodBindings
   FileAccess.MethodBindings
   FileDialog.MethodBindings
-  FileSystemDock.MethodBindings
   FlowContainer.MethodBindings
   FogMaterial.MethodBindings
   FogVolume.MethodBindings
   Font.MethodBindings
   FontFile.MethodBindings
   FontVariation.MethodBindings
-  FramebufferCacheRD.MethodBindings
   GDExtension.MethodBindings
   GDScript.MethodBindings
-  GDScriptEditorTranslationParserPlugin.MethodBindings
-  GDScriptNativeClass.MethodBindings
   GLTFAccessor.MethodBindings
   GLTFAnimation.MethodBindings
   GLTFBufferView.MethodBindings
@@ -2389,8 +2237,6 @@ public fun registerEngineTypeMethods(): Unit {
   GLTFDocument.MethodBindings
   GLTFDocumentExtension.MethodBindings
   GLTFDocumentExtensionConvertImporterMesh.MethodBindings
-  GLTFDocumentExtensionPhysics.MethodBindings
-  GLTFDocumentExtensionTextureWebP.MethodBindings
   GLTFLight.MethodBindings
   GLTFMesh.MethodBindings
   GLTFNode.MethodBindings
@@ -2419,6 +2265,7 @@ public fun registerEngineTypeMethods(): Unit {
   GradientTexture1D.MethodBindings
   GradientTexture2D.MethodBindings
   GraphEdit.MethodBindings
+  GraphElement.MethodBindings
   GraphNode.MethodBindings
   GridContainer.MethodBindings
   GridMap.MethodBindings
@@ -2507,8 +2354,6 @@ public fun registerEngineTypeMethods(): Unit {
   MissingResource.MethodBindings
   MobileVRInterface.MethodBindings
   MovieWriter.MethodBindings
-  MovieWriterMJPEG.MethodBindings
-  MovieWriterPNGWAV.MethodBindings
   MultiMesh.MethodBindings
   MultiMeshInstance2D.MethodBindings
   MultiMeshInstance3D.MethodBindings
@@ -2524,6 +2369,7 @@ public fun registerEngineTypeMethods(): Unit {
   NavigationLink2D.MethodBindings
   NavigationLink3D.MethodBindings
   NavigationMesh.MethodBindings
+  NavigationMeshSourceGeometryData2D.MethodBindings
   NavigationMeshSourceGeometryData3D.MethodBindings
   NavigationObstacle2D.MethodBindings
   NavigationObstacle3D.MethodBindings
@@ -2551,12 +2397,15 @@ public fun registerEngineTypeMethods(): Unit {
   OggPacketSequence.MethodBindings
   OggPacketSequencePlayback.MethodBindings
   OmniLight3D.MethodBindings
+  OpenXRAPIExtension.MethodBindings
   OpenXRAction.MethodBindings
   OpenXRActionMap.MethodBindings
   OpenXRActionSet.MethodBindings
+  OpenXRExtensionWrapperExtension.MethodBindings
   OpenXRHand.MethodBindings
   OpenXRIPBinding.MethodBindings
   OpenXRInteractionProfile.MethodBindings
+  OpenXRInteractionProfileMetadata.MethodBindings
   OpenXRInterface.MethodBindings
   OptimizedTranslation.MethodBindings
   OptionButton.MethodBindings
@@ -2659,12 +2508,17 @@ public fun registerEngineTypeMethods(): Unit {
   RegExMatch.MethodBindings
   RemoteTransform2D.MethodBindings
   RemoteTransform3D.MethodBindings
+  RenderSceneBuffers.MethodBindings
+  RenderSceneBuffersConfiguration.MethodBindings
+  RenderSceneBuffersExtension.MethodBindings
+  RenderSceneBuffersRD.MethodBindings
   RenderingDevice.MethodBindings
   Resource.MethodBindings
-  ResourceFormatImporterSaver.MethodBindings
   ResourceFormatLoader.MethodBindings
   ResourceFormatSaver.MethodBindings
   ResourceImporter.MethodBindings
+  ResourceImporterMP3.MethodBindings
+  ResourceImporterOggVorbis.MethodBindings
   ResourcePreloader.MethodBindings
   RibbonTrailMesh.MethodBindings
   RichTextEffect.MethodBindings
@@ -2678,9 +2532,6 @@ public fun registerEngineTypeMethods(): Unit {
   SceneTree.MethodBindings
   SceneTreeTimer.MethodBindings
   Script.MethodBindings
-  ScriptCreateDialog.MethodBindings
-  ScriptEditor.MethodBindings
-  ScriptEditorBase.MethodBindings
   ScriptExtension.MethodBindings
   ScriptLanguage.MethodBindings
   ScriptLanguageExtension.MethodBindings
@@ -2765,9 +2616,15 @@ public fun registerEngineTypeMethods(): Unit {
   Texture.MethodBindings
   Texture2D.MethodBindings
   Texture2DArray.MethodBindings
+  Texture2DArrayRD.MethodBindings
+  Texture2DRD.MethodBindings
   Texture3D.MethodBindings
+  Texture3DRD.MethodBindings
   TextureButton.MethodBindings
+  TextureCubemapArrayRD.MethodBindings
+  TextureCubemapRD.MethodBindings
   TextureLayered.MethodBindings
+  TextureLayeredRD.MethodBindings
   TextureProgressBar.MethodBindings
   TextureRect.MethodBindings
   Theme.MethodBindings
@@ -2793,7 +2650,6 @@ public fun registerEngineTypeMethods(): Unit {
   UPNP.MethodBindings
   UPNPDevice.MethodBindings
   UndoRedo.MethodBindings
-  UniformSetCacheRD.MethodBindings
   VBoxContainer.MethodBindings
   VFlowContainer.MethodBindings
   VScrollBar.MethodBindings
@@ -2873,9 +2729,11 @@ public fun registerEngineTypeMethods(): Unit {
   VisualShaderNodeRandomRange.MethodBindings
   VisualShaderNodeRemap.MethodBindings
   VisualShaderNodeResizableBase.MethodBindings
+  VisualShaderNodeRotationByAxis.MethodBindings
   VisualShaderNodeSDFRaymarch.MethodBindings
   VisualShaderNodeSDFToScreenUV.MethodBindings
   VisualShaderNodeSample3D.MethodBindings
+  VisualShaderNodeScreenNormalWorldSpace.MethodBindings
   VisualShaderNodeScreenUVToSDF.MethodBindings
   VisualShaderNodeSmoothStep.MethodBindings
   VisualShaderNodeStep.MethodBindings
@@ -2920,6 +2778,7 @@ public fun registerEngineTypeMethods(): Unit {
   VisualShaderNodeVectorLen.MethodBindings
   VisualShaderNodeVectorOp.MethodBindings
   VisualShaderNodeVectorRefract.MethodBindings
+  VisualShaderNodeWorldPositionFromDepth.MethodBindings
   VoxelGI.MethodBindings
   VoxelGIData.MethodBindings
   WeakRef.MethodBindings

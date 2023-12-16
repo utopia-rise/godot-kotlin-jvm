@@ -423,7 +423,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * If `true`, the light only appears in the editor and will not be visible at runtime.
+   * If `true`, the light only appears in the editor and will not be visible at runtime. If `true`, the light will never be baked in [godot.LightmapGI] regardless of its [lightBakeMode].
    */
   public var editorOnly: Boolean
     get() {
@@ -588,6 +588,8 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     BAKE_DISABLED(0),
     /**
      * Light is taken into account in static baking ([godot.VoxelGI], [godot.LightmapGI], SDFGI ([godot.Environment.sdfgiEnabled])). The light can be moved around or modified, but its global illumination will not update in real-time. This is suitable for subtle changes (such as flickering torches), but generally not large changes such as toggling a light on and off.
+     *
+     * **Note:** The light is not baked in [godot.LightmapGI] if [editorOnly] is `true`.
      */
     BAKE_STATIC(1),
     /**

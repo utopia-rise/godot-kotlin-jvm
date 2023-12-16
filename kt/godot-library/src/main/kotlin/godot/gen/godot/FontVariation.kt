@@ -12,7 +12,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.Transform2D
 import godot.core.TypeManager
-import godot.core.VariantArray
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -97,22 +96,9 @@ public open class FontVariation : Font() {
     }
 
   /**
-   * Array of fallback [godot.Font]s to use as a substitute if a glyph is not found in this [godot.FontVariation]. If not set, [baseFont]'s fallbacks are used instead.
-   */
-  public var fallbacks: VariantArray<Font>
-    @JvmName("getFallbacks_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
-    get() = super.getFallbacks()
-    @JvmName("setFallbacks_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
-    set(`value`) {
-      super.setFallbacks(value)
-    }
-
-  /**
    * Font OpenType variation coordinates. More info: [godot.OpenType variation tags](https://docs.microsoft.com/en-us/typography/opentype/spec/dvaraxisreg).
    *
-   * **Note:** This [godot.core.Dictionary] uses OpenType tags as keys. Variation axes can be identified both by tags(`int`) and names (`string`). Some axes might be accessible by multiple names. For example, `wght` refers to the same axis as `weight`. Tags on the other hand are unique. To convert between names and tags, use [godot.TextServer.nameToTag] and [godot.TextServer.tagToName].
+   * **Note:** This [godot.core.Dictionary] uses OpenType tags as keys. Variation axes can be identified both by tags ([int], e.g. `0x77678674`) and names ([godot.String], e.g. `wght`). Some axes might be accessible by multiple names. For example, `wght` refers to the same axis as `weight`. Tags on the other hand are unique. To convert between names and tags, use [godot.TextServer.nameToTag] and [godot.TextServer.tagToName].
    *
    * **Note:** To get available variation axes of a font, use [godot.Font.getSupportedVariationList].
    */

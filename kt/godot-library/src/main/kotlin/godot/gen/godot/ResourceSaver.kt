@@ -47,6 +47,8 @@ public object ResourceSaver : Object() {
    * The [flags] bitmask can be specified to customize the save behavior using [enum SaverFlags] flags.
    *
    * Returns [OK] on success.
+   *
+   * **Note:** When the project is running, any generated UID associated with the resource will not be saved as the required code is only executed in editor mode.
    */
   @JvmOverloads
   public fun save(

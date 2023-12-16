@@ -101,7 +101,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
     }
 
   /**
-   * The sampleSee the [sample mask Vulkan documentation](https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-samplemask) for more details.
+   * The sample mask array. See the [sample mask Vulkan documentation](https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-samplemask) for more details.
    */
   public var sampleMasks: VariantArray<Long>
     get() {

@@ -204,6 +204,8 @@ public open class Node : Object() {
 
   /**
    * The [godot.MultiplayerAPI] instance associated with this node. See [godot.SceneTree.getMultiplayer].
+   *
+   * **Note:** Renaming the node, or moving it in the tree, will not move the [godot.MultiplayerAPI] to the new path, you will have to update this manually.
    */
   public val multiplayer: MultiplayerAPI?
     get() {
@@ -593,7 +595,7 @@ public open class Node : Object() {
    *
    * Usually used for initialization. For even earlier initialization, [godot.Object.Init] may be used. See also [_enterTree].
    *
-   * **Note:** [_ready] may be called only once for each node. After removing a node from the scene tree and adding it again, `_ready` will not be called a second time. This can be bypassed by requesting another call with [requestReady], which may be called anywhere before adding the node again.
+   * **Note:** [_ready] may be called only once for each node. After removing a node from the scene tree and adding it again, [_ready] will not be called a second time. This can be bypassed by requesting another call with [requestReady], which may be called anywhere before adding the node again.
    */
   public open fun _ready(): Unit {
   }
@@ -637,13 +639,13 @@ public open class Node : Object() {
   }
 
   /**
-   * Called when an [godot.InputEventKey] or [godot.InputEventShortcut] hasn't been consumed by [_input] or any GUI [godot.Control] item. The input event propagates up through the node tree until a node consumes it.
+   * Called when an [godot.InputEventKey] or [godot.InputEventShortcut] hasn't been consumed by [_input] or any GUI [godot.Control] item. It is called before [_unhandledKeyInput] and [_unhandledInput]. The input event propagates up through the node tree until a node consumes it.
    *
    * It is only called if shortcut processing is enabled, which is done automatically if this method is overridden, and can be toggled with [setProcessShortcutInput].
    *
    * To consume the input event and stop it propagating further to other nodes, [godot.Viewport.setInputAsHandled] can be called.
    *
-   * This method can be used to handle shortcuts.
+   * This method can be used to handle shortcuts. For generic GUI events, use [_input] instead. Gameplay events should usually be handled with either [_unhandledInput] or [_unhandledKeyInput].
    *
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not orphan).
    */
@@ -651,13 +653,13 @@ public open class Node : Object() {
   }
 
   /**
-   * Called when an [godot.InputEvent] hasn't been consumed by [_input] or any GUI [godot.Control] item. The input event propagates up through the node tree until a node consumes it.
+   * Called when an [godot.InputEvent] hasn't been consumed by [_input] or any GUI [godot.Control] item. It is called after [_shortcutInput] and after [_unhandledKeyInput]. The input event propagates up through the node tree until a node consumes it.
    *
    * It is only called if unhandled input processing is enabled, which is done automatically if this method is overridden, and can be toggled with [setProcessUnhandledInput].
    *
    * To consume the input event and stop it propagating further to other nodes, [godot.Viewport.setInputAsHandled] can be called.
    *
-   * For gameplay input, this and [_unhandledKeyInput] are usually a better fit than [_input] as they allow the GUI to intercept the events first.
+   * For gameplay input, this method is usually a better fit than [_input], as GUI events need a higher priority. For keyboard shortcuts, consider using [_shortcutInput] instead, as it is called before this method. Finally, to handle keyboard events, consider using [_unhandledKeyInput] for performance reasons.
    *
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).
    */
@@ -665,7 +667,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Called when an [godot.InputEventKey] hasn't been consumed by [_input] or any GUI [godot.Control] item. The input event propagates up through the node tree until a node consumes it.
+   * Called when an [godot.InputEventKey] hasn't been consumed by [_input] or any GUI [godot.Control] item. It is called after [_shortcutInput] but before [_unhandledInput]. The input event propagates up through the node tree until a node consumes it.
    *
    * It is only called if unhandled key input processing is enabled, which is done automatically if this method is overridden, and can be toggled with [setProcessUnhandledKeyInput].
    *
@@ -673,9 +675,7 @@ public open class Node : Object() {
    *
    * This method can be used to handle Unicode character input with [kbd]Alt[/kbd], [kbd]Alt + Ctrl[/kbd], and [kbd]Alt + Shift[/kbd] modifiers, after shortcuts were handled.
    *
-   * For gameplay input, this and [_unhandledInput] are usually a better fit than [_input] as they allow the GUI to intercept the events first.
-   *
-   * This method also performs better than [_unhandledInput], since unrelated events such as [godot.InputEventMouseMotion] are automatically filtered.
+   * For gameplay input, this and [_unhandledInput] are usually a better fit than [_input], as GUI events should be handled first. This method also performs better than [_unhandledInput], since unrelated events such as [godot.InputEventMouseMotion] are automatically filtered. For shortcuts, consider using [_shortcutInput] instead.
    *
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).
    */
@@ -1198,6 +1198,46 @@ public open class Node : Object() {
   }
 
   /**
+   * Returns the tree as a [godot.String]. Used mainly for debugging purposes. This version displays the path relative to the current node, and is good for copy/pasting into the [getNode] function. It also can be used in game UI/UX.
+   *
+   * **Example output:**
+   *
+   * ```
+   * 				TheGame
+   * 				TheGame/Menu
+   * 				TheGame/Menu/Label
+   * 				TheGame/Menu/Camera2D
+   * 				TheGame/SplashScreen
+   * 				TheGame/SplashScreen/Camera2D
+   * 				```
+   */
+  public fun getTreeString(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTreeStringPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  /**
+   * Similar to [getTreeString], this returns the tree as a [godot.String]. This version displays a more graphical representation similar to what is displayed in the Scene Dock. It is useful for inspecting larger trees.
+   *
+   * **Example output:**
+   *
+   * ```
+   * 				 ┖╴TheGame
+   * 				    ┠╴Menu
+   * 				    ┃  ┠╴Label
+   * 				    ┃  ┖╴Camera2D
+   * 				    ┖╴SplashScreen
+   * 				       ┖╴Camera2D
+   * 				```
+   */
+  public fun getTreeStringPretty(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTreeStringPrettyPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  /**
    * Notifies the current node and all its children recursively by calling [godot.Object.notification] on all of them.
    */
   public fun propagateNotification(what: Int): Unit {
@@ -1421,7 +1461,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Returns the [godot.SceneTree] that contains this node.
+   * Returns the [godot.SceneTree] that contains this node. Returns `null` and prints an error if this node is not inside the scene tree. See also [isInsideTree].
    */
   public fun getTree(): SceneTree? {
     TransferContext.writeArguments()
@@ -1541,7 +1581,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Requests that `_ready` be called again. Note that the method won't be called immediately, but is scheduled for when the node is added to the scene tree again (see [_ready]). `_ready` is called only for the node which requested it, which means that you need to request ready for each child if you want them to call `_ready` too (in which case, `_ready` will be called in the same order as it would normally).
+   * Requests that [_ready] be called again. Note that the method won't be called immediately, but is scheduled for when the node is added to the scene tree again. [_ready] is called only for the node which requested it, which means that you need to request ready for each child if you want them to call [_ready] too (in which case, [_ready] will be called in the same order as it would normally).
    */
   public fun requestReady(): Unit {
     TransferContext.writeArguments()
@@ -1560,9 +1600,9 @@ public open class Node : Object() {
   }
 
   /**
-   * Sets the node's multiplayer authority to the peer with the given peer ID. The multiplayer authority is the peer that has authority over the node on the network. Useful in conjunction with [rpcConfig] and the [godot.MultiplayerAPI]. Inherited from the parent node by default, which ultimately defaults to peer ID 1 (the server). If [recursive], the given peer is recursively set as the authority for all children of this node.
+   * Sets the node's multiplayer authority to the peer with the given peer ID. The multiplayer authority is the peer that has authority over the node on the network. Useful in conjunction with [rpcConfig] and the [godot.MultiplayerAPI]. Defaults to peer ID 1 (the server). If [recursive], the given peer is recursively set as the authority for all children of this node.
    *
-   * **Warning:** This does **not** automatically replicate the new authority to other peers. It is developer's responsibility to do so. You can propagate the information about the new authority using [godot.MultiplayerSpawner.spawnFunction], an RPC, or using a [godot.MultiplayerSynchronizer].
+   * **Warning:** This does **not** automatically replicate the new authority to other peers. It is developer's responsibility to do so. You can propagate the information about the new authority using [godot.MultiplayerSpawner.spawnFunction], an RPC, or using a [godot.MultiplayerSynchronizer]. Also, the parent's authority does **not** propagate to newly added children.
    */
   @JvmOverloads
   public fun setMultiplayerAuthority(id: Int, recursive: Boolean = true): Unit {
@@ -1994,7 +2034,7 @@ public open class Node : Object() {
     public final const val NOTIFICATION_INTERNAL_PHYSICS_PROCESS: Long = 26
 
     /**
-     * Notification received when the node is ready, just before [NOTIFICATION_READY] is received. Unlike the latter, it's sent every time the node enters tree, instead of only once.
+     * Notification received when the node is ready, just before [NOTIFICATION_READY] is received. Unlike the latter, it's sent every time the node enters the tree, instead of only once.
      */
     public final const val NOTIFICATION_POST_ENTER_TREE: Long = 27
 
@@ -2009,11 +2049,6 @@ public open class Node : Object() {
     public final const val NOTIFICATION_ENABLED: Long = 29
 
     /**
-     * Notification received when other nodes in the tree may have been removed/replaced and node pointers may require re-caching.
-     */
-    public final const val NOTIFICATION_NODE_RECACHE_REQUESTED: Long = 30
-
-    /**
      * Notification received right before the scene with the node is saved in the editor. This notification is only sent in the Godot editor and will not occur in exported projects.
      */
     public final const val NOTIFICATION_EDITOR_PRE_SAVE: Long = 9001
@@ -2024,16 +2059,16 @@ public open class Node : Object() {
     public final const val NOTIFICATION_EDITOR_POST_SAVE: Long = 9002
 
     /**
-     * Notification received from the OS when the mouse enters the game window.
+     * Notification received when the mouse enters the window.
      *
-     * Implemented on desktop and web platforms.
+     * Implemented for embedded windows and on desktop and web platforms.
      */
     public final const val NOTIFICATION_WM_MOUSE_ENTER: Long = 1002
 
     /**
-     * Notification received from the OS when the mouse leaves the game window.
+     * Notification received when the mouse leaves the window.
      *
-     * Implemented on desktop and web platforms.
+     * Implemented for embedded windows and on desktop and web platforms.
      */
     public final const val NOTIFICATION_WM_MOUSE_EXIT: Long = 1003
 
@@ -2076,12 +2111,12 @@ public open class Node : Object() {
     public final const val NOTIFICATION_WM_DPI_CHANGE: Long = 1009
 
     /**
-     * Notification received when the mouse enters the viewport.
+     * Notification received when the mouse cursor enters the [godot.Viewport]'s visible area, that is not occluded behind other [godot.Control]s or [godot.Window]s, provided its [godot.Viewport.guiDisableInput] is `false` and regardless if it's currently focused or not.
      */
     public final const val NOTIFICATION_VP_MOUSE_ENTER: Long = 1010
 
     /**
-     * Notification received when the mouse leaves the viewport.
+     * Notification received when the mouse cursor leaves the [godot.Viewport]'s visible area, that is not occluded behind other [godot.Control]s or [godot.Window]s, provided its [godot.Viewport.guiDisableInput] is `false` and regardless if it's currently focused or not.
      */
     public final const val NOTIFICATION_VP_MOUSE_EXIT: Long = 1011
 
@@ -2259,6 +2294,11 @@ public open class Node : Object() {
 
     public val printTreePrettyPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "print_tree_pretty")
+
+    public val getTreeStringPtr: VoidPtr = TypeManager.getMethodBindPtr("Node", "get_tree_string")
+
+    public val getTreeStringPrettyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node", "get_tree_string_pretty")
 
     public val setSceneFilePathPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "set_scene_file_path")

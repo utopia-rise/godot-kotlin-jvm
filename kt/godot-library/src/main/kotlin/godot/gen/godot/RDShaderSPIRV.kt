@@ -23,7 +23,7 @@ import kotlin.Suppress
 /**
  * SPIR-V intermediate representation as part of a [godot.RDShaderFile] (used by [godot.RenderingDevice]).
  *
- * [godot.RDShaderSPIRV] represents a [godot.RDShaderFile]'s [godot.SPIR-V](https://www.khronos.org/spir/) code for various shader stages, as well as possible compilation error messages. SPIR-V a low-level intermediate shader representation. This intermediate representation is not used directly by GPUs for rendering, but it can be compiled into binary shaders that GPUs can understand. Unlike compiled shaders, SPIR-V is portable across GPU models and driver versions.
+ * [godot.RDShaderSPIRV] represents a [godot.RDShaderFile]'s [godot.SPIR-V](https://www.khronos.org/spir/) code for various shader stages, as well as possible compilation error messages. SPIR-V is a low-level intermediate shader representation. This intermediate representation is not used directly by GPUs for rendering, but it can be compiled into binary shaders that GPUs can understand. Unlike compiled shaders, SPIR-V is portable across GPU models and driver versions.
  *
  * This object is used by [godot.RenderingDevice].
  */

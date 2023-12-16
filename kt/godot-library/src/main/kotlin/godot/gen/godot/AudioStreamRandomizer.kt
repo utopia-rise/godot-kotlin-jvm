@@ -31,20 +31,6 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class AudioStreamRandomizer : AudioStream() {
   /**
-   * The number of streams in the stream pool.
-   */
-  public var streamsCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStreamsCountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setStreamsCountPtr, NIL)
-    }
-
-  /**
    * Controls how this AudioStreamRandomizer picks which AudioStream to play next.
    */
   public var playbackMode: PlaybackMode
@@ -84,6 +70,20 @@ public open class AudioStreamRandomizer : AudioStream() {
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, MethodBindings.setRandomVolumeOffsetDbPtr, NIL)
+    }
+
+  /**
+   * The number of streams in the stream pool.
+   */
+  public var streamsCount: Int
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getStreamsCountPtr, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, MethodBindings.setStreamsCountPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {

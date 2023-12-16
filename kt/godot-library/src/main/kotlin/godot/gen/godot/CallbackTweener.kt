@@ -22,6 +22,8 @@ import kotlin.Suppress
  *
  * [godot.CallbackTweener] is used to call a method in a tweening sequence. See [godot.Tween.tweenCallback] for more usage information.
  *
+ * The tweener will finish automatically if the callback's target object is freed.
+ *
  * **Note:** [godot.Tween.tweenCallback] is the only correct way to create [godot.CallbackTweener]. Any [godot.CallbackTweener] created manually will not function correctly.
  */
 @GodotBaseType

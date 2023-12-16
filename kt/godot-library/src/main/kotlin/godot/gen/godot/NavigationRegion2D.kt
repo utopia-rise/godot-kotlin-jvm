@@ -16,6 +16,8 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType._RID
 import godot.core.memory.TransferContext
+import godot.signals.Signal0
+import godot.signals.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -24,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * A traversable 2D region that [godot.NavigationAgent2D]s can use for pathfinding.
@@ -47,6 +50,16 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class NavigationRegion2D : Node2D() {
+  /**
+   * Emitted when the used navigation polygon is replaced or changes to the internals of the current navigation polygon are committed.
+   */
+  public val navigationPolygonChanged: Signal0 by signal()
+
+  /**
+   * Emitted when a navigation polygon bake operation is completed.
+   */
+  public val bakeFinished: Signal0 by signal()
+
   /**
    * The [godot.NavigationPolygon] resource to use.
    */
@@ -104,7 +117,7 @@ public open class NavigationRegion2D : Node2D() {
     }
 
   /**
-   * When pathfinding enters this region's navigation mesh from another regions navigation mesh the `enter_cost` value is added to the path distance for determining the shortest path.
+   * When pathfinding enters this region's navigation mesh from another regions navigation mesh the [enterCost] value is added to the path distance for determining the shortest path.
    */
   public var enterCost: Float
     get() {
@@ -118,7 +131,7 @@ public open class NavigationRegion2D : Node2D() {
     }
 
   /**
-   * When pathfinding moves inside this region's navigation mesh the traveled distances are multiplied with `travel_cost` for determining the shortest path.
+   * When pathfinding moves inside this region's navigation mesh the traveled distances are multiplied with [travelCost] for determining the shortest path.
    */
   public var travelCost: Float
     get() {
@@ -167,6 +180,23 @@ public open class NavigationRegion2D : Node2D() {
   }
 
   /**
+   * Sets the [RID] of the navigation map this region should use. By default the region will automatically join the [godot.World2D] default navigation map so this function is only required to override the default map.
+   */
+  public fun setNavigationMap(navigationMap: RID): Unit {
+    TransferContext.writeArguments(_RID to navigationMap)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationMapPtr, NIL)
+  }
+
+  /**
+   * Returns the current navigation map [RID] used by this region.
+   */
+  public fun getNavigationMap(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  /**
    * Based on [value], enables or disables the specified layer in the [navigationLayers] bitmask, given a [layerNumber] between 1 and 32.
    */
   public fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean): Unit {
@@ -209,6 +239,15 @@ public open class NavigationRegion2D : Node2D() {
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
+  /**
+   * Bakes the [godot.NavigationPolygon]. If [onThread] is set to `true` (default), the baking is done on a separate thread.
+   */
+  @JvmOverloads
+  public fun bakeNavigationPolygon(onThread: Boolean = true): Unit {
+    TransferContext.writeArguments(BOOL to onThread)
+    TransferContext.callMethod(rawPtr, MethodBindings.bakeNavigationPolygonPtr, NIL)
+  }
+
   public companion object
 
   internal object MethodBindings {
@@ -223,6 +262,12 @@ public open class NavigationRegion2D : Node2D() {
 
     public val isEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationRegion2D", "is_enabled")
+
+    public val setNavigationMapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "set_navigation_map")
+
+    public val getNavigationMapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "get_navigation_map")
 
     public val setUseEdgeConnectionsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationRegion2D", "set_use_edge_connections")
@@ -274,5 +319,8 @@ public open class NavigationRegion2D : Node2D() {
 
     public val getTravelCostPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationRegion2D", "get_travel_cost")
+
+    public val bakeNavigationPolygonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "bake_navigation_polygon")
   }
 }

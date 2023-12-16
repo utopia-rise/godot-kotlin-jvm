@@ -21,7 +21,7 @@ import kotlin.Suppress
  * Omnidirectional light, such as a light bulb or a candle.
  *
  * Tutorials:
- * [$DOCS_URL/tutorials/3d/lights_and_shadows.html]($DOCS_URL/tutorials/3d/lights_and_shadows.html)
+ * [$DOCS_URL/tutorials/3d/global_illumination/faking_global_illumination.html]($DOCS_URL/tutorials/3d/global_illumination/faking_global_illumination.html)
  *
  * An Omnidirectional light is a type of [godot.Light3D] that emits light in all directions. The light is attenuated by distance and this attenuation can be configured by changing its energy, radius, and attenuation parameters.
  *

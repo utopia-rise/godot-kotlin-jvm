@@ -24,13 +24,13 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Real-time heightmap-shaped 3D particle attractor affecting [godot.GPUParticles3D] nodes.
+ * A real-time heightmap-shaped 3D particle collision shape affecting [godot.GPUParticles3D] nodes.
  *
- * Real-time heightmap-shaped 3D particle attractor affecting [godot.GPUParticles3D] nodes.
+ * A real-time heightmap-shaped 3D particle collision shape affecting [godot.GPUParticles3D] nodes.
  *
  * Heightmap shapes allow for efficiently representing collisions for convex and concave objects with a single "floor" (such as terrain). This is less flexible than [godot.GPUParticlesCollisionSDF3D], but it doesn't require a baking step.
  *
- * [godot.GPUParticlesCollisionHeightField3D] can also be regenerated in real-time when it is moved, when the camera moves, or even continuously. This makes [godot.GPUParticlesCollisionHeightField3D] a good choice for weather effects such as rain and snow and games with highly dynamic geometry. However, since heightmaps cannot represent overhangs, [godot.GPUParticlesCollisionHeightField3D] is not suited for indoor particle collision.
+ * [godot.GPUParticlesCollisionHeightField3D] can also be regenerated in real-time when it is moved, when the camera moves, or even continuously. This makes [godot.GPUParticlesCollisionHeightField3D] a good choice for weather effects such as rain and snow and games with highly dynamic geometry. However, this class is limited since heightmaps cannot represent overhangs (e.g. indoors or caves).
  *
  * **Note:** [godot.ParticleProcessMaterial.collisionMode] must be `true` on the [godot.GPUParticles3D]'s process material for collision to work.
  *

@@ -31,6 +31,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -658,6 +659,100 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
   }
 
+  public sealed interface UnixPermissionFlags {
+    public val flag: Long
+
+    public infix fun or(other: UnixPermissionFlags): UnixPermissionFlags =
+        UnixPermissionFlagsValue(flag.or(other.flag))
+
+    public infix fun or(other: Long): UnixPermissionFlags = UnixPermissionFlagsValue(flag.or(other))
+
+    public infix fun xor(other: UnixPermissionFlags): UnixPermissionFlags =
+        UnixPermissionFlagsValue(flag.xor(other.flag))
+
+    public infix fun xor(other: Long): UnixPermissionFlags =
+        UnixPermissionFlagsValue(flag.xor(other))
+
+    public infix fun and(other: UnixPermissionFlags): UnixPermissionFlags =
+        UnixPermissionFlagsValue(flag.and(other.flag))
+
+    public infix fun and(other: Long): UnixPermissionFlags =
+        UnixPermissionFlagsValue(flag.and(other))
+
+    public operator fun plus(other: UnixPermissionFlags): UnixPermissionFlags =
+        UnixPermissionFlagsValue(flag.plus(other.flag))
+
+    public operator fun plus(other: Long): UnixPermissionFlags =
+        UnixPermissionFlagsValue(flag.plus(other))
+
+    public operator fun minus(other: UnixPermissionFlags): UnixPermissionFlags =
+        UnixPermissionFlagsValue(flag.minus(other.flag))
+
+    public operator fun minus(other: Long): UnixPermissionFlags =
+        UnixPermissionFlagsValue(flag.minus(other))
+
+    public operator fun times(other: UnixPermissionFlags): UnixPermissionFlags =
+        UnixPermissionFlagsValue(flag.times(other.flag))
+
+    public operator fun times(other: Long): UnixPermissionFlags =
+        UnixPermissionFlagsValue(flag.times(other))
+
+    public operator fun div(other: UnixPermissionFlags): UnixPermissionFlags =
+        UnixPermissionFlagsValue(flag.div(other.flag))
+
+    public operator fun div(other: Long): UnixPermissionFlags =
+        UnixPermissionFlagsValue(flag.div(other))
+
+    public operator fun rem(other: UnixPermissionFlags): UnixPermissionFlags =
+        UnixPermissionFlagsValue(flag.rem(other.flag))
+
+    public operator fun rem(other: Long): UnixPermissionFlags =
+        UnixPermissionFlagsValue(flag.rem(other))
+
+    public fun unaryPlus(): UnixPermissionFlags = UnixPermissionFlagsValue(flag.unaryPlus())
+
+    public fun unaryMinus(): UnixPermissionFlags = UnixPermissionFlagsValue(flag.unaryMinus())
+
+    public fun inv(): UnixPermissionFlags = UnixPermissionFlagsValue(flag.inv())
+
+    public infix fun shl(bits: Int): UnixPermissionFlags = UnixPermissionFlagsValue(flag shl bits)
+
+    public infix fun shr(bits: Int): UnixPermissionFlags = UnixPermissionFlagsValue(flag shr bits)
+
+    public infix fun ushr(bits: Int): UnixPermissionFlags = UnixPermissionFlagsValue(flag ushr bits)
+
+    public companion object {
+      public val UNIX_READ_OWNER: UnixPermissionFlags = UnixPermissionFlagsValue(256)
+
+      public val UNIX_WRITE_OWNER: UnixPermissionFlags = UnixPermissionFlagsValue(128)
+
+      public val UNIX_EXECUTE_OWNER: UnixPermissionFlags = UnixPermissionFlagsValue(64)
+
+      public val UNIX_READ_GROUP: UnixPermissionFlags = UnixPermissionFlagsValue(32)
+
+      public val UNIX_WRITE_GROUP: UnixPermissionFlags = UnixPermissionFlagsValue(16)
+
+      public val UNIX_EXECUTE_GROUP: UnixPermissionFlags = UnixPermissionFlagsValue(8)
+
+      public val UNIX_READ_OTHER: UnixPermissionFlags = UnixPermissionFlagsValue(4)
+
+      public val UNIX_WRITE_OTHER: UnixPermissionFlags = UnixPermissionFlagsValue(2)
+
+      public val UNIX_EXECUTE_OTHER: UnixPermissionFlags = UnixPermissionFlagsValue(1)
+
+      public val UNIX_SET_USER_ID: UnixPermissionFlags = UnixPermissionFlagsValue(2048)
+
+      public val UNIX_SET_GROUP_ID: UnixPermissionFlags = UnixPermissionFlagsValue(1024)
+
+      public val UNIX_RESTRICTED_DELETE: UnixPermissionFlags = UnixPermissionFlagsValue(512)
+    }
+  }
+
+  @JvmInline
+  internal value class UnixPermissionFlagsValue internal constructor(
+    public override val flag: Long,
+  ) : UnixPermissionFlags
+
   public companion object {
     /**
      * Creates a new [godot.FileAccess] object and opens the file for writing or reading, depending on the flags.
@@ -731,6 +826,8 @@ public open class FileAccess internal constructor() : RefCounted() {
 
     /**
      * Returns the whole [path] file contents as a [godot.PackedByteArray] without any decoding.
+     *
+     * Returns an empty [godot.PackedByteArray] if an error occurred while opening the file. You can use [getOpenError] to check the error that occurred.
      */
     public fun getFileAsBytes(path: String): PackedByteArray {
       TransferContext.writeArguments(STRING to path)
@@ -740,6 +837,8 @@ public open class FileAccess internal constructor() : RefCounted() {
 
     /**
      * Returns the whole [path] file contents as a [godot.String]. Text is interpreted as being UTF-8 encoded.
+     *
+     * Returns an empty [godot.String] if an error occurred while opening the file. You can use [getOpenError] to check the error that occurred.
      */
     public fun getFileAsString(path: String): String {
       TransferContext.writeArguments(STRING to path)
@@ -779,12 +878,78 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Returns the last time the [file] was modified in Unix timestamp format or returns a [godot.String] "ERROR IN [file]". This Unix timestamp can be converted to another format using the [godot.Time] singleton.
+     * Returns the last time the [file] was modified in Unix timestamp format, or `0` on error. This Unix timestamp can be converted to another format using the [godot.Time] singleton.
      */
     public fun getModifiedTime(`file`: String): Long {
       TransferContext.writeArguments(STRING to file)
       TransferContext.callMethod(0, MethodBindings.getModifiedTimePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
+    }
+
+    /**
+     * Returns file UNIX permissions.
+     *
+     * **Note:** This method is implemented on iOS, Linux/BSD, and macOS.
+     */
+    public fun getUnixPermissions(`file`: String): UnixPermissionFlags {
+      TransferContext.writeArguments(STRING to file)
+      TransferContext.callMethod(0, MethodBindings.getUnixPermissionsPtr, LONG)
+      return UnixPermissionFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+    }
+
+    /**
+     * Sets file UNIX permissions.
+     *
+     * **Note:** This method is implemented on iOS, Linux/BSD, and macOS.
+     */
+    public fun setUnixPermissions(`file`: String, permissions: UnixPermissionFlags): GodotError {
+      TransferContext.writeArguments(STRING to file, LONG to permissions.flag)
+      TransferContext.callMethod(0, MethodBindings.setUnixPermissionsPtr, LONG)
+      return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+
+    /**
+     * Returns `true`, if file `hidden` attribute is set.
+     *
+     * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
+     */
+    public fun getHiddenAttribute(`file`: String): Boolean {
+      TransferContext.writeArguments(STRING to file)
+      TransferContext.callMethod(0, MethodBindings.getHiddenAttributePtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+
+    /**
+     * Sets file **hidden** attribute.
+     *
+     * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
+     */
+    public fun setHiddenAttribute(`file`: String, hidden: Boolean): GodotError {
+      TransferContext.writeArguments(STRING to file, BOOL to hidden)
+      TransferContext.callMethod(0, MethodBindings.setHiddenAttributePtr, LONG)
+      return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+
+    /**
+     * Sets file **read only** attribute.
+     *
+     * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
+     */
+    public fun setReadOnlyAttribute(`file`: String, ro: Boolean): GodotError {
+      TransferContext.writeArguments(STRING to file, BOOL to ro)
+      TransferContext.callMethod(0, MethodBindings.setReadOnlyAttributePtr, LONG)
+      return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+
+    /**
+     * Returns `true`, if file `read only` attribute is set.
+     *
+     * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
+     */
+    public fun getReadOnlyAttribute(`file`: String): Boolean {
+      TransferContext.writeArguments(STRING to file)
+      TransferContext.callMethod(0, MethodBindings.getReadOnlyAttributePtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
   }
 
@@ -900,5 +1065,44 @@ public open class FileAccess internal constructor() : RefCounted() {
 
     public val getModifiedTimePtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileAccess", "get_modified_time")
+
+    public val getUnixPermissionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "get_unix_permissions")
+
+    public val setUnixPermissionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "set_unix_permissions")
+
+    public val getHiddenAttributePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "get_hidden_attribute")
+
+    public val setHiddenAttributePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "set_hidden_attribute")
+
+    public val setReadOnlyAttributePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "set_read_only_attribute")
+
+    public val getReadOnlyAttributePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "get_read_only_attribute")
   }
 }
+
+public infix fun Long.or(other: godot.FileAccess.UnixPermissionFlags): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.FileAccess.UnixPermissionFlags): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.FileAccess.UnixPermissionFlags): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.FileAccess.UnixPermissionFlags): Long =
+    this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.FileAccess.UnixPermissionFlags): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.FileAccess.UnixPermissionFlags): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.FileAccess.UnixPermissionFlags): Long =
+    this.div(other.flag)
+
+public operator fun Long.rem(other: godot.FileAccess.UnixPermissionFlags): Long =
+    this.rem(other.flag)

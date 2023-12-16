@@ -21,6 +21,8 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
+import godot.signals.Signal0
+import godot.signals.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -47,6 +49,11 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public object ProjectSettings : Object() {
+  /**
+   * Emitted when any setting is changed, up to once per process frame.
+   */
+  public val settingsChanged: Signal0 by signal()
+
   public override fun new(scriptIndex: Int): Boolean {
     getSingleton(ENGINECLASS_PROJECTSETTINGS)
     return false
@@ -265,9 +272,9 @@ public object ProjectSettings : Object() {
    *
    *     {"name", "category/propertyName"},
    *
-   *     {"type", Variant.Type.Int},
+   *     {"type", (int)Variant.Type.Int},
    *
-   *     {"hint", PropertyHint.Enum},
+   *     {"hint", (int)PropertyHint.Enum},
    *
    *     {"hint_string", "one,two,three"},
    *

@@ -7,11 +7,16 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.PackedStringArray
 import godot.core.TypeManager
 import godot.core.VariantArray
+import godot.core.VariantType.LONG
+import godot.core.memory.TransferContext
 import godot.util.VoidPtr
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
@@ -103,6 +108,24 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
   }
 
   /**
+   * Override this method to define the default value for the specified input port. Prefer use this over [godot.VisualShaderNode.setInputPortDefaultValue].
+   *
+   * Defining this method is **required**. If not overridden, the node has no default values for their input ports.
+   */
+  public open fun _getInputPortDefaultValue(port: Int): Any? {
+    throw NotImplementedError("_get_input_port_default_value is not implemented for VisualShaderNodeCustom")
+  }
+
+  /**
+   * Override this method to define the input port which should be connected by default when this node is created as a result of dragging a connection from an existing node to the empty space on the graph.
+   *
+   * Defining this method is **optional**. If not overridden, the connection will be created to the first valid port.
+   */
+  public open fun _getDefaultInputPort(type: VisualShaderNode.PortType): Int {
+    throw NotImplementedError("_get_default_input_port is not implemented for VisualShaderNodeCustom")
+  }
+
+  /**
    * Override this method to define the number of output ports of the associated custom node.
    *
    * Defining this method is **required**. If not overridden, the node has no output ports.
@@ -127,6 +150,42 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    */
   public open fun _getOutputPortName(port: Int): String {
     throw NotImplementedError("_get_output_port_name is not implemented for VisualShaderNodeCustom")
+  }
+
+  /**
+   * Override this method to define the number of the properties.
+   *
+   * Defining this method is **optional**.
+   */
+  public open fun _getPropertyCount(): Int {
+    throw NotImplementedError("_get_property_count is not implemented for VisualShaderNodeCustom")
+  }
+
+  /**
+   * Override this method to define the names of the property of the associated custom node.
+   *
+   * Defining this method is **optional**.
+   */
+  public open fun _getPropertyName(index: Int): String {
+    throw NotImplementedError("_get_property_name is not implemented for VisualShaderNodeCustom")
+  }
+
+  /**
+   * Override this method to define the default index of the property of the associated custom node.
+   *
+   * Defining this method is **optional**.
+   */
+  public open fun _getPropertyDefaultIndex(index: Int): Int {
+    throw NotImplementedError("_get_property_default_index is not implemented for VisualShaderNodeCustom")
+  }
+
+  /**
+   * Override this method to define the options inside the drop-down list property of the associated custom node.
+   *
+   * Defining this method is **optional**.
+   */
+  public open fun _getPropertyOptions(index: Int): PackedStringArray {
+    throw NotImplementedError("_get_property_options is not implemented for VisualShaderNodeCustom")
   }
 
   /**
@@ -193,6 +252,15 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
     throw NotImplementedError("_is_available is not implemented for VisualShaderNodeCustom")
   }
 
+  /**
+   * Returns the selected index of the drop-down list option within a graph. You may use this function to define the specific behavior in the [_getCode] or [_getGlobalCode].
+   */
+  public fun getOptionIndex(option: Int): Int {
+    TransferContext.writeArguments(LONG to option.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.getOptionIndexPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
   public companion object
 
   internal object MethodBindings {
@@ -217,6 +285,12 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
     public val _getInputPortNamePtr: VoidPtr =
         TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_input_port_name")
 
+    public val _getInputPortDefaultValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_input_port_default_value")
+
+    public val _getDefaultInputPortPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_default_input_port")
+
     public val _getOutputPortCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_output_port_count")
 
@@ -225,6 +299,18 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
 
     public val _getOutputPortNamePtr: VoidPtr =
         TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_output_port_name")
+
+    public val _getPropertyCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_property_count")
+
+    public val _getPropertyNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_property_name")
+
+    public val _getPropertyDefaultIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_property_default_index")
+
+    public val _getPropertyOptionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_property_options")
 
     public val _getCodePtr: VoidPtr =
         TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_code")
@@ -240,5 +326,8 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
 
     public val _isAvailablePtr: VoidPtr =
         TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_is_available")
+
+    public val getOptionIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "get_option_index")
   }
 }

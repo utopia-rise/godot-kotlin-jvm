@@ -49,6 +49,9 @@ import kotlin.jvm.JvmName
 /**
  * Holds font source data and prerendered glyph cache, imported from a dynamic or a bitmap font.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/io/runtime_file_loading_and_saving.html]($DOCS_URL/tutorials/io/runtime_file_loading_and_saving.html)
+ *
  * [godot.FontFile] contains a set of glyphs to represent Unicode characters imported from a font file, as well as a cache of rasterized glyphs, and a set of fallback [godot.Font]s to use.
  *
  * Use [godot.FontVariation] to access specific OpenType variation of the font, create simulated bold / slanted version, and draw lines of text.
@@ -328,6 +331,20 @@ public open class FontFile : Font() {
     }
 
   /**
+   * Scaling mode, used only for the bitmap fonts with [fixedSize] greater than zero.
+   */
+  public var fixedSizeScaleMode: TextServer.FixedSizeScaleMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getFixedSizeScaleModePtr, LONG)
+      return TextServer.FixedSizeScaleMode.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFixedSizeScaleModePtr, NIL)
+    }
+
+  /**
    * Font OpenType feature set override.
    */
   public var opentypeFeatureOverrides: Dictionary<Any?, Any?>
@@ -339,19 +356,6 @@ public open class FontFile : Font() {
     set(`value`) {
       TransferContext.writeArguments(DICTIONARY to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setOpentypeFeatureOverridesPtr, NIL)
-    }
-
-  /**
-   * Array of fallback [godot.Font]s.
-   */
-  public var fallbacks: VariantArray<Font>
-    @JvmName("getFallbacks_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
-    get() = super.getFallbacks()
-    @JvmName("setFallbacks_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
-    set(`value`) {
-      super.setFallbacks(value)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -407,7 +411,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Returns list of the font sizes in the cache. Each size is `Vector2i` with font size and outline size.
+   * Returns list of the font sizes in the cache. Each size is [godot.Vector2i] with font size and outline size.
    */
   public fun getSizeCacheList(cacheIndex: Int): VariantArray<Vector2i> {
     TransferContext.writeArguments(LONG to cacheIndex.toLong())
@@ -484,6 +488,27 @@ public open class FontFile : Font() {
   }
 
   /**
+   * Sets the spacing for [spacing] (see [enum TextServer.SpacingType]) to [value] in pixels (not relative to the font size).
+   */
+  public fun setExtraSpacing(
+    cacheIndex: Int,
+    spacing: TextServer.SpacingType,
+    `value`: Long,
+  ): Unit {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to spacing.id, LONG to value)
+    TransferContext.callMethod(rawPtr, MethodBindings.setExtraSpacingPtr, NIL)
+  }
+
+  /**
+   * Returns spacing for [spacing] (see [enum TextServer.SpacingType]) in pixels (not relative to the font size).
+   */
+  public fun getExtraSpacing(cacheIndex: Int, spacing: TextServer.SpacingType): Long {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to spacing.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getExtraSpacingPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  /**
    * Sets an active face index in the TrueType / OpenType collection.
    */
   public fun setFaceIndex(cacheIndex: Int, faceIndex: Long): Unit {
@@ -492,7 +517,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Recturns an active face index in the TrueType / OpenType collection.
+   * Returns an active face index in the TrueType / OpenType collection.
    */
   public fun getFaceIndex(cacheIndex: Int): Long {
     TransferContext.writeArguments(LONG to cacheIndex.toLong())
@@ -1087,6 +1112,12 @@ public open class FontFile : Font() {
 
     public val getFixedSizePtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "get_fixed_size")
 
+    public val setFixedSizeScaleModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "set_fixed_size_scale_mode")
+
+    public val getFixedSizeScaleModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "get_fixed_size_scale_mode")
+
     public val setAllowSystemFallbackPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FontFile", "set_allow_system_fallback")
 
@@ -1144,6 +1175,12 @@ public open class FontFile : Font() {
     public val setTransformPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "set_transform")
 
     public val getTransformPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "get_transform")
+
+    public val setExtraSpacingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "set_extra_spacing")
+
+    public val getExtraSpacingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "get_extra_spacing")
 
     public val setFaceIndexPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "set_face_index")
 

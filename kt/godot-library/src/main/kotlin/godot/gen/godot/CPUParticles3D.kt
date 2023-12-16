@@ -24,6 +24,8 @@ import godot.core.VariantType.PACKED_VECTOR3_ARRAY
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.signals.Signal0
+import godot.signals.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -34,7 +36,10 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * CPU-based 3D particle emitter.
+ * A CPU-based 3D particle emitter.
+ *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/3d/particles/index.html]($DOCS_URL/tutorials/3d/particles/index.html)
  *
  * CPU-based 3D particle node used to create a variety of particle systems and effects.
  *
@@ -43,7 +48,12 @@ import kotlin.Unit
 @GodotBaseType
 public open class CPUParticles3D : GeometryInstance3D() {
   /**
-   * If `true`, particles are being emitted.
+   * Emitted when all active particles have finished processing. When [oneShot] is disabled, particles will process continuously, so this is never emitted.
+   */
+  public val finished: Signal0 by signal()
+
+  /**
+   * If `true`, particles are being emitted. [emitting] can be used to start and stop particles from emitting. However, if [oneShot] is `true` setting [emitting] to `true` will not restart the emission cycle until after all active particles finish processing. You can use the [finished] signal to be notified once all active particles finish processing.
    */
   public var emitting: Boolean
     get() {
@@ -1230,7 +1240,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
      */
     DRAW_ORDER_INDEX(0),
     /**
-     * Particles are drawn in order of remaining lifetime.
+     * Particles are drawn in order of remaining lifetime. In other words, the particle with the highest lifetime is drawn at the front.
      */
     DRAW_ORDER_LIFETIME(1),
     /**

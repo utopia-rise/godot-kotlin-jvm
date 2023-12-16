@@ -47,7 +47,7 @@ import kotlin.Unit
  *
  * [godot.GraphEdit] provides tools for creation, manipulation, and display of various graphs. Its main purpose in the engine is to power the visual programming systems, such as visual shaders, but it is also available for use in user projects.
  *
- * [godot.GraphEdit] by itself is only an empty container, representing an infinite grid where [godot.GraphNode]s can be placed. Each [godot.GraphNode] represents a node in the graph, a single unit of data in the connected scheme. [godot.GraphEdit], in turn, helps to control various interactions with nodes and between nodes. When the user attempts to connect, disconnect, or close a [godot.GraphNode], a signal is emitted in the [godot.GraphEdit], but no action is taken by default. It is the responsibility of the programmer utilizing this control to implement the necessary logic to determine how each request should be handled.
+ * [godot.GraphEdit] by itself is only an empty container, representing an infinite grid where [godot.GraphNode]s can be placed. Each [godot.GraphNode] represents a node in the graph, a single unit of data in the connected scheme. [godot.GraphEdit], in turn, helps to control various interactions with nodes and between nodes. When the user attempts to connect, disconnect, or delete a [godot.GraphNode], a signal is emitted in the [godot.GraphEdit], but no action is taken by default. It is the responsibility of the programmer utilizing this control to implement the necessary logic to determine how each request should be handled.
  *
  * **Performance:** It is greatly advised to enable low-processor usage mode (see [godot.OS.lowProcessorUsageMode]) when using GraphEdits.
  */
@@ -66,36 +66,6 @@ public open class GraphEdit : Control() {
       "fromPort", "toNode", "toPort")
 
   /**
-   * Emitted when a popup is requested. Happens on right-clicking in the GraphEdit. [position] is the position of the mouse pointer when the signal is sent.
-   */
-  public val popupRequest: Signal1<Vector2> by signal("position")
-
-  /**
-   * Emitted when a GraphNode is attempted to be duplicated in the GraphEdit.
-   */
-  public val duplicateNodesRequest: Signal0 by signal()
-
-  /**
-   * Emitted when the user presses [kbd]Ctrl + C[/kbd].
-   */
-  public val copyNodesRequest: Signal0 by signal()
-
-  /**
-   * Emitted when the user presses [kbd]Ctrl + V[/kbd].
-   */
-  public val pasteNodesRequest: Signal0 by signal()
-
-  /**
-   * Emitted when a GraphNode is selected.
-   */
-  public val nodeSelected: Signal1<Node> by signal("node")
-
-  /**
-   *
-   */
-  public val nodeDeselected: Signal1<Node> by signal("node")
-
-  /**
    * Emitted when user drags a connection from an output port into the empty space of the graph.
    */
   public val connectionToEmpty: Signal3<StringName, Long, Vector2> by signal("fromNode", "fromPort",
@@ -108,9 +78,50 @@ public open class GraphEdit : Control() {
       "releasePosition")
 
   /**
-   * Emitted when a GraphNode is attempted to be removed from the GraphEdit. Provides a list of node names to be removed (all selected nodes, excluding nodes without closing button).
+   * Emitted at the beginning of a connection drag.
+   */
+  public val connectionDragStarted: Signal3<StringName, Long, Boolean> by signal("fromNode",
+      "fromPort", "isOutput")
+
+  /**
+   * Emitted at the end of a connection drag.
+   */
+  public val connectionDragEnded: Signal0 by signal()
+
+  /**
+   * Emitted when the user presses [kbd]Ctrl + C[/kbd].
+   */
+  public val copyNodesRequest: Signal0 by signal()
+
+  /**
+   * Emitted when the user presses [kbd]Ctrl + V[/kbd].
+   */
+  public val pasteNodesRequest: Signal0 by signal()
+
+  /**
+   * Emitted when a GraphNode is attempted to be duplicated in the GraphEdit.
+   */
+  public val duplicateNodesRequest: Signal0 by signal()
+
+  /**
+   * Emitted when attempting to remove a GraphNode from the GraphEdit. Provides a list of node names to be removed (all selected nodes, excluding nodes without closing button).
    */
   public val deleteNodesRequest: Signal1<VariantArray<StringName>> by signal("nodes")
+
+  /**
+   * Emitted when a GraphNode is selected.
+   */
+  public val nodeSelected: Signal1<Node> by signal("node")
+
+  /**
+   *
+   */
+  public val nodeDeselected: Signal1<Node> by signal("node")
+
+  /**
+   * Emitted when a popup is requested. Happens on right-clicking in the GraphEdit. [position] is the position of the mouse pointer when the signal is sent.
+   */
+  public val popupRequest: Signal1<Vector2> by signal("position")
 
   /**
    * Emitted at the beginning of a GraphNode movement.
@@ -128,71 +139,60 @@ public open class GraphEdit : Control() {
   public val scrollOffsetChanged: Signal1<Vector2> by signal("offset")
 
   /**
-   * Emitted at the beginning of a connection drag.
-   */
-  public val connectionDragStarted: Signal3<StringName, Long, Boolean> by signal("fromNode",
-      "fromPort", "isOutput")
-
-  /**
-   * Emitted at the end of a connection drag.
-   */
-  public val connectionDragEnded: Signal0 by signal()
-
-  /**
-   * If `true`, enables disconnection of existing connections in the GraphEdit by dragging the right end.
-   */
-  public var rightDisconnects: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isRightDisconnectsEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRightDisconnectsPtr, NIL)
-    }
-
-  /**
    * The scroll offset.
    */
   @CoreTypeLocalCopy
   public var scrollOffset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getScrollOfsPtr, VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getScrollOffsetPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setScrollOfsPtr, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setScrollOffsetPtr, NIL)
     }
 
   /**
-   * The snapping distance in pixels.
+   * If `true`, the grid is visible.
    */
-  public var snapDistance: Int
+  public var showGrid: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSnapPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      TransferContext.callMethod(rawPtr, MethodBindings.isShowingGridPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSnapPtr, NIL)
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShowGridPtr, NIL)
     }
 
   /**
    * If `true`, enables snapping.
    */
-  public var useSnap: Boolean
+  public var snappingEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingSnapPtr, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isSnappingEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseSnapPtr, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSnappingEnabledPtr, NIL)
+    }
+
+  /**
+   * The snapping distance in pixels, also determines the grid line distance.
+   */
+  public var snappingDistance: Int
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getSnappingDistancePtr, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, MethodBindings.setSnappingDistancePtr, NIL)
     }
 
   /**
@@ -207,6 +207,20 @@ public open class GraphEdit : Control() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, MethodBindings.setPanningSchemePtr, NIL)
+    }
+
+  /**
+   * If `true`, enables disconnection of existing connections in the GraphEdit by dragging the right end.
+   */
+  public var rightDisconnects: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isRightDisconnectsEnabledPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRightDisconnectsPtr, NIL)
     }
 
   /**
@@ -308,20 +322,6 @@ public open class GraphEdit : Control() {
     }
 
   /**
-   * If `true`, makes a label with the current zoom level visible. The zoom value is displayed in percents.
-   */
-  public var showZoomLabel: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isShowingZoomLabelPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShowZoomLabelPtr, NIL)
-    }
-
-  /**
    * If `true`, the minimap is visible.
    */
   public var minimapEnabled: Boolean
@@ -365,17 +365,87 @@ public open class GraphEdit : Control() {
     }
 
   /**
-   * If `true`, the Arrange Nodes button is hidden.
+   * If `true`, the menu toolbar is visible.
    */
-  public var arrangeNodesButtonHidden: Boolean
+  public var showMenu: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isArrangeNodesButtonHiddenPtr, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isShowingMenuPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setArrangeNodesButtonHiddenPtr, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShowMenuPtr, NIL)
+    }
+
+  /**
+   * If `true`, the label with the current zoom level is visible. The zoom level is displayed in percents.
+   */
+  public var showZoomLabel: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isShowingZoomLabelPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShowZoomLabelPtr, NIL)
+    }
+
+  /**
+   * If `true`, buttons that allow to change and reset the zoom level are visible.
+   */
+  public var showZoomButtons: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isShowingZoomButtonsPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShowZoomButtonsPtr, NIL)
+    }
+
+  /**
+   * If `true`, buttons that allow to configure grid and snapping options are visible.
+   */
+  public var showGridButtons: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isShowingGridButtonsPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShowGridButtonsPtr, NIL)
+    }
+
+  /**
+   * If `true`, the button to toggle the minimap is visible.
+   */
+  public var showMinimapButton: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isShowingMinimapButtonPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShowMinimapButtonPtr, NIL)
+    }
+
+  /**
+   * If `true`, the button to automatically arrange graph nodes is visible.
+   */
+  public var showArrangeButton: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isShowingArrangeButtonPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShowArrangeButtonPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -434,14 +504,14 @@ public open class GraphEdit : Control() {
   /**
    * Returns whether the [mousePosition] is in the input hot zone.
    *
-   * By default, a hot zone is a [godot.core.Rect2] positioned such that its center is at [inNode].[godot.GraphNode.getConnectionInputPosition]([inPort]) (For output's case, call [godot.GraphNode.getConnectionOutputPosition] instead). The hot zone's width is twice the Theme Property `port_grab_distance_horizontal`, and its height is twice the `port_grab_distance_vertical`.
+   * By default, a hot zone is a [godot.core.Rect2] positioned such that its center is at [inNode].[godot.GraphNode.getInputPortPosition]([inPort]) (For output's case, call [godot.GraphNode.getOutputPortPosition] instead). The hot zone's width is twice the Theme Property `port_grab_distance_horizontal`, and its height is twice the `port_grab_distance_vertical`.
    *
    * Below is a sample code to help get started:
    *
    * ```
    * 				func _is_in_input_hotzone(in_node, in_port, mouse_position):
    * 				    var port_size: Vector2 = Vector2(get_theme_constant("port_grab_distance_horizontal"), get_theme_constant("port_grab_distance_vertical"))
-   * 				    var port_pos: Vector2 = in_node.get_position() + in_node.get_connection_input_position(in_port) - port_size / 2
+   * 				    var port_pos: Vector2 = in_node.get_position() + in_node.get_input_port_position(in_port) - port_size / 2
    * 				    var rect = Rect2(port_pos, port_size)
    *
    * 				    return rect.has_point(mouse_position)
@@ -463,7 +533,7 @@ public open class GraphEdit : Control() {
    * ```
    * 				func _is_in_output_hotzone(in_node, in_port, mouse_position):
    * 				    var port_size: Vector2 = Vector2(get_theme_constant("port_grab_distance_horizontal"), get_theme_constant("port_grab_distance_vertical"))
-   * 				    var port_pos: Vector2 = in_node.get_position() + in_node.get_connection_output_position(in_port) - port_size / 2
+   * 				    var port_pos: Vector2 = in_node.get_position() + in_node.get_output_port_position(in_port) - port_size / 2
    * 				    var rect = Rect2(port_pos, port_size)
    *
    * 				    return rect.has_point(mouse_position)
@@ -567,7 +637,7 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Sets the coloration of the connection between [fromNode]'s [fromPort] and [toNode]'s [toPort] with the color provided in the [theme_item activity] theme property.
+   * Sets the coloration of the connection between [fromNode]'s [fromPort] and [toNode]'s [toPort] with the color provided in the [theme_item activity] theme property. The color is linearly interpolated between the connection color and the activity color using [amount] as weight.
    */
   public fun setConnectionActivity(
     fromNode: StringName,
@@ -686,9 +756,9 @@ public open class GraphEdit : Control() {
    *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
-  public fun getZoomHbox(): HBoxContainer? {
+  public fun getMenuHbox(): HBoxContainer? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getZoomHboxPtr, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getMenuHboxPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as HBoxContainer?)
   }
 
@@ -766,11 +836,11 @@ public open class GraphEdit : Control() {
     public val forceConnectionDragEndPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphEdit", "force_connection_drag_end")
 
-    public val getScrollOfsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_scroll_ofs")
+    public val getScrollOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "get_scroll_offset")
 
-    public val setScrollOfsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_scroll_ofs")
+    public val setScrollOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_scroll_offset")
 
     public val addValidRightDisconnectTypePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphEdit", "add_valid_right_disconnect_type")
@@ -818,19 +888,22 @@ public open class GraphEdit : Control() {
 
     public val getZoomStepPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "get_zoom_step")
 
-    public val setShowZoomLabelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_show_zoom_label")
+    public val setShowGridPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "set_show_grid")
 
-    public val isShowingZoomLabelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_zoom_label")
+    public val isShowingGridPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_grid")
 
-    public val setSnapPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "set_snap")
+    public val setSnappingEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_snapping_enabled")
 
-    public val getSnapPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "get_snap")
+    public val isSnappingEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "is_snapping_enabled")
 
-    public val setUseSnapPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "set_use_snap")
+    public val setSnappingDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_snapping_distance")
 
-    public val isUsingSnapPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "is_using_snap")
+    public val getSnappingDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "get_snapping_distance")
 
     public val setConnectionLinesCurvaturePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphEdit", "set_connection_lines_curvature")
@@ -868,11 +941,40 @@ public open class GraphEdit : Control() {
     public val isMinimapEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphEdit", "is_minimap_enabled")
 
-    public val setArrangeNodesButtonHiddenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_arrange_nodes_button_hidden")
+    public val setShowMenuPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "set_show_menu")
 
-    public val isArrangeNodesButtonHiddenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_arrange_nodes_button_hidden")
+    public val isShowingMenuPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_menu")
+
+    public val setShowZoomLabelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_show_zoom_label")
+
+    public val isShowingZoomLabelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_zoom_label")
+
+    public val setShowGridButtonsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_show_grid_buttons")
+
+    public val isShowingGridButtonsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_grid_buttons")
+
+    public val setShowZoomButtonsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_show_zoom_buttons")
+
+    public val isShowingZoomButtonsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_zoom_buttons")
+
+    public val setShowMinimapButtonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_show_minimap_button")
+
+    public val isShowingMinimapButtonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_minimap_button")
+
+    public val setShowArrangeButtonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_show_arrange_button")
+
+    public val isShowingArrangeButtonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_arrange_button")
 
     public val setRightDisconnectsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphEdit", "set_right_disconnects")
@@ -880,7 +982,7 @@ public open class GraphEdit : Control() {
     public val isRightDisconnectsEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphEdit", "is_right_disconnects_enabled")
 
-    public val getZoomHboxPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "get_zoom_hbox")
+    public val getMenuHboxPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "get_menu_hbox")
 
     public val arrangeNodesPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "arrange_nodes")
 

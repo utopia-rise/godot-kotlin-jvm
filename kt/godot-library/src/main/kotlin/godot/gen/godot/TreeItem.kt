@@ -244,6 +244,24 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
+   * Sets the clipping behavior when the text exceeds the item's bounding rectangle in the given [column].
+   */
+  public fun setTextOverrunBehavior(column: Int, overrunBehavior: TextServer.OverrunBehavior):
+      Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to overrunBehavior.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
+  }
+
+  /**
+   * Returns the clipping behavior when the text exceeds the item's bounding rectangle in the given [column]. By default it is [godot.TextServer.OVERRUN_TRIM_ELLIPSIS].
+   */
+  public fun getTextOverrunBehavior(column: Int): TextServer.OverrunBehavior {
+    TransferContext.writeArguments(LONG to column.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
+    return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
    *
    */
   public fun setStructuredTextBidiOverride(column: Int, parser: TextServer.StructuredTextParser):
@@ -709,6 +727,18 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
+   * Sets the tooltip text for the button at index [buttonIndex] in the given [column].
+   */
+  public fun setButtonTooltipText(
+    column: Int,
+    buttonIndex: Int,
+    tooltip: String,
+  ): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong(), STRING to tooltip)
+    TransferContext.callMethod(rawPtr, MethodBindings.setButtonTooltipTextPtr, NIL)
+  }
+
+  /**
    * Sets the given column's button [godot.Texture2D] at index [buttonIndex] to [button].
    */
   public fun setButton(
@@ -1078,6 +1108,12 @@ public open class TreeItem internal constructor() : Object() {
     public val getAutowrapModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "get_autowrap_mode")
 
+    public val setTextOverrunBehaviorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "set_text_overrun_behavior")
+
+    public val getTextOverrunBehaviorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_text_overrun_behavior")
+
     public val setStructuredTextBidiOverridePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "set_structured_text_bidi_override")
 
@@ -1225,6 +1261,9 @@ public open class TreeItem internal constructor() : Object() {
         TypeManager.getMethodBindPtr("TreeItem", "get_button_by_id")
 
     public val getButtonPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "get_button")
+
+    public val setButtonTooltipTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "set_button_tooltip_text")
 
     public val setButtonPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "set_button")
 

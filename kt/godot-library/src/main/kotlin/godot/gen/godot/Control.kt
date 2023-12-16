@@ -88,18 +88,18 @@ public open class Control : CanvasItem() {
   public val guiInput: Signal1<InputEvent> by signal("event")
 
   /**
-   * Emitted when the mouse enters the control's `Rect` area, provided its [mouseFilter] lets the event reach it.
+   * Emitted when the mouse cursor enters the control's (or any child control's) visible area, that is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if it's currently focused or not.
    *
-   * **Note:** [mouseEntered] will not be emitted if the mouse enters a child [godot.Control] node before entering the parent's `Rect` area, at least until the mouse is moved to reach the parent's `Rect` area.
+   * **Note:** [godot.CanvasItem.zIndex] doesn't affect, which Control receives the signal.
    */
   public val mouseEntered: Signal0 by signal()
 
   /**
-   * Emitted when the mouse leaves the control's `Rect` area, provided its [mouseFilter] lets the event reach it.
+   * Emitted when the mouse cursor leaves the control's (and all child control's) visible area, that is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if it's currently focused or not.
    *
-   * **Note:** [mouseExited] will be emitted if the mouse enters a child [godot.Control] node, even if the mouse cursor is still inside the parent's `Rect` area.
+   * **Note:** [godot.CanvasItem.zIndex] doesn't affect, which Control receives the signal.
    *
-   * If you want to check whether the mouse truly left the area, ignoring any top nodes, you can use code like this:
+   * **Note:** If you want to check whether the mouse truly left the area, ignoring any top nodes, you can use code like this:
    *
    * ```
    * 				func _on_mouse_exited():
@@ -713,7 +713,7 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * The name of a theme type variation used by this [godot.Control] to look up its own theme items. When empty, the class name of the node is used (e.g. `Button` for the [godot.Button] control), as well as the class names of all parent classes (in order of inheritance).
+   * The name of a theme type variation used by this [godot.Control] to look up its own theme items. When empty, the class name of the node is used (e.g. [code skip-lint]Button` for the [godot.Button] control), as well as the class names of all parent classes (in order of inheritance).
    *
    * When set, this property gives the highest priority to the type of the specified name. This type can in turn extend another type, forming a dependency chain. See [godot.Theme.setTypeVariation]. If the theme item cannot be found using this type or its base types, lookup falls back on the class names.
    *
@@ -1402,6 +1402,17 @@ public open class Control : CanvasItem() {
   public fun findNextValidFocus(): Control? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.findNextValidFocusPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Control?)
+  }
+
+  /**
+   * Finds the next [godot.Control] that can receive the focus on the specified [enum Side].
+   *
+   * **Note:** This is different from [getFocusNeighbor], which returns the path of a specified focus neighbor.
+   */
+  public fun findValidFocusNeighbor(side: Side): Control? {
+    TransferContext.writeArguments(LONG to side.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.findValidFocusNeighborPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Control?)
   }
 
@@ -2378,15 +2389,17 @@ public open class Control : CanvasItem() {
     id: Long,
   ) {
     /**
-     * The control will receive mouse button input events through [_guiInput] if clicked on. And the control will receive the [mouseEntered] and [mouseExited] signals. These events are automatically marked as handled, and they will not propagate further to other controls. This also results in blocking signals in other controls.
+     * The control will receive mouse movement input events and mouse button input events if clicked on through [_guiInput]. And the control will receive the [mouseEntered] and [mouseExited] signals. These events are automatically marked as handled, and they will not propagate further to other controls. This also results in blocking signals in other controls.
      */
     MOUSE_FILTER_STOP(0),
     /**
-     * The control will receive mouse button input events through [_guiInput] if clicked on. And the control will receive the [mouseEntered] and [mouseExited] signals. If this control does not handle the event, the parent control (if any) will be considered, and so on until there is no more parent control to potentially handle it. This also allows signals to fire in other controls. If no control handled it, the event will be passed to [godot.Node.UnhandledInput] for further processing.
+     * The control will receive mouse movement input events and mouse button input events if clicked on through [_guiInput]. And the control will receive the [mouseEntered] and [mouseExited] signals. If this control does not handle the event, the parent control (if any) will be considered, and so on until there is no more parent control to potentially handle it. This also allows signals to fire in other controls. If no control handled it, the event will be passed to [godot.Node.ShortcutInput] for further processing.
      */
     MOUSE_FILTER_PASS(1),
     /**
-     * The control will not receive mouse button input events through [_guiInput]. The control will also not receive the [mouseEntered] nor [mouseExited] signals. This will not block other controls from receiving these events or firing the signals. Ignored events will not be handled automatically.
+     * The control will not receive mouse movement input events and mouse button input events if clicked on through [_guiInput]. The control will also not receive the [mouseEntered] nor [mouseExited] signals. This will not block other controls from receiving these events or firing the signals. Ignored events will not be handled automatically.
+     *
+     * **Note:** If the control has received [mouseEntered] but not [mouseExited], changing the [mouseFilter] to [MOUSE_FILTER_IGNORE] will cause [mouseExited] to be emitted.
      */
     MOUSE_FILTER_IGNORE(2),
     ;
@@ -2520,14 +2533,40 @@ public open class Control : CanvasItem() {
     public final const val NOTIFICATION_RESIZED: Long = 40
 
     /**
-     * Sent when the mouse pointer enters the node.
+     * Sent when the mouse cursor enters the control's (or any child control's) visible area, that is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if it's currently focused or not.
+     *
+     * **Note:** [godot.CanvasItem.zIndex] doesn't affect which Control receives the notification.
+     *
+     * See also [NOTIFICATION_MOUSE_ENTER_SELF].
      */
     public final const val NOTIFICATION_MOUSE_ENTER: Long = 41
 
     /**
-     * Sent when the mouse pointer exits the node.
+     * Sent when the mouse cursor leaves the control's (and all child control's) visible area, that is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if it's currently focused or not.
+     *
+     * **Note:** [godot.CanvasItem.zIndex] doesn't affect which Control receives the notification.
+     *
+     * See also [NOTIFICATION_MOUSE_EXIT_SELF].
      */
     public final const val NOTIFICATION_MOUSE_EXIT: Long = 42
+
+    /**
+     * Sent when the mouse cursor enters the control's visible area, that is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if it's currently focused or not.
+     *
+     * **Note:** [godot.CanvasItem.zIndex] doesn't affect which Control receives the notification.
+     *
+     * See also [NOTIFICATION_MOUSE_ENTER].
+     */
+    public final const val NOTIFICATION_MOUSE_ENTER_SELF: Long = 60
+
+    /**
+     * Sent when the mouse cursor leaves the control's visible area, that is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if it's currently focused or not.
+     *
+     * **Note:** [godot.CanvasItem.zIndex] doesn't affect which Control receives the notification.
+     *
+     * See also [NOTIFICATION_MOUSE_EXIT].
+     */
+    public final const val NOTIFICATION_MOUSE_EXIT_SELF: Long = 61
 
     /**
      * Sent when the node grabs focus.
@@ -2555,12 +2594,16 @@ public open class Control : CanvasItem() {
     public final const val NOTIFICATION_THEME_CHANGED: Long = 45
 
     /**
-     * Sent when this node is inside a [godot.ScrollContainer] which has begun being scrolled.
+     * Sent when this node is inside a [godot.ScrollContainer] which has begun being scrolled when dragging the scrollable area *with a touch event*. This notification is *not* sent when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.
+     *
+     * **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [godot.ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is enabled.
      */
     public final const val NOTIFICATION_SCROLL_BEGIN: Long = 47
 
     /**
-     * Sent when this node is inside a [godot.ScrollContainer] which has stopped being scrolled.
+     * Sent when this node is inside a [godot.ScrollContainer] which has stopped being scrolled when dragging the scrollable area *with a touch event*. This notification is *not* sent when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.
+     *
+     * **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [godot.ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is enabled.
      */
     public final const val NOTIFICATION_SCROLL_END: Long = 48
 
@@ -2696,6 +2739,9 @@ public open class Control : CanvasItem() {
 
     public val findNextValidFocusPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "find_next_valid_focus")
+
+    public val findValidFocusNeighborPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "find_valid_focus_neighbor")
 
     public val setHSizeFlagsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "set_h_size_flags")

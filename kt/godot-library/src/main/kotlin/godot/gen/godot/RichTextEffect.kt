@@ -26,7 +26,7 @@ import kotlin.Suppress
  *
  * [codeblocks]
  *
- * [gdscript]
+ * [gdscript skip-lint]
  *
  * # The RichTextEffect will be usable like this: `[example]Some text[/example]`
  *
@@ -34,7 +34,7 @@ import kotlin.Suppress
  *
  * [/gdscript]
  *
- * [csharp]
+ * [csharp skip-lint]
  *
  * // The RichTextEffect will be usable like this: `[example]Some text[/example]`
  *

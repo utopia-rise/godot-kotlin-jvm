@@ -41,7 +41,9 @@ public:
 
     Variant callp(const StringName& p_method, const Variant** p_args, int p_argcount, Callable::CallError& r_error) override;
 
-    void notification(int p_notification) override;
+    void notification(int p_notification, bool p_reversed = false) override;
+
+    virtual void validate_property(PropertyInfo& p_property) const override;
 
     String to_string(bool* r_valid) override;
 

@@ -6,5 +6,5 @@ import godot.codegen.poet.ClassTypeNameWrapper
 
 interface IEnumService {
     fun getGlobalEnums() : List<EnrichedEnum>
-    fun findEnumValue(enumClassName: ClassTypeNameWrapper, enumValue: Int): DefaultEnumValue
+    fun findEnumValue(enumClassName: ClassTypeNameWrapper, enumValue: Long): DefaultEnumValue
 }

@@ -86,7 +86,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Returns the number of surface override materials. This is equivalent to [godot.Mesh.getSurfaceCount].
+   * Returns the number of surface override materials. This is equivalent to [godot.Mesh.getSurfaceCount]. See also [getSurfaceOverrideMaterial].
    */
   public fun getSurfaceOverrideMaterialCount(): Int {
     TransferContext.writeArguments()
@@ -96,6 +96,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
 
   /**
    * Sets the override [material] for the specified [surface] of the [godot.Mesh] resource. This material is associated with this [godot.MeshInstance3D] rather than with [mesh].
+   *
+   * **Note:** This assigns the [godot.Material] associated to the [godot.MeshInstance3D]'s Surface Material Override properties, not the material within the [godot.Mesh] resource. To set the material within the [godot.Mesh] resource, use [godot.Mesh.surfaceGetMaterial] instead.
    */
   public fun setSurfaceOverrideMaterial(surface: Int, material: Material): Unit {
     TransferContext.writeArguments(LONG to surface.toLong(), OBJECT to material)
@@ -103,7 +105,9 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Returns the override [godot.Material] for the specified [surface] of the [godot.Mesh] resource.
+   * Returns the override [godot.Material] for the specified [surface] of the [godot.Mesh] resource. See also [getSurfaceOverrideMaterialCount].
+   *
+   * **Note:** This returns the [godot.Material] associated to the [godot.MeshInstance3D]'s Surface Material Override properties, not the material within the [godot.Mesh] resource. To get the material within the [godot.Mesh] resource, use [godot.Mesh.surfaceGetMaterial] instead.
    */
   public fun getSurfaceOverrideMaterial(surface: Int): Material? {
     TransferContext.writeArguments(LONG to surface.toLong())

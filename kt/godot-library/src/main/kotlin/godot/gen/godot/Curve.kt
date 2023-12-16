@@ -27,9 +27,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A mathematic curve.
+ * A mathematical curve.
  *
- * A curve that can be saved and re-used for other objects. By default, it ranges between `0` and `1` on the Y axis and positions points relative to the `0.5` Y position.
+ * This resource describes a mathematical curve by defining a set of points and tangents at each point. By default, it ranges between `0` and `1` on the Y axis and positions points relative to the `0.5` Y position.
  *
  * See also [godot.Gradient] which is designed for color interpolation. See also [godot.Curve2D] and [godot.Curve3D].
  */

@@ -27,7 +27,7 @@ import kotlin.Suppress
  *
  * To create a [godot.ViewportTexture] in code, use the [godot.Viewport.getTexture] method on the target viewport.
  *
- * **Note:** When local to scene, this texture uses [godot.Resource.setupLocalToScene] to set the proxy texture and flags in the local viewport. Local to scene [godot.ViewportTexture]s will return incorrect data until the scene root is ready (see [godot.Node.ready]).
+ * **Note:** A [godot.ViewportTexture] is always local to its scene (see [godot.Resource.resourceLocalToScene]). If the scene root is not ready, it may return incorrect data (see [godot.Node.ready]).
  */
 @GodotBaseType
 public open class ViewportTexture : Texture2D() {

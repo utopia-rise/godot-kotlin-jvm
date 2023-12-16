@@ -39,7 +39,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class TabBar : Control() {
   /**
-   * Emitted when a tab is selected via click or script, even if it is the current tab.
+   * Emitted when a tab is selected via click, directional input, or script, even if it is the current tab.
    */
   public val tabSelected: Signal1<Long> by signal("tab")
 
@@ -95,6 +95,20 @@ public open class TabBar : Control() {
    * Emitted when the active tab is rearranged via mouse drag. See [dragToRearrangeEnabled].
    */
   public val activeTabRearranged: Signal1<Long> by signal("idxTo")
+
+  /**
+   * The number of tabs currently in the bar.
+   */
+  public var tabCount: Int
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getTabCountPtr, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, MethodBindings.setTabCountPtr, NIL)
+    }
 
   /**
    * Select tab at index `tab_idx`.
@@ -238,20 +252,6 @@ public open class TabBar : Control() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSelectWithRmbPtr, NIL)
     }
 
-  /**
-   * The number of tabs currently in the bar.
-   */
-  public var tabCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTabCountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTabCountPtr, NIL)
-    }
-
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_TABBAR, scriptIndex)
     return true
@@ -264,6 +264,24 @@ public open class TabBar : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPreviousTabPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  /**
+   * Selects the first available tab with lower index than the currently selected. Returns `true` if tab selection changed.
+   */
+  public fun selectPreviousAvailable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.selectPreviousAvailablePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Selects the first available tab with greater index than the currently selected. Returns `true` if tab selection changed.
+   */
+  public fun selectNextAvailable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.selectNextAvailablePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -571,6 +589,12 @@ public open class TabBar : Control() {
 
     public val getPreviousTabPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TabBar", "get_previous_tab")
+
+    public val selectPreviousAvailablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabBar", "select_previous_available")
+
+    public val selectNextAvailablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabBar", "select_next_available")
 
     public val setTabTitlePtr: VoidPtr = TypeManager.getMethodBindPtr("TabBar", "set_tab_title")
 

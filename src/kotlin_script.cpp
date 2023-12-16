@@ -19,11 +19,11 @@ bool KotlinScript::can_instantiate() const {
 }
 
 bool KotlinScript::inherits_script(const Ref<Script>& p_script) const {
-    Ref<KotlinScript> script {p_script};
-    if (script.is_null()) { return false; }
-    if (!is_valid() || !script->is_valid()) { return false; }
+    Ref<KotlinScript> kotlin_script {p_script};
+    if (kotlin_script.is_null()) { return false; }
+    if (!is_valid() || !kotlin_script->is_valid()) { return false; }
 
-    KtClass* parent_class {script->kotlin_class};
+    KtClass* parent_class {kotlin_script->kotlin_class};
     if (kotlin_class == parent_class) { return true; }
 
     return kotlin_class->registered_supertypes.find(parent_class->registered_class_name);
@@ -108,6 +108,7 @@ MethodInfo KotlinScript::get_method_info(const StringName& p_method) const {
 }
 
 bool KotlinScript::is_tool() const {
+    // TODO: When implementing tool classes
     return false;
 }
 
@@ -117,6 +118,11 @@ bool KotlinScript::is_valid() const {
 
 bool KotlinScript::is_placeholder_fallback_enabled() const {
     return kotlin_class == nullptr;
+}
+
+bool KotlinScript::is_abstract() const {
+    // TODO/4.2
+    return false;
 }
 
 ScriptLanguage* KotlinScript::get_language() const {
@@ -193,13 +199,18 @@ const Variant KotlinScript::get_rpc_config() const {
 
 #ifdef TOOLS_ENABLED
 Vector<DocData::ClassDoc> KotlinScript::get_documentation() const {
-    // TODO/4.0:
+    // TODO/4.2
     return {};
 }
 
 PropertyInfo KotlinScript::get_class_category() const {
-    // TODO/4.0:
+    // TODO/4.2
     return {};
+}
+
+String KotlinScript::get_class_icon_path() const {
+    // TODO/4.2
+    return String();
 }
 
 PlaceHolderScriptInstance* KotlinScript::placeholder_instance_create(Object* p_this) {
@@ -226,7 +237,7 @@ void KotlinScript::update_exports() {
 
     Callable::CallError call;
     Object* tmp_object {_new({}, 0, call)};
-    KotlinInstance* script_instance {reinterpret_cast<KotlinInstance*>(tmp_object->get_script_instance())};
+    KotlinInstance* kotlin_script_instance {reinterpret_cast<KotlinInstance*>(tmp_object->get_script_instance())};
 
     List<PropertyInfo> exported_properties;
     get_script_exported_property_list(&exported_properties);
@@ -234,7 +245,7 @@ void KotlinScript::update_exports() {
     for (int i = 0; i < exported_properties.size(); ++i) {
         Variant default_value;
         const String& property_name {exported_properties[i].name};
-        script_instance->get_or_default(property_name, default_value);
+        kotlin_script_instance->get_or_default(property_name, default_value);
         exported_members_default_value_cache[property_name] = default_value;
     }
 

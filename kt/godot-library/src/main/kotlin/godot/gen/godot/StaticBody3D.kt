@@ -27,7 +27,7 @@ import kotlin.Unit
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
- * A static 3D physics body. It can't be moved by external forces or contacts, but can be moved manually by other means such as code, [godot.AnimationPlayer]s (with [godot.AnimationPlayer.playbackProcessMode] set to `ANIMATION_PROCESS_PHYSICS`), and [godot.RemoteTransform3D].
+ * A static 3D physics body. It can't be moved by external forces or contacts, but can be moved manually by other means such as code, [godot.AnimationMixer]s (with [godot.AnimationMixer.callbackModeProcess] set to [godot.AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS]), and [godot.RemoteTransform3D].
  *
  * When [godot.StaticBody3D] is moved, it is teleported to its new position without affecting other physics bodies in its path. If this is not desired, use [godot.AnimatableBody3D] instead.
  *

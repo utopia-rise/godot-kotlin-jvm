@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Godot Kotlin Tests"
 run/main_scene="res://Spatial.tscn"
-config/features=PackedStringArray("4.1")
+config/features=PackedStringArray("4.2")
 config/icon="res://icon.png"
 
 [debug]

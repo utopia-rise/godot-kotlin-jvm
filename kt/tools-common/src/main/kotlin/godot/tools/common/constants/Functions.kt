@@ -7,4 +7,8 @@ object KotlinFunctions {
     const val trimIndent = "trimIndent"
 }
 
+object GodotFunctions {
+    const val notification = "_notification"
+}
+
 val KOTLIN_LIST_OF = MemberName(kotlinCollectionsPackage, KotlinFunctions.listOf)

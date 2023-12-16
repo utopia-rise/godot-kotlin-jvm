@@ -204,7 +204,9 @@ public open class SceneTree : MainLoop() {
     }
 
   /**
-   * The current scene.
+   * Returns the root node of the currently running scene, regardless of its structure.
+   *
+   * **Warning:** Setting this directly might not work as expected, and will *not* add or remove any nodes from the tree, consider using [changeSceneToFile] or [changeSceneToPacked] instead.
    */
   public var currentScene: Node?
     get() {
@@ -250,6 +252,8 @@ public open class SceneTree : MainLoop() {
 
   /**
    * Returns `true` if the given group exists.
+   *
+   * A group exists if any [godot.Node] in the tree belongs to it (see [godot.Node.addToGroup]). Groups without nodes are removed automatically.
    */
   public fun hasGroup(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -318,6 +322,8 @@ public open class SceneTree : MainLoop() {
 
   /**
    * Creates and returns a new [godot.Tween]. The Tween will start automatically on the next process frame or physics frame (depending on [enum Tween.TweenProcessMode]).
+   *
+   * **Note:** When creating a [godot.Tween] using this method, the [godot.Tween] will not be tied to the [godot.Node] that called it. It will continue to animate even if the [godot.Node] is freed, but it will automatically finish if there's nothing left to animate. If you want the [godot.Tween] to be automatically killed when the [godot.Node] is freed, use [godot.Node.createTween] or [godot.Tween.bindNode].
    */
   public fun createTween(): Tween? {
     TransferContext.writeArguments()
@@ -485,7 +491,7 @@ public open class SceneTree : MainLoop() {
    *
    * Returns [OK] on success, [ERR_CANT_OPEN] if the [path] cannot be loaded into a [godot.PackedScene], or [ERR_CANT_CREATE] if that scene cannot be instantiated.
    *
-   * **Note:** The scene change is deferred, which means that the new scene node is added to the tree at the end of the frame. This ensures that both scenes aren't running at the same time, while still freeing the previous scene in a safe way similar to [godot.Node.queueFree]. As such, you won't be able to access the loaded scene immediately after the [changeSceneToFile] call.
+   * **Note:** See [changeSceneToPacked] for details on the order of operations.
    */
   public fun changeSceneToFile(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
@@ -498,7 +504,13 @@ public open class SceneTree : MainLoop() {
    *
    * Returns [OK] on success, [ERR_CANT_CREATE] if the scene cannot be instantiated, or [ERR_INVALID_PARAMETER] if the scene is invalid.
    *
-   * **Note:** The scene change is deferred, which means that the new scene node is added to the tree at the end of the frame. You won't be able to access it immediately after the [changeSceneToPacked] call.
+   * **Note:** Operations happen in the following order when [changeSceneToPacked] is called:
+   *
+   * 1. The current scene node is immediately removed from the tree. From that point, [godot.Node.getTree] called on the current (outgoing) scene will return `null`. [currentScene] will be `null`, too, because the new scene is not available yet.
+   *
+   * 2. At the end of the frame, the formerly current scene, already removed from the tree, will be deleted (freed from memory) and then the new scene will be instantiated and added to the tree. [godot.Node.getTree] and [currentScene] will be back to working as usual.
+   *
+   * This ensures that both scenes aren't running at the same time, while still freeing the previous scene in a safe way similar to [godot.Node.queueFree].
    */
   public fun changeSceneToPacked(packedScene: PackedScene): GodotError {
     TransferContext.writeArguments(OBJECT to packedScene)
@@ -528,7 +540,7 @@ public open class SceneTree : MainLoop() {
   /**
    * Sets a custom [godot.MultiplayerAPI] with the given [rootPath] (controlling also the relative subpaths), or override the default one if [rootPath] is empty.
    *
-   * **Note:** Only one [godot.MultiplayerAPI] may be configured for any subpath. If one is configured for `"/root/Foo"` setting one for `"/root/Foo/Bar"` will be ignored. See [getMultiplayer].
+   * **Note:** No [godot.MultiplayerAPI] must be configured for the subpath containing [rootPath], nested custom multiplayers are not allowed. I.e. if one is configured for `"/root/Foo"` setting one for `"/root/Foo/Bar"` will cause an error.
    */
   @JvmOverloads
   public fun setMultiplayer(multiplayer: MultiplayerAPI, rootPath: NodePath = NodePath("")): Unit {
@@ -537,9 +549,7 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Return the [godot.MultiplayerAPI] configured for the given path, or the default one if [forPath] is empty.
-   *
-   * **Note:** Only one [godot.MultiplayerAPI] may be configured for any subpath. If one is configured for `"/root/Foo"` then calling this for `"/root/Foo/Bar"` will return the one configured for `"/root/Foo"`, regardless if one is configured for that path.
+   * Searches for the [godot.MultiplayerAPI] configured for the given path, if one does not exist it searches the parent paths until one is found. If the path is empty, or none is found, the default one is returned. See [setMultiplayer].
    */
   @JvmOverloads
   public fun getMultiplayer(forPath: NodePath = NodePath("")): MultiplayerAPI? {

@@ -72,7 +72,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
   }
 
   /**
-   * Returns **true** when parsed source geometry data exists.
+   * Returns `true` when parsed source geometry data exists.
    */
   public fun hasData(): Boolean {
     TransferContext.writeArguments()
@@ -81,7 +81,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
   }
 
   /**
-   * Adds the geometry data of a [godot.Mesh] resource to the navigation mesh baking data. The mesh must have valid triangulated mesh data to be considered. Since [godot.NavigationMesh] resource have no transform all vertex positions need to be offset by the node's transform using the `xform` parameter.
+   * Adds the geometry data of a [godot.Mesh] resource to the navigation mesh baking data. The mesh must have valid triangulated mesh data to be considered. Since [godot.NavigationMesh] resources have no transform, all vertex positions need to be offset by the node's transform using [xform].
    */
   public fun addMesh(mesh: Mesh, xform: Transform3D): Unit {
     TransferContext.writeArguments(OBJECT to mesh, TRANSFORM3D to xform)
@@ -89,7 +89,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
   }
 
   /**
-   * Adds an [godot.Array] the size of [godot.Mesh.ARRAY_MAX] and with vertices at index [godot.Mesh.ARRAY_VERTEX] and indices at index [godot.Mesh.ARRAY_INDEX] to the navigation mesh baking data. The array must have valid triangulated mesh data to be considered. Since [godot.NavigationMesh] resource have no transform all vertex positions need to be offset by the node's transform using the `xform` parameter.
+   * Adds an [godot.Array] the size of [godot.Mesh.ARRAY_MAX] and with vertices at index [godot.Mesh.ARRAY_VERTEX] and indices at index [godot.Mesh.ARRAY_INDEX] to the navigation mesh baking data. The array must have valid triangulated mesh data to be considered. Since [godot.NavigationMesh] resources have no transform, all vertex positions need to be offset by the node's transform using [xform].
    */
   public fun addMeshArray(meshArray: VariantArray<Any?>, xform: Transform3D): Unit {
     TransferContext.writeArguments(ARRAY to meshArray, TRANSFORM3D to xform)
@@ -97,7 +97,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
   }
 
   /**
-   * Adds an array of vertex positions to the geometry data for navigation mesh baking to form triangulated faces. For each face the array must have three vertex positions in clockwise winding order. Since [godot.NavigationMesh] resource have no transform all vertex positions need to be offset by the node's transform using the `xform` parameter.
+   * Adds an array of vertex positions to the geometry data for navigation mesh baking to form triangulated faces. For each face the array must have three vertex positions in clockwise winding order. Since [godot.NavigationMesh] resources have no transform, all vertex positions need to be offset by the node's transform using [xform].
    */
   public fun addFaces(faces: PackedVector3Array, xform: Transform3D): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to faces, TRANSFORM3D to xform)

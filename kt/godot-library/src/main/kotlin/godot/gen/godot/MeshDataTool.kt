@@ -33,9 +33,13 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Helper tool to access and edit [godot.Mesh] data.
+ *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/3d/procedural_geometry/meshdatatool.html]($DOCS_URL/tutorials/3d/procedural_geometry/meshdatatool.html)
  *
  * MeshDataTool provides access to individual vertices in a [godot.Mesh]. It allows users to read and edit vertex data of meshes. It also creates an array of faces and edges.
  *
@@ -152,8 +156,9 @@ public open class MeshDataTool : RefCounted() {
   /**
    * Adds a new surface to specified [godot.Mesh] with edited data.
    */
-  public fun commitToSurface(mesh: ArrayMesh): GodotError {
-    TransferContext.writeArguments(OBJECT to mesh)
+  @JvmOverloads
+  public fun commitToSurface(mesh: ArrayMesh, compressionFlags: Long = 0): GodotError {
+    TransferContext.writeArguments(OBJECT to mesh, LONG to compressionFlags)
     TransferContext.callMethod(rawPtr, MethodBindings.commitToSurfacePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -163,10 +168,10 @@ public open class MeshDataTool : RefCounted() {
    *
    * See [enum Mesh.ArrayFormat] for a list of format flags.
    */
-  public fun getFormat(): Int {
+  public fun getFormat(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -205,7 +210,7 @@ public open class MeshDataTool : RefCounted() {
   }
 
   /**
-   * Returns the vertex at given index.
+   * Returns the position of the given vertex.
    */
   public fun getVertex(idx: Int): Vector3 {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -405,9 +410,35 @@ public open class MeshDataTool : RefCounted() {
   }
 
   /**
-   * Returns the specified vertex of the given face.
+   * Returns the specified vertex index of the given face.
    *
    * Vertex argument must be either 0, 1, or 2 because faces contain three vertices.
+   *
+   * **Example:**
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var index = mesh_data_tool.get_face_vertex(0, 1) # Gets the index of the second vertex of the first face.
+   *
+   * var position = mesh_data_tool.get_vertex(index)
+   *
+   * var normal = mesh_data_tool.get_vertex_normal(index)
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * int index = meshDataTool.GetFaceVertex(0, 1); // Gets the index of the second vertex of the first face.
+   *
+   * Vector3 position = meshDataTool.GetVertex(index);
+   *
+   * Vector3 normal = meshDataTool.GetVertexNormal(index);
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    */
   public fun getFaceVertex(idx: Int, vertex: Int): Int {
     TransferContext.writeArguments(LONG to idx.toLong(), LONG to vertex.toLong())

@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.RID
+import godot.core.Transform2D
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
@@ -19,6 +20,7 @@ import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR2I
 import godot.core.VariantType._RID
@@ -44,6 +46,21 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class CharFXTransform : RefCounted() {
+  /**
+   * The current transform of the current glyph. It can be overridden (for example, by driving the position and rotation from a curve). You can also alter the existing value to apply transforms on top of other effects.
+   */
+  @CoreTypeLocalCopy
+  public var transform: Transform2D
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM2D)
+      return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(TRANSFORM2D to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
+    }
+
   /**
    * Absolute character range in the string, corresponding to the glyph. Setting this property won't affect drawing.
    */
@@ -229,6 +246,30 @@ public open class CharFXTransform : RefCounted() {
   }
 
   /**
+   * The current transform of the current glyph. It can be overridden (for example, by driving the position and rotation from a curve). You can also alter the existing value to apply transforms on top of other effects.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = charfxtransform.transform
+   * //Your changes
+   * charfxtransform.transform = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply{
+      block(this)
+      transform = this
+  }
+
+
+  /**
    * Absolute character range in the string, corresponding to the glyph. Setting this property won't affect drawing.
    *
    * This is a helper function to make dealing with local copies easier. 
@@ -303,6 +344,12 @@ public open class CharFXTransform : RefCounted() {
   public companion object
 
   internal object MethodBindings {
+    public val getTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_transform")
+
+    public val setTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_transform")
+
     public val getRangePtr: VoidPtr = TypeManager.getMethodBindPtr("CharFXTransform", "get_range")
 
     public val setRangePtr: VoidPtr = TypeManager.getMethodBindPtr("CharFXTransform", "set_range")

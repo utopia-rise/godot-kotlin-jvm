@@ -43,6 +43,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -55,16 +56,16 @@ import kotlin.jvm.JvmOverloads
  *
  * **Note:** Assignments to [text] clear the tag stack and reconstruct it from the property's contents. Any edits made to [text] will erase previous edits made from other manual sources such as [appendText] and the `push_*` / [pop] methods.
  *
- * **Note:** RichTextLabel doesn't support entangled BBCode tags. For example, instead of using `**bold*bold italic**italic*`, use `**bold*bold italic****italic*`.
+ * **Note:** RichTextLabel doesn't support entangled BBCode tags. For example, instead of using [code skip-lint]**bold*bold italic**italic*`, use [code skip-lint]**bold*bold italic****italic*`.
  *
  * **Note:** `push_* / pop_*` functions won't affect BBCode.
  *
- * **Note:** Unlike [godot.Label], [godot.RichTextLabel] doesn't have a *property* to horizontally align text to the center. Instead, enable [bbcodeEnabled] and surround the text in a `[center]` tag as follows: `[center]Example[/center]`. There is currently no built-in way to vertically align text either, but this can be emulated by relying on anchors/containers and the [fitContent] property.
+ * **Note:** Unlike [godot.Label], [godot.RichTextLabel] doesn't have a *property* to horizontally align text to the center. Instead, enable [bbcodeEnabled] and surround the text in a [code skip-lint][center]` tag as follows: [code skip-lint][center]Example[/center]`. There is currently no built-in way to vertically align text either, but this can be emulated by relying on anchors/containers and the [fitContent] property.
  */
 @GodotBaseType
 public open class RichTextLabel : Control() {
   /**
-   * Triggered when the user clicks on content between meta tags. If the meta is defined in text, e.g. `[hi]({"data"="hi"})`, then the parameter for this signal will be a [godot.String] type. If a particular type or an object is desired, the [pushMeta] method must be used to manually insert the data into the tag stack.
+   * Triggered when the user clicks on content between meta tags. If the meta is defined in text, e.g. [code skip-lint][hi]({"data"="hi"})`, then the parameter for this signal will be a [godot.String] type. If a particular type or an object is desired, the [pushMeta] method must be used to manually insert the data into the tag stack.
    */
   public val metaClicked: Signal1<Any?> by signal("meta")
 
@@ -100,7 +101,7 @@ public open class RichTextLabel : Control() {
   /**
    * The label's text in BBCode format. Is not representative of manual modifications to the internal tag stack. Erases changes made by other methods when edited.
    *
-   * **Note:** If [bbcodeEnabled] is `true`, it is unadvised to use the `+=` operator with `text` (e.g. `text += "some string"`) as it replaces the whole text and can cause slowdowns. It will also erase all BBCode that was added to stack using `push_*` methods. Use [appendText] for adding text instead, unless you absolutely need to close a tag that was opened in an earlier method call.
+   * **Note:** If [bbcodeEnabled] is `true`, it is unadvised to use the `+=` operator with [text] (e.g. `text += "some string"`) as it replaces the whole text and can cause slowdowns. It will also erase all BBCode that was added to stack using `push_*` methods. Use [appendText] for adding text instead, unless you absolutely need to close a tag that was opened in an earlier method call.
    */
   public var text: String
     get() {
@@ -228,7 +229,7 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * If `true`, the label underlines meta tags such as `[url]{text}[/url]`.
+   * If `true`, the label underlines meta tags such as [code skip-lint][url]{text}[/url]`.
    */
   public var metaUnderlined: Boolean
     get() {
@@ -242,7 +243,7 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * If `true`, the label underlines hint tags such as `[hint=description]{text}[/hint]`.
+   * If `true`, the label underlines hint tags such as [code skip-lint][hint=description]{text}[/hint]`.
    */
   public var hintUnderlined: Boolean
     get() {
@@ -311,6 +312,20 @@ public open class RichTextLabel : Control() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setDeselectOnFocusLossEnabledPtr, NIL)
+    }
+
+  /**
+   * If `true`, allow drag and drop of selected text.
+   */
+  public var dragAndDropSelectionEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isDragAndDropSelectionEnabledPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDragAndDropSelectionEnabledPtr, NIL)
     }
 
   /**
@@ -445,6 +460,12 @@ public open class RichTextLabel : Control() {
    * If [width] or [height] is set to 0, the image size will be adjusted in order to keep the original aspect ratio.
    *
    * If [width] and [height] are not set, but [region] is, the region's rect will be used.
+   *
+   * [key] is an optional identifier, that can be used to modify the image via [updateImage].
+   *
+   * If [pad] is set, and the image is smaller than the size specified by [width] and [height], the image padding is added to match the size instead of upscaling.
+   *
+   * If [sizeInPercent] is set, [width] and [height] values are percentages of the control width instead of pixels.
    */
   @JvmOverloads
   public fun addImage(
@@ -454,9 +475,34 @@ public open class RichTextLabel : Control() {
     color: Color = Color(Color(1, 1, 1, 1)),
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
     region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
+    key: Any? = null,
+    pad: Boolean = false,
+    tooltip: String = "",
+    sizeInPercent: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to image, LONG to width.toLong(), LONG to height.toLong(), COLOR to color, LONG to inlineAlign.id, RECT2 to region)
+    TransferContext.writeArguments(OBJECT to image, LONG to width.toLong(), LONG to height.toLong(), COLOR to color, LONG to inlineAlign.id, RECT2 to region, ANY to key, BOOL to pad, STRING to tooltip, BOOL to sizeInPercent)
     TransferContext.callMethod(rawPtr, MethodBindings.addImagePtr, NIL)
+  }
+
+  /**
+   * Updates the existing images with the key [key]. Only properties specified by [mask] bits are updated. See [addImage].
+   */
+  @JvmOverloads
+  public fun updateImage(
+    key: Any?,
+    mask: ImageUpdateMask,
+    image: Texture2D,
+    width: Int = 0,
+    height: Int = 0,
+    color: Color = Color(Color(1, 1, 1, 1)),
+    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
+    region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
+    pad: Boolean = false,
+    tooltip: String = "",
+    sizeInPercent: Boolean = false,
+  ): Unit {
+    TransferContext.writeArguments(ANY to key, LONG to mask.flag, OBJECT to image, LONG to width.toLong(), LONG to height.toLong(), COLOR to color, LONG to inlineAlign.id, RECT2 to region, BOOL to pad, STRING to tooltip, BOOL to sizeInPercent)
+    TransferContext.callMethod(rawPtr, MethodBindings.updateImagePtr, NIL)
   }
 
   /**
@@ -479,15 +525,18 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a `[font]` tag to the tag stack. Overrides default fonts for its duration.
+   * Adds a [code skip-lint][font]` tag to the tag stack. Overrides default fonts for its duration.
+   *
+   * Passing `0` to [fontSize] will use the existing default font size.
    */
-  public fun pushFont(font: Font, fontSize: Int): Unit {
+  @JvmOverloads
+  public fun pushFont(font: Font, fontSize: Int = 0): Unit {
     TransferContext.writeArguments(OBJECT to font, LONG to fontSize.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.pushFontPtr, NIL)
   }
 
   /**
-   * Adds a `[font_size]` tag to the tag stack. Overrides default font size for its duration.
+   * Adds a [code skip-lint][font_size]` tag to the tag stack. Overrides default font size for its duration.
    */
   public fun pushFontSize(fontSize: Int): Unit {
     TransferContext.writeArguments(LONG to fontSize.toLong())
@@ -495,7 +544,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a `[font]` tag with a normal font to the tag stack.
+   * Adds a [code skip-lint][font]` tag with a normal font to the tag stack.
    */
   public fun pushNormal(): Unit {
     TransferContext.writeArguments()
@@ -503,7 +552,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a `[font]` tag with a bold font to the tag stack. This is the same as adding a `**` tag if not currently in a `*` tag.
+   * Adds a [code skip-lint][font]` tag with a bold font to the tag stack. This is the same as adding a [code skip-lint]**` tag if not currently in a [code skip-lint]*` tag.
    */
   public fun pushBold(): Unit {
     TransferContext.writeArguments()
@@ -511,7 +560,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a `[font]` tag with a bold italics font to the tag stack.
+   * Adds a [code skip-lint][font]` tag with a bold italics font to the tag stack.
    */
   public fun pushBoldItalics(): Unit {
     TransferContext.writeArguments()
@@ -519,7 +568,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a `[font]` tag with an italics font to the tag stack. This is the same as adding an `*` tag if not currently in a `**` tag.
+   * Adds a [code skip-lint][font]` tag with an italics font to the tag stack. This is the same as adding an [code skip-lint]*` tag if not currently in a [code skip-lint]**` tag.
    */
   public fun pushItalics(): Unit {
     TransferContext.writeArguments()
@@ -527,7 +576,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a `[font]` tag with a monospace font to the tag stack.
+   * Adds a [code skip-lint][font]` tag with a monospace font to the tag stack.
    */
   public fun pushMono(): Unit {
     TransferContext.writeArguments()
@@ -535,7 +584,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a `[color]` tag to the tag stack.
+   * Adds a [code skip-lint][color]` tag to the tag stack.
    */
   public fun pushColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
@@ -543,7 +592,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a `[outline_size]` tag to the tag stack. Overrides default text outline size for its duration.
+   * Adds a [code skip-lint][outline_size]` tag to the tag stack. Overrides default text outline size for its duration.
    */
   public fun pushOutlineSize(outlineSize: Int): Unit {
     TransferContext.writeArguments(LONG to outlineSize.toLong())
@@ -551,7 +600,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a `[outline_color]` tag to the tag stack. Adds text outline for its duration.
+   * Adds a [code skip-lint][outline_color]` tag to the tag stack. Adds text outline for its duration.
    */
   public fun pushOutlineColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
@@ -559,7 +608,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a `[p]` tag to the tag stack.
+   * Adds a [code skip-lint][p]` tag to the tag stack.
    */
   @JvmOverloads
   public fun pushParagraph(
@@ -576,7 +625,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds an `[indent]` tag to the tag stack. Multiplies [level] by current [tabSize] to determine new margin length.
+   * Adds an [code skip-lint][indent]` tag to the tag stack. Multiplies [level] by current [tabSize] to determine new margin length.
    */
   public fun pushIndent(level: Int): Unit {
     TransferContext.writeArguments(LONG to level.toLong())
@@ -584,7 +633,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds `[ol]` or `[ul]` tag to the tag stack. Multiplies [level] by current [tabSize] to determine new margin length.
+   * Adds [code skip-lint][ol]` or [code skip-lint][ul]` tag to the tag stack. Multiplies [level] by current [tabSize] to determine new margin length.
    */
   @JvmOverloads
   public fun pushList(
@@ -598,7 +647,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a meta tag to the tag stack. Similar to the BBCode `[{text}](something)`, but supports non-[godot.String] metadata types.
+   * Adds a meta tag to the tag stack. Similar to the BBCode [code skip-lint][{text}](something)`, but supports non-[godot.String] metadata types.
    */
   public fun pushMeta(`data`: Any?): Unit {
     TransferContext.writeArguments(ANY to data)
@@ -606,7 +655,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a `[hint]` tag to the tag stack. Same as BBCode `[hint=something]{text}[/hint]`.
+   * Adds a [code skip-lint][hint]` tag to the tag stack. Same as BBCode [code skip-lint][hint=something]{text}[/hint]`.
    */
   public fun pushHint(description: String): Unit {
     TransferContext.writeArguments(STRING to description)
@@ -614,7 +663,15 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a `<u>` tag to the tag stack.
+   * Adds language code used for text shaping algorithm and Open-Type font features.
+   */
+  public fun pushLanguage(language: String): Unit {
+    TransferContext.writeArguments(STRING to language)
+    TransferContext.callMethod(rawPtr, MethodBindings.pushLanguagePtr, NIL)
+  }
+
+  /**
+   * Adds a [code skip-lint]<u>` tag to the tag stack.
    */
   public fun pushUnderline(): Unit {
     TransferContext.writeArguments()
@@ -622,7 +679,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a `~~` tag to the tag stack.
+   * Adds a [code skip-lint]~~` tag to the tag stack.
    */
   public fun pushStrikethrough(): Unit {
     TransferContext.writeArguments()
@@ -630,7 +687,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a `[table=columns,inline_align]` tag to the tag stack.
+   * Adds a [code skip-lint][table=columns,inline_align]` tag to the tag stack.
    */
   @JvmOverloads
   public fun pushTable(
@@ -643,7 +700,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a `[dropcap]` tag to the tag stack. Drop cap (dropped capital) is a decorative element at the beginning of a paragraph that is larger than the rest of the text.
+   * Adds a [code skip-lint][dropcap]` tag to the tag stack. Drop cap (dropped capital) is a decorative element at the beginning of a paragraph that is larger than the rest of the text.
    */
   @JvmOverloads
   public fun pushDropcap(
@@ -666,10 +723,11 @@ public open class RichTextLabel : Control() {
    *
    * If [expand] is `false`, the column will not contribute to the total ratio.
    */
+  @JvmOverloads
   public fun setTableColumnExpand(
     column: Int,
     expand: Boolean,
-    ratio: Int,
+    ratio: Int = 1,
   ): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to expand, LONG to ratio.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setTableColumnExpandPtr, NIL)
@@ -708,7 +766,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a `[cell]` tag to the tag stack. Must be inside a `[table]` tag. See [pushTable] for details.
+   * Adds a [code skip-lint][cell]` tag to the tag stack. Must be inside a [code skip-lint][table]` tag. See [pushTable] for details.
    */
   public fun pushCell(): Unit {
     TransferContext.writeArguments()
@@ -716,7 +774,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a `[fgcolor]` tag to the tag stack.
+   * Adds a [code skip-lint][fgcolor]` tag to the tag stack.
    */
   public fun pushFgcolor(fgcolor: Color): Unit {
     TransferContext.writeArguments(COLOR to fgcolor)
@@ -724,7 +782,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a `[bgcolor]` tag to the tag stack.
+   * Adds a [code skip-lint][bgcolor]` tag to the tag stack.
    */
   public fun pushBgcolor(bgcolor: Color): Unit {
     TransferContext.writeArguments(COLOR to bgcolor)
@@ -740,11 +798,35 @@ public open class RichTextLabel : Control() {
   }
 
   /**
+   * Adds a context marker to the tag stack. See [popContext].
+   */
+  public fun pushContext(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.pushContextPtr, NIL)
+  }
+
+  /**
+   * Terminates tags opened after the last [pushContext] call (including context marker), or all tags if there's no context marker on the stack.
+   */
+  public fun popContext(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.popContextPtr, NIL)
+  }
+
+  /**
    * Terminates the current tag. Use after `push_*` methods to close BBCodes manually. Does not need to follow `add_*` methods.
    */
   public fun pop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.popPtr, NIL)
+  }
+
+  /**
+   * Terminates all tags opened by `push_*` methods.
+   */
+  public fun popAll(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.popAllPtr, NIL)
   }
 
   /**
@@ -1162,6 +1244,87 @@ public open class RichTextLabel : Control() {
     }
   }
 
+  public sealed interface ImageUpdateMask {
+    public val flag: Long
+
+    public infix fun or(other: ImageUpdateMask): ImageUpdateMask =
+        ImageUpdateMaskValue(flag.or(other.flag))
+
+    public infix fun or(other: Long): ImageUpdateMask = ImageUpdateMaskValue(flag.or(other))
+
+    public infix fun xor(other: ImageUpdateMask): ImageUpdateMask =
+        ImageUpdateMaskValue(flag.xor(other.flag))
+
+    public infix fun xor(other: Long): ImageUpdateMask = ImageUpdateMaskValue(flag.xor(other))
+
+    public infix fun and(other: ImageUpdateMask): ImageUpdateMask =
+        ImageUpdateMaskValue(flag.and(other.flag))
+
+    public infix fun and(other: Long): ImageUpdateMask = ImageUpdateMaskValue(flag.and(other))
+
+    public operator fun plus(other: ImageUpdateMask): ImageUpdateMask =
+        ImageUpdateMaskValue(flag.plus(other.flag))
+
+    public operator fun plus(other: Long): ImageUpdateMask = ImageUpdateMaskValue(flag.plus(other))
+
+    public operator fun minus(other: ImageUpdateMask): ImageUpdateMask =
+        ImageUpdateMaskValue(flag.minus(other.flag))
+
+    public operator fun minus(other: Long): ImageUpdateMask =
+        ImageUpdateMaskValue(flag.minus(other))
+
+    public operator fun times(other: ImageUpdateMask): ImageUpdateMask =
+        ImageUpdateMaskValue(flag.times(other.flag))
+
+    public operator fun times(other: Long): ImageUpdateMask =
+        ImageUpdateMaskValue(flag.times(other))
+
+    public operator fun div(other: ImageUpdateMask): ImageUpdateMask =
+        ImageUpdateMaskValue(flag.div(other.flag))
+
+    public operator fun div(other: Long): ImageUpdateMask = ImageUpdateMaskValue(flag.div(other))
+
+    public operator fun rem(other: ImageUpdateMask): ImageUpdateMask =
+        ImageUpdateMaskValue(flag.rem(other.flag))
+
+    public operator fun rem(other: Long): ImageUpdateMask = ImageUpdateMaskValue(flag.rem(other))
+
+    public fun unaryPlus(): ImageUpdateMask = ImageUpdateMaskValue(flag.unaryPlus())
+
+    public fun unaryMinus(): ImageUpdateMask = ImageUpdateMaskValue(flag.unaryMinus())
+
+    public fun inv(): ImageUpdateMask = ImageUpdateMaskValue(flag.inv())
+
+    public infix fun shl(bits: Int): ImageUpdateMask = ImageUpdateMaskValue(flag shl bits)
+
+    public infix fun shr(bits: Int): ImageUpdateMask = ImageUpdateMaskValue(flag shr bits)
+
+    public infix fun ushr(bits: Int): ImageUpdateMask = ImageUpdateMaskValue(flag ushr bits)
+
+    public companion object {
+      public val UPDATE_TEXTURE: ImageUpdateMask = ImageUpdateMaskValue(1)
+
+      public val UPDATE_SIZE: ImageUpdateMask = ImageUpdateMaskValue(2)
+
+      public val UPDATE_COLOR: ImageUpdateMask = ImageUpdateMaskValue(4)
+
+      public val UPDATE_ALIGNMENT: ImageUpdateMask = ImageUpdateMaskValue(8)
+
+      public val UPDATE_REGION: ImageUpdateMask = ImageUpdateMaskValue(16)
+
+      public val UPDATE_PAD: ImageUpdateMask = ImageUpdateMaskValue(32)
+
+      public val UPDATE_TOOLTIP: ImageUpdateMask = ImageUpdateMaskValue(64)
+
+      public val UPDATE_WIDTH_IN_PERCENT: ImageUpdateMask = ImageUpdateMaskValue(128)
+    }
+  }
+
+  @JvmInline
+  internal value class ImageUpdateMaskValue internal constructor(
+    public override val flag: Long,
+  ) : ImageUpdateMask
+
   public companion object
 
   internal object MethodBindings {
@@ -1173,6 +1336,9 @@ public open class RichTextLabel : Control() {
     public val setTextPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "set_text")
 
     public val addImagePtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "add_image")
+
+    public val updateImagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "update_image")
 
     public val newlinePtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "newline")
 
@@ -1215,6 +1381,9 @@ public open class RichTextLabel : Control() {
 
     public val pushHintPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "push_hint")
 
+    public val pushLanguagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_language")
+
     public val pushUnderlinePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "push_underline")
 
@@ -1252,7 +1421,14 @@ public open class RichTextLabel : Control() {
     public val pushCustomfxPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "push_customfx")
 
+    public val pushContextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_context")
+
+    public val popContextPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "pop_context")
+
     public val popPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "pop")
+
+    public val popAllPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "pop_all")
 
     public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "clear")
 
@@ -1357,6 +1533,12 @@ public open class RichTextLabel : Control() {
 
     public val isDeselectOnFocusLossEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "is_deselect_on_focus_loss_enabled")
+
+    public val setDragAndDropSelectionEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_drag_and_drop_selection_enabled")
+
+    public val isDragAndDropSelectionEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "is_drag_and_drop_selection_enabled")
 
     public val getSelectionFromPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "get_selection_from")
@@ -1466,3 +1648,24 @@ public open class RichTextLabel : Control() {
     public val menuOptionPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "menu_option")
   }
 }
+
+public infix fun Long.or(other: godot.RichTextLabel.ImageUpdateMask): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.RichTextLabel.ImageUpdateMask): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.RichTextLabel.ImageUpdateMask): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.RichTextLabel.ImageUpdateMask): Long =
+    this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.RichTextLabel.ImageUpdateMask): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.RichTextLabel.ImageUpdateMask): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.RichTextLabel.ImageUpdateMask): Long =
+    this.div(other.flag)
+
+public operator fun Long.rem(other: godot.RichTextLabel.ImageUpdateMask): Long =
+    this.rem(other.flag)

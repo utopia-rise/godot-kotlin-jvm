@@ -20,7 +20,7 @@ import kotlin.Suppress
 /**
  * A selector function for use within the visual shader graph.
  *
- * Returns an associated value of the `op_type` type if the provided boolean value is `true` or `false`.
+ * Returns an associated value of the [opType] type if the provided boolean value is `true` or `false`.
  */
 @GodotBaseType
 public open class VisualShaderNodeSwitch : VisualShaderNode() {

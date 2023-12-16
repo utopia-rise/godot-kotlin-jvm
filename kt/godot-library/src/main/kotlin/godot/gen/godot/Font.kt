@@ -46,26 +46,25 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class Font internal constructor() : Resource() {
+  /**
+   * Array of fallback [godot.Font]s to use as a substitute if a glyph is not found in this current [godot.Font].
+   *
+   * If this array is empty in a [godot.FontVariation], the [godot.FontVariation.baseFont]'s fallbacks are used instead.
+   */
+  public var fallbacks: VariantArray<Font>
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getFallbacksPtr, ARRAY)
+      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Font>)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(ARRAY to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFallbacksPtr, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_FONT, scriptIndex)
     return true
-  }
-
-  /**
-   * Sets array of fallback [godot.Font]s.
-   */
-  public fun setFallbacks(fallbacks: VariantArray<Font>): Unit {
-    TransferContext.writeArguments(ARRAY to fallbacks)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFallbacksPtr, NIL)
-  }
-
-  /**
-   * Returns array of fallback [godot.Font]s.
-   */
-  public fun getFallbacks(): VariantArray<Font> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFallbacksPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Font>)
   }
 
   /**
@@ -77,8 +76,12 @@ public open class Font internal constructor() : Resource() {
     faceIndex: Int = 0,
     strength: Float = 0.0f,
     transform: Transform2D = Transform2D(),
+    spacingTop: Int = 0,
+    spacingBottom: Int = 0,
+    spacingSpace: Int = 0,
+    spacingGlyph: Int = 0,
   ): RID {
-    TransferContext.writeArguments(DICTIONARY to variationCoordinates, LONG to faceIndex.toLong(), DOUBLE to strength.toDouble(), TRANSFORM2D to transform)
+    TransferContext.writeArguments(DICTIONARY to variationCoordinates, LONG to faceIndex.toLong(), DOUBLE to strength.toDouble(), TRANSFORM2D to transform, LONG to spacingTop.toLong(), LONG to spacingBottom.toLong(), LONG to spacingSpace.toLong(), LONG to spacingGlyph.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.findVariationPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }

@@ -58,6 +58,8 @@ public:
 
     bool is_placeholder_fallback_enabled() const override;
 
+    bool is_abstract() const override;
+
     ScriptLanguage* get_language() const override;
 
     bool has_script_signal(const StringName& p_signal) const override;
@@ -94,8 +96,8 @@ public:
 
     void update_exports() override;
     Vector<DocData::ClassDoc> get_documentation() const override;
-
     PropertyInfo get_class_category() const override;
+    virtual String get_class_icon_path() const override;
 
 #endif
 

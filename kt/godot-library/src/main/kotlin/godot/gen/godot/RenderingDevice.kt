@@ -49,7 +49,7 @@ import kotlin.jvm.JvmOverloads
  * Abstraction for working with modern low-level graphics APIs.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/shaders/compute_shaders.html](https://docs.godotengine.org/en/latest/tutorials/shaders/compute_shaders.html)
+ * [$DOCS_URL/tutorials/shaders/compute_shaders.html]($DOCS_URL/tutorials/shaders/compute_shaders.html)
  *
  * [godot.RenderingDevice] is an abstraction for working with modern low-level graphics APIs such as Vulkan. Compared to [godot.RenderingServer] (which works with Godot's own rendering subsystems), [godot.RenderingDevice] is much lower-level and allows working more directly with the underlying graphics APIs. [godot.RenderingDevice] is used in Godot to provide support for several modern low-level graphics APIs while reducing the amount of code duplication required. [godot.RenderingDevice] can also be used in your own projects to perform things that are not exposed by [godot.RenderingServer] or high-level nodes, such as using compute shaders.
  *
@@ -113,6 +113,25 @@ public open class RenderingDevice internal constructor() : Object() {
   ): RID {
     TransferContext.writeArguments(OBJECT to view, _RID to withTexture, LONG to layer, LONG to mipmap, LONG to mipmaps, LONG to sliceType.id)
     TransferContext.callMethod(rawPtr, MethodBindings.textureCreateSharedFromSlicePtr, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  /**
+   * Returns an RID for an existing [image] (`VkImage`) with the given [type], [format], [samples], [usageFlags], [width], [height], [depth], and [layers]. This can be used to allow Godot to render onto foreign images.
+   */
+  public fun textureCreateFromExtension(
+    type: TextureType,
+    format: DataFormat,
+    samples: TextureSamples,
+    usageFlags: TextureUsageBits,
+    image: Long,
+    width: Long,
+    height: Long,
+    depth: Long,
+    layers: Long,
+  ): RID {
+    TransferContext.writeArguments(LONG to type.id, LONG to format.id, LONG to samples.id, LONG to usageFlags.flag, LONG to image, LONG to width, LONG to height, LONG to depth, LONG to layers)
+    TransferContext.callMethod(rawPtr, MethodBindings.textureCreateFromExtensionPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -210,7 +229,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Clears the specified [texture] by replacing all of its pixels with the specified [color]. [baseMipmap] and [mipmapCount] determine which mipmaps of the texture are affected by this clear operation, while [baseLayer] and [layerCount] determine which layers of a 3D texture (or texture array) are affected by this clear operation. For 2D textures (which only have one layer by design), [baseLayer] and [layerCount] must both be `0`.
+   * Clears the specified [texture] by replacing all of its pixels with the specified [color]. [baseMipmap] and [mipmapCount] determine which mipmaps of the texture are affected by this clear operation, while [baseLayer] and [layerCount] determine which layers of a 3D texture (or texture array) are affected by this clear operation. For 2D textures (which only have one layer by design), [baseLayer] must be `0` and [layerCount] must be `1`.
    *
    * **Note:** [texture] can't be cleared while a draw list that uses it as part of a framebuffer is being created. Ensure the draw list is finalized (and that the color/depth texture using it is not set to [FINAL_ACTION_CONTINUE]) to clear this texture.
    */
@@ -255,6 +274,15 @@ public open class RenderingDevice internal constructor() : Object() {
     TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, LONG to postBarrier.flag)
     TransferContext.callMethod(rawPtr, MethodBindings.textureResolveMultisamplePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns the data format used to create this texture.
+   */
+  public fun textureGetFormat(texture: RID): RDTextureFormat? {
+    TransferContext.writeArguments(_RID to texture)
+    TransferContext.callMethod(rawPtr, MethodBindings.textureGetFormatPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as RDTextureFormat?)
   }
 
   /**
@@ -521,14 +549,25 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's [freeRid] method. See also [shaderCompileBinaryFromSpirv] and [shaderCreateFromSpirv].
    */
-  public fun shaderCreateFromBytecode(binaryData: PackedByteArray): RID {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to binaryData)
+  @JvmOverloads
+  public fun shaderCreateFromBytecode(binaryData: PackedByteArray, placeholderRid: RID = RID()):
+      RID {
+    TransferContext.writeArguments(PACKED_BYTE_ARRAY to binaryData, _RID to placeholderRid)
     TransferContext.callMethod(rawPtr, MethodBindings.shaderCreateFromBytecodePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
-   *
+   * Create a placeholder RID by allocating an RID without initializing it for use in [shaderCreateFromBytecode]. This allows you to create an RID for a shader and pass it around, but defer compiling the shader to a later time.
+   */
+  public fun shaderCreatePlaceholder(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.shaderCreatePlaceholderPtr, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  /**
+   * Returns the internal vertex input mask. Internally, the vertex input mask is an unsigned integer consisting of the locations (specified in GLSL via. `layout(location = ...)`) of the input variables (specified in GLSL by the `in` keyword).
    */
   public fun shaderGetVertexInputAttributeMask(shader: RID): Long {
     TransferContext.writeArguments(_RID to shader)
@@ -537,7 +576,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * It can be accessed with the RID that is returned.
+   * Creates a new uniform buffer. It can be accessed with the RID that is returned.
    *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's [freeRid] method.
    */
@@ -582,7 +621,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * It can be accessed with the RID that is returned.
+   * Creates a new uniform set. It can be accessed with the RID that is returned.
    *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's [freeRid] method.
    */
@@ -597,7 +636,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   *
+   * Checks if the [uniformSet] is valid, i.e. is owned.
    */
   public fun uniformSetIsValid(uniformSet: RID): Boolean {
     TransferContext.writeArguments(_RID to uniformSet)
@@ -606,7 +645,15 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
+   * Updates a region of [sizeBytes] bytes, starting at [offset], in the buffer, with the specified [data]. Raises a memory barrier except when [postBarrier] is set to [BARRIER_MASK_NO_BARRIER].
    *
+   * Prints an error if:
+   *
+   * - the region specified by [offset] + [sizeBytes] exceeds the buffer
+   *
+   * - a draw list is currently active (created by [drawListBegin])
+   *
+   * - a compute list is currently active (created by [computeListBegin])
    */
   @JvmOverloads
   public fun bufferUpdate(
@@ -622,7 +669,17 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
+   * Clears the contents of the [buffer], clearing [sizeBytes] bytes, starting at [offset]. Always raises a memory barrier.
    *
+   * Prints an error if:
+   *
+   * - the size isn't a multiple of four
+   *
+   * - the region specified by [offset] + [sizeBytes] exceeds the buffer
+   *
+   * - a draw list is currently active (created by [drawListBegin])
+   *
+   * - a compute list is currently active (created by [computeListBegin])
    */
   @JvmOverloads
   public fun bufferClear(
@@ -744,7 +801,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * High-level variant of [drawListBegin], with the parameters automtaically being adjusted for drawing onto the window specified by the [screen] ID.
+   * High-level variant of [drawListBegin], with the parameters automatically being adjusted for drawing onto the window specified by the [screen] ID.
    *
    * **Note:** Cannot be used with local RenderingDevices, as these don't have a screen. If called on a local RenderingDevice, [drawListBeginForScreen] returns [INVALID_ID].
    */
@@ -971,7 +1028,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   *
+   * Tells the GPU what compute pipeline to use when processing the compute list. If the shader has changed since the last time this function was called, Godot will unbind all descriptor sets and will re-bind them inside [computeListDispatch].
    */
   public fun computeListBindComputePipeline(computeList: Long, computePipeline: RID): Unit {
     TransferContext.writeArguments(LONG to computeList, _RID to computePipeline)
@@ -991,7 +1048,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   *
+   * Binds the [uniformSet] to this [computeList]. Godot ensures that all textures in the uniform set have the correct Vulkan access masks. If Godot had to change access masks of textures, it will raise a Vulkan image memory barrier.
    */
   public fun computeListBindUniformSet(
     computeList: Long,
@@ -1016,7 +1073,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   *
+   * Raises a Vulkan compute barrier in the specified [computeList].
    */
   public fun computeListAddBarrier(computeList: Long): Unit {
     TransferContext.writeArguments(LONG to computeList)
@@ -2302,15 +2359,19 @@ public open class RenderingDevice internal constructor() : Object() {
     public infix fun ushr(bits: Int): BarrierMask = BarrierMaskValue(flag ushr bits)
 
     public companion object {
-      public val BARRIER_MASK_RASTER: BarrierMask = BarrierMaskValue(1)
+      public val BARRIER_MASK_VERTEX: BarrierMask = BarrierMaskValue(1)
+
+      public val BARRIER_MASK_FRAGMENT: BarrierMask = BarrierMaskValue(8)
 
       public val BARRIER_MASK_COMPUTE: BarrierMask = BarrierMaskValue(2)
 
       public val BARRIER_MASK_TRANSFER: BarrierMask = BarrierMaskValue(4)
 
-      public val BARRIER_MASK_ALL_BARRIERS: BarrierMask = BarrierMaskValue(7)
+      public val BARRIER_MASK_RASTER: BarrierMask = BarrierMaskValue(9)
 
-      public val BARRIER_MASK_NO_BARRIER: BarrierMask = BarrierMaskValue(8)
+      public val BARRIER_MASK_ALL_BARRIERS: BarrierMask = BarrierMaskValue(32767)
+
+      public val BARRIER_MASK_NO_BARRIER: BarrierMask = BarrierMaskValue(32768)
     }
   }
 
@@ -2800,7 +2861,7 @@ public open class RenderingDevice internal constructor() : Object() {
     id: Long,
   ) {
     /**
-     * Sampler uniform. TODO: Difference between sampler and texture uniform
+     * Sampler uniform.
      */
     UNIFORM_TYPE_SAMPLER(0),
     /**
@@ -2812,19 +2873,19 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     UNIFORM_TYPE_TEXTURE(2),
     /**
-     * Image uniform. TODO: Difference between texture and image uniform
+     * Image uniform.
      */
     UNIFORM_TYPE_IMAGE(3),
     /**
-     * Texture buffer uniform. TODO: Difference between texture and texture buffe uniformr
+     * Texture buffer uniform.
      */
     UNIFORM_TYPE_TEXTURE_BUFFER(4),
     /**
-     * Sampler uniform with a texture buffer. TODO: Difference between texture and texture buffer uniform
+     * Sampler uniform with a texture buffer.
      */
     UNIFORM_TYPE_SAMPLER_WITH_TEXTURE_BUFFER(5),
     /**
-     * Image buffer uniform. TODO: Difference between texture and image uniforms
+     * Image buffer uniform.
      */
     UNIFORM_TYPE_IMAGE_BUFFER(6),
     /**
@@ -3789,6 +3850,9 @@ public open class RenderingDevice internal constructor() : Object() {
     public val textureCreateSharedFromSlicePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "texture_create_shared_from_slice")
 
+    public val textureCreateFromExtensionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "texture_create_from_extension")
+
     public val textureUpdatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "texture_update")
 
@@ -3812,6 +3876,9 @@ public open class RenderingDevice internal constructor() : Object() {
 
     public val textureResolveMultisamplePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "texture_resolve_multisample")
+
+    public val textureGetFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "texture_get_format")
 
     public val textureGetNativeHandlePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "texture_get_native_handle")
@@ -3875,6 +3942,9 @@ public open class RenderingDevice internal constructor() : Object() {
 
     public val shaderCreateFromBytecodePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "shader_create_from_bytecode")
+
+    public val shaderCreatePlaceholderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "shader_create_placeholder")
 
     public val shaderGetVertexInputAttributeMaskPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "shader_get_vertex_input_attribute_mask")

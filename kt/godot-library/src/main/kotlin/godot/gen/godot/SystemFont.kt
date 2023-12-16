@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
 import godot.core.TypeManager
-import godot.core.VariantArray
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -230,19 +229,6 @@ public open class SystemFont : Font() {
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, MethodBindings.setOversamplingPtr, NIL)
-    }
-
-  /**
-   * Array of fallback [godot.Font]s.
-   */
-  public var fallbacks: VariantArray<Font>
-    @JvmName("getFallbacks_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
-    get() = super.getFallbacks()
-    @JvmName("setFallbacks_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
-    set(`value`) {
-      super.setFallbacks(value)
     }
 
   public override fun new(scriptIndex: Int): Boolean {

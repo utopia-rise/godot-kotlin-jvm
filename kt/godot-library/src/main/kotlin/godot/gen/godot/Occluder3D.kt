@@ -21,6 +21,9 @@ import kotlin.Suppress
 /**
  * Occluder shape resource for use with occlusion culling in [godot.OccluderInstance3D].
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/3d/occlusion_culling.html]($DOCS_URL/tutorials/3d/occlusion_culling.html)
+ *
  * [godot.Occluder3D] stores an occluder shape that can be used by the engine's occlusion culling system.
  *
  * See [godot.OccluderInstance3D]'s documentation for instructions on setting up occlusion culling.

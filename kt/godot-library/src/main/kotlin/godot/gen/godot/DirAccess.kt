@@ -255,6 +255,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Changes the currently opened directory to the one passed as an argument. The argument can be relative to the current directory (e.g. `newdir` or `../newdir`), or an absolute path (e.g. `/tmp/newdir` or `res://somedir/newdir`).
    *
    * Returns one of the [enum Error] code constants ([OK] on success).
+   *
+   * **Note:** The new directory must be within the same scope, e.g. when you had opened a directory inside `res://`, you can't change it to `user://` directory. If you need to open a directory in another access scope, use [open] to create a new instance instead.
    */
   public fun changeDir(toDir: String): GodotError {
     TransferContext.writeArguments(STRING to toDir)
@@ -363,6 +365,17 @@ public open class DirAccess internal constructor() : RefCounted() {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.removePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns `true` if the file system or directory use case sensitive file names.
+   *
+   * **Note:** This method is implemented on macOS, Linux (for EXT4 and F2FS filesystems only) and Windows. On other platforms, it always returns `true`.
+   */
+  public fun isCaseSensitive(path: String): Boolean {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr, MethodBindings.isCaseSensitivePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object {
@@ -584,5 +597,8 @@ public open class DirAccess internal constructor() : RefCounted() {
 
     public val getIncludeHiddenPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "get_include_hidden")
+
+    public val isCaseSensitivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirAccess", "is_case_sensitive")
   }
 }

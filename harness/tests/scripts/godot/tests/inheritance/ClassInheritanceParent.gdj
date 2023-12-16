@@ -19,7 +19,8 @@ properties = [
     closed_function_has_been_called,
 	parent_open_function_has_been_called,
 	closed_var,
-	open_var
+	open_var,
+	notification_call_bit_flag
 ]
 functions = [
     closed_function,

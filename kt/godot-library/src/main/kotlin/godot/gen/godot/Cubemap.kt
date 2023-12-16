@@ -16,7 +16,7 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * 6-sided texture typically used in 3D rendering.
+ * Six square textures representing the faces of a cube. Commonly used as a skybox.
  *
  * A cubemap is made of 6 textures organized in layers. They are typically used for faking reflections in 3D rendering (see [godot.ReflectionProbe]). It can be used to make an object look as if it's reflecting its surroundings. This usually delivers much better performance than other reflection methods.
  *

@@ -37,7 +37,7 @@ import kotlin.jvm.JvmOverloads
  *
  * You must add points manually with [addPoint] and create segments manually with [connectPoints]. Once done, you can test if there is a path between two points with the [arePointsConnected] function, get a path containing indices by [getIdPath], or one containing actual coordinates with [getPointPath].
  *
- * It is also possible to use non-Euclidean distances. To do so, create a class that extends `AStar3D` and override methods [_computeCost] and [_estimateCost]. Both take two indices and return a length, as is shown in the following example.
+ * It is also possible to use non-Euclidean distances. To do so, create a class that extends [godot.AStar3D] and override methods [_computeCost] and [_estimateCost]. Both take two indices and return a length, as is shown in the following example.
  *
  * [codeblocks]
  *
@@ -91,7 +91,7 @@ import kotlin.jvm.JvmOverloads
  *
  * [/codeblocks]
  *
- * [_estimateCost] should return a lower bound of the distance, i.e. `_estimate_cost(u, v) <= _compute_cost(u, v)`. This serves as a hint to the algorithm because the custom `_compute_cost` might be computation-heavy. If this is not the case, make [_estimateCost] return the same value as [_computeCost] to provide the algorithm with the most accurate information.
+ * [_estimateCost] should return a lower bound of the distance, i.e. `_estimate_cost(u, v) <= _compute_cost(u, v)`. This serves as a hint to the algorithm because the custom [_computeCost] might be computation-heavy. If this is not the case, make [_estimateCost] return the same value as [_computeCost] to provide the algorithm with the most accurate information.
  *
  * If the default [_estimateCost] and [_computeCost] methods are used, or if the supplied [_estimateCost] method returns a lower bound of the cost, then the paths returned by A* will be the lowest-cost paths. Here, the cost of a path equals the sum of the [_computeCost] results of all segments in the path multiplied by the `weight_scale`s of the endpoints of the respective segments. If the default methods are used and the `weight_scale`s of all points are set to `1.0`, then this equals the sum of Euclidean distances of all segments in the path.
  */
@@ -105,7 +105,7 @@ public open class AStar3D : RefCounted() {
   /**
    * Called when estimating the cost between a point and the path's ending point.
    *
-   * Note that this function is hidden in the default `AStar3D` class.
+   * Note that this function is hidden in the default [godot.AStar3D] class.
    */
   public open fun _estimateCost(fromId: Long, toId: Long): Float {
     throw NotImplementedError("_estimate_cost is not implemented for AStar3D")
@@ -114,7 +114,7 @@ public open class AStar3D : RefCounted() {
   /**
    * Called when computing the cost between two connected points.
    *
-   * Note that this function is hidden in the default `AStar3D` class.
+   * Note that this function is hidden in the default [godot.AStar3D] class.
    */
   public open fun _computeCost(fromId: Long, toId: Long): Float {
     throw NotImplementedError("_compute_cost is not implemented for AStar3D")
@@ -381,7 +381,7 @@ public open class AStar3D : RefCounted() {
   }
 
   /**
-   * Returns the capacity of the structure backing the points, useful in conjunction with `reserve_space`.
+   * Returns the capacity of the structure backing the points, useful in conjunction with [reserveSpace].
    */
   public fun getPointCapacity(): Long {
     TransferContext.writeArguments()

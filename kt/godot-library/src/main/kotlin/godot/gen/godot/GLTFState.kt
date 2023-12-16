@@ -69,6 +69,17 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMinorVersionPtr, NIL)
     }
 
+  public var copyright: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getCopyrightPtr, STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCopyrightPtr, NIL)
+    }
+
   public var glbData: PackedByteArray
     get() {
       TransferContext.writeArguments()
@@ -177,6 +188,17 @@ public open class GLTFState : Resource() {
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setBasePathPtr, NIL)
+    }
+
+  public var filename: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getFilenamePtr, STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFilenamePtr, NIL)
     }
 
   public var rootNodes: PackedInt32Array
@@ -397,6 +419,10 @@ public open class GLTFState : Resource() {
     public val setMinorVersionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_minor_version")
 
+    public val getCopyrightPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_copyright")
+
+    public val setCopyrightPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "set_copyright")
+
     public val getGlbDataPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_glb_data")
 
     public val setGlbDataPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "set_glb_data")
@@ -448,6 +474,10 @@ public open class GLTFState : Resource() {
     public val getBasePathPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_base_path")
 
     public val setBasePathPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "set_base_path")
+
+    public val getFilenamePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_filename")
+
+    public val setFilenamePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "set_filename")
 
     public val getRootNodesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "get_root_nodes")

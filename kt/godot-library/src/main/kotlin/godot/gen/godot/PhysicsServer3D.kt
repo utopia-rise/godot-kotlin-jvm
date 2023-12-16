@@ -1001,13 +1001,11 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the function used to calculate physics for an object, if that object allows it (see [bodySetOmitForceIntegration]).
+   * Sets the function used to calculate physics for an object, if that object allows it (see [bodySetOmitForceIntegration]). The force integration function takes 2 arguments:
    *
-   * The force integration function takes 2 arguments:
+   * - `state` — [godot.PhysicsDirectBodyState3D] used to retrieve and modify the body's state.
    *
-   * `state:` [godot.PhysicsDirectBodyState3D] used to retrieve and modify the body's state.
-   *
-   * `userdata:` Optional user data, if it was passed when calling `body_set_force_integration_callback`.
+   * - [code skip-lint]userdata` — optional user data passed to [bodySetForceIntegrationCallback].
    */
   @JvmOverloads
   public fun bodySetForceIntegrationCallback(

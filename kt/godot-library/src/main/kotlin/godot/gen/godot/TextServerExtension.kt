@@ -138,6 +138,13 @@ public open class TextServerExtension : TextServer() {
   /**
    *
    */
+  public open fun _createFontLinkedVariation(fontRid: RID): RID {
+    throw NotImplementedError("_create_font_linked_variation is not implemented for TextServerExtension")
+  }
+
+  /**
+   *
+   */
   public open fun _fontSetData(fontRid: RID, `data`: PackedByteArray): Unit {
   }
 
@@ -315,6 +322,20 @@ public open class TextServerExtension : TextServer() {
   /**
    *
    */
+  public open fun _fontSetFixedSizeScaleMode(fontRid: RID,
+      fixedSizeScaleMode: TextServer.FixedSizeScaleMode): Unit {
+  }
+
+  /**
+   *
+   */
+  public open fun _fontGetFixedSizeScaleMode(fontRid: RID): TextServer.FixedSizeScaleMode {
+    throw NotImplementedError("_font_get_fixed_size_scale_mode is not implemented for TextServerExtension")
+  }
+
+  /**
+   *
+   */
   public open fun _fontSetAllowSystemFallback(fontRid: RID, allowSystemFallback: Boolean): Unit {
   }
 
@@ -376,6 +397,23 @@ public open class TextServerExtension : TextServer() {
    */
   public open fun _fontGetEmbolden(fontRid: RID): Double {
     throw NotImplementedError("_font_get_embolden is not implemented for TextServerExtension")
+  }
+
+  /**
+   *
+   */
+  public open fun _fontSetSpacing(
+    fontRid: RID,
+    spacing: TextServer.SpacingType,
+    `value`: Long,
+  ): Unit {
+  }
+
+  /**
+   *
+   */
+  public open fun _fontGetSpacing(fontRid: RID, spacing: TextServer.SpacingType): Long {
+    throw NotImplementedError("_font_get_spacing is not implemented for TextServerExtension")
   }
 
   /**
@@ -1482,6 +1520,34 @@ public open class TextServerExtension : TextServer() {
   /**
    *
    */
+  public open fun _shapedTextGetCharacterBreaks(shaped: RID): PackedInt32Array {
+    throw NotImplementedError("_shaped_text_get_character_breaks is not implemented for TextServerExtension")
+  }
+
+  /**
+   *
+   */
+  public open fun _shapedTextNextCharacterPos(shaped: RID, pos: Long): Long {
+    throw NotImplementedError("_shaped_text_next_character_pos is not implemented for TextServerExtension")
+  }
+
+  /**
+   *
+   */
+  public open fun _shapedTextPrevCharacterPos(shaped: RID, pos: Long): Long {
+    throw NotImplementedError("_shaped_text_prev_character_pos is not implemented for TextServerExtension")
+  }
+
+  /**
+   *
+   */
+  public open fun _shapedTextClosestCharacterPos(shaped: RID, pos: Long): Long {
+    throw NotImplementedError("_shaped_text_closest_character_pos is not implemented for TextServerExtension")
+  }
+
+  /**
+   *
+   */
   public open fun _formatNumber(string: String, language: String): String {
     throw NotImplementedError("_format_number is not implemented for TextServerExtension")
   }
@@ -1523,6 +1589,13 @@ public open class TextServerExtension : TextServer() {
     charsPerLine: Long,
   ): PackedInt32Array {
     throw NotImplementedError("_string_get_word_breaks is not implemented for TextServerExtension")
+  }
+
+  /**
+   *
+   */
+  public open fun _stringGetCharacterBreaks(string: String, language: String): PackedInt32Array {
+    throw NotImplementedError("_string_get_character_breaks is not implemented for TextServerExtension")
   }
 
   /**
@@ -1611,6 +1684,9 @@ public open class TextServerExtension : TextServer() {
     public val _createFontPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServerExtension", "_create_font")
 
+    public val _createFontLinkedVariationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_create_font_linked_variation")
+
     public val _fontSetDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_data")
 
@@ -1695,6 +1771,12 @@ public open class TextServerExtension : TextServer() {
     public val _fontGetFixedSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_fixed_size")
 
+    public val _fontSetFixedSizeScaleModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_fixed_size_scale_mode")
+
+    public val _fontGetFixedSizeScaleModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_fixed_size_scale_mode")
+
     public val _fontSetAllowSystemFallbackPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_allow_system_fallback")
 
@@ -1724,6 +1806,12 @@ public open class TextServerExtension : TextServer() {
 
     public val _fontGetEmboldenPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_embolden")
+
+    public val _fontSetSpacingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_spacing")
+
+    public val _fontGetSpacingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_spacing")
 
     public val _fontSetTransformPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_transform")
@@ -2124,6 +2212,18 @@ public open class TextServerExtension : TextServer() {
     public val _shapedTextPrevGraphemePosPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_prev_grapheme_pos")
 
+    public val _shapedTextGetCharacterBreaksPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_character_breaks")
+
+    public val _shapedTextNextCharacterPosPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_next_character_pos")
+
+    public val _shapedTextPrevCharacterPosPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_prev_character_pos")
+
+    public val _shapedTextClosestCharacterPosPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_closest_character_pos")
+
     public val _formatNumberPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServerExtension", "_format_number")
 
@@ -2141,6 +2241,9 @@ public open class TextServerExtension : TextServer() {
 
     public val _stringGetWordBreaksPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServerExtension", "_string_get_word_breaks")
+
+    public val _stringGetCharacterBreaksPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_string_get_character_breaks")
 
     public val _isConfusablePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServerExtension", "_is_confusable")

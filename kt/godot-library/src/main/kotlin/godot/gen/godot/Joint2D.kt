@@ -8,11 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
+import godot.core.RID
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
+import godot.core.VariantType._RID
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Boolean
@@ -57,7 +59,7 @@ public open class Joint2D internal constructor() : Node2D() {
     }
 
   /**
-   * When [nodeA] and [nodeB] move in different directions the `bias` controls how fast the joint pulls them back to their original position. The lower the `bias` the more the two bodies can pull on the joint.
+   * When [nodeA] and [nodeB] move in different directions the [bias] controls how fast the joint pulls them back to their original position. The lower the [bias] the more the two bodies can pull on the joint.
    *
    * When set to `0`, the default value from [godot.ProjectSettings.physics/2d/solver/defaultConstraintBias] is used.
    */
@@ -91,6 +93,15 @@ public open class Joint2D internal constructor() : Node2D() {
     return true
   }
 
+  /**
+   * Returns the joint's [RID].
+   */
+  public fun getRid(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
   public companion object
 
   internal object MethodBindings {
@@ -111,5 +122,7 @@ public open class Joint2D internal constructor() : Node2D() {
 
     public val getExcludeNodesFromCollisionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Joint2D", "get_exclude_nodes_from_collision")
+
+    public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint2D", "get_rid")
   }
 }

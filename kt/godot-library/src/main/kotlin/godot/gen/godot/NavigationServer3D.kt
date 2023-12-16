@@ -170,7 +170,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Set the navigation [map] edge connection use. If [enabled] the navigation map allows navigation regions to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin.
+   * Set the navigation [map] edge connection use. If [enabled] is `true`, the navigation map allows navigation regions to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin.
    */
   public fun mapSetUseEdgeConnections(map: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to map, BOOL to enabled)
@@ -347,7 +347,24 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * If [enabled] the navigation [region] will use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin.
+   * If [enabled] is `true`, the specified [region] will contribute to its current navigation map.
+   */
+  public fun regionSetEnabled(region: RID, enabled: Boolean): Unit {
+    TransferContext.writeArguments(_RID to region, BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.regionSetEnabledPtr, NIL)
+  }
+
+  /**
+   * Returns `true` if the specified [region] is enabled.
+   */
+  public fun regionGetEnabled(region: RID): Boolean {
+    TransferContext.writeArguments(_RID to region)
+    TransferContext.callMethod(rawPtr, MethodBindings.regionGetEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * If [enabled] is `true`, the navigation [region] will use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin.
    */
   public fun regionSetUseEdgeConnections(region: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to region, BOOL to enabled)
@@ -479,6 +496,8 @@ public object NavigationServer3D : Object() {
 
   /**
    * Bakes the [navigationMesh] with bake source geometry collected starting from the [rootNode].
+   *
+   * *Deprecated.* This function is deprecated due to core threading changes. To upgrade existing code, first create a [godot.NavigationMeshSourceGeometryData3D] resource. Use this resource with [parseSourceGeometryData] to parse the SceneTree for nodes that should contribute to the navigation mesh baking. The SceneTree parsing needs to happen on the main thread. After the parsing is finished use the resource with [bakeFromSourceGeometryData] to bake a navigation mesh.
    */
   public fun regionBakeNavigationMesh(navigationMesh: NavigationMesh, rootNode: Node): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to rootNode)
@@ -536,6 +555,23 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr, MethodBindings.linkGetMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  /**
+   * If [enabled] is `true`, the specified [link] will contribute to its current navigation map.
+   */
+  public fun linkSetEnabled(link: RID, enabled: Boolean): Unit {
+    TransferContext.writeArguments(_RID to link, BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.linkSetEnabledPtr, NIL)
+  }
+
+  /**
+   * Returns `true` if the specified [link] is enabled.
+   */
+  public fun linkGetEnabled(link: RID): Boolean {
+    TransferContext.writeArguments(_RID to link)
+    TransferContext.callMethod(rawPtr, MethodBindings.linkGetEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -667,7 +703,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * If [enabled] the provided [agent] calculates avoidance.
+   * If [enabled] is `true`, the provided [agent] calculates avoidance.
    */
   public fun agentSetAvoidanceEnabled(agent: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to agent, BOOL to enabled)
@@ -873,7 +909,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * If [enabled] the provided [obstacle] affects avoidance using agents.
+   * If [enabled] is `true`, the provided [obstacle] affects avoidance using agents.
    */
   public fun obstacleSetAvoidanceEnabled(obstacle: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to obstacle, BOOL to enabled)
@@ -1017,6 +1053,19 @@ public object NavigationServer3D : Object() {
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.bakeFromSourceGeometryDataPtr, NIL)
+  }
+
+  /**
+   * Bakes the provided [navigationMesh] with the data from the provided [sourceGeometryData] as an async task running on a background thread. After the process is finished the optional [callback] will be called.
+   */
+  @JvmOverloads
+  public fun bakeFromSourceGeometryDataAsync(
+    navigationMesh: NavigationMesh,
+    sourceGeometryData: NavigationMeshSourceGeometryData3D,
+    callback: Callable = Callable(),
+  ): Unit {
+    TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, CALLABLE to callback)
+    TransferContext.callMethod(rawPtr, MethodBindings.bakeFromSourceGeometryDataAsyncPtr, NIL)
   }
 
   /**
@@ -1196,6 +1245,12 @@ public object NavigationServer3D : Object() {
     public val regionCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer3D", "region_create")
 
+    public val regionSetEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_enabled")
+
+    public val regionGetEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_enabled")
+
     public val regionSetUseEdgeConnectionsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_use_edge_connections")
 
@@ -1261,6 +1316,12 @@ public object NavigationServer3D : Object() {
 
     public val linkGetMapPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_map")
+
+    public val linkSetEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_enabled")
+
+    public val linkGetEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_enabled")
 
     public val linkSetBidirectionalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_bidirectional")
@@ -1426,6 +1487,9 @@ public object NavigationServer3D : Object() {
 
     public val bakeFromSourceGeometryDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer3D", "bake_from_source_geometry_data")
+
+    public val bakeFromSourceGeometryDataAsyncPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer3D", "bake_from_source_geometry_data_async")
 
     public val freeRidPtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationServer3D", "free_rid")
 

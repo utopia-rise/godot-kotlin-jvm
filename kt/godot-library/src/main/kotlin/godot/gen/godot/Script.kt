@@ -182,6 +182,15 @@ public open class Script internal constructor() : Resource() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  /**
+   * Returns `true` if the script is an abstract script. An abstract script does not have a constructor and cannot be instantiated.
+   */
+  public fun isAbstract(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isAbstractPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   public companion object
 
   internal object MethodBindings {
@@ -222,5 +231,7 @@ public open class Script internal constructor() : Resource() {
         TypeManager.getMethodBindPtr("Script", "get_property_default_value")
 
     public val isToolPtr: VoidPtr = TypeManager.getMethodBindPtr("Script", "is_tool")
+
+    public val isAbstractPtr: VoidPtr = TypeManager.getMethodBindPtr("Script", "is_abstract")
   }
 }

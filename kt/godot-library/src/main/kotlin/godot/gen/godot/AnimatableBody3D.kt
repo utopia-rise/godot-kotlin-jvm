@@ -22,7 +22,7 @@ import kotlin.Suppress
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
- * An animatable 3D physics body. It can't be moved by external forces or contacts, but can be moved manually by other means such as code, [godot.AnimationPlayer]s (with [godot.AnimationPlayer.playbackProcessMode] set to `ANIMATION_PROCESS_PHYSICS`), and [godot.RemoteTransform3D].
+ * An animatable 3D physics body. It can't be moved by external forces or contacts, but can be moved manually by other means such as code, [godot.AnimationMixer]s (with [godot.AnimationMixer.callbackModeProcess] set to [godot.AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS]), and [godot.RemoteTransform3D].
  *
  * When [godot.AnimatableBody3D] is moved, its linear and angular velocity are estimated and used to affect other physics bodies in its path. This makes it useful for moving platforms, doors, and other moving objects.
  */

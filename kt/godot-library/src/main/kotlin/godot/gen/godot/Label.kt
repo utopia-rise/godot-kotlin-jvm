@@ -182,7 +182,7 @@ public open class Label : Control() {
     }
 
   /**
-   * The node ignores the first `lines_skipped` lines before it starts to display text.
+   * The number of the lines ignored and not displayed from the start of the [text] value.
    */
   public var linesSkipped: Int
     get() {

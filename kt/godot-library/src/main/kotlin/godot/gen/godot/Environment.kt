@@ -1266,7 +1266,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The global brightness value of the rendered scene. Effective only if `adjustment_enabled` is `true`.
+   * The global brightness value of the rendered scene. Effective only if [adjustmentEnabled] is `true`.
    */
   public var adjustmentBrightness: Float
     get() {
@@ -1280,7 +1280,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The global contrast value of the rendered scene (default value is 1). Effective only if `adjustment_enabled` is `true`.
+   * The global contrast value of the rendered scene (default value is 1). Effective only if [adjustmentEnabled] is `true`.
    */
   public var adjustmentContrast: Float
     get() {
@@ -1294,7 +1294,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The global color saturation value of the rendered scene (default value is 1). Effective only if `adjustment_enabled` is `true`.
+   * The global color saturation value of the rendered scene (default value is 1). Effective only if [adjustmentEnabled] is `true`.
    */
   public var adjustmentSaturation: Float
     get() {
@@ -1308,7 +1308,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The [godot.Texture2D] or [godot.Texture3D] lookup table (LUT) to use for the built-in post-process color grading. Can use a [godot.GradientTexture1D] for a 1-dimensional LUT, or a [godot.Texture3D] for a more complex LUT. Effective only if `adjustment_enabled` is `true`.
+   * The [godot.Texture2D] or [godot.Texture3D] lookup table (LUT) to use for the built-in post-process color grading. Can use a [godot.GradientTexture1D] for a 1-dimensional LUT, or a [godot.Texture3D] for a more complex LUT. Effective only if [adjustmentEnabled] is `true`.
    */
   public var adjustmentColorCorrection: Material?
     get() {

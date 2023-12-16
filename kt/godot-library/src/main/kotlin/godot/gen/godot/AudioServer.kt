@@ -20,6 +20,7 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
+import godot.signals.Signal3
 import godot.signals.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
@@ -43,9 +44,15 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public object AudioServer : Object() {
   /**
-   * Emitted when the [godot.AudioBusLayout] changes.
+   * Emitted when an audio bus is added, deleted, or moved.
    */
   public val busLayoutChanged: Signal0 by signal()
+
+  /**
+   * Emitted when the audio bus at [busIndex] is renamed from [oldName] to [newName].
+   */
+  public val busRenamed: Signal3<Long, StringName, StringName> by signal("busIndex", "oldName",
+      "newName")
 
   public override fun new(scriptIndex: Int): Boolean {
     getSingleton(ENGINECLASS_AUDIOSERVER)
@@ -398,7 +405,9 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the audio driver's output latency.
+   * Returns the audio driver's effective output latency. This is based on [godot.ProjectSettings.audio/driver/outputLatency], but the exact returned value will differ depending on the operating system and audio driver.
+   *
+   * **Note:** This can be expensive; it is not recommended to call [getOutputLatency] every frame.
    */
   public fun getOutputLatency(): Double {
     TransferContext.writeArguments()

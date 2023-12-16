@@ -300,7 +300,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   *
+   * Sets the pose position of the bone at [boneIdx] to [position]. [position] is a [godot.core.Vector3] describing a position local to the [godot.Skeleton3D] node.
    */
   public fun setBonePosePosition(boneIdx: Int, position: Vector3): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), VECTOR3 to position)
@@ -308,7 +308,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   *
+   * Sets the pose rotation of the bone at [boneIdx] to [rotation]. [rotation] is a [godot.Quaternion] describing a rotation in the bone's local coordinate space with respect to the rotation of any parent bones.
    */
   public fun setBonePoseRotation(boneIdx: Int, rotation: Quaternion): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), QUATERNION to rotation)
@@ -316,7 +316,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   *
+   * Sets the pose scale of the bone at [boneIdx] to [scale].
    */
   public fun setBonePoseScale(boneIdx: Int, scale: Vector3): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), VECTOR3 to scale)
@@ -324,7 +324,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   *
+   * Returns the pose position of the bone at [boneIdx]. The returned [godot.core.Vector3] is in the local coordinate space of the [godot.Skeleton3D] node.
    */
   public fun getBonePosePosition(boneIdx: Int): Vector3 {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
@@ -333,7 +333,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   *
+   * Returns the pose rotation of the bone at [boneIdx]. The returned [godot.Quaternion] is local to the bone with respect to the rotation of any parent bones.
    */
   public fun getBonePoseRotation(boneIdx: Int): Quaternion {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
@@ -342,7 +342,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   *
+   * Returns the pose scale of the bone at [boneIdx].
    */
   public fun getBonePoseScale(boneIdx: Int): Vector3 {
     TransferContext.writeArguments(LONG to boneIdx.toLong())

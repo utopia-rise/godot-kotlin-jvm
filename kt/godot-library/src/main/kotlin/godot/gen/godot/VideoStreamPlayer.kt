@@ -32,6 +32,9 @@ import kotlin.Unit
 /**
  * A control used for video playback.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/animation/playing_videos.html]($DOCS_URL/tutorials/animation/playing_videos.html)
+ *
  * A control used for playback of [godot.VideoStream] resources.
  *
  * Supported video formats are [godot.Ogg Theora](https://www.theora.org/) (`.ogv`, [godot.VideoStreamTheora]) and any format exposed via a GDExtension plugin.
@@ -146,6 +149,20 @@ public open class VideoStreamPlayer : Control() {
     }
 
   /**
+   * If `true`, the video restarts when it reaches its end.
+   */
+  public var loop: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
+    }
+
+  /**
    * Amount of time in milliseconds to store in buffer while playing.
    */
   public var bufferingMsec: Int
@@ -233,6 +250,17 @@ public open class VideoStreamPlayer : Control() {
   }
 
   /**
+   * The length of the current stream, in seconds.
+   *
+   * **Note:** For [godot.VideoStreamTheora] streams (the built-in format supported by Godot), this value will always be zero, as getting the stream length is not implemented yet. The feature may be supported by video formats implemented by a GDExtension add-on.
+   */
+  public fun getStreamLength(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStreamLengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  /**
    * Returns the current frame as a [godot.Texture2D].
    */
   public fun getVideoTexture(): Texture2D? {
@@ -262,6 +290,10 @@ public open class VideoStreamPlayer : Control() {
 
     public val isPausedPtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStreamPlayer", "is_paused")
 
+    public val setLoopPtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_loop")
+
+    public val hasLoopPtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStreamPlayer", "has_loop")
+
     public val setVolumePtr: VoidPtr =
         TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_volume")
 
@@ -282,6 +314,9 @@ public open class VideoStreamPlayer : Control() {
 
     public val getStreamNamePtr: VoidPtr =
         TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream_name")
+
+    public val getStreamLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream_length")
 
     public val setStreamPositionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_stream_position")

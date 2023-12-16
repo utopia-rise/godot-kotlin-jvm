@@ -155,7 +155,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     }
 
   /**
-   * THe line width to use when drawing lines (in pixels). Thick lines may not be supported on all hardware.
+   * The line width to use when drawing lines (in pixels). Thick lines may not be supported on all hardware.
    */
   public var lineWidth: Float
     get() {

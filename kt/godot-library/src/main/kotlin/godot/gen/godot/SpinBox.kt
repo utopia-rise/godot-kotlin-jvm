@@ -67,6 +67,8 @@ import kotlin.Unit
  *
  * See [godot.Range] class for more options over the [godot.SpinBox].
  *
+ * **Note:** With the [godot.SpinBox]'s context menu disabled, you can right-click the bottom half of the spinbox to set the value to its minimum, while right-clicking the top half sets the value to its maximum.
+ *
  * **Note:** [godot.SpinBox] relies on an underlying [godot.LineEdit] node. To theme a [godot.SpinBox]'s background, add theme items for [godot.LineEdit] and customize them.
  *
  * **Note:** If you want to implement drag and drop for the underlying [godot.LineEdit], you can use [godot.Control.setDragForwarding] on the node returned by [getLineEdit].
@@ -116,7 +118,7 @@ public open class SpinBox : Range() {
     }
 
   /**
-   * Adds the specified `prefix` string before the numerical value of the [godot.SpinBox].
+   * Adds the specified prefix string before the numerical value of the [godot.SpinBox].
    */
   public var prefix: String
     get() {
@@ -130,7 +132,7 @@ public open class SpinBox : Range() {
     }
 
   /**
-   * Adds the specified `suffix` string after the numerical value of the [godot.SpinBox].
+   * Adds the specified suffix string after the numerical value of the [godot.SpinBox].
    */
   public var suffix: String
     get() {
@@ -144,7 +146,7 @@ public open class SpinBox : Range() {
     }
 
   /**
-   * If not `0`, `value` will always be rounded to a multiple of `custom_arrow_step` when interacting with the arrow buttons of the [godot.SpinBox].
+   * If not `0`, [godot.Range.value] will always be rounded to a multiple of [customArrowStep] when interacting with the arrow buttons of the [godot.SpinBox].
    */
   public var customArrowStep: Double
     get() {

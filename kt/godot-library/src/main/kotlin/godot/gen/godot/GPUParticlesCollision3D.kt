@@ -18,11 +18,11 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Abstract class for 3D particle collision shapes affecting [godot.GPUParticles3D] nodes.
+ * Abstract base class for 3D particle collision shapes affecting [godot.GPUParticles3D] nodes.
  *
  * Particle collision shapes can be used to make particles stop or bounce against them.
  *
- * Particle collision shapes in real-time and can be moved, rotated and scaled during gameplay. Unlike attractors, non-uniform scaling of collision shapes is *not* supported.
+ * Particle collision shapes work in real-time and can be moved, rotated and scaled during gameplay. Unlike attractors, non-uniform scaling of collision shapes is *not* supported.
  *
  * Particle collision shapes can be temporarily disabled by hiding them.
  *

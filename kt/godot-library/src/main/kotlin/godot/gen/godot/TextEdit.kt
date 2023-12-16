@@ -268,91 +268,7 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * If `true`, all occurrences of the selected text will be highlighted.
-   */
-  public var highlightAllOccurrences: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isHighlightAllOccurrencesEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHighlightAllOccurrencesPtr, NIL)
-    }
-
-  /**
-   * If `true`, the line containing the cursor is highlighted.
-   */
-  public var highlightCurrentLine: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isHighlightCurrentLineEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHighlightCurrentLinePtr, NIL)
-    }
-
-  /**
-   * If `true`, control characters are displayed.
-   */
-  public var drawControlChars: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDrawControlCharsPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDrawControlCharsPtr, NIL)
-    }
-
-  /**
-   * If `true`, the "tab" character will have a visible representation.
-   */
-  public var drawTabs: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDrawingTabsPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDrawTabsPtr, NIL)
-    }
-
-  /**
-   * If `true`, the "space" character will have a visible representation.
-   */
-  public var drawSpaces: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDrawingSpacesPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDrawSpacesPtr, NIL)
-    }
-
-  /**
-   * Sets the [godot.SyntaxHighlighter] to use.
-   */
-  public var syntaxHighlighter: SyntaxHighlighter?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSyntaxHighlighterPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as SyntaxHighlighter?)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSyntaxHighlighterPtr, NIL)
-    }
-
-  /**
-   * Scroll smoothly over the text rather then jumping to the next location.
+   * Scroll smoothly over the text rather than jumping to the next location.
    */
   public var scrollSmooth: Boolean
     get() {
@@ -563,6 +479,90 @@ public open class TextEdit : Control() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setMultipleCaretsEnabledPtr, NIL)
+    }
+
+  /**
+   * Sets the [godot.SyntaxHighlighter] to use.
+   */
+  public var syntaxHighlighter: SyntaxHighlighter?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getSyntaxHighlighterPtr, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as SyntaxHighlighter?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSyntaxHighlighterPtr, NIL)
+    }
+
+  /**
+   * If `true`, all occurrences of the selected text will be highlighted.
+   */
+  public var highlightAllOccurrences: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isHighlightAllOccurrencesEnabledPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHighlightAllOccurrencesPtr, NIL)
+    }
+
+  /**
+   * If `true`, the line containing the cursor is highlighted.
+   */
+  public var highlightCurrentLine: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isHighlightCurrentLineEnabledPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHighlightCurrentLinePtr, NIL)
+    }
+
+  /**
+   * If `true`, control characters are displayed.
+   */
+  public var drawControlChars: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getDrawControlCharsPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDrawControlCharsPtr, NIL)
+    }
+
+  /**
+   * If `true`, the "tab" character will have a visible representation.
+   */
+  public var drawTabs: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isDrawingTabsPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDrawTabsPtr, NIL)
+    }
+
+  /**
+   * If `true`, the "space" character will have a visible representation.
+   */
+  public var drawSpaces: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isDrawingSpacesPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDrawSpacesPtr, NIL)
     }
 
   /**

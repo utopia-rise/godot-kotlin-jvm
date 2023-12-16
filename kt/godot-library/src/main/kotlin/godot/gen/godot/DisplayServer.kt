@@ -118,6 +118,18 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Registers callables to emit when the menu is respectively about to show or closed.
+   */
+  public fun globalMenuSetPopupCallbacks(
+    menuRoot: String,
+    openCallback: Callable,
+    closeCallback: Callable,
+  ): Unit {
+    TransferContext.writeArguments(STRING to menuRoot, CALLABLE to openCallback, CALLABLE to closeCallback)
+    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetPopupCallbacksPtr, NIL)
+  }
+
+  /**
    * Adds an item that will act as a submenu of the global menu [menuRoot]. The [submenu] argument is the ID of the global menu root that will be shown when the item is clicked.
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
@@ -545,6 +557,19 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Returns `true` if the item at index [idx] is hidden.
+   *
+   * See [globalMenuSetItemHidden] for more info on how to hide an item.
+   *
+   * **Note:** This method is implemented only on macOS.
+   */
+  public fun globalMenuIsItemHidden(menuRoot: String, idx: Int): Boolean {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuIsItemHiddenPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
    * Returns the tooltip associated with the specified index [idx].
    *
    * **Note:** This method is implemented only on macOS.
@@ -660,6 +685,22 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Sets the callback of the item at index [idx]. The callback is emitted when an item is hovered.
+   *
+   * **Note:** The [callback] Callable needs to accept exactly one Variant parameter, the parameter passed to the Callable will be the value passed to the `tag` parameter when the menu item was created.
+   *
+   * **Note:** This method is implemented only on macOS.
+   */
+  public fun globalMenuSetItemHoverCallbacks(
+    menuRoot: String,
+    idx: Int,
+    callback: Callable,
+  ): Unit {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), CALLABLE to callback)
+    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemHoverCallbacksPtr, NIL)
+  }
+
+  /**
    * Sets the callback of the item at index [idx]. Callback is emitted when its accelerator is activated.
    *
    * **Note:** The [keyCallback] Callable needs to accept exactly one Variant parameter, the parameter passed to the Callable will be the value passed to the `tag` parameter when the menu item was created.
@@ -743,6 +784,20 @@ public object DisplayServer : Object() {
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), BOOL to disabled)
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemDisabledPtr, NIL)
+  }
+
+  /**
+   * Hides/shows the item at index [idx]. When it is hidden, an item does not appear in a menu and its action cannot be invoked.
+   *
+   * **Note:** This method is implemented only on macOS.
+   */
+  public fun globalMenuSetItemHidden(
+    menuRoot: String,
+    idx: Int,
+    hidden: Boolean,
+  ): Unit {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), BOOL to hidden)
+    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemHiddenPtr, NIL)
   }
 
   /**
@@ -892,7 +947,7 @@ public object DisplayServer : Object() {
    *
    * - `id` is voice identifier.
    *
-   * - `language` is language code in `lang_Variant` format. `lang` part is a 2 or 3-letter code based on the ISO-639 standard, in lowercase. And `Variant` part is an engine dependent string describing country, region or/and dialect.
+   * - `language` is language code in `lang_Variant` format. The `lang` part is a 2 or 3-letter code based on the ISO-639 standard, in lowercase. The [code skip-lint]Variant` part is an engine-dependent string describing country, region or/and dialect.
    *
    * Note that Godot depends on system libraries for text-to-speech functionality. These libraries are installed by default on Windows and macOS, but not on all Linux distributions. If they are not present, this method will return an empty list. This applies to both Godot users on Linux, as well as end-users on Linux running Godot games that use text-to-speech.
    *
@@ -1012,7 +1067,7 @@ public object DisplayServer : Object() {
   /**
    * Returns `true` if OS supports dark mode.
    *
-   * **Note:** This method is implemented on macOS, Windows and Linux (X11).
+   * **Note:** This method is implemented on Android, iOS, macOS, Windows, and Linux (X11).
    */
   public fun isDarkModeSupported(): Boolean {
     TransferContext.writeArguments()
@@ -1023,7 +1078,7 @@ public object DisplayServer : Object() {
   /**
    * Returns `true` if OS is using dark mode.
    *
-   * **Note:** This method is implemented on macOS, Windows and Linux (X11).
+   * **Note:** This method is implemented on Android, iOS, macOS, Windows, and Linux (X11).
    */
   public fun isDarkMode(): Boolean {
     TransferContext.writeArguments()
@@ -1105,11 +1160,29 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns `true` if there is content on the user's clipboard.
+   * Returns the user's clipboard as an image if possible.
+   */
+  public fun clipboardGetImage(): Image? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.clipboardGetImagePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+  }
+
+  /**
+   * Returns `true` if there is a text content on the user's clipboard.
    */
   public fun clipboardHas(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clipboardHasPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Returns `true` if there is an image content on the user's clipboard.
+   */
+  public fun clipboardHasImage(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.clipboardHasImagePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -1460,6 +1533,18 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Returns the estimated window title bar size (including text and window buttons) for the window specified by [windowId] (in pixels). This method does not change the window title.
+   *
+   * **Note:** This method is implemented on macOS and Windows.
+   */
+  @JvmOverloads
+  public fun windowGetTitleSize(title: String, windowId: Int = 0): Vector2i {
+    TransferContext.writeArguments(STRING to title, LONG to windowId.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.windowGetTitleSizePtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+  }
+
+  /**
    * Sets a polygonal region of the window which accepts mouse events. Mouse events outside the region will be passed through.
    *
    * Passing an empty array will disable passthrough support (all mouse events will be intercepted by the window, which is the default behavior).
@@ -1602,6 +1687,8 @@ public object DisplayServer : Object() {
 
   /**
    * Sets the [callback] that will be called when the window specified by [windowId] is moved or resized.
+   *
+   * **Warning:** Advanced users only! Adding such a callback to a [godot.Window] node will override its default implementation, which can introduce bugs.
    */
   @JvmOverloads
   public fun windowSetRectChangedCallback(callback: Callable, windowId: Int = 0): Unit {
@@ -1611,6 +1698,8 @@ public object DisplayServer : Object() {
 
   /**
    * Sets the [callback] that will be called when an event occurs in the window specified by [windowId].
+   *
+   * **Warning:** Advanced users only! Adding such a callback to a [godot.Window] node will override its default implementation, which can introduce bugs.
    */
   @JvmOverloads
   public fun windowSetWindowEventCallback(callback: Callable, windowId: Int = 0): Unit {
@@ -1620,6 +1709,8 @@ public object DisplayServer : Object() {
 
   /**
    * Sets the [callback] that should be called when any [godot.InputEvent] is sent to the window specified by [windowId].
+   *
+   * **Warning:** Advanced users only! Adding such a callback to a [godot.Window] node will override its default implementation, which can introduce bugs.
    */
   @JvmOverloads
   public fun windowSetInputEventCallback(callback: Callable, windowId: Int = 0): Unit {
@@ -1629,6 +1720,8 @@ public object DisplayServer : Object() {
 
   /**
    * Sets the [callback] that should be called when text is entered using the virtual keyboard to the window specified by [windowId].
+   *
+   * **Warning:** Advanced users only! Adding such a callback to a [godot.Window] node will override its default implementation, which can introduce bugs.
    */
   @JvmOverloads
   public fun windowSetInputTextCallback(callback: Callable, windowId: Int = 0): Unit {
@@ -1638,6 +1731,8 @@ public object DisplayServer : Object() {
 
   /**
    * Sets the [callback] that should be called when files are dropped from the operating system's file manager to the window specified by [windowId].
+   *
+   * **Warning:** Advanced users only! Adding such a callback to a [godot.Window] node will override its default implementation, which can introduce bugs.
    *
    * **Note:** This method is implemented on Windows, macOS, Linux (X11) and Web.
    */
@@ -2017,7 +2112,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns `true` if positions of **OK** and **Cancel** buttons are swapped in dialogs. This is enabled by default on Windows and UWP to follow interface conventions, and be toggled by changing [godot.ProjectSettings.gui/common/swapCancelOk].
+   * Returns `true` if positions of **OK** and **Cancel** buttons are swapped in dialogs. This is enabled by default on Windows to follow interface conventions, and be toggled by changing [godot.ProjectSettings.gui/common/swapCancelOk].
    *
    * **Note:** This doesn't affect native dialogs such as the ones spawned by [godot.DisplayServer.dialogShow].
    */
@@ -2066,6 +2161,37 @@ public object DisplayServer : Object() {
   ): GodotError {
     TransferContext.writeArguments(STRING to title, STRING to description, STRING to existingText, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.dialogInputTextPtr, LONG)
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Displays OS native dialog for selecting files or directories in the file system.
+   *
+   * Callbacks have the following arguments: `bool status, PackedStringArray selected_paths, int selected_filter_index`.
+   *
+   * **Note:** This method is implemented if the display server has the [FEATURE_NATIVE_DIALOG] feature.
+   *
+   * **Note:** This method is implemented on Linux, Windows and macOS.
+   *
+   * **Note:** [currentDirectory] might be ignored.
+   *
+   * **Note:** On Linux, [showHidden] is ignored.
+   *
+   * **Note:** On macOS, native file dialogs have no title.
+   *
+   * **Note:** On macOS, sandboxed apps will save security-scoped bookmarks to retain access to the opened folders across multiple sessions. Use [godot.OS.getGrantedPermissions] to get a list of saved bookmarks.
+   */
+  public fun fileDialogShow(
+    title: String,
+    currentDirectory: String,
+    filename: String,
+    showHidden: Boolean,
+    mode: FileDialogMode,
+    filters: PackedStringArray,
+    callback: Callable,
+  ): GodotError {
+    TransferContext.writeArguments(STRING to title, STRING to currentDirectory, STRING to filename, BOOL to showHidden, LONG to mode.id, PACKED_STRING_ARRAY to filters, CALLABLE to callback)
+    TransferContext.callMethod(rawPtr, MethodBindings.fileDialogShowPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -2131,6 +2257,17 @@ public object DisplayServer : Object() {
   public fun keyboardGetKeycodeFromPhysical(keycode: Key): Key {
     TransferContext.writeArguments(LONG to keycode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetKeycodeFromPhysicalPtr, LONG)
+    return Key.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Converts a physical (US QWERTY) [keycode] to localized label printed on the key in the active keyboard layout.
+   *
+   * **Note:** This method is implemented on Linux (X11), macOS and Windows.
+   */
+  public fun keyboardGetLabelFromPhysical(keycode: Key): Key {
+    TransferContext.writeArguments(LONG to keycode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetLabelFromPhysicalPtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -2526,6 +2663,41 @@ public object DisplayServer : Object() {
     }
   }
 
+  public enum class FileDialogMode(
+    id: Long,
+  ) {
+    /**
+     * The native file dialog allows selecting one, and only one file.
+     */
+    FILE_DIALOG_MODE_OPEN_FILE(0),
+    /**
+     * The native file dialog allows selecting multiple files.
+     */
+    FILE_DIALOG_MODE_OPEN_FILES(1),
+    /**
+     * The native file dialog only allows selecting a directory, disallowing the selection of any file.
+     */
+    FILE_DIALOG_MODE_OPEN_DIR(2),
+    /**
+     * The native file dialog allows selecting one file or directory.
+     */
+    FILE_DIALOG_MODE_OPEN_ANY(3),
+    /**
+     * The native file dialog will warn when a file exists.
+     */
+    FILE_DIALOG_MODE_SAVE_FILE(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
+  }
+
   public enum class WindowMode(
     id: Long,
   ) {
@@ -2544,7 +2716,11 @@ public object DisplayServer : Object() {
     /**
      * Full screen mode with full multi-window support.
      *
-     * Full screen window cover the entire display area of a screen, have no border or decorations. Display video mode is not changed.
+     * Full screen window covers the entire display area of a screen and has no decorations. The display's video mode is not changed.
+     *
+     * **On Windows:** Multi-window full-screen mode has a 1px border of the [godot.ProjectSettings.rendering/environment/defaults/defaultClearColor] color.
+     *
+     * **On macOS:** A new desktop is used to display the running project.
      *
      * **Note:** Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [multiple resolutions]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) when enabling full screen mode.
      */
@@ -2552,11 +2728,11 @@ public object DisplayServer : Object() {
     /**
      * A single window full screen mode. This mode has less overhead, but only one window can be open on a given screen at a time (opening a child window or application switching will trigger a full screen transition).
      *
-     * Full screen window cover the entire display area of a screen, have no border or decorations. Display video mode is not changed.
+     * Full screen window covers the entire display area of a screen and has no border or decorations. The display's video mode is not changed.
      *
      * **On Windows:** Depending on video driver, full screen transition might cause screens to go black for a moment.
      *
-     * **On macOS:** Exclusive full screen mode prevents Dock and Menu from showing up when the mouse pointer is hovering the edge of the screen.
+     * **On macOS:** A new desktop is used to display the running project. Exclusive full screen mode prevents Dock and Menu from showing up when the mouse pointer is hovering the edge of the screen.
      *
      * **On Linux (X11):** Exclusive full screen mode bypasses compositor.
      *
@@ -2640,39 +2816,39 @@ public object DisplayServer : Object() {
     id: Long,
   ) {
     /**
-     * Sent when the mouse pointer enters the window, see [windowSetWindowEventCallback].
+     * Sent when the mouse pointer enters the window.
      */
     WINDOW_EVENT_MOUSE_ENTER(0),
     /**
-     * Sent when the mouse pointer exits the window, see [windowSetWindowEventCallback].
+     * Sent when the mouse pointer exits the window.
      */
     WINDOW_EVENT_MOUSE_EXIT(1),
     /**
-     * Sent when the window grabs focus, see [windowSetWindowEventCallback].
+     * Sent when the window grabs focus.
      */
     WINDOW_EVENT_FOCUS_IN(2),
     /**
-     * Sent when the window loses focus, see [windowSetWindowEventCallback].
+     * Sent when the window loses focus.
      */
     WINDOW_EVENT_FOCUS_OUT(3),
     /**
-     * Sent when the user has attempted to close the window (e.g. close button is pressed), see [windowSetWindowEventCallback].
+     * Sent when the user has attempted to close the window (e.g. close button is pressed).
      */
     WINDOW_EVENT_CLOSE_REQUEST(4),
     /**
-     * Sent when the device "Back" button is pressed, see [windowSetWindowEventCallback].
+     * Sent when the device "Back" button is pressed.
      *
      * **Note:** This event is implemented only on Android.
      */
     WINDOW_EVENT_GO_BACK_REQUEST(5),
     /**
-     * Sent when the window is moved to the display with different DPI, or display DPI is changed, see [windowSetWindowEventCallback].
+     * Sent when the window is moved to the display with different DPI, or display DPI is changed.
      *
      * **Note:** This flag is implemented only on macOS.
      */
     WINDOW_EVENT_DPI_CHANGE(6),
     /**
-     * Sent when the window title bar decoration is changed (e.g. [WINDOW_FLAG_EXTEND_TO_TITLE] is set or window entered/exited full screen mode), see [windowSetWindowEventCallback].
+     * Sent when the window title bar decoration is changed (e.g. [WINDOW_FLAG_EXTEND_TO_TITLE] is set or window entered/exited full screen mode).
      *
      * **Note:** This flag is implemented only on macOS.
      */
@@ -2760,11 +2936,11 @@ public object DisplayServer : Object() {
     /**
      * OpenGL context (only with the GL Compatibility renderer):
      *
-     * - Windows: `HGLRC` for the window.
+     * - Windows: `HGLRC` for the window (native GL), or `EGLContext` for the window (ANGLE).
      *
      * - Linux: `GLXContext*` for the window.
      *
-     * - macOS: `NSOpenGLContext*` for the window.
+     * - macOS: `NSOpenGLContext*` for the window (native GL), or `EGLContext` for the window (ANGLE).
      *
      * - Android: `EGLContext` for the window.
      */
@@ -2816,6 +2992,9 @@ public object DisplayServer : Object() {
     public val hasFeaturePtr: VoidPtr = TypeManager.getMethodBindPtr("DisplayServer", "has_feature")
 
     public val getNamePtr: VoidPtr = TypeManager.getMethodBindPtr("DisplayServer", "get_name")
+
+    public val globalMenuSetPopupCallbacksPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_popup_callbacks")
 
     public val globalMenuAddSubmenuItemPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_submenu_item")
@@ -2880,6 +3059,9 @@ public object DisplayServer : Object() {
     public val globalMenuIsItemDisabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_disabled")
 
+    public val globalMenuIsItemHiddenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_hidden")
+
     public val globalMenuGetItemTooltipPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_tooltip")
 
@@ -2907,6 +3089,9 @@ public object DisplayServer : Object() {
     public val globalMenuSetItemCallbackPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_callback")
 
+    public val globalMenuSetItemHoverCallbacksPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_hover_callbacks")
+
     public val globalMenuSetItemKeyCallbackPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_key_callback")
 
@@ -2924,6 +3109,9 @@ public object DisplayServer : Object() {
 
     public val globalMenuSetItemDisabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_disabled")
+
+    public val globalMenuSetItemHiddenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_hidden")
 
     public val globalMenuSetItemTooltipPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_tooltip")
@@ -3001,8 +3189,14 @@ public object DisplayServer : Object() {
     public val clipboardGetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "clipboard_get")
 
+    public val clipboardGetImagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_get_image")
+
     public val clipboardHasPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "clipboard_has")
+
+    public val clipboardHasImagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_has_image")
 
     public val clipboardSetPrimaryPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "clipboard_set_primary")
@@ -3090,6 +3284,9 @@ public object DisplayServer : Object() {
 
     public val windowSetTitlePtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "window_set_title")
+
+    public val windowGetTitleSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_title_size")
 
     public val windowSetMousePassthroughPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "window_set_mouse_passthrough")
@@ -3240,6 +3437,9 @@ public object DisplayServer : Object() {
     public val dialogInputTextPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "dialog_input_text")
 
+    public val fileDialogShowPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "file_dialog_show")
+
     public val keyboardGetLayoutCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_layout_count")
 
@@ -3257,6 +3457,9 @@ public object DisplayServer : Object() {
 
     public val keyboardGetKeycodeFromPhysicalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_keycode_from_physical")
+
+    public val keyboardGetLabelFromPhysicalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_label_from_physical")
 
     public val processEventsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "process_events")

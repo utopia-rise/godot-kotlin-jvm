@@ -151,7 +151,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   /**
-   * Accepts unhandled [godot.InputEvent]s. [shapeIdx] is the child index of the clicked [godot.Shape2D]. Connect to the `input_event` signal to easily pick up these events.
+   * Accepts unhandled [godot.InputEvent]s. [shapeIdx] is the child index of the clicked [godot.Shape2D]. Connect to [inputEvent] to easily pick up these events.
    *
    * **Note:** [_inputEvent] requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be set.
    */

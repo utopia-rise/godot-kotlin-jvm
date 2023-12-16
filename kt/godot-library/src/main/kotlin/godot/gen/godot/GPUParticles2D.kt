@@ -26,6 +26,8 @@ import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
+import godot.signals.Signal0
+import godot.signals.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -36,7 +38,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * 2D particle emitter.
+ * A 2D particle emitter.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/515](https://godotengine.org/asset-library/asset/515)
@@ -45,12 +47,19 @@ import kotlin.Unit
  *
  * Use the [processMaterial] property to add a [godot.ParticleProcessMaterial] to configure particle appearance and behavior. Alternatively, you can add a [godot.ShaderMaterial] which will be applied to all particles.
  *
- * 2D particles can optionally collide with [godot.LightOccluder2D] nodes (note: they don't collide with [godot.PhysicsBody2D] nodes).
+ * 2D particles can optionally collide with [godot.LightOccluder2D], but they don't collide with [godot.PhysicsBody2D] nodes.
  */
 @GodotBaseType
 public open class GPUParticles2D : Node2D() {
   /**
-   * If `true`, particles are being emitted.
+   * Emitted when all active particles have finished processing. When [oneShot] is disabled, particles will process continuously, so this is never emitted.
+   *
+   * **Note:** Due to the particles being computed on the GPU there might be a delay before the signal gets emitted.
+   */
+  public val finished: Signal0 by signal()
+
+  /**
+   * If `true`, particles are being emitted. [emitting] can be used to start and stop particles from emitting. However, if [oneShot] is `true` setting [emitting] to `true` will not restart the emission cycle until after all active particles finish processing. You can use the [finished] signal to be notified once all active particles finish processing.
    */
   public var emitting: Boolean
     get() {
@@ -64,7 +73,9 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * Number of particles emitted in one emission cycle.
+   * The number of particles to emit in one emission cycle. The effective emission rate is `(amount * amount_ratio) / lifetime` particles per second. Higher values will increase GPU requirements, even if not all particles are visible at a given time or if [amountRatio] is decreased.
+   *
+   * **Note:** Changing this value will cause the particle system to restart. To avoid this, change [amountRatio] instead.
    */
   public var amount: Int
     get() {
@@ -78,7 +89,25 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * The [godot.core.NodePath] to the [godot.GPUParticles2D] used for sub-emissions.
+   * The ratio of particles that should actually be emitted. If set to a value lower than `1.0`, this will set the amount of emitted particles throughout the lifetime to `amount * amount_ratio`. Unlike changing [amount], changing [amountRatio] while emitting does not affect already-emitted particles and doesn't cause the particle system to restart. [amountRatio] can be used to create effects that make the number of emitted particles vary over time.
+   *
+   * **Note:** Reducing the [amountRatio] has no performance benefit, since resources need to be allocated and processed for the total [amount] of particles regardless of the [amountRatio]. If you don't intend to change the number of particles emitted while the particles are emitting, make sure [amountRatio] is set to `1` and change [amount] to your liking instead.
+   */
+  public var amountRatio: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getAmountRatioPtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, MethodBindings.setAmountRatioPtr, NIL)
+    }
+
+  /**
+   * Path to another [godot.GPUParticles2D] node that will be used as a subemitter (see [godot.ParticleProcessMaterial.subEmitterMode]). Subemitters can be used to achieve effects such as fireworks, sparks on collision, bubbles popping into water drops, and more.
+   *
+   * **Note:** When [subEmitter] is set, the target [godot.GPUParticles2D] node will no longer emit particles on its own.
    */
   public var subEmitter: NodePath
     get() {
@@ -106,7 +135,9 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * Particle texture. If `null`, particles will be squares.
+   * Particle texture. If `null`, particles will be squares with a size of 1×1 pixels.
+   *
+   * **Note:** To use a flipbook texture, assign a new [godot.CanvasItemMaterial] to the [godot.GPUParticles2D]'s [godot.CanvasItem.material] property, then enable [godot.CanvasItemMaterial.particlesAnimation] and set [godot.CanvasItemMaterial.particlesAnimHFrames], [godot.CanvasItemMaterial.particlesAnimVFrames], and [godot.CanvasItemMaterial.particlesAnimLoop] to match the flipbook texture.
    */
   public var texture: Texture2D?
     get() {
@@ -120,7 +151,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * Amount of time each particle will exist.
+   * The amount of time each particle will exist (in seconds). The effective emission rate is `(amount * amount_ratio) / lifetime` particles per second.
    */
   public var lifetime: Double
     get() {
@@ -246,7 +277,25 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * Multiplier for particle's collision radius. `1.0` corresponds to the size of the sprite.
+   * Causes all the particles in this node to interpolate towards the end of their lifetime.
+   *
+   * **Note:** This only works when used with a [godot.ParticleProcessMaterial]. It needs to be manually implemented for custom process shaders.
+   */
+  public var interpToEnd: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getInterpToEndPtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, MethodBindings.setInterpToEndPtr, NIL)
+    }
+
+  /**
+   * Multiplier for particle's collision radius. `1.0` corresponds to the size of the sprite. If particles appear to sink into the ground when colliding, increase this value. If particles appear to float when colliding, decrease this value. Only effective if [godot.ParticleProcessMaterial.collisionMode] is [godot.ParticleProcessMaterial.COLLISION_RIGID] or [godot.ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT].
+   *
+   * **Note:** Particles always have a spherical collision shape.
    */
   public var collisionBaseSize: Float
     get() {
@@ -395,6 +444,8 @@ public open class GPUParticles2D : Node2D() {
 
   /**
    * Returns a rectangle containing the positions of all existing particles.
+   *
+   * **Note:** When using threaded rendering this method synchronizes the rendering thread. Calling it often may have a negative impact on performance.
    */
   public fun captureRect(): Rect2 {
     TransferContext.writeArguments()
@@ -424,6 +475,14 @@ public open class GPUParticles2D : Node2D() {
     TransferContext.callMethod(rawPtr, MethodBindings.emitParticlePtr, NIL)
   }
 
+  /**
+   * Sets this node's properties to match a given [godot.CPUParticles2D] node.
+   */
+  public fun convertFromParticles(particles: Node): Unit {
+    TransferContext.writeArguments(OBJECT to particles)
+    TransferContext.callMethod(rawPtr, MethodBindings.convertFromParticlesPtr, NIL)
+  }
+
   public enum class DrawOrder(
     id: Long,
   ) {
@@ -432,11 +491,11 @@ public open class GPUParticles2D : Node2D() {
      */
     DRAW_ORDER_INDEX(0),
     /**
-     * Particles are drawn in order of remaining lifetime.
+     * Particles are drawn in order of remaining lifetime. In other words, the particle with the highest lifetime is drawn at the front.
      */
     DRAW_ORDER_LIFETIME(1),
     /**
-     *
+     * Particles are drawn in reverse order of remaining lifetime. In other words, the particle with the lowest lifetime is drawn at the front.
      */
     DRAW_ORDER_REVERSE_LIFETIME(2),
     ;
@@ -533,6 +592,9 @@ public open class GPUParticles2D : Node2D() {
     public val setCollisionBaseSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GPUParticles2D", "set_collision_base_size")
 
+    public val setInterpToEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_interp_to_end")
+
     public val isEmittingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GPUParticles2D", "is_emitting")
 
@@ -576,6 +638,9 @@ public open class GPUParticles2D : Node2D() {
 
     public val getCollisionBaseSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GPUParticles2D", "get_collision_base_size")
+
+    public val getInterpToEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_interp_to_end")
 
     public val setDrawOrderPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GPUParticles2D", "set_draw_order")
@@ -626,5 +691,14 @@ public open class GPUParticles2D : Node2D() {
 
     public val getTrailSectionSubdivisionsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GPUParticles2D", "get_trail_section_subdivisions")
+
+    public val convertFromParticlesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles2D", "convert_from_particles")
+
+    public val setAmountRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_amount_ratio")
+
+    public val getAmountRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_amount_ratio")
   }
 }

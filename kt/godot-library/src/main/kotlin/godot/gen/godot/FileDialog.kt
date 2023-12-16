@@ -136,6 +136,22 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
+   * If `true`, [access] is set to [ACCESS_FILESYSTEM], and it is supported by the current [godot.DisplayServer], OS native dialog will be used instead of custom one.
+   *
+   * **Note:** On macOS, sandboxed apps always use native dialogs to access host filesystem.
+   */
+  public var useNativeDialog: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getUseNativeDialogPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseNativeDialogPtr, NIL)
+    }
+
+  /**
    * The current working directory of the file dialog.
    */
   public var currentDir: String
@@ -362,6 +378,12 @@ public open class FileDialog : ConfirmationDialog() {
 
     public val isShowingHiddenFilesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileDialog", "is_showing_hidden_files")
+
+    public val setUseNativeDialogPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "set_use_native_dialog")
+
+    public val getUseNativeDialogPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "get_use_native_dialog")
 
     public val deselectAllPtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "deselect_all")
 

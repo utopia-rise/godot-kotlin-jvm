@@ -160,6 +160,20 @@ public open class PopupMenu : Popup() {
   }
 
   /**
+   * Checks the provided [event] against the [godot.PopupMenu]'s shortcuts and accelerators, and activates the first item with matching events. If [forGlobalOnly] is `true`, only shortcuts and accelerators with `global` set to `true` will be called.
+   *
+   * Returns `true` if an item was successfully activated.
+   *
+   * **Note:** Certain [godot.Control]s, such as [godot.MenuButton], will call this method automatically.
+   */
+  @JvmOverloads
+  public fun activateItemByEvent(event: InputEvent, forGlobalOnly: Boolean = false): Boolean {
+    TransferContext.writeArguments(OBJECT to event, BOOL to forGlobalOnly)
+    TransferContext.callMethod(rawPtr, MethodBindings.activateItemByEventPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
    * Adds a new item with text [label].
    *
    * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
@@ -281,14 +295,17 @@ public open class PopupMenu : Popup() {
    * Adds a [godot.Shortcut].
    *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
+   *
+   * If [allowEcho] is `true`, the shortcut can be activated with echo events.
    */
   @JvmOverloads
   public fun addShortcut(
     shortcut: Shortcut,
     id: Int = -1,
     global: Boolean = false,
+    allowEcho: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to shortcut, LONG to id.toLong(), BOOL to global)
+    TransferContext.writeArguments(OBJECT to shortcut, LONG to id.toLong(), BOOL to global, BOOL to allowEcho)
     TransferContext.callMethod(rawPtr, MethodBindings.addShortcutPtr, NIL)
   }
 
@@ -296,6 +313,8 @@ public open class PopupMenu : Popup() {
    * Adds a new item and assigns the specified [godot.Shortcut] and icon [texture] to it. Sets the label of the checkbox to the [godot.Shortcut]'s name.
    *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
+   *
+   * If [allowEcho] is `true`, the shortcut can be activated with echo events.
    */
   @JvmOverloads
   public fun addIconShortcut(
@@ -303,8 +322,9 @@ public open class PopupMenu : Popup() {
     shortcut: Shortcut,
     id: Int = -1,
     global: Boolean = false,
+    allowEcho: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to texture, OBJECT to shortcut, LONG to id.toLong(), BOOL to global)
+    TransferContext.writeArguments(OBJECT to texture, OBJECT to shortcut, LONG to id.toLong(), BOOL to global, BOOL to allowEcho)
     TransferContext.callMethod(rawPtr, MethodBindings.addIconShortcutPtr, NIL)
   }
 
@@ -375,7 +395,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds an item that will act as a submenu of the parent [godot.PopupMenu] node when clicked. The [submenu] argument is the name of the child [godot.PopupMenu] node that will be shown when the item is clicked.
+   * Adds an item that will act as a submenu of the parent [godot.PopupMenu] node when clicked. The [submenu] argument must be the name of an existing [godot.PopupMenu] that has been added as a child to this node. This submenu will be shown when the item is clicked, hovered for long enough, or activated using the `ui_select` or `ui_right` input actions.
    *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    */
@@ -809,16 +829,20 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Removes all items from the [godot.PopupMenu].
+   * Removes all items from the [godot.PopupMenu]. If [freeSubmenus] is `true`, the submenu nodes are automatically freed.
    */
-  public fun clear(): Unit {
-    TransferContext.writeArguments()
+  @JvmOverloads
+  public fun clear(freeSubmenus: Boolean = false): Unit {
+    TransferContext.writeArguments(BOOL to freeSubmenus)
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
+    public val activateItemByEventPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "activate_item_by_event")
+
     public val addItemPtr: VoidPtr = TypeManager.getMethodBindPtr("PopupMenu", "add_item")
 
     public val addIconItemPtr: VoidPtr = TypeManager.getMethodBindPtr("PopupMenu", "add_icon_item")

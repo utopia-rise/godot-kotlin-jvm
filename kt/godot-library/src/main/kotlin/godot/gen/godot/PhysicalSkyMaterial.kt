@@ -26,7 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * [godot.Sky] [godot.Material] used for a physically based sky.
+ * A material that defines a sky for a [godot.Sky] resource by a set of physical properties.
  *
  * The [godot.PhysicalSkyMaterial] uses the Preetham analytic daylight model to draw a sky based on physical properties. This results in a substantially more realistic sky than the [godot.ProceduralSkyMaterial], but it is slightly slower and less flexible.
  *

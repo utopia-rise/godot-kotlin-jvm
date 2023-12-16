@@ -131,7 +131,7 @@ public object NavigationServer2D : Object() {
   }
 
   /**
-   * Set the navigation [map] edge connection use. If [enabled] the navigation map allows navigation regions to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin.
+   * Set the navigation [map] edge connection use. If [enabled] is `true`, the navigation map allows navigation regions to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin.
    */
   public fun mapSetUseEdgeConnections(map: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to map, BOOL to enabled)
@@ -284,7 +284,24 @@ public object NavigationServer2D : Object() {
   }
 
   /**
-   * If [enabled] the navigation [region] will use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin.
+   * If [enabled] is `true` the specified [region] will contribute to its current navigation map.
+   */
+  public fun regionSetEnabled(region: RID, enabled: Boolean): Unit {
+    TransferContext.writeArguments(_RID to region, BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.regionSetEnabledPtr, NIL)
+  }
+
+  /**
+   * Returns `true` if the specified [region] is enabled.
+   */
+  public fun regionGetEnabled(region: RID): Boolean {
+    TransferContext.writeArguments(_RID to region)
+    TransferContext.callMethod(rawPtr, MethodBindings.regionGetEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * If [enabled] is `true`, the navigation [region] will use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin.
    */
   public fun regionSetUseEdgeConnections(region: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to region, BOOL to enabled)
@@ -468,6 +485,23 @@ public object NavigationServer2D : Object() {
   }
 
   /**
+   * If [enabled] is `true`, the specified [link] will contribute to its current navigation map.
+   */
+  public fun linkSetEnabled(link: RID, enabled: Boolean): Unit {
+    TransferContext.writeArguments(_RID to link, BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.linkSetEnabledPtr, NIL)
+  }
+
+  /**
+   * Returns `true` if the specified [link] is enabled.
+   */
+  public fun linkGetEnabled(link: RID): Boolean {
+    TransferContext.writeArguments(_RID to link)
+    TransferContext.callMethod(rawPtr, MethodBindings.linkGetEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
    * Sets whether this [link] can be travelled in both directions.
    */
   public fun linkSetBidirectional(link: RID, bidirectional: Boolean): Unit {
@@ -596,7 +630,7 @@ public object NavigationServer2D : Object() {
   }
 
   /**
-   * If [enabled] is `true` the specified [agent] uses avoidance.
+   * If [enabled] is `true`, the specified [agent] uses avoidance.
    */
   public fun agentSetAvoidanceEnabled(agent: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to agent, BOOL to enabled)
@@ -773,7 +807,7 @@ public object NavigationServer2D : Object() {
   }
 
   /**
-   * If [enabled] the provided [obstacle] affects avoidance using agents.
+   * If [enabled] is `true`, the provided [obstacle] affects avoidance using agents.
    */
   public fun obstacleSetAvoidanceEnabled(obstacle: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to obstacle, BOOL to enabled)
@@ -861,6 +895,50 @@ public object NavigationServer2D : Object() {
   public fun obstacleSetAvoidanceLayers(obstacle: RID, layers: Long): Unit {
     TransferContext.writeArguments(_RID to obstacle, LONG to layers)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleSetAvoidanceLayersPtr, NIL)
+  }
+
+  /**
+   * Parses the [godot.SceneTree] for source geometry according to the properties of [navigationPolygon]. Updates the provided [sourceGeometryData] resource with the resulting data. The resource can then be used to bake a navigation mesh with [bakeFromSourceGeometryData]. After the process is finished the optional [callback] will be called.
+   *
+   * **Note:** This function needs to run on the main thread or with a deferred call as the SceneTree is not thread-safe.
+   *
+   * **Performance:** While convenient, reading data arrays from [godot.Mesh] resources can affect the frame rate negatively. The data needs to be received from the GPU, stalling the [godot.RenderingServer] in the process. For performance prefer the use of e.g. collision shapes or creating the data arrays entirely in code.
+   */
+  @JvmOverloads
+  public fun parseSourceGeometryData(
+    navigationPolygon: NavigationPolygon,
+    sourceGeometryData: NavigationMeshSourceGeometryData2D,
+    rootNode: Node,
+    callback: Callable = Callable(),
+  ): Unit {
+    TransferContext.writeArguments(OBJECT to navigationPolygon, OBJECT to sourceGeometryData, OBJECT to rootNode, CALLABLE to callback)
+    TransferContext.callMethod(rawPtr, MethodBindings.parseSourceGeometryDataPtr, NIL)
+  }
+
+  /**
+   * Bakes the provided [navigationPolygon] with the data from the provided [sourceGeometryData]. After the process is finished the optional [callback] will be called.
+   */
+  @JvmOverloads
+  public fun bakeFromSourceGeometryData(
+    navigationPolygon: NavigationPolygon,
+    sourceGeometryData: NavigationMeshSourceGeometryData2D,
+    callback: Callable = Callable(),
+  ): Unit {
+    TransferContext.writeArguments(OBJECT to navigationPolygon, OBJECT to sourceGeometryData, CALLABLE to callback)
+    TransferContext.callMethod(rawPtr, MethodBindings.bakeFromSourceGeometryDataPtr, NIL)
+  }
+
+  /**
+   * Bakes the provided [navigationPolygon] with the data from the provided [sourceGeometryData] as an async task running on a background thread. After the process is finished the optional [callback] will be called.
+   */
+  @JvmOverloads
+  public fun bakeFromSourceGeometryDataAsync(
+    navigationPolygon: NavigationPolygon,
+    sourceGeometryData: NavigationMeshSourceGeometryData2D,
+    callback: Callable = Callable(),
+  ): Unit {
+    TransferContext.writeArguments(OBJECT to navigationPolygon, OBJECT to sourceGeometryData, CALLABLE to callback)
+    TransferContext.callMethod(rawPtr, MethodBindings.bakeFromSourceGeometryDataAsyncPtr, NIL)
   }
 
   /**
@@ -954,6 +1032,12 @@ public object NavigationServer2D : Object() {
     public val regionCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "region_create")
 
+    public val regionSetEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "region_set_enabled")
+
+    public val regionGetEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "region_get_enabled")
+
     public val regionSetUseEdgeConnectionsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "region_set_use_edge_connections")
 
@@ -1016,6 +1100,12 @@ public object NavigationServer2D : Object() {
 
     public val linkGetMapPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "link_get_map")
+
+    public val linkSetEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "link_set_enabled")
+
+    public val linkGetEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "link_get_enabled")
 
     public val linkSetBidirectionalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "link_set_bidirectional")
@@ -1157,6 +1247,15 @@ public object NavigationServer2D : Object() {
 
     public val obstacleSetAvoidanceLayersPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "obstacle_set_avoidance_layers")
+
+    public val parseSourceGeometryDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "parse_source_geometry_data")
+
+    public val bakeFromSourceGeometryDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "bake_from_source_geometry_data")
+
+    public val bakeFromSourceGeometryDataAsyncPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "bake_from_source_geometry_data_async")
 
     public val freeRidPtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationServer2D", "free_rid")
 

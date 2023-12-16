@@ -30,6 +30,9 @@ import kotlin.Unit
 /**
  * Computes and stores baked lightmaps for fast global illumination.
  *
+ * Tutorials:
+ * [$DOCS_URL/tutorials/3d/global_illumination/using_lightmap_gi.html]($DOCS_URL/tutorials/3d/global_illumination/using_lightmap_gi.html)
+ *
  * The [godot.LightmapGI] node is used to compute and store baked lightmaps. Lightmaps are used to provide high-quality indirect lighting with very little light leaking. [godot.LightmapGI] can also provide rough reflections using spherical harmonics if [directional] is enabled. Dynamic objects can receive indirect lighting thanks to *light probes*, which can be automatically placed by setting [generateProbesSubdiv] to a value other than [GENERATE_PROBES_DISABLED]. Additional lightmap probes can also be added by creating [godot.LightmapProbe] nodes. The downside is that lightmaps are fully static and cannot be baked in an exported project. Baking a [godot.LightmapGI] node is also slower compared to [godot.VoxelGI].
  *
  * **Procedural generation:** Lightmap baking functionality is only available in the editor. This means [godot.LightmapGI] is not suited to procedurally generated or user-built levels. For procedurally generated or user-built levels, use [godot.VoxelGI] or SDFGI instead (see [godot.Environment.sdfgiEnabled]).
@@ -75,7 +78,23 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * If `true`, bakes lightmaps to contain directional information as spherical harmonics. This results in more realistic lighting appearance, especially with normal mapped materials and for lights that have their direct light baked ([godot.Light3D.lightBakeMode] set to [godot.Light3D.BAKE_STATIC]). The directional information is also used to provide rough reflections for static and dynamic objects. This has a small run-time performance cost as the shader has to perform more work to interpret the direction information from the lightmap. Directional lightmaps also take longer to bake and result in larger file sizes.
+   * The energy multiplier for each bounce. Higher values will make indirect lighting brighter. A value of `1.0` represents physically accurate behavior, but higher values can be used to make indirect lighting propagate more visibly when using a low number of bounces. This can be used to speed up bake times by lowering the number of [bounces] then increasing [bounceIndirectEnergy].
+   *
+   * **Note:** [bounceIndirectEnergy] only has an effect if [bounces] is set to a value greater than or equal to `1`.
+   */
+  public var bounceIndirectEnergy: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getBounceIndirectEnergyPtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, MethodBindings.setBounceIndirectEnergyPtr, NIL)
+    }
+
+  /**
+   * If `true`, bakes lightmaps to contain directional information as spherical harmonics. This results in more realistic lighting appearance, especially with normal mapped materials and for lights that have their direct light baked ([godot.Light3D.lightBakeMode] set to [godot.Light3D.BAKE_STATIC] and with [godot.Light3D.editorOnly] set to `false`). The directional information is also used to provide rough reflections for static and dynamic objects. This has a small run-time performance cost as the shader has to perform more work to interpret the direction information from the lightmap. Directional lightmaps also take longer to bake and result in larger file sizes.
    *
    * **Note:** The property's name has no relationship with [godot.DirectionalLight3D]. [directional] works with all light types.
    */
@@ -88,6 +107,22 @@ public open class LightmapGI : VisualInstance3D() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setDirectionalPtr, NIL)
+    }
+
+  /**
+   * If `true`, a texture with the lighting information will be generated to speed up the generation of indirect lighting at the cost of some accuracy. The geometry might exhibit extra light leak artifacts when using low resolution lightmaps or UVs that stretch the lightmap significantly across surfaces. Leave [useTextureForBounces] at its default value of `true` if unsure.
+   *
+   * **Note:** [useTextureForBounces] only has an effect if [bounces] is set to a value greater than or equal to `1`.
+   */
+  public var useTextureForBounces: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isUsingTextureForBouncesPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseTextureForBouncesPtr, NIL)
     }
 
   /**
@@ -105,9 +140,7 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * If `true`, uses a CPU-based denoising algorithm on the generated lightmap. This eliminates most noise within the generated lightmap at the cost of longer bake times. File sizes are generally not impacted significantly by the use of a denoiser, although lossless compression may do a better job at compressing a denoised image.
-   *
-   * **Note:** The built-in denoiser (OpenImageDenoise) may crash when denoising lightmaps in large scenes. If you encounter a crash at the end of lightmap baking, try disabling [useDenoiser].
+   * If `true`, uses a GPU-based denoising algorithm on the generated lightmap. This eliminates most noise within the generated lightmap at the cost of longer bake times. File sizes are generally not impacted significantly by the use of a denoiser, although lossless compression may do a better job at compressing a denoised image.
    */
   public var useDenoiser: Boolean
     get() {
@@ -118,6 +151,20 @@ public open class LightmapGI : VisualInstance3D() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setUseDenoiserPtr, NIL)
+    }
+
+  /**
+   * The strength of denoising step applied to the generated lightmaps. Only effective if [useDenoiser] is `true` and [godot.ProjectSettings.rendering/lightmapping/denoising/denoiser] is set to JNLM.
+   */
+  public var denoiserStrength: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getDenoiserStrengthPtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, MethodBindings.setDenoiserStrengthPtr, NIL)
     }
 
   /**
@@ -386,6 +433,10 @@ public open class LightmapGI : VisualInstance3D() {
      * The user aborted the lightmap baking operation (typically by clicking the **Cancel** button in the progress dialog).
      */
     BAKE_ERROR_USER_ABORTED(8),
+    /**
+     * Lightmap baking failed as the maximum texture size is too small to fit some of the meshes marked for baking.
+     */
+    BAKE_ERROR_TEXTURE_SIZE_TOO_SMALL(9),
     ;
 
     public val id: Long
@@ -450,6 +501,12 @@ public open class LightmapGI : VisualInstance3D() {
 
     public val getBouncesPtr: VoidPtr = TypeManager.getMethodBindPtr("LightmapGI", "get_bounces")
 
+    public val setBounceIndirectEnergyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_bounce_indirect_energy")
+
+    public val getBounceIndirectEnergyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "get_bounce_indirect_energy")
+
     public val setGenerateProbesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LightmapGI", "set_generate_probes")
 
@@ -496,6 +553,12 @@ public open class LightmapGI : VisualInstance3D() {
     public val isUsingDenoiserPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LightmapGI", "is_using_denoiser")
 
+    public val setDenoiserStrengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_denoiser_strength")
+
+    public val getDenoiserStrengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "get_denoiser_strength")
+
     public val setInteriorPtr: VoidPtr = TypeManager.getMethodBindPtr("LightmapGI", "set_interior")
 
     public val isInteriorPtr: VoidPtr = TypeManager.getMethodBindPtr("LightmapGI", "is_interior")
@@ -505,6 +568,12 @@ public open class LightmapGI : VisualInstance3D() {
 
     public val isDirectionalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LightmapGI", "is_directional")
+
+    public val setUseTextureForBouncesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_use_texture_for_bounces")
+
+    public val isUsingTextureForBouncesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "is_using_texture_for_bounces")
 
     public val setCameraAttributesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LightmapGI", "set_camera_attributes")

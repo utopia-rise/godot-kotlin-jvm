@@ -212,34 +212,6 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * If `true`, every character is replaced with the secret character (see [secretCharacter]).
-   */
-  public var secret: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isSecretPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSecretPtr, NIL)
-    }
-
-  /**
-   * The character to use to mask secret input (defaults to "•"). Only a single character can be used as the secret character.
-   */
-  public var secretCharacter: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSecretCharacterPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSecretCharacterPtr, NIL)
-    }
-
-  /**
    * If `true`, the [godot.LineEdit] width will increase to stay longer than the [text]. It will **not** compress if the [text] is shortened.
    */
   public var expandToTextLength: Boolean
@@ -368,6 +340,20 @@ public open class LineEdit : Control() {
     }
 
   /**
+   * If `true`, allow drag and drop of selected text.
+   */
+  public var dragAndDropSelectionEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isDragAndDropSelectionEnabledPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDragAndDropSelectionEnabledPtr, NIL)
+    }
+
+  /**
    * Sets the icon that will appear in the right end of the [godot.LineEdit] if there's no [text], or always, if [clearButtonEnabled] is set to `false`.
    */
   public var rightIcon: Texture2D?
@@ -382,7 +368,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * If `true`, the [godot.LineEdit] don't display decoration.
+   * If `true`, the [godot.LineEdit] doesn't display decoration.
    */
   public var flat: Boolean
     get() {
@@ -496,6 +482,34 @@ public open class LineEdit : Control() {
     }
 
   /**
+   * If `true`, every character is replaced with the secret character (see [secretCharacter]).
+   */
+  public var secret: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isSecretPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSecretPtr, NIL)
+    }
+
+  /**
+   * The character to use to mask secret input. Only a single character can be used as the secret character. If it is longer than one character, only the first one will be used. If it is empty, a space will be used instead.
+   */
+  public var secretCharacter: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getSecretCharacterPtr, STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSecretCharacterPtr, NIL)
+    }
+
+  /**
    * Base text writing direction.
    */
   public var textDirection: Control.TextDirection
@@ -510,7 +524,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
+   * Language code used for line-breaking and text shaping algorithms. If left empty, current locale is used instead.
    */
   public var language: String
     get() {
@@ -1169,6 +1183,12 @@ public open class LineEdit : Control() {
 
     public val isDeselectOnFocusLossEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LineEdit", "is_deselect_on_focus_loss_enabled")
+
+    public val setDragAndDropSelectionEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_drag_and_drop_selection_enabled")
+
+    public val isDragAndDropSelectionEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "is_drag_and_drop_selection_enabled")
 
     public val setRightIconPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "set_right_icon")
 

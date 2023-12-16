@@ -116,7 +116,21 @@ public open class RayCast3D : Node3D() {
     }
 
   /**
-   * If `true`, collision with [godot.Area3D]s will be reported.
+   * If `true`, the ray will hit back faces with concave polygon shapes with back face enabled or heightmap shapes.
+   */
+  public var hitBackFaces: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isHitBackFacesEnabledPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHitBackFacesPtr, NIL)
+    }
+
+  /**
+   * If `true`, collisions with [godot.Area3D]s will be reported.
    */
   public var collideWithAreas: Boolean
     get() {
@@ -130,7 +144,7 @@ public open class RayCast3D : Node3D() {
     }
 
   /**
-   * If `true`, collision with [godot.PhysicsBody3D]s will be reported.
+   * If `true`, collisions with [godot.PhysicsBody3D]s will be reported.
    */
   public var collideWithBodies: Boolean
     get() {
@@ -240,7 +254,7 @@ public open class RayCast3D : Node3D() {
   }
 
   /**
-   * Updates the collision information for the ray. Use this method to update the collision information immediately instead of waiting for the next `_physics_process` call, for example if the ray or its parent has changed state.
+   * Updates the collision information for the ray immediately, without waiting for the next `_physics_process` call. Use this method, for example, when the ray or its parent has changed state.
    *
    * **Note:** [enabled] does not need to be `true` for this to work.
    */
@@ -294,6 +308,15 @@ public open class RayCast3D : Node3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionNormalPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  /**
+   * Returns the collision object's face index at the collision point, or `-1` if the shape intersecting the ray is not a [godot.ConcavePolygonShape3D].
+   */
+  public fun getCollisionFaceIndex(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionFaceIndexPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -385,6 +408,9 @@ public open class RayCast3D : Node3D() {
     public val getCollisionNormalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RayCast3D", "get_collision_normal")
 
+    public val getCollisionFaceIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RayCast3D", "get_collision_face_index")
+
     public val addExceptionRidPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RayCast3D", "add_exception_rid")
 
@@ -434,6 +460,12 @@ public open class RayCast3D : Node3D() {
 
     public val isHitFromInsideEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RayCast3D", "is_hit_from_inside_enabled")
+
+    public val setHitBackFacesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RayCast3D", "set_hit_back_faces")
+
+    public val isHitBackFacesEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RayCast3D", "is_hit_back_faces_enabled")
 
     public val setDebugShapeCustomColorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RayCast3D", "set_debug_shape_custom_color")

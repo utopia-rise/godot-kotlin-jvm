@@ -15,6 +15,8 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
+import godot.signals.Signal0
+import godot.signals.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -27,6 +29,11 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public object GDExtensionManager : Object() {
+  /**
+   * Emitted after the editor has automatically reloaded any extensions.
+   */
+  public val extensionsReloaded: Signal0 by signal()
+
   public override fun new(scriptIndex: Int): Boolean {
     getSingleton(ENGINECLASS_GDEXTENSIONMANAGER)
     return false

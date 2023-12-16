@@ -54,12 +54,18 @@ import kotlin.Unit
 @GodotBaseType
 public open class NavigationAgent3D : Node() {
   /**
-   * Notifies when the navigation path changes.
+   * Emitted when the agent had to update the loaded path:
+   *
+   * - because path was previously empty.
+   *
+   * - because navigation map has changed.
+   *
+   * - because agent pushed further away from the current path segment than the [pathMaxDistance].
    */
   public val pathChanged: Signal0 by signal()
 
   /**
-   * Notifies when the player-defined [targetPosition] is reached.
+   * Emitted once per loaded path when the agent's global position is the first time within [targetDesiredDistance] to the [targetPosition].
    */
   public val targetReached: Signal0 by signal()
 
@@ -98,7 +104,7 @@ public open class NavigationAgent3D : Node() {
   public val linkReached: Signal1<Dictionary<Any?, Any?>> by signal("details")
 
   /**
-   * Notifies when the final position is reached.
+   * Emitted once per loaded path when the agent internal navigation path index reaches the last index of the loaded path array. The agent internal navigation path index can be received with [getCurrentNavigationPathIndex].
    */
   public val navigationFinished: Signal0 by signal()
 
@@ -108,7 +114,7 @@ public open class NavigationAgent3D : Node() {
   public val velocityComputed: Signal1<Vector3> by signal("safeVelocity")
 
   /**
-   * If set a new navigation path from the current agent position to the [targetPosition] is requested from the NavigationServer.
+   * If set, a new navigation path from the current agent position to the [targetPosition] is requested from the NavigationServer.
    */
   @CoreTypeLocalCopy
   public var targetPosition: Vector3
@@ -137,7 +143,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The distance threshold before the final target point is considered to be reached. This allows agents to not have to hit the point of the final target exactly, but only to reach its general. If this value is set too low, the NavigationAgent will be stuck in a repath loop because it will constantly overshoot or undershoot the distance to the final target point on each physics frame update.
+   * The distance threshold before the final target point is considered to be reached. This allows agents to not have to hit the point of the final target exactly, but only to reach its general area. If this value is set too low, the NavigationAgent will be stuck in a repath loop because it will constantly overshoot or undershoot the distance to the final target point on each physics frame update.
    */
   public var targetDesiredDistance: Float
     get() {
@@ -380,7 +386,21 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * A bitfield determining the avoidance layers for this NavigationAgent. Other agent's with a matching bit on the [avoidanceMask] will avoid this agent.
+   * If `true`, and the agent uses 2D avoidance, it will remember the set y-axis velocity and reapply it after the avoidance step. While 2D avoidance has no y-axis and simulates on a flat plane this setting can help mitigate the most obvious clipping on uneven 3D geometry.
+   */
+  public var keepYVelocity: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getKeepYVelocityPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setKeepYVelocityPtr, NIL)
+    }
+
+  /**
+   * A bitfield determining the avoidance layers for this NavigationAgent. Other agents with a matching bit on the [avoidanceMask] will avoid this agent.
    */
   public var avoidanceLayers: Long
     get() {
@@ -484,7 +504,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * If set a new navigation path from the current agent position to the [targetPosition] is requested from the NavigationServer.
+   * If set, a new navigation path from the current agent position to the [targetPosition] is requested from the NavigationServer.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -663,7 +683,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns true if [targetPosition] is reachable. The target position is set using [targetPosition].
+   * Returns `true` if [getFinalPosition] is within [targetDesiredDistance] of the [targetPosition].
    */
   public fun isTargetReachable(): Boolean {
     TransferContext.writeArguments()
@@ -672,7 +692,9 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns true if the navigation path's final position has been reached.
+   * Returns `true` if the end of the currently loaded navigation path has been reached.
+   *
+   * **Note:** While true prefer to stop calling update functions like [getNextPathPosition]. This avoids jittering the standing agent due to calling repeated path updates.
    */
   public fun isNavigationFinished(): Boolean {
     TransferContext.writeArguments()
@@ -681,7 +703,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns the reachable final position of the current navigation path in global coordinates. This position can change if the navigation path is altered in any way. Because of this, it would be best to check this each frame.
+   * Returns the reachable final position of the current navigation path in global coordinates. This position can change if the agent needs to update the navigation path which makes the agent emit the [pathChanged] signal.
    */
   public fun getFinalPosition(): Vector3 {
     TransferContext.writeArguments()
@@ -769,6 +791,12 @@ public open class NavigationAgent3D : Node() {
 
     public val getUse3dAvoidancePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationAgent3D", "get_use_3d_avoidance")
+
+    public val setKeepYVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_keep_y_velocity")
+
+    public val getKeepYVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_keep_y_velocity")
 
     public val setNeighborDistancePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationAgent3D", "set_neighbor_distance")

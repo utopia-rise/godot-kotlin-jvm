@@ -1,6 +1,8 @@
 package godot.annotation.processor.ext
 
+import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
+import com.google.devtools.ksp.symbol.Modifier
 import godot.annotation.RegisterFunction
 import godot.entrygenerator.model.ConstructorAnnotation
 import godot.entrygenerator.model.FunctionAnnotation
@@ -23,7 +25,7 @@ internal fun KSFunctionDeclaration.mapToRegisteredConstructor(): RegisteredConst
 }
 
 
-internal fun KSFunctionDeclaration.mapToRegisteredFunction(): RegisteredFunction? {
+internal fun KSFunctionDeclaration.mapToRegisteredFunction(currentClass: KSClassDeclaration): RegisteredFunction? {
     return if (annotations.any { it.fqNameUnsafe == RegisterFunction::class.qualifiedName }) {
         val fqName = requireNotNull(qualifiedName?.asString()) {
             "Qualified name for a registered function declaration cannot be null"
@@ -32,6 +34,8 @@ internal fun KSFunctionDeclaration.mapToRegisteredFunction(): RegisteredFunction
         val annotations = annotations.mapNotNull { it.mapToAnnotation(this) as? FunctionAnnotation }
         RegisteredFunction(
             fqName = fqName,
+            isOverridee = this.modifiers.contains(Modifier.OVERRIDE),
+            isDeclaredInThisClass = parentDeclaration == currentClass,
             parameters = parameters,
             returnType = returnType?.mapToType(),
             annotations = annotations.toList(),

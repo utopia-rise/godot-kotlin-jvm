@@ -7,35 +7,28 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.NodePath
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.TypeManager
-import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
-import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
 import godot.util.VoidPtr
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
-import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -56,54 +49,18 @@ import kotlin.jvm.JvmOverloads
  * Updating the target properties of animations occurs at the process frame.
  */
 @GodotBaseType
-public open class AnimationPlayer : Node() {
+public open class AnimationPlayer : AnimationMixer() {
   /**
-   * Notifies when an animation finished playing.
-   *
-   * **Note:** This signal is not emitted if an animation is looping.
+   * Emitted when [currentAnimation] changes.
    */
-  public val animationFinished: Signal1<StringName> by signal("animName")
+  public val currentAnimationChanged: Signal1<String> by signal("name")
 
   /**
-   * Emitted when a queued animation plays after the previous animation finished. See [queue].
+   * Emitted when a queued animation plays after the previous animation finished. See also [godot.AnimationPlayer.queue].
    *
-   * **Note:** The signal is not emitted when the animation is changed via [play] or by an [godot.AnimationTree].
+   * **Note:** The signal is not emitted when the animation is changed via [godot.AnimationPlayer.play] or by an [godot.AnimationTree].
    */
   public val animationChanged: Signal2<StringName, StringName> by signal("oldName", "newName")
-
-  /**
-   * Notifies when an animation starts playing.
-   */
-  public val animationStarted: Signal1<StringName> by signal("animName")
-
-  /**
-   * Notifies when an animation list is changed.
-   */
-  public val animationListChanged: Signal0 by signal()
-
-  /**
-   * Notifies when the animation libraries have changed.
-   */
-  public val animationLibrariesUpdated: Signal0 by signal()
-
-  /**
-   * Notifies when the caches have been cleared, either automatically, or manually via [clearCaches].
-   */
-  public val cachesCleared: Signal0 by signal()
-
-  /**
-   * The node from which node path references will travel.
-   */
-  public var rootNode: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRootPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRootPtr, NIL)
-    }
 
   /**
    * The key of the currently playing animation. If no animation is playing, the property's value is an empty string. Changing this value does not restart the animation. See [play] for more information on playing animations.
@@ -150,22 +107,6 @@ public open class AnimationPlayer : Node() {
     }
 
   /**
-   * This is used by the editor. If set to `true`, the scene will be saved with the effects of the reset animation (the animation with the key `"RESET"`) applied as if it had been seeked to time 0, with the editor keeping the values that the scene had before saving.
-   *
-   * This makes it more convenient to preview and edit animations in the editor, as changes to the scene will not be saved as long as they are set in the reset animation.
-   */
-  public var resetOnSave: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isResetOnSaveEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setResetOnSaveEnabledPtr, NIL)
-    }
-
-  /**
    * The length (in seconds) of the currently playing animation.
    */
   public val currentAnimationLength: Double
@@ -186,20 +127,6 @@ public open class AnimationPlayer : Node() {
     }
 
   /**
-   * The process notification in which to update animations.
-   */
-  public var playbackProcessMode: AnimationProcessCallback
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getProcessCallbackPtr, LONG)
-      return AnimationPlayer.AnimationProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setProcessCallbackPtr, NIL)
-    }
-
-  /**
    * The default time in which to blend animations. Ranges from 0 to 4096 with 0.01 precision.
    */
   public var playbackDefaultBlendTime: Double
@@ -211,20 +138,6 @@ public open class AnimationPlayer : Node() {
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setDefaultBlendTimePtr, NIL)
-    }
-
-  /**
-   * If `true`, updates animations in response to process-related notifications.
-   */
-  public var playbackActive: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setActivePtr, NIL)
     }
 
   /**
@@ -244,39 +157,9 @@ public open class AnimationPlayer : Node() {
     }
 
   /**
-   * The call mode to use for Call Method tracks.
-   */
-  public var methodCallMode: AnimationMethodCallMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMethodCallModePtr, LONG)
-      return AnimationPlayer.AnimationMethodCallMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMethodCallModePtr, NIL)
-    }
-
-  /**
-   * The number of possible simultaneous sounds for each of the assigned AudioStreamPlayers.
-   *
-   * For example, if this value is `32` and the animation has two audio tracks, the two [godot.AudioStreamPlayer]s assigned can play simultaneously up to `32` voices each.
-   */
-  public var audioMaxPolyphony: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAudioMaxPolyphonyPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAudioMaxPolyphonyPtr, NIL)
-    }
-
-  /**
    * If `true` and the engine is running in Movie Maker mode (see [godot.MovieWriter]), exits the engine with [godot.SceneTree.quit] as soon as an animation is done playing in this [godot.AnimationPlayer]. A message is printed when the engine quits for this reason.
    *
-   * **Note:** This obeys the same logic as the [animationFinished] signal, so it will not quit the engine if the animation is set to be looping.
+   * **Note:** This obeys the same logic as the [godot.AnimationMixer.animationFinished] signal, so it will not quit the engine if the animation is set to be looping.
    */
   public var movieQuitOnFinish: Boolean
     get() {
@@ -295,112 +178,18 @@ public open class AnimationPlayer : Node() {
   }
 
   /**
-   * A virtual function for processing after key getting during playback.
+   * Triggers the [animationTo] animation when the [animationFrom] animation completes.
    */
-  public open fun _postProcessKeyValue(
-    animation: Animation,
-    track: Int,
-    `value`: Any?,
-    _object: Object,
-    objectIdx: Int,
-  ): Any? {
-    throw NotImplementedError("_post_process_key_value is not implemented for AnimationPlayer")
-  }
-
-  /**
-   * Adds [library] to the animation player, under the key [name].
-   */
-  public fun addAnimationLibrary(name: StringName, library: AnimationLibrary): GodotError {
-    TransferContext.writeArguments(STRING_NAME to name, OBJECT to library)
-    TransferContext.callMethod(rawPtr, MethodBindings.addAnimationLibraryPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
-  }
-
-  /**
-   * Removes the [godot.AnimationLibrary] associated with the key [name].
-   */
-  public fun removeAnimationLibrary(name: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeAnimationLibraryPtr, NIL)
-  }
-
-  /**
-   * Moves the [godot.AnimationLibrary] associated with the key [name] to the key [newname].
-   */
-  public fun renameAnimationLibrary(name: StringName, newname: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newname)
-    TransferContext.callMethod(rawPtr, MethodBindings.renameAnimationLibraryPtr, NIL)
-  }
-
-  /**
-   * Returns `true` if the [godot.AnimationPlayer] stores an [godot.AnimationLibrary] with key [name].
-   */
-  public fun hasAnimationLibrary(name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasAnimationLibraryPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-  }
-
-  /**
-   * Returns the first [godot.AnimationLibrary] with key [name] or `null` if not found.
-   *
-   * To get the [godot.AnimationPlayer]'s global animation library, use `get_animation_library("")`.
-   */
-  public fun getAnimationLibrary(name: StringName): AnimationLibrary? {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationLibraryPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as AnimationLibrary?)
-  }
-
-  /**
-   * Returns the list of stored library keys.
-   */
-  public fun getAnimationLibraryList(): VariantArray<StringName> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationLibraryListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>)
-  }
-
-  /**
-   * Returns `true` if the [godot.AnimationPlayer] stores an [godot.Animation] with key [name].
-   */
-  public fun hasAnimation(name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasAnimationPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-  }
-
-  /**
-   * Returns the [godot.Animation] with the key [name]. If the animation does not exist, `null` is returned and an error is logged.
-   */
-  public fun getAnimation(name: StringName): Animation? {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Animation?)
-  }
-
-  /**
-   * Returns the list of stored animation keys.
-   */
-  public fun getAnimationList(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
-  }
-
-  /**
-   * Triggers the [animTo] animation when the [animFrom] animation completes.
-   */
-  public fun animationSetNext(animFrom: StringName, animTo: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to animFrom, STRING_NAME to animTo)
+  public fun animationSetNext(animationFrom: StringName, animationTo: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to animationFrom, STRING_NAME to animationTo)
     TransferContext.callMethod(rawPtr, MethodBindings.animationSetNextPtr, NIL)
   }
 
   /**
-   * Returns the key of the animation which is queued to play after the [animFrom] animation.
+   * Returns the key of the animation which is queued to play after the [animationFrom] animation.
    */
-  public fun animationGetNext(animFrom: StringName): StringName {
-    TransferContext.writeArguments(STRING_NAME to animFrom)
+  public fun animationGetNext(animationFrom: StringName): StringName {
+    TransferContext.writeArguments(STRING_NAME to animationFrom)
     TransferContext.callMethod(rawPtr, MethodBindings.animationGetNextPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
@@ -409,19 +198,19 @@ public open class AnimationPlayer : Node() {
    * Specifies a blend time (in seconds) between two animations, referenced by their keys.
    */
   public fun setBlendTime(
-    animFrom: StringName,
-    animTo: StringName,
+    animationFrom: StringName,
+    animationTo: StringName,
     sec: Double,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to animFrom, STRING_NAME to animTo, DOUBLE to sec)
+    TransferContext.writeArguments(STRING_NAME to animationFrom, STRING_NAME to animationTo, DOUBLE to sec)
     TransferContext.callMethod(rawPtr, MethodBindings.setBlendTimePtr, NIL)
   }
 
   /**
    * Returns the blend time (in seconds) between two animations, referenced by their keys.
    */
-  public fun getBlendTime(animFrom: StringName, animTo: StringName): Double {
-    TransferContext.writeArguments(STRING_NAME to animFrom, STRING_NAME to animTo)
+  public fun getBlendTime(animationFrom: StringName, animationTo: StringName): Double {
+    TransferContext.writeArguments(STRING_NAME to animationFrom, STRING_NAME to animationTo)
     TransferContext.callMethod(rawPtr, MethodBindings.getBlendTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
@@ -528,63 +317,86 @@ public open class AnimationPlayer : Node() {
   }
 
   /**
-   * Returns the key of [animation] or an empty [godot.StringName] if not found.
-   */
-  public fun findAnimation(animation: Animation): StringName {
-    TransferContext.writeArguments(OBJECT to animation)
-    TransferContext.callMethod(rawPtr, MethodBindings.findAnimationPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-  }
-
-  /**
-   * Returns the key for the [godot.AnimationLibrary] that contains [animation] or an empty [godot.StringName] if not found.
-   */
-  public fun findAnimationLibrary(animation: Animation): StringName {
-    TransferContext.writeArguments(OBJECT to animation)
-    TransferContext.callMethod(rawPtr, MethodBindings.findAnimationLibraryPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-  }
-
-  /**
-   * [godot.AnimationPlayer] caches animated nodes. It may not notice if a node disappears; [clearCaches] forces it to update the cache again.
-   */
-  public fun clearCaches(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearCachesPtr, NIL)
-  }
-
-  /**
    * Seeks the animation to the [seconds] point in time (in seconds). If [update] is `true`, the animation updates too, otherwise it updates at process time. Events between the current frame and [seconds] are skipped.
    *
-   * **Note:** Seeking to the end of the animation doesn't emit [animationFinished]. If you want to skip animation and emit the signal, use [advance].
+   * If [updateOnly] is true, the method / audio / animation playback tracks will not be processed.
+   *
+   * **Note:** Seeking to the end of the animation doesn't emit [godot.AnimationMixer.animationFinished]. If you want to skip animation and emit the signal, use [godot.AnimationMixer.advance].
    */
   @JvmOverloads
-  public fun seek(seconds: Double, update: Boolean = false): Unit {
-    TransferContext.writeArguments(DOUBLE to seconds, BOOL to update)
+  public fun seek(
+    seconds: Double,
+    update: Boolean = false,
+    updateOnly: Boolean = false,
+  ): Unit {
+    TransferContext.writeArguments(DOUBLE to seconds, BOOL to update, BOOL to updateOnly)
     TransferContext.callMethod(rawPtr, MethodBindings.seekPtr, NIL)
   }
 
   /**
-   * Shifts position in the animation timeline and immediately updates the animation. [delta] is the time in seconds to shift. Events between the current frame and [delta] are handled.
+   * For backward compatibility. See [enum AnimationMixer.AnimationCallbackModeProcess].
    */
-  public fun advance(delta: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to delta)
-    TransferContext.callMethod(rawPtr, MethodBindings.advancePtr, NIL)
+  public fun setProcessCallback(mode: AnimationProcessCallback): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setProcessCallbackPtr, NIL)
+  }
+
+  /**
+   * For backward compatibility. See [enum AnimationMixer.AnimationCallbackModeProcess].
+   */
+  public fun getProcessCallback(): AnimationProcessCallback {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getProcessCallbackPtr, LONG)
+    return AnimationPlayer.AnimationProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * For backward compatibility. See [enum AnimationMixer.AnimationCallbackModeMethod].
+   */
+  public fun setMethodCallMode(mode: AnimationMethodCallMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMethodCallModePtr, NIL)
+  }
+
+  /**
+   * For backward compatibility. See [enum AnimationMixer.AnimationCallbackModeMethod].
+   */
+  public fun getMethodCallMode(): AnimationMethodCallMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMethodCallModePtr, LONG)
+    return AnimationPlayer.AnimationMethodCallMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * For backward compatibility. See [godot.AnimationMixer.rootNode].
+   */
+  public fun setRoot(path: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to path)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRootPtr, NIL)
+  }
+
+  /**
+   * For backward compatibility. See [godot.AnimationMixer.rootNode].
+   */
+  public fun getRoot(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRootPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
   public enum class AnimationProcessCallback(
     id: Long,
   ) {
     /**
-     * Process animation during physics frames (see [godot.Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]). This is especially useful when animating physics bodies.
+     * For backward compatibility. See [godot.AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS].
      */
     ANIMATION_PROCESS_PHYSICS(0),
     /**
-     * Process animation during process frames (see [godot.Node.NOTIFICATION_INTERNAL_PROCESS]).
+     * For backward compatibility. See [godot.AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_IDLE].
      */
     ANIMATION_PROCESS_IDLE(1),
     /**
-     * Do not process animation. Use [advance] to process the animation manually.
+     * For backward compatibility. See [godot.AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL].
      */
     ANIMATION_PROCESS_MANUAL(2),
     ;
@@ -603,11 +415,11 @@ public open class AnimationPlayer : Node() {
     id: Long,
   ) {
     /**
-     * Batch method calls during the animation process, then do the calls after events are processed. This avoids bugs involving deleting nodes or modifying the AnimationPlayer while playing.
+     * For backward compatibility. See [godot.AnimationMixer.ANIMATION_CALLBACK_MODE_METHOD_DEFERRED].
      */
     ANIMATION_METHOD_CALL_DEFERRED(0),
     /**
-     * Make method calls immediately when reached in the animation.
+     * For backward compatibility. See [godot.AnimationMixer.ANIMATION_CALLBACK_MODE_METHOD_IMMEDIATE].
      */
     ANIMATION_METHOD_CALL_IMMEDIATE(1),
     ;
@@ -625,36 +437,6 @@ public open class AnimationPlayer : Node() {
   public companion object
 
   internal object MethodBindings {
-    public val _postProcessKeyValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "_post_process_key_value")
-
-    public val addAnimationLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "add_animation_library")
-
-    public val removeAnimationLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "remove_animation_library")
-
-    public val renameAnimationLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "rename_animation_library")
-
-    public val hasAnimationLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "has_animation_library")
-
-    public val getAnimationLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "get_animation_library")
-
-    public val getAnimationLibraryListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "get_animation_library_list")
-
-    public val hasAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "has_animation")
-
-    public val getAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "get_animation")
-
-    public val getAnimationListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "get_animation_list")
-
     public val animationSetNextPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationPlayer", "animation_set_next")
 
@@ -703,10 +485,6 @@ public open class AnimationPlayer : Node() {
     public val clearQueuePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationPlayer", "clear_queue")
 
-    public val setActivePtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationPlayer", "set_active")
-
-    public val isActivePtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationPlayer", "is_active")
-
     public val setSpeedScalePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationPlayer", "set_speed_scale")
 
@@ -722,43 +500,6 @@ public open class AnimationPlayer : Node() {
     public val getAutoplayPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationPlayer", "get_autoplay")
 
-    public val setResetOnSaveEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "set_reset_on_save_enabled")
-
-    public val isResetOnSaveEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "is_reset_on_save_enabled")
-
-    public val setRootPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationPlayer", "set_root")
-
-    public val getRootPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationPlayer", "get_root")
-
-    public val findAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "find_animation")
-
-    public val findAnimationLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "find_animation_library")
-
-    public val clearCachesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "clear_caches")
-
-    public val setProcessCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "set_process_callback")
-
-    public val getProcessCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "get_process_callback")
-
-    public val setMethodCallModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "set_method_call_mode")
-
-    public val getMethodCallModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "get_method_call_mode")
-
-    public val setAudioMaxPolyphonyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "set_audio_max_polyphony")
-
-    public val getAudioMaxPolyphonyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "get_audio_max_polyphony")
-
     public val setMovieQuitOnFinishEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationPlayer", "set_movie_quit_on_finish_enabled")
 
@@ -773,6 +514,20 @@ public open class AnimationPlayer : Node() {
 
     public val seekPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationPlayer", "seek")
 
-    public val advancePtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationPlayer", "advance")
+    public val setProcessCallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "set_process_callback")
+
+    public val getProcessCallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "get_process_callback")
+
+    public val setMethodCallModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "set_method_call_mode")
+
+    public val getMethodCallModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "get_method_call_mode")
+
+    public val setRootPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationPlayer", "set_root")
+
+    public val getRootPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationPlayer", "get_root")
   }
 }

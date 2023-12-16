@@ -62,7 +62,7 @@ public open class TabContainer : Container() {
   public val tabHovered: Signal1<Long> by signal("tab")
 
   /**
-   * Emitted when a tab is selected, even if it is the current tab.
+   * Emitted when a tab is selected via click, directional input, or script, even if it is the current tab.
    */
   public val tabSelected: Signal1<Long> by signal("tab")
 
@@ -190,6 +190,20 @@ public open class TabContainer : Container() {
       TransferContext.callMethod(rawPtr, MethodBindings.setUseHiddenTabsForMinSizePtr, NIL)
     }
 
+  /**
+   * The focus access mode for the internal [godot.TabBar] node.
+   */
+  public var tabFocusMode: Control.FocusMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getTabFocusModePtr, LONG)
+      return Control.FocusMode.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTabFocusModePtr, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_TABCONTAINER, scriptIndex)
     return true
@@ -214,12 +228,41 @@ public open class TabContainer : Container() {
   }
 
   /**
+   * Selects the first available tab with lower index than the currently selected. Returns `true` if tab selection changed.
+   */
+  public fun selectPreviousAvailable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.selectPreviousAvailablePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Selects the first available tab with greater index than the currently selected. Returns `true` if tab selection changed.
+   */
+  public fun selectNextAvailable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.selectNextAvailablePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
    * Returns the child [godot.Control] node located at the active tab index.
    */
   public fun getCurrentTabControl(): Control? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentTabControlPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Control?)
+  }
+
+  /**
+   * Returns the [godot.TabBar] contained in this container.
+   *
+   * **Warning:** This is a required internal node, removing and freeing it or editing its tabs may cause a crash. If you wish to edit the tabs, use the methods provided in [godot.TabContainer].
+   */
+  public fun getTabBar(): TabBar? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTabBarPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as TabBar?)
   }
 
   /**
@@ -385,8 +428,16 @@ public open class TabContainer : Container() {
     public val getPreviousTabPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TabContainer", "get_previous_tab")
 
+    public val selectPreviousAvailablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabContainer", "select_previous_available")
+
+    public val selectNextAvailablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabContainer", "select_next_available")
+
     public val getCurrentTabControlPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TabContainer", "get_current_tab_control")
+
+    public val getTabBarPtr: VoidPtr = TypeManager.getMethodBindPtr("TabContainer", "get_tab_bar")
 
     public val getTabControlPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TabContainer", "get_tab_control")
@@ -476,5 +527,11 @@ public open class TabContainer : Container() {
 
     public val getUseHiddenTabsForMinSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TabContainer", "get_use_hidden_tabs_for_min_size")
+
+    public val setTabFocusModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabContainer", "set_tab_focus_mode")
+
+    public val getTabFocusModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabContainer", "get_tab_focus_mode")
   }
 }

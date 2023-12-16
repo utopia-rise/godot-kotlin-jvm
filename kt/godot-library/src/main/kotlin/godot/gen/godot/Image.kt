@@ -41,11 +41,11 @@ import kotlin.jvm.JvmOverloads
  * Image datatype.
  *
  * Tutorials:
- * [$DOCS_URL/tutorials/assets_pipeline/importing_images.html]($DOCS_URL/tutorials/assets_pipeline/importing_images.html)
+ * [$DOCS_URL/tutorials/io/runtime_file_loading_and_saving.html]($DOCS_URL/tutorials/io/runtime_file_loading_and_saving.html)
  *
  * Native image datatype. Contains image data which can be converted to an [godot.ImageTexture] and provides commonly used *image processing* methods. The maximum width and height for an [godot.Image] are [MAX_WIDTH] and [MAX_HEIGHT].
  *
- * An [godot.Image] cannot be assigned to a `texture` property of an object directly (such as [godot.Sprite2D]), and has to be converted manually to an [godot.ImageTexture] first.
+ * An [godot.Image] cannot be assigned to a texture property of an object directly (such as [godot.Sprite2D.texture]), and has to be converted manually to an [godot.ImageTexture] first.
  *
  * **Note:** The maximum image size is 16384×16384 pixels due to graphics hardware limitations. Larger images may fail to import.
  */
@@ -119,7 +119,16 @@ public open class Image : Resource() {
   }
 
   /**
-   * Returns the offset where the image's mipmap with index [mipmap] is stored in the `data` dictionary.
+   * Returns the number of mipmap levels or 0 if the image has no mipmaps. The largest main level image is not counted as a mipmap level by this method, so if you want to include it you can add 1 to this count.
+   */
+  public fun getMipmapCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMipmapCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  /**
+   * Returns the offset where the image's mipmap with index [mipmap] is stored in the [data] dictionary.
    */
   public fun getMipmapOffset(mipmap: Int): Int {
     TransferContext.writeArguments(LONG to mipmap.toLong())
@@ -151,7 +160,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Shrinks the image by a factor of 2.
+   * Shrinks the image by a factor of 2 on each axis (this divides the pixel count by 4).
    */
   public fun shrinkX2(): Unit {
     TransferContext.writeArguments()
@@ -183,7 +192,9 @@ public open class Image : Resource() {
   }
 
   /**
-   * Generates mipmaps for the image. Mipmaps are precalculated lower-resolution copies of the image that are automatically used if the image needs to be scaled down when rendered. They help improve image quality and performance when rendering. This method returns an error if the image is compressed, in a custom format, or if the image's width/height is `0`.
+   * Generates mipmaps for the image. Mipmaps are precalculated lower-resolution copies of the image that are automatically used if the image needs to be scaled down when rendered. They help improve image quality and performance when rendering. This method returns an error if the image is compressed, in a custom format, or if the image's width/height is `0`. Enabling [renormalize] when generating mipmaps for normal map textures will make sure all resulting vector values are normalized.
+   *
+   * It is possible to check if the image has mipmaps by calling [hasMipmaps] or [getMipmapCount]. Calling [generateMipmaps] on an image that already has mipmaps will replace existing mipmaps in the image.
    */
   @JvmOverloads
   public fun generateMipmaps(renormalize: Boolean = false): GodotError {
@@ -303,7 +314,9 @@ public open class Image : Resource() {
   }
 
   /**
-   * Saves the image as a WebP (Web Picture) file to the file at [path]. By default it will save lossless. If [lossy] is true, the image will be saved lossy, using the [quality] setting between 0.0 and 1.0 (inclusive).
+   * Saves the image as a WebP (Web Picture) file to the file at [path]. By default it will save lossless. If [lossy] is true, the image will be saved lossy, using the [quality] setting between 0.0 and 1.0 (inclusive). Lossless WebP offers more efficient compression than PNG.
+   *
+   * **Note:** The WebP format is limited to a size of 16383×16383 pixels, while PNG can save larger images.
    */
   @JvmOverloads
   public fun saveWebp(
@@ -317,7 +330,9 @@ public open class Image : Resource() {
   }
 
   /**
-   * Saves the image as a WebP (Web Picture) file to a byte array. By default it will save lossless. If [lossy] is true, the image will be saved lossy, using the [quality] setting between 0.0 and 1.0 (inclusive).
+   * Saves the image as a WebP (Web Picture) file to a byte array. By default it will save lossless. If [lossy] is true, the image will be saved lossy, using the [quality] setting between 0.0 and 1.0 (inclusive). Lossless WebP offers more efficient compression than PNG.
+   *
+   * **Note:** The WebP format is limited to a size of 16383×16383 pixels, while PNG can save larger images.
    */
   @JvmOverloads
   public fun saveWebpToBuffer(lossy: Boolean = false, quality: Float = 0.75f): PackedByteArray {
@@ -436,7 +451,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Multiplies color values with alpha values. Resulting color values for a pixel are `(color * alpha)/256`.
+   * Multiplies color values with alpha values. Resulting color values for a pixel are `(color * alpha)/256`. See also [godot.CanvasItemMaterial.blendMode].
    */
   public fun premultiplyAlpha(): Unit {
     TransferContext.writeArguments()
@@ -735,6 +750,8 @@ public open class Image : Resource() {
 
   /**
    * Loads an image from the binary contents of a TGA file.
+   *
+   * **Note:** This method is only available in engine builds with the TGA module enabled. By default, the TGA module is enabled, but it can be disabled at build-time using the `module_tga_enabled=no` SCons option.
    */
   public fun loadTgaFromBuffer(buffer: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
@@ -746,10 +763,51 @@ public open class Image : Resource() {
    * Loads an image from the binary contents of a BMP file.
    *
    * **Note:** Godot's BMP module doesn't support 16-bit per pixel images. Only 1-bit, 4-bit, 8-bit, 24-bit, and 32-bit per pixel images are supported.
+   *
+   * **Note:** This method is only available in engine builds with the BMP module enabled. By default, the BMP module is enabled, but it can be disabled at build-time using the `module_bmp_enabled=no` SCons option.
    */
   public fun loadBmpFromBuffer(buffer: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
     TransferContext.callMethod(rawPtr, MethodBindings.loadBmpFromBufferPtr, LONG)
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Loads an image from the binary contents of a [KTX](https://github.com/KhronosGroup/KTX-Software) file. Unlike most image formats, KTX can store VRAM-compressed data and embed mipmaps.
+   *
+   * **Note:** Godot's libktx implementation only supports 2D images. Cubemaps, texture arrays, and de-padding are not supported.
+   *
+   * **Note:** This method is only available in engine builds with the KTX module enabled. By default, the KTX module is enabled, but it can be disabled at build-time using the `module_ktx_enabled=no` SCons option.
+   */
+  public fun loadKtxFromBuffer(buffer: PackedByteArray): GodotError {
+    TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
+    TransferContext.callMethod(rawPtr, MethodBindings.loadKtxFromBufferPtr, LONG)
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Loads an image from the UTF-8 binary contents of an **uncompressed** SVG file (**.svg**).
+   *
+   * **Note:** Beware when using compressed SVG files (like **.svgz**), they need to be `decompressed` before loading.
+   *
+   * **Note:** This method is only available in engine builds with the SVG module enabled. By default, the SVG module is enabled, but it can be disabled at build-time using the `module_svg_enabled=no` SCons option.
+   */
+  @JvmOverloads
+  public fun loadSvgFromBuffer(buffer: PackedByteArray, scale: Float = 1.0f): GodotError {
+    TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer, DOUBLE to scale.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.loadSvgFromBufferPtr, LONG)
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Loads an image from the string contents of a SVG file (**.svg**).
+   *
+   * **Note:** This method is only available in engine builds with the SVG module enabled. By default, the SVG module is enabled, but it can be disabled at build-time using the `module_svg_enabled=no` SCons option.
+   */
+  @JvmOverloads
+  public fun loadSvgFromString(svgStr: String, scale: Float = 1.0f): GodotError {
+    TransferContext.writeArguments(STRING to svgStr, DOUBLE to scale.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.loadSvgFromStringPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -809,19 +867,19 @@ public open class Image : Resource() {
      */
     FORMAT_RGBAF(11),
     /**
-     * OpenGL texture format `GL_R32F` where there's one component, a 16-bit "half-precision" floating-point value.
+     * OpenGL texture format `GL_R16F` where there's one component, a 16-bit "half-precision" floating-point value.
      */
     FORMAT_RH(12),
     /**
-     * OpenGL texture format `GL_RG32F` where there are two components, each a 16-bit "half-precision" floating-point value.
+     * OpenGL texture format `GL_RG16F` where there are two components, each a 16-bit "half-precision" floating-point value.
      */
     FORMAT_RGH(13),
     /**
-     * OpenGL texture format `GL_RGB32F` where there are three components, each a 16-bit "half-precision" floating-point value.
+     * OpenGL texture format `GL_RGB16F` where there are three components, each a 16-bit "half-precision" floating-point value.
      */
     FORMAT_RGBH(14),
     /**
-     * OpenGL texture format `GL_RGBA32F` where there are four components, each a 16-bit "half-precision" floating-point value.
+     * OpenGL texture format `GL_RGBA16F` where there are four components, each a 16-bit "half-precision" floating-point value.
      */
     FORMAT_RGBAH(15),
     /**
@@ -915,7 +973,7 @@ public open class Image : Resource() {
      */
     FORMAT_DXT5_RA_AS_RG(34),
     /**
-     * [godot.Adaptive Scalable Texutre Compression](https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression). This implements the 4x4 (high quality) mode.
+     * [godot.Adaptive Scalable Texture Compression](https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression). This implements the 4x4 (high quality) mode.
      */
     FORMAT_ASTC_4x4(35),
     /**
@@ -923,7 +981,7 @@ public open class Image : Resource() {
      */
     FORMAT_ASTC_4x4_HDR(36),
     /**
-     * [godot.Adaptive Scalable Texutre Compression](https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression). This implements the 8x8 (low quality) mode.
+     * [godot.Adaptive Scalable Texture Compression](https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression). This implements the 8x8 (low quality) mode.
      */
     FORMAT_ASTC_8x8(37),
     /**
@@ -1209,6 +1267,9 @@ public open class Image : Resource() {
 
     public val convertPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "convert")
 
+    public val getMipmapCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Image", "get_mipmap_count")
+
     public val getMipmapOffsetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Image", "get_mipmap_offset")
 
@@ -1341,5 +1402,14 @@ public open class Image : Resource() {
 
     public val loadBmpFromBufferPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Image", "load_bmp_from_buffer")
+
+    public val loadKtxFromBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Image", "load_ktx_from_buffer")
+
+    public val loadSvgFromBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Image", "load_svg_from_buffer")
+
+    public val loadSvgFromStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Image", "load_svg_from_string")
   }
 }

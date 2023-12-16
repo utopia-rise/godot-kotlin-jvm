@@ -8,11 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
+import godot.core.RID
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
+import godot.core.VariantType._RID
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Boolean
@@ -91,6 +93,15 @@ public open class Joint3D internal constructor() : Node3D() {
     return true
   }
 
+  /**
+   * Returns the joint's [RID].
+   */
+  public fun getRid(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
   public companion object
 
   internal object MethodBindings {
@@ -113,5 +124,7 @@ public open class Joint3D internal constructor() : Node3D() {
 
     public val getExcludeNodesFromCollisionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Joint3D", "get_exclude_nodes_from_collision")
+
+    public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint3D", "get_rid")
   }
 }
