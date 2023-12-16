@@ -196,14 +196,12 @@ public open class TabContainer : Container() {
   public var tabFocusMode: Control.FocusMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TAB_FOCUS_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTabFocusModePtr, LONG)
       return Control.FocusMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_TAB_FOCUS_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTabFocusModePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -234,8 +232,7 @@ public open class TabContainer : Container() {
    */
   public fun selectPreviousAvailable(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SELECT_PREVIOUS_AVAILABLE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.selectPreviousAvailablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -244,8 +241,7 @@ public open class TabContainer : Container() {
    */
   public fun selectNextAvailable(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SELECT_NEXT_AVAILABLE,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.selectNextAvailablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -265,7 +261,7 @@ public open class TabContainer : Container() {
    */
   public fun getTabBar(): TabBar? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TAB_BAR, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getTabBarPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as TabBar?)
   }
 
@@ -432,8 +428,16 @@ public open class TabContainer : Container() {
     public val getPreviousTabPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TabContainer", "get_previous_tab")
 
+    public val selectPreviousAvailablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabContainer", "select_previous_available")
+
+    public val selectNextAvailablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabContainer", "select_next_available")
+
     public val getCurrentTabControlPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TabContainer", "get_current_tab_control")
+
+    public val getTabBarPtr: VoidPtr = TypeManager.getMethodBindPtr("TabContainer", "get_tab_bar")
 
     public val getTabControlPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TabContainer", "get_tab_control")
@@ -523,5 +527,11 @@ public open class TabContainer : Container() {
 
     public val getUseHiddenTabsForMinSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TabContainer", "get_use_hidden_tabs_for_min_size")
+
+    public val setTabFocusModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabContainer", "set_tab_focus_mode")
+
+    public val getTabFocusModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabContainer", "get_tab_focus_mode")
   }
 }

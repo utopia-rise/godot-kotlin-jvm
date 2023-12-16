@@ -733,8 +733,7 @@ public open class ItemList : Control() {
    */
   public fun forceUpdateListSize(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_FORCE_UPDATE_LIST_SIZE,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.forceUpdateListSizePtr, NIL)
   }
 
   public enum class IconMode(
@@ -981,5 +980,8 @@ public open class ItemList : Control() {
 
     public val getTextOverrunBehaviorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ItemList", "get_text_overrun_behavior")
+
+    public val forceUpdateListSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "force_update_list_size")
   }
 }

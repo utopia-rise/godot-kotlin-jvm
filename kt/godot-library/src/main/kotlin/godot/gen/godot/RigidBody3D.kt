@@ -11,6 +11,7 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Basis
 import godot.core.RID
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BASIS
@@ -26,6 +27,7 @@ import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal4
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -108,12 +110,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var mass: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_MASS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMassPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_MASS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMassPtr, NIL)
     }
 
   /**
@@ -124,14 +126,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var physicsMaterialOverride: PhysicsMaterial?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_PHYSICS_MATERIAL_OVERRIDE, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsMaterialOverridePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_PHYSICS_MATERIAL_OVERRIDE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsMaterialOverridePtr, NIL)
     }
 
   /**
@@ -140,14 +140,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var gravityScale: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_GRAVITY_SCALE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGravityScalePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_GRAVITY_SCALE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGravityScalePtr, NIL)
     }
 
   /**
@@ -156,14 +154,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var centerOfMassMode: CenterOfMassMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_CENTER_OF_MASS_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCenterOfMassModePtr, LONG)
       return RigidBody3D.CenterOfMassMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_CENTER_OF_MASS_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCenterOfMassModePtr, NIL)
     }
 
   /**
@@ -175,14 +171,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var centerOfMass: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_CENTER_OF_MASS,
-          VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCenterOfMassPtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_CENTER_OF_MASS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCenterOfMassPtr, NIL)
     }
 
   /**
@@ -238,12 +232,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var inertia: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_INERTIA, VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getInertiaPtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_INERTIA, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setInertiaPtr, NIL)
     }
 
   /**
@@ -252,12 +246,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var sleeping: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_IS_SLEEPING, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isSleepingPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_SLEEPING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSleepingPtr, NIL)
     }
 
   /**
@@ -266,13 +260,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var canSleep: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_IS_ABLE_TO_SLEEP,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isAbleToSleepPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_CAN_SLEEP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCanSleepPtr, NIL)
     }
 
   /**
@@ -281,14 +274,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var lockRotation: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_IS_LOCK_ROTATION_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isLockRotationEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_LOCK_ROTATION_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLockRotationEnabledPtr, NIL)
     }
 
   /**
@@ -301,14 +292,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var freeze: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_IS_FREEZE_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isFreezeEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_FREEZE_ENABLED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFreezeEnabledPtr, NIL)
     }
 
   /**
@@ -319,12 +308,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var freezeMode: FreezeMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_FREEZE_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFreezeModePtr, LONG)
       return RigidBody3D.FreezeMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_FREEZE_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFreezeModePtr, NIL)
     }
 
   /**
@@ -333,14 +322,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var customIntegrator: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_IS_USING_CUSTOM_INTEGRATOR, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isUsingCustomIntegratorPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_USE_CUSTOM_INTEGRATOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseCustomIntegratorPtr, NIL)
     }
 
   /**
@@ -351,14 +338,13 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var continuousCd: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_IS_USING_CONTINUOUS_COLLISION_DETECTION, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isUsingContinuousCollisionDetectionPtr,
+          BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_USE_CONTINUOUS_COLLISION_DETECTION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseContinuousCollisionDetectionPtr, NIL)
     }
 
   /**
@@ -369,14 +355,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var maxContactsReported: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_MAX_CONTACTS_REPORTED, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMaxContactsReportedPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_MAX_CONTACTS_REPORTED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMaxContactsReportedPtr, NIL)
     }
 
   /**
@@ -387,14 +371,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var contactMonitor: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_IS_CONTACT_MONITOR_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isContactMonitorEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_CONTACT_MONITOR,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setContactMonitorPtr, NIL)
     }
 
   /**
@@ -404,14 +386,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var linearVelocity: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_LINEAR_VELOCITY,
-          VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_LINEAR_VELOCITY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLinearVelocityPtr, NIL)
     }
 
   /**
@@ -420,14 +400,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var linearDampMode: DampMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_LINEAR_DAMP_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampModePtr, LONG)
       return RigidBody3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_LINEAR_DAMP_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampModePtr, NIL)
     }
 
   /**
@@ -438,13 +416,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var linearDamp: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_LINEAR_DAMP,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_LINEAR_DAMP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampPtr, NIL)
     }
 
   /**
@@ -454,14 +431,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var angularVelocity: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_ANGULAR_VELOCITY,
-          VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_ANGULAR_VELOCITY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAngularVelocityPtr, NIL)
     }
 
   /**
@@ -470,14 +445,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var angularDampMode: DampMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_ANGULAR_DAMP_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampModePtr, LONG)
       return RigidBody3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_ANGULAR_DAMP_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampModePtr, NIL)
     }
 
   /**
@@ -488,13 +461,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var angularDamp: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_ANGULAR_DAMP,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_ANGULAR_DAMP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampPtr, NIL)
     }
 
   /**
@@ -506,14 +478,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var constantForce: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_CONSTANT_FORCE,
-          VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getConstantForcePtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_CONSTANT_FORCE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setConstantForcePtr, NIL)
     }
 
   /**
@@ -525,14 +495,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   public var constantTorque: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_CONSTANT_TORQUE,
-          VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getConstantTorquePtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_CONSTANT_TORQUE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setConstantTorquePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -747,8 +715,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    */
   public fun getInverseInertiaTensor(): Basis {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_INVERSE_INERTIA_TENSOR, BASIS)
+    TransferContext.callMethod(rawPtr, MethodBindings.getInverseInertiaTensorPtr, BASIS)
     return (TransferContext.readReturnValue(BASIS, false) as Basis)
   }
 
@@ -759,7 +726,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    */
   public fun getContactCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_CONTACT_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getContactCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -768,7 +735,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    */
   public fun setAxisVelocity(axisVelocity: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to axisVelocity)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_SET_AXIS_VELOCITY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAxisVelocityPtr, NIL)
   }
 
   /**
@@ -780,8 +747,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    */
   public fun applyCentralImpulse(impulse: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_APPLY_CENTRAL_IMPULSE,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.applyCentralImpulsePtr, NIL)
   }
 
   /**
@@ -794,7 +760,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   @JvmOverloads
   public fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse, VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_APPLY_IMPULSE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.applyImpulsePtr, NIL)
   }
 
   /**
@@ -806,8 +772,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    */
   public fun applyTorqueImpulse(impulse: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_APPLY_TORQUE_IMPULSE,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.applyTorqueImpulsePtr, NIL)
   }
 
   /**
@@ -817,8 +782,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    */
   public fun applyCentralForce(force: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to force)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_APPLY_CENTRAL_FORCE,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.applyCentralForcePtr, NIL)
   }
 
   /**
@@ -829,7 +793,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   @JvmOverloads
   public fun applyForce(force: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force, VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_APPLY_FORCE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.applyForcePtr, NIL)
   }
 
   /**
@@ -839,7 +803,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    */
   public fun applyTorque(torque: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to torque)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_APPLY_TORQUE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.applyTorquePtr, NIL)
   }
 
   /**
@@ -849,8 +813,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    */
   public fun addConstantCentralForce(force: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to force)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_ADD_CONSTANT_CENTRAL_FORCE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addConstantCentralForcePtr, NIL)
   }
 
   /**
@@ -861,7 +824,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   @JvmOverloads
   public fun addConstantForce(force: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force, VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_ADD_CONSTANT_FORCE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addConstantForcePtr, NIL)
   }
 
   /**
@@ -869,8 +832,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    */
   public fun addConstantTorque(torque: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to torque)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_ADD_CONSTANT_TORQUE,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addConstantTorquePtr, NIL)
   }
 
   /**
@@ -880,8 +842,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    */
   public fun getCollidingBodies(): VariantArray<Node3D> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY3D_GET_COLLIDING_BODIES,
-        ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCollidingBodiesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node3D>)
   }
 
@@ -955,4 +916,178 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _integrateForcesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "_integrate_forces")
+
+    public val setMassPtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody3D", "set_mass")
+
+    public val getMassPtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody3D", "get_mass")
+
+    public val setInertiaPtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody3D", "set_inertia")
+
+    public val getInertiaPtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody3D", "get_inertia")
+
+    public val setCenterOfMassModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_center_of_mass_mode")
+
+    public val getCenterOfMassModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_center_of_mass_mode")
+
+    public val setCenterOfMassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_center_of_mass")
+
+    public val getCenterOfMassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_center_of_mass")
+
+    public val setPhysicsMaterialOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_physics_material_override")
+
+    public val getPhysicsMaterialOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_physics_material_override")
+
+    public val setLinearVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_linear_velocity")
+
+    public val getLinearVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_linear_velocity")
+
+    public val setAngularVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_angular_velocity")
+
+    public val getAngularVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_angular_velocity")
+
+    public val getInverseInertiaTensorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_inverse_inertia_tensor")
+
+    public val setGravityScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_gravity_scale")
+
+    public val getGravityScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_gravity_scale")
+
+    public val setLinearDampModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_linear_damp_mode")
+
+    public val getLinearDampModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_linear_damp_mode")
+
+    public val setAngularDampModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_angular_damp_mode")
+
+    public val getAngularDampModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_angular_damp_mode")
+
+    public val setLinearDampPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_linear_damp")
+
+    public val getLinearDampPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_linear_damp")
+
+    public val setAngularDampPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_angular_damp")
+
+    public val getAngularDampPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_angular_damp")
+
+    public val setMaxContactsReportedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_max_contacts_reported")
+
+    public val getMaxContactsReportedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_max_contacts_reported")
+
+    public val getContactCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_contact_count")
+
+    public val setUseCustomIntegratorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_use_custom_integrator")
+
+    public val isUsingCustomIntegratorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "is_using_custom_integrator")
+
+    public val setContactMonitorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_contact_monitor")
+
+    public val isContactMonitorEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "is_contact_monitor_enabled")
+
+    public val setUseContinuousCollisionDetectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_use_continuous_collision_detection")
+
+    public val isUsingContinuousCollisionDetectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "is_using_continuous_collision_detection")
+
+    public val setAxisVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_axis_velocity")
+
+    public val applyCentralImpulsePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "apply_central_impulse")
+
+    public val applyImpulsePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "apply_impulse")
+
+    public val applyTorqueImpulsePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "apply_torque_impulse")
+
+    public val applyCentralForcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "apply_central_force")
+
+    public val applyForcePtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody3D", "apply_force")
+
+    public val applyTorquePtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody3D", "apply_torque")
+
+    public val addConstantCentralForcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "add_constant_central_force")
+
+    public val addConstantForcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "add_constant_force")
+
+    public val addConstantTorquePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "add_constant_torque")
+
+    public val setConstantForcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_constant_force")
+
+    public val getConstantForcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_constant_force")
+
+    public val setConstantTorquePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_constant_torque")
+
+    public val getConstantTorquePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_constant_torque")
+
+    public val setSleepingPtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody3D", "set_sleeping")
+
+    public val isSleepingPtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody3D", "is_sleeping")
+
+    public val setCanSleepPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_can_sleep")
+
+    public val isAbleToSleepPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "is_able_to_sleep")
+
+    public val setLockRotationEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_lock_rotation_enabled")
+
+    public val isLockRotationEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "is_lock_rotation_enabled")
+
+    public val setFreezeEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_freeze_enabled")
+
+    public val isFreezeEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "is_freeze_enabled")
+
+    public val setFreezeModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_freeze_mode")
+
+    public val getFreezeModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_freeze_mode")
+
+    public val getCollidingBodiesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_colliding_bodies")
+  }
 }

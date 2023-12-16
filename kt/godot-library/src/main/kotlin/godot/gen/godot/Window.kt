@@ -522,14 +522,12 @@ public open class Window : Viewport() {
   public var keepTitleVisible: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_KEEP_TITLE_VISIBLE,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getKeepTitleVisiblePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_KEEP_TITLE_VISIBLE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setKeepTitleVisiblePtr, NIL)
     }
 
   /**
@@ -581,14 +579,12 @@ public open class Window : Viewport() {
   public var contentScaleStretch: ContentScaleStretch
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_CONTENT_SCALE_STRETCH,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getContentScaleStretchPtr, LONG)
       return Window.ContentScaleStretch.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_CONTENT_SCALE_STRETCH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setContentScaleStretchPtr, NIL)
     }
 
   /**
@@ -804,7 +800,7 @@ public open class Window : Viewport() {
    */
   public fun moveToCenter(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_MOVE_TO_CENTER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.moveToCenterPtr, NIL)
   }
 
   /**
@@ -1763,6 +1759,9 @@ public open class Window : Viewport() {
   }
 
   internal object MethodBindings {
+    public val _getContentsMinimumSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "_get_contents_minimum_size")
+
     public val setTitlePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "set_title")
 
     public val getTitlePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "get_title")
@@ -1784,6 +1783,8 @@ public open class Window : Viewport() {
     public val setPositionPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "set_position")
 
     public val getPositionPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "get_position")
+
+    public val moveToCenterPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "move_to_center")
 
     public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "set_size")
 
@@ -1874,6 +1875,18 @@ public open class Window : Viewport() {
 
     public val getContentScaleAspectPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Window", "get_content_scale_aspect")
+
+    public val setContentScaleStretchPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "set_content_scale_stretch")
+
+    public val getContentScaleStretchPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "get_content_scale_stretch")
+
+    public val setKeepTitleVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "set_keep_title_visible")
+
+    public val getKeepTitleVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "get_keep_title_visible")
 
     public val setContentScaleFactorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Window", "set_content_scale_factor")

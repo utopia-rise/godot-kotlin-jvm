@@ -123,7 +123,7 @@ public open class Image : Resource() {
    */
   public fun getMipmapCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_GET_MIPMAP_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getMipmapCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -781,7 +781,7 @@ public open class Image : Resource() {
    */
   public fun loadKtxFromBuffer(buffer: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_KTX_FROM_BUFFER, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.loadKtxFromBufferPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -795,7 +795,7 @@ public open class Image : Resource() {
   @JvmOverloads
   public fun loadSvgFromBuffer(buffer: PackedByteArray, scale: Float = 1.0f): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer, DOUBLE to scale.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_SVG_FROM_BUFFER, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.loadSvgFromBufferPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -807,7 +807,7 @@ public open class Image : Resource() {
   @JvmOverloads
   public fun loadSvgFromString(svgStr: String, scale: Float = 1.0f): GodotError {
     TransferContext.writeArguments(STRING to svgStr, DOUBLE to scale.toDouble())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_SVG_FROM_STRING, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.loadSvgFromStringPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -1267,6 +1267,9 @@ public open class Image : Resource() {
 
     public val convertPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "convert")
 
+    public val getMipmapCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Image", "get_mipmap_count")
+
     public val getMipmapOffsetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Image", "get_mipmap_offset")
 
@@ -1399,5 +1402,14 @@ public open class Image : Resource() {
 
     public val loadBmpFromBufferPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Image", "load_bmp_from_buffer")
+
+    public val loadKtxFromBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Image", "load_ktx_from_buffer")
+
+    public val loadSvgFromBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Image", "load_svg_from_buffer")
+
+    public val loadSvgFromStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Image", "load_svg_from_string")
   }
 }

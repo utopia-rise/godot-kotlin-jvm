@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -18,6 +19,7 @@ import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -72,14 +74,12 @@ public open class GraphElement : Container() {
   public var positionOffset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHELEMENT_GET_POSITION_OFFSET,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPositionOffsetPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHELEMENT_SET_POSITION_OFFSET,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPositionOffsetPtr, NIL)
     }
 
   /**
@@ -90,12 +90,12 @@ public open class GraphElement : Container() {
   public var resizable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHELEMENT_IS_RESIZABLE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isResizablePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHELEMENT_SET_RESIZABLE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setResizablePtr, NIL)
     }
 
   /**
@@ -104,12 +104,12 @@ public open class GraphElement : Container() {
   public var draggable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHELEMENT_IS_DRAGGABLE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isDraggablePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHELEMENT_SET_DRAGGABLE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDraggablePtr, NIL)
     }
 
   /**
@@ -118,12 +118,12 @@ public open class GraphElement : Container() {
   public var selectable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHELEMENT_IS_SELECTABLE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isSelectablePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHELEMENT_SET_SELECTABLE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSelectablePtr, NIL)
     }
 
   /**
@@ -132,12 +132,12 @@ public open class GraphElement : Container() {
   public var selected: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHELEMENT_IS_SELECTED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isSelectedPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHELEMENT_SET_SELECTED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSelectedPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -170,4 +170,35 @@ public open class GraphElement : Container() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val setResizablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphElement", "set_resizable")
+
+    public val isResizablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphElement", "is_resizable")
+
+    public val setDraggablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphElement", "set_draggable")
+
+    public val isDraggablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphElement", "is_draggable")
+
+    public val setSelectablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphElement", "set_selectable")
+
+    public val isSelectablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphElement", "is_selectable")
+
+    public val setSelectedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphElement", "set_selected")
+
+    public val isSelectedPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphElement", "is_selected")
+
+    public val setPositionOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphElement", "set_position_offset")
+
+    public val getPositionOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphElement", "get_position_offset")
+  }
 }

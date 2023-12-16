@@ -336,14 +336,12 @@ public open class FontFile : Font() {
   public var fixedSizeScaleMode: TextServer.FixedSizeScaleMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_FIXED_SIZE_SCALE_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFixedSizeScaleModePtr, LONG)
       return TextServer.FixedSizeScaleMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_FIXED_SIZE_SCALE_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFixedSizeScaleModePtr, NIL)
     }
 
   /**
@@ -498,7 +496,7 @@ public open class FontFile : Font() {
     `value`: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to spacing.id, LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_SET_EXTRA_SPACING, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setExtraSpacingPtr, NIL)
   }
 
   /**
@@ -506,7 +504,7 @@ public open class FontFile : Font() {
    */
   public fun getExtraSpacing(cacheIndex: Int, spacing: TextServer.SpacingType): Long {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to spacing.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTFILE_GET_EXTRA_SPACING, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getExtraSpacingPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -1114,6 +1112,12 @@ public open class FontFile : Font() {
 
     public val getFixedSizePtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "get_fixed_size")
 
+    public val setFixedSizeScaleModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "set_fixed_size_scale_mode")
+
+    public val getFixedSizeScaleModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "get_fixed_size_scale_mode")
+
     public val setAllowSystemFallbackPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FontFile", "set_allow_system_fallback")
 
@@ -1171,6 +1175,12 @@ public open class FontFile : Font() {
     public val setTransformPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "set_transform")
 
     public val getTransformPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "get_transform")
+
+    public val setExtraSpacingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "set_extra_spacing")
+
+    public val getExtraSpacingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "get_extra_spacing")
 
     public val setFaceIndexPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "set_face_index")
 

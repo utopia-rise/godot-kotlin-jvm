@@ -628,7 +628,7 @@ public open class CodeEdit : TextEdit() {
    */
   public fun createCodeRegion(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_CREATE_CODE_REGION, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.createCodeRegionPtr, NIL)
   }
 
   /**
@@ -636,8 +636,7 @@ public open class CodeEdit : TextEdit() {
    */
   public fun getCodeRegionStartTag(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_CODE_REGION_START_TAG,
-        STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCodeRegionStartTagPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -646,8 +645,7 @@ public open class CodeEdit : TextEdit() {
    */
   public fun getCodeRegionEndTag(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_CODE_REGION_END_TAG,
-        STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCodeRegionEndTagPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -657,7 +655,7 @@ public open class CodeEdit : TextEdit() {
   @JvmOverloads
   public fun setCodeRegionTags(start: String = "region", end: String = "endregion"): Unit {
     TransferContext.writeArguments(STRING to start, STRING to end)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_SET_CODE_REGION_TAGS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCodeRegionTagsPtr, NIL)
   }
 
   /**
@@ -665,8 +663,7 @@ public open class CodeEdit : TextEdit() {
    */
   public fun isLineCodeRegionStart(line: Int): Boolean {
     TransferContext.writeArguments(LONG to line.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_LINE_CODE_REGION_START,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isLineCodeRegionStartPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -675,8 +672,7 @@ public open class CodeEdit : TextEdit() {
    */
   public fun isLineCodeRegionEnd(line: Int): Boolean {
     TransferContext.writeArguments(LONG to line.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_IS_LINE_CODE_REGION_END,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isLineCodeRegionEndPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -963,8 +959,7 @@ public open class CodeEdit : TextEdit() {
    */
   public fun getTextWithCursorChar(line: Int, column: Int): String {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_GET_TEXT_WITH_CURSOR_CHAR,
-        STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextWithCursorCharPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -981,7 +976,7 @@ public open class CodeEdit : TextEdit() {
    */
   public fun duplicateLines(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CODEEDIT_DUPLICATE_LINES, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.duplicateLinesPtr, NIL)
   }
 
   public enum class CodeCompletionKind(
@@ -1243,6 +1238,24 @@ public open class CodeEdit : TextEdit() {
     public val getFoldedLinesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CodeEdit", "get_folded_lines")
 
+    public val createCodeRegionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CodeEdit", "create_code_region")
+
+    public val getCodeRegionStartTagPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CodeEdit", "get_code_region_start_tag")
+
+    public val getCodeRegionEndTagPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CodeEdit", "get_code_region_end_tag")
+
+    public val setCodeRegionTagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CodeEdit", "set_code_region_tags")
+
+    public val isLineCodeRegionStartPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CodeEdit", "is_line_code_region_start")
+
+    public val isLineCodeRegionEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CodeEdit", "is_line_code_region_end")
+
     public val addStringDelimiterPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CodeEdit", "add_string_delimiter")
 
@@ -1357,7 +1370,13 @@ public open class CodeEdit : TextEdit() {
     public val getTextForSymbolLookupPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CodeEdit", "get_text_for_symbol_lookup")
 
+    public val getTextWithCursorCharPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CodeEdit", "get_text_with_cursor_char")
+
     public val setSymbolLookupWordAsValidPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CodeEdit", "set_symbol_lookup_word_as_valid")
+
+    public val duplicateLinesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CodeEdit", "duplicate_lines")
   }
 }

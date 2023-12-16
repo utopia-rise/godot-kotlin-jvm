@@ -126,8 +126,7 @@ public object DisplayServer : Object() {
     closeCallback: Callable,
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, CALLABLE to openCallback, CALLABLE to closeCallback)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_SET_POPUP_CALLBACKS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetPopupCallbacksPtr, NIL)
   }
 
   /**
@@ -566,8 +565,7 @@ public object DisplayServer : Object() {
    */
   public fun globalMenuIsItemHidden(menuRoot: String, idx: Int): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_IS_ITEM_HIDDEN, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuIsItemHiddenPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -699,8 +697,7 @@ public object DisplayServer : Object() {
     callback: Callable,
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), CALLABLE to callback)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_SET_ITEM_HOVER_CALLBACKS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemHoverCallbacksPtr, NIL)
   }
 
   /**
@@ -800,8 +797,7 @@ public object DisplayServer : Object() {
     hidden: Boolean,
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), BOOL to hidden)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_SET_ITEM_HIDDEN, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemHiddenPtr, NIL)
   }
 
   /**
@@ -1168,8 +1164,7 @@ public object DisplayServer : Object() {
    */
   public fun clipboardGetImage(): Image? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_CLIPBOARD_GET_IMAGE,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.clipboardGetImagePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Image?)
   }
 
@@ -1187,8 +1182,7 @@ public object DisplayServer : Object() {
    */
   public fun clipboardHasImage(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_CLIPBOARD_HAS_IMAGE,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clipboardHasImagePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -1546,8 +1540,7 @@ public object DisplayServer : Object() {
   @JvmOverloads
   public fun windowGetTitleSize(title: String, windowId: Int = 0): Vector2i {
     TransferContext.writeArguments(STRING to title, LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_TITLE_SIZE,
-        VECTOR2I)
+    TransferContext.callMethod(rawPtr, MethodBindings.windowGetTitleSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
@@ -2198,8 +2191,7 @@ public object DisplayServer : Object() {
     callback: Callable,
   ): GodotError {
     TransferContext.writeArguments(STRING to title, STRING to currentDirectory, STRING to filename, BOOL to showHidden, LONG to mode.id, PACKED_STRING_ARRAY to filters, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_FILE_DIALOG_SHOW,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.fileDialogShowPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -2275,8 +2267,7 @@ public object DisplayServer : Object() {
    */
   public fun keyboardGetLabelFromPhysical(keycode: Key): Key {
     TransferContext.writeArguments(LONG to keycode.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_KEYBOARD_GET_LABEL_FROM_PHYSICAL, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetLabelFromPhysicalPtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -3002,6 +2993,9 @@ public object DisplayServer : Object() {
 
     public val getNamePtr: VoidPtr = TypeManager.getMethodBindPtr("DisplayServer", "get_name")
 
+    public val globalMenuSetPopupCallbacksPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_popup_callbacks")
+
     public val globalMenuAddSubmenuItemPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_submenu_item")
 
@@ -3065,6 +3059,9 @@ public object DisplayServer : Object() {
     public val globalMenuIsItemDisabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_disabled")
 
+    public val globalMenuIsItemHiddenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_hidden")
+
     public val globalMenuGetItemTooltipPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_tooltip")
 
@@ -3092,6 +3089,9 @@ public object DisplayServer : Object() {
     public val globalMenuSetItemCallbackPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_callback")
 
+    public val globalMenuSetItemHoverCallbacksPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_hover_callbacks")
+
     public val globalMenuSetItemKeyCallbackPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_key_callback")
 
@@ -3109,6 +3109,9 @@ public object DisplayServer : Object() {
 
     public val globalMenuSetItemDisabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_disabled")
+
+    public val globalMenuSetItemHiddenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_hidden")
 
     public val globalMenuSetItemTooltipPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_tooltip")
@@ -3186,8 +3189,14 @@ public object DisplayServer : Object() {
     public val clipboardGetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "clipboard_get")
 
+    public val clipboardGetImagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_get_image")
+
     public val clipboardHasPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "clipboard_has")
+
+    public val clipboardHasImagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_has_image")
 
     public val clipboardSetPrimaryPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "clipboard_set_primary")
@@ -3275,6 +3284,9 @@ public object DisplayServer : Object() {
 
     public val windowSetTitlePtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "window_set_title")
+
+    public val windowGetTitleSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_title_size")
 
     public val windowSetMousePassthroughPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "window_set_mouse_passthrough")
@@ -3425,6 +3437,9 @@ public object DisplayServer : Object() {
     public val dialogInputTextPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "dialog_input_text")
 
+    public val fileDialogShowPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "file_dialog_show")
+
     public val keyboardGetLayoutCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_layout_count")
 
@@ -3442,6 +3457,9 @@ public object DisplayServer : Object() {
 
     public val keyboardGetKeycodeFromPhysicalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_keycode_from_physical")
+
+    public val keyboardGetLabelFromPhysicalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_label_from_physical")
 
     public val processEventsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "process_events")

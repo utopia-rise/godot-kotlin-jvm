@@ -24,4 +24,6 @@ public open class VisualShaderNodeWorldPositionFromDepth : VisualShaderNode() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

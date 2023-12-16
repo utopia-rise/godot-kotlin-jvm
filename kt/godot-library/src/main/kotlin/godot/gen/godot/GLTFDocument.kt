@@ -34,40 +34,34 @@ public open class GLTFDocument : Resource() {
   public var imageFormat: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_GET_IMAGE_FORMAT,
-          STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getImageFormatPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_SET_IMAGE_FORMAT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setImageFormatPtr, NIL)
     }
 
   public var lossyQuality: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_GET_LOSSY_QUALITY,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLossyQualityPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_SET_LOSSY_QUALITY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLossyQualityPtr, NIL)
     }
 
   public var rootNodeMode: RootNodeMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_GET_ROOT_NODE_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRootNodeModePtr, LONG)
       return GLTFDocument.RootNodeMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_SET_ROOT_NODE_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRootNodeModePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -184,6 +178,24 @@ public open class GLTFDocument : Resource() {
 
     public val writeToFilesystemPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFDocument", "write_to_filesystem")
+
+    public val setImageFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "set_image_format")
+
+    public val getImageFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "get_image_format")
+
+    public val setLossyQualityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "set_lossy_quality")
+
+    public val getLossyQualityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "get_lossy_quality")
+
+    public val setRootNodeModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "set_root_node_mode")
+
+    public val getRootNodeModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "get_root_node_mode")
 
     public val registerGltfDocumentExtensionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFDocument", "register_gltf_document_extension")

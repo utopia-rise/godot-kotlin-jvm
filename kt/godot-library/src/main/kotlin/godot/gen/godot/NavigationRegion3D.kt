@@ -154,8 +154,7 @@ public open class NavigationRegion3D : Node3D() {
    */
   public fun setNavigationMap(navigationMap: RID): Unit {
     TransferContext.writeArguments(_RID to navigationMap)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_SET_NAVIGATION_MAP, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationMapPtr, NIL)
   }
 
   /**
@@ -163,8 +162,7 @@ public open class NavigationRegion3D : Node3D() {
    */
   public fun getNavigationMap(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION3D_GET_NAVIGATION_MAP, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -217,6 +215,12 @@ public open class NavigationRegion3D : Node3D() {
 
     public val isEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationRegion3D", "is_enabled")
+
+    public val setNavigationMapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion3D", "set_navigation_map")
+
+    public val getNavigationMapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion3D", "get_navigation_map")
 
     public val setUseEdgeConnectionsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationRegion3D", "set_use_edge_connections")

@@ -121,13 +121,12 @@ public open class RayCast3D : Node3D() {
   public var hitBackFaces: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RAYCAST3D_IS_HIT_BACK_FACES_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isHitBackFacesEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST3D_SET_HIT_BACK_FACES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHitBackFacesPtr, NIL)
     }
 
   /**
@@ -316,8 +315,7 @@ public open class RayCast3D : Node3D() {
    */
   public fun getCollisionFaceIndex(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST3D_GET_COLLISION_FACE_INDEX,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionFaceIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -410,6 +408,9 @@ public open class RayCast3D : Node3D() {
     public val getCollisionNormalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RayCast3D", "get_collision_normal")
 
+    public val getCollisionFaceIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RayCast3D", "get_collision_face_index")
+
     public val addExceptionRidPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RayCast3D", "add_exception_rid")
 
@@ -459,6 +460,12 @@ public open class RayCast3D : Node3D() {
 
     public val isHitFromInsideEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RayCast3D", "is_hit_from_inside_enabled")
+
+    public val setHitBackFacesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RayCast3D", "set_hit_back_faces")
+
+    public val isHitBackFacesEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RayCast3D", "is_hit_back_faces_enabled")
 
     public val setDebugShapeCustomColorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RayCast3D", "set_debug_shape_custom_color")

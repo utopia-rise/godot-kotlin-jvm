@@ -391,8 +391,7 @@ public object RenderingServer : Object() {
    */
   public fun textureGetFormat(texture: RID): Image.Format {
     TransferContext.writeArguments(_RID to texture)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_TEXTURE_GET_FORMAT,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.textureGetFormatPtr, LONG)
     return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -411,8 +410,7 @@ public object RenderingServer : Object() {
   public fun textureRdCreate(rdTexture: RID, layerType: TextureLayeredType =
       RenderingServer.TextureLayeredType.TEXTURE_LAYERED_2D_ARRAY): RID {
     TransferContext.writeArguments(_RID to rdTexture, LONG to layerType.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_TEXTURE_RD_CREATE,
-        _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.textureRdCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -637,8 +635,7 @@ public object RenderingServer : Object() {
    */
   public fun meshSurfaceGetFormatNormalTangentStride(format: ArrayFormat, vertexCount: Int): Long {
     TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_MESH_SURFACE_GET_FORMAT_NORMAL_TANGENT_STRIDE,
+    TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceGetFormatNormalTangentStridePtr,
         LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
@@ -1889,8 +1886,7 @@ public object RenderingServer : Object() {
    */
   public fun particlesSetAmountRatio(particles: RID, ratio: Float): Unit {
     TransferContext.writeArguments(_RID to particles, DOUBLE to ratio.toDouble())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_PARTICLES_SET_AMOUNT_RATIO, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetAmountRatioPtr, NIL)
   }
 
   /**
@@ -1938,8 +1934,7 @@ public object RenderingServer : Object() {
    */
   public fun particlesSetInterpToEnd(particles: RID, factor: Float): Unit {
     TransferContext.writeArguments(_RID to particles, DOUBLE to factor.toDouble())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_PARTICLES_SET_INTERP_TO_END, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetInterpToEndPtr, NIL)
   }
 
   /**
@@ -1947,8 +1942,7 @@ public object RenderingServer : Object() {
    */
   public fun particlesSetEmitterVelocity(particles: RID, velocity: Vector3): Unit {
     TransferContext.writeArguments(_RID to particles, VECTOR3 to velocity)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_PARTICLES_SET_EMITTER_VELOCITY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetEmitterVelocityPtr, NIL)
   }
 
   /**
@@ -2796,8 +2790,7 @@ public object RenderingServer : Object() {
    */
   public fun viewportSetUseHdr2d(viewport: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to enabled)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VIEWPORT_SET_USE_HDR_2D, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetUseHdr2dPtr, NIL)
   }
 
   /**
@@ -5034,8 +5027,7 @@ public object RenderingServer : Object() {
    */
   public fun callOnRenderThread(callable: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to callable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CALL_ON_RENDER_THREAD, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.callOnRenderThreadPtr, NIL)
   }
 
   public enum class TextureLayeredType(
@@ -7915,8 +7907,14 @@ public object RenderingServer : Object() {
     public val textureGetPathPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "texture_get_path")
 
+    public val textureGetFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_get_format")
+
     public val textureSetForceRedrawIfVisiblePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "texture_set_force_redraw_if_visible")
+
+    public val textureRdCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_rd_create")
 
     public val textureGetRdTexturePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "texture_get_rd_texture")
@@ -7977,6 +7975,9 @@ public object RenderingServer : Object() {
 
     public val meshSurfaceGetFormatVertexStridePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_get_format_vertex_stride")
+
+    public val meshSurfaceGetFormatNormalTangentStridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_get_format_normal_tangent_stride")
 
     public val meshSurfaceGetFormatAttributeStridePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_get_format_attribute_stride")
@@ -8358,6 +8359,9 @@ public object RenderingServer : Object() {
     public val particlesSetAmountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "particles_set_amount")
 
+    public val particlesSetAmountRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_amount_ratio")
+
     public val particlesSetLifetimePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "particles_set_lifetime")
 
@@ -8372,6 +8376,12 @@ public object RenderingServer : Object() {
 
     public val particlesSetRandomnessRatioPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "particles_set_randomness_ratio")
+
+    public val particlesSetInterpToEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_interp_to_end")
+
+    public val particlesSetEmitterVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_emitter_velocity")
 
     public val particlesSetCustomAabbPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "particles_set_custom_aabb")
@@ -8630,6 +8640,9 @@ public object RenderingServer : Object() {
 
     public val viewportSetMsaa2dPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_msaa_2d")
+
+    public val viewportSetUseHdr2dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_use_hdr_2d")
 
     public val viewportSetScreenSpaceAaPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_screen_space_aa")
@@ -9241,6 +9254,9 @@ public object RenderingServer : Object() {
 
     public val createLocalRenderingDevicePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "create_local_rendering_device")
+
+    public val callOnRenderThreadPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "call_on_render_thread")
   }
 }
 

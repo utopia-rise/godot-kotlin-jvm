@@ -13,6 +13,7 @@ import godot.core.Color
 import godot.core.Dictionary
 import godot.core.RID
 import godot.core.Transform2D
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DICTIONARY
@@ -26,6 +27,7 @@ import godot.core.VariantType._RID
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -51,14 +53,12 @@ public open class CharFXTransform : RefCounted() {
   public var transform: Transform2D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_TRANSFORM,
-          TRANSFORM2D)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM2D)
       return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_TRANSFORM,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
     }
 
   /**
@@ -68,13 +68,12 @@ public open class CharFXTransform : RefCounted() {
   public var range: Vector2i
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_RANGE,
-          VECTOR2I)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRangePtr, VECTOR2I)
       return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_RANGE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRangePtr, NIL)
     }
 
   /**
@@ -85,14 +84,12 @@ public open class CharFXTransform : RefCounted() {
   public var elapsedTime: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_ELAPSED_TIME,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getElapsedTimePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_ELAPSED_TIME,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setElapsedTimePtr, NIL)
     }
 
   /**
@@ -101,13 +98,12 @@ public open class CharFXTransform : RefCounted() {
   public var visible: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_IS_VISIBLE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isVisiblePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_VISIBILITY,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityPtr, NIL)
     }
 
   /**
@@ -116,12 +112,12 @@ public open class CharFXTransform : RefCounted() {
   public var outline: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_IS_OUTLINE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isOutlinePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_OUTLINE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOutlinePtr, NIL)
     }
 
   /**
@@ -131,13 +127,12 @@ public open class CharFXTransform : RefCounted() {
   public var offset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_OFFSET,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
       return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_OFFSET, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
     }
 
   /**
@@ -147,12 +142,12 @@ public open class CharFXTransform : RefCounted() {
   public var color: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_COLOR, COLOR)
+      TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
       return (TransferContext.readReturnValue(COLOR, false) as Color)
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_COLOR, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
     }
 
   /**
@@ -167,14 +162,12 @@ public open class CharFXTransform : RefCounted() {
   public var env: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_ENVIRONMENT,
-          DICTIONARY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, DICTIONARY)
       return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
     }
     set(`value`) {
       TransferContext.writeArguments(DICTIONARY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_ENVIRONMENT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentPtr, NIL)
     }
 
   /**
@@ -183,14 +176,12 @@ public open class CharFXTransform : RefCounted() {
   public var glyphIndex: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_GLYPH_INDEX,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGlyphIndexPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_GLYPH_INDEX,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGlyphIndexPtr, NIL)
     }
 
   /**
@@ -199,14 +190,12 @@ public open class CharFXTransform : RefCounted() {
   public var glyphCount: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_GLYPH_COUNT,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGlyphCountPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_GLYPH_COUNT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGlyphCountPtr, NIL)
     }
 
   /**
@@ -215,14 +204,12 @@ public open class CharFXTransform : RefCounted() {
   public var glyphFlags: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_GLYPH_FLAGS,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGlyphFlagsPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_GLYPH_FLAGS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGlyphFlagsPtr, NIL)
     }
 
   /**
@@ -231,14 +218,12 @@ public open class CharFXTransform : RefCounted() {
   public var relativeIndex: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_RELATIVE_INDEX, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRelativeIndexPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_RELATIVE_INDEX, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRelativeIndexPtr, NIL)
     }
 
   /**
@@ -247,12 +232,12 @@ public open class CharFXTransform : RefCounted() {
   public var font: RID
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_FONT, _RID)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFontPtr, _RID)
       return (TransferContext.readReturnValue(_RID, false) as RID)
     }
     set(`value`) {
       TransferContext.writeArguments(_RID to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_FONT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFontPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -357,4 +342,74 @@ public open class CharFXTransform : RefCounted() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val getTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_transform")
+
+    public val setTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_transform")
+
+    public val getRangePtr: VoidPtr = TypeManager.getMethodBindPtr("CharFXTransform", "get_range")
+
+    public val setRangePtr: VoidPtr = TypeManager.getMethodBindPtr("CharFXTransform", "set_range")
+
+    public val getElapsedTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_elapsed_time")
+
+    public val setElapsedTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_elapsed_time")
+
+    public val isVisiblePtr: VoidPtr = TypeManager.getMethodBindPtr("CharFXTransform", "is_visible")
+
+    public val setVisibilityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_visibility")
+
+    public val isOutlinePtr: VoidPtr = TypeManager.getMethodBindPtr("CharFXTransform", "is_outline")
+
+    public val setOutlinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_outline")
+
+    public val getOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("CharFXTransform", "get_offset")
+
+    public val setOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("CharFXTransform", "set_offset")
+
+    public val getColorPtr: VoidPtr = TypeManager.getMethodBindPtr("CharFXTransform", "get_color")
+
+    public val setColorPtr: VoidPtr = TypeManager.getMethodBindPtr("CharFXTransform", "set_color")
+
+    public val getEnvironmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_environment")
+
+    public val setEnvironmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_environment")
+
+    public val getGlyphIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_glyph_index")
+
+    public val setGlyphIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_glyph_index")
+
+    public val getRelativeIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_relative_index")
+
+    public val setRelativeIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_relative_index")
+
+    public val getGlyphCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_glyph_count")
+
+    public val setGlyphCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_glyph_count")
+
+    public val getGlyphFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_glyph_flags")
+
+    public val setGlyphFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_glyph_flags")
+
+    public val getFontPtr: VoidPtr = TypeManager.getMethodBindPtr("CharFXTransform", "get_font")
+
+    public val setFontPtr: VoidPtr = TypeManager.getMethodBindPtr("CharFXTransform", "set_font")
+  }
 }

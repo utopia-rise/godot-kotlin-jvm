@@ -249,8 +249,7 @@ public open class TreeItem internal constructor() : Object() {
   public fun setTextOverrunBehavior(column: Int, overrunBehavior: TextServer.OverrunBehavior):
       Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to overrunBehavior.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_TEXT_OVERRUN_BEHAVIOR,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
   }
 
   /**
@@ -258,8 +257,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun getTextOverrunBehavior(column: Int): TextServer.OverrunBehavior {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_GET_TEXT_OVERRUN_BEHAVIOR,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
     return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -737,8 +735,7 @@ public open class TreeItem internal constructor() : Object() {
     tooltip: String,
   ): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong(), STRING to tooltip)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_BUTTON_TOOLTIP_TEXT,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setButtonTooltipTextPtr, NIL)
   }
 
   /**
@@ -1111,6 +1108,12 @@ public open class TreeItem internal constructor() : Object() {
     public val getAutowrapModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "get_autowrap_mode")
 
+    public val setTextOverrunBehaviorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "set_text_overrun_behavior")
+
+    public val getTextOverrunBehaviorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_text_overrun_behavior")
+
     public val setStructuredTextBidiOverridePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "set_structured_text_bidi_override")
 
@@ -1258,6 +1261,9 @@ public open class TreeItem internal constructor() : Object() {
         TypeManager.getMethodBindPtr("TreeItem", "get_button_by_id")
 
     public val getButtonPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "get_button")
+
+    public val setButtonTooltipTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "set_button_tooltip_text")
 
     public val setButtonPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "set_button")
 

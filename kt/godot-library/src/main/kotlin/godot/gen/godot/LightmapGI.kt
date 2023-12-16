@@ -85,14 +85,12 @@ public open class LightmapGI : VisualInstance3D() {
   public var bounceIndirectEnergy: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_BOUNCE_INDIRECT_ENERGY, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getBounceIndirectEnergyPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_BOUNCE_INDIRECT_ENERGY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBounceIndirectEnergyPtr, NIL)
     }
 
   /**
@@ -119,14 +117,12 @@ public open class LightmapGI : VisualInstance3D() {
   public var useTextureForBounces: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_IS_USING_TEXTURE_FOR_BOUNCES, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isUsingTextureForBouncesPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_USE_TEXTURE_FOR_BOUNCES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseTextureForBouncesPtr, NIL)
     }
 
   /**
@@ -163,14 +159,12 @@ public open class LightmapGI : VisualInstance3D() {
   public var denoiserStrength: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_GET_DENOISER_STRENGTH,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDenoiserStrengthPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGI_SET_DENOISER_STRENGTH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDenoiserStrengthPtr, NIL)
     }
 
   /**
@@ -507,6 +501,12 @@ public open class LightmapGI : VisualInstance3D() {
 
     public val getBouncesPtr: VoidPtr = TypeManager.getMethodBindPtr("LightmapGI", "get_bounces")
 
+    public val setBounceIndirectEnergyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_bounce_indirect_energy")
+
+    public val getBounceIndirectEnergyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "get_bounce_indirect_energy")
+
     public val setGenerateProbesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LightmapGI", "set_generate_probes")
 
@@ -553,6 +553,12 @@ public open class LightmapGI : VisualInstance3D() {
     public val isUsingDenoiserPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LightmapGI", "is_using_denoiser")
 
+    public val setDenoiserStrengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_denoiser_strength")
+
+    public val getDenoiserStrengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "get_denoiser_strength")
+
     public val setInteriorPtr: VoidPtr = TypeManager.getMethodBindPtr("LightmapGI", "set_interior")
 
     public val isInteriorPtr: VoidPtr = TypeManager.getMethodBindPtr("LightmapGI", "is_interior")
@@ -562,6 +568,12 @@ public open class LightmapGI : VisualInstance3D() {
 
     public val isDirectionalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LightmapGI", "is_directional")
+
+    public val setUseTextureForBouncesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_use_texture_for_bounces")
+
+    public val isUsingTextureForBouncesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "is_using_texture_for_bounces")
 
     public val setCameraAttributesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LightmapGI", "set_camera_attributes")

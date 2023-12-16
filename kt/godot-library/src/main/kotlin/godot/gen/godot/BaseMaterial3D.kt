@@ -233,12 +233,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public var disableFog: Boolean
     get() {
       TransferContext.writeArguments(LONG to 21L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_GET_FLAG, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 21L, BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEMATERIAL3D_SET_FLAG, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
     }
 
   /**

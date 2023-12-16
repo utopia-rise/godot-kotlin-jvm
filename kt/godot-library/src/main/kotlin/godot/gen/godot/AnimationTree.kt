@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
@@ -15,6 +16,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -44,13 +46,12 @@ public open class AnimationTree : AnimationMixer() {
   public var treeRoot: AnimationRootNode?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_TREE_ROOT,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTreeRootPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_SET_TREE_ROOT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTreeRootPtr, NIL)
     }
 
   /**
@@ -59,14 +60,12 @@ public open class AnimationTree : AnimationMixer() {
   public var advanceExpressionBaseNode: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_ADVANCE_EXPRESSION_BASE_NODE, NODE_PATH)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAdvanceExpressionBaseNodePtr, NODE_PATH)
       return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_SET_ADVANCE_EXPRESSION_BASE_NODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAdvanceExpressionBaseNodePtr, NIL)
     }
 
   /**
@@ -75,14 +74,12 @@ public open class AnimationTree : AnimationMixer() {
   public var animPlayer: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_ANIMATION_PLAYER, NODE_PATH)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPlayerPtr, NODE_PATH)
       return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_SET_ANIMATION_PLAYER, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAnimationPlayerPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -95,8 +92,7 @@ public open class AnimationTree : AnimationMixer() {
    */
   public fun setProcessCallback(mode: AnimationProcessCallback): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_SET_PROCESS_CALLBACK,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setProcessCallbackPtr, NIL)
   }
 
   /**
@@ -104,8 +100,7 @@ public open class AnimationTree : AnimationMixer() {
    */
   public fun getProcessCallback(): AnimationProcessCallback {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_GET_PROCESS_CALLBACK,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getProcessCallbackPtr, LONG)
     return AnimationTree.AnimationProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -137,4 +132,30 @@ public open class AnimationTree : AnimationMixer() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setTreeRootPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationTree", "set_tree_root")
+
+    public val getTreeRootPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationTree", "get_tree_root")
+
+    public val setAdvanceExpressionBaseNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationTree", "set_advance_expression_base_node")
+
+    public val getAdvanceExpressionBaseNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationTree", "get_advance_expression_base_node")
+
+    public val setAnimationPlayerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationTree", "set_animation_player")
+
+    public val getAnimationPlayerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationTree", "get_animation_player")
+
+    public val setProcessCallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationTree", "set_process_callback")
+
+    public val getProcessCallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationTree", "get_process_callback")
+  }
 }

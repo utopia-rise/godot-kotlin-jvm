@@ -24,4 +24,6 @@ public open class VisualShaderNodeRotationByAxis : VisualShaderNode() {
   }
 
   public companion object
+
+  internal object MethodBindings
 }

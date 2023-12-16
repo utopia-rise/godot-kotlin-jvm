@@ -7,6 +7,8 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
@@ -50,4 +52,18 @@ public open class RenderSceneBuffersExtension : RenderSceneBuffers() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _configurePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersExtension", "_configure")
+
+    public val _setFsrSharpnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersExtension", "_set_fsr_sharpness")
+
+    public val _setTextureMipmapBiasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersExtension", "_set_texture_mipmap_bias")
+
+    public val _setUseDebandingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersExtension", "_set_use_debanding")
+  }
 }

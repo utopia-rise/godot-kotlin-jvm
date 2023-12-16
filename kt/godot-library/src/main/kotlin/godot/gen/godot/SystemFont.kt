@@ -8,12 +8,14 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -43,13 +45,12 @@ public open class SystemFont : Font() {
   public var fontNames: PackedStringArray
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_GET_FONT_NAMES,
-          PACKED_STRING_ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFontNamesPtr, PACKED_STRING_ARRAY)
       return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_FONT_NAMES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFontNamesPtr, NIL)
     }
 
   /**
@@ -58,12 +59,12 @@ public open class SystemFont : Font() {
   public var fontItalic: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_GET_FONT_ITALIC, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFontItalicPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_FONT_ITALIC, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFontItalicPtr, NIL)
     }
 
   /**
@@ -75,7 +76,7 @@ public open class SystemFont : Font() {
     get() = super.getFontWeight()
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_FONT_WEIGHT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFontWeightPtr, NIL)
     }
 
   /**
@@ -87,7 +88,7 @@ public open class SystemFont : Font() {
     get() = super.getFontStretch()
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_FONT_STRETCH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFontStretchPtr, NIL)
     }
 
   /**
@@ -96,12 +97,12 @@ public open class SystemFont : Font() {
   public var antialiasing: TextServer.FontAntialiasing
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_GET_ANTIALIASING, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAntialiasingPtr, LONG)
       return TextServer.FontAntialiasing.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_ANTIALIASING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAntialiasingPtr, NIL)
     }
 
   /**
@@ -110,14 +111,12 @@ public open class SystemFont : Font() {
   public var generateMipmaps: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_GET_GENERATE_MIPMAPS,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGenerateMipmapsPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_GENERATE_MIPMAPS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGenerateMipmapsPtr, NIL)
     }
 
   /**
@@ -126,14 +125,12 @@ public open class SystemFont : Font() {
   public var allowSystemFallback: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_IS_ALLOW_SYSTEM_FALLBACK, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isAllowSystemFallbackPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_ALLOW_SYSTEM_FALLBACK, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAllowSystemFallbackPtr, NIL)
     }
 
   /**
@@ -142,14 +139,12 @@ public open class SystemFont : Font() {
   public var forceAutohinter: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_IS_FORCE_AUTOHINTER,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isForceAutohinterPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_FORCE_AUTOHINTER,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setForceAutohinterPtr, NIL)
     }
 
   /**
@@ -158,12 +153,12 @@ public open class SystemFont : Font() {
   public var hinting: TextServer.Hinting
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_GET_HINTING, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHintingPtr, LONG)
       return TextServer.Hinting.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_HINTING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHintingPtr, NIL)
     }
 
   /**
@@ -172,14 +167,12 @@ public open class SystemFont : Font() {
   public var subpixelPositioning: TextServer.SubpixelPositioning
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_GET_SUBPIXEL_POSITIONING, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSubpixelPositioningPtr, LONG)
       return TextServer.SubpixelPositioning.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_SUBPIXEL_POSITIONING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSubpixelPositioningPtr, NIL)
     }
 
   /**
@@ -188,14 +181,12 @@ public open class SystemFont : Font() {
   public var multichannelSignedDistanceField: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_IS_MULTICHANNEL_SIGNED_DISTANCE_FIELD, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isMultichannelSignedDistanceFieldPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_MULTICHANNEL_SIGNED_DISTANCE_FIELD, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMultichannelSignedDistanceFieldPtr, NIL)
     }
 
   /**
@@ -204,14 +195,12 @@ public open class SystemFont : Font() {
   public var msdfPixelRange: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_GET_MSDF_PIXEL_RANGE,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMsdfPixelRangePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_MSDF_PIXEL_RANGE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMsdfPixelRangePtr, NIL)
     }
 
   /**
@@ -220,12 +209,12 @@ public open class SystemFont : Font() {
   public var msdfSize: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_GET_MSDF_SIZE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMsdfSizePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_MSDF_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMsdfSizePtr, NIL)
     }
 
   /**
@@ -234,13 +223,12 @@ public open class SystemFont : Font() {
   public var oversampling: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_GET_OVERSAMPLING,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getOversamplingPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SYSTEMFONT_SET_OVERSAMPLING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOversamplingPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -249,4 +237,80 @@ public open class SystemFont : Font() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setAntialiasingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "set_antialiasing")
+
+    public val getAntialiasingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "get_antialiasing")
+
+    public val setGenerateMipmapsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "set_generate_mipmaps")
+
+    public val getGenerateMipmapsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "get_generate_mipmaps")
+
+    public val setAllowSystemFallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "set_allow_system_fallback")
+
+    public val isAllowSystemFallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "is_allow_system_fallback")
+
+    public val setForceAutohinterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "set_force_autohinter")
+
+    public val isForceAutohinterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "is_force_autohinter")
+
+    public val setHintingPtr: VoidPtr = TypeManager.getMethodBindPtr("SystemFont", "set_hinting")
+
+    public val getHintingPtr: VoidPtr = TypeManager.getMethodBindPtr("SystemFont", "get_hinting")
+
+    public val setSubpixelPositioningPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "set_subpixel_positioning")
+
+    public val getSubpixelPositioningPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "get_subpixel_positioning")
+
+    public val setMultichannelSignedDistanceFieldPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "set_multichannel_signed_distance_field")
+
+    public val isMultichannelSignedDistanceFieldPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "is_multichannel_signed_distance_field")
+
+    public val setMsdfPixelRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "set_msdf_pixel_range")
+
+    public val getMsdfPixelRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "get_msdf_pixel_range")
+
+    public val setMsdfSizePtr: VoidPtr = TypeManager.getMethodBindPtr("SystemFont", "set_msdf_size")
+
+    public val getMsdfSizePtr: VoidPtr = TypeManager.getMethodBindPtr("SystemFont", "get_msdf_size")
+
+    public val setOversamplingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "set_oversampling")
+
+    public val getOversamplingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "get_oversampling")
+
+    public val getFontNamesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "get_font_names")
+
+    public val setFontNamesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "set_font_names")
+
+    public val getFontItalicPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "get_font_italic")
+
+    public val setFontItalicPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "set_font_italic")
+
+    public val setFontWeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "set_font_weight")
+
+    public val setFontStretchPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "set_font_stretch")
+  }
 }

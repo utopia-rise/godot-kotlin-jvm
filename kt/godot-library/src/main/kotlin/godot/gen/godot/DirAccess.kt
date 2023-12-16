@@ -374,7 +374,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    */
   public fun isCaseSensitive(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRACCESS_IS_CASE_SENSITIVE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isCaseSensitivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -597,5 +597,8 @@ public open class DirAccess internal constructor() : RefCounted() {
 
     public val getIncludeHiddenPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "get_include_hidden")
+
+    public val isCaseSensitivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirAccess", "is_case_sensitive")
   }
 }

@@ -68,8 +68,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
    */
   public fun getDefaultInputPort(type: PortType): Int {
     TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_GET_DEFAULT_INPUT_PORT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultInputPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -169,6 +168,9 @@ public open class VisualShaderNode internal constructor() : Resource() {
   public companion object
 
   internal object MethodBindings {
+    public val getDefaultInputPortPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNode", "get_default_input_port")
+
     public val setOutputPortForPreviewPtr: VoidPtr =
         TypeManager.getMethodBindPtr("VisualShaderNode", "set_output_port_for_preview")
 

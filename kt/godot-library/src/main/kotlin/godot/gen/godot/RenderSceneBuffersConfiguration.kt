@@ -10,6 +10,7 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
+import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -17,6 +18,7 @@ import godot.core.VariantType.VECTOR2I
 import godot.core.VariantType._RID
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -38,14 +40,12 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   public var renderTarget: RID
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RENDERSCENEBUFFERSCONFIGURATION_GET_RENDER_TARGET, _RID)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRenderTargetPtr, _RID)
       return (TransferContext.readReturnValue(_RID, false) as RID)
     }
     set(`value`) {
       TransferContext.writeArguments(_RID to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RENDERSCENEBUFFERSCONFIGURATION_SET_RENDER_TARGET, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRenderTargetPtr, NIL)
     }
 
   /**
@@ -55,14 +55,12 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   public var internalSize: Vector2i
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RENDERSCENEBUFFERSCONFIGURATION_GET_INTERNAL_SIZE, VECTOR2I)
+      TransferContext.callMethod(rawPtr, MethodBindings.getInternalSizePtr, VECTOR2I)
       return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RENDERSCENEBUFFERSCONFIGURATION_SET_INTERNAL_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setInternalSizePtr, NIL)
     }
 
   /**
@@ -72,14 +70,12 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   public var targetSize: Vector2i
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RENDERSCENEBUFFERSCONFIGURATION_GET_TARGET_SIZE, VECTOR2I)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTargetSizePtr, VECTOR2I)
       return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RENDERSCENEBUFFERSCONFIGURATION_SET_TARGET_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTargetSizePtr, NIL)
     }
 
   /**
@@ -88,14 +84,12 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   public var viewCount: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RENDERSCENEBUFFERSCONFIGURATION_GET_VIEW_COUNT, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getViewCountPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RENDERSCENEBUFFERSCONFIGURATION_SET_VIEW_COUNT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setViewCountPtr, NIL)
     }
 
   /**
@@ -104,14 +98,12 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   public var scaling3dMode: RenderingServer.ViewportScaling3DMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RENDERSCENEBUFFERSCONFIGURATION_GET_SCALING_3D_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getScaling3dModePtr, LONG)
       return RenderingServer.ViewportScaling3DMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RENDERSCENEBUFFERSCONFIGURATION_SET_SCALING_3D_MODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setScaling3dModePtr, NIL)
     }
 
   /**
@@ -120,14 +112,12 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   public var msaa3d: RenderingServer.ViewportMSAA
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RENDERSCENEBUFFERSCONFIGURATION_GET_MSAA_3D, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMsaa3dPtr, LONG)
       return RenderingServer.ViewportMSAA.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RENDERSCENEBUFFERSCONFIGURATION_SET_MSAA_3D, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMsaa3dPtr, NIL)
     }
 
   /**
@@ -136,14 +126,12 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   public var screenSpaceAa: RenderingServer.ViewportScreenSpaceAA
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RENDERSCENEBUFFERSCONFIGURATION_GET_SCREEN_SPACE_AA, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getScreenSpaceAaPtr, LONG)
       return RenderingServer.ViewportScreenSpaceAA.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RENDERSCENEBUFFERSCONFIGURATION_SET_SCREEN_SPACE_AA, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setScreenSpaceAaPtr, NIL)
     }
 
   /**
@@ -152,14 +140,12 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   public var fsrSharpness: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RENDERSCENEBUFFERSCONFIGURATION_GET_FSR_SHARPNESS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFsrSharpnessPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RENDERSCENEBUFFERSCONFIGURATION_SET_FSR_SHARPNESS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFsrSharpnessPtr, NIL)
     }
 
   /**
@@ -168,14 +154,12 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   public var textureMipmapBias: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RENDERSCENEBUFFERSCONFIGURATION_GET_TEXTURE_MIPMAP_BIAS, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureMipmapBiasPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RENDERSCENEBUFFERSCONFIGURATION_SET_TEXTURE_MIPMAP_BIAS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureMipmapBiasPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -232,4 +216,60 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
 
 
   public companion object
+
+  internal object MethodBindings {
+    public val getRenderTargetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_render_target")
+
+    public val setRenderTargetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_render_target")
+
+    public val getInternalSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_internal_size")
+
+    public val setInternalSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_internal_size")
+
+    public val getTargetSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_target_size")
+
+    public val setTargetSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_target_size")
+
+    public val getViewCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_view_count")
+
+    public val setViewCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_view_count")
+
+    public val getScaling3dModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_scaling_3d_mode")
+
+    public val setScaling3dModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_scaling_3d_mode")
+
+    public val getMsaa3dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_msaa_3d")
+
+    public val setMsaa3dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_msaa_3d")
+
+    public val getScreenSpaceAaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_screen_space_aa")
+
+    public val setScreenSpaceAaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_screen_space_aa")
+
+    public val getFsrSharpnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_fsr_sharpness")
+
+    public val setFsrSharpnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_fsr_sharpness")
+
+    public val getTextureMipmapBiasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_texture_mipmap_bias")
+
+    public val setTextureMipmapBiasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_texture_mipmap_bias")
+  }
 }

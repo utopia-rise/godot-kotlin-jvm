@@ -391,14 +391,12 @@ public open class NavigationAgent3D : Node() {
   public var keepYVelocity: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_GET_KEEP_Y_VELOCITY, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getKeepYVelocityPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONAGENT3D_SET_KEEP_Y_VELOCITY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setKeepYVelocityPtr, NIL)
     }
 
   /**
@@ -793,6 +791,12 @@ public open class NavigationAgent3D : Node() {
 
     public val getUse3dAvoidancePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationAgent3D", "get_use_3d_avoidance")
+
+    public val setKeepYVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_keep_y_velocity")
+
+    public val getKeepYVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_keep_y_velocity")
 
     public val setNeighborDistancePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationAgent3D", "set_neighbor_distance")

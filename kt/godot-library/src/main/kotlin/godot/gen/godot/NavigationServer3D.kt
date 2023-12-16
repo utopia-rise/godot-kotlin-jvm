@@ -351,8 +351,7 @@ public object NavigationServer3D : Object() {
    */
   public fun regionSetEnabled(region: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to region, BOOL to enabled)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_SET_ENABLED, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.regionSetEnabledPtr, NIL)
   }
 
   /**
@@ -360,8 +359,7 @@ public object NavigationServer3D : Object() {
    */
   public fun regionGetEnabled(region: RID): Boolean {
     TransferContext.writeArguments(_RID to region)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_REGION_GET_ENABLED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.regionGetEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -564,8 +562,7 @@ public object NavigationServer3D : Object() {
    */
   public fun linkSetEnabled(link: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to link, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_SET_ENABLED,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.linkSetEnabledPtr, NIL)
   }
 
   /**
@@ -573,8 +570,7 @@ public object NavigationServer3D : Object() {
    */
   public fun linkGetEnabled(link: RID): Boolean {
     TransferContext.writeArguments(_RID to link)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_LINK_GET_ENABLED,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.linkGetEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -1069,8 +1065,7 @@ public object NavigationServer3D : Object() {
     callback: Callable = Callable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER3D_BAKE_FROM_SOURCE_GEOMETRY_DATA_ASYNC, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.bakeFromSourceGeometryDataAsyncPtr, NIL)
   }
 
   /**
@@ -1250,6 +1245,12 @@ public object NavigationServer3D : Object() {
     public val regionCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer3D", "region_create")
 
+    public val regionSetEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_enabled")
+
+    public val regionGetEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_enabled")
+
     public val regionSetUseEdgeConnectionsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_use_edge_connections")
 
@@ -1315,6 +1316,12 @@ public object NavigationServer3D : Object() {
 
     public val linkGetMapPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_map")
+
+    public val linkSetEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_enabled")
+
+    public val linkGetEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_enabled")
 
     public val linkSetBidirectionalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_bidirectional")
@@ -1480,6 +1487,9 @@ public object NavigationServer3D : Object() {
 
     public val bakeFromSourceGeometryDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer3D", "bake_from_source_geometry_data")
+
+    public val bakeFromSourceGeometryDataAsyncPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer3D", "bake_from_source_geometry_data_async")
 
     public val freeRidPtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationServer3D", "free_rid")
 

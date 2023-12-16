@@ -13,6 +13,7 @@ import godot.core.AABB
 import godot.core.Color
 import godot.core.NodePath
 import godot.core.Transform3D
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
@@ -26,6 +27,7 @@ import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -59,12 +61,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var emitting: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_IS_EMITTING, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isEmittingPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_EMITTING, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEmittingPtr, NIL)
     }
 
   /**
@@ -75,12 +77,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var amount: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_AMOUNT, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAmountPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_AMOUNT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAmountPtr, NIL)
     }
 
   /**
@@ -91,14 +93,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var amountRatio: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_AMOUNT_RATIO,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAmountRatioPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_AMOUNT_RATIO,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAmountRatioPtr, NIL)
     }
 
   /**
@@ -109,14 +109,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var subEmitter: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_SUB_EMITTER,
-          NODE_PATH)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSubEmitterPtr, NODE_PATH)
       return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_SUB_EMITTER,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSubEmitterPtr, NIL)
     }
 
   /**
@@ -125,13 +123,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var lifetime: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_LIFETIME,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLifetimePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_LIFETIME, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLifetimePtr, NIL)
     }
 
   /**
@@ -142,14 +139,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var interpToEnd: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_INTERP_TO_END,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getInterpToEndPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_INTERP_TO_END,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setInterpToEndPtr, NIL)
     }
 
   /**
@@ -158,12 +153,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var oneShot: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_ONE_SHOT, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getOneShotPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_ONE_SHOT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOneShotPtr, NIL)
     }
 
   /**
@@ -172,14 +167,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var preprocess: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_PRE_PROCESS_TIME, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPreProcessTimePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_PRE_PROCESS_TIME, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPreProcessTimePtr, NIL)
     }
 
   /**
@@ -188,14 +181,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var speedScale: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_SPEED_SCALE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_SPEED_SCALE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
     }
 
   /**
@@ -204,14 +195,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var explosiveness: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_EXPLOSIVENESS_RATIO, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getExplosivenessRatioPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_EXPLOSIVENESS_RATIO, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setExplosivenessRatioPtr, NIL)
     }
 
   /**
@@ -220,14 +209,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var randomness: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_RANDOMNESS_RATIO, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRandomnessRatioPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_RANDOMNESS_RATIO, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRandomnessRatioPtr, NIL)
     }
 
   /**
@@ -236,13 +223,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var fixedFps: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_FIXED_FPS,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFixedFpsPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_FIXED_FPS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFixedFpsPtr, NIL)
     }
 
   /**
@@ -251,14 +237,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var interpolate: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_INTERPOLATE,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getInterpolatePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_INTERPOLATE,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setInterpolatePtr, NIL)
     }
 
   /**
@@ -267,14 +251,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var fractDelta: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_FRACTIONAL_DELTA, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFractionalDeltaPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_FRACTIONAL_DELTA, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFractionalDeltaPtr, NIL)
     }
 
   /**
@@ -285,14 +267,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var collisionBaseSize: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_COLLISION_BASE_SIZE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCollisionBaseSizePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_COLLISION_BASE_SIZE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCollisionBaseSizePtr, NIL)
     }
 
   /**
@@ -306,14 +286,13 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var visibilityAabb: AABB
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_VISIBILITY_AABB, godot.core.VariantType.AABB)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityAabbPtr,
+          godot.core.VariantType.AABB)
       return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
     }
     set(`value`) {
       TransferContext.writeArguments(godot.core.VariantType.AABB to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_VISIBILITY_AABB, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityAabbPtr, NIL)
     }
 
   /**
@@ -322,14 +301,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var localCoords: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_USE_LOCAL_COORDINATES, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getUseLocalCoordinatesPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_USE_LOCAL_COORDINATES, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseLocalCoordinatesPtr, NIL)
     }
 
   /**
@@ -340,14 +317,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var drawOrder: DrawOrder
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_ORDER,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDrawOrderPtr, LONG)
       return GPUParticles3D.DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_DRAW_ORDER,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDrawOrderPtr, NIL)
     }
 
   /**
@@ -356,14 +331,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var transformAlign: TransformAlign
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_TRANSFORM_ALIGN, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTransformAlignPtr, LONG)
       return GPUParticles3D.TransformAlign.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_TRANSFORM_ALIGN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTransformAlignPtr, NIL)
     }
 
   /**
@@ -376,14 +349,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var trailEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_IS_TRAIL_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isTrailEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_TRAIL_ENABLED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTrailEnabledPtr, NIL)
     }
 
   /**
@@ -392,14 +363,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var trailLifetime: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_TRAIL_LIFETIME,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTrailLifetimePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_TRAIL_LIFETIME,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTrailLifetimePtr, NIL)
     }
 
   /**
@@ -408,14 +377,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var processMaterial: Material?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_PROCESS_MATERIAL, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getProcessMaterialPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Material?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_PROCESS_MATERIAL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setProcessMaterialPtr, NIL)
     }
 
   /**
@@ -424,14 +391,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var drawPasses: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASSES,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDrawPassesPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_DRAW_PASSES,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDrawPassesPtr, NIL)
     }
 
   /**
@@ -440,14 +405,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var drawPass1: Mesh?
     get() {
       TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDrawPassMeshPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 0L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_DRAW_PASS_MESH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDrawPassMeshPtr, NIL)
     }
 
   /**
@@ -456,14 +419,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var drawPass2: Mesh?
     get() {
       TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDrawPassMeshPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 1L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_DRAW_PASS_MESH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDrawPassMeshPtr, NIL)
     }
 
   /**
@@ -472,14 +433,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var drawPass3: Mesh?
     get() {
       TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDrawPassMeshPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 2L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_DRAW_PASS_MESH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDrawPassMeshPtr, NIL)
     }
 
   /**
@@ -488,14 +447,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var drawPass4: Mesh?
     get() {
       TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDrawPassMeshPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 3L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_DRAW_PASS_MESH,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDrawPassMeshPtr, NIL)
     }
 
   /**
@@ -504,12 +461,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public var drawSkin: Skin?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_SKIN, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSkinPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Skin?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_SKIN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSkinPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -550,7 +507,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
    */
   public fun restart(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_RESTART, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.restartPtr, NIL)
   }
 
   /**
@@ -558,8 +515,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
    */
   public fun captureAabb(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_CAPTURE_AABB,
-        godot.core.VariantType.AABB)
+    TransferContext.callMethod(rawPtr, MethodBindings.captureAabbPtr, godot.core.VariantType.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
   }
 
@@ -574,7 +530,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
     flags: Long,
   ): Unit {
     TransferContext.writeArguments(TRANSFORM3D to xform, VECTOR3 to velocity, COLOR to color, COLOR to custom, LONG to flags)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_EMIT_PARTICLE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.emitParticlePtr, NIL)
   }
 
   /**
@@ -582,8 +538,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
    */
   public fun convertFromParticles(particles: Node): Unit {
     TransferContext.writeArguments(OBJECT to particles)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_CONVERT_FROM_PARTICLES, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.convertFromParticlesPtr, NIL)
   }
 
   public enum class DrawOrder(
@@ -688,5 +643,164 @@ public open class GPUParticles3D : GeometryInstance3D() {
      * Maximum number of draw passes supported.
      */
     public final const val MAX_DRAW_PASSES: Long = 4
+  }
+
+  internal object MethodBindings {
+    public val setEmittingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_emitting")
+
+    public val setAmountPtr: VoidPtr = TypeManager.getMethodBindPtr("GPUParticles3D", "set_amount")
+
+    public val setLifetimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_lifetime")
+
+    public val setOneShotPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_one_shot")
+
+    public val setPreProcessTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_pre_process_time")
+
+    public val setExplosivenessRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_explosiveness_ratio")
+
+    public val setRandomnessRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_randomness_ratio")
+
+    public val setVisibilityAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_visibility_aabb")
+
+    public val setUseLocalCoordinatesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_use_local_coordinates")
+
+    public val setFixedFpsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_fixed_fps")
+
+    public val setFractionalDeltaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_fractional_delta")
+
+    public val setInterpolatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_interpolate")
+
+    public val setProcessMaterialPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_process_material")
+
+    public val setSpeedScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_speed_scale")
+
+    public val setCollisionBaseSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_collision_base_size")
+
+    public val setInterpToEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_interp_to_end")
+
+    public val isEmittingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "is_emitting")
+
+    public val getAmountPtr: VoidPtr = TypeManager.getMethodBindPtr("GPUParticles3D", "get_amount")
+
+    public val getLifetimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_lifetime")
+
+    public val getOneShotPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_one_shot")
+
+    public val getPreProcessTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_pre_process_time")
+
+    public val getExplosivenessRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_explosiveness_ratio")
+
+    public val getRandomnessRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_randomness_ratio")
+
+    public val getVisibilityAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_visibility_aabb")
+
+    public val getUseLocalCoordinatesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_use_local_coordinates")
+
+    public val getFixedFpsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_fixed_fps")
+
+    public val getFractionalDeltaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_fractional_delta")
+
+    public val getInterpolatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_interpolate")
+
+    public val getProcessMaterialPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_process_material")
+
+    public val getSpeedScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_speed_scale")
+
+    public val getCollisionBaseSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_collision_base_size")
+
+    public val getInterpToEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_interp_to_end")
+
+    public val setDrawOrderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_draw_order")
+
+    public val getDrawOrderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_draw_order")
+
+    public val setDrawPassesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_draw_passes")
+
+    public val setDrawPassMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_draw_pass_mesh")
+
+    public val getDrawPassesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_draw_passes")
+
+    public val getDrawPassMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_draw_pass_mesh")
+
+    public val setSkinPtr: VoidPtr = TypeManager.getMethodBindPtr("GPUParticles3D", "set_skin")
+
+    public val getSkinPtr: VoidPtr = TypeManager.getMethodBindPtr("GPUParticles3D", "get_skin")
+
+    public val restartPtr: VoidPtr = TypeManager.getMethodBindPtr("GPUParticles3D", "restart")
+
+    public val captureAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "capture_aabb")
+
+    public val setSubEmitterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_sub_emitter")
+
+    public val getSubEmitterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_sub_emitter")
+
+    public val emitParticlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "emit_particle")
+
+    public val setTrailEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_trail_enabled")
+
+    public val setTrailLifetimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_trail_lifetime")
+
+    public val isTrailEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "is_trail_enabled")
+
+    public val getTrailLifetimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_trail_lifetime")
+
+    public val setTransformAlignPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_transform_align")
+
+    public val getTransformAlignPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_transform_align")
+
+    public val convertFromParticlesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "convert_from_particles")
+
+    public val setAmountRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_amount_ratio")
+
+    public val getAmountRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_amount_ratio")
   }
 }

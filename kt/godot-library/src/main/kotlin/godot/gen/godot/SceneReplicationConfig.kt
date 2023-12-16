@@ -73,15 +73,13 @@ public open class SceneReplicationConfig : Resource() {
 
   public fun propertyGetReplicationMode(path: NodePath): ReplicationMode {
     TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_PROPERTY_GET_REPLICATION_MODE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.propertyGetReplicationModePtr, LONG)
     return SceneReplicationConfig.ReplicationMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun propertySetReplicationMode(path: NodePath, mode: ReplicationMode): Unit {
     TransferContext.writeArguments(NODE_PATH to path, LONG to mode.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_PROPERTY_SET_REPLICATION_MODE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.propertySetReplicationModePtr, NIL)
   }
 
   public fun propertyGetSync(path: NodePath): Boolean {
@@ -147,6 +145,12 @@ public open class SceneReplicationConfig : Resource() {
 
     public val propertySetSpawnPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_set_spawn")
+
+    public val propertyGetReplicationModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_get_replication_mode")
+
+    public val propertySetReplicationModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_set_replication_mode")
 
     public val propertyGetSyncPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_get_sync")

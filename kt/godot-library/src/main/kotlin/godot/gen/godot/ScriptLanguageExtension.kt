@@ -601,6 +601,9 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     public val _getCommentDelimitersPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_get_comment_delimiters")
 
+    public val _getDocCommentDelimitersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_get_doc_comment_delimiters")
+
     public val _getStringDelimitersPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_get_string_delimiters")
 

@@ -12,6 +12,7 @@ import godot.core.NodePath
 import godot.core.PackedStringArray
 import godot.core.Quaternion
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -29,6 +30,7 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -85,12 +87,12 @@ public open class AnimationMixer internal constructor() : Node() {
   public var active: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_IS_ACTIVE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_SET_ACTIVE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setActivePtr, NIL)
     }
 
   /**
@@ -109,14 +111,12 @@ public open class AnimationMixer internal constructor() : Node() {
   public var deterministic: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_IS_DETERMINISTIC,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isDeterministicPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_SET_DETERMINISTIC,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDeterministicPtr, NIL)
     }
 
   /**
@@ -127,14 +127,12 @@ public open class AnimationMixer internal constructor() : Node() {
   public var resetOnSave: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_IS_RESET_ON_SAVE_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isResetOnSaveEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_SET_RESET_ON_SAVE_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setResetOnSaveEnabledPtr, NIL)
     }
 
   /**
@@ -143,13 +141,12 @@ public open class AnimationMixer internal constructor() : Node() {
   public var rootNode: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_GET_ROOT_NODE,
-          NODE_PATH)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRootNodePtr, NODE_PATH)
       return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_SET_ROOT_NODE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRootNodePtr, NIL)
     }
 
   /**
@@ -160,14 +157,12 @@ public open class AnimationMixer internal constructor() : Node() {
   public var rootMotionTrack: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_GET_ROOT_MOTION_TRACK, NODE_PATH)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRootMotionTrackPtr, NODE_PATH)
       return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_SET_ROOT_MOTION_TRACK, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRootMotionTrackPtr, NIL)
     }
 
   /**
@@ -178,14 +173,12 @@ public open class AnimationMixer internal constructor() : Node() {
   public var audioMaxPolyphony: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_GET_AUDIO_MAX_POLYPHONY, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getAudioMaxPolyphonyPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_SET_AUDIO_MAX_POLYPHONY, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAudioMaxPolyphonyPtr, NIL)
     }
 
   /**
@@ -194,14 +187,12 @@ public open class AnimationMixer internal constructor() : Node() {
   public var callbackModeProcess: AnimationCallbackModeProcess
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_GET_CALLBACK_MODE_PROCESS, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCallbackModeProcessPtr, LONG)
       return AnimationMixer.AnimationCallbackModeProcess.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_SET_CALLBACK_MODE_PROCESS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCallbackModeProcessPtr, NIL)
     }
 
   /**
@@ -210,14 +201,12 @@ public open class AnimationMixer internal constructor() : Node() {
   public var callbackModeMethod: AnimationCallbackModeMethod
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_GET_CALLBACK_MODE_METHOD, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCallbackModeMethodPtr, LONG)
       return AnimationMixer.AnimationCallbackModeMethod.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_SET_CALLBACK_MODE_METHOD, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCallbackModeMethodPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -243,8 +232,7 @@ public open class AnimationMixer internal constructor() : Node() {
    */
   public fun addAnimationLibrary(name: StringName, library: AnimationLibrary): GodotError {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to library)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_ADD_ANIMATION_LIBRARY, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.addAnimationLibraryPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -253,8 +241,7 @@ public open class AnimationMixer internal constructor() : Node() {
    */
   public fun removeAnimationLibrary(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_REMOVE_ANIMATION_LIBRARY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeAnimationLibraryPtr, NIL)
   }
 
   /**
@@ -262,8 +249,7 @@ public open class AnimationMixer internal constructor() : Node() {
    */
   public fun renameAnimationLibrary(name: StringName, newname: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newname)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_RENAME_ANIMATION_LIBRARY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.renameAnimationLibraryPtr, NIL)
   }
 
   /**
@@ -271,8 +257,7 @@ public open class AnimationMixer internal constructor() : Node() {
    */
   public fun hasAnimationLibrary(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_HAS_ANIMATION_LIBRARY, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hasAnimationLibraryPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -283,8 +268,7 @@ public open class AnimationMixer internal constructor() : Node() {
    */
   public fun getAnimationLibrary(name: StringName): AnimationLibrary? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_GET_ANIMATION_LIBRARY, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationLibraryPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as AnimationLibrary?)
   }
 
@@ -293,8 +277,7 @@ public open class AnimationMixer internal constructor() : Node() {
    */
   public fun getAnimationLibraryList(): VariantArray<StringName> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_GET_ANIMATION_LIBRARY_LIST, ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationLibraryListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>)
   }
 
@@ -303,7 +286,7 @@ public open class AnimationMixer internal constructor() : Node() {
    */
   public fun hasAnimation(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_HAS_ANIMATION, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hasAnimationPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -312,8 +295,7 @@ public open class AnimationMixer internal constructor() : Node() {
    */
   public fun getAnimation(name: StringName): Animation? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_GET_ANIMATION,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Animation?)
   }
 
@@ -322,8 +304,7 @@ public open class AnimationMixer internal constructor() : Node() {
    */
   public fun getAnimationList(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_GET_ANIMATION_LIST,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
@@ -388,8 +369,7 @@ public open class AnimationMixer internal constructor() : Node() {
    */
   public fun getRootMotionPosition(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_GET_ROOT_MOTION_POSITION, VECTOR3)
+    TransferContext.callMethod(rawPtr, MethodBindings.getRootMotionPositionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
@@ -420,8 +400,7 @@ public open class AnimationMixer internal constructor() : Node() {
    */
   public fun getRootMotionRotation(): Quaternion {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_GET_ROOT_MOTION_ROTATION, QUATERNION)
+    TransferContext.callMethod(rawPtr, MethodBindings.getRootMotionRotationPtr, QUATERNION)
     return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
   }
 
@@ -464,8 +443,7 @@ public open class AnimationMixer internal constructor() : Node() {
    */
   public fun getRootMotionScale(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_GET_ROOT_MOTION_SCALE, VECTOR3)
+    TransferContext.callMethod(rawPtr, MethodBindings.getRootMotionScalePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
@@ -506,8 +484,7 @@ public open class AnimationMixer internal constructor() : Node() {
    */
   public fun getRootMotionPositionAccumulator(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_GET_ROOT_MOTION_POSITION_ACCUMULATOR, VECTOR3)
+    TransferContext.callMethod(rawPtr, MethodBindings.getRootMotionPositionAccumulatorPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
@@ -550,8 +527,8 @@ public open class AnimationMixer internal constructor() : Node() {
    */
   public fun getRootMotionRotationAccumulator(): Quaternion {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_GET_ROOT_MOTION_ROTATION_ACCUMULATOR, QUATERNION)
+    TransferContext.callMethod(rawPtr, MethodBindings.getRootMotionRotationAccumulatorPtr,
+        QUATERNION)
     return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
   }
 
@@ -590,8 +567,7 @@ public open class AnimationMixer internal constructor() : Node() {
    */
   public fun getRootMotionScaleAccumulator(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_GET_ROOT_MOTION_SCALE_ACCUMULATOR, VECTOR3)
+    TransferContext.callMethod(rawPtr, MethodBindings.getRootMotionScaleAccumulatorPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
@@ -600,7 +576,7 @@ public open class AnimationMixer internal constructor() : Node() {
    */
   public fun clearCaches(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_CLEAR_CACHES, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearCachesPtr, NIL)
   }
 
   /**
@@ -608,7 +584,7 @@ public open class AnimationMixer internal constructor() : Node() {
    */
   public fun advance(delta: Double): Unit {
     TransferContext.writeArguments(DOUBLE to delta)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_ADVANCE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.advancePtr, NIL)
   }
 
   /**
@@ -616,8 +592,7 @@ public open class AnimationMixer internal constructor() : Node() {
    */
   public fun findAnimation(animation: Animation): StringName {
     TransferContext.writeArguments(OBJECT to animation)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_FIND_ANIMATION,
-        STRING_NAME)
+    TransferContext.callMethod(rawPtr, MethodBindings.findAnimationPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
@@ -626,8 +601,7 @@ public open class AnimationMixer internal constructor() : Node() {
    */
   public fun findAnimationLibrary(animation: Animation): StringName {
     TransferContext.writeArguments(OBJECT to animation)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONMIXER_FIND_ANIMATION_LIBRARY, STRING_NAME)
+    TransferContext.callMethod(rawPtr, MethodBindings.findAnimationLibraryPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
@@ -682,4 +656,111 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _postProcessKeyValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "_post_process_key_value")
+
+    public val addAnimationLibraryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "add_animation_library")
+
+    public val removeAnimationLibraryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "remove_animation_library")
+
+    public val renameAnimationLibraryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "rename_animation_library")
+
+    public val hasAnimationLibraryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "has_animation_library")
+
+    public val getAnimationLibraryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_animation_library")
+
+    public val getAnimationLibraryListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_animation_library_list")
+
+    public val hasAnimationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "has_animation")
+
+    public val getAnimationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_animation")
+
+    public val getAnimationListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_animation_list")
+
+    public val setActivePtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationMixer", "set_active")
+
+    public val isActivePtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationMixer", "is_active")
+
+    public val setDeterministicPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "set_deterministic")
+
+    public val isDeterministicPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "is_deterministic")
+
+    public val setRootNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "set_root_node")
+
+    public val getRootNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_node")
+
+    public val setCallbackModeProcessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "set_callback_mode_process")
+
+    public val getCallbackModeProcessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_callback_mode_process")
+
+    public val setCallbackModeMethodPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "set_callback_mode_method")
+
+    public val getCallbackModeMethodPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_callback_mode_method")
+
+    public val setAudioMaxPolyphonyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "set_audio_max_polyphony")
+
+    public val getAudioMaxPolyphonyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_audio_max_polyphony")
+
+    public val setRootMotionTrackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "set_root_motion_track")
+
+    public val getRootMotionTrackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_track")
+
+    public val getRootMotionPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_position")
+
+    public val getRootMotionRotationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_rotation")
+
+    public val getRootMotionScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_scale")
+
+    public val getRootMotionPositionAccumulatorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_position_accumulator")
+
+    public val getRootMotionRotationAccumulatorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_rotation_accumulator")
+
+    public val getRootMotionScaleAccumulatorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_scale_accumulator")
+
+    public val clearCachesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "clear_caches")
+
+    public val advancePtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationMixer", "advance")
+
+    public val setResetOnSaveEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "set_reset_on_save_enabled")
+
+    public val isResetOnSaveEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "is_reset_on_save_enabled")
+
+    public val findAnimationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "find_animation")
+
+    public val findAnimationLibraryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "find_animation_library")
+  }
 }

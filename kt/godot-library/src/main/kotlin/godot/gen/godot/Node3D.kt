@@ -252,12 +252,12 @@ public open class Node3D : Node() {
   public var globalBasis: Basis
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_GLOBAL_BASIS, BASIS)
+      TransferContext.callMethod(rawPtr, MethodBindings.getGlobalBasisPtr, BASIS)
       return (TransferContext.readReturnValue(BASIS, false) as Basis)
     }
     set(`value`) {
       TransferContext.writeArguments(BASIS to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_GLOBAL_BASIS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGlobalBasisPtr, NIL)
     }
 
   /**
@@ -1063,6 +1063,12 @@ public open class Node3D : Node() {
 
     public val getGlobalPositionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node3D", "get_global_position")
+
+    public val setGlobalBasisPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "set_global_basis")
+
+    public val getGlobalBasisPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "get_global_basis")
 
     public val setGlobalRotationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node3D", "set_global_rotation")

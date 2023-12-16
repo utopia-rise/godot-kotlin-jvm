@@ -8,11 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
+import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -55,8 +57,7 @@ public open class PhysicsServer3DRenderingServerHandler : Object() {
    */
   public fun setVertex(vertexId: Int, vertex: Vector3): Unit {
     TransferContext.writeArguments(LONG to vertexId.toLong(), VECTOR3 to vertex)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3DRENDERINGSERVERHANDLER_SET_VERTEX, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVertexPtr, NIL)
   }
 
   /**
@@ -64,8 +65,7 @@ public open class PhysicsServer3DRenderingServerHandler : Object() {
    */
   public fun setNormal(vertexId: Int, normal: Vector3): Unit {
     TransferContext.writeArguments(LONG to vertexId.toLong(), VECTOR3 to normal)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3DRENDERINGSERVERHANDLER_SET_NORMAL, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNormalPtr, NIL)
   }
 
   /**
@@ -73,9 +73,28 @@ public open class PhysicsServer3DRenderingServerHandler : Object() {
    */
   public fun setAabb(aabb: AABB): Unit {
     TransferContext.writeArguments(godot.core.VariantType.AABB to aabb)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3DRENDERINGSERVERHANDLER_SET_AABB, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAabbPtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _setVertexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3DRenderingServerHandler", "_set_vertex")
+
+    public val _setNormalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3DRenderingServerHandler", "_set_normal")
+
+    public val _setAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3DRenderingServerHandler", "_set_aabb")
+
+    public val setVertexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3DRenderingServerHandler", "set_vertex")
+
+    public val setNormalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3DRenderingServerHandler", "set_normal")
+
+    public val setAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3DRenderingServerHandler", "set_aabb")
+  }
 }

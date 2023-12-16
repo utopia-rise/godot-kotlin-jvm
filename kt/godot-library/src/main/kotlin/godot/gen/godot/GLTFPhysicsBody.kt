@@ -83,14 +83,12 @@ public open class GLTFPhysicsBody : Resource() {
   public var centerOfMass: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSBODY_GET_CENTER_OF_MASS, VECTOR3)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCenterOfMassPtr, VECTOR3)
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSBODY_SET_CENTER_OF_MASS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCenterOfMassPtr, NIL)
     }
 
   @CoreTypeLocalCopy
@@ -256,6 +254,12 @@ public open class GLTFPhysicsBody : Resource() {
 
     public val setAngularVelocityPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_angular_velocity")
+
+    public val getCenterOfMassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_center_of_mass")
+
+    public val setCenterOfMassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_center_of_mass")
 
     public val getInertiaTensorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_inertia_tensor")

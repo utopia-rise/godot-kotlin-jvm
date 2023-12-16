@@ -300,8 +300,14 @@ public open class ScriptExtension : Script() {
     public val _getDocumentationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ScriptExtension", "_get_documentation")
 
+    public val _getClassIconPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptExtension", "_get_class_icon_path")
+
     public val _hasMethodPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ScriptExtension", "_has_method")
+
+    public val _hasStaticMethodPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptExtension", "_has_static_method")
 
     public val _getMethodInfoPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ScriptExtension", "_get_method_info")
@@ -309,6 +315,9 @@ public open class ScriptExtension : Script() {
     public val _isToolPtr: VoidPtr = TypeManager.getMethodBindPtr("ScriptExtension", "_is_tool")
 
     public val _isValidPtr: VoidPtr = TypeManager.getMethodBindPtr("ScriptExtension", "_is_valid")
+
+    public val _isAbstractPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptExtension", "_is_abstract")
 
     public val _getLanguagePtr: VoidPtr =
         TypeManager.getMethodBindPtr("ScriptExtension", "_get_language")

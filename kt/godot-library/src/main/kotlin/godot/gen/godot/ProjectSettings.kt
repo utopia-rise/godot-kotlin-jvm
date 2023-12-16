@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.StringName
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
@@ -22,6 +23,7 @@ import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -62,7 +64,7 @@ public object ProjectSettings : Object() {
    */
   public fun hasSetting(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_HAS_SETTING, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hasSettingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -91,7 +93,7 @@ public object ProjectSettings : Object() {
    */
   public fun setSetting(name: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_SETTING, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSettingPtr, NIL)
   }
 
   /**
@@ -124,7 +126,7 @@ public object ProjectSettings : Object() {
   @JvmOverloads
   public fun getSetting(name: String, defaultValue: Any? = null): Any? {
     TransferContext.writeArguments(STRING to name, ANY to defaultValue)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_SETTING, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSettingPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -155,8 +157,7 @@ public object ProjectSettings : Object() {
    */
   public fun getSettingWithOverride(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_SETTING_WITH_OVERRIDE, ANY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSettingWithOverridePtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
@@ -177,8 +178,7 @@ public object ProjectSettings : Object() {
    */
   public fun getGlobalClassList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_GLOBAL_CLASS_LIST, ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalClassListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -187,7 +187,7 @@ public object ProjectSettings : Object() {
    */
   public fun setOrder(name: String, position: Int): Unit {
     TransferContext.writeArguments(STRING to name, LONG to position.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_ORDER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOrderPtr, NIL)
   }
 
   /**
@@ -195,7 +195,7 @@ public object ProjectSettings : Object() {
    */
   public fun getOrder(name: String): Int {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_ORDER, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getOrderPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -204,8 +204,7 @@ public object ProjectSettings : Object() {
    */
   public fun setInitialValue(name: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_INITIAL_VALUE,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInitialValuePtr, NIL)
   }
 
   /**
@@ -213,7 +212,7 @@ public object ProjectSettings : Object() {
    */
   public fun setAsBasic(name: String, basic: Boolean): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to basic)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_AS_BASIC, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAsBasicPtr, NIL)
   }
 
   /**
@@ -221,8 +220,7 @@ public object ProjectSettings : Object() {
    */
   public fun setAsInternal(name: String, `internal`: Boolean): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to internal)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_AS_INTERNAL,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAsInternalPtr, NIL)
   }
 
   /**
@@ -292,8 +290,7 @@ public object ProjectSettings : Object() {
    */
   public fun addPropertyInfo(hint: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to hint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_ADD_PROPERTY_INFO,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.addPropertyInfoPtr, NIL)
   }
 
   /**
@@ -303,8 +300,7 @@ public object ProjectSettings : Object() {
    */
   public fun setRestartIfChanged(name: String, restart: Boolean): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to restart)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_RESTART_IF_CHANGED, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRestartIfChangedPtr, NIL)
   }
 
   /**
@@ -312,7 +308,7 @@ public object ProjectSettings : Object() {
    */
   public fun clear(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_CLEAR, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   /**
@@ -320,8 +316,7 @@ public object ProjectSettings : Object() {
    */
   public fun localizePath(path: String): String {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_LOCALIZE_PATH,
-        STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.localizePathPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -346,8 +341,7 @@ public object ProjectSettings : Object() {
    */
   public fun globalizePath(path: String): String {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GLOBALIZE_PATH,
-        STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.globalizePathPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -358,7 +352,7 @@ public object ProjectSettings : Object() {
    */
   public fun save(): GodotError {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SAVE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.savePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -376,8 +370,7 @@ public object ProjectSettings : Object() {
     offset: Int = 0,
   ): Boolean {
     TransferContext.writeArguments(STRING to pack, BOOL to replaceFiles, LONG to offset.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_LOAD_RESOURCE_PACK,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.loadResourcePackPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -386,7 +379,59 @@ public object ProjectSettings : Object() {
    */
   public fun saveCustom(`file`: String): GodotError {
     TransferContext.writeArguments(STRING to file)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SAVE_CUSTOM, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.saveCustomPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  internal object MethodBindings {
+    public val hasSettingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProjectSettings", "has_setting")
+
+    public val setSettingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProjectSettings", "set_setting")
+
+    public val getSettingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProjectSettings", "get_setting")
+
+    public val getSettingWithOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProjectSettings", "get_setting_with_override")
+
+    public val getGlobalClassListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProjectSettings", "get_global_class_list")
+
+    public val setOrderPtr: VoidPtr = TypeManager.getMethodBindPtr("ProjectSettings", "set_order")
+
+    public val getOrderPtr: VoidPtr = TypeManager.getMethodBindPtr("ProjectSettings", "get_order")
+
+    public val setInitialValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProjectSettings", "set_initial_value")
+
+    public val setAsBasicPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProjectSettings", "set_as_basic")
+
+    public val setAsInternalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProjectSettings", "set_as_internal")
+
+    public val addPropertyInfoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProjectSettings", "add_property_info")
+
+    public val setRestartIfChangedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProjectSettings", "set_restart_if_changed")
+
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("ProjectSettings", "clear")
+
+    public val localizePathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProjectSettings", "localize_path")
+
+    public val globalizePathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProjectSettings", "globalize_path")
+
+    public val savePtr: VoidPtr = TypeManager.getMethodBindPtr("ProjectSettings", "save")
+
+    public val loadResourcePackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProjectSettings", "load_resource_pack")
+
+    public val saveCustomPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProjectSettings", "save_custom")
   }
 }

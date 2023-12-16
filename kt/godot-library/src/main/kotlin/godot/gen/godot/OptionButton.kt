@@ -353,8 +353,7 @@ public open class OptionButton : Button() {
    */
   public fun setDisableShortcuts(disabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to disabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_DISABLE_SHORTCUTS,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDisableShortcutsPtr, NIL)
   }
 
   public companion object
@@ -450,5 +449,8 @@ public open class OptionButton : Button() {
 
     public val getAllowReselectPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OptionButton", "get_allow_reselect")
+
+    public val setDisableShortcutsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "set_disable_shortcuts")
   }
 }

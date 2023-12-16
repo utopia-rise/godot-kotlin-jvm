@@ -192,8 +192,7 @@ public open class TextServer internal constructor() : RefCounted() {
    */
   public fun createFontLinkedVariation(fontRid: RID): RID {
     TransferContext.writeArguments(_RID to fontRid)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_CREATE_FONT_LINKED_VARIATION, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.createFontLinkedVariationPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -442,8 +441,7 @@ public open class TextServer internal constructor() : RefCounted() {
    */
   public fun fontSetFixedSizeScaleMode(fontRid: RID, fixedSizeScaleMode: FixedSizeScaleMode): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to fixedSizeScaleMode.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_FIXED_SIZE_SCALE_MODE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.fontSetFixedSizeScaleModePtr, NIL)
   }
 
   /**
@@ -451,8 +449,7 @@ public open class TextServer internal constructor() : RefCounted() {
    */
   public fun fontGetFixedSizeScaleMode(fontRid: RID): FixedSizeScaleMode {
     TransferContext.writeArguments(_RID to fontRid)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_FIXED_SIZE_SCALE_MODE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.fontGetFixedSizeScaleModePtr, LONG)
     return TextServer.FixedSizeScaleMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -551,7 +548,7 @@ public open class TextServer internal constructor() : RefCounted() {
     `value`: Long,
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to spacing.id, LONG to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_SPACING, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.fontSetSpacingPtr, NIL)
   }
 
   /**
@@ -559,7 +556,7 @@ public open class TextServer internal constructor() : RefCounted() {
    */
   public fun fontGetSpacing(fontRid: RID, spacing: SpacingType): Long {
     TransferContext.writeArguments(_RID to fontRid, LONG to spacing.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_SPACING, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.fontGetSpacingPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -1984,8 +1981,8 @@ public open class TextServer internal constructor() : RefCounted() {
    */
   public fun shapedTextGetCharacterBreaks(shaped: RID): PackedInt32Array {
     TransferContext.writeArguments(_RID to shaped)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_GET_CHARACTER_BREAKS, PACKED_INT_32_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetCharacterBreaksPtr,
+        PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
@@ -1994,8 +1991,7 @@ public open class TextServer internal constructor() : RefCounted() {
    */
   public fun shapedTextNextCharacterPos(shaped: RID, pos: Long): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to pos)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_NEXT_CHARACTER_POS, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.shapedTextNextCharacterPosPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -2004,8 +2000,7 @@ public open class TextServer internal constructor() : RefCounted() {
    */
   public fun shapedTextPrevCharacterPos(shaped: RID, pos: Long): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to pos)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_PREV_CHARACTER_POS, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.shapedTextPrevCharacterPosPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -2014,8 +2009,7 @@ public open class TextServer internal constructor() : RefCounted() {
    */
   public fun shapedTextClosestCharacterPos(shaped: RID, pos: Long): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to pos)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_CLOSEST_CHARACTER_POS, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.shapedTextClosestCharacterPosPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -2131,8 +2125,8 @@ public open class TextServer internal constructor() : RefCounted() {
   @JvmOverloads
   public fun stringGetCharacterBreaks(string: String, language: String = ""): PackedInt32Array {
     TransferContext.writeArguments(STRING to string, STRING to language)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_STRING_GET_CHARACTER_BREAKS, PACKED_INT_32_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.stringGetCharacterBreaksPtr,
+        PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
@@ -3168,6 +3162,9 @@ public open class TextServer internal constructor() : RefCounted() {
 
     public val createFontPtr: VoidPtr = TypeManager.getMethodBindPtr("TextServer", "create_font")
 
+    public val createFontLinkedVariationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "create_font_linked_variation")
+
     public val fontSetDataPtr: VoidPtr = TypeManager.getMethodBindPtr("TextServer", "font_set_data")
 
     public val fontSetFaceIndexPtr: VoidPtr =
@@ -3246,6 +3243,12 @@ public open class TextServer internal constructor() : RefCounted() {
     public val fontGetFixedSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "font_get_fixed_size")
 
+    public val fontSetFixedSizeScaleModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "font_set_fixed_size_scale_mode")
+
+    public val fontGetFixedSizeScaleModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "font_get_fixed_size_scale_mode")
+
     public val fontSetAllowSystemFallbackPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "font_set_allow_system_fallback")
 
@@ -3275,6 +3278,12 @@ public open class TextServer internal constructor() : RefCounted() {
 
     public val fontGetEmboldenPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "font_get_embolden")
+
+    public val fontSetSpacingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "font_set_spacing")
+
+    public val fontGetSpacingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "font_get_spacing")
 
     public val fontSetTransformPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "font_set_transform")
@@ -3662,6 +3671,18 @@ public open class TextServer internal constructor() : RefCounted() {
     public val shapedTextPrevGraphemePosPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "shaped_text_prev_grapheme_pos")
 
+    public val shapedTextGetCharacterBreaksPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_text_get_character_breaks")
+
+    public val shapedTextNextCharacterPosPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_text_next_character_pos")
+
+    public val shapedTextPrevCharacterPosPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_text_prev_character_pos")
+
+    public val shapedTextClosestCharacterPosPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_text_closest_character_pos")
+
     public val shapedTextDrawPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "shaped_text_draw")
 
@@ -3680,6 +3701,9 @@ public open class TextServer internal constructor() : RefCounted() {
 
     public val stringGetWordBreaksPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "string_get_word_breaks")
+
+    public val stringGetCharacterBreaksPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "string_get_character_breaks")
 
     public val isConfusablePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "is_confusable")

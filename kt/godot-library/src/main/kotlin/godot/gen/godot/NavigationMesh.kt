@@ -516,7 +516,7 @@ public open class NavigationMesh : Resource() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_CLEAR, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   public enum class SamplePartitionType(
@@ -779,5 +779,7 @@ public open class NavigationMesh : Resource() {
 
     public val createFromMeshPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationMesh", "create_from_mesh")
+
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationMesh", "clear")
   }
 }

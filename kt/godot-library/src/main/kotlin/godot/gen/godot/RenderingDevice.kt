@@ -14,6 +14,7 @@ import godot.core.PackedColorArray
 import godot.core.PackedInt64Array
 import godot.core.RID
 import godot.core.Rect2
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -33,6 +34,7 @@ import godot.core.VariantType._RID
 import godot.core.Vector2i
 import godot.core.Vector3
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
@@ -80,8 +82,7 @@ public open class RenderingDevice internal constructor() : Object() {
     `data`: VariantArray<PackedByteArray> = godot.core.variantArrayOf(),
   ): RID {
     TransferContext.writeArguments(OBJECT to format, OBJECT to view, ARRAY to data)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_CREATE,
-        _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.textureCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -90,8 +91,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun textureCreateShared(view: RDTextureView, withTexture: RID): RID {
     TransferContext.writeArguments(OBJECT to view, _RID to withTexture)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_CREATE_SHARED, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.textureCreateSharedPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -112,8 +112,7 @@ public open class RenderingDevice internal constructor() : Object() {
     sliceType: TextureSliceType = RenderingDevice.TextureSliceType.TEXTURE_SLICE_2D,
   ): RID {
     TransferContext.writeArguments(OBJECT to view, _RID to withTexture, LONG to layer, LONG to mipmap, LONG to mipmaps, LONG to sliceType.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_CREATE_SHARED_FROM_SLICE, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.textureCreateSharedFromSlicePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -132,8 +131,7 @@ public open class RenderingDevice internal constructor() : Object() {
     layers: Long,
   ): RID {
     TransferContext.writeArguments(LONG to type.id, LONG to format.id, LONG to samples.id, LONG to usageFlags.flag, LONG to image, LONG to width, LONG to height, LONG to depth, LONG to layers)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_CREATE_FROM_EXTENSION, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.textureCreateFromExtensionPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -154,8 +152,7 @@ public open class RenderingDevice internal constructor() : Object() {
     postBarrier: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS,
   ): GodotError {
     TransferContext.writeArguments(_RID to texture, LONG to layer, PACKED_BYTE_ARRAY to data, LONG to postBarrier.flag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_UPDATE,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.textureUpdatePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -168,8 +165,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun textureGetData(texture: RID, layer: Long): PackedByteArray {
     TransferContext.writeArguments(_RID to texture, LONG to layer)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_GET_DATA,
-        PACKED_BYTE_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.textureGetDataPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
@@ -179,8 +175,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun textureIsFormatSupportedForUsage(format: DataFormat, usageFlags: TextureUsageBits):
       Boolean {
     TransferContext.writeArguments(LONG to format.id, LONG to usageFlags.flag)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_IS_FORMAT_SUPPORTED_FOR_USAGE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.textureIsFormatSupportedForUsagePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -189,8 +184,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun textureIsShared(texture: RID): Boolean {
     TransferContext.writeArguments(_RID to texture)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_IS_SHARED,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.textureIsSharedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -199,8 +193,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun textureIsValid(texture: RID): Boolean {
     TransferContext.writeArguments(_RID to texture)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_IS_VALID,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.textureIsValidPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -231,7 +224,7 @@ public open class RenderingDevice internal constructor() : Object() {
     postBarrier: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS,
   ): GodotError {
     TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, VECTOR3 to fromPos, VECTOR3 to toPos, VECTOR3 to size, LONG to srcMipmap, LONG to dstMipmap, LONG to srcLayer, LONG to dstLayer, LONG to postBarrier.flag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_COPY, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.textureCopyPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -251,7 +244,7 @@ public open class RenderingDevice internal constructor() : Object() {
     postBarrier: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS,
   ): GodotError {
     TransferContext.writeArguments(_RID to texture, COLOR to color, LONG to baseMipmap, LONG to mipmapCount, LONG to baseLayer, LONG to layerCount, LONG to postBarrier.flag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_CLEAR, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.textureClearPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -279,8 +272,7 @@ public open class RenderingDevice internal constructor() : Object() {
     postBarrier: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS,
   ): GodotError {
     TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, LONG to postBarrier.flag)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_RESOLVE_MULTISAMPLE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.textureResolveMultisamplePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -289,8 +281,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun textureGetFormat(texture: RID): RDTextureFormat? {
     TransferContext.writeArguments(_RID to texture)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_GET_FORMAT,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.textureGetFormatPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as RDTextureFormat?)
   }
 
@@ -301,8 +292,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun textureGetNativeHandle(texture: RID): Long {
     TransferContext.writeArguments(_RID to texture)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_GET_NATIVE_HANDLE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.textureGetNativeHandlePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -315,8 +305,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun framebufferFormatCreate(attachments: VariantArray<RDAttachmentFormat>, viewCount: Long
       = 1): Long {
     TransferContext.writeArguments(ARRAY to attachments, LONG to viewCount)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FRAMEBUFFER_FORMAT_CREATE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.framebufferFormatCreatePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -330,8 +319,7 @@ public open class RenderingDevice internal constructor() : Object() {
     viewCount: Long = 1,
   ): Long {
     TransferContext.writeArguments(ARRAY to attachments, ARRAY to passes, LONG to viewCount)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FRAMEBUFFER_FORMAT_CREATE_MULTIPASS, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.framebufferFormatCreateMultipassPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -342,8 +330,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun framebufferFormatCreateEmpty(samples: TextureSamples =
       RenderingDevice.TextureSamples.TEXTURE_SAMPLES_1): Long {
     TransferContext.writeArguments(LONG to samples.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FRAMEBUFFER_FORMAT_CREATE_EMPTY, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.framebufferFormatCreateEmptyPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -354,8 +341,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun framebufferFormatGetTextureSamples(format: Long, renderPass: Long = 0):
       TextureSamples {
     TransferContext.writeArguments(LONG to format, LONG to renderPass)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FRAMEBUFFER_FORMAT_GET_TEXTURE_SAMPLES, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.framebufferFormatGetTextureSamplesPtr, LONG)
     return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -371,8 +357,7 @@ public open class RenderingDevice internal constructor() : Object() {
     viewCount: Long = 1,
   ): RID {
     TransferContext.writeArguments(ARRAY to textures, LONG to validateWithFormat, LONG to viewCount)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FRAMEBUFFER_CREATE,
-        _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.framebufferCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -389,8 +374,7 @@ public open class RenderingDevice internal constructor() : Object() {
     viewCount: Long = 1,
   ): RID {
     TransferContext.writeArguments(ARRAY to textures, ARRAY to passes, LONG to validateWithFormat, LONG to viewCount)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FRAMEBUFFER_CREATE_MULTIPASS, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.framebufferCreateMultipassPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -406,8 +390,7 @@ public open class RenderingDevice internal constructor() : Object() {
     validateWithFormat: Long = -1,
   ): RID {
     TransferContext.writeArguments(VECTOR2I to size, LONG to samples.id, LONG to validateWithFormat)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FRAMEBUFFER_CREATE_EMPTY, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.framebufferCreateEmptyPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -416,8 +399,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun framebufferGetFormat(framebuffer: RID): Long {
     TransferContext.writeArguments(_RID to framebuffer)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FRAMEBUFFER_GET_FORMAT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.framebufferGetFormatPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -426,8 +408,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun framebufferIsValid(framebuffer: RID): Boolean {
     TransferContext.writeArguments(_RID to framebuffer)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FRAMEBUFFER_IS_VALID, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.framebufferIsValidPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -438,8 +419,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun samplerCreate(state: RDSamplerState): RID {
     TransferContext.writeArguments(OBJECT to state)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_SAMPLER_CREATE,
-        _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.samplerCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -449,8 +429,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun samplerIsFormatSupportedForFilter(format: DataFormat, samplerFilter: SamplerFilter):
       Boolean {
     TransferContext.writeArguments(LONG to format.id, LONG to samplerFilter.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_SAMPLER_IS_FORMAT_SUPPORTED_FOR_FILTER, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.samplerIsFormatSupportedForFilterPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -466,8 +445,7 @@ public open class RenderingDevice internal constructor() : Object() {
     useAsStorage: Boolean = false,
   ): RID {
     TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data, BOOL to useAsStorage)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_VERTEX_BUFFER_CREATE, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.vertexBufferCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -476,8 +454,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun vertexFormatCreate(vertexDescriptions: VariantArray<RDVertexAttribute>): Long {
     TransferContext.writeArguments(ARRAY to vertexDescriptions)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_VERTEX_FORMAT_CREATE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.vertexFormatCreatePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -492,8 +469,7 @@ public open class RenderingDevice internal constructor() : Object() {
     offsets: PackedInt64Array = PackedInt64Array(),
   ): RID {
     TransferContext.writeArguments(LONG to vertexCount, LONG to vertexFormat, ARRAY to srcBuffers, PACKED_INT_64_ARRAY to offsets)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_VERTEX_ARRAY_CREATE,
-        _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.vertexArrayCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -510,8 +486,7 @@ public open class RenderingDevice internal constructor() : Object() {
     useRestartIndices: Boolean = false,
   ): RID {
     TransferContext.writeArguments(LONG to sizeIndices, LONG to format.id, PACKED_BYTE_ARRAY to data, BOOL to useRestartIndices)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_INDEX_BUFFER_CREATE,
-        _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.indexBufferCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -526,8 +501,7 @@ public open class RenderingDevice internal constructor() : Object() {
     indexCount: Long,
   ): RID {
     TransferContext.writeArguments(_RID to indexBuffer, LONG to indexOffset, LONG to indexCount)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_INDEX_ARRAY_CREATE,
-        _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.indexArrayCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -540,8 +514,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun shaderCompileSpirvFromSource(shaderSource: RDShaderSource, allowCache: Boolean = true):
       RDShaderSPIRV? {
     TransferContext.writeArguments(OBJECT to shaderSource, BOOL to allowCache)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_SHADER_COMPILE_SPIRV_FROM_SOURCE, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.shaderCompileSpirvFromSourcePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as RDShaderSPIRV?)
   }
 
@@ -554,8 +527,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun shaderCompileBinaryFromSpirv(spirvData: RDShaderSPIRV, name: String = ""):
       PackedByteArray {
     TransferContext.writeArguments(OBJECT to spirvData, STRING to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_SHADER_COMPILE_BINARY_FROM_SPIRV,
+    TransferContext.callMethod(rawPtr, MethodBindings.shaderCompileBinaryFromSpirvPtr,
         PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
@@ -568,8 +540,7 @@ public open class RenderingDevice internal constructor() : Object() {
   @JvmOverloads
   public fun shaderCreateFromSpirv(spirvData: RDShaderSPIRV, name: String = ""): RID {
     TransferContext.writeArguments(OBJECT to spirvData, STRING to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_SHADER_CREATE_FROM_SPIRV, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.shaderCreateFromSpirvPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -582,8 +553,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun shaderCreateFromBytecode(binaryData: PackedByteArray, placeholderRid: RID = RID()):
       RID {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to binaryData, _RID to placeholderRid)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_SHADER_CREATE_FROM_BYTECODE, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.shaderCreateFromBytecodePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -592,8 +562,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun shaderCreatePlaceholder(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_SHADER_CREATE_PLACEHOLDER, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.shaderCreatePlaceholderPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -602,8 +571,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun shaderGetVertexInputAttributeMask(shader: RID): Long {
     TransferContext.writeArguments(_RID to shader)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_SHADER_GET_VERTEX_INPUT_ATTRIBUTE_MASK, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.shaderGetVertexInputAttributeMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -616,8 +584,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun uniformBufferCreate(sizeBytes: Long, `data`: PackedByteArray = PackedByteArray()):
       RID {
     TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_UNIFORM_BUFFER_CREATE, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.uniformBufferCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -633,8 +600,7 @@ public open class RenderingDevice internal constructor() : Object() {
     usage: StorageBufferUsage = RenderingDevice.StorageBufferUsageValue(0),
   ): RID {
     TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data, LONG to usage.flag)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_STORAGE_BUFFER_CREATE, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.storageBufferCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -650,8 +616,7 @@ public open class RenderingDevice internal constructor() : Object() {
     `data`: PackedByteArray = PackedByteArray(),
   ): RID {
     TransferContext.writeArguments(LONG to sizeBytes, LONG to format.id, PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_BUFFER_CREATE, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.textureBufferCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -666,8 +631,7 @@ public open class RenderingDevice internal constructor() : Object() {
     shaderSet: Long,
   ): RID {
     TransferContext.writeArguments(ARRAY to uniforms, _RID to shader, LONG to shaderSet)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_UNIFORM_SET_CREATE,
-        _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.uniformSetCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -676,8 +640,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun uniformSetIsValid(uniformSet: RID): Boolean {
     TransferContext.writeArguments(_RID to uniformSet)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_UNIFORM_SET_IS_VALID, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.uniformSetIsValidPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -701,7 +664,7 @@ public open class RenderingDevice internal constructor() : Object() {
     postBarrier: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS,
   ): GodotError {
     TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes, PACKED_BYTE_ARRAY to data, LONG to postBarrier.flag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_BUFFER_UPDATE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.bufferUpdatePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -726,7 +689,7 @@ public open class RenderingDevice internal constructor() : Object() {
     postBarrier: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS,
   ): GodotError {
     TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes, LONG to postBarrier.flag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_BUFFER_CLEAR, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.bufferClearPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -740,8 +703,7 @@ public open class RenderingDevice internal constructor() : Object() {
     sizeBytes: Long = 0,
   ): PackedByteArray {
     TransferContext.writeArguments(_RID to buffer, LONG to offsetBytes, LONG to sizeBytes)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_BUFFER_GET_DATA,
-        PACKED_BYTE_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.bufferGetDataPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
@@ -767,8 +729,7 @@ public open class RenderingDevice internal constructor() : Object() {
         godot.core.variantArrayOf(),
   ): RID {
     TransferContext.writeArguments(_RID to shader, LONG to framebufferFormat, LONG to vertexFormat, LONG to primitive.id, OBJECT to rasterizationState, OBJECT to multisampleState, OBJECT to stencilState, OBJECT to colorBlendState, LONG to dynamicStateFlags.flag, LONG to forRenderPass, ARRAY to specializationConstants)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_RENDER_PIPELINE_CREATE, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.renderPipelineCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -777,8 +738,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun renderPipelineIsValid(renderPipeline: RID): Boolean {
     TransferContext.writeArguments(_RID to renderPipeline)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_RENDER_PIPELINE_IS_VALID, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.renderPipelineIsValidPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -792,8 +752,7 @@ public open class RenderingDevice internal constructor() : Object() {
       specializationConstants: VariantArray<RDPipelineSpecializationConstant> =
       godot.core.variantArrayOf()): RID {
     TransferContext.writeArguments(_RID to shader, ARRAY to specializationConstants)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_COMPUTE_PIPELINE_CREATE, _RID)
+    TransferContext.callMethod(rawPtr, MethodBindings.computePipelineCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
@@ -802,8 +761,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun computePipelineIsValid(computePipeline: RID): Boolean {
     TransferContext.writeArguments(_RID to computePipeline)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_COMPUTE_PIPELINE_IS_VALID, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.computePipelineIsValidPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -815,8 +773,7 @@ public open class RenderingDevice internal constructor() : Object() {
   @JvmOverloads
   public fun screenGetWidth(screen: Int = 0): Int {
     TransferContext.writeArguments(LONG to screen.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_SCREEN_GET_WIDTH,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.screenGetWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -828,8 +785,7 @@ public open class RenderingDevice internal constructor() : Object() {
   @JvmOverloads
   public fun screenGetHeight(screen: Int = 0): Int {
     TransferContext.writeArguments(LONG to screen.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_SCREEN_GET_HEIGHT,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.screenGetHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -840,8 +796,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun screenGetFramebufferFormat(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_SCREEN_GET_FRAMEBUFFER_FORMAT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.screenGetFramebufferFormatPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -854,8 +809,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun drawListBeginForScreen(screen: Int = 0, clearColor: Color = Color(Color(0, 0, 0, 1))):
       Long {
     TransferContext.writeArguments(LONG to screen.toLong(), COLOR to clearColor)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_BEGIN_FOR_SCREEN, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.drawListBeginForScreenPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -899,8 +853,7 @@ public open class RenderingDevice internal constructor() : Object() {
     storageTextures: VariantArray<RID> = godot.core.variantArrayOf(),
   ): Long {
     TransferContext.writeArguments(_RID to framebuffer, LONG to initialColorAction.id, LONG to finalColorAction.id, LONG to initialDepthAction.id, LONG to finalDepthAction.id, PACKED_COLOR_ARRAY to clearColorValues, DOUBLE to clearDepth.toDouble(), LONG to clearStencil, RECT2 to region, ARRAY to storageTextures)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_BEGIN,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.drawListBeginPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -922,8 +875,7 @@ public open class RenderingDevice internal constructor() : Object() {
     storageTextures: VariantArray<RID> = godot.core.variantArrayOf(),
   ): PackedInt64Array {
     TransferContext.writeArguments(_RID to framebuffer, LONG to splits, LONG to initialColorAction.id, LONG to finalColorAction.id, LONG to initialDepthAction.id, LONG to finalDepthAction.id, PACKED_COLOR_ARRAY to clearColorValues, DOUBLE to clearDepth.toDouble(), LONG to clearStencil, RECT2 to region, ARRAY to storageTextures)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_BEGIN_SPLIT, PACKED_INT_64_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.drawListBeginSplitPtr, PACKED_INT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
   }
 
@@ -932,8 +884,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun drawListSetBlendConstants(drawList: Long, color: Color): Unit {
     TransferContext.writeArguments(LONG to drawList, COLOR to color)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_SET_BLEND_CONSTANTS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.drawListSetBlendConstantsPtr, NIL)
   }
 
   /**
@@ -941,8 +892,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun drawListBindRenderPipeline(drawList: Long, renderPipeline: RID): Unit {
     TransferContext.writeArguments(LONG to drawList, _RID to renderPipeline)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_BIND_RENDER_PIPELINE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.drawListBindRenderPipelinePtr, NIL)
   }
 
   /**
@@ -954,8 +904,7 @@ public open class RenderingDevice internal constructor() : Object() {
     setIndex: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to drawList, _RID to uniformSet, LONG to setIndex)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_BIND_UNIFORM_SET, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.drawListBindUniformSetPtr, NIL)
   }
 
   /**
@@ -963,8 +912,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun drawListBindVertexArray(drawList: Long, vertexArray: RID): Unit {
     TransferContext.writeArguments(LONG to drawList, _RID to vertexArray)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_BIND_VERTEX_ARRAY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.drawListBindVertexArrayPtr, NIL)
   }
 
   /**
@@ -972,8 +920,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun drawListBindIndexArray(drawList: Long, indexArray: RID): Unit {
     TransferContext.writeArguments(LONG to drawList, _RID to indexArray)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_BIND_INDEX_ARRAY, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.drawListBindIndexArrayPtr, NIL)
   }
 
   /**
@@ -985,8 +932,7 @@ public open class RenderingDevice internal constructor() : Object() {
     sizeBytes: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to drawList, PACKED_BYTE_ARRAY to buffer, LONG to sizeBytes)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_SET_PUSH_CONSTANT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.drawListSetPushConstantPtr, NIL)
   }
 
   /**
@@ -1000,7 +946,7 @@ public open class RenderingDevice internal constructor() : Object() {
     proceduralVertexCount: Long = 0,
   ): Unit {
     TransferContext.writeArguments(LONG to drawList, BOOL to useIndices, LONG to instances, LONG to proceduralVertexCount)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_DRAW, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.drawListDrawPtr, NIL)
   }
 
   /**
@@ -1011,8 +957,7 @@ public open class RenderingDevice internal constructor() : Object() {
   @JvmOverloads
   public fun drawListEnableScissor(drawList: Long, rect: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0)): Unit {
     TransferContext.writeArguments(LONG to drawList, RECT2 to rect)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_ENABLE_SCISSOR, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.drawListEnableScissorPtr, NIL)
   }
 
   /**
@@ -1020,8 +965,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun drawListDisableScissor(drawList: Long): Unit {
     TransferContext.writeArguments(LONG to drawList)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_DISABLE_SCISSOR, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.drawListDisableScissorPtr, NIL)
   }
 
   /**
@@ -1029,8 +973,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun drawListSwitchToNextPass(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_SWITCH_TO_NEXT_PASS, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.drawListSwitchToNextPassPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -1039,8 +982,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun drawListSwitchToNextPassSplit(splits: Long): PackedInt64Array {
     TransferContext.writeArguments(LONG to splits)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_SWITCH_TO_NEXT_PASS_SPLIT,
+    TransferContext.callMethod(rawPtr, MethodBindings.drawListSwitchToNextPassSplitPtr,
         PACKED_INT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
   }
@@ -1052,7 +994,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun drawListEnd(postBarrier: BarrierMask =
       RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS): Unit {
     TransferContext.writeArguments(LONG to postBarrier.flag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_END, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.drawListEndPtr, NIL)
   }
 
   /**
@@ -1081,8 +1023,7 @@ public open class RenderingDevice internal constructor() : Object() {
   @JvmOverloads
   public fun computeListBegin(allowDrawOverlap: Boolean = false): Long {
     TransferContext.writeArguments(BOOL to allowDrawOverlap)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_COMPUTE_LIST_BEGIN,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.computeListBeginPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -1091,8 +1032,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun computeListBindComputePipeline(computeList: Long, computePipeline: RID): Unit {
     TransferContext.writeArguments(LONG to computeList, _RID to computePipeline)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_COMPUTE_LIST_BIND_COMPUTE_PIPELINE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.computeListBindComputePipelinePtr, NIL)
   }
 
   /**
@@ -1104,8 +1044,7 @@ public open class RenderingDevice internal constructor() : Object() {
     sizeBytes: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to computeList, PACKED_BYTE_ARRAY to buffer, LONG to sizeBytes)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_COMPUTE_LIST_SET_PUSH_CONSTANT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.computeListSetPushConstantPtr, NIL)
   }
 
   /**
@@ -1117,8 +1056,7 @@ public open class RenderingDevice internal constructor() : Object() {
     setIndex: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to computeList, _RID to uniformSet, LONG to setIndex)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_COMPUTE_LIST_BIND_UNIFORM_SET, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.computeListBindUniformSetPtr, NIL)
   }
 
   /**
@@ -1131,8 +1069,7 @@ public open class RenderingDevice internal constructor() : Object() {
     zGroups: Long,
   ): Unit {
     TransferContext.writeArguments(LONG to computeList, LONG to xGroups, LONG to yGroups, LONG to zGroups)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_COMPUTE_LIST_DISPATCH, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.computeListDispatchPtr, NIL)
   }
 
   /**
@@ -1140,8 +1077,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun computeListAddBarrier(computeList: Long): Unit {
     TransferContext.writeArguments(LONG to computeList)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_COMPUTE_LIST_ADD_BARRIER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.computeListAddBarrierPtr, NIL)
   }
 
   /**
@@ -1151,8 +1087,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun computeListEnd(postBarrier: BarrierMask =
       RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS): Unit {
     TransferContext.writeArguments(LONG to postBarrier.flag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_COMPUTE_LIST_END,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.computeListEndPtr, NIL)
   }
 
   /**
@@ -1160,7 +1095,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun freeRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FREE_RID, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.freeRidPtr, NIL)
   }
 
   /**
@@ -1168,8 +1103,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun captureTimestamp(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_CAPTURE_TIMESTAMP,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.captureTimestampPtr, NIL)
   }
 
   /**
@@ -1177,8 +1111,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun getCapturedTimestampsCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_GET_CAPTURED_TIMESTAMPS_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCapturedTimestampsCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -1187,8 +1120,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun getCapturedTimestampsFrame(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_GET_CAPTURED_TIMESTAMPS_FRAME, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCapturedTimestampsFramePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -1197,8 +1129,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun getCapturedTimestampGpuTime(index: Long): Long {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_GET_CAPTURED_TIMESTAMP_GPU_TIME, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCapturedTimestampGpuTimePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -1207,8 +1138,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun getCapturedTimestampCpuTime(index: Long): Long {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_GET_CAPTURED_TIMESTAMP_CPU_TIME, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCapturedTimestampCpuTimePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -1217,8 +1147,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun getCapturedTimestampName(index: Long): String {
     TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_GET_CAPTURED_TIMESTAMP_NAME, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCapturedTimestampNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -1229,7 +1158,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun limitGet(limit: Limit): Long {
     TransferContext.writeArguments(LONG to limit.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_LIMIT_GET, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.limitGetPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -1238,8 +1167,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun getFrameDelay(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_GET_FRAME_DELAY,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFrameDelayPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -1250,7 +1178,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun submit(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_SUBMIT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.submitPtr, NIL)
   }
 
   /**
@@ -1262,7 +1190,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun sync(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_SYNC, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.syncPtr, NIL)
   }
 
   /**
@@ -1272,7 +1200,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public fun barrier(from: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS,
       to: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS): Unit {
     TransferContext.writeArguments(LONG to from.flag, LONG to to.flag)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_BARRIER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.barrierPtr, NIL)
   }
 
   /**
@@ -1280,7 +1208,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun fullBarrier(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FULL_BARRIER, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.fullBarrierPtr, NIL)
   }
 
   /**
@@ -1288,8 +1216,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun createLocalDevice(): RenderingDevice? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_CREATE_LOCAL_DEVICE,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.createLocalDevicePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as RenderingDevice?)
   }
 
@@ -1302,8 +1229,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun setResourceName(id: RID, name: String): Unit {
     TransferContext.writeArguments(_RID to id, STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_SET_RESOURCE_NAME,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setResourceNamePtr, NIL)
   }
 
   /**
@@ -1313,8 +1239,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun drawCommandBeginLabel(name: String, color: Color): Unit {
     TransferContext.writeArguments(STRING to name, COLOR to color)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_COMMAND_BEGIN_LABEL, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.drawCommandBeginLabelPtr, NIL)
   }
 
   /**
@@ -1322,8 +1247,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun drawCommandInsertLabel(name: String, color: Color): Unit {
     TransferContext.writeArguments(STRING to name, COLOR to color)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_COMMAND_INSERT_LABEL, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.drawCommandInsertLabelPtr, NIL)
   }
 
   /**
@@ -1331,8 +1255,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun drawCommandEndLabel(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_COMMAND_END_LABEL, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.drawCommandEndLabelPtr, NIL)
   }
 
   /**
@@ -1340,8 +1263,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun getDeviceVendorName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_GET_DEVICE_VENDOR_NAME, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getDeviceVendorNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -1350,8 +1272,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun getDeviceName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_GET_DEVICE_NAME,
-        STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getDeviceNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -1360,8 +1281,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun getDevicePipelineCacheUuid(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_GET_DEVICE_PIPELINE_CACHE_UUID, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getDevicePipelineCacheUuidPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -1370,8 +1290,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public fun getMemoryUsage(type: MemoryType): Long {
     TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_GET_MEMORY_USAGE,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getMemoryUsagePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -1384,8 +1303,7 @@ public open class RenderingDevice internal constructor() : Object() {
     index: Long,
   ): Long {
     TransferContext.writeArguments(LONG to resource.id, _RID to rid, LONG to index)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_GET_DRIVER_RESOURCE,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getDriverResourcePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
@@ -3920,6 +3838,291 @@ public open class RenderingDevice internal constructor() : Object() {
      * Returned by functions that return a format ID if a value is invalid.
      */
     public final const val INVALID_FORMAT_ID: Long = -1
+  }
+
+  internal object MethodBindings {
+    public val textureCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "texture_create")
+
+    public val textureCreateSharedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "texture_create_shared")
+
+    public val textureCreateSharedFromSlicePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "texture_create_shared_from_slice")
+
+    public val textureCreateFromExtensionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "texture_create_from_extension")
+
+    public val textureUpdatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "texture_update")
+
+    public val textureGetDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "texture_get_data")
+
+    public val textureIsFormatSupportedForUsagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "texture_is_format_supported_for_usage")
+
+    public val textureIsSharedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "texture_is_shared")
+
+    public val textureIsValidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "texture_is_valid")
+
+    public val textureCopyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "texture_copy")
+
+    public val textureClearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "texture_clear")
+
+    public val textureResolveMultisamplePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "texture_resolve_multisample")
+
+    public val textureGetFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "texture_get_format")
+
+    public val textureGetNativeHandlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "texture_get_native_handle")
+
+    public val framebufferFormatCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "framebuffer_format_create")
+
+    public val framebufferFormatCreateMultipassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "framebuffer_format_create_multipass")
+
+    public val framebufferFormatCreateEmptyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "framebuffer_format_create_empty")
+
+    public val framebufferFormatGetTextureSamplesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "framebuffer_format_get_texture_samples")
+
+    public val framebufferCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "framebuffer_create")
+
+    public val framebufferCreateMultipassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "framebuffer_create_multipass")
+
+    public val framebufferCreateEmptyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "framebuffer_create_empty")
+
+    public val framebufferGetFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "framebuffer_get_format")
+
+    public val framebufferIsValidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "framebuffer_is_valid")
+
+    public val samplerCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "sampler_create")
+
+    public val samplerIsFormatSupportedForFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "sampler_is_format_supported_for_filter")
+
+    public val vertexBufferCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "vertex_buffer_create")
+
+    public val vertexFormatCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "vertex_format_create")
+
+    public val vertexArrayCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "vertex_array_create")
+
+    public val indexBufferCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "index_buffer_create")
+
+    public val indexArrayCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "index_array_create")
+
+    public val shaderCompileSpirvFromSourcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "shader_compile_spirv_from_source")
+
+    public val shaderCompileBinaryFromSpirvPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "shader_compile_binary_from_spirv")
+
+    public val shaderCreateFromSpirvPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "shader_create_from_spirv")
+
+    public val shaderCreateFromBytecodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "shader_create_from_bytecode")
+
+    public val shaderCreatePlaceholderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "shader_create_placeholder")
+
+    public val shaderGetVertexInputAttributeMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "shader_get_vertex_input_attribute_mask")
+
+    public val uniformBufferCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "uniform_buffer_create")
+
+    public val storageBufferCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "storage_buffer_create")
+
+    public val textureBufferCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "texture_buffer_create")
+
+    public val uniformSetCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "uniform_set_create")
+
+    public val uniformSetIsValidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "uniform_set_is_valid")
+
+    public val bufferUpdatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "buffer_update")
+
+    public val bufferClearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "buffer_clear")
+
+    public val bufferGetDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "buffer_get_data")
+
+    public val renderPipelineCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "render_pipeline_create")
+
+    public val renderPipelineIsValidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "render_pipeline_is_valid")
+
+    public val computePipelineCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "compute_pipeline_create")
+
+    public val computePipelineIsValidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "compute_pipeline_is_valid")
+
+    public val screenGetWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "screen_get_width")
+
+    public val screenGetHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "screen_get_height")
+
+    public val screenGetFramebufferFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "screen_get_framebuffer_format")
+
+    public val drawListBeginForScreenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_begin_for_screen")
+
+    public val drawListBeginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_begin")
+
+    public val drawListBeginSplitPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_begin_split")
+
+    public val drawListSetBlendConstantsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_set_blend_constants")
+
+    public val drawListBindRenderPipelinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_bind_render_pipeline")
+
+    public val drawListBindUniformSetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_bind_uniform_set")
+
+    public val drawListBindVertexArrayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_bind_vertex_array")
+
+    public val drawListBindIndexArrayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_bind_index_array")
+
+    public val drawListSetPushConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_set_push_constant")
+
+    public val drawListDrawPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_draw")
+
+    public val drawListEnableScissorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_enable_scissor")
+
+    public val drawListDisableScissorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_disable_scissor")
+
+    public val drawListSwitchToNextPassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_switch_to_next_pass")
+
+    public val drawListSwitchToNextPassSplitPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_switch_to_next_pass_split")
+
+    public val drawListEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_end")
+
+    public val computeListBeginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "compute_list_begin")
+
+    public val computeListBindComputePipelinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "compute_list_bind_compute_pipeline")
+
+    public val computeListSetPushConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "compute_list_set_push_constant")
+
+    public val computeListBindUniformSetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "compute_list_bind_uniform_set")
+
+    public val computeListDispatchPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "compute_list_dispatch")
+
+    public val computeListAddBarrierPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "compute_list_add_barrier")
+
+    public val computeListEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "compute_list_end")
+
+    public val freeRidPtr: VoidPtr = TypeManager.getMethodBindPtr("RenderingDevice", "free_rid")
+
+    public val captureTimestampPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "capture_timestamp")
+
+    public val getCapturedTimestampsCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_captured_timestamps_count")
+
+    public val getCapturedTimestampsFramePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_captured_timestamps_frame")
+
+    public val getCapturedTimestampGpuTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_captured_timestamp_gpu_time")
+
+    public val getCapturedTimestampCpuTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_captured_timestamp_cpu_time")
+
+    public val getCapturedTimestampNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_captured_timestamp_name")
+
+    public val limitGetPtr: VoidPtr = TypeManager.getMethodBindPtr("RenderingDevice", "limit_get")
+
+    public val getFrameDelayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_frame_delay")
+
+    public val submitPtr: VoidPtr = TypeManager.getMethodBindPtr("RenderingDevice", "submit")
+
+    public val syncPtr: VoidPtr = TypeManager.getMethodBindPtr("RenderingDevice", "sync")
+
+    public val barrierPtr: VoidPtr = TypeManager.getMethodBindPtr("RenderingDevice", "barrier")
+
+    public val fullBarrierPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "full_barrier")
+
+    public val createLocalDevicePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "create_local_device")
+
+    public val setResourceNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "set_resource_name")
+
+    public val drawCommandBeginLabelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "draw_command_begin_label")
+
+    public val drawCommandInsertLabelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "draw_command_insert_label")
+
+    public val drawCommandEndLabelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "draw_command_end_label")
+
+    public val getDeviceVendorNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_device_vendor_name")
+
+    public val getDeviceNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_device_name")
+
+    public val getDevicePipelineCacheUuidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_device_pipeline_cache_uuid")
+
+    public val getMemoryUsagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_memory_usage")
+
+    public val getDriverResourcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_driver_resource")
   }
 }
 

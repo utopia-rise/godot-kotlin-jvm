@@ -70,12 +70,12 @@ public open class Line2D : Node2D() {
   public var closed: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_IS_CLOSED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isClosedPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_CLOSED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setClosedPtr, NIL)
     }
 
   /**
@@ -432,6 +432,10 @@ public open class Line2D : Node2D() {
     public val removePointPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "remove_point")
 
     public val clearPointsPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "clear_points")
+
+    public val setClosedPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "set_closed")
+
+    public val isClosedPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "is_closed")
 
     public val setWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "set_width")
 

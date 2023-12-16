@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -34,8 +36,13 @@ public open class RenderSceneBuffers internal constructor() : RefCounted() {
    */
   public fun configure(config: RenderSceneBuffersConfiguration): Unit {
     TransferContext.writeArguments(OBJECT to config)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERSCENEBUFFERS_CONFIGURE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.configurePtr, NIL)
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val configurePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffers", "configure")
+  }
 }

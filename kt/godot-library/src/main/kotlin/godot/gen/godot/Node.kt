@@ -1213,7 +1213,7 @@ public open class Node : Object() {
    */
   public fun getTreeString(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_TREE_STRING, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getTreeStringPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -1233,7 +1233,7 @@ public open class Node : Object() {
    */
   public fun getTreeStringPretty(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_TREE_STRING_PRETTY, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getTreeStringPrettyPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -2294,6 +2294,11 @@ public open class Node : Object() {
 
     public val printTreePrettyPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "print_tree_pretty")
+
+    public val getTreeStringPtr: VoidPtr = TypeManager.getMethodBindPtr("Node", "get_tree_string")
+
+    public val getTreeStringPrettyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node", "get_tree_string_pretty")
 
     public val setSceneFilePathPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "set_scene_file_path")

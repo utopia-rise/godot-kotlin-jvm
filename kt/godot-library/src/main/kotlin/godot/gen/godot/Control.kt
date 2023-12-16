@@ -1412,8 +1412,7 @@ public open class Control : CanvasItem() {
    */
   public fun findValidFocusNeighbor(side: Side): Control? {
     TransferContext.writeArguments(LONG to side.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_FIND_VALID_FOCUS_NEIGHBOR,
-        OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.findValidFocusNeighborPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Control?)
   }
 
@@ -2740,6 +2739,9 @@ public open class Control : CanvasItem() {
 
     public val findNextValidFocusPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "find_next_valid_focus")
+
+    public val findValidFocusNeighborPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "find_valid_focus_neighbor")
 
     public val setHSizeFlagsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "set_h_size_flags")

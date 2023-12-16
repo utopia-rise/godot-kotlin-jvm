@@ -1110,7 +1110,7 @@ public object OS : Object() {
    */
   public fun isSandboxed(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_IS_SANDBOXED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isSandboxedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -1150,7 +1150,7 @@ public object OS : Object() {
    */
   public fun revokeGrantedPermissions(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_REVOKE_GRANTED_PERMISSIONS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.revokeGrantedPermissionsPtr, NIL)
   }
 
   public enum class RenderingDriver(
@@ -1386,6 +1386,8 @@ public object OS : Object() {
 
     public val hasFeaturePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "has_feature")
 
+    public val isSandboxedPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "is_sandboxed")
+
     public val requestPermissionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OS", "request_permission")
 
@@ -1394,5 +1396,8 @@ public object OS : Object() {
 
     public val getGrantedPermissionsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OS", "get_granted_permissions")
+
+    public val revokeGrantedPermissionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "revoke_granted_permissions")
   }
 }

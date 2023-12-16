@@ -8,9 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
+import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType._RID
 import godot.core.memory.TransferContext
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -28,14 +30,12 @@ public open class Texture2DRD : Texture2D() {
   public var textureRdRid: RID
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2DRD_GET_TEXTURE_RD_RID,
-          _RID)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextureRdRidPtr, _RID)
       return (TransferContext.readReturnValue(_RID, false) as RID)
     }
     set(`value`) {
       TransferContext.writeArguments(_RID to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE2DRD_SET_TEXTURE_RD_RID,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextureRdRidPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -44,4 +44,12 @@ public open class Texture2DRD : Texture2D() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setTextureRdRidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Texture2DRD", "set_texture_rd_rid")
+
+    public val getTextureRdRidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Texture2DRD", "get_texture_rd_rid")
+  }
 }

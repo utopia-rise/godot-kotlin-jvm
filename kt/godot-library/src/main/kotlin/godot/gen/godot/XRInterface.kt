@@ -87,8 +87,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   public val environmentBlendMode: EnvironmentBlendMode
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_ENVIRONMENT_BLEND_MODE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentBlendModePtr, LONG)
       return XRInterface.EnvironmentBlendMode.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
@@ -575,5 +574,8 @@ public open class XRInterface internal constructor() : RefCounted() {
 
     public val setEnvironmentBlendModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("XRInterface", "set_environment_blend_mode")
+
+    public val getEnvironmentBlendModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRInterface", "get_environment_blend_mode")
   }
 }

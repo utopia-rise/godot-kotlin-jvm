@@ -79,6 +79,9 @@ public open class SubViewportContainer : Container() {
   public companion object
 
   internal object MethodBindings {
+    public val _propagateInputEventPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SubViewportContainer", "_propagate_input_event")
+
     public val setStretchPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SubViewportContainer", "set_stretch")
 

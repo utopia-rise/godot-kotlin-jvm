@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
+import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.LONG
@@ -20,6 +21,7 @@ import godot.core.Vector2i
 import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -52,12 +54,12 @@ public open class GraphNode : GraphElement() {
   public var title: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_TITLE, STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_TITLE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTitlePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -81,7 +83,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun getTitlebarHbox(): HBoxContainer? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_TITLEBAR_HBOX, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getTitlebarHboxPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as HBoxContainer?)
   }
 
@@ -114,7 +116,7 @@ public open class GraphNode : GraphElement() {
     drawStylebox: Boolean = true,
   ): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), BOOL to enableLeftPort, LONG to typeLeft.toLong(), COLOR to colorLeft, BOOL to enableRightPort, LONG to typeRight.toLong(), COLOR to colorRight, OBJECT to customIconLeft, OBJECT to customIconRight, BOOL to drawStylebox)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SLOT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSlotPtr, NIL)
   }
 
   /**
@@ -122,7 +124,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun clearSlot(slotIndex: Int): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_CLEAR_SLOT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearSlotPtr, NIL)
   }
 
   /**
@@ -130,7 +132,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun clearAllSlots(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_CLEAR_ALL_SLOTS, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearAllSlotsPtr, NIL)
   }
 
   /**
@@ -138,8 +140,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun isSlotEnabledLeft(slotIndex: Int): Boolean {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_IS_SLOT_ENABLED_LEFT,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isSlotEnabledLeftPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -148,8 +149,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun setSlotEnabledLeft(slotIndex: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SLOT_ENABLED_LEFT,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSlotEnabledLeftPtr, NIL)
   }
 
   /**
@@ -157,7 +157,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun setSlotTypeLeft(slotIndex: Int, type: Int): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), LONG to type.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SLOT_TYPE_LEFT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSlotTypeLeftPtr, NIL)
   }
 
   /**
@@ -165,7 +165,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun getSlotTypeLeft(slotIndex: Int): Int {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_SLOT_TYPE_LEFT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSlotTypeLeftPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -174,7 +174,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun setSlotColorLeft(slotIndex: Int, color: Color): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SLOT_COLOR_LEFT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSlotColorLeftPtr, NIL)
   }
 
   /**
@@ -182,8 +182,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun getSlotColorLeft(slotIndex: Int): Color {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_SLOT_COLOR_LEFT,
-        COLOR)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSlotColorLeftPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
@@ -192,8 +191,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun isSlotEnabledRight(slotIndex: Int): Boolean {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_IS_SLOT_ENABLED_RIGHT,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isSlotEnabledRightPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -202,8 +200,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun setSlotEnabledRight(slotIndex: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SLOT_ENABLED_RIGHT,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSlotEnabledRightPtr, NIL)
   }
 
   /**
@@ -211,7 +208,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun setSlotTypeRight(slotIndex: Int, type: Int): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), LONG to type.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SLOT_TYPE_RIGHT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSlotTypeRightPtr, NIL)
   }
 
   /**
@@ -219,7 +216,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun getSlotTypeRight(slotIndex: Int): Int {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_SLOT_TYPE_RIGHT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSlotTypeRightPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -228,7 +225,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun setSlotColorRight(slotIndex: Int, color: Color): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), COLOR to color)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SLOT_COLOR_RIGHT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSlotColorRightPtr, NIL)
   }
 
   /**
@@ -236,8 +233,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun getSlotColorRight(slotIndex: Int): Color {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_SLOT_COLOR_RIGHT,
-        COLOR)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSlotColorRightPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
@@ -246,8 +242,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun isSlotDrawStylebox(slotIndex: Int): Boolean {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_IS_SLOT_DRAW_STYLEBOX,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isSlotDrawStyleboxPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -256,8 +251,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun setSlotDrawStylebox(slotIndex: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SLOT_DRAW_STYLEBOX,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSlotDrawStyleboxPtr, NIL)
   }
 
   /**
@@ -265,8 +259,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun getInputPortCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_INPUT_PORT_COUNT,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getInputPortCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -275,8 +268,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun getInputPortPosition(portIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to portIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_INPUT_PORT_POSITION,
-        VECTOR2)
+    TransferContext.callMethod(rawPtr, MethodBindings.getInputPortPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
@@ -285,7 +277,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun getInputPortType(portIdx: Int): Int {
     TransferContext.writeArguments(LONG to portIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_INPUT_PORT_TYPE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getInputPortTypePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -294,8 +286,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun getInputPortColor(portIdx: Int): Color {
     TransferContext.writeArguments(LONG to portIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_INPUT_PORT_COLOR,
-        COLOR)
+    TransferContext.callMethod(rawPtr, MethodBindings.getInputPortColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
@@ -304,7 +295,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun getInputPortSlot(portIdx: Int): Int {
     TransferContext.writeArguments(LONG to portIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_INPUT_PORT_SLOT, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getInputPortSlotPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -313,8 +304,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun getOutputPortCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_OUTPUT_PORT_COUNT,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getOutputPortCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -323,8 +313,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun getOutputPortPosition(portIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to portIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_OUTPUT_PORT_POSITION,
-        VECTOR2)
+    TransferContext.callMethod(rawPtr, MethodBindings.getOutputPortPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
@@ -333,8 +322,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun getOutputPortType(portIdx: Int): Int {
     TransferContext.writeArguments(LONG to portIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_OUTPUT_PORT_TYPE,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getOutputPortTypePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -343,8 +331,7 @@ public open class GraphNode : GraphElement() {
    */
   public fun getOutputPortColor(portIdx: Int): Color {
     TransferContext.writeArguments(LONG to portIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_OUTPUT_PORT_COLOR,
-        COLOR)
+    TransferContext.callMethod(rawPtr, MethodBindings.getOutputPortColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
@@ -353,10 +340,99 @@ public open class GraphNode : GraphElement() {
    */
   public fun getOutputPortSlot(portIdx: Int): Int {
     TransferContext.writeArguments(LONG to portIdx.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_GET_OUTPUT_PORT_SLOT,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getOutputPortSlotPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val _drawPortPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphNode", "_draw_port")
+
+    public val setTitlePtr: VoidPtr = TypeManager.getMethodBindPtr("GraphNode", "set_title")
+
+    public val getTitlePtr: VoidPtr = TypeManager.getMethodBindPtr("GraphNode", "get_title")
+
+    public val getTitlebarHboxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "get_titlebar_hbox")
+
+    public val setSlotPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphNode", "set_slot")
+
+    public val clearSlotPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphNode", "clear_slot")
+
+    public val clearAllSlotsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "clear_all_slots")
+
+    public val isSlotEnabledLeftPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "is_slot_enabled_left")
+
+    public val setSlotEnabledLeftPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_enabled_left")
+
+    public val setSlotTypeLeftPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_type_left")
+
+    public val getSlotTypeLeftPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "get_slot_type_left")
+
+    public val setSlotColorLeftPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_color_left")
+
+    public val getSlotColorLeftPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "get_slot_color_left")
+
+    public val isSlotEnabledRightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "is_slot_enabled_right")
+
+    public val setSlotEnabledRightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_enabled_right")
+
+    public val setSlotTypeRightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_type_right")
+
+    public val getSlotTypeRightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "get_slot_type_right")
+
+    public val setSlotColorRightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_color_right")
+
+    public val getSlotColorRightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "get_slot_color_right")
+
+    public val isSlotDrawStyleboxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "is_slot_draw_stylebox")
+
+    public val setSlotDrawStyleboxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_draw_stylebox")
+
+    public val getInputPortCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_count")
+
+    public val getInputPortPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_position")
+
+    public val getInputPortTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_type")
+
+    public val getInputPortColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_color")
+
+    public val getInputPortSlotPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_slot")
+
+    public val getOutputPortCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_count")
+
+    public val getOutputPortPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_position")
+
+    public val getOutputPortTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_type")
+
+    public val getOutputPortColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_color")
+
+    public val getOutputPortSlotPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_slot")
+  }
 }

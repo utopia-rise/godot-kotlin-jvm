@@ -45,8 +45,8 @@ public object Geometry3D : Object() {
    */
   public fun computeConvexMeshPoints(planes: VariantArray<Plane>): PackedVector3Array {
     TransferContext.writeArguments(ARRAY to planes)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_COMPUTE_CONVEX_MESH_POINTS, PACKED_VECTOR3_ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.computeConvexMeshPointsPtr,
+        PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
@@ -143,8 +143,7 @@ public object Geometry3D : Object() {
     c: Vector3,
   ): Vector3 {
     TransferContext.writeArguments(VECTOR3 to point, VECTOR3 to a, VECTOR3 to b, VECTOR3 to c)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GEOMETRY3D_GET_TRIANGLE_BARYCENTRIC_COORDS, VECTOR3)
+    TransferContext.callMethod(rawPtr, MethodBindings.getTriangleBarycentricCoordsPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
@@ -232,6 +231,9 @@ public object Geometry3D : Object() {
   }
 
   internal object MethodBindings {
+    public val computeConvexMeshPointsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Geometry3D", "compute_convex_mesh_points")
+
     public val buildBoxPlanesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Geometry3D", "build_box_planes")
 
@@ -249,6 +251,9 @@ public object Geometry3D : Object() {
 
     public val getClosestPointToSegmentUncappedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Geometry3D", "get_closest_point_to_segment_uncapped")
+
+    public val getTriangleBarycentricCoordsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Geometry3D", "get_triangle_barycentric_coords")
 
     public val rayIntersectsTrianglePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Geometry3D", "ray_intersects_triangle")

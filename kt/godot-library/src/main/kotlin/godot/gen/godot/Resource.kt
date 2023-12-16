@@ -196,6 +196,9 @@ public open class Resource : RefCounted() {
   public companion object
 
   internal object MethodBindings {
+    public val _setupLocalToScenePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Resource", "_setup_local_to_scene")
+
     public val setPathPtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "set_path")
 
     public val takeOverPathPtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "take_over_path")

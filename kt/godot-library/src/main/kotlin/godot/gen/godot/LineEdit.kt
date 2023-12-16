@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -18,6 +19,7 @@ import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -101,12 +103,12 @@ public open class LineEdit : Control() {
   public var text: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_TEXT, STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_TEXT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
     }
 
   /**
@@ -115,12 +117,12 @@ public open class LineEdit : Control() {
   public var placeholderText: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_PLACEHOLDER, STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getPlaceholderPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_PLACEHOLDER, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPlaceholderPtr, NIL)
     }
 
   /**
@@ -129,14 +131,12 @@ public open class LineEdit : Control() {
   public var alignment: HorizontalAlignment
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_HORIZONTAL_ALIGNMENT,
-          LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
       return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_HORIZONTAL_ALIGNMENT,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
     }
 
   /**
@@ -189,12 +189,12 @@ public open class LineEdit : Control() {
   public var maxLength: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_MAX_LENGTH, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getMaxLengthPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_MAX_LENGTH, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMaxLengthPtr, NIL)
     }
 
   /**
@@ -203,12 +203,12 @@ public open class LineEdit : Control() {
   public var editable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_EDITABLE, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isEditablePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_EDITABLE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEditablePtr, NIL)
     }
 
   /**
@@ -217,14 +217,12 @@ public open class LineEdit : Control() {
   public var expandToTextLength: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_EXPAND_TO_TEXT_LENGTH_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isExpandToTextLengthEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_EXPAND_TO_TEXT_LENGTH_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setExpandToTextLengthEnabledPtr, NIL)
     }
 
   /**
@@ -233,14 +231,12 @@ public open class LineEdit : Control() {
   public var contextMenuEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_CONTEXT_MENU_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isContextMenuEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_CONTEXT_MENU_ENABLED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setContextMenuEnabledPtr, NIL)
     }
 
   /**
@@ -249,14 +245,12 @@ public open class LineEdit : Control() {
   public var virtualKeyboardEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_VIRTUAL_KEYBOARD_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isVirtualKeyboardEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_VIRTUAL_KEYBOARD_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVirtualKeyboardEnabledPtr, NIL)
     }
 
   /**
@@ -265,14 +259,12 @@ public open class LineEdit : Control() {
   public var virtualKeyboardType: VirtualKeyboardType
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_VIRTUAL_KEYBOARD_TYPE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getVirtualKeyboardTypePtr, LONG)
       return LineEdit.VirtualKeyboardType.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_VIRTUAL_KEYBOARD_TYPE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVirtualKeyboardTypePtr, NIL)
     }
 
   /**
@@ -281,14 +273,12 @@ public open class LineEdit : Control() {
   public var clearButtonEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_CLEAR_BUTTON_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isClearButtonEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_CLEAR_BUTTON_ENABLED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setClearButtonEnabledPtr, NIL)
     }
 
   /**
@@ -297,14 +287,12 @@ public open class LineEdit : Control() {
   public var shortcutKeysEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_SHORTCUT_KEYS_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isShortcutKeysEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_SHORTCUT_KEYS_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShortcutKeysEnabledPtr, NIL)
     }
 
   /**
@@ -315,14 +303,12 @@ public open class LineEdit : Control() {
   public var middleMousePasteEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_MIDDLE_MOUSE_PASTE_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isMiddleMousePasteEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_MIDDLE_MOUSE_PASTE_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setMiddleMousePasteEnabledPtr, NIL)
     }
 
   /**
@@ -331,14 +317,12 @@ public open class LineEdit : Control() {
   public var selectingEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_SELECTING_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isSelectingEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_SELECTING_ENABLED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSelectingEnabledPtr, NIL)
     }
 
   /**
@@ -347,14 +331,12 @@ public open class LineEdit : Control() {
   public var deselectOnFocusLossEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_DESELECT_ON_FOCUS_LOSS_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isDeselectOnFocusLossEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_DESELECT_ON_FOCUS_LOSS_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDeselectOnFocusLossEnabledPtr, NIL)
     }
 
   /**
@@ -363,14 +345,12 @@ public open class LineEdit : Control() {
   public var dragAndDropSelectionEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_DRAG_AND_DROP_SELECTION_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isDragAndDropSelectionEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_DRAG_AND_DROP_SELECTION_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDragAndDropSelectionEnabledPtr, NIL)
     }
 
   /**
@@ -379,12 +359,12 @@ public open class LineEdit : Control() {
   public var rightIcon: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_RIGHT_ICON, OBJECT)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRightIconPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_RIGHT_ICON, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRightIconPtr, NIL)
     }
 
   /**
@@ -393,12 +373,12 @@ public open class LineEdit : Control() {
   public var flat: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_FLAT, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isFlatPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_FLAT, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFlatPtr, NIL)
     }
 
   /**
@@ -407,14 +387,12 @@ public open class LineEdit : Control() {
   public var drawControlChars: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_DRAW_CONTROL_CHARS,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDrawControlCharsPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_DRAW_CONTROL_CHARS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDrawControlCharsPtr, NIL)
     }
 
   /**
@@ -423,14 +401,12 @@ public open class LineEdit : Control() {
   public var selectAllOnFocus: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_SELECT_ALL_ON_FOCUS,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isSelectAllOnFocusPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_SELECT_ALL_ON_FOCUS,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSelectAllOnFocusPtr, NIL)
     }
 
   /**
@@ -439,14 +415,12 @@ public open class LineEdit : Control() {
   public var caretBlink: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_CARET_BLINK_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isCaretBlinkEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_CARET_BLINK_ENABLED,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCaretBlinkEnabledPtr, NIL)
     }
 
   /**
@@ -455,14 +429,12 @@ public open class LineEdit : Control() {
   public var caretBlinkInterval: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_CARET_BLINK_INTERVAL,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCaretBlinkIntervalPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_CARET_BLINK_INTERVAL,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCaretBlinkIntervalPtr, NIL)
     }
 
   /**
@@ -471,12 +443,12 @@ public open class LineEdit : Control() {
   public var caretColumn: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_CARET_COLUMN, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getCaretColumnPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_CARET_COLUMN, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCaretColumnPtr, NIL)
     }
 
   /**
@@ -485,14 +457,12 @@ public open class LineEdit : Control() {
   public var caretForceDisplayed: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_CARET_FORCE_DISPLAYED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isCaretForceDisplayedPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_CARET_FORCE_DISPLAYED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCaretForceDisplayedPtr, NIL)
     }
 
   /**
@@ -503,14 +473,12 @@ public open class LineEdit : Control() {
   public var caretMidGrapheme: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_CARET_MID_GRAPHEME_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isCaretMidGraphemeEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_CARET_MID_GRAPHEME_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCaretMidGraphemeEnabledPtr, NIL)
     }
 
   /**
@@ -519,12 +487,12 @@ public open class LineEdit : Control() {
   public var secret: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_SECRET, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.isSecretPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_SECRET, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSecretPtr, NIL)
     }
 
   /**
@@ -533,14 +501,12 @@ public open class LineEdit : Control() {
   public var secretCharacter: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SECRET_CHARACTER,
-          STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getSecretCharacterPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_SECRET_CHARACTER,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSecretCharacterPtr, NIL)
     }
 
   /**
@@ -549,12 +515,12 @@ public open class LineEdit : Control() {
   public var textDirection: Control.TextDirection
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_TEXT_DIRECTION, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
       return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_TEXT_DIRECTION, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
     }
 
   /**
@@ -563,12 +529,12 @@ public open class LineEdit : Control() {
   public var language: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_LANGUAGE, STRING)
+      TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_LANGUAGE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
     }
 
   /**
@@ -577,14 +543,12 @@ public open class LineEdit : Control() {
   public var structuredTextBidiOverride: TextServer.StructuredTextParser
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_STRUCTURED_TEXT_BIDI_OVERRIDE, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
       return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_STRUCTURED_TEXT_BIDI_OVERRIDE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
     }
 
   /**
@@ -593,14 +557,14 @@ public open class LineEdit : Control() {
   public var structuredTextBidiOverrideOptions: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, ARRAY)
+      TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
+          ARRAY)
       return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_STRUCTURED_TEXT_BIDI_OVERRIDE_OPTIONS, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr,
+          NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -613,7 +577,7 @@ public open class LineEdit : Control() {
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_CLEAR, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   /**
@@ -650,7 +614,7 @@ public open class LineEdit : Control() {
   @JvmOverloads
   public fun select(from: Int = 0, to: Int = -1): Unit {
     TransferContext.writeArguments(LONG to from.toLong(), LONG to to.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SELECT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.selectPtr, NIL)
   }
 
   /**
@@ -658,7 +622,7 @@ public open class LineEdit : Control() {
    */
   public fun selectAll(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SELECT_ALL, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.selectAllPtr, NIL)
   }
 
   /**
@@ -666,7 +630,7 @@ public open class LineEdit : Control() {
    */
   public fun deselect(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_DESELECT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.deselectPtr, NIL)
   }
 
   /**
@@ -674,7 +638,7 @@ public open class LineEdit : Control() {
    */
   public fun hasSelection(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_HAS_SELECTION, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.hasSelectionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -683,7 +647,7 @@ public open class LineEdit : Control() {
    */
   public fun getSelectedText(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SELECTED_TEXT, STRING)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSelectedTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -692,8 +656,7 @@ public open class LineEdit : Control() {
    */
   public fun getSelectionFromColumn(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SELECTION_FROM_COLUMN,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSelectionFromColumnPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -702,8 +665,7 @@ public open class LineEdit : Control() {
    */
   public fun getSelectionToColumn(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SELECTION_TO_COLUMN,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSelectionToColumnPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -712,7 +674,7 @@ public open class LineEdit : Control() {
    */
   public fun getScrollOffset(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SCROLL_OFFSET, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getScrollOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -721,7 +683,7 @@ public open class LineEdit : Control() {
    */
   public fun insertTextAtCaret(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_INSERT_TEXT_AT_CARET, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.insertTextAtCaretPtr, NIL)
   }
 
   /**
@@ -729,7 +691,7 @@ public open class LineEdit : Control() {
    */
   public fun deleteCharAtCaret(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_DELETE_CHAR_AT_CARET, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.deleteCharAtCaretPtr, NIL)
   }
 
   /**
@@ -737,7 +699,7 @@ public open class LineEdit : Control() {
    */
   public fun deleteText(fromColumn: Int, toColumn: Int): Unit {
     TransferContext.writeArguments(LONG to fromColumn.toLong(), LONG to toColumn.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_DELETE_TEXT, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.deleteTextPtr, NIL)
   }
 
   /**
@@ -745,7 +707,7 @@ public open class LineEdit : Control() {
    */
   public fun menuOption(option: Int): Unit {
     TransferContext.writeArguments(LONG to option.toLong())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_MENU_OPTION, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.menuOptionPtr, NIL)
   }
 
   /**
@@ -833,7 +795,7 @@ public open class LineEdit : Control() {
    */
   public fun getMenu(): PopupMenu? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_MENU, OBJECT)
+    TransferContext.callMethod(rawPtr, MethodBindings.getMenuPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PopupMenu?)
   }
 
@@ -842,7 +804,7 @@ public open class LineEdit : Control() {
    */
   public fun isMenuVisible(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_IS_MENU_VISIBLE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isMenuVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -1037,4 +999,209 @@ public open class LineEdit : Control() {
   }
 
   public companion object
+
+  internal object MethodBindings {
+    public val setHorizontalAlignmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_horizontal_alignment")
+
+    public val getHorizontalAlignmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "get_horizontal_alignment")
+
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "clear")
+
+    public val selectPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "select")
+
+    public val selectAllPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "select_all")
+
+    public val deselectPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "deselect")
+
+    public val hasSelectionPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "has_selection")
+
+    public val getSelectedTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "get_selected_text")
+
+    public val getSelectionFromColumnPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "get_selection_from_column")
+
+    public val getSelectionToColumnPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "get_selection_to_column")
+
+    public val setTextPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "set_text")
+
+    public val getTextPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "get_text")
+
+    public val getDrawControlCharsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "get_draw_control_chars")
+
+    public val setDrawControlCharsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_draw_control_chars")
+
+    public val setTextDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_text_direction")
+
+    public val getTextDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "get_text_direction")
+
+    public val setLanguagePtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "set_language")
+
+    public val getLanguagePtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "get_language")
+
+    public val setStructuredTextBidiOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_structured_text_bidi_override")
+
+    public val getStructuredTextBidiOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "get_structured_text_bidi_override")
+
+    public val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_structured_text_bidi_override_options")
+
+    public val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "get_structured_text_bidi_override_options")
+
+    public val setPlaceholderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_placeholder")
+
+    public val getPlaceholderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "get_placeholder")
+
+    public val setCaretColumnPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_caret_column")
+
+    public val getCaretColumnPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "get_caret_column")
+
+    public val getScrollOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "get_scroll_offset")
+
+    public val setExpandToTextLengthEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_expand_to_text_length_enabled")
+
+    public val isExpandToTextLengthEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "is_expand_to_text_length_enabled")
+
+    public val setCaretBlinkEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_caret_blink_enabled")
+
+    public val isCaretBlinkEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "is_caret_blink_enabled")
+
+    public val setCaretMidGraphemeEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_caret_mid_grapheme_enabled")
+
+    public val isCaretMidGraphemeEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "is_caret_mid_grapheme_enabled")
+
+    public val setCaretForceDisplayedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_caret_force_displayed")
+
+    public val isCaretForceDisplayedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "is_caret_force_displayed")
+
+    public val setCaretBlinkIntervalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_caret_blink_interval")
+
+    public val getCaretBlinkIntervalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "get_caret_blink_interval")
+
+    public val setMaxLengthPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "set_max_length")
+
+    public val getMaxLengthPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "get_max_length")
+
+    public val insertTextAtCaretPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "insert_text_at_caret")
+
+    public val deleteCharAtCaretPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "delete_char_at_caret")
+
+    public val deleteTextPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "delete_text")
+
+    public val setEditablePtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "set_editable")
+
+    public val isEditablePtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "is_editable")
+
+    public val setSecretPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "set_secret")
+
+    public val isSecretPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "is_secret")
+
+    public val setSecretCharacterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_secret_character")
+
+    public val getSecretCharacterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "get_secret_character")
+
+    public val menuOptionPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "menu_option")
+
+    public val getMenuPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "get_menu")
+
+    public val isMenuVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "is_menu_visible")
+
+    public val setContextMenuEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_context_menu_enabled")
+
+    public val isContextMenuEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "is_context_menu_enabled")
+
+    public val setVirtualKeyboardEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_virtual_keyboard_enabled")
+
+    public val isVirtualKeyboardEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "is_virtual_keyboard_enabled")
+
+    public val setVirtualKeyboardTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_virtual_keyboard_type")
+
+    public val getVirtualKeyboardTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "get_virtual_keyboard_type")
+
+    public val setClearButtonEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_clear_button_enabled")
+
+    public val isClearButtonEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "is_clear_button_enabled")
+
+    public val setShortcutKeysEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_shortcut_keys_enabled")
+
+    public val isShortcutKeysEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "is_shortcut_keys_enabled")
+
+    public val setMiddleMousePasteEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_middle_mouse_paste_enabled")
+
+    public val isMiddleMousePasteEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "is_middle_mouse_paste_enabled")
+
+    public val setSelectingEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_selecting_enabled")
+
+    public val isSelectingEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "is_selecting_enabled")
+
+    public val setDeselectOnFocusLossEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_deselect_on_focus_loss_enabled")
+
+    public val isDeselectOnFocusLossEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "is_deselect_on_focus_loss_enabled")
+
+    public val setDragAndDropSelectionEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_drag_and_drop_selection_enabled")
+
+    public val isDragAndDropSelectionEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "is_drag_and_drop_selection_enabled")
+
+    public val setRightIconPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "set_right_icon")
+
+    public val getRightIconPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "get_right_icon")
+
+    public val setFlatPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "set_flat")
+
+    public val isFlatPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "is_flat")
+
+    public val setSelectAllOnFocusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_select_all_on_focus")
+
+    public val isSelectAllOnFocusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "is_select_all_on_focus")
+  }
 }

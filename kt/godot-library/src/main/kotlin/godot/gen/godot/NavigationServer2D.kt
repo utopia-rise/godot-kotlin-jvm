@@ -288,8 +288,7 @@ public object NavigationServer2D : Object() {
    */
   public fun regionSetEnabled(region: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to region, BOOL to enabled)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_REGION_SET_ENABLED, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.regionSetEnabledPtr, NIL)
   }
 
   /**
@@ -297,8 +296,7 @@ public object NavigationServer2D : Object() {
    */
   public fun regionGetEnabled(region: RID): Boolean {
     TransferContext.writeArguments(_RID to region)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_REGION_GET_ENABLED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.regionGetEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -491,8 +489,7 @@ public object NavigationServer2D : Object() {
    */
   public fun linkSetEnabled(link: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to link, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_LINK_SET_ENABLED,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.linkSetEnabledPtr, NIL)
   }
 
   /**
@@ -500,8 +497,7 @@ public object NavigationServer2D : Object() {
    */
   public fun linkGetEnabled(link: RID): Boolean {
     TransferContext.writeArguments(_RID to link)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_LINK_GET_ENABLED,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.linkGetEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -916,8 +912,7 @@ public object NavigationServer2D : Object() {
     callback: Callable = Callable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationPolygon, OBJECT to sourceGeometryData, OBJECT to rootNode, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_PARSE_SOURCE_GEOMETRY_DATA, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.parseSourceGeometryDataPtr, NIL)
   }
 
   /**
@@ -930,8 +925,7 @@ public object NavigationServer2D : Object() {
     callback: Callable = Callable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationPolygon, OBJECT to sourceGeometryData, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_BAKE_FROM_SOURCE_GEOMETRY_DATA, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.bakeFromSourceGeometryDataPtr, NIL)
   }
 
   /**
@@ -944,8 +938,7 @@ public object NavigationServer2D : Object() {
     callback: Callable = Callable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationPolygon, OBJECT to sourceGeometryData, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATIONSERVER2D_BAKE_FROM_SOURCE_GEOMETRY_DATA_ASYNC, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.bakeFromSourceGeometryDataAsyncPtr, NIL)
   }
 
   /**
@@ -1039,6 +1032,12 @@ public object NavigationServer2D : Object() {
     public val regionCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "region_create")
 
+    public val regionSetEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "region_set_enabled")
+
+    public val regionGetEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "region_get_enabled")
+
     public val regionSetUseEdgeConnectionsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "region_set_use_edge_connections")
 
@@ -1101,6 +1100,12 @@ public object NavigationServer2D : Object() {
 
     public val linkGetMapPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "link_get_map")
+
+    public val linkSetEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "link_set_enabled")
+
+    public val linkGetEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "link_get_enabled")
 
     public val linkSetBidirectionalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "link_set_bidirectional")
@@ -1242,6 +1247,15 @@ public object NavigationServer2D : Object() {
 
     public val obstacleSetAvoidanceLayersPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "obstacle_set_avoidance_layers")
+
+    public val parseSourceGeometryDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "parse_source_geometry_data")
+
+    public val bakeFromSourceGeometryDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "bake_from_source_geometry_data")
+
+    public val bakeFromSourceGeometryDataAsyncPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "bake_from_source_geometry_data_async")
 
     public val freeRidPtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationServer2D", "free_rid")
 

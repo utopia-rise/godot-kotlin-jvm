@@ -143,14 +143,12 @@ public open class FileDialog : ConfirmationDialog() {
   public var useNativeDialog: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_USE_NATIVE_DIALOG,
-          BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getUseNativeDialogPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_USE_NATIVE_DIALOG,
-          NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseNativeDialogPtr, NIL)
     }
 
   /**
@@ -380,6 +378,12 @@ public open class FileDialog : ConfirmationDialog() {
 
     public val isShowingHiddenFilesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileDialog", "is_showing_hidden_files")
+
+    public val setUseNativeDialogPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "set_use_native_dialog")
+
+    public val getUseNativeDialogPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "get_use_native_dialog")
 
     public val deselectAllPtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "deselect_all")
 

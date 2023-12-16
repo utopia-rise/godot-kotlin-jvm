@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Quaternion
+import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -21,6 +22,7 @@ import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
+import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -47,53 +49,45 @@ public open class OpenXRInterface : XRInterface() {
   public var displayRefreshRate: Float
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_GET_DISPLAY_REFRESH_RATE, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getDisplayRefreshRatePtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_SET_DISPLAY_REFRESH_RATE, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDisplayRefreshRatePtr, NIL)
     }
 
   public var renderTargetSizeMultiplier: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_GET_RENDER_TARGET_SIZE_MULTIPLIER, DOUBLE)
+      TransferContext.callMethod(rawPtr, MethodBindings.getRenderTargetSizeMultiplierPtr, DOUBLE)
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_SET_RENDER_TARGET_SIZE_MULTIPLIER, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRenderTargetSizeMultiplierPtr, NIL)
     }
 
   public var foveationLevel: Int
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_GET_FOVEATION_LEVEL, LONG)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFoveationLevelPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_SET_FOVEATION_LEVEL, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFoveationLevelPtr, NIL)
     }
 
   public var foveationDynamic: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_GET_FOVEATION_DYNAMIC, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.getFoveationDynamicPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_SET_FOVEATION_DYNAMIC, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFoveationDynamicPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -103,104 +97,89 @@ public open class OpenXRInterface : XRInterface() {
 
   public fun isFoveationSupported(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_IS_FOVEATION_SUPPORTED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isFoveationSupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public fun isActionSetActive(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_IS_ACTION_SET_ACTIVE, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isActionSetActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public fun setActionSetActive(name: String, active: Boolean): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to active)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_SET_ACTION_SET_ACTIVE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setActionSetActivePtr, NIL)
   }
 
   public fun getActionSets(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_GET_ACTION_SETS,
-        ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getActionSetsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   public fun getAvailableDisplayRefreshRates(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_GET_AVAILABLE_DISPLAY_REFRESH_RATES, ARRAY)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAvailableDisplayRefreshRatesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   public fun setMotionRange(hand: Hand, motionRange: HandMotionRange): Unit {
     TransferContext.writeArguments(LONG to hand.id, LONG to motionRange.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_SET_MOTION_RANGE,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMotionRangePtr, NIL)
   }
 
   public fun getMotionRange(hand: Hand): HandMotionRange {
     TransferContext.writeArguments(LONG to hand.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_GET_MOTION_RANGE,
-        LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getMotionRangePtr, LONG)
     return OpenXRInterface.HandMotionRange.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun getHandJointFlags(hand: Hand, joint: HandJoints): HandJointFlags {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_GET_HAND_JOINT_FLAGS, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getHandJointFlagsPtr, LONG)
     return HandJointFlagsValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public fun getHandJointRotation(hand: Hand, joint: HandJoints): Quaternion {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_GET_HAND_JOINT_ROTATION, QUATERNION)
+    TransferContext.callMethod(rawPtr, MethodBindings.getHandJointRotationPtr, QUATERNION)
     return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
   }
 
   public fun getHandJointPosition(hand: Hand, joint: HandJoints): Vector3 {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_GET_HAND_JOINT_POSITION, VECTOR3)
+    TransferContext.callMethod(rawPtr, MethodBindings.getHandJointPositionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   public fun getHandJointRadius(hand: Hand, joint: HandJoints): Float {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_GET_HAND_JOINT_RADIUS, DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getHandJointRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public fun getHandJointLinearVelocity(hand: Hand, joint: HandJoints): Vector3 {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_GET_HAND_JOINT_LINEAR_VELOCITY, VECTOR3)
+    TransferContext.callMethod(rawPtr, MethodBindings.getHandJointLinearVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   public fun getHandJointAngularVelocity(hand: Hand, joint: HandJoints): Vector3 {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_GET_HAND_JOINT_ANGULAR_VELOCITY, VECTOR3)
+    TransferContext.callMethod(rawPtr, MethodBindings.getHandJointAngularVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   public fun isHandTrackingSupported(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_IS_HAND_TRACKING_SUPPORTED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isHandTrackingSupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public fun isEyeGazeInteractionSupported(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_OPENXRINTERFACE_IS_EYE_GAZE_INTERACTION_SUPPORTED, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isEyeGazeInteractionSupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -360,6 +339,77 @@ public open class OpenXRInterface : XRInterface() {
   ) : HandJointFlags
 
   public companion object
+
+  internal object MethodBindings {
+    public val getDisplayRefreshRatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_display_refresh_rate")
+
+    public val setDisplayRefreshRatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "set_display_refresh_rate")
+
+    public val getRenderTargetSizeMultiplierPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_render_target_size_multiplier")
+
+    public val setRenderTargetSizeMultiplierPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "set_render_target_size_multiplier")
+
+    public val isFoveationSupportedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "is_foveation_supported")
+
+    public val getFoveationLevelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_foveation_level")
+
+    public val setFoveationLevelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "set_foveation_level")
+
+    public val getFoveationDynamicPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_foveation_dynamic")
+
+    public val setFoveationDynamicPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "set_foveation_dynamic")
+
+    public val isActionSetActivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "is_action_set_active")
+
+    public val setActionSetActivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "set_action_set_active")
+
+    public val getActionSetsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_action_sets")
+
+    public val getAvailableDisplayRefreshRatesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_available_display_refresh_rates")
+
+    public val setMotionRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "set_motion_range")
+
+    public val getMotionRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_motion_range")
+
+    public val getHandJointFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_flags")
+
+    public val getHandJointRotationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_rotation")
+
+    public val getHandJointPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_position")
+
+    public val getHandJointRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_radius")
+
+    public val getHandJointLinearVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_linear_velocity")
+
+    public val getHandJointAngularVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_angular_velocity")
+
+    public val isHandTrackingSupportedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "is_hand_tracking_supported")
+
+    public val isEyeGazeInteractionSupportedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "is_eye_gaze_interaction_supported")
+  }
 }
 
 public infix fun Long.or(other: godot.OpenXRInterface.HandJointFlags): Long = this.or(other.flag)

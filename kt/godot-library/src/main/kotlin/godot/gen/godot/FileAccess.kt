@@ -893,7 +893,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      */
     public fun getUnixPermissions(`file`: String): UnixPermissionFlags {
       TransferContext.writeArguments(STRING to file)
-      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_UNIX_PERMISSIONS, LONG)
+      TransferContext.callMethod(0, MethodBindings.getUnixPermissionsPtr, LONG)
       return UnixPermissionFlagsValue(TransferContext.readReturnValue(LONG) as Long)
     }
 
@@ -904,7 +904,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      */
     public fun setUnixPermissions(`file`: String, permissions: UnixPermissionFlags): GodotError {
       TransferContext.writeArguments(STRING to file, LONG to permissions.flag)
-      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_FILEACCESS_SET_UNIX_PERMISSIONS, LONG)
+      TransferContext.callMethod(0, MethodBindings.setUnixPermissionsPtr, LONG)
       return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
@@ -915,7 +915,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      */
     public fun getHiddenAttribute(`file`: String): Boolean {
       TransferContext.writeArguments(STRING to file)
-      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_HIDDEN_ATTRIBUTE, BOOL)
+      TransferContext.callMethod(0, MethodBindings.getHiddenAttributePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
 
@@ -926,7 +926,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      */
     public fun setHiddenAttribute(`file`: String, hidden: Boolean): GodotError {
       TransferContext.writeArguments(STRING to file, BOOL to hidden)
-      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_FILEACCESS_SET_HIDDEN_ATTRIBUTE, LONG)
+      TransferContext.callMethod(0, MethodBindings.setHiddenAttributePtr, LONG)
       return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
@@ -937,8 +937,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      */
     public fun setReadOnlyAttribute(`file`: String, ro: Boolean): GodotError {
       TransferContext.writeArguments(STRING to file, BOOL to ro)
-      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_FILEACCESS_SET_READ_ONLY_ATTRIBUTE,
-          LONG)
+      TransferContext.callMethod(0, MethodBindings.setReadOnlyAttributePtr, LONG)
       return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
@@ -949,8 +948,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      */
     public fun getReadOnlyAttribute(`file`: String): Boolean {
       TransferContext.writeArguments(STRING to file)
-      TransferContext.callMethod(0, ENGINEMETHOD_ENGINECLASS_FILEACCESS_GET_READ_ONLY_ATTRIBUTE,
-          BOOL)
+      TransferContext.callMethod(0, MethodBindings.getReadOnlyAttributePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
   }
@@ -1067,6 +1065,24 @@ public open class FileAccess internal constructor() : RefCounted() {
 
     public val getModifiedTimePtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileAccess", "get_modified_time")
+
+    public val getUnixPermissionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "get_unix_permissions")
+
+    public val setUnixPermissionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "set_unix_permissions")
+
+    public val getHiddenAttributePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "get_hidden_attribute")
+
+    public val setHiddenAttributePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "set_hidden_attribute")
+
+    public val setReadOnlyAttributePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "set_read_only_attribute")
+
+    public val getReadOnlyAttributePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "get_read_only_attribute")
   }
 }
 

@@ -154,12 +154,12 @@ public open class VideoStreamPlayer : Control() {
   public var loop: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_HAS_LOOP, BOOL)
+      TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_SET_LOOP, NIL)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
     }
 
   /**
@@ -256,8 +256,7 @@ public open class VideoStreamPlayer : Control() {
    */
   public fun getStreamLength(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_STREAM_LENGTH,
-        DOUBLE)
+    TransferContext.callMethod(rawPtr, MethodBindings.getStreamLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
@@ -291,6 +290,10 @@ public open class VideoStreamPlayer : Control() {
 
     public val isPausedPtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStreamPlayer", "is_paused")
 
+    public val setLoopPtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_loop")
+
+    public val hasLoopPtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStreamPlayer", "has_loop")
+
     public val setVolumePtr: VoidPtr =
         TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_volume")
 
@@ -311,6 +314,9 @@ public open class VideoStreamPlayer : Control() {
 
     public val getStreamNamePtr: VoidPtr =
         TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream_name")
+
+    public val getStreamLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream_length")
 
     public val setStreamPositionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_stream_position")

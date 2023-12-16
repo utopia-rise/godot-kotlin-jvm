@@ -408,7 +408,7 @@ public open class AStarGrid2D : RefCounted() {
   @JvmOverloads
   public fun fillSolidRegion(region: Rect2i, solid: Boolean = true): Unit {
     TransferContext.writeArguments(RECT2I to region, BOOL to solid)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_FILL_SOLID_REGION, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.fillSolidRegionPtr, NIL)
   }
 
   /**
@@ -418,8 +418,7 @@ public open class AStarGrid2D : RefCounted() {
    */
   public fun fillWeightScaleRegion(region: Rect2i, weightScale: Float): Unit {
     TransferContext.writeArguments(RECT2I to region, DOUBLE to weightScale.toDouble())
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ASTARGRID2D_FILL_WEIGHT_SCALE_REGION, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.fillWeightScaleRegionPtr, NIL)
   }
 
   /**
@@ -629,6 +628,12 @@ public open class AStarGrid2D : RefCounted() {
 
     public val getPointWeightScalePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AStarGrid2D", "get_point_weight_scale")
+
+    public val fillSolidRegionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AStarGrid2D", "fill_solid_region")
+
+    public val fillWeightScaleRegionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AStarGrid2D", "fill_weight_scale_region")
 
     public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("AStarGrid2D", "clear")
 

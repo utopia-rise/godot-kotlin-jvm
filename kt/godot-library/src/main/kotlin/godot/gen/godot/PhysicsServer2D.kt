@@ -1179,8 +1179,7 @@ public object PhysicsServer2D : Object() {
     enabled: Boolean,
   ): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to flag.id, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_PIN_JOINT_SET_FLAG,
-        NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.pinJointSetFlagPtr, NIL)
   }
 
   /**
@@ -1188,8 +1187,7 @@ public object PhysicsServer2D : Object() {
    */
   public fun pinJointGetFlag(joint: RID, flag: PinJointFlag): Boolean {
     TransferContext.writeArguments(_RID to joint, LONG to flag.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_PIN_JOINT_GET_FLAG,
-        BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.pinJointGetFlagPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -2161,6 +2159,12 @@ public object PhysicsServer2D : Object() {
 
     public val jointMakeDampedSpringPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsServer2D", "joint_make_damped_spring")
+
+    public val pinJointSetFlagPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer2D", "pin_joint_set_flag")
+
+    public val pinJointGetFlagPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer2D", "pin_joint_get_flag")
 
     public val pinJointSetParamPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsServer2D", "pin_joint_set_param")

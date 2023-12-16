@@ -1684,6 +1684,9 @@ public open class TextServerExtension : TextServer() {
     public val _createFontPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServerExtension", "_create_font")
 
+    public val _createFontLinkedVariationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_create_font_linked_variation")
+
     public val _fontSetDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_data")
 
@@ -1768,6 +1771,12 @@ public open class TextServerExtension : TextServer() {
     public val _fontGetFixedSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_fixed_size")
 
+    public val _fontSetFixedSizeScaleModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_fixed_size_scale_mode")
+
+    public val _fontGetFixedSizeScaleModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_fixed_size_scale_mode")
+
     public val _fontSetAllowSystemFallbackPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_allow_system_fallback")
 
@@ -1797,6 +1806,12 @@ public open class TextServerExtension : TextServer() {
 
     public val _fontGetEmboldenPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_embolden")
+
+    public val _fontSetSpacingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_spacing")
+
+    public val _fontGetSpacingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_font_get_spacing")
 
     public val _fontSetTransformPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServerExtension", "_font_set_transform")
@@ -2197,6 +2212,18 @@ public open class TextServerExtension : TextServer() {
     public val _shapedTextPrevGraphemePosPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_prev_grapheme_pos")
 
+    public val _shapedTextGetCharacterBreaksPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_get_character_breaks")
+
+    public val _shapedTextNextCharacterPosPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_next_character_pos")
+
+    public val _shapedTextPrevCharacterPosPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_prev_character_pos")
+
+    public val _shapedTextClosestCharacterPosPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_shaped_text_closest_character_pos")
+
     public val _formatNumberPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServerExtension", "_format_number")
 
@@ -2214,6 +2241,9 @@ public open class TextServerExtension : TextServer() {
 
     public val _stringGetWordBreaksPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServerExtension", "_string_get_word_breaks")
+
+    public val _stringGetCharacterBreaksPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServerExtension", "_string_get_character_breaks")
 
     public val _isConfusablePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServerExtension", "_is_confusable")

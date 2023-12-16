@@ -60,7 +60,7 @@ public open class ZIPReader : RefCounted() {
   @JvmOverloads
   public fun fileExists(path: String, caseSensitive: Boolean = true): Boolean {
     TransferContext.writeArguments(STRING to path, BOOL to caseSensitive)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ZIPREADER_FILE_EXISTS, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.fileExistsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -74,5 +74,7 @@ public open class ZIPReader : RefCounted() {
     public val getFilesPtr: VoidPtr = TypeManager.getMethodBindPtr("ZIPReader", "get_files")
 
     public val readFilePtr: VoidPtr = TypeManager.getMethodBindPtr("ZIPReader", "read_file")
+
+    public val fileExistsPtr: VoidPtr = TypeManager.getMethodBindPtr("ZIPReader", "file_exists")
   }
 }
