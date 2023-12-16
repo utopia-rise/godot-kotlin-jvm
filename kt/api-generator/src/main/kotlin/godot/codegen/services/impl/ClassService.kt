@@ -29,12 +29,11 @@ class ClassService(
 
     override fun getClasses() = classRepository
         .list()
-        .filter { it.apiType == ApiType.CORE }
         .filter {
             for (singleton in singletonRepository.list()) {
                 if (singleton.type == it.type || classGraphService.doClassInherits(it, singleton.type)) return@filter false
             }
-            true
+            it.apiType == ApiType.CORE
         }
 
     override fun updatePropertyIfShouldUseSuper(className: String, propertyName: String) {

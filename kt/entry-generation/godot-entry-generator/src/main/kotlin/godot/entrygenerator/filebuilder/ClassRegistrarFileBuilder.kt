@@ -13,11 +13,9 @@ import godot.entrygenerator.generator.FunctionRegistrationGenerator
 import godot.entrygenerator.generator.PropertyRegistrationGenerator
 import godot.entrygenerator.generator.SignalRegistrationGenerator
 import godot.entrygenerator.model.RegisteredClass
-import godot.tools.common.constants.GENERATED_COMMENT
-import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.godotEntryBasePackage
-import godot.tools.common.constants.godotRegistrationPackage
+import godot.tools.common.constants.*
 import java.io.BufferedWriter
+import godot.tools.common.constants.GodotFunctions
 
 class ClassRegistrarFileBuilder(
     projectName: String,
@@ -42,7 +40,7 @@ class ClassRegistrarFileBuilder(
                         .addMember("%S", registeredClass.supertypes.joinToString(",") { it.fqName })
                         .addMember("%S", registeredClass.signals.joinToString(",") { it.fqName })
                         .addMember("%S", registeredClass.properties.joinToString(",") { it.fqName })
-                        .addMember("%S", registeredClass.functions.joinToString(",") { it.fqName })
+                        .addMember("%S", registeredClass.functions.filter { it.name != GodotFunctions.notification }.joinToString(",") { it.fqName })
                         .build()
                 )
             }

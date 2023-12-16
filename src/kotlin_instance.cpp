@@ -126,13 +126,7 @@ Variant KotlinInstance::callp(const StringName& p_method, const Variant** p_args
 void KotlinInstance::notification(int p_notification, bool p_reversed) {
     if (p_notification == Object::NOTIFICATION_PREDELETE) { delete_flag = false; }
 
-    if (KtFunction* function {kt_class->get_method(SNAME("_notification"))}) {
-        Variant ret_var;
-        Variant value = p_notification;
-        const int arg_count = 1;
-        const Variant* args[arg_count] = {&value};
-        function->invoke(kt_object, args, arg_count, ret_var);
-    }
+    kt_class->do_notification(kt_object, p_notification, p_reversed);
 }
 
 void KotlinInstance::validate_property(PropertyInfo& p_property) const {

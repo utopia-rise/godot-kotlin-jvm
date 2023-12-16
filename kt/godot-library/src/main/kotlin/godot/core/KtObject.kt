@@ -8,6 +8,9 @@ import godot.util.nullObjectID
 import godot.util.nullptr
 import kotlincompile.definitions.GodotJvmBuildConfig
 
+@JvmInline
+value class GodotNotification internal constructor(val block: Any.(Int) -> Unit)
+
 @Suppress("LeakingThis")
 abstract class KtObject {
 
@@ -91,6 +94,10 @@ abstract class KtObject {
         TransferContext.getSingleton(classIndex)
         TransferContext.initializeKtObject(this)
     }
+
+    open fun _notification(): GodotNotification = godotNotification{}
+
+    protected fun <T: KtObject> T.godotNotification(block: T.(Int) -> Unit ): GodotNotification = GodotNotification(block as Any.(Int) -> Unit)
 
     open fun _onDestroy() = Unit
 
