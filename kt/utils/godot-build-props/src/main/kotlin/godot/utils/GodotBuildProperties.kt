@@ -10,7 +10,7 @@ object GodotBuildProperties {
     }
 
     val assembledGodotKotlinJvmVersion by lazy {
-        "$godotKotlinJvmVersion-$godotVersion"
+        buildProperties["godot.kotlin.jvm.assembled.version"] as String
     }
 
     val godotKotlinJvmVersion by lazy {
