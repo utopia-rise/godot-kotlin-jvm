@@ -91,7 +91,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class ArrayMesh : Mesh() {
   /**
-   * Sets the blend shape mode to one of [enum Mesh.BlendShapeMode].
+   * Sets the blend shape mode to one of [Mesh.BlendShapeMode].
    */
   public var blendShapeMode: Mesh.BlendShapeMode
     get() {
@@ -212,30 +212,30 @@ public open class ArrayMesh : Mesh() {
 
   /**
    * Creates a new surface. [Mesh.getSurfaceCount] will become the `surf_idx` for this new surface.
-   * Surfaces are created to be rendered using a [param primitive], which may be any of the values
-   * defined in [enum Mesh.PrimitiveType].
-   * The [param arrays] argument is an array of arrays. Each of the [constant Mesh.ARRAY_MAX]
-   * elements contains an array with some of the mesh data for this surface as described by the
-   * corresponding member of [enum Mesh.ArrayType] or `null` if it is not used by the surface. For
-   * example, `arrays[0]` is the array of vertices. That first vertex sub-array is always required; the
-   * others are optional. Adding an index array puts this surface into "index mode" where the vertex
-   * and other arrays become the sources of data and the index array defines the vertex order. All
-   * sub-arrays must have the same length as the vertex array (or be an exact multiple of the vertex
-   * array's length, when multiple elements of a sub-array correspond to a single vertex) or be empty,
-   * except for [constant Mesh.ARRAY_INDEX] if it is used.
-   * The [param blend_shapes] argument is an array of vertex data for each blend shape. Each element
-   * is an array of the same structure as [param arrays], but [constant Mesh.ARRAY_VERTEX], [constant
-   * Mesh.ARRAY_NORMAL], and [constant Mesh.ARRAY_TANGENT] are set if and only if they are set in
-   * [param arrays] and all other entries are `null`.
-   * The [param lods] argument is a dictionary with [float] keys and [PackedInt32Array] values. Each
-   * entry in the dictionary represents a LOD level of the surface, where the value is the [constant
-   * Mesh.ARRAY_INDEX] array to use for the LOD level and the key is roughly proportional to the
-   * distance at which the LOD stats being used. I.e., increasing the key of a LOD also increases the
-   * distance that the objects has to be from the camera before the LOD is used.
-   * The [param flags] argument is the bitwise or of, as required: One value of [enum
-   * Mesh.ArrayCustomFormat] left shifted by `ARRAY_FORMAT_CUSTOMn_SHIFT` for each custom channel in
-   * use, [constant Mesh.ARRAY_FLAG_USE_DYNAMIC_UPDATE], [constant Mesh.ARRAY_FLAG_USE_8_BONE_WEIGHTS],
-   * or [constant Mesh.ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY].
+   * Surfaces are created to be rendered using a [primitive], which may be any of the values defined
+   * in [Mesh.PrimitiveType].
+   * The [arrays] argument is an array of arrays. Each of the [Mesh.ARRAYMAX] elements contains an
+   * array with some of the mesh data for this surface as described by the corresponding member of
+   * [Mesh.ArrayType] or `null` if it is not used by the surface. For example, `arrays[0]` is the array
+   * of vertices. That first vertex sub-array is always required; the others are optional. Adding an
+   * index array puts this surface into "index mode" where the vertex and other arrays become the
+   * sources of data and the index array defines the vertex order. All sub-arrays must have the same
+   * length as the vertex array (or be an exact multiple of the vertex array's length, when multiple
+   * elements of a sub-array correspond to a single vertex) or be empty, except for [Mesh.ARRAYINDEX]
+   * if it is used.
+   * The [blendShapes] argument is an array of vertex data for each blend shape. Each element is an
+   * array of the same structure as [arrays], but [Mesh.ARRAYVERTEX], [Mesh.ARRAYNORMAL], and
+   * [Mesh.ARRAYTANGENT] are set if and only if they are set in [arrays] and all other entries are
+   * `null`.
+   * The [lods] argument is a dictionary with [float] keys and [PackedInt32Array] values. Each entry
+   * in the dictionary represents a LOD level of the surface, where the value is the [Mesh.ARRAYINDEX]
+   * array to use for the LOD level and the key is roughly proportional to the distance at which the
+   * LOD stats being used. I.e., increasing the key of a LOD also increases the distance that the
+   * objects has to be from the camera before the LOD is used.
+   * The [flags] argument is the bitwise or of, as required: One value of [Mesh.ArrayCustomFormat]
+   * left shifted by `ARRAY_FORMAT_CUSTOMn_SHIFT` for each custom channel in use,
+   * [Mesh.ARRAYFLAGUSEDYNAMICUPDATE], [Mesh.ARRAYFLAGUSE8BONEWEIGHTS], or
+   * [Mesh.ARRAYFLAGUSESEMPTYVERTEXARRAY].
    * **Note:** When using indices, it is recommended to only use points, lines, or triangles.
    */
   @JvmOverloads

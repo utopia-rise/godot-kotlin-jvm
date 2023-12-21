@@ -72,7 +72,7 @@ public object Input : Object() {
 
   /**
    * Returns `true` if you are pressing the Latin key in the current keyboard layout. You can pass a
-   * [enum Key] constant.
+   * [Key] constant.
    * [isKeyPressed] is only recommended over [isPhysicalKeyPressed] in non-game applications. This
    * ensures that shortcut keys behave as expected depending on the user's keyboard layout, as keyboard
    * shortcuts are generally dependent on the keyboard layout in non-game applications. If in doubt,
@@ -90,7 +90,7 @@ public object Input : Object() {
 
   /**
    * Returns `true` if you are pressing the key in the physical location on the 101/102-key US
-   * QWERTY keyboard. You can pass a [enum Key] constant.
+   * QWERTY keyboard. You can pass a [Key] constant.
    * [isPhysicalKeyPressed] is recommended over [isKeyPressed] for in-game actions, as it will make
    * [kbd]W[/kbd]/[kbd]A[/kbd]/[kbd]S[/kbd]/[kbd]D[/kbd] layouts work regardless of the user's keyboard
    * layout. [isPhysicalKeyPressed] will also ensure that the top row number keys work on any keyboard
@@ -107,8 +107,8 @@ public object Input : Object() {
   }
 
   /**
-   * Returns `true` if you are pressing the key with the [param keycode] printed on it. You can pass
-   * a [enum Key] constant or any Unicode character code.
+   * Returns `true` if you are pressing the key with the [keycode] printed on it. You can pass a
+   * [Key] constant or any Unicode character code.
    */
   public fun isKeyLabelPressed(keycode: Key): Boolean {
     TransferContext.writeArguments(LONG to keycode.id)
@@ -117,7 +117,7 @@ public object Input : Object() {
   }
 
   /**
-   * Returns `true` if you are pressing the mouse button specified with [enum MouseButton].
+   * Returns `true` if you are pressing the mouse button specified with [MouseButton].
    */
   public fun isMouseButtonPressed(button: MouseButton): Boolean {
     TransferContext.writeArguments(LONG to button.id)
@@ -126,7 +126,7 @@ public object Input : Object() {
   }
 
   /**
-   * Returns `true` if you are pressing the joypad button (see [enum JoyButton]).
+   * Returns `true` if you are pressing the joypad button (see [JoyButton]).
    */
   public fun isJoyButtonPressed(device: Int, button: JoyButton): Boolean {
     TransferContext.writeArguments(LONG to device.toLong(), LONG to button.id)
@@ -136,8 +136,8 @@ public object Input : Object() {
 
   /**
    * Returns `true` if you are pressing the action event.
-   * If [param exact_match] is `false`, it ignores additional input modifiers for [InputEventKey]
-   * and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    * **Note:** Due to keyboard ghosting, [isActionPressed] may return `false` even if one of the
    * action's keys is pressed. See
    * [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the
@@ -156,8 +156,8 @@ public object Input : Object() {
    * button.
    * This is useful for code that needs to run only once when an action is pressed, instead of every
    * frame while it's pressed.
-   * If [param exact_match] is `false`, it ignores additional input modifiers for [InputEventKey]
-   * and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    * **Note:** Returning `true` does not imply that the action is *still* pressed. An action can be
    * pressed and released again rapidly, and `true` will still be returned so as not to miss input.
    * **Note:** Due to keyboard ghosting, [isActionJustPressed] may return `false` even if one of the
@@ -179,8 +179,8 @@ public object Input : Object() {
    * tick. It will only return `true` on the frame or tick that the user releases the button.
    * **Note:** Returning `true` does not imply that the action is *still* not pressed. An action can
    * be released and pressed again rapidly, and `true` will still be returned so as not to miss input.
-   * If [param exact_match] is `false`, it ignores additional input modifiers for [InputEventKey]
-   * and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    * **Note:** During input handling (e.g. [Node.Input]), use [InputEvent.isActionReleased] instead
    * to query the action state of the current event.
    */
@@ -196,8 +196,8 @@ public object Input : Object() {
    * for example, the further away the axis (analog sticks or L2, R2 triggers) is from the dead zone,
    * the closer the value will be to 1. If the action is mapped to a control that has no axis such as
    * the keyboard, the value returned will be 0 or 1.
-   * If [param exact_match] is `false`, it ignores additional input modifiers for [InputEventKey]
-   * and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
   @JvmOverloads
   public fun getActionStrength(action: StringName, exactMatch: Boolean = false): Float {
@@ -209,8 +209,8 @@ public object Input : Object() {
   /**
    * Returns a value between 0 and 1 representing the raw intensity of the given action, ignoring
    * the action's deadzone. In most cases, you should use [getActionStrength] instead.
-   * If [param exact_match] is `false`, it ignores additional input modifiers for [InputEventKey]
-   * and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
   @JvmOverloads
   public fun getActionRawStrength(action: StringName, exactMatch: Boolean = false): Float {
@@ -281,7 +281,7 @@ public object Input : Object() {
   }
 
   /**
-   * Returns the current value of the joypad axis at given index (see [enum JoyAxis]).
+   * Returns the current value of the joypad axis at given index (see [JoyAxis]).
    */
   public fun getJoyAxis(device: Int, axis: JoyAxis): Float {
     TransferContext.writeArguments(LONG to device.toLong(), LONG to axis.id)
@@ -375,10 +375,10 @@ public object Input : Object() {
 
   /**
    * Starts to vibrate the joypad. Joypads usually come with two rumble motors, a strong and a weak
-   * one. [param weak_magnitude] is the strength of the weak motor (between 0 and 1) and [param
-   * strong_magnitude] is the strength of the strong motor (between 0 and 1). [param duration] is the
-   * duration of the effect in seconds (a duration of 0 will try to play the vibration indefinitely).
-   * The vibration can be stopped early by calling [stopJoyVibration].
+   * one. [weakMagnitude] is the strength of the weak motor (between 0 and 1) and [strongMagnitude] is
+   * the strength of the strong motor (between 0 and 1). [duration] is the duration of the effect in
+   * seconds (a duration of 0 will try to play the vibration indefinitely). The vibration can be
+   * stopped early by calling [stopJoyVibration].
    * **Note:** Not every hardware is compatible with long effect durations; it is recommended to
    * restart an effect if it has to be played for more than a few seconds.
    */
@@ -419,9 +419,9 @@ public object Input : Object() {
 
   /**
    * Returns the gravity in m/s² of the device's accelerometer sensor, if the device has one.
-   * Otherwise, the method returns [constant Vector3.ZERO].
+   * Otherwise, the method returns [Vector3.ZERO].
    * **Note:** This method only works on Android and iOS. On other platforms, it always returns
-   * [constant Vector3.ZERO].
+   * [Vector3.ZERO].
    */
   public fun getGravity(): Vector3 {
     TransferContext.writeArguments()
@@ -431,12 +431,12 @@ public object Input : Object() {
 
   /**
    * Returns the acceleration in m/s² of the device's accelerometer sensor, if the device has one.
-   * Otherwise, the method returns [constant Vector3.ZERO].
+   * Otherwise, the method returns [Vector3.ZERO].
    * Note this method returns an empty [Vector3] when running from the editor even when your device
    * has an accelerometer. You must export your project to a supported device to read values from the
    * accelerometer.
    * **Note:** This method only works on Android and iOS. On other platforms, it always returns
-   * [constant Vector3.ZERO].
+   * [Vector3.ZERO].
    */
   public fun getAccelerometer(): Vector3 {
     TransferContext.writeArguments()
@@ -446,9 +446,9 @@ public object Input : Object() {
 
   /**
    * Returns the magnetic field strength in micro-Tesla for all axes of the device's magnetometer
-   * sensor, if the device has one. Otherwise, the method returns [constant Vector3.ZERO].
+   * sensor, if the device has one. Otherwise, the method returns [Vector3.ZERO].
    * **Note:** This method only works on Android and iOS. On other platforms, it always returns
-   * [constant Vector3.ZERO].
+   * [Vector3.ZERO].
    */
   public fun getMagnetometer(): Vector3 {
     TransferContext.writeArguments()
@@ -458,9 +458,9 @@ public object Input : Object() {
 
   /**
    * Returns the rotation rate in rad/s around a device's X, Y, and Z axes of the gyroscope sensor,
-   * if the device has one. Otherwise, the method returns [constant Vector3.ZERO].
+   * if the device has one. Otherwise, the method returns [Vector3.ZERO].
    * **Note:** This method only works on Android and iOS. On other platforms, it always returns
-   * [constant Vector3.ZERO].
+   * [Vector3.ZERO].
    */
   public fun getGyroscope(): Vector3 {
     TransferContext.writeArguments()
@@ -547,8 +547,7 @@ public object Input : Object() {
    * Sets the mouse position to the specified vector, provided in pixels and relative to an origin
    * at the upper left corner of the currently focused Window Manager game window.
    * Mouse position is clipped to the limits of the screen resolution, or to the limits of the game
-   * window if [enum MouseMode] is set to [constant MOUSE_MODE_CONFINED] or [constant
-   * MOUSE_MODE_CONFINED_HIDDEN].
+   * window if [MouseMode] is set to [MOUSEMODECONFINED] or [MOUSEMODECONFINEDHIDDEN].
    * **Note:** [warpMouse] is only supported on Windows, macOS and Linux. It has no effect on
    * Android, iOS and Web.
    */
@@ -580,7 +579,7 @@ public object Input : Object() {
   }
 
   /**
-   * Sets the default cursor shape to be used in the viewport instead of [constant CURSOR_ARROW].
+   * Sets the default cursor shape to be used in the viewport instead of [CURSORARROW].
    * **Note:** If you want to change the default cursor shape for [Control]'s nodes, use
    * [Control.mouseDefaultCursorShape] instead.
    * **Note:** This method generates an [InputEventMouseMotion] to update cursor immediately.
@@ -592,7 +591,7 @@ public object Input : Object() {
   }
 
   /**
-   * Returns the currently assigned cursor shape (see [enum CursorShape]).
+   * Returns the currently assigned cursor shape (see [CursorShape]).
    */
   public fun getCurrentCursorShape(): CursorShape {
     TransferContext.writeArguments()
@@ -602,11 +601,11 @@ public object Input : Object() {
 
   /**
    * Sets a custom mouse cursor image, which is only visible inside the game window. The hotspot can
-   * also be specified. Passing `null` to the image parameter resets to the system cursor. See [enum
-   * CursorShape] for the list of shapes.
-   * [param image]'s size must be lower than or equal to 256×256. To avoid rendering issues, sizes
-   * lower than or equal to 128×128 are recommended.
-   * [param hotspot] must be within [param image]'s size.
+   * also be specified. Passing `null` to the image parameter resets to the system cursor. See
+   * [CursorShape] for the list of shapes.
+   * [image]'s size must be lower than or equal to 256×256. To avoid rendering issues, sizes lower
+   * than or equal to 128×128 are recommended.
+   * [hotspot] must be within [image]'s size.
    * **Note:** [AnimatedTexture]s aren't supported as custom mouse cursors. If using an
    * [AnimatedTexture], only the first frame will be displayed.
    * **Note:** The **Lossless**, **Lossy** or **Uncompressed** compression modes are recommended.
@@ -748,8 +747,8 @@ public object Input : Object() {
     CURSOR_BUSY(5),
     /**
      * Drag cursor. Usually displayed when dragging something.
-     * **Note:** Windows lacks a dragging cursor, so [constant CURSOR_DRAG] is the same as [constant
-     * CURSOR_MOVE] for this platform.
+     * **Note:** Windows lacks a dragging cursor, so [CURSORDRAG] is the same as [CURSORMOVE] for
+     * this platform.
      */
     CURSOR_DRAG(6),
     /**
@@ -780,8 +779,8 @@ public object Input : Object() {
     CURSOR_BDIAGSIZE(11),
     /**
      * Window resize mouse cursor. The cursor is a double-headed arrow that goes from the top left
-     * to the bottom right, the opposite of [constant CURSOR_BDIAGSIZE]. It tells the user they can
-     * resize the window or the panel both horizontally and vertically.
+     * to the bottom right, the opposite of [CURSORBDIAGSIZE]. It tells the user they can resize the
+     * window or the panel both horizontally and vertically.
      */
     CURSOR_FDIAGSIZE(12),
     /**
@@ -789,11 +788,11 @@ public object Input : Object() {
      */
     CURSOR_MOVE(13),
     /**
-     * Vertical split mouse cursor. On Windows, it's the same as [constant CURSOR_VSIZE].
+     * Vertical split mouse cursor. On Windows, it's the same as [CURSORVSIZE].
      */
     CURSOR_VSPLIT(14),
     /**
-     * Horizontal split mouse cursor. On Windows, it's the same as [constant CURSOR_HSIZE].
+     * Horizontal split mouse cursor. On Windows, it's the same as [CURSORHSIZE].
      */
     CURSOR_HSPLIT(15),
     /**

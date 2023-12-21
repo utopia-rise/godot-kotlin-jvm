@@ -59,16 +59,15 @@ import kotlin.Unit
 @GodotBaseType
 public open class GraphEdit : Control() {
   /**
-   * Emitted to the GraphEdit when the connection between the [param from_port] of the [param
-   * from_node] [GraphNode] and the [param to_port] of the [param to_node] [GraphNode] is attempted to
-   * be created.
+   * Emitted to the GraphEdit when the connection between the [fromPort] of the [fromNode]
+   * [GraphNode] and the [toPort] of the [toNode] [GraphNode] is attempted to be created.
    */
   public val connectionRequest: Signal4<StringName, Long, StringName, Long> by signal("fromNode",
       "fromPort", "toNode", "toPort")
 
   /**
-   * Emitted to the GraphEdit when the connection between [param from_port] of [param from_node]
-   * [GraphNode] and [param to_port] of [param to_node] [GraphNode] is attempted to be removed.
+   * Emitted to the GraphEdit when the connection between [fromPort] of [fromNode] [GraphNode] and
+   * [toPort] of [toNode] [GraphNode] is attempted to be removed.
    */
   public val disconnectionRequest: Signal4<StringName, Long, StringName, Long> by signal("fromNode",
       "fromPort", "toNode", "toPort")
@@ -125,8 +124,8 @@ public open class GraphEdit : Control() {
   public val nodeDeselected: Signal1<Node> by signal("node")
 
   /**
-   * Emitted when a popup is requested. Happens on right-clicking in the GraphEdit. [param position]
-   * is the position of the mouse pointer when the signal is sent.
+   * Emitted when a popup is requested. Happens on right-clicking in the GraphEdit. [position] is
+   * the position of the mouse pointer when the signal is sent.
    */
   public val popupRequest: Signal1<Vector2> by signal("position")
 
@@ -514,9 +513,9 @@ public open class GraphEdit : Control() {
 
 
   /**
-   * Returns whether the [param mouse_position] is in the input hot zone.
-   * By default, a hot zone is a [Rect2] positioned such that its center is at [param
-   * in_node].[GraphNode.getInputPortPosition]([param in_port]) (For output's case, call
+   * Returns whether the [mousePosition] is in the input hot zone.
+   * By default, a hot zone is a [Rect2] positioned such that its center is at
+   * [inNode].[GraphNode.getInputPortPosition]([inPort]) (For output's case, call
    * [GraphNode.getOutputPortPosition] instead). The hot zone's width is twice the Theme Property
    * `port_grab_distance_horizontal`, and its height is twice the `port_grab_distance_vertical`.
    * Below is a sample code to help get started:
@@ -540,8 +539,8 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Returns whether the [param mouse_position] is in the output hot zone. For more information on
-   * hot zones, see [_isInInputHotzone].
+   * Returns whether the [mousePosition] is in the output hot zone. For more information on hot
+   * zones, see [_isInInputHotzone].
    * Below is a sample code to help get started:
    * [codeblock]
    * func _is_in_output_hotzone(in_node, in_port, mouse_position):
@@ -602,9 +601,8 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Create a connection between the [param from_port] of the [param from_node] [GraphNode] and the
-   * [param to_port] of the [param to_node] [GraphNode]. If the connection already exists, no
-   * connection is created.
+   * Create a connection between the [fromPort] of the [fromNode] [GraphNode] and the [toPort] of
+   * the [toNode] [GraphNode]. If the connection already exists, no connection is created.
    */
   public fun connectNode(
     fromNode: StringName,
@@ -618,8 +616,8 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Returns `true` if the [param from_port] of the [param from_node] [GraphNode] is connected to
-   * the [param to_port] of the [param to_node] [GraphNode].
+   * Returns `true` if the [fromPort] of the [fromNode] [GraphNode] is connected to the [toPort] of
+   * the [toNode] [GraphNode].
    */
   public fun isNodeConnected(
     fromNode: StringName,
@@ -633,9 +631,8 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Removes the connection between the [param from_port] of the [param from_node] [GraphNode] and
-   * the [param to_port] of the [param to_node] [GraphNode]. If the connection does not exist, no
-   * connection is removed.
+   * Removes the connection between the [fromPort] of the [fromNode] [GraphNode] and the [toPort] of
+   * the [toNode] [GraphNode]. If the connection does not exist, no connection is removed.
    */
   public fun disconnectNode(
     fromNode: StringName,
@@ -648,10 +645,9 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Sets the coloration of the connection between [param from_node]'s [param from_port] and [param
-   * to_node]'s [param to_port] with the color provided in the [theme_item activity] theme property.
-   * The color is linearly interpolated between the connection color and the activity color using
-   * [param amount] as weight.
+   * Sets the coloration of the connection between [fromNode]'s [fromPort] and [toNode]'s [toPort]
+   * with the color provided in the [theme_item activity] theme property. The color is linearly
+   * interpolated between the connection color and the activity color using [amount] as weight.
    */
   public fun setConnectionActivity(
     fromNode: StringName,
@@ -767,8 +763,7 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Returns the points which would make up a connection between [param from_node] and [param
-   * to_node].
+   * Returns the points which would make up a connection between [fromNode] and [toNode].
    */
   public fun getConnectionLine(fromNode: Vector2, toNode: Vector2): PackedVector2Array {
     TransferContext.writeArguments(VECTOR2 to fromNode, VECTOR2 to toNode)
@@ -799,7 +794,7 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Sets the specified [param node] as the one selected.
+   * Sets the specified [node] as the one selected.
    */
   public fun setSelected(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)

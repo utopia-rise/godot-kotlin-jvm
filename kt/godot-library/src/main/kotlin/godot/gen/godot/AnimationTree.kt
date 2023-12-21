@@ -86,7 +86,7 @@ public open class AnimationTree : AnimationMixer() {
   }
 
   /**
-   * For backward compatibility. See [enum AnimationMixer.AnimationCallbackModeProcess].
+   * For backward compatibility. See [AnimationMixer.AnimationCallbackModeProcess].
    */
   public fun setProcessCallback(mode: AnimationProcessCallback): Unit {
     TransferContext.writeArguments(LONG to mode.id)
@@ -94,7 +94,7 @@ public open class AnimationTree : AnimationMixer() {
   }
 
   /**
-   * For backward compatibility. See [enum AnimationMixer.AnimationCallbackModeProcess].
+   * For backward compatibility. See [AnimationMixer.AnimationCallbackModeProcess].
    */
   public fun getProcessCallback(): AnimationProcessCallback {
     TransferContext.writeArguments()
@@ -106,18 +106,15 @@ public open class AnimationTree : AnimationMixer() {
     id: Long,
   ) {
     /**
-     * For backward compatibility. See [constant
-     * AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS].
+     * For backward compatibility. See [AnimationMixer.ANIMATIONCALLBACKMODEPROCESSPHYSICS].
      */
     ANIMATION_PROCESS_PHYSICS(0),
     /**
-     * For backward compatibility. See [constant
-     * AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_IDLE].
+     * For backward compatibility. See [AnimationMixer.ANIMATIONCALLBACKMODEPROCESSIDLE].
      */
     ANIMATION_PROCESS_IDLE(1),
     /**
-     * For backward compatibility. See [constant
-     * AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL].
+     * For backward compatibility. See [AnimationMixer.ANIMATIONCALLBACKMODEPROCESSMANUAL].
      */
     ANIMATION_PROCESS_MANUAL(2),
     ;

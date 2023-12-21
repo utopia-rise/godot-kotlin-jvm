@@ -69,7 +69,7 @@ public open class VisualShaderNodeClamp : VisualShaderNode() {
      */
     OP_TYPE_VECTOR_4D(5),
     /**
-     * Represents the size of the [enum OpType] enum.
+     * Represents the size of the [OpType] enum.
      */
     OP_TYPE_MAX(6),
     ;

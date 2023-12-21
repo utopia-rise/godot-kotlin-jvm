@@ -74,7 +74,7 @@ public open class MovieWriter : Object() {
   /**
    * Called when the audio speaker mode used for recording the audio is requested by the engine.
    * This can affect the number of output channels in the resulting audio file/stream. Defaults to
-   * [constant AudioServer.SPEAKER_MODE_STEREO] if [_getAudioSpeakerMode] is not overridden.
+   * [AudioServer.SPEAKERMODESTEREO] if [_getAudioSpeakerMode] is not overridden.
    */
   public open fun _getAudioSpeakerMode(): AudioServer.SpeakerMode {
     throw NotImplementedError("_get_audio_speaker_mode is not implemented for MovieWriter")
@@ -82,9 +82,9 @@ public open class MovieWriter : Object() {
 
   /**
    * Called when the engine determines whether this [MovieWriter] is able to handle the file at
-   * [param path]. Must return `true` if this [MovieWriter] is able to handle the given file path,
-   * `false` otherwise. Typically, [_handlesFile] is overridden as follows to allow the user to record
-   * a file at any path with a given file extension:
+   * [path]. Must return `true` if this [MovieWriter] is able to handle the given file path, `false`
+   * otherwise. Typically, [_handlesFile] is overridden as follows to allow the user to record a file
+   * at any path with a given file extension:
    * [codeblock]
    * func _handles_file(path):
    *     # Allows specifying an output file with a `.mkv` file extension (case-insensitive),
@@ -97,9 +97,9 @@ public open class MovieWriter : Object() {
   }
 
   /**
-   * Called once before the engine starts writing video and audio data. [param movie_size] is the
-   * width and height of the video to save. [param fps] is the number of frames per second specified in
-   * the project settings or using the `--fixed-fps <fps>`
+   * Called once before the engine starts writing video and audio data. [movieSize] is the width and
+   * height of the video to save. [fps] is the number of frames per second specified in the project
+   * settings or using the `--fixed-fps <fps>`
    * [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command line argument[/url].
    */
   public open fun _writeBegin(

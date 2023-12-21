@@ -53,7 +53,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
   }
 
   /**
-   * Sets the [PhysicalBone2D] node at [param joint_idx].
+   * Sets the [PhysicalBone2D] node at [jointIdx].
    * **Note:** This is just the index used for this modification, not the bone index used in the
    * [Skeleton2D].
    */
@@ -63,7 +63,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
   }
 
   /**
-   * Returns the [PhysicalBone2D] node at [param joint_idx].
+   * Returns the [PhysicalBone2D] node at [jointIdx].
    */
   public fun getPhysicalBoneNode(jointIdx: Int): NodePath {
     TransferContext.writeArguments(LONG to jointIdx.toLong())

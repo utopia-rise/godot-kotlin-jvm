@@ -34,7 +34,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class OmniLight3D : Light3D() {
   /**
-   * See [enum ShadowMode].
+   * See [ShadowMode].
    */
   public var omniShadowMode: ShadowMode
     get() {
@@ -56,13 +56,12 @@ public open class OmniLight3D : Light3D() {
     id: Long,
   ) {
     /**
-     * Shadows are rendered to a dual-paraboloid texture. Faster than [constant SHADOW_CUBE], but
+     * Shadows are rendered to a dual-paraboloid texture. Faster than [SHADOWCUBE], but
      * lower-quality.
      */
     SHADOW_DUAL_PARABOLOID(0),
     /**
-     * Shadows are rendered to a cubemap. Slower than [constant SHADOW_DUAL_PARABOLOID], but
-     * higher-quality.
+     * Shadows are rendered to a cubemap. Slower than [SHADOWDUALPARABOLOID], but higher-quality.
      */
     SHADOW_CUBE(1),
     ;

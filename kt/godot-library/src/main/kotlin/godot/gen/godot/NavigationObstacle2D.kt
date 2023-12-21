@@ -183,8 +183,8 @@ public open class NavigationObstacle2D : Node2D() {
   }
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [avoidanceLayers]
-   * bitmask, given a [param layer_number] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [avoidanceLayers] bitmask,
+   * given a [layerNumber] between 1 and 32.
    */
   public fun setAvoidanceLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -193,7 +193,7 @@ public open class NavigationObstacle2D : Node2D() {
 
   /**
    * Returns whether or not the specified layer of the [avoidanceLayers] bitmask is enabled, given a
-   * [param layer_number] between 1 and 32.
+   * [layerNumber] between 1 and 32.
    */
   public fun getAvoidanceLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())

@@ -48,7 +48,7 @@ public open class TileSetSource internal constructor() : Resource() {
   }
 
   /**
-   * Returns the tile coordinates ID of the tile with index [param index].
+   * Returns the tile coordinates ID of the tile with index [index].
    */
   public fun getTileId(index: Int): Vector2i {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -57,7 +57,7 @@ public open class TileSetSource internal constructor() : Resource() {
   }
 
   /**
-   * Returns if this atlas has a tile with coordinates ID [param atlas_coords].
+   * Returns if this atlas has a tile with coordinates ID [atlasCoords].
    */
   public fun hasTile(atlasCoords: Vector2i): Boolean {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
@@ -66,7 +66,7 @@ public open class TileSetSource internal constructor() : Resource() {
   }
 
   /**
-   * Returns the number of alternatives tiles for the coordinates ID [param atlas_coords].
+   * Returns the number of alternatives tiles for the coordinates ID [atlasCoords].
    * For [TileSetAtlasSource], this always return at least 1, as the base tile with ID 0 is always
    * part of the alternatives list.
    * Returns -1 if there is not tile at the given coords.
@@ -78,8 +78,7 @@ public open class TileSetSource internal constructor() : Resource() {
   }
 
   /**
-   * Returns the alternative ID for the tile with coordinates ID [param atlas_coords] at index
-   * [param index].
+   * Returns the alternative ID for the tile with coordinates ID [atlasCoords] at index [index].
    */
   public fun getAlternativeTileId(atlasCoords: Vector2i, index: Int): Int {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to index.toLong())
@@ -88,8 +87,8 @@ public open class TileSetSource internal constructor() : Resource() {
   }
 
   /**
-   * Returns if the base tile at coordinates [param atlas_coords] has an alternative with ID [param
-   * alternative_tile].
+   * Returns if the base tile at coordinates [atlasCoords] has an alternative with ID
+   * [alternativeTile].
    */
   public fun hasAlternativeTile(atlasCoords: Vector2i, alternativeTile: Int): Boolean {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeTile.toLong())

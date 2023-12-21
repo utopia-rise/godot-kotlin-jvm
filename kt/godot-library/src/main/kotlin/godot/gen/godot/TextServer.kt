@@ -84,7 +84,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns text server features, see [enum Feature].
+   * Returns text server features, see [Feature].
    */
   public fun getFeatures(): Long {
     TransferContext.writeArguments()
@@ -159,7 +159,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns `true` if [param rid] is valid resource owned by this text server.
+   * Returns `true` if [rid] is valid resource owned by this text server.
    */
   public fun has(rid: RID): Boolean {
     TransferContext.writeArguments(_RID to rid)
@@ -230,7 +230,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sets the font style flags, see [enum FontStyle].
+   * Sets the font style flags, see [FontStyle].
    * **Note:** This value is used for font matching only and will not affect font rendering. Use
    * [fontSetFaceIndex], [fontSetVariationCoordinates], [fontSetEmbolden], or [fontSetTransform]
    * instead.
@@ -241,7 +241,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns font style flags, see [enum FontStyle].
+   * Returns font style flags, see [FontStyle].
    */
   public fun fontGetStyle(fontRid: RID): FontStyle {
     TransferContext.writeArguments(_RID to fontRid)
@@ -541,8 +541,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sets font embolden strength. If [param strength] is not equal to zero, emboldens the font
-   * outlines. Negative values reduce the outline thickness.
+   * Sets font embolden strength. If [strength] is not equal to zero, emboldens the font outlines.
+   * Negative values reduce the outline thickness.
    */
   public fun fontSetEmbolden(fontRid: RID, strength: Double): Unit {
     TransferContext.writeArguments(_RID to fontRid, DOUBLE to strength)
@@ -559,8 +559,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sets the spacing for [param spacing] (see [enum TextServer.SpacingType]) to [param value] in
-   * pixels (not relative to the font size).
+   * Sets the spacing for [spacing] (see [TextServer.SpacingType]) to [value] in pixels (not
+   * relative to the font size).
    */
   public fun fontSetSpacing(
     fontRid: RID,
@@ -572,8 +572,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the spacing for [param spacing] (see [enum TextServer.SpacingType]) in pixels (not
-   * relative to the font size).
+   * Returns the spacing for [spacing] (see [TextServer.SpacingType]) in pixels (not relative to the
+   * font size).
    */
   public fun fontGetSpacing(fontRid: RID, spacing: SpacingType): Long {
     TransferContext.writeArguments(_RID to fontRid, LONG to spacing.id)
@@ -1054,7 +1054,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns outline contours of the glyph as a [Dictionary] with the following contents:
    * `points`         - [PackedVector3Array], containing outline points. `x` and `y` are point
-   * coordinates. `z` is the type of the point, using the [enum ContourPointTag] values.
+   * coordinates. `z` is the type of the point, using the [ContourPointTag] values.
    * `contours`       - [PackedInt32Array], containing indices the end points of each contour.
    * `orientation`    - [bool], contour orientation. If `true`, clockwise contours must be filled.
    */
@@ -1124,8 +1124,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the glyph index of a [param char], optionally modified by the [param
-   * variation_selector]. See [fontGetCharFromGlyphIndex].
+   * Returns the glyph index of a [char], optionally modified by the [variationSelector]. See
+   * [fontGetCharFromGlyphIndex].
    */
   public fun fontGetGlyphIndex(
     fontRid: RID,
@@ -1139,8 +1139,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns character code associated with [param glyph_index], or `0` if [param glyph_index] is
-   * invalid. See [fontGetGlyphIndex].
+   * Returns character code associated with [glyphIndex], or `0` if [glyphIndex] is invalid. See
+   * [fontGetGlyphIndex].
    */
   public fun fontGetCharFromGlyphIndex(
     fontRid: RID,
@@ -1153,7 +1153,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns `true` if a Unicode [param char] is available in the font.
+   * Returns `true` if a Unicode [char] is available in the font.
    */
   public fun fontHasChar(fontRid: RID, char: Long): Boolean {
     TransferContext.writeArguments(_RID to fontRid, LONG to char)
@@ -1196,8 +1196,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Draws single glyph into a canvas item at the position, using [param font_rid] at the size
-   * [param size].
+   * Draws single glyph into a canvas item at the position, using [fontRid] at the size [size].
    * **Note:** Glyph index is specific to the font, use glyphs indices returned by
    * [shapedTextGetGlyphs] or [fontGetGlyphIndex].
    * **Note:** If there are pending glyphs to render, calling this function might trigger the
@@ -1217,8 +1216,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Draws single glyph outline of size [param outline_size] into a canvas item at the position,
-   * using [param font_rid] at the size [param size].
+   * Draws single glyph outline of size [outlineSize] into a canvas item at the position, using
+   * [fontRid] at the size [size].
    * **Note:** Glyph index is specific to the font, use glyphs indices returned by
    * [shapedTextGetGlyphs] or [fontGetGlyphIndex].
    * **Note:** If there are pending glyphs to render, calling this function might trigger the
@@ -1261,7 +1260,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns `true` if support override is enabled for the [param language].
+   * Returns `true` if support override is enabled for the [language].
    */
   public fun fontGetLanguageSupportOverride(fontRid: RID, language: String): Boolean {
     TransferContext.writeArguments(_RID to fontRid, STRING to language)
@@ -1309,7 +1308,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns `true` if support override is enabled for the [param script].
+   * Returns `true` if support override is enabled for the [script].
    */
   public fun fontGetScriptSupportOverride(fontRid: RID, script: String): Boolean {
     TransferContext.writeArguments(_RID to fontRid, STRING to script)
@@ -1415,12 +1414,12 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Creates new buffer for complex text layout, with the given [param direction] and [param
-   * orientation]. To free the resulting buffer, use [freeRid] method.
-   * **Note:** Direction is ignored if server does not support [constant FEATURE_BIDI_LAYOUT]
-   * feature (supported by [TextServerAdvanced]).
-   * **Note:** Orientation is ignored if server does not support [constant FEATURE_VERTICAL_LAYOUT]
-   * feature (supported by [TextServerAdvanced]).
+   * Creates new buffer for complex text layout, with the given [direction] and [orientation]. To
+   * free the resulting buffer, use [freeRid] method.
+   * **Note:** Direction is ignored if server does not support [FEATUREBIDILAYOUT] feature
+   * (supported by [TextServerAdvanced]).
+   * **Note:** Orientation is ignored if server does not support [FEATUREVERTICALLAYOUT] feature
+   * (supported by [TextServerAdvanced]).
    */
   @JvmOverloads
   public fun createShapedText(direction: Direction = TextServer.Direction.DIRECTION_AUTO,
@@ -1439,10 +1438,10 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sets desired text direction. If set to [constant DIRECTION_AUTO], direction will be detected
-   * based on the buffer contents and current locale.
-   * **Note:** Direction is ignored if server does not support [constant FEATURE_BIDI_LAYOUT]
-   * feature (supported by [TextServerAdvanced]).
+   * Sets desired text direction. If set to [DIRECTIONAUTO], direction will be detected based on the
+   * buffer contents and current locale.
+   * **Note:** Direction is ignored if server does not support [FEATUREBIDILAYOUT] feature
+   * (supported by [TextServerAdvanced]).
    */
   @JvmOverloads
   public fun shapedTextSetDirection(shaped: RID, direction: Direction =
@@ -1500,8 +1499,8 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Sets desired text orientation.
-   * **Note:** Orientation is ignored if server does not support [constant FEATURE_VERTICAL_LAYOUT]
-   * feature (supported by [TextServerAdvanced]).
+   * **Note:** Orientation is ignored if server does not support [FEATUREVERTICALLAYOUT] feature
+   * (supported by [TextServerAdvanced]).
    */
   @JvmOverloads
   public fun shapedTextSetOrientation(shaped: RID, orientation: Orientation =
@@ -1596,8 +1595,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Adds inline object to the text buffer, [param key] must be unique. In the text, object is
-   * represented as [param length] object replacement characters.
+   * Adds inline object to the text buffer, [key] must be unique. In the text, object is represented
+   * as [length] object replacement characters.
    */
   @JvmOverloads
   public fun shapedTextAddObject(
@@ -1663,8 +1662,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns text buffer for the substring of the text in the [param shaped] text buffer (including
-   * inline objects).
+   * Returns text buffer for the substring of the text in the [shaped] text buffer (including inline
+   * objects).
    */
   public fun shapedTextSubstr(
     shaped: RID,
@@ -1807,8 +1806,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Breaks text into words and returns array of character ranges. Use [param grapheme_flags] to set
-   * what characters are used for breaking (see [enum GraphemeFlag]).
+   * Breaks text into words and returns array of character ranges. Use [graphemeFlags] to set what
+   * characters are used for breaking (see [GraphemeFlag]).
    */
   @JvmOverloads
   public fun shapedTextGetWordBreaks(shaped: RID, graphemeFlags: GraphemeFlag =
@@ -1947,8 +1946,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns shapes of the carets corresponding to the character offset [param position] in the
-   * text. Returned caret shape is 1 pixel wide rectangle.
+   * Returns shapes of the carets corresponding to the character offset [position] in the text.
+   * Returned caret shape is 1 pixel wide rectangle.
    */
   public fun shapedTextGetCarets(shaped: RID, position: Long): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(_RID to shaped, LONG to position)
@@ -1999,7 +1998,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns grapheme end position closest to the [param pos].
+   * Returns grapheme end position closest to the [pos].
    */
   public fun shapedTextNextGraphemePos(shaped: RID, pos: Long): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to pos)
@@ -2008,7 +2007,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns grapheme start position closest to the [param pos].
+   * Returns grapheme start position closest to the [pos].
    */
   public fun shapedTextPrevGraphemePos(shaped: RID, pos: Long): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to pos)
@@ -2027,7 +2026,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns composite character end position closest to the [param pos].
+   * Returns composite character end position closest to the [pos].
    */
   public fun shapedTextNextCharacterPos(shaped: RID, pos: Long): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to pos)
@@ -2036,7 +2035,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns composite character start position closest to the [param pos].
+   * Returns composite character start position closest to the [pos].
    */
   public fun shapedTextPrevCharacterPos(shaped: RID, pos: Long): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to pos)
@@ -2045,7 +2044,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns composite character position closest to the [param pos].
+   * Returns composite character position closest to the [pos].
    */
   public fun shapedTextClosestCharacterPos(shaped: RID, pos: Long): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to pos)
@@ -2054,9 +2053,9 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Draw shaped text into a canvas item at a given position, with [param color]. [param pos]
-   * specifies the leftmost point of the baseline (for horizontal layout) or topmost point of the
-   * baseline (for vertical layout).
+   * Draw shaped text into a canvas item at a given position, with [color]. [pos] specifies the
+   * leftmost point of the baseline (for horizontal layout) or topmost point of the baseline (for
+   * vertical layout).
    */
   @JvmOverloads
   public fun shapedTextDraw(
@@ -2072,9 +2071,9 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Draw the outline of the shaped text into a canvas item at a given position, with [param color].
-   * [param pos] specifies the leftmost point of the baseline (for horizontal layout) or topmost point
-   * of the baseline (for vertical layout).
+   * Draw the outline of the shaped text into a canvas item at a given position, with [color]. [pos]
+   * specifies the leftmost point of the baseline (for horizontal layout) or topmost point of the
+   * baseline (for vertical layout).
    */
   @JvmOverloads
   public fun shapedTextDrawOutline(
@@ -2105,9 +2104,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Converts a number from the Western Arabic (0..9) to the numeral systems used in [param
-   * language].
-   * If [param language] is omitted, the active locale will be used.
+   * Converts a number from the Western Arabic (0..9) to the numeral systems used in [language].
+   * If [language] is omitted, the active locale will be used.
    */
   @JvmOverloads
   public fun formatNumber(number: String, language: String = ""): String {
@@ -2117,8 +2115,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Converts [param number] from the numeral systems used in [param language] to Western Arabic
-   * (0..9).
+   * Converts [number] from the numeral systems used in [language] to Western Arabic (0..9).
    */
   @JvmOverloads
   public fun parseNumber(number: String, language: String = ""): String {
@@ -2128,7 +2125,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns percent sign used in the [param language].
+   * Returns percent sign used in the [language].
    */
   @JvmOverloads
   public fun percentSign(language: String = ""): String {
@@ -2140,7 +2137,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns an array of the word break boundaries. Elements in the returned array are the offsets
    * of the start and end of words. Therefore the length of the array is always even.
-   * When [param chars_per_line] is greater than zero, line break boundaries are returned instead.
+   * When [charsPerLine] is greater than zero, line break boundaries are returned instead.
    * [codeblock]
    * var ts = TextServerManager.get_primary_interface()
    * print(ts.string_get_word_breaks("Godot Engine")) # Prints [0, 5, 6, 12]
@@ -2175,12 +2172,12 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns index of the first string in [param dict] which is visually confusable with the [param
-   * string], or `-1` if none is found.
+   * Returns index of the first string in [dict] which is visually confusable with the [string], or
+   * `-1` if none is found.
    * **Note:** This method doesn't detect invisible characters, for spoof detection use it in
    * combination with [spoofCheck].
-   * **Note:** Always returns `-1` if the server does not support the [constant
-   * FEATURE_UNICODE_SECURITY] feature.
+   * **Note:** Always returns `-1` if the server does not support the [FEATUREUNICODESECURITY]
+   * feature.
    */
   public fun isConfusable(string: String, dict: PackedStringArray): Long {
     TransferContext.writeArguments(STRING to string, PACKED_STRING_ARRAY to dict)
@@ -2189,9 +2186,9 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns `true` if [param string] is likely to be an attempt at confusing the reader.
-   * **Note:** Always returns `false` if the server does not support the [constant
-   * FEATURE_UNICODE_SECURITY] feature.
+   * Returns `true` if [string] is likely to be an attempt at confusing the reader.
+   * **Note:** Always returns `false` if the server does not support the [FEATUREUNICODESECURITY]
+   * feature.
    */
   public fun spoofCheck(string: String): Boolean {
     TransferContext.writeArguments(STRING to string)
@@ -2210,15 +2207,13 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns `true` if [param string] is a valid identifier.
-   * If the text server supports the [constant FEATURE_UNICODE_IDENTIFIERS] feature, a valid
-   * identifier must:
+   * Returns `true` if [string] is a valid identifier.
+   * If the text server supports the [FEATUREUNICODEIDENTIFIERS] feature, a valid identifier must:
    * - Conform to normalization form C.
    * - Begin with a Unicode character of class XID_Start or `"_"`.
    * - May contain Unicode characters of class XID_Continue in the other positions.
    * - Use UAX #31 recommended scripts only (mixed scripts are allowed).
-   * If the [constant FEATURE_UNICODE_IDENTIFIERS] feature is not supported, a valid identifier
-   * must:
+   * If the [FEATUREUNICODEIDENTIFIERS] feature is not supported, a valid identifier must:
    * - Begin with a Unicode character of class XID_Start or `"_"`.
    * - May contain Unicode characters of class XID_Continue in the other positions.
    */
@@ -2230,8 +2225,8 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Returns the string converted to uppercase.
-   * **Note:** Casing is locale dependent and context sensitive if server support [constant
-   * FEATURE_CONTEXT_SENSITIVE_CASE_CONVERSION] feature (supported by [TextServerAdvanced]).
+   * **Note:** Casing is locale dependent and context sensitive if server support
+   * [FEATURECONTEXTSENSITIVECASECONVERSION] feature (supported by [TextServerAdvanced]).
    * **Note:** The result may be longer or shorter than the original.
    */
   @JvmOverloads
@@ -2243,8 +2238,8 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Returns the string converted to lowercase.
-   * **Note:** Casing is locale dependent and context sensitive if server support [constant
-   * FEATURE_CONTEXT_SENSITIVE_CASE_CONVERSION] feature (supported by [TextServerAdvanced]).
+   * **Note:** Casing is locale dependent and context sensitive if server support
+   * [FEATURECONTEXTSENSITIVECASECONVERSION] feature (supported by [TextServerAdvanced]).
    * **Note:** The result may be longer or shorter than the original.
    */
   @JvmOverloads
@@ -2255,8 +2250,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Default implementation of the BiDi algorithm override function. See [enum StructuredTextParser]
-   * for more info.
+   * Default implementation of the BiDi algorithm override function. See [StructuredTextParser] for
+   * more info.
    */
   public fun parseStructuredText(
     parserType: StructuredTextParser,
@@ -2496,8 +2491,8 @@ public open class TextServer internal constructor() : RefCounted() {
      */
     AUTOWRAP_WORD(2),
     /**
-     * Behaves similarly to [constant AUTOWRAP_WORD], but force-breaks a word if that single word
-     * does not fit in one line.
+     * Behaves similarly to [AUTOWRAPWORD], but force-breaks a word if that single word does not fit
+     * in one line.
      */
     AUTOWRAP_WORD_SMART(3),
     ;
@@ -2864,10 +2859,10 @@ public open class TextServer internal constructor() : RefCounted() {
     SUBPIXEL_POSITIONING_DISABLED(0),
     /**
      * Glyph horizontal position is rounded based on font size.
-     * - To one quarter of the pixel size if font size is smaller or equal to [constant
-     * SUBPIXEL_POSITIONING_ONE_QUARTER_MAX_SIZE].
-     * - To one half of the pixel size if font size is smaller or equal to [constant
-     * SUBPIXEL_POSITIONING_ONE_HALF_MAX_SIZE].
+     * - To one quarter of the pixel size if font size is smaller or equal to
+     * [SUBPIXELPOSITIONINGONEQUARTERMAXSIZE].
+     * - To one half of the pixel size if font size is smaller or equal to
+     * [SUBPIXELPOSITIONINGONEHALFMAXSIZE].
      * - To the whole pixel size for larger fonts.
      */
     SUBPIXEL_POSITIONING_AUTO(1),
@@ -2882,13 +2877,13 @@ public open class TextServer internal constructor() : RefCounted() {
      */
     SUBPIXEL_POSITIONING_ONE_QUARTER(3),
     /**
-     * Maximum font size which will use one half of the pixel subpixel positioning in [constant
-     * SUBPIXEL_POSITIONING_AUTO] mode.
+     * Maximum font size which will use one half of the pixel subpixel positioning in
+     * [SUBPIXELPOSITIONINGAUTO] mode.
      */
     SUBPIXEL_POSITIONING_ONE_HALF_MAX_SIZE(20),
     /**
-     * Maximum font size which will use one quarter of the pixel subpixel positioning in [constant
-     * SUBPIXEL_POSITIONING_AUTO] mode.
+     * Maximum font size which will use one quarter of the pixel subpixel positioning in
+     * [SUBPIXELPOSITIONINGAUTO] mode.
      */
     SUBPIXEL_POSITIONING_ONE_QUARTER_MAX_SIZE(16),
     ;

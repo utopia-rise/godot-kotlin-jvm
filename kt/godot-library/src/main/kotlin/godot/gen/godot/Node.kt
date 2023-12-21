@@ -61,10 +61,10 @@ import kotlin.reflect.KFunction9
  * other scenes. This allows for very high flexibility in the architecture and data model of Godot
  * projects.
  * **Scene tree:** The [SceneTree] contains the active tree of nodes. When a node is added to the
- * scene tree, it receives the [constant NOTIFICATION_ENTER_TREE] notification and its [_enterTree]
- * callback is triggered. Child nodes are always added *after* their parent node, i.e. the [_enterTree]
- * callback of a parent node will be triggered before its child's.
- * Once all nodes have been added in the scene tree, they receive the [constant NOTIFICATION_READY]
+ * scene tree, it receives the [NOTIFICATIONENTERTREE] notification and its [_enterTree] callback is
+ * triggered. Child nodes are always added *after* their parent node, i.e. the [_enterTree] callback of
+ * a parent node will be triggered before its child's.
+ * Once all nodes have been added in the scene tree, they receive the [NOTIFICATIONREADY]
  * notification and their respective [_ready] callbacks are triggered. For groups of nodes, the
  * [_ready] callback is called in reverse order, starting with the children and moving up to the parent
  * nodes.
@@ -114,14 +114,14 @@ public open class Node : Object() {
 
   /**
    * Emitted when the node enters the tree.
-   * This signal is emitted *after* the related [constant NOTIFICATION_ENTER_TREE] notification.
+   * This signal is emitted *after* the related [NOTIFICATIONENTERTREE] notification.
    */
   public val treeEntered: Signal0 by signal()
 
   /**
    * Emitted when the node is still active but about to exit the tree. This is the right place for
    * de-initialization (or a "destructor", if you will).
-   * This signal is emitted *before* the related [constant NOTIFICATION_EXIT_TREE] notification.
+   * This signal is emitted *before* the related [NOTIFICATIONEXITTREE] notification.
    */
   public val treeExiting: Signal0 by signal()
 
@@ -133,17 +133,16 @@ public open class Node : Object() {
   /**
    * Emitted when a child node enters the scene tree, either because it entered on its own or
    * because this node entered with it.
-   * This signal is emitted *after* the child node's own [constant NOTIFICATION_ENTER_TREE] and
-   * [signal tree_entered].
+   * This signal is emitted *after* the child node's own [NOTIFICATIONENTERTREE] and [signal
+   * tree_entered].
    */
   public val childEnteredTree: Signal1<Node> by signal("node")
 
   /**
    * Emitted when a child node is about to exit the scene tree, either because it is being removed
    * or freed directly, or because this node is exiting the tree.
-   * When this signal is received, the child [param node] is still in the tree and valid. This
-   * signal is emitted *after* the child node's own [signal tree_exiting] and [constant
-   * NOTIFICATION_EXIT_TREE].
+   * When this signal is received, the child [node] is still in the tree and valid. This signal is
+   * emitted *after* the child node's own [signal tree_exiting] and [NOTIFICATIONEXITTREE].
    */
   public val childExitingTree: Signal1<Node> by signal("node")
 
@@ -154,9 +153,9 @@ public open class Node : Object() {
   public val childOrderChanged: Signal0 by signal()
 
   /**
-   * Emitted when this node is being replaced by the [param node], see [replaceBy].
-   * This signal is emitted *after* [param node] has been added as a child of the original parent
-   * node, but *before* all original child nodes have been reparented to [param node].
+   * Emitted when this node is being replaced by the [node], see [replaceBy].
+   * This signal is emitted *after* [node] has been added as a child of the original parent node,
+   * but *before* all original child nodes have been reparented to [node].
    */
   public val replacingBy: Signal1<Node> by signal("node")
 
@@ -262,9 +261,9 @@ public open class Node : Object() {
     }
 
   /**
-   * The node's priority in the execution order of the enabled processing callbacks (i.e. [constant
-   * NOTIFICATION_PROCESS], [constant NOTIFICATION_PHYSICS_PROCESS] and their internal counterparts).
-   * Nodes whose process priority value is *lower* will have their processing callbacks executed first.
+   * The node's priority in the execution order of the enabled processing callbacks (i.e.
+   * [NOTIFICATIONPROCESS], [NOTIFICATIONPHYSICSPROCESS] and their internal counterparts). Nodes whose
+   * process priority value is *lower* will have their processing callbacks executed first.
    */
   public var processPriority: Int
     get() {
@@ -278,8 +277,8 @@ public open class Node : Object() {
     }
 
   /**
-   * Similar to [processPriority] but for [constant NOTIFICATION_PHYSICS_PROCESS], [_physicsProcess]
-   * or the internal version.
+   * Similar to [processPriority] but for [NOTIFICATIONPHYSICSPROCESS], [_physicsProcess] or the
+   * internal version.
    */
   public var processPhysicsPriority: Int
     get() {
@@ -293,15 +292,15 @@ public open class Node : Object() {
     }
 
   /**
-   * Set the process thread group for this node (basically, whether it receives [constant
-   * NOTIFICATION_PROCESS], [constant NOTIFICATION_PHYSICS_PROCESS], [_process] or [_physicsProcess]
-   * (and the internal versions) on the main thread or in a sub-thread.
-   * By default, the thread group is [constant PROCESS_THREAD_GROUP_INHERIT], which means that this
-   * node belongs to the same thread group as the parent node. The thread groups means that nodes in a
-   * specific thread group will process together, separate to other thread groups (depending on
-   * [processThreadGroupOrder]). If the value is set is [constant PROCESS_THREAD_GROUP_SUB_THREAD],
-   * this thread group will occur on a sub thread (not the main thread), otherwise if set to [constant
-   * PROCESS_THREAD_GROUP_MAIN_THREAD] it will process on the main thread. If there is not a parent or
+   * Set the process thread group for this node (basically, whether it receives
+   * [NOTIFICATIONPROCESS], [NOTIFICATIONPHYSICSPROCESS], [_process] or [_physicsProcess] (and the
+   * internal versions) on the main thread or in a sub-thread.
+   * By default, the thread group is [PROCESSTHREADGROUPINHERIT], which means that this node belongs
+   * to the same thread group as the parent node. The thread groups means that nodes in a specific
+   * thread group will process together, separate to other thread groups (depending on
+   * [processThreadGroupOrder]). If the value is set is [PROCESSTHREADGROUPSUBTHREAD], this thread
+   * group will occur on a sub thread (not the main thread), otherwise if set to
+   * [PROCESSTHREADGROUPMAINTHREAD] it will process on the main thread. If there is not a parent or
    * grandparent node set to something other than inherit, the node will belong to the *default thread
    * group*. This default group will process on the main thread and its group order is 0.
    * During processing in a sub-thread, accessing most functions in nodes outside the thread group
@@ -309,9 +308,9 @@ public open class Node : Object() {
    * [callThreadSafe], [callDeferredThreadGroup] and the likes in order to communicate from the thread
    * groups to the main thread (or to other thread groups).
    * To better understand process thread groups, the idea is that any node set to any other value
-   * than [constant PROCESS_THREAD_GROUP_INHERIT] will include any children (and grandchildren) nodes
-   * set to inherit into its process thread group. this means that the processing of all the nodes in
-   * the group will happen together, at the same time as the node including them.
+   * than [PROCESSTHREADGROUPINHERIT] will include any children (and grandchildren) nodes set to
+   * inherit into its process thread group. this means that the processing of all the nodes in the
+   * group will happen together, at the same time as the node including them.
    */
   public var processThreadGroup: ProcessThreadGroup
     get() {
@@ -603,11 +602,11 @@ public open class Node : Object() {
 
   /**
    * Called during the processing step of the main loop. Processing happens at every frame and as
-   * fast as possible, so the [param delta] time since the previous frame is not constant. [param
-   * delta] is in seconds.
+   * fast as possible, so the [delta] time since the previous frame is not constant. [delta] is in
+   * seconds.
    * It is only called if processing is enabled, which is done automatically if this method is
    * overridden, and can be toggled with [setProcess].
-   * Corresponds to the [constant NOTIFICATION_PROCESS] notification in [Object.Notification].
+   * Corresponds to the [NOTIFICATIONPROCESS] notification in [Object.Notification].
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * an orphan).
    */
@@ -616,12 +615,11 @@ public open class Node : Object() {
 
   /**
    * Called during the physics processing step of the main loop. Physics processing means that the
-   * frame rate is synced to the physics, i.e. the [param delta] variable should be constant. [param
-   * delta] is in seconds.
+   * frame rate is synced to the physics, i.e. the [delta] variable should be constant. [delta] is in
+   * seconds.
    * It is only called if physics processing is enabled, which is done automatically if this method
    * is overridden, and can be toggled with [setPhysicsProcess].
-   * Corresponds to the [constant NOTIFICATION_PHYSICS_PROCESS] notification in
-   * [Object.Notification].
+   * Corresponds to the [NOTIFICATIONPHYSICSPROCESS] notification in [Object.Notification].
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * an orphan).
    */
@@ -632,7 +630,7 @@ public open class Node : Object() {
    * Called when the node enters the [SceneTree] (e.g. upon instancing, scene changing, or after
    * calling [addChild] in a script). If the node has children, its [_enterTree] callback will be
    * called first, and then that of the children.
-   * Corresponds to the [constant NOTIFICATION_ENTER_TREE] notification in [Object.Notification].
+   * Corresponds to the [NOTIFICATIONENTERTREE] notification in [Object.Notification].
    */
   public open fun _enterTree(): Unit {
   }
@@ -641,9 +639,9 @@ public open class Node : Object() {
    * Called when the node is about to leave the [SceneTree] (e.g. upon freeing, scene changing, or
    * after calling [removeChild] in a script). If the node has children, its [_exitTree] callback will
    * be called last, after all its children have left the tree.
-   * Corresponds to the [constant NOTIFICATION_EXIT_TREE] notification in [Object.Notification] and
-   * signal [signal tree_exiting]. To get notified when the node has already left the active tree,
-   * connect to the [signal tree_exited].
+   * Corresponds to the [NOTIFICATIONEXITTREE] notification in [Object.Notification] and signal
+   * [signal tree_exiting]. To get notified when the node has already left the active tree, connect to
+   * the [signal tree_exited].
    */
   public open fun _exitTree(): Unit {
   }
@@ -652,8 +650,8 @@ public open class Node : Object() {
    * Called when the node is "ready", i.e. when both the node and its children have entered the
    * scene tree. If the node has children, their [_ready] callbacks get triggered first, and the parent
    * node will receive the ready notification afterwards.
-   * Corresponds to the [constant NOTIFICATION_READY] notification in [Object.Notification]. See
-   * also the `@onready` annotation for variables.
+   * Corresponds to the [NOTIFICATIONREADY] notification in [Object.Notification]. See also the
+   * `@onready` annotation for variables.
    * Usually used for initialization. For even earlier initialization, [Object.Init] may be used.
    * See also [_enterTree].
    * **Note:** [_ready] may be called only once for each node. After removing a node from the scene
@@ -756,12 +754,11 @@ public open class Node : Object() {
   }
 
   /**
-   * Adds a [param sibling] node to current's node parent, at the same level as that node, right
-   * below it.
-   * If [param force_readable_name] is `true`, improves the readability of the added [param
-   * sibling]. If not named, the [param sibling] is renamed to its type, and if it shares [name] with a
-   * sibling, a number is suffixed more appropriately. This operation is very slow. As such, it is
-   * recommended leaving this to `false`, which assigns a dummy name featuring `@` in both situations.
+   * Adds a [sibling] node to current's node parent, at the same level as that node, right below it.
+   * If [forceReadableName] is `true`, improves the readability of the added [sibling]. If not
+   * named, the [sibling] is renamed to its type, and if it shares [name] with a sibling, a number is
+   * suffixed more appropriately. This operation is very slow. As such, it is recommended leaving this
+   * to `false`, which assigns a dummy name featuring `@` in both situations.
    * Use [addChild] instead of this method if you don't need the child node to be added below a
    * specific node in the list of children.
    * **Note:** If this node is internal, the new sibling will be internal too (see `internal`
@@ -774,18 +771,18 @@ public open class Node : Object() {
   }
 
   /**
-   * Adds a child [param node]. Nodes can have any number of children, but every child must have a
-   * unique name. Child nodes are automatically deleted when the parent node is deleted, so an entire
-   * scene can be removed by deleting its topmost node.
-   * If [param force_readable_name] is `true`, improves the readability of the added [param node].
-   * If not named, the [param node] is renamed to its type, and if it shares [name] with a sibling, a
-   * number is suffixed more appropriately. This operation is very slow. As such, it is recommended
-   * leaving this to `false`, which assigns a dummy name featuring `@` in both situations.
-   * If [param internal] is different than [constant INTERNAL_MODE_DISABLED], the child will be
-   * added as internal node. Such nodes are ignored by methods like [getChildren], unless their
-   * parameter `include_internal` is `true`. The intended usage is to hide the internal nodes from the
-   * user, so the user won't accidentally delete or modify them. Used by some GUI nodes, e.g.
-   * [ColorPicker]. See [enum InternalMode] for available modes.
+   * Adds a child [node]. Nodes can have any number of children, but every child must have a unique
+   * name. Child nodes are automatically deleted when the parent node is deleted, so an entire scene
+   * can be removed by deleting its topmost node.
+   * If [forceReadableName] is `true`, improves the readability of the added [node]. If not named,
+   * the [node] is renamed to its type, and if it shares [name] with a sibling, a number is suffixed
+   * more appropriately. This operation is very slow. As such, it is recommended leaving this to
+   * `false`, which assigns a dummy name featuring `@` in both situations.
+   * If [internal] is different than [INTERNALMODEDISABLED], the child will be added as internal
+   * node. Such nodes are ignored by methods like [getChildren], unless their parameter
+   * `include_internal` is `true`. The intended usage is to hide the internal nodes from the user, so
+   * the user won't accidentally delete or modify them. Used by some GUI nodes, e.g. [ColorPicker]. See
+   * [InternalMode] for available modes.
    * **Note:** If the child node already has a parent, the function will fail. Use [removeChild]
    * first to remove the node from its current parent. For example:
    *
@@ -836,11 +833,9 @@ public open class Node : Object() {
   }
 
   /**
-   * Changes the parent of this [Node] to the [param new_parent]. The node needs to already have a
-   * parent.
-   * If [param keep_global_transform] is `true`, the node's global transform will be preserved if
-   * supported. [Node2D], [Node3D] and [Control] support this argument (but [Control] keeps only
-   * position).
+   * Changes the parent of this [Node] to the [newParent]. The node needs to already have a parent.
+   * If [keepGlobalTransform] is `true`, the node's global transform will be preserved if supported.
+   * [Node2D], [Node3D] and [Control] support this argument (but [Control] keeps only position).
    */
   @JvmOverloads
   public fun reparent(newParent: Node, keepGlobalTransform: Boolean = true): Unit {
@@ -850,8 +845,8 @@ public open class Node : Object() {
 
   /**
    * Returns the number of child nodes.
-   * If [param include_internal] is `false`, internal children aren't counted (see `internal`
-   * parameter in [addChild]).
+   * If [includeInternal] is `false`, internal children aren't counted (see `internal` parameter in
+   * [addChild]).
    */
   @JvmOverloads
   public fun getChildCount(includeInternal: Boolean = false): Int {
@@ -862,7 +857,7 @@ public open class Node : Object() {
 
   /**
    * Returns an array of references to node's children.
-   * If [param include_internal] is `false`, the returned array won't include internal children (see
+   * If [includeInternal] is `false`, the returned array won't include internal children (see
    * `internal` parameter in [addChild]).
    */
   @JvmOverloads
@@ -876,8 +871,8 @@ public open class Node : Object() {
    * Returns a child node by its index (see [getChildCount]). This method is often used for
    * iterating all children of a node.
    * Negative indices access the children from the last one.
-   * If [param include_internal] is `false`, internal children are skipped (see `internal` parameter
-   * in [addChild]).
+   * If [includeInternal] is `false`, internal children are skipped (see `internal` parameter in
+   * [addChild]).
    * To access a child node via its name, use [getNode].
    */
   @JvmOverloads
@@ -938,8 +933,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Similar to [getNode], but does not log an error if [param path] does not point to a valid
-   * [Node].
+   * Similar to [getNode], but does not log an error if [path] does not point to a valid [Node].
    */
   public fun getNodeOrNull(path: NodePath): Node? {
     TransferContext.writeArguments(NODE_PATH to path)
@@ -957,18 +951,18 @@ public open class Node : Object() {
   }
 
   /**
-   * Finds the first descendant of this node whose name matches [param pattern] as in
-   * [String.match]. Internal children are also searched over (see `internal` parameter in [addChild]).
-   * [param pattern] does not match against the full path, just against individual node names. It is
+   * Finds the first descendant of this node whose name matches [pattern] as in [String.match].
+   * Internal children are also searched over (see `internal` parameter in [addChild]).
+   * [pattern] does not match against the full path, just against individual node names. It is
    * case-sensitive, with `"*"` matching zero or more characters and `"?"` matching any single
    * character except `"."`).
-   * If [param recursive] is `true`, all child nodes are included, even if deeply nested. Nodes are
+   * If [recursive] is `true`, all child nodes are included, even if deeply nested. Nodes are
    * checked in tree order, so this node's first direct child is checked first, then its own direct
-   * children, etc., before moving to the second direct child, and so on. If [param recursive] is
-   * `false`, only this node's direct children are matched.
-   * If [param owned] is `true`, this method only finds nodes who have an assigned [Node.owner].
-   * This is especially important for scenes instantiated through a script, because those scenes don't
-   * have an owner.
+   * children, etc., before moving to the second direct child, and so on. If [recursive] is `false`,
+   * only this node's direct children are matched.
+   * If [owned] is `true`, this method only finds nodes who have an assigned [Node.owner]. This is
+   * especially important for scenes instantiated through a script, because those scenes don't have an
+   * owner.
    * Returns `null` if no matching [Node] is found.
    * **Note:** As this method walks through all the descendants of the node, it is the slowest way
    * to get a reference to another node. Whenever possible, consider using [getNode] with unique names
@@ -987,21 +981,21 @@ public open class Node : Object() {
   }
 
   /**
-   * Finds descendants of this node whose name matches [param pattern] as in [String.match], and/or
-   * type matches [param type] as in [Object.isClass]. Internal children are also searched over (see
-   * `internal` parameter in [addChild]).
-   * [param pattern] does not match against the full path, just against individual node names. It is
+   * Finds descendants of this node whose name matches [pattern] as in [String.match], and/or type
+   * matches [type] as in [Object.isClass]. Internal children are also searched over (see `internal`
+   * parameter in [addChild]).
+   * [pattern] does not match against the full path, just against individual node names. It is
    * case-sensitive, with `"*"` matching zero or more characters and `"?"` matching any single
    * character except `"."`).
-   * [param type] will check equality or inheritance, and is case-sensitive. `"Object"` will match a
-   * node whose type is `"Node"` but not the other way around.
-   * If [param recursive] is `true`, all child nodes are included, even if deeply nested. Nodes are
+   * [type] will check equality or inheritance, and is case-sensitive. `"Object"` will match a node
+   * whose type is `"Node"` but not the other way around.
+   * If [recursive] is `true`, all child nodes are included, even if deeply nested. Nodes are
    * checked in tree order, so this node's first direct child is checked first, then its own direct
-   * children, etc., before moving to the second direct child, and so on. If [param recursive] is
-   * `false`, only this node's direct children are matched.
-   * If [param owned] is `true`, this method only finds nodes who have an assigned [Node.owner].
-   * This is especially important for scenes instantiated through a script, because those scenes don't
-   * have an owner.
+   * children, etc., before moving to the second direct child, and so on. If [recursive] is `false`,
+   * only this node's direct children are matched.
+   * If [owned] is `true`, this method only finds nodes who have an assigned [Node.owner]. This is
+   * especially important for scenes instantiated through a script, because those scenes don't have an
+   * owner.
    * Returns an empty array if no matching nodes are found.
    * **Note:** As this method walks through all the descendants of the node, it is the slowest way
    * to get references to other nodes. Whenever possible, consider caching the node references into
@@ -1022,9 +1016,8 @@ public open class Node : Object() {
   }
 
   /**
-   * Finds the first parent of the current node whose name matches [param pattern] as in
-   * [String.match].
-   * [param pattern] does not match against the full path, just against individual node names. It is
+   * Finds the first parent of the current node whose name matches [pattern] as in [String.match].
+   * [pattern] does not match against the full path, just against individual node names. It is
    * case-sensitive, with `"*"` matching zero or more characters and `"?"` matching any single
    * character except `"."`).
    * **Note:** As this method walks upwards in the scene tree, it can be slow in large, deeply
@@ -1119,9 +1112,9 @@ public open class Node : Object() {
   }
 
   /**
-   * Returns the relative [NodePath] from this node to the specified [param node]. Both nodes must
-   * be in the same scene or the function will fail.
-   * If [param use_unique_path] is `true`, returns the shortest path considering unique node.
+   * Returns the relative [NodePath] from this node to the specified [node]. Both nodes must be in
+   * the same scene or the function will fail.
+   * If [useUniquePath] is `true`, returns the shortest path considering unique node.
    * **Note:** If you get a relative path which starts from a unique node, the path may be longer
    * than a normal relative path due to the addition of the unique node's name.
    */
@@ -1137,7 +1130,7 @@ public open class Node : Object() {
    * example "enemies" or "collectables". A node can be in any number of groups. Nodes can be assigned
    * a group at any time, but will not be added until they are inside the scene tree (see
    * [isInsideTree]). See notes in the description, and the group methods in [SceneTree].
-   * The [param persistent] option is used when packing node to [PackedScene] and saving to file.
+   * The [persistent] option is used when packing node to [PackedScene] and saving to file.
    * Non-persistent groups aren't stored.
    * **Note:** For performance reasons, the order of node groups is *not* guaranteed. The order of
    * node groups should not be relied upon as it can vary across project runs.
@@ -1149,8 +1142,8 @@ public open class Node : Object() {
   }
 
   /**
-   * Removes a node from the [param group]. Does nothing if the node is not in the [param group].
-   * See notes in the description, and the group methods in [SceneTree].
+   * Removes a node from the [group]. Does nothing if the node is not in the [group]. See notes in
+   * the description, and the group methods in [SceneTree].
    */
   public fun removeFromGroup(group: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to group)
@@ -1169,8 +1162,8 @@ public open class Node : Object() {
 
   /**
    * Moves a child node to a different index (order) among the other children. Since calls, signals,
-   * etc. are performed by tree order, changing the order of children nodes may be useful. If [param
-   * to_index] is negative, the index will be counted from the end.
+   * etc. are performed by tree order, changing the order of children nodes may be useful. If [toIndex]
+   * is negative, the index will be counted from the end.
    * **Note:** Internal children can only be moved within their expected "internal range" (see
    * `internal` parameter in [addChild]).
    */
@@ -1215,8 +1208,8 @@ public open class Node : Object() {
   /**
    * Returns the node's order in the scene tree branch. For example, if called on the first child
    * node the position is `0`.
-   * If [param include_internal] is `false`, the index won't take internal children into account,
-   * i.e. first non-internal child will have index of 0 (see `internal` parameter in [addChild]).
+   * If [includeInternal] is `false`, the index won't take internal children into account, i.e.
+   * first non-internal child will have index of 0 (see `internal` parameter in [addChild]).
    */
   @JvmOverloads
   public fun getIndex(includeInternal: Boolean = false): Int {
@@ -1312,10 +1305,10 @@ public open class Node : Object() {
   }
 
   /**
-   * Calls the given method (if present) with the arguments given in [param args] on this node and
-   * recursively on all its children. If the [param parent_first] argument is `true`, the method will
-   * be called on the current node first, then on all its children. If [param parent_first] is `false`,
-   * the children will be called first.
+   * Calls the given method (if present) with the arguments given in [args] on this node and
+   * recursively on all its children. If the [parentFirst] argument is `true`, the method will be
+   * called on the current node first, then on all its children. If [parentFirst] is `false`, the
+   * children will be called first.
    */
   @JvmOverloads
   public fun propagateCall(
@@ -1329,7 +1322,7 @@ public open class Node : Object() {
 
   /**
    * Enables or disables physics (i.e. fixed framerate) processing. When a node is being processed,
-   * it will receive a [constant NOTIFICATION_PHYSICS_PROCESS] at a fixed (usually 60 FPS, see
+   * it will receive a [NOTIFICATIONPHYSICSPROCESS] at a fixed (usually 60 FPS, see
    * [Engine.physicsTicksPerSecond] to change) interval (and the [_physicsProcess] callback will be
    * called if exists). Enabled automatically if [_physicsProcess] is overridden. Any calls to this
    * before [_ready] will be ignored.
@@ -1370,8 +1363,8 @@ public open class Node : Object() {
   }
 
   /**
-   * Enables or disables processing. When a node is being processed, it will receive a [constant
-   * NOTIFICATION_PROCESS] on every drawn frame (and the [_process] callback will be called if exists).
+   * Enables or disables processing. When a node is being processed, it will receive a
+   * [NOTIFICATIONPROCESS] on every drawn frame (and the [_process] callback will be called if exists).
    * Enabled automatically if [_process] is overridden. Any calls to this before [_ready] will be
    * ignored.
    */
@@ -1583,7 +1576,7 @@ public open class Node : Object() {
    * ```
    *
    * The Tween will start automatically on the next process frame or physics frame (depending on
-   * [enum Tween.TweenProcessMode]).
+   * [Tween.TweenProcessMode]).
    */
   public fun createTween(): Tween? {
     TransferContext.writeArguments()
@@ -1593,7 +1586,7 @@ public open class Node : Object() {
 
   /**
    * Duplicates the node, returning a new node.
-   * You can fine-tune the behavior using the [param flags] (see [enum DuplicateFlags]).
+   * You can fine-tune the behavior using the [flags] (see [DuplicateFlags]).
    * **Note:** It will not work properly if the node contains a script with constructor arguments
    * (i.e. needs to supply arguments to [Object.Init] method). In that case, the node will be
    * duplicated without a script.
@@ -1608,8 +1601,7 @@ public open class Node : Object() {
   /**
    * Replaces a node in a scene by the given one. Subscriptions that pass through this node will be
    * lost.
-   * If [param keep_groups] is `true`, the [param node] is added to the same groups that the
-   * replaced node is in.
+   * If [keepGroups] is `true`, the [node] is added to the same groups that the replaced node is in.
    * **Note:** The given node will become the new parent of any child nodes that the replaced node
    * had.
    * **Note:** The replaced node is not automatically freed, so you either need to keep it in a
@@ -1639,8 +1631,8 @@ public open class Node : Object() {
   }
 
   /**
-   * Sets the editable children state of [param node] relative to this node. This method is only
-   * intended for use with editor tooling.
+   * Sets the editable children state of [node] relative to this node. This method is only intended
+   * for use with editor tooling.
    */
   public fun setEditableInstance(node: Node, isEditable: Boolean): Unit {
     TransferContext.writeArguments(OBJECT to node, BOOL to isEditable)
@@ -1648,8 +1640,8 @@ public open class Node : Object() {
   }
 
   /**
-   * Returns `true` if [param node] has editable children enabled relative to this node. This method
-   * is only intended for use with editor tooling.
+   * Returns `true` if [node] has editable children enabled relative to this node. This method is
+   * only intended for use with editor tooling.
    */
   public fun isEditableInstance(node: Node): Boolean {
     TransferContext.writeArguments(OBJECT to node)
@@ -1707,8 +1699,8 @@ public open class Node : Object() {
   /**
    * Sets the node's multiplayer authority to the peer with the given peer ID. The multiplayer
    * authority is the peer that has authority over the node on the network. Useful in conjunction with
-   * [rpcConfig] and the [MultiplayerAPI]. Defaults to peer ID 1 (the server). If [param recursive],
-   * the given peer is recursively set as the authority for all children of this node.
+   * [rpcConfig] and the [MultiplayerAPI]. Defaults to peer ID 1 (the server). If [recursive], the
+   * given peer is recursively set as the authority for all children of this node.
    * **Warning:** This does **not** automatically replicate the new authority to other peers. It is
    * developer's responsibility to do so. You can propagate the information about the new authority
    * using [MultiplayerSpawner.spawnFunction], an RPC, or using a [MultiplayerSynchronizer]. Also, the
@@ -1739,8 +1731,8 @@ public open class Node : Object() {
   }
 
   /**
-   * Changes the RPC mode for the given [param method] with the given [param config] which should be
-   * `null` (to disable) or a [Dictionary] in the form:
+   * Changes the RPC mode for the given [method] with the given [config] which should be `null` (to
+   * disable) or a [Dictionary] in the form:
    * [codeblock]
    * {
    *     rpc_mode = MultiplayerAPI.RPCMode,
@@ -1749,8 +1741,8 @@ public open class Node : Object() {
    *     channel = 0,
    * }
    * [/codeblock]
-   * See [enum MultiplayerAPI.RPCMode] and [enum MultiplayerPeer.TransferMode]. An alternative is
-   * annotating methods and properties with the corresponding [annotation @GDScript.@rpc] annotation
+   * See [MultiplayerAPI.RPCMode] and [MultiplayerPeer.TransferMode]. An alternative is annotating
+   * methods and properties with the corresponding [annotation @GDScript.@rpc] annotation
    * (`@rpc("any_peer")`, `@rpc("authority")`). By default, methods are not exposed to networking (and
    * RPCs).
    */
@@ -1760,7 +1752,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Sends a remote procedure call request for the given [param method] to peers on the network (and
+   * Sends a remote procedure call request for the given [method] to peers on the network (and
    * locally), optionally sending all additional arguments as arguments to the method called by the
    * RPC. The call request will only be received by nodes with the same [NodePath], including the exact
    * same node name. Behavior depends on the RPC configuration for the given method, see [rpcConfig]
@@ -1777,8 +1769,8 @@ public open class Node : Object() {
   }
 
   /**
-   * Sends a [rpc] to a specific peer identified by [param peer_id] (see
-   * [MultiplayerPeer.setTargetPeer]). Returns `null`.
+   * Sends a [rpc] to a specific peer identified by [peerId] (see [MultiplayerPeer.setTargetPeer]).
+   * Returns `null`.
    */
   public fun rpcId(
     peerId: Long,
@@ -1802,9 +1794,8 @@ public open class Node : Object() {
   /**
    * This function is similar to [Object.callDeferred] except that the call will take place when the
    * node thread group is processed. If the node thread group processes in sub-threads, then the call
-   * will be done on that thread, right before [constant NOTIFICATION_PROCESS] or [constant
-   * NOTIFICATION_PHYSICS_PROCESS], the [_process] or [_physicsProcess] or their internal versions are
-   * called.
+   * will be done on that thread, right before [NOTIFICATIONPROCESS] or [NOTIFICATIONPHYSICSPROCESS],
+   * the [_process] or [_physicsProcess] or their internal versions are called.
    */
   public fun callDeferredThreadGroup(method: StringName, vararg __var_args: Any?): Any? {
     TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
@@ -1860,27 +1851,27 @@ public open class Node : Object() {
   ) {
     /**
      * Inherits process mode from the node's parent. For the root node, it is equivalent to
-     * [constant PROCESS_MODE_PAUSABLE]. Default.
+     * [PROCESSMODEPAUSABLE]. Default.
      */
     PROCESS_MODE_INHERIT(0),
     /**
      * Stops processing when the [SceneTree] is paused (process when unpaused). This is the inverse
-     * of [constant PROCESS_MODE_WHEN_PAUSED].
+     * of [PROCESSMODEWHENPAUSED].
      */
     PROCESS_MODE_PAUSABLE(1),
     /**
      * Only process when the [SceneTree] is paused (don't process when unpaused). This is the
-     * inverse of [constant PROCESS_MODE_PAUSABLE].
+     * inverse of [PROCESSMODEPAUSABLE].
      */
     PROCESS_MODE_WHEN_PAUSED(2),
     /**
      * Always process. Continue processing always, ignoring the [SceneTree]'s paused property. This
-     * is the inverse of [constant PROCESS_MODE_DISABLED].
+     * is the inverse of [PROCESSMODEDISABLED].
      */
     PROCESS_MODE_ALWAYS(3),
     /**
      * Never process. Completely disables processing, ignoring the [SceneTree]'s paused property.
-     * This is the inverse of [constant PROCESS_MODE_ALWAYS].
+     * This is the inverse of [PROCESSMODEALWAYS].
      */
     PROCESS_MODE_DISABLED(4),
     ;
@@ -2082,8 +2073,8 @@ public open class Node : Object() {
     public final const val NOTIFICATION_EXIT_TREE: Long = 11
 
     /**
-     * *Deprecated.* This notification is no longer emitted. Use [constant
-     * NOTIFICATION_CHILD_ORDER_CHANGED] instead.
+     * *Deprecated.* This notification is no longer emitted. Use [NOTIFICATIONCHILDORDERCHANGED]
+     * instead.
      */
     public final const val NOTIFICATION_MOVED_IN_PARENT: Long = 12
 
@@ -2171,20 +2162,19 @@ public open class Node : Object() {
     public final const val NOTIFICATION_INTERNAL_PHYSICS_PROCESS: Long = 26
 
     /**
-     * Notification received when the node is ready, just before [constant NOTIFICATION_READY] is
-     * received. Unlike the latter, it's sent every time the node enters the tree, instead of only
-     * once.
+     * Notification received when the node is ready, just before [NOTIFICATIONREADY] is received.
+     * Unlike the latter, it's sent every time the node enters the tree, instead of only once.
      */
     public final const val NOTIFICATION_POST_ENTER_TREE: Long = 27
 
     /**
-     * Notification received when the node is disabled. See [constant PROCESS_MODE_DISABLED].
+     * Notification received when the node is disabled. See [PROCESSMODEDISABLED].
      */
     public final const val NOTIFICATION_DISABLED: Long = 28
 
     /**
-     * Notification received when the node is enabled again after being disabled. See [constant
-     * PROCESS_MODE_DISABLED].
+     * Notification received when the node is enabled again after being disabled. See
+     * [PROCESSMODEDISABLED].
      */
     public final const val NOTIFICATION_ENABLED: Long = 29
 
@@ -2215,8 +2205,8 @@ public open class Node : Object() {
     /**
      * Notification received when the node's parent [Window] is focused. This may be a change of
      * focus between two windows of the same engine instance, or from the OS desktop or a third-party
-     * application to a window of the game (in which case [constant NOTIFICATION_APPLICATION_FOCUS_IN]
-     * is also emitted).
+     * application to a window of the game (in which case [NOTIFICATIONAPPLICATIONFOCUSIN] is also
+     * emitted).
      * A [Window] node receives this notification when it is focused.
      */
     public final const val NOTIFICATION_WM_WINDOW_FOCUS_IN: Long = 1004
@@ -2224,8 +2214,8 @@ public open class Node : Object() {
     /**
      * Notification received when the node's parent [Window] is defocused. This may be a change of
      * focus between two windows of the same engine instance, or from a window of the game to the OS
-     * desktop or a third-party application (in which case [constant
-     * NOTIFICATION_APPLICATION_FOCUS_OUT] is also emitted).
+     * desktop or a third-party application (in which case [NOTIFICATIONAPPLICATIONFOCUSOUT] is also
+     * emitted).
      * A [Window] node receives this notification when it is defocused.
      */
     public final const val NOTIFICATION_WM_WINDOW_FOCUS_OUT: Long = 1005

@@ -66,10 +66,9 @@ import kotlin.jvm.JvmOverloads
  *
  * Animations are just data containers, and must be added to nodes such as an [AnimationPlayer] to
  * be played back. Animation tracks have different types, each with its own set of dedicated methods.
- * Check [enum TrackType] to see available types.
- * **Note:** For 3D position/rotation/scale, using the dedicated [constant TYPE_POSITION_3D],
- * [constant TYPE_ROTATION_3D] and [constant TYPE_SCALE_3D] track types instead of [constant
- * TYPE_VALUE] is recommended for performance reasons.
+ * Check [TrackType] to see available types.
+ * **Note:** For 3D position/rotation/scale, using the dedicated [TYPEPOSITION3D], [TYPEROTATION3D]
+ * and [TYPESCALE3D] track types instead of [TYPEVALUE] is recommended for performance reasons.
  */
 @GodotBaseType
 public open class Animation : Resource() {
@@ -206,7 +205,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Changes the index position of track [param track_idx] to the one defined in [param to_idx].
+   * Changes the index position of track [trackIdx] to the one defined in [toIdx].
    */
   public fun trackMoveTo(trackIdx: Int, toIdx: Int): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to toIdx.toLong())
@@ -214,7 +213,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Swaps the track [param track_idx]'s index position with the track [param with_idx].
+   * Swaps the track [trackIdx]'s index position with the track [withIdx].
    */
   public fun trackSwap(trackIdx: Int, withIdx: Int): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to withIdx.toLong())
@@ -247,7 +246,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns `true` if the track at index [param track_idx] is enabled.
+   * Returns `true` if the track at index [trackIdx] is enabled.
    */
   public fun trackIsEnabled(trackIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
@@ -308,8 +307,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the interpolated position value at the given time (in seconds). The [param track_idx]
-   * must be the index of a 3D position track.
+   * Returns the interpolated position value at the given time (in seconds). The [trackIdx] must be
+   * the index of a 3D position track.
    */
   public fun positionTrackInterpolate(trackIdx: Int, timeSec: Double): Vector3 {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
@@ -318,8 +317,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the interpolated rotation value at the given time (in seconds). The [param track_idx]
-   * must be the index of a 3D rotation track.
+   * Returns the interpolated rotation value at the given time (in seconds). The [trackIdx] must be
+   * the index of a 3D rotation track.
    */
   public fun rotationTrackInterpolate(trackIdx: Int, timeSec: Double): Quaternion {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
@@ -328,8 +327,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the interpolated scale value at the given time (in seconds). The [param track_idx] must
-   * be the index of a 3D scale track.
+   * Returns the interpolated scale value at the given time (in seconds). The [trackIdx] must be the
+   * index of a 3D scale track.
    */
   public fun scaleTrackInterpolate(trackIdx: Int, timeSec: Double): Vector3 {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
@@ -338,8 +337,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the interpolated blend shape value at the given time (in seconds). The [param
-   * track_idx] must be the index of a blend shape track.
+   * Returns the interpolated blend shape value at the given time (in seconds). The [trackIdx] must
+   * be the index of a blend shape track.
    */
   public fun blendShapeTrackInterpolate(trackIdx: Int, timeSec: Double): Float {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
@@ -371,7 +370,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Removes a key at [param time] in a given track.
+   * Removes a key at [time] in a given track.
    */
   public fun trackRemoveKeyAtTime(trackIdx: Int, time: Double): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time)
@@ -485,7 +484,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * If `true`, the track at [param track_idx] wraps the interpolation loop.
+   * If `true`, the track at [trackIdx] wraps the interpolation loop.
    */
   public fun trackSetInterpolationLoopWrap(trackIdx: Int, interpolation: Boolean): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), BOOL to interpolation)
@@ -493,8 +492,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns `true` if the track at [param track_idx] wraps the interpolation loop. New tracks wrap
-   * the interpolation loop by default.
+   * Returns `true` if the track at [trackIdx] wraps the interpolation loop. New tracks wrap the
+   * interpolation loop by default.
    */
   public fun trackGetInterpolationLoopWrap(trackIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
@@ -512,7 +511,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the update mode (see [enum UpdateMode]) of a value track.
+   * Sets the update mode (see [UpdateMode]) of a value track.
    */
   public fun valueTrackSetUpdateMode(trackIdx: Int, mode: UpdateMode): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to mode.id)
@@ -529,8 +528,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the interpolated value at the given time (in seconds). The [param track_idx] must be
-   * the index of a value track.
+   * Returns the interpolated value at the given time (in seconds). The [trackIdx] must be the index
+   * of a value track.
    */
   public fun valueTrackInterpolate(trackIdx: Int, timeSec: Double): Any? {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
@@ -557,10 +556,10 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Inserts a Bezier Track key at the given [param time] in seconds. The [param track_idx] must be
-   * the index of a Bezier Track.
-   * [param in_handle] is the left-side weight of the added Bezier curve point, [param out_handle]
-   * is the right-side one, while [param value] is the actual value at this point.
+   * Inserts a Bezier Track key at the given [time] in seconds. The [trackIdx] must be the index of
+   * a Bezier Track.
+   * [inHandle] is the left-side weight of the added Bezier curve point, [outHandle] is the
+   * right-side one, while [value] is the actual value at this point.
    */
   @JvmOverloads
   public fun bezierTrackInsertKey(
@@ -576,8 +575,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the value of the key identified by [param key_idx] to the given value. The [param
-   * track_idx] must be the index of a Bezier Track.
+   * Sets the value of the key identified by [keyIdx] to the given value. The [trackIdx] must be the
+   * index of a Bezier Track.
    */
   public fun bezierTrackSetKeyValue(
     trackIdx: Int,
@@ -589,8 +588,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the in handle of the key identified by [param key_idx] to value [param in_handle]. The
-   * [param track_idx] must be the index of a Bezier Track.
+   * Sets the in handle of the key identified by [keyIdx] to value [inHandle]. The [trackIdx] must
+   * be the index of a Bezier Track.
    */
   @JvmOverloads
   public fun bezierTrackSetKeyInHandle(
@@ -604,8 +603,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the out handle of the key identified by [param key_idx] to value [param out_handle]. The
-   * [param track_idx] must be the index of a Bezier Track.
+   * Sets the out handle of the key identified by [keyIdx] to value [outHandle]. The [trackIdx] must
+   * be the index of a Bezier Track.
    */
   @JvmOverloads
   public fun bezierTrackSetKeyOutHandle(
@@ -619,8 +618,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the value of the key identified by [param key_idx]. The [param track_idx] must be the
-   * index of a Bezier Track.
+   * Returns the value of the key identified by [keyIdx]. The [trackIdx] must be the index of a
+   * Bezier Track.
    */
   public fun bezierTrackGetKeyValue(trackIdx: Int, keyIdx: Int): Float {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
@@ -629,8 +628,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the in handle of the key identified by [param key_idx]. The [param track_idx] must be
-   * the index of a Bezier Track.
+   * Returns the in handle of the key identified by [keyIdx]. The [trackIdx] must be the index of a
+   * Bezier Track.
    */
   public fun bezierTrackGetKeyInHandle(trackIdx: Int, keyIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
@@ -639,8 +638,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the out handle of the key identified by [param key_idx]. The [param track_idx] must be
-   * the index of a Bezier Track.
+   * Returns the out handle of the key identified by [keyIdx]. The [trackIdx] must be the index of a
+   * Bezier Track.
    */
   public fun bezierTrackGetKeyOutHandle(trackIdx: Int, keyIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
@@ -649,8 +648,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the interpolated value at the given [param time] (in seconds). The [param track_idx]
-   * must be the index of a Bezier Track.
+   * Returns the interpolated value at the given [time] (in seconds). The [trackIdx] must be the
+   * index of a Bezier Track.
    */
   public fun bezierTrackInterpolate(trackIdx: Int, time: Double): Float {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time)
@@ -659,10 +658,10 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Inserts an Audio Track key at the given [param time] in seconds. The [param track_idx] must be
-   * the index of an Audio Track.
-   * [param stream] is the [AudioStream] resource to play. [param start_offset] is the number of
-   * seconds cut off at the beginning of the audio stream, while [param end_offset] is at the ending.
+   * Inserts an Audio Track key at the given [time] in seconds. The [trackIdx] must be the index of
+   * an Audio Track.
+   * [stream] is the [AudioStream] resource to play. [startOffset] is the number of seconds cut off
+   * at the beginning of the audio stream, while [endOffset] is at the ending.
    */
   @JvmOverloads
   public fun audioTrackInsertKey(
@@ -678,8 +677,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the stream of the key identified by [param key_idx] to value [param stream]. The [param
-   * track_idx] must be the index of an Audio Track.
+   * Sets the stream of the key identified by [keyIdx] to value [stream]. The [trackIdx] must be the
+   * index of an Audio Track.
    */
   public fun audioTrackSetKeyStream(
     trackIdx: Int,
@@ -691,8 +690,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the start offset of the key identified by [param key_idx] to value [param offset]. The
-   * [param track_idx] must be the index of an Audio Track.
+   * Sets the start offset of the key identified by [keyIdx] to value [offset]. The [trackIdx] must
+   * be the index of an Audio Track.
    */
   public fun audioTrackSetKeyStartOffset(
     trackIdx: Int,
@@ -704,8 +703,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the end offset of the key identified by [param key_idx] to value [param offset]. The
-   * [param track_idx] must be the index of an Audio Track.
+   * Sets the end offset of the key identified by [keyIdx] to value [offset]. The [trackIdx] must be
+   * the index of an Audio Track.
    */
   public fun audioTrackSetKeyEndOffset(
     trackIdx: Int,
@@ -717,8 +716,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the audio stream of the key identified by [param key_idx]. The [param track_idx] must
-   * be the index of an Audio Track.
+   * Returns the audio stream of the key identified by [keyIdx]. The [trackIdx] must be the index of
+   * an Audio Track.
    */
   public fun audioTrackGetKeyStream(trackIdx: Int, keyIdx: Int): Resource? {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
@@ -727,8 +726,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the start offset of the key identified by [param key_idx]. The [param track_idx] must
-   * be the index of an Audio Track.
+   * Returns the start offset of the key identified by [keyIdx]. The [trackIdx] must be the index of
+   * an Audio Track.
    * Start offset is the number of seconds cut off at the beginning of the audio stream.
    */
   public fun audioTrackGetKeyStartOffset(trackIdx: Int, keyIdx: Int): Float {
@@ -738,8 +737,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the end offset of the key identified by [param key_idx]. The [param track_idx] must be
-   * the index of an Audio Track.
+   * Returns the end offset of the key identified by [keyIdx]. The [trackIdx] must be the index of
+   * an Audio Track.
    * End offset is the number of seconds cut off at the ending of the audio stream.
    */
   public fun audioTrackGetKeyEndOffset(trackIdx: Int, keyIdx: Int): Float {
@@ -758,7 +757,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns `true` if the track at [param track_idx] will be blended with other animations.
+   * Returns `true` if the track at [trackIdx] will be blended with other animations.
    */
   public fun audioTrackIsUseBlend(trackIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
@@ -767,8 +766,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Inserts a key with value [param animation] at the given [param time] (in seconds). The [param
-   * track_idx] must be the index of an Animation Track.
+   * Inserts a key with value [animation] at the given [time] (in seconds). The [trackIdx] must be
+   * the index of an Animation Track.
    */
   public fun animationTrackInsertKey(
     trackIdx: Int,
@@ -781,8 +780,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the key identified by [param key_idx] to value [param animation]. The [param track_idx]
-   * must be the index of an Animation Track.
+   * Sets the key identified by [keyIdx] to value [animation]. The [trackIdx] must be the index of
+   * an Animation Track.
    */
   public fun animationTrackSetKeyAnimation(
     trackIdx: Int,
@@ -794,8 +793,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the animation name at the key identified by [param key_idx]. The [param track_idx] must
-   * be the index of an Animation Track.
+   * Returns the animation name at the key identified by [keyIdx]. The [trackIdx] must be the index
+   * of an Animation Track.
    */
   public fun animationTrackGetKeyAnimation(trackIdx: Int, keyIdx: Int): StringName {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
@@ -812,7 +811,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Adds a new track to [param to_animation] that is a copy of the given track from this animation.
+   * Adds a new track to [toAnimation] that is a copy of the given track from this animation.
    */
   public fun copyTrack(trackIdx: Int, toAnimation: Animation): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), OBJECT to toAnimation)
@@ -843,9 +842,8 @@ public open class Animation : Resource() {
   ) {
     /**
      * Value tracks set values in node properties, but only those which can be interpolated. For 3D
-     * position/rotation/scale, using the dedicated [constant TYPE_POSITION_3D], [constant
-     * TYPE_ROTATION_3D] and [constant TYPE_SCALE_3D] track types instead of [constant TYPE_VALUE] is
-     * recommended for performance reasons.
+     * position/rotation/scale, using the dedicated [TYPEPOSITION3D], [TYPEROTATION3D] and
+     * [TYPESCALE3D] track types instead of [TYPEVALUE] is recommended for performance reasons.
      */
     TYPE_VALUE(0),
     /**
@@ -907,8 +905,8 @@ public open class Animation : Resource() {
     INTERPOLATION_LINEAR(1),
     /**
      * Cubic interpolation. This looks smoother than linear interpolation, but is more expensive to
-     * interpolate. Stick to [constant INTERPOLATION_LINEAR] for complex 3D animations imported from
-     * external software, even if it requires using a higher animation framerate in return.
+     * interpolate. Stick to [INTERPOLATIONLINEAR] for complex 3D animations imported from external
+     * software, even if it requires using a higher animation framerate in return.
      */
     INTERPOLATION_CUBIC(2),
     /**

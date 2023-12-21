@@ -162,8 +162,8 @@ public object OS : Object() {
   }
 
   /**
-   * Returns path to the system font file with [param font_name] and style. Returns empty string if
-   * no matching fonts found.
+   * Returns path to the system font file with [fontName] and style. Returns empty string if no
+   * matching fonts found.
    * The following aliases can be used to request default fonts: "sans-serif", "serif", "monospace",
    * "cursive", and "fantasy".
    * **Note:** Returned font might have different style if the requested style is not available.
@@ -183,8 +183,8 @@ public object OS : Object() {
 
   /**
    * Returns an array of the system substitute font file paths, which are similar to the font with
-   * [param font_name] and style for the specified text, locale and script. Returns empty array if no
-   * matching fonts found.
+   * [fontName] and style for the specified text, locale and script. Returns empty array if no matching
+   * fonts found.
    * The following aliases can be used to request default fonts: "sans-serif", "serif", "monospace",
    * "cursive", and "fantasy".
    * **Note:** Depending on OS, it's not guaranteed that any of the returned fonts will be suitable
@@ -234,13 +234,13 @@ public object OS : Object() {
   }
 
   /**
-   * Executes a command. The file specified in [param path] must exist and be executable. Platform
-   * path resolution will be used. The [param arguments] are used in the given order, separated by
-   * spaces, and wrapped in quotes. If an [param output] [Array] is provided, the complete shell output
-   * of the process will be appended as a single [String] element in [param output]. If [param
-   * read_stderr] is `true`, the output to the standard error stream will be included too.
-   * On Windows, if [param open_console] is `true` and the process is a console app, a new terminal
-   * window will be opened. This is ignored on other platforms.
+   * Executes a command. The file specified in [path] must exist and be executable. Platform path
+   * resolution will be used. The [arguments] are used in the given order, separated by spaces, and
+   * wrapped in quotes. If an [output] [Array] is provided, the complete shell output of the process
+   * will be appended as a single [String] element in [output]. If [readStderr] is `true`, the output
+   * to the standard error stream will be included too.
+   * On Windows, if [openConsole] is `true` and the process is a console app, a new terminal window
+   * will be opened. This is ignored on other platforms.
    * If the command is successfully executed, the method will return the exit code of the command,
    * or `-1` if it fails.
    * **Note:** The Godot thread will pause its execution until the executed command terminates. Use
@@ -275,11 +275,11 @@ public object OS : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
    * **Note:** To execute a Windows command interpreter built-in command, specify `cmd.exe` in
-   * [param path], `/c` as the first argument, and the desired command as the second argument.
-   * **Note:** To execute a PowerShell built-in command, specify `powershell.exe` in [param path],
+   * [path], `/c` as the first argument, and the desired command as the second argument.
+   * **Note:** To execute a PowerShell built-in command, specify `powershell.exe` in [path],
    * `-Command` as the first argument, and the desired command as the second argument.
-   * **Note:** To execute a Unix shell built-in command, specify shell executable name in [param
-   * path], `-c` as the first argument, and the desired command as the second argument.
+   * **Note:** To execute a Unix shell built-in command, specify shell executable name in [path],
+   * `-c` as the first argument, and the desired command as the second argument.
    * **Note:** On macOS, sandboxed applications are limited to run only embedded helper executables,
    * specified during export.
    */
@@ -298,11 +298,11 @@ public object OS : Object() {
 
   /**
    * Creates a new process that runs independently of Godot. It will not terminate if Godot
-   * terminates. The path specified in [param path] must exist and be executable file or macOS .app
-   * bundle. Platform path resolution will be used. The [param arguments] are used in the given order
-   * and separated by a space.
-   * On Windows, if [param open_console] is `true` and the process is a console app, a new terminal
-   * window will be opened. This is ignored on other platforms.
+   * terminates. The path specified in [path] must exist and be executable file or macOS .app bundle.
+   * Platform path resolution will be used. The [arguments] are used in the given order and separated
+   * by a space.
+   * On Windows, if [openConsole] is `true` and the process is a console app, a new terminal window
+   * will be opened. This is ignored on other platforms.
    * If the process creation succeeds, the method will return the new process ID, which you can use
    * to monitor the process (and potentially terminate it with [kill]). If the process creation fails,
    * the method will return `-1`.
@@ -334,8 +334,8 @@ public object OS : Object() {
   }
 
   /**
-   * Creates a new instance of Godot that runs independently. The [param arguments] are used in the
-   * given order and separated by a space.
+   * Creates a new instance of Godot that runs independently. The [arguments] are used in the given
+   * order and separated by a space.
    * If the process creation succeeds, the method will return the new process ID, which you can use
    * to monitor the process (and potentially terminate it with [kill]). If the process creation fails,
    * the method will return `-1`.
@@ -348,8 +348,8 @@ public object OS : Object() {
   }
 
   /**
-   * Kill (terminate) the process identified by the given process ID ([param pid]), e.g. the one
-   * returned by [execute] in non-blocking mode. See also [crash].
+   * Kill (terminate) the process identified by the given process ID ([pid]), e.g. the one returned
+   * by [execute] in non-blocking mode. See also [crash].
    * **Note:** This method can also be used to kill processes that were not spawned by the game.
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
    */
@@ -382,15 +382,14 @@ public object OS : Object() {
   }
 
   /**
-   * Requests the OS to open the file manager, then navigate to the given [param file_or_dir_path]
-   * and select the target file or folder.
-   * If [param file_or_dir_path] is a valid directory path, and [param open_folder] is `true`, the
-   * method will open the file manager and enter the target folder without selecting anything.
+   * Requests the OS to open the file manager, then navigate to the given [fileOrDirPath] and select
+   * the target file or folder.
+   * If [fileOrDirPath] is a valid directory path, and [openFolder] is `true`, the method will open
+   * the file manager and enter the target folder without selecting anything.
    * Use [ProjectSettings.globalizePath] to convert a `res://` or `user://` path into a system path
    * for use with this method.
    * **Note:** Currently this method is only implemented on Windows and macOS. On other platforms,
-   * it will fallback to [shellOpen] with a directory path of [param file_or_dir_path] with prefix
-   * `file://`.
+   * it will fallback to [shellOpen] with a directory path of [fileOrDirPath] with prefix `file://`.
    */
   @JvmOverloads
   public fun shellShowInFileManager(fileOrDirPath: String, openFolder: Boolean = true): GodotError {
@@ -400,7 +399,7 @@ public object OS : Object() {
   }
 
   /**
-   * Returns `true` if the child process ID ([param pid]) is still running or `false` if it has
+   * Returns `true` if the child process ID ([pid]) is still running or `false` if it has
    * terminated.
    * Must be a valid ID generated from [createProcess].
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
@@ -422,9 +421,9 @@ public object OS : Object() {
   }
 
   /**
-   * Returns `true` if the environment variable with the name [param variable] exists.
-   * **Note:** Double-check the casing of [param variable]. Environment variable names are
-   * case-sensitive on all platforms except Windows.
+   * Returns `true` if the environment variable with the name [variable] exists.
+   * **Note:** Double-check the casing of [variable]. Environment variable names are case-sensitive
+   * on all platforms except Windows.
    */
   public fun hasEnvironment(variable: String): Boolean {
     TransferContext.writeArguments(STRING to variable)
@@ -435,8 +434,8 @@ public object OS : Object() {
   /**
    * Returns the value of an environment variable. Returns an empty string if the environment
    * variable doesn't exist.
-   * **Note:** Double-check the casing of [param variable]. Environment variable names are
-   * case-sensitive on all platforms except Windows.
+   * **Note:** Double-check the casing of [variable]. Environment variable names are case-sensitive
+   * on all platforms except Windows.
    */
   public fun getEnvironment(variable: String): String {
     TransferContext.writeArguments(STRING to variable)
@@ -445,14 +444,14 @@ public object OS : Object() {
   }
 
   /**
-   * Sets the value of the environment variable [param variable] to [param value]. The environment
-   * variable will be set for the Godot process and any process executed with [execute] after running
+   * Sets the value of the environment variable [variable] to [value]. The environment variable will
+   * be set for the Godot process and any process executed with [execute] after running
    * [setEnvironment]. The environment variable will *not* persist to processes run after the Godot
    * process was terminated.
    * **Note:** Environment variable names are case-sensitive on all platforms except Windows. The
-   * [param variable] name cannot be empty or include the `=` character. On Windows, there is a 32767
-   * characters limit for the combined length of [param variable], [param value], and the `=` and null
-   * terminator characters that will be registered in the environment block.
+   * [variable] name cannot be empty or include the `=` character. On Windows, there is a 32767
+   * characters limit for the combined length of [variable], [value], and the `=` and null terminator
+   * characters that will be registered in the environment block.
    */
   public fun setEnvironment(variable: String, `value`: String): Unit {
     TransferContext.writeArguments(STRING to variable, STRING to value)
@@ -460,12 +459,12 @@ public object OS : Object() {
   }
 
   /**
-   * Removes the environment [param variable] from the current environment, if it exists. The
-   * environment variable will be removed for the Godot process and any process executed with [execute]
-   * after running [unsetEnvironment]. The removal of the environment variable will *not* persist to
+   * Removes the environment [variable] from the current environment, if it exists. The environment
+   * variable will be removed for the Godot process and any process executed with [execute] after
+   * running [unsetEnvironment]. The removal of the environment variable will *not* persist to
    * processes run after the Godot process was terminated.
    * **Note:** Environment variable names are case-sensitive on all platforms except Windows. The
-   * [param variable] name cannot be empty or include the `=` character.
+   * [variable] name cannot be empty or include the `=` character.
    */
   public fun unsetEnvironment(variable: String): Unit {
     TransferContext.writeArguments(STRING to variable)
@@ -657,10 +656,10 @@ public object OS : Object() {
   }
 
   /**
-   * If [param restart] is `true`, restarts the project automatically when it is exited with
-   * [SceneTree.quit] or [constant Node.NOTIFICATION_WM_CLOSE_REQUEST]. Command line [param arguments]
-   * can be supplied. To restart the project with the same command line arguments as originally used to
-   * run the project, pass [getCmdlineArgs] as the value for [param arguments].
+   * If [restart] is `true`, restarts the project automatically when it is exited with
+   * [SceneTree.quit] or [Node.NOTIFICATIONWMCLOSEREQUEST]. Command line [arguments] can be supplied.
+   * To restart the project with the same command line arguments as originally used to run the project,
+   * pass [getCmdlineArgs] as the value for [arguments].
    * [setRestartOnExit] can be used to apply setting changes that require a restart. See also
    * [isRestartOnExitSet] and [getRestartOnExitArguments].
    * **Note:** This method is only effective on desktop platforms, and only when the project isn't
@@ -698,9 +697,8 @@ public object OS : Object() {
   }
 
   /**
-   * Delays execution of the current thread by [param usec] microseconds. [param usec] must be
-   * greater than or equal to `0`. Otherwise, [delayUsec] will do nothing and will print an error
-   * message.
+   * Delays execution of the current thread by [usec] microseconds. [usec] must be greater than or
+   * equal to `0`. Otherwise, [delayUsec] will do nothing and will print an error message.
    * **Note:** [delayUsec] is a *blocking* way to delay code execution. To delay code execution in a
    * non-blocking way, see [SceneTree.createTimer]. Awaiting with [SceneTree.createTimer] will delay
    * the execution of code placed below the `await` without affecting the rest of the project (or
@@ -716,9 +714,8 @@ public object OS : Object() {
   }
 
   /**
-   * Delays execution of the current thread by [param msec] milliseconds. [param msec] must be
-   * greater than or equal to `0`. Otherwise, [delayMsec] will do nothing and will print an error
-   * message.
+   * Delays execution of the current thread by [msec] milliseconds. [msec] must be greater than or
+   * equal to `0`. Otherwise, [delayMsec] will do nothing and will print an error message.
    * **Note:** [delayMsec] is a *blocking* way to delay code execution. To delay code execution in a
    * non-blocking way, see [SceneTree.createTimer]. Awaiting with [SceneTree.createTimer] will delay
    * the execution of code placed below the `await` without affecting the rest of the project (or
@@ -900,7 +897,7 @@ public object OS : Object() {
 
   /**
    * Returns the actual path to commonly used folders across different platforms. Available
-   * locations are specified in [enum SystemDir].
+   * locations are specified in [SystemDir].
    * **Note:** This method is implemented on Android, Linux, macOS and Windows.
    * **Note:** Shared storage is implemented on Android and allows to differentiate between app
    * specific and shared directories. Shared directories have additional restrictions on Android.
@@ -999,7 +996,7 @@ public object OS : Object() {
   }
 
   /**
-   * Enables backup saves if [param enabled] is `true`.
+   * Enables backup saves if [enabled] is `true`.
    */
   public fun setUseFileAccessSaveAndSwap(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)

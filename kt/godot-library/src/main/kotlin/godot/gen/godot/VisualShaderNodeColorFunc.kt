@@ -23,7 +23,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class VisualShaderNodeColorFunc : VisualShaderNode() {
   /**
-   * A function to be applied to the input color. See [enum Function] for options.
+   * A function to be applied to the input color. See [Function] for options.
    */
   public var function: Function
     get() {
@@ -75,7 +75,7 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
      */
     FUNC_SEPIA(3),
     /**
-     * Represents the size of the [enum Function] enum.
+     * Represents the size of the [Function] enum.
      */
     FUNC_MAX(4),
     ;

@@ -140,7 +140,7 @@ public open class MultiplayerSpawner : Node() {
   }
 
   /**
-   * Requests a custom spawn, with [param data] passed to [spawnFunction] on all peers. Returns the
+   * Requests a custom spawn, with [data] passed to [spawnFunction] on all peers. Returns the
    * locally spawned node instance already inside the scene tree, and added as a child of the node
    * pointed by [spawnPath].
    * **Note:** Spawnable scenes are spawned automatically. [spawn] is only needed for custom spawns.

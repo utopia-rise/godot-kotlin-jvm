@@ -71,7 +71,7 @@ public open class Script internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true` if [param base_object] is an instance of this script.
+   * Returns `true` if [baseObject] is an instance of this script.
    */
   public fun instanceHas(baseObject: Object): Boolean {
     TransferContext.writeArguments(OBJECT to baseObject)

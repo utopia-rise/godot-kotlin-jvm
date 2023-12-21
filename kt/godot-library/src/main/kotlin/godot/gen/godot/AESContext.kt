@@ -107,9 +107,9 @@ public open class AESContext : RefCounted() {
   }
 
   /**
-   * Start the AES context in the given [param mode]. A [param key] of either 16 or 32 bytes must
-   * always be provided, while an [param iv] (initialization vector) of exactly 16 bytes, is only
-   * needed when [param mode] is either [constant MODE_CBC_ENCRYPT] or [constant MODE_CBC_DECRYPT].
+   * Start the AES context in the given [mode]. A [key] of either 16 or 32 bytes must always be
+   * provided, while an [iv] (initialization vector) of exactly 16 bytes, is only needed when [mode] is
+   * either [MODECBCENCRYPT] or [MODECBCDECRYPT].
    */
   @JvmOverloads
   public fun start(
@@ -124,8 +124,8 @@ public open class AESContext : RefCounted() {
 
   /**
    * Run the desired operation for this AES context. Will return a [PackedByteArray] containing the
-   * result of encrypting (or decrypting) the given [param src]. See [start] for mode of operation.
-   * **Note:** The size of [param src] must be a multiple of 16. Apply some padding if needed.
+   * result of encrypting (or decrypting) the given [src]. See [start] for mode of operation.
+   * **Note:** The size of [src] must be a multiple of 16. Apply some padding if needed.
    */
   public fun update(src: PackedByteArray): PackedByteArray {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to src)
@@ -136,8 +136,8 @@ public open class AESContext : RefCounted() {
   /**
    * Get the current IV state for this context (IV gets updated when calling [update]). You normally
    * don't need this function.
-   * **Note:** This function only makes sense when the context is started with [constant
-   * MODE_CBC_ENCRYPT] or [constant MODE_CBC_DECRYPT].
+   * **Note:** This function only makes sense when the context is started with [MODECBCENCRYPT] or
+   * [MODECBCDECRYPT].
    */
   public fun getIvState(): PackedByteArray {
     TransferContext.writeArguments()

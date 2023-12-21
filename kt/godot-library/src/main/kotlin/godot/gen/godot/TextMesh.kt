@@ -87,7 +87,7 @@ public open class TextMesh : PrimitiveMesh() {
 
   /**
    * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify.
-   * Set it to one of the [enum HorizontalAlignment] constants.
+   * Set it to one of the [HorizontalAlignment] constants.
    */
   public var horizontalAlignment: HorizontalAlignment
     get() {
@@ -102,7 +102,7 @@ public open class TextMesh : PrimitiveMesh() {
 
   /**
    * Controls the text's vertical alignment. Supports top, center, bottom. Set it to one of the
-   * [enum VerticalAlignment] constants.
+   * [VerticalAlignment] constants.
    */
   public var verticalAlignment: VerticalAlignment
     get() {
@@ -144,9 +144,9 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * If set to something other than [constant TextServer.AUTOWRAP_OFF], the text gets wrapped inside
-   * the node's bounding rectangle. If you resize the node, it will change its height automatically to
-   * show all the text. To see how each mode behaves, see [enum TextServer.AutowrapMode].
+   * If set to something other than [TextServer.AUTOWRAPOFF], the text gets wrapped inside the
+   * node's bounding rectangle. If you resize the node, it will change its height automatically to show
+   * all the text. To see how each mode behaves, see [TextServer.AutowrapMode].
    */
   public var autowrapMode: TextServer.AutowrapMode
     get() {
@@ -160,7 +160,7 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * Line fill alignment rules. For more info see [enum TextServer.JustificationFlag].
+   * Line fill alignment rules. For more info see [TextServer.JustificationFlag].
    */
   public var justificationFlags: TextServer.JustificationFlag
     get() {

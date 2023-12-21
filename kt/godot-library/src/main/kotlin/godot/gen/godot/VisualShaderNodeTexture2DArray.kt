@@ -22,8 +22,8 @@ import kotlin.Suppress
 @GodotBaseType
 public open class VisualShaderNodeTexture2DArray : VisualShaderNodeSample3D() {
   /**
-   * A source texture array. Used if [VisualShaderNodeSample3D.source] is set to [constant
-   * VisualShaderNodeSample3D.SOURCE_TEXTURE].
+   * A source texture array. Used if [VisualShaderNodeSample3D.source] is set to
+   * [VisualShaderNodeSample3D.SOURCETEXTURE].
    */
   public var textureArray: Texture2DArray?
     get() {

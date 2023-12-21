@@ -37,8 +37,8 @@ import kotlin.Unit
 public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The material's transparency mode. Some transparency modes will disable shadow casting. Any
-   * transparency mode other than [constant TRANSPARENCY_DISABLED] has a greater performance impact
-   * compared to opaque rendering. See also [blendMode].
+   * transparency mode other than [TRANSPARENCYDISABLED] has a greater performance impact compared to
+   * opaque rendering. See also [blendMode].
    */
   public var transparency: Transparency
     get() {
@@ -83,7 +83,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The type of alpha antialiasing to apply. See [enum AlphaAntiAliasing].
+   * The type of alpha antialiasing to apply. See [AlphaAntiAliasing].
    */
   public var alphaAntialiasingMode: AlphaAntiAliasing
     get() {
@@ -112,8 +112,8 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * The material's blend mode.
-   * **Note:** Values other than `Mix` force the object into the transparent pipeline. See [enum
-   * BlendMode].
+   * **Note:** Values other than `Mix` force the object into the transparent pipeline. See
+   * [BlendMode].
    */
   public var blendMode: BlendMode
     get() {
@@ -128,7 +128,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * Determines which side of the triangle to cull depending on whether the triangle faces towards
-   * or away from the camera. See [enum CullMode].
+   * or away from the camera. See [CullMode].
    */
   public var cullMode: CullMode
     get() {
@@ -142,7 +142,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Determines when depth rendering takes place. See [enum DepthDrawMode]. See also [transparency].
+   * Determines when depth rendering takes place. See [DepthDrawMode]. See also [transparency].
    */
   public var depthDrawMode: DepthDrawMode
     get() {
@@ -188,7 +188,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The algorithm used for diffuse light scattering. See [enum DiffuseMode].
+   * The algorithm used for diffuse light scattering. See [DiffuseMode].
    */
   public var diffuseMode: DiffuseMode
     get() {
@@ -202,7 +202,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The method for rendering the specular blob. See [enum SpecularMode].
+   * The method for rendering the specular blob. See [SpecularMode].
    * **Note:** [specularMode] only applies to the specular blob. It does not affect specular
    * reflections from the sky, screen-space reflections, [VoxelGI], SDFGI or [ReflectionProbe]s. To
    * disable reflections from these sources as well, set [metallicSpecular] to `0.0` instead.
@@ -386,9 +386,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Adjusts the strength of specular reflections. Specular reflections are composed of scene
    * reflections and the specular lobe which is the bright spot that is reflected from light sources.
-   * When set to `0.0`, no specular reflections will be visible. This differs from the [constant
-   * SPECULAR_DISABLED] [enum SpecularMode] as [constant SPECULAR_DISABLED] only applies to the
-   * specular lobe from the light source.
+   * When set to `0.0`, no specular reflections will be visible. This differs from the
+   * [SPECULARDISABLED] [SpecularMode] as [SPECULARDISABLED] only applies to the specular lobe from the
+   * light source.
    * **Note:** Unlike [metallic], this is not energy-conserving, so it should be left at `0.5` in
    * most cases. See also [roughness].
    */
@@ -542,8 +542,8 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Sets how [emission] interacts with [emissionTexture]. Can either add or multiply. See [enum
-   * EmissionOperator] for options.
+   * Sets how [emission] interacts with [emissionTexture]. Can either add or multiply. See
+   * [EmissionOperator] for options.
    */
   public var emissionOperator: EmissionOperator
     get() {
@@ -642,8 +642,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, rim effect is enabled. Rim lighting increases the brightness at glancing angles on
    * an object.
-   * **Note:** Rim lighting is not visible if the material's [shadingMode] is [constant
-   * SHADING_MODE_UNSHADED].
+   * **Note:** Rim lighting is not visible if the material's [shadingMode] is [SHADINGMODEUNSHADED].
    */
   public var rimEnabled: Boolean
     get() {
@@ -703,8 +702,8 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * If `true`, clearcoat rendering is enabled. Adds a secondary transparent pass to the lighting
    * calculation resulting in an added specular blob. This makes materials appear as if they have a
    * clear layer on them that can be either glossy or rough.
-   * **Note:** Clearcoat rendering is not visible if the material's [shadingMode] is [constant
-   * SHADING_MODE_UNSHADED].
+   * **Note:** Clearcoat rendering is not visible if the material's [shadingMode] is
+   * [SHADINGMODEUNSHADED].
    */
   public var clearcoatEnabled: Boolean
     get() {
@@ -768,8 +767,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * **Note:** Mesh tangents are needed for anisotropy to work. If the mesh does not contain
    * tangents, the anisotropy effect will appear broken.
    * **Note:** Material anisotropy should not to be confused with anisotropic texture filtering,
-   * which can be enabled by setting [textureFilter] to [constant
-   * TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC].
+   * which can be enabled by setting [textureFilter] to [TEXTUREFILTERLINEARWITHMIPMAPSANISOTROPIC].
    */
   public var anisotropyEnabled: Boolean
     get() {
@@ -1336,8 +1334,8 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Specifies how the [detailAlbedo] should blend with the current `ALBEDO`. See [enum BlendMode]
-   * for options.
+   * Specifies how the [detailAlbedo] should blend with the current `ALBEDO`. See [BlendMode] for
+   * options.
    */
   public var detailBlendMode: BlendMode
     get() {
@@ -1351,7 +1349,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Specifies whether to use `UV` or `UV2` for the detail layer. See [enum DetailUV] for options.
+   * Specifies whether to use `UV` or `UV2` for the detail layer. See [DetailUV] for options.
    */
   public var detailUvLayer: DetailUV
     get() {
@@ -1573,7 +1571,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Filter flags for the texture. See [enum TextureFilter] for options.
+   * Filter flags for the texture. See [TextureFilter] for options.
    * **Note:** [heightmapTexture] is always sampled with linear filtering, even if nearest-neighbor
    * filtering is selected here. This is to ensure the heightmap effect looks as intended. If you need
    * sharper height transitions between pixels, resize the heightmap texture in an image editor with
@@ -1591,7 +1589,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Repeat flags for the texture. See [enum TextureFilter] for options.
+   * Repeat flags for the texture. See [TextureFilter] for options.
    */
   public var textureRepeat: Boolean
     get() {
@@ -1635,7 +1633,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Controls how the object faces the camera. See [enum BillboardMode].
+   * Controls how the object faces the camera. See [BillboardMode].
    * **Note:** Billboard mode is not suitable for VR because the left-right vector of the camera is
    * not horizontal when the screen is attached to your head instead of on the table. See
    * [url=https://github.com/godotengine/godot/issues/41567]GitHub issue #41567[/url] for details.
@@ -1653,7 +1651,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * If `true`, the shader will keep the scale set for the mesh. Otherwise, the scale is lost when
-   * billboarding. Only applies when [billboardMode] is not [constant BILLBOARD_DISABLED].
+   * billboarding. Only applies when [billboardMode] is not [BILLBOARDDISABLED].
    */
   public var billboardKeepScale: Boolean
     get() {
@@ -1667,8 +1665,8 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The number of horizontal frames in the particle sprite sheet. Only enabled when using [constant
-   * BILLBOARD_PARTICLES]. See [billboardMode].
+   * The number of horizontal frames in the particle sprite sheet. Only enabled when using
+   * [BILLBOARDPARTICLES]. See [billboardMode].
    */
   public var particlesAnimHFrames: Int
     get() {
@@ -1682,8 +1680,8 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The number of vertical frames in the particle sprite sheet. Only enabled when using [constant
-   * BILLBOARD_PARTICLES]. See [billboardMode].
+   * The number of vertical frames in the particle sprite sheet. Only enabled when using
+   * [BILLBOARDPARTICLES]. See [billboardMode].
    */
   public var particlesAnimVFrames: Int
     get() {
@@ -1697,8 +1695,8 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, particle animations are looped. Only enabled when using [constant
-   * BILLBOARD_PARTICLES]. See [billboardMode].
+   * If `true`, particle animations are looped. Only enabled when using [BILLBOARDPARTICLES]. See
+   * [billboardMode].
    */
   public var particlesAnimLoop: Boolean
     get() {
@@ -1713,8 +1711,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * If `true`, enables the vertex grow setting. This can be used to create mesh-based outlines
-   * using a second material pass and its [cullMode] set to [constant CULL_FRONT]. See also
-   * [growAmount].
+   * using a second material pass and its [cullMode] set to [CULLFRONT]. See also [growAmount].
    * **Note:** Vertex growth cannot create new vertices, which means that visible gaps may occur in
    * sharp corners. This can be alleviated by designing the mesh to use smooth normals exclusively
    * using [url=https://wiki.polycount.com/wiki/Face_weighted_normals]face weighted normals[/url] in
@@ -1867,7 +1864,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Specifies which type of fade to use. Can be any of the [enum DistanceFadeMode]s.
+   * Specifies which type of fade to use. Can be any of the [DistanceFadeMode]s.
    */
   public var distanceFadeMode: DistanceFadeMode
     get() {
@@ -2199,7 +2196,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     TEXTURE_ORM(17),
     /**
-     * Represents the size of the [enum TextureParam] enum.
+     * Represents the size of the [TextureParam] enum.
      */
     TEXTURE_MAX(18),
     ;
@@ -2253,7 +2250,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC(5),
     /**
-     * Represents the size of the [enum TextureFilter] enum.
+     * Represents the size of the [TextureFilter] enum.
      */
     TEXTURE_FILTER_MAX(6),
     ;
@@ -2322,7 +2319,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     TRANSPARENCY_ALPHA_DEPTH_PRE_PASS(4),
     /**
-     * Represents the size of the [enum Transparency] enum.
+     * Represents the size of the [Transparency] enum.
      */
     TRANSPARENCY_MAX(5),
     ;
@@ -2351,12 +2348,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
     SHADING_MODE_PER_PIXEL(1),
     /**
      * The object will be shaded per vertex. Useful when you want cheaper shaders and do not care
-     * about visual quality. Not implemented yet (this mode will act like [constant
-     * SHADING_MODE_PER_PIXEL]).
+     * about visual quality. Not implemented yet (this mode will act like [SHADINGMODEPERPIXEL]).
      */
     SHADING_MODE_PER_VERTEX(2),
     /**
-     * Represents the size of the [enum ShadingMode] enum.
+     * Represents the size of the [ShadingMode] enum.
      */
     SHADING_MODE_MAX(3),
     ;
@@ -2423,7 +2419,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     FEATURE_DETAIL(11),
     /**
-     * Represents the size of the [enum Feature] enum.
+     * Represents the size of the [Feature] enum.
      */
     FEATURE_MAX(12),
     ;
@@ -2511,7 +2507,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      * Objects will write to depth during the opaque and the transparent passes. Transparent objects
      * that are close to the camera may obscure other transparent objects behind them.
      * **Note:** This does not influence whether transparent objects are included in the depth
-     * prepass or not. For that, see [enum Transparency].
+     * prepass or not. For that, see [Transparency].
      */
     DEPTH_DRAW_ALWAYS(1),
     /**
@@ -2592,7 +2588,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     FLAG_FIXED_SIZE(4),
     /**
      * Shader will keep the scale set for the mesh. Otherwise the scale is lost when billboarding.
-     * Only applies when [billboardMode] is [constant BILLBOARD_ENABLED].
+     * Only applies when [billboardMode] is [BILLBOARDENABLED].
      */
     FLAG_BILLBOARD_KEEP_SCALE(5),
     /**
@@ -2667,7 +2663,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     FLAG_DISABLE_FOG(21),
     /**
-     * Represents the size of the [enum Flags] enum.
+     * Represents the size of the [Flags] enum.
      */
     FLAG_MAX(22),
     ;
@@ -2848,15 +2844,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
     /**
      * Smoothly fades the object out based on each pixel's distance from the camera using a
      * dithering approach. Dithering discards pixels based on a set pattern to smoothly fade without
-     * enabling transparency. On certain hardware, this can be faster than [constant
-     * DISTANCE_FADE_PIXEL_ALPHA].
+     * enabling transparency. On certain hardware, this can be faster than [DISTANCEFADEPIXELALPHA].
      */
     DISTANCE_FADE_PIXEL_DITHER(2),
     /**
      * Smoothly fades the object out based on the object's distance from the camera using a
      * dithering approach. Dithering discards pixels based on a set pattern to smoothly fade without
-     * enabling transparency. On certain hardware, this can be faster than [constant
-     * DISTANCE_FADE_PIXEL_ALPHA] and [constant DISTANCE_FADE_PIXEL_DITHER].
+     * enabling transparency. On certain hardware, this can be faster than [DISTANCEFADEPIXELALPHA] and
+     * [DISTANCEFADEPIXELDITHER].
      */
     DISTANCE_FADE_OBJECT_DITHER(3),
     ;

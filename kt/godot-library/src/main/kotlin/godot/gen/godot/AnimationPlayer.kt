@@ -184,8 +184,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * Triggers the [param animation_to] animation when the [param animation_from] animation
-   * completes.
+   * Triggers the [animationTo] animation when the [animationFrom] animation completes.
    */
   public fun animationSetNext(animationFrom: StringName, animationTo: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to animationFrom, STRING_NAME to animationTo)
@@ -193,8 +192,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * Returns the key of the animation which is queued to play after the [param animation_from]
-   * animation.
+   * Returns the key of the animation which is queued to play after the [animationFrom] animation.
    */
   public fun animationGetNext(animationFrom: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to animationFrom)
@@ -224,14 +222,14 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * Plays the animation with key [param name]. Custom blend times and speed can be set.
-   * The [param from_end] option only affects when switching to a new animation track, or if the
-   * same track but at the start or end. It does not affect resuming playback that was paused in the
-   * middle of an animation. If [param custom_speed] is negative and [param from_end] is `true`, the
-   * animation will play backwards (which is equivalent to calling [playBackwards]).
+   * Plays the animation with key [name]. Custom blend times and speed can be set.
+   * The [fromEnd] option only affects when switching to a new animation track, or if the same track
+   * but at the start or end. It does not affect resuming playback that was paused in the middle of an
+   * animation. If [customSpeed] is negative and [fromEnd] is `true`, the animation will play backwards
+   * (which is equivalent to calling [playBackwards]).
    * The [AnimationPlayer] keeps track of its current or last played animation with
-   * [assignedAnimation]. If this method is called with that same animation [param name], or with no
-   * [param name] parameter, the assigned animation will resume playing if it was paused.
+   * [assignedAnimation]. If this method is called with that same animation [name], or with no [name]
+   * parameter, the assigned animation will resume playing if it was paused.
    * **Note:** The animation will be updated the next time the [AnimationPlayer] is processed. If
    * other variables are updated at the same time this is called, they may be updated too early. To
    * perform the update immediately, call `advance(0)`.
@@ -248,7 +246,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * Plays the animation with key [param name] in reverse.
+   * Plays the animation with key [name] in reverse.
    * This method is a shorthand for [play] with `custom_speed = -1.0` and `from_end = true`, so see
    * its description for more information.
    */
@@ -272,7 +270,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Stops the currently playing animation. The animation position is reset to `0` and the
    * `custom_speed` is reset to `1.0`. See also [pause].
-   * If [param keep_state] is `true`, the animation state is not updated visually.
+   * If [keepState] is `true`, the animation state is not updated visually.
    * **Note:** The method / audio / animation playback tracks will not be processed by this method.
    */
   @JvmOverloads
@@ -331,11 +329,10 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * Seeks the animation to the [param seconds] point in time (in seconds). If [param update] is
-   * `true`, the animation updates too, otherwise it updates at process time. Events between the
-   * current frame and [param seconds] are skipped.
-   * If [param update_only] is true, the method / audio / animation playback tracks will not be
-   * processed.
+   * Seeks the animation to the [seconds] point in time (in seconds). If [update] is `true`, the
+   * animation updates too, otherwise it updates at process time. Events between the current frame and
+   * [seconds] are skipped.
+   * If [updateOnly] is true, the method / audio / animation playback tracks will not be processed.
    * **Note:** Seeking to the end of the animation doesn't emit [signal
    * AnimationMixer.animation_finished]. If you want to skip animation and emit the signal, use
    * [AnimationMixer.advance].
@@ -351,7 +348,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * For backward compatibility. See [enum AnimationMixer.AnimationCallbackModeProcess].
+   * For backward compatibility. See [AnimationMixer.AnimationCallbackModeProcess].
    */
   public fun setProcessCallback(mode: AnimationProcessCallback): Unit {
     TransferContext.writeArguments(LONG to mode.id)
@@ -359,7 +356,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * For backward compatibility. See [enum AnimationMixer.AnimationCallbackModeProcess].
+   * For backward compatibility. See [AnimationMixer.AnimationCallbackModeProcess].
    */
   public fun getProcessCallback(): AnimationProcessCallback {
     TransferContext.writeArguments()
@@ -368,7 +365,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * For backward compatibility. See [enum AnimationMixer.AnimationCallbackModeMethod].
+   * For backward compatibility. See [AnimationMixer.AnimationCallbackModeMethod].
    */
   public fun setMethodCallMode(mode: AnimationMethodCallMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
@@ -376,7 +373,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * For backward compatibility. See [enum AnimationMixer.AnimationCallbackModeMethod].
+   * For backward compatibility. See [AnimationMixer.AnimationCallbackModeMethod].
    */
   public fun getMethodCallMode(): AnimationMethodCallMode {
     TransferContext.writeArguments()
@@ -405,18 +402,15 @@ public open class AnimationPlayer : AnimationMixer() {
     id: Long,
   ) {
     /**
-     * For backward compatibility. See [constant
-     * AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS].
+     * For backward compatibility. See [AnimationMixer.ANIMATIONCALLBACKMODEPROCESSPHYSICS].
      */
     ANIMATION_PROCESS_PHYSICS(0),
     /**
-     * For backward compatibility. See [constant
-     * AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_IDLE].
+     * For backward compatibility. See [AnimationMixer.ANIMATIONCALLBACKMODEPROCESSIDLE].
      */
     ANIMATION_PROCESS_IDLE(1),
     /**
-     * For backward compatibility. See [constant
-     * AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL].
+     * For backward compatibility. See [AnimationMixer.ANIMATIONCALLBACKMODEPROCESSMANUAL].
      */
     ANIMATION_PROCESS_MANUAL(2),
     ;
@@ -435,13 +429,11 @@ public open class AnimationPlayer : AnimationMixer() {
     id: Long,
   ) {
     /**
-     * For backward compatibility. See [constant
-     * AnimationMixer.ANIMATION_CALLBACK_MODE_METHOD_DEFERRED].
+     * For backward compatibility. See [AnimationMixer.ANIMATIONCALLBACKMODEMETHODDEFERRED].
      */
     ANIMATION_METHOD_CALL_DEFERRED(0),
     /**
-     * For backward compatibility. See [constant
-     * AnimationMixer.ANIMATION_CALLBACK_MODE_METHOD_IMMEDIATE].
+     * For backward compatibility. See [AnimationMixer.ANIMATIONCALLBACKMODEMETHODIMMEDIATE].
      */
     ANIMATION_METHOD_CALL_IMMEDIATE(1),
     ;

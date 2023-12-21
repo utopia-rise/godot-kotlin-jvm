@@ -36,10 +36,8 @@ public open class CryptoKey : Resource() {
   }
 
   /**
-   * Saves a key to the given [param path]. If [param public_only] is `true`, only the public key
-   * will be saved.
-   * **Note:** [param path] should be a "*.pub" file if [param public_only] is `true`, a "*.key"
-   * file otherwise.
+   * Saves a key to the given [path]. If [publicOnly] is `true`, only the public key will be saved.
+   * **Note:** [path] should be a "*.pub" file if [publicOnly] is `true`, a "*.key" file otherwise.
    */
   @JvmOverloads
   public fun save(path: String, publicOnly: Boolean = false): GodotError {
@@ -49,10 +47,8 @@ public open class CryptoKey : Resource() {
   }
 
   /**
-   * Loads a key from [param path]. If [param public_only] is `true`, only the public key will be
-   * loaded.
-   * **Note:** [param path] should be a "*.pub" file if [param public_only] is `true`, a "*.key"
-   * file otherwise.
+   * Loads a key from [path]. If [publicOnly] is `true`, only the public key will be loaded.
+   * **Note:** [path] should be a "*.pub" file if [publicOnly] is `true`, a "*.key" file otherwise.
    */
   @JvmOverloads
   public fun load(path: String, publicOnly: Boolean = false): GodotError {
@@ -71,8 +67,8 @@ public open class CryptoKey : Resource() {
   }
 
   /**
-   * Returns a string containing the key in PEM format. If [param public_only] is `true`, only the
-   * public key will be included.
+   * Returns a string containing the key in PEM format. If [publicOnly] is `true`, only the public
+   * key will be included.
    */
   @JvmOverloads
   public fun saveToString(publicOnly: Boolean = false): String {
@@ -82,8 +78,8 @@ public open class CryptoKey : Resource() {
   }
 
   /**
-   * Loads a key from the given [param string_key]. If [param public_only] is `true`, only the
-   * public key will be loaded.
+   * Loads a key from the given [stringKey]. If [publicOnly] is `true`, only the public key will be
+   * loaded.
    */
   @JvmOverloads
   public fun loadFromString(stringKey: String, publicOnly: Boolean = false): GodotError {

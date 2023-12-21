@@ -76,9 +76,9 @@ public open class Texture2D : Texture() {
 
   /**
    * Called when the entire [Texture2D] is requested to be drawn over a [CanvasItem], with the
-   * top-left offset specified in [param pos]. [param modulate] specifies a multiplier for the colors
-   * being drawn, while [param transpose] specifies whether drawing should be performed in column-major
-   * order instead of row-major order (resulting in 90-degree clockwise rotation).
+   * top-left offset specified in [pos]. [modulate] specifies a multiplier for the colors being drawn,
+   * while [transpose] specifies whether drawing should be performed in column-major order instead of
+   * row-major order (resulting in 90-degree clockwise rotation).
    * **Note:** This is only used in 2D rendering, not 3D.
    */
   public open fun _draw(
@@ -90,10 +90,10 @@ public open class Texture2D : Texture() {
   }
 
   /**
-   * Called when the [Texture2D] is requested to be drawn onto [CanvasItem]'s specified [param
-   * rect]. [param modulate] specifies a multiplier for the colors being drawn, while [param transpose]
-   * specifies whether drawing should be performed in column-major order instead of row-major order
-   * (resulting in 90-degree clockwise rotation).
+   * Called when the [Texture2D] is requested to be drawn onto [CanvasItem]'s specified [rect].
+   * [modulate] specifies a multiplier for the colors being drawn, while [transpose] specifies whether
+   * drawing should be performed in column-major order instead of row-major order (resulting in
+   * 90-degree clockwise rotation).
    * **Note:** This is only used in 2D rendering, not 3D.
    */
   public open fun _drawRect(
@@ -106,10 +106,10 @@ public open class Texture2D : Texture() {
   }
 
   /**
-   * Called when a part of the [Texture2D] specified by [param src_rect]'s coordinates is requested
-   * to be drawn onto [CanvasItem]'s specified [param rect]. [param modulate] specifies a multiplier
-   * for the colors being drawn, while [param transpose] specifies whether drawing should be performed
-   * in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).
+   * Called when a part of the [Texture2D] specified by [srcRect]'s coordinates is requested to be
+   * drawn onto [CanvasItem]'s specified [rect]. [modulate] specifies a multiplier for the colors being
+   * drawn, while [transpose] specifies whether drawing should be performed in column-major order
+   * instead of row-major order (resulting in 90-degree clockwise rotation).
    * **Note:** This is only used in 2D rendering, not 3D.
    */
   public open fun _drawRectRegion(
@@ -159,8 +159,8 @@ public open class Texture2D : Texture() {
   }
 
   /**
-   * Draws the texture using a [CanvasItem] with the [RenderingServer] API at the specified [param
-   * position].
+   * Draws the texture using a [CanvasItem] with the [RenderingServer] API at the specified
+   * [position].
    */
   @JvmOverloads
   public fun draw(

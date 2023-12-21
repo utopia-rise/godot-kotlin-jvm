@@ -229,7 +229,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Particle draw order. Uses [enum DrawOrder] values.
+   * Particle draw order. Uses [DrawOrder] values.
    */
   public var drawOrder: DrawOrder
     get() {
@@ -257,7 +257,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Particles will be emitted inside this region. See [enum EmissionShape] for possible values.
+   * Particles will be emitted inside this region. See [EmissionShape] for possible values.
    */
   public var emissionShape: EmissionShape
     get() {
@@ -271,7 +271,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * The sphere's radius if [emissionShape] is set to [constant EMISSION_SHAPE_SPHERE].
+   * The sphere's radius if [emissionShape] is set to [EMISSIONSHAPESPHERE].
    */
   public var emissionSphereRadius: Float
     get() {
@@ -285,7 +285,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * The rectangle's extents if [emissionShape] is set to [constant EMISSION_SHAPE_RECTANGLE].
+   * The rectangle's extents if [emissionShape] is set to [EMISSIONSHAPERECTANGLE].
    */
   @CoreTypeLocalCopy
   public var emissionRectExtents: Vector2
@@ -300,8 +300,8 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Sets the initial positions to spawn particles when using [constant EMISSION_SHAPE_POINTS] or
-   * [constant EMISSION_SHAPE_DIRECTED_POINTS].
+   * Sets the initial positions to spawn particles when using [EMISSIONSHAPEPOINTS] or
+   * [EMISSIONSHAPEDIRECTEDPOINTS].
    */
   public var emissionPoints: PackedVector2Array
     get() {
@@ -315,8 +315,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Sets the direction the particles will be emitted in when using [constant
-   * EMISSION_SHAPE_DIRECTED_POINTS].
+   * Sets the direction the particles will be emitted in when using [EMISSIONSHAPEDIRECTEDPOINTS].
    */
   public var emissionNormals: PackedVector2Array
     get() {
@@ -330,8 +329,8 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Sets the [Color]s to modulate particles by when using [constant EMISSION_SHAPE_POINTS] or
-   * [constant EMISSION_SHAPE_DIRECTED_POINTS].
+   * Sets the [Color]s to modulate particles by when using [EMISSIONSHAPEPOINTS] or
+   * [EMISSIONSHAPEDIRECTEDPOINTS].
    */
   public var emissionColors: PackedColorArray
     get() {
@@ -997,7 +996,7 @@ public open class CPUParticles2D : Node2D() {
   }
 
   /**
-   * The rectangle's extents if [emissionShape] is set to [constant EMISSION_SHAPE_RECTANGLE].
+   * The rectangle's extents if [emissionShape] is set to [EMISSIONSHAPERECTANGLE].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -1193,7 +1192,7 @@ public open class CPUParticles2D : Node2D() {
      */
     PARAM_ANIM_OFFSET(11),
     /**
-     * Represents the size of the [enum Parameter] enum.
+     * Represents the size of the [Parameter] enum.
      */
     PARAM_MAX(12),
     ;
@@ -1224,7 +1223,7 @@ public open class CPUParticles2D : Node2D() {
      */
     PARTICLE_FLAG_DISABLE_Z(2),
     /**
-     * Represents the size of the [enum ParticleFlags] enum.
+     * Represents the size of the [ParticleFlags] enum.
      */
     PARTICLE_FLAG_MAX(3),
     ;
@@ -1270,7 +1269,7 @@ public open class CPUParticles2D : Node2D() {
      */
     EMISSION_SHAPE_DIRECTED_POINTS(5),
     /**
-     * Represents the size of the [enum EmissionShape] enum.
+     * Represents the size of the [EmissionShape] enum.
      */
     EMISSION_SHAPE_MAX(6),
     ;

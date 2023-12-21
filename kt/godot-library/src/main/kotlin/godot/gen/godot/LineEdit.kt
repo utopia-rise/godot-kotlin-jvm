@@ -67,13 +67,12 @@ public open class LineEdit : Control() {
 
   /**
    * Emitted when appending text that overflows the [maxLength]. The appended text is truncated to
-   * fit [maxLength], and the part that couldn't fit is passed as the [param rejected_substring]
-   * argument.
+   * fit [maxLength], and the part that couldn't fit is passed as the [rejectedSubstring] argument.
    */
   public val textChangeRejected: Signal1<String> by signal("rejectedSubstring")
 
   /**
-   * Emitted when the user presses [constant KEY_ENTER] on the [LineEdit].
+   * Emitted when the user presses [KEYENTER] on the [LineEdit].
    */
   public val textSubmitted: Signal1<String> by signal("newText")
 
@@ -108,7 +107,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * Text alignment as defined in the [enum HorizontalAlignment] enum.
+   * Text alignment as defined in the [HorizontalAlignment] enum.
    */
   public var alignment: HorizontalAlignment
     get() {
@@ -551,8 +550,8 @@ public open class LineEdit : Control() {
   }
 
   /**
-   * Selects characters inside [LineEdit] between [param from] and [param to]. By default, [param
-   * from] is at the beginning and [param to] at the end.
+   * Selects characters inside [LineEdit] between [from] and [to]. By default, [from] is at the
+   * beginning and [to] at the end.
    *
    * gdscript:
    * ```gdscript
@@ -637,7 +636,7 @@ public open class LineEdit : Control() {
   }
 
   /**
-   * Inserts [param text] at the caret. If the resulting value is longer than [maxLength], nothing
+   * Inserts [text] at the caret. If the resulting value is longer than [maxLength], nothing
    * happens.
    */
   public fun insertTextAtCaret(text: String): Unit {
@@ -655,8 +654,8 @@ public open class LineEdit : Control() {
   }
 
   /**
-   * Deletes a section of the [text] going from position [param from_column] to [param to_column].
-   * Both parameters should be within the text's length.
+   * Deletes a section of the [text] going from position [fromColumn] to [toColumn]. Both parameters
+   * should be within the text's length.
    */
   public fun deleteText(fromColumn: Int, toColumn: Int): Unit {
     TransferContext.writeArguments(LONG to fromColumn.toLong(), LONG to toColumn.toLong())
@@ -664,7 +663,7 @@ public open class LineEdit : Control() {
   }
 
   /**
-   * Executes a given action as defined in the [enum MenuItems] enum.
+   * Executes a given action as defined in the [MenuItems] enum.
    */
   public fun menuOption(option: Int): Unit {
     TransferContext.writeArguments(LONG to option.toLong())
@@ -675,7 +674,7 @@ public open class LineEdit : Control() {
    * Returns the [PopupMenu] of this [LineEdit]. By default, this menu is displayed when
    * right-clicking on the [LineEdit].
    * You can add custom menu items or remove standard ones. Make sure your IDs don't conflict with
-   * the standard ones (see [enum MenuItems]). For example:
+   * the standard ones (see [MenuItems]). For example:
    *
    * gdscript:
    * ```gdscript
@@ -861,7 +860,7 @@ public open class LineEdit : Control() {
      */
     MENU_INSERT_SHY(29),
     /**
-     * Represents the size of the [enum MenuItems] enum.
+     * Represents the size of the [MenuItems] enum.
      */
     MENU_MAX(30),
     ;
@@ -906,8 +905,8 @@ public open class LineEdit : Control() {
     /**
      * Virtual keyboard for entering a password. On most platforms, this should disable autocomplete
      * and autocapitalization.
-     * **Note:** This is not supported on Web. Instead, this behaves identically to [constant
-     * KEYBOARD_TYPE_DEFAULT].
+     * **Note:** This is not supported on Web. Instead, this behaves identically to
+     * [KEYBOARDTYPEDEFAULT].
      */
     KEYBOARD_TYPE_PASSWORD(6),
     /**

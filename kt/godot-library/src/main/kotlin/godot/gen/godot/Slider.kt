@@ -33,8 +33,8 @@ public open class Slider internal constructor() : Range() {
   public val dragStarted: Signal0 by signal()
 
   /**
-   * Emitted when dragging stops. If [param value_changed] is true, [Range.value] is different from
-   * the value when you started the dragging.
+   * Emitted when dragging stops. If [valueChanged] is true, [Range.value] is different from the
+   * value when you started the dragging.
    */
   public val dragEnded: Signal1<Boolean> by signal("valueChanged")
 

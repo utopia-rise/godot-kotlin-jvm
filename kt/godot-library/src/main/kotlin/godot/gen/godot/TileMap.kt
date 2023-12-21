@@ -106,8 +106,8 @@ public open class TileMap : Node2D() {
     }
 
   /**
-   * Show or hide the TileMap's collision shapes. If set to [constant VISIBILITY_MODE_DEFAULT], this
-   * depends on the show collision debug settings.
+   * Show or hide the TileMap's collision shapes. If set to [VISIBILITYMODEDEFAULT], this depends on
+   * the show collision debug settings.
    */
   public var collisionVisibilityMode: VisibilityMode
     get() {
@@ -121,8 +121,8 @@ public open class TileMap : Node2D() {
     }
 
   /**
-   * Show or hide the TileMap's navigation meshes. If set to [constant VISIBILITY_MODE_DEFAULT],
-   * this depends on the show navigation debug settings.
+   * Show or hide the TileMap's navigation meshes. If set to [VISIBILITYMODEDEFAULT], this depends
+   * on the show navigation debug settings.
    */
   public var navigationVisibilityMode: VisibilityMode
     get() {
@@ -141,8 +141,8 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Should return `true` if the tile at coordinates [param coords] on layer [param layer] requires
-   * a runtime update.
+   * Should return `true` if the tile at coordinates [coords] on layer [layer] requires a runtime
+   * update.
    * **Warning:** Make sure this function only return `true` when needed. Any tile processed at
    * runtime without a need for it will imply a significant performance penalty.
    * **Note:** If the result of this function should changed, use [notifyRuntimeTileDataUpdate] to
@@ -156,11 +156,10 @@ public open class TileMap : Node2D() {
    * Called with a TileData object about to be used internally by the TileMap, allowing its
    * modification at runtime.
    * This method is only called if [_useTileDataRuntimeUpdate] is implemented and returns `true` for
-   * the given tile [param coords] and [param layer].
-   * **Warning:** The [param tile_data] object's sub-resources are the same as the one in the
-   * TileSet. Modifying them might impact the whole TileSet. Instead, make sure to duplicate those
-   * resources.
-   * **Note:** If the properties of [param tile_data] object should change over time, use
+   * the given tile [coords] and [layer].
+   * **Warning:** The [tileData] object's sub-resources are the same as the one in the TileSet.
+   * Modifying them might impact the whole TileSet. Instead, make sure to duplicate those resources.
+   * **Note:** If the properties of [tileData] object should change over time, use
    * [notifyRuntimeTileDataUpdate] to notify the TileMap it needs an update.
    */
   public open fun _tileDataRuntimeUpdate(
@@ -206,9 +205,8 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Adds a layer at the given position [param to_position] in the array. If [param to_position] is
-   * negative, the position is counted from the end, with `-1` adding the layer at the end of the
-   * array.
+   * Adds a layer at the given position [toPosition] in the array. If [toPosition] is negative, the
+   * position is counted from the end, with `-1` adding the layer at the end of the array.
    */
   public fun addLayer(toPosition: Int): Unit {
     TransferContext.writeArguments(LONG to toPosition.toLong())
@@ -216,7 +214,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Moves the layer at index [param layer] to the given position [param to_position] in the array.
+   * Moves the layer at index [layer] to the given position [toPosition] in the array.
    */
   public fun moveLayer(layer: Int, toPosition: Int): Unit {
     TransferContext.writeArguments(LONG to layer.toLong(), LONG to toPosition.toLong())
@@ -224,7 +222,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Removes the layer at index [param layer].
+   * Removes the layer at index [layer].
    */
   public fun removeLayer(layer: Int): Unit {
     TransferContext.writeArguments(LONG to layer.toLong())
@@ -233,7 +231,7 @@ public open class TileMap : Node2D() {
 
   /**
    * Sets a layer's name. This is mostly useful in the editor.
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun setLayerName(layer: Int, name: String): Unit {
     TransferContext.writeArguments(LONG to layer.toLong(), STRING to name)
@@ -242,7 +240,7 @@ public open class TileMap : Node2D() {
 
   /**
    * Returns a TileMap layer's name.
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun getLayerName(layer: Int): String {
     TransferContext.writeArguments(LONG to layer.toLong())
@@ -251,9 +249,9 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Enables or disables the layer [param layer]. A disabled layer is not processed at all (no
-   * rendering, no physics, etc...).
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * Enables or disables the layer [layer]. A disabled layer is not processed at all (no rendering,
+   * no physics, etc...).
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun setLayerEnabled(layer: Int, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to layer.toLong(), BOOL to enabled)
@@ -262,7 +260,7 @@ public open class TileMap : Node2D() {
 
   /**
    * Returns if a layer is enabled.
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun isLayerEnabled(layer: Int): Boolean {
     TransferContext.writeArguments(LONG to layer.toLong())
@@ -272,7 +270,7 @@ public open class TileMap : Node2D() {
 
   /**
    * Sets a layer's color. It will be multiplied by tile's color and TileMap's modulate.
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun setLayerModulate(layer: Int, modulate: Color): Unit {
     TransferContext.writeArguments(LONG to layer.toLong(), COLOR to modulate)
@@ -281,7 +279,7 @@ public open class TileMap : Node2D() {
 
   /**
    * Returns a TileMap layer's modulate.
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun getLayerModulate(layer: Int): Color {
     TransferContext.writeArguments(LONG to layer.toLong())
@@ -295,7 +293,7 @@ public open class TileMap : Node2D() {
    * Y-sorted layers should usually be on different Z-index values than not Y-sorted layers,
    * otherwise, each of those layer will be Y-sorted as whole with the Y-sorted one. This is usually an
    * undesired behavior.
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun setLayerYSortEnabled(layer: Int, ySortEnabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to layer.toLong(), BOOL to ySortEnabled)
@@ -304,7 +302,7 @@ public open class TileMap : Node2D() {
 
   /**
    * Returns if a layer Y-sorts its tiles.
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun isLayerYSortEnabled(layer: Int): Boolean {
     TransferContext.writeArguments(LONG to layer.toLong())
@@ -317,7 +315,7 @@ public open class TileMap : Node2D() {
    * origin value.
    * This allows, for example, to fake a different height level on each layer. This can be useful
    * for top-down view games.
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun setLayerYSortOrigin(layer: Int, ySortOrigin: Int): Unit {
     TransferContext.writeArguments(LONG to layer.toLong(), LONG to ySortOrigin.toLong())
@@ -326,7 +324,7 @@ public open class TileMap : Node2D() {
 
   /**
    * Returns a TileMap layer's Y sort origin.
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun getLayerYSortOrigin(layer: Int): Int {
     TransferContext.writeArguments(LONG to layer.toLong())
@@ -336,7 +334,7 @@ public open class TileMap : Node2D() {
 
   /**
    * Sets a layers Z-index value. This Z-index is added to each tile's Z-index value.
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun setLayerZIndex(layer: Int, zIndex: Int): Unit {
     TransferContext.writeArguments(LONG to layer.toLong(), LONG to zIndex.toLong())
@@ -345,7 +343,7 @@ public open class TileMap : Node2D() {
 
   /**
    * Returns a TileMap layer's Z-index value.
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun getLayerZIndex(layer: Int): Int {
     TransferContext.writeArguments(LONG to layer.toLong())
@@ -372,13 +370,13 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Assigns a [NavigationServer2D] navigation map [RID] to the specified TileMap [param layer].
+   * Assigns a [NavigationServer2D] navigation map [RID] to the specified TileMap [layer].
    * By default the TileMap uses the default [World2D] navigation map for the first TileMap layer.
    * For each additional TileMap layer a new navigation map is created for the additional layer.
    * In order to make [NavigationAgent2D] switch between TileMap layer navigation maps use
    * [NavigationAgent2D.setNavigationMap] with the navigation map received from
    * [getLayerNavigationMap].
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun setLayerNavigationMap(layer: Int, map: RID): Unit {
     TransferContext.writeArguments(LONG to layer.toLong(), _RID to map)
@@ -387,13 +385,13 @@ public open class TileMap : Node2D() {
 
   /**
    * Returns the [NavigationServer2D] navigation map [RID] currently assigned to the specified
-   * TileMap [param layer].
+   * TileMap [layer].
    * By default the TileMap uses the default [World2D] navigation map for the first TileMap layer.
    * For each additional TileMap layer a new navigation map is created for the additional layer.
    * In order to make [NavigationAgent2D] switch between TileMap layer navigation maps use
    * [NavigationAgent2D.setNavigationMap] with the navigation map received from
    * [getLayerNavigationMap].
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun getLayerNavigationMap(layer: Int): RID {
     TransferContext.writeArguments(LONG to layer.toLong())
@@ -402,20 +400,19 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Sets the tile identifiers for the cell on layer [param layer] at coordinates [param coords].
-   * Each tile of the [TileSet] is identified using three parts:
-   * - The source identifier [param source_id] identifies a [TileSetSource] identifier. See
+   * Sets the tile identifiers for the cell on layer [layer] at coordinates [coords]. Each tile of
+   * the [TileSet] is identified using three parts:
+   * - The source identifier [sourceId] identifies a [TileSetSource] identifier. See
    * [TileSet.setSourceId],
-   * - The atlas coordinates identifier [param atlas_coords] identifies a tile coordinates in the
-   * atlas (if the source is a [TileSetAtlasSource]). For [TileSetScenesCollectionSource] it should
-   * always be `Vector2i(0, 0)`),
-   * - The alternative tile identifier [param alternative_tile] identifies a tile alternative in the
-   * atlas (if the source is a [TileSetAtlasSource]), and the scene for a
-   * [TileSetScenesCollectionSource].
-   * If [param source_id] is set to `-1`, [param atlas_coords] to `Vector2i(-1, -1)` or [param
-   * alternative_tile] to `-1`, the cell will be erased. An erased cell gets **all** its identifiers
-   * automatically set to their respective invalid values, namely `-1`, `Vector2i(-1, -1)` and `-1`.
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * - The atlas coordinates identifier [atlasCoords] identifies a tile coordinates in the atlas (if
+   * the source is a [TileSetAtlasSource]). For [TileSetScenesCollectionSource] it should always be
+   * `Vector2i(0, 0)`),
+   * - The alternative tile identifier [alternativeTile] identifies a tile alternative in the atlas
+   * (if the source is a [TileSetAtlasSource]), and the scene for a [TileSetScenesCollectionSource].
+   * If [sourceId] is set to `-1`, [atlasCoords] to `Vector2i(-1, -1)` or [alternativeTile] to `-1`,
+   * the cell will be erased. An erased cell gets **all** its identifiers automatically set to their
+   * respective invalid values, namely `-1`, `Vector2i(-1, -1)` and `-1`.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   @JvmOverloads
   public fun setCell(
@@ -430,8 +427,8 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Erases the cell on layer [param layer] at coordinates [param coords].
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * Erases the cell on layer [layer] at coordinates [coords].
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun eraseCell(layer: Int, coords: Vector2i): Unit {
     TransferContext.writeArguments(LONG to layer.toLong(), VECTOR2I to coords)
@@ -439,11 +436,11 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns the tile source ID of the cell on layer [param layer] at coordinates [param coords].
-   * Returns `-1` if the cell does not exist.
-   * If [param use_proxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw
-   * alternative identifier. See [TileSet.mapTileProxy].
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * Returns the tile source ID of the cell on layer [layer] at coordinates [coords]. Returns `-1`
+   * if the cell does not exist.
+   * If [useProxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative
+   * identifier. See [TileSet.mapTileProxy].
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   @JvmOverloads
   public fun getCellSourceId(
@@ -457,10 +454,10 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns the tile atlas coordinates ID of the cell on layer [param layer] at coordinates [param
-   * coords]. If [param use_proxies] is `false`, ignores the [TileSet]'s tile proxies, returning the
-   * raw alternative identifier. See [TileSet.mapTileProxy].
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * Returns the tile atlas coordinates ID of the cell on layer [layer] at coordinates [coords]. If
+   * [useProxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative
+   * identifier. See [TileSet.mapTileProxy].
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   @JvmOverloads
   public fun getCellAtlasCoords(
@@ -474,10 +471,10 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns the tile alternative ID of the cell on layer [param layer] at [param coords]. If [param
-   * use_proxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative
-   * identifier. See [TileSet.mapTileProxy].
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * Returns the tile alternative ID of the cell on layer [layer] at [coords]. If [useProxies] is
+   * `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative identifier. See
+   * [TileSet.mapTileProxy].
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   @JvmOverloads
   public fun getCellAlternativeTile(
@@ -493,9 +490,9 @@ public open class TileMap : Node2D() {
   /**
    * Returns the [TileData] object associated with the given cell, or `null` if the cell does not
    * exist or is not a [TileSetAtlasSource].
-   * If [param layer] is negative, the layers are accessed from the last one.
-   * If [param use_proxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw
-   * alternative identifier. See [TileSet.mapTileProxy].
+   * If [layer] is negative, the layers are accessed from the last one.
+   * If [useProxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative
+   * identifier. See [TileSet.mapTileProxy].
    * [codeblock]
    * func get_clicked_tile_power():
    *     var clicked_cell = tile_map.local_to_map(tile_map.get_local_mouse_position())
@@ -539,7 +536,7 @@ public open class TileMap : Node2D() {
 
   /**
    * Creates a new [TileMapPattern] from the given layer and set of cells.
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun getPattern(layer: Int, coordsArray: VariantArray<Vector2i>): TileMapPattern? {
     TransferContext.writeArguments(LONG to layer.toLong(), ARRAY to coordsArray)
@@ -548,10 +545,10 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns for the given coordinate [param coords_in_pattern] in a [TileMapPattern] the
-   * corresponding cell coordinates if the pattern was pasted at the [param position_in_tilemap]
-   * coordinates (see [setPattern]). This mapping is required as in half-offset tile shapes, the
-   * mapping might not work by calculating `position_in_tile_map + coords_in_pattern`.
+   * Returns for the given coordinate [coordsInPattern] in a [TileMapPattern] the corresponding cell
+   * coordinates if the pattern was pasted at the [positionInTilemap] coordinates (see [setPattern]).
+   * This mapping is required as in half-offset tile shapes, the mapping might not work by calculating
+   * `position_in_tile_map + coords_in_pattern`.
    */
   public fun mapPattern(
     positionInTilemap: Vector2i,
@@ -564,9 +561,8 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Paste the given [TileMapPattern] at the given [param position] and [param layer] in the tile
-   * map.
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * Paste the given [TileMapPattern] at the given [position] and [layer] in the tile map.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun setPattern(
     layer: Int,
@@ -578,13 +574,13 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Update all the cells in the [param cells] coordinates array so that they use the given [param
-   * terrain] for the given [param terrain_set]. If an updated cell has the same terrain as one of its
-   * neighboring cells, this function tries to join the two. This function might update neighboring
-   * tiles if needed to create correct terrain transitions.
-   * If [param ignore_empty_terrains] is true, empty terrains will be ignored when trying to find
-   * the best fitting tile for the given terrain constraints.
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * Update all the cells in the [cells] coordinates array so that they use the given [terrain] for
+   * the given [terrainSet]. If an updated cell has the same terrain as one of its neighboring cells,
+   * this function tries to join the two. This function might update neighboring tiles if needed to
+   * create correct terrain transitions.
+   * If [ignoreEmptyTerrains] is true, empty terrains will be ignored when trying to find the best
+   * fitting tile for the given terrain constraints.
+   * If [layer] is negative, the layers are accessed from the last one.
    * **Note:** To work correctly, this method requires the TileMap's TileSet to have terrains set up
    * with all required terrain combinations. Otherwise, it may produce unexpected results.
    */
@@ -601,13 +597,13 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Update all the cells in the [param path] coordinates array so that they use the given [param
-   * terrain] for the given [param terrain_set]. The function will also connect two successive cell in
-   * the path with the same terrain. This function might update neighboring tiles if needed to create
-   * correct terrain transitions.
-   * If [param ignore_empty_terrains] is true, empty terrains will be ignored when trying to find
-   * the best fitting tile for the given terrain constraints.
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * Update all the cells in the [path] coordinates array so that they use the given [terrain] for
+   * the given [terrainSet]. The function will also connect two successive cell in the path with the
+   * same terrain. This function might update neighboring tiles if needed to create correct terrain
+   * transitions.
+   * If [ignoreEmptyTerrains] is true, empty terrains will be ignored when trying to find the best
+   * fitting tile for the given terrain constraints.
+   * If [layer] is negative, the layers are accessed from the last one.
    * **Note:** To work correctly, this method requires the TileMap's TileSet to have terrains set up
    * with all required terrain combinations. Otherwise, it may produce unexpected results.
    */
@@ -633,7 +629,7 @@ public open class TileMap : Node2D() {
 
   /**
    * Clears all cells on the given layer.
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun clearLayer(layer: Int): Unit {
     TransferContext.writeArguments(LONG to layer.toLong())
@@ -664,8 +660,8 @@ public open class TileMap : Node2D() {
   /**
    * Notifies the TileMap node that calls to [_useTileDataRuntimeUpdate] or [_tileDataRuntimeUpdate]
    * will lead to different results. This will thus trigger a TileMap update.
-   * If [param layer] is provided, only notifies changes for the given layer. Providing the [param
-   * layer] argument (when applicable) is usually preferred for performance reasons.
+   * If [layer] is provided, only notifies changes for the given layer. Providing the [layer]
+   * argument (when applicable) is usually preferred for performance reasons.
    * **Warning:** Updating the TileMap is computationally expensive and may impact performance. Try
    * to limit the number of calls to this function to avoid unnecessary update.
    * **Note:** This does not trigger a direct update of the TileMap, the update will be done at the
@@ -678,7 +674,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns the list of all neighbourings cells to the one at [param coords].
+   * Returns the list of all neighbourings cells to the one at [coords].
    */
   public fun getSurroundingCells(coords: Vector2i): VariantArray<Vector2i> {
     TransferContext.writeArguments(VECTOR2I to coords)
@@ -690,7 +686,7 @@ public open class TileMap : Node2D() {
    * Returns a [Vector2i] array with the positions of all cells containing a tile in the given
    * layer. A cell is considered empty if its source identifier equals -1, its atlas coordinates
    * identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun getUsedCells(layer: Int): VariantArray<Vector2i> {
     TransferContext.writeArguments(LONG to layer.toLong())
@@ -700,14 +696,14 @@ public open class TileMap : Node2D() {
 
   /**
    * Returns a [Vector2i] array with the positions of all cells containing a tile in the given
-   * layer. Tiles may be filtered according to their source ([param source_id]), their atlas
-   * coordinates ([param atlas_coords]) or alternative id ([param alternative_tile]).
+   * layer. Tiles may be filtered according to their source ([sourceId]), their atlas coordinates
+   * ([atlasCoords]) or alternative id ([alternativeTile]).
    * If a parameter has its value set to the default one, this parameter is not used to filter a
    * cell. Thus, if all parameters have their respective default value, this method returns the same
    * result as [getUsedCells].
    * A cell is considered empty if its source identifier equals -1, its atlas coordinates
    * identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.
-   * If [param layer] is negative, the layers are accessed from the last one.
+   * If [layer] is negative, the layers are accessed from the last one.
    */
   @JvmOverloads
   public fun getUsedCellsById(
@@ -743,8 +739,8 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns the map coordinates of the cell containing the given [param local_position]. If [param
-   * local_position] is in global coordinates, consider using [Node2D.toLocal] before passing it to
+   * Returns the map coordinates of the cell containing the given [localPosition]. If
+   * [localPosition] is in global coordinates, consider using [Node2D.toLocal] before passing it to
    * this method. See also [mapToLocal].
    */
   public fun localToMap(localPosition: Vector2): Vector2i {
@@ -754,8 +750,8 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns the neighboring cell to the one at coordinates [param coords], identified by the [param
-   * neighbor] direction. This method takes into account the different layouts a TileMap can take.
+   * Returns the neighboring cell to the one at coordinates [coords], identified by the [neighbor]
+   * direction. This method takes into account the different layouts a TileMap can take.
    */
   public fun getNeighborCell(coords: Vector2i, neighbor: TileSet.CellNeighbor): Vector2i {
     TransferContext.writeArguments(VECTOR2I to coords, LONG to neighbor.id)

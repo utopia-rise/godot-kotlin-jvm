@@ -32,8 +32,8 @@ import kotlin.Unit
  * Captures its surroundings as a cubemap, and stores versions of it with increasing levels of blur
  * to simulate different material roughnesses.
  * The [ReflectionProbe] is used to create high-quality reflections at a low performance cost (when
- * [updateMode] is [constant UPDATE_ONCE]). [ReflectionProbe]s can be blended together and with the
- * rest of the scene smoothly. [ReflectionProbe]s can also be combined with [VoxelGI], SDFGI
+ * [updateMode] is [UPDATEONCE]). [ReflectionProbe]s can be blended together and with the rest of the
+ * scene smoothly. [ReflectionProbe]s can also be combined with [VoxelGI], SDFGI
  * ([Environment.sdfgiEnabled]) and screen-space reflections ([Environment.ssrEnabled]) to get more
  * accurate reflections in specific areas. [ReflectionProbe]s render all objects within their
  * [cullMask], so updating them can be quite expensive. It is best to update them once with the
@@ -54,8 +54,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ReflectionProbe : VisualInstance3D() {
   /**
-   * Sets how frequently the [ReflectionProbe] is updated. Can be [constant UPDATE_ONCE] or
-   * [constant UPDATE_ALWAYS].
+   * Sets how frequently the [ReflectionProbe] is updated. Can be [UPDATEONCE] or [UPDATEALWAYS].
    */
   public var updateMode: UpdateMode
     get() {
@@ -84,8 +83,7 @@ public open class ReflectionProbe : VisualInstance3D() {
 
   /**
    * The maximum distance away from the [ReflectionProbe] an object can be before it is culled.
-   * Decrease this to improve performance, especially when using the [constant UPDATE_ALWAYS]
-   * [updateMode].
+   * Decrease this to improve performance, especially when using the [UPDATEALWAYS] [updateMode].
    * **Note:** The maximum reflection distance is always at least equal to the probe's extents. This
    * means that decreasing [maxDistance] will not always cull objects from reflections, especially if
    * the reflection probe's box defined by its [size] is already large.
@@ -170,7 +168,7 @@ public open class ReflectionProbe : VisualInstance3D() {
 
   /**
    * If `true`, computes shadows in the reflection probe. This makes the reflection probe slower to
-   * render; you may want to disable this if using the [constant UPDATE_ALWAYS] [updateMode].
+   * render; you may want to disable this if using the [UPDATEALWAYS] [updateMode].
    */
   public var enableShadows: Boolean
     get() {
@@ -204,8 +202,8 @@ public open class ReflectionProbe : VisualInstance3D() {
    * The automatic LOD bias to use for meshes rendered within the [ReflectionProbe] (this is analog
    * to [Viewport.meshLodThreshold]). Higher values will use less detailed versions of meshes that have
    * LOD variations generated. If set to `0.0`, automatic LOD is disabled. Increase [meshLodThreshold]
-   * to improve performance at the cost of geometry detail, especially when using the [constant
-   * UPDATE_ALWAYS] [updateMode].
+   * to improve performance at the cost of geometry detail, especially when using the [UPDATEALWAYS]
+   * [updateMode].
    * **Note:** [meshLodThreshold] does not affect [GeometryInstance3D] visibility ranges (also known
    * as "manual" LOD or hierarchical LOD).
    */
@@ -238,7 +236,7 @@ public open class ReflectionProbe : VisualInstance3D() {
 
   /**
    * The custom ambient color to use within the [ReflectionProbe]'s box defined by its [size]. Only
-   * effective if [ambientMode] is [constant AMBIENT_COLOR].
+   * effective if [ambientMode] is [AMBIENTCOLOR].
    */
   @CoreTypeLocalCopy
   public var ambientColor: Color
@@ -254,7 +252,7 @@ public open class ReflectionProbe : VisualInstance3D() {
 
   /**
    * The custom ambient color energy to use within the [ReflectionProbe]'s box defined by its
-   * [size]. Only effective if [ambientMode] is [constant AMBIENT_COLOR].
+   * [size]. Only effective if [ambientMode] is [AMBIENTCOLOR].
    */
   public var ambientColorEnergy: Float
     get() {
@@ -328,7 +326,7 @@ public open class ReflectionProbe : VisualInstance3D() {
 
   /**
    * The custom ambient color to use within the [ReflectionProbe]'s box defined by its [size]. Only
-   * effective if [ambientMode] is [constant AMBIENT_COLOR].
+   * effective if [ambientMode] is [AMBIENTCOLOR].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -357,17 +355,17 @@ public open class ReflectionProbe : VisualInstance3D() {
     /**
      * Update the probe once on the next frame (recommended for most objects). The corresponding
      * radiance map will be generated over the following six frames. This takes more time to update
-     * than [constant UPDATE_ALWAYS], but it has a lower performance cost and can result in
-     * higher-quality reflections. The ReflectionProbe is updated when its transform changes, but not
-     * when nearby geometry changes. You can force a [ReflectionProbe] update by moving the
-     * [ReflectionProbe] slightly in any direction.
+     * than [UPDATEALWAYS], but it has a lower performance cost and can result in higher-quality
+     * reflections. The ReflectionProbe is updated when its transform changes, but not when nearby
+     * geometry changes. You can force a [ReflectionProbe] update by moving the [ReflectionProbe]
+     * slightly in any direction.
      */
     UPDATE_ONCE(0),
     /**
      * Update the probe every frame. This provides better results for fast-moving dynamic objects
      * (such as cars). However, it has a significant performance cost. Due to the cost, it's
-     * recommended to only use one ReflectionProbe with [constant UPDATE_ALWAYS] at most per scene. For
-     * all other use cases, use [constant UPDATE_ONCE].
+     * recommended to only use one ReflectionProbe with [UPDATEALWAYS] at most per scene. For all other
+     * use cases, use [UPDATEONCE].
      */
     UPDATE_ALWAYS(1),
     ;

@@ -180,7 +180,7 @@ public open class DTLSServer : RefCounted() {
   }
 
   /**
-   * Setup the DTLS server to use the given [param server_options]. See [TLSOptions.server].
+   * Setup the DTLS server to use the given [serverOptions]. See [TLSOptions.server].
    */
   public fun setup(serverOptions: TLSOptions): GodotError {
     TransferContext.writeArguments(OBJECT to serverOptions)
@@ -189,10 +189,10 @@ public open class DTLSServer : RefCounted() {
   }
 
   /**
-   * Try to initiate the DTLS handshake with the given [param udp_peer] which must be already
-   * connected (see [PacketPeerUDP.connectToHost]).
-   * **Note:** You must check that the state of the return PacketPeerUDP is [constant
-   * PacketPeerDTLS.STATUS_HANDSHAKING], as it is normal that 50&#37; of the new connections will be
+   * Try to initiate the DTLS handshake with the given [udpPeer] which must be already connected
+   * (see [PacketPeerUDP.connectToHost]).
+   * **Note:** You must check that the state of the return PacketPeerUDP is
+   * [PacketPeerDTLS.STATUSHANDSHAKING], as it is normal that 50&#37; of the new connections will be
    * invalid due to cookie exchange.
    */
   public fun takeConnection(udpPeer: PacketPeerUDP): PacketPeerDTLS? {

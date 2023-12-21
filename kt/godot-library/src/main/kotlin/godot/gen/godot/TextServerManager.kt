@@ -95,7 +95,7 @@ public object TextServerManager : Object() {
   }
 
   /**
-   * Finds an interface by its [param name].
+   * Finds an interface by its [name].
    */
   public fun findInterface(name: String): TextServer? {
     TransferContext.writeArguments(STRING to name)

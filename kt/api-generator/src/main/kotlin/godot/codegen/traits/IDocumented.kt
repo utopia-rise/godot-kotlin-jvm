@@ -7,7 +7,10 @@ import godot.tools.common.extensions.convertToCamelCase
 
 private val titlesToSanitize = arrayOf(
     "member",
-    "method"
+    "method",
+    "enum",
+    "constant",
+    "param"
 )
 
 private val tagsToSanitize = arrayOf(

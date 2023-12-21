@@ -7,9 +7,9 @@ public enum class Error(
   id: Long,
 ) {
   /**
-   * Methods that return [enum Error] return [constant OK] when no error occurred.
-   * Since [constant OK] has value 0, and all other error constants are positive integers, it can
-   * also be used in boolean checks.
+   * Methods that return [Error] return [OK] when no error occurred.
+   * Since [OK] has value 0, and all other error constants are positive integers, it can also be
+   * used in boolean checks.
    * **Example:**
    * [codeblock]
    * var error = method_that_returns_error()

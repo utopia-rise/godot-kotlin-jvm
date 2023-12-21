@@ -113,8 +113,8 @@ public open class Translation : Resource() {
 
   /**
    * Returns a message's translation involving plurals.
-   * The number [param n] is the number or quantity of the plural object. It will be used to guide
-   * the translation system to fetch the correct plural form for the selected language.
+   * The number [n] is the number or quantity of the plural object. It will be used to guide the
+   * translation system to fetch the correct plural form for the selected language.
    */
   @JvmOverloads
   public fun getPluralMessage(

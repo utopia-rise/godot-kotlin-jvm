@@ -90,7 +90,7 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
   /**
-   * The Light2D's blend mode. See [enum BlendMode] constants for values.
+   * The Light2D's blend mode. See [BlendMode] constants for values.
    */
   public var blendMode: BlendMode
     get() {
@@ -206,7 +206,7 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
   /**
-   * Shadow filter type. See [enum ShadowFilter] for possible values.
+   * Shadow filter type. See [ShadowFilter] for possible values.
    */
   public var shadowFilter: ShadowFilter
     get() {
@@ -222,7 +222,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * Smoothing value for shadows. Higher values will result in softer shadows, at the cost of
    * visible streaks that can appear in shadow rendering. [shadowFilterSmooth] only has an effect if
-   * [shadowFilter] is [constant SHADOW_FILTER_PCF5] or [constant SHADOW_FILTER_PCF13].
+   * [shadowFilter] is [SHADOWFILTERPCF5] or [SHADOWFILTERPCF13].
    */
   public var shadowFilterSmooth: Float
     get() {

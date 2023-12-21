@@ -109,7 +109,7 @@ public open class Window : Viewport() {
 
   /**
    * Emitted when a go back request is sent (e.g. pressing the "Back" button on Android), right
-   * after [constant Node.NOTIFICATION_WM_GO_BACK_REQUEST].
+   * after [Node.NOTIFICATIONWMGOBACKREQUEST].
    */
   public val goBackRequested: Signal0 by signal()
 
@@ -124,7 +124,7 @@ public open class Window : Viewport() {
   public val aboutToPopup: Signal0 by signal()
 
   /**
-   * Emitted when the [constant NOTIFICATION_THEME_CHANGED] notification is sent.
+   * Emitted when the [NOTIFICATIONTHEMECHANGED] notification is sent.
    */
   public val themeChanged: Signal0 by signal()
 
@@ -173,8 +173,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   * Specifies the initial type of position for the [Window]. See [enum WindowInitialPosition]
-   * constants.
+   * Specifies the initial type of position for the [Window]. See [WindowInitialPosition] constants.
    */
   public var initialPosition: WindowInitialPosition
     get() {
@@ -192,8 +191,8 @@ public open class Window : Viewport() {
    * If [ProjectSettings.display/window/subwindows/embedSubwindows] is `false`, the position is in
    * absolute screen coordinates. This typically applies to editor plugins. If the setting is `true`,
    * the window's position is in the coordinates of its parent [Viewport].
-   * **Note:** This property only works if [initialPosition] is set to [constant
-   * WINDOW_INITIAL_POSITION_ABSOLUTE].
+   * **Note:** This property only works if [initialPosition] is set to
+   * [WINDOWINITIALPOSITIONABSOLUTE].
    */
   @CoreTypeLocalCopy
   public var position: Vector2i
@@ -652,8 +651,8 @@ public open class Window : Viewport() {
    * If [ProjectSettings.display/window/subwindows/embedSubwindows] is `false`, the position is in
    * absolute screen coordinates. This typically applies to editor plugins. If the setting is `true`,
    * the window's position is in the coordinates of its parent [Viewport].
-   * **Note:** This property only works if [initialPosition] is set to [constant
-   * WINDOW_INITIAL_POSITION_ABSOLUTE].
+   * **Note:** This property only works if [initialPosition] is set to
+   * [WINDOWINITIALPOSITIONABSOLUTE].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -876,7 +875,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * If [param unparent] is `true`, the window is automatically unparented when going invisible.
+   * If [unparent] is `true`, the window is automatically unparented when going invisible.
    * **Note:** Make sure to keep a reference to the node, otherwise it will be orphaned. You also
    * need to manually call [Node.queueFree] to free the window if it's not parented.
    */
@@ -912,7 +911,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * If [param active] is `true`, enables system's native IME (Input Method Editor).
+   * If [active] is `true`, enables system's native IME (Input Method Editor).
    */
   public fun setImeActive(active: Boolean): Unit {
     TransferContext.writeArguments(BOOL to active)
@@ -973,7 +972,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Prevents `*_theme_*_override` methods from emitting [constant NOTIFICATION_THEME_CHANGED] until
+   * Prevents `*_theme_*_override` methods from emitting [NOTIFICATIONTHEMECHANGED] until
    * [endBulkThemeOverride] is called.
    */
   public fun beginBulkThemeOverride(): Unit {
@@ -990,8 +989,8 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Creates a local override for a theme icon with the specified [param name]. Local overrides
-   * always take precedence when fetching theme items for the control. An override can be removed with
+   * Creates a local override for a theme icon with the specified [name]. Local overrides always
+   * take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeIconOverride].
    * See also [getThemeIcon].
    */
@@ -1001,9 +1000,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Creates a local override for a theme [StyleBox] with the specified [param name]. Local
-   * overrides always take precedence when fetching theme items for the control. An override can be
-   * removed with [removeThemeStyleboxOverride].
+   * Creates a local override for a theme [StyleBox] with the specified [name]. Local overrides
+   * always take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeStyleboxOverride].
    * See also [getThemeStylebox] and [Control.addThemeStyleboxOverride] for more details.
    */
   public fun addThemeStyleboxOverride(name: StringName, stylebox: StyleBox): Unit {
@@ -1012,8 +1011,8 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Creates a local override for a theme [Font] with the specified [param name]. Local overrides
-   * always take precedence when fetching theme items for the control. An override can be removed with
+   * Creates a local override for a theme [Font] with the specified [name]. Local overrides always
+   * take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeFontOverride].
    * See also [getThemeFont].
    */
@@ -1023,7 +1022,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Creates a local override for a theme font size with the specified [param name]. Local overrides
+   * Creates a local override for a theme font size with the specified [name]. Local overrides
    * always take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeFontSizeOverride].
    * See also [getThemeFontSize].
@@ -1034,8 +1033,8 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Creates a local override for a theme [Color] with the specified [param name]. Local overrides
-   * always take precedence when fetching theme items for the control. An override can be removed with
+   * Creates a local override for a theme [Color] with the specified [name]. Local overrides always
+   * take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeColorOverride].
    * See also [getThemeColor] and [Control.addThemeColorOverride] for more details.
    */
@@ -1045,8 +1044,8 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Creates a local override for a theme constant with the specified [param name]. Local overrides
-   * always take precedence when fetching theme items for the control. An override can be removed with
+   * Creates a local override for a theme constant with the specified [name]. Local overrides always
+   * take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeConstantOverride].
    * See also [getThemeConstant].
    */
@@ -1056,7 +1055,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Removes a local override for a theme icon with the specified [param name] previously added by
+   * Removes a local override for a theme icon with the specified [name] previously added by
    * [addThemeIconOverride] or via the Inspector dock.
    */
   public fun removeThemeIconOverride(name: StringName): Unit {
@@ -1065,8 +1064,8 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Removes a local override for a theme [StyleBox] with the specified [param name] previously
-   * added by [addThemeStyleboxOverride] or via the Inspector dock.
+   * Removes a local override for a theme [StyleBox] with the specified [name] previously added by
+   * [addThemeStyleboxOverride] or via the Inspector dock.
    */
   public fun removeThemeStyleboxOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -1074,7 +1073,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Removes a local override for a theme [Font] with the specified [param name] previously added by
+   * Removes a local override for a theme [Font] with the specified [name] previously added by
    * [addThemeFontOverride] or via the Inspector dock.
    */
   public fun removeThemeFontOverride(name: StringName): Unit {
@@ -1083,8 +1082,8 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Removes a local override for a theme font size with the specified [param name] previously added
-   * by [addThemeFontSizeOverride] or via the Inspector dock.
+   * Removes a local override for a theme font size with the specified [name] previously added by
+   * [addThemeFontSizeOverride] or via the Inspector dock.
    */
   public fun removeThemeFontSizeOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -1092,8 +1091,8 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Removes a local override for a theme [Color] with the specified [param name] previously added
-   * by [addThemeColorOverride] or via the Inspector dock.
+   * Removes a local override for a theme [Color] with the specified [name] previously added by
+   * [addThemeColorOverride] or via the Inspector dock.
    */
   public fun removeThemeColorOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -1101,8 +1100,8 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Removes a local override for a theme constant with the specified [param name] previously added
-   * by [addThemeConstantOverride] or via the Inspector dock.
+   * Removes a local override for a theme constant with the specified [name] previously added by
+   * [addThemeConstantOverride] or via the Inspector dock.
    */
   public fun removeThemeConstantOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -1111,7 +1110,7 @@ public open class Window : Viewport() {
 
   /**
    * Returns an icon from the first matching [Theme] in the tree if that [Theme] has an icon item
-   * with the specified [param name] and [param theme_type].
+   * with the specified [name] and [themeType].
    * See [Control.getThemeColor] for details.
    */
   @JvmOverloads
@@ -1123,7 +1122,7 @@ public open class Window : Viewport() {
 
   /**
    * Returns a [StyleBox] from the first matching [Theme] in the tree if that [Theme] has a stylebox
-   * item with the specified [param name] and [param theme_type].
+   * item with the specified [name] and [themeType].
    * See [Control.getThemeColor] for details.
    */
   @JvmOverloads
@@ -1135,7 +1134,7 @@ public open class Window : Viewport() {
 
   /**
    * Returns a [Font] from the first matching [Theme] in the tree if that [Theme] has a font item
-   * with the specified [param name] and [param theme_type].
+   * with the specified [name] and [themeType].
    * See [Control.getThemeColor] for details.
    */
   @JvmOverloads
@@ -1147,7 +1146,7 @@ public open class Window : Viewport() {
 
   /**
    * Returns a font size from the first matching [Theme] in the tree if that [Theme] has a font size
-   * item with the specified [param name] and [param theme_type].
+   * item with the specified [name] and [themeType].
    * See [Control.getThemeColor] for details.
    */
   @JvmOverloads
@@ -1159,7 +1158,7 @@ public open class Window : Viewport() {
 
   /**
    * Returns a [Color] from the first matching [Theme] in the tree if that [Theme] has a color item
-   * with the specified [param name] and [param theme_type].
+   * with the specified [name] and [themeType].
    * See [Control.getThemeColor] for more details.
    */
   @JvmOverloads
@@ -1171,7 +1170,7 @@ public open class Window : Viewport() {
 
   /**
    * Returns a constant from the first matching [Theme] in the tree if that [Theme] has a constant
-   * item with the specified [param name] and [param theme_type].
+   * item with the specified [name] and [themeType].
    * See [Control.getThemeColor] for more details.
    */
   @JvmOverloads
@@ -1182,8 +1181,8 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme icon with the specified [param name] in
-   * this [Control] node.
+   * Returns `true` if there is a local override for a theme icon with the specified [name] in this
+   * [Control] node.
    * See [addThemeIconOverride].
    */
   public fun hasThemeIconOverride(name: StringName): Boolean {
@@ -1193,8 +1192,8 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme [StyleBox] with the specified [param
-   * name] in this [Control] node.
+   * Returns `true` if there is a local override for a theme [StyleBox] with the specified [name] in
+   * this [Control] node.
    * See [addThemeStyleboxOverride].
    */
   public fun hasThemeStyleboxOverride(name: StringName): Boolean {
@@ -1204,8 +1203,8 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme [Font] with the specified [param name]
-   * in this [Control] node.
+   * Returns `true` if there is a local override for a theme [Font] with the specified [name] in
+   * this [Control] node.
    * See [addThemeFontOverride].
    */
   public fun hasThemeFontOverride(name: StringName): Boolean {
@@ -1215,8 +1214,8 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme font size with the specified [param
-   * name] in this [Control] node.
+   * Returns `true` if there is a local override for a theme font size with the specified [name] in
+   * this [Control] node.
    * See [addThemeFontSizeOverride].
    */
   public fun hasThemeFontSizeOverride(name: StringName): Boolean {
@@ -1226,8 +1225,8 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme [Color] with the specified [param name]
-   * in this [Control] node.
+   * Returns `true` if there is a local override for a theme [Color] with the specified [name] in
+   * this [Control] node.
    * See [addThemeColorOverride].
    */
   public fun hasThemeColorOverride(name: StringName): Boolean {
@@ -1237,8 +1236,8 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme constant with the specified [param
-   * name] in this [Control] node.
+   * Returns `true` if there is a local override for a theme constant with the specified [name] in
+   * this [Control] node.
    * See [addThemeConstantOverride].
    */
   public fun hasThemeConstantOverride(name: StringName): Boolean {
@@ -1249,7 +1248,7 @@ public open class Window : Viewport() {
 
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has an icon item with the
-   * specified [param name] and [param theme_type].
+   * specified [name] and [themeType].
    * See [Control.getThemeColor] for details.
    */
   @JvmOverloads
@@ -1261,7 +1260,7 @@ public open class Window : Viewport() {
 
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a stylebox item with the
-   * specified [param name] and [param theme_type].
+   * specified [name] and [themeType].
    * See [Control.getThemeColor] for details.
    */
   @JvmOverloads
@@ -1273,7 +1272,7 @@ public open class Window : Viewport() {
 
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a font item with the
-   * specified [param name] and [param theme_type].
+   * specified [name] and [themeType].
    * See [Control.getThemeColor] for details.
    */
   @JvmOverloads
@@ -1285,7 +1284,7 @@ public open class Window : Viewport() {
 
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a font size item with the
-   * specified [param name] and [param theme_type].
+   * specified [name] and [themeType].
    * See [Control.getThemeColor] for details.
    */
   @JvmOverloads
@@ -1297,7 +1296,7 @@ public open class Window : Viewport() {
 
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a color item with the
-   * specified [param name] and [param theme_type].
+   * specified [name] and [themeType].
    * See [Control.getThemeColor] for details.
    */
   @JvmOverloads
@@ -1309,7 +1308,7 @@ public open class Window : Viewport() {
 
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a constant item with the
-   * specified [param name] and [param theme_type].
+   * specified [name] and [themeType].
    * See [Control.getThemeColor] for details.
    */
   @JvmOverloads
@@ -1380,8 +1379,8 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Shows the [Window] and makes it transient (see [transient]). If [param rect] is provided, it
-   * will be set as the [Window]'s size. Fails if called on the main window.
+   * Shows the [Window] and makes it transient (see [transient]). If [rect] is provided, it will be
+   * set as the [Window]'s size. Fails if called on the main window.
    */
   @JvmOverloads
   public fun popup(rect: Rect2i = Rect2i(0, 0, 0, 0)): Unit {
@@ -1401,7 +1400,7 @@ public open class Window : Viewport() {
   /**
    * Popups the [Window] at the center of the current screen, with optionally given minimum size. If
    * the [Window] is embedded, it will be centered in the parent [Viewport] instead.
-   * **Note:** Calling it with the default value of [param minsize] is equivalent to calling it with
+   * **Note:** Calling it with the default value of [minsize] is equivalent to calling it with
    * [size].
    */
   @JvmOverloads
@@ -1412,9 +1411,9 @@ public open class Window : Viewport() {
 
   /**
    * If [Window] is embedded, popups the [Window] centered inside its embedder and sets its size as
-   * a [param ratio] of embedder's size.
+   * a [ratio] of embedder's size.
    * If [Window] is a native window, popups the [Window] centered inside the screen of its parent
-   * [Window] and sets its size as a [param ratio] of the screen size.
+   * [Window] and sets its size as a [ratio] of the screen size.
    */
   @JvmOverloads
   public fun popupCenteredRatio(ratio: Float = 0.8f): Unit {
@@ -1423,9 +1422,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Popups the [Window] centered inside its parent [Window]. [param fallback_ratio] determines the
-   * maximum size of the [Window], in relation to its parent.
-   * **Note:** Calling it with the default value of [param minsize] is equivalent to calling it with
+   * Popups the [Window] centered inside its parent [Window]. [fallbackRatio] determines the maximum
+   * size of the [Window], in relation to its parent.
+   * **Note:** Calling it with the default value of [minsize] is equivalent to calling it with
    * [size].
    */
   @JvmOverloads
@@ -1436,9 +1435,8 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Attempts to parent this dialog to the last exclusive window relative to [param from_node], and
-   * then calls [Window.popup] on it. The dialog must have no current parent, otherwise the method
-   * fails.
+   * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then
+   * calls [Window.popup] on it. The dialog must have no current parent, otherwise the method fails.
    * See also [setUnparentWhenInvisible] and [Node.getLastExclusiveWindow].
    */
   @JvmOverloads
@@ -1448,9 +1446,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Attempts to parent this dialog to the last exclusive window relative to [param from_node], and
-   * then calls [Window.popupOnParent] on it. The dialog must have no current parent, otherwise the
-   * method fails.
+   * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then
+   * calls [Window.popupOnParent] on it. The dialog must have no current parent, otherwise the method
+   * fails.
    * See also [setUnparentWhenInvisible] and [Node.getLastExclusiveWindow].
    */
   public fun popupExclusiveOnParent(fromNode: Node, parentRect: Rect2i): Unit {
@@ -1459,9 +1457,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Attempts to parent this dialog to the last exclusive window relative to [param from_node], and
-   * then calls [Window.popupCentered] on it. The dialog must have no current parent, otherwise the
-   * method fails.
+   * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then
+   * calls [Window.popupCentered] on it. The dialog must have no current parent, otherwise the method
+   * fails.
    * See also [setUnparentWhenInvisible] and [Node.getLastExclusiveWindow].
    */
   @JvmOverloads
@@ -1471,9 +1469,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Attempts to parent this dialog to the last exclusive window relative to [param from_node], and
-   * then calls [Window.popupCenteredRatio] on it. The dialog must have no current parent, otherwise
-   * the method fails.
+   * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then
+   * calls [Window.popupCenteredRatio] on it. The dialog must have no current parent, otherwise the
+   * method fails.
    * See also [setUnparentWhenInvisible] and [Node.getLastExclusiveWindow].
    */
   @JvmOverloads
@@ -1483,9 +1481,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Attempts to parent this dialog to the last exclusive window relative to [param from_node], and
-   * then calls [Window.popupCenteredClamped] on it. The dialog must have no current parent, otherwise
-   * the method fails.
+   * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then
+   * calls [Window.popupCenteredClamped] on it. The dialog must have no current parent, otherwise the
+   * method fails.
    * See also [setUnparentWhenInvisible] and [Node.getLastExclusiveWindow].
    */
   @JvmOverloads
@@ -1611,7 +1609,7 @@ public open class Window : Viewport() {
      */
     FLAG_MOUSE_PASSTHROUGH(7),
     /**
-     * Max value of the [enum Flags].
+     * Max value of the [Flags].
      */
     FLAG_MAX(8),
     ;
@@ -1635,12 +1633,12 @@ public open class Window : Viewport() {
     CONTENT_SCALE_MODE_DISABLED(0),
     /**
      * The content will be rendered at the target size. This is more performance-expensive than
-     * [constant CONTENT_SCALE_MODE_VIEWPORT], but provides better results.
+     * [CONTENTSCALEMODEVIEWPORT], but provides better results.
      */
     CONTENT_SCALE_MODE_CANVAS_ITEMS(1),
     /**
      * The content will be rendered at the base size and then scaled to the target size. More
-     * performant than [constant CONTENT_SCALE_MODE_CANVAS_ITEMS], but results in pixelated image.
+     * performant than [CONTENTSCALEMODECANVASITEMS], but results in pixelated image.
      */
     CONTENT_SCALE_MODE_VIEWPORT(2),
     ;

@@ -50,10 +50,10 @@ public open class PacketPeerDTLS : PacketPeer() {
   }
 
   /**
-   * Connects a [param packet_peer] beginning the DTLS handshake using the underlying
-   * [PacketPeerUDP] which must be connected (see [PacketPeerUDP.connectToHost]). You can optionally
-   * specify the [param client_options] to be used while verifying the TLS connections. See
-   * [TLSOptions.client] and [TLSOptions.clientUnsafe].
+   * Connects a [packetPeer] beginning the DTLS handshake using the underlying [PacketPeerUDP] which
+   * must be connected (see [PacketPeerUDP.connectToHost]). You can optionally specify the
+   * [clientOptions] to be used while verifying the TLS connections. See [TLSOptions.client] and
+   * [TLSOptions.clientUnsafe].
    */
   @JvmOverloads
   public fun connectToPeer(
@@ -67,7 +67,7 @@ public open class PacketPeerDTLS : PacketPeer() {
   }
 
   /**
-   * Returns the status of the connection. See [enum Status] for values.
+   * Returns the status of the connection. See [Status] for values.
    */
   public fun getStatus(): Status {
     TransferContext.writeArguments()

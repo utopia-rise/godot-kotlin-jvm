@@ -48,7 +48,7 @@ public object CameraServer : Object() {
   }
 
   /**
-   * Returns the [CameraFeed] corresponding to the camera with the given [param index].
+   * Returns the [CameraFeed] corresponding to the camera with the given [index].
    */
   public fun getFeed(index: Int): CameraFeed? {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -75,7 +75,7 @@ public object CameraServer : Object() {
   }
 
   /**
-   * Adds the camera [param feed] to the camera server.
+   * Adds the camera [feed] to the camera server.
    */
   public fun addFeed(feed: CameraFeed): Unit {
     TransferContext.writeArguments(OBJECT to feed)
@@ -83,7 +83,7 @@ public object CameraServer : Object() {
   }
 
   /**
-   * Removes the specified camera [param feed].
+   * Removes the specified camera [feed].
    */
   public fun removeFeed(feed: CameraFeed): Unit {
     TransferContext.writeArguments(OBJECT to feed)

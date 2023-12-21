@@ -107,7 +107,7 @@ public enum class VariantOperator(
    */
   OP_IN(24),
   /**
-   * Represents the size of the [enum Variant.Operator] enum.
+   * Represents the size of the [Variant.Operator] enum.
    */
   OP_MAX(25),
   ;

@@ -145,7 +145,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
   /**
-   * The billboard mode to use for the sprite. See [enum BaseMaterial3D.BillboardMode] for possible
+   * The billboard mode to use for the sprite. See [BaseMaterial3D.BillboardMode] for possible
    * values.
    */
   public var billboard: BaseMaterial3D.BillboardMode
@@ -232,7 +232,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
   /**
-   * The alpha cutting mode to use for the sprite. See [enum AlphaCutMode] for possible values.
+   * The alpha cutting mode to use for the sprite. See [AlphaCutMode] for possible values.
    */
   public var alphaCut: AlphaCutMode
     get() {
@@ -274,7 +274,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
   /**
-   * The type of alpha antialiasing to apply. See [enum BaseMaterial3D.AlphaAntiAliasing].
+   * The type of alpha antialiasing to apply. See [BaseMaterial3D.AlphaAntiAliasing].
    */
   public var alphaAntialiasingMode: BaseMaterial3D.AlphaAntiAliasing
     get() {
@@ -302,7 +302,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
   /**
-   * Filter flags for the texture. See [enum BaseMaterial3D.TextureFilter] for options.
+   * Filter flags for the texture. See [BaseMaterial3D.TextureFilter] for options.
    */
   public var textureFilter: BaseMaterial3D.TextureFilter
     get() {
@@ -318,8 +318,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * Sets the render priority for the sprite. Higher priority objects will be sorted in front of
    * lower priority objects.
-   * **Note:** This only applies if [alphaCut] is set to [constant ALPHA_CUT_DISABLED] (default
-   * value).
+   * **Note:** This only applies if [alphaCut] is set to [ALPHACUTDISABLED] (default value).
    * **Note:** This only applies to sorting of transparent objects. This will not impact how
    * transparent objects are sorted relative to opaque objects. This is because opaque objects are not
    * sorted, while transparent objects are sorted from back to front (subject to priority).
@@ -440,7 +439,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
      */
     FLAG_FIXED_SIZE(4),
     /**
-     * Represents the size of the [enum DrawFlags] enum.
+     * Represents the size of the [DrawFlags] enum.
      */
     FLAG_MAX(5),
     ;
@@ -472,9 +471,9 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
      */
     ALPHA_CUT_DISCARD(1),
     /**
-     * This mode draws fully opaque pixels in the depth prepass. This is slower than [constant
-     * ALPHA_CUT_DISABLED] or [constant ALPHA_CUT_DISCARD], but it allows displaying translucent areas
-     * and smooth edges while using proper sorting.
+     * This mode draws fully opaque pixels in the depth prepass. This is slower than
+     * [ALPHACUTDISABLED] or [ALPHACUTDISCARD], but it allows displaying translucent areas and smooth
+     * edges while using proper sorting.
      */
     ALPHA_CUT_OPAQUE_PREPASS(2),
     /**

@@ -52,9 +52,9 @@ import kotlin.jvm.JvmOverloads
  * Selection with right mouse button may also be enabled to allow use of popup context menus. Items may
  * also be "activated" by double-clicking them or by pressing [kbd]Enter[/kbd].
  * Item text only supports single-line strings. Newline characters (e.g. `\n`) in the string won't
- * produce a newline. Text wrapping is enabled in [constant ICON_MODE_TOP] mode, but the column's width
- * is adjusted to fully fit its content by default. You need to set [fixedColumnWidth] greater than
- * zero to wrap the text.
+ * produce a newline. Text wrapping is enabled in [ICONMODETOP] mode, but the column's width is
+ * adjusted to fully fit its content by default. You need to set [fixedColumnWidth] greater than zero
+ * to wrap the text.
  * All `set_*` methods allow negative item indices, i.e. `-1` to access the last item, `-2` to
  * select the second-to-last item, and so on.
  * **Incremental search:** Like [PopupMenu] and [Tree], [ItemList] supports searching within the
@@ -100,7 +100,7 @@ public open class ItemList : Control() {
   public val itemActivated: Signal1<Long> by signal("index")
 
   /**
-   * Allows single or multiple item selection. See the [enum SelectMode] constants.
+   * Allows single or multiple item selection. See the [SelectMode] constants.
    */
   public var selectMode: SelectMode
     get() {
@@ -158,8 +158,8 @@ public open class ItemList : Control() {
   /**
    * Maximum lines of text allowed in each item. Space will be reserved even when there is not
    * enough lines of text to display.
-   * **Note:** This property takes effect only when [iconMode] is [constant ICON_MODE_TOP]. To make
-   * the text wrap, [fixedColumnWidth] should be greater than zero.
+   * **Note:** This property takes effect only when [iconMode] is [ICONMODETOP]. To make the text
+   * wrap, [fixedColumnWidth] should be greater than zero.
    */
   public var maxTextLines: Int
     get() {
@@ -187,8 +187,8 @@ public open class ItemList : Control() {
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds an item's bounding rectangle. See [enum
-   * TextServer.OverrunBehavior] for a description of all modes.
+   * Sets the clipping behavior when the text exceeds an item's bounding rectangle. See
+   * [TextServer.OverrunBehavior] for a description of all modes.
    */
   public var textOverrunBehavior: TextServer.OverrunBehavior
     get() {
@@ -263,7 +263,7 @@ public open class ItemList : Control() {
     }
 
   /**
-   * The icon position, whether above or to the left of the text. See the [enum IconMode] constants.
+   * The icon position, whether above or to the left of the text. See the [IconMode] constants.
    */
   public var iconMode: IconMode
     get() {
@@ -338,7 +338,7 @@ public open class ItemList : Control() {
 
   /**
    * Adds an item to the item list with specified text. Returns the index of an added item.
-   * Specify an [param icon], or use `null` as the [param icon] for a list item with no icon.
+   * Specify an [icon], or use `null` as the [icon] for a list item with no icon.
    * If selectable is `true`, the list item will be selectable.
    */
   @JvmOverloads
@@ -536,7 +536,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Sets the background color of the item specified by [param idx] index to the specified [Color].
+   * Sets the background color of the item specified by [idx] index to the specified [Color].
    */
   public fun setItemCustomBgColor(idx: Int, customBgColor: Color): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), COLOR to customBgColor)
@@ -544,7 +544,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Returns the custom background color of the item specified by [param idx] index.
+   * Returns the custom background color of the item specified by [idx] index.
    */
   public fun getItemCustomBgColor(idx: Int): Color {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -553,7 +553,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Sets the foreground color of the item specified by [param idx] index to the specified [Color].
+   * Sets the foreground color of the item specified by [idx] index to the specified [Color].
    */
   public fun setItemCustomFgColor(idx: Int, customFgColor: Color): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), COLOR to customFgColor)
@@ -561,7 +561,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Returns the custom foreground color of the item specified by [param idx] index.
+   * Returns the custom foreground color of the item specified by [idx] index.
    */
   public fun getItemCustomFgColor(idx: Int): Color {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -571,8 +571,7 @@ public open class ItemList : Control() {
 
   /**
    * Returns the position and size of the item with the specified index, in the coordinate system of
-   * the [ItemList] node. If [param expand] is `true` the last column expands to fill the rest of the
-   * row.
+   * the [ItemList] node. If [expand] is `true` the last column expands to fill the rest of the row.
    * **Note:** The returned value is unreliable if called right after modifying the [ItemList],
    * before it redraws in the next frame.
    */
@@ -662,7 +661,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Moves item from index [param from_idx] to [param to_idx].
+   * Moves item from index [fromIdx] to [toIdx].
    */
   public fun moveItem(fromIdx: Int, toIdx: Int): Unit {
     TransferContext.writeArguments(LONG to fromIdx.toLong(), LONG to toIdx.toLong())
@@ -670,7 +669,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Removes the item specified by [param idx] index from the list.
+   * Removes the item specified by [idx] index from the list.
    */
   public fun removeItem(idx: Int): Unit {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -703,9 +702,9 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Returns the item index at the given [param position].
-   * When there is no item at that point, -1 will be returned if [param exact] is `true`, and the
-   * closest item index will be returned otherwise.
+   * Returns the item index at the given [position].
+   * When there is no item at that point, -1 will be returned if [exact] is `true`, and the closest
+   * item index will be returned otherwise.
    * **Note:** The returned value is unreliable if called right after modifying the [ItemList],
    * before it redraws in the next frame.
    */

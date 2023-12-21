@@ -26,8 +26,8 @@ import kotlin.Suppress
 @GodotBaseType
 public open class BoxContainer : Container() {
   /**
-   * The alignment of the container's children (must be one of [constant ALIGNMENT_BEGIN], [constant
-   * ALIGNMENT_CENTER], or [constant ALIGNMENT_END]).
+   * The alignment of the container's children (must be one of [ALIGNMENTBEGIN], [ALIGNMENTCENTER],
+   * or [ALIGNMENTEND]).
    */
   public var alignment: AlignmentMode
     get() {
@@ -61,7 +61,7 @@ public open class BoxContainer : Container() {
   }
 
   /**
-   * Adds a [Control] node to the box as a spacer. If [param begin] is `true`, it will insert the
+   * Adds a [Control] node to the box as a spacer. If [begin] is `true`, it will insert the
    * [Control] node in front of all other children.
    */
   public fun addSpacer(begin: Boolean): Control? {

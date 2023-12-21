@@ -154,7 +154,7 @@ public open class AStarGrid2D : RefCounted() {
     }
 
   /**
-   * The default [enum Heuristic] which will be used to calculate the cost between two points if
+   * The default [Heuristic] which will be used to calculate the cost between two points if
    * [_computeCost] was not overridden.
    */
   public var defaultComputeHeuristic: Heuristic
@@ -169,8 +169,8 @@ public open class AStarGrid2D : RefCounted() {
     }
 
   /**
-   * The default [enum Heuristic] which will be used to calculate the cost between the point and the
-   * end point if [_estimateCost] was not overridden.
+   * The default [Heuristic] which will be used to calculate the cost between the point and the end
+   * point if [_estimateCost] was not overridden.
    */
   public var defaultEstimateHeuristic: Heuristic
     get() {
@@ -184,7 +184,7 @@ public open class AStarGrid2D : RefCounted() {
     }
 
   /**
-   * A specific [enum DiagonalMode] mode which will force the path to avoid or accept the specified
+   * A specific [DiagonalMode] mode which will force the path to avoid or accept the specified
    * diagonals.
    */
   public var diagonalMode: DiagonalMode
@@ -321,8 +321,8 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   /**
-   * Returns `true` if the [param x] and [param y] is a valid grid coordinate (id), i.e. if it is
-   * inside [region]. Equivalent to `region.has_point(Vector2i(x, y))`.
+   * Returns `true` if the [x] and [y] is a valid grid coordinate (id), i.e. if it is inside
+   * [region]. Equivalent to `region.has_point(Vector2i(x, y))`.
    */
   public fun isInBounds(x: Int, y: Int): Boolean {
     TransferContext.writeArguments(LONG to x.toLong(), LONG to y.toLong())
@@ -331,8 +331,8 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   /**
-   * Returns `true` if the [param id] vector is a valid grid coordinate, i.e. if it is inside
-   * [region]. Equivalent to `region.has_point(id)`.
+   * Returns `true` if the [id] vector is a valid grid coordinate, i.e. if it is inside [region].
+   * Equivalent to `region.has_point(id)`.
    */
   public fun isInBoundsv(id: Vector2i): Boolean {
     TransferContext.writeArguments(VECTOR2I to id)
@@ -381,9 +381,9 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   /**
-   * Sets the [param weight_scale] for the point with the given [param id]. The [param weight_scale]
-   * is multiplied by the result of [_computeCost] when determining the overall cost of traveling
-   * across a segment from a neighboring point to this point.
+   * Sets the [weightScale] for the point with the given [id]. The [weightScale] is multiplied by
+   * the result of [_computeCost] when determining the overall cost of traveling across a segment from
+   * a neighboring point to this point.
    * **Note:** Calling [update] is not needed after the call of this function.
    */
   public fun setPointWeightScale(id: Vector2i, weightScale: Float): Unit {
@@ -392,7 +392,7 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   /**
-   * Returns the weight scale of the point associated with the given [param id].
+   * Returns the weight scale of the point associated with the given [id].
    */
   public fun getPointWeightScale(id: Vector2i): Float {
     TransferContext.writeArguments(VECTOR2I to id)
@@ -401,7 +401,7 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   /**
-   * Fills the given [param region] on the grid with the specified value for the solid flag.
+   * Fills the given [region] on the grid with the specified value for the solid flag.
    * **Note:** Calling [update] is not needed after the call of this function.
    */
   @JvmOverloads
@@ -411,7 +411,7 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   /**
-   * Fills the given [param region] on the grid with the specified value for the weight scale.
+   * Fills the given [region] on the grid with the specified value for the weight scale.
    * **Note:** Calling [update] is not needed after the call of this function.
    */
   public fun fillWeightScaleRegion(region: Rect2i, weightScale: Float): Unit {
@@ -428,7 +428,7 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   /**
-   * Returns the position of the point associated with the given [param id].
+   * Returns the position of the point associated with the given [id].
    */
   public fun getPointPosition(id: Vector2i): Vector2 {
     TransferContext.writeArguments(VECTOR2I to id)
@@ -482,7 +482,7 @@ public open class AStarGrid2D : RefCounted() {
      * result = dx + dy
      * [/codeblock]
      * **Note:** This heuristic is intended to be used with 4-side orthogonal movements, provided by
-     * setting the [diagonalMode] to [constant DIAGONAL_MODE_NEVER].
+     * setting the [diagonalMode] to [DIAGONALMODENEVER].
      */
     HEURISTIC_MANHATTAN(1),
     /**
@@ -506,7 +506,7 @@ public open class AStarGrid2D : RefCounted() {
      */
     HEURISTIC_CHEBYSHEV(3),
     /**
-     * Represents the size of the [enum Heuristic] enum.
+     * Represents the size of the [Heuristic] enum.
      */
     HEURISTIC_MAX(4),
     ;
@@ -544,7 +544,7 @@ public open class AStarGrid2D : RefCounted() {
      */
     DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES(3),
     /**
-     * Represents the size of the [enum DiagonalMode] enum.
+     * Represents the size of the [DiagonalMode] enum.
      */
     DIAGONAL_MODE_MAX(4),
     ;

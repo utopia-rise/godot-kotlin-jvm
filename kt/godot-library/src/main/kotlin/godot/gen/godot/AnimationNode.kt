@@ -111,7 +111,7 @@ public open class AnimationNode : Resource() {
 
   /**
    * When inheriting from [AnimationRootNode], implement this virtual method to return a child
-   * animation node by its [param name].
+   * animation node by its [name].
    */
   public open fun _getChildByName(name: StringName): AnimationNode? {
     throw NotImplementedError("_get_child_by_name is not implemented for AnimationNode")
@@ -119,8 +119,8 @@ public open class AnimationNode : Resource() {
 
   /**
    * When inheriting from [AnimationRootNode], implement this virtual method to return the default
-   * value of a [param parameter]. Parameters are custom local memory used for your animation nodes,
-   * given a resource can be reused in multiple trees.
+   * value of a [parameter]. Parameters are custom local memory used for your animation nodes, given a
+   * resource can be reused in multiple trees.
    */
   public open fun _getParameterDefaultValue(parameter: StringName): Any? {
     throw NotImplementedError("_get_parameter_default_value is not implemented for AnimationNode")
@@ -128,8 +128,8 @@ public open class AnimationNode : Resource() {
 
   /**
    * When inheriting from [AnimationRootNode], implement this virtual method to return whether the
-   * [param parameter] is read-only. Parameters are custom local memory used for your animation nodes,
-   * given a resource can be reused in multiple trees.
+   * [parameter] is read-only. Parameters are custom local memory used for your animation nodes, given
+   * a resource can be reused in multiple trees.
    */
   public open fun _isParameterReadOnly(parameter: StringName): Boolean {
     throw NotImplementedError("_is_parameter_read_only is not implemented for AnimationNode")
@@ -137,8 +137,8 @@ public open class AnimationNode : Resource() {
 
   /**
    * When inheriting from [AnimationRootNode], implement this virtual method to run some code when
-   * this animation node is processed. The [param time] parameter is a relative delta, unless [param
-   * seek] is `true`, in which case it is absolute.
+   * this animation node is processed. The [time] parameter is a relative delta, unless [seek] is
+   * `true`, in which case it is absolute.
    * Here, call the [blendInput], [blendNode] or [blendAnimation] functions. You can also use
    * [getParameter] and [setParameter] to modify local memory.
    * This function should return the time left for the current animation to finish (if unsure, pass
@@ -188,8 +188,7 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Sets the name of the input at the given [param input] index. If the setting fails, returns
-   * `false`.
+   * Sets the name of the input at the given [input] index. If the setting fails, returns `false`.
    */
   public fun setInputName(input: Int, name: String): Boolean {
     TransferContext.writeArguments(LONG to input.toLong(), STRING to name)
@@ -217,7 +216,7 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Returns the input index which corresponds to [param name]. If not found, returns `-1`.
+   * Returns the input index which corresponds to [name]. If not found, returns `-1`.
    */
   public fun findInput(name: String): Int {
     TransferContext.writeArguments(STRING to name)
@@ -243,11 +242,10 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Blend an animation by [param blend] amount (name must be valid in the linked
-   * [AnimationPlayer]). A [param time] and [param delta] may be passed, as well as whether [param
-   * seeked] happened.
-   * A [param looped_flag] is used by internal processing immediately after the loop. See also [enum
-   * Animation.LoopedFlag].
+   * Blend an animation by [blend] amount (name must be valid in the linked [AnimationPlayer]). A
+   * [time] and [delta] may be passed, as well as whether [seeked] happened.
+   * A [loopedFlag] is used by internal processing immediately after the loop. See also
+   * [Animation.LoopedFlag].
    */
   @JvmOverloads
   public fun blendAnimation(
@@ -287,9 +285,9 @@ public open class AnimationNode : Resource() {
 
   /**
    * Blend an input. This is only useful for animation nodes created for an
-   * [AnimationNodeBlendTree]. The [param time] parameter is a relative delta, unless [param seek] is
-   * `true`, in which case it is absolute. A filter mode may be optionally passed (see [enum
-   * FilterAction] for options).
+   * [AnimationNodeBlendTree]. The [time] parameter is a relative delta, unless [seek] is `true`, in
+   * which case it is absolute. A filter mode may be optionally passed (see [FilterAction] for
+   * options).
    */
   @JvmOverloads
   public fun blendInput(

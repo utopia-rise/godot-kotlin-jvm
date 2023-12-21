@@ -24,7 +24,7 @@ import kotlin.Suppress
 public open class VisualShaderNodeTextureParameter internal constructor() :
     VisualShaderNodeParameter() {
   /**
-   * Defines the type of data provided by the source texture. See [enum TextureType] for options.
+   * Defines the type of data provided by the source texture. See [TextureType] for options.
    */
   public var textureType: TextureType
     get() {
@@ -52,7 +52,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
   /**
-   * Sets the texture filtering mode. See [enum TextureFilter] for options.
+   * Sets the texture filtering mode. See [TextureFilter] for options.
    */
   public var textureFilter: TextureFilter
     get() {
@@ -66,7 +66,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
   /**
-   * Sets the texture repeating mode. See [enum TextureRepeat] for options.
+   * Sets the texture repeating mode. See [TextureRepeat] for options.
    */
   public var textureRepeat: TextureRepeat
     get() {
@@ -81,7 +81,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
 
   /**
    * Sets the texture source mode. Used for reading from the screen, depth, or normal_roughness
-   * texture. See [enum TextureSource] for options.
+   * texture. See [TextureSource] for options.
    */
   public var textureSource: TextureSource
     get() {
@@ -120,7 +120,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
      */
     TYPE_ANISOTROPY(3),
     /**
-     * Represents the size of the [enum TextureType] enum.
+     * Represents the size of the [TextureType] enum.
      */
     TYPE_MAX(4),
     ;
@@ -151,7 +151,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
      */
     COLOR_DEFAULT_TRANSPARENT(2),
     /**
-     * Represents the size of the [enum ColorDefault] enum.
+     * Represents the size of the [ColorDefault] enum.
      */
     COLOR_DEFAULT_MAX(3),
     ;
@@ -199,8 +199,8 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
      * between the surface and the camera view. This reduces artifacts on surfaces that are almost in
      * line with the camera. The anisotropic filtering level can be changed by adjusting
      * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
-     * **Note:** This texture filter is rarely useful in 2D projects. [constant
-     * FILTER_LINEAR_MIPMAP] is usually more appropriate.
+     * **Note:** This texture filter is rarely useful in 2D projects. [FILTERLINEARMIPMAP] is
+     * usually more appropriate.
      */
     FILTER_NEAREST_MIPMAP_ANISOTROPIC(5),
     /**
@@ -209,12 +209,12 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
      * almost in line with the camera. This is the slowest of the filtering options, but results in the
      * highest quality texturing. The anisotropic filtering level can be changed by adjusting
      * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
-     * **Note:** This texture filter is rarely useful in 2D projects. [constant
-     * FILTER_LINEAR_MIPMAP] is usually more appropriate.
+     * **Note:** This texture filter is rarely useful in 2D projects. [FILTERLINEARMIPMAP] is
+     * usually more appropriate.
      */
     FILTER_LINEAR_MIPMAP_ANISOTROPIC(6),
     /**
-     * Represents the size of the [enum TextureFilter] enum.
+     * Represents the size of the [TextureFilter] enum.
      */
     FILTER_MAX(7),
     ;
@@ -245,7 +245,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
      */
     REPEAT_DISABLED(2),
     /**
-     * Represents the size of the [enum TextureRepeat] enum.
+     * Represents the size of the [TextureRepeat] enum.
      */
     REPEAT_MAX(3),
     ;
@@ -280,7 +280,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
      */
     SOURCE_NORMAL_ROUGHNESS(3),
     /**
-     * Represents the size of the [enum TextureSource] enum.
+     * Represents the size of the [TextureSource] enum.
      */
     SOURCE_MAX(4),
     ;

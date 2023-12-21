@@ -47,8 +47,8 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
-   * This property can define the process of transitions for different use cases. See also [enum
-   * AnimationNodeStateMachine.StateMachineType].
+   * This property can define the process of transitions for different use cases. See also
+   * [AnimationNodeStateMachine.StateMachineType].
    */
   public var stateMachineType: StateMachineType
     get() {
@@ -100,7 +100,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   }
 
   /**
-   * Adds a new animation node to the graph. The [param position] is used for display in the editor.
+   * Adds a new animation node to the graph. The [position] is used for display in the editor.
    */
   @JvmOverloads
   public fun addNode(
@@ -283,8 +283,8 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     STATE_MACHINE_TYPE_NESTED(1),
     /**
      * This is a grouped state machine that can be controlled from a parent state machine. It does
-     * not work on standalone. There must be a state machine with [stateMachineType] of [constant
-     * STATE_MACHINE_TYPE_ROOT] or [constant STATE_MACHINE_TYPE_NESTED] in the parent or ancestor.
+     * not work on standalone. There must be a state machine with [stateMachineType] of
+     * [STATEMACHINETYPEROOT] or [STATEMACHINETYPENESTED] in the parent or ancestor.
      */
     STATE_MACHINE_TYPE_GROUPED(2),
     ;

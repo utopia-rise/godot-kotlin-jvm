@@ -80,8 +80,8 @@ public open class ResourceFormatLoader : RefCounted() {
   }
 
   /**
-   * Returns the script class name associated with the [Resource] under the given [param path]. If
-   * the resource has no script or the script isn't a named class, it should return `""`.
+   * Returns the script class name associated with the [Resource] under the given [path]. If the
+   * resource has no script or the script isn't a named class, it should return `""`.
    */
   public open fun _getResourceScriptClass(path: String): String {
     throw NotImplementedError("_get_resource_script_class is not implemented for ResourceFormatLoader")
@@ -92,8 +92,8 @@ public open class ResourceFormatLoader : RefCounted() {
   }
 
   /**
-   * If implemented, gets the dependencies of a given resource. If [param add_types] is `true`,
-   * paths should be appended `::TypeName`, where `TypeName` is the class name of the dependency.
+   * If implemented, gets the dependencies of a given resource. If [addTypes] is `true`, paths
+   * should be appended `::TypeName`, where `TypeName` is the class name of the dependency.
    * **Note:** Custom resource types defined by scripts aren't known by the [ClassDB], so you might
    * just return `"Resource"` for them.
    */
@@ -102,9 +102,9 @@ public open class ResourceFormatLoader : RefCounted() {
   }
 
   /**
-   * If implemented, renames dependencies within the given resource and saves it. [param renames] is
-   * a dictionary `{ String => String }` mapping old dependency paths to new paths.
-   * Returns [constant OK] on success, or an [enum Error] constant in case of failure.
+   * If implemented, renames dependencies within the given resource and saves it. [renames] is a
+   * dictionary `{ String => String }` mapping old dependency paths to new paths.
+   * Returns [OK] on success, or an [Error] constant in case of failure.
    */
   public open fun _renameDependencies(path: String, renames: Dictionary<Any?, Any?>): GodotError {
     throw NotImplementedError("_rename_dependencies is not implemented for ResourceFormatLoader")
@@ -120,10 +120,10 @@ public open class ResourceFormatLoader : RefCounted() {
 
   /**
    * Loads a resource when the engine finds this loader to be compatible. If the loaded resource is
-   * the result of an import, [param original_path] will target the source file. Returns a [Resource]
-   * object on success, or an [enum Error] constant in case of failure.
-   * The [param cache_mode] property defines whether and how the cache should be used or updated
-   * when loading the resource. See [enum CacheMode] for details.
+   * the result of an import, [originalPath] will target the source file. Returns a [Resource] object
+   * on success, or an [Error] constant in case of failure.
+   * The [cacheMode] property defines whether and how the cache should be used or updated when
+   * loading the resource. See [CacheMode] for details.
    */
   public open fun _load(
     path: String,

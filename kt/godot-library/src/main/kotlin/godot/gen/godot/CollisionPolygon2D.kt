@@ -33,7 +33,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class CollisionPolygon2D : Node2D() {
   /**
-   * Collision build mode. Use one of the [enum BuildMode] constants.
+   * Collision build mode. Use one of the [BuildMode] constants.
    */
   public var buildMode: BuildMode
     get() {

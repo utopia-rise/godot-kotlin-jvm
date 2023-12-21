@@ -279,7 +279,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns next [param length] bytes of the file as a [PackedByteArray].
+   * Returns next [length] bytes of the file as a [PackedByteArray].
    */
   public fun getBuffer(length: Long): PackedByteArray {
     TransferContext.writeArguments(LONG to length)
@@ -299,8 +299,8 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   /**
    * Returns the next value of the file in CSV (Comma-Separated Values) format. You can pass a
-   * different delimiter [param delim] to use other than the default `","` (comma). This delimiter must
-   * be one-character long, and cannot be a double quotation mark.
+   * different delimiter [delim] to use other than the default `","` (comma). This delimiter must be
+   * one-character long, and cannot be a double quotation mark.
    * Text is interpreted as being UTF-8 encoded. Text values must be enclosed in double quotes if
    * they include the delimiter character. Double quotes within a text value can be escaped by doubling
    * their occurrence.
@@ -324,9 +324,8 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   /**
    * Returns the whole file as a [String]. Text is interpreted as being UTF-8 encoded.
-   * If [param skip_cr] is `true`, carriage return characters (`\r`, CR) will be ignored when
-   * parsing the UTF-8, so that only line feed characters (`\n`, LF) represent a new line (Unix
-   * convention).
+   * If [skipCr] is `true`, carriage return characters (`\r`, CR) will be ignored when parsing the
+   * UTF-8, so that only line feed characters (`\n`, LF) represent a new line (Unix convention).
    */
   @JvmOverloads
   public fun getAsText(skipCr: Boolean = false): String {
@@ -337,7 +336,7 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   /**
    * Returns the last error that happened when trying to perform operations. Compare with the
-   * `ERR_FILE_*` constants from [enum Error].
+   * `ERR_FILE_*` constants from [Error].
    */
   public fun getError(): GodotError {
     TransferContext.writeArguments()
@@ -346,8 +345,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next [Variant] value from the file. If [param allow_objects] is `true`, decoding
-   * objects is allowed.
+   * Returns the next [Variant] value from the file. If [allowObjects] is `true`, decoding objects
+   * is allowed.
    * Internally, this uses the same decoding mechanism as the [@GlobalScope.bytesToVar] method.
    * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option
    * if the serialized object comes from untrusted sources to avoid potential security threats such as
@@ -362,8 +361,8 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   /**
    * Stores an integer as 8 bits in the file.
-   * **Note:** The [param value] should lie in the interval `[0, 255]`. Any other value will
-   * overflow and wrap around.
+   * **Note:** The [value] should lie in the interval `[0, 255]`. Any other value will overflow and
+   * wrap around.
    * To store a signed integer, use [store64], or convert it manually (see [store16] for an
    * example).
    */
@@ -374,8 +373,8 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   /**
    * Stores an integer as 16 bits in the file.
-   * **Note:** The [param value] should lie in the interval `[0, 2^16 - 1]`. Any other value will
-   * overflow and wrap around.
+   * **Note:** The [value] should lie in the interval `[0, 2^16 - 1]`. Any other value will overflow
+   * and wrap around.
    * To store a signed integer, use [store64] or store a signed integer from the interval `[-2^15,
    * 2^15 - 1]` (i.e. keeping one bit for the signedness) and compute its sign manually when reading.
    * For example:
@@ -420,8 +419,8 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   /**
    * Stores an integer as 32 bits in the file.
-   * **Note:** The [param value] should lie in the interval `[0, 2^32 - 1]`. Any other value will
-   * overflow and wrap around.
+   * **Note:** The [value] should lie in the interval `[0, 2^32 - 1]`. Any other value will overflow
+   * and wrap around.
    * To store a signed integer, use [store64], or convert it manually (see [store16] for an
    * example).
    */
@@ -432,7 +431,7 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   /**
    * Stores an integer as 64 bits in the file.
-   * **Note:** The [param value] must lie in the interval `[-2^63, 2^63 - 1]` (i.e. be a valid [int]
+   * **Note:** The [value] must lie in the interval `[-2^63, 2^63 - 1]` (i.e. be a valid [int]
    * value).
    */
   public fun store64(`value`: Long): Unit {
@@ -473,8 +472,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Appends [param line] to the file followed by a line return character (`\n`), encoding the text
-   * as UTF-8.
+   * Appends [line] to the file followed by a line return character (`\n`), encoding the text as
+   * UTF-8.
    */
   public fun storeLine(line: String): Unit {
     TransferContext.writeArguments(STRING to line)
@@ -483,8 +482,8 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   /**
    * Store the given [PackedStringArray] in the file as a line formatted in the CSV (Comma-Separated
-   * Values) format. You can pass a different delimiter [param delim] to use other than the default
-   * `","` (comma). This delimiter must be one-character long.
+   * Values) format. You can pass a different delimiter [delim] to use other than the default `","`
+   * (comma). This delimiter must be one-character long.
    * Text will be encoded as UTF-8.
    */
   @JvmOverloads
@@ -494,7 +493,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Appends [param string] to the file without a line return, encoding the text as UTF-8.
+   * Appends [string] to the file without a line return, encoding the text as UTF-8.
    * **Note:** This method is intended to be used to write text files. The string is stored as a
    * UTF-8 encoded buffer without string length or terminating zero, which means that it can't be
    * loaded back easily. If you want to store a retrievable string in a binary file, consider using
@@ -507,14 +506,14 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Stores any Variant value in the file. If [param full_objects] is `true`, encoding objects is
-   * allowed (and can potentially include code).
+   * Stores any Variant value in the file. If [fullObjects] is `true`, encoding objects is allowed
+   * (and can potentially include code).
    * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    * **Note:** Not all properties are included. Only properties that are configured with the
-   * [constant PROPERTY_USAGE_STORAGE] flag set will be serialized. You can add a new usage flag to a
-   * property by overriding the [Object.GetPropertyList] method in your class. You can also check how
-   * property usage is configured by calling [Object.GetPropertyList]. See [enum PropertyUsageFlags]
-   * for the possible usage flags.
+   * [PROPERTYUSAGESTORAGE] flag set will be serialized. You can add a new usage flag to a property by
+   * overriding the [Object.GetPropertyList] method in your class. You can also check how property
+   * usage is configured by calling [Object.GetPropertyList]. See [PropertyUsageFlags] for the possible
+   * usage flags.
    */
   @JvmOverloads
   public fun storeVar(`value`: Any?, fullObjects: Boolean = false): Unit {
@@ -794,7 +793,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Returns the whole [param path] file contents as a [PackedByteArray] without any decoding.
+     * Returns the whole [path] file contents as a [PackedByteArray] without any decoding.
      * Returns an empty [PackedByteArray] if an error occurred while opening the file. You can use
      * [getOpenError] to check the error that occurred.
      */
@@ -805,8 +804,8 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Returns the whole [param path] file contents as a [String]. Text is interpreted as being
-     * UTF-8 encoded.
+     * Returns the whole [path] file contents as a [String]. Text is interpreted as being UTF-8
+     * encoded.
      * Returns an empty [String] if an error occurred while opening the file. You can use
      * [getOpenError] to check the error that occurred.
      */
@@ -850,8 +849,8 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Returns the last time the [param file] was modified in Unix timestamp format, or `0` on
-     * error. This Unix timestamp can be converted to another format using the [Time] singleton.
+     * Returns the last time the [file] was modified in Unix timestamp format, or `0` on error. This
+     * Unix timestamp can be converted to another format using the [Time] singleton.
      */
     public fun getModifiedTime(`file`: String): Long {
       TransferContext.writeArguments(STRING to file)

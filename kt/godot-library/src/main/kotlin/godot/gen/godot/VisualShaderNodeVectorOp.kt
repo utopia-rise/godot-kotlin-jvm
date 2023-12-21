@@ -23,7 +23,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
   /**
-   * The operator to be used. See [enum Operator] for options.
+   * The operator to be used. See [Operator] for options.
    */
   public var `operator`: Operator
     get() {
@@ -95,7 +95,7 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
      */
     OP_STEP(11),
     /**
-     * Represents the size of the [enum Operator] enum.
+     * Represents the size of the [Operator] enum.
      */
     OP_ENUM_SIZE(12),
     ;

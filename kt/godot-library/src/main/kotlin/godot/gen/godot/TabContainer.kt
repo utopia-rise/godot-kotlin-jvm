@@ -74,7 +74,7 @@ public open class TabContainer : Container() {
   public val prePopupPressed: Signal0 by signal()
 
   /**
-   * Sets the position at which tabs will be placed. See [enum TabBar.AlignmentMode] for details.
+   * Sets the position at which tabs will be placed. See [TabBar.AlignmentMode] for details.
    */
   public var tabAlignment: TabBar.AlignmentMode
     get() {
@@ -269,7 +269,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns the [Control] node from the tab at index [param tab_idx].
+   * Returns the [Control] node from the tab at index [tabIdx].
    */
   public fun getTabControl(tabIdx: Int): Control? {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -278,7 +278,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Sets a custom title for the tab at index [param tab_idx] (tab titles default to the name of the
+   * Sets a custom title for the tab at index [tabIdx] (tab titles default to the name of the
    * indexed child node). Set it back to the child's name to make the tab default to it again.
    */
   public fun setTabTitle(tabIdx: Int, title: String): Unit {
@@ -287,8 +287,8 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns the title of the tab at index [param tab_idx]. Tab titles default to the name of the
-   * indexed child node, but this can be overridden with [setTabTitle].
+   * Returns the title of the tab at index [tabIdx]. Tab titles default to the name of the indexed
+   * child node, but this can be overridden with [setTabTitle].
    */
   public fun getTabTitle(tabIdx: Int): String {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -297,7 +297,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Sets an icon for the tab at index [param tab_idx].
+   * Sets an icon for the tab at index [tabIdx].
    */
   public fun setTabIcon(tabIdx: Int, icon: Texture2D): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), OBJECT to icon)
@@ -305,8 +305,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns the [Texture2D] for the tab at index [param tab_idx] or `null` if the tab has no
-   * [Texture2D].
+   * Returns the [Texture2D] for the tab at index [tabIdx] or `null` if the tab has no [Texture2D].
    */
   public fun getTabIcon(tabIdx: Int): Texture2D? {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -315,8 +314,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * If [param disabled] is `true`, disables the tab at index [param tab_idx], making it
-   * non-interactable.
+   * If [disabled] is `true`, disables the tab at index [tabIdx], making it non-interactable.
    */
   public fun setTabDisabled(tabIdx: Int, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), BOOL to disabled)
@@ -324,7 +322,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns `true` if the tab at index [param tab_idx] is disabled.
+   * Returns `true` if the tab at index [tabIdx] is disabled.
    */
   public fun isTabDisabled(tabIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -333,8 +331,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * If [param hidden] is `true`, hides the tab at index [param tab_idx], making it disappear from
-   * the tab area.
+   * If [hidden] is `true`, hides the tab at index [tabIdx], making it disappear from the tab area.
    */
   public fun setTabHidden(tabIdx: Int, hidden: Boolean): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), BOOL to hidden)
@@ -342,7 +339,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns `true` if the tab at index [param tab_idx] is hidden.
+   * Returns `true` if the tab at index [tabIdx] is hidden.
    */
   public fun isTabHidden(tabIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -351,8 +348,8 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Sets the metadata value for the tab at index [param tab_idx], which can be retrieved later
-   * using [getTabMetadata].
+   * Sets the metadata value for the tab at index [tabIdx], which can be retrieved later using
+   * [getTabMetadata].
    */
   public fun setTabMetadata(tabIdx: Int, metadata: Any?): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), ANY to metadata)
@@ -360,8 +357,8 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns the metadata value set to the tab at index [param tab_idx] using [setTabMetadata]. If
-   * no metadata was previously set, returns `null` by default.
+   * Returns the metadata value set to the tab at index [tabIdx] using [setTabMetadata]. If no
+   * metadata was previously set, returns `null` by default.
    */
   public fun getTabMetadata(tabIdx: Int): Any? {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -370,7 +367,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Sets the button icon from the tab at index [param tab_idx].
+   * Sets the button icon from the tab at index [tabIdx].
    */
   public fun setTabButtonIcon(tabIdx: Int, icon: Texture2D): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), OBJECT to icon)
@@ -378,7 +375,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns the button icon from the tab at index [param tab_idx].
+   * Returns the button icon from the tab at index [tabIdx].
    */
   public fun getTabButtonIcon(tabIdx: Int): Texture2D? {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -387,8 +384,8 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns the index of the tab at local coordinates [param point]. Returns `-1` if the point is
-   * outside the control boundaries or if there's no tab at the queried position.
+   * Returns the index of the tab at local coordinates [point]. Returns `-1` if the point is outside
+   * the control boundaries or if there's no tab at the queried position.
    */
   public fun getTabIdxAtPoint(point: Vector2): Int {
     TransferContext.writeArguments(VECTOR2 to point)
@@ -397,8 +394,8 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Returns the index of the tab tied to the given [param control]. The control must be a child of
-   * the [TabContainer].
+   * Returns the index of the tab tied to the given [control]. The control must be a child of the
+   * [TabContainer].
    */
   public fun getTabIdxFromControl(control: Control): Int {
     TransferContext.writeArguments(OBJECT to control)

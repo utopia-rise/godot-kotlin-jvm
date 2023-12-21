@@ -93,8 +93,8 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Creates a shared texture using the specified [param view] and the texture information from
-   * [param with_texture].
+   * Creates a shared texture using the specified [view] and the texture information from
+   * [withTexture].
    */
   public fun textureCreateShared(view: RDTextureView, withTexture: RID): RID {
     TransferContext.writeArguments(OBJECT to view, _RID to withTexture)
@@ -103,12 +103,11 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Creates a shared texture using the specified [param view] and the texture information from
-   * [param with_texture]'s [param layer] and [param mipmap]. The number of included mipmaps from the
-   * original texture can be controlled using the [param mipmaps] parameter. Only relevant for textures
-   * with multiple layers, such as 3D textures, texture arrays and cubemaps. For single-layer textures,
-   * use [textureCreateShared]
-   * For 2D textures (which only have one layer), [param layer] must be `0`.
+   * Creates a shared texture using the specified [view] and the texture information from
+   * [withTexture]'s [layer] and [mipmap]. The number of included mipmaps from the original texture can
+   * be controlled using the [mipmaps] parameter. Only relevant for textures with multiple layers, such
+   * as 3D textures, texture arrays and cubemaps. For single-layer textures, use [textureCreateShared]
+   * For 2D textures (which only have one layer), [layer] must be `0`.
    * **Note:** Layer slicing is only supported for 2D texture arrays, not 3D textures or cubemaps.
    */
   @JvmOverloads
@@ -126,9 +125,9 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Returns an RID for an existing [param image] (`VkImage`) with the given [param type], [param
-   * format], [param samples], [param usage_flags], [param width], [param height], [param depth], and
-   * [param layers]. This can be used to allow Godot to render onto foreign images.
+   * Returns an RID for an existing [image] (`VkImage`) with the given [type], [format], [samples],
+   * [usageFlags], [width], [height], [depth], and [layers]. This can be used to allow Godot to render
+   * onto foreign images.
    */
   public fun textureCreateFromExtension(
     type: TextureType,
@@ -148,15 +147,14 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Updates texture data with new data, replacing the previous data in place. The updated texture
-   * data must have the same dimensions and format. For 2D textures (which only have one layer), [param
-   * layer] must be `0`. Returns [constant @GlobalScope.OK] if the update was successful, [constant
-   * @GlobalScope.ERR_INVALID_PARAMETER] otherwise.
+   * data must have the same dimensions and format. For 2D textures (which only have one layer),
+   * [layer] must be `0`. Returns [@GlobalScope.OK] if the update was successful,
+   * [@GlobalScope.ERRINVALIDPARAMETER] otherwise.
    * **Note:** Updating textures is forbidden during creation of a draw or compute list.
-   * **Note:** The existing [param texture] can't be updated while a draw list that uses it as part
-   * of a framebuffer is being created. Ensure the draw list is finalized (and that the color/depth
-   * texture using it is not set to [constant FINAL_ACTION_CONTINUE]) to update this texture.
-   * **Note:** The existing [param texture] requires the [constant TEXTURE_USAGE_CAN_UPDATE_BIT] to
-   * be updatable.
+   * **Note:** The existing [texture] can't be updated while a draw list that uses it as part of a
+   * framebuffer is being created. Ensure the draw list is finalized (and that the color/depth texture
+   * using it is not set to [FINALACTIONCONTINUE]) to update this texture.
+   * **Note:** The existing [texture] requires the [TEXTUREUSAGECANUPDATEBIT] to be updatable.
    */
   @JvmOverloads
   public fun textureUpdate(
@@ -171,14 +169,14 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Returns the [param texture] data for the specified [param layer] as raw binary data. For 2D
-   * textures (which only have one layer), [param layer] must be `0`.
-   * **Note:** [param texture] can't be retrieved while a draw list that uses it as part of a
-   * framebuffer is being created. Ensure the draw list is finalized (and that the color/depth texture
-   * using it is not set to [constant FINAL_ACTION_CONTINUE]) to retrieve this texture. Otherwise, an
+   * Returns the [texture] data for the specified [layer] as raw binary data. For 2D textures (which
+   * only have one layer), [layer] must be `0`.
+   * **Note:** [texture] can't be retrieved while a draw list that uses it as part of a framebuffer
+   * is being created. Ensure the draw list is finalized (and that the color/depth texture using it is
+   * not set to [FINALACTIONCONTINUE]) to retrieve this texture. Otherwise, an error is printed and a
+   * empty [PackedByteArray] is returned.
+   * **Note:** [texture] requires the [TEXTUREUSAGECANCOPYFROMBIT] to be retrieved. Otherwise, an
    * error is printed and a empty [PackedByteArray] is returned.
-   * **Note:** [param texture] requires the [constant TEXTURE_USAGE_CAN_COPY_FROM_BIT] to be
-   * retrieved. Otherwise, an error is printed and a empty [PackedByteArray] is returned.
    */
   public fun textureGetData(texture: RID, layer: Long): PackedByteArray {
     TransferContext.writeArguments(_RID to texture, LONG to layer)
@@ -187,8 +185,8 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Returns `true` if the specified [param format] is supported for the given [param usage_flags],
-   * `false` otherwise.
+   * Returns `true` if the specified [format] is supported for the given [usageFlags], `false`
+   * otherwise.
    */
   public fun textureIsFormatSupportedForUsage(format: DataFormat, usageFlags: TextureUsageBits):
       Boolean {
@@ -198,7 +196,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Returns `true` if the [param texture] is shared, `false` otherwise. See [RDTextureView].
+   * Returns `true` if the [texture] is shared, `false` otherwise. See [RDTextureView].
    */
   public fun textureIsShared(texture: RID): Boolean {
     TransferContext.writeArguments(_RID to texture)
@@ -207,7 +205,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Returns `true` if the [param texture] is valid, `false` otherwise.
+   * Returns `true` if the [texture] is valid, `false` otherwise.
    */
   public fun textureIsValid(texture: RID): Boolean {
     TransferContext.writeArguments(_RID to texture)
@@ -216,24 +214,20 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Copies the [param from_texture] to [param to_texture] with the specified [param from_pos],
-   * [param to_pos] and [param size] coordinates. The Z axis of the [param from_pos], [param to_pos]
-   * and [param size] must be `0` for 2-dimensional textures. Source and destination mipmaps/layers
-   * must also be specified, with these parameters being `0` for textures without mipmaps or
-   * single-layer textures. Returns [constant @GlobalScope.OK] if the texture copy was successful or
-   * [constant @GlobalScope.ERR_INVALID_PARAMETER] otherwise.
-   * **Note:** [param from_texture] texture can't be copied while a draw list that uses it as part
-   * of a framebuffer is being created. Ensure the draw list is finalized (and that the color/depth
-   * texture using it is not set to [constant FINAL_ACTION_CONTINUE]) to copy this texture.
-   * **Note:** [param from_texture] texture requires the [constant TEXTURE_USAGE_CAN_COPY_FROM_BIT]
-   * to be retrieved.
-   * **Note:** [param to_texture] can't be copied while a draw list that uses it as part of a
+   * Copies the [fromTexture] to [toTexture] with the specified [fromPos], [toPos] and [size]
+   * coordinates. The Z axis of the [fromPos], [toPos] and [size] must be `0` for 2-dimensional
+   * textures. Source and destination mipmaps/layers must also be specified, with these parameters
+   * being `0` for textures without mipmaps or single-layer textures. Returns [@GlobalScope.OK] if the
+   * texture copy was successful or [@GlobalScope.ERRINVALIDPARAMETER] otherwise.
+   * **Note:** [fromTexture] texture can't be copied while a draw list that uses it as part of a
    * framebuffer is being created. Ensure the draw list is finalized (and that the color/depth texture
-   * using it is not set to [constant FINAL_ACTION_CONTINUE]) to copy this texture.
-   * **Note:** [param to_texture] requires the [constant TEXTURE_USAGE_CAN_COPY_TO_BIT] to be
-   * retrieved.
-   * **Note:** [param from_texture] and [param to_texture] must be of the same type (color or
-   * depth).
+   * using it is not set to [FINALACTIONCONTINUE]) to copy this texture.
+   * **Note:** [fromTexture] texture requires the [TEXTUREUSAGECANCOPYFROMBIT] to be retrieved.
+   * **Note:** [toTexture] can't be copied while a draw list that uses it as part of a framebuffer
+   * is being created. Ensure the draw list is finalized (and that the color/depth texture using it is
+   * not set to [FINALACTIONCONTINUE]) to copy this texture.
+   * **Note:** [toTexture] requires the [TEXTUREUSAGECANCOPYTOBIT] to be retrieved.
+   * **Note:** [fromTexture] and [toTexture] must be of the same type (color or depth).
    */
   @JvmOverloads
   public fun textureCopy(
@@ -254,15 +248,14 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Clears the specified [param texture] by replacing all of its pixels with the specified [param
-   * color]. [param base_mipmap] and [param mipmap_count] determine which mipmaps of the texture are
-   * affected by this clear operation, while [param base_layer] and [param layer_count] determine which
-   * layers of a 3D texture (or texture array) are affected by this clear operation. For 2D textures
-   * (which only have one layer by design), [param base_layer] must be `0` and [param layer_count] must
-   * be `1`.
-   * **Note:** [param texture] can't be cleared while a draw list that uses it as part of a
-   * framebuffer is being created. Ensure the draw list is finalized (and that the color/depth texture
-   * using it is not set to [constant FINAL_ACTION_CONTINUE]) to clear this texture.
+   * Clears the specified [texture] by replacing all of its pixels with the specified [color].
+   * [baseMipmap] and [mipmapCount] determine which mipmaps of the texture are affected by this clear
+   * operation, while [baseLayer] and [layerCount] determine which layers of a 3D texture (or texture
+   * array) are affected by this clear operation. For 2D textures (which only have one layer by
+   * design), [baseLayer] must be `0` and [layerCount] must be `1`.
+   * **Note:** [texture] can't be cleared while a draw list that uses it as part of a framebuffer is
+   * being created. Ensure the draw list is finalized (and that the color/depth texture using it is not
+   * set to [FINALACTIONCONTINUE]) to clear this texture.
    */
   @JvmOverloads
   public fun textureClear(
@@ -280,25 +273,23 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Resolves the [param from_texture] texture onto [param to_texture] with multisample antialiasing
-   * enabled. This must be used when rendering a framebuffer for MSAA to work. Returns [constant
-   * @GlobalScope.OK] if successful, [constant @GlobalScope.ERR_INVALID_PARAMETER] otherwise.
-   * **Note:** [param from_texture] and [param to_texture] textures must have the same dimension,
-   * format and type (color or depth).
-   * **Note:** [param from_texture] can't be copied while a draw list that uses it as part of a
-   * framebuffer is being created. Ensure the draw list is finalized (and that the color/depth texture
-   * using it is not set to [constant FINAL_ACTION_CONTINUE]) to resolve this texture.
-   * **Note:** [param from_texture] requires the [constant TEXTURE_USAGE_CAN_COPY_FROM_BIT] to be
-   * retrieved.
-   * **Note:** [param from_texture] must be multisampled and must also be 2D (or a slice of a
+   * Resolves the [fromTexture] texture onto [toTexture] with multisample antialiasing enabled. This
+   * must be used when rendering a framebuffer for MSAA to work. Returns [@GlobalScope.OK] if
+   * successful, [@GlobalScope.ERRINVALIDPARAMETER] otherwise.
+   * **Note:** [fromTexture] and [toTexture] textures must have the same dimension, format and type
+   * (color or depth).
+   * **Note:** [fromTexture] can't be copied while a draw list that uses it as part of a framebuffer
+   * is being created. Ensure the draw list is finalized (and that the color/depth texture using it is
+   * not set to [FINALACTIONCONTINUE]) to resolve this texture.
+   * **Note:** [fromTexture] requires the [TEXTUREUSAGECANCOPYFROMBIT] to be retrieved.
+   * **Note:** [fromTexture] must be multisampled and must also be 2D (or a slice of a 3D/cubemap
+   * texture).
+   * **Note:** [toTexture] can't be copied while a draw list that uses it as part of a framebuffer
+   * is being created. Ensure the draw list is finalized (and that the color/depth texture using it is
+   * not set to [FINALACTIONCONTINUE]) to resolve this texture.
+   * **Note:** [toTexture] texture requires the [TEXTUREUSAGECANCOPYTOBIT] to be retrieved.
+   * **Note:** [toTexture] texture must **not** be multisampled and must also be 2D (or a slice of a
    * 3D/cubemap texture).
-   * **Note:** [param to_texture] can't be copied while a draw list that uses it as part of a
-   * framebuffer is being created. Ensure the draw list is finalized (and that the color/depth texture
-   * using it is not set to [constant FINAL_ACTION_CONTINUE]) to resolve this texture.
-   * **Note:** [param to_texture] texture requires the [constant TEXTURE_USAGE_CAN_COPY_TO_BIT] to
-   * be retrieved.
-   * **Note:** [param to_texture] texture must **not** be multisampled and must also be 2D (or a
-   * slice of a 3D/cubemap texture).
    */
   @JvmOverloads
   public fun textureResolveMultisample(
@@ -333,9 +324,9 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Creates a new framebuffer format with the specified [param attachments] and [param view_count].
-   * Returns the new framebuffer's unique framebuffer format ID.
-   * If [param view_count] is greater than or equal to `2`, enables multiview which is used for VR
+   * Creates a new framebuffer format with the specified [attachments] and [viewCount]. Returns the
+   * new framebuffer's unique framebuffer format ID.
+   * If [viewCount] is greater than or equal to `2`, enables multiview which is used for VR
    * rendering. This requires support for the Vulkan multiview extension.
    */
   @JvmOverloads
@@ -347,10 +338,9 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Creates a multipass framebuffer format with the specified [param attachments], [param passes]
-   * and [param view_count] and returns its ID. If [param view_count] is greater than or equal to `2`,
-   * enables multiview which is used for VR rendering. This requires support for the Vulkan multiview
-   * extension.
+   * Creates a multipass framebuffer format with the specified [attachments], [passes] and
+   * [viewCount] and returns its ID. If [viewCount] is greater than or equal to `2`, enables multiview
+   * which is used for VR rendering. This requires support for the Vulkan multiview extension.
    */
   @JvmOverloads
   public fun framebufferFormatCreateMultipass(
@@ -364,8 +354,8 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Creates a new empty framebuffer format with the specified number of [param samples] and returns
-   * its ID.
+   * Creates a new empty framebuffer format with the specified number of [samples] and returns its
+   * ID.
    */
   @JvmOverloads
   public fun framebufferFormatCreateEmpty(samples: TextureSamples =
@@ -376,8 +366,8 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Returns the number of texture samples used for the given framebuffer [param format] ID
-   * (returned by [framebufferGetFormat]).
+   * Returns the number of texture samples used for the given framebuffer [format] ID (returned by
+   * [framebufferGetFormat]).
    */
   @JvmOverloads
   public fun framebufferFormatGetTextureSamples(format: Long, renderPass: Long = 0):
@@ -437,7 +427,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Returns the format ID of the framebuffer specified by the [param framebuffer] RID. This ID is
+   * Returns the format ID of the framebuffer specified by the [framebuffer] RID. This ID is
    * guaranteed to be unique for the same formats and does not need to be freed.
    */
   public fun framebufferGetFormat(framebuffer: RID): Long {
@@ -447,7 +437,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Returns `true` if the framebuffer specified by the [param framebuffer] RID is valid, `false`
+   * Returns `true` if the framebuffer specified by the [framebuffer] RID is valid, `false`
    * otherwise.
    */
   public fun framebufferIsValid(framebuffer: RID): Boolean {
@@ -468,8 +458,8 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Returns `true` if implementation supports using a texture of [param format] with the given
-   * [param sampler_filter].
+   * Returns `true` if implementation supports using a texture of [format] with the given
+   * [samplerFilter].
    */
   public fun samplerIsFormatSupportedForFilter(format: DataFormat, samplerFilter: SamplerFilter):
       Boolean {
@@ -495,8 +485,8 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Creates a new vertex format with the specified [param vertex_descriptions]. Returns a unique
-   * vertex format ID corresponding to the newly created vertex format.
+   * Creates a new vertex format with the specified [vertexDescriptions]. Returns a unique vertex
+   * format ID corresponding to the newly created vertex format.
    */
   public fun vertexFormatCreate(vertexDescriptions: VariantArray<RDVertexAttribute>): Long {
     TransferContext.writeArguments(ARRAY to vertexDescriptions)
@@ -505,8 +495,8 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Creates a vertex array based on the specified buffers. Optionally, [param offsets] (in bytes)
-   * may be defined for each buffer.
+   * Creates a vertex array based on the specified buffers. Optionally, [offsets] (in bytes) may be
+   * defined for each buffer.
    */
   @JvmOverloads
   public fun vertexArrayCreate(
@@ -553,13 +543,13 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Compiles a SPIR-V from the shader source code in [param shader_source] and returns the SPIR-V
-   * as a [RDShaderSPIRV]. This intermediate language shader is portable across different GPU models
-   * and driver versions, but cannot be run directly by GPUs until compiled into a binary shader using
+   * Compiles a SPIR-V from the shader source code in [shaderSource] and returns the SPIR-V as a
+   * [RDShaderSPIRV]. This intermediate language shader is portable across different GPU models and
+   * driver versions, but cannot be run directly by GPUs until compiled into a binary shader using
    * [shaderCompileBinaryFromSpirv].
-   * If [param allow_cache] is `true`, make use of the shader cache generated by Godot. This avoids
-   * a potentially lengthy shader compilation step if the shader is already in cache. If [param
-   * allow_cache] is `false`, Godot's shader cache is ignored and the shader will always be recompiled.
+   * If [allowCache] is `true`, make use of the shader cache generated by Godot. This avoids a
+   * potentially lengthy shader compilation step if the shader is already in cache. If [allowCache] is
+   * `false`, Godot's shader cache is ignored and the shader will always be recompiled.
    */
   @JvmOverloads
   public fun shaderCompileSpirvFromSource(shaderSource: RDShaderSource, allowCache: Boolean = true):
@@ -570,11 +560,11 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Compiles a binary shader from [param spirv_data] and returns the compiled binary data as a
+   * Compiles a binary shader from [spirvData] and returns the compiled binary data as a
    * [PackedByteArray]. This compiled shader is specific to the GPU model and driver version used; it
    * will not work on different GPU models or even different driver versions. See also
    * [shaderCompileSpirvFromSource].
-   * [param name] is an optional human-readable name that can be given to the compiled shader for
+   * [name] is an optional human-readable name that can be given to the compiled shader for
    * organizational purposes.
    */
   @JvmOverloads
@@ -650,7 +640,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Creates a [url=https://vkguide.dev/docs/chapter-4/storage_buffers/]storage buffer[/url] with
-   * the specified [param data] and [param usage]. It can be accessed with the RID that is returned.
+   * the specified [data] and [usage]. It can be accessed with the RID that is returned.
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
    */
@@ -697,7 +687,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Checks if the [param uniform_set] is valid, i.e. is owned.
+   * Checks if the [uniformSet] is valid, i.e. is owned.
    */
   public fun uniformSetIsValid(uniformSet: RID): Boolean {
     TransferContext.writeArguments(_RID to uniformSet)
@@ -706,11 +696,10 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Updates a region of [param size_bytes] bytes, starting at [param offset], in the buffer, with
-   * the specified [param data]. Raises a memory barrier except when [param post_barrier] is set to
-   * [constant BARRIER_MASK_NO_BARRIER].
+   * Updates a region of [sizeBytes] bytes, starting at [offset], in the buffer, with the specified
+   * [data]. Raises a memory barrier except when [postBarrier] is set to [BARRIERMASKNOBARRIER].
    * Prints an error if:
-   * - the region specified by [param offset] + [param size_bytes] exceeds the buffer
+   * - the region specified by [offset] + [sizeBytes] exceeds the buffer
    * - a draw list is currently active (created by [drawListBegin])
    * - a compute list is currently active (created by [computeListBegin])
    */
@@ -728,11 +717,11 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Clears the contents of the [param buffer], clearing [param size_bytes] bytes, starting at
-   * [param offset]. Always raises a memory barrier.
+   * Clears the contents of the [buffer], clearing [sizeBytes] bytes, starting at [offset]. Always
+   * raises a memory barrier.
    * Prints an error if:
    * - the size isn't a multiple of four
-   * - the region specified by [param offset] + [param size_bytes] exceeds the buffer
+   * - the region specified by [offset] + [sizeBytes] exceeds the buffer
    * - a draw list is currently active (created by [drawListBegin])
    * - a compute list is currently active (created by [computeListBegin])
    */
@@ -749,8 +738,8 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Returns a copy of the data of the specified [param buffer], optionally [param offset_bytes] and
-   * [param size_bytes] can be set to copy only a portion of the buffer.
+   * Returns a copy of the data of the specified [buffer], optionally [offsetBytes] and [sizeBytes]
+   * can be set to copy only a portion of the buffer.
    */
   @JvmOverloads
   public fun bufferGetData(
@@ -790,8 +779,8 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Returns `true` if the render pipeline specified by the [param render_pipeline] RID is valid,
-   * `false` otherwise.
+   * Returns `true` if the render pipeline specified by the [renderPipeline] RID is valid, `false`
+   * otherwise.
    */
   public fun renderPipelineIsValid(renderPipeline: RID): Boolean {
     TransferContext.writeArguments(_RID to renderPipeline)
@@ -814,8 +803,8 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Returns `true` if the compute pipeline specified by the [param compute_pipeline] RID is valid,
-   * `false` otherwise.
+   * Returns `true` if the compute pipeline specified by the [computePipeline] RID is valid, `false`
+   * otherwise.
    */
   public fun computePipelineIsValid(computePipeline: RID): Boolean {
     TransferContext.writeArguments(_RID to computePipeline)
@@ -825,11 +814,11 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Returns the window width matching the graphics API context for the given window ID (in pixels).
-   * Despite the parameter being named [param screen], this returns the *window* size. See also
+   * Despite the parameter being named [screen], this returns the *window* size. See also
    * [screenGetHeight].
    * **Note:** Only the main [RenderingDevice] returned by [RenderingServer.getRenderingDevice] has
-   * a width. If called on a local [RenderingDevice], this method prints an error and returns [constant
-   * INVALID_ID].
+   * a width. If called on a local [RenderingDevice], this method prints an error and returns
+   * [INVALIDID].
    */
   @JvmOverloads
   public fun screenGetWidth(screen: Int = 0): Int {
@@ -840,11 +829,11 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Returns the window height matching the graphics API context for the given window ID (in
-   * pixels). Despite the parameter being named [param screen], this returns the *window* size. See
-   * also [screenGetWidth].
+   * pixels). Despite the parameter being named [screen], this returns the *window* size. See also
+   * [screenGetWidth].
    * **Note:** Only the main [RenderingDevice] returned by [RenderingServer.getRenderingDevice] has
    * a height. If called on a local [RenderingDevice], this method prints an error and returns
-   * [constant INVALID_ID].
+   * [INVALIDID].
    */
   @JvmOverloads
   public fun screenGetHeight(screen: Int = 0): Int {
@@ -857,7 +846,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * Returns the screen's framebuffer format.
    * **Note:** Only the main [RenderingDevice] returned by [RenderingServer.getRenderingDevice] has
    * a format. If called on a local [RenderingDevice], this method prints an error and returns
-   * [constant INVALID_ID].
+   * [INVALIDID].
    */
   public fun screenGetFramebufferFormat(): Long {
     TransferContext.writeArguments()
@@ -867,9 +856,9 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * High-level variant of [drawListBegin], with the parameters automatically being adjusted for
-   * drawing onto the window specified by the [param screen] ID.
+   * drawing onto the window specified by the [screen] ID.
    * **Note:** Cannot be used with local RenderingDevices, as these don't have a screen. If called
-   * on a local RenderingDevice, [drawListBeginForScreen] returns [constant INVALID_ID].
+   * on a local RenderingDevice, [drawListBeginForScreen] returns [INVALIDID].
    */
   @JvmOverloads
   public fun drawListBeginForScreen(screen: Int = 0, clearColor: Color = Color(Color(0, 0, 0, 1))):
@@ -925,8 +914,8 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Variant of [drawListBegin] with support for multiple splits. The [param splits] parameter
-   * determines how many splits are created.
+   * Variant of [drawListBegin] with support for multiple splits. The [splits] parameter determines
+   * how many splits are created.
    */
   @JvmOverloads
   public fun drawListBeginSplit(
@@ -948,9 +937,8 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Sets blend constants for the specified [param draw_list] to [param color]. Blend constants are
-   * used only if the graphics pipeline is created with [constant DYNAMIC_STATE_BLEND_CONSTANTS] flag
-   * set.
+   * Sets blend constants for the specified [drawList] to [color]. Blend constants are used only if
+   * the graphics pipeline is created with [DYNAMICSTATEBLENDCONSTANTS] flag set.
    */
   public fun drawListSetBlendConstants(drawList: Long, color: Color): Unit {
     TransferContext.writeArguments(LONG to drawList, COLOR to color)
@@ -958,7 +946,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Binds [param render_pipeline] to the specified [param draw_list].
+   * Binds [renderPipeline] to the specified [drawList].
    */
   public fun drawListBindRenderPipeline(drawList: Long, renderPipeline: RID): Unit {
     TransferContext.writeArguments(LONG to drawList, _RID to renderPipeline)
@@ -966,9 +954,8 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Binds [param uniform_set] to the specified [param draw_list]. A [param set_index] must also be
-   * specified, which is an identifier starting from `0` that must match the one expected by the draw
-   * list.
+   * Binds [uniformSet] to the specified [drawList]. A [setIndex] must also be specified, which is
+   * an identifier starting from `0` that must match the one expected by the draw list.
    */
   public fun drawListBindUniformSet(
     drawList: Long,
@@ -980,7 +967,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Binds [param vertex_array] to the specified [param draw_list].
+   * Binds [vertexArray] to the specified [drawList].
    */
   public fun drawListBindVertexArray(drawList: Long, vertexArray: RID): Unit {
     TransferContext.writeArguments(LONG to drawList, _RID to vertexArray)
@@ -988,7 +975,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Binds [param index_array] to the specified [param draw_list].
+   * Binds [indexArray] to the specified [drawList].
    */
   public fun drawListBindIndexArray(drawList: Long, indexArray: RID): Unit {
     TransferContext.writeArguments(LONG to drawList, _RID to indexArray)
@@ -996,10 +983,9 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Sets the push constant data to [param buffer] for the specified [param draw_list]. The shader
-   * determines how this binary data is used. The buffer's size in bytes must also be specified in
-   * [param size_bytes] (this can be obtained by calling the [PackedByteArray.size] method on the
-   * passed [param buffer]).
+   * Sets the push constant data to [buffer] for the specified [drawList]. The shader determines how
+   * this binary data is used. The buffer's size in bytes must also be specified in [sizeBytes] (this
+   * can be obtained by calling the [PackedByteArray.size] method on the passed [buffer]).
    */
   public fun drawListSetPushConstant(
     drawList: Long,
@@ -1011,7 +997,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Submits [param draw_list] for rendering on the GPU. This is the raster equivalent to
+   * Submits [drawList] for rendering on the GPU. This is the raster equivalent to
    * [computeListDispatch].
    */
   @JvmOverloads
@@ -1026,11 +1012,11 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Creates a scissor rectangle and enables it for the specified [param draw_list]. Scissor
-   * rectangles are used for clipping by discarding fragments that fall outside a specified rectangular
-   * portion of the screen. See also [drawListDisableScissor].
-   * **Note:** The specified [param rect] is automatically intersected with the screen's dimensions,
-   * which means it cannot exceed the screen's dimensions.
+   * Creates a scissor rectangle and enables it for the specified [drawList]. Scissor rectangles are
+   * used for clipping by discarding fragments that fall outside a specified rectangular portion of the
+   * screen. See also [drawListDisableScissor].
+   * **Note:** The specified [rect] is automatically intersected with the screen's dimensions, which
+   * means it cannot exceed the screen's dimensions.
    */
   @JvmOverloads
   public fun drawListEnableScissor(drawList: Long, rect: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0)): Unit {
@@ -1039,7 +1025,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Removes and disables the scissor rectangle for the specified [param draw_list]. See also
+   * Removes and disables the scissor rectangle for the specified [drawList]. See also
    * [drawListEnableScissor].
    */
   public fun drawListDisableScissor(drawList: Long): Unit {
@@ -1058,8 +1044,8 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Switches to the next draw pass, with the number of splits allocated specified in [param
-   * splits]. The return value is an array containing the ID of each split. For single-split usage, see
+   * Switches to the next draw pass, with the number of splits allocated specified in [splits]. The
+   * return value is an array containing the ID of each split. For single-split usage, see
    * [drawListSwitchToNextPass].
    */
   public fun drawListSwitchToNextPassSplit(splits: Long): PackedInt64Array {
@@ -1082,8 +1068,8 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Starts a list of compute commands created with the `compute_*` methods. The returned value
    * should be passed to other `compute_list_*` functions.
-   * If [param allow_draw_overlap] is `true`, you may have one draw list running at the same time as
-   * one compute list. Multiple compute lists cannot be created at the same time; you must finish the
+   * If [allowDrawOverlap] is `true`, you may have one draw list running at the same time as one
+   * compute list. Multiple compute lists cannot be created at the same time; you must finish the
    * previous compute list first using [computeListEnd].
    * A simple compute operation might look like this (code is not a complete example):
    * [codeblock]
@@ -1120,10 +1106,9 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Sets the push constant data to [param buffer] for the specified [param compute_list]. The
-   * shader determines how this binary data is used. The buffer's size in bytes must also be specified
-   * in [param size_bytes] (this can be obtained by calling the [PackedByteArray.size] method on the
-   * passed [param buffer]).
+   * Sets the push constant data to [buffer] for the specified [computeList]. The shader determines
+   * how this binary data is used. The buffer's size in bytes must also be specified in [sizeBytes]
+   * (this can be obtained by calling the [PackedByteArray.size] method on the passed [buffer]).
    */
   public fun computeListSetPushConstant(
     computeList: Long,
@@ -1135,9 +1120,9 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Binds the [param uniform_set] to this [param compute_list]. Godot ensures that all textures in
-   * the uniform set have the correct Vulkan access masks. If Godot had to change access masks of
-   * textures, it will raise a Vulkan image memory barrier.
+   * Binds the [uniformSet] to this [computeList]. Godot ensures that all textures in the uniform
+   * set have the correct Vulkan access masks. If Godot had to change access masks of textures, it will
+   * raise a Vulkan image memory barrier.
    */
   public fun computeListBindUniformSet(
     computeList: Long,
@@ -1163,7 +1148,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Raises a Vulkan compute barrier in the specified [param compute_list].
+   * Raises a Vulkan compute barrier in the specified [computeList].
    */
   public fun computeListAddBarrier(computeList: Long): Unit {
     TransferContext.writeArguments(LONG to computeList)
@@ -1191,8 +1176,8 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Creates a timestamp marker with the specified [param name]. This is used for performance
-   * reporting with the [getCapturedTimestampCpuTime], [getCapturedTimestampGpuTime] and
+   * Creates a timestamp marker with the specified [name]. This is used for performance reporting
+   * with the [getCapturedTimestampCpuTime], [getCapturedTimestampGpuTime] and
    * [getCapturedTimestampName] methods.
    */
   public fun captureTimestamp(name: String): Unit {
@@ -1220,9 +1205,8 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Returns the timestamp in GPU time for the rendering step specified by [param index] (in
-   * microseconds since the engine started). See also [getCapturedTimestampCpuTime] and
-   * [captureTimestamp].
+   * Returns the timestamp in GPU time for the rendering step specified by [index] (in microseconds
+   * since the engine started). See also [getCapturedTimestampCpuTime] and [captureTimestamp].
    */
   public fun getCapturedTimestampGpuTime(index: Long): Long {
     TransferContext.writeArguments(LONG to index)
@@ -1231,9 +1215,8 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Returns the timestamp in CPU time for the rendering step specified by [param index] (in
-   * microseconds since the engine started). See also [getCapturedTimestampGpuTime] and
-   * [captureTimestamp].
+   * Returns the timestamp in CPU time for the rendering step specified by [index] (in microseconds
+   * since the engine started). See also [getCapturedTimestampGpuTime] and [captureTimestamp].
    */
   public fun getCapturedTimestampCpuTime(index: Long): Long {
     TransferContext.writeArguments(LONG to index)
@@ -1242,7 +1225,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Returns the timestamp's name for the rendering step specified by [param index]. See also
+   * Returns the timestamp's name for the rendering step specified by [index]. See also
    * [captureTimestamp].
    */
   public fun getCapturedTimestampName(index: Long): String {
@@ -1252,9 +1235,9 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Returns the value of the specified [param limit]. This limit varies depending on the current
-   * graphics hardware (and sometimes the driver version). If the given limit is exceeded, rendering
-   * errors will occur.
+   * Returns the value of the specified [limit]. This limit varies depending on the current graphics
+   * hardware (and sometimes the driver version). If the given limit is exceeded, rendering errors will
+   * occur.
    * Limits for various graphics hardware can be found in the
    * [url=https://vulkan.gpuinfo.org/]Vulkan Hardware Database[/url].
    */
@@ -1327,8 +1310,8 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Sets the resource name for [param id] to [param name]. This is used for debugging with
-   * third-party tools such as [url=https://renderdoc.org/]RenderDoc[/url].
+   * Sets the resource name for [id] to [name]. This is used for debugging with third-party tools
+   * such as [url=https://renderdoc.org/]RenderDoc[/url].
    * The following types of resources can be named: texture, sampler, vertex buffer, index buffer,
    * uniform buffer, texture buffer, storage buffer, uniform set buffer, shader, render pipeline and
    * compute pipeline. Framebuffers cannot be named. Attempting to name an incompatible resource type
@@ -1407,8 +1390,8 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Returns the memory usage in bytes corresponding to the given [param type]. When using Vulkan,
-   * these statistics are calculated by
+   * Returns the memory usage in bytes corresponding to the given [type]. When using Vulkan, these
+   * statistics are calculated by
    * [url=https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator]Vulkan Memory
    * Allocator[/url].
    */
@@ -1419,9 +1402,9 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Returns the unique identifier of the driver [param resource] for the specified [param rid].
-   * Some driver resource types ignore the specified [param rid] (see [enum DriverResource]
-   * descriptions). [param index] is always ignored but must be specified anyway.
+   * Returns the unique identifier of the driver [resource] for the specified [rid]. Some driver
+   * resource types ignore the specified [rid] (see [DriverResource] descriptions). [index] is always
+   * ignored but must be specified anyway.
    */
   public fun getDriverResource(
     resource: DriverResource,
@@ -1442,32 +1425,31 @@ public open class RenderingDevice internal constructor() : Object() {
     DEVICE_TYPE_OTHER(0),
     /**
      * Rendering device is an integrated GPU, which is typically *(but not always)* slower than
-     * dedicated GPUs ([constant DEVICE_TYPE_DISCRETE_GPU]). On Android and iOS, the rendering device
-     * type is always considered to be [constant DEVICE_TYPE_INTEGRATED_GPU].
+     * dedicated GPUs ([DEVICETYPEDISCRETEGPU]). On Android and iOS, the rendering device type is
+     * always considered to be [DEVICETYPEINTEGRATEDGPU].
      */
     DEVICE_TYPE_INTEGRATED_GPU(1),
     /**
      * Rendering device is a dedicated GPU, which is typically *(but not always)* faster than
-     * integrated GPUs ([constant DEVICE_TYPE_INTEGRATED_GPU]).
+     * integrated GPUs ([DEVICETYPEINTEGRATEDGPU]).
      */
     DEVICE_TYPE_DISCRETE_GPU(2),
     /**
      * Rendering device is an emulated GPU in a virtual environment. This is typically much slower
      * than the host GPU, which means the expected performance level on a dedicated GPU will be roughly
-     * equivalent to [constant DEVICE_TYPE_INTEGRATED_GPU]. Virtual machine GPU passthrough (such as
-     * VFIO) will not report the device type as [constant DEVICE_TYPE_VIRTUAL_GPU]. Instead, the host
-     * GPU's device type will be reported as if the GPU was not emulated.
+     * equivalent to [DEVICETYPEINTEGRATEDGPU]. Virtual machine GPU passthrough (such as VFIO) will not
+     * report the device type as [DEVICETYPEVIRTUALGPU]. Instead, the host GPU's device type will be
+     * reported as if the GPU was not emulated.
      */
     DEVICE_TYPE_VIRTUAL_GPU(3),
     /**
      * Rendering device is provided by software emulation (such as Lavapipe or
      * [url=https://github.com/google/swiftshader]SwiftShader[/url]). This is the slowest kind of
-     * rendering device available; it's typically much slower than [constant
-     * DEVICE_TYPE_INTEGRATED_GPU].
+     * rendering device available; it's typically much slower than [DEVICETYPEINTEGRATEDGPU].
      */
     DEVICE_TYPE_CPU(4),
     /**
-     * Represents the size of the [enum DeviceType] enum.
+     * Represents the size of the [DeviceType] enum.
      */
     DEVICE_TYPE_MAX(5),
     ;
@@ -2769,7 +2751,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     DATA_FORMAT_G16_B16_R16_3PLANE_444_UNORM(217),
     /**
-     * Represents the size of the [enum DataFormat] enum.
+     * Represents the size of the [DataFormat] enum.
      */
     DATA_FORMAT_MAX(218),
     ;
@@ -2890,7 +2872,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     TEXTURE_TYPE_CUBE_ARRAY(6),
     /**
-     * Represents the size of the [enum TextureType] enum.
+     * Represents the size of the [TextureType] enum.
      */
     TEXTURE_TYPE_MAX(7),
     ;
@@ -2938,7 +2920,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     TEXTURE_SAMPLES_64(6),
     /**
-     * Represents the size of the [enum TextureSamples] enum.
+     * Represents the size of the [TextureSamples] enum.
      */
     TEXTURE_SAMPLES_MAX(7),
     ;
@@ -3072,7 +3054,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     TEXTURE_SWIZZLE_A(6),
     /**
-     * Represents the size of the [enum TextureSwizzle] enum.
+     * Represents the size of the [TextureSwizzle] enum.
      */
     TEXTURE_SWIZZLE_MAX(7),
     ;
@@ -3169,7 +3151,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     SAMPLER_REPEAT_MODE_MIRROR_CLAMP_TO_EDGE(4),
     /**
-     * Represents the size of the [enum SamplerRepeatMode] enum.
+     * Represents the size of the [SamplerRepeatMode] enum.
      */
     SAMPLER_REPEAT_MODE_MAX(5),
     ;
@@ -3189,36 +3171,36 @@ public open class RenderingDevice internal constructor() : Object() {
   ) {
     /**
      * Return a floating-point transparent black color when sampling outside the `[0.0, 1.0]` range.
-     * Only effective if the sampler repeat mode is [constant SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER].
+     * Only effective if the sampler repeat mode is [SAMPLERREPEATMODECLAMPTOBORDER].
      */
     SAMPLER_BORDER_COLOR_FLOAT_TRANSPARENT_BLACK(0),
     /**
      * Return a integer transparent black color when sampling outside the `[0.0, 1.0]` range. Only
-     * effective if the sampler repeat mode is [constant SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER].
+     * effective if the sampler repeat mode is [SAMPLERREPEATMODECLAMPTOBORDER].
      */
     SAMPLER_BORDER_COLOR_INT_TRANSPARENT_BLACK(1),
     /**
      * Return a floating-point opaque black color when sampling outside the `[0.0, 1.0]` range. Only
-     * effective if the sampler repeat mode is [constant SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER].
+     * effective if the sampler repeat mode is [SAMPLERREPEATMODECLAMPTOBORDER].
      */
     SAMPLER_BORDER_COLOR_FLOAT_OPAQUE_BLACK(2),
     /**
      * Return a integer opaque black color when sampling outside the `[0.0, 1.0]` range. Only
-     * effective if the sampler repeat mode is [constant SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER].
+     * effective if the sampler repeat mode is [SAMPLERREPEATMODECLAMPTOBORDER].
      */
     SAMPLER_BORDER_COLOR_INT_OPAQUE_BLACK(3),
     /**
      * Return a floating-point opaque white color when sampling outside the `[0.0, 1.0]` range. Only
-     * effective if the sampler repeat mode is [constant SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER].
+     * effective if the sampler repeat mode is [SAMPLERREPEATMODECLAMPTOBORDER].
      */
     SAMPLER_BORDER_COLOR_FLOAT_OPAQUE_WHITE(4),
     /**
      * Return a integer opaque white color when sampling outside the `[0.0, 1.0]` range. Only
-     * effective if the sampler repeat mode is [constant SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER].
+     * effective if the sampler repeat mode is [SAMPLERREPEATMODECLAMPTOBORDER].
      */
     SAMPLER_BORDER_COLOR_INT_OPAQUE_WHITE(5),
     /**
-     * Represents the size of the [enum SamplerBorderColor] enum.
+     * Represents the size of the [SamplerBorderColor] enum.
      */
     SAMPLER_BORDER_COLOR_MAX(6),
     ;
@@ -3398,7 +3380,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     UNIFORM_TYPE_INPUT_ATTACHMENT(9),
     /**
-     * Represents the size of the [enum UniformType] enum.
+     * Represents the size of the [UniformType] enum.
      */
     UNIFORM_TYPE_MAX(10),
     ;
@@ -3473,7 +3455,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     RENDER_PRIMITIVE_TESSELATION_PATCH(10),
     /**
-     * Represents the size of the [enum RenderPrimitive] enum.
+     * Represents the size of the [RenderPrimitive] enum.
      */
     RENDER_PRIMITIVE_MAX(11),
     ;
@@ -3578,7 +3560,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     STENCIL_OP_DECREMENT_AND_WRAP(7),
     /**
-     * Represents the size of the [enum StencilOperation] enum.
+     * Represents the size of the [StencilOperation] enum.
      */
     STENCIL_OP_MAX(8),
     ;
@@ -3597,7 +3579,7 @@ public open class RenderingDevice internal constructor() : Object() {
     id: Long,
   ) {
     /**
-     * "Never" comparison (opposite of [constant COMPARE_OP_ALWAYS]).
+     * "Never" comparison (opposite of [COMPAREOPALWAYS]).
      */
     COMPARE_OP_NEVER(0),
     /**
@@ -3625,11 +3607,11 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     COMPARE_OP_GREATER_OR_EQUAL(6),
     /**
-     * "Always" comparison (opposite of [constant COMPARE_OP_NEVER]).
+     * "Always" comparison (opposite of [COMPAREOPNEVER]).
      */
     COMPARE_OP_ALWAYS(7),
     /**
-     * Represents the size of the [enum CompareOperator] enum.
+     * Represents the size of the [CompareOperator] enum.
      */
     COMPARE_OP_MAX(8),
     ;
@@ -3648,7 +3630,7 @@ public open class RenderingDevice internal constructor() : Object() {
     id: Long,
   ) {
     /**
-     * Clear logic operation (result is always `0`). See also [constant LOGIC_OP_SET].
+     * Clear logic operation (result is always `0`). See also [LOGICOPSET].
      */
     LOGIC_OP_CLEAR(0),
     /**
@@ -3656,23 +3638,21 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     LOGIC_OP_AND(1),
     /**
-     * AND logic operation with the *destination* operand being inverted. See also [constant
-     * LOGIC_OP_AND_INVERTED].
+     * AND logic operation with the *destination* operand being inverted. See also
+     * [LOGICOPANDINVERTED].
      */
     LOGIC_OP_AND_REVERSE(2),
     /**
-     * Copy logic operation (keeps the *source* value as-is). See also [constant
-     * LOGIC_OP_COPY_INVERTED] and [constant LOGIC_OP_NO_OP].
+     * Copy logic operation (keeps the *source* value as-is). See also [LOGICOPCOPYINVERTED] and
+     * [LOGICOPNOOP].
      */
     LOGIC_OP_COPY(3),
     /**
-     * AND logic operation with the *source* operand being inverted. See also [constant
-     * LOGIC_OP_AND_REVERSE].
+     * AND logic operation with the *source* operand being inverted. See also [LOGICOPANDREVERSE].
      */
     LOGIC_OP_AND_INVERTED(4),
     /**
-     * No-op logic operation (keeps the *destination* value as-is). See also [constant
-     * LOGIC_OP_COPY].
+     * No-op logic operation (keeps the *destination* value as-is). See also [LOGICOPCOPY].
      */
     LOGIC_OP_NO_OP(5),
     /**
@@ -3696,17 +3676,16 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     LOGIC_OP_INVERT(10),
     /**
-     * OR logic operation with the *destination* operand being inverted. See also [constant
-     * LOGIC_OP_OR_REVERSE].
+     * OR logic operation with the *destination* operand being inverted. See also
+     * [LOGICOPORREVERSE].
      */
     LOGIC_OP_OR_REVERSE(11),
     /**
-     * NOT logic operation (inverts the value). See also [constant LOGIC_OP_COPY].
+     * NOT logic operation (inverts the value). See also [LOGICOPCOPY].
      */
     LOGIC_OP_COPY_INVERTED(12),
     /**
-     * OR logic operation with the *source* operand being inverted. See also [constant
-     * LOGIC_OP_OR_REVERSE].
+     * OR logic operation with the *source* operand being inverted. See also [LOGICOPORREVERSE].
      */
     LOGIC_OP_OR_INVERTED(13),
     /**
@@ -3714,11 +3693,11 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     LOGIC_OP_NAND(14),
     /**
-     * SET logic operation (result is always `1`). See also [constant LOGIC_OP_CLEAR].
+     * SET logic operation (result is always `1`). See also [LOGICOPCLEAR].
      */
     LOGIC_OP_SET(15),
     /**
-     * Represents the size of the [enum LogicOperation] enum.
+     * Represents the size of the [LogicOperation] enum.
      */
     LOGIC_OP_MAX(16),
     ;
@@ -3822,7 +3801,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA(18),
     /**
-     * Represents the size of the [enum BlendFactor] enum.
+     * Represents the size of the [BlendFactor] enum.
      */
     BLEND_FACTOR_MAX(19),
     ;
@@ -3861,7 +3840,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     BLEND_OP_MAXIMUM(4),
     /**
-     * Represents the size of the [enum BlendOperation] enum.
+     * Represents the size of the [BlendOperation] enum.
      */
     BLEND_OP_MAX(5),
     ;
@@ -3986,7 +3965,7 @@ public open class RenderingDevice internal constructor() : Object() {
     INITIAL_ACTION_CLEAR_REGION(1),
     /**
      * Continue rendering and clear the framebuffer in the specified region. Framebuffer must have
-     * been left in [constant FINAL_ACTION_CONTINUE] state as the final action previously.
+     * been left in [FINALACTIONCONTINUE] state as the final action previously.
      */
     INITIAL_ACTION_CLEAR_REGION_CONTINUE(2),
     /**
@@ -4000,12 +3979,12 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     INITIAL_ACTION_DROP(4),
     /**
-     * Continue rendering. Framebuffer must have been left in [constant FINAL_ACTION_CONTINUE] state
-     * as the final action previously.
+     * Continue rendering. Framebuffer must have been left in [FINALACTIONCONTINUE] state as the
+     * final action previously.
      */
     INITIAL_ACTION_CONTINUE(5),
     /**
-     * Represents the size of the [enum InitialAction] enum.
+     * Represents the size of the [InitialAction] enum.
      */
     INITIAL_ACTION_MAX(6),
     ;
@@ -4024,23 +4003,22 @@ public open class RenderingDevice internal constructor() : Object() {
     id: Long,
   ) {
     /**
-     * Store the texture for reading and make it read-only if it has the [constant
-     * TEXTURE_USAGE_SAMPLING_BIT] bit (only applies to color, depth and stencil attachments).
+     * Store the texture for reading and make it read-only if it has the [TEXTUREUSAGESAMPLINGBIT]
+     * bit (only applies to color, depth and stencil attachments).
      */
     FINAL_ACTION_READ(0),
     /**
-     * Discard the texture data and make it read-only if it has the [constant
-     * TEXTURE_USAGE_SAMPLING_BIT] bit (only applies to color, depth and stencil attachments).
+     * Discard the texture data and make it read-only if it has the [TEXTUREUSAGESAMPLINGBIT] bit
+     * (only applies to color, depth and stencil attachments).
      */
     FINAL_ACTION_DISCARD(1),
     /**
-     * Store the texture and continue for further processing. Similar to [constant
-     * FINAL_ACTION_READ], but does not make the texture read-only if it has the [constant
-     * TEXTURE_USAGE_SAMPLING_BIT] bit.
+     * Store the texture and continue for further processing. Similar to [FINALACTIONREAD], but does
+     * not make the texture read-only if it has the [TEXTUREUSAGESAMPLINGBIT] bit.
      */
     FINAL_ACTION_CONTINUE(2),
     /**
-     * Represents the size of the [enum FinalAction] enum.
+     * Represents the size of the [FinalAction] enum.
      */
     FINAL_ACTION_MAX(3),
     ;
@@ -4084,28 +4062,27 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     SHADER_STAGE_COMPUTE(4),
     /**
-     * Represents the size of the [enum ShaderStage] enum.
+     * Represents the size of the [ShaderStage] enum.
      */
     SHADER_STAGE_MAX(5),
     /**
-     * Vertex shader stage bit (see also [constant SHADER_STAGE_VERTEX]).
+     * Vertex shader stage bit (see also [SHADERSTAGEVERTEX]).
      */
     SHADER_STAGE_VERTEX_BIT(1),
     /**
-     * Fragment shader stage bit (see also [constant SHADER_STAGE_FRAGMENT]).
+     * Fragment shader stage bit (see also [SHADERSTAGEFRAGMENT]).
      */
     SHADER_STAGE_FRAGMENT_BIT(2),
     /**
-     * Tessellation control shader stage bit (see also [constant SHADER_STAGE_TESSELATION_CONTROL]).
+     * Tessellation control shader stage bit (see also [SHADERSTAGETESSELATIONCONTROL]).
      */
     SHADER_STAGE_TESSELATION_CONTROL_BIT(4),
     /**
-     * Tessellation evaluation shader stage bit (see also [constant
-     * SHADER_STAGE_TESSELATION_EVALUATION]).
+     * Tessellation evaluation shader stage bit (see also [SHADERSTAGETESSELATIONEVALUATION]).
      */
     SHADER_STAGE_TESSELATION_EVALUATION_BIT(8),
     /**
-     * Compute shader stage bit (see also [constant SHADER_STAGE_COMPUTE]).
+     * Compute shader stage bit (see also [SHADERSTAGECOMPUTE]).
      */
     SHADER_STAGE_COMPUTE_BIT(16),
     ;
@@ -4351,8 +4328,8 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     MEMORY_BUFFERS(1),
     /**
-     * Total memory taken. This is greater than the sum of [constant MEMORY_TEXTURES] and [constant
-     * MEMORY_BUFFERS], as it also includes miscellaneous memory usage.
+     * Total memory taken. This is greater than the sum of [MEMORYTEXTURES] and [MEMORYBUFFERS], as
+     * it also includes miscellaneous memory usage.
      */
     MEMORY_TOTAL(2),
     ;

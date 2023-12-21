@@ -51,7 +51,7 @@ public open class FileDialog : ConfirmationDialog() {
 
   /**
    * If `true`, changing the [fileMode] property will set the window title accordingly (e.g. setting
-   * [fileMode] to [constant FILE_MODE_OPEN_FILE] will change the window title to "Open a File").
+   * [fileMode] to [FILEMODEOPENFILE] will change the window title to "Open a File").
    */
   public var modeOverridesTitle: Boolean
     get() {
@@ -65,7 +65,7 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
-   * The dialog's open or save mode, which affects the selection behavior. See [enum FileMode].
+   * The dialog's open or save mode, which affects the selection behavior. See [FileMode].
    */
   public var fileMode: FileMode
     get() {
@@ -79,7 +79,7 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
-   * The file system access scope. See [enum Access] constants.
+   * The file system access scope. See [Access] constants.
    * **Warning:** Currently, in sandboxed environments such as Web builds or sandboxed macOS apps,
    * FileDialog cannot access the host file system. See
    * [url=https://github.com/godotengine/godot-proposals/issues/1123]godot-proposals#1123[/url].
@@ -142,7 +142,7 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
-   * If `true`, [access] is set to [constant ACCESS_FILESYSTEM], and it is supported by the current
+   * If `true`, [access] is set to [ACCESSFILESYSTEM], and it is supported by the current
    * [DisplayServer], OS native dialog will be used instead of custom one.
    * **Note:** On macOS, sandboxed apps always use native dialogs to access host filesystem.
    */
@@ -213,12 +213,12 @@ public open class FileDialog : ConfirmationDialog() {
   }
 
   /**
-   * Adds a comma-delimited file name [param filter] option to the [FileDialog] with an optional
-   * [param description], which restricts what files can be picked.
-   * A [param filter] should be of the form `"filename.extension"`, where filename and extension can
-   * be `*` to match any string. Filters starting with `.` (i.e. empty filenames) are not allowed.
-   * For example, a [param filter] of `"*.png, *.jpg"` and a [param description] of `"Images"`
-   * results in filter text "Images (*.png, *.jpg)".
+   * Adds a comma-delimited file name [filter] option to the [FileDialog] with an optional
+   * [description], which restricts what files can be picked.
+   * A [filter] should be of the form `"filename.extension"`, where filename and extension can be
+   * `*` to match any string. Filters starting with `.` (i.e. empty filenames) are not allowed.
+   * For example, a [filter] of `"*.png, *.jpg"` and a [description] of `"Images"` results in filter
+   * text "Images (*.png, *.jpg)".
    */
   @JvmOverloads
   public fun addFilter(filter: String, description: String = ""): Unit {

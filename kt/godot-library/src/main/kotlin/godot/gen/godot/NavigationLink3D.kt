@@ -205,8 +205,8 @@ public open class NavigationLink3D : Node3D() {
 
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [navigationLayers]
-   * bitmask, given a [param layer_number] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [navigationLayers] bitmask,
+   * given a [layerNumber] between 1 and 32.
    */
   public fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -215,7 +215,7 @@ public open class NavigationLink3D : Node3D() {
 
   /**
    * Returns whether or not the specified layer of the [navigationLayers] bitmask is enabled, given
-   * a [param layer_number] between 1 and 32.
+   * a [layerNumber] between 1 and 32.
    */
   public fun getNavigationLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -224,7 +224,7 @@ public open class NavigationLink3D : Node3D() {
   }
 
   /**
-   * Sets the [startPosition] that is relative to the link from a global [param position].
+   * Sets the [startPosition] that is relative to the link from a global [position].
    */
   public fun setGlobalStartPosition(position: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to position)
@@ -241,7 +241,7 @@ public open class NavigationLink3D : Node3D() {
   }
 
   /**
-   * Sets the [endPosition] that is relative to the link from a global [param position].
+   * Sets the [endPosition] that is relative to the link from a global [position].
    */
   public fun setGlobalEndPosition(position: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to position)

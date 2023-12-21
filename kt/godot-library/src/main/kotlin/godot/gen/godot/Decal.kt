@@ -404,7 +404,7 @@ public open class Decal : VisualInstance3D() {
      */
     TEXTURE_EMISSION(3),
     /**
-     * Max size of [enum DecalTexture] enum.
+     * Max size of [DecalTexture] enum.
      */
     TEXTURE_MAX(4),
     ;

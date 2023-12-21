@@ -68,7 +68,7 @@ public open class ZIPPacker : RefCounted() {
   }
 
   /**
-   * Write the given [param data] to the file.
+   * Write the given [data] to the file.
    * Needs to be called after [startFile].
    */
   public fun writeFile(`data`: PackedByteArray): GodotError {

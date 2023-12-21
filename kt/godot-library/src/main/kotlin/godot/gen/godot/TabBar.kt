@@ -118,7 +118,7 @@ public open class TabBar : Control() {
     }
 
   /**
-   * Sets the position at which tabs will be placed. See [enum AlignmentMode] for details.
+   * Sets the position at which tabs will be placed. See [AlignmentMode] for details.
    */
   public var tabAlignment: AlignmentMode
     get() {
@@ -147,8 +147,7 @@ public open class TabBar : Control() {
     }
 
   /**
-   * Sets when the close button will appear on the tabs. See [enum CloseButtonDisplayPolicy] for
-   * details.
+   * Sets when the close button will appear on the tabs. See [CloseButtonDisplayPolicy] for details.
    */
   public var tabCloseDisplayPolicy: CloseButtonDisplayPolicy
     get() {
@@ -282,7 +281,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Sets a [param title] for the tab at index [param tab_idx].
+   * Sets a [title] for the tab at index [tabIdx].
    */
   public fun setTabTitle(tabIdx: Int, title: String): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), STRING to title)
@@ -290,7 +289,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns the title of the tab at index [param tab_idx].
+   * Returns the title of the tab at index [tabIdx].
    */
   public fun getTabTitle(tabIdx: Int): String {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -334,7 +333,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Sets an [param icon] for the tab at index [param tab_idx].
+   * Sets an [icon] for the tab at index [tabIdx].
    */
   public fun setTabIcon(tabIdx: Int, icon: Texture2D): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), OBJECT to icon)
@@ -342,7 +341,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns the icon for the tab at index [param tab_idx] or `null` if the tab has no icon.
+   * Returns the icon for the tab at index [tabIdx] or `null` if the tab has no icon.
    */
   public fun getTabIcon(tabIdx: Int): Texture2D? {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -351,9 +350,9 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Sets the maximum allowed width of the icon for the tab at index [param tab_idx]. This limit is
-   * applied on top of the default size of the icon and on top of [theme_item icon_max_width]. The
-   * height is adjusted according to the icon's ratio.
+   * Sets the maximum allowed width of the icon for the tab at index [tabIdx]. This limit is applied
+   * on top of the default size of the icon and on top of [theme_item icon_max_width]. The height is
+   * adjusted according to the icon's ratio.
    */
   public fun setTabIconMaxWidth(tabIdx: Int, width: Int): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), LONG to width.toLong())
@@ -361,7 +360,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns the maximum allowed width of the icon for the tab at index [param tab_idx].
+   * Returns the maximum allowed width of the icon for the tab at index [tabIdx].
    */
   public fun getTabIconMaxWidth(tabIdx: Int): Int {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -370,9 +369,9 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Sets an [param icon] for the button of the tab at index [param tab_idx] (located to the right,
-   * before the close button), making it visible and clickable (See [signal tab_button_pressed]).
-   * Giving it a `null` value will hide the button.
+   * Sets an [icon] for the button of the tab at index [tabIdx] (located to the right, before the
+   * close button), making it visible and clickable (See [signal tab_button_pressed]). Giving it a
+   * `null` value will hide the button.
    */
   public fun setTabButtonIcon(tabIdx: Int, icon: Texture2D): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), OBJECT to icon)
@@ -380,8 +379,8 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns the icon for the right button of the tab at index [param tab_idx] or `null` if the
-   * right button has no icon.
+   * Returns the icon for the right button of the tab at index [tabIdx] or `null` if the right
+   * button has no icon.
    */
   public fun getTabButtonIcon(tabIdx: Int): Texture2D? {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -390,8 +389,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * If [param disabled] is `true`, disables the tab at index [param tab_idx], making it
-   * non-interactable.
+   * If [disabled] is `true`, disables the tab at index [tabIdx], making it non-interactable.
    */
   public fun setTabDisabled(tabIdx: Int, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), BOOL to disabled)
@@ -399,7 +397,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns `true` if the tab at index [param tab_idx] is disabled.
+   * Returns `true` if the tab at index [tabIdx] is disabled.
    */
   public fun isTabDisabled(tabIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -408,8 +406,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * If [param hidden] is `true`, hides the tab at index [param tab_idx], making it disappear from
-   * the tab area.
+   * If [hidden] is `true`, hides the tab at index [tabIdx], making it disappear from the tab area.
    */
   public fun setTabHidden(tabIdx: Int, hidden: Boolean): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), BOOL to hidden)
@@ -417,7 +414,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns `true` if the tab at index [param tab_idx] is hidden.
+   * Returns `true` if the tab at index [tabIdx] is hidden.
    */
   public fun isTabHidden(tabIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -426,8 +423,8 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Sets the metadata value for the tab at index [param tab_idx], which can be retrieved later
-   * using [getTabMetadata].
+   * Sets the metadata value for the tab at index [tabIdx], which can be retrieved later using
+   * [getTabMetadata].
    */
   public fun setTabMetadata(tabIdx: Int, metadata: Any?): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), ANY to metadata)
@@ -435,8 +432,8 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns the metadata value set to the tab at index [param tab_idx] using [setTabMetadata]. If
-   * no metadata was previously set, returns `null` by default.
+   * Returns the metadata value set to the tab at index [tabIdx] using [setTabMetadata]. If no
+   * metadata was previously set, returns `null` by default.
    */
   public fun getTabMetadata(tabIdx: Int): Any? {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -445,7 +442,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Removes the tab at index [param tab_idx].
+   * Removes the tab at index [tabIdx].
    */
   public fun removeTab(tabIdx: Int): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
@@ -462,8 +459,8 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Returns the index of the tab at local coordinates [param point]. Returns `-1` if the point is
-   * outside the control boundaries or if there's no tab at the queried position.
+   * Returns the index of the tab at local coordinates [point]. Returns `-1` if the point is outside
+   * the control boundaries or if there's no tab at the queried position.
    */
   public fun getTabIdxAtPoint(point: Vector2): Int {
     TransferContext.writeArguments(VECTOR2 to point)
@@ -508,7 +505,7 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Moves a tab from [param from] to [param to].
+   * Moves a tab from [from] to [to].
    */
   public fun moveTab(from: Int, to: Int): Unit {
     TransferContext.writeArguments(LONG to from.toLong(), LONG to to.toLong())
@@ -539,7 +536,7 @@ public open class TabBar : Control() {
      */
     ALIGNMENT_RIGHT(2),
     /**
-     * Represents the size of the [enum AlignmentMode] enum.
+     * Represents the size of the [AlignmentMode] enum.
      */
     ALIGNMENT_MAX(3),
     ;
@@ -570,7 +567,7 @@ public open class TabBar : Control() {
      */
     CLOSE_BUTTON_SHOW_ALWAYS(2),
     /**
-     * Represents the size of the [enum CloseButtonDisplayPolicy] enum.
+     * Represents the size of the [CloseButtonDisplayPolicy] enum.
      */
     CLOSE_BUTTON_MAX(3),
     ;

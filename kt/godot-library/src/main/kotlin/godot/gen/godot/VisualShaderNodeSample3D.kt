@@ -53,7 +53,7 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
      */
     SOURCE_PORT(1),
     /**
-     * Represents the size of the [enum Source] enum.
+     * Represents the size of the [Source] enum.
      */
     SOURCE_MAX(2),
     ;

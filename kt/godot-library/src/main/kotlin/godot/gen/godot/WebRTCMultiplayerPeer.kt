@@ -31,8 +31,8 @@ import kotlin.jvm.JvmOverloads
  * This class constructs a full mesh of [WebRTCPeerConnection] (one connection for each peer) that
  * can be used as a [MultiplayerAPI.multiplayerPeer].
  * You can add each [WebRTCPeerConnection] via [addPeer] or remove them via [removePeer]. Peers must
- * be added in [constant WebRTCPeerConnection.STATE_NEW] state to allow it to create the appropriate
- * channels. This class will not create offers nor set descriptions, it will only poll them, and notify
+ * be added in [WebRTCPeerConnection.STATENEW] state to allow it to create the appropriate channels.
+ * This class will not create offers nor set descriptions, it will only poll them, and notify
  * connections and disconnections.
  * When creating the peer via [createClient] or [createServer] the
  * [MultiplayerPeer.isServerRelaySupported] method will return `true` enabling peer exchange and packet
@@ -52,9 +52,8 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
    * Initialize the multiplayer peer as a server (with unique ID of `1`). This mode enables
    * [MultiplayerPeer.isServerRelaySupported], allowing the upper [MultiplayerAPI] layer to perform
    * peer exchange and packet relaying.
-   * You can optionally specify a [param channels_config] array of [enum
-   * MultiplayerPeer.TransferMode] which will be used to create extra channels (WebRTC only supports
-   * one transfer mode per channel).
+   * You can optionally specify a [channelsConfig] array of [MultiplayerPeer.TransferMode] which
+   * will be used to create extra channels (WebRTC only supports one transfer mode per channel).
    */
   @JvmOverloads
   public fun createServer(channelsConfig: VariantArray<Any?> = godot.core.variantArrayOf()):
@@ -65,13 +64,12 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
   }
 
   /**
-   * Initialize the multiplayer peer as a client with the given [param peer_id] (must be between 2
-   * and 2147483647). In this mode, you should only call [addPeer] once and with [param peer_id] of
-   * `1`. This mode enables [MultiplayerPeer.isServerRelaySupported], allowing the upper
-   * [MultiplayerAPI] layer to perform peer exchange and packet relaying.
-   * You can optionally specify a [param channels_config] array of [enum
-   * MultiplayerPeer.TransferMode] which will be used to create extra channels (WebRTC only supports
-   * one transfer mode per channel).
+   * Initialize the multiplayer peer as a client with the given [peerId] (must be between 2 and
+   * 2147483647). In this mode, you should only call [addPeer] once and with [peerId] of `1`. This mode
+   * enables [MultiplayerPeer.isServerRelaySupported], allowing the upper [MultiplayerAPI] layer to
+   * perform peer exchange and packet relaying.
+   * You can optionally specify a [channelsConfig] array of [MultiplayerPeer.TransferMode] which
+   * will be used to create extra channels (WebRTC only supports one transfer mode per channel).
    */
   @JvmOverloads
   public fun createClient(peerId: Int, channelsConfig: VariantArray<Any?> =
@@ -83,7 +81,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
 
   /**
    * Initialize the multiplayer peer as a mesh (i.e. all peers connect to each other) with the given
-   * [param peer_id] (must be between 1 and 2147483647).
+   * [peerId] (must be between 1 and 2147483647).
    */
   @JvmOverloads
   public fun createMesh(peerId: Int, channelsConfig: VariantArray<Any?> =
@@ -94,11 +92,11 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
   }
 
   /**
-   * Add a new peer to the mesh with the given [param peer_id]. The [WebRTCPeerConnection] must be
-   * in state [constant WebRTCPeerConnection.STATE_NEW].
+   * Add a new peer to the mesh with the given [peerId]. The [WebRTCPeerConnection] must be in state
+   * [WebRTCPeerConnection.STATENEW].
    * Three channels will be created for reliable, unreliable, and ordered transport. The value of
-   * [param unreliable_lifetime] will be passed to the `"maxPacketLifetime"` option when creating
-   * unreliable and ordered channels (see [WebRTCPeerConnection.createDataChannel]).
+   * [unreliableLifetime] will be passed to the `"maxPacketLifetime"` option when creating unreliable
+   * and ordered channels (see [WebRTCPeerConnection.createDataChannel]).
    */
   @JvmOverloads
   public fun addPeer(
@@ -112,8 +110,8 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
   }
 
   /**
-   * Remove the peer with given [param peer_id] from the mesh. If the peer was connected, and
-   * [signal MultiplayerPeer.peer_connected] was emitted for it, then [signal
+   * Remove the peer with given [peerId] from the mesh. If the peer was connected, and [signal
+   * MultiplayerPeer.peer_connected] was emitted for it, then [signal
    * MultiplayerPeer.peer_disconnected] will be emitted.
    */
   public fun removePeer(peerId: Int): Unit {
@@ -122,8 +120,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
   }
 
   /**
-   * Returns `true` if the given [param peer_id] is in the peers map (it might not be connected
-   * though).
+   * Returns `true` if the given [peerId] is in the peers map (it might not be connected though).
    */
   public fun hasPeer(peerId: Int): Boolean {
     TransferContext.writeArguments(LONG to peerId.toLong())
@@ -132,7 +129,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
   }
 
   /**
-   * Returns a dictionary representation of the peer with given [param peer_id] with three keys.
+   * Returns a dictionary representation of the peer with given [peerId] with three keys.
    * `"connection"` containing the [WebRTCPeerConnection] to this peer, `"channels"` an array of three
    * [WebRTCDataChannel], and `"connected"` a boolean representing if the peer connection is currently
    * connected (all three channels are open).

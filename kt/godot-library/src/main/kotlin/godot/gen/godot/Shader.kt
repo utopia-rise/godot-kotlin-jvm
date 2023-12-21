@@ -69,8 +69,8 @@ public open class Shader : Resource() {
   /**
    * Sets the default texture to be used with a texture uniform. The default is used if a texture is
    * not set in the [ShaderMaterial].
-   * **Note:** [param name] must match the name of the uniform in the code exactly.
-   * **Note:** If the sampler array is used use [param index] to access the specified texture.
+   * **Note:** [name] must match the name of the uniform in the code exactly.
+   * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
   @JvmOverloads
   public fun setDefaultTextureParameter(
@@ -84,8 +84,8 @@ public open class Shader : Resource() {
 
   /**
    * Returns the texture that is set as default for the specified parameter.
-   * **Note:** [param name] must match the name of the uniform in the code exactly.
-   * **Note:** If the sampler array is used use [param index] to access the specified texture.
+   * **Note:** [name] must match the name of the uniform in the code exactly.
+   * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
   @JvmOverloads
   public fun getDefaultTextureParameter(name: StringName, index: Int = 0): Texture2D? {
@@ -99,7 +99,7 @@ public open class Shader : Resource() {
    * [ShaderMaterial.setShaderParameter] and [ShaderMaterial.getShaderParameter]. The parameters
    * returned are contained in dictionaries in a similar format to the ones returned by
    * [Object.getPropertyList].
-   * If argument [param get_groups] is true, parameter grouping hints will be provided.
+   * If argument [getGroups] is true, parameter grouping hints will be provided.
    */
   @JvmOverloads
   public fun getShaderUniformList(getGroups: Boolean = false): VariantArray<Any?> {

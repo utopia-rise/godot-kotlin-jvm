@@ -87,7 +87,7 @@ public open class HMACContext : RefCounted() {
 
   /**
    * Updates the message to be HMACed. This can be called multiple times before [finish] is called
-   * to append [param data] to the message, but cannot be called until [start] has been called.
+   * to append [data] to the message, but cannot be called until [start] has been called.
    */
   public fun update(`data`: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)

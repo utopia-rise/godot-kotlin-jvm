@@ -117,10 +117,10 @@ public open class HTTPClient : RefCounted() {
 
   /**
    * Connects to a host. This needs to be done before any requests are sent.
-   * If no [param port] is specified (or `-1` is used), it is automatically set to 80 for HTTP and
-   * 443 for HTTPS. You can pass the optional [param tls_options] parameter to customize the trusted
-   * certification authorities, or the common name verification when using HTTPS. See
-   * [TLSOptions.client] and [TLSOptions.clientUnsafe].
+   * If no [port] is specified (or `-1` is used), it is automatically set to 80 for HTTP and 443 for
+   * HTTPS. You can pass the optional [tlsOptions] parameter to customize the trusted certification
+   * authorities, or the common name verification when using HTTPS. See [TLSOptions.client] and
+   * [TLSOptions.clientUnsafe].
    */
   @JvmOverloads
   public fun connectToHost(
@@ -137,10 +137,10 @@ public open class HTTPClient : RefCounted() {
    * Sends a raw request to the connected host.
    * The URL parameter is usually just the part after the host, so for
    * `https://somehost.com/index.php`, it is `/index.php`. When sending requests to an HTTP proxy
-   * server, it should be an absolute URL. For [constant HTTPClient.METHOD_OPTIONS] requests, `*` is
-   * also allowed. For [constant HTTPClient.METHOD_CONNECT] requests, it should be the authority
-   * component (`host:port`).
-   * Headers are HTTP request headers. For available HTTP methods, see [enum Method].
+   * server, it should be an absolute URL. For [HTTPClient.METHODOPTIONS] requests, `*` is also
+   * allowed. For [HTTPClient.METHODCONNECT] requests, it should be the authority component
+   * (`host:port`).
+   * Headers are HTTP request headers. For available HTTP methods, see [Method].
    * Sends the body data raw, as a byte array and does not encode it in any way.
    */
   public fun requestRaw(
@@ -158,10 +158,10 @@ public open class HTTPClient : RefCounted() {
    * Sends a request to the connected host.
    * The URL parameter is usually just the part after the host, so for
    * `https://somehost.com/index.php`, it is `/index.php`. When sending requests to an HTTP proxy
-   * server, it should be an absolute URL. For [constant HTTPClient.METHOD_OPTIONS] requests, `*` is
-   * also allowed. For [constant HTTPClient.METHOD_CONNECT] requests, it should be the authority
-   * component (`host:port`).
-   * Headers are HTTP request headers. For available HTTP methods, see [enum Method].
+   * server, it should be an absolute URL. For [HTTPClient.METHODOPTIONS] requests, `*` is also
+   * allowed. For [HTTPClient.METHODCONNECT] requests, it should be the authority component
+   * (`host:port`).
+   * Headers are HTTP request headers. For available HTTP methods, see [Method].
    * To create a POST request with query strings to push to the server, do:
    *
    * gdscript:
@@ -183,9 +183,9 @@ public open class HTTPClient : RefCounted() {
    * queryString);
    * ```
    *
-   * **Note:** The [param body] parameter is ignored if [param method] is [constant
-   * HTTPClient.METHOD_GET]. This is because GET methods can't contain request data. As a workaround,
-   * you can pass request data as a query string in the URL. See [String.uriEncode] for an example.
+   * **Note:** The [body] parameter is ignored if [method] is [HTTPClient.METHODGET]. This is
+   * because GET methods can't contain request data. As a workaround, you can pass request data as a
+   * query string in the URL. See [String.uriEncode] for an example.
    */
   @JvmOverloads
   public fun request(
@@ -283,7 +283,7 @@ public open class HTTPClient : RefCounted() {
   }
 
   /**
-   * Returns a [enum Status] constant. Need to call [poll] in order to get status updates.
+   * Returns a [Status] constant. Need to call [poll] in order to get status updates.
    */
   public fun getStatus(): Status {
     TransferContext.writeArguments()
@@ -302,7 +302,7 @@ public open class HTTPClient : RefCounted() {
 
   /**
    * Sets the proxy server for HTTP requests.
-   * The proxy server is unset if [param host] is empty or [param port] is -1.
+   * The proxy server is unset if [host] is empty or [port] is -1.
    */
   public fun setHttpProxy(host: String, port: Int): Unit {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
@@ -311,7 +311,7 @@ public open class HTTPClient : RefCounted() {
 
   /**
    * Sets the proxy server for HTTPS requests.
-   * The proxy server is unset if [param host] is empty or [param port] is -1.
+   * The proxy server is unset if [host] is empty or [port] is -1.
    */
   public fun setHttpsProxy(host: String, port: Int): Unit {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
@@ -413,7 +413,7 @@ public open class HTTPClient : RefCounted() {
      */
     METHOD_PATCH(8),
     /**
-     * Represents the size of the [enum Method] enum.
+     * Represents the size of the [Method] enum.
      */
     METHOD_MAX(9),
     ;

@@ -77,8 +77,8 @@ public open class GLTFDocument : Resource() {
     }
 
   /**
-   * How to process the root node during export. See [enum RootNodeMode] for details. The default
-   * and recommended value is [constant ROOT_NODE_MODE_SINGLE_ROOT].
+   * How to process the root node during export. See [RootNodeMode] for details. The default and
+   * recommended value is [ROOTNODEMODESINGLEROOT].
    * **Note:** Regardless of how the glTF file is exported, when importing, the root node type and
    * name can be overridden in the scene import settings tab.
    */
@@ -100,9 +100,8 @@ public open class GLTFDocument : Resource() {
 
   /**
    * Takes a path to a GLTF file and imports the data at that file path to the given [GLTFState]
-   * object through the [param state] parameter.
-   * **Note:** The [param base_path] tells [appendFromFile] where to find dependencies and can be
-   * empty.
+   * object through the [state] parameter.
+   * **Note:** The [basePath] tells [appendFromFile] where to find dependencies and can be empty.
    */
   @JvmOverloads
   public fun appendFromFile(
@@ -118,9 +117,8 @@ public open class GLTFDocument : Resource() {
 
   /**
    * Takes a [PackedByteArray] defining a GLTF and imports the data to the given [GLTFState] object
-   * through the [param state] parameter.
-   * **Note:** The [param base_path] tells [appendFromBuffer] where to find dependencies and can be
-   * empty.
+   * through the [state] parameter.
+   * **Note:** The [basePath] tells [appendFromBuffer] where to find dependencies and can be empty.
    */
   @JvmOverloads
   public fun appendFromBuffer(
@@ -136,7 +134,7 @@ public open class GLTFDocument : Resource() {
 
   /**
    * Takes a Godot Engine scene node and exports it and its descendants to the given [GLTFState]
-   * object through the [param state] parameter.
+   * object through the [state] parameter.
    */
   @JvmOverloads
   public fun appendFromScene(
@@ -150,8 +148,7 @@ public open class GLTFDocument : Resource() {
   }
 
   /**
-   * Takes a [GLTFState] object through the [param state] parameter and returns a Godot Engine scene
-   * node.
+   * Takes a [GLTFState] object through the [state] parameter and returns a Godot Engine scene node.
    */
   @JvmOverloads
   public fun generateScene(
@@ -166,8 +163,7 @@ public open class GLTFDocument : Resource() {
   }
 
   /**
-   * Takes a [GLTFState] object through the [param state] parameter and returns a GLTF
-   * [PackedByteArray].
+   * Takes a [GLTFState] object through the [state] parameter and returns a GLTF [PackedByteArray].
    */
   public fun generateBuffer(state: GLTFState): PackedByteArray {
     TransferContext.writeArguments(OBJECT to state)
@@ -176,7 +172,7 @@ public open class GLTFDocument : Resource() {
   }
 
   /**
-   * Takes a [GLTFState] object through the [param state] parameter and writes a glTF file to the
+   * Takes a [GLTFState] object through the [state] parameter and writes a glTF file to the
    * filesystem.
    * **Note:** The extension of the glTF file determines if it is a .glb binary file or a .gltf
    * file.
@@ -193,7 +189,7 @@ public open class GLTFDocument : Resource() {
     /**
      * Treat the Godot scene's root node as the root node of the glTF file, and mark it as the
      * single root node via the `GODOT_single_root` glTF extension. This will be parsed the same as
-     * [constant ROOT_NODE_MODE_KEEP_ROOT] if the implementation does not support `GODOT_single_root`.
+     * [ROOTNODEMODEKEEPROOT] if the implementation does not support `GODOT_single_root`.
      */
     ROOT_NODE_MODE_SINGLE_ROOT(0),
     /**
@@ -223,8 +219,8 @@ public open class GLTFDocument : Resource() {
 
   public companion object {
     /**
-     * Registers the given [GLTFDocumentExtension] instance with GLTFDocument. If [param
-     * first_priority] is true, this extension will be run first. Otherwise, it will be run last.
+     * Registers the given [GLTFDocumentExtension] instance with GLTFDocument. If [firstPriority] is
+     * true, this extension will be run first. Otherwise, it will be run last.
      * **Note:** Like GLTFDocument itself, all GLTFDocumentExtension classes must be stateless in
      * order to function properly. If you need to store data, use the `set_additional_data` and
      * `get_additional_data` methods in [GLTFState] or [GLTFNode].

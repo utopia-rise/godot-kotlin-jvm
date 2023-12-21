@@ -47,7 +47,7 @@ public open class CompressedTexture3D : Texture3D() {
   }
 
   /**
-   * Loads the texture from the specified [param path].
+   * Loads the texture from the specified [path].
    */
   public fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)

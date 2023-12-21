@@ -49,8 +49,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class Camera3D : Node3D() {
   /**
-   * The axis to lock during [fov]/[size] adjustments. Can be either [constant KEEP_WIDTH] or
-   * [constant KEEP_HEIGHT].
+   * The axis to lock during [fov]/[size] adjustments. Can be either [KEEPWIDTH] or [KEEPHEIGHT].
    */
   public var keepAspect: KeepAspect
     get() {
@@ -73,8 +72,8 @@ public open class Camera3D : Node3D() {
    * To adjust [cullMask] more easily using a script, use [getCullMaskValue] and [setCullMaskValue].
    * **Note:** [VoxelGI], SDFGI and [LightmapGI] will always take all layers into account to
    * determine what contributes to global illumination. If this is an issue, set
-   * [GeometryInstance3D.giMode] to [constant GeometryInstance3D.GI_MODE_DISABLED] for meshes and
-   * [Light3D.lightBakeMode] to [constant Light3D.BAKE_DISABLED] for lights to exclude them from global
+   * [GeometryInstance3D.giMode] to [GeometryInstance3D.GIMODEDISABLED] for meshes and
+   * [Light3D.lightBakeMode] to [Light3D.BAKEDISABLED] for lights to exclude them from global
    * illumination.
    */
   public var cullMask: Long
@@ -145,9 +144,9 @@ public open class Camera3D : Node3D() {
     }
 
   /**
-   * If not [constant DOPPLER_TRACKING_DISABLED], this camera will simulate the
+   * If not [DOPPLERTRACKINGDISABLED], this camera will simulate the
    * [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] for objects changed in
-   * particular `_process` methods. See [enum DopplerTracking] for possible values.
+   * particular `_process` methods. See [DopplerTracking] for possible values.
    */
   public var dopplerTracking: DopplerTracking
     get() {
@@ -161,8 +160,8 @@ public open class Camera3D : Node3D() {
     }
 
   /**
-   * The camera's projection mode. In [constant PROJECTION_PERSPECTIVE] mode, objects' Z distance
-   * from the camera's local space scales their perceived size.
+   * The camera's projection mode. In [PROJECTIONPERSPECTIVE] mode, objects' Z distance from the
+   * camera's local space scales their perceived size.
    */
   public var projection: ProjectionType
     get() {
@@ -231,7 +230,7 @@ public open class Camera3D : Node3D() {
   /**
    * The camera's frustum offset. This can be changed from the default to create "tilted frustum"
    * effects such as [url=https://zdoom.org/wiki/Y-shearing]Y-shearing[/url].
-   * **Note:** Only effective if [projection] is [constant PROJECTION_FRUSTUM].
+   * **Note:** Only effective if [projection] is [PROJECTIONFRUSTUM].
    */
   @CoreTypeLocalCopy
   public var frustumOffset: Vector2
@@ -285,7 +284,7 @@ public open class Camera3D : Node3D() {
   /**
    * The camera's frustum offset. This can be changed from the default to create "tilted frustum"
    * effects such as [url=https://zdoom.org/wiki/Y-shearing]Y-shearing[/url].
-   * **Note:** Only effective if [projection] is [constant PROJECTION_FRUSTUM].
+   * **Note:** Only effective if [projection] is [PROJECTIONFRUSTUM].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -374,8 +373,7 @@ public open class Camera3D : Node3D() {
 
   /**
    * Returns the 3D point in world space that maps to the given 2D coordinate in the [Viewport]
-   * rectangle on a plane that is the given [param z_depth] distance into the scene away from the
-   * camera.
+   * rectangle on a plane that is the given [zDepth] distance into the scene away from the camera.
    */
   public fun projectPosition(screenPoint: Vector2, zDepth: Float): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint, DOUBLE to zDepth.toDouble())
@@ -384,9 +382,9 @@ public open class Camera3D : Node3D() {
   }
 
   /**
-   * Sets the camera projection to perspective mode (see [constant PROJECTION_PERSPECTIVE]), by
-   * specifying a [param fov] (field of view) angle in degrees, and the [param z_near] and [param
-   * z_far] clip planes in world space units.
+   * Sets the camera projection to perspective mode (see [PROJECTIONPERSPECTIVE]), by specifying a
+   * [fov] (field of view) angle in degrees, and the [zNear] and [zFar] clip planes in world space
+   * units.
    */
   public fun setPerspective(
     fov: Float,
@@ -398,9 +396,9 @@ public open class Camera3D : Node3D() {
   }
 
   /**
-   * Sets the camera projection to orthogonal mode (see [constant PROJECTION_ORTHOGONAL]), by
-   * specifying a [param size], and the [param z_near] and [param z_far] clip planes in world space
-   * units. (As a hint, 2D games often use this projection, with values specified in pixels.)
+   * Sets the camera projection to orthogonal mode (see [PROJECTIONORTHOGONAL]), by specifying a
+   * [size], and the [zNear] and [zFar] clip planes in world space units. (As a hint, 2D games often
+   * use this projection, with values specified in pixels.)
    */
   public fun setOrthogonal(
     size: Float,
@@ -412,9 +410,9 @@ public open class Camera3D : Node3D() {
   }
 
   /**
-   * Sets the camera projection to frustum mode (see [constant PROJECTION_FRUSTUM]), by specifying a
-   * [param size], an [param offset], and the [param z_near] and [param z_far] clip planes in world
-   * space units. See also [frustumOffset].
+   * Sets the camera projection to frustum mode (see [PROJECTIONFRUSTUM]), by specifying a [size],
+   * an [offset], and the [zNear] and [zFar] clip planes in world space units. See also
+   * [frustumOffset].
    */
   public fun setFrustum(
     size: Float,
@@ -436,8 +434,8 @@ public open class Camera3D : Node3D() {
   }
 
   /**
-   * If this is the current camera, remove it from being current. If [param enable_next] is `true`,
-   * request to make the next camera current, if any.
+   * If this is the current camera, remove it from being current. If [enableNext] is `true`, request
+   * to make the next camera current, if any.
    */
   @JvmOverloads
   public fun clearCurrent(enableNext: Boolean = true): Unit {
@@ -508,8 +506,8 @@ public open class Camera3D : Node3D() {
   }
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [cullMask], given a
-   * [param layer_number] between 1 and 20.
+   * Based on [value], enables or disables the specified layer in the [cullMask], given a
+   * [layerNumber] between 1 and 20.
    */
   public fun setCullMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -517,8 +515,8 @@ public open class Camera3D : Node3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [cullMask] is enabled, given a [param
-   * layer_number] between 1 and 20.
+   * Returns whether or not the specified layer of the [cullMask] is enabled, given a [layerNumber]
+   * between 1 and 20.
    */
   public fun getCullMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())

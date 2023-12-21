@@ -37,9 +37,8 @@ public open class ImageTexture3D : Texture3D() {
   }
 
   /**
-   * Creates the [ImageTexture3D] with specified [param width], [param height], and [param depth].
-   * See [enum Image.Format] for [param format] options. If [param use_mipmaps] is `true`, then
-   * generate mipmaps for the [ImageTexture3D].
+   * Creates the [ImageTexture3D] with specified [width], [height], and [depth]. See [Image.Format]
+   * for [format] options. If [useMipmaps] is `true`, then generate mipmaps for the [ImageTexture3D].
    */
   public fun create(
     format: Image.Format,
@@ -55,9 +54,9 @@ public open class ImageTexture3D : Texture3D() {
   }
 
   /**
-   * Replaces the texture's existing data with the layers specified in [param data]. The size of
-   * [param data] must match the parameters that were used for [create]. In other words, the texture
-   * cannot be resized or have its format changed by calling [update].
+   * Replaces the texture's existing data with the layers specified in [data]. The size of [data]
+   * must match the parameters that were used for [create]. In other words, the texture cannot be
+   * resized or have its format changed by calling [update].
    */
   public fun update(`data`: VariantArray<Image>): Unit {
     TransferContext.writeArguments(ARRAY to data)

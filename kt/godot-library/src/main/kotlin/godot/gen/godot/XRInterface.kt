@@ -120,8 +120,8 @@ public open class XRInterface internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns a combination of [enum Capabilities] flags providing information about the capabilities
-   * of this interface.
+   * Returns a combination of [Capabilities] flags providing information about the capabilities of
+   * this interface.
    */
   public fun getCapabilities(): Long {
     TransferContext.writeArguments()
@@ -212,9 +212,9 @@ public open class XRInterface internal constructor() : RefCounted() {
 
   /**
    * Triggers a haptic pulse on a device associated with this interface.
-   * [param action_name] is the name of the action for this pulse.
-   * [param tracker_name] is optional and can be used to direct the pulse to a specific device
-   * provided that device is bound to this haptic.
+   * [actionName] is the name of the action for this pulse.
+   * [trackerName] is optional and can be used to direct the pulse to a specific device provided
+   * that device is bound to this haptic.
    */
   public fun triggerHapticPulse(
     actionName: String,
@@ -308,9 +308,9 @@ public open class XRInterface internal constructor() : RefCounted() {
 
   /**
    * Returns the transform for a view/eye.
-   * [param view] is the view/eye index.
-   * [param cam_transform] is the transform that maps device coordinates to scene coordinates,
-   * typically the [Node3D.globalTransform] of the current XROrigin3D.
+   * [view] is the view/eye index.
+   * [camTransform] is the transform that maps device coordinates to scene coordinates, typically
+   * the [Node3D.globalTransform] of the current XROrigin3D.
    */
   public fun getTransformForView(view: Long, camTransform: Transform3D): Transform3D {
     TransferContext.writeArguments(LONG to view, TRANSFORM3D to camTransform)
@@ -333,8 +333,8 @@ public open class XRInterface internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the an array of supported environment blend modes, see [enum
-   * XRInterface.EnvironmentBlendMode].
+   * Returns the an array of supported environment blend modes, see
+   * [XRInterface.EnvironmentBlendMode].
    */
   public fun getSupportedEnvironmentBlendModes(): VariantArray<Any?> {
     TransferContext.writeArguments()
@@ -344,7 +344,7 @@ public open class XRInterface internal constructor() : RefCounted() {
 
   /**
    * Sets the active environment blend mode.
-   * [param mode] is the [enum XRInterface.EnvironmentBlendMode] starting with the next frame.
+   * [mode] is the [XRInterface.EnvironmentBlendMode] starting with the next frame.
    * **Note:** Not all runtimes support all environment blend modes, so it is important to check
    * this at startup. For example:
    * [codeblock]
@@ -472,8 +472,8 @@ public open class XRInterface internal constructor() : RefCounted() {
      */
     XR_PLAY_AREA_ROOMSCALE(3),
     /**
-     * Same as [constant XR_PLAY_AREA_ROOMSCALE] but origin point is fixed to the center of the
-     * physical space, [XRServer.centerOnHmd] disabled.
+     * Same as [XRPLAYAREAROOMSCALE] but origin point is fixed to the center of the physical space,
+     * [XRServer.centerOnHmd] disabled.
      */
     XR_PLAY_AREA_STAGE(4),
     ;

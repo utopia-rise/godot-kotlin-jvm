@@ -36,7 +36,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class TextureProgressBar : Range() {
   /**
-   * The fill direction. See [enum FillMode] for possible values.
+   * The fill direction. See [FillMode] for possible values.
    */
   public var fillMode: Int
     get() {
@@ -232,9 +232,9 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * Starting angle for the fill of [textureProgress] if [fillMode] is [constant FILL_CLOCKWISE] or
-   * [constant FILL_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `min_value`, the
-   * texture doesn't show up at all. When the `value` increases, the texture fills and tends towards
+   * Starting angle for the fill of [textureProgress] if [fillMode] is [FILLCLOCKWISE] or
+   * [FILLCOUNTERCLOCKWISE]. When the node's `value` is equal to its `min_value`, the texture doesn't
+   * show up at all. When the `value` increases, the texture fills and tends towards
    * [radialFillDegrees].
    */
   public var radialInitialAngle: Float
@@ -249,9 +249,9 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * Upper limit for the fill of [textureProgress] if [fillMode] is [constant FILL_CLOCKWISE] or
-   * [constant FILL_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `max_value`, the
-   * texture fills up to this angle.
+   * Upper limit for the fill of [textureProgress] if [fillMode] is [FILLCLOCKWISE] or
+   * [FILLCOUNTERCLOCKWISE]. When the node's `value` is equal to its `max_value`, the texture fills up
+   * to this angle.
    * See [Range.value], [Range.maxValue].
    */
   public var radialFillDegrees: Float
@@ -266,8 +266,7 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * Offsets [textureProgress] if [fillMode] is [constant FILL_CLOCKWISE] or [constant
-   * FILL_COUNTER_CLOCKWISE].
+   * Offsets [textureProgress] if [fillMode] is [FILLCLOCKWISE] or [FILLCOUNTERCLOCKWISE].
    */
   @CoreTypeLocalCopy
   public var radialCenterOffset: Vector2
@@ -386,8 +385,7 @@ public open class TextureProgressBar : Range() {
 
 
   /**
-   * Offsets [textureProgress] if [fillMode] is [constant FILL_CLOCKWISE] or [constant
-   * FILL_COUNTER_CLOCKWISE].
+   * Offsets [textureProgress] if [fillMode] is [FILLCLOCKWISE] or [FILLCOUNTERCLOCKWISE].
    *
    * This is a helper function to make dealing with local copies easier. 
    *

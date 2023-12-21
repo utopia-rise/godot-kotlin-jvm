@@ -51,8 +51,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   }
 
   /**
-   * Moves the cursor to the specified position. [param position] must be a valid index of
-   * [dataArray].
+   * Moves the cursor to the specified position. [position] must be a valid index of [dataArray].
    */
   public fun seek(position: Int): Unit {
     TransferContext.writeArguments(LONG to position.toLong())

@@ -53,8 +53,8 @@ public open class PackedDataContainer : Resource() {
   }
 
   /**
-   * Packs the given container into a binary representation. The [param value] must be either
-   * [Array] or [Dictionary], any other type will result in invalid data error.
+   * Packs the given container into a binary representation. The [value] must be either [Array] or
+   * [Dictionary], any other type will result in invalid data error.
    * **Note:** Subsequent calls to this method will overwrite the existing data.
    */
   public fun pack(`value`: Any?): GodotError {

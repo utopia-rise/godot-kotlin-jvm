@@ -59,8 +59,8 @@ public open class Skeleton2D : Node2D() {
 
   /**
    * Returns a [Bone2D] from the node hierarchy parented by Skeleton2D. The object to return is
-   * identified by the parameter [param idx]. Bones are indexed by descending the node hierarchy from
-   * top to bottom, adding the children of each branch before moving to the next sibling.
+   * identified by the parameter [idx]. Bones are indexed by descending the node hierarchy from top to
+   * bottom, adding the children of each branch before moving to the next sibling.
    */
   public fun getBone(idx: Int): Bone2D? {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -104,11 +104,11 @@ public open class Skeleton2D : Node2D() {
   }
 
   /**
-   * Sets the local pose transform, [param override_pose], for the bone at [param bone_idx].
-   * [param strength] is the interpolation strength that will be used when applying the pose, and
-   * [param persistent] determines if the applied pose will remain.
+   * Sets the local pose transform, [overridePose], for the bone at [boneIdx].
+   * [strength] is the interpolation strength that will be used when applying the pose, and
+   * [persistent] determines if the applied pose will remain.
    * **Note:** The pose transform needs to be a local transform relative to the [Bone2D] node at
-   * [param bone_idx]!
+   * [boneIdx]!
    */
   public fun setBoneLocalPoseOverride(
     boneIdx: Int,
@@ -121,7 +121,7 @@ public open class Skeleton2D : Node2D() {
   }
 
   /**
-   * Returns the local pose override transform for [param bone_idx].
+   * Returns the local pose override transform for [boneIdx].
    */
   public fun getBoneLocalPoseOverride(boneIdx: Int): Transform2D {
     TransferContext.writeArguments(LONG to boneIdx.toLong())

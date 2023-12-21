@@ -42,8 +42,8 @@ public open class GLTFDocumentExtension : Resource() {
    * Part of the import process. This method is run first, before all other parts of the import
    * process.
    * The return value is used to determine if this [GLTFDocumentExtension] instance should be used
-   * for importing a given GLTF file. If [constant OK], the import will use this
-   * [GLTFDocumentExtension] instance. If not overridden, [constant OK] is returned.
+   * for importing a given GLTF file. If [OK], the import will use this [GLTFDocumentExtension]
+   * instance. If not overridden, [OK] is returned.
    */
   public open fun _importPreflight(state: GLTFState, extensions: PackedStringArray): GodotError {
     throw NotImplementedError("_import_preflight is not implemented for GLTFDocumentExtension")
@@ -64,7 +64,7 @@ public open class GLTFDocumentExtension : Resource() {
    * [_importPostParse].
    * Runs when parsing the node extensions of a GLTFNode. This method can be used to process the
    * extension JSON data into a format that can be used by [_generateSceneNode]. The return value
-   * should be a member of the [enum Error] enum.
+   * should be a member of the [Error] enum.
    */
   public open fun _parseNodeExtensions(
     state: GLTFState,
@@ -120,7 +120,7 @@ public open class GLTFDocumentExtension : Resource() {
    * Runs when generating a Godot scene node from a GLTFNode. The returned node will be added to the
    * scene tree. Multiple nodes can be generated in this step if they are added as a child of the
    * returned node.
-   * **Note:** The [param scene_parent] parameter may be null if this is the single root node.
+   * **Note:** The [sceneParent] parameter may be null if this is the single root node.
    */
   public open fun _generateSceneNode(
     state: GLTFState,
@@ -167,8 +167,8 @@ public open class GLTFDocumentExtension : Resource() {
    * Part of the export process. This method is run first, before all other parts of the export
    * process.
    * The return value is used to determine if this [GLTFDocumentExtension] instance should be used
-   * for exporting a given GLTF file. If [constant OK], the export will use this
-   * [GLTFDocumentExtension] instance. If not overridden, [constant OK] is returned.
+   * for exporting a given GLTF file. If [OK], the export will use this [GLTFDocumentExtension]
+   * instance. If not overridden, [OK] is returned.
    */
   public open fun _exportPreflight(state: GLTFState, root: Node): GodotError {
     throw NotImplementedError("_export_preflight is not implemented for GLTFDocumentExtension")
@@ -218,8 +218,8 @@ public open class GLTFDocumentExtension : Resource() {
    * This method is run when embedding images in the GLTF file. When images are saved separately,
    * [_saveImageAtPath] runs instead. Note that these methods only run when this
    * [GLTFDocumentExtension] is selected as the image exporter.
-   * This method must set the image MIME type in the [param image_dict] with the `"mimeType"` key.
-   * For example, for a PNG image, it would be set to `"image/png"`. The return value must be a
+   * This method must set the image MIME type in the [imageDict] with the `"mimeType"` key. For
+   * example, for a PNG image, it would be set to `"image/png"`. The return value must be a
    * [PackedByteArray] containing the image data.
    */
   public open fun _serializeImageToBytes(
@@ -253,10 +253,9 @@ public open class GLTFDocumentExtension : Resource() {
    * Part of the export process. This method is run after [_saveImageAtPath] or
    * [_serializeImageToBytes], and before [_exportNode]. Note that this method only runs when this
    * [GLTFDocumentExtension] is selected as the image exporter.
-   * This method can be used to set up the extensions for the texture JSON by editing [param
-   * texture_json]. The extension must also be added as used extension with
-   * [GLTFState.addUsedExtension], be sure to set `required` to `true` if you are not providing a
-   * fallback.
+   * This method can be used to set up the extensions for the texture JSON by editing [textureJson].
+   * The extension must also be added as used extension with [GLTFState.addUsedExtension], be sure to
+   * set `required` to `true` if you are not providing a fallback.
    */
   public open fun _serializeTextureJson(
     state: GLTFState,

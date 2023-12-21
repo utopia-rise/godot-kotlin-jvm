@@ -133,8 +133,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class WebXRInterface internal constructor() : XRInterface() {
   /**
-   * Emitted by [isSessionSupported] to indicate if the given [param session_mode] is supported or
-   * not.
+   * Emitted by [isSessionSupported] to indicate if the given [sessionMode] is supported or not.
    */
   public val sessionSupported: Signal2<String, Boolean> by signal("sessionMode", "supported")
 
@@ -155,8 +154,8 @@ public open class WebXRInterface internal constructor() : XRInterface() {
 
   /**
    * Emitted by [XRInterface.initialize] if the session fails to start.
-   * [param message] may optionally contain an error message from WebXR, or an empty string if no
-   * message is available.
+   * [message] may optionally contain an error message from WebXR, or an empty string if no message
+   * is available.
    */
   public val sessionFailed: Signal1<String> by signal("message")
 
@@ -342,7 +341,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   }
 
   /**
-   * Checks if the given [param session_mode] is supported by the user's browser.
+   * Checks if the given [sessionMode] is supported by the user's browser.
    * Possible values come from
    * [url=https://developer.mozilla.org/en-US/docs/Web/API/XRSessionMode]WebXR's XRSessionMode[/url],
    * including: `"immersive-vr"`, `"immersive-ar"`, and `"inline"`.
@@ -355,7 +354,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   }
 
   /**
-   * Returns `true` if there is an active input source with the given [param input_source_id].
+   * Returns `true` if there is an active input source with the given [inputSourceId].
    */
   public fun isInputSourceActive(inputSourceId: Int): Boolean {
     TransferContext.writeArguments(LONG to inputSourceId.toLong())
@@ -364,7 +363,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   }
 
   /**
-   * Gets an [XRPositionalTracker] for the given [param input_source_id].
+   * Gets an [XRPositionalTracker] for the given [inputSourceId].
    * In the context of WebXR, an input source can be an advanced VR controller like the Oculus Touch
    * or Index controllers, or even a tap on the screen, a spoken voice command or a button press on the
    * device itself. When a non-traditional input source is used, interpret the position and orientation
@@ -384,7 +383,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   }
 
   /**
-   * Returns the target ray mode for the given [param input_source_id].
+   * Returns the target ray mode for the given [inputSourceId].
    * This can help interpret the input coming from that input source. See
    * [url=https://developer.mozilla.org/en-US/docs/Web/API/XRInputSource/targetRayMode]XRInputSource.targetRayMode[/url]
    * for more information.

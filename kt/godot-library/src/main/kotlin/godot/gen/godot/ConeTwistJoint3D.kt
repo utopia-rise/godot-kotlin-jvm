@@ -139,7 +139,7 @@ public open class ConeTwistJoint3D : Joint3D() {
      */
     PARAM_RELAXATION(4),
     /**
-     * Represents the size of the [enum Param] enum.
+     * Represents the size of the [Param] enum.
      */
     PARAM_MAX(5),
     ;

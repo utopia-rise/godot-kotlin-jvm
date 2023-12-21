@@ -16,7 +16,7 @@ import kotlin.Suppress
  * behavior of a server with no peers connected.
  * This means that the [SceneTree] will act as the multiplayer authority by default. Calls to
  * [MultiplayerAPI.isServer] will return `true`, and calls to [MultiplayerAPI.getUniqueId] will return
- * [constant MultiplayerPeer.TARGET_PEER_SERVER].
+ * [MultiplayerPeer.TARGETPEERSERVER].
  */
 @GodotBaseType
 public open class OfflineMultiplayerPeer : MultiplayerPeer() {

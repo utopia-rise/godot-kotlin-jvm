@@ -84,8 +84,8 @@ public object Time : Object() {
 
   /**
    * Converts the given Unix timestamp to an ISO 8601 date and time string (YYYY-MM-DDTHH:MM:SS).
-   * If [param use_space] is `true`, the date and time bits are separated by an empty space
-   * character instead of the letter T.
+   * If [useSpace] is `true`, the date and time bits are separated by an empty space character
+   * instead of the letter T.
    */
   @JvmOverloads
   public fun getDatetimeStringFromUnixTime(unixTimeVal: Long, useSpace: Boolean = false): String {
@@ -115,7 +115,7 @@ public object Time : Object() {
   /**
    * Converts the given ISO 8601 date and time string (YYYY-MM-DDTHH:MM:SS) to a dictionary of keys:
    * `year`, `month`, `day`, [code skip-lint]weekday[/code], `hour`, `minute`, and `second`.
-   * If [param weekday] is `false`, then the [code skip-lint]weekday[/code] entry is excluded (the
+   * If [weekday] is `false`, then the [code skip-lint]weekday[/code] entry is excluded (the
    * calculation is relatively expensive).
    * **Note:** Any decimal fraction in the time string will be ignored silently.
    */
@@ -134,8 +134,8 @@ public object Time : Object() {
    * `minute`, and `second`. Any other entries (including `dst`) are ignored.
    * If the dictionary is empty, `0` is returned. If some keys are omitted, they default to the
    * equivalent values for the Unix epoch timestamp 0 (1970-01-01 at 00:00:00).
-   * If [param use_space] is `true`, the date and time bits are separated by an empty space
-   * character instead of the letter T.
+   * If [useSpace] is `true`, the date and time bits are separated by an empty space character
+   * instead of the letter T.
    */
   public fun getDatetimeStringFromDatetimeDict(datetime: Dictionary<Any?, Any?>, useSpace: Boolean):
       String {
@@ -197,8 +197,8 @@ public object Time : Object() {
 
   /**
    * Returns the current date as a dictionary of keys: `year`, `month`, `day`, and `weekday`.
-   * The returned values are in the system's local time when [param utc] is `false`, otherwise they
-   * are in UTC.
+   * The returned values are in the system's local time when [utc] is `false`, otherwise they are in
+   * UTC.
    */
   @JvmOverloads
   public fun getDateDictFromSystem(utc: Boolean = false): Dictionary<Any?, Any?> {
@@ -209,8 +209,8 @@ public object Time : Object() {
 
   /**
    * Returns the current time as a dictionary of keys: `hour`, `minute`, and `second`.
-   * The returned values are in the system's local time when [param utc] is `false`, otherwise they
-   * are in UTC.
+   * The returned values are in the system's local time when [utc] is `false`, otherwise they are in
+   * UTC.
    */
   @JvmOverloads
   public fun getTimeDictFromSystem(utc: Boolean = false): Dictionary<Any?, Any?> {
@@ -221,10 +221,10 @@ public object Time : Object() {
 
   /**
    * Returns the current date and time as an ISO 8601 date and time string (YYYY-MM-DDTHH:MM:SS).
-   * The returned values are in the system's local time when [param utc] is `false`, otherwise they
-   * are in UTC.
-   * If [param use_space] is `true`, the date and time bits are separated by an empty space
-   * character instead of the letter T.
+   * The returned values are in the system's local time when [utc] is `false`, otherwise they are in
+   * UTC.
+   * If [useSpace] is `true`, the date and time bits are separated by an empty space character
+   * instead of the letter T.
    */
   @JvmOverloads
   public fun getDatetimeStringFromSystem(utc: Boolean = false, useSpace: Boolean = false): String {
@@ -235,8 +235,8 @@ public object Time : Object() {
 
   /**
    * Returns the current date as an ISO 8601 date string (YYYY-MM-DD).
-   * The returned values are in the system's local time when [param utc] is `false`, otherwise they
-   * are in UTC.
+   * The returned values are in the system's local time when [utc] is `false`, otherwise they are in
+   * UTC.
    */
   @JvmOverloads
   public fun getDateStringFromSystem(utc: Boolean = false): String {
@@ -247,8 +247,8 @@ public object Time : Object() {
 
   /**
    * Returns the current time as an ISO 8601 time string (HH:MM:SS).
-   * The returned values are in the system's local time when [param utc] is `false`, otherwise they
-   * are in UTC.
+   * The returned values are in the system's local time when [utc] is `false`, otherwise they are in
+   * UTC.
    */
   @JvmOverloads
   public fun getTimeStringFromSystem(utc: Boolean = false): String {

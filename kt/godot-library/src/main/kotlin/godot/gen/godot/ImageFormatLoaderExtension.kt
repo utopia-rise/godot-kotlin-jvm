@@ -42,7 +42,7 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
   }
 
   /**
-   * Loads the content of [param fileaccess] into the provided [param image].
+   * Loads the content of [fileaccess] into the provided [image].
    */
   public open fun _loadImage(
     image: Image,

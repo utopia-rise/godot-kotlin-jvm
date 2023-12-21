@@ -102,8 +102,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns `true` if the specified [param feature] is supported by the current [DisplayServer],
-   * `false` otherwise.
+   * Returns `true` if the specified [feature] is supported by the current [DisplayServer], `false`
+   * otherwise.
    */
   public fun hasFeature(feature: Feature): Boolean {
     TransferContext.writeArguments(LONG to feature.id)
@@ -138,9 +138,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Adds an item that will act as a submenu of the global menu [param menu_root]. The [param
-   * submenu] argument is the ID of the global menu root that will be shown when the item is clicked.
-   * Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.
+   * Adds an item that will act as a submenu of the global menu [menuRoot]. The [submenu] argument
+   * is the ID of the global menu root that will be shown when the item is clicked.
+   * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    * **Note:** This method is implemented only on macOS.
    * **Supported system menu IDs:**
    * [codeblock]
@@ -161,14 +161,14 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Adds a new item with text [param label] to the global menu with ID [param menu_root].
-   * Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.
-   * An [param accelerator] can optionally be defined, which is a keyboard shortcut that can be
-   * pressed to trigger the menu button even if it's not currently open. The [param accelerator] is
-   * generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as
-   * `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
-   * **Note:** The [param callback] and [param key_callback] Callables need to accept exactly one
-   * Variant parameter, the parameter passed to the Callables will be the value passed to [param tag].
+   * Adds a new item with text [label] to the global menu with ID [menuRoot].
+   * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
+   * trigger the menu button even if it's not currently open. The [accelerator] is generally a
+   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
+   * ([kbd]Ctrl + A[/kbd]).
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
+   * parameter, the parameter passed to the Callables will be the value passed to [tag].
    * **Note:** This method is implemented only on macOS.
    * **Supported system menu IDs:**
    * [codeblock]
@@ -192,14 +192,14 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Adds a new checkable item with text [param label] to the global menu with ID [param menu_root].
-   * Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.
-   * An [param accelerator] can optionally be defined, which is a keyboard shortcut that can be
-   * pressed to trigger the menu button even if it's not currently open. The [param accelerator] is
-   * generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as
-   * `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
-   * **Note:** The [param callback] and [param key_callback] Callables need to accept exactly one
-   * Variant parameter, the parameter passed to the Callables will be the value passed to [param tag].
+   * Adds a new checkable item with text [label] to the global menu with ID [menuRoot].
+   * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
+   * trigger the menu button even if it's not currently open. The [accelerator] is generally a
+   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
+   * ([kbd]Ctrl + A[/kbd]).
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
+   * parameter, the parameter passed to the Callables will be the value passed to [tag].
    * **Note:** This method is implemented only on macOS.
    * **Supported system menu IDs:**
    * [codeblock]
@@ -223,15 +223,14 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Adds a new item with text [param label] and icon [param icon] to the global menu with ID [param
-   * menu_root].
-   * Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.
-   * An [param accelerator] can optionally be defined, which is a keyboard shortcut that can be
-   * pressed to trigger the menu button even if it's not currently open. The [param accelerator] is
-   * generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as
-   * `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
-   * **Note:** The [param callback] and [param key_callback] Callables need to accept exactly one
-   * Variant parameter, the parameter passed to the Callables will be the value passed to [param tag].
+   * Adds a new item with text [label] and icon [icon] to the global menu with ID [menuRoot].
+   * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
+   * trigger the menu button even if it's not currently open. The [accelerator] is generally a
+   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
+   * ([kbd]Ctrl + A[/kbd]).
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
+   * parameter, the parameter passed to the Callables will be the value passed to [tag].
    * **Note:** This method is implemented only on macOS.
    * **Supported system menu IDs:**
    * [codeblock]
@@ -256,15 +255,15 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Adds a new checkable item with text [param label] and icon [param icon] to the global menu with
-   * ID [param menu_root].
-   * Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.
-   * An [param accelerator] can optionally be defined, which is a keyboard shortcut that can be
-   * pressed to trigger the menu button even if it's not currently open. The [param accelerator] is
-   * generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as
-   * `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
-   * **Note:** The [param callback] and [param key_callback] Callables need to accept exactly one
-   * Variant parameter, the parameter passed to the Callables will be the value passed to [param tag].
+   * Adds a new checkable item with text [label] and icon [icon] to the global menu with ID
+   * [menuRoot].
+   * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
+   * trigger the menu button even if it's not currently open. The [accelerator] is generally a
+   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
+   * ([kbd]Ctrl + A[/kbd]).
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
+   * parameter, the parameter passed to the Callables will be the value passed to [tag].
    * **Note:** This method is implemented only on macOS.
    * **Supported system menu IDs:**
    * [codeblock]
@@ -289,18 +288,17 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Adds a new radio-checkable item with text [param label] to the global menu with ID [param
-   * menu_root].
-   * Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.
-   * An [param accelerator] can optionally be defined, which is a keyboard shortcut that can be
-   * pressed to trigger the menu button even if it's not currently open. The [param accelerator] is
-   * generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as
-   * `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
+   * Adds a new radio-checkable item with text [label] to the global menu with ID [menuRoot].
+   * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
+   * trigger the menu button even if it's not currently open. The [accelerator] is generally a
+   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
+   * ([kbd]Ctrl + A[/kbd]).
    * **Note:** Radio-checkable items just display a checkmark, but don't have any built-in checking
    * behavior and must be checked/unchecked manually. See [globalMenuSetItemChecked] for more info on
    * how to control it.
-   * **Note:** The [param callback] and [param key_callback] Callables need to accept exactly one
-   * Variant parameter, the parameter passed to the Callables will be the value passed to [param tag].
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
+   * parameter, the parameter passed to the Callables will be the value passed to [tag].
    * **Note:** This method is implemented only on macOS.
    * **Supported system menu IDs:**
    * [codeblock]
@@ -324,18 +322,18 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Adds a new radio-checkable item with text [param label] and icon [param icon] to the global
-   * menu with ID [param menu_root].
-   * Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.
-   * An [param accelerator] can optionally be defined, which is a keyboard shortcut that can be
-   * pressed to trigger the menu button even if it's not currently open. The [param accelerator] is
-   * generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as
-   * `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
+   * Adds a new radio-checkable item with text [label] and icon [icon] to the global menu with ID
+   * [menuRoot].
+   * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
+   * trigger the menu button even if it's not currently open. The [accelerator] is generally a
+   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
+   * ([kbd]Ctrl + A[/kbd]).
    * **Note:** Radio-checkable items just display a checkmark, but don't have any built-in checking
    * behavior and must be checked/unchecked manually. See [globalMenuSetItemChecked] for more info on
    * how to control it.
-   * **Note:** The [param callback] and [param key_callback] Callables need to accept exactly one
-   * Variant parameter, the parameter passed to the Callables will be the value passed to [param tag].
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
+   * parameter, the parameter passed to the Callables will be the value passed to [tag].
    * **Note:** This method is implemented only on macOS.
    * **Supported system menu IDs:**
    * [codeblock]
@@ -360,19 +358,19 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Adds a new item with text [param label] to the global menu with ID [param menu_root].
+   * Adds a new item with text [label] to the global menu with ID [menuRoot].
    * Contrarily to normal binary items, multistate items can have more than two states, as defined
-   * by [param max_states]. Each press or activate of the item will increase the state by one. The
-   * default value is defined by [param default_state].
-   * Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.
-   * An [param accelerator] can optionally be defined, which is a keyboard shortcut that can be
-   * pressed to trigger the menu button even if it's not currently open. The [param accelerator] is
-   * generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as
-   * `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
+   * by [maxStates]. Each press or activate of the item will increase the state by one. The default
+   * value is defined by [defaultState].
+   * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
+   * trigger the menu button even if it's not currently open. The [accelerator] is generally a
+   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
+   * ([kbd]Ctrl + A[/kbd]).
    * **Note:** By default, there's no indication of the current item state, it should be changed
    * manually.
-   * **Note:** The [param callback] and [param key_callback] Callables need to accept exactly one
-   * Variant parameter, the parameter passed to the Callables will be the value passed to [param tag].
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
+   * parameter, the parameter passed to the Callables will be the value passed to [tag].
    * **Note:** This method is implemented only on macOS.
    * **Supported system menu IDs:**
    * [codeblock]
@@ -398,9 +396,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Adds a separator between items to the global menu with ID [param menu_root]. Separators also
-   * occupy an index.
-   * Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.
+   * Adds a separator between items to the global menu with ID [menuRoot]. Separators also occupy an
+   * index.
+   * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    * **Note:** This method is implemented only on macOS.
    * **Supported system menu IDs:**
    * [codeblock]
@@ -416,8 +414,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the index of the item with the specified [param text]. Index is automatically assigned
-   * to each item by the engine. Index can not be set manually.
+   * Returns the index of the item with the specified [text]. Index is automatically assigned to
+   * each item by the engine. Index can not be set manually.
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemIndexFromText(menuRoot: String, text: String): Int {
@@ -427,8 +425,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the index of the item with the specified [param tag]. Index is automatically assigned
-   * to each item by the engine. Index can not be set manually.
+   * Returns the index of the item with the specified [tag]. Index is automatically assigned to each
+   * item by the engine. Index can not be set manually.
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemIndexFromTag(menuRoot: String, tag: Any?): Int {
@@ -438,7 +436,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns `true` if the item at index [param idx] is checked.
+   * Returns `true` if the item at index [idx] is checked.
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuIsItemChecked(menuRoot: String, idx: Int): Boolean {
@@ -448,8 +446,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns `true` if the item at index [param idx] is checkable in some way, i.e. if it has a
-   * checkbox or radio button.
+   * Returns `true` if the item at index [idx] is checkable in some way, i.e. if it has a checkbox
+   * or radio button.
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuIsItemCheckable(menuRoot: String, idx: Int): Boolean {
@@ -459,7 +457,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns `true` if the item at index [param idx] has radio button-style checkability.
+   * Returns `true` if the item at index [idx] has radio button-style checkability.
    * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in
    * radio groups.
    * **Note:** This method is implemented only on macOS.
@@ -471,7 +469,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the callback of the item at index [param idx].
+   * Returns the callback of the item at index [idx].
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemCallback(menuRoot: String, idx: Int): Callable {
@@ -481,7 +479,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the callback of the item accelerator at index [param idx].
+   * Returns the callback of the item accelerator at index [idx].
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemKeyCallback(menuRoot: String, idx: Int): Callable {
@@ -502,7 +500,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the text of the item at index [param idx].
+   * Returns the text of the item at index [idx].
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemText(menuRoot: String, idx: Int): String {
@@ -512,8 +510,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the submenu ID of the item at index [param idx]. See [globalMenuAddSubmenuItem] for
-   * more info on how to add a submenu.
+   * Returns the submenu ID of the item at index [idx]. See [globalMenuAddSubmenuItem] for more info
+   * on how to add a submenu.
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemSubmenu(menuRoot: String, idx: Int): String {
@@ -523,8 +521,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the accelerator of the item at index [param idx]. Accelerators are special combinations
-   * of keys that activate the item, no matter which control is focused.
+   * Returns the accelerator of the item at index [idx]. Accelerators are special combinations of
+   * keys that activate the item, no matter which control is focused.
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemAccelerator(menuRoot: String, idx: Int): Key {
@@ -534,7 +532,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns `true` if the item at index [param idx] is disabled. When it is disabled it can't be
+   * Returns `true` if the item at index [idx] is disabled. When it is disabled it can't be
    * selected, or its action invoked.
    * See [globalMenuSetItemDisabled] for more info on how to disable an item.
    * **Note:** This method is implemented only on macOS.
@@ -546,7 +544,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns `true` if the item at index [param idx] is hidden.
+   * Returns `true` if the item at index [idx] is hidden.
    * See [globalMenuSetItemHidden] for more info on how to hide an item.
    * **Note:** This method is implemented only on macOS.
    */
@@ -557,7 +555,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the tooltip associated with the specified index [param idx].
+   * Returns the tooltip associated with the specified index [idx].
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemTooltip(menuRoot: String, idx: Int): String {
@@ -587,7 +585,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the icon of the item at index [param idx].
+   * Returns the icon of the item at index [idx].
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemIcon(menuRoot: String, idx: Int): Texture2D? {
@@ -597,7 +595,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the horizontal offset of the item at the given [param idx].
+   * Returns the horizontal offset of the item at the given [idx].
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemIndentationLevel(menuRoot: String, idx: Int): Int {
@@ -607,7 +605,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the checkstate status of the item at index [param idx].
+   * Sets the checkstate status of the item at index [idx].
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemChecked(
@@ -620,8 +618,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets whether the item at index [param idx] has a checkbox. If `false`, sets the type of the
-   * item to plain text.
+   * Sets whether the item at index [idx] has a checkbox. If `false`, sets the type of the item to
+   * plain text.
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemCheckable(
@@ -634,8 +632,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the type of the item at the specified index [param idx] to radio button. If `false`, sets
-   * the type of the item to plain text.
+   * Sets the type of the item at the specified index [idx] to radio button. If `false`, sets the
+   * type of the item to plain text.
    * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in
    * radio groups.
    * **Note:** This method is implemented only on macOS.
@@ -650,11 +648,10 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the callback of the item at index [param idx]. Callback is emitted when an item is
-   * pressed.
-   * **Note:** The [param callback] Callable needs to accept exactly one Variant parameter, the
-   * parameter passed to the Callable will be the value passed to the `tag` parameter when the menu
-   * item was created.
+   * Sets the callback of the item at index [idx]. Callback is emitted when an item is pressed.
+   * **Note:** The [callback] Callable needs to accept exactly one Variant parameter, the parameter
+   * passed to the Callable will be the value passed to the `tag` parameter when the menu item was
+   * created.
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemCallback(
@@ -667,11 +664,10 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the callback of the item at index [param idx]. The callback is emitted when an item is
-   * hovered.
-   * **Note:** The [param callback] Callable needs to accept exactly one Variant parameter, the
-   * parameter passed to the Callable will be the value passed to the `tag` parameter when the menu
-   * item was created.
+   * Sets the callback of the item at index [idx]. The callback is emitted when an item is hovered.
+   * **Note:** The [callback] Callable needs to accept exactly one Variant parameter, the parameter
+   * passed to the Callable will be the value passed to the `tag` parameter when the menu item was
+   * created.
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemHoverCallbacks(
@@ -684,9 +680,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the callback of the item at index [param idx]. Callback is emitted when its accelerator is
+   * Sets the callback of the item at index [idx]. Callback is emitted when its accelerator is
    * activated.
-   * **Note:** The [param key_callback] Callable needs to accept exactly one Variant parameter, the
+   * **Note:** The [keyCallback] Callable needs to accept exactly one Variant parameter, the
    * parameter passed to the Callable will be the value passed to the `tag` parameter when the menu
    * item was created.
    * **Note:** This method is implemented only on macOS.
@@ -715,7 +711,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the text of the item at index [param idx].
+   * Sets the text of the item at index [idx].
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemText(
@@ -728,8 +724,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the submenu of the item at index [param idx]. The submenu is the ID of a global menu root
-   * that would be shown when the item is clicked.
+   * Sets the submenu of the item at index [idx]. The submenu is the ID of a global menu root that
+   * would be shown when the item is clicked.
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemSubmenu(
@@ -742,9 +738,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the accelerator of the item at index [param idx]. [param keycode] can be a single [enum
-   * Key], or a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as
-   * `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
+   * Sets the accelerator of the item at index [idx]. [keycode] can be a single [Key], or a
+   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
+   * ([kbd]Ctrl + A[/kbd]).
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemAccelerator(
@@ -757,8 +753,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Enables/disables the item at index [param idx]. When it is disabled, it can't be selected and
-   * its action can't be invoked.
+   * Enables/disables the item at index [idx]. When it is disabled, it can't be selected and its
+   * action can't be invoked.
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemDisabled(
@@ -771,8 +767,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Hides/shows the item at index [param idx]. When it is hidden, an item does not appear in a menu
-   * and its action cannot be invoked.
+   * Hides/shows the item at index [idx]. When it is hidden, an item does not appear in a menu and
+   * its action cannot be invoked.
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemHidden(
@@ -785,7 +781,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the [String] tooltip of the item at the specified index [param idx].
+   * Sets the [String] tooltip of the item at the specified index [idx].
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemTooltip(
@@ -824,7 +820,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Replaces the [Texture2D] icon of the specified [param idx].
+   * Replaces the [Texture2D] icon of the specified [idx].
    * **Note:** This method is implemented only on macOS.
    * **Note:** This method is not supported by macOS "_dock" menu items.
    */
@@ -838,7 +834,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the horizontal offset of the item at the given [param idx].
+   * Sets the horizontal offset of the item at the given [idx].
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuSetItemIndentationLevel(
@@ -851,7 +847,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns number of items in the global menu with ID [param menu_root].
+   * Returns number of items in the global menu with ID [menuRoot].
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemCount(menuRoot: String): Int {
@@ -861,7 +857,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Removes the item at index [param idx] from the global menu [param menu_root].
+   * Removes the item at index [idx] from the global menu [menuRoot].
    * **Note:** The indices of items after the removed item will be shifted by one.
    * **Note:** This method is implemented only on macOS.
    */
@@ -871,7 +867,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Removes all items from the global menu with ID [param menu_root].
+   * Removes all items from the global menu with ID [menuRoot].
    * **Note:** This method is implemented only on macOS.
    * **Supported system menu IDs:**
    * [codeblock]
@@ -928,7 +924,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns an [PackedStringArray] of voice identifiers for the [param language].
+   * Returns an [PackedStringArray] of voice identifiers for the [language].
    * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
@@ -940,17 +936,17 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Adds an utterance to the queue. If [param interrupt] is `true`, the queue is cleared first.
-   * - [param voice] identifier is one of the `"id"` values returned by [ttsGetVoices] or one of the
+   * Adds an utterance to the queue. If [interrupt] is `true`, the queue is cleared first.
+   * - [voice] identifier is one of the `"id"` values returned by [ttsGetVoices] or one of the
    * values returned by [ttsGetVoicesForLanguage].
-   * - [param volume] ranges from `0` (lowest) to `100` (highest).
-   * - [param pitch] ranges from `0.0` (lowest) to `2.0` (highest), `1.0` is default pitch for the
-   * current voice.
-   * - [param rate] ranges from `0.1` (lowest) to `10.0` (highest), `1.0` is a normal speaking rate.
-   * Other values act as a percentage relative.
-   * - [param utterance_id] is passed as a parameter to the callback functions.
-   * **Note:** On Windows and Linux (X11), utterance [param text] can use SSML markup. SSML support
-   * is engine and voice dependent. If the engine does not support SSML, you should strip out all XML
+   * - [volume] ranges from `0` (lowest) to `100` (highest).
+   * - [pitch] ranges from `0.0` (lowest) to `2.0` (highest), `1.0` is default pitch for the current
+   * voice.
+   * - [rate] ranges from `0.1` (lowest) to `10.0` (highest), `1.0` is a normal speaking rate. Other
+   * values act as a percentage relative.
+   * - [utteranceId] is passed as a parameter to the callback functions.
+   * **Note:** On Windows and Linux (X11), utterance [text] can use SSML markup. SSML support is
+   * engine and voice dependent. If the engine does not support SSML, you should strip out all XML
    * markup before calling [ttsSpeak].
    * **Note:** The granularity of pitch, rate, and volume is engine and voice dependent. Values may
    * be truncated.
@@ -1004,10 +1000,10 @@ public object DisplayServer : Object() {
   /**
    * Adds a callback, which is called when the utterance has started, finished, canceled or reached
    * a text boundary.
-   * - [constant TTS_UTTERANCE_STARTED], [constant TTS_UTTERANCE_ENDED], and [constant
-   * TTS_UTTERANCE_CANCELED] callable's method should take one [int] parameter, the utterance ID.
-   * - [constant TTS_UTTERANCE_BOUNDARY] callable's method should take two [int] parameters, the
-   * index of the character and the utterance ID.
+   * - [TTSUTTERANCESTARTED], [TTSUTTERANCEENDED], and [TTSUTTERANCECANCELED] callable's method
+   * should take one [int] parameter, the utterance ID.
+   * - [TTSUTTERANCEBOUNDARY] callable's method should take two [int] parameters, the index of the
+   * character and the utterance ID.
    * **Note:** The granularity of the boundary callbacks is engine dependent.
    * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
@@ -1065,8 +1061,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the mouse cursor position to the given [param position] relative to an origin at the upper
-   * left corner of the currently focused game Window Manager window.
+   * Sets the mouse cursor position to the given [position] relative to an origin at the upper left
+   * corner of the currently focused game Window Manager window.
    * **Note:** [warpMouse] is only supported on Windows, macOS and Linux. It has no effect on
    * Android, iOS and Web.
    */
@@ -1271,8 +1267,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the dots per inch density of the specified screen. If [param screen] is [constant
-   * SCREEN_OF_MAIN_WINDOW] (the default value), a screen with the main window will be used.
+   * Returns the dots per inch density of the specified screen. If [screen] is [SCREENOFMAINWINDOW]
+   * (the default value), a screen with the main window will be used.
    * **Note:** On macOS, returned value is inaccurate if fractional display scaling mode is used.
    * **Note:** On Android devices, the actual screen densities are grouped into six generalized
    * densities:
@@ -1330,8 +1326,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the current refresh rate of the specified screen. If [param screen] is [constant
-   * SCREEN_OF_MAIN_WINDOW] (the default value), a screen with the main window will be used.
+   * Returns the current refresh rate of the specified screen. If [screen] is [SCREENOFMAINWINDOW]
+   * (the default value), a screen with the main window will be used.
    * **Note:** Returns `-1.0` if the DisplayServer fails to find the refresh rate for the specified
    * screen. On Web, [screenGetRefreshRate] will always return `-1.0` as there is no way to retrieve
    * the refresh rate on that platform.
@@ -1350,7 +1346,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns color of the display pixel at the [param position].
+   * Returns color of the display pixel at the [position].
    * **Note:** This method is implemented on Linux (X11), macOS, and Windows.
    * **Note:** On macOS, this method requires "Screen Recording" permission, if permission is not
    * granted it will return desktop wallpaper color.
@@ -1362,7 +1358,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns screenshot of the [param screen].
+   * Returns screenshot of the [screen].
    * **Note:** This method is implemented on Linux (X11), macOS, and Windows.
    * **Note:** On macOS, this method requires "Screen Recording" permission, if permission is not
    * granted it will return desktop wallpaper color.
@@ -1375,9 +1371,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the [param screen]'s [param orientation]. See also [screenGetOrientation].
+   * Sets the [screen]'s [orientation]. See also [screenGetOrientation].
    * **Note:** On iOS, this method has no effect if
-   * [ProjectSettings.display/window/handheld/orientation] is not set to [constant SCREEN_SENSOR].
+   * [ProjectSettings.display/window/handheld/orientation] is not set to [SCREENSENSOR].
    */
   @JvmOverloads
   public fun screenSetOrientation(orientation: ScreenOrientation, screen: Int = -1): Unit {
@@ -1386,7 +1382,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the [param screen]'s current orientation. See also [screenSetOrientation].
+   * Returns the [screen]'s current orientation. See also [screenSetOrientation].
    * **Note:** This method is implemented on Android and iOS.
    */
   @JvmOverloads
@@ -1426,10 +1422,10 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the ID of the window at the specified screen [param position] (in pixels). On
-   * multi-monitor setups, the screen position is relative to the virtual desktop area. On
-   * multi-monitor setups with different screen resolutions or orientations, the origin may be located
-   * outside any display like this:
+   * Returns the ID of the window at the specified screen [position] (in pixels). On multi-monitor
+   * setups, the screen position is relative to the virtual desktop area. On multi-monitor setups with
+   * different screen resolutions or orientations, the origin may be located outside any display like
+   * this:
    * [codeblock]
    * * (0, 0)        +-------+
    *                 |       |
@@ -1457,7 +1453,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns ID of the active popup window, or [constant INVALID_WINDOW_ID] if there is none.
+   * Returns ID of the active popup window, or [INVALIDWINDOWID] if there is none.
    */
   public fun windowGetActivePopup(): Int {
     TransferContext.writeArguments()
@@ -1485,7 +1481,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the title of the given window to [param title].
+   * Sets the title of the given window to [title].
    * **Note:** It's recommended to change this value using [Window.title] instead.
    * **Note:** Avoid changing the window title every frame, as this can cause performance issues on
    * certain window managers. Try to change the window title only a few times per second at most.
@@ -1498,7 +1494,7 @@ public object DisplayServer : Object() {
 
   /**
    * Returns the estimated window title bar size (including text and window buttons) for the window
-   * specified by [param window_id] (in pixels). This method does not change the window title.
+   * specified by [windowId] (in pixels). This method does not change the window title.
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmOverloads
@@ -1548,9 +1544,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the screen the window specified by [param window_id] is currently positioned on. If the
-   * screen overlaps multiple displays, the screen where the window's center is located is returned.
-   * See also [windowSetCurrentScreen].
+   * Returns the screen the window specified by [windowId] is currently positioned on. If the screen
+   * overlaps multiple displays, the screen where the window's center is located is returned. See also
+   * [windowSetCurrentScreen].
    */
   @JvmOverloads
   public fun windowGetCurrentScreen(windowId: Int = 0): Int {
@@ -1560,7 +1556,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Moves the window specified by [param window_id] to the specified [param screen]. See also
+   * Moves the window specified by [windowId] to the specified [screen]. See also
    * [windowGetCurrentScreen].
    */
   @JvmOverloads
@@ -1591,7 +1587,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the position of the given window to [param position]. On multi-monitor setups, the screen
+   * Sets the position of the given window to [position]. On multi-monitor setups, the screen
    * position is relative to the virtual desktop area. On multi-monitor setups with different screen
    * resolutions or orientations, the origin may be located outside any display like this:
    * [codeblock]
@@ -1612,8 +1608,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the size of the window specified by [param window_id] (in pixels), excluding the
-   * borders drawn by the operating system. This is also called the "client area". See also
+   * Returns the size of the window specified by [windowId] (in pixels), excluding the borders drawn
+   * by the operating system. This is also called the "client area". See also
    * [windowGetSizeWithDecorations], [windowSetSize] and [windowGetPosition].
    */
   @JvmOverloads
@@ -1624,7 +1620,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the size of the given window to [param size] (in pixels). See also [windowGetSize] and
+   * Sets the size of the given window to [size] (in pixels). See also [windowGetSize] and
    * [windowGetPosition].
    * **Note:** It's recommended to change this value using [Window.size] instead.
    */
@@ -1635,8 +1631,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the [param callback] that will be called when the window specified by [param window_id] is
-   * moved or resized.
+   * Sets the [callback] that will be called when the window specified by [windowId] is moved or
+   * resized.
    * **Warning:** Advanced users only! Adding such a callback to a [Window] node will override its
    * default implementation, which can introduce bugs.
    */
@@ -1647,8 +1643,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the [param callback] that will be called when an event occurs in the window specified by
-   * [param window_id].
+   * Sets the [callback] that will be called when an event occurs in the window specified by
+   * [windowId].
    * **Warning:** Advanced users only! Adding such a callback to a [Window] node will override its
    * default implementation, which can introduce bugs.
    */
@@ -1659,8 +1655,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the [param callback] that should be called when any [InputEvent] is sent to the window
-   * specified by [param window_id].
+   * Sets the [callback] that should be called when any [InputEvent] is sent to the window specified
+   * by [windowId].
    * **Warning:** Advanced users only! Adding such a callback to a [Window] node will override its
    * default implementation, which can introduce bugs.
    */
@@ -1671,8 +1667,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the [param callback] that should be called when text is entered using the virtual keyboard
-   * to the window specified by [param window_id].
+   * Sets the [callback] that should be called when text is entered using the virtual keyboard to
+   * the window specified by [windowId].
    * **Warning:** Advanced users only! Adding such a callback to a [Window] node will override its
    * default implementation, which can introduce bugs.
    */
@@ -1683,8 +1679,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the [param callback] that should be called when files are dropped from the operating
-   * system's file manager to the window specified by [param window_id].
+   * Sets the [callback] that should be called when files are dropped from the operating system's
+   * file manager to the window specified by [windowId].
    * **Warning:** Advanced users only! Adding such a callback to a [Window] node will override its
    * default implementation, which can introduce bugs.
    * **Note:** This method is implemented on Windows, macOS, Linux (X11) and Web.
@@ -1696,7 +1692,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the [Object.getInstanceId] of the [Window] the [param window_id] is attached to.
+   * Returns the [Object.getInstanceId] of the [Window] the [windowId] is attached to.
    */
   @JvmOverloads
   public fun windowGetAttachedInstanceId(windowId: Int = 0): Long {
@@ -1716,8 +1712,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the maximum size of the window specified by [param window_id] in pixels. Normally, the
-   * user will not be able to drag the window to make it smaller than the specified size. See also
+   * Sets the maximum size of the window specified by [windowId] in pixels. Normally, the user will
+   * not be able to drag the window to make it smaller than the specified size. See also
    * [windowGetMaxSize].
    * **Note:** It's recommended to change this value using [Window.maxSize] instead.
    * **Note:** Using third-party tools, it is possible for users to disable window geometry
@@ -1740,8 +1736,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the minimum size for the given window to [param min_size] (in pixels). Normally, the user
-   * will not be able to drag the window to make it larger than the specified size. See also
+   * Sets the minimum size for the given window to [minSize] (in pixels). Normally, the user will
+   * not be able to drag the window to make it larger than the specified size. See also
    * [windowGetMinSize].
    * **Note:** It's recommended to change this value using [Window.minSize] instead.
    * **Note:** By default, the main window has a minimum size of `Vector2i(64, 64)`. This prevents
@@ -1756,8 +1752,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the size of the window specified by [param window_id] (in pixels), including the
-   * borders drawn by the operating system. See also [windowGetSize].
+   * Returns the size of the window specified by [windowId] (in pixels), including the borders drawn
+   * by the operating system. See also [windowGetSize].
    */
   @JvmOverloads
   public fun windowGetSizeWithDecorations(windowId: Int = 0): Vector2i {
@@ -1777,8 +1773,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets window mode for the given window to [param mode]. See [enum WindowMode] for possible
-   * values and how each mode behaves.
+   * Sets window mode for the given window to [mode]. See [WindowMode] for possible values and how
+   * each mode behaves.
    * **Note:** Setting the window to full screen forcibly sets the borderless flag to `true`, so
    * make sure to set it back to `false` when not wanted.
    */
@@ -1789,8 +1785,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Enables or disables the given window's given [param flag]. See [enum WindowFlags] for possible
-   * values and their behavior.
+   * Enables or disables the given window's given [flag]. See [WindowFlags] for possible values and
+   * their behavior.
    */
   @JvmOverloads
   public fun windowSetFlag(
@@ -1803,7 +1799,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the current value of the given window's [param flag].
+   * Returns the current value of the given window's [flag].
    */
   @JvmOverloads
   public fun windowGetFlag(flag: WindowFlags, windowId: Int = 0): Boolean {
@@ -1813,8 +1809,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * When [constant WINDOW_FLAG_EXTEND_TO_TITLE] flag is set, set offset to the center of the first
-   * titlebar button.
+   * When [WINDOWFLAGEXTENDTOTITLE] flag is set, set offset to the center of the first titlebar
+   * button.
    * **Note:** This flag is implemented only on macOS.
    */
   @JvmOverloads
@@ -1825,8 +1821,7 @@ public object DisplayServer : Object() {
 
   /**
    * Returns left margins (`x`), right margins (`y`) and height (`z`) of the title that are safe to
-   * use (contains no buttons or other elements) when [constant WINDOW_FLAG_EXTEND_TO_TITLE] flag is
-   * set.
+   * use (contains no buttons or other elements) when [WINDOWFLAGEXTENDTOTITLE] flag is set.
    */
   @JvmOverloads
   public fun windowGetSafeTitleMargins(windowId: Int = 0): Vector3i {
@@ -1836,10 +1831,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Makes the window specified by [param window_id] request attention, which is materialized by the
-   * window title and taskbar entry blinking until the window is focused. This usually has no visible
-   * effect if the window is currently focused. The exact behavior varies depending on the operating
-   * system.
+   * Makes the window specified by [windowId] request attention, which is materialized by the window
+   * title and taskbar entry blinking until the window is focused. This usually has no visible effect
+   * if the window is currently focused. The exact behavior varies depending on the operating system.
    */
   @JvmOverloads
   public fun windowRequestAttention(windowId: Int = 0): Unit {
@@ -1848,8 +1842,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Moves the window specified by [param window_id] to the foreground, so that it is visible over
-   * other windows.
+   * Moves the window specified by [windowId] to the foreground, so that it is visible over other
+   * windows.
    */
   @JvmOverloads
   public fun windowMoveToForeground(windowId: Int = 0): Unit {
@@ -1858,7 +1852,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns `true` if the window specified by [param window_id] is focused.
+   * Returns `true` if the window specified by [windowId] is focused.
    */
   @JvmOverloads
   public fun windowIsFocused(windowId: Int = 0): Boolean {
@@ -1868,7 +1862,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns `true` if anything can be drawn in the window specified by [param window_id], `false`
+   * Returns `true` if anything can be drawn in the window specified by [windowId], `false`
    * otherwise. Using the `--disable-render-loop` command line argument or a headless build will return
    * `false`.
    */
@@ -1905,7 +1899,7 @@ public object DisplayServer : Object() {
 
   /**
    * Sets whether [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] should
-   * be enabled for the window specified by [param window_id]. See also [windowSetImePosition].
+   * be enabled for the window specified by [windowId]. See also [windowSetImePosition].
    */
   @JvmOverloads
   public fun windowSetImeActive(active: Boolean, windowId: Int = 0): Unit {
@@ -1915,8 +1909,8 @@ public object DisplayServer : Object() {
 
   /**
    * Sets the position of the [url=https://en.wikipedia.org/wiki/Input_method]Input Method
-   * Editor[/url] popup for the specified [param window_id]. Only effective if [windowSetImeActive] was
-   * set to `true` for the specified [param window_id].
+   * Editor[/url] popup for the specified [windowId]. Only effective if [windowSetImeActive] was set to
+   * `true` for the specified [windowId].
    */
   @JvmOverloads
   public fun windowSetImePosition(position: Vector2i, windowId: Int = 0): Unit {
@@ -1927,12 +1921,12 @@ public object DisplayServer : Object() {
   /**
    * Sets the V-Sync mode of the given window. See also
    * [ProjectSettings.display/window/vsync/vsyncMode].
-   * See [enum DisplayServer.VSyncMode] for possible values and how they affect the behavior of your
+   * See [DisplayServer.VSyncMode] for possible values and how they affect the behavior of your
    * application.
-   * Depending on the platform and used renderer, the engine will fall back to [constant
-   * VSYNC_ENABLED] if the desired mode is not supported.
-   * **Note:** V-Sync modes other than [constant VSYNC_ENABLED] are only supported in the Forward+
-   * and Mobile rendering methods, not Compatibility.
+   * Depending on the platform and used renderer, the engine will fall back to [VSYNCENABLED] if the
+   * desired mode is not supported.
+   * **Note:** V-Sync modes other than [VSYNCENABLED] are only supported in the Forward+ and Mobile
+   * rendering methods, not Compatibility.
    */
   @JvmOverloads
   public fun windowSetVsyncMode(vsyncMode: VSyncMode, windowId: Int = 0): Unit {
@@ -2005,15 +1999,14 @@ public object DisplayServer : Object() {
 
   /**
    * Shows the virtual keyboard if the platform has one.
-   * [param existing_text] parameter is useful for implementing your own [LineEdit] or [TextEdit],
-   * as it tells the virtual keyboard what text has already been typed (the virtual keyboard uses it
-   * for auto-correct and predictions).
-   * [param position] parameter is the screen space [Rect2] of the edited text.
-   * [param type] parameter allows configuring which type of virtual keyboard to show.
-   * [param max_length] limits the number of characters that can be entered if different from `-1`.
-   * [param cursor_start] can optionally define the current text cursor position if [param
-   * cursor_end] is not set.
-   * [param cursor_start] and [param cursor_end] can optionally define the current text selection.
+   * [existingText] parameter is useful for implementing your own [LineEdit] or [TextEdit], as it
+   * tells the virtual keyboard what text has already been typed (the virtual keyboard uses it for
+   * auto-correct and predictions).
+   * [position] parameter is the screen space [Rect2] of the edited text.
+   * [type] parameter allows configuring which type of virtual keyboard to show.
+   * [maxLength] limits the number of characters that can be entered if different from `-1`.
+   * [cursorStart] can optionally define the current text cursor position if [cursorEnd] is not set.
+   * [cursorStart] and [cursorEnd] can optionally define the current text selection.
    * **Note:** This method is implemented on Android, iOS and Web.
    */
   @JvmOverloads
@@ -2066,11 +2059,11 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets a custom mouse cursor image for the defined [param shape]. This means the user's operating
+   * Sets a custom mouse cursor image for the defined [shape]. This means the user's operating
    * system and mouse cursor theme will no longer influence the mouse cursor's appearance. The image
-   * must be `256x256` or smaller for correct appearance. [param hotspot] can optionally be set to
-   * define the area where the cursor will click. By default, [param hotspot] is set to `Vector2(0,
-   * 0)`, which is the top-left corner of the image. See also [cursorSetShape].
+   * must be `256x256` or smaller for correct appearance. [hotspot] can optionally be set to define the
+   * area where the cursor will click. By default, [hotspot] is set to `Vector2(0, 0)`, which is the
+   * top-left corner of the image. See also [cursorSetShape].
    */
   @JvmOverloads
   public fun cursorSetCustomImage(
@@ -2096,8 +2089,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Allows the [param process_id] PID to steal focus from this window. In other words, this
-   * disables the operating system's focus stealing protection for the specified PID.
+   * Allows the [processId] PID to steal focus from this window. In other words, this disables the
+   * operating system's focus stealing protection for the specified PID.
    * **Note:** This method is implemented only on Windows.
    */
   public fun enableForStealingFocus(processId: Long): Unit {
@@ -2106,8 +2099,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Shows a text dialog which uses the operating system's native look-and-feel. [param callback]
-   * will be called when the dialog is closed for any reason.
+   * Shows a text dialog which uses the operating system's native look-and-feel. [callback] will be
+   * called when the dialog is closed for any reason.
    * **Note:** This method is implemented only on macOS.
    */
   public fun dialogShow(
@@ -2122,9 +2115,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Shows a text input dialog which uses the operating system's native look-and-feel. [param
-   * callback] will be called with a [String] argument equal to the text field's contents when the
-   * dialog is closed for any reason.
+   * Shows a text input dialog which uses the operating system's native look-and-feel. [callback]
+   * will be called with a [String] argument equal to the text field's contents when the dialog is
+   * closed for any reason.
    * **Note:** This method is implemented only on macOS.
    */
   public fun dialogInputText(
@@ -2142,11 +2135,11 @@ public object DisplayServer : Object() {
    * Displays OS native dialog for selecting files or directories in the file system.
    * Callbacks have the following arguments: `bool status, PackedStringArray selected_paths, int
    * selected_filter_index`.
-   * **Note:** This method is implemented if the display server has the [constant
-   * FEATURE_NATIVE_DIALOG] feature.
+   * **Note:** This method is implemented if the display server has the [FEATURENATIVEDIALOG]
+   * feature.
    * **Note:** This method is implemented on Linux, Windows and macOS.
-   * **Note:** [param current_directory] might be ignored.
-   * **Note:** On Linux, [param show_hidden] is ignored.
+   * **Note:** [currentDirectory] might be ignored.
+   * **Note:** On Linux, [showHidden] is ignored.
    * **Note:** On macOS, native file dialogs have no title.
    * **Note:** On macOS, sandboxed apps will save security-scoped bookmarks to retain access to the
    * opened folders across multiple sessions. Use [OS.getGrantedPermissions] to get a list of saved
@@ -2196,7 +2189,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the ISO-639/BCP-47 language code of the keyboard layout at position [param index].
+   * Returns the ISO-639/BCP-47 language code of the keyboard layout at position [index].
    * **Note:** This method is implemented on Linux (X11), macOS and Windows.
    */
   public fun keyboardGetLayoutLanguage(index: Int): String {
@@ -2206,7 +2199,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the localized name of the keyboard layout at position [param index].
+   * Returns the localized name of the keyboard layout at position [index].
    * **Note:** This method is implemented on Linux (X11), macOS and Windows.
    */
   public fun keyboardGetLayoutName(index: Int): String {
@@ -2216,7 +2209,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Converts a physical (US QWERTY) [param keycode] to one in the active keyboard layout.
+   * Converts a physical (US QWERTY) [keycode] to one in the active keyboard layout.
    * **Note:** This method is implemented on Linux (X11), macOS and Windows.
    */
   public fun keyboardGetKeycodeFromPhysical(keycode: Key): Key {
@@ -2226,8 +2219,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Converts a physical (US QWERTY) [param keycode] to localized label printed on the key in the
-   * active keyboard layout.
+   * Converts a physical (US QWERTY) [keycode] to localized label printed on the key in the active
+   * keyboard layout.
    * **Note:** This method is implemented on Linux (X11), macOS and Windows.
    */
   public fun keyboardGetLabelFromPhysical(keycode: Key): Key {
@@ -2256,11 +2249,11 @@ public object DisplayServer : Object() {
 
   /**
    * Sets the window icon (usually displayed in the top-left corner) in the operating system's
-   * *native* format. The file at [param filename] must be in `.ico` format on Windows or `.icns` on
-   * macOS. By using specially crafted `.ico` or `.icns` icons, [setNativeIcon] allows specifying
-   * different icons depending on the size the icon is displayed at. This size is determined by the
-   * operating system and user preferences (including the display scale factor). To use icons in other
-   * formats, use [setIcon] instead.
+   * *native* format. The file at [filename] must be in `.ico` format on Windows or `.icns` on macOS.
+   * By using specially crafted `.ico` or `.icns` icons, [setNativeIcon] allows specifying different
+   * icons depending on the size the icon is displayed at. This size is determined by the operating
+   * system and user preferences (including the display scale factor). To use icons in other formats,
+   * use [setIcon] instead.
    */
   public fun setNativeIcon(filename: String): Unit {
     TransferContext.writeArguments(STRING to filename)
@@ -2342,8 +2335,8 @@ public object DisplayServer : Object() {
      */
     FEATURE_MOUSE_WARP(4),
     /**
-     * Display server supports setting and getting clipboard data. See also [constant
-     * FEATURE_CLIPBOARD_PRIMARY]. **Windows, macOS, Linux (X11), Android, iOS, Web**
+     * Display server supports setting and getting clipboard data. See also
+     * [FEATURECLIPBOARDPRIMARY]. **Windows, macOS, Linux (X11), Android, iOS, Web**
      */
     FEATURE_CLIPBOARD(5),
     /**
@@ -2405,7 +2398,7 @@ public object DisplayServer : Object() {
     FEATURE_SWAP_BUFFERS(16),
     /**
      * Display server supports Primary clipboard can be used. This is a different clipboard from
-     * [constant FEATURE_CLIPBOARD]. **Linux (X11)**
+     * [FEATURECLIPBOARD]. **Linux (X11)**
      */
     FEATURE_CLIPBOARD_PRIMARY(18),
     /**
@@ -2414,8 +2407,8 @@ public object DisplayServer : Object() {
      */
     FEATURE_TEXT_TO_SPEECH(19),
     /**
-     * Display server supports expanding window content to the title. See [constant
-     * WINDOW_FLAG_EXTEND_TO_TITLE]. **macOS**
+     * Display server supports expanding window content to the title. See [WINDOWFLAGEXTENDTOTITLE].
+     * **macOS**
      */
     FEATURE_EXTEND_TO_TITLE(20),
     /**
@@ -2545,8 +2538,8 @@ public object DisplayServer : Object() {
     /**
      * Virtual keyboard for entering a password. On most platforms, this should disable autocomplete
      * and autocapitalization.
-     * **Note:** This is not supported on Web. Instead, this behaves identically to [constant
-     * KEYBOARD_TYPE_DEFAULT].
+     * **Note:** This is not supported on Web. Instead, this behaves identically to
+     * [KEYBOARDTYPEDEFAULT].
      */
     KEYBOARD_TYPE_PASSWORD(6),
     /**
@@ -2591,24 +2584,24 @@ public object DisplayServer : Object() {
     /**
      * Wait cursor. On most cursor themes, this displays a spinning icon *besides* the arrow.
      * Intended to be used for non-blocking operations (when the user can do something else at the
-     * moment). See also [constant CURSOR_BUSY].
+     * moment). See also [CURSORBUSY].
      */
     CURSOR_WAIT(4),
     /**
      * Wait cursor. On most cursor themes, this *replaces* the arrow with a spinning icon. Intended
      * to be used for blocking operations (when the user can't do anything else at the moment). See
-     * also [constant CURSOR_WAIT].
+     * also [CURSORWAIT].
      */
     CURSOR_BUSY(5),
     /**
-     * Dragging hand cursor. This is displayed during drag-and-drop operations. See also [constant
-     * CURSOR_CAN_DROP].
+     * Dragging hand cursor. This is displayed during drag-and-drop operations. See also
+     * [CURSORCANDROP].
      */
     CURSOR_DRAG(6),
     /**
      * "Can drop" cursor. This is displayed during drag-and-drop operations if hovering over a
      * [Control] that can accept the drag-and-drop event. On most cursor themes, this displays a
-     * dragging hand with an arrow symbol besides it. See also [constant CURSOR_DRAG].
+     * dragging hand with an arrow symbol besides it. See also [CURSORDRAG].
      */
     CURSOR_CAN_DROP(7),
     /**
@@ -2618,12 +2611,12 @@ public object DisplayServer : Object() {
     CURSOR_FORBIDDEN(8),
     /**
      * Vertical resize cursor. Intended to be displayed when the hovered [Control] can be vertically
-     * resized using the mouse. See also [constant CURSOR_VSPLIT].
+     * resized using the mouse. See also [CURSORVSPLIT].
      */
     CURSOR_VSIZE(9),
     /**
      * Horizontal resize cursor. Intended to be displayed when the hovered [Control] can be
-     * horizontally resized using the mouse. See also [constant CURSOR_HSPLIT].
+     * horizontally resized using the mouse. See also [CURSORHSPLIT].
      */
     CURSOR_HSIZE(10),
     /**
@@ -2644,13 +2637,13 @@ public object DisplayServer : Object() {
     /**
      * Vertical split cursor. This is displayed when hovering a [Control] with splits that can be
      * vertically resized using the mouse, such as [VSplitContainer]. On some cursor themes, this
-     * cursor may have the same appearance as [constant CURSOR_VSIZE].
+     * cursor may have the same appearance as [CURSORVSIZE].
      */
     CURSOR_VSPLIT(14),
     /**
      * Horizontal split cursor. This is displayed when hovering a [Control] with splits that can be
      * horizontally resized using the mouse, such as [HSplitContainer]. On some cursor themes, this
-     * cursor may have the same appearance as [constant CURSOR_HSIZE].
+     * cursor may have the same appearance as [CURSORHSIZE].
      */
     CURSOR_HSPLIT(15),
     /**
@@ -2660,7 +2653,7 @@ public object DisplayServer : Object() {
      */
     CURSOR_HELP(16),
     /**
-     * Represents the size of the [enum CursorShape] enum.
+     * Represents the size of the [CursorShape] enum.
      */
     CURSOR_MAX(17),
     ;
@@ -2824,7 +2817,7 @@ public object DisplayServer : Object() {
      */
     WINDOW_FLAG_MOUSE_PASSTHROUGH(7),
     /**
-     * Max value of the [enum WindowFlags].
+     * Max value of the [WindowFlags].
      */
     WINDOW_FLAG_MAX(8),
     ;
@@ -2873,8 +2866,8 @@ public object DisplayServer : Object() {
      */
     WINDOW_EVENT_DPI_CHANGE(6),
     /**
-     * Sent when the window title bar decoration is changed (e.g. [constant
-     * WINDOW_FLAG_EXTEND_TO_TITLE] is set or window entered/exited full screen mode).
+     * Sent when the window title bar decoration is changed (e.g. [WINDOWFLAGEXTENDTOTITLE] is set
+     * or window entered/exited full screen mode).
      * **Note:** This flag is implemented only on macOS.
      */
     WINDOW_EVENT_TITLEBAR_CHANGE(7),
@@ -2905,11 +2898,10 @@ public object DisplayServer : Object() {
      */
     VSYNC_ENABLED(1),
     /**
-     * Behaves like [constant VSYNC_DISABLED] when the framerate drops below the screen's refresh
-     * rate to reduce stuttering (tearing may be visible). Otherwise, vertical synchronization is
-     * enabled to avoid tearing. Framerate is limited by the monitor refresh rate (notwithstanding
-     * [Engine.maxFps]). Behaves like [constant VSYNC_ENABLED] when using the Compatibility rendering
-     * method.
+     * Behaves like [VSYNCDISABLED] when the framerate drops below the screen's refresh rate to
+     * reduce stuttering (tearing may be visible). Otherwise, vertical synchronization is enabled to
+     * avoid tearing. Framerate is limited by the monitor refresh rate (notwithstanding
+     * [Engine.maxFps]). Behaves like [VSYNCENABLED] when using the Compatibility rendering method.
      */
     VSYNC_ADAPTIVE(2),
     /**
@@ -2917,9 +2909,9 @@ public object DisplayServer : Object() {
      * to the other images (no tearing is visible). Framerate is unlimited (notwithstanding
      * [Engine.maxFps]).
      * Although not guaranteed, the images can be rendered as fast as possible, which may reduce
-     * input lag (also called "Fast" V-Sync mode). [constant VSYNC_MAILBOX] works best when at least
-     * twice as many frames as the display refresh rate are rendered. Behaves like [constant
-     * VSYNC_ENABLED] when using the Compatibility rendering method.
+     * input lag (also called "Fast" V-Sync mode). [VSYNCMAILBOX] works best when at least twice as
+     * many frames as the display refresh rate are rendered. Behaves like [VSYNCENABLED] when using the
+     * Compatibility rendering method.
      */
     VSYNC_MAILBOX(3),
     ;

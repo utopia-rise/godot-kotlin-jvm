@@ -163,8 +163,7 @@ public open class XRPositionalTracker : RefCounted() {
   }
 
   /**
-   * Returns `true` if the tracker is available and is currently tracking the bound [param name]
-   * pose.
+   * Returns `true` if the tracker is available and is currently tracking the bound [name] pose.
    */
   public fun hasPose(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -173,7 +172,7 @@ public open class XRPositionalTracker : RefCounted() {
   }
 
   /**
-   * Returns the current [XRPose] state object for the bound [param name] pose.
+   * Returns the current [XRPose] state object for the bound [name] pose.
    */
   public fun getPose(name: StringName): XRPose? {
     TransferContext.writeArguments(STRING_NAME to name)

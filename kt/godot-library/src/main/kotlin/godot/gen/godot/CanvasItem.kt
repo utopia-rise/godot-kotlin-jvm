@@ -48,8 +48,8 @@ import kotlin.jvm.JvmOverloads
  * Abstract base class for everything in 2D space. Canvas items are laid out in a tree; children
  * inherit and extend their parent's transform. [CanvasItem] is extended by [Control] for GUI-related
  * nodes, and by [Node2D] for 2D game objects.
- * Any [CanvasItem] can draw. For this, [queueRedraw] is called by the engine, then [constant
- * NOTIFICATION_DRAW] will be received on idle time to request a redraw. Because of this, canvas items
+ * Any [CanvasItem] can draw. For this, [queueRedraw] is called by the engine, then
+ * [NOTIFICATIONDRAW] will be received on idle time to request a redraw. Because of this, canvas items
  * don't need to be redrawn on every frame, improving the performance significantly. Several functions
  * for drawing on the [CanvasItem] are provided (see `draw_*` functions). However, they can only be
  * used inside [_draw], its corresponding [Object.Notification] or methods connected to the [signal
@@ -64,8 +64,8 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class CanvasItem internal constructor() : Node() {
   /**
-   * Emitted when the [CanvasItem] must redraw, *after* the related [constant NOTIFICATION_DRAW]
-   * notification, and *before* [_draw] is called.
+   * Emitted when the [CanvasItem] must redraw, *after* the related [NOTIFICATIONDRAW] notification,
+   * and *before* [_draw] is called.
    * **Note:** Deferred connections do not allow drawing through the `draw_*` methods.
    */
   public val draw: Signal0 by signal()
@@ -215,8 +215,8 @@ public open class CanvasItem internal constructor() : Node() {
 
   /**
    * Z index. Controls the order in which the nodes render. A node with a higher Z index will
-   * display in front of others. Must be between [constant RenderingServer.CANVAS_ITEM_Z_MIN] and
-   * [constant RenderingServer.CANVAS_ITEM_Z_MAX] (inclusive).
+   * display in front of others. Must be between [RenderingServer.CANVASITEMZMIN] and
+   * [RenderingServer.CANVASITEMZMAX] (inclusive).
    * **Note:** Changing the Z index of a [Control] only affects the drawing order, not the order in
    * which input events are handled. This can be useful to implement certain UI animations, e.g. a menu
    * where hovered items are scaled and should overlap others.
@@ -383,7 +383,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Called when [CanvasItem] has been requested to redraw (after [queueRedraw] is called, either
    * manually or by the engine).
-   * Corresponds to the [constant NOTIFICATION_DRAW] notification in [Object.Notification].
+   * Corresponds to the [NOTIFICATIONDRAW] notification in [Object.Notification].
    */
   public open fun _draw(): Unit {
   }
@@ -428,8 +428,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Queues the [CanvasItem] to redraw. During idle time, if [CanvasItem] is visible, [constant
-   * NOTIFICATION_DRAW] is sent and [_draw] is called. This only occurs **once** per frame, even if
+   * Queues the [CanvasItem] to redraw. During idle time, if [CanvasItem] is visible,
+   * [NOTIFICATIONDRAW] is sent and [_draw] is called. This only occurs **once** per frame, even if
    * this method has been called multiple times.
    */
   public fun queueRedraw(): Unit {
@@ -450,9 +450,9 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a line from a 2D point to another, with a given color and width. It can be optionally
    * antialiased. See also [drawMultiline] and [drawPolyline].
-   * If [param width] is negative, then a two-point primitive will be drawn instead of a four-point
-   * one. This means that when the CanvasItem is scaled, the line will remain thin. If this behavior is
-   * not desired, then pass a positive [param width] like `1.0`.
+   * If [width] is negative, then a two-point primitive will be drawn instead of a four-point one.
+   * This means that when the CanvasItem is scaled, the line will remain thin. If this behavior is not
+   * desired, then pass a positive [width] like `1.0`.
    */
   @JvmOverloads
   public fun drawLine(
@@ -469,9 +469,9 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a dashed line from a 2D point to another, with a given color and width. See also
    * [drawMultiline] and [drawPolyline].
-   * If [param width] is negative, then a two-point primitives will be drawn instead of a four-point
-   * ones. This means that when the CanvasItem is scaled, the line parts will remain thin. If this
-   * behavior is not desired, then pass a positive [param width] like `1.0`.
+   * If [width] is negative, then a two-point primitives will be drawn instead of a four-point ones.
+   * This means that when the CanvasItem is scaled, the line parts will remain thin. If this behavior
+   * is not desired, then pass a positive [width] like `1.0`.
    */
   @JvmOverloads
   public fun drawDashedLine(
@@ -487,13 +487,13 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws interconnected line segments with a uniform [param color] and [param width] and optional
-   * antialiasing (supported only for positive [param width]). When drawing large amounts of lines,
-   * this is faster than using individual [drawLine] calls. To draw disconnected lines, use
-   * [drawMultiline] instead. See also [drawPolygon].
-   * If [param width] is negative, it will be ignored and the polyline will be drawn using [constant
-   * RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the polyline
-   * will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.
+   * Draws interconnected line segments with a uniform [color] and [width] and optional antialiasing
+   * (supported only for positive [width]). When drawing large amounts of lines, this is faster than
+   * using individual [drawLine] calls. To draw disconnected lines, use [drawMultiline] instead. See
+   * also [drawPolygon].
+   * If [width] is negative, it will be ignored and the polyline will be drawn using
+   * [RenderingServer.PRIMITIVELINESTRIP]. This means that when the CanvasItem is scaled, the polyline
+   * will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
    */
   @JvmOverloads
   public fun drawPolyline(
@@ -507,15 +507,15 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws interconnected line segments with a uniform [param width], point-by-point coloring, and
-   * optional antialiasing (supported only for positive [param width]). Colors assigned to line points
-   * match by index between [param points] and [param colors], i.e. each line segment is filled with a
-   * gradient between the colors of the endpoints. When drawing large amounts of lines, this is faster
-   * than using individual [drawLine] calls. To draw disconnected lines, use [drawMultilineColors]
-   * instead. See also [drawPolygon].
-   * If [param width] is negative, it will be ignored and the polyline will be drawn using [constant
-   * RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the polyline
-   * will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.
+   * Draws interconnected line segments with a uniform [width], point-by-point coloring, and
+   * optional antialiasing (supported only for positive [width]). Colors assigned to line points match
+   * by index between [points] and [colors], i.e. each line segment is filled with a gradient between
+   * the colors of the endpoints. When drawing large amounts of lines, this is faster than using
+   * individual [drawLine] calls. To draw disconnected lines, use [drawMultilineColors] instead. See
+   * also [drawPolygon].
+   * If [width] is negative, it will be ignored and the polyline will be drawn using
+   * [RenderingServer.PRIMITIVELINESTRIP]. This means that when the CanvasItem is scaled, the polyline
+   * will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
    */
   @JvmOverloads
   public fun drawPolylineColors(
@@ -529,17 +529,16 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws an unfilled arc between the given angles with a uniform [param color] and [param width]
-   * and optional antialiasing (supported only for positive [param width]). The larger the value of
-   * [param point_count], the smoother the curve. See also [drawCircle].
-   * If [param width] is negative, it will be ignored and the arc will be drawn using [constant
-   * RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the arc will
-   * remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.
-   * The arc is drawn from [param start_angle] towards the value of [param end_angle] so in
-   * clockwise direction if `start_angle < end_angle` and counter-clockwise otherwise. Passing the same
-   * angles but in reversed order will produce the same arc. If absolute difference of [param
-   * start_angle] and [param end_angle] is greater than [constant @GDScript.TAU] radians, then a full
-   * circle arc is drawn (i.e. arc will not overlap itself).
+   * Draws an unfilled arc between the given angles with a uniform [color] and [width] and optional
+   * antialiasing (supported only for positive [width]). The larger the value of [pointCount], the
+   * smoother the curve. See also [drawCircle].
+   * If [width] is negative, it will be ignored and the arc will be drawn using
+   * [RenderingServer.PRIMITIVELINESTRIP]. This means that when the CanvasItem is scaled, the arc will
+   * remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
+   * The arc is drawn from [startAngle] towards the value of [endAngle] so in clockwise direction if
+   * `start_angle < end_angle` and counter-clockwise otherwise. Passing the same angles but in reversed
+   * order will produce the same arc. If absolute difference of [startAngle] and [endAngle] is greater
+   * than [@GDScript.TAU] radians, then a full circle arc is drawn (i.e. arc will not overlap itself).
    */
   @JvmOverloads
   public fun drawArc(
@@ -557,14 +556,13 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws multiple disconnected lines with a uniform [param width] and [param color]. Each line is
-   * defined by two consecutive points from [param points] array, i.e. i-th segment consists of
-   * `points[2 * i]`, `points[2 * i + 1]` endpoints. When drawing large amounts of lines, this is
-   * faster than using individual [drawLine] calls. To draw interconnected lines, use [drawPolyline]
-   * instead.
-   * If [param width] is negative, then two-point primitives will be drawn instead of a four-point
-   * ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior
-   * is not desired, then pass a positive [param width] like `1.0`.
+   * Draws multiple disconnected lines with a uniform [width] and [color]. Each line is defined by
+   * two consecutive points from [points] array, i.e. i-th segment consists of `points[2 * i]`,
+   * `points[2 * i + 1]` endpoints. When drawing large amounts of lines, this is faster than using
+   * individual [drawLine] calls. To draw interconnected lines, use [drawPolyline] instead.
+   * If [width] is negative, then two-point primitives will be drawn instead of a four-point ones.
+   * This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not
+   * desired, then pass a positive [width] like `1.0`.
    */
   @JvmOverloads
   public fun drawMultiline(
@@ -577,14 +575,14 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws multiple disconnected lines with a uniform [param width] and segment-by-segment coloring.
-   * Each segment is defined by two consecutive points from [param points] array and a corresponding
-   * color from [param colors] array, i.e. i-th segment consists of `points[2 * i]`, `points[2 * i +
-   * 1]` endpoints and has `colors[i]` color. When drawing large amounts of lines, this is faster than
-   * using individual [drawLine] calls. To draw interconnected lines, use [drawPolylineColors] instead.
-   * If [param width] is negative, then two-point primitives will be drawn instead of a four-point
-   * ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior
-   * is not desired, then pass a positive [param width] like `1.0`.
+   * Draws multiple disconnected lines with a uniform [width] and segment-by-segment coloring. Each
+   * segment is defined by two consecutive points from [points] array and a corresponding color from
+   * [colors] array, i.e. i-th segment consists of `points[2 * i]`, `points[2 * i + 1]` endpoints and
+   * has `colors[i]` color. When drawing large amounts of lines, this is faster than using individual
+   * [drawLine] calls. To draw interconnected lines, use [drawPolylineColors] instead.
+   * If [width] is negative, then two-point primitives will be drawn instead of a four-point ones.
+   * This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not
+   * desired, then pass a positive [width] like `1.0`.
    */
   @JvmOverloads
   public fun drawMultilineColors(
@@ -597,16 +595,15 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a rectangle. If [param filled] is `true`, the rectangle will be filled with the [param
-   * color] specified. If [param filled] is `false`, the rectangle will be drawn as a stroke with the
-   * [param color] and [param width] specified. See also [drawTextureRect].
-   * If [param width] is negative, then two-point primitives will be drawn instead of a four-point
-   * ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior
-   * is not desired, then pass a positive [param width] like `1.0`.
-   * **Note:** [param width] is only effective if [param filled] is `false`.
-   * **Note:** Unfilled rectangles drawn with a negative [param width] may not display perfectly.
-   * For example, corners may be missing or brighter due to overlapping lines (for a translucent [param
-   * color]).
+   * Draws a rectangle. If [filled] is `true`, the rectangle will be filled with the [color]
+   * specified. If [filled] is `false`, the rectangle will be drawn as a stroke with the [color] and
+   * [width] specified. See also [drawTextureRect].
+   * If [width] is negative, then two-point primitives will be drawn instead of a four-point ones.
+   * This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not
+   * desired, then pass a positive [width] like `1.0`.
+   * **Note:** [width] is only effective if [filled] is `false`.
+   * **Note:** Unfilled rectangles drawn with a negative [width] may not display perfectly. For
+   * example, corners may be missing or brighter due to overlapping lines (for a translucent [color]).
    */
   @JvmOverloads
   public fun drawRect(
@@ -645,9 +642,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a textured rectangle at a given position, optionally modulated by a color. If [param
-   * transpose] is `true`, the texture will have its X and Y coordinates swapped. See also [drawRect]
-   * and [drawTextureRectRegion].
+   * Draws a textured rectangle at a given position, optionally modulated by a color. If [transpose]
+   * is `true`, the texture will have its X and Y coordinates swapped. See also [drawRect] and
+   * [drawTextureRectRegion].
    */
   @JvmOverloads
   public fun drawTextureRect(
@@ -662,9 +659,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a textured rectangle from a texture's region (specified by [param src_rect]) at a given
-   * position, optionally modulated by a color. If [param transpose] is `true`, the texture will have
-   * its X and Y coordinates swapped. See also [drawTextureRect].
+   * Draws a textured rectangle from a texture's region (specified by [srcRect]) at a given
+   * position, optionally modulated by a color. If [transpose] is `true`, the texture will have its X
+   * and Y coordinates swapped. See also [drawTextureRect].
    */
   @JvmOverloads
   public fun drawTextureRectRegion(
@@ -683,9 +680,9 @@ public open class CanvasItem internal constructor() : Node() {
    * Draws a textured rectangle region of the multi-channel signed distance field texture at a given
    * position, optionally modulated by a color. See [FontFile.multichannelSignedDistanceField] for more
    * information and caveats about MSDF font rendering.
-   * If [param outline] is positive, each alpha channel value of pixel in region is set to maximum
-   * value of true distance in the [param outline] radius.
-   * Value of the [param pixel_range] should the same that was used during distance field texture
+   * If [outline] is positive, each alpha channel value of pixel in region is set to maximum value
+   * of true distance in the [outline] radius.
+   * Value of the [pixelRange] should the same that was used during distance field texture
    * generation.
    */
   @JvmOverloads
@@ -783,10 +780,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws [param text] using the specified [param font] at the [param pos] (bottom-left corner
-   * using the baseline of the font). The text will have its color multiplied by [param modulate]. If
-   * [param width] is greater than or equal to 0, the text will be clipped if it exceeds the specified
-   * width.
+   * Draws [text] using the specified [font] at the [pos] (bottom-left corner using the baseline of
+   * the font). The text will have its color multiplied by [modulate]. If [width] is greater than or
+   * equal to 0, the text will be clipped if it exceeds the specified width.
    * **Example using the default project font:**
    *
    * gdscript:
@@ -830,9 +826,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Breaks [param text] into lines and draws it using the specified [param font] at the [param pos]
-   * (top-left corner). The text will have its color multiplied by [param modulate]. If [param width]
-   * is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
+   * Breaks [text] into lines and draws it using the specified [font] at the [pos] (top-left
+   * corner). The text will have its color multiplied by [modulate]. If [width] is greater than or
+   * equal to 0, the text will be clipped if it exceeds the specified width.
    */
   @JvmOverloads
   public fun drawMultilineString(
@@ -854,10 +850,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws [param text] outline using the specified [param font] at the [param pos] (bottom-left
-   * corner using the baseline of the font). The text will have its color multiplied by [param
-   * modulate]. If [param width] is greater than or equal to 0, the text will be clipped if it exceeds
-   * the specified width.
+   * Draws [text] outline using the specified [font] at the [pos] (bottom-left corner using the
+   * baseline of the font). The text will have its color multiplied by [modulate]. If [width] is
+   * greater than or equal to 0, the text will be clipped if it exceeds the specified width.
    */
   @JvmOverloads
   public fun drawStringOutline(
@@ -878,10 +873,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Breaks [param text] to the lines and draws text outline using the specified [param font] at the
-   * [param pos] (top-left corner). The text will have its color multiplied by [param modulate]. If
-   * [param width] is greater than or equal to 0, the text will be clipped if it exceeds the specified
-   * width.
+   * Breaks [text] to the lines and draws text outline using the specified [font] at the [pos]
+   * (top-left corner). The text will have its color multiplied by [modulate]. If [width] is greater
+   * than or equal to 0, the text will be clipped if it exceeds the specified width.
    */
   @JvmOverloads
   public fun drawMultilineStringOutline(
@@ -961,10 +955,10 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Sets a custom transform for drawing via components. Anything drawn afterwards will be
    * transformed by this.
-   * **Note:** [FontFile.oversampling] does *not* take [param scale] into account. This means that
-   * scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry
-   * or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font rendering
-   * by enabling [ProjectSettings.gui/theme/defaultFontMultichannelSignedDistanceField] (applies to the
+   * **Note:** [FontFile.oversampling] does *not* take [scale] into account. This means that scaling
+   * up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or
+   * pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font rendering by
+   * enabling [ProjectSettings.gui/theme/defaultFontMultichannelSignedDistanceField] (applies to the
    * default project font only), or enabling **Multichannel Signed Distance Field** in the import
    * options of a DynamicFont for custom fonts. On system fonts,
    * [SystemFont.multichannelSignedDistanceField] can be enabled in the inspector.
@@ -1126,8 +1120,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * If [param enable] is `true`, this node will receive [constant
-   * NOTIFICATION_LOCAL_TRANSFORM_CHANGED] when its local transform changes.
+   * If [enable] is `true`, this node will receive [NOTIFICATIONLOCALTRANSFORMCHANGED] when its
+   * local transform changes.
    */
   public fun setNotifyLocalTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -1144,8 +1138,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * If [param enable] is `true`, this node will receive [constant NOTIFICATION_TRANSFORM_CHANGED]
-   * when its global transform changes.
+   * If [enable] is `true`, this node will receive [NOTIFICATIONTRANSFORMCHANGED] when its global
+   * transform changes.
    */
   public fun setNotifyTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -1172,7 +1166,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Assigns [param screen_point] as this node's new local transform.
+   * Assigns [screenPoint] as this node's new local transform.
    */
   public fun makeCanvasPositionLocal(screenPoint: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
@@ -1181,8 +1175,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Transformations issued by [param event]'s inputs are applied in local space instead of global
-   * space.
+   * Transformations issued by [event]'s inputs are applied in local space instead of global space.
    */
   public fun makeInputLocal(event: InputEvent): InputEvent? {
     TransferContext.writeArguments(OBJECT to event)
@@ -1241,8 +1234,8 @@ public open class CanvasItem internal constructor() : Node() {
      * between the surface and the camera view. This reduces artifacts on surfaces that are almost in
      * line with the camera. The anisotropic filtering level can be changed by adjusting
      * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
-     * **Note:** This texture filter is rarely useful in 2D projects. [constant
-     * TEXTURE_FILTER_NEAREST_WITH_MIPMAPS] is usually more appropriate.
+     * **Note:** This texture filter is rarely useful in 2D projects.
+     * [TEXTUREFILTERNEARESTWITHMIPMAPS] is usually more appropriate.
      */
     TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC(5),
     /**
@@ -1251,12 +1244,12 @@ public open class CanvasItem internal constructor() : Node() {
      * almost in line with the camera. This is the slowest of the filtering options, but results in the
      * highest quality texturing. The anisotropic filtering level can be changed by adjusting
      * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
-     * **Note:** This texture filter is rarely useful in 2D projects. [constant
-     * TEXTURE_FILTER_LINEAR_WITH_MIPMAPS] is usually more appropriate.
+     * **Note:** This texture filter is rarely useful in 2D projects.
+     * [TEXTUREFILTERLINEARWITHMIPMAPS] is usually more appropriate.
      */
     TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC(6),
     /**
-     * Represents the size of the [enum TextureFilter] enum.
+     * Represents the size of the [TextureFilter] enum.
      */
     TEXTURE_FILTER_MAX(7),
     ;
@@ -1291,7 +1284,7 @@ public open class CanvasItem internal constructor() : Node() {
      */
     TEXTURE_REPEAT_MIRROR(3),
     /**
-     * Represents the size of the [enum TextureRepeat] enum.
+     * Represents the size of the [TextureRepeat] enum.
      */
     TEXTURE_REPEAT_MAX(4),
     ;
@@ -1324,7 +1317,7 @@ public open class CanvasItem internal constructor() : Node() {
      */
     CLIP_CHILDREN_AND_DRAW(2),
     /**
-     * Represents the size of the [enum ClipChildrenMode] enum.
+     * Represents the size of the [ClipChildrenMode] enum.
      */
     CLIP_CHILDREN_MAX(3),
     ;

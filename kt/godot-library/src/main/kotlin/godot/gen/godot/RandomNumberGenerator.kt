@@ -116,8 +116,8 @@ public open class RandomNumberGenerator : RefCounted() {
 
   /**
    * Returns a [url=https://en.wikipedia.org/wiki/Normal_distribution]normally-distributed[/url]
-   * pseudo-random number, using Box-Muller transform with the specified [param mean] and a standard
-   * [param deviation]. This is also called Gaussian distribution.
+   * pseudo-random number, using Box-Muller transform with the specified [mean] and a standard
+   * [deviation]. This is also called Gaussian distribution.
    */
   @JvmOverloads
   public fun randfn(mean: Float = 0.0f, deviation: Float = 1.0f): Float {
@@ -127,7 +127,7 @@ public open class RandomNumberGenerator : RefCounted() {
   }
 
   /**
-   * Returns a pseudo-random float between [param from] and [param to] (inclusive).
+   * Returns a pseudo-random float between [from] and [to] (inclusive).
    */
   public fun randfRange(from: Float, to: Float): Float {
     TransferContext.writeArguments(DOUBLE to from.toDouble(), DOUBLE to to.toDouble())
@@ -136,7 +136,7 @@ public open class RandomNumberGenerator : RefCounted() {
   }
 
   /**
-   * Returns a pseudo-random 32-bit signed integer between [param from] and [param to] (inclusive).
+   * Returns a pseudo-random 32-bit signed integer between [from] and [to] (inclusive).
    */
   public fun randiRange(from: Int, to: Int): Int {
     TransferContext.writeArguments(LONG to from.toLong(), LONG to to.toLong())

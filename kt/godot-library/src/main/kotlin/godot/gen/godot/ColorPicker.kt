@@ -80,7 +80,7 @@ public open class ColorPicker : VBoxContainer() {
     }
 
   /**
-   * The currently selected color mode. See [enum ColorModeType].
+   * The currently selected color mode. See [ColorModeType].
    */
   public var colorMode: ColorModeType
     get() {
@@ -109,7 +109,7 @@ public open class ColorPicker : VBoxContainer() {
     }
 
   /**
-   * The shape of the color space view. See [enum PickerShapeType].
+   * The shape of the color space view. See [PickerShapeType].
    */
   public var pickerShape: PickerShapeType
     get() {

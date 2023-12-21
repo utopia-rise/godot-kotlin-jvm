@@ -918,8 +918,8 @@ public open class Node3D : Node() {
 
   /**
    * Changes the node's position by the given offset [Vector3].
-   * Note that the translation [param offset] is affected by the node's scale, so if scaled by e.g.
-   * `(10, 1, 1)`, a translation by an offset of `(2, 0, 0)` would actually add 20 (`2 * 10`) to the X
+   * Note that the translation [offset] is affected by the node's scale, so if scaled by e.g. `(10,
+   * 1, 1)`, a translation by an offset of `(2, 0, 0)` would actually add 20 (`2 * 10`) to the X
    * coordinate.
    */
   public fun translate(offset: Vector3): Unit {
@@ -945,18 +945,18 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Rotates the node so that the local forward axis (-Z, [constant Vector3.FORWARD]) points toward
-   * the [param target] position.
-   * The local up axis (+Y) points as close to the [param up] vector as possible while staying
+   * Rotates the node so that the local forward axis (-Z, [Vector3.FORWARD]) points toward the
+   * [target] position.
+   * The local up axis (+Y) points as close to the [up] vector as possible while staying
    * perpendicular to the local forward axis. The resulting transform is orthogonal, and the scale is
    * preserved. Non-uniform scaling may not work correctly.
-   * The [param target] position cannot be the same as the node's position, the [param up] vector
-   * cannot be zero, and the direction from the node's position to the [param target] vector cannot be
-   * parallel to the [param up] vector.
+   * The [target] position cannot be the same as the node's position, the [up] vector cannot be
+   * zero, and the direction from the node's position to the [target] vector cannot be parallel to the
+   * [up] vector.
    * Operations take place in global space, which means that the node must be in the scene tree.
-   * If [param use_model_front] is `true`, the +Z axis (asset front) is treated as forward
-   * (implies +X is left) and points toward the [param target] position. By default, the -Z axis
-   * (camera forward) is treated as forward (implies +X is right).
+   * If [useModelFront] is `true`, the +Z axis (asset front) is treated as forward (implies +X is
+   * left) and points toward the [target] position. By default, the -Z axis (camera forward) is treated
+   * as forward (implies +X is right).
    */
   @JvmOverloads
   public fun lookAt(
@@ -969,8 +969,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Moves the node to the specified [param position], and then rotates the node to point toward the
-   * [param target] as per [lookAt]. Operations take place in global space.
+   * Moves the node to the specified [position], and then rotates the node to point toward the
+   * [target] as per [lookAt]. Operations take place in global space.
    */
   @JvmOverloads
   public fun lookAtFromPosition(
@@ -984,7 +984,7 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Transforms [param global_point] from world space to this node's local space.
+   * Transforms [globalPoint] from world space to this node's local space.
    */
   public fun toLocal(globalPoint: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to globalPoint)
@@ -993,7 +993,7 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Transforms [param local_point] from this node's local space to world space.
+   * Transforms [localPoint] from this node's local space to world space.
    */
   public fun toGlobal(localPoint: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to localPoint)
@@ -1032,9 +1032,9 @@ public open class Node3D : Node() {
     /**
      * [Node3D] nodes receive this notification when their global transform changes. This means that
      * either the current or a parent node changed its transform.
-     * In order for [constant NOTIFICATION_TRANSFORM_CHANGED] to work, users first need to ask for
-     * it, with [setNotifyTransform]. The notification is also sent if the node is in the editor
-     * context and it has at least one valid gizmo.
+     * In order for [NOTIFICATIONTRANSFORMCHANGED] to work, users first need to ask for it, with
+     * [setNotifyTransform]. The notification is also sent if the node is in the editor context and it
+     * has at least one valid gizmo.
      */
     public final const val NOTIFICATION_TRANSFORM_CHANGED: Long = 2000
 
@@ -1057,8 +1057,8 @@ public open class Node3D : Node() {
     /**
      * [Node3D] nodes receive this notification when their local transform changes. This is not
      * received when the transform of a parent node is changed.
-     * In order for [constant NOTIFICATION_LOCAL_TRANSFORM_CHANGED] to work, users first need to ask
-     * for it, with [setNotifyLocalTransform].
+     * In order for [NOTIFICATIONLOCALTRANSFORMCHANGED] to work, users first need to ask for it,
+     * with [setNotifyLocalTransform].
      */
     public final const val NOTIFICATION_LOCAL_TRANSFORM_CHANGED: Long = 44
   }

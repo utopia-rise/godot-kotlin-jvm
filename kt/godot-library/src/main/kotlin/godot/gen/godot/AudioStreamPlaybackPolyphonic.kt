@@ -42,7 +42,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
    * can be used to control it.
    * This ID becomes invalid when the stream ends (if it does not loop), when the
    * [AudioStreamPlaybackPolyphonic] is stopped, or when [stopStream] is called.
-   * This function returns [constant INVALID_ID] if the amount of streams currently playing equals
+   * This function returns [INVALIDID] if the amount of streams currently playing equals
    * [AudioStreamPolyphonic.polyphony]. If you need a higher amount of maximum polyphony, raise this
    * value.
    */
@@ -59,7 +59,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
   }
 
   /**
-   * Change the stream volume (in db). The [param stream] argument is an integer ID returned by
+   * Change the stream volume (in db). The [stream] argument is an integer ID returned by
    * [playStream].
    */
   public fun setStreamVolume(stream: Long, volumeDb: Float): Unit {
@@ -68,8 +68,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
   }
 
   /**
-   * Change the stream pitch scale. The [param stream] argument is an integer ID returned by
-   * [playStream].
+   * Change the stream pitch scale. The [stream] argument is an integer ID returned by [playStream].
    */
   public fun setStreamPitchScale(stream: Long, pitchScale: Float): Unit {
     TransferContext.writeArguments(LONG to stream, DOUBLE to pitchScale.toDouble())
@@ -87,8 +86,8 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
   }
 
   /**
-   * Stop a stream. The [param stream] argument is an integer ID returned by [playStream], which
-   * becomes invalid after calling this function.
+   * Stop a stream. The [stream] argument is an integer ID returned by [playStream], which becomes
+   * invalid after calling this function.
    */
   public fun stopStream(stream: Long): Unit {
     TransferContext.writeArguments(LONG to stream)

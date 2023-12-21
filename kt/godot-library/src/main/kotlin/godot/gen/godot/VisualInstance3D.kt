@@ -45,8 +45,8 @@ public open class VisualInstance3D : Node3D() {
    * To adjust [layers] more easily using a script, use [getLayerMaskValue] and [setLayerMaskValue].
    * **Note:** [VoxelGI], SDFGI and [LightmapGI] will always take all layers into account to
    * determine what contributes to global illumination. If this is an issue, set
-   * [GeometryInstance3D.giMode] to [constant GeometryInstance3D.GI_MODE_DISABLED] for meshes and
-   * [Light3D.lightBakeMode] to [constant Light3D.BAKE_DISABLED] for lights to exclude them from global
+   * [GeometryInstance3D.giMode] to [GeometryInstance3D.GIMODEDISABLED] for meshes and
+   * [Light3D.lightBakeMode] to [Light3D.BAKEDISABLED] for lights to exclude them from global
    * illumination.
    */
   public var layers: Long
@@ -137,8 +137,8 @@ public open class VisualInstance3D : Node3D() {
   }
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [layers], given a [param
-   * layer_number] between 1 and 20.
+   * Based on [value], enables or disables the specified layer in the [layers], given a
+   * [layerNumber] between 1 and 20.
    */
   public fun setLayerMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -146,8 +146,8 @@ public open class VisualInstance3D : Node3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [layers] is enabled, given a [param
-   * layer_number] between 1 and 20.
+   * Returns whether or not the specified layer of the [layers] is enabled, given a [layerNumber]
+   * between 1 and 20.
    */
   public fun getLayerMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())

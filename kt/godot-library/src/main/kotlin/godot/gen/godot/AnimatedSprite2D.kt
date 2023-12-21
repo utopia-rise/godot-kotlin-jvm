@@ -256,11 +256,10 @@ public open class AnimatedSprite2D : Node2D() {
   }
 
   /**
-   * Plays the animation with key [param name]. If [param custom_speed] is negative and [param
-   * from_end] is `true`, the animation will play backwards (which is equivalent to calling
-   * [playBackwards]).
-   * If this method is called with that same animation [param name], or with no [param name]
-   * parameter, the assigned animation will resume playing if it was paused.
+   * Plays the animation with key [name]. If [customSpeed] is negative and [fromEnd] is `true`, the
+   * animation will play backwards (which is equivalent to calling [playBackwards]).
+   * If this method is called with that same animation [name], or with no [name] parameter, the
+   * assigned animation will resume playing if it was paused.
    */
   @JvmOverloads
   public fun play(
@@ -273,7 +272,7 @@ public open class AnimatedSprite2D : Node2D() {
   }
 
   /**
-   * Plays the animation with key [param name] in reverse.
+   * Plays the animation with key [name] in reverse.
    * This method is a shorthand for [play] with `custom_speed = -1.0` and `from_end = true`, so see
    * its description for more information.
    */

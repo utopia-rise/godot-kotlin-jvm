@@ -95,8 +95,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Sets the override [param material] for the specified [param surface] of the [Mesh] resource.
-   * This material is associated with this [MeshInstance3D] rather than with [mesh].
+   * Sets the override [material] for the specified [surface] of the [Mesh] resource. This material
+   * is associated with this [MeshInstance3D] rather than with [mesh].
    * **Note:** This assigns the [Material] associated to the [MeshInstance3D]'s Surface Material
    * Override properties, not the material within the [Mesh] resource. To set the material within the
    * [Mesh] resource, use [Mesh.surfaceGetMaterial] instead.
@@ -107,8 +107,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Returns the override [Material] for the specified [param surface] of the [Mesh] resource. See
-   * also [getSurfaceOverrideMaterialCount].
+   * Returns the override [Material] for the specified [surface] of the [Mesh] resource. See also
+   * [getSurfaceOverrideMaterialCount].
    * **Note:** This returns the [Material] associated to the [MeshInstance3D]'s Surface Material
    * Override properties, not the material within the [Mesh] resource. To get the material within the
    * [Mesh] resource, use [Mesh.surfaceGetMaterial] instead.
@@ -144,9 +144,9 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    * This helper creates a [StaticBody3D] child node with a [ConvexPolygonShape3D] collision shape
    * calculated from the mesh geometry. It's mainly used for testing.
-   * If [param clean] is `true` (default), duplicate and interior vertices are removed
-   * automatically. You can set it to `false` to make the process faster if not needed.
-   * If [param simplify] is `true`, the geometry can be further simplified to reduce the number of
+   * If [clean] is `true` (default), duplicate and interior vertices are removed automatically. You
+   * can set it to `false` to make the process faster if not needed.
+   * If [simplify] is `true`, the geometry can be further simplified to reduce the number of
    * vertices. Disabled by default.
    */
   @JvmOverloads
@@ -158,7 +158,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    * This helper creates a [StaticBody3D] child node with multiple [ConvexPolygonShape3D] collision
    * shapes calculated from the mesh geometry via convex decomposition. The convex decomposition
-   * operation can be controlled with parameters from the optional [param settings].
+   * operation can be controlled with parameters from the optional [settings].
    */
   @JvmOverloads
   public fun createMultipleConvexCollisions(settings: MeshConvexDecompositionSettings? = null):
@@ -177,8 +177,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Returns the index of the blend shape with the given [param name]. Returns `-1` if no blend
-   * shape with this name exists, including when [mesh] is `null`.
+   * Returns the index of the blend shape with the given [name]. Returns `-1` if no blend shape with
+   * this name exists, including when [mesh] is `null`.
    */
   public fun findBlendShapeByName(name: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -187,8 +187,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Returns the value of the blend shape at the given [param blend_shape_idx]. Returns `0.0` and
-   * produces an error if [mesh] is `null` or doesn't have a blend shape at that index.
+   * Returns the value of the blend shape at the given [blendShapeIdx]. Returns `0.0` and produces
+   * an error if [mesh] is `null` or doesn't have a blend shape at that index.
    */
   public fun getBlendShapeValue(blendShapeIdx: Int): Float {
     TransferContext.writeArguments(LONG to blendShapeIdx.toLong())
@@ -197,8 +197,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Sets the value of the blend shape at [param blend_shape_idx] to [param value]. Produces an
-   * error if [mesh] is `null` or doesn't have a blend shape at that index.
+   * Sets the value of the blend shape at [blendShapeIdx] to [value]. Produces an error if [mesh] is
+   * `null` or doesn't have a blend shape at that index.
    */
   public fun setBlendShapeValue(blendShapeIdx: Int, `value`: Float): Unit {
     TransferContext.writeArguments(LONG to blendShapeIdx.toLong(), DOUBLE to value.toDouble())

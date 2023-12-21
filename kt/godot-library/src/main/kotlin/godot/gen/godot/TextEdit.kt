@@ -70,8 +70,8 @@ public open class TextEdit : Control() {
 
   /**
    * Emitted immediately when the text changes.
-   * When text is added [param from_line] will be less than [param to_line]. On a remove [param
-   * to_line] will be less than [param from_line].
+   * When text is added [fromLine] will be less than [toLine]. On a remove [toLine] will be less
+   * than [fromLine].
    */
   public val linesEditedFrom: Signal2<Long, Long> by signal("fromLine", "toLine")
 
@@ -254,8 +254,8 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * If [wrapMode] is set to [constant LINE_WRAPPING_BOUNDARY], sets text wrapping mode. To see how
-   * each mode behaves, see [enum TextServer.AutowrapMode].
+   * If [wrapMode] is set to [LINEWRAPPINGBOUNDARY], sets text wrapping mode. To see how each mode
+   * behaves, see [TextServer.AutowrapMode].
    */
   public var autowrapMode: TextServer.AutowrapMode
     get() {
@@ -633,8 +633,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Override this method to define what happens when the user types in the provided key [param
-   * unicode_char].
+   * Override this method to define what happens when the user types in the provided key
+   * [unicodeChar].
    */
   public open fun _handleUnicodeInput(unicodeChar: Int, caretIndex: Int): Unit {
   }
@@ -750,7 +750,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the width in pixels of the [param wrap_index] on [param line].
+   * Returns the width in pixels of the [wrapIndex] on [line].
    */
   @JvmOverloads
   public fun getLineWidth(line: Int, wrapIndex: Int = -1): Int {
@@ -797,7 +797,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Inserts a new line with [param text] at [param line].
+   * Inserts a new line with [text] at [line].
    */
   public fun insertLineAt(line: Int, text: String): Unit {
     TransferContext.writeArguments(LONG to line.toLong(), STRING to text)
@@ -838,9 +838,9 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the count to the next visible line from [param line] to `line + visible_amount`. Can
-   * also count backwards. For example if a [TextEdit] has 5 lines with lines 2 and 3 hidden, calling
-   * this with `line = 1, visible_amount = 1` would return 3.
+   * Returns the count to the next visible line from [line] to `line + visible_amount`. Can also
+   * count backwards. For example if a [TextEdit] has 5 lines with lines 2 and 3 hidden, calling this
+   * with `line = 1, visible_amount = 1` would return 3.
    */
   public fun getNextVisibleLineOffsetFrom(line: Int, visibleAmount: Int): Int {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to visibleAmount.toLong())
@@ -909,7 +909,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Starts an action, will end the current action if [param action] is different.
+   * Starts an action, will end the current action if [action] is different.
    * An action will also end after a call to [endAction], after
    * [ProjectSettings.gui/timers/textEditIdleDetectSec] is triggered or a new undoable step outside the
    * [startAction] and [endAction] calls.
@@ -1023,8 +1023,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the search [param flags]. This is used with [setSearchText] to highlight occurrences of
-   * the searched text. Search flags can be specified from the [enum SearchFlags] enum.
+   * Sets the search [flags]. This is used with [setSearchText] to highlight occurrences of the
+   * searched text. Search flags can be specified from the [SearchFlags] enum.
    */
   public fun setSearchFlags(flags: Long): Unit {
     TransferContext.writeArguments(LONG to flags)
@@ -1032,7 +1032,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Perform a search inside the text. Search flags can be specified in the [enum SearchFlags] enum.
+   * Perform a search inside the text. Search flags can be specified in the [SearchFlags] enum.
    * In the returned vector, `x` is the column, `y` is the line. If no results are found, both are
    * equal to `-1`.
    *
@@ -1085,7 +1085,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the word at [param position].
+   * Returns the word at [position].
    */
   public fun getWordAtPos(position: Vector2): String {
     TransferContext.writeArguments(VECTOR2 to position)
@@ -1095,8 +1095,8 @@ public open class TextEdit : Control() {
 
   /**
    * Returns the line and column at the given position. In the returned vector, `x` is the column,
-   * `y` is the line. If [param allow_out_of_bounds] is `false` and the position is not over the text,
-   * both vector values will be set to `-1`.
+   * `y` is the line. If [allowOutOfBounds] is `false` and the position is not over the text, both
+   * vector values will be set to `-1`.
    */
   @JvmOverloads
   public fun getLineColumnAtPos(position: Vector2i, allowOutOfBounds: Boolean = true): Vector2i {
@@ -1106,8 +1106,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the local position for the given [param line] and [param column]. If `x` or `y` of the
-   * returned vector equal `-1`, the position is outside of the viewable area of the control.
+   * Returns the local position for the given [line] and [column]. If `x` or `y` of the returned
+   * vector equal `-1`, the position is outside of the viewable area of the control.
    * **Note:** The Y position corresponds to the bottom side of the line. Use [getRectAtLineColumn]
    * to get the top side position.
    */
@@ -1118,9 +1118,9 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the local position and size for the grapheme at the given [param line] and [param
-   * column]. If `x` or `y` position of the returned rect equal `-1`, the position is outside of the
-   * viewable area of the control.
+   * Returns the local position and size for the grapheme at the given [line] and [column]. If `x`
+   * or `y` position of the returned rect equal `-1`, the position is outside of the viewable area of
+   * the control.
    * **Note:** The Y position of the returned rect corresponds to the top side of the line, unlike
    * [getPosAtLineColumn] which returns the bottom side.
    */
@@ -1131,7 +1131,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the equivalent minimap line at [param position].
+   * Returns the equivalent minimap line at [position].
    */
   public fun getMinimapLineAtPos(position: Vector2i): Int {
     TransferContext.writeArguments(VECTOR2I to position)
@@ -1149,8 +1149,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns whether the mouse is over selection. If [param edges] is `true`, the edges are
-   * considered part of the selection.
+   * Returns whether the mouse is over selection. If [edges] is `true`, the edges are considered
+   * part of the selection.
    */
   @JvmOverloads
   public fun isMouseOverSelection(edges: Boolean, caretIndex: Int = -1): Boolean {
@@ -1206,8 +1206,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Adds an additional caret above or below every caret. If [param below] is true the new caret
-   * will be added below and above otherwise.
+   * Adds an additional caret above or below every caret. If [below] is true the new caret will be
+   * added below and above otherwise.
    */
   public fun addCaretAtCarets(below: Boolean): Unit {
     TransferContext.writeArguments(BOOL to below)
@@ -1261,10 +1261,10 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Moves the caret to the specified [param line] index.
-   * If [param adjust_viewport] is `true`, the viewport will center at the caret position after the
-   * move occurs.
-   * If [param can_be_hidden] is `true`, the specified [param line] can be hidden.
+   * Moves the caret to the specified [line] index.
+   * If [adjustViewport] is `true`, the viewport will center at the caret position after the move
+   * occurs.
+   * If [canBeHidden] is `true`, the specified [line] can be hidden.
    * **Note:** If supporting multiple carets this will not check for any overlap. See
    * [mergeOverlappingCarets].
    */
@@ -1291,9 +1291,9 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Moves the caret to the specified [param column] index.
-   * If [param adjust_viewport] is `true`, the viewport will center at the caret position after the
-   * move occurs.
+   * Moves the caret to the specified [column] index.
+   * If [adjustViewport] is `true`, the viewport will center at the caret position after the move
+   * occurs.
    * **Note:** If supporting multiple carets this will not check for any overlap. See
    * [mergeOverlappingCarets].
    */
@@ -1414,8 +1414,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the text inside the selection of a caret, or all the carets if [param caret_index] is
-   * its default value `-1`.
+   * Returns the text inside the selection of a caret, or all the carets if [caretIndex] is its
+   * default value `-1`.
    */
   @JvmOverloads
   public fun getSelectedText(caretIndex: Int = -1): String {
@@ -1557,7 +1557,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the scroll position for [param wrap_index] of [param line].
+   * Returns the scroll position for [wrapIndex] of [line].
    */
   @JvmOverloads
   public fun getScrollPosForLine(line: Int, wrapIndex: Int = 0): Double {
@@ -1567,7 +1567,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Positions the [param wrap_index] of [param line] at the top of the viewport.
+   * Positions the [wrapIndex] of [line] at the top of the viewport.
    */
   @JvmOverloads
   public fun setLineAsFirstVisible(line: Int, wrapIndex: Int = 0): Unit {
@@ -1585,7 +1585,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Positions the [param wrap_index] of [param line] at the center of the viewport.
+   * Positions the [wrapIndex] of [line] at the center of the viewport.
    */
   @JvmOverloads
   public fun setLineAsCenterVisible(line: Int, wrapIndex: Int = 0): Unit {
@@ -1594,7 +1594,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Positions the [param wrap_index] of [param line] at the bottom of the viewport.
+   * Positions the [wrapIndex] of [line] at the bottom of the viewport.
    */
   @JvmOverloads
   public fun setLineAsLastVisible(line: Int, wrapIndex: Int = 0): Unit {
@@ -1676,8 +1676,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Register a new gutter to this [TextEdit]. Use [param at] to have a specific gutter order. A
-   * value of `-1` appends the gutter to the right.
+   * Register a new gutter to this [TextEdit]. Use [at] to have a specific gutter order. A value of
+   * `-1` appends the gutter to the right.
    */
   @JvmOverloads
   public fun addGutter(at: Int = -1): Unit {
@@ -1806,8 +1806,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Merge the gutters from [param from_line] into [param to_line]. Only overwritable gutters will
-   * be copied.
+   * Merge the gutters from [fromLine] into [toLine]. Only overwritable gutters will be copied.
    */
   public fun mergeGutters(fromLine: Int, toLine: Int): Unit {
     TransferContext.writeArguments(LONG to fromLine.toLong(), LONG to toLine.toLong())
@@ -1833,7 +1832,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the metadata for [param gutter] on [param line] to [param metadata].
+   * Sets the metadata for [gutter] on [line] to [metadata].
    */
   public fun setLineGutterMetadata(
     line: Int,
@@ -1845,7 +1844,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the metadata currently in [param gutter] at [param line].
+   * Returns the metadata currently in [gutter] at [line].
    */
   public fun getLineGutterMetadata(line: Int, gutter: Int): Any? {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to gutter.toLong())
@@ -1854,7 +1853,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the text for [param gutter] on [param line] to [param text].
+   * Sets the text for [gutter] on [line] to [text].
    */
   public fun setLineGutterText(
     line: Int,
@@ -1866,7 +1865,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the text currently in [param gutter] at [param line].
+   * Returns the text currently in [gutter] at [line].
    */
   public fun getLineGutterText(line: Int, gutter: Int): String {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to gutter.toLong())
@@ -1875,7 +1874,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the icon for [param gutter] on [param line] to [param icon].
+   * Sets the icon for [gutter] on [line] to [icon].
    */
   public fun setLineGutterIcon(
     line: Int,
@@ -1887,7 +1886,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the icon currently in [param gutter] at [param line].
+   * Returns the icon currently in [gutter] at [line].
    */
   public fun getLineGutterIcon(line: Int, gutter: Int): Texture2D? {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to gutter.toLong())
@@ -1896,7 +1895,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the color for [param gutter] on [param line] to [param color].
+   * Sets the color for [gutter] on [line] to [color].
    */
   public fun setLineGutterItemColor(
     line: Int,
@@ -1908,7 +1907,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the color currently in [param gutter] at [param line].
+   * Returns the color currently in [gutter] at [line].
    */
   public fun getLineGutterItemColor(line: Int, gutter: Int): Color {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to gutter.toLong())
@@ -1917,8 +1916,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * If [param clickable] is `true`, makes the [param gutter] on [param line] clickable. See [signal
-   * gutter_clicked].
+   * If [clickable] is `true`, makes the [gutter] on [line] clickable. See [signal gutter_clicked].
    */
   public fun setLineGutterClickable(
     line: Int,
@@ -1960,7 +1958,7 @@ public open class TextEdit : Control() {
    * Returns the [PopupMenu] of this [TextEdit]. By default, this menu is displayed when
    * right-clicking on the [TextEdit].
    * You can add custom menu items or remove standard ones. Make sure your IDs don't conflict with
-   * the standard ones (see [enum MenuItems]). For example:
+   * the standard ones (see [MenuItems]). For example:
    *
    * gdscript:
    * ```gdscript
@@ -2021,7 +2019,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Executes a given action as defined in the [enum MenuItems] enum.
+   * Executes a given action as defined in the [MenuItems] enum.
    */
   public fun menuOption(option: Int): Unit {
     TransferContext.writeArguments(LONG to option.toLong())
@@ -2152,7 +2150,7 @@ public open class TextEdit : Control() {
      */
     MENU_INSERT_SHY(29),
     /**
-     * Represents the size of the [enum MenuItems] enum.
+     * Represents the size of the [MenuItems] enum.
      */
     MENU_MAX(30),
     ;

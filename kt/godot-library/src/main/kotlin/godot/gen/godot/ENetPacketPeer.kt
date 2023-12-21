@@ -43,8 +43,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   }
 
   /**
-   * Request a disconnection from a peer. An [constant ENetConnection.EVENT_DISCONNECT] will be
-   * generated during [ENetConnection.service] once the disconnection is complete.
+   * Request a disconnection from a peer. An [ENetConnection.EVENTDISCONNECT] will be generated
+   * during [ENetConnection.service] once the disconnection is complete.
    */
   @JvmOverloads
   public fun peerDisconnect(`data`: Int = 0): Unit {
@@ -54,8 +54,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
 
   /**
    * Request a disconnection from a peer, but only after all queued outgoing packets are sent. An
-   * [constant ENetConnection.EVENT_DISCONNECT] will be generated during [ENetConnection.service] once
-   * the disconnection is complete.
+   * [ENetConnection.EVENTDISCONNECT] will be generated during [ENetConnection.service] once the
+   * disconnection is complete.
    */
   @JvmOverloads
   public fun peerDisconnectLater(`data`: Int = 0): Unit {
@@ -64,9 +64,9 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   }
 
   /**
-   * Force an immediate disconnection from a peer. No [constant ENetConnection.EVENT_DISCONNECT]
-   * will be generated. The foreign peer is not guaranteed to receive the disconnect notification, and
-   * is reset immediately upon return from this function.
+   * Force an immediate disconnection from a peer. No [ENetConnection.EVENTDISCONNECT] will be
+   * generated. The foreign peer is not guaranteed to receive the disconnect notification, and is reset
+   * immediately upon return from this function.
    */
   @JvmOverloads
   public fun peerDisconnectNow(`data`: Int = 0): Unit {
@@ -84,10 +84,10 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   }
 
   /**
-   * Sets the [param ping_interval] in milliseconds at which pings will be sent to a peer. Pings are
-   * used both to monitor the liveness of the connection and also to dynamically adjust the throttle
-   * during periods of low traffic so that the throttle has reasonable responsiveness during traffic
-   * spikes. The default ping interval is `500` milliseconds.
+   * Sets the [pingInterval] in milliseconds at which pings will be sent to a peer. Pings are used
+   * both to monitor the liveness of the connection and also to dynamically adjust the throttle during
+   * periods of low traffic so that the throttle has reasonable responsiveness during traffic spikes.
+   * The default ping interval is `500` milliseconds.
    */
   public fun pingInterval(pingInterval: Int): Unit {
     TransferContext.writeArguments(LONG to pingInterval.toLong())
@@ -104,8 +104,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   }
 
   /**
-   * Queues a [param packet] to be sent over the specified [param channel]. See `FLAG_*` constants
-   * for available packet flags.
+   * Queues a [packet] to be sent over the specified [channel]. See `FLAG_*` constants for available
+   * packet flags.
    */
   public fun send(
     channel: Int,
@@ -122,11 +122,11 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * Unreliable packets are dropped by ENet in response to the varying conditions of the Internet
    * connection to the peer. The throttle represents a probability that an unreliable packet should not
    * be dropped and thus sent by ENet to the peer. By measuring fluctuations in round trip times of
-   * reliable packets over the specified [param interval], ENet will either increase the probability by
-   * the amount specified in the [param acceleration] parameter, or decrease it by the amount specified
-   * in the [param deceleration] parameter (both are ratios to [constant PACKET_THROTTLE_SCALE]).
-   * When the throttle has a value of [constant PACKET_THROTTLE_SCALE], no unreliable packets are
-   * dropped by ENet, and so 100&#37; of all unreliable packets will be sent.
+   * reliable packets over the specified [interval], ENet will either increase the probability by the
+   * amount specified in the [acceleration] parameter, or decrease it by the amount specified in the
+   * [deceleration] parameter (both are ratios to [PACKETTHROTTLESCALE]).
+   * When the throttle has a value of [PACKETTHROTTLESCALE], no unreliable packets are dropped by
+   * ENet, and so 100&#37; of all unreliable packets will be sent.
    * When the throttle has a value of `0`, all unreliable packets are dropped by ENet, and so 0&#37;
    * of all unreliable packets will be sent.
    * Intermediate values for the throttle represent intermediate probabilities between 0&#37; and
@@ -147,11 +147,11 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * Sets the timeout parameters for a peer. The timeout parameters control how and when a peer will
    * timeout from a failure to acknowledge reliable traffic. Timeout values are expressed in
    * milliseconds.
-   * The [param timeout] is a factor that, multiplied by a value based on the average round trip
-   * time, will determine the timeout limit for a reliable packet. When that limit is reached, the
-   * timeout will be doubled, and the peer will be disconnected if that limit has reached [param
-   * timeout_min]. The [param timeout_max] parameter, on the other hand, defines a fixed timeout for
-   * which any packet must be acknowledged or the peer will be dropped.
+   * The [timeout] is a factor that, multiplied by a value based on the average round trip time,
+   * will determine the timeout limit for a reliable packet. When that limit is reached, the timeout
+   * will be doubled, and the peer will be disconnected if that limit has reached [timeoutMin]. The
+   * [timeoutMax] parameter, on the other hand, defines a fixed timeout for which any packet must be
+   * acknowledged or the peer will be dropped.
    */
   public fun setTimeout(
     timeout: Int,
@@ -181,7 +181,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   }
 
   /**
-   * Returns the requested [param statistic] for this peer. See [enum PeerStatistic].
+   * Returns the requested [statistic] for this peer. See [PeerStatistic].
    */
   public fun getStatistic(statistic: PeerStatistic): Double {
     TransferContext.writeArguments(LONG to statistic.id)
@@ -190,7 +190,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   }
 
   /**
-   * Returns the current peer state. See [enum PeerState].
+   * Returns the current peer state. See [PeerState].
    */
   public fun getState(): PeerState {
     TransferContext.writeArguments()
@@ -237,8 +237,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
      */
     STATE_CONNECTION_PENDING(3),
     /**
-     * The peer has successfully connected, but is not ready to communicate with yet ([constant
-     * STATE_CONNECTED]).
+     * The peer has successfully connected, but is not ready to communicate with yet
+     * ([STATECONNECTED]).
      */
     STATE_CONNECTION_SUCCEEDED(4),
     /**
@@ -278,8 +278,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     id: Long,
   ) {
     /**
-     * Mean packet loss of reliable packets as a ratio with respect to the [constant
-     * PACKET_LOSS_SCALE].
+     * Mean packet loss of reliable packets as a ratio with respect to the [PACKETLOSSSCALE].
      */
     PEER_PACKET_LOSS(0),
     /**
@@ -314,19 +313,17 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     PEER_PACKET_THROTTLE(7),
     /**
      * The maximum number of unreliable packets that should not be dropped. This value is always
-     * greater than or equal to `1`. The initial value is equal to [constant PACKET_THROTTLE_SCALE].
+     * greater than or equal to `1`. The initial value is equal to [PACKETTHROTTLESCALE].
      */
     PEER_PACKET_THROTTLE_LIMIT(8),
     /**
      * Internal value used to increment the packet throttle counter. The value is hardcoded to `7`
-     * and cannot be changed. You probably want to look at [constant PEER_PACKET_THROTTLE_ACCELERATION]
-     * instead.
+     * and cannot be changed. You probably want to look at [PEERPACKETTHROTTLEACCELERATION] instead.
      */
     PEER_PACKET_THROTTLE_COUNTER(9),
     /**
      * The time at which throttle statistics were last updated (in milliseconds since the connection
-     * started). The interval for throttle statistics updates is [constant
-     * PEER_PACKET_THROTTLE_INTERVAL].
+     * started). The interval for throttle statistics updates is [PEERPACKETTHROTTLEINTERVAL].
      */
     PEER_PACKET_THROTTLE_EPOCH(10),
     /**
@@ -358,7 +355,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
 
   public companion object {
     /**
-     * The reference scale for packet loss. See [getStatistic] and [constant PEER_PACKET_LOSS].
+     * The reference scale for packet loss. See [getStatistic] and [PEERPACKETLOSS].
      */
     public final const val PACKET_LOSS_SCALE: Long = 65536
 

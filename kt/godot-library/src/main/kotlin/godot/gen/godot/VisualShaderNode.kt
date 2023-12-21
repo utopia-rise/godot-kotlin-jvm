@@ -72,7 +72,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   }
 
   /**
-   * Sets the default [param value] for the selected input [param port].
+   * Sets the default [value] for the selected input [port].
    */
   @JvmOverloads
   public fun setInputPortDefaultValue(
@@ -85,7 +85,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   }
 
   /**
-   * Returns the default value of the input [param port].
+   * Returns the default value of the input [port].
    */
   public fun getInputPortDefaultValue(port: Int): Any? {
     TransferContext.writeArguments(LONG to port.toLong())
@@ -94,7 +94,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   }
 
   /**
-   * Removes the default value of the input [param port].
+   * Removes the default value of the input [port].
    */
   public fun removeInputPortDefaultValue(port: Int): Unit {
     TransferContext.writeArguments(LONG to port.toLong())
@@ -153,7 +153,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
      */
     PORT_TYPE_SAMPLER(8),
     /**
-     * Represents the size of the [enum PortType] enum.
+     * Represents the size of the [PortType] enum.
      */
     PORT_TYPE_MAX(9),
     ;

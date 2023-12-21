@@ -92,8 +92,8 @@ public open class PathFollow3D : Node3D() {
     }
 
   /**
-   * Allows or forbids rotation on one or more axes, depending on the [enum RotationMode] constants
-   * being used.
+   * Allows or forbids rotation on one or more axes, depending on the [RotationMode] constants being
+   * used.
    */
   public var rotationMode: RotationMode
     get() {
@@ -108,7 +108,7 @@ public open class PathFollow3D : Node3D() {
 
   /**
    * If `true`, the node moves on the travel path with orienting the +Z axis as forward. See also
-   * [constant Vector3.FORWARD] and [constant Vector3.MODEL_FRONT].
+   * [Vector3.FORWARD] and [Vector3.MODELFRONT].
    */
   public var useModelFront: Boolean
     get() {
@@ -215,8 +215,8 @@ public open class PathFollow3D : Node3D() {
 
   public companion object {
     /**
-     * Correct the [param transform]. [param rotation_mode] implicitly specifies how posture
-     * (forward, up and sideway direction) is calculated.
+     * Correct the [transform]. [rotationMode] implicitly specifies how posture (forward, up and
+     * sideway direction) is calculated.
      */
     public fun correctPosture(transform: Transform3D, rotationMode: RotationMode): Transform3D {
       TransferContext.writeArguments(TRANSFORM3D to transform, LONG to rotationMode.id)

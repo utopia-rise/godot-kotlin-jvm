@@ -23,7 +23,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class VisualShaderNodeTransformOp : VisualShaderNode() {
   /**
-   * The type of the operation to be performed on the transforms. See [enum Operator] for options.
+   * The type of the operation to be performed on the transforms. See [Operator] for options.
    */
   public var `operator`: Operator
     get() {
@@ -81,7 +81,7 @@ public open class VisualShaderNodeTransformOp : VisualShaderNode() {
      */
     OP_B_DIV_A(8),
     /**
-     * Represents the size of the [enum Operator] enum.
+     * Represents the size of the [Operator] enum.
      */
     OP_MAX(9),
     ;

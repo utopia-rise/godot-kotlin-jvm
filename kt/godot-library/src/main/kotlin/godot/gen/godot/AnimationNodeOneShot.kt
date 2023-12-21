@@ -26,8 +26,7 @@ import kotlin.Suppress
  * sub-animation and return once it finishes. Blend times for fading in and out can be customized, as
  * well as filters.
  * After setting the request and changing the animation playback, the one-shot node automatically
- * clears the request on the next process frame by setting its `request` value to [constant
- * ONE_SHOT_REQUEST_NONE].
+ * clears the request on the next process frame by setting its `request` value to [ONESHOTREQUESTNONE].
  *
  * gdscript:
  * ```gdscript
@@ -153,10 +152,10 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
 
   /**
    * If `true`, the sub-animation will restart automatically after finishing.
-   * In other words, to start auto restarting, the animation must be played once with the [constant
-   * ONE_SHOT_REQUEST_FIRE] request. The [constant ONE_SHOT_REQUEST_ABORT] request stops the auto
-   * restarting, but it does not disable the [autorestart] itself. So, the [constant
-   * ONE_SHOT_REQUEST_FIRE] request will start auto restarting again.
+   * In other words, to start auto restarting, the animation must be played once with the
+   * [ONESHOTREQUESTFIRE] request. The [ONESHOTREQUESTABORT] request stops the auto restarting, but it
+   * does not disable the [autorestart] itself. So, the [ONESHOTREQUESTFIRE] request will start auto
+   * restarting again.
    */
   public var autorestart: Boolean
     get() {

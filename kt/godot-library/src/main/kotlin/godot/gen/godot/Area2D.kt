@@ -46,12 +46,12 @@ import kotlin.Unit
 @GodotBaseType
 public open class Area2D : CollisionObject2D() {
   /**
-   * Emitted when a [Shape2D] of the received [param body] enters a shape of this area. [param body]
-   * can be a [PhysicsBody2D] or a [TileMap]. [TileMap]s are detected if their [TileSet] has collision
-   * shapes configured. Requires [monitoring] to be set to `true`.
-   * [param local_shape_index] and [param body_shape_index] contain indices of the interacting
-   * shapes from this area and the interacting body, respectively. [param body_rid] contains the [RID]
-   * of the body. These values can be used with the [PhysicsServer2D].
+   * Emitted when a [Shape2D] of the received [body] enters a shape of this area. [body] can be a
+   * [PhysicsBody2D] or a [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes
+   * configured. Requires [monitoring] to be set to `true`.
+   * [localShapeIndex] and [bodyShapeIndex] contain indices of the interacting shapes from this area
+   * and the interacting body, respectively. [bodyRid] contains the [RID] of the body. These values can
+   * be used with the [PhysicsServer2D].
    * **Example of getting the** [CollisionShape2D] **node from the shape index:**
    *
    * gdscript:
@@ -67,34 +67,34 @@ public open class Area2D : CollisionObject2D() {
       "bodyShapeIndex", "localShapeIndex")
 
   /**
-   * Emitted when a [Shape2D] of the received [param body] exits a shape of this area. [param body]
-   * can be a [PhysicsBody2D] or a [TileMap]. [TileMap]s are detected if their [TileSet] has collision
-   * shapes configured. Requires [monitoring] to be set to `true`.
+   * Emitted when a [Shape2D] of the received [body] exits a shape of this area. [body] can be a
+   * [PhysicsBody2D] or a [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes
+   * configured. Requires [monitoring] to be set to `true`.
    * See also [signal body_shape_entered].
    */
   public val bodyShapeExited: Signal4<RID, Node2D, Long, Long> by signal("bodyRid", "body",
       "bodyShapeIndex", "localShapeIndex")
 
   /**
-   * Emitted when the received [param body] enters this area. [param body] can be a [PhysicsBody2D]
-   * or a [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes configured.
-   * Requires [monitoring] to be set to `true`.
+   * Emitted when the received [body] enters this area. [body] can be a [PhysicsBody2D] or a
+   * [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes configured. Requires
+   * [monitoring] to be set to `true`.
    */
   public val bodyEntered: Signal1<Node2D> by signal("body")
 
   /**
-   * Emitted when the received [param body] exits this area. [param body] can be a [PhysicsBody2D]
-   * or a [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes configured.
-   * Requires [monitoring] to be set to `true`.
+   * Emitted when the received [body] exits this area. [body] can be a [PhysicsBody2D] or a
+   * [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes configured. Requires
+   * [monitoring] to be set to `true`.
    */
   public val bodyExited: Signal1<Node2D> by signal("body")
 
   /**
-   * Emitted when a [Shape2D] of the received [param area] enters a shape of this area. Requires
+   * Emitted when a [Shape2D] of the received [area] enters a shape of this area. Requires
    * [monitoring] to be set to `true`.
-   * [param local_shape_index] and [param area_shape_index] contain indices of the interacting
-   * shapes from this area and the other area, respectively. [param area_rid] contains the [RID] of the
-   * other area. These values can be used with the [PhysicsServer2D].
+   * [localShapeIndex] and [areaShapeIndex] contain indices of the interacting shapes from this area
+   * and the other area, respectively. [areaRid] contains the [RID] of the other area. These values can
+   * be used with the [PhysicsServer2D].
    * **Example of getting the** [CollisionShape2D] **node from the shape index:**
    *
    * gdscript:
@@ -110,7 +110,7 @@ public open class Area2D : CollisionObject2D() {
       "areaShapeIndex", "localShapeIndex")
 
   /**
-   * Emitted when a [Shape2D] of the received [param area] exits a shape of this area. Requires
+   * Emitted when a [Shape2D] of the received [area] exits a shape of this area. Requires
    * [monitoring] to be set to `true`.
    * See also [signal area_shape_entered].
    */
@@ -118,14 +118,12 @@ public open class Area2D : CollisionObject2D() {
       "areaShapeIndex", "localShapeIndex")
 
   /**
-   * Emitted when the received [param area] enters this area. Requires [monitoring] to be set to
-   * `true`.
+   * Emitted when the received [area] enters this area. Requires [monitoring] to be set to `true`.
    */
   public val areaEntered: Signal1<Area2D> by signal("area")
 
   /**
-   * Emitted when the received [param area] exits this area. Requires [monitoring] to be set to
-   * `true`.
+   * Emitted when the received [area] exits this area. Requires [monitoring] to be set to `true`.
    */
   public val areaExited: Signal1<Area2D> by signal("area")
 
@@ -173,7 +171,7 @@ public open class Area2D : CollisionObject2D() {
     }
 
   /**
-   * Override mode for gravity calculations within this area. See [enum SpaceOverride] for possible
+   * Override mode for gravity calculations within this area. See [SpaceOverride] for possible
    * values.
    */
   public var gravitySpaceOverride: SpaceOverride
@@ -268,7 +266,7 @@ public open class Area2D : CollisionObject2D() {
     }
 
   /**
-   * Override mode for linear damping calculations within this area. See [enum SpaceOverride] for
+   * Override mode for linear damping calculations within this area. See [SpaceOverride] for
    * possible values.
    */
   public var linearDampSpaceOverride: SpaceOverride
@@ -299,7 +297,7 @@ public open class Area2D : CollisionObject2D() {
     }
 
   /**
-   * Override mode for angular damping calculations within this area. See [enum SpaceOverride] for
+   * Override mode for angular damping calculations within this area. See [SpaceOverride] for
    * possible values.
    */
   public var angularDampSpaceOverride: SpaceOverride
@@ -473,9 +471,9 @@ public open class Area2D : CollisionObject2D() {
    * otherwise.
    * **Note:** The result of this test is not immediate after moving objects. For performance, list
    * of overlaps is updated once per frame and before the physics step. Consider using signals instead.
-   * The [param body] argument can either be a [PhysicsBody2D] or a [TileMap] instance. While
-   * TileMaps are not physics bodies themselves, they register their tiles with collision shapes as a
-   * virtual physics body.
+   * The [body] argument can either be a [PhysicsBody2D] or a [TileMap] instance. While TileMaps are
+   * not physics bodies themselves, they register their tiles with collision shapes as a virtual
+   * physics body.
    */
   public fun overlapsBody(body: Node): Boolean {
     TransferContext.writeArguments(OBJECT to body)

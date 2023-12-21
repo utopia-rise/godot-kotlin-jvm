@@ -99,15 +99,15 @@ public open class InputEventMIDI : InputEvent() {
 
   /**
    * Returns a value indicating the type of message for this MIDI signal. This is a member of the
-   * [enum MIDIMessage] enum.
+   * [MIDIMessage] enum.
    * For MIDI messages between 0x80 and 0xEF, only the left half of the bits are returned as this
    * value, as the other part is the channel (ex: 0x94 becomes 0x9). For MIDI messages from 0xF0 to
    * 0xFF, the value is returned as-is.
-   * Notes will return [constant MIDI_MESSAGE_NOTE_ON] when activated, but they might not always
-   * return [constant MIDI_MESSAGE_NOTE_OFF] when deactivated, therefore your code should treat the
-   * input as stopped if some period of time has passed.
-   * Some MIDI devices may send [constant MIDI_MESSAGE_NOTE_ON] with zero velocity instead of
-   * [constant MIDI_MESSAGE_NOTE_OFF].
+   * Notes will return [MIDIMESSAGENOTEON] when activated, but they might not always return
+   * [MIDIMESSAGENOTEOFF] when deactivated, therefore your code should treat the input as stopped if
+   * some period of time has passed.
+   * Some MIDI devices may send [MIDIMESSAGENOTEON] with zero velocity instead of
+   * [MIDIMESSAGENOTEOFF].
    * For more information, see the note in [velocity] and the MIDI message status byte list chart
    * linked above.
    */
@@ -141,11 +141,11 @@ public open class InputEventMIDI : InputEvent() {
   /**
    * The velocity of the MIDI signal. This value ranges from 0 to 127. For a piano, this corresponds
    * to how quickly the key was pressed, and is rarely above about 110 in practice.
-   * **Note:** Some MIDI devices may send a [constant MIDI_MESSAGE_NOTE_ON] message with zero
-   * velocity and expect this to be treated the same as a [constant MIDI_MESSAGE_NOTE_OFF] message, but
-   * device implementations vary so Godot reports event data exactly as received. Depending on the
-   * hardware and the needs of the game/app, this MIDI quirk can be handled robustly with a couple
-   * lines of script (check for [constant MIDI_MESSAGE_NOTE_ON] with velocity zero).
+   * **Note:** Some MIDI devices may send a [MIDIMESSAGENOTEON] message with zero velocity and
+   * expect this to be treated the same as a [MIDIMESSAGENOTEOFF] message, but device implementations
+   * vary so Godot reports event data exactly as received. Depending on the hardware and the needs of
+   * the game/app, this MIDI quirk can be handled robustly with a couple lines of script (check for
+   * [MIDIMESSAGENOTEON] with velocity zero).
    */
   public var velocity: Int
     get() {
@@ -191,8 +191,8 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   /**
-   * If the message is [constant MIDI_MESSAGE_CONTROL_CHANGE], this indicates the controller number,
-   * otherwise this is zero. Controllers include devices such as pedals and levers.
+   * If the message is [MIDIMESSAGECONTROLCHANGE], this indicates the controller number, otherwise
+   * this is zero. Controllers include devices such as pedals and levers.
    */
   public var controllerNumber: Int
     get() {
@@ -206,8 +206,8 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   /**
-   * If the message is [constant MIDI_MESSAGE_CONTROL_CHANGE], this indicates the controller value,
-   * otherwise this is zero. Controllers include devices such as pedals and levers.
+   * If the message is [MIDIMESSAGECONTROLCHANGE], this indicates the controller value, otherwise
+   * this is zero. Controllers include devices such as pedals and levers.
    */
   public var controllerValue: Int
     get() {

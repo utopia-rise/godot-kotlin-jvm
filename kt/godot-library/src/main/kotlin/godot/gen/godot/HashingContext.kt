@@ -23,7 +23,7 @@ import kotlin.Suppress
  * The HashingContext class provides an interface for computing cryptographic hashes over multiple
  * iterations. Useful for computing hashes of big files (so you don't have to load them all in memory),
  * network streams, and data streams in general (so you don't have to hold buffers).
- * The [enum HashType] enum shows the supported hashing algorithms.
+ * The [HashType] enum shows the supported hashing algorithms.
  *
  * gdscript:
  * ```gdscript
@@ -82,8 +82,8 @@ public open class HashingContext : RefCounted() {
   }
 
   /**
-   * Starts a new hash computation of the given [param type] (e.g. [constant HASH_SHA256] to start
-   * computation of a SHA-256).
+   * Starts a new hash computation of the given [type] (e.g. [HASHSHA256] to start computation of a
+   * SHA-256).
    */
   public fun start(type: HashType): GodotError {
     TransferContext.writeArguments(LONG to type.id)
@@ -92,7 +92,7 @@ public open class HashingContext : RefCounted() {
   }
 
   /**
-   * Updates the computation with the given [param chunk] of data.
+   * Updates the computation with the given [chunk] of data.
    */
   public fun update(chunk: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to chunk)

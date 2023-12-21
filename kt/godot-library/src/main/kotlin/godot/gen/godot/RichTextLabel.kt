@@ -166,8 +166,8 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * If set to something other than [constant TextServer.AUTOWRAP_OFF], the text gets wrapped inside
-   * the node's bounding rectangle. To see how each mode behaves, see [enum TextServer.AutowrapMode].
+   * If set to something other than [TextServer.AUTOWRAPOFF], the text gets wrapped inside the
+   * node's bounding rectangle. To see how each mode behaves, see [TextServer.AutowrapMode].
    */
   public var autowrapMode: TextServer.AutowrapMode
     get() {
@@ -357,8 +357,8 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * Sets the clipping behavior when [visibleCharacters] or [visibleRatio] is set. See [enum
-   * TextServer.VisibleCharactersBehavior] for more info.
+   * Sets the clipping behavior when [visibleCharacters] or [visibleRatio] is set. See
+   * [TextServer.VisibleCharactersBehavior] for more info.
    */
   public var visibleCharactersBehavior: TextServer.VisibleCharactersBehavior
     get() {
@@ -471,18 +471,17 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds an image's opening and closing tags to the tag stack, optionally providing a [param width]
-   * and [param height] to resize the image, a [param color] to tint the image and a [param region] to
-   * only use parts of the image.
-   * If [param width] or [param height] is set to 0, the image size will be adjusted in order to
-   * keep the original aspect ratio.
-   * If [param width] and [param height] are not set, but [param region] is, the region's rect will
-   * be used.
-   * [param key] is an optional identifier, that can be used to modify the image via [updateImage].
-   * If [param pad] is set, and the image is smaller than the size specified by [param width] and
-   * [param height], the image padding is added to match the size instead of upscaling.
-   * If [param size_in_percent] is set, [param width] and [param height] values are percentages of
-   * the control width instead of pixels.
+   * Adds an image's opening and closing tags to the tag stack, optionally providing a [width] and
+   * [height] to resize the image, a [color] to tint the image and a [region] to only use parts of the
+   * image.
+   * If [width] or [height] is set to 0, the image size will be adjusted in order to keep the
+   * original aspect ratio.
+   * If [width] and [height] are not set, but [region] is, the region's rect will be used.
+   * [key] is an optional identifier, that can be used to modify the image via [updateImage].
+   * If [pad] is set, and the image is smaller than the size specified by [width] and [height], the
+   * image padding is added to match the size instead of upscaling.
+   * If [sizeInPercent] is set, [width] and [height] values are percentages of the control width
+   * instead of pixels.
    */
   @JvmOverloads
   public fun addImage(
@@ -502,8 +501,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Updates the existing images with the key [param key]. Only properties specified by [param mask]
-   * bits are updated. See [addImage].
+   * Updates the existing images with the key [key]. Only properties specified by [mask] bits are
+   * updated. See [addImage].
    */
   @JvmOverloads
   public fun updateImage(
@@ -533,8 +532,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Removes a paragraph of content from the label. Returns `true` if the paragraph exists.
-   * The [param paragraph] argument is the index of the paragraph to remove, it can take values in
-   * the interval `[0, get_paragraph_count() - 1]`.
+   * The [paragraph] argument is the index of the paragraph to remove, it can take values in the
+   * interval `[0, get_paragraph_count() - 1]`.
    */
   public fun removeParagraph(paragraph: Int): Boolean {
     TransferContext.writeArguments(LONG to paragraph.toLong())
@@ -545,7 +544,7 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a [code skip-lint][font][/code] tag to the tag stack. Overrides default fonts for its
    * duration.
-   * Passing `0` to [param font_size] will use the existing default font size.
+   * Passing `0` to [fontSize] will use the existing default font size.
    */
   @JvmOverloads
   public fun pushFont(font: Font, fontSize: Int = 0): Unit {
@@ -649,8 +648,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds an [code skip-lint][indent][/code] tag to the tag stack. Multiplies [param level] by
-   * current [tabSize] to determine new margin length.
+   * Adds an [code skip-lint][indent][/code] tag to the tag stack. Multiplies [level] by current
+   * [tabSize] to determine new margin length.
    */
   public fun pushIndent(level: Int): Unit {
     TransferContext.writeArguments(LONG to level.toLong())
@@ -659,7 +658,7 @@ public open class RichTextLabel : Control() {
 
   /**
    * Adds [code skip-lint][ol][/code] or [code skip-lint][ul][/code] tag to the tag stack.
-   * Multiplies [param level] by current [tabSize] to determine new margin length.
+   * Multiplies [level] by current [tabSize] to determine new margin length.
    */
   @JvmOverloads
   public fun pushList(
@@ -746,11 +745,11 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Edits the selected column's expansion options. If [param expand] is `true`, the column expands
-   * in proportion to its expansion ratio versus the other columns' ratios.
+   * Edits the selected column's expansion options. If [expand] is `true`, the column expands in
+   * proportion to its expansion ratio versus the other columns' ratios.
    * For example, 2 columns with ratios 3 and 4 plus 70 pixels in available width would expand 30
    * and 40 pixels, respectively.
-   * If [param expand] is `false`, the column will not contribute to the total ratio.
+   * If [expand] is `false`, the column will not contribute to the total ratio.
    */
   @JvmOverloads
   public fun setTableColumnExpand(
@@ -884,7 +883,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Scrolls the window's top line to match [param line].
+   * Scrolls the window's top line to match [line].
    */
   public fun scrollToLine(line: Int): Unit {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -892,7 +891,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Scrolls the window's top line to match first line of the [param paragraph].
+   * Scrolls the window's top line to match first line of the [paragraph].
    */
   public fun scrollToParagraph(paragraph: Int): Unit {
     TransferContext.writeArguments(LONG to paragraph.toLong())
@@ -962,7 +961,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Parses [param bbcode] and adds tags to the tag stack as needed.
+   * Parses [bbcode] and adds tags to the tag stack as needed.
    * **Note:** Using this method, you can't close a tag that was opened in a previous [appendText]
    * call. This is done to improve performance, especially when updating large RichTextLabels since
    * rebuilding the whole BBCode every time would be slower. If you absolutely need to close a tag in a
@@ -1103,7 +1102,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Parses BBCode parameter [param expressions] into a dictionary.
+   * Parses BBCode parameter [expressions] into a dictionary.
    */
   public fun parseExpressionsForValues(expressions: PackedStringArray): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to expressions)
@@ -1112,7 +1111,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Installs a custom effect. [param effect] should be a valid [RichTextEffect].
+   * Installs a custom effect. [effect] should be a valid [RichTextEffect].
    */
   public fun installEffect(effect: Any?): Unit {
     TransferContext.writeArguments(ANY to effect)
@@ -1123,7 +1122,7 @@ public open class RichTextLabel : Control() {
    * Returns the [PopupMenu] of this [RichTextLabel]. By default, this menu is displayed when
    * right-clicking on the [RichTextLabel].
    * You can add custom menu items or remove standard ones. Make sure your IDs don't conflict with
-   * the standard ones (see [enum MenuItems]). For example:
+   * the standard ones (see [MenuItems]). For example:
    *
    * gdscript:
    * ```gdscript
@@ -1184,7 +1183,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Executes a given action as defined in the [enum MenuItems] enum.
+   * Executes a given action as defined in the [MenuItems] enum.
    */
   public fun menuOption(option: Int): Unit {
     TransferContext.writeArguments(LONG to option.toLong())
@@ -1234,7 +1233,7 @@ public open class RichTextLabel : Control() {
      */
     MENU_SELECT_ALL(1),
     /**
-     * Represents the size of the [enum MenuItems] enum.
+     * Represents the size of the [MenuItems] enum.
      */
     MENU_MAX(2),
     ;

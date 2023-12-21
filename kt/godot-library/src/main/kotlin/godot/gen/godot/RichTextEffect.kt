@@ -40,8 +40,8 @@ public open class RichTextEffect : Resource() {
   }
 
   /**
-   * Override this method to modify properties in [param char_fx]. The method must return `true` if
-   * the character could be transformed successfully. If the method returns `false`, it will skip
+   * Override this method to modify properties in [charFx]. The method must return `true` if the
+   * character could be transformed successfully. If the method returns `false`, it will skip
    * transformation to avoid displaying broken text.
    */
   public open fun _processCustomFx(charFx: CharFXTransform): Boolean {

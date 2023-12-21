@@ -108,8 +108,8 @@ public open class SceneTree : MainLoop() {
   /**
    * If `true`, the application quits automatically when navigating back (e.g. using the system
    * "Back" button on Android).
-   * To handle 'Go Back' button when this option is disabled, use [constant
-   * DisplayServer.WINDOW_EVENT_GO_BACK_REQUEST].
+   * To handle 'Go Back' button when this option is disabled, use
+   * [DisplayServer.WINDOWEVENTGOBACKREQUEST].
    */
   public var quitOnGoBack: Boolean
     get() {
@@ -266,10 +266,10 @@ public open class SceneTree : MainLoop() {
   /**
    * Returns a [SceneTreeTimer] which will emit [signal SceneTreeTimer.timeout] after the given time
    * in seconds elapsed in this [SceneTree].
-   * If [param process_always] is set to `false`, pausing the [SceneTree] will also pause the timer.
-   * If [param process_in_physics] is set to `true`, will update the [SceneTreeTimer] during the
-   * physics frame instead of the process frame (fixed framerate processing).
-   * If [param ignore_time_scale] is set to `true`, will ignore [Engine.timeScale] and update the
+   * If [processAlways] is set to `false`, pausing the [SceneTree] will also pause the timer.
+   * If [processInPhysics] is set to `true`, will update the [SceneTreeTimer] during the physics
+   * frame instead of the process frame (fixed framerate processing).
+   * If [ignoreTimeScale] is set to `true`, will ignore [Engine.timeScale] and update the
    * [SceneTreeTimer] with the actual frame delta.
    * Commonly used to create a one-shot delay timer as in the following example:
    *
@@ -292,8 +292,8 @@ public open class SceneTree : MainLoop() {
    *
    * The timer will be automatically freed after its time elapses.
    * **Note:** The timer is processed after all of the nodes in the current frame, i.e. node's
-   * [Node.Process] method would be called before the timer (or [Node.PhysicsProcess] if [param
-   * process_in_physics] is set to `true`).
+   * [Node.Process] method would be called before the timer (or [Node.PhysicsProcess] if
+   * [processInPhysics] is set to `true`).
    */
   @JvmOverloads
   public fun createTimer(
@@ -309,7 +309,7 @@ public open class SceneTree : MainLoop() {
 
   /**
    * Creates and returns a new [Tween]. The Tween will start automatically on the next process frame
-   * or physics frame (depending on [enum Tween.TweenProcessMode]).
+   * or physics frame (depending on [Tween.TweenProcessMode]).
    * **Note:** When creating a [Tween] using this method, the [Tween] will not be tied to the [Node]
    * that called it. It will continue to animate even if the [Node] is freed, but it will automatically
    * finish if there's nothing left to animate. If you want the [Tween] to be automatically killed when
@@ -349,8 +349,8 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Quits the application at the end of the current iteration. Argument [param exit_code] can
-   * optionally be given (defaulting to 0) to customize the exit status code.
+   * Quits the application at the end of the current iteration. Argument [exitCode] can optionally
+   * be given (defaulting to 0) to customize the exit status code.
    * By convention, an exit code of `0` indicates success whereas a non-zero exit code indicates an
    * error.
    * For portability reasons, the exit code should be set between 0 and 125 (inclusive).
@@ -373,18 +373,18 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Calls [param method] on each member of the given group, respecting the given [enum
-   * GroupCallFlags]. You can pass arguments to [param method] by specifying them at the end of the
-   * method call. If a node doesn't have the given method or the argument list does not match (either
-   * in count or in types), it will be skipped.
+   * Calls [method] on each member of the given group, respecting the given [GroupCallFlags]. You
+   * can pass arguments to [method] by specifying them at the end of the method call. If a node doesn't
+   * have the given method or the argument list does not match (either in count or in types), it will
+   * be skipped.
    * [codeblock]
    * # Call the method in a deferred manner and in reverse order.
    * get_tree().call_group_flags(SceneTree.GROUP_CALL_DEFERRED | SceneTree.GROUP_CALL_REVERSE)
    * [/codeblock]
    * **Note:** Group call flags are used to control the method calling behavior. By default, methods
-   * will be called immediately in a way similar to [callGroup]. However, if the [constant
-   * GROUP_CALL_DEFERRED] flag is present in the [param flags] argument, methods will be called at the
-   * end of the frame in a way similar to [Object.setDeferred].
+   * will be called immediately in a way similar to [callGroup]. However, if the [GROUPCALLDEFERRED]
+   * flag is present in the [flags] argument, methods will be called at the end of the frame in a way
+   * similar to [Object.setDeferred].
    */
   public fun callGroupFlags(
     flags: Long,
@@ -397,13 +397,12 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Sends the given notification to all members of the [param group], respecting the given [enum
-   * GroupCallFlags].
+   * Sends the given notification to all members of the [group], respecting the given
+   * [GroupCallFlags].
    * **Note:** Group call flags are used to control the notification sending behavior. By default,
    * notifications will be sent immediately in a way similar to [notifyGroup]. However, if the
-   * [constant GROUP_CALL_DEFERRED] flag is present in the [param call_flags] argument, notifications
-   * will be sent at the end of the current frame in a way similar to using
-   * `Object.call_deferred("notification", ...)`.
+   * [GROUPCALLDEFERRED] flag is present in the [callFlags] argument, notifications will be sent at the
+   * end of the current frame in a way similar to using `Object.call_deferred("notification", ...)`.
    */
   public fun notifyGroupFlags(
     callFlags: Long,
@@ -415,12 +414,12 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Sets the given [param property] to [param value] on all members of the given group, respecting
-   * the given [enum GroupCallFlags].
+   * Sets the given [property] to [value] on all members of the given group, respecting the given
+   * [GroupCallFlags].
    * **Note:** Group call flags are used to control the property setting behavior. By default,
-   * properties will be set immediately in a way similar to [setGroup]. However, if the [constant
-   * GROUP_CALL_DEFERRED] flag is present in the [param call_flags] argument, properties will be set at
-   * the end of the frame in a way similar to [Object.callDeferred].
+   * properties will be set immediately in a way similar to [setGroup]. However, if the
+   * [GROUPCALLDEFERRED] flag is present in the [callFlags] argument, properties will be set at the end
+   * of the frame in a way similar to [Object.callDeferred].
    */
   public fun setGroupFlags(
     callFlags: Long,
@@ -433,9 +432,9 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Calls [param method] on each member of the given group. You can pass arguments to [param
-   * method] by specifying them at the end of the method call. If a node doesn't have the given method
-   * or the argument list does not match (either in count or in types), it will be skipped.
+   * Calls [method] on each member of the given group. You can pass arguments to [method] by
+   * specifying them at the end of the method call. If a node doesn't have the given method or the
+   * argument list does not match (either in count or in types), it will be skipped.
    * **Note:** [callGroup] will call methods immediately on all members at once, which can cause
    * stuttering if an expensive method is called on lots of members.
    */
@@ -449,7 +448,7 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Sends the given notification to all members of the [param group].
+   * Sends the given notification to all members of the [group].
    * **Note:** [notifyGroup] will immediately notify all members at once, which can cause stuttering
    * if an expensive method is called as a result of sending the notification to lots of members.
    */
@@ -459,7 +458,7 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Sets the given [param property] to [param value] on all members of the given group.
+   * Sets the given [property] to [value] on all members of the given group.
    * **Note:** [setGroup] will set the property immediately on all members at once, which can cause
    * stuttering if a property with an expensive setter is set on lots of members.
    */
@@ -492,10 +491,10 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Changes the running scene to the one at the given [param path], after loading it into a
-   * [PackedScene] and creating a new instance.
-   * Returns [constant OK] on success, [constant ERR_CANT_OPEN] if the [param path] cannot be loaded
-   * into a [PackedScene], or [constant ERR_CANT_CREATE] if that scene cannot be instantiated.
+   * Changes the running scene to the one at the given [path], after loading it into a [PackedScene]
+   * and creating a new instance.
+   * Returns [OK] on success, [ERRCANTOPEN] if the [path] cannot be loaded into a [PackedScene], or
+   * [ERRCANTCREATE] if that scene cannot be instantiated.
    * **Note:** See [changeSceneToPacked] for details on the order of operations.
    */
   public fun changeSceneToFile(path: String): GodotError {
@@ -506,8 +505,8 @@ public open class SceneTree : MainLoop() {
 
   /**
    * Changes the running scene to a new instance of the given [PackedScene] (which must be valid).
-   * Returns [constant OK] on success, [constant ERR_CANT_CREATE] if the scene cannot be
-   * instantiated, or [constant ERR_INVALID_PARAMETER] if the scene is invalid.
+   * Returns [OK] on success, [ERRCANTCREATE] if the scene cannot be instantiated, or
+   * [ERRINVALIDPARAMETER] if the scene is invalid.
    * **Note:** Operations happen in the following order when [changeSceneToPacked] is called:
    * 1. The current scene node is immediately removed from the tree. From that point, [Node.getTree]
    * called on the current (outgoing) scene will return `null`. [currentScene] will be `null`, too,
@@ -526,9 +525,9 @@ public open class SceneTree : MainLoop() {
 
   /**
    * Reloads the currently active scene.
-   * Returns [constant OK] on success, [constant ERR_UNCONFIGURED] if no [currentScene] was defined
-   * yet, [constant ERR_CANT_OPEN] if [currentScene] cannot be loaded into a [PackedScene], or
-   * [constant ERR_CANT_CREATE] if the scene cannot be instantiated.
+   * Returns [OK] on success, [ERRUNCONFIGURED] if no [currentScene] was defined yet, [ERRCANTOPEN]
+   * if [currentScene] cannot be loaded into a [PackedScene], or [ERRCANTCREATE] if the scene cannot be
+   * instantiated.
    */
   public fun reloadCurrentScene(): GodotError {
     TransferContext.writeArguments()
@@ -545,11 +544,11 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Sets a custom [MultiplayerAPI] with the given [param root_path] (controlling also the relative
-   * subpaths), or override the default one if [param root_path] is empty.
-   * **Note:** No [MultiplayerAPI] must be configured for the subpath containing [param root_path],
-   * nested custom multiplayers are not allowed. I.e. if one is configured for `"/root/Foo"` setting
-   * one for `"/root/Foo/Bar"` will cause an error.
+   * Sets a custom [MultiplayerAPI] with the given [rootPath] (controlling also the relative
+   * subpaths), or override the default one if [rootPath] is empty.
+   * **Note:** No [MultiplayerAPI] must be configured for the subpath containing [rootPath], nested
+   * custom multiplayers are not allowed. I.e. if one is configured for `"/root/Foo"` setting one for
+   * `"/root/Foo/Bar"` will cause an error.
    */
   @JvmOverloads
   public fun setMultiplayer(multiplayer: MultiplayerAPI, rootPath: NodePath = NodePath("")): Unit {

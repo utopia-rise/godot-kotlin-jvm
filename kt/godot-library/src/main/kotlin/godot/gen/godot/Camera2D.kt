@@ -62,7 +62,7 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * The Camera2D's anchor point. See [enum AnchorMode] constants.
+   * The Camera2D's anchor point. See [AnchorMode] constants.
    */
   public var anchorMode: AnchorMode
     get() {
@@ -148,7 +148,7 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * The camera's process callback. See [enum Camera2DProcessCallback].
+   * The camera's process callback. See [Camera2DProcessCallback].
    */
   public var processCallback: Camera2DProcessCallback
     get() {
@@ -622,12 +622,11 @@ public open class Camera2D : Node2D() {
     id: Long,
   ) {
     /**
-     * The camera updates during physics frames (see [constant
-     * Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
+     * The camera updates during physics frames (see [Node.NOTIFICATIONINTERNALPHYSICSPROCESS]).
      */
     CAMERA2D_PROCESS_PHYSICS(0),
     /**
-     * The camera updates during process frames (see [constant Node.NOTIFICATION_INTERNAL_PROCESS]).
+     * The camera updates during process frames (see [Node.NOTIFICATIONINTERNALPROCESS]).
      */
     CAMERA2D_PROCESS_IDLE(1),
     ;

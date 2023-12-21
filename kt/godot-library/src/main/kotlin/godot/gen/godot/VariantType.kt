@@ -159,7 +159,7 @@ public enum class VariantType(
    */
   TYPE_PACKED_COLOR_ARRAY(37),
   /**
-   * Represents the size of the [enum Variant.Type] enum.
+   * Represents the size of the [Variant.Type] enum.
    */
   TYPE_MAX(38),
   ;

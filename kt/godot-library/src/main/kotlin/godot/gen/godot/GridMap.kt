@@ -276,8 +276,8 @@ public open class GridMap : Node3D() {
 
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [collisionMask], given a
-   * [param layer_number] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionMask], given a
+   * [layerNumber] between 1 and 32.
    */
   public fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -285,8 +285,8 @@ public open class GridMap : Node3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a [param
-   * layer_number] between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a
+   * [layerNumber] between 1 and 32.
    */
   public fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -295,8 +295,8 @@ public open class GridMap : Node3D() {
   }
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [collisionLayer], given
-   * a [param layer_number] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionLayer], given a
+   * [layerNumber] between 1 and 32.
    */
   public fun setCollisionLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -304,8 +304,8 @@ public open class GridMap : Node3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a [param
-   * layer_number] between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a
+   * [layerNumber] between 1 and 32.
    */
   public fun getCollisionLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -337,7 +337,7 @@ public open class GridMap : Node3D() {
 
   /**
    * Sets the mesh index for the cell referenced by its grid coordinates.
-   * A negative item index such as [constant INVALID_CELL_ITEM] will clear the cell.
+   * A negative item index such as [INVALIDCELLITEM] will clear the cell.
    * Optionally, the item's orientation can be passed. For valid orientation values, see
    * [getOrthogonalIndexFromBasis].
    */
@@ -353,7 +353,7 @@ public open class GridMap : Node3D() {
 
   /**
    * The [MeshLibrary] item index located at the given grid coordinates. If the cell is empty,
-   * [constant INVALID_CELL_ITEM] will be returned.
+   * [INVALIDCELLITEM] will be returned.
    */
   public fun getCellItem(position: Vector3i): Int {
     TransferContext.writeArguments(VECTOR3I to position)
@@ -403,8 +403,8 @@ public open class GridMap : Node3D() {
   }
 
   /**
-   * Returns the map coordinates of the cell containing the given [param local_position]. If [param
-   * local_position] is in global coordinates, consider using [Node3D.toLocal] before passing it to
+   * Returns the map coordinates of the cell containing the given [localPosition]. If
+   * [localPosition] is in global coordinates, consider using [Node3D.toLocal] before passing it to
    * this method. See also [mapToLocal].
    */
   public fun localToMap(localPosition: Vector3): Vector3i {
@@ -449,7 +449,7 @@ public open class GridMap : Node3D() {
   }
 
   /**
-   * Returns an array of all cells with the given item index specified in [param item].
+   * Returns an array of all cells with the given item index specified in [item].
    */
   public fun getUsedCellsByItem(item: Int): VariantArray<Vector3i> {
     TransferContext.writeArguments(LONG to item.toLong())
@@ -478,7 +478,7 @@ public open class GridMap : Node3D() {
   }
 
   /**
-   * Returns [RID] of a baked mesh with the given [param idx].
+   * Returns [RID] of a baked mesh with the given [idx].
    */
   public fun getBakeMeshInstance(idx: Int): RID {
     TransferContext.writeArguments(LONG to idx.toLong())

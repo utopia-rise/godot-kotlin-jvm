@@ -23,7 +23,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
   /**
-   * A function to be applied to the scalar. See [enum Function] for options.
+   * A function to be applied to the scalar. See [Function] for options.
    */
   public var function: Function
     get() {
@@ -196,7 +196,7 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
      */
     FUNC_ONEMINUS(31),
     /**
-     * Represents the size of the [enum Function] enum.
+     * Represents the size of the [Function] enum.
      */
     FUNC_MAX(32),
     ;

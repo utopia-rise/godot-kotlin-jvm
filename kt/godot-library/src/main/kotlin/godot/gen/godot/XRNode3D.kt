@@ -35,8 +35,7 @@ import kotlin.Unit
 public open class XRNode3D internal constructor() : Node3D() {
   /**
    * Emitted when the [tracker] starts or stops receiving updated tracking data for the [pose] being
-   * tracked. The [param tracking] argument indicates whether the tracker is getting updated tracking
-   * data.
+   * tracked. The [tracking] argument indicates whether the tracker is getting updated tracking data.
    */
   public val trackingChanged: Signal1<Boolean> by signal("tracking")
 
@@ -109,7 +108,7 @@ public open class XRNode3D internal constructor() : Node3D() {
 
   /**
    * Triggers a haptic pulse on a device associated with this interface.
-   * [param action_name] is the name of the action for this pulse.
+   * [actionName] is the name of the action for this pulse.
    */
   public fun triggerHapticPulse(
     actionName: String,

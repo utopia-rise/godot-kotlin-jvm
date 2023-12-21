@@ -384,9 +384,9 @@ public open class GLTFState : Resource() {
 
   /**
    * Appends an extension to the list of extensions used by this GLTF file during serialization. If
-   * [param required] is true, the extension will also be added to the list of required extensions. Do
-   * not run this in [GLTFDocumentExtension.ExportPost], as that stage is too late to add extensions.
-   * The final list is sorted alphabetically.
+   * [required] is true, the extension will also be added to the list of required extensions. Do not
+   * run this in [GLTFDocumentExtension.ExportPost], as that stage is too late to add extensions. The
+   * final list is sorted alphabetically.
    */
   public fun addUsedExtension(extensionName: String, required: Boolean): Unit {
     TransferContext.writeArguments(STRING to extensionName, BOOL to required)

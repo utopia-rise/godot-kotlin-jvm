@@ -37,15 +37,15 @@ public open class PacketPeerUDP : PacketPeer() {
   }
 
   /**
-   * Binds this [PacketPeerUDP] to the specified [param port] and [param bind_address] with a buffer
-   * size [param recv_buf_size], allowing it to receive incoming packets.
-   * If [param bind_address] is set to `"*"` (default), the peer will be bound on all available
-   * addresses (both IPv4 and IPv6).
-   * If [param bind_address] is set to `"0.0.0.0"` (for IPv4) or `"::"` (for IPv6), the peer will be
-   * bound to all available addresses matching that IP type.
-   * If [param bind_address] is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc), the
-   * peer will only be bound to the interface with that addresses (or fail if no interface with the
-   * given address exists).
+   * Binds this [PacketPeerUDP] to the specified [port] and [bindAddress] with a buffer size
+   * [recvBufSize], allowing it to receive incoming packets.
+   * If [bindAddress] is set to `"*"` (default), the peer will be bound on all available addresses
+   * (both IPv4 and IPv6).
+   * If [bindAddress] is set to `"0.0.0.0"` (for IPv4) or `"::"` (for IPv6), the peer will be bound
+   * to all available addresses matching that IP type.
+   * If [bindAddress] is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc), the peer
+   * will only be bound to the interface with that addresses (or fail if no interface with the given
+   * address exists).
    */
   @JvmOverloads
   public fun bind(
@@ -118,11 +118,11 @@ public open class PacketPeerUDP : PacketPeer() {
   }
 
   /**
-   * Calling this method connects this UDP peer to the given [param host]/[param port] pair. UDP is
-   * in reality connectionless, so this option only means that incoming packets from different
-   * addresses are automatically discarded, and that outgoing packets are always sent to the connected
-   * address (future calls to [setDestAddress] are not allowed). This method does not send any data to
-   * the remote peer, to do that, use [PacketPeer.putVar] or [PacketPeer.putPacket] as usual. See also
+   * Calling this method connects this UDP peer to the given [host]/[port] pair. UDP is in reality
+   * connectionless, so this option only means that incoming packets from different addresses are
+   * automatically discarded, and that outgoing packets are always sent to the connected address
+   * (future calls to [setDestAddress] are not allowed). This method does not send any data to the
+   * remote peer, to do that, use [PacketPeer.putVar] or [PacketPeer.putPacket] as usual. See also
    * [UDPServer].
    * **Note:** Connecting to the remote peer does not help to protect from malicious attacks like IP
    * spoofing, etc. Think about using an encryption technique like TLS or DTLS if you feel like your
@@ -197,8 +197,8 @@ public open class PacketPeerUDP : PacketPeer() {
   }
 
   /**
-   * Joins the multicast group specified by [param multicast_address] using the interface identified
-   * by [param interface_name].
+   * Joins the multicast group specified by [multicastAddress] using the interface identified by
+   * [interfaceName].
    * You can join the same multicast group with multiple interfaces. Use [IP.getLocalInterfaces] to
    * know which are available.
    * **Note:** Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission for
@@ -211,8 +211,8 @@ public open class PacketPeerUDP : PacketPeer() {
   }
 
   /**
-   * Removes the interface identified by [param interface_name] from the multicast group specified
-   * by [param multicast_address].
+   * Removes the interface identified by [interfaceName] from the multicast group specified by
+   * [multicastAddress].
    */
   public fun leaveMulticastGroup(multicastAddress: String, interfaceName: String): GodotError {
     TransferContext.writeArguments(STRING to multicastAddress, STRING to interfaceName)

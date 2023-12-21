@@ -69,11 +69,11 @@ public open class AStar2D : RefCounted() {
   }
 
   /**
-   * Adds a new point at the given position with the given identifier. The [param id] must be 0 or
-   * larger, and the [param weight_scale] must be 0.0 or greater.
-   * The [param weight_scale] is multiplied by the result of [_computeCost] when determining the
-   * overall cost of traveling across a segment from a neighboring point to this point. Thus, all else
-   * being equal, the algorithm prefers points with lower [param weight_scale]s to form a path.
+   * Adds a new point at the given position with the given identifier. The [id] must be 0 or larger,
+   * and the [weightScale] must be 0.0 or greater.
+   * The [weightScale] is multiplied by the result of [_computeCost] when determining the overall
+   * cost of traveling across a segment from a neighboring point to this point. Thus, all else being
+   * equal, the algorithm prefers points with lower [weightScale]s to form a path.
    *
    * gdscript:
    * ```gdscript
@@ -86,8 +86,8 @@ public open class AStar2D : RefCounted() {
    * astar.AddPoint(1, new Vector2(1, 0), 4); // Adds the point (1, 0) with weight_scale 4 and id 1
    * ```
    *
-   * If there already exists a point for the given [param id], its position and weight scale are
-   * updated to the given values.
+   * If there already exists a point for the given [id], its position and weight scale are updated
+   * to the given values.
    */
   @JvmOverloads
   public fun addPoint(
@@ -100,7 +100,7 @@ public open class AStar2D : RefCounted() {
   }
 
   /**
-   * Returns the position of the point associated with the given [param id].
+   * Returns the position of the point associated with the given [id].
    */
   public fun getPointPosition(id: Long): Vector2 {
     TransferContext.writeArguments(LONG to id)
@@ -109,7 +109,7 @@ public open class AStar2D : RefCounted() {
   }
 
   /**
-   * Sets the [param position] for the point with the given [param id].
+   * Sets the [position] for the point with the given [id].
    */
   public fun setPointPosition(id: Long, position: Vector2): Unit {
     TransferContext.writeArguments(LONG to id, VECTOR2 to position)
@@ -117,7 +117,7 @@ public open class AStar2D : RefCounted() {
   }
 
   /**
-   * Returns the weight scale of the point associated with the given [param id].
+   * Returns the weight scale of the point associated with the given [id].
    */
   public fun getPointWeightScale(id: Long): Float {
     TransferContext.writeArguments(LONG to id)
@@ -126,9 +126,9 @@ public open class AStar2D : RefCounted() {
   }
 
   /**
-   * Sets the [param weight_scale] for the point with the given [param id]. The [param weight_scale]
-   * is multiplied by the result of [_computeCost] when determining the overall cost of traveling
-   * across a segment from a neighboring point to this point.
+   * Sets the [weightScale] for the point with the given [id]. The [weightScale] is multiplied by
+   * the result of [_computeCost] when determining the overall cost of traveling across a segment from
+   * a neighboring point to this point.
    */
   public fun setPointWeightScale(id: Long, weightScale: Float): Unit {
     TransferContext.writeArguments(LONG to id, DOUBLE to weightScale.toDouble())
@@ -136,7 +136,7 @@ public open class AStar2D : RefCounted() {
   }
 
   /**
-   * Removes the point associated with the given [param id] from the points pool.
+   * Removes the point associated with the given [id] from the points pool.
    */
   public fun removePoint(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
@@ -144,7 +144,7 @@ public open class AStar2D : RefCounted() {
   }
 
   /**
-   * Returns whether a point associated with the given [param id] exists.
+   * Returns whether a point associated with the given [id] exists.
    */
   public fun hasPoint(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
@@ -217,8 +217,8 @@ public open class AStar2D : RefCounted() {
   }
 
   /**
-   * Creates a segment between the given points. If [param bidirectional] is `false`, only movement
-   * from [param id] to [param to_id] is allowed, not the reverse direction.
+   * Creates a segment between the given points. If [bidirectional] is `false`, only movement from
+   * [id] to [toId] is allowed, not the reverse direction.
    *
    * gdscript:
    * ```gdscript
@@ -246,9 +246,8 @@ public open class AStar2D : RefCounted() {
   }
 
   /**
-   * Deletes the segment between the given points. If [param bidirectional] is `false`, only
-   * movement from [param id] to [param to_id] is prevented, and a unidirectional segment possibly
-   * remains.
+   * Deletes the segment between the given points. If [bidirectional] is `false`, only movement from
+   * [id] to [toId] is prevented, and a unidirectional segment possibly remains.
    */
   @JvmOverloads
   public fun disconnectPoints(
@@ -261,9 +260,8 @@ public open class AStar2D : RefCounted() {
   }
 
   /**
-   * Returns whether there is a connection/segment between the given points. If [param
-   * bidirectional] is `false`, returns whether movement from [param id] to [param to_id] is possible
-   * through this segment.
+   * Returns whether there is a connection/segment between the given points. If [bidirectional] is
+   * `false`, returns whether movement from [id] to [toId] is possible through this segment.
    */
   @JvmOverloads
   public fun arePointsConnected(
@@ -296,8 +294,8 @@ public open class AStar2D : RefCounted() {
   }
 
   /**
-   * Reserves space internally for [param num_nodes] points, useful if you're adding a known large
-   * number of points at once, such as points on a grid. New capacity must be greater or equals to old
+   * Reserves space internally for [numNodes] points, useful if you're adding a known large number
+   * of points at once, such as points on a grid. New capacity must be greater or equals to old
    * capacity.
    */
   public fun reserveSpace(numNodes: Long): Unit {
@@ -314,10 +312,10 @@ public open class AStar2D : RefCounted() {
   }
 
   /**
-   * Returns the ID of the closest point to [param to_position], optionally taking disabled points
-   * into account. Returns `-1` if there are no points in the points pool.
-   * **Note:** If several points are the closest to [param to_position], the one with the smallest
-   * ID will be returned, ensuring a deterministic result.
+   * Returns the ID of the closest point to [toPosition], optionally taking disabled points into
+   * account. Returns `-1` if there are no points in the points pool.
+   * **Note:** If several points are the closest to [toPosition], the one with the smallest ID will
+   * be returned, ensuring a deterministic result.
    */
   @JvmOverloads
   public fun getClosestPoint(toPosition: Vector2, includeDisabled: Boolean = false): Long {
@@ -327,7 +325,7 @@ public open class AStar2D : RefCounted() {
   }
 
   /**
-   * Returns the closest position to [param to_position] that resides inside a segment between two
+   * Returns the closest position to [toPosition] that resides inside a segment between two
    * connected points.
    *
    * gdscript:

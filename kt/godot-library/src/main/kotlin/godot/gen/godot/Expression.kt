@@ -84,9 +84,9 @@ public open class Expression : RefCounted() {
   }
 
   /**
-   * Parses the expression and returns an [enum Error] code.
-   * You can optionally specify names of variables that may appear in the expression with [param
-   * input_names], so that you can bind them when it gets executed.
+   * Parses the expression and returns an [Error] code.
+   * You can optionally specify names of variables that may appear in the expression with
+   * [inputNames], so that you can bind them when it gets executed.
    */
   @JvmOverloads
   public fun parse(expression: String, inputNames: PackedStringArray = PackedStringArray()):

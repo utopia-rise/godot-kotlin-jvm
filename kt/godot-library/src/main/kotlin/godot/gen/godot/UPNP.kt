@@ -164,7 +164,7 @@ public open class UPNP : RefCounted() {
   }
 
   /**
-   * Returns the [UPNPDevice] at the given [param index].
+   * Returns the [UPNPDevice] at the given [index].
    */
   public fun getDevice(index: Int): UPNPDevice? {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -181,7 +181,7 @@ public open class UPNP : RefCounted() {
   }
 
   /**
-   * Sets the device at [param index] from the list of discovered devices to [param device].
+   * Sets the device at [index] from the list of discovered devices to [device].
    */
   public fun setDevice(index: Int, device: UPNPDevice): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), OBJECT to device)
@@ -189,7 +189,7 @@ public open class UPNP : RefCounted() {
   }
 
   /**
-   * Removes the device at [param index] from the list of discovered devices.
+   * Removes the device at [index] from the list of discovered devices.
    */
   public fun removeDevice(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -217,9 +217,9 @@ public open class UPNP : RefCounted() {
   /**
    * Discovers local [UPNPDevice]s. Clears the list of previously discovered devices.
    * Filters for IGD (InternetGatewayDevice) type devices by default, as those manage port
-   * forwarding. [param timeout] is the time to wait for responses in milliseconds. [param ttl] is the
+   * forwarding. [timeout] is the time to wait for responses in milliseconds. [ttl] is the
    * time-to-live; only touch this if you know what you're doing.
-   * See [enum UPNPResult] for possible return values.
+   * See [UPNPResult] for possible return values.
    */
   @JvmOverloads
   public fun discover(
@@ -243,29 +243,29 @@ public open class UPNP : RefCounted() {
   }
 
   /**
-   * Adds a mapping to forward the external [param port] (between 1 and 65535, although recommended
-   * to use port 1024 or above) on the default gateway (see [getGateway]) to the [param port_internal]
-   * on the local machine for the given protocol [param proto] (either `"TCP"` or `"UDP"`, with UDP
-   * being the default). If a port mapping for the given port and protocol combination already exists
-   * on that gateway device, this method tries to overwrite it. If that is not desired, you can
-   * retrieve the gateway manually with [getGateway] and call [addPortMapping] on it, if any. Note that
-   * forwarding a well-known port (below 1024) with UPnP may fail depending on the device.
+   * Adds a mapping to forward the external [port] (between 1 and 65535, although recommended to use
+   * port 1024 or above) on the default gateway (see [getGateway]) to the [portInternal] on the local
+   * machine for the given protocol [proto] (either `"TCP"` or `"UDP"`, with UDP being the default). If
+   * a port mapping for the given port and protocol combination already exists on that gateway device,
+   * this method tries to overwrite it. If that is not desired, you can retrieve the gateway manually
+   * with [getGateway] and call [addPortMapping] on it, if any. Note that forwarding a well-known port
+   * (below 1024) with UPnP may fail depending on the device.
    * Depending on the gateway device, if a mapping for that port already exists, it will either be
    * updated or it will refuse this command due to that conflict, especially if the existing mapping
    * for that port wasn't created via UPnP or points to a different network address (or device) than
    * this one.
-   * If [param port_internal] is `0` (the default), the same port number is used for both the
-   * external and the internal port (the [param port] value).
-   * The description ([param desc]) is shown in some routers management UIs and can be used to point
-   * out which application added the mapping.
-   * The mapping's lease [param duration] can be limited by specifying a duration in seconds. The
-   * default of `0` means no duration, i.e. a permanent lease and notably some devices only support
-   * these permanent leases. Note that whether permanent or not, this is only a request and the gateway
-   * may still decide at any point to remove the mapping (which usually happens on a reboot of the
-   * gateway, when its external IP address changes, or on some models when it detects a port mapping
-   * has become inactive, i.e. had no traffic for multiple minutes). If not `0` (permanent), the
-   * allowed range according to spec is between `120` (2 minutes) and `86400` seconds (24 hours).
-   * See [enum UPNPResult] for possible return values.
+   * If [portInternal] is `0` (the default), the same port number is used for both the external and
+   * the internal port (the [port] value).
+   * The description ([desc]) is shown in some routers management UIs and can be used to point out
+   * which application added the mapping.
+   * The mapping's lease [duration] can be limited by specifying a duration in seconds. The default
+   * of `0` means no duration, i.e. a permanent lease and notably some devices only support these
+   * permanent leases. Note that whether permanent or not, this is only a request and the gateway may
+   * still decide at any point to remove the mapping (which usually happens on a reboot of the gateway,
+   * when its external IP address changes, or on some models when it detects a port mapping has become
+   * inactive, i.e. had no traffic for multiple minutes). If not `0` (permanent), the allowed range
+   * according to spec is between `120` (2 minutes) and `86400` seconds (24 hours).
+   * See [UPNPResult] for possible return values.
    */
   @JvmOverloads
   public fun addPortMapping(
@@ -282,10 +282,10 @@ public open class UPNP : RefCounted() {
 
   /**
    * Deletes the port mapping for the given port and protocol combination on the default gateway
-   * (see [getGateway]) if one exists. [param port] must be a valid port between 1 and 65535, [param
-   * proto] can be either `"TCP"` or `"UDP"`. May be refused for mappings pointing to addresses other
-   * than this one, for well-known ports (below 1024), or for mappings not added via UPnP. See [enum
-   * UPNPResult] for possible return values.
+   * (see [getGateway]) if one exists. [port] must be a valid port between 1 and 65535, [proto] can be
+   * either `"TCP"` or `"UDP"`. May be refused for mappings pointing to addresses other than this one,
+   * for well-known ports (below 1024), or for mappings not added via UPnP. See [UPNPResult] for
+   * possible return values.
    */
   @JvmOverloads
   public fun deletePortMapping(port: Int, proto: String = "UDP"): Int {
@@ -349,8 +349,8 @@ public open class UPNP : RefCounted() {
      */
     UPNP_RESULT_NO_PORT_MAPS_AVAILABLE(11),
     /**
-     * Conflict with other mechanism. May be returned instead of [constant
-     * UPNP_RESULT_CONFLICT_WITH_OTHER_MAPPING] if a port mapping conflicts with an existing one.
+     * Conflict with other mechanism. May be returned instead of
+     * [UPNPRESULTCONFLICTWITHOTHERMAPPING] if a port mapping conflicts with an existing one.
      */
     UPNP_RESULT_CONFLICT_WITH_OTHER_MECHANISM(12),
     /**

@@ -23,7 +23,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
   /**
-   * The function to be performed. See [enum Function] for options.
+   * The function to be performed. See [Function] for options.
    */
   public var function: Function
     get() {
@@ -179,7 +179,7 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
      */
     FUNC_ONEMINUS(32),
     /**
-     * Represents the size of the [enum Function] enum.
+     * Represents the size of the [Function] enum.
      */
     FUNC_MAX(33),
     ;

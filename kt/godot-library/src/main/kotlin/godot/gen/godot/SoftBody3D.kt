@@ -184,8 +184,8 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   /**
-   * Defines the behavior in physics when [Node.processMode] is set to [constant
-   * Node.PROCESS_MODE_DISABLED]. See [enum DisableMode] for more details about the different modes.
+   * Defines the behavior in physics when [Node.processMode] is set to [Node.PROCESSMODEDISABLED].
+   * See [DisableMode] for more details about the different modes.
    */
   public var disableMode: DisableMode
     get() {
@@ -210,8 +210,8 @@ public open class SoftBody3D : MeshInstance3D() {
   }
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [collisionMask], given a
-   * [param layer_number] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionMask], given a
+   * [layerNumber] between 1 and 32.
    */
   public fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -219,8 +219,8 @@ public open class SoftBody3D : MeshInstance3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a [param
-   * layer_number] between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a
+   * [layerNumber] between 1 and 32.
    */
   public fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -229,8 +229,8 @@ public open class SoftBody3D : MeshInstance3D() {
   }
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [collisionLayer], given
-   * a [param layer_number] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionLayer], given a
+   * [layerNumber] between 1 and 32.
    */
   public fun setCollisionLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -238,8 +238,8 @@ public open class SoftBody3D : MeshInstance3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a [param
-   * layer_number] between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a
+   * [layerNumber] between 1 and 32.
    */
   public fun getCollisionLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -282,8 +282,8 @@ public open class SoftBody3D : MeshInstance3D() {
   }
 
   /**
-   * Sets the pinned state of a surface vertex. When set to `true`, the optional [param
-   * attachment_path] can define a [Node3D] the pinned vertex will be attached to.
+   * Sets the pinned state of a surface vertex. When set to `true`, the optional [attachmentPath]
+   * can define a [Node3D] the pinned vertex will be attached to.
    */
   @JvmOverloads
   public fun setPointPinned(
@@ -308,14 +308,14 @@ public open class SoftBody3D : MeshInstance3D() {
     id: Long,
   ) {
     /**
-     * When [Node.processMode] is set to [constant Node.PROCESS_MODE_DISABLED], remove from the
-     * physics simulation to stop all physics interactions with this [SoftBody3D].
+     * When [Node.processMode] is set to [Node.PROCESSMODEDISABLED], remove from the physics
+     * simulation to stop all physics interactions with this [SoftBody3D].
      * Automatically re-added to the physics simulation when the [Node] is processed again.
      */
     DISABLE_MODE_REMOVE(0),
     /**
-     * When [Node.processMode] is set to [constant Node.PROCESS_MODE_DISABLED], do not affect the
-     * physics simulation.
+     * When [Node.processMode] is set to [Node.PROCESSMODEDISABLED], do not affect the physics
+     * simulation.
      */
     DISABLE_MODE_KEEP_ACTIVE(1),
     ;

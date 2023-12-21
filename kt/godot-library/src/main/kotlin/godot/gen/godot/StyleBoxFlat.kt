@@ -545,7 +545,7 @@ public open class StyleBoxFlat : StyleBox() {
 
 
   /**
-   * Sets the border width to [param width] pixels for all sides.
+   * Sets the border width to [width] pixels for all sides.
    */
   public fun setBorderWidthAll(width: Int): Unit {
     TransferContext.writeArguments(LONG to width.toLong())
@@ -562,7 +562,7 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   /**
-   * Sets the corner radius to [param radius] pixels for all corners.
+   * Sets the corner radius to [radius] pixels for all corners.
    */
   public fun setCornerRadiusAll(radius: Int): Unit {
     TransferContext.writeArguments(LONG to radius.toLong())
@@ -570,7 +570,7 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   /**
-   * Sets the expand margin to [param size] pixels for all sides.
+   * Sets the expand margin to [size] pixels for all sides.
    */
   public fun setExpandMarginAll(size: Float): Unit {
     TransferContext.writeArguments(DOUBLE to size.toDouble())

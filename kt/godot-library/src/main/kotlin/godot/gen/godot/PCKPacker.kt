@@ -51,8 +51,8 @@ public open class PCKPacker : RefCounted() {
   }
 
   /**
-   * Creates a new PCK file with the name [param pck_name]. The `.pck` file extension isn't added
-   * automatically, so it should be part of [param pck_name] (even though it's not required).
+   * Creates a new PCK file with the name [pckName]. The `.pck` file extension isn't added
+   * automatically, so it should be part of [pckName] (even though it's not required).
    */
   @JvmOverloads
   public fun pckStart(
@@ -67,8 +67,8 @@ public open class PCKPacker : RefCounted() {
   }
 
   /**
-   * Adds the [param source_path] file to the current PCK package at the [param pck_path] internal
-   * path (should start with `res://`).
+   * Adds the [sourcePath] file to the current PCK package at the [pckPath] internal path (should
+   * start with `res://`).
    */
   @JvmOverloads
   public fun addFile(
@@ -82,8 +82,8 @@ public open class PCKPacker : RefCounted() {
   }
 
   /**
-   * Writes the files specified using all [addFile] calls since the last flush. If [param verbose]
-   * is `true`, a list of files added will be printed to the console for easier debugging.
+   * Writes the files specified using all [addFile] calls since the last flush. If [verbose] is
+   * `true`, a list of files added will be printed to the console for easier debugging.
    */
   @JvmOverloads
   public fun flush(verbose: Boolean = false): GodotError {

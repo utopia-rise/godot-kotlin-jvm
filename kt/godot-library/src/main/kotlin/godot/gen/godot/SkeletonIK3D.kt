@@ -305,8 +305,8 @@ public open class SkeletonIK3D : Node() {
 
   /**
    * Starts applying IK effects on each frame to the [Skeleton3D] bones but will only take effect
-   * starting on the next frame. If [param one_time] is `true`, this will take effect immediately but
-   * also reset on the next frame.
+   * starting on the next frame. If [oneTime] is `true`, this will take effect immediately but also
+   * reset on the next frame.
    */
   @JvmOverloads
   public fun start(oneTime: Boolean = false): Unit {

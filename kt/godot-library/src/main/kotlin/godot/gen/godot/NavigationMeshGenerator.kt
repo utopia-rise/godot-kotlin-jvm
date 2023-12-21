@@ -71,7 +71,7 @@ public object NavigationMeshGenerator : Object() {
   }
 
   /**
-   * Removes all polygons and vertices from the provided [param navigation_mesh] resource.
+   * Removes all polygons and vertices from the provided [navigationMesh] resource.
    */
   public fun clear(navigationMesh: NavigationMesh): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh)
@@ -79,10 +79,10 @@ public object NavigationMeshGenerator : Object() {
   }
 
   /**
-   * Parses the [SceneTree] for source geometry according to the properties of [param
-   * navigation_mesh]. Updates the provided [param source_geometry_data] resource with the resulting
-   * data. The resource can then be used to bake a navigation mesh with [bakeFromSourceGeometryData].
-   * After the process is finished the optional [param callback] will be called.
+   * Parses the [SceneTree] for source geometry according to the properties of [navigationMesh].
+   * Updates the provided [sourceGeometryData] resource with the resulting data. The resource can then
+   * be used to bake a navigation mesh with [bakeFromSourceGeometryData]. After the process is finished
+   * the optional [callback] will be called.
    * **Note:** This function needs to run on the main thread or with a deferred call as the
    * SceneTree is not thread-safe.
    * **Performance:** While convenient, reading data arrays from [Mesh] resources can affect the
@@ -102,8 +102,8 @@ public object NavigationMeshGenerator : Object() {
   }
 
   /**
-   * Bakes the provided [param navigation_mesh] with the data from the provided [param
-   * source_geometry_data]. After the process is finished the optional [param callback] will be called.
+   * Bakes the provided [navigationMesh] with the data from the provided [sourceGeometryData]. After
+   * the process is finished the optional [callback] will be called.
    */
   @JvmOverloads
   public fun bakeFromSourceGeometryData(

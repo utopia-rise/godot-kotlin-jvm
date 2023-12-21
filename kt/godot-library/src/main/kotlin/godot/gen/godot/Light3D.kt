@@ -259,7 +259,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
 
   /**
    * The light's bake mode. This will affect the global illumination techniques that have an effect
-   * on the light's rendering. See [enum BakeMode].
+   * on the light's rendering. See [BakeMode].
    * **Note:** Meshes' global illumination mode will also affect the global illumination rendering.
    * See [GeometryInstance3D.giMode].
    */
@@ -339,8 +339,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   /**
    * If `true`, reverses the backface culling of the mesh. This can be useful when you have a flat
    * mesh that has a light behind it. If you need to cast a shadow on both sides of the mesh, set the
-   * mesh to use double-sided shadows with [constant
-   * GeometryInstance3D.SHADOW_CASTING_SETTING_DOUBLE_SIDED].
+   * mesh to use double-sided shadows with [GeometryInstance3D.SHADOWCASTINGSETTINGDOUBLESIDED].
    */
   public var shadowReverseCullFace: Boolean
     get() {
@@ -609,7 +608,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
      */
     PARAM_INTENSITY(20),
     /**
-     * Represents the size of the [enum Param] enum.
+     * Represents the size of the [Param] enum.
      */
     PARAM_MAX(21),
     ;
@@ -647,8 +646,8 @@ public open class Light3D internal constructor() : VisualInstance3D() {
      * Light is taken into account in dynamic baking ([VoxelGI] and SDFGI
      * ([Environment.sdfgiEnabled]) only). The light can be moved around or modified with global
      * illumination updating in real-time. The light's global illumination appearance will be slightly
-     * different compared to [constant BAKE_STATIC]. This has a greater performance cost compared to
-     * [constant BAKE_STATIC]. When using SDFGI, the update speed of dynamic lights is affected by
+     * different compared to [BAKESTATIC]. This has a greater performance cost compared to
+     * [BAKESTATIC]. When using SDFGI, the update speed of dynamic lights is affected by
      * [ProjectSettings.rendering/globalIllumination/sdfgi/framesToUpdateLights].
      */
     BAKE_DYNAMIC(2),

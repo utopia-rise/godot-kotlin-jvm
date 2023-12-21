@@ -41,8 +41,8 @@ public open class SceneReplicationConfig : Resource() {
   }
 
   /**
-   * Adds the property identified by the given [param path] to the list of the properties being
-   * synchronized, optionally passing an [param index].
+   * Adds the property identified by the given [path] to the list of the properties being
+   * synchronized, optionally passing an [index].
    * **Note:** For details on restrictions and limitations on property synchronization, see
    * [MultiplayerSynchronizer].
    */
@@ -53,7 +53,7 @@ public open class SceneReplicationConfig : Resource() {
   }
 
   /**
-   * Returns whether the given [param path] is configured for synchronization.
+   * Returns whether the given [path] is configured for synchronization.
    */
   public fun hasProperty(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
@@ -62,7 +62,7 @@ public open class SceneReplicationConfig : Resource() {
   }
 
   /**
-   * Removes the property identified by the given [param path] from the configuration.
+   * Removes the property identified by the given [path] from the configuration.
    */
   public fun removeProperty(path: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to path)
@@ -70,7 +70,7 @@ public open class SceneReplicationConfig : Resource() {
   }
 
   /**
-   * Finds the index of the given [param path].
+   * Finds the index of the given [path].
    */
   public fun propertyGetIndex(path: NodePath): Int {
     TransferContext.writeArguments(NODE_PATH to path)
@@ -79,8 +79,8 @@ public open class SceneReplicationConfig : Resource() {
   }
 
   /**
-   * Returns whether the property identified by the given [param path] is configured to be
-   * synchronized on spawn.
+   * Returns whether the property identified by the given [path] is configured to be synchronized on
+   * spawn.
    */
   public fun propertyGetSpawn(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
@@ -89,8 +89,8 @@ public open class SceneReplicationConfig : Resource() {
   }
 
   /**
-   * Sets whether the property identified by the given [param path] is configured to be synchronized
-   * on spawn.
+   * Sets whether the property identified by the given [path] is configured to be synchronized on
+   * spawn.
    */
   public fun propertySetSpawn(path: NodePath, enabled: Boolean): Unit {
     TransferContext.writeArguments(NODE_PATH to path, BOOL to enabled)
@@ -98,8 +98,8 @@ public open class SceneReplicationConfig : Resource() {
   }
 
   /**
-   * Returns the replication mode for the property identified by the given [param path]. See [enum
-   * ReplicationMode].
+   * Returns the replication mode for the property identified by the given [path]. See
+   * [ReplicationMode].
    */
   public fun propertyGetReplicationMode(path: NodePath): ReplicationMode {
     TransferContext.writeArguments(NODE_PATH to path)
@@ -108,8 +108,8 @@ public open class SceneReplicationConfig : Resource() {
   }
 
   /**
-   * Sets the synchronization mode for the property identified by the given [param path]. See [enum
-   * ReplicationMode].
+   * Sets the synchronization mode for the property identified by the given [path]. See
+   * [ReplicationMode].
    */
   public fun propertySetReplicationMode(path: NodePath, mode: ReplicationMode): Unit {
     TransferContext.writeArguments(NODE_PATH to path, LONG to mode.id)
@@ -117,8 +117,8 @@ public open class SceneReplicationConfig : Resource() {
   }
 
   /**
-   * Returns whether the property identified by the given [param path] is configured to be
-   * synchronized on process.
+   * Returns whether the property identified by the given [path] is configured to be synchronized on
+   * process.
    * *Deprecated.* Use [propertyGetReplicationMode] instead.
    */
   public fun propertyGetSync(path: NodePath): Boolean {
@@ -128,9 +128,9 @@ public open class SceneReplicationConfig : Resource() {
   }
 
   /**
-   * Sets whether the property identified by the given [param path] is configured to be synchronized
-   * on process.
-   * *Deprecated.* Use [propertySetReplicationMode] with [constant REPLICATION_MODE_ALWAYS] instead.
+   * Sets whether the property identified by the given [path] is configured to be synchronized on
+   * process.
+   * *Deprecated.* Use [propertySetReplicationMode] with [REPLICATIONMODEALWAYS] instead.
    */
   public fun propertySetSync(path: NodePath, enabled: Boolean): Unit {
     TransferContext.writeArguments(NODE_PATH to path, BOOL to enabled)
@@ -138,7 +138,7 @@ public open class SceneReplicationConfig : Resource() {
   }
 
   /**
-   * Returns whether the property identified by the given [param path] is configured to be reliably
+   * Returns whether the property identified by the given [path] is configured to be reliably
    * synchronized when changes are detected on process.
    * *Deprecated.* Use [propertyGetReplicationMode] instead.
    */
@@ -149,10 +149,9 @@ public open class SceneReplicationConfig : Resource() {
   }
 
   /**
-   * Sets whether the property identified by the given [param path] is configured to be reliably
+   * Sets whether the property identified by the given [path] is configured to be reliably
    * synchronized when changes are detected on process.
-   * *Deprecated.* Use [propertySetReplicationMode] with [constant REPLICATION_MODE_ON_CHANGE]
-   * instead.
+   * *Deprecated.* Use [propertySetReplicationMode] with [REPLICATIONMODEONCHANGE] instead.
    */
   public fun propertySetWatch(path: NodePath, enabled: Boolean): Unit {
     TransferContext.writeArguments(NODE_PATH to path, BOOL to enabled)

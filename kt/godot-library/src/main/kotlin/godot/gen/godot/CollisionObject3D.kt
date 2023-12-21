@@ -43,9 +43,9 @@ import kotlin.Unit
 @GodotBaseType
 public open class CollisionObject3D internal constructor() : Node3D() {
   /**
-   * Emitted when the object receives an unhandled [InputEvent]. [param position] is the location in
-   * world space of the mouse pointer on the surface of the shape with index [param shape_idx] and
-   * [param normal] is the normal vector of the surface at that point.
+   * Emitted when the object receives an unhandled [InputEvent]. [position] is the location in world
+   * space of the mouse pointer on the surface of the shape with index [shapeIdx] and [normal] is the
+   * normal vector of the surface at that point.
    */
   public val inputEvent: Signal5<Node, InputEvent, Vector3, Vector3, Long> by signal("camera",
       "event", "position", "normal", "shapeIdx")
@@ -71,8 +71,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public val mouseExited: Signal0 by signal()
 
   /**
-   * Defines the behavior in physics when [Node.processMode] is set to [constant
-   * Node.PROCESS_MODE_DISABLED]. See [enum DisableMode] for more details about the different modes.
+   * Defines the behavior in physics when [Node.processMode] is set to [Node.PROCESSMODEDISABLED].
+   * See [DisableMode] for more details about the different modes.
    */
   public var disableMode: DisableMode
     get() {
@@ -176,10 +176,9 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Receives unhandled [InputEvent]s. [param position] is the location in world space of the mouse
-   * pointer on the surface of the shape with index [param shape_idx] and [param normal] is the normal
-   * vector of the surface at that point. Connect to the [signal input_event] signal to easily pick up
-   * these events.
+   * Receives unhandled [InputEvent]s. [position] is the location in world space of the mouse
+   * pointer on the surface of the shape with index [shapeIdx] and [normal] is the normal vector of the
+   * surface at that point. Connect to the [signal input_event] signal to easily pick up these events.
    * **Note:** [_inputEvent] requires [inputRayPickable] to be `true` and at least one
    * [collisionLayer] bit to be set.
    */
@@ -209,8 +208,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [collisionLayer], given
-   * a [param layer_number] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionLayer], given a
+   * [layerNumber] between 1 and 32.
    */
   public fun setCollisionLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -218,8 +217,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a [param
-   * layer_number] between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a
+   * [layerNumber] between 1 and 32.
    */
   public fun getCollisionLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -228,8 +227,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [collisionMask], given a
-   * [param layer_number] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionMask], given a
+   * [layerNumber] between 1 and 32.
    */
   public fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -237,8 +236,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a [param
-   * layer_number] between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a
+   * [layerNumber] between 1 and 32.
    */
   public fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -390,22 +389,21 @@ public open class CollisionObject3D internal constructor() : Node3D() {
     id: Long,
   ) {
     /**
-     * When [Node.processMode] is set to [constant Node.PROCESS_MODE_DISABLED], remove from the
-     * physics simulation to stop all physics interactions with this [CollisionObject3D].
+     * When [Node.processMode] is set to [Node.PROCESSMODEDISABLED], remove from the physics
+     * simulation to stop all physics interactions with this [CollisionObject3D].
      * Automatically re-added to the physics simulation when the [Node] is processed again.
      */
     DISABLE_MODE_REMOVE(0),
     /**
-     * When [Node.processMode] is set to [constant Node.PROCESS_MODE_DISABLED], make the body
-     * static. Doesn't affect [Area3D]. [PhysicsBody3D] can't be affected by forces or other bodies
-     * while static.
+     * When [Node.processMode] is set to [Node.PROCESSMODEDISABLED], make the body static. Doesn't
+     * affect [Area3D]. [PhysicsBody3D] can't be affected by forces or other bodies while static.
      * Automatically set [PhysicsBody3D] back to its original mode when the [Node] is processed
      * again.
      */
     DISABLE_MODE_MAKE_STATIC(1),
     /**
-     * When [Node.processMode] is set to [constant Node.PROCESS_MODE_DISABLED], do not affect the
-     * physics simulation.
+     * When [Node.processMode] is set to [Node.PROCESSMODEDISABLED], do not affect the physics
+     * simulation.
      */
     DISABLE_MODE_KEEP_ACTIVE(2),
     ;

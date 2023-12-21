@@ -165,8 +165,8 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   }
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [collisionMask], given a
-   * [param layer_number] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionMask], given a
+   * [layerNumber] between 1 and 32.
    */
   public fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -174,8 +174,8 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a [param
-   * layer_number] between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a
+   * [layerNumber] between 1 and 32.
    */
   public fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -184,8 +184,8 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   }
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [collisionLayer], given
-   * a [param layer_number] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionLayer], given a
+   * [layerNumber] between 1 and 32.
    */
   public fun setCollisionLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -193,8 +193,8 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a [param
-   * layer_number] between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a
+   * [layerNumber] between 1 and 32.
    */
   public fun getCollisionLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())

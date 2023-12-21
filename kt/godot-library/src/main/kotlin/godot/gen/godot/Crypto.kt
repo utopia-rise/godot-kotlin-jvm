@@ -105,7 +105,7 @@ public open class Crypto : RefCounted() {
   }
 
   /**
-   * Generates a [PackedByteArray] of cryptographically secure random bytes with given [param size].
+   * Generates a [PackedByteArray] of cryptographically secure random bytes with given [size].
    */
   public fun generateRandomBytes(size: Int): PackedByteArray {
     TransferContext.writeArguments(LONG to size.toLong())
@@ -124,11 +124,11 @@ public open class Crypto : RefCounted() {
   }
 
   /**
-   * Generates a self-signed [X509Certificate] from the given [CryptoKey] and [param issuer_name].
-   * The certificate validity will be defined by [param not_before] and [param not_after] (first valid
-   * date and last valid date). The [param issuer_name] must contain at least "CN=" (common name, i.e.
-   * the domain name), "O=" (organization, i.e. your company name), "C=" (country, i.e. 2 lettered
-   * ISO-3166 code of the country the organization is based in).
+   * Generates a self-signed [X509Certificate] from the given [CryptoKey] and [issuerName]. The
+   * certificate validity will be defined by [notBefore] and [notAfter] (first valid date and last
+   * valid date). The [issuerName] must contain at least "CN=" (common name, i.e. the domain name),
+   * "O=" (organization, i.e. your company name), "C=" (country, i.e. 2 lettered ISO-3166 code of the
+   * country the organization is based in).
    * A small example to generate an RSA key and a X509 self-signed certificate.
    *
    * gdscript:
@@ -162,7 +162,7 @@ public open class Crypto : RefCounted() {
   }
 
   /**
-   * Sign a given [param hash] of type [param hash_type] with the provided private [param key].
+   * Sign a given [hash] of type [hashType] with the provided private [key].
    */
   public fun sign(
     hashType: HashingContext.HashType,
@@ -175,8 +175,8 @@ public open class Crypto : RefCounted() {
   }
 
   /**
-   * Verify that a given [param signature] for [param hash] of type [param hash_type] against the
-   * provided public [param key].
+   * Verify that a given [signature] for [hash] of type [hashType] against the provided public
+   * [key].
    */
   public fun verify(
     hashType: HashingContext.HashType,
@@ -190,7 +190,7 @@ public open class Crypto : RefCounted() {
   }
 
   /**
-   * Encrypt the given [param plaintext] with the provided public [param key].
+   * Encrypt the given [plaintext] with the provided public [key].
    * **Note:** The maximum size of accepted plaintext is limited by the key size.
    */
   public fun encrypt(key: CryptoKey, plaintext: PackedByteArray): PackedByteArray {
@@ -200,7 +200,7 @@ public open class Crypto : RefCounted() {
   }
 
   /**
-   * Decrypt the given [param ciphertext] with the provided private [param key].
+   * Decrypt the given [ciphertext] with the provided private [key].
    * **Note:** The maximum size of accepted ciphertext is limited by the key size.
    */
   public fun decrypt(key: CryptoKey, ciphertext: PackedByteArray): PackedByteArray {
@@ -210,11 +210,9 @@ public open class Crypto : RefCounted() {
   }
 
   /**
-   * Generates an [url=https://en.wikipedia.org/wiki/HMAC]HMAC[/url] digest of [param msg] using
-   * [param key]. The [param hash_type] parameter is the hashing algorithm that is used for the inner
-   * and outer hashes.
-   * Currently, only [constant HashingContext.HASH_SHA256] and [constant HashingContext.HASH_SHA1]
-   * are supported.
+   * Generates an [url=https://en.wikipedia.org/wiki/HMAC]HMAC[/url] digest of [msg] using [key].
+   * The [hashType] parameter is the hashing algorithm that is used for the inner and outer hashes.
+   * Currently, only [HashingContext.HASHSHA256] and [HashingContext.HASHSHA1] are supported.
    */
   public fun hmacDigest(
     hashType: HashingContext.HashType,

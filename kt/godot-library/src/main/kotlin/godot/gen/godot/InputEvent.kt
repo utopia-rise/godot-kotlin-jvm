@@ -59,8 +59,8 @@ public open class InputEvent internal constructor() : Resource() {
 
   /**
    * Returns `true` if this input event matches a pre-defined action of any type.
-   * If [param exact_match] is `false`, it ignores additional input modifiers for [InputEventKey]
-   * and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
   @JvmOverloads
   public fun isAction(action: StringName, exactMatch: Boolean = false): Boolean {
@@ -71,10 +71,10 @@ public open class InputEvent internal constructor() : Resource() {
 
   /**
    * Returns `true` if the given action is being pressed (and is not an echo event for
-   * [InputEventKey] events, unless [param allow_echo] is `true`). Not relevant for events of type
+   * [InputEventKey] events, unless [allowEcho] is `true`). Not relevant for events of type
    * [InputEventMouseMotion] or [InputEventScreenDrag].
-   * If [param exact_match] is `false`, it ignores additional input modifiers for [InputEventKey]
-   * and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    * **Note:** Due to keyboard ghosting, [isActionPressed] may return `false` even if one of the
    * action's keys is pressed. See
    * [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the
@@ -94,8 +94,8 @@ public open class InputEvent internal constructor() : Resource() {
   /**
    * Returns `true` if the given action is released (i.e. not pressed). Not relevant for events of
    * type [InputEventMouseMotion] or [InputEventScreenDrag].
-   * If [param exact_match] is `false`, it ignores additional input modifiers for [InputEventKey]
-   * and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
   @JvmOverloads
   public fun isActionReleased(action: StringName, exactMatch: Boolean = false): Boolean {
@@ -107,8 +107,8 @@ public open class InputEvent internal constructor() : Resource() {
   /**
    * Returns a value between 0.0 and 1.0 depending on the given actions' state. Useful for getting
    * the value of events of type [InputEventJoypadMotion].
-   * If [param exact_match] is `false`, it ignores additional input modifiers for [InputEventKey]
-   * and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
   @JvmOverloads
   public fun getActionStrength(action: StringName, exactMatch: Boolean = false): Float {
@@ -169,11 +169,11 @@ public open class InputEvent internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true` if the specified [param event] matches this event. Only valid for action events
-   * i.e key ([InputEventKey]), button ([InputEventMouseButton] or [InputEventJoypadButton]), axis
+   * Returns `true` if the specified [event] matches this event. Only valid for action events i.e
+   * key ([InputEventKey]), button ([InputEventMouseButton] or [InputEventJoypadButton]), axis
    * [InputEventJoypadMotion] or action ([InputEventAction]) events.
-   * If [param exact_match] is `false`, it ignores additional input modifiers for [InputEventKey]
-   * and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
   @JvmOverloads
   public fun isMatch(event: InputEvent, exactMatch: Boolean = true): Boolean {
@@ -204,10 +204,10 @@ public open class InputEvent internal constructor() : Resource() {
   }
 
   /**
-   * Returns a copy of the given input event which has been offset by [param local_ofs] and
-   * transformed by [param xform]. Relevant for events of type [InputEventMouseButton],
-   * [InputEventMouseMotion], [InputEventScreenTouch], [InputEventScreenDrag],
-   * [InputEventMagnifyGesture] and [InputEventPanGesture].
+   * Returns a copy of the given input event which has been offset by [localOfs] and transformed by
+   * [xform]. Relevant for events of type [InputEventMouseButton], [InputEventMouseMotion],
+   * [InputEventScreenTouch], [InputEventScreenDrag], [InputEventMagnifyGesture] and
+   * [InputEventPanGesture].
    */
   @JvmOverloads
   public fun xformedBy(xform: Transform2D, localOfs: Vector2 = Vector2(0, 0)): InputEvent? {

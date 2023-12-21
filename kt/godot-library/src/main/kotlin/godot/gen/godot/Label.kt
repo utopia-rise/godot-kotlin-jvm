@@ -69,7 +69,7 @@ public open class Label : Control() {
 
   /**
    * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify.
-   * Set it to one of the [enum HorizontalAlignment] constants.
+   * Set it to one of the [HorizontalAlignment] constants.
    */
   public var horizontalAlignment: HorizontalAlignment
     get() {
@@ -84,7 +84,7 @@ public open class Label : Control() {
 
   /**
    * Controls the text's vertical alignment. Supports top, center, bottom, and fill. Set it to one
-   * of the [enum VerticalAlignment] constants.
+   * of the [VerticalAlignment] constants.
    */
   public var verticalAlignment: VerticalAlignment
     get() {
@@ -98,9 +98,9 @@ public open class Label : Control() {
     }
 
   /**
-   * If set to something other than [constant TextServer.AUTOWRAP_OFF], the text gets wrapped inside
-   * the node's bounding rectangle. If you resize the node, it will change its height automatically to
-   * show all the text. To see how each mode behaves, see [enum TextServer.AutowrapMode].
+   * If set to something other than [TextServer.AUTOWRAPOFF], the text gets wrapped inside the
+   * node's bounding rectangle. If you resize the node, it will change its height automatically to show
+   * all the text. To see how each mode behaves, see [TextServer.AutowrapMode].
    */
   public var autowrapMode: TextServer.AutowrapMode
     get() {
@@ -114,7 +114,7 @@ public open class Label : Control() {
     }
 
   /**
-   * Line fill alignment rules. For more info see [enum TextServer.JustificationFlag].
+   * Line fill alignment rules. For more info see [TextServer.JustificationFlag].
    */
   public var justificationFlags: TextServer.JustificationFlag
     get() {
@@ -143,8 +143,8 @@ public open class Label : Control() {
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds the node's bounding rectangle. See [enum
-   * TextServer.OverrunBehavior] for a description of all modes.
+   * Sets the clipping behavior when the text exceeds the node's bounding rectangle. See
+   * [TextServer.OverrunBehavior] for a description of all modes.
    */
   public var textOverrunBehavior: TextServer.OverrunBehavior
     get() {
@@ -230,8 +230,8 @@ public open class Label : Control() {
     }
 
   /**
-   * Sets the clipping behavior when [visibleCharacters] or [visibleRatio] is set. See [enum
-   * TextServer.VisibleCharactersBehavior] for more info.
+   * Sets the clipping behavior when [visibleCharacters] or [visibleRatio] is set. See
+   * [TextServer.VisibleCharactersBehavior] for more info.
    */
   public var visibleCharactersBehavior: TextServer.VisibleCharactersBehavior
     get() {
@@ -327,8 +327,8 @@ public open class Label : Control() {
   }
 
   /**
-   * Returns the height of the line [param line].
-   * If [param line] is set to `-1`, returns the biggest line height.
+   * Returns the height of the line [line].
+   * If [line] is set to `-1`, returns the biggest line height.
    * If there are no lines, returns font size in pixels.
    */
   @JvmOverloads

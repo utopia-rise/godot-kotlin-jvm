@@ -204,8 +204,8 @@ public open class NavigationRegion2D : Node2D() {
   }
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [navigationLayers]
-   * bitmask, given a [param layer_number] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [navigationLayers] bitmask,
+   * given a [layerNumber] between 1 and 32.
    */
   public fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -214,7 +214,7 @@ public open class NavigationRegion2D : Node2D() {
 
   /**
    * Returns whether or not the specified layer of the [navigationLayers] bitmask is enabled, given
-   * a [param layer_number] between 1 and 32.
+   * a [layerNumber] between 1 and 32.
    */
   public fun getNavigationLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -223,8 +223,8 @@ public open class NavigationRegion2D : Node2D() {
   }
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [avoidanceLayers]
-   * bitmask, given a [param layer_number] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [avoidanceLayers] bitmask,
+   * given a [layerNumber] between 1 and 32.
    */
   public fun setAvoidanceLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -233,7 +233,7 @@ public open class NavigationRegion2D : Node2D() {
 
   /**
    * Returns whether or not the specified layer of the [avoidanceLayers] bitmask is enabled, given a
-   * [param layer_number] between 1 and 32.
+   * [layerNumber] between 1 and 32.
    */
   public fun getAvoidanceLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -253,8 +253,8 @@ public open class NavigationRegion2D : Node2D() {
   }
 
   /**
-   * Bakes the [NavigationPolygon]. If [param on_thread] is set to `true` (default), the baking is
-   * done on a separate thread.
+   * Bakes the [NavigationPolygon]. If [onThread] is set to `true` (default), the baking is done on
+   * a separate thread.
    */
   @JvmOverloads
   public fun bakeNavigationPolygon(onThread: Boolean = true): Unit {

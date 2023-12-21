@@ -148,7 +148,7 @@ public open class FontFile : Font() {
     }
 
   /**
-   * Font style flags, see [enum TextServer.FontStyle].
+   * Font style flags, see [TextServer.FontStyle].
    */
   public var fontStyle: TextServer.FontStyle
     @JvmName("getFontStyle_prop")
@@ -188,8 +188,7 @@ public open class FontFile : Font() {
   /**
    * Font glyph subpixel positioning mode. Subpixel positioning provides shaper text and better
    * kerning for smaller font sizes, at the cost of higher memory usage and lower font rasterization
-   * speed. Use [constant TextServer.SUBPIXEL_POSITIONING_AUTO] to automatically enable it based on the
-   * font size.
+   * speed. Use [TextServer.SUBPIXELPOSITIONINGAUTO] to automatically enable it based on the font size.
    */
   public var subpixelPositioning: TextServer.SubpixelPositioning
     get() {
@@ -368,7 +367,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Loads an AngelCode BMFont (.fnt, .font) bitmap font from file [param path].
+   * Loads an AngelCode BMFont (.fnt, .font) bitmap font from file [path].
    * **Warning:** This method should only be used in the editor or in cases when you need to load
    * external fonts at run-time, such as fonts located at the `user://` directory.
    */
@@ -380,7 +379,7 @@ public open class FontFile : Font() {
 
   /**
    * Loads a TrueType (.ttf), OpenType (.otf), WOFF (.woff), WOFF2 (.woff2) or Type 1 (.pfb, .pfm)
-   * dynamic font from file [param path].
+   * dynamic font from file [path].
    * **Warning:** This method should only be used in the editor or in cases when you need to load
    * external fonts at run-time, such as fonts located at the `user://` directory.
    */
@@ -500,8 +499,8 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Sets the spacing for [param spacing] (see [enum TextServer.SpacingType]) to [param value] in
-   * pixels (not relative to the font size).
+   * Sets the spacing for [spacing] (see [TextServer.SpacingType]) to [value] in pixels (not
+   * relative to the font size).
    */
   public fun setExtraSpacing(
     cacheIndex: Int,
@@ -513,8 +512,8 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Returns spacing for [param spacing] (see [enum TextServer.SpacingType]) in pixels (not relative
-   * to the font size).
+   * Returns spacing for [spacing] (see [TextServer.SpacingType]) in pixels (not relative to the
+   * font size).
    */
   public fun getExtraSpacing(cacheIndex: Int, spacing: TextServer.SpacingType): Long {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to spacing.id)
@@ -983,7 +982,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Returns `true` if support override is enabled for the [param language].
+   * Returns `true` if support override is enabled for the [language].
    */
   public fun getLanguageSupportOverride(language: String): Boolean {
     TransferContext.writeArguments(STRING to language)
@@ -1018,7 +1017,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Returns `true` if support override is enabled for the [param script].
+   * Returns `true` if support override is enabled for the [script].
    */
   public fun getScriptSupportOverride(script: String): Boolean {
     TransferContext.writeArguments(STRING to script)
@@ -1045,8 +1044,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Returns the glyph index of a [param char], optionally modified by the [param
-   * variation_selector].
+   * Returns the glyph index of a [char], optionally modified by the [variationSelector].
    */
   public fun getGlyphIndex(
     size: Int,
@@ -1059,8 +1057,8 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Returns character code associated with [param glyph_index], or `0` if [param glyph_index] is
-   * invalid. See [getGlyphIndex].
+   * Returns character code associated with [glyphIndex], or `0` if [glyphIndex] is invalid. See
+   * [getGlyphIndex].
    */
   public fun getCharFromGlyphIndex(size: Int, glyphIndex: Int): Long {
     TransferContext.writeArguments(LONG to size.toLong(), LONG to glyphIndex.toLong())

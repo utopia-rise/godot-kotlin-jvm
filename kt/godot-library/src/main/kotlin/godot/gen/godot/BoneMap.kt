@@ -61,7 +61,7 @@ public open class BoneMap : Resource() {
   }
 
   /**
-   * Returns a skeleton bone name is mapped to [param profile_bone_name].
+   * Returns a skeleton bone name is mapped to [profileBoneName].
    * In the retargeting process, the returned bone name is the bone name of the source skeleton.
    */
   public fun getSkeletonBoneName(profileBoneName: StringName): StringName {
@@ -71,7 +71,7 @@ public open class BoneMap : Resource() {
   }
 
   /**
-   * Maps a skeleton bone name to [param profile_bone_name].
+   * Maps a skeleton bone name to [profileBoneName].
    * In the retargeting process, the setting bone name is the bone name of the source skeleton.
    */
   public fun setSkeletonBoneName(profileBoneName: StringName, skeletonBoneName: StringName): Unit {
@@ -80,8 +80,8 @@ public open class BoneMap : Resource() {
   }
 
   /**
-   * Returns a profile bone name having [param skeleton_bone_name]. If not found, an empty
-   * [StringName] will be returned.
+   * Returns a profile bone name having [skeletonBoneName]. If not found, an empty [StringName] will
+   * be returned.
    * In the retargeting process, the returned bone name is the bone name of the target skeleton.
    */
   public fun findProfileBoneName(skeletonBoneName: StringName): StringName {

@@ -37,7 +37,7 @@ public open class TileMapPattern : Resource() {
   }
 
   /**
-   * Sets the tile identifiers for the cell at coordinates [param coords]. See [TileMap.setCell].
+   * Sets the tile identifiers for the cell at coordinates [coords]. See [TileMap.setCell].
    */
   @JvmOverloads
   public fun setCell(
@@ -68,7 +68,7 @@ public open class TileMapPattern : Resource() {
   }
 
   /**
-   * Returns the tile source ID of the cell at [param coords].
+   * Returns the tile source ID of the cell at [coords].
    */
   public fun getCellSourceId(coords: Vector2i): Int {
     TransferContext.writeArguments(VECTOR2I to coords)
@@ -77,7 +77,7 @@ public open class TileMapPattern : Resource() {
   }
 
   /**
-   * Returns the tile atlas coordinates ID of the cell at [param coords].
+   * Returns the tile atlas coordinates ID of the cell at [coords].
    */
   public fun getCellAtlasCoords(coords: Vector2i): Vector2i {
     TransferContext.writeArguments(VECTOR2I to coords)
@@ -86,7 +86,7 @@ public open class TileMapPattern : Resource() {
   }
 
   /**
-   * Returns the tile alternative ID of the cell at [param coords].
+   * Returns the tile alternative ID of the cell at [coords].
    */
   public fun getCellAlternativeTile(coords: Vector2i): Int {
     TransferContext.writeArguments(VECTOR2I to coords)

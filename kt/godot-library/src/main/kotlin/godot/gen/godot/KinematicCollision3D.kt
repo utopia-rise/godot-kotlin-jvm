@@ -98,8 +98,8 @@ public open class KinematicCollision3D : RefCounted() {
   }
 
   /**
-   * Returns the collision angle according to [param up_direction], which is [constant Vector3.UP]
-   * by default. This value is always positive.
+   * Returns the collision angle according to [upDirection], which is [Vector3.UP] by default. This
+   * value is always positive.
    */
   @JvmOverloads
   public fun getAngle(collisionIndex: Int = 0, upDirection: Vector3 = Vector3(0, 1, 0)): Float {

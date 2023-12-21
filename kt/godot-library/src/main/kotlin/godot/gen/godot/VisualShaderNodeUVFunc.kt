@@ -24,7 +24,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class VisualShaderNodeUVFunc : VisualShaderNode() {
   /**
-   * A function to be applied to the texture coordinates. See [enum Function] for options.
+   * A function to be applied to the texture coordinates. See [Function] for options.
    */
   public var function: Function
     get() {
@@ -56,7 +56,7 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
      */
     FUNC_SCALING(1),
     /**
-     * Represents the size of the [enum Function] enum.
+     * Represents the size of the [Function] enum.
      */
     FUNC_MAX(2),
     ;

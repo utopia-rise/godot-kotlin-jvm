@@ -42,7 +42,7 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
   }
 
   /**
-   * Loads the texture at [param path].
+   * Loads the texture at [path].
    */
   public fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)

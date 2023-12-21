@@ -104,7 +104,7 @@ public open class MeshDataTool : RefCounted() {
 
   /**
    * Uses specified surface of given [Mesh] to populate data for MeshDataTool.
-   * Requires [Mesh] with primitive type [constant Mesh.PRIMITIVE_TRIANGLES].
+   * Requires [Mesh] with primitive type [Mesh.PRIMITIVETRIANGLES].
    */
   public fun createFromSurface(mesh: ArrayMesh, surface: Int): GodotError {
     TransferContext.writeArguments(OBJECT to mesh, LONG to surface.toLong())
@@ -125,8 +125,8 @@ public open class MeshDataTool : RefCounted() {
   /**
    * Returns the [Mesh]'s format. Format is an integer made up of [Mesh] format flags combined
    * together. For example, a mesh containing both vertices and normals would return a format of `3`
-   * because [constant Mesh.ARRAY_FORMAT_VERTEX] is `1` and [constant Mesh.ARRAY_FORMAT_NORMAL] is `2`.
-   * See [enum Mesh.ArrayFormat] for a list of format flags.
+   * because [Mesh.ARRAYFORMATVERTEX] is `1` and [Mesh.ARRAYFORMATNORMAL] is `2`.
+   * See [Mesh.ArrayFormat] for a list of format flags.
    */
   public fun getFormat(): Long {
     TransferContext.writeArguments()

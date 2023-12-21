@@ -81,7 +81,7 @@ public open class NavigationAgent3D : Node() {
    * The details dictionary may contain the following keys depending on the value of
    * [pathMetadataFlags]:
    * - `position`: The start position of the link that was reached.
-   * - `type`: Always [constant NavigationPathQueryResult3D.PATH_SEGMENT_TYPE_LINK].
+   * - `type`: Always [NavigationPathQueryResult3D.PATHSEGMENTTYPELINK].
    * - `rid`: The [RID] of the link.
    * - `owner`: The object which manages the link (usually [NavigationLink3D]).
    * - `link_entry_position`: If `owner` is available and the owner is a [NavigationLink3D], it will
@@ -629,8 +629,8 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [navigationLayers]
-   * bitmask, given a [param layer_number] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [navigationLayers] bitmask,
+   * given a [layerNumber] between 1 and 32.
    */
   public fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -639,7 +639,7 @@ public open class NavigationAgent3D : Node() {
 
   /**
    * Returns whether or not the specified layer of the [navigationLayers] bitmask is enabled, given
-   * a [param layer_number] between 1 and 32.
+   * a [layerNumber] between 1 and 32.
    */
   public fun getNavigationLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -682,9 +682,9 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Replaces the internal velocity in the collision avoidance simulation with [param velocity].
-   * When an agent is teleported to a new position this function should be used in the same frame. If
-   * called frequently this function can get agents stuck.
+   * Replaces the internal velocity in the collision avoidance simulation with [velocity]. When an
+   * agent is teleported to a new position this function should be used in the same frame. If called
+   * frequently this function can get agents stuck.
    */
   public fun setVelocityForced(velocity: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to velocity)
@@ -776,8 +776,8 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [avoidanceLayers]
-   * bitmask, given a [param layer_number] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [avoidanceLayers] bitmask,
+   * given a [layerNumber] between 1 and 32.
    */
   public fun setAvoidanceLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -786,7 +786,7 @@ public open class NavigationAgent3D : Node() {
 
   /**
    * Returns whether or not the specified layer of the [avoidanceLayers] bitmask is enabled, given a
-   * [param layer_number] between 1 and 32.
+   * [layerNumber] between 1 and 32.
    */
   public fun getAvoidanceLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -795,8 +795,8 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Based on [param value], enables or disables the specified mask in the [avoidanceMask] bitmask,
-   * given a [param mask_number] between 1 and 32.
+   * Based on [value], enables or disables the specified mask in the [avoidanceMask] bitmask, given
+   * a [maskNumber] between 1 and 32.
    */
   public fun setAvoidanceMaskValue(maskNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to maskNumber.toLong(), BOOL to value)
@@ -805,7 +805,7 @@ public open class NavigationAgent3D : Node() {
 
   /**
    * Returns whether or not the specified mask of the [avoidanceMask] bitmask is enabled, given a
-   * [param mask_number] between 1 and 32.
+   * [maskNumber] between 1 and 32.
    */
   public fun getAvoidanceMaskValue(maskNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to maskNumber.toLong())

@@ -40,7 +40,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
    * memory allocations.
    * The [putVar] method allocates memory on the stack, and the buffer used will grow automatically
    * to the closest power of two to match the size of the [Variant]. If the [Variant] is bigger than
-   * [encodeBufferMaxSize], the method will error out with [constant ERR_OUT_OF_MEMORY].
+   * [encodeBufferMaxSize], the method will error out with [ERROUTOFMEMORY].
    */
   public var encodeBufferMaxSize: Int
     get() {
@@ -59,7 +59,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Gets a Variant. If [param allow_objects] is `true`, decoding objects is allowed.
+   * Gets a Variant. If [allowObjects] is `true`, decoding objects is allowed.
    * Internally, this uses the same decoding mechanism as the [@GlobalScope.bytesToVar] method.
    * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option
    * if the serialized object comes from untrusted sources to avoid potential security threats such as
@@ -73,8 +73,8 @@ public open class PacketPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sends a [Variant] as a packet. If [param full_objects] is `true`, encoding objects is allowed
-   * (and can potentially include code).
+   * Sends a [Variant] as a packet. If [fullObjects] is `true`, encoding objects is allowed (and can
+   * potentially include code).
    * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    */
   @JvmOverloads

@@ -100,7 +100,7 @@ public open class UPNPDevice : RefCounted() {
     }
 
   /**
-   * IGD status. See [enum IGDStatus].
+   * IGD status. See [IGDStatus].
    */
   public var igdStatus: IGDStatus
     get() {

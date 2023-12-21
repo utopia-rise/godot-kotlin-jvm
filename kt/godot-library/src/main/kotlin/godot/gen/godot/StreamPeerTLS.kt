@@ -47,8 +47,7 @@ public open class StreamPeerTLS : StreamPeer() {
   }
 
   /**
-   * Accepts a peer connection as a server using the given [param server_options]. See
-   * [TLSOptions.server].
+   * Accepts a peer connection as a server using the given [serverOptions]. See [TLSOptions.server].
    */
   public fun acceptStream(stream: StreamPeer, serverOptions: TLSOptions): GodotError {
     TransferContext.writeArguments(OBJECT to stream, OBJECT to serverOptions)
@@ -57,10 +56,10 @@ public open class StreamPeerTLS : StreamPeer() {
   }
 
   /**
-   * Connects to a peer using an underlying [StreamPeer] [param stream] and verifying the remote
-   * certificate is correctly signed for the given [param common_name]. You can pass the optional
-   * [param client_options] parameter to customize the trusted certification authorities, or disable
-   * the common name verification. See [TLSOptions.client] and [TLSOptions.clientUnsafe].
+   * Connects to a peer using an underlying [StreamPeer] [stream] and verifying the remote
+   * certificate is correctly signed for the given [commonName]. You can pass the optional
+   * [clientOptions] parameter to customize the trusted certification authorities, or disable the
+   * common name verification. See [TLSOptions.client] and [TLSOptions.clientUnsafe].
    */
   @JvmOverloads
   public fun connectToStream(
@@ -74,7 +73,7 @@ public open class StreamPeerTLS : StreamPeer() {
   }
 
   /**
-   * Returns the status of the connection. See [enum Status] for values.
+   * Returns the status of the connection. See [Status] for values.
    */
   public fun getStatus(): Status {
     TransferContext.writeArguments()

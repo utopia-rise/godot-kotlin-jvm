@@ -263,8 +263,8 @@ public open class Viewport internal constructor() : Node() {
 
   /**
    * If `true`, uses a fast post-processing filter to make banding significantly less visible in 3D.
-   * 2D rendering is *not* affected by debanding unless the [Environment.backgroundMode] is [constant
-   * Environment.BG_CANVAS]. See also [ProjectSettings.rendering/antiAliasing/quality/useDebanding].
+   * 2D rendering is *not* affected by debanding unless the [Environment.backgroundMode] is
+   * [Environment.BGCANVAS]. See also [ProjectSettings.rendering/antiAliasing/quality/useDebanding].
    * In some cases, debanding may introduce a slightly noticeable dithering pattern. It's
    * recommended to enable debanding only when actually needed since the dithering pattern will make
    * lossless-compressed screenshots larger.
@@ -468,7 +468,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Texture to use when [vrsMode] is set to [constant Viewport.VRS_TEXTURE].
+   * Texture to use when [vrsMode] is set to [Viewport.VRSTEXTURE].
    * The texture *must* use a lossless compression format so that colors can be matched precisely.
    * The following VRS densities are mapped to various colors, with brighter colors representing a
    * lower level of shading precision:
@@ -497,8 +497,8 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Sets the default filter mode used by [CanvasItem]s in this Viewport. See [enum
-   * DefaultCanvasItemTextureFilter] for options.
+   * Sets the default filter mode used by [CanvasItem]s in this Viewport. See
+   * [DefaultCanvasItemTextureFilter] for options.
    */
   public var canvasItemDefaultTextureFilter: DefaultCanvasItemTextureFilter
     get() {
@@ -512,8 +512,8 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Sets the default repeat mode used by [CanvasItem]s in this Viewport. See [enum
-   * DefaultCanvasItemTextureRepeat] for options.
+   * Sets the default repeat mode used by [CanvasItem]s in this Viewport. See
+   * [DefaultCanvasItemTextureRepeat] for options.
    */
   public var canvasItemDefaultTextureRepeat: DefaultCanvasItemTextureRepeat
     get() {
@@ -894,8 +894,8 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns rendering statistics of the given type. See [enum RenderInfoType] and [enum RenderInfo]
-   * for options.
+   * Returns rendering statistics of the given type. See [RenderInfoType] and [RenderInfo] for
+   * options.
    */
   public fun getRenderInfo(type: RenderInfoType, info: RenderInfo): Int {
     TransferContext.writeArguments(LONG to type.id, LONG to info.id)
@@ -939,13 +939,13 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Triggers the given [param event] in this [Viewport]. This can be used to pass an [InputEvent]
-   * between viewports, or to locally apply inputs that were sent over the network or saved to a file.
-   * If [param in_local_coords] is `false`, the event's position is in the embedder's coordinates
-   * and will be converted to viewport coordinates. If [param in_local_coords] is `true`, the event's
-   * position is in viewport coordinates.
+   * Triggers the given [event] in this [Viewport]. This can be used to pass an [InputEvent] between
+   * viewports, or to locally apply inputs that were sent over the network or saved to a file.
+   * If [inLocalCoords] is `false`, the event's position is in the embedder's coordinates and will
+   * be converted to viewport coordinates. If [inLocalCoords] is `true`, the event's position is in
+   * viewport coordinates.
    * While this method serves a similar purpose as [Input.parseInputEvent], it does not remap the
-   * specified [param event] based on project settings like
+   * specified [event] based on project settings like
    * [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse].
    * Calling this method will propagate calls to child nodes for following methods in the given
    * order:
@@ -968,11 +968,11 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Triggers the given [InputEvent] in this [Viewport]. This can be used to pass input events
    * between viewports, or to locally apply inputs that were sent over the network or saved to a file.
-   * If [param in_local_coords] is `false`, the event's position is in the embedder's coordinates
-   * and will be converted to viewport coordinates. If [param in_local_coords] is `true`, the event's
-   * position is in viewport coordinates.
+   * If [inLocalCoords] is `false`, the event's position is in the embedder's coordinates and will
+   * be converted to viewport coordinates. If [inLocalCoords] is `true`, the event's position is in
+   * viewport coordinates.
    * While this method serves a similar purpose as [Input.parseInputEvent], it does not remap the
-   * specified [param event] based on project settings like
+   * specified [event] based on project settings like
    * [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse].
    * Calling this method will propagate calls to child nodes for following methods in the given
    * order:
@@ -1043,8 +1043,8 @@ public open class Viewport internal constructor() : Node() {
 
   /**
    * Returns `true` if the viewport is currently performing a drag operation.
-   * Alternative to [constant Node.NOTIFICATION_DRAG_BEGIN] and [constant
-   * Node.NOTIFICATION_DRAG_END] when you prefer polling the value.
+   * Alternative to [Node.NOTIFICATIONDRAGBEGIN] and [Node.NOTIFICATIONDRAGEND] when you prefer
+   * polling the value.
    */
   public fun guiIsDragging(): Boolean {
     TransferContext.writeArguments()
@@ -1186,7 +1186,7 @@ public open class Viewport internal constructor() : Node() {
      */
     SHADOW_ATLAS_QUADRANT_SUBDIV_1024(6),
     /**
-     * Represents the size of the [enum PositionalShadowAtlasQuadrantSubdiv] enum.
+     * Represents the size of the [PositionalShadowAtlasQuadrantSubdiv] enum.
      */
     SHADOW_ATLAS_QUADRANT_SUBDIV_MAX(7),
     ;
@@ -1226,7 +1226,7 @@ public open class Viewport internal constructor() : Node() {
      */
     SCALING_3D_MODE_FSR2(2),
     /**
-     * Represents the size of the [enum Scaling3DMode] enum.
+     * Represents the size of the [Scaling3DMode] enum.
      */
     SCALING_3D_MODE_MAX(3),
     ;
@@ -1266,7 +1266,7 @@ public open class Viewport internal constructor() : Node() {
      */
     MSAA_8X(3),
     /**
-     * Represents the size of the [enum MSAA] enum.
+     * Represents the size of the [MSAA] enum.
      */
     MSAA_MAX(4),
     ;
@@ -1295,7 +1295,7 @@ public open class Viewport internal constructor() : Node() {
      */
     SCREEN_SPACE_AA_FXAA(1),
     /**
-     * Represents the size of the [enum ScreenSpaceAA] enum.
+     * Represents the size of the [ScreenSpaceAA] enum.
      */
     SCREEN_SPACE_AA_MAX(2),
     ;
@@ -1326,7 +1326,7 @@ public open class Viewport internal constructor() : Node() {
      */
     RENDER_INFO_DRAW_CALLS_IN_FRAME(2),
     /**
-     * Represents the size of the [enum RenderInfo] enum.
+     * Represents the size of the [RenderInfo] enum.
      */
     RENDER_INFO_MAX(3),
     ;
@@ -1476,7 +1476,7 @@ public open class Viewport internal constructor() : Node() {
      */
     DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST_WITH_MIPMAPS(3),
     /**
-     * Max value for [enum DefaultCanvasItemTextureFilter] enum.
+     * Max value for [DefaultCanvasItemTextureFilter] enum.
      */
     DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_MAX(4),
     ;
@@ -1511,7 +1511,7 @@ public open class Viewport internal constructor() : Node() {
      */
     DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_MIRROR(2),
     /**
-     * Max value for [enum DefaultCanvasItemTextureRepeat] enum.
+     * Max value for [DefaultCanvasItemTextureRepeat] enum.
      */
     DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_MAX(3),
     ;
@@ -1581,7 +1581,7 @@ public open class Viewport internal constructor() : Node() {
      */
     VRS_XR(2),
     /**
-     * Represents the size of the [enum VRSMode] enum.
+     * Represents the size of the [VRSMode] enum.
      */
     VRS_MAX(3),
     ;

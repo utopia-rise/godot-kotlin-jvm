@@ -374,8 +374,8 @@ public open class Node2D : CanvasItem() {
   }
 
   /**
-   * Applies a local translation on the node's X axis based on the [Node.Process]'s [param delta].
-   * If [param scaled] is `false`, normalizes the movement.
+   * Applies a local translation on the node's X axis based on the [Node.Process]'s [delta]. If
+   * [scaled] is `false`, normalizes the movement.
    */
   @JvmOverloads
   public fun moveLocalX(delta: Float, scaled: Boolean = false): Unit {
@@ -384,8 +384,8 @@ public open class Node2D : CanvasItem() {
   }
 
   /**
-   * Applies a local translation on the node's Y axis based on the [Node.Process]'s [param delta].
-   * If [param scaled] is `false`, normalizes the movement.
+   * Applies a local translation on the node's Y axis based on the [Node.Process]'s [delta]. If
+   * [scaled] is `false`, normalizes the movement.
    */
   @JvmOverloads
   public fun moveLocalY(delta: Float, scaled: Boolean = false): Unit {
@@ -394,7 +394,7 @@ public open class Node2D : CanvasItem() {
   }
 
   /**
-   * Translates the node by the given [param offset] in local coordinates.
+   * Translates the node by the given [offset] in local coordinates.
    */
   public fun translate(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
@@ -402,7 +402,7 @@ public open class Node2D : CanvasItem() {
   }
 
   /**
-   * Adds the [param offset] vector to the node's global position.
+   * Adds the [offset] vector to the node's global position.
    */
   public fun globalTranslate(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
@@ -410,7 +410,7 @@ public open class Node2D : CanvasItem() {
   }
 
   /**
-   * Multiplies the current scale by the [param ratio] vector.
+   * Multiplies the current scale by the [ratio] vector.
    */
   public fun applyScale(ratio: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to ratio)
@@ -418,8 +418,7 @@ public open class Node2D : CanvasItem() {
   }
 
   /**
-   * Rotates the node so it points towards the [param point], which is expected to use global
-   * coordinates.
+   * Rotates the node so it points towards the [point], which is expected to use global coordinates.
    */
   public fun lookAt(point: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to point)
@@ -427,7 +426,7 @@ public open class Node2D : CanvasItem() {
   }
 
   /**
-   * Returns the angle between the node and the [param point] in radians.
+   * Returns the angle between the node and the [point] in radians.
    * [url=https://raw.githubusercontent.com/godotengine/godot-docs/master/img/node2d_get_angle_to.png]Illustration
    * of the returned angle.[/url]
    */

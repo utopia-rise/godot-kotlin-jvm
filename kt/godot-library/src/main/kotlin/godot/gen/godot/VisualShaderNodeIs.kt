@@ -23,7 +23,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class VisualShaderNodeIs : VisualShaderNode() {
   /**
-   * The comparison function. See [enum Function] for options.
+   * The comparison function. See [Function] for options.
    */
   public var function: Function
     get() {
@@ -53,7 +53,7 @@ public open class VisualShaderNodeIs : VisualShaderNode() {
      */
     FUNC_IS_NAN(1),
     /**
-     * Represents the size of the [enum Function] enum.
+     * Represents the size of the [Function] enum.
      */
     FUNC_MAX(2),
     ;

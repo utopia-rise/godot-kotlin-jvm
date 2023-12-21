@@ -46,8 +46,8 @@ import kotlin.jvm.JvmOverloads
  * **Note:** Meshes should have sufficiently thick walls to avoid light leaks (avoid one-sided
  * walls). For interior levels, enclose your level geometry in a sufficiently large box and bridge the
  * loops to close the mesh. To further prevent light leaks, you can also strategically place temporary
- * [MeshInstance3D] nodes with their [GeometryInstance3D.giMode] set to [constant
- * GeometryInstance3D.GI_MODE_STATIC]. These temporary nodes can then be hidden after baking the
+ * [MeshInstance3D] nodes with their [GeometryInstance3D.giMode] set to
+ * [GeometryInstance3D.GIMODESTATIC]. These temporary nodes can then be hidden after baking the
  * [VoxelGI] node.
  */
 @GodotBaseType
@@ -149,12 +149,11 @@ public open class VoxelGI : VisualInstance3D() {
 
 
   /**
-   * Bakes the effect from all [GeometryInstance3D]s marked with [constant
-   * GeometryInstance3D.GI_MODE_STATIC] and [Light3D]s marked with either [constant
-   * Light3D.BAKE_STATIC] or [constant Light3D.BAKE_DYNAMIC]. If [param create_visual_debug] is `true`,
-   * after baking the light, this will generate a [MultiMesh] that has a cube representing each solid
-   * cell with each cube colored to the cell's albedo color. This can be used to visualize the
-   * [VoxelGI]'s data and debug any issues that may be occurring.
+   * Bakes the effect from all [GeometryInstance3D]s marked with [GeometryInstance3D.GIMODESTATIC]
+   * and [Light3D]s marked with either [Light3D.BAKESTATIC] or [Light3D.BAKEDYNAMIC]. If
+   * [createVisualDebug] is `true`, after baking the light, this will generate a [MultiMesh] that has a
+   * cube representing each solid cell with each cube colored to the cell's albedo color. This can be
+   * used to visualize the [VoxelGI]'s data and debug any issues that may be occurring.
    * **Note:** [bake] works from the editor and in exported projects. This makes it suitable for
    * procedurally generated or user-built levels. Baking a [VoxelGI] node generally takes from 5 to 20
    * seconds in most scenes. Reducing [subdiv] can speed up baking.
@@ -198,7 +197,7 @@ public open class VoxelGI : VisualInstance3D() {
      */
     SUBDIV_512(3),
     /**
-     * Represents the size of the [enum Subdiv] enum.
+     * Represents the size of the [Subdiv] enum.
      */
     SUBDIV_MAX(4),
     ;

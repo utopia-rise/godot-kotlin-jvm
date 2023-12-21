@@ -147,8 +147,8 @@ public open class Mesh : Resource() {
   }
 
   /**
-   * Virtual method to override the setting of a [param material] at the given [param index] for a
-   * custom class extending [Mesh].
+   * Virtual method to override the setting of a [material] at the given [index] for a custom class
+   * extending [Mesh].
    */
   public open fun _surfaceSetMaterial(index: Int, material: Material): Unit {
   }
@@ -282,9 +282,9 @@ public open class Mesh : Resource() {
 
   /**
    * Calculate a [ConvexPolygonShape3D] from the mesh.
-   * If [param clean] is `true` (default), duplicate and interior vertices are removed
-   * automatically. You can set it to `false` to make the process faster if not needed.
-   * If [param simplify] is `true`, the geometry can be further simplified to reduce the number of
+   * If [clean] is `true` (default), duplicate and interior vertices are removed automatically. You
+   * can set it to `false` to make the process faster if not needed.
+   * If [simplify] is `true`, the geometry can be further simplified to reduce the number of
    * vertices. Disabled by default.
    */
   @JvmOverloads
@@ -308,7 +308,7 @@ public open class Mesh : Resource() {
 
   /**
    * Generate a [TriangleMesh] from the mesh. Considers only surfaces using one of these primitive
-   * types: [constant PRIMITIVE_TRIANGLES], [constant PRIMITIVE_TRIANGLE_STRIP].
+   * types: [PRIMITIVETRIANGLES], [PRIMITIVETRIANGLESTRIP].
    */
   public fun generateTriangleMesh(): TriangleMesh? {
     TransferContext.writeArguments()
@@ -381,41 +381,41 @@ public open class Mesh : Resource() {
     ARRAY_TEX_UV2(5),
     /**
      * Contains custom color channel 0. [PackedByteArray] if `(format >>
-     * Mesh.ARRAY_FORMAT_CUSTOM0_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [constant
-     * ARRAY_CUSTOM_RGBA8_UNORM], [constant ARRAY_CUSTOM_RGBA8_UNORM], [constant ARRAY_CUSTOM_RG_HALF]
-     * or [constant ARRAY_CUSTOM_RGBA_HALF]. [PackedFloat32Array] otherwise.
+     * Mesh.ARRAY_FORMAT_CUSTOM0_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [ARRAYCUSTOMRGBA8UNORM],
+     * [ARRAYCUSTOMRGBA8UNORM], [ARRAYCUSTOMRGHALF] or [ARRAYCUSTOMRGBAHALF]. [PackedFloat32Array]
+     * otherwise.
      */
     ARRAY_CUSTOM0(6),
     /**
      * Contains custom color channel 1. [PackedByteArray] if `(format >>
-     * Mesh.ARRAY_FORMAT_CUSTOM1_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [constant
-     * ARRAY_CUSTOM_RGBA8_UNORM], [constant ARRAY_CUSTOM_RGBA8_UNORM], [constant ARRAY_CUSTOM_RG_HALF]
-     * or [constant ARRAY_CUSTOM_RGBA_HALF]. [PackedFloat32Array] otherwise.
+     * Mesh.ARRAY_FORMAT_CUSTOM1_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [ARRAYCUSTOMRGBA8UNORM],
+     * [ARRAYCUSTOMRGBA8UNORM], [ARRAYCUSTOMRGHALF] or [ARRAYCUSTOMRGBAHALF]. [PackedFloat32Array]
+     * otherwise.
      */
     ARRAY_CUSTOM1(7),
     /**
      * Contains custom color channel 2. [PackedByteArray] if `(format >>
-     * Mesh.ARRAY_FORMAT_CUSTOM2_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [constant
-     * ARRAY_CUSTOM_RGBA8_UNORM], [constant ARRAY_CUSTOM_RGBA8_UNORM], [constant ARRAY_CUSTOM_RG_HALF]
-     * or [constant ARRAY_CUSTOM_RGBA_HALF]. [PackedFloat32Array] otherwise.
+     * Mesh.ARRAY_FORMAT_CUSTOM2_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [ARRAYCUSTOMRGBA8UNORM],
+     * [ARRAYCUSTOMRGBA8UNORM], [ARRAYCUSTOMRGHALF] or [ARRAYCUSTOMRGBAHALF]. [PackedFloat32Array]
+     * otherwise.
      */
     ARRAY_CUSTOM2(8),
     /**
      * Contains custom color channel 3. [PackedByteArray] if `(format >>
-     * Mesh.ARRAY_FORMAT_CUSTOM3_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [constant
-     * ARRAY_CUSTOM_RGBA8_UNORM], [constant ARRAY_CUSTOM_RGBA8_UNORM], [constant ARRAY_CUSTOM_RG_HALF]
-     * or [constant ARRAY_CUSTOM_RGBA_HALF]. [PackedFloat32Array] otherwise.
+     * Mesh.ARRAY_FORMAT_CUSTOM3_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [ARRAYCUSTOMRGBA8UNORM],
+     * [ARRAYCUSTOMRGBA8UNORM], [ARRAYCUSTOMRGHALF] or [ARRAYCUSTOMRGBAHALF]. [PackedFloat32Array]
+     * otherwise.
      */
     ARRAY_CUSTOM3(9),
     /**
      * [PackedFloat32Array] or [PackedInt32Array] of bone indices. Contains either 4 or 8 numbers
-     * per vertex depending on the presence of the [constant ARRAY_FLAG_USE_8_BONE_WEIGHTS] flag.
+     * per vertex depending on the presence of the [ARRAYFLAGUSE8BONEWEIGHTS] flag.
      */
     ARRAY_BONES(10),
     /**
      * [PackedFloat32Array] or [PackedFloat64Array] of bone weights in the range `0.0` to `1.0`
      * (inclusive). Contains either 4 or 8 numbers per vertex depending on the presence of the
-     * [constant ARRAY_FLAG_USE_8_BONE_WEIGHTS] flag.
+     * [ARRAYFLAGUSE8BONEWEIGHTS] flag.
      */
     ARRAY_WEIGHTS(11),
     /**
@@ -430,7 +430,7 @@ public open class Mesh : Resource() {
      */
     ARRAY_INDEX(12),
     /**
-     * Represents the size of the [enum ArrayType] enum.
+     * Represents the size of the [ArrayType] enum.
      */
     ARRAY_MAX(13),
     ;
@@ -488,7 +488,7 @@ public open class Mesh : Resource() {
      */
     ARRAY_CUSTOM_RGBA_FLOAT(7),
     /**
-     * Represents the size of the [enum ArrayCustomFormat] enum.
+     * Represents the size of the [ArrayCustomFormat] enum.
      */
     ARRAY_CUSTOM_MAX(8),
     ;

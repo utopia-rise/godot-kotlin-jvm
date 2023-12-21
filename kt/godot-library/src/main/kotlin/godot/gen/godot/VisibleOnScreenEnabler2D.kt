@@ -32,8 +32,8 @@ import kotlin.Suppress
 @GodotBaseType
 public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
   /**
-   * Determines how the target node is enabled. Corresponds to [enum Node.ProcessMode]. When the
-   * node is disabled, it always uses [constant Node.PROCESS_MODE_DISABLED].
+   * Determines how the target node is enabled. Corresponds to [Node.ProcessMode]. When the node is
+   * disabled, it always uses [Node.PROCESSMODEDISABLED].
    */
   public var enableMode: EnableMode
     get() {
@@ -72,15 +72,15 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
     id: Long,
   ) {
     /**
-     * Corresponds to [constant Node.PROCESS_MODE_INHERIT].
+     * Corresponds to [Node.PROCESSMODEINHERIT].
      */
     ENABLE_MODE_INHERIT(0),
     /**
-     * Corresponds to [constant Node.PROCESS_MODE_ALWAYS].
+     * Corresponds to [Node.PROCESSMODEALWAYS].
      */
     ENABLE_MODE_ALWAYS(1),
     /**
-     * Corresponds to [constant Node.PROCESS_MODE_WHEN_PAUSED].
+     * Corresponds to [Node.PROCESSMODEWHENPAUSED].
      */
     ENABLE_MODE_WHEN_PAUSED(2),
     ;

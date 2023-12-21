@@ -24,7 +24,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class VisualShaderNodeCompare : VisualShaderNode() {
   /**
-   * The type to be used in the comparison. See [enum ComparisonType] for options.
+   * The type to be used in the comparison. See [ComparisonType] for options.
    */
   public var type: ComparisonType
     get() {
@@ -38,7 +38,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     }
 
   /**
-   * A comparison function. See [enum Function] for options.
+   * A comparison function. See [Function] for options.
    */
   public var function: Function
     get() {
@@ -52,7 +52,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     }
 
   /**
-   * Extra condition which is applied if [type] is set to [constant CTYPE_VECTOR_3D].
+   * Extra condition which is applied if [type] is set to [CTYPEVECTOR3D].
    */
   public var condition: Condition
     get() {
@@ -106,7 +106,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
      */
     CTYPE_TRANSFORM(7),
     /**
-     * Represents the size of the [enum ComparisonType] enum.
+     * Represents the size of the [ComparisonType] enum.
      */
     CTYPE_MAX(8),
     ;
@@ -133,27 +133,27 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
      */
     FUNC_NOT_EQUAL(1),
     /**
-     * Comparison for greater than (`a > b`). Cannot be used if [type] set to [constant
-     * CTYPE_BOOLEAN] or [constant CTYPE_TRANSFORM].
+     * Comparison for greater than (`a > b`). Cannot be used if [type] set to [CTYPEBOOLEAN] or
+     * [CTYPETRANSFORM].
      */
     FUNC_GREATER_THAN(2),
     /**
-     * Comparison for greater than or equal (`a >= b`). Cannot be used if [type] set to [constant
-     * CTYPE_BOOLEAN] or [constant CTYPE_TRANSFORM].
+     * Comparison for greater than or equal (`a >= b`). Cannot be used if [type] set to
+     * [CTYPEBOOLEAN] or [CTYPETRANSFORM].
      */
     FUNC_GREATER_THAN_EQUAL(3),
     /**
-     * Comparison for less than (`a < b`). Cannot be used if [type] set to [constant CTYPE_BOOLEAN]
-     * or [constant CTYPE_TRANSFORM].
+     * Comparison for less than (`a < b`). Cannot be used if [type] set to [CTYPEBOOLEAN] or
+     * [CTYPETRANSFORM].
      */
     FUNC_LESS_THAN(4),
     /**
-     * Comparison for less than or equal (`a <= b`). Cannot be used if [type] set to [constant
-     * CTYPE_BOOLEAN] or [constant CTYPE_TRANSFORM].
+     * Comparison for less than or equal (`a <= b`). Cannot be used if [type] set to [CTYPEBOOLEAN]
+     * or [CTYPETRANSFORM].
      */
     FUNC_LESS_THAN_EQUAL(5),
     /**
-     * Represents the size of the [enum Function] enum.
+     * Represents the size of the [Function] enum.
      */
     FUNC_MAX(6),
     ;
@@ -180,7 +180,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
      */
     COND_ANY(1),
     /**
-     * Represents the size of the [enum Condition] enum.
+     * Represents the size of the [Condition] enum.
      */
     COND_MAX(2),
     ;

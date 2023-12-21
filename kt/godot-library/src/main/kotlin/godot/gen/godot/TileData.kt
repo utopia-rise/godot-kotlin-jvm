@@ -262,7 +262,7 @@ public open class TileData : Object() {
 
 
   /**
-   * Sets the occluder for the TileSet occlusion layer with index [param layer_id].
+   * Sets the occluder for the TileSet occlusion layer with index [layerId].
    */
   public fun setOccluder(layerId: Int, occluderPolygon: OccluderPolygon2D): Unit {
     TransferContext.writeArguments(LONG to layerId.toLong(), OBJECT to occluderPolygon)
@@ -270,8 +270,7 @@ public open class TileData : Object() {
   }
 
   /**
-   * Returns the occluder polygon of the tile for the TileSet occlusion layer with index [param
-   * layer_id].
+   * Returns the occluder polygon of the tile for the TileSet occlusion layer with index [layerId].
    */
   public fun getOccluder(layerId: Int): OccluderPolygon2D? {
     TransferContext.writeArguments(LONG to layerId.toLong())
@@ -316,7 +315,7 @@ public open class TileData : Object() {
   }
 
   /**
-   * Sets the polygons count for TileSet physics layer with index [param layer_id].
+   * Sets the polygons count for TileSet physics layer with index [layerId].
    */
   public fun setCollisionPolygonsCount(layerId: Int, polygonsCount: Int): Unit {
     TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonsCount.toLong())
@@ -324,7 +323,7 @@ public open class TileData : Object() {
   }
 
   /**
-   * Returns how many polygons the tile has for TileSet physics layer with index [param layer_id].
+   * Returns how many polygons the tile has for TileSet physics layer with index [layerId].
    */
   public fun getCollisionPolygonsCount(layerId: Int): Int {
     TransferContext.writeArguments(LONG to layerId.toLong())
@@ -341,8 +340,7 @@ public open class TileData : Object() {
   }
 
   /**
-   * Removes the polygon at index [param polygon_index] for TileSet physics layer with index [param
-   * layer_id].
+   * Removes the polygon at index [polygonIndex] for TileSet physics layer with index [layerId].
    */
   public fun removeCollisionPolygon(layerId: Int, polygonIndex: Int): Unit {
     TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong())
@@ -350,8 +348,8 @@ public open class TileData : Object() {
   }
 
   /**
-   * Sets the points of the polygon at index [param polygon_index] for TileSet physics layer with
-   * index [param layer_id].
+   * Sets the points of the polygon at index [polygonIndex] for TileSet physics layer with index
+   * [layerId].
    */
   public fun setCollisionPolygonPoints(
     layerId: Int,
@@ -363,8 +361,8 @@ public open class TileData : Object() {
   }
 
   /**
-   * Returns the points of the polygon at index [param polygon_index] for TileSet physics layer with
-   * index [param layer_id].
+   * Returns the points of the polygon at index [polygonIndex] for TileSet physics layer with index
+   * [layerId].
    */
   public fun getCollisionPolygonPoints(layerId: Int, polygonIndex: Int): PackedVector2Array {
     TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong())
@@ -374,8 +372,8 @@ public open class TileData : Object() {
   }
 
   /**
-   * Enables/disables one-way collisions on the polygon at index [param polygon_index] for TileSet
-   * physics layer with index [param layer_id].
+   * Enables/disables one-way collisions on the polygon at index [polygonIndex] for TileSet physics
+   * layer with index [layerId].
    */
   public fun setCollisionPolygonOneWay(
     layerId: Int,
@@ -387,8 +385,8 @@ public open class TileData : Object() {
   }
 
   /**
-   * Returns whether one-way collisions are enabled for the polygon at index [param polygon_index]
-   * for TileSet physics layer with index [param layer_id].
+   * Returns whether one-way collisions are enabled for the polygon at index [polygonIndex] for
+   * TileSet physics layer with index [layerId].
    */
   public fun isCollisionPolygonOneWay(layerId: Int, polygonIndex: Int): Boolean {
     TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong())
@@ -397,8 +395,8 @@ public open class TileData : Object() {
   }
 
   /**
-   * Enables/disables one-way collisions on the polygon at index [param polygon_index] for TileSet
-   * physics layer with index [param layer_id].
+   * Enables/disables one-way collisions on the polygon at index [polygonIndex] for TileSet physics
+   * layer with index [layerId].
    */
   public fun setCollisionPolygonOneWayMargin(
     layerId: Int,
@@ -410,8 +408,8 @@ public open class TileData : Object() {
   }
 
   /**
-   * Returns the one-way margin (for one-way platforms) of the polygon at index [param
-   * polygon_index] for TileSet physics layer with index [param layer_id].
+   * Returns the one-way margin (for one-way platforms) of the polygon at index [polygonIndex] for
+   * TileSet physics layer with index [layerId].
    */
   public fun getCollisionPolygonOneWayMargin(layerId: Int, polygonIndex: Int): Float {
     TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong())
@@ -420,7 +418,7 @@ public open class TileData : Object() {
   }
 
   /**
-   * Sets the tile's terrain bit for the given [param peering_bit] direction.
+   * Sets the tile's terrain bit for the given [peeringBit] direction.
    */
   public fun setTerrainPeeringBit(peeringBit: TileSet.CellNeighbor, terrain: Int): Unit {
     TransferContext.writeArguments(LONG to peeringBit.id, LONG to terrain.toLong())
@@ -428,7 +426,7 @@ public open class TileData : Object() {
   }
 
   /**
-   * Returns the tile's terrain bit for the given [param peering_bit] direction.
+   * Returns the tile's terrain bit for the given [peeringBit] direction.
    */
   public fun getTerrainPeeringBit(peeringBit: TileSet.CellNeighbor): Int {
     TransferContext.writeArguments(LONG to peeringBit.id)
@@ -437,7 +435,7 @@ public open class TileData : Object() {
   }
 
   /**
-   * Sets the navigation polygon for the TileSet navigation layer with index [param layer_id].
+   * Sets the navigation polygon for the TileSet navigation layer with index [layerId].
    */
   public fun setNavigationPolygon(layerId: Int, navigationPolygon: NavigationPolygon): Unit {
     TransferContext.writeArguments(LONG to layerId.toLong(), OBJECT to navigationPolygon)
@@ -445,8 +443,8 @@ public open class TileData : Object() {
   }
 
   /**
-   * Returns the navigation polygon of the tile for the TileSet navigation layer with index [param
-   * layer_id].
+   * Returns the navigation polygon of the tile for the TileSet navigation layer with index
+   * [layerId].
    */
   public fun getNavigationPolygon(layerId: Int): NavigationPolygon? {
     TransferContext.writeArguments(LONG to layerId.toLong())
@@ -455,8 +453,7 @@ public open class TileData : Object() {
   }
 
   /**
-   * Sets the tile's custom data value for the TileSet custom data layer with name [param
-   * layer_name].
+   * Sets the tile's custom data value for the TileSet custom data layer with name [layerName].
    */
   public fun setCustomData(layerName: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to layerName, ANY to value)
@@ -464,7 +461,7 @@ public open class TileData : Object() {
   }
 
   /**
-   * Returns the custom data value for custom data layer named [param layer_name].
+   * Returns the custom data value for custom data layer named [layerName].
    */
   public fun getCustomData(layerName: String): Any? {
     TransferContext.writeArguments(STRING to layerName)
@@ -473,8 +470,7 @@ public open class TileData : Object() {
   }
 
   /**
-   * Sets the tile's custom data value for the TileSet custom data layer with index [param
-   * layer_id].
+   * Sets the tile's custom data value for the TileSet custom data layer with index [layerId].
    */
   public fun setCustomDataByLayerId(layerId: Int, `value`: Any?): Unit {
     TransferContext.writeArguments(LONG to layerId.toLong(), ANY to value)
@@ -482,7 +478,7 @@ public open class TileData : Object() {
   }
 
   /**
-   * Returns the custom data value for custom data layer with index [param layer_id].
+   * Returns the custom data value for custom data layer with index [layerId].
    */
   public fun getCustomDataByLayerId(layerId: Int): Any? {
     TransferContext.writeArguments(LONG to layerId.toLong())

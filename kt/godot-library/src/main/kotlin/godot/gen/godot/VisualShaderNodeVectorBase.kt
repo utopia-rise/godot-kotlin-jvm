@@ -57,7 +57,7 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
      */
     OP_TYPE_VECTOR_4D(2),
     /**
-     * Represents the size of the [enum OpType] enum.
+     * Represents the size of the [OpType] enum.
      */
     OP_TYPE_MAX(3),
     ;

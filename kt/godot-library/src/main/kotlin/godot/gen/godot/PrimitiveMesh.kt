@@ -68,8 +68,7 @@ public open class PrimitiveMesh : Mesh() {
   /**
    * If set, the order of the vertices in each triangle are reversed resulting in the backside of
    * the mesh being drawn.
-   * This gives the same result as using [constant BaseMaterial3D.CULL_FRONT] in
-   * [BaseMaterial3D.cullMode].
+   * This gives the same result as using [BaseMaterial3D.CULLFRONT] in [BaseMaterial3D.cullMode].
    */
   public var flipFaces: Boolean
     get() {

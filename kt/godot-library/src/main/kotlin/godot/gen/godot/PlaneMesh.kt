@@ -27,7 +27,7 @@ import kotlin.Unit
 /**
  * Class representing a planar [PrimitiveMesh]. This flat mesh does not have a thickness. By
  * default, this mesh is aligned on the X and Z axes; this default rotation isn't suited for use with
- * billboarded materials. For billboarded materials, change [orientation] to [constant FACE_Z].
+ * billboarded materials. For billboarded materials, change [orientation] to [FACEZ].
  * **Note:** When using a large textured [PlaneMesh] (e.g. as a floor), you may stumble upon UV
  * jittering issues depending on the camera angle. To solve this, increase [subdivideDepth] and
  * [subdivideWidth] until you no longer notice UV jittering.
@@ -93,7 +93,7 @@ public open class PlaneMesh : PrimitiveMesh() {
     }
 
   /**
-   * Direction that the [PlaneMesh] is facing. See [enum Orientation] for options.
+   * Direction that the [PlaneMesh] is facing. See [Orientation] for options.
    */
   public var orientation: Orientation
     get() {

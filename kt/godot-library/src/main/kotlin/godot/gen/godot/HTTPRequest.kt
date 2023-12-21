@@ -326,13 +326,12 @@ public open class HTTPRequest : Node() {
   /**
    * Creates request on the underlying [HTTPClient]. If there is no configuration errors, it tries
    * to connect using [HTTPClient.connectToHost] and passes parameters onto [HTTPClient.request].
-   * Returns [constant OK] if request is successfully created. (Does not imply that the server has
-   * responded), [constant ERR_UNCONFIGURED] if not in the tree, [constant ERR_BUSY] if still
-   * processing previous request, [constant ERR_INVALID_PARAMETER] if given string is not a valid URL
-   * format, or [constant ERR_CANT_CONNECT] if not using thread and the [HTTPClient] cannot connect to
-   * host.
-   * **Note:** When [param method] is [constant HTTPClient.METHOD_GET], the payload sent via [param
-   * request_data] might be ignored by the server or even cause the server to reject the request (check
+   * Returns [OK] if request is successfully created. (Does not imply that the server has
+   * responded), [ERRUNCONFIGURED] if not in the tree, [ERRBUSY] if still processing previous request,
+   * [ERRINVALIDPARAMETER] if given string is not a valid URL format, or [ERRCANTCONNECT] if not using
+   * thread and the [HTTPClient] cannot connect to host.
+   * **Note:** When [method] is [HTTPClient.METHODGET], the payload sent via [requestData] might be
+   * ignored by the server or even cause the server to reject the request (check
    * [url=https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.1]RFC 7231 section 4.3.1[/url] for
    * more details). As a workaround, you can send data as a query string in the URL (see
    * [String.uriEncode] for an example).
@@ -356,11 +355,10 @@ public open class HTTPRequest : Node() {
    * Creates request on the underlying [HTTPClient] using a raw array of bytes for the request body.
    * If there is no configuration errors, it tries to connect using [HTTPClient.connectToHost] and
    * passes parameters onto [HTTPClient.request].
-   * Returns [constant OK] if request is successfully created. (Does not imply that the server has
-   * responded), [constant ERR_UNCONFIGURED] if not in the tree, [constant ERR_BUSY] if still
-   * processing previous request, [constant ERR_INVALID_PARAMETER] if given string is not a valid URL
-   * format, or [constant ERR_CANT_CONNECT] if not using thread and the [HTTPClient] cannot connect to
-   * host.
+   * Returns [OK] if request is successfully created. (Does not imply that the server has
+   * responded), [ERRUNCONFIGURED] if not in the tree, [ERRBUSY] if still processing previous request,
+   * [ERRINVALIDPARAMETER] if given string is not a valid URL format, or [ERRCANTCONNECT] if not using
+   * thread and the [HTTPClient] cannot connect to host.
    */
   @JvmOverloads
   public fun requestRaw(
@@ -391,7 +389,7 @@ public open class HTTPRequest : Node() {
   }
 
   /**
-   * Returns the current status of the underlying [HTTPClient]. See [enum HTTPClient.Status].
+   * Returns the current status of the underlying [HTTPClient]. See [HTTPClient.Status].
    */
   public fun getHttpClientStatus(): HTTPClient.Status {
     TransferContext.writeArguments()
@@ -421,7 +419,7 @@ public open class HTTPRequest : Node() {
 
   /**
    * Sets the proxy server for HTTP requests.
-   * The proxy server is unset if [param host] is empty or [param port] is -1.
+   * The proxy server is unset if [host] is empty or [port] is -1.
    */
   public fun setHttpProxy(host: String, port: Int): Unit {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
@@ -430,7 +428,7 @@ public open class HTTPRequest : Node() {
 
   /**
    * Sets the proxy server for HTTPS requests.
-   * The proxy server is unset if [param host] is empty or [param port] is -1.
+   * The proxy server is unset if [host] is empty or [port] is -1.
    */
   public fun setHttpsProxy(host: String, port: Int): Unit {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())

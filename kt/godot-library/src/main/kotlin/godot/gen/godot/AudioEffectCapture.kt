@@ -58,8 +58,8 @@ public open class AudioEffectCapture : AudioEffect() {
   }
 
   /**
-   * Returns `true` if at least [param frames] audio frames are available to read in the internal
-   * ring buffer.
+   * Returns `true` if at least [frames] audio frames are available to read in the internal ring
+   * buffer.
    */
   public fun canGetBuffer(frames: Int): Boolean {
     TransferContext.writeArguments(LONG to frames.toLong())
@@ -68,9 +68,9 @@ public open class AudioEffectCapture : AudioEffect() {
   }
 
   /**
-   * Gets the next [param frames] audio samples from the internal ring buffer.
-   * Returns a [PackedVector2Array] containing exactly [param frames] audio samples if available, or
-   * an empty [PackedVector2Array] if insufficient data was available.
+   * Gets the next [frames] audio samples from the internal ring buffer.
+   * Returns a [PackedVector2Array] containing exactly [frames] audio samples if available, or an
+   * empty [PackedVector2Array] if insufficient data was available.
    */
   public fun getBuffer(frames: Int): PackedVector2Array {
     TransferContext.writeArguments(LONG to frames.toLong())

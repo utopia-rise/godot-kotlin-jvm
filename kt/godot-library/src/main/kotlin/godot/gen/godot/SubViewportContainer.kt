@@ -69,9 +69,9 @@ public open class SubViewportContainer : Container() {
   }
 
   /**
-   * Virtual method to be implemented by the user. If it returns `true`, the [param event] is
-   * propagated to [SubViewport] children. Propagation doesn't happen if it returns `false`. If the
-   * function is not implemented, all events are propagated to SubViewports.
+   * Virtual method to be implemented by the user. If it returns `true`, the [event] is propagated
+   * to [SubViewport] children. Propagation doesn't happen if it returns `false`. If the function is
+   * not implemented, all events are propagated to SubViewports.
    */
   public open fun _propagateInputEvent(event: InputEvent): Boolean {
     throw NotImplementedError("_propagate_input_event is not implemented for SubViewportContainer")

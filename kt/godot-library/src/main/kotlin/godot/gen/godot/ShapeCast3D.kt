@@ -293,8 +293,8 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * Returns the collided [Object] of one of the multiple collisions at [param index], or `null` if
-   * no object is intersecting the shape (i.e. [isColliding] returns `false`).
+   * Returns the collided [Object] of one of the multiple collisions at [index], or `null` if no
+   * object is intersecting the shape (i.e. [isColliding] returns `false`).
    */
   public fun getCollider(index: Int): Object? {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -303,7 +303,7 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * Returns the [RID] of the collided object of one of the multiple collisions at [param index].
+   * Returns the [RID] of the collided object of one of the multiple collisions at [index].
    */
   public fun getColliderRid(index: Int): RID {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -312,8 +312,8 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * Returns the shape ID of the colliding shape of one of the multiple collisions at [param index],
-   * or `0` if no object is intersecting the shape (i.e. [isColliding] returns `false`).
+   * Returns the shape ID of the colliding shape of one of the multiple collisions at [index], or
+   * `0` if no object is intersecting the shape (i.e. [isColliding] returns `false`).
    */
   public fun getColliderShape(index: Int): Int {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -322,7 +322,7 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * Returns the collision point of one of the multiple collisions at [param index] where the shape
+   * Returns the collision point of one of the multiple collisions at [index] where the shape
    * intersects the colliding object.
    * **Note:** this point is in the **global** coordinate system.
    */
@@ -333,8 +333,7 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * Returns the normal of one of the multiple collisions at [param index] of the intersecting
-   * object.
+   * Returns the normal of one of the multiple collisions at [index] of the intersecting object.
    */
   public fun getCollisionNormal(index: Int): Vector3 {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -405,8 +404,8 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [collisionMask], given a
-   * [param layer_number] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionMask], given a
+   * [layerNumber] between 1 and 32.
    */
   public fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -414,8 +413,8 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a [param
-   * layer_number] between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a
+   * [layerNumber] between 1 and 32.
    */
   public fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())

@@ -187,7 +187,7 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns font style flags, see [enum TextServer.FontStyle].
+   * Returns font style flags, see [TextServer.FontStyle].
    */
   public fun getFontStyle(): TextServer.FontStyle {
     TransferContext.writeArguments()
@@ -216,7 +216,7 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns the spacing for the given `type` (see [enum TextServer.SpacingType]).
+   * Returns the spacing for the given `type` (see [TextServer.SpacingType]).
    */
   public fun getSpacing(spacing: TextServer.SpacingType): Int {
     TransferContext.writeArguments(LONG to spacing.id)
@@ -305,9 +305,9 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Draw [param text] into a canvas item using the font, at a given position, with [param modulate]
-   * color, optionally clipping the width and aligning horizontally. [param pos] specifies the
-   * baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
+   * Draw [text] into a canvas item using the font, at a given position, with [modulate] color,
+   * optionally clipping the width and aligning horizontally. [pos] specifies the baseline, not the
+   * top. To draw from the top, *ascent* must be added to the Y axis.
    * See also [CanvasItem.drawString].
    */
   @JvmOverloads
@@ -328,10 +328,10 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Breaks [param text] into lines using rules specified by [param brk_flags] and draws it into a
-   * canvas item using the font, at a given position, with [param modulate] color, optionally clipping
-   * the width and aligning horizontally. [param pos] specifies the baseline of the first line, not the
-   * top. To draw from the top, *ascent* must be added to the Y axis.
+   * Breaks [text] into lines using rules specified by [brkFlags] and draws it into a canvas item
+   * using the font, at a given position, with [modulate] color, optionally clipping the width and
+   * aligning horizontally. [pos] specifies the baseline of the first line, not the top. To draw from
+   * the top, *ascent* must be added to the Y axis.
    * See also [CanvasItem.drawMultilineString].
    */
   @JvmOverloads
@@ -354,10 +354,9 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Draw [param text] outline into a canvas item using the font, at a given position, with [param
-   * modulate] color and [param size] outline size, optionally clipping the width and aligning
-   * horizontally. [param pos] specifies the baseline, not the top. To draw from the top, *ascent* must
-   * be added to the Y axis.
+   * Draw [text] outline into a canvas item using the font, at a given position, with [modulate]
+   * color and [size] outline size, optionally clipping the width and aligning horizontally. [pos]
+   * specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
    * See also [CanvasItem.drawStringOutline].
    */
   @JvmOverloads
@@ -379,11 +378,10 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Breaks [param text] to the lines using rules specified by [param brk_flags] and draws text
-   * outline into a canvas item using the font, at a given position, with [param modulate] color and
-   * [param size] outline size, optionally clipping the width and aligning horizontally. [param pos]
-   * specifies the baseline of the first line, not the top. To draw from the top, *ascent* must be
-   * added to the Y axis.
+   * Breaks [text] to the lines using rules specified by [brkFlags] and draws text outline into a
+   * canvas item using the font, at a given position, with [modulate] color and [size] outline size,
+   * optionally clipping the width and aligning horizontally. [pos] specifies the baseline of the first
+   * line, not the top. To draw from the top, *ascent* must be added to the Y axis.
    * See also [CanvasItem.drawMultilineStringOutline].
    */
   @JvmOverloads
@@ -420,9 +418,9 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Draw a single Unicode character [param char] into a canvas item using the font, at a given
-   * position, with [param modulate] color. [param pos] specifies the baseline, not the top. To draw
-   * from the top, *ascent* must be added to the Y axis.
+   * Draw a single Unicode character [char] into a canvas item using the font, at a given position,
+   * with [modulate] color. [pos] specifies the baseline, not the top. To draw from the top, *ascent*
+   * must be added to the Y axis.
    * **Note:** Do not use this function to draw strings character by character, use [drawString] or
    * [TextLine] instead.
    */
@@ -440,9 +438,9 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Draw a single Unicode character [param char] outline into a canvas item using the font, at a
-   * given position, with [param modulate] color and [param size] outline size. [param pos] specifies
-   * the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
+   * Draw a single Unicode character [char] outline into a canvas item using the font, at a given
+   * position, with [modulate] color and [size] outline size. [pos] specifies the baseline, not the
+   * top. To draw from the top, *ascent* must be added to the Y axis.
    * **Note:** Do not use this function to draw strings character by character, use [drawString] or
    * [TextLine] instead.
    */
@@ -461,7 +459,7 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true` if a Unicode [param char] is available in the font.
+   * Returns `true` if a Unicode [char] is available in the font.
    */
   public fun hasChar(char: Long): Boolean {
     TransferContext.writeArguments(LONG to char)

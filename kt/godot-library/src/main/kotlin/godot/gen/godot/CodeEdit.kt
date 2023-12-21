@@ -364,23 +364,23 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Override this method to define how the selected entry should be inserted. If [param replace] is
-   * true, any existing text should be replaced.
+   * Override this method to define how the selected entry should be inserted. If [replace] is true,
+   * any existing text should be replaced.
    */
   public open fun _confirmCodeCompletion(replace: Boolean): Unit {
   }
 
   /**
-   * Override this method to define what happens when the user requests code completion. If [param
-   * force] is true, any checks should be bypassed.
+   * Override this method to define what happens when the user requests code completion. If [force]
+   * is true, any checks should be bypassed.
    */
   public open fun _requestCodeCompletion(force: Boolean): Unit {
   }
 
   /**
-   * Override this method to define what items in [param candidates] should be displayed.
-   * Both [param candidates] and the return is a [Array] of [Dictionary], see
-   * [getCodeCompletionOption] for [Dictionary] content.
+   * Override this method to define what items in [candidates] should be displayed.
+   * Both [candidates] and the return is a [Array] of [Dictionary], see [getCodeCompletionOption]
+   * for [Dictionary] content.
    */
   public open fun _filterCodeCompletionCandidates(candidates: VariantArray<Dictionary<Any?, Any?>>):
       VariantArray<Dictionary<Any?, Any?>> {
@@ -413,8 +413,8 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Converts the indents of lines between [param from_line] and [param to_line] to tabs or spaces
-   * as set by [indentUseSpaces].
+   * Converts the indents of lines between [fromLine] and [toLine] to tabs or spaces as set by
+   * [indentUseSpaces].
    * Values of `-1` convert the entire text.
    */
   @JvmOverloads
@@ -433,7 +433,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns `true` if open key [param open_key] exists.
+   * Returns `true` if open key [openKey] exists.
    */
   public fun hasAutoBraceCompletionOpenKey(openKey: String): Boolean {
     TransferContext.writeArguments(STRING to openKey)
@@ -442,7 +442,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns `true` if close key [param close_key] exists.
+   * Returns `true` if close key [closeKey] exists.
    */
   public fun hasAutoBraceCompletionCloseKey(closeKey: String): Boolean {
     TransferContext.writeArguments(STRING to closeKey)
@@ -451,7 +451,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Gets the matching auto brace close key for [param open_key].
+   * Gets the matching auto brace close key for [openKey].
    */
   public fun getAutoBraceCompletionCloseKey(openKey: String): String {
     TransferContext.writeArguments(STRING to openKey)
@@ -691,8 +691,8 @@ public open class CodeEdit : TextEdit() {
   /**
    * Adds a string delimiter.
    * Both the start and end keys must be symbols. Only the start key has to be unique.
-   * [param line_only] denotes if the region should continue until the end of the line or carry over
-   * on to the next line. If the end key is blank this is automatically set to `true`.
+   * [lineOnly] denotes if the region should continue until the end of the line or carry over on to
+   * the next line. If the end key is blank this is automatically set to `true`.
    */
   @JvmOverloads
   public fun addStringDelimiter(
@@ -705,7 +705,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Removes the string delimiter with [param start_key].
+   * Removes the string delimiter with [startKey].
    */
   public fun removeStringDelimiter(startKey: String): Unit {
     TransferContext.writeArguments(STRING to startKey)
@@ -713,7 +713,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns `true` if string [param start_key] exists.
+   * Returns `true` if string [startKey] exists.
    */
   public fun hasStringDelimiter(startKey: String): Boolean {
     TransferContext.writeArguments(STRING to startKey)
@@ -730,9 +730,8 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns the delimiter index if [param line] [param column] is in a string. If [param column] is
-   * not provided, will return the delimiter index if the entire [param line] is a string. Otherwise
-   * `-1`.
+   * Returns the delimiter index if [line] [column] is in a string. If [column] is not provided,
+   * will return the delimiter index if the entire [line] is a string. Otherwise `-1`.
    */
   @JvmOverloads
   public fun isInString(line: Int, column: Int = -1): Int {
@@ -744,8 +743,8 @@ public open class CodeEdit : TextEdit() {
   /**
    * Adds a comment delimiter.
    * Both the start and end keys must be symbols. Only the start key has to be unique.
-   * [param line_only] denotes if the region should continue until the end of the line or carry over
-   * on to the next line. If the end key is blank this is automatically set to `true`.
+   * [lineOnly] denotes if the region should continue until the end of the line or carry over on to
+   * the next line. If the end key is blank this is automatically set to `true`.
    */
   @JvmOverloads
   public fun addCommentDelimiter(
@@ -758,7 +757,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Removes the comment delimiter with [param start_key].
+   * Removes the comment delimiter with [startKey].
    */
   public fun removeCommentDelimiter(startKey: String): Unit {
     TransferContext.writeArguments(STRING to startKey)
@@ -766,7 +765,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns `true` if comment [param start_key] exists.
+   * Returns `true` if comment [startKey] exists.
    */
   public fun hasCommentDelimiter(startKey: String): Boolean {
     TransferContext.writeArguments(STRING to startKey)
@@ -783,8 +782,8 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns delimiter index if [param line] [param column] is in a comment. If [param column] is
-   * not provided, will return delimiter index if the entire [param line] is a comment. Otherwise `-1`.
+   * Returns delimiter index if [line] [column] is in a comment. If [column] is not provided, will
+   * return delimiter index if the entire [line] is a comment. Otherwise `-1`.
    */
   @JvmOverloads
   public fun isInComment(line: Int, column: Int = -1): Int {
@@ -812,8 +811,8 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * If [param line] [param column] is in a string or comment, returns the start position of the
-   * region. If not or no start could be found, both [Vector2] values will be `-1`.
+   * If [line] [column] is in a string or comment, returns the start position of the region. If not
+   * or no start could be found, both [Vector2] values will be `-1`.
    */
   public fun getDelimiterStartPosition(line: Int, column: Int): Vector2 {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to column.toLong())
@@ -822,8 +821,8 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * If [param line] [param column] is in a string or comment, returns the end position of the
-   * region. If not or no end could be found, both [Vector2] values will be `-1`.
+   * If [line] [column] is in a string or comment, returns the end position of the region. If not or
+   * no end could be found, both [Vector2] values will be `-1`.
    */
   public fun getDelimiterEndPosition(line: Int, column: Int): Vector2 {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to column.toLong())
@@ -857,9 +856,9 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Emits [signal code_completion_requested], if [param force] is true will bypass all checks.
-   * Otherwise will check that the caret is in a word or in front of a prefix. Will ignore the request
-   * if all current options are of type file path, node path or signal.
+   * Emits [signal code_completion_requested], if [force] is true will bypass all checks. Otherwise
+   * will check that the caret is in a word or in front of a prefix. Will ignore the request if all
+   * current options are of type file path, node path or signal.
    */
   @JvmOverloads
   public fun requestCodeCompletion(force: Boolean = false): Unit {
@@ -870,8 +869,8 @@ public open class CodeEdit : TextEdit() {
   /**
    * Submits an item to the queue of potential candidates for the autocomplete menu. Call
    * [updateCodeCompletionOptions] to update the list.
-   * [param location] indicates location of the option relative to the location of the code
-   * completion query. See [enum CodeEdit.CodeCompletionLocation] for how to set this value.
+   * [location] indicates location of the option relative to the location of the code completion
+   * query. See [CodeEdit.CodeCompletionLocation] for how to set this value.
    * **Note:** This list will replace all current candidates.
    */
   @JvmOverloads
@@ -890,7 +889,7 @@ public open class CodeEdit : TextEdit() {
 
   /**
    * Submits all completion options added with [addCodeCompletionOption]. Will try to force the
-   * autocomplete menu to popup, if [param force] is `true`.
+   * autocomplete menu to popup, if [force] is `true`.
    * **Note:** This will replace all current candidates.
    */
   public fun updateCodeCompletionOptions(force: Boolean): Unit {
@@ -908,9 +907,8 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Gets the completion option at [param index]. The return [Dictionary] has the following
-   * key-values:
-   * `kind`: [enum CodeCompletionKind]
+   * Gets the completion option at [index]. The return [Dictionary] has the following key-values:
+   * `kind`: [CodeCompletionKind]
    * `display_text`: Text that is shown on the autocomplete menu.
    * `insert_text`: Text that is to be inserted when this item is selected.
    * `font_color`: Color of the text on the autocomplete menu.
@@ -941,8 +939,8 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Inserts the selected entry into the text. If [param replace] is true, any existing text is
-   * replaced rather than merged.
+   * Inserts the selected entry into the text. If [replace] is true, any existing text is replaced
+   * rather than merged.
    */
   @JvmOverloads
   public fun confirmCodeCompletion(replace: Boolean = false): Unit {

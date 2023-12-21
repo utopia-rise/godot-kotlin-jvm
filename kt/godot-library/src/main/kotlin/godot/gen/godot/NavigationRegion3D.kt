@@ -170,8 +170,8 @@ public open class NavigationRegion3D : Node3D() {
   }
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [navigationLayers]
-   * bitmask, given a [param layer_number] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [navigationLayers] bitmask,
+   * given a [layerNumber] between 1 and 32.
    */
   public fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -180,7 +180,7 @@ public open class NavigationRegion3D : Node3D() {
 
   /**
    * Returns whether or not the specified layer of the [navigationLayers] bitmask is enabled, given
-   * a [param layer_number] between 1 and 32.
+   * a [layerNumber] between 1 and 32.
    */
   public fun getNavigationLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -200,8 +200,8 @@ public open class NavigationRegion3D : Node3D() {
   }
 
   /**
-   * Bakes the [NavigationMesh]. If [param on_thread] is set to `true` (default), the baking is done
-   * on a separate thread. Baking on separate thread is useful because navigation baking is not a cheap
+   * Bakes the [NavigationMesh]. If [onThread] is set to `true` (default), the baking is done on a
+   * separate thread. Baking on separate thread is useful because navigation baking is not a cheap
    * operation. When it is completed, it automatically sets the new [NavigationMesh]. Please note that
    * baking on separate thread may be very slow if geometry is parsed from meshes as async access to
    * each mesh involves heavy synchronization. Also, please note that baking on a separate thread is

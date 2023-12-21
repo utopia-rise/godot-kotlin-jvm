@@ -60,14 +60,14 @@ public open class RigidBody3D : PhysicsBody3D() {
    * [GridMap]'s [Shape3D]s. Requires [contactMonitor] to be set to `true` and [maxContactsReported] to
    * be set high enough to detect all the collisions. [GridMap]s are detected if the [MeshLibrary] has
    * Collision [Shape3D]s.
-   * [param body_rid] the [RID] of the other [PhysicsBody3D] or [MeshLibrary]'s [CollisionObject3D]
-   * used by the [PhysicsServer3D].
-   * [param body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].
-   * [param body_shape_index] the index of the [Shape3D] of the other [PhysicsBody3D] or [GridMap]
-   * used by the [PhysicsServer3D]. Get the [CollisionShape3D] node with
+   * [bodyRid] the [RID] of the other [PhysicsBody3D] or [MeshLibrary]'s [CollisionObject3D] used by
+   * the [PhysicsServer3D].
+   * [body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].
+   * [bodyShapeIndex] the index of the [Shape3D] of the other [PhysicsBody3D] or [GridMap] used by
+   * the [PhysicsServer3D]. Get the [CollisionShape3D] node with
    * `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.
-   * [param local_shape_index] the index of the [Shape3D] of this RigidBody3D used by the
-   * [PhysicsServer3D]. Get the [CollisionShape3D] node with
+   * [localShapeIndex] the index of the [Shape3D] of this RigidBody3D used by the [PhysicsServer3D].
+   * Get the [CollisionShape3D] node with
    * `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
   public val bodyShapeEntered: Signal4<RID, Node, Long, Long> by signal("bodyRid", "body",
@@ -78,14 +78,14 @@ public open class RigidBody3D : PhysicsBody3D() {
    * [PhysicsBody3D] or [GridMap]'s [Shape3D]s ends. Requires [contactMonitor] to be set to `true` and
    * [maxContactsReported] to be set high enough to detect all the collisions. [GridMap]s are detected
    * if the [MeshLibrary] has Collision [Shape3D]s.
-   * [param body_rid] the [RID] of the other [PhysicsBody3D] or [MeshLibrary]'s [CollisionObject3D]
-   * used by the [PhysicsServer3D]. [GridMap]s are detected if the Meshes have [Shape3D]s.
-   * [param body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].
-   * [param body_shape_index] the index of the [Shape3D] of the other [PhysicsBody3D] or [GridMap]
-   * used by the [PhysicsServer3D]. Get the [CollisionShape3D] node with
+   * [bodyRid] the [RID] of the other [PhysicsBody3D] or [MeshLibrary]'s [CollisionObject3D] used by
+   * the [PhysicsServer3D]. [GridMap]s are detected if the Meshes have [Shape3D]s.
+   * [body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].
+   * [bodyShapeIndex] the index of the [Shape3D] of the other [PhysicsBody3D] or [GridMap] used by
+   * the [PhysicsServer3D]. Get the [CollisionShape3D] node with
    * `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.
-   * [param local_shape_index] the index of the [Shape3D] of this RigidBody3D used by the
-   * [PhysicsServer3D]. Get the [CollisionShape3D] node with
+   * [localShapeIndex] the index of the [Shape3D] of this RigidBody3D used by the [PhysicsServer3D].
+   * Get the [CollisionShape3D] node with
    * `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
   public val bodyShapeExited: Signal4<RID, Node, Long, Long> by signal("bodyRid", "body",
@@ -95,7 +95,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * Emitted when a collision with another [PhysicsBody3D] or [GridMap] occurs. Requires
    * [contactMonitor] to be set to `true` and [maxContactsReported] to be set high enough to detect all
    * the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.
-   * [param body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].
+   * [body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].
    */
   public val bodyEntered: Signal1<Node> by signal("body")
 
@@ -103,7 +103,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * Emitted when the collision with another [PhysicsBody3D] or [GridMap] ends. Requires
    * [contactMonitor] to be set to `true` and [maxContactsReported] to be set high enough to detect all
    * the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.
-   * [param body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].
+   * [body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].
    */
   public val bodyExited: Signal1<Node> by signal("body")
 
@@ -162,8 +162,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * Defines the way the body's center of mass is set. See [enum CenterOfMassMode] for possible
-   * values.
+   * Defines the way the body's center of mass is set. See [CenterOfMassMode] for possible values.
    */
   public var centerOfMassMode: CenterOfMassMode
     get() {
@@ -178,11 +177,11 @@ public open class RigidBody3D : PhysicsBody3D() {
 
   /**
    * The body's custom center of mass, relative to the body's origin position, when
-   * [centerOfMassMode] is set to [constant CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of
-   * the body, where applied forces only cause linear acceleration. Applying forces outside of the
-   * center of mass causes angular acceleration.
-   * When [centerOfMassMode] is set to [constant CENTER_OF_MASS_MODE_AUTO] (default value), the
-   * center of mass is automatically computed.
+   * [centerOfMassMode] is set to [CENTEROFMASSMODECUSTOM]. This is the balanced point of the body,
+   * where applied forces only cause linear acceleration. Applying forces outside of the center of mass
+   * causes angular acceleration.
+   * When [centerOfMassMode] is set to [CENTEROFMASSMODEAUTO] (default value), the center of mass is
+   * automatically computed.
    */
   @CoreTypeLocalCopy
   public var centerOfMass: Vector3
@@ -200,7 +199,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * The body's moment of inertia. This is like mass, but for rotation: it determines how much
    * torque it takes to rotate the body on each axis. The moment of inertia is usually computed
    * automatically from the mass and the shapes, but this property allows you to set a custom value.
-   * If set to [constant Vector3.ZERO], inertia is automatically computed (default value).
+   * If set to [Vector3.ZERO], inertia is automatically computed (default value).
    * **Note:** This value does not change when inertia is automatically computed. Use
    * [PhysicsServer3D] to get the computed inertia.
    *
@@ -299,7 +298,7 @@ public open class RigidBody3D : PhysicsBody3D() {
 
   /**
    * The body's freeze mode. Can be used to set the body's behavior when [freeze] is enabled. See
-   * [enum FreezeMode] for possible values.
+   * [FreezeMode] for possible values.
    * For a body that is always frozen, use [StaticBody3D] or [AnimatableBody3D] instead.
    */
   public var freezeMode: FreezeMode
@@ -401,7 +400,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * Defines how [linearDamp] is applied. See [enum DampMode] for possible values.
+   * Defines how [linearDamp] is applied. See [DampMode] for possible values.
    */
   public var linearDampMode: DampMode
     get() {
@@ -448,7 +447,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * Defines how [angularDamp] is applied. See [enum DampMode] for possible values.
+   * Defines how [angularDamp] is applied. See [DampMode] for possible values.
    */
   public var angularDampMode: DampMode
     get() {
@@ -518,11 +517,11 @@ public open class RigidBody3D : PhysicsBody3D() {
 
   /**
    * The body's custom center of mass, relative to the body's origin position, when
-   * [centerOfMassMode] is set to [constant CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of
-   * the body, where applied forces only cause linear acceleration. Applying forces outside of the
-   * center of mass causes angular acceleration.
-   * When [centerOfMassMode] is set to [constant CENTER_OF_MASS_MODE_AUTO] (default value), the
-   * center of mass is automatically computed.
+   * [centerOfMassMode] is set to [CENTEROFMASSMODECUSTOM]. This is the balanced point of the body,
+   * where applied forces only cause linear acceleration. Applying forces outside of the center of mass
+   * causes angular acceleration.
+   * When [centerOfMassMode] is set to [CENTEROFMASSMODEAUTO] (default value), the center of mass is
+   * automatically computed.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -549,7 +548,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * The body's moment of inertia. This is like mass, but for rotation: it determines how much
    * torque it takes to rotate the body on each axis. The moment of inertia is usually computed
    * automatically from the mass and the shapes, but this property allows you to set a custom value.
-   * If set to [constant Vector3.ZERO], inertia is automatically computed (default value).
+   * If set to [Vector3.ZERO], inertia is automatically computed (default value).
    * **Note:** This value does not change when inertia is automatically computed. Use
    * [PhysicsServer3D] to get the computed inertia.
    *
@@ -753,7 +752,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * An impulse is time-independent! Applying an impulse every frame would result in a
    * framerate-dependent force. For this reason, it should only be used when simulating one-time
    * impacts (use the "_force" functions otherwise).
-   * [param position] is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
   public fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
@@ -787,7 +786,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   /**
    * Applies a positioned force to the body. A force is time dependent and meant to be applied every
    * physics update.
-   * [param position] is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
   public fun applyForce(force: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
@@ -819,7 +818,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   /**
    * Adds a constant positioned force to the body that keeps being applied over time until cleared
    * with `constant_force = Vector3(0, 0, 0)`.
-   * [param position] is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
   public fun addConstantForce(force: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
@@ -858,8 +857,8 @@ public open class RigidBody3D : PhysicsBody3D() {
      */
     FREEZE_MODE_STATIC(0),
     /**
-     * Kinematic body freeze mode. Similar to [constant FREEZE_MODE_STATIC], but collides with other
-     * bodies along its path when moved. Useful for a frozen body that needs to be animated.
+     * Kinematic body freeze mode. Similar to [FREEZEMODESTATIC], but collides with other bodies
+     * along its path when moved. Useful for a frozen body that needs to be animated.
      */
     FREEZE_MODE_KINEMATIC(1),
     ;

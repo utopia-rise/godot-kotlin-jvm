@@ -91,7 +91,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
-   * The selected shadow casting flag. See [enum ShadowCastingSetting] for possible values.
+   * The selected shadow casting flag. See [ShadowCastingSetting] for possible values.
    */
   public var castShadow: ShadowCastingSetting
     get() {
@@ -232,10 +232,10 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * Margin for the [visibilityRangeBegin] threshold. The GeometryInstance3D will only change its
    * visibility state when it goes over or under the [visibilityRangeBegin] threshold by this amount.
-   * If [visibilityRangeFadeMode] is [constant VISIBILITY_RANGE_FADE_DISABLED], this acts as a
-   * hysteresis distance. If [visibilityRangeFadeMode] is [constant VISIBILITY_RANGE_FADE_SELF] or
-   * [constant VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be
-   * set to a value greater than `0.0` for the effect to be noticeable.
+   * If [visibilityRangeFadeMode] is [VISIBILITYRANGEFADEDISABLED], this acts as a hysteresis
+   * distance. If [visibilityRangeFadeMode] is [VISIBILITYRANGEFADESELF] or
+   * [VISIBILITYRANGEFADEDEPENDENCIES], this acts as a fade transition distance and must be set to a
+   * value greater than `0.0` for the effect to be noticeable.
    */
   public var visibilityRangeBeginMargin: Float
     get() {
@@ -266,10 +266,10 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * Margin for the [visibilityRangeEnd] threshold. The GeometryInstance3D will only change its
    * visibility state when it goes over or under the [visibilityRangeEnd] threshold by this amount.
-   * If [visibilityRangeFadeMode] is [constant VISIBILITY_RANGE_FADE_DISABLED], this acts as a
-   * hysteresis distance. If [visibilityRangeFadeMode] is [constant VISIBILITY_RANGE_FADE_SELF] or
-   * [constant VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be
-   * set to a value greater than `0.0` for the effect to be noticeable.
+   * If [visibilityRangeFadeMode] is [VISIBILITYRANGEFADEDISABLED], this acts as a hysteresis
+   * distance. If [visibilityRangeFadeMode] is [VISIBILITYRANGEFADESELF] or
+   * [VISIBILITYRANGEFADEDEPENDENCIES], this acts as a fade transition distance and must be set to a
+   * value greater than `0.0` for the effect to be noticeable.
    */
   public var visibilityRangeEndMargin: Float
     get() {
@@ -284,7 +284,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
 
   /**
    * Controls which instances will be faded when approaching the limits of the visibility range. See
-   * [enum VisibilityRangeFadeMode] for possible values.
+   * [VisibilityRangeFadeMode] for possible values.
    */
   public var visibilityRangeFadeMode: VisibilityRangeFadeMode
     get() {
@@ -339,8 +339,8 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * using the same [ShaderMaterial].
    * **Note:** For a shader uniform to be assignable on a per-instance basis, it *must* be defined
    * with `instance uniform ...` rather than `uniform ...` in the shader code.
-   * **Note:** [param name] is case-sensitive and must match the name of the uniform in the code
-   * exactly (not the capitalized name in the inspector).
+   * **Note:** [name] is case-sensitive and must match the name of the uniform in the code exactly
+   * (not the capitalized name in the inspector).
    * **Note:** Per-instance shader uniforms are currently only available in 3D, so there is no 2D
    * equivalent of this method.
    */
@@ -416,8 +416,8 @@ public open class GeometryInstance3D : VisualInstance3D() {
     /**
      * Dynamic global illumination mode. Use for dynamic objects that contribute to global
      * illumination. This GI mode is only effective when using [VoxelGI], but it has a higher
-     * performance impact than [constant GI_MODE_STATIC]. When using other GI methods, this will act
-     * the same as [constant GI_MODE_DISABLED].
+     * performance impact than [GIMODESTATIC]. When using other GI methods, this will act the same as
+     * [GIMODEDISABLED].
      */
     GI_MODE_DYNAMIC(2),
     ;
@@ -455,7 +455,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
      */
     LIGHTMAP_SCALE_8X(3),
     /**
-     * Represents the size of the [enum LightmapScale] enum.
+     * Represents the size of the [LightmapScale] enum.
      */
     LIGHTMAP_SCALE_MAX(4),
     ;
@@ -482,15 +482,15 @@ public open class GeometryInstance3D : VisualInstance3D() {
     VISIBILITY_RANGE_FADE_DISABLED(0),
     /**
      * Will fade-out itself when reaching the limits of its own visibility range. This is slower
-     * than [constant VISIBILITY_RANGE_FADE_DISABLED], but it can provide smoother transitions. The
-     * fading range is determined by [visibilityRangeBeginMargin] and [visibilityRangeEndMargin].
+     * than [VISIBILITYRANGEFADEDISABLED], but it can provide smoother transitions. The fading range is
+     * determined by [visibilityRangeBeginMargin] and [visibilityRangeEndMargin].
      */
     VISIBILITY_RANGE_FADE_SELF(1),
     /**
      * Will fade-in its visibility dependencies (see [Node3D.visibilityParent]) when reaching the
-     * limits of its own visibility range. This is slower than [constant
-     * VISIBILITY_RANGE_FADE_DISABLED], but it can provide smoother transitions. The fading range is
-     * determined by [visibilityRangeBeginMargin] and [visibilityRangeEndMargin].
+     * limits of its own visibility range. This is slower than [VISIBILITYRANGEFADEDISABLED], but it
+     * can provide smoother transitions. The fading range is determined by [visibilityRangeBeginMargin]
+     * and [visibilityRangeEndMargin].
      */
     VISIBILITY_RANGE_FADE_DEPENDENCIES(2),
     ;

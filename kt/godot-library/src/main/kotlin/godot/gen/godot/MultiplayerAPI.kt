@@ -152,9 +152,9 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   }
 
   /**
-   * Sends an RPC to the target [param peer]. The given [param method] will be called on the remote
-   * [param object] with the provided [param arguments]. The RPC may also be called locally depending
-   * on the implementation and RPC configuration. See [Node.rpc] and [Node.rpcConfig].
+   * Sends an RPC to the target [peer]. The given [method] will be called on the remote [object]
+   * with the provided [arguments]. The RPC may also be called locally depending on the implementation
+   * and RPC configuration. See [Node.rpc] and [Node.rpcConfig].
    * **Note:** Prefer using [Node.rpc], [Node.rpcId], or `my_method.rpc(peer, arg1, arg2, ...)` (in
    * GDScript), since they are faster. This method is mostly useful in conjunction with
    * [MultiplayerAPIExtension] when augmenting or replacing the multiplayer capabilities.
@@ -172,11 +172,11 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   }
 
   /**
-   * Notifies the MultiplayerAPI of a new [param configuration] for the given [param object]. This
-   * method is used internally by [SceneTree] to configure the root path for this MultiplayerAPI
-   * (passing `null` and a valid [NodePath] as [param configuration]). This method can be further used
-   * by MultiplayerAPI implementations to provide additional features, refer to specific implementation
-   * (e.g. [SceneMultiplayer]) for details on how they use it.
+   * Notifies the MultiplayerAPI of a new [configuration] for the given [object]. This method is
+   * used internally by [SceneTree] to configure the root path for this MultiplayerAPI (passing `null`
+   * and a valid [NodePath] as [configuration]). This method can be further used by MultiplayerAPI
+   * implementations to provide additional features, refer to specific implementation (e.g.
+   * [SceneMultiplayer]) for details on how they use it.
    * **Note:** This method is mostly relevant when extending or overriding the MultiplayerAPI
    * behavior via [MultiplayerAPIExtension].
    */
@@ -187,11 +187,11 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   }
 
   /**
-   * Notifies the MultiplayerAPI to remove a [param configuration] for the given [param object].
-   * This method is used internally by [SceneTree] to configure the root path for this MultiplayerAPI
-   * (passing `null` and an empty [NodePath] as [param configuration]). This method can be further used
-   * by MultiplayerAPI implementations to provide additional features, refer to specific implementation
-   * (e.g. [SceneMultiplayer]) for details on how they use it.
+   * Notifies the MultiplayerAPI to remove a [configuration] for the given [object]. This method is
+   * used internally by [SceneTree] to configure the root path for this MultiplayerAPI (passing `null`
+   * and an empty [NodePath] as [configuration]). This method can be further used by MultiplayerAPI
+   * implementations to provide additional features, refer to specific implementation (e.g.
+   * [SceneMultiplayer]) for details on how they use it.
    * **Note:** This method is mostly relevant when extending or overriding the MultiplayerAPI
    * behavior via [MultiplayerAPIExtension].
    */

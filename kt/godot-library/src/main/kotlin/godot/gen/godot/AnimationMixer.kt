@@ -160,10 +160,10 @@ public open class AnimationMixer internal constructor() : Node() {
    * animation. To specify a track that controls properties or bones, append its name after the path,
    * separated by `":"`. For example, `"character/skeleton:ankle"` or
    * `"character/mesh:transform/local"`.
-   * If the track has type [constant Animation.TYPE_POSITION_3D], [constant
-   * Animation.TYPE_ROTATION_3D] or [constant Animation.TYPE_SCALE_3D] the transformation will be
-   * canceled visually, and the animation will appear to stay in place. See also
-   * [getRootMotionPosition], [getRootMotionRotation], [getRootMotionScale] and [RootMotionView].
+   * If the track has type [Animation.TYPEPOSITION3D], [Animation.TYPEROTATION3D] or
+   * [Animation.TYPESCALE3D] the transformation will be canceled visually, and the animation will
+   * appear to stay in place. See also [getRootMotionPosition], [getRootMotionRotation],
+   * [getRootMotionScale] and [RootMotionView].
    */
   public var rootMotionTrack: NodePath
     get() {
@@ -239,7 +239,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Adds [param library] to the animation player, under the key [param name].
+   * Adds [library] to the animation player, under the key [name].
    */
   public fun addAnimationLibrary(name: StringName, library: AnimationLibrary): GodotError {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to library)
@@ -248,7 +248,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Removes the [AnimationLibrary] associated with the key [param name].
+   * Removes the [AnimationLibrary] associated with the key [name].
    */
   public fun removeAnimationLibrary(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -256,7 +256,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Moves the [AnimationLibrary] associated with the key [param name] to the key [param newname].
+   * Moves the [AnimationLibrary] associated with the key [name] to the key [newname].
    */
   public fun renameAnimationLibrary(name: StringName, newname: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newname)
@@ -264,7 +264,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Returns `true` if the [AnimationPlayer] stores an [AnimationLibrary] with key [param name].
+   * Returns `true` if the [AnimationPlayer] stores an [AnimationLibrary] with key [name].
    */
   public fun hasAnimationLibrary(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -273,7 +273,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Returns the first [AnimationLibrary] with key [param name] or `null` if not found.
+   * Returns the first [AnimationLibrary] with key [name] or `null` if not found.
    * To get the [AnimationPlayer]'s global animation library, use `get_animation_library("")`.
    */
   public fun getAnimationLibrary(name: StringName): AnimationLibrary? {
@@ -292,7 +292,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Returns `true` if the [AnimationPlayer] stores an [Animation] with key [param name].
+   * Returns `true` if the [AnimationPlayer] stores an [Animation] with key [name].
    */
   public fun hasAnimation(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -301,7 +301,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Returns the [Animation] with the key [param name]. If the animation does not exist, `null` is
+   * Returns the [Animation] with the key [name]. If the animation does not exist, `null` is
    * returned and an error is logged.
    */
   public fun getAnimation(name: StringName): Animation? {
@@ -322,8 +322,8 @@ public open class AnimationMixer internal constructor() : Node() {
   /**
    * Retrieve the motion delta of position with the [rootMotionTrack] as a [Vector3] that can be
    * used elsewhere.
-   * If [rootMotionTrack] is not a path to a track of type [constant Animation.TYPE_POSITION_3D],
-   * returns `Vector3(0, 0, 0)`.
+   * If [rootMotionTrack] is not a path to a track of type [Animation.TYPEPOSITION3D], returns
+   * `Vector3(0, 0, 0)`.
    * See also [rootMotionTrack] and [RootMotionView].
    * The most basic example is applying position to [CharacterBody3D]:
    *
@@ -365,8 +365,8 @@ public open class AnimationMixer internal constructor() : Node() {
   /**
    * Retrieve the motion delta of rotation with the [rootMotionTrack] as a [Quaternion] that can be
    * used elsewhere.
-   * If [rootMotionTrack] is not a path to a track of type [constant Animation.TYPE_ROTATION_3D],
-   * returns `Quaternion(0, 0, 0, 1)`.
+   * If [rootMotionTrack] is not a path to a track of type [Animation.TYPEROTATION3D], returns
+   * `Quaternion(0, 0, 0, 1)`.
    * See also [rootMotionTrack] and [RootMotionView].
    * The most basic example is applying rotation to [CharacterBody3D]:
    *
@@ -387,8 +387,8 @@ public open class AnimationMixer internal constructor() : Node() {
   /**
    * Retrieve the motion delta of scale with the [rootMotionTrack] as a [Vector3] that can be used
    * elsewhere.
-   * If [rootMotionTrack] is not a path to a track of type [constant Animation.TYPE_SCALE_3D],
-   * returns `Vector3(0, 0, 0)`.
+   * If [rootMotionTrack] is not a path to a track of type [Animation.TYPESCALE3D], returns
+   * `Vector3(0, 0, 0)`.
    * See also [rootMotionTrack] and [RootMotionView].
    * The most basic example is applying scale to [CharacterBody3D]:
    *
@@ -529,7 +529,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Returns the key of [param animation] or an empty [StringName] if not found.
+   * Returns the key of [animation] or an empty [StringName] if not found.
    */
   public fun findAnimation(animation: Animation): StringName {
     TransferContext.writeArguments(OBJECT to animation)
@@ -538,8 +538,8 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Returns the key for the [AnimationLibrary] that contains [param animation] or an empty
-   * [StringName] if not found.
+   * Returns the key for the [AnimationLibrary] that contains [animation] or an empty [StringName]
+   * if not found.
    */
   public fun findAnimationLibrary(animation: Animation): StringName {
     TransferContext.writeArguments(OBJECT to animation)
@@ -551,13 +551,12 @@ public open class AnimationMixer internal constructor() : Node() {
     id: Long,
   ) {
     /**
-     * Process animation during physics frames (see [constant
-     * Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]). This is especially useful when animating physics
-     * bodies.
+     * Process animation during physics frames (see [Node.NOTIFICATIONINTERNALPHYSICSPROCESS]). This
+     * is especially useful when animating physics bodies.
      */
     ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS(0),
     /**
-     * Process animation during process frames (see [constant Node.NOTIFICATION_INTERNAL_PROCESS]).
+     * Process animation during process frames (see [Node.NOTIFICATIONINTERNALPROCESS]).
      */
     ANIMATION_CALLBACK_MODE_PROCESS_IDLE(1),
     /**

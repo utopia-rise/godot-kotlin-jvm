@@ -43,7 +43,7 @@ public open class InstancePlaceholder internal constructor() : Node() {
   /**
    * Returns the list of properties that will be applied to the node when [createInstance] is
    * called.
-   * If [param with_order] is `true`, a key named `.order` (note the leading period) is added to the
+   * If [withOrder] is `true`, a key named `.order` (note the leading period) is added to the
    * dictionary. This `.order` key is an [Array] of [String] property names specifying the order in
    * which properties will be applied (with index 0 being the first).
    */

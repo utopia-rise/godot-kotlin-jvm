@@ -132,9 +132,8 @@ public open class Resource : RefCounted() {
   }
 
   /**
-   * Sets the [resourcePath] to [param path], potentially overriding an existing cache entry for
-   * this path. Further attempts to load an overridden resource by path will instead return this
-   * resource.
+   * Sets the [resourcePath] to [path], potentially overriding an existing cache entry for this
+   * path. Further attempts to load an overridden resource by path will instead return this resource.
    */
   public fun takeOverPath(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
@@ -195,15 +194,14 @@ public open class Resource : RefCounted() {
   }
 
   /**
-   * Duplicates this resource, returning a new resource with its `export`ed or [constant
-   * PROPERTY_USAGE_STORAGE] properties copied from the original.
-   * If [param subresources] is `false`, a shallow copy is returned; nested resources within
-   * subresources are not duplicated and are shared from the original resource. If [param subresources]
-   * is `true`, a deep copy is returned; nested subresources will be duplicated and are not shared.
-   * Subresource properties with the [constant PROPERTY_USAGE_ALWAYS_DUPLICATE] flag are always
-   * duplicated even with [param subresources] set to `false`, and properties with the [constant
-   * PROPERTY_USAGE_NEVER_DUPLICATE] flag are never duplicated even with [param subresources] set to
-   * `true`.
+   * Duplicates this resource, returning a new resource with its `export`ed or
+   * [PROPERTYUSAGESTORAGE] properties copied from the original.
+   * If [subresources] is `false`, a shallow copy is returned; nested resources within subresources
+   * are not duplicated and are shared from the original resource. If [subresources] is `true`, a deep
+   * copy is returned; nested subresources will be duplicated and are not shared.
+   * Subresource properties with the [PROPERTYUSAGEALWAYSDUPLICATE] flag are always duplicated even
+   * with [subresources] set to `false`, and properties with the [PROPERTYUSAGENEVERDUPLICATE] flag are
+   * never duplicated even with [subresources] set to `true`.
    * **Note:** For custom resources, this method will fail if [Object.Init] has been defined with
    * required parameters.
    */

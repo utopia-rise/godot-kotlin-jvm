@@ -32,10 +32,10 @@ import kotlin.Unit
  * high-quality indirect lighting with very little light leaking. [LightmapGI] can also provide rough
  * reflections using spherical harmonics if [directional] is enabled. Dynamic objects can receive
  * indirect lighting thanks to *light probes*, which can be automatically placed by setting
- * [generateProbesSubdiv] to a value other than [constant GENERATE_PROBES_DISABLED]. Additional
- * lightmap probes can also be added by creating [LightmapProbe] nodes. The downside is that lightmaps
- * are fully static and cannot be baked in an exported project. Baking a [LightmapGI] node is also
- * slower compared to [VoxelGI].
+ * [generateProbesSubdiv] to a value other than [GENERATEPROBESDISABLED]. Additional lightmap probes
+ * can also be added by creating [LightmapProbe] nodes. The downside is that lightmaps are fully static
+ * and cannot be baked in an exported project. Baking a [LightmapGI] node is also slower compared to
+ * [VoxelGI].
  * **Procedural generation:** Lightmap baking functionality is only available in the editor. This
  * means [LightmapGI] is not suited to procedurally generated or user-built levels. For procedurally
  * generated or user-built levels, use [VoxelGI] or SDFGI instead (see [Environment.sdfgiEnabled]).
@@ -105,11 +105,11 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    * If `true`, bakes lightmaps to contain directional information as spherical harmonics. This
    * results in more realistic lighting appearance, especially with normal mapped materials and for
-   * lights that have their direct light baked ([Light3D.lightBakeMode] set to [constant
-   * Light3D.BAKE_STATIC] and with [Light3D.editorOnly] set to `false`). The directional information is
-   * also used to provide rough reflections for static and dynamic objects. This has a small run-time
-   * performance cost as the shader has to perform more work to interpret the direction information
-   * from the lightmap. Directional lightmaps also take longer to bake and result in larger file sizes.
+   * lights that have their direct light baked ([Light3D.lightBakeMode] set to [Light3D.BAKESTATIC] and
+   * with [Light3D.editorOnly] set to `false`). The directional information is also used to provide
+   * rough reflections for static and dynamic objects. This has a small run-time performance cost as
+   * the shader has to perform more work to interpret the direction information from the lightmap.
+   * Directional lightmaps also take longer to bake and result in larger file sizes.
    * **Note:** The property's name has no relationship with [DirectionalLight3D]. [directional]
    * works with all light types.
    */
@@ -238,7 +238,7 @@ public open class LightmapGI : VisualInstance3D() {
 
   /**
    * The sky to use as a source of environment lighting. Only effective if [environmentMode] is
-   * [constant ENVIRONMENT_MODE_CUSTOM_SKY].
+   * [ENVIRONMENTMODECUSTOMSKY].
    */
   public var environmentCustomSky: Sky?
     get() {
@@ -252,8 +252,8 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
-   * The color to use for environment lighting. Only effective if [environmentMode] is [constant
-   * ENVIRONMENT_MODE_CUSTOM_COLOR].
+   * The color to use for environment lighting. Only effective if [environmentMode] is
+   * [ENVIRONMENTMODECUSTOMCOLOR].
    */
   @CoreTypeLocalCopy
   public var environmentCustomColor: Color
@@ -269,7 +269,7 @@ public open class LightmapGI : VisualInstance3D() {
 
   /**
    * The color multiplier to use for environment lighting. Only effective if [environmentMode] is
-   * [constant ENVIRONMENT_MODE_CUSTOM_COLOR].
+   * [ENVIRONMENTMODECUSTOMCOLOR].
    */
   public var environmentCustomEnergy: Float
     get() {
@@ -340,8 +340,8 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   /**
-   * The color to use for environment lighting. Only effective if [environmentMode] is [constant
-   * ENVIRONMENT_MODE_CUSTOM_COLOR].
+   * The color to use for environment lighting. Only effective if [environmentMode] is
+   * [ENVIRONMENTMODECUSTOMCOLOR].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -463,8 +463,8 @@ public open class LightmapGI : VisualInstance3D() {
      */
     BAKE_ERROR_NO_SAVE_PATH(4),
     /**
-     * Lightmap baking failed as there are no meshes whose [GeometryInstance3D.giMode] is [constant
-     * GeometryInstance3D.GI_MODE_STATIC] and with valid UV2 mapping in the current scene. You may need
+     * Lightmap baking failed as there are no meshes whose [GeometryInstance3D.giMode] is
+     * [GeometryInstance3D.GIMODESTATIC] and with valid UV2 mapping in the current scene. You may need
      * to select 3D scenes in the Import dock and change their global illumination mode accordingly.
      */
     BAKE_ERROR_NO_MESHES(5),
@@ -510,8 +510,8 @@ public open class LightmapGI : VisualInstance3D() {
     /**
      * Use the scene's environment lighting when baking lightmaps.
      * **Note:** If baking lightmaps in a scene with no [WorldEnvironment] node, this will act like
-     * [constant ENVIRONMENT_MODE_DISABLED]. The editor's preview sky and sun is *not* taken into
-     * account by [LightmapGI] when baking lightmaps.
+     * [ENVIRONMENTMODEDISABLED]. The editor's preview sky and sun is *not* taken into account by
+     * [LightmapGI] when baking lightmaps.
      */
     ENVIRONMENT_MODE_SCENE(1),
     /**

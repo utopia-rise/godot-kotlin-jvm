@@ -155,8 +155,8 @@ public object RenderingServer : Object() {
   public final const val MATERIAL_RENDER_PRIORITY_MAX: Long = 127
 
   /**
-   * The number of custom data arrays available ([constant ARRAY_CUSTOM0], [constant ARRAY_CUSTOM1],
-   * [constant ARRAY_CUSTOM2], [constant ARRAY_CUSTOM3]).
+   * The number of custom data arrays available ([ARRAYCUSTOM0], [ARRAYCUSTOM1], [ARRAYCUSTOM2],
+   * [ARRAYCUSTOM3]).
    */
   public final const val ARRAY_CUSTOM_COUNT: Long = 4
 
@@ -243,12 +243,11 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Updates the texture specified by the [param texture] [RID] with the data in [param image]. A
-   * [param layer] must also be specified, which should be `0` when updating a single-layer texture
-   * ([Texture2D]).
-   * **Note:** The [param image] must have the same width, height and format as the current [param
-   * texture] data. Otherwise, an error will be printed and the original texture won't be modified. If
-   * you need to use different width, height or format, use [textureReplace] instead.
+   * Updates the texture specified by the [texture] [RID] with the data in [image]. A [layer] must
+   * also be specified, which should be `0` when updating a single-layer texture ([Texture2D]).
+   * **Note:** The [image] must have the same width, height and format as the current [texture]
+   * data. Otherwise, an error will be printed and the original texture won't be modified. If you need
+   * to use different width, height or format, use [textureReplace] instead.
    */
   public fun texture2dUpdate(
     texture: RID,
@@ -260,9 +259,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Updates the texture specified by the [param texture] [RID]'s data with the data in [param
-   * data]. All the texture's layers must be replaced at once.
-   * **Note:** The [param texture] must have the same width, height, depth and format as the current
+   * Updates the texture specified by the [texture] [RID]'s data with the data in [data]. All the
+   * texture's layers must be replaced at once.
+   * **Note:** The [texture] must have the same width, height, depth and format as the current
    * texture data. Otherwise, an error will be printed and the original texture won't be modified. If
    * you need to use different width, height, depth or format, use [textureReplace] instead.
    */
@@ -322,7 +321,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns an [Image] instance from the given [param texture] [RID].
+   * Returns an [Image] instance from the given [texture] [RID].
    * Example of getting the test texture from [getTestTexture] and applying it to a [Sprite2D] node:
    * [codeblock]
    * var texture_rid = RenderingServer.get_test_texture()
@@ -337,7 +336,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns an [Image] instance from the given [param texture] [RID] and [param layer].
+   * Returns an [Image] instance from the given [texture] [RID] and [layer].
    */
   public fun texture2dLayerGet(texture: RID, layer: Int): Image? {
     TransferContext.writeArguments(_RID to texture, LONG to layer.toLong())
@@ -355,8 +354,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Replaces [param texture]'s texture data by the texture specified by the [param by_texture] RID,
-   * without changing [param texture]'s RID.
+   * Replaces [texture]'s texture data by the texture specified by the [byTexture] RID, without
+   * changing [texture]'s RID.
    */
   public fun textureReplace(texture: RID, byTexture: RID): Unit {
     TransferContext.writeArguments(_RID to texture, _RID to byTexture)
@@ -384,7 +383,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the [enum Image.Format] for the texture.
+   * Returns the [Image.Format] for the texture.
    */
   public fun textureGetFormat(texture: RID): Image.Format {
     TransferContext.writeArguments(_RID to texture)
@@ -399,7 +398,7 @@ public object RenderingServer : Object() {
 
   /**
    * Creates a new texture object based on a texture created directly on the [RenderingDevice]. If
-   * the texture contains layers, [param layer_type] is used to define the layer type.
+   * the texture contains layers, [layerType] is used to define the layer type.
    */
   @JvmOverloads
   public fun textureRdCreate(rdTexture: RID, layerType: TextureLayeredType =
@@ -492,7 +491,7 @@ public object RenderingServer : Object() {
 
   /**
    * Sets a shader's default texture. Overwrites the texture given by name.
-   * **Note:** If the sampler array is used use [param index] to access the specified texture.
+   * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
   @JvmOverloads
   public fun shaderSetDefaultTextureParameter(
@@ -507,7 +506,7 @@ public object RenderingServer : Object() {
 
   /**
    * Returns a default texture from a shader searched by name.
-   * **Note:** If the sampler array is used use [param index] to access the specified texture.
+   * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
   @JvmOverloads
   public fun shaderGetDefaultTextureParameter(
@@ -602,8 +601,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the offset of a given attribute by [param array_index] in the start of its respective
-   * buffer.
+   * Returns the offset of a given attribute by [arrayIndex] in the start of its respective buffer.
    */
   public fun meshSurfaceGetFormatOffset(
     format: ArrayFormat,
@@ -616,9 +614,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the stride of the vertex positions for a mesh with given [param format]. Note
-   * importantly that vertex positions are stored consecutively and are not interleaved with the other
-   * attributes in the vertex buffer (normals and tangents).
+   * Returns the stride of the vertex positions for a mesh with given [format]. Note importantly
+   * that vertex positions are stored consecutively and are not interleaved with the other attributes
+   * in the vertex buffer (normals and tangents).
    */
   public fun meshSurfaceGetFormatVertexStride(format: ArrayFormat, vertexCount: Int): Long {
     TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
@@ -627,9 +625,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the stride of the combined normals and tangents for a mesh with given [param format].
-   * Note importantly that, while normals and tangents are in the vertex buffer with vertices, they are
-   * only interleaved with each other and so have a different stride than vertex positions.
+   * Returns the stride of the combined normals and tangents for a mesh with given [format]. Note
+   * importantly that, while normals and tangents are in the vertex buffer with vertices, they are only
+   * interleaved with each other and so have a different stride than vertex positions.
    */
   public fun meshSurfaceGetFormatNormalTangentStride(format: ArrayFormat, vertexCount: Int): Long {
     TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
@@ -639,7 +637,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the stride of the attribute buffer for a mesh with given [param format].
+   * Returns the stride of the attribute buffer for a mesh with given [format].
    */
   public fun meshSurfaceGetFormatAttributeStride(format: ArrayFormat, vertexCount: Int): Long {
     TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
@@ -648,7 +646,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the stride of the skin buffer for a mesh with given [param format].
+   * Returns the stride of the skin buffer for a mesh with given [format].
    */
   public fun meshSurfaceGetFormatSkinStride(format: ArrayFormat, vertexCount: Int): Long {
     TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
@@ -988,10 +986,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Set the entire data to use for drawing the [param multimesh] at once to [param buffer] (such as
-   * instance transforms and colors). [param buffer]'s size must match the number of instances
-   * multiplied by the per-instance data size (which depends on the enabled MultiMesh fields).
-   * Otherwise, an error message is printed and nothing is rendered. See also [multimeshGetBuffer].
+   * Set the entire data to use for drawing the [multimesh] at once to [buffer] (such as instance
+   * transforms and colors). [buffer]'s size must match the number of instances multiplied by the
+   * per-instance data size (which depends on the enabled MultiMesh fields). Otherwise, an error
+   * message is printed and nothing is rendered. See also [multimeshGetBuffer].
    * The per-instance data size and expected data order is:
    * [codeblock]
    * 2D:
@@ -1157,7 +1155,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the specified 3D light parameter. See [enum LightParam] for options. Equivalent to
+   * Sets the specified 3D light parameter. See [LightParam] for options. Equivalent to
    * [Light3D.setParam].
    */
   public fun lightSetParam(
@@ -1259,7 +1257,7 @@ public object RenderingServer : Object() {
 
   /**
    * Sets the shadow mode for this directional light. Equivalent to
-   * [DirectionalLight3D.directionalShadowMode]. See [enum LightDirectionalShadowMode] for options.
+   * [DirectionalLight3D.directionalShadowMode]. See [LightDirectionalShadowMode] for options.
    */
   public fun lightDirectionalSetShadowMode(light: RID, mode: LightDirectionalShadowMode): Unit {
     TransferContext.writeArguments(_RID to light, LONG to mode.id)
@@ -1305,7 +1303,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the filter [param quality] for directional light shadows in 3D. See also
+   * Sets the filter [quality] for directional light shadows in 3D. See also
    * [ProjectSettings.rendering/lightsAndShadows/directionalShadow/softShadowFilterQuality]. This
    * parameter is global and cannot be set on a per-viewport basis.
    */
@@ -1315,7 +1313,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [param size] of the directional light shadows in 3D. See also
+   * Sets the [size] of the directional light shadows in 3D. See also
    * [ProjectSettings.rendering/lightsAndShadows/directionalShadow/size]. This parameter is global and
    * cannot be set on a per-viewport basis.
    */
@@ -1340,8 +1338,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets how often the reflection probe updates. Can either be once or every frame. See [enum
-   * ReflectionProbeUpdateMode] for options.
+   * Sets how often the reflection probe updates. Can either be once or every frame. See
+   * [ReflectionProbeUpdateMode] for options.
    */
   public fun reflectionProbeSetUpdateMode(probe: RID, mode: ReflectionProbeUpdateMode): Unit {
     TransferContext.writeArguments(_RID to probe, LONG to mode.id)
@@ -1446,9 +1444,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the resolution to use when rendering the specified reflection probe. The [param
-   * resolution] is specified for each cubemap face: for instance, specifying `512` will allocate 6
-   * faces of 512×512 each (plus mipmaps for roughness levels).
+   * Sets the resolution to use when rendering the specified reflection probe. The [resolution] is
+   * specified for each cubemap face: for instance, specifying `512` will allocate 6 faces of 512×512
+   * each (plus mipmaps for roughness levels).
    */
   public fun reflectionProbeSetResolution(probe: RID, resolution: Int): Unit {
     TransferContext.writeArguments(_RID to probe, LONG to resolution.toLong())
@@ -1481,8 +1479,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [param size] of the decal specified by the [param decal] RID. Equivalent to
-   * [Decal.size].
+   * Sets the [size] of the decal specified by the [decal] RID. Equivalent to [Decal.size].
    */
   public fun decalSetSize(decal: RID, size: Vector3): Unit {
     TransferContext.writeArguments(_RID to decal, VECTOR3 to size)
@@ -1490,8 +1487,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [param texture] in the given texture [param type] slot for the specified decal.
-   * Equivalent to [Decal.setTexture].
+   * Sets the [texture] in the given texture [type] slot for the specified decal. Equivalent to
+   * [Decal.setTexture].
    */
   public fun decalSetTexture(
     decal: RID,
@@ -1503,7 +1500,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the emission [param energy] in the decal specified by the [param decal] RID. Equivalent to
+   * Sets the emission [energy] in the decal specified by the [decal] RID. Equivalent to
    * [Decal.emissionEnergy].
    */
   public fun decalSetEmissionEnergy(decal: RID, energy: Float): Unit {
@@ -1512,7 +1509,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [param albedo_mix] in the decal specified by the [param decal] RID. Equivalent to
+   * Sets the [albedoMix] in the decal specified by the [decal] RID. Equivalent to
    * [Decal.albedoMix].
    */
   public fun decalSetAlbedoMix(decal: RID, albedoMix: Float): Unit {
@@ -1521,8 +1518,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the color multiplier in the decal specified by the [param decal] RID to [param color].
-   * Equivalent to [Decal.modulate].
+   * Sets the color multiplier in the decal specified by the [decal] RID to [color]. Equivalent to
+   * [Decal.modulate].
    */
   public fun decalSetModulate(decal: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to decal, COLOR to color)
@@ -1530,8 +1527,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the cull [param mask] in the decal specified by the [param decal] RID. Equivalent to
-   * [Decal.cullMask].
+   * Sets the cull [mask] in the decal specified by the [decal] RID. Equivalent to [Decal.cullMask].
    */
   public fun decalSetCullMask(decal: RID, mask: Long): Unit {
     TransferContext.writeArguments(_RID to decal, LONG to mask)
@@ -1539,8 +1535,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the distance fade parameters in the decal specified by the [param decal] RID. Equivalent
-   * to [Decal.distanceFadeEnabled], [Decal.distanceFadeBegin] and [Decal.distanceFadeLength].
+   * Sets the distance fade parameters in the decal specified by the [decal] RID. Equivalent to
+   * [Decal.distanceFadeEnabled], [Decal.distanceFadeBegin] and [Decal.distanceFadeLength].
    */
   public fun decalSetDistanceFade(
     decal: RID,
@@ -1553,8 +1549,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the upper fade ([param above]) and lower fade ([param below]) in the decal specified by
-   * the [param decal] RID. Equivalent to [Decal.upperFade] and [Decal.lowerFade].
+   * Sets the upper fade ([above]) and lower fade ([below]) in the decal specified by the [decal]
+   * RID. Equivalent to [Decal.upperFade] and [Decal.lowerFade].
    */
   public fun decalSetFade(
     decal: RID,
@@ -1566,7 +1562,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the normal [param fade] in the decal specified by the [param decal] RID. Equivalent to
+   * Sets the normal [fade] in the decal specified by the [decal] RID. Equivalent to
    * [Decal.normalFade].
    */
   public fun decalSetNormalFade(decal: RID, fade: Float): Unit {
@@ -1575,7 +1571,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the texture [param filter] mode to use when rendering decals. This parameter is global and
+   * Sets the texture [filter] mode to use when rendering decals. This parameter is global and
    * cannot be set on a per-decal basis.
    */
   public fun decalsSetFilter(filter: DecalFilter): Unit {
@@ -1584,8 +1580,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If [param half_resolution] is `true`, renders [VoxelGI] and SDFGI ([Environment.sdfgiEnabled])
-   * buffers at halved resolution on each axis (e.g. 960×540 when the viewport size is 1920×1080). This
+   * If [halfResolution] is `true`, renders [VoxelGI] and SDFGI ([Environment.sdfgiEnabled]) buffers
+   * at halved resolution on each axis (e.g. 960×540 when the viewport size is 1920×1080). This
    * improves performance significantly when VoxelGI or SDFGI is enabled, at the cost of artifacts that
    * may be visible on polygon edges. The loss in quality becomes less noticeable as the viewport
    * resolution increases. [LightmapGI] rendering is not affected by this setting. Equivalent to
@@ -1661,7 +1657,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [VoxelGIData.dynamicRange] value to use on the specified [param voxel_gi]'s [RID].
+   * Sets the [VoxelGIData.dynamicRange] value to use on the specified [voxelGi]'s [RID].
    */
   public fun voxelGiSetDynamicRange(voxelGi: RID, range: Float): Unit {
     TransferContext.writeArguments(_RID to voxelGi, DOUBLE to range.toDouble())
@@ -1669,7 +1665,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [VoxelGIData.propagation] value to use on the specified [param voxel_gi]'s [RID].
+   * Sets the [VoxelGIData.propagation] value to use on the specified [voxelGi]'s [RID].
    */
   public fun voxelGiSetPropagation(voxelGi: RID, amount: Float): Unit {
     TransferContext.writeArguments(_RID to voxelGi, DOUBLE to amount.toDouble())
@@ -1677,7 +1673,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [VoxelGIData.energy] value to use on the specified [param voxel_gi]'s [RID].
+   * Sets the [VoxelGIData.energy] value to use on the specified [voxelGi]'s [RID].
    */
   public fun voxelGiSetEnergy(voxelGi: RID, energy: Float): Unit {
     TransferContext.writeArguments(_RID to voxelGi, DOUBLE to energy.toDouble())
@@ -1696,7 +1692,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [VoxelGIData.bias] value to use on the specified [param voxel_gi]'s [RID].
+   * Sets the [VoxelGIData.bias] value to use on the specified [voxelGi]'s [RID].
    */
   public fun voxelGiSetBias(voxelGi: RID, bias: Float): Unit {
     TransferContext.writeArguments(_RID to voxelGi, DOUBLE to bias.toDouble())
@@ -1704,7 +1700,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [VoxelGIData.normalBias] value to use on the specified [param voxel_gi]'s [RID].
+   * Sets the [VoxelGIData.normalBias] value to use on the specified [voxelGi]'s [RID].
    */
   public fun voxelGiSetNormalBias(voxelGi: RID, bias: Float): Unit {
     TransferContext.writeArguments(_RID to voxelGi, DOUBLE to bias.toDouble())
@@ -1712,7 +1708,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [VoxelGIData.interior] value to use on the specified [param voxel_gi]'s [RID].
+   * Sets the [VoxelGIData.interior] value to use on the specified [voxelGi]'s [RID].
    */
   public fun voxelGiSetInterior(voxelGi: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to voxelGi, BOOL to enable)
@@ -1720,7 +1716,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [VoxelGIData.useTwoBounces] value to use on the specified [param voxel_gi]'s [RID].
+   * Sets the [VoxelGIData.useTwoBounces] value to use on the specified [voxelGi]'s [RID].
    */
   public fun voxelGiSetUseTwoBounces(voxelGi: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to voxelGi, BOOL to enable)
@@ -1751,9 +1747,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Set the textures on the given [param lightmap] GI instance to the texture array pointed to by
-   * the [param light] RID. If the lightmap texture was baked with [LightmapGI.directional] set to
-   * `true`, then [param uses_sh] must also be `true`.
+   * Set the textures on the given [lightmap] GI instance to the texture array pointed to by the
+   * [light] RID. If the lightmap texture was baked with [LightmapGI.directional] set to `true`, then
+   * [usesSh] must also be `true`.
    */
   public fun lightmapSetTextures(
     lightmap: RID,
@@ -1849,8 +1845,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets whether the GPU particles specified by the [param particles] RID should be rendered in 2D
-   * or 3D according to [param mode].
+   * Sets whether the GPU particles specified by the [particles] RID should be rendered in 2D or 3D
+   * according to [mode].
    */
   public fun particlesSetMode(particles: RID, mode: ParticlesMode): Unit {
     TransferContext.writeArguments(_RID to particles, LONG to mode.id)
@@ -2023,9 +2019,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If [param enable] is `true`, enables trails for the [param particles] with the specified [param
-   * length_sec] in seconds. Equivalent to [GPUParticles3D.trailEnabled] and
-   * [GPUParticles3D.trailLifetime].
+   * If [enable] is `true`, enables trails for the [particles] with the specified [lengthSec] in
+   * seconds. Equivalent to [GPUParticles3D.trailEnabled] and [GPUParticles3D.trailLifetime].
    */
   public fun particlesSetTrails(
     particles: RID,
@@ -2075,7 +2070,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Manually emits particles from the [param particles] instance.
+   * Manually emits particles from the [particles] instance.
    */
   public fun particlesEmit(
     particles: RID,
@@ -2090,8 +2085,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the draw order of the particles to one of the named enums from [enum ParticlesDrawOrder].
-   * See [enum ParticlesDrawOrder] for options. Equivalent to [GPUParticles3D.drawOrder].
+   * Sets the draw order of the particles to one of the named enums from [ParticlesDrawOrder]. See
+   * [ParticlesDrawOrder] for options. Equivalent to [GPUParticles3D.drawOrder].
    */
   public fun particlesSetDrawOrder(particles: RID, order: ParticlesDrawOrder): Unit {
     TransferContext.writeArguments(_RID to particles, LONG to order.id)
@@ -2151,8 +2146,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the collision or attractor shape [param type] for the 3D GPU particles collision or
-   * attractor specified by the [param particles_collision] RID.
+   * Sets the collision or attractor shape [type] for the 3D GPU particles collision or attractor
+   * specified by the [particlesCollision] RID.
    */
   public fun particlesCollisionSetCollisionType(particlesCollision: RID,
       type: ParticlesCollisionType): Unit {
@@ -2161,9 +2156,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the cull [param mask] for the 3D GPU particles collision or attractor specified by the
-   * [param particles_collision] RID. Equivalent to [GPUParticlesCollision3D.cullMask] or
-   * [GPUParticlesAttractor3D.cullMask] depending on the [param particles_collision] type.
+   * Sets the cull [mask] for the 3D GPU particles collision or attractor specified by the
+   * [particlesCollision] RID. Equivalent to [GPUParticlesCollision3D.cullMask] or
+   * [GPUParticlesAttractor3D.cullMask] depending on the [particlesCollision] type.
    */
   public fun particlesCollisionSetCullMask(particlesCollision: RID, mask: Long): Unit {
     TransferContext.writeArguments(_RID to particlesCollision, LONG to mask)
@@ -2171,9 +2166,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [param radius] for the 3D GPU particles sphere collision or attractor specified by the
-   * [param particles_collision] RID. Equivalent to [GPUParticlesCollisionSphere3D.radius] or
-   * [GPUParticlesAttractorSphere3D.radius] depending on the [param particles_collision] type.
+   * Sets the [radius] for the 3D GPU particles sphere collision or attractor specified by the
+   * [particlesCollision] RID. Equivalent to [GPUParticlesCollisionSphere3D.radius] or
+   * [GPUParticlesAttractorSphere3D.radius] depending on the [particlesCollision] type.
    */
   public fun particlesCollisionSetSphereRadius(particlesCollision: RID, radius: Float): Unit {
     TransferContext.writeArguments(_RID to particlesCollision, DOUBLE to radius.toDouble())
@@ -2181,10 +2176,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [param extents] for the 3D GPU particles collision by the [param particles_collision]
-   * RID. Equivalent to [GPUParticlesCollisionBox3D.size], [GPUParticlesCollisionSDF3D.size],
+   * Sets the [extents] for the 3D GPU particles collision by the [particlesCollision] RID.
+   * Equivalent to [GPUParticlesCollisionBox3D.size], [GPUParticlesCollisionSDF3D.size],
    * [GPUParticlesCollisionHeightField3D.size], [GPUParticlesAttractorBox3D.size] or
-   * [GPUParticlesAttractorVectorField3D.size] depending on the [param particles_collision] type.
+   * [GPUParticlesAttractorVectorField3D.size] depending on the [particlesCollision] type.
    */
   public fun particlesCollisionSetBoxExtents(particlesCollision: RID, extents: Vector3): Unit {
     TransferContext.writeArguments(_RID to particlesCollision, VECTOR3 to extents)
@@ -2192,9 +2187,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [param strength] for the 3D GPU particles attractor specified by the [param
-   * particles_collision] RID. Only used for attractors, not colliders. Equivalent to
-   * [GPUParticlesAttractor3D.strength].
+   * Sets the [strength] for the 3D GPU particles attractor specified by the [particlesCollision]
+   * RID. Only used for attractors, not colliders. Equivalent to [GPUParticlesAttractor3D.strength].
    */
   public fun particlesCollisionSetAttractorStrength(particlesCollision: RID, strength: Float):
       Unit {
@@ -2204,8 +2198,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the directionality [param amount] for the 3D GPU particles attractor specified by the
-   * [param particles_collision] RID. Only used for attractors, not colliders. Equivalent to
+   * Sets the directionality [amount] for the 3D GPU particles attractor specified by the
+   * [particlesCollision] RID. Only used for attractors, not colliders. Equivalent to
    * [GPUParticlesAttractor3D.directionality].
    */
   public fun particlesCollisionSetAttractorDirectionality(particlesCollision: RID, amount: Float):
@@ -2216,8 +2210,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the attenuation [param curve] for the 3D GPU particles attractor specified by the [param
-   * particles_collision] RID. Only used for attractors, not colliders. Equivalent to
+   * Sets the attenuation [curve] for the 3D GPU particles attractor specified by the
+   * [particlesCollision] RID. Only used for attractors, not colliders. Equivalent to
    * [GPUParticlesAttractor3D.attenuation].
    */
   public fun particlesCollisionSetAttractorAttenuation(particlesCollision: RID, curve: Float):
@@ -2228,9 +2222,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the signed distance field [param texture] for the 3D GPU particles collision specified by
-   * the [param particles_collision] RID. Equivalent to [GPUParticlesCollisionSDF3D.texture] or
-   * [GPUParticlesAttractorVectorField3D.texture] depending on the [param particles_collision] type.
+   * Sets the signed distance field [texture] for the 3D GPU particles collision specified by the
+   * [particlesCollision] RID. Equivalent to [GPUParticlesCollisionSDF3D.texture] or
+   * [GPUParticlesAttractorVectorField3D.texture] depending on the [particlesCollision] type.
    */
   public fun particlesCollisionSetFieldTexture(particlesCollision: RID, texture: RID): Unit {
     TransferContext.writeArguments(_RID to particlesCollision, _RID to texture)
@@ -2248,9 +2242,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the heightmap [param resolution] for the 3D GPU particles heightfield collision specified
-   * by the [param particles_collision] RID. Equivalent to
-   * [GPUParticlesCollisionHeightField3D.resolution].
+   * Sets the heightmap [resolution] for the 3D GPU particles heightfield collision specified by the
+   * [particlesCollision] RID. Equivalent to [GPUParticlesCollisionHeightField3D.resolution].
    */
   public fun particlesCollisionSetHeightFieldResolution(particlesCollision: RID,
       resolution: ParticlesCollisionHeightfieldResolution): Unit {
@@ -2273,10 +2266,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the shape of the fog volume to either [constant
-   * RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID], [constant RenderingServer.FOG_VOLUME_SHAPE_CONE],
-   * [constant RenderingServer.FOG_VOLUME_SHAPE_CYLINDER], [constant
-   * RenderingServer.FOG_VOLUME_SHAPE_BOX] or [constant RenderingServer.FOG_VOLUME_SHAPE_WORLD].
+   * Sets the shape of the fog volume to either [RenderingServer.FOGVOLUMESHAPEELLIPSOID],
+   * [RenderingServer.FOGVOLUMESHAPECONE], [RenderingServer.FOGVOLUMESHAPECYLINDER],
+   * [RenderingServer.FOGVOLUMESHAPEBOX] or [RenderingServer.FOGVOLUMESHAPEWORLD].
    */
   public fun fogVolumeSetShape(fogVolume: RID, shape: FogVolumeShape): Unit {
     TransferContext.writeArguments(_RID to fogVolume, LONG to shape.id)
@@ -2284,10 +2276,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the size of the fog volume when shape is [constant
-   * RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID], [constant RenderingServer.FOG_VOLUME_SHAPE_CONE],
-   * [constant RenderingServer.FOG_VOLUME_SHAPE_CYLINDER] or [constant
-   * RenderingServer.FOG_VOLUME_SHAPE_BOX].
+   * Sets the size of the fog volume when shape is [RenderingServer.FOGVOLUMESHAPEELLIPSOID],
+   * [RenderingServer.FOGVOLUMESHAPECONE], [RenderingServer.FOGVOLUMESHAPECYLINDER] or
+   * [RenderingServer.FOGVOLUMESHAPEBOX].
    */
   public fun fogVolumeSetSize(fogVolume: RID, size: Vector3): Unit {
     TransferContext.writeArguments(_RID to fogVolume, VECTOR3 to size)
@@ -2402,8 +2393,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets camera to use frustum projection. This mode allows adjusting the [param offset] argument
-   * to create "tilted frustum" effects.
+   * Sets camera to use frustum projection. This mode allows adjusting the [offset] argument to
+   * create "tilted frustum" effects.
    */
   public fun cameraSetFrustum(
     camera: RID,
@@ -2450,9 +2441,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, preserves the horizontal aspect ratio which is equivalent to [constant
-   * Camera3D.KEEP_WIDTH]. If `false`, preserves the vertical aspect ratio which is equivalent to
-   * [constant Camera3D.KEEP_HEIGHT].
+   * If `true`, preserves the horizontal aspect ratio which is equivalent to [Camera3D.KEEPWIDTH].
+   * If `false`, preserves the vertical aspect ratio which is equivalent to [Camera3D.KEEPHEIGHT].
    */
   public fun cameraSetUseVerticalAspect(camera: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to camera, BOOL to enable)
@@ -2501,7 +2491,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the viewport's parent to the viewport specified by the [param parent_viewport] RID.
+   * Sets the viewport's parent to the viewport specified by the [parentViewport] RID.
    */
   public fun viewportSetParentViewport(viewport: RID, parentViewport: RID): Unit {
     TransferContext.writeArguments(_RID to viewport, _RID to parentViewport)
@@ -2509,7 +2499,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Copies the viewport to a region of the screen specified by [param rect]. If
+   * Copies the viewport to a region of the screen specified by [rect]. If
    * [viewportSetRenderDirectToScreen] is `true`, then the viewport does not use a framebuffer and the
    * contents of the viewport are rendered directly to screen. However, note that the root viewport is
    * drawn last, therefore it will draw over the screen. Accordingly, you must set the root viewport to
@@ -2576,11 +2566,11 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Scales the 3D render buffer based on the viewport size uses an image filter specified in [enum
-   * ViewportScaling3DMode] to scale the output image to the full viewport size. Values lower than
+   * Scales the 3D render buffer based on the viewport size uses an image filter specified in
+   * [ViewportScaling3DMode] to scale the output image to the full viewport size. Values lower than
    * `1.0` can be used to speed up 3D rendering at the cost of quality (undersampling). Values greater
    * than `1.0` are only valid for bilinear mode and can be used to improve 3D rendering quality at a
-   * high performance cost (supersampling). See also [enum ViewportMSAA] for multi-sample antialiasing,
+   * high performance cost (supersampling). See also [ViewportMSAA] for multi-sample antialiasing,
    * which is significantly cheaper but only smoothens the edges of polygons.
    * When using FSR upscaling, AMD recommends exposing the following values as preset options to
    * users "Ultra Quality: 0.77", "Quality: 0.67", "Balanced: 0.59", "Performance: 0.5" instead of
@@ -2619,7 +2609,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets when the viewport should be updated. See [enum ViewportUpdateMode] constants for options.
+   * Sets when the viewport should be updated. See [ViewportUpdateMode] constants for options.
    */
   public fun viewportSetUpdateMode(viewport: RID, updateMode: ViewportUpdateMode): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to updateMode.id)
@@ -2627,7 +2617,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the clear mode of a viewport. See [enum ViewportClearMode] for options.
+   * Sets the clear mode of a viewport. See [ViewportClearMode] for options.
    */
   public fun viewportSetClearMode(viewport: RID, clearMode: ViewportClearMode): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to clearMode.id)
@@ -2671,10 +2661,10 @@ public object RenderingServer : Object() {
   /**
    * Sets the viewport's environment mode which allows enabling or disabling rendering of 3D
    * environment over 2D canvas. When disabled, 2D will not be affected by the environment. When
-   * enabled, 2D will be affected by the environment if the environment background mode is [constant
-   * ENV_BG_CANVAS]. The default behavior is to inherit the setting from the viewport's parent. If the
-   * topmost parent is also set to [constant VIEWPORT_ENVIRONMENT_INHERIT], then the behavior will be
-   * the same as if it was set to [constant VIEWPORT_ENVIRONMENT_ENABLED].
+   * enabled, 2D will be affected by the environment if the environment background mode is
+   * [ENVBGCANVAS]. The default behavior is to inherit the setting from the viewport's parent. If the
+   * topmost parent is also set to [VIEWPORTENVIRONMENTINHERIT], then the behavior will be the same as
+   * if it was set to [VIEWPORTENVIRONMENTENABLED].
    */
   public fun viewportSetEnvironmentMode(viewport: RID, mode: ViewportEnvironmentMode): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to mode.id)
@@ -2737,8 +2727,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the default texture filtering mode for the specified [param viewport] RID. See [enum
-   * CanvasItemTextureFilter] for options.
+   * Sets the default texture filtering mode for the specified [viewport] RID. See
+   * [CanvasItemTextureFilter] for options.
    */
   public fun viewportSetDefaultCanvasItemTextureFilter(viewport: RID,
       filter: CanvasItemTextureFilter): Unit {
@@ -2748,8 +2738,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the default texture repeat mode for the specified [param viewport] RID. See [enum
-   * CanvasItemTextureRepeat] for options.
+   * Sets the default texture repeat mode for the specified [viewport] RID. See
+   * [CanvasItemTextureRepeat] for options.
    */
   public fun viewportSetDefaultCanvasItemTextureRepeat(viewport: RID,
       repeat: CanvasItemTextureRepeat): Unit {
@@ -2772,8 +2762,8 @@ public object RenderingServer : Object() {
 
   /**
    * Sets the stacking order for a viewport's canvas.
-   * [param layer] is the actual canvas layer, while [param sublayer] specifies the stacking order
-   * of the canvas among those in the same layer.
+   * [layer] is the actual canvas layer, while [sublayer] specifies the stacking order of the canvas
+   * among those in the same layer.
    */
   public fun viewportSetCanvasStacking(
     viewport: RID,
@@ -2817,11 +2807,11 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [param size] of the shadow atlas's images (used for omni and spot lights) on the
-   * viewport specified by the [param viewport] RID. The value is rounded up to the nearest power of 2.
-   * If [param use_16_bits] is `true`, use 16 bits for the omni/spot shadow depth map. Enabling this
-   * results in shadows having less precision and may result in shadow acne, but can lead to
-   * performance improvements on some devices.
+   * Sets the [size] of the shadow atlas's images (used for omni and spot lights) on the viewport
+   * specified by the [viewport] RID. The value is rounded up to the nearest power of 2. If [use16Bits]
+   * is `true`, use 16 bits for the omni/spot shadow depth map. Enabling this results in shadows having
+   * less precision and may result in shadow acne, but can lead to performance improvements on some
+   * devices.
    * **Note:** If this is set to `0`, no positional shadows will be visible at all. This can improve
    * performance significantly on low-end systems by reducing both the CPU and GPU load (as fewer draw
    * calls are needed to draw the scene without shadows).
@@ -2837,8 +2827,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the number of subdivisions to use in the specified shadow atlas [param quadrant] for omni
-   * and spot shadows. See also [Viewport.setPositionalShadowAtlasQuadrantSubdiv].
+   * Sets the number of subdivisions to use in the specified shadow atlas [quadrant] for omni and
+   * spot shadows. See also [Viewport.setPositionalShadowAtlasQuadrantSubdiv].
    */
   public fun viewportSetPositionalShadowAtlasQuadrantSubdivision(
     viewport: RID,
@@ -2851,8 +2841,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the multisample anti-aliasing mode for 3D on the specified [param viewport] RID. See [enum
-   * ViewportMSAA] for options.
+   * Sets the multisample anti-aliasing mode for 3D on the specified [viewport] RID. See
+   * [ViewportMSAA] for options.
    */
   public fun viewportSetMsaa3d(viewport: RID, msaa: ViewportMSAA): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to msaa.id)
@@ -2860,8 +2850,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the multisample anti-aliasing mode for 2D/Canvas on the specified [param viewport] RID.
-   * See [enum ViewportMSAA] for options.
+   * Sets the multisample anti-aliasing mode for 2D/Canvas on the specified [viewport] RID. See
+   * [ViewportMSAA] for options.
    */
   public fun viewportSetMsaa2d(viewport: RID, msaa: ViewportMSAA): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to msaa.id)
@@ -2944,10 +2934,10 @@ public object RenderingServer : Object() {
 
   /**
    * Returns a statistic about the rendering engine which can be used for performance profiling.
-   * This is separated into render pass [param type]s, each of them having the same [param info]s you
-   * can query (different passes will return different values). See [enum
-   * RenderingServer.ViewportRenderInfoType] for a list of render pass types and [enum
-   * RenderingServer.ViewportRenderInfo] for a list of information that can be queried.
+   * This is separated into render pass [type]s, each of them having the same [info]s you can query
+   * (different passes will return different values). See [RenderingServer.ViewportRenderInfoType] for
+   * a list of render pass types and [RenderingServer.ViewportRenderInfo] for a list of information
+   * that can be queried.
    * See also [getRenderingInfo], which returns global information across all viewports.
    * **Note:** Viewport rendering information is not available until at least 2 frames have been
    * rendered by the engine. If rendering information is not available, [viewportGetRenderInfo] returns
@@ -2975,7 +2965,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the debug draw mode of a viewport. See [enum ViewportDebugDraw] for options.
+   * Sets the debug draw mode of a viewport. See [ViewportDebugDraw] for options.
    */
   public fun viewportSetDebugDraw(viewport: RID, draw: ViewportDebugDraw): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to draw.id)
@@ -2983,10 +2973,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the measurement for the given [param viewport] RID (obtained using
-   * [Viewport.getViewportRid]). Once enabled, [viewportGetMeasuredRenderTimeCpu] and
-   * [viewportGetMeasuredRenderTimeGpu] will return values greater than `0.0` when queried with the
-   * given [param viewport].
+   * Sets the measurement for the given [viewport] RID (obtained using [Viewport.getViewportRid]).
+   * Once enabled, [viewportGetMeasuredRenderTimeCpu] and [viewportGetMeasuredRenderTimeGpu] will
+   * return values greater than `0.0` when queried with the given [viewport].
    */
   public fun viewportSetMeasureRenderTime(viewport: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to enable)
@@ -3000,7 +2989,7 @@ public object RenderingServer : Object() {
    * sum the render times of all viewports that are drawn every frame plus [getFrameSetupTimeCpu].
    * Unlike [Engine.getFramesPerSecond], this method will accurately reflect CPU utilization even if
    * framerate is capped via V-Sync or [Engine.maxFps]. See also [viewportGetMeasuredRenderTimeGpu].
-   * **Note:** Requires measurements to be enabled on the specified [param viewport] using
+   * **Note:** Requires measurements to be enabled on the specified [viewport] using
    * [viewportSetMeasureRenderTime]. Otherwise, this method returns `0.0`.
    */
   public fun viewportGetMeasuredRenderTimeCpu(viewport: RID): Double {
@@ -3014,7 +3003,7 @@ public object RenderingServer : Object() {
    * of GPU time spent to render the scene, sum the render times of all viewports that are drawn every
    * frame. Unlike [Engine.getFramesPerSecond], this method accurately reflects GPU utilization even if
    * framerate is capped via V-Sync or [Engine.maxFps]. See also [viewportGetMeasuredRenderTimeGpu].
-   * **Note:** Requires measurements to be enabled on the specified [param viewport] using
+   * **Note:** Requires measurements to be enabled on the specified [viewport] using
    * [viewportSetMeasureRenderTime]. Otherwise, this method returns `0.0`.
    * **Note:** When GPU utilization is low enough during a certain period of time, GPUs will
    * decrease their power state (which in turn decreases core and memory clock speeds). This can cause
@@ -3039,8 +3028,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * The texture to use when the VRS mode is set to [constant RenderingServer.VIEWPORT_VRS_TEXTURE].
-   * Equivalent to [ProjectSettings.rendering/vrs/texture].
+   * The texture to use when the VRS mode is set to [RenderingServer.VIEWPORTVRSTEXTURE]. Equivalent
+   * to [ProjectSettings.rendering/vrs/texture].
    */
   public fun viewportSetVrsTexture(viewport: RID, texture: RID): Unit {
     TransferContext.writeArguments(_RID to viewport, _RID to texture)
@@ -3060,8 +3049,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [param radiance_size] of the sky specified by the [param sky] RID (in pixels).
-   * Equivalent to [Sky.radianceSize].
+   * Sets the [radianceSize] of the sky specified by the [sky] RID (in pixels). Equivalent to
+   * [Sky.radianceSize].
    */
   public fun skySetRadianceSize(sky: RID, radianceSize: Int): Unit {
     TransferContext.writeArguments(_RID to sky, LONG to radianceSize.toLong())
@@ -3069,8 +3058,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the process [param mode] of the sky specified by the [param sky] RID. Equivalent to
-   * [Sky.processMode].
+   * Sets the process [mode] of the sky specified by the [sky] RID. Equivalent to [Sky.processMode].
    */
   public fun skySetMode(sky: RID, mode: SkyMode): Unit {
     TransferContext.writeArguments(_RID to sky, LONG to mode.id)
@@ -3086,17 +3074,17 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Generates and returns an [Image] containing the radiance map for the specified [param sky] RID.
-   * This supports built-in sky material and custom sky shaders. If [param bake_irradiance] is `true`,
-   * the irradiance map is saved instead of the radiance map. The radiance map is used to render
-   * reflected light, while the irradiance map is used to render ambient light. See also
+   * Generates and returns an [Image] containing the radiance map for the specified [sky] RID. This
+   * supports built-in sky material and custom sky shaders. If [bakeIrradiance] is `true`, the
+   * irradiance map is saved instead of the radiance map. The radiance map is used to render reflected
+   * light, while the irradiance map is used to render ambient light. See also
    * [environmentBakePanorama].
    * **Note:** The image is saved in linear color space without any tonemapping performed, which
-   * means it will look too dark if viewed directly in an image editor. [param energy] values above
-   * `1.0` can be used to brighten the resulting image.
-   * **Note:** [param size] should be a 2:1 aspect ratio for the generated panorama to have square
-   * pixels. For radiance maps, there is no point in using a height greater than [Sky.radianceSize], as
-   * it won't increase detail. Irradiance maps only contain low-frequency data, so there is usually no
+   * means it will look too dark if viewed directly in an image editor. [energy] values above `1.0` can
+   * be used to brighten the resulting image.
+   * **Note:** [size] should be a 2:1 aspect ratio for the generated panorama to have square pixels.
+   * For radiance maps, there is no point in using a height greater than [Sky.radianceSize], as it
+   * won't increase detail. Irradiance maps only contain low-frequency data, so there is usually no
    * point in going past a size of 128×64 pixels when saving an irradiance map.
    */
   public fun skyBakePanorama(
@@ -3158,8 +3146,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Color displayed for clear areas of the scene. Only effective if using the [constant
-   * ENV_BG_COLOR] background mode.
+   * Color displayed for clear areas of the scene. Only effective if using the [ENVBGCOLOR]
+   * background mode.
    */
   public fun environmentSetBgColor(env: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to env, COLOR to color)
@@ -3360,8 +3348,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If [param enable] is `true`, enables bicubic upscaling for glow which improves quality at the
-   * cost of performance. Equivalent to [ProjectSettings.rendering/environment/glow/upscaleMode].
+   * If [enable] is `true`, enables bicubic upscaling for glow which improves quality at the cost of
+   * performance. Equivalent to [ProjectSettings.rendering/environment/glow/upscaleMode].
    */
   public fun environmentGlowSetUseBicubicUpscale(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -3436,9 +3424,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the resolution of the volumetric fog's froxel buffer. [param size] is modified by the
-   * screen's aspect ratio and then used to set the width and height of the buffer. While [param depth]
-   * is directly used to set the depth of the buffer.
+   * Sets the resolution of the volumetric fog's froxel buffer. [size] is modified by the screen's
+   * aspect ratio and then used to set the width and height of the buffer. While [depth] is directly
+   * used to set the depth of the buffer.
    */
   public fun environmentSetVolumetricFogVolumeSize(size: Int, depth: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong(), LONG to depth.toLong())
@@ -3456,16 +3444,16 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Generates and returns an [Image] containing the radiance map for the specified [param
-   * environment] RID's sky. This supports built-in sky material and custom sky shaders. If [param
-   * bake_irradiance] is `true`, the irradiance map is saved instead of the radiance map. The radiance
-   * map is used to render reflected light, while the irradiance map is used to render ambient light.
-   * See also [skyBakePanorama].
+   * Generates and returns an [Image] containing the radiance map for the specified [environment]
+   * RID's sky. This supports built-in sky material and custom sky shaders. If [bakeIrradiance] is
+   * `true`, the irradiance map is saved instead of the radiance map. The radiance map is used to
+   * render reflected light, while the irradiance map is used to render ambient light. See also
+   * [skyBakePanorama].
    * **Note:** The image is saved in linear color space without any tonemapping performed, which
    * means it will look too dark if viewed directly in an image editor.
-   * **Note:** [param size] should be a 2:1 aspect ratio for the generated panorama to have square
-   * pixels. For radiance maps, there is no point in using a height greater than [Sky.radianceSize], as
-   * it won't increase detail. Irradiance maps only contain low-frequency data, so there is usually no
+   * **Note:** [size] should be a 2:1 aspect ratio for the generated panorama to have square pixels.
+   * For radiance maps, there is no point in using a height greater than [Sky.radianceSize], as it
+   * won't increase detail. Irradiance maps only contain low-frequency data, so there is usually no
    * point in going past a size of 128×64 pixels when saving an irradiance map.
    */
   public fun environmentBakePanorama(
@@ -3528,9 +3516,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the quality level of the DOF blur effect to one of the options in [enum DOFBlurQuality].
-   * [param use_jitter] can be used to jitter samples taken during the blur pass to hide artifacts at
-   * the cost of looking more fuzzy.
+   * Sets the quality level of the DOF blur effect to one of the options in [DOFBlurQuality].
+   * [useJitter] can be used to jitter samples taken during the blur pass to hide artifacts at the cost
+   * of looking more fuzzy.
    */
   public fun cameraAttributesSetDofBlurQuality(quality: DOFBlurQuality, useJitter: Boolean): Unit {
     TransferContext.writeArguments(LONG to quality.id, BOOL to useJitter)
@@ -3539,8 +3527,7 @@ public object RenderingServer : Object() {
 
   /**
    * Sets the shape of the DOF bokeh pattern. Different shapes may be used to achieve artistic
-   * effect, or to meet performance targets. For more detail on available options see [enum
-   * DOFBokehShape].
+   * effect, or to meet performance targets. For more detail on available options see [DOFBokehShape].
    */
   public fun cameraAttributesSetDofBlurBokehShape(shape: DOFBokehShape): Unit {
     TransferContext.writeArguments(LONG to shape.id)
@@ -3637,7 +3624,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the camera attributes ([param effects]) that will be used with this scenario. See also
+   * Sets the camera attributes ([effects]) that will be used with this scenario. See also
    * [CameraAttributes].
    */
   public fun scenarioSetCameraAttributes(scenario: RID, effects: RID): Unit {
@@ -3773,11 +3760,11 @@ public object RenderingServer : Object() {
    * A transparency of `0.0` is fully opaque, while `1.0` is fully transparent. Values greater than
    * `0.0` (exclusive) will force the geometry's materials to go through the transparent pipeline,
    * which is slower to render and can exhibit rendering issues due to incorrect transparency sorting.
-   * However, unlike using a transparent material, setting [param transparency] to a value greater than
-   * `0.0` (exclusive) will *not* disable shadow rendering.
+   * However, unlike using a transparent material, setting [transparency] to a value greater than `0.0`
+   * (exclusive) will *not* disable shadow rendering.
    * In spatial shaders, `1.0 - transparency` is set as the default value of the `ALPHA` built-in.
-   * **Note:** [param transparency] is clamped between `0.0` and `1.0`, so this property cannot be
-   * used to make transparent materials more opaque than they originally are.
+   * **Note:** [transparency] is clamped between `0.0` and `1.0`, so this property cannot be used to
+   * make transparent materials more opaque than they originally are.
    */
   public fun instanceGeometrySetTransparency(instance: RID, transparency: Float): Unit {
     TransferContext.writeArguments(_RID to instance, DOUBLE to transparency.toDouble())
@@ -3830,7 +3817,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the flag for a given [enum InstanceFlags]. See [enum InstanceFlags] for more details.
+   * Sets the flag for a given [InstanceFlags]. See [InstanceFlags] for more details.
    */
   public fun instanceGeometrySetFlag(
     instance: RID,
@@ -3842,7 +3829,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the shadow casting setting to one of [enum ShadowCastingSetting]. Equivalent to
+   * Sets the shadow casting setting to one of [ShadowCastingSetting]. Equivalent to
    * [GeometryInstance3D.castShadow].
    */
   public fun instanceGeometrySetCastShadowsSetting(instance: RID,
@@ -4013,9 +4000,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Bakes the material data of the Mesh passed in the [param base] parameter with optional [param
-   * material_overrides] to a set of [Image]s of size [param image_size]. Returns an array of [Image]s
-   * containing material properties as specified in [enum BakeChannels].
+   * Bakes the material data of the Mesh passed in the [base] parameter with optional
+   * [materialOverrides] to a set of [Image]s of size [imageSize]. Returns an array of [Image]s
+   * containing material properties as specified in [BakeChannels].
    */
   public fun bakeRenderUv2(
     base: RID,
@@ -4080,9 +4067,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [param channel]'s [param texture] for the canvas texture specified by the [param
-   * canvas_texture] RID. Equivalent to [CanvasTexture.diffuseTexture], [CanvasTexture.normalTexture]
-   * and [CanvasTexture.specularTexture].
+   * Sets the [channel]'s [texture] for the canvas texture specified by the [canvasTexture] RID.
+   * Equivalent to [CanvasTexture.diffuseTexture], [CanvasTexture.normalTexture] and
+   * [CanvasTexture.specularTexture].
    */
   public fun canvasTextureSetChannel(
     canvasTexture: RID,
@@ -4094,8 +4081,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [param base_color] and [param shininess] to use for the canvas texture specified by
-   * the [param canvas_texture] RID. Equivalent to [CanvasTexture.specularColor] and
+   * Sets the [baseColor] and [shininess] to use for the canvas texture specified by the
+   * [canvasTexture] RID. Equivalent to [CanvasTexture.specularColor] and
    * [CanvasTexture.specularShininess].
    */
   public fun canvasTextureSetShadingParameters(
@@ -4108,8 +4095,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the texture [param filter] mode to use for the canvas texture specified by the [param
-   * canvas_texture] RID.
+   * Sets the texture [filter] mode to use for the canvas texture specified by the [canvasTexture]
+   * RID.
    */
   public fun canvasTextureSetTextureFilter(canvasTexture: RID, filter: CanvasItemTextureFilter):
       Unit {
@@ -4118,8 +4105,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the texture [param repeat] mode to use for the canvas texture specified by the [param
-   * canvas_texture] RID.
+   * Sets the texture [repeat] mode to use for the canvas texture specified by the [canvasTexture]
+   * RID.
    */
   public fun canvasTextureSetTextureRepeat(canvasTexture: RID, repeat: CanvasItemTextureRepeat):
       Unit {
@@ -4150,7 +4137,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the default texture filter mode for the canvas item specified by the [param item] RID.
+   * Sets the default texture filter mode for the canvas item specified by the [item] RID.
    * Equivalent to [CanvasItem.textureFilter].
    */
   public fun canvasItemSetDefaultTextureFilter(item: RID, filter: CanvasItemTextureFilter): Unit {
@@ -4159,7 +4146,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the default texture repeat mode for the canvas item specified by the [param item] RID.
+   * Sets the default texture repeat mode for the canvas item specified by the [item] RID.
    * Equivalent to [CanvasItem.textureRepeat].
    */
   public fun canvasItemSetDefaultTextureRepeat(item: RID, repeat: CanvasItemTextureRepeat): Unit {
@@ -4176,8 +4163,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the light [param mask] for the canvas item specified by the [param item] RID. Equivalent
-   * to [CanvasItem.lightMask].
+   * Sets the light [mask] for the canvas item specified by the [item] RID. Equivalent to
+   * [CanvasItem.lightMask].
    */
   public fun canvasItemSetLightMask(item: RID, mask: Int): Unit {
     TransferContext.writeArguments(_RID to item, LONG to mask.toLong())
@@ -4194,9 +4181,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [param transform] of the canvas item specified by the [param item] RID. This affects
-   * where and how the item will be drawn. Child canvas items' transforms are multiplied by their
-   * parent's transform. Equivalent to [Node2D.transform].
+   * Sets the [transform] of the canvas item specified by the [item] RID. This affects where and how
+   * the item will be drawn. Child canvas items' transforms are multiplied by their parent's transform.
+   * Equivalent to [Node2D.transform].
    */
   public fun canvasItemSetTransform(item: RID, transform: Transform2D): Unit {
     TransferContext.writeArguments(_RID to item, TRANSFORM2D to transform)
@@ -4204,10 +4191,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If [param clip] is `true`, makes the canvas item specified by the [param item] RID not draw
-   * anything outside of its rect's coordinates. This clipping is fast, but works only with
-   * axis-aligned rectangles. This means that rotation is ignored by the clipping rectangle. For more
-   * advanced clipping shapes, use [canvasItemSetCanvasGroupMode] instead.
+   * If [clip] is `true`, makes the canvas item specified by the [item] RID not draw anything
+   * outside of its rect's coordinates. This clipping is fast, but works only with axis-aligned
+   * rectangles. This means that rotation is ignored by the clipping rectangle. For more advanced
+   * clipping shapes, use [canvasItemSetCanvasGroupMode] instead.
    * **Note:** The equivalent node functionality is found in [Label.clipText], [RichTextLabel]
    * (always enabled) and more.
    */
@@ -4217,9 +4204,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If [param enabled] is `true`, enables multichannel signed distance field rendering mode for the
-   * canvas item specified by the [param item] RID. This is meant to be used for font rendering, or
-   * with specially generated images using [url=https://github.com/Chlumsky/msdfgen]msdfgen[/url].
+   * If [enabled] is `true`, enables multichannel signed distance field rendering mode for the
+   * canvas item specified by the [item] RID. This is meant to be used for font rendering, or with
+   * specially generated images using [url=https://github.com/Chlumsky/msdfgen]msdfgen[/url].
    */
   public fun canvasItemSetDistanceFieldMode(item: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to enabled)
@@ -4227,10 +4214,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If [param use_custom_rect] is `true`, sets the custom visibility rectangle (used for culling)
-   * to [param rect] for the canvas item specified by [param item]. Setting a custom visibility rect
-   * can reduce CPU load when drawing lots of 2D instances. If [param use_custom_rect] is `false`,
-   * automatically computes a visibility rectangle based on the canvas item's draw commands.
+   * If [useCustomRect] is `true`, sets the custom visibility rectangle (used for culling) to [rect]
+   * for the canvas item specified by [item]. Setting a custom visibility rect can reduce CPU load when
+   * drawing lots of 2D instances. If [useCustomRect] is `false`, automatically computes a visibility
+   * rectangle based on the canvas item's draw commands.
    */
   @JvmOverloads
   public fun canvasItemSetCustomRect(
@@ -4243,7 +4230,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Multiplies the color of the canvas item specified by the [param item] RID, while affecting its
+   * Multiplies the color of the canvas item specified by the [item] RID, while affecting its
    * children. See also [canvasItemSetSelfModulate]. Equivalent to [CanvasItem.modulate].
    */
   public fun canvasItemSetModulate(item: RID, color: Color): Unit {
@@ -4252,8 +4239,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Multiplies the color of the canvas item specified by the [param item] RID, without affecting
-   * its children. See also [canvasItemSetModulate]. Equivalent to [CanvasItem.selfModulate].
+   * Multiplies the color of the canvas item specified by the [item] RID, without affecting its
+   * children. See also [canvasItemSetModulate]. Equivalent to [CanvasItem.selfModulate].
    */
   public fun canvasItemSetSelfModulate(item: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to item, COLOR to color)
@@ -4261,8 +4248,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If [param enabled] is `true`, draws the canvas item specified by the [param item] RID behind
-   * its parent. Equivalent to [CanvasItem.showBehindParent].
+   * If [enabled] is `true`, draws the canvas item specified by the [item] RID behind its parent.
+   * Equivalent to [CanvasItem.showBehindParent].
    */
   public fun canvasItemSetDrawBehindParent(item: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to enabled)
@@ -4270,7 +4257,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a line on the [CanvasItem] pointed to by the [param item] [RID]. See also
+   * Draws a line on the [CanvasItem] pointed to by the [item] [RID]. See also
    * [CanvasItem.drawLine].
    */
   @JvmOverloads
@@ -4287,7 +4274,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a 2D polyline on the [CanvasItem] pointed to by the [param item] [RID]. See also
+   * Draws a 2D polyline on the [CanvasItem] pointed to by the [item] [RID]. See also
    * [CanvasItem.drawPolyline] and [CanvasItem.drawPolylineColors].
    */
   @JvmOverloads
@@ -4303,7 +4290,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a 2D multiline on the [CanvasItem] pointed to by the [param item] [RID]. See also
+   * Draws a 2D multiline on the [CanvasItem] pointed to by the [item] [RID]. See also
    * [CanvasItem.drawMultiline] and [CanvasItem.drawMultilineColors].
    */
   @JvmOverloads
@@ -4318,7 +4305,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a rectangle on the [CanvasItem] pointed to by the [param item] [RID]. See also
+   * Draws a rectangle on the [CanvasItem] pointed to by the [item] [RID]. See also
    * [CanvasItem.drawRect].
    */
   public fun canvasItemAddRect(
@@ -4331,7 +4318,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a circle on the [CanvasItem] pointed to by the [param item] [RID]. See also
+   * Draws a circle on the [CanvasItem] pointed to by the [item] [RID]. See also
    * [CanvasItem.drawCircle].
    */
   public fun canvasItemAddCircle(
@@ -4345,8 +4332,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a 2D textured rectangle on the [CanvasItem] pointed to by the [param item] [RID]. See
-   * also [CanvasItem.drawTextureRect] and [Texture2D.drawRect].
+   * Draws a 2D textured rectangle on the [CanvasItem] pointed to by the [item] [RID]. See also
+   * [CanvasItem.drawTextureRect] and [Texture2D.drawRect].
    */
   @JvmOverloads
   public fun canvasItemAddTextureRect(
@@ -4395,7 +4382,7 @@ public object RenderingServer : Object() {
 
   /**
    * Draws the specified region of a 2D textured rectangle on the [CanvasItem] pointed to by the
-   * [param item] [RID]. See also [CanvasItem.drawTextureRectRegion] and [Texture2D.drawRectRegion].
+   * [item] [RID]. See also [CanvasItem.drawTextureRectRegion] and [Texture2D.drawRectRegion].
    */
   @JvmOverloads
   public fun canvasItemAddTextureRectRegion(
@@ -4412,7 +4399,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a nine-patch rectangle on the [CanvasItem] pointed to by the [param item] [RID].
+   * Draws a nine-patch rectangle on the [CanvasItem] pointed to by the [item] [RID].
    */
   @JvmOverloads
   public fun canvasItemAddNinePatch(
@@ -4432,7 +4419,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a 2D primitive on the [CanvasItem] pointed to by the [param item] [RID]. See also
+   * Draws a 2D primitive on the [CanvasItem] pointed to by the [item] [RID]. See also
    * [CanvasItem.drawPrimitive].
    */
   public fun canvasItemAddPrimitive(
@@ -4447,7 +4434,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a 2D polygon on the [CanvasItem] pointed to by the [param item] [RID]. If you need more
+   * Draws a 2D polygon on the [CanvasItem] pointed to by the [item] [RID]. If you need more
    * flexibility (such as being able to use bones), use [canvasItemAddTriangleArray] instead. See also
    * [CanvasItem.drawPolygon].
    */
@@ -4464,10 +4451,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a triangle array on the [CanvasItem] pointed to by the [param item] [RID]. This is
-   * internally used by [Line2D] and [StyleBoxFlat] for rendering. [canvasItemAddTriangleArray] is
-   * highly flexible, but more complex to use than [canvasItemAddPolygon].
-   * **Note:** [param count] is unused and can be left unspecified.
+   * Draws a triangle array on the [CanvasItem] pointed to by the [item] [RID]. This is internally
+   * used by [Line2D] and [StyleBoxFlat] for rendering. [canvasItemAddTriangleArray] is highly
+   * flexible, but more complex to use than [canvasItemAddPolygon].
+   * **Note:** [count] is unused and can be left unspecified.
    */
   @JvmOverloads
   public fun canvasItemAddTriangleArray(
@@ -4486,8 +4473,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a mesh created with [meshCreate] with given [param transform], [param modulate] color,
-   * and [param texture]. This is used internally by [MeshInstance2D].
+   * Draws a mesh created with [meshCreate] with given [transform], [modulate] color, and [texture].
+   * This is used internally by [MeshInstance2D].
    */
   @JvmOverloads
   public fun canvasItemAddMesh(
@@ -4502,7 +4489,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a 2D [MultiMesh] on the [CanvasItem] pointed to by the [param item] [RID]. See also
+   * Draws a 2D [MultiMesh] on the [CanvasItem] pointed to by the [item] [RID]. See also
    * [CanvasItem.drawMultimesh].
    */
   @JvmOverloads
@@ -4516,7 +4503,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws particles on the [CanvasItem] pointed to by the [param item] [RID].
+   * Draws particles on the [CanvasItem] pointed to by the [item] [RID].
    */
   public fun canvasItemAddParticles(
     item: RID,
@@ -4536,8 +4523,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If [param ignore] is `true`, ignore clipping on items drawn with this canvas item until this is
-   * called again with [param ignore] set to false.
+   * If [ignore] is `true`, ignore clipping on items drawn with this canvas item until this is
+   * called again with [ignore] set to false.
    */
   public fun canvasItemAddClipIgnore(item: RID, ignore: Boolean): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to ignore)
@@ -4562,10 +4549,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If [param enabled] is `true`, child nodes with the lowest Y position are drawn before those
-   * with a higher Y position. Y-sorting only affects children that inherit from the canvas item
-   * specified by the [param item] RID, not the canvas item itself. Equivalent to
-   * [CanvasItem.ySortEnabled].
+   * If [enabled] is `true`, child nodes with the lowest Y position are drawn before those with a
+   * higher Y position. Y-sorting only affects children that inherit from the canvas item specified by
+   * the [item] RID, not the canvas item itself. Equivalent to [CanvasItem.ySortEnabled].
    */
   public fun canvasItemSetSortChildrenByY(item: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to enabled)
@@ -4617,7 +4603,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets a new [param material] to the canvas item specified by the [param item] RID. Equivalent to
+   * Sets a new [material] to the canvas item specified by the [item] RID. Equivalent to
    * [CanvasItem.material].
    */
   public fun canvasItemSetMaterial(item: RID, material: RID): Unit {
@@ -4634,10 +4620,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the given [CanvasItem] as visibility notifier. [param area] defines the area of detecting
-   * visibility. [param enter_callable] is called when the [CanvasItem] enters the screen, [param
-   * exit_callable] is called when the [CanvasItem] exits the screen. If [param enable] is `false`, the
-   * item will no longer function as notifier.
+   * Sets the given [CanvasItem] as visibility notifier. [area] defines the area of detecting
+   * visibility. [enterCallable] is called when the [CanvasItem] enters the screen, [exitCallable] is
+   * called when the [CanvasItem] exits the screen. If [enable] is `false`, the item will no longer
+   * function as notifier.
    * This method can be used to manually mimic [VisibleOnScreenNotifier2D].
    */
   public fun canvasItemSetVisibilityNotifier(
@@ -4652,8 +4638,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the canvas group mode used during 2D rendering for the canvas item specified by the [param
-   * item] RID. For faster but more limited clipping, use [canvasItemSetClip] instead.
+   * Sets the canvas group mode used during 2D rendering for the canvas item specified by the [item]
+   * RID. For faster but more limited clipping, use [canvasItemSetClip] instead.
    * **Note:** The equivalent node functionality is found in [CanvasGroup] and
    * [CanvasItem.clipChildren].
    */
@@ -4798,7 +4784,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * The mode of the light, see [enum CanvasLightMode] constants.
+   * The mode of the light, see [CanvasLightMode] constants.
    */
   public fun canvasLightSetMode(light: RID, mode: CanvasLightMode): Unit {
     TransferContext.writeArguments(_RID to light, LONG to mode.id)
@@ -4814,7 +4800,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the canvas light's shadow's filter, see [enum CanvasLightShadowFilter] constants.
+   * Sets the canvas light's shadow's filter, see [CanvasLightShadowFilter] constants.
    */
   public fun canvasLightSetShadowFilter(light: RID, filter: CanvasLightShadowFilter): Unit {
     TransferContext.writeArguments(_RID to light, LONG to filter.id)
@@ -4838,7 +4824,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the blend mode for the given canvas light. See [enum CanvasLightBlendMode] for options.
+   * Sets the blend mode for the given canvas light. See [CanvasLightBlendMode] for options.
    * Equivalent to [Light2D.blendMode].
    */
   public fun canvasLightSetBlendMode(light: RID, mode: CanvasLightBlendMode): Unit {
@@ -4932,7 +4918,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets an occluder polygons cull mode. See [enum CanvasOccluderPolygonCullMode] constants.
+   * Sets an occluder polygons cull mode. See [CanvasOccluderPolygonCullMode] constants.
    */
   public fun canvasOccluderPolygonSetCullMode(occluderPolygon: RID,
       mode: CanvasOccluderPolygonCullMode): Unit {
@@ -4963,7 +4949,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Removes the global shader uniform specified by [param name].
+   * Removes the global shader uniform specified by [name].
    */
   public fun globalShaderParameterRemove(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -4985,7 +4971,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the global shader uniform [param name] to [param value].
+   * Sets the global shader uniform [name] to [value].
    */
   public fun globalShaderParameterSet(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
@@ -4993,7 +4979,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Overrides the global shader uniform [param name] with [param value]. Equivalent to the
+   * Overrides the global shader uniform [name] with [value]. Equivalent to the
    * [ShaderGlobalsOverride] node.
    */
   public fun globalShaderParameterSetOverride(name: StringName, `value`: Any?): Unit {
@@ -5002,7 +4988,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the value of the global shader uniform specified by [param name].
+   * Returns the value of the global shader uniform specified by [name].
    * **Note:** [globalShaderParameterGet] has a large performance penalty as the rendering thread
    * needs to synchronize with the calling thread, which is slow. Do not use this method during
    * gameplay to avoid stuttering. If you need to read values in a script after setting them, consider
@@ -5016,7 +5002,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the type associated to the global shader uniform specified by [param name].
+   * Returns the type associated to the global shader uniform specified by [name].
    * **Note:** [globalShaderParameterGet] has a large performance penalty as the rendering thread
    * needs to synchronize with the calling thread, which is slow. Do not use this method during
    * gameplay to avoid stuttering. If you need to read values in a script after setting them, consider
@@ -5059,7 +5045,7 @@ public object RenderingServer : Object() {
 
   /**
    * Returns a statistic about the rendering engine which can be used for performance profiling. See
-   * [enum RenderingServer.RenderingInfo] for a list of values that can be queried. See also
+   * [RenderingServer.RenderingInfo] for a list of values that can be queried. See also
    * [viewportGetRenderInfo], which returns information specific to a viewport.
    * **Note:** Only 3D rendering is currently taken into account by some of these values, such as
    * the number of draw calls.
@@ -5109,7 +5095,7 @@ public object RenderingServer : Object() {
    * device type can be used as a basis for automatic graphics settings adjustment. However, this is
    * not always true, so make sure to provide users with a way to manually override graphics settings.
    * **Note:** When using the OpenGL backend or when running in headless mode, this function always
-   * returns [constant RenderingDevice.DEVICE_TYPE_OTHER].
+   * returns [RenderingDevice.DEVICETYPEOTHER].
    */
   public fun getVideoAdapterType(): RenderingDevice.DeviceType {
     TransferContext.writeArguments()
@@ -5155,9 +5141,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the RID of a 256×256 texture with a testing pattern on it (in [constant
-   * Image.FORMAT_RGB8] format). This texture will be created and returned on the first call to
-   * [getTestTexture], then it will be cached for subsequent calls. See also [getWhiteTexture].
+   * Returns the RID of a 256×256 texture with a testing pattern on it (in [Image.FORMATRGB8]
+   * format). This texture will be created and returned on the first call to [getTestTexture], then it
+   * will be cached for subsequent calls. See also [getWhiteTexture].
    * Example of getting the test texture and applying it to a [Sprite2D] node:
    * [codeblock]
    * var texture_rid = RenderingServer.get_test_texture()
@@ -5172,9 +5158,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the ID of a 4×4 white texture (in [constant Image.FORMAT_RGB8] format). This texture
-   * will be created and returned on the first call to [getWhiteTexture], then it will be cached for
-   * subsequent calls. See also [getTestTexture].
+   * Returns the ID of a 4×4 white texture (in [Image.FORMATRGB8] format). This texture will be
+   * created and returned on the first call to [getWhiteTexture], then it will be cached for subsequent
+   * calls. See also [getTestTexture].
    * Example of getting the white texture and applying it to a [Sprite2D] node:
    * [codeblock]
    * var texture_rid = RenderingServer.get_white_texture()
@@ -5189,10 +5175,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets a boot image. The color defines the background color. If [param scale] is `true`, the
-   * image will be scaled to fit the screen size. If [param use_filter] is `true`, the image will be
-   * scaled with linear interpolation. If [param use_filter] is `false`, the image will be scaled with
-   * nearest-neighbor interpolation.
+   * Sets a boot image. The color defines the background color. If [scale] is `true`, the image will
+   * be scaled to fit the screen size. If [useFilter] is `true`, the image will be scaled with linear
+   * interpolation. If [useFilter] is `false`, the image will be scaled with nearest-neighbor
+   * interpolation.
    */
   @JvmOverloads
   public fun setBootImage(
@@ -5234,8 +5220,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns `true` if the OS supports a certain [param feature]. Features might be `s3tc`, `etc`,
-   * and `etc2`.
+   * Returns `true` if the OS supports a certain [feature]. Features might be `s3tc`, `etc`, and
+   * `etc2`.
    */
   public fun hasOsFeature(feature: String): Boolean {
     TransferContext.writeArguments(STRING to feature)
@@ -5244,7 +5230,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * This method is currently unimplemented and does nothing if called with [param generate] set to
+   * This method is currently unimplemented and does nothing if called with [generate] set to
    * `true`.
    */
   public fun setDebugGenerateWireframes(generate: Boolean): Unit {
@@ -5416,7 +5402,7 @@ public object RenderingServer : Object() {
      */
     SHADER_FOG(4),
     /**
-     * Represents the size of the [enum ShaderMode] enum.
+     * Represents the size of the [ShaderMode] enum.
      */
     SHADER_MAX(5),
     ;
@@ -5487,7 +5473,7 @@ public object RenderingServer : Object() {
      */
     ARRAY_INDEX(12),
     /**
-     * Represents the size of the [enum ArrayType] enum.
+     * Represents the size of the [ArrayType] enum.
      */
     ARRAY_MAX(13),
     ;
@@ -5546,7 +5532,7 @@ public object RenderingServer : Object() {
      */
     ARRAY_CUSTOM_RGBA_FLOAT(7),
     /**
-     * Represents the size of the [enum ArrayCustomFormat] enum.
+     * Represents the size of the [ArrayCustomFormat] enum.
      */
     ARRAY_CUSTOM_MAX(8),
     ;
@@ -5712,7 +5698,7 @@ public object RenderingServer : Object() {
      */
     PRIMITIVE_TRIANGLE_STRIP(4),
     /**
-     * Represents the size of the [enum PrimitiveType] enum.
+     * Represents the size of the [PrimitiveType] enum.
      */
     PRIMITIVE_MAX(5),
     ;
@@ -5863,13 +5849,13 @@ public object RenderingServer : Object() {
      */
     LIGHT_PARAM_ENERGY(0),
     /**
-     * The light's indirect energy multiplier (final indirect energy is [constant
-     * LIGHT_PARAM_ENERGY] * [constant LIGHT_PARAM_INDIRECT_ENERGY]).
+     * The light's indirect energy multiplier (final indirect energy is [LIGHTPARAMENERGY] *
+     * [LIGHTPARAMINDIRECTENERGY]).
      */
     LIGHT_PARAM_INDIRECT_ENERGY(1),
     /**
-     * The light's volumetric fog energy multiplier (final volumetric fog energy is [constant
-     * LIGHT_PARAM_ENERGY] * [constant LIGHT_PARAM_VOLUMETRIC_FOG_ENERGY]).
+     * The light's volumetric fog energy multiplier (final volumetric fog energy is
+     * [LIGHTPARAMENERGY] * [LIGHTPARAMVOLUMETRICFOGENERGY]).
      */
     LIGHT_PARAM_VOLUMETRIC_FOG_ENERGY(2),
     /**
@@ -5955,7 +5941,7 @@ public object RenderingServer : Object() {
      */
     LIGHT_PARAM_INTENSITY(20),
     /**
-     * Represents the size of the [enum LightParam] enum.
+     * Represents the size of the [LightParam] enum.
      */
     LIGHT_PARAM_MAX(21),
     ;
@@ -5990,9 +5976,9 @@ public object RenderingServer : Object() {
      * Light is taken into account in dynamic baking ([VoxelGI] and SDFGI
      * ([Environment.sdfgiEnabled]) only). The light can be moved around or modified with global
      * illumination updating in real-time. The light's global illumination appearance will be slightly
-     * different compared to [constant LIGHT_BAKE_STATIC]. This has a greater performance cost compared
-     * to [constant LIGHT_BAKE_STATIC]. When using SDFGI, the update speed of dynamic lights is
-     * affected by [ProjectSettings.rendering/globalIllumination/sdfgi/framesToUpdateLights].
+     * different compared to [LIGHTBAKESTATIC]. This has a greater performance cost compared to
+     * [LIGHTBAKESTATIC]. When using SDFGI, the update speed of dynamic lights is affected by
+     * [ProjectSettings.rendering/globalIllumination/sdfgi/framesToUpdateLights].
      */
     LIGHT_BAKE_DYNAMIC(2),
     ;
@@ -6129,7 +6115,7 @@ public object RenderingServer : Object() {
      */
     SHADOW_QUALITY_SOFT_ULTRA(5),
     /**
-     * Represents the size of the [enum ShadowQuality] enum.
+     * Represents the size of the [ShadowQuality] enum.
      */
     SHADOW_QUALITY_MAX(6),
     ;
@@ -6216,7 +6202,7 @@ public object RenderingServer : Object() {
      */
     DECAL_TEXTURE_EMISSION(3),
     /**
-     * Represents the size of the [enum DecalTexture] enum.
+     * Represents the size of the [DecalTexture] enum.
      */
     DECAL_TEXTURE_MAX(4),
     ;
@@ -6416,7 +6402,7 @@ public object RenderingServer : Object() {
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_4096(4),
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_8192(5),
     /**
-     * Represents the size of the [enum ParticlesCollisionHeightfieldResolution] enum.
+     * Represents the size of the [ParticlesCollisionHeightfieldResolution] enum.
      */
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_MAX(6),
     ;
@@ -6460,7 +6446,7 @@ public object RenderingServer : Object() {
      */
     FOG_VOLUME_SHAPE_WORLD(4),
     /**
-     * Represents the size of the [enum FogVolumeShape] enum.
+     * Represents the size of the [FogVolumeShape] enum.
      */
     FOG_VOLUME_SHAPE_MAX(5),
     ;
@@ -6500,7 +6486,7 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_SCALING_3D_MODE_FSR2(2),
     /**
-     * Represents the size of the [enum ViewportScaling3DMode] enum.
+     * Represents the size of the [ViewportScaling3DMode] enum.
      */
     VIEWPORT_SCALING_3D_MODE_MAX(3),
     ;
@@ -6523,7 +6509,7 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_UPDATE_DISABLED(0),
     /**
-     * Update the viewport's render target once, then switch to [constant VIEWPORT_UPDATE_DISABLED].
+     * Update the viewport's render target once, then switch to [VIEWPORTUPDATEDISABLED].
      */
     VIEWPORT_UPDATE_ONCE(1),
     /**
@@ -6562,8 +6548,7 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_CLEAR_NEVER(1),
     /**
-     * Clear the viewport's render target on the next frame, then switch to [constant
-     * VIEWPORT_CLEAR_NEVER].
+     * Clear the viewport's render target on the next frame, then switch to [VIEWPORTCLEARNEVER].
      */
     VIEWPORT_CLEAR_ONLY_NEXT_FRAME(2),
     ;
@@ -6590,13 +6575,12 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_ENVIRONMENT_ENABLED(1),
     /**
-     * Inherit enable/disable value from parent. If the topmost parent is also set to [constant
-     * VIEWPORT_ENVIRONMENT_INHERIT], then this has the same behavior as [constant
-     * VIEWPORT_ENVIRONMENT_ENABLED].
+     * Inherit enable/disable value from parent. If the topmost parent is also set to
+     * [VIEWPORTENVIRONMENTINHERIT], then this has the same behavior as [VIEWPORTENVIRONMENTENABLED].
      */
     VIEWPORT_ENVIRONMENT_INHERIT(2),
     /**
-     * Represents the size of the [enum ViewportEnvironmentMode] enum.
+     * Represents the size of the [ViewportEnvironmentMode] enum.
      */
     VIEWPORT_ENVIRONMENT_MAX(3),
     ;
@@ -6636,7 +6620,7 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_SDF_OVERSIZE_200_PERCENT(3),
     /**
-     * Represents the size of the [enum ViewportSDFOversize] enum.
+     * Represents the size of the [ViewportSDFOversize] enum.
      */
     VIEWPORT_SDF_OVERSIZE_MAX(4),
     ;
@@ -6669,7 +6653,7 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_SDF_SCALE_25_PERCENT(2),
     /**
-     * Represents the size of the [enum ViewportSDFScale] enum.
+     * Represents the size of the [ViewportSDFScale] enum.
      */
     VIEWPORT_SDF_SCALE_MAX(3),
     ;
@@ -6708,7 +6692,7 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_MSAA_8X(3),
     /**
-     * Represents the size of the [enum ViewportMSAA] enum.
+     * Represents the size of the [ViewportMSAA] enum.
      */
     VIEWPORT_MSAA_MAX(4),
     ;
@@ -6737,7 +6721,7 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_SCREEN_SPACE_AA_FXAA(1),
     /**
-     * Represents the size of the [enum ViewportScreenSpaceAA] enum.
+     * Represents the size of the [ViewportScreenSpaceAA] enum.
      */
     VIEWPORT_SCREEN_SPACE_AA_MAX(2),
     ;
@@ -6797,7 +6781,7 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_RENDER_INFO_DRAW_CALLS_IN_FRAME(2),
     /**
-     * Represents the size of the [enum ViewportRenderInfo] enum.
+     * Represents the size of the [ViewportRenderInfo] enum.
      */
     VIEWPORT_RENDER_INFO_MAX(3),
     ;
@@ -6825,7 +6809,7 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_RENDER_INFO_TYPE_SHADOW(1),
     /**
-     * Represents the size of the [enum ViewportRenderInfoType] enum.
+     * Represents the size of the [ViewportRenderInfoType] enum.
      */
     VIEWPORT_RENDER_INFO_TYPE_MAX(2),
     ;
@@ -6893,8 +6877,8 @@ public object RenderingServer : Object() {
      * Draws the shadow atlas that stores shadows from [DirectionalLight3D]s in the upper left
      * quadrant of the [Viewport].
      * The slice of the camera frustum related to the shadow map cascade is superimposed to
-     * visualize coverage. The color of each slice matches the colors used for [constant
-     * VIEWPORT_DEBUG_DRAW_PSSM_SPLITS]. When shadow cascades are blended the overlap is taken into
+     * visualize coverage. The color of each slice matches the colors used for
+     * [VIEWPORTDEBUGDRAWPSSMSPLITS]. When shadow cascades are blended the overlap is taken into
      * account when drawing the frustum slices.
      * The last cascade shows all frustum slices to illustrate the coverage of all slices.
      */
@@ -7009,7 +6993,7 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_VRS_XR(2),
     /**
-     * Represents the size of the [enum ViewportVRSMode] enum.
+     * Represents the size of the [ViewportVRSMode] enum.
      */
     VIEWPORT_VRS_MAX(3),
     ;
@@ -7029,22 +7013,22 @@ public object RenderingServer : Object() {
   ) {
     /**
      * Automatically selects the appropriate process mode based on your sky shader. If your shader
-     * uses `TIME` or `POSITION`, this will use [constant SKY_MODE_REALTIME]. If your shader uses any
-     * of the `LIGHT_*` variables or any custom uniforms, this uses [constant SKY_MODE_INCREMENTAL].
-     * Otherwise, this defaults to [constant SKY_MODE_QUALITY].
+     * uses `TIME` or `POSITION`, this will use [SKYMODEREALTIME]. If your shader uses any of the
+     * `LIGHT_*` variables or any custom uniforms, this uses [SKYMODEINCREMENTAL]. Otherwise, this
+     * defaults to [SKYMODEQUALITY].
      */
     SKY_MODE_AUTOMATIC(0),
     /**
      * Uses high quality importance sampling to process the radiance map. In general, this results
-     * in much higher quality than [constant SKY_MODE_REALTIME] but takes much longer to generate. This
-     * should not be used if you plan on changing the sky at runtime. If you are finding that the
-     * reflection is not blurry enough and is showing sparkles or fireflies, try increasing
+     * in much higher quality than [SKYMODEREALTIME] but takes much longer to generate. This should not
+     * be used if you plan on changing the sky at runtime. If you are finding that the reflection is
+     * not blurry enough and is showing sparkles or fireflies, try increasing
      * [ProjectSettings.rendering/reflections/skyReflections/ggxSamples].
      */
     SKY_MODE_QUALITY(1),
     /**
-     * Uses the same high quality importance sampling to process the radiance map as [constant
-     * SKY_MODE_QUALITY], but updates over several frames. The number of frames is determined by
+     * Uses the same high quality importance sampling to process the radiance map as
+     * [SKYMODEQUALITY], but updates over several frames. The number of frames is determined by
      * [ProjectSettings.rendering/reflections/skyReflections/roughnessLayers]. Use this when you need
      * highest quality radiance maps, but have a sky that updates slowly.
      */
@@ -7100,7 +7084,7 @@ public object RenderingServer : Object() {
      */
     ENV_BG_CAMERA_FEED(5),
     /**
-     * Represents the size of the [enum EnvironmentBG] enum.
+     * Represents the size of the [EnvironmentBG] enum.
      */
     ENV_BG_MAX(6),
     ;
@@ -7229,14 +7213,14 @@ public object RenderingServer : Object() {
     ENV_TONE_MAPPER_REINHARD(1),
     /**
      * Use the filmic tonemapper. This avoids clipping bright highlights, with a resulting image
-     * that usually looks more vivid than [constant ENV_TONE_MAPPER_REINHARD].
+     * that usually looks more vivid than [ENVTONEMAPPERREINHARD].
      */
     ENV_TONE_MAPPER_FILMIC(2),
     /**
      * Use the Academy Color Encoding System tonemapper. ACES is slightly more expensive than other
      * options, but it handles bright lighting in a more realistic fashion by desaturating it as it
-     * becomes brighter. ACES typically has a more contrasted output compared to [constant
-     * ENV_TONE_MAPPER_REINHARD] and [constant ENV_TONE_MAPPER_FILMIC].
+     * becomes brighter. ACES typically has a more contrasted output compared to
+     * [ENVTONEMAPPERREINHARD] and [ENVTONEMAPPERFILMIC].
      * **Note:** This tonemapping operator is called "ACES Fitted" in Godot 3.x.
      */
     ENV_TONE_MAPPER_ACES(3),
@@ -7424,7 +7408,7 @@ public object RenderingServer : Object() {
      */
     ENV_SDFGI_RAY_COUNT_128(6),
     /**
-     * Represents the size of the [enum EnvironmentSDFGIRayCount] enum.
+     * Represents the size of the [EnvironmentSDFGIRayCount] enum.
      */
     ENV_SDFGI_RAY_COUNT_MAX(7),
     ;
@@ -7469,7 +7453,7 @@ public object RenderingServer : Object() {
      */
     ENV_SDFGI_CONVERGE_IN_30_FRAMES(5),
     /**
-     * Represents the size of the [enum EnvironmentSDFGIFramesToConverge] enum.
+     * Represents the size of the [EnvironmentSDFGIFramesToConverge] enum.
      */
     ENV_SDFGI_CONVERGE_MAX(6),
     ;
@@ -7510,7 +7494,7 @@ public object RenderingServer : Object() {
      */
     ENV_SDFGI_UPDATE_LIGHT_IN_16_FRAMES(4),
     /**
-     * Represents the size of the [enum EnvironmentSDFGIFramesToUpdateLight] enum.
+     * Represents the size of the [EnvironmentSDFGIFramesToUpdateLight] enum.
      */
     ENV_SDFGI_UPDATE_LIGHT_MAX(5),
     ;
@@ -7676,7 +7660,7 @@ public object RenderingServer : Object() {
      */
     INSTANCE_FOG_VOLUME(12),
     /**
-     * Represents the size of the [enum InstanceType] enum.
+     * Represents the size of the [InstanceType] enum.
      */
     INSTANCE_MAX(13),
     /**
@@ -7716,7 +7700,7 @@ public object RenderingServer : Object() {
      */
     INSTANCE_FLAG_IGNORE_OCCLUSION_CULLING(3),
     /**
-     * Represents the size of the [enum InstanceFlags] enum.
+     * Represents the size of the [InstanceFlags] enum.
      */
     INSTANCE_FLAG_MAX(4),
     ;
@@ -7794,27 +7778,27 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Index of [Image] in array of [Image]s returned by [bakeRenderUv2]. Image uses [constant
-     * Image.FORMAT_RGBA8] and contains albedo color in the `.rgb` channels and alpha in the `.a`
+     * Index of [Image] in array of [Image]s returned by [bakeRenderUv2]. Image uses
+     * [Image.FORMATRGBA8] and contains albedo color in the `.rgb` channels and alpha in the `.a`
      * channel.
      */
     BAKE_CHANNEL_ALBEDO_ALPHA(0),
     /**
-     * Index of [Image] in array of [Image]s returned by [bakeRenderUv2]. Image uses [constant
-     * Image.FORMAT_RGBA8] and contains the per-pixel normal of the object in the `.rgb` channels and
+     * Index of [Image] in array of [Image]s returned by [bakeRenderUv2]. Image uses
+     * [Image.FORMATRGBA8] and contains the per-pixel normal of the object in the `.rgb` channels and
      * nothing in the `.a` channel. The per-pixel normal is encoded as `normal * 0.5 + 0.5`.
      */
     BAKE_CHANNEL_NORMAL(1),
     /**
-     * Index of [Image] in array of [Image]s returned by [bakeRenderUv2]. Image uses [constant
-     * Image.FORMAT_RGBA8] and contains ambient occlusion (from material and decals only) in the `.r`
+     * Index of [Image] in array of [Image]s returned by [bakeRenderUv2]. Image uses
+     * [Image.FORMATRGBA8] and contains ambient occlusion (from material and decals only) in the `.r`
      * channel, roughness in the `.g` channel, metallic in the `.b` channel and sub surface scattering
      * amount in the `.a` channel.
      */
     BAKE_CHANNEL_ORM(2),
     /**
-     * Index of [Image] in array of [Image]s returned by [bakeRenderUv2]. Image uses [constant
-     * Image.FORMAT_RGBAH] and contains emission color in the `.rgb` channels and nothing in the `.a`
+     * Index of [Image] in array of [Image]s returned by [bakeRenderUv2]. Image uses
+     * [Image.FORMATRGBAH] and contains emission color in the `.rgb` channels and nothing in the `.a`
      * channel.
      */
     BAKE_CHANNEL_EMISSION(3),
@@ -7924,7 +7908,7 @@ public object RenderingServer : Object() {
      */
     CANVAS_ITEM_TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC(6),
     /**
-     * Max value for [enum CanvasItemTextureFilter] enum.
+     * Max value for [CanvasItemTextureFilter] enum.
      */
     CANVAS_ITEM_TEXTURE_FILTER_MAX(7),
     ;
@@ -7963,7 +7947,7 @@ public object RenderingServer : Object() {
      */
     CANVAS_ITEM_TEXTURE_REPEAT_MIRROR(3),
     /**
-     * Max value for [enum CanvasItemTextureRepeat] enum.
+     * Max value for [CanvasItemTextureRepeat] enum.
      */
     CANVAS_ITEM_TEXTURE_REPEAT_MAX(4),
     ;
@@ -8074,7 +8058,7 @@ public object RenderingServer : Object() {
      */
     CANVAS_LIGHT_FILTER_PCF13(2),
     /**
-     * Max value of the [enum CanvasLightShadowFilter] enum.
+     * Max value of the [CanvasLightShadowFilter] enum.
      */
     CANVAS_LIGHT_FILTER_MAX(3),
     ;
@@ -8153,8 +8137,7 @@ public object RenderingServer : Object() {
     GLOBAL_VAR_TYPE_IVEC4(7),
     /**
      * 2-dimensional integer rectangle global shader parameter (`global uniform ivec4 ...`).
-     * Equivalent to [constant GLOBAL_VAR_TYPE_IVEC4] in shader code, but exposed as a [Rect2i] in the
-     * editor UI.
+     * Equivalent to [GLOBALVARTYPEIVEC4] in shader code, but exposed as a [Rect2i] in the editor UI.
      */
     GLOBAL_VAR_TYPE_RECT2I(8),
     /**
@@ -8190,14 +8173,13 @@ public object RenderingServer : Object() {
      */
     GLOBAL_VAR_TYPE_VEC4(16),
     /**
-     * Color global shader parameter (`global uniform vec4 ...`). Equivalent to [constant
-     * GLOBAL_VAR_TYPE_VEC4] in shader code, but exposed as a [Color] in the editor UI.
+     * Color global shader parameter (`global uniform vec4 ...`). Equivalent to [GLOBALVARTYPEVEC4]
+     * in shader code, but exposed as a [Color] in the editor UI.
      */
     GLOBAL_VAR_TYPE_COLOR(17),
     /**
      * 2-dimensional floating-point rectangle global shader parameter (`global uniform vec4 ...`).
-     * Equivalent to [constant GLOBAL_VAR_TYPE_VEC4] in shader code, but exposed as a [Rect2] in the
-     * editor UI.
+     * Equivalent to [GLOBALVARTYPEVEC4] in shader code, but exposed as a [Rect2] in the editor UI.
      */
     GLOBAL_VAR_TYPE_RECT2(18),
     /**
@@ -8246,7 +8228,7 @@ public object RenderingServer : Object() {
      */
     GLOBAL_VAR_TYPE_SAMPLERCUBE(27),
     /**
-     * Represents the size of the [enum GlobalShaderParameterType] enum.
+     * Represents the size of the [GlobalShaderParameterType] enum.
      */
     GLOBAL_VAR_TYPE_MAX(28),
     ;
@@ -8290,10 +8272,10 @@ public object RenderingServer : Object() {
     RENDERING_INFO_BUFFER_MEM_USED(4),
     /**
      * Video memory used (in bytes). When using the Forward+ or mobile rendering backends, this is
-     * always greater than the sum of [constant RENDERING_INFO_TEXTURE_MEM_USED] and [constant
-     * RENDERING_INFO_BUFFER_MEM_USED], since there is miscellaneous data not accounted for by those
-     * two metrics. When using the GL Compatibility backend, this is equal to the sum of [constant
-     * RENDERING_INFO_TEXTURE_MEM_USED] and [constant RENDERING_INFO_BUFFER_MEM_USED].
+     * always greater than the sum of [RENDERINGINFOTEXTUREMEMUSED] and [RENDERINGINFOBUFFERMEMUSED],
+     * since there is miscellaneous data not accounted for by those two metrics. When using the GL
+     * Compatibility backend, this is equal to the sum of [RENDERINGINFOTEXTUREMEMUSED] and
+     * [RENDERINGINFOBUFFERMEMUSED].
      */
     RENDERING_INFO_VIDEO_MEM_USED(5),
     ;

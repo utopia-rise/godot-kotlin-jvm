@@ -173,9 +173,9 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Set the navigation [param map] edge connection use. If [param enabled] is `true`, the
-   * navigation map allows navigation regions to use edge connections to connect with other navigation
-   * regions within proximity of the navigation map edge connection margin.
+   * Set the navigation [map] edge connection use. If [enabled] is `true`, the navigation map allows
+   * navigation regions to use edge connections to connect with other navigation regions within
+   * proximity of the navigation map edge connection margin.
    */
   public fun mapSetUseEdgeConnections(map: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to map, BOOL to enabled)
@@ -183,7 +183,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns true if the navigation [param map] allows navigation regions to use edge connections to
+   * Returns true if the navigation [map] allows navigation regions to use edge connections to
    * connect with other navigation regions within proximity of the navigation map edge connection
    * margin.
    */
@@ -230,8 +230,8 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the navigation path to reach the destination from the origin. [param navigation_layers]
-   * is a bitmask of all region navigation layers that are allowed to be in the path.
+   * Returns the navigation path to reach the destination from the origin. [navigationLayers] is a
+   * bitmask of all region navigation layers that are allowed to be in the path.
    */
   @JvmOverloads
   public fun mapGetPath(
@@ -262,7 +262,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the point closest to the provided [param to_point] on the navigation mesh surface.
+   * Returns the point closest to the provided [toPoint] on the navigation mesh surface.
    */
   public fun mapGetClosestPoint(map: RID, toPoint: Vector3): Vector3 {
     TransferContext.writeArguments(_RID to map, VECTOR3 to toPoint)
@@ -290,7 +290,7 @@ public object NavigationServer3D : Object() {
 
   /**
    * Returns all navigation link [RID]s that are currently assigned to the requested navigation
-   * [param map].
+   * [map].
    */
   public fun mapGetLinks(map: RID): VariantArray<RID> {
     TransferContext.writeArguments(_RID to map)
@@ -300,7 +300,7 @@ public object NavigationServer3D : Object() {
 
   /**
    * Returns all navigation regions [RID]s that are currently assigned to the requested navigation
-   * [param map].
+   * [map].
    */
   public fun mapGetRegions(map: RID): VariantArray<RID> {
     TransferContext.writeArguments(_RID to map)
@@ -310,7 +310,7 @@ public object NavigationServer3D : Object() {
 
   /**
    * Returns all navigation agents [RID]s that are currently assigned to the requested navigation
-   * [param map].
+   * [map].
    */
   public fun mapGetAgents(map: RID): VariantArray<RID> {
     TransferContext.writeArguments(_RID to map)
@@ -320,7 +320,7 @@ public object NavigationServer3D : Object() {
 
   /**
    * Returns all navigation obstacle [RID]s that are currently assigned to the requested navigation
-   * [param map].
+   * [map].
    */
   public fun mapGetObstacles(map: RID): VariantArray<RID> {
     TransferContext.writeArguments(_RID to map)
@@ -329,9 +329,9 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * This function immediately forces synchronization of the specified navigation [param map] [RID].
-   * By default navigation maps are only synchronized at the end of each physics frame. This function
-   * can be used to immediately (re)calculate all the navigation meshes and region connections of the
+   * This function immediately forces synchronization of the specified navigation [map] [RID]. By
+   * default navigation maps are only synchronized at the end of each physics frame. This function can
+   * be used to immediately (re)calculate all the navigation meshes and region connections of the
    * navigation map. This makes it possible to query a navigation path for a changed map immediately
    * and in the same frame (multiple times if needed).
    * Due to technical restrictions the current NavigationServer command queue will be flushed. This
@@ -376,8 +376,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * If [param enabled] is `true`, the specified [param region] will contribute to its current
-   * navigation map.
+   * If [enabled] is `true`, the specified [region] will contribute to its current navigation map.
    */
   public fun regionSetEnabled(region: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to region, BOOL to enabled)
@@ -385,7 +384,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns `true` if the specified [param region] is enabled.
+   * Returns `true` if the specified [region] is enabled.
    */
   public fun regionGetEnabled(region: RID): Boolean {
     TransferContext.writeArguments(_RID to region)
@@ -394,9 +393,8 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * If [param enabled] is `true`, the navigation [param region] will use edge connections to
-   * connect with other navigation regions within proximity of the navigation map edge connection
-   * margin.
+   * If [enabled] is `true`, the navigation [region] will use edge connections to connect with other
+   * navigation regions within proximity of the navigation map edge connection margin.
    */
   public fun regionSetUseEdgeConnections(region: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to region, BOOL to enabled)
@@ -404,8 +402,8 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns true if the navigation [param region] is set to use edge connections to connect with
-   * other navigation regions within proximity of the navigation map edge connection margin.
+   * Returns true if the navigation [region] is set to use edge connections to connect with other
+   * navigation regions within proximity of the navigation map edge connection margin.
    */
   public fun regionGetUseEdgeConnections(region: RID): Boolean {
     TransferContext.writeArguments(_RID to region)
@@ -414,7 +412,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Sets the [param enter_cost] for this [param region].
+   * Sets the [enterCost] for this [region].
    */
   public fun regionSetEnterCost(region: RID, enterCost: Float): Unit {
     TransferContext.writeArguments(_RID to region, DOUBLE to enterCost.toDouble())
@@ -422,7 +420,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the enter cost of this [param region].
+   * Returns the enter cost of this [region].
    */
   public fun regionGetEnterCost(region: RID): Float {
     TransferContext.writeArguments(_RID to region)
@@ -431,7 +429,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Sets the [param travel_cost] for this [param region].
+   * Sets the [travelCost] for this [region].
    */
   public fun regionSetTravelCost(region: RID, travelCost: Float): Unit {
     TransferContext.writeArguments(_RID to region, DOUBLE to travelCost.toDouble())
@@ -439,7 +437,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the travel cost of this [param region].
+   * Returns the travel cost of this [region].
    */
   public fun regionGetTravelCost(region: RID): Float {
     TransferContext.writeArguments(_RID to region)
@@ -465,9 +463,9 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns `true` if the provided [param point] in world space is currently owned by the provided
-   * navigation [param region]. Owned in this context means that one of the region's navigation mesh
-   * polygon faces has a possible position at the closest distance to this point compared to all other
+   * Returns `true` if the provided [point] in world space is currently owned by the provided
+   * navigation [region]. Owned in this context means that one of the region's navigation mesh polygon
+   * faces has a possible position at the closest distance to this point compared to all other
    * navigation meshes from other navigation regions that are also registered on the navigation map of
    * the provided region.
    * If multiple navigation meshes have positions at equal distance the navigation region whose
@@ -491,7 +489,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the navigation map [RID] the requested [param region] is currently assigned to.
+   * Returns the navigation map [RID] the requested [region] is currently assigned to.
    */
   public fun regionGetMap(region: RID): RID {
     TransferContext.writeArguments(_RID to region)
@@ -534,8 +532,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Bakes the [param navigation_mesh] with bake source geometry collected starting from the [param
-   * root_node].
+   * Bakes the [navigationMesh] with bake source geometry collected starting from the [rootNode].
    * *Deprecated.* This function is deprecated due to core threading changes. To upgrade existing
    * code, first create a [NavigationMeshSourceGeometryData3D] resource. Use this resource with
    * [parseSourceGeometryData] to parse the SceneTree for nodes that should contribute to the
@@ -548,7 +545,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns how many connections this [param region] has with other regions in the map.
+   * Returns how many connections this [region] has with other regions in the map.
    */
   public fun regionGetConnectionsCount(region: RID): Int {
     TransferContext.writeArguments(_RID to region)
@@ -557,8 +554,8 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the starting point of a connection door. [param connection] is an index between 0 and
-   * the return value of [regionGetConnectionsCount].
+   * Returns the starting point of a connection door. [connection] is an index between 0 and the
+   * return value of [regionGetConnectionsCount].
    */
   public fun regionGetConnectionPathwayStart(region: RID, connection: Int): Vector3 {
     TransferContext.writeArguments(_RID to region, LONG to connection.toLong())
@@ -567,7 +564,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the ending point of a connection door. [param connection] is an index between 0 and the
+   * Returns the ending point of a connection door. [connection] is an index between 0 and the
    * return value of [regionGetConnectionsCount].
    */
   public fun regionGetConnectionPathwayEnd(region: RID, connection: Int): Vector3 {
@@ -594,7 +591,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the navigation map [RID] the requested [param link] is currently assigned to.
+   * Returns the navigation map [RID] the requested [link] is currently assigned to.
    */
   public fun linkGetMap(link: RID): RID {
     TransferContext.writeArguments(_RID to link)
@@ -603,8 +600,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * If [param enabled] is `true`, the specified [param link] will contribute to its current
-   * navigation map.
+   * If [enabled] is `true`, the specified [link] will contribute to its current navigation map.
    */
   public fun linkSetEnabled(link: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to link, BOOL to enabled)
@@ -612,7 +608,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns `true` if the specified [param link] is enabled.
+   * Returns `true` if the specified [link] is enabled.
    */
   public fun linkGetEnabled(link: RID): Boolean {
     TransferContext.writeArguments(_RID to link)
@@ -621,7 +617,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Sets whether this [param link] can be travelled in both directions.
+   * Sets whether this [link] can be travelled in both directions.
    */
   public fun linkSetBidirectional(link: RID, bidirectional: Boolean): Unit {
     TransferContext.writeArguments(_RID to link, BOOL to bidirectional)
@@ -629,7 +625,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns whether this [param link] can be travelled in both directions.
+   * Returns whether this [link] can be travelled in both directions.
    */
   public fun linkIsBidirectional(link: RID): Boolean {
     TransferContext.writeArguments(_RID to link)
@@ -647,7 +643,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the navigation layers for this [param link].
+   * Returns the navigation layers for this [link].
    */
   public fun linkGetNavigationLayers(link: RID): Long {
     TransferContext.writeArguments(_RID to link)
@@ -656,7 +652,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Sets the entry position for this [param link].
+   * Sets the entry position for this [link].
    */
   public fun linkSetStartPosition(link: RID, position: Vector3): Unit {
     TransferContext.writeArguments(_RID to link, VECTOR3 to position)
@@ -664,7 +660,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the starting position of this [param link].
+   * Returns the starting position of this [link].
    */
   public fun linkGetStartPosition(link: RID): Vector3 {
     TransferContext.writeArguments(_RID to link)
@@ -673,7 +669,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Sets the exit position for the [param link].
+   * Sets the exit position for the [link].
    */
   public fun linkSetEndPosition(link: RID, position: Vector3): Unit {
     TransferContext.writeArguments(_RID to link, VECTOR3 to position)
@@ -681,7 +677,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the ending position of this [param link].
+   * Returns the ending position of this [link].
    */
   public fun linkGetEndPosition(link: RID): Vector3 {
     TransferContext.writeArguments(_RID to link)
@@ -690,7 +686,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Sets the [param enter_cost] for this [param link].
+   * Sets the [enterCost] for this [link].
    */
   public fun linkSetEnterCost(link: RID, enterCost: Float): Unit {
     TransferContext.writeArguments(_RID to link, DOUBLE to enterCost.toDouble())
@@ -698,7 +694,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the enter cost of this [param link].
+   * Returns the enter cost of this [link].
    */
   public fun linkGetEnterCost(link: RID): Float {
     TransferContext.writeArguments(_RID to link)
@@ -707,7 +703,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Sets the [param travel_cost] for this [param link].
+   * Sets the [travelCost] for this [link].
    */
   public fun linkSetTravelCost(link: RID, travelCost: Float): Unit {
     TransferContext.writeArguments(_RID to link, DOUBLE to travelCost.toDouble())
@@ -715,7 +711,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the travel cost of this [param link].
+   * Returns the travel cost of this [link].
    */
   public fun linkGetTravelCost(link: RID): Float {
     TransferContext.writeArguments(_RID to link)
@@ -750,7 +746,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * If [param enabled] is `true`, the provided [param agent] calculates avoidance.
+   * If [enabled] is `true`, the provided [agent] calculates avoidance.
    */
   public fun agentSetAvoidanceEnabled(agent: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to agent, BOOL to enabled)
@@ -758,7 +754,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns `true` if the provided [param agent] has avoidance enabled.
+   * Returns `true` if the provided [agent] has avoidance enabled.
    */
   public fun agentGetAvoidanceEnabled(agent: RID): Boolean {
     TransferContext.writeArguments(_RID to agent)
@@ -785,8 +781,8 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns `true` if the provided [param agent] uses avoidance in 3D space Vector3(x,y,z) instead
-   * of horizontal 2D Vector2(x,y) / Vector3(x,0.0,z).
+   * Returns `true` if the provided [agent] uses avoidance in 3D space Vector3(x,y,z) instead of
+   * horizontal 2D Vector2(x,y) / Vector3(x,0.0,z).
    */
   public fun agentGetUse3dAvoidance(agent: RID): Boolean {
     TransferContext.writeArguments(_RID to agent)
@@ -803,7 +799,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the navigation map [RID] the requested [param agent] is currently assigned to.
+   * Returns the navigation map [RID] the requested [agent] is currently assigned to.
    */
   public fun agentGetMap(agent: RID): RID {
     TransferContext.writeArguments(_RID to agent)
@@ -812,8 +808,8 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * If [param paused] is true the specified [param agent] will not be processed, e.g. calculate
-   * avoidance velocities or receive avoidance callbacks.
+   * If [paused] is true the specified [agent] will not be processed, e.g. calculate avoidance
+   * velocities or receive avoidance callbacks.
    */
   public fun agentSetPaused(agent: RID, paused: Boolean): Unit {
     TransferContext.writeArguments(_RID to agent, BOOL to paused)
@@ -821,7 +817,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns `true` if the specified [param agent] is paused.
+   * Returns `true` if the specified [agent] is paused.
    */
   public fun agentGetPaused(agent: RID): Boolean {
     TransferContext.writeArguments(_RID to agent)
@@ -881,7 +877,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Updates the provided [param agent] [param height].
+   * Updates the provided [agent] [height].
    */
   public fun agentSetHeight(agent: RID, height: Float): Unit {
     TransferContext.writeArguments(_RID to agent, DOUBLE to height.toDouble())
@@ -897,9 +893,9 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Replaces the internal velocity in the collision avoidance simulation with [param velocity] for
-   * the specified [param agent]. When an agent is teleported to a new position this function should be
-   * used in the same frame. If called frequently this function can get agents stuck.
+   * Replaces the internal velocity in the collision avoidance simulation with [velocity] for the
+   * specified [agent]. When an agent is teleported to a new position this function should be used in
+   * the same frame. If called frequently this function can get agents stuck.
    */
   public fun agentSetVelocityForced(agent: RID, velocity: Vector3): Unit {
     TransferContext.writeArguments(_RID to agent, VECTOR3 to velocity)
@@ -907,10 +903,10 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Sets [param velocity] as the new wanted velocity for the specified [param agent]. The avoidance
-   * simulation will try to fulfill this velocity if possible but will modify it to avoid collision
-   * with other agent's and obstacles. When an agent is teleported to a new position use
-   * [agentSetVelocityForced] as well to reset the internal simulation velocity.
+   * Sets [velocity] as the new wanted velocity for the specified [agent]. The avoidance simulation
+   * will try to fulfill this velocity if possible but will modify it to avoid collision with other
+   * agent's and obstacles. When an agent is teleported to a new position use [agentSetVelocityForced]
+   * as well to reset the internal simulation velocity.
    */
   public fun agentSetVelocity(agent: RID, velocity: Vector3): Unit {
     TransferContext.writeArguments(_RID to agent, VECTOR3 to velocity)
@@ -936,8 +932,8 @@ public object NavigationServer3D : Object() {
 
   /**
    * Sets the callback [Callable] that gets called after each avoidance processing step for the
-   * [param agent]. The calculated `safe_velocity` will be dispatched with a signal to the object just
-   * before the physics calculations.
+   * [agent]. The calculated `safe_velocity` will be dispatched with a signal to the object just before
+   * the physics calculations.
    * **Note:** Created callbacks are always processed independently of the SceneTree state as long
    * as the agent is on a navigation map and not freed. To disable the dispatch of a callback from an
    * agent use [agentSetAvoidanceCallback] again with an empty [Callable].
@@ -964,9 +960,9 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Set the agent's `avoidance_priority` with a [param priority] between 0.0 (lowest priority) to
-   * 1.0 (highest priority).
-   * The specified [param agent] does not adjust the velocity for other agents that would match the
+   * Set the agent's `avoidance_priority` with a [priority] between 0.0 (lowest priority) to 1.0
+   * (highest priority).
+   * The specified [agent] does not adjust the velocity for other agents that would match the
    * `avoidance_mask` but have a lower ` avoidance_priority`. This in turn makes the other agents with
    * lower priority adjust their velocities even more to avoid collision with this agent.
    */
@@ -985,7 +981,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * If [param enabled] is `true`, the provided [param obstacle] affects avoidance using agents.
+   * If [enabled] is `true`, the provided [obstacle] affects avoidance using agents.
    */
   public fun obstacleSetAvoidanceEnabled(obstacle: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to obstacle, BOOL to enabled)
@@ -993,7 +989,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns `true` if the provided [param obstacle] has avoidance enabled.
+   * Returns `true` if the provided [obstacle] has avoidance enabled.
    */
   public fun obstacleGetAvoidanceEnabled(obstacle: RID): Boolean {
     TransferContext.writeArguments(_RID to obstacle)
@@ -1002,8 +998,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Sets if the [param obstacle] uses the 2D avoidance or the 3D avoidance while avoidance is
-   * enabled.
+   * Sets if the [obstacle] uses the 2D avoidance or the 3D avoidance while avoidance is enabled.
    */
   public fun obstacleSetUse3dAvoidance(obstacle: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to obstacle, BOOL to enabled)
@@ -1011,8 +1006,8 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns `true` if the provided [param obstacle] uses avoidance in 3D space Vector3(x,y,z)
-   * instead of horizontal 2D Vector2(x,y) / Vector3(x,0.0,z).
+   * Returns `true` if the provided [obstacle] uses avoidance in 3D space Vector3(x,y,z) instead of
+   * horizontal 2D Vector2(x,y) / Vector3(x,0.0,z).
    */
   public fun obstacleGetUse3dAvoidance(obstacle: RID): Boolean {
     TransferContext.writeArguments(_RID to obstacle)
@@ -1021,7 +1016,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Assigns the [param obstacle] to a navigation map.
+   * Assigns the [obstacle] to a navigation map.
    */
   public fun obstacleSetMap(obstacle: RID, map: RID): Unit {
     TransferContext.writeArguments(_RID to obstacle, _RID to map)
@@ -1029,7 +1024,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the navigation map [RID] the requested [param obstacle] is currently assigned to.
+   * Returns the navigation map [RID] the requested [obstacle] is currently assigned to.
    */
   public fun obstacleGetMap(obstacle: RID): RID {
     TransferContext.writeArguments(_RID to obstacle)
@@ -1038,8 +1033,8 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * If [param paused] is true the specified [param obstacle] will not be processed, e.g. affect
-   * avoidance velocities.
+   * If [paused] is true the specified [obstacle] will not be processed, e.g. affect avoidance
+   * velocities.
    */
   public fun obstacleSetPaused(obstacle: RID, paused: Boolean): Unit {
     TransferContext.writeArguments(_RID to obstacle, BOOL to paused)
@@ -1047,7 +1042,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns `true` if the specified [param obstacle] is paused.
+   * Returns `true` if the specified [obstacle] is paused.
    */
   public fun obstacleGetPaused(obstacle: RID): Boolean {
     TransferContext.writeArguments(_RID to obstacle)
@@ -1064,8 +1059,8 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Sets the [param height] for the [param obstacle]. In 3D agents will ignore obstacles that are
-   * above or below them while using 2D avoidance.
+   * Sets the [height] for the [obstacle]. In 3D agents will ignore obstacles that are above or
+   * below them while using 2D avoidance.
    */
   public fun obstacleSetHeight(obstacle: RID, height: Float): Unit {
     TransferContext.writeArguments(_RID to obstacle, DOUBLE to height.toDouble())
@@ -1073,8 +1068,8 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Sets [param velocity] of the dynamic [param obstacle]. Allows other agents to better predict
-   * the movement of the dynamic obstacle. Only works in combination with the radius of the obstacle.
+   * Sets [velocity] of the dynamic [obstacle]. Allows other agents to better predict the movement
+   * of the dynamic obstacle. Only works in combination with the radius of the obstacle.
    */
   public fun obstacleSetVelocity(obstacle: RID, velocity: Vector3): Unit {
     TransferContext.writeArguments(_RID to obstacle, VECTOR3 to velocity)
@@ -1082,7 +1077,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Updates the [param position] in world space for the [param obstacle].
+   * Updates the [position] in world space for the [obstacle].
    */
   public fun obstacleSetPosition(obstacle: RID, position: Vector3): Unit {
     TransferContext.writeArguments(_RID to obstacle, VECTOR3 to position)
@@ -1107,10 +1102,10 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Parses the [SceneTree] for source geometry according to the properties of [param
-   * navigation_mesh]. Updates the provided [param source_geometry_data] resource with the resulting
-   * data. The resource can then be used to bake a navigation mesh with [bakeFromSourceGeometryData].
-   * After the process is finished the optional [param callback] will be called.
+   * Parses the [SceneTree] for source geometry according to the properties of [navigationMesh].
+   * Updates the provided [sourceGeometryData] resource with the resulting data. The resource can then
+   * be used to bake a navigation mesh with [bakeFromSourceGeometryData]. After the process is finished
+   * the optional [callback] will be called.
    * **Note:** This function needs to run on the main thread or with a deferred call as the
    * SceneTree is not thread-safe.
    * **Performance:** While convenient, reading data arrays from [Mesh] resources can affect the
@@ -1130,8 +1125,8 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Bakes the provided [param navigation_mesh] with the data from the provided [param
-   * source_geometry_data]. After the process is finished the optional [param callback] will be called.
+   * Bakes the provided [navigationMesh] with the data from the provided [sourceGeometryData]. After
+   * the process is finished the optional [callback] will be called.
    */
   @JvmOverloads
   public fun bakeFromSourceGeometryData(
@@ -1144,9 +1139,9 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Bakes the provided [param navigation_mesh] with the data from the provided [param
-   * source_geometry_data] as an async task running on a background thread. After the process is
-   * finished the optional [param callback] will be called.
+   * Bakes the provided [navigationMesh] with the data from the provided [sourceGeometryData] as an
+   * async task running on a background thread. After the process is finished the optional [callback]
+   * will be called.
    */
   @JvmOverloads
   public fun bakeFromSourceGeometryDataAsync(
@@ -1192,8 +1187,8 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns information about the current state of the NavigationServer. See [enum ProcessInfo] for
-   * a list of available states.
+   * Returns information about the current state of the NavigationServer. See [ProcessInfo] for a
+   * list of available states.
    */
   public fun getProcessInfo(processInfo: ProcessInfo): Int {
     TransferContext.writeArguments(LONG to processInfo.id)

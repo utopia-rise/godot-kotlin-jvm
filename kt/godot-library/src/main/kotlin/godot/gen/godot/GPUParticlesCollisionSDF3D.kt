@@ -39,10 +39,9 @@ import kotlin.Unit
  * **Note:** Baking a [GPUParticlesCollisionSDF3D]'s [texture] is only possible within the editor,
  * as there is no bake method exposed for use in exported projects. However, it's still possible to
  * load pre-baked [Texture3D]s into its [texture] property in an exported project.
- * **Note:** [ParticleProcessMaterial.collisionMode] must be [constant
- * ParticleProcessMaterial.COLLISION_RIGID] or [constant
- * ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT] on the [GPUParticles3D]'s process material for
- * collision to work.
+ * **Note:** [ParticleProcessMaterial.collisionMode] must be
+ * [ParticleProcessMaterial.COLLISIONRIGID] or [ParticleProcessMaterial.COLLISIONHIDEONCONTACT] on the
+ * [GPUParticles3D]'s process material for collision to work.
  * **Note:** Particle collision only affects [GPUParticles3D], not [CPUParticles3D].
  */
 @GodotBaseType
@@ -160,8 +159,8 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
 
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [bakeMask], given a
-   * [param layer_number] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [bakeMask], given a
+   * [layerNumber] between 1 and 32.
    */
   public fun setBakeMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -169,8 +168,8 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [bakeMask] is enabled, given a [param
-   * layer_number] between 1 and 32.
+   * Returns whether or not the specified layer of the [bakeMask] is enabled, given a [layerNumber]
+   * between 1 and 32.
    */
   public fun getBakeMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -208,7 +207,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
      */
     RESOLUTION_512(5),
     /**
-     * Represents the size of the [enum Resolution] enum.
+     * Represents the size of the [Resolution] enum.
      */
     RESOLUTION_MAX(6),
     ;

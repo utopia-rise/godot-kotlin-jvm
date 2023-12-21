@@ -70,9 +70,9 @@ import kotlin.jvm.JvmOverloads
  * print("unknown" in node)      # Prints false
  * [/codeblock]
  * Notifications are [int] constants commonly sent and received by objects. For example, on every
- * rendered frame, the [SceneTree] notifies nodes inside the tree with a [constant
- * Node.NOTIFICATION_PROCESS]. The nodes receive it and may call [Node.Process] to update. To make use
- * of notifications, see [notification] and [_notification].
+ * rendered frame, the [SceneTree] notifies nodes inside the tree with a [Node.NOTIFICATIONPROCESS].
+ * The nodes receive it and may call [Node.Process] to update. To make use of notifications, see
+ * [notification] and [_notification].
  * Lastly, every object can also contain metadata (data about data). [setMeta] can be useful to
  * store information that the object itself does not depend on. To keep your code clean, making
  * excessive use of metadata is discouraged.
@@ -88,7 +88,7 @@ public open class Object : KtObject() {
   /**
    * Emitted when the object's script is changed.
    * **Note:** When this signal is emitted, the new script is not initialized yet. If you need to
-   * access the new script, defer connections to this signal with [constant CONNECT_DEFERRED].
+   * access the new script, defer connections to this signal with [CONNECTDEFERRED].
    */
   public val scriptChanged: Signal0 by signal()
 
@@ -115,7 +115,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if the object inherits from the given [param class]. See also [getClass].
+   * Returns `true` if the object inherits from the given [class]. See also [getClass].
    *
    * gdscript:
    * ```gdscript
@@ -141,8 +141,8 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Assigns [param value] to the given [param property]. If the property does not exist or the
-   * given [param value]'s type doesn't match, nothing happens.
+   * Assigns [value] to the given [property]. If the property does not exist or the given [value]'s
+   * type doesn't match, nothing happens.
    *
    * gdscript:
    * ```gdscript
@@ -157,9 +157,9 @@ public open class Object : KtObject() {
    * GD.Print(node.GlobalScale); // Prints Vector2(8, 2.5)
    * ```
    *
-   * **Note:** In C#, [param property] must be in snake_case when referring to built-in Godot
-   * properties. Prefer using the names exposed in the `PropertyName` class to avoid allocating a new
-   * [StringName] on each call.
+   * **Note:** In C#, [property] must be in snake_case when referring to built-in Godot properties.
+   * Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [StringName]
+   * on each call.
    */
   public fun `set`(`property`: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to property, ANY to value)
@@ -167,8 +167,8 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns the [Variant] value of the given [param property]. If the [param property] does not
-   * exist, this method returns `null`.
+   * Returns the [Variant] value of the given [property]. If the [property] does not exist, this
+   * method returns `null`.
    *
    * gdscript:
    * ```gdscript
@@ -183,9 +183,9 @@ public open class Object : KtObject() {
    * var a = node.Get("rotation"); // a is 1.5
    * ```
    *
-   * **Note:** In C#, [param property] must be in snake_case when referring to built-in Godot
-   * properties. Prefer using the names exposed in the `PropertyName` class to avoid allocating a new
-   * [StringName] on each call.
+   * **Note:** In C#, [property] must be in snake_case when referring to built-in Godot properties.
+   * Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [StringName]
+   * on each call.
    */
   public fun `get`(`property`: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to property)
@@ -194,9 +194,9 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Assigns a new [param value] to the property identified by the [param property_path]. The path
-   * should be a [NodePath] relative to this object, and can use the colon character (`:`) to access
-   * nested properties.
+   * Assigns a new [value] to the property identified by the [propertyPath]. The path should be a
+   * [NodePath] relative to this object, and can use the colon character (`:`) to access nested
+   * properties.
    *
    * gdscript:
    * ```gdscript
@@ -213,7 +213,7 @@ public open class Object : KtObject() {
    * GD.Print(node.Position); // Prints (42, -10)
    * ```
    *
-   * **Note:** In C#, [param property_path] must be in snake_case when referring to built-in Godot
+   * **Note:** In C#, [propertyPath] must be in snake_case when referring to built-in Godot
    * properties. Prefer using the names exposed in the `PropertyName` class to avoid allocating a new
    * [StringName] on each call.
    */
@@ -223,9 +223,8 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Gets the object's property indexed by the given [param property_path]. The path should be a
-   * [NodePath] relative to the current object and can use the colon character (`:`) to access nested
-   * properties.
+   * Gets the object's property indexed by the given [propertyPath]. The path should be a [NodePath]
+   * relative to the current object and can use the colon character (`:`) to access nested properties.
    * **Examples:** `"position:x"` or `"material:next_pass:blend_mode"`.
    *
    * gdscript:
@@ -243,7 +242,7 @@ public open class Object : KtObject() {
    * var b = node.GetIndexed("position:y"); // b is -10
    * ```
    *
-   * **Note:** In C#, [param property_path] must be in snake_case when referring to built-in Godot
+   * **Note:** In C#, [propertyPath] must be in snake_case when referring to built-in Godot
    * properties. Prefer using the names exposed in the `PropertyName` class to avoid allocating a new
    * [StringName] on each call.
    * **Note:** This method does not support actual paths to nodes in the [SceneTree], only
@@ -259,12 +258,12 @@ public open class Object : KtObject() {
    * Returns the object's property list as an [Array] of dictionaries. Each [Dictionary] contains
    * the following entries:
    * - `name` is the property's name, as a [String];
-   * - `class_name` is an empty [StringName], unless the property is [constant TYPE_OBJECT] and it
-   * inherits from a class;
-   * - `type` is the property's type, as an [int] (see [enum Variant.Type]);
-   * - `hint` is *how* the property is meant to be edited (see [enum PropertyHint]);
-   * - `hint_string` depends on the hint (see [enum PropertyHint]);
-   * - `usage` is a combination of [enum PropertyUsageFlags].
+   * - `class_name` is an empty [StringName], unless the property is [TYPEOBJECT] and it inherits
+   * from a class;
+   * - `type` is the property's type, as an [int] (see [Variant.Type]);
+   * - `hint` is *how* the property is meant to be edited (see [PropertyHint]);
+   * - `hint_string` depends on the hint (see [PropertyHint]);
+   * - `usage` is a combination of [PropertyUsageFlags].
    * **Note:** In GDScript, all class members are treated as properties. In C# and GDExtension, it
    * may be necessary to explicitly mark class members as Godot properties using decorators or
    * attributes.
@@ -281,7 +280,7 @@ public open class Object : KtObject() {
    * - `name` is the name of the method, as a [String];
    * - `args` is an [Array] of dictionaries representing the arguments;
    * - `default_args` is the default arguments as an [Array] of variants;
-   * - `flags` is a combination of [enum MethodFlags];
+   * - `flags` is a combination of [MethodFlags];
    * - `id` is the method's internal identifier [int];
    * - `return` is the returned value, as a [Dictionary];
    * **Note:** The dictionaries of `args` and `return` are formatted identically to the results of
@@ -294,8 +293,8 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if the given [param property] has a custom default value. Use
-   * [propertyGetRevert] to get the [param property]'s default value.
+   * Returns `true` if the given [property] has a custom default value. Use [propertyGetRevert] to
+   * get the [property]'s default value.
    * **Note:** This method is used by the Inspector dock to display a revert icon. The object must
    * implement [_propertyCanRevert] to customize the default value. If [_propertyCanRevert] is not
    * implemented, this method returns `false`.
@@ -307,8 +306,8 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns the custom default value of the given [param property]. Use [propertyCanRevert] to
-   * check if the [param property] has a custom default value.
+   * Returns the custom default value of the given [property]. Use [propertyCanRevert] to check if
+   * the [property] has a custom default value.
    * **Note:** This method is used by the Inspector dock to display a revert icon. The object must
    * implement [_propertyGetRevert] to customize the default value. If [_propertyGetRevert] is not
    * implemented, this method returns `null`.
@@ -320,10 +319,10 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Sends the given [param what] notification to all classes inherited by the object, triggering
-   * calls to [_notification], starting from the highest ancestor (the [Object] class) and going down
-   * to the object's script.
-   * If [param reversed] is `true`, the call order is reversed.
+   * Sends the given [what] notification to all classes inherited by the object, triggering calls to
+   * [_notification], starting from the highest ancestor (the [Object] class) and going down to the
+   * object's script.
+   * If [reversed] is `true`, the call order is reversed.
    *
    * gdscript:
    * ```gdscript
@@ -375,8 +374,8 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Attaches [param script] to the object, and instantiates it. As a result, the script's [_init]
-   * is called. A [Script] is used to extend the object's functionality.
+   * Attaches [script] to the object, and instantiates it. As a result, the script's [_init] is
+   * called. A [Script] is used to extend the object's functionality.
    * If a script already exists, its instance is detached, and its property values and state are
    * lost. Built-in property values are still kept.
    */
@@ -395,10 +394,10 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Adds or changes the entry [param name] inside the object's metadata. The metadata [param value]
-   * can be any [Variant], although some types cannot be serialized correctly.
-   * If [param value] is `null`, the entry is removed. This is the equivalent of using [removeMeta].
-   * See also [hasMeta] and [getMeta].
+   * Adds or changes the entry [name] inside the object's metadata. The metadata [value] can be any
+   * [Variant], although some types cannot be serialized correctly.
+   * If [value] is `null`, the entry is removed. This is the equivalent of using [removeMeta]. See
+   * also [hasMeta] and [getMeta].
    * **Note:** A metadata's name must be a valid identifier as per [StringName.isValidIdentifier]
    * method.
    * **Note:** Metadata that has a name starting with an underscore (`_`) is considered editor-only.
@@ -411,8 +410,8 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Removes the given entry [param name] from the object's metadata. See also [hasMeta], [getMeta]
-   * and [setMeta].
+   * Removes the given entry [name] from the object's metadata. See also [hasMeta], [getMeta] and
+   * [setMeta].
    * **Note:** A metadata's name must be a valid identifier as per [StringName.isValidIdentifier]
    * method.
    * **Note:** Metadata that has a name starting with an underscore (`_`) is considered editor-only.
@@ -425,8 +424,8 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns the object's metadata value for the given entry [param name]. If the entry does not
-   * exist, returns [param default]. If [param default] is `null`, an error is also generated.
+   * Returns the object's metadata value for the given entry [name]. If the entry does not exist,
+   * returns [default]. If [default] is `null`, an error is also generated.
    * **Note:** A metadata's name must be a valid identifier as per [StringName.isValidIdentifier]
    * method.
    * **Note:** Metadata that has a name starting with an underscore (`_`) is considered editor-only.
@@ -441,7 +440,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if a metadata entry is found with the given [param name]. See also [getMeta],
+   * Returns `true` if a metadata entry is found with the given [name]. See also [getMeta],
    * [setMeta] and [removeMeta].
    * **Note:** A metadata's name must be a valid identifier as per [StringName.isValidIdentifier]
    * method.
@@ -465,9 +464,9 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Adds a user-defined [param signal]. Optional arguments for the signal can be added as an
-   * [Array] of dictionaries, each defining a `name` [String] and a `type` [int] (see [enum
-   * Variant.Type]). See also [hasUserSignal].
+   * Adds a user-defined [signal]. Optional arguments for the signal can be added as an [Array] of
+   * dictionaries, each defining a `name` [String] and a `type` [int] (see [Variant.Type]). See also
+   * [hasUserSignal].
    *
    * gdscript:
    * ```gdscript
@@ -501,7 +500,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if the given user-defined [param signal] name exists. Only signals added with
+   * Returns `true` if the given user-defined [signal] name exists. Only signals added with
    * [addUserSignal] are included.
    */
   public fun hasUserSignal(signal: StringName): Boolean {
@@ -511,12 +510,11 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Emits the given [param signal] by name. The signal must exist, so it should be a built-in
-   * signal of this class or one of its inherited classes, or a user-defined signal (see
-   * [addUserSignal]). This method supports a variable number of arguments, so parameters can be passed
-   * as a comma separated list.
-   * Returns [constant ERR_UNAVAILABLE] if [param signal] does not exist or the parameters are
-   * invalid.
+   * Emits the given [signal] by name. The signal must exist, so it should be a built-in signal of
+   * this class or one of its inherited classes, or a user-defined signal (see [addUserSignal]). This
+   * method supports a variable number of arguments, so parameters can be passed as a comma separated
+   * list.
+   * Returns [ERRUNAVAILABLE] if [signal] does not exist or the parameters are invalid.
    *
    * gdscript:
    * ```gdscript
@@ -529,7 +527,7 @@ public open class Object : KtObject() {
    * EmitSignal(SignalName.GameOver);
    * ```
    *
-   * **Note:** In C#, [param signal] must be in snake_case when referring to built-in Godot signals.
+   * **Note:** In C#, [signal] must be in snake_case when referring to built-in Godot signals.
    * Prefer using the names exposed in the `SignalName` class to avoid allocating a new [StringName] on
    * each call.
    */
@@ -540,8 +538,8 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Calls the [param method] on the object and returns the result. This method supports a variable
-   * number of arguments, so parameters can be passed as a comma separated list.
+   * Calls the [method] on the object and returns the result. This method supports a variable number
+   * of arguments, so parameters can be passed as a comma separated list.
    *
    * gdscript:
    * ```gdscript
@@ -554,7 +552,7 @@ public open class Object : KtObject() {
    * node.Call(Node3D.MethodName.Rotate, new Vector3(1f, 0f, 0f), 1.571f);
    * ```
    *
-   * **Note:** In C#, [param method] must be in snake_case when referring to built-in Godot methods.
+   * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods.
    * Prefer using the names exposed in the `MethodName` class to avoid allocating a new [StringName] on
    * each call.
    */
@@ -565,8 +563,8 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Calls the [param method] on the object during idle time. Always returns null, **not** the
-   * method's result.
+   * Calls the [method] on the object during idle time. Always returns null, **not** the method's
+   * result.
    * Idle time happens mainly at the end of process and physics frames. In it, deferred calls will
    * be run until there are none left, which means you can defer calls from other deferred calls and
    * they'll still be run in the current idle time cycle. If not done carefully, this can result in
@@ -587,7 +585,7 @@ public open class Object : KtObject() {
    * ```
    *
    * See also [Callable.callDeferred].
-   * **Note:** In C#, [param method] must be in snake_case when referring to built-in Godot methods.
+   * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods.
    * Prefer using the names exposed in the `MethodName` class to avoid allocating a new [StringName] on
    * each call.
    * **Note:** If you're looking to delay the function call by a frame, refer to the [signal
@@ -609,8 +607,8 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Assigns [param value] to the given [param property], at the end of the current frame. This is
-   * equivalent to calling [set] through [callDeferred].
+   * Assigns [value] to the given [property], at the end of the current frame. This is equivalent to
+   * calling [set] through [callDeferred].
    *
    * gdscript:
    * ```gdscript
@@ -635,9 +633,9 @@ public open class Object : KtObject() {
    * GD.Print(node.Rotation); // Prints 90.0
    * ```
    *
-   * **Note:** In C#, [param property] must be in snake_case when referring to built-in Godot
-   * properties. Prefer using the names exposed in the `PropertyName` class to avoid allocating a new
-   * [StringName] on each call.
+   * **Note:** In C#, [property] must be in snake_case when referring to built-in Godot properties.
+   * Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [StringName]
+   * on each call.
    */
   public fun setDeferred(`property`: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to property, ANY to value)
@@ -645,8 +643,8 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Calls the [param method] on the object and returns the result. Unlike [call], this method
-   * expects all parameters to be contained inside [param arg_array].
+   * Calls the [method] on the object and returns the result. Unlike [call], this method expects all
+   * parameters to be contained inside [argArray].
    *
    * gdscript:
    * ```gdscript
@@ -660,7 +658,7 @@ public open class Object : KtObject() {
    * 1.571f });
    * ```
    *
-   * **Note:** In C#, [param method] must be in snake_case when referring to built-in Godot methods.
+   * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods.
    * Prefer using the names exposed in the `MethodName` class to avoid allocating a new [StringName] on
    * each call.
    */
@@ -671,8 +669,8 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if the given [param method] name exists in the object.
-   * **Note:** In C#, [param method] must be in snake_case when referring to built-in Godot methods.
+   * Returns `true` if the given [method] name exists in the object.
+   * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods.
    * Prefer using the names exposed in the `MethodName` class to avoid allocating a new [StringName] on
    * each call.
    */
@@ -683,8 +681,8 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if the given [param signal] name exists in the object.
-   * **Note:** In C#, [param signal] must be in snake_case when referring to built-in Godot methods.
+   * Returns `true` if the given [signal] name exists in the object.
+   * **Note:** In C#, [signal] must be in snake_case when referring to built-in Godot methods.
    * Prefer using the names exposed in the `SignalName` class to avoid allocating a new [StringName] on
    * each call.
    */
@@ -706,11 +704,11 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns an [Array] of connections for the given [param signal] name. Each connection is
-   * represented as a [Dictionary] that contains three entries:
+   * Returns an [Array] of connections for the given [signal] name. Each connection is represented
+   * as a [Dictionary] that contains three entries:
    * - [code skip-lint]signal[/code] is a reference to the [Signal];
    * - `callable` is a reference to the connected [Callable];
-   * - `flags` is a combination of [enum ConnectFlags].
+   * - `flags` is a combination of [ConnectFlags].
    */
   public fun getSignalConnectionList(signal: StringName): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(STRING_NAME to signal)
@@ -723,7 +721,7 @@ public open class Object : KtObject() {
    * represented as a [Dictionary] that contains three entries:
    * - `signal` is a reference to the [Signal];
    * - `callable` is a reference to the [Callable];
-   * - `flags` is a combination of [enum ConnectFlags].
+   * - `flags` is a combination of [ConnectFlags].
    */
   public fun getIncomingConnections(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
@@ -732,13 +730,13 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Connects a [param signal] by name to a [param callable]. Optional [param flags] can be also
-   * added to configure the connection's behavior (see [enum ConnectFlags] constants).
+   * Connects a [signal] by name to a [callable]. Optional [flags] can be also added to configure
+   * the connection's behavior (see [ConnectFlags] constants).
    * A signal can only be connected once to the same [Callable]. If the signal is already connected,
-   * this method returns [constant ERR_INVALID_PARAMETER] and pushes an error message, unless the
-   * signal is connected with [constant CONNECT_REFERENCE_COUNTED]. To prevent this, use [isConnected]
-   * first to check for existing connections.
-   * If the [param callable]'s object is freed, the connection will be lost.
+   * this method returns [ERRINVALIDPARAMETER] and pushes an error message, unless the signal is
+   * connected with [CONNECTREFERENCECOUNTED]. To prevent this, use [isConnected] first to check for
+   * existing connections.
+   * If the [callable]'s object is freed, the connection will be lost.
    * **Examples with recommended syntax:**
    * Connecting signals is one of the most common operations in Godot and the API gives many options
    * to do so, which are described further down. The code block below shows the recommended approach.
@@ -898,8 +896,8 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Disconnects a [param signal] by name from a given [param callable]. If the connection does not
-   * exist, generates an error. Use [isConnected] to make sure that the connection exists.
+   * Disconnects a [signal] by name from a given [callable]. If the connection does not exist,
+   * generates an error. Use [isConnected] to make sure that the connection exists.
    */
   public fun disconnect(signal: StringName, callable: Callable): Unit {
     TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable)
@@ -907,9 +905,8 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if a connection exists between the given [param signal] name and [param
-   * callable].
-   * **Note:** In C#, [param signal] must be in snake_case when referring to built-in Godot methods.
+   * Returns `true` if a connection exists between the given [signal] name and [callable].
+   * **Note:** In C#, [signal] must be in snake_case when referring to built-in Godot methods.
    * Prefer using the names exposed in the `SignalName` class to avoid allocating a new [StringName] on
    * each call.
    */
@@ -966,10 +963,10 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Translates a [param message], using the translation catalogs configured in the Project
-   * Settings. Further [param context] can be specified to help with the translation.
+   * Translates a [message], using the translation catalogs configured in the Project Settings.
+   * Further [context] can be specified to help with the translation.
    * If [canTranslateMessages] is `false`, or no translation is available, this method returns the
-   * [param message] without changes. See [setMessageTranslation].
+   * [message] without changes. See [setMessageTranslation].
    * For detailed examples, see
    * [url=$DOCS_URL/tutorials/i18n/internationalizing_games.html]Internationalizing games[/url].
    */
@@ -981,12 +978,11 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Translates a [param message] or [param plural_message], using the translation catalogs
-   * configured in the Project Settings. Further [param context] can be specified to help with the
-   * translation.
+   * Translates a [message] or [pluralMessage], using the translation catalogs configured in the
+   * Project Settings. Further [context] can be specified to help with the translation.
    * If [canTranslateMessages] is `false`, or no translation is available, this method returns
-   * [param message] or [param plural_message], without changes. See [setMessageTranslation].
-   * The [param n] is the number, or amount, of the message's subject. It is used by the translation
+   * [message] or [pluralMessage], without changes. See [setMessageTranslation].
+   * The [n] is the number, or amount, of the message's subject. It is used by the translation
    * system to fetch the correct plural form for the current language.
    * For detailed examples, see
    * [url=$DOCS_URL/tutorials/i18n/localization_using_gettext.html]Localization using gettext[/url].
@@ -1015,9 +1011,9 @@ public open class Object : KtObject() {
   }
 
   /**
-   * If this method is called during [constant NOTIFICATION_PREDELETE], this object will reject
-   * being freed and will remain allocated. This is mostly an internal function used for error handling
-   * to avoid the user from freeing objects when they are not intended to.
+   * If this method is called during [NOTIFICATIONPREDELETE], this object will reject being freed
+   * and will remain allocated. This is mostly an internal function used for error handling to avoid
+   * the user from freeing objects when they are not intended to.
    */
   public fun cancelFree(): Unit {
     TransferContext.writeArguments()

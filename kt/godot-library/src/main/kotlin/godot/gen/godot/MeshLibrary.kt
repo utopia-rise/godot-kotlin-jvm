@@ -101,7 +101,7 @@ public open class MeshLibrary : Resource() {
   /**
    * Sets an item's collision shapes.
    * The array should consist of [Shape3D] objects, each followed by a [Transform3D] that will be
-   * applied to it. For shapes that should not have a transform, use [constant Transform3D.IDENTITY].
+   * applied to it. For shapes that should not have a transform, use [Transform3D.IDENTITY].
    */
   public fun setItemShapes(id: Int, shapes: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), ARRAY to shapes)

@@ -40,7 +40,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * Native image datatype. Contains image data which can be converted to an [ImageTexture] and
  * provides commonly used *image processing* methods. The maximum width and height for an [Image] are
- * [constant MAX_WIDTH] and [constant MAX_HEIGHT].
+ * [MAXWIDTH] and [MAXHEIGHT].
  * An [Image] cannot be assigned to a texture property of an object directly (such as
  * [Sprite2D.texture]), and has to be converted manually to an [ImageTexture] first.
  * **Note:** The maximum image size is 16384×16384 pixels due to graphics hardware limitations.
@@ -90,7 +90,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Returns the image's format. See [enum Format] constants.
+   * Returns the image's format. See [Format] constants.
    */
   public fun getFormat(): Format {
     TransferContext.writeArguments()
@@ -108,7 +108,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Converts the image's format. See [enum Format] constants.
+   * Converts the image's format. See [Format] constants.
    */
   public fun convert(format: Format): Unit {
     TransferContext.writeArguments(LONG to format.id)
@@ -127,7 +127,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Returns the offset where the image's mipmap with index [param mipmap] is stored in the [data]
+   * Returns the offset where the image's mipmap with index [mipmap] is stored in the [data]
    * dictionary.
    */
   public fun getMipmapOffset(mipmap: Int): Int {
@@ -137,9 +137,9 @@ public open class Image : Resource() {
   }
 
   /**
-   * Resizes the image to the nearest power of 2 for the width and height. If [param square] is
-   * `true` then set width and height to be the same. New pixels are calculated using the [param
-   * interpolation] mode defined via [enum Interpolation] constants.
+   * Resizes the image to the nearest power of 2 for the width and height. If [square] is `true`
+   * then set width and height to be the same. New pixels are calculated using the [interpolation] mode
+   * defined via [Interpolation] constants.
    */
   @JvmOverloads
   public fun resizeToPo2(square: Boolean = false, interpolation: Interpolation =
@@ -149,8 +149,8 @@ public open class Image : Resource() {
   }
 
   /**
-   * Resizes the image to the given [param width] and [param height]. New pixels are calculated
-   * using the [param interpolation] mode defined via [enum Interpolation] constants.
+   * Resizes the image to the given [width] and [height]. New pixels are calculated using the
+   * [interpolation] mode defined via [Interpolation] constants.
    */
   @JvmOverloads
   public fun resize(
@@ -171,8 +171,8 @@ public open class Image : Resource() {
   }
 
   /**
-   * Crops the image to the given [param width] and [param height]. If the specified size is larger
-   * than the current size, the extra area is filled with black pixels.
+   * Crops the image to the given [width] and [height]. If the specified size is larger than the
+   * current size, the extra area is filled with black pixels.
    */
   public fun crop(width: Int, height: Int): Unit {
     TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong())
@@ -199,9 +199,9 @@ public open class Image : Resource() {
    * Generates mipmaps for the image. Mipmaps are precalculated lower-resolution copies of the image
    * that are automatically used if the image needs to be scaled down when rendered. They help improve
    * image quality and performance when rendering. This method returns an error if the image is
-   * compressed, in a custom format, or if the image's width/height is `0`. Enabling [param
-   * renormalize] when generating mipmaps for normal map textures will make sure all resulting vector
-   * values are normalized.
+   * compressed, in a custom format, or if the image's width/height is `0`. Enabling [renormalize] when
+   * generating mipmaps for normal map textures will make sure all resulting vector values are
+   * normalized.
    * It is possible to check if the image has mipmaps by calling [hasMipmaps] or [getMipmapCount].
    * Calling [generateMipmaps] on an image that already has mipmaps will replace existing mipmaps in
    * the image.
@@ -245,7 +245,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Loads an image from file [param path]. See
+   * Loads an image from file [path]. See
    * [url=$DOCS_URL/tutorials/assets_pipeline/importing_images.html#supported-image-formats]Supported
    * image formats[/url] for a list of supported image formats and limitations.
    * **Warning:** This method should only be used in the editor or in cases when you need to load
@@ -260,7 +260,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Saves the image as a PNG file to the file at [param path].
+   * Saves the image as a PNG file to the file at [path].
    */
   public fun savePng(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
@@ -278,10 +278,10 @@ public open class Image : Resource() {
   }
 
   /**
-   * Saves the image as a JPEG file to [param path] with the specified [param quality] between
-   * `0.01` and `1.0` (inclusive). Higher [param quality] values result in better-looking output at the
-   * cost of larger file sizes. Recommended [param quality] values are between `0.75` and `0.90`. Even
-   * at quality `1.00`, JPEG compression remains lossy.
+   * Saves the image as a JPEG file to [path] with the specified [quality] between `0.01` and `1.0`
+   * (inclusive). Higher [quality] values result in better-looking output at the cost of larger file
+   * sizes. Recommended [quality] values are between `0.75` and `0.90`. Even at quality `1.00`, JPEG
+   * compression remains lossy.
    * **Note:** JPEG does not save an alpha channel. If the [Image] contains an alpha channel, the
    * image will still be saved, but the resulting JPEG file won't contain the alpha channel.
    */
@@ -293,10 +293,10 @@ public open class Image : Resource() {
   }
 
   /**
-   * Saves the image as a JPEG file to a byte array with the specified [param quality] between
-   * `0.01` and `1.0` (inclusive). Higher [param quality] values result in better-looking output at the
-   * cost of larger byte array sizes (and therefore memory usage). Recommended [param quality] values
-   * are between `0.75` and `0.90`. Even at quality `1.00`, JPEG compression remains lossy.
+   * Saves the image as a JPEG file to a byte array with the specified [quality] between `0.01` and
+   * `1.0` (inclusive). Higher [quality] values result in better-looking output at the cost of larger
+   * byte array sizes (and therefore memory usage). Recommended [quality] values are between `0.75` and
+   * `0.90`. Even at quality `1.00`, JPEG compression remains lossy.
    * **Note:** JPEG does not save an alpha channel. If the [Image] contains an alpha channel, the
    * image will still be saved, but the resulting byte array won't contain the alpha channel.
    */
@@ -308,11 +308,11 @@ public open class Image : Resource() {
   }
 
   /**
-   * Saves the image as an EXR file to [param path]. If [param grayscale] is `true` and the image
-   * has only one channel, it will be saved explicitly as monochrome rather than one red channel. This
-   * function will return [constant ERR_UNAVAILABLE] if Godot was compiled without the TinyEXR module.
+   * Saves the image as an EXR file to [path]. If [grayscale] is `true` and the image has only one
+   * channel, it will be saved explicitly as monochrome rather than one red channel. This function will
+   * return [ERRUNAVAILABLE] if Godot was compiled without the TinyEXR module.
    * **Note:** The TinyEXR module is disabled in non-editor builds, which means [saveExr] will
-   * return [constant ERR_UNAVAILABLE] when it is called from an exported project.
+   * return [ERRUNAVAILABLE] when it is called from an exported project.
    */
   @JvmOverloads
   public fun saveExr(path: String, grayscale: Boolean = false): GodotError {
@@ -322,9 +322,9 @@ public open class Image : Resource() {
   }
 
   /**
-   * Saves the image as an EXR file to a byte array. If [param grayscale] is `true` and the image
-   * has only one channel, it will be saved explicitly as monochrome rather than one red channel. This
-   * function will return an empty byte array if Godot was compiled without the TinyEXR module.
+   * Saves the image as an EXR file to a byte array. If [grayscale] is `true` and the image has only
+   * one channel, it will be saved explicitly as monochrome rather than one red channel. This function
+   * will return an empty byte array if Godot was compiled without the TinyEXR module.
    * **Note:** The TinyEXR module is disabled in non-editor builds, which means [saveExr] will
    * return an empty byte array when it is called from an exported project.
    */
@@ -336,9 +336,9 @@ public open class Image : Resource() {
   }
 
   /**
-   * Saves the image as a WebP (Web Picture) file to the file at [param path]. By default it will
-   * save lossless. If [param lossy] is true, the image will be saved lossy, using the [param quality]
-   * setting between 0.0 and 1.0 (inclusive). Lossless WebP offers more efficient compression than PNG.
+   * Saves the image as a WebP (Web Picture) file to the file at [path]. By default it will save
+   * lossless. If [lossy] is true, the image will be saved lossy, using the [quality] setting between
+   * 0.0 and 1.0 (inclusive). Lossless WebP offers more efficient compression than PNG.
    * **Note:** The WebP format is limited to a size of 16383×16383 pixels, while PNG can save larger
    * images.
    */
@@ -355,8 +355,8 @@ public open class Image : Resource() {
 
   /**
    * Saves the image as a WebP (Web Picture) file to a byte array. By default it will save lossless.
-   * If [param lossy] is true, the image will be saved lossy, using the [param quality] setting between
-   * 0.0 and 1.0 (inclusive). Lossless WebP offers more efficient compression than PNG.
+   * If [lossy] is true, the image will be saved lossy, using the [quality] setting between 0.0 and 1.0
+   * (inclusive). Lossless WebP offers more efficient compression than PNG.
    * **Note:** The WebP format is limited to a size of 16383×16383 pixels, while PNG can save larger
    * images.
    */
@@ -368,9 +368,8 @@ public open class Image : Resource() {
   }
 
   /**
-   * Returns [constant ALPHA_BLEND] if the image has data for alpha values. Returns [constant
-   * ALPHA_BIT] if all the alpha values are stored in a single bit. Returns [constant ALPHA_NONE] if no
-   * data for alpha values is found.
+   * Returns [ALPHABLEND] if the image has data for alpha values. Returns [ALPHABIT] if all the
+   * alpha values are stored in a single bit. Returns [ALPHANONE] if no data for alpha values is found.
    */
   public fun detectAlpha(): AlphaMode {
     TransferContext.writeArguments()
@@ -399,9 +398,9 @@ public open class Image : Resource() {
   /**
    * Compresses the image to use less memory. Can not directly access pixel data while the image is
    * compressed. Returns error if the chosen compression mode is not available.
-   * The [param source] parameter helps to pick the best compression method for DXT and ETC2
-   * formats. It is ignored for ASTC compression.
-   * For ASTC compression, the [param astc_format] parameter must be supplied.
+   * The [source] parameter helps to pick the best compression method for DXT and ETC2 formats. It
+   * is ignored for ASTC compression.
+   * For ASTC compression, the [astcFormat] parameter must be supplied.
    */
   @JvmOverloads
   public fun compress(
@@ -420,7 +419,7 @@ public open class Image : Resource() {
    * This is an alternative to [compress] that lets the user supply the channels used in order for
    * the compressor to pick the best DXT and ETC2 formats. For other formats (non DXT or ETC2), this
    * argument is ignored.
-   * For ASTC compression, the [param astc_format] parameter must be supplied.
+   * For ASTC compression, the [astcFormat] parameter must be supplied.
    */
   @JvmOverloads
   public fun compressFromChannels(
@@ -434,8 +433,8 @@ public open class Image : Resource() {
   }
 
   /**
-   * Decompresses the image if it is VRAM compressed in a supported format. Returns [constant OK] if
-   * the format is supported, otherwise [constant ERR_UNAVAILABLE].
+   * Decompresses the image if it is VRAM compressed in a supported format. Returns [OK] if the
+   * format is supported, otherwise [ERRUNAVAILABLE].
    * **Note:** The following formats can be decompressed: DXT, RGTC, BPTC. The formats ETC1 and ETC2
    * are not supported.
    */
@@ -455,9 +454,8 @@ public open class Image : Resource() {
   }
 
   /**
-   * Rotates the image in the specified [param direction] by `90` degrees. The width and height of
-   * the image must be greater than `1`. If the width and height are not equal, the image will be
-   * resized.
+   * Rotates the image in the specified [direction] by `90` degrees. The width and height of the
+   * image must be greater than `1`. If the width and height are not equal, the image will be resized.
    */
   public fun rotate90(direction: ClockDirection): Unit {
     TransferContext.writeArguments(LONG to direction.id)
@@ -537,9 +535,9 @@ public open class Image : Resource() {
   }
 
   /**
-   * Copies [param src_rect] from [param src] image to this image at coordinates [param dst],
-   * clipped accordingly to both image bounds. This image and [param src] image **must** have the same
-   * format. [param src_rect] with non-positive size is treated as empty.
+   * Copies [srcRect] from [src] image to this image at coordinates [dst], clipped accordingly to
+   * both image bounds. This image and [src] image **must** have the same format. [srcRect] with
+   * non-positive size is treated as empty.
    */
   public fun blitRect(
     src: Image,
@@ -551,12 +549,11 @@ public open class Image : Resource() {
   }
 
   /**
-   * Blits [param src_rect] area from [param src] image to this image at the coordinates given by
-   * [param dst], clipped accordingly to both image bounds. [param src] pixel is copied onto [param
-   * dst] if the corresponding [param mask] pixel's alpha value is not 0. This image and [param src]
-   * image **must** have the same format. [param src] image and [param mask] image **must** have the
-   * same size (width and height) but they can have different formats. [param src_rect] with
-   * non-positive size is treated as empty.
+   * Blits [srcRect] area from [src] image to this image at the coordinates given by [dst], clipped
+   * accordingly to both image bounds. [src] pixel is copied onto [dst] if the corresponding [mask]
+   * pixel's alpha value is not 0. This image and [src] image **must** have the same format. [src]
+   * image and [mask] image **must** have the same size (width and height) but they can have different
+   * formats. [srcRect] with non-positive size is treated as empty.
    */
   public fun blitRectMask(
     src: Image,
@@ -569,9 +566,9 @@ public open class Image : Resource() {
   }
 
   /**
-   * Alpha-blends [param src_rect] from [param src] image to this image at coordinates [param dst],
-   * clipped accordingly to both image bounds. This image and [param src] image **must** have the same
-   * format. [param src_rect] with non-positive size is treated as empty.
+   * Alpha-blends [srcRect] from [src] image to this image at coordinates [dst], clipped accordingly
+   * to both image bounds. This image and [src] image **must** have the same format. [srcRect] with
+   * non-positive size is treated as empty.
    */
   public fun blendRect(
     src: Image,
@@ -583,13 +580,12 @@ public open class Image : Resource() {
   }
 
   /**
-   * Alpha-blends [param src_rect] from [param src] image to this image using [param mask] image at
-   * coordinates [param dst], clipped accordingly to both image bounds. Alpha channels are required for
-   * both [param src] and [param mask]. [param dst] pixels and [param src] pixels will blend if the
-   * corresponding mask pixel's alpha value is not 0. This image and [param src] image **must** have
-   * the same format. [param src] image and [param mask] image **must** have the same size (width and
-   * height) but they can have different formats. [param src_rect] with non-positive size is treated as
-   * empty.
+   * Alpha-blends [srcRect] from [src] image to this image using [mask] image at coordinates [dst],
+   * clipped accordingly to both image bounds. Alpha channels are required for both [src] and [mask].
+   * [dst] pixels and [src] pixels will blend if the corresponding mask pixel's alpha value is not 0.
+   * This image and [src] image **must** have the same format. [src] image and [mask] image **must**
+   * have the same size (width and height) but they can have different formats. [srcRect] with
+   * non-positive size is treated as empty.
    */
   public fun blendRectMask(
     src: Image,
@@ -602,7 +598,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Fills the image with [param color].
+   * Fills the image with [color].
    */
   public fun fill(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
@@ -610,7 +606,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Fills [param rect] with [param color].
+   * Fills [rect] with [color].
    */
   public fun fillRect(rect: Rect2i, color: Color): Unit {
     TransferContext.writeArguments(RECT2I to rect, COLOR to color)
@@ -628,7 +624,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Returns a new [Image] that is a copy of this [Image]'s area specified with [param region].
+   * Returns a new [Image] that is a copy of this [Image]'s area specified with [region].
    */
   public fun getRegion(region: Rect2i): Image? {
     TransferContext.writeArguments(RECT2I to region)
@@ -637,7 +633,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Copies [param src] image to this image.
+   * Copies [src] image to this image.
    */
   public fun copyFrom(src: Image): Unit {
     TransferContext.writeArguments(OBJECT to src)
@@ -645,7 +641,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Returns the color of the pixel at [param point].
+   * Returns the color of the pixel at [point].
    * This is the same as [getPixel], but with a [Vector2i] argument instead of two integer
    * arguments.
    */
@@ -667,7 +663,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Sets the [Color] of the pixel at [param point] to [param color].
+   * Sets the [Color] of the pixel at [point] to [color].
    * **Example:**
    *
    * gdscript:
@@ -696,7 +692,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Sets the [Color] of the pixel at `(x, y)` to [param color].
+   * Sets the [Color] of the pixel at `(x, y)` to [color].
    * **Example:**
    *
    * gdscript:
@@ -1033,8 +1029,7 @@ public open class Image : Resource() {
      */
     FORMAT_ASTC_4x4(35),
     /**
-     * Same format as [constant FORMAT_ASTC_4x4], but with the hint to let the GPU know it is used
-     * for HDR.
+     * Same format as [FORMATASTC4x4], but with the hint to let the GPU know it is used for HDR.
      */
     FORMAT_ASTC_4x4_HDR(36),
     /**
@@ -1043,12 +1038,11 @@ public open class Image : Resource() {
      */
     FORMAT_ASTC_8x8(37),
     /**
-     * Same format as [constant FORMAT_ASTC_8x8], but with the hint to let the GPU know it is used
-     * for HDR.
+     * Same format as [FORMATASTC8x8], but with the hint to let the GPU know it is used for HDR.
      */
     FORMAT_ASTC_8x8_HDR(38),
     /**
-     * Represents the size of the [enum Format] enum.
+     * Represents the size of the [Format] enum.
      */
     FORMAT_MAX(39),
     ;
@@ -1072,19 +1066,19 @@ public open class Image : Resource() {
     INTERPOLATE_NEAREST(0),
     /**
      * Performs bilinear interpolation. If the image is resized, it will be blurry. This mode is
-     * faster than [constant INTERPOLATE_CUBIC], but it results in lower quality.
+     * faster than [INTERPOLATECUBIC], but it results in lower quality.
      */
     INTERPOLATE_BILINEAR(1),
     /**
      * Performs cubic interpolation. If the image is resized, it will be blurry. This mode often
-     * gives better results compared to [constant INTERPOLATE_BILINEAR], at the cost of being slower.
+     * gives better results compared to [INTERPOLATEBILINEAR], at the cost of being slower.
      */
     INTERPOLATE_CUBIC(2),
     /**
      * Performs bilinear separately on the two most-suited mipmap levels, then linearly interpolates
      * between them.
-     * It's slower than [constant INTERPOLATE_BILINEAR], but produces higher-quality results with
-     * far fewer aliasing artifacts.
+     * It's slower than [INTERPOLATEBILINEAR], but produces higher-quality results with far fewer
+     * aliasing artifacts.
      * If the image does not have mipmaps, they will be generated and used internally, but no
      * mipmaps will be generated on the resulting image.
      * **Note:** If you intend to scale multiple copies of the original image, it's better to call
@@ -1162,7 +1156,7 @@ public open class Image : Resource() {
      */
     COMPRESS_ASTC(4),
     /**
-     * Represents the size of the [enum CompressMode] enum.
+     * Represents the size of the [CompressMode] enum.
      */
     COMPRESS_MAX(5),
     ;
@@ -1261,8 +1255,8 @@ public open class Image : Resource() {
     public final const val MAX_HEIGHT: Long = 16777216
 
     /**
-     * Creates an empty image of given size and format. See [enum Format] constants. If [param
-     * use_mipmaps] is `true`, then generate mipmaps for this image. See the [generateMipmaps].
+     * Creates an empty image of given size and format. See [Format] constants. If [useMipmaps] is
+     * `true`, then generate mipmaps for this image. See the [generateMipmaps].
      */
     public fun create(
       width: Int,
@@ -1276,9 +1270,9 @@ public open class Image : Resource() {
     }
 
     /**
-     * Creates a new image of given size and format. See [enum Format] constants. Fills the image
-     * with the given raw data. If [param use_mipmaps] is `true` then loads mipmaps for this image from
-     * [param data]. See [generateMipmaps].
+     * Creates a new image of given size and format. See [Format] constants. Fills the image with
+     * the given raw data. If [useMipmaps] is `true` then loads mipmaps for this image from [data]. See
+     * [generateMipmaps].
      */
     public fun createFromData(
       width: Int,

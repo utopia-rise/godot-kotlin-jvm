@@ -73,21 +73,21 @@ public open class CollisionObject2D internal constructor() : Node2D() {
 
   /**
    * Emitted when the mouse pointer enters any of this object's shapes or moves from one shape to
-   * another. [param shape_idx] is the child index of the newly entered [Shape2D]. Requires
-   * [inputPickable] to be `true` and at least one [collisionLayer] bit to be set.
+   * another. [shapeIdx] is the child index of the newly entered [Shape2D]. Requires [inputPickable] to
+   * be `true` and at least one [collisionLayer] bit to be set.
    */
   public val mouseShapeEntered: Signal1<Long> by signal("shapeIdx")
 
   /**
-   * Emitted when the mouse pointer exits any of this object's shapes. [param shape_idx] is the
-   * child index of the exited [Shape2D]. Requires [inputPickable] to be `true` and at least one
-   * [collisionLayer] bit to be set.
+   * Emitted when the mouse pointer exits any of this object's shapes. [shapeIdx] is the child index
+   * of the exited [Shape2D]. Requires [inputPickable] to be `true` and at least one [collisionLayer]
+   * bit to be set.
    */
   public val mouseShapeExited: Signal1<Long> by signal("shapeIdx")
 
   /**
-   * Defines the behavior in physics when [Node.processMode] is set to [constant
-   * Node.PROCESS_MODE_DISABLED]. See [enum DisableMode] for more details about the different modes.
+   * Defines the behavior in physics when [Node.processMode] is set to [Node.PROCESSMODEDISABLED].
+   * See [DisableMode] for more details about the different modes.
    */
   public var disableMode: DisableMode
     get() {
@@ -176,7 +176,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   /**
-   * Accepts unhandled [InputEvent]s. [param shape_idx] is the child index of the clicked [Shape2D].
+   * Accepts unhandled [InputEvent]s. [shapeIdx] is the child index of the clicked [Shape2D].
    * Connect to [signal input_event] to easily pick up these events.
    * **Note:** [_inputEvent] requires [inputPickable] to be `true` and at least one [collisionLayer]
    * bit to be set.
@@ -206,16 +206,16 @@ public open class CollisionObject2D internal constructor() : Node2D() {
 
   /**
    * Called when the mouse pointer enters any of this object's shapes or moves from one shape to
-   * another. [param shape_idx] is the child index of the newly entered [Shape2D]. Requires
-   * [inputPickable] to be `true` and at least one [collisionLayer] bit to be called.
+   * another. [shapeIdx] is the child index of the newly entered [Shape2D]. Requires [inputPickable] to
+   * be `true` and at least one [collisionLayer] bit to be called.
    */
   public open fun _mouseShapeEnter(shapeIdx: Int): Unit {
   }
 
   /**
-   * Called when the mouse pointer exits any of this object's shapes. [param shape_idx] is the child
-   * index of the exited [Shape2D]. Requires [inputPickable] to be `true` and at least one
-   * [collisionLayer] bit to be called.
+   * Called when the mouse pointer exits any of this object's shapes. [shapeIdx] is the child index
+   * of the exited [Shape2D]. Requires [inputPickable] to be `true` and at least one [collisionLayer]
+   * bit to be called.
    */
   public open fun _mouseShapeExit(shapeIdx: Int): Unit {
   }
@@ -230,8 +230,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [collisionLayer], given
-   * a [param layer_number] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionLayer], given a
+   * [layerNumber] between 1 and 32.
    */
   public fun setCollisionLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -239,8 +239,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a [param
-   * layer_number] between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a
+   * [layerNumber] between 1 and 32.
    */
   public fun getCollisionLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -249,8 +249,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [collisionMask], given a
-   * [param layer_number] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionMask], given a
+   * [layerNumber] between 1 and 32.
    */
   public fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -258,8 +258,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a [param
-   * layer_number] between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a
+   * [layerNumber] between 1 and 32.
    */
   public fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -339,8 +339,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   /**
-   * If [param enable] is `true`, collisions for the shape owner originating from this
-   * [CollisionObject2D] will not be reported to collided with [CollisionObject2D]s.
+   * If [enable] is `true`, collisions for the shape owner originating from this [CollisionObject2D]
+   * will not be reported to collided with [CollisionObject2D]s.
    */
   public fun shapeOwnerSetOneWayCollision(ownerId: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to ownerId, BOOL to enable)
@@ -358,8 +358,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   /**
-   * Sets the `one_way_collision_margin` of the shape owner identified by given [param owner_id] to
-   * [param margin] pixels.
+   * Sets the `one_way_collision_margin` of the shape owner identified by given [ownerId] to
+   * [margin] pixels.
    */
   public fun shapeOwnerSetOneWayCollisionMargin(ownerId: Long, margin: Float): Unit {
     TransferContext.writeArguments(LONG to ownerId, DOUBLE to margin.toDouble())
@@ -367,7 +367,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   /**
-   * Returns the `one_way_collision_margin` of the shape owner identified by given [param owner_id].
+   * Returns the `one_way_collision_margin` of the shape owner identified by given [ownerId].
    */
   public fun getShapeOwnerOneWayCollisionMargin(ownerId: Long): Float {
     TransferContext.writeArguments(LONG to ownerId)
@@ -439,22 +439,21 @@ public open class CollisionObject2D internal constructor() : Node2D() {
     id: Long,
   ) {
     /**
-     * When [Node.processMode] is set to [constant Node.PROCESS_MODE_DISABLED], remove from the
-     * physics simulation to stop all physics interactions with this [CollisionObject2D].
+     * When [Node.processMode] is set to [Node.PROCESSMODEDISABLED], remove from the physics
+     * simulation to stop all physics interactions with this [CollisionObject2D].
      * Automatically re-added to the physics simulation when the [Node] is processed again.
      */
     DISABLE_MODE_REMOVE(0),
     /**
-     * When [Node.processMode] is set to [constant Node.PROCESS_MODE_DISABLED], make the body
-     * static. Doesn't affect [Area2D]. [PhysicsBody2D] can't be affected by forces or other bodies
-     * while static.
+     * When [Node.processMode] is set to [Node.PROCESSMODEDISABLED], make the body static. Doesn't
+     * affect [Area2D]. [PhysicsBody2D] can't be affected by forces or other bodies while static.
      * Automatically set [PhysicsBody2D] back to its original mode when the [Node] is processed
      * again.
      */
     DISABLE_MODE_MAKE_STATIC(1),
     /**
-     * When [Node.processMode] is set to [constant Node.PROCESS_MODE_DISABLED], do not affect the
-     * physics simulation.
+     * When [Node.processMode] is set to [Node.PROCESSMODEDISABLED], do not affect the physics
+     * simulation.
      */
     DISABLE_MODE_KEEP_ACTIVE(2),
     ;

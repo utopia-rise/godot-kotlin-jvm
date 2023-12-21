@@ -147,13 +147,12 @@ import kotlin.jvm.JvmOverloads
  * }
  * ```
  *
- * Some [Tweener]s use transitions and eases. The first accepts a [enum TransitionType] constant,
- * and refers to the way the timing of the animation is handled (see
- * [url=https://easings.net/]easings.net[/url] for some examples). The second accepts an [enum
- * EaseType] constant, and controls where the `trans_type` is applied to the interpolation (in the
- * beginning, the end, or both). If you don't know which transition and easing to pick, you can try
- * different [enum TransitionType] constants with [constant EASE_IN_OUT], and use the one that looks
- * best.
+ * Some [Tweener]s use transitions and eases. The first accepts a [TransitionType] constant, and
+ * refers to the way the timing of the animation is handled (see
+ * [url=https://easings.net/]easings.net[/url] for some examples). The second accepts an [EaseType]
+ * constant, and controls where the `trans_type` is applied to the interpolation (in the beginning, the
+ * end, or both). If you don't know which transition and easing to pick, you can try different
+ * [TransitionType] constants with [EASEINOUT], and use the one that looks best.
  * [url=https://raw.githubusercontent.com/godotengine/godot-docs/master/img/tween_cheatsheet.webp]Tween
  * easing and transition types cheatsheet[/url]
  * **Note:** Tweens are not designed to be re-used and trying to do so results in an undefined
@@ -189,10 +188,9 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Creates and appends a [PropertyTweener]. This method tweens a [param property] of an [param
-   * object] between an initial value and [param final_val] in a span of time equal to [param
-   * duration], in seconds. The initial value by default is the property's value at the time the
-   * tweening of the [PropertyTweener] starts.
+   * Creates and appends a [PropertyTweener]. This method tweens a [property] of an [object] between
+   * an initial value and [finalVal] in a span of time equal to [duration], in seconds. The initial
+   * value by default is the property's value at the time the tweening of the [PropertyTweener] starts.
    * **Example:**
    *
    * gdscript:
@@ -248,8 +246,7 @@ public open class Tween : RefCounted() {
   /**
    * Creates and appends an [IntervalTweener]. This method can be used to create delays in the tween
    * animation, as an alternative to using the delay in other [Tweener]s, or when there's no animation
-   * (in which case the [Tween] acts as a timer). [param time] is the length of the interval, in
-   * seconds.
+   * (in which case the [Tween] acts as a timer). [time] is the length of the interval, in seconds.
    * **Example:** Creating an interval in code execution:
    *
    * gdscript:
@@ -335,10 +332,10 @@ public open class Tween : RefCounted() {
   /**
    * Creates and appends a [MethodTweener]. This method is similar to a combination of
    * [tweenCallback] and [tweenProperty]. It calls a method over time with a tweened value provided as
-   * an argument. The value is tweened between [param from] and [param to] over the time specified by
-   * [param duration], in seconds. Use [Callable.bind] to bind additional arguments for the call. You
-   * can use [MethodTweener.setEase] and [MethodTweener.setTrans] to tweak the easing and transition of
-   * the value or [MethodTweener.setDelay] to delay the tweening.
+   * an argument. The value is tweened between [from] and [to] over the time specified by [duration],
+   * in seconds. Use [Callable.bind] to bind additional arguments for the call. You can use
+   * [MethodTweener.setEase] and [MethodTweener.setTrans] to tweak the easing and transition of the
+   * value or [MethodTweener.setDelay] to delay the tweening.
    * **Example:** Making a 3D object look from one point to another point:
    *
    * gdscript:
@@ -394,9 +391,9 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Processes the [Tween] by the given [param delta] value, in seconds. This is mostly useful for
-   * manual control when the [Tween] is paused. It can also be used to end the [Tween] animation
-   * immediately, by setting [param delta] longer than the whole duration of the [Tween] animation.
+   * Processes the [Tween] by the given [delta] value, in seconds. This is mostly useful for manual
+   * control when the [Tween] is paused. It can also be used to end the [Tween] animation immediately,
+   * by setting [delta] longer than the whole duration of the [Tween] animation.
    * Returns `true` if the [Tween] still has [Tweener]s that haven't finished.
    */
   public fun customStep(delta: Double): Boolean {
@@ -479,11 +476,11 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Binds this [Tween] with the given [param node]. [Tween]s are processed directly by the
-   * [SceneTree], so they run independently of the animated nodes. When you bind a [Node] with the
-   * [Tween], the [Tween] will halt the animation when the object is not inside tree and the [Tween]
-   * will be automatically killed when the bound object is freed. Also [constant TWEEN_PAUSE_BOUND]
-   * will make the pausing behavior dependent on the bound node.
+   * Binds this [Tween] with the given [node]. [Tween]s are processed directly by the [SceneTree],
+   * so they run independently of the animated nodes. When you bind a [Node] with the [Tween], the
+   * [Tween] will halt the animation when the object is not inside tree and the [Tween] will be
+   * automatically killed when the bound object is freed. Also [TWEENPAUSEBOUND] will make the pausing
+   * behavior dependent on the bound node.
    * For a shorter way to create and bind a [Tween], you can use [Node.createTween].
    */
   public fun bindNode(node: Node): Tween? {
@@ -495,7 +492,7 @@ public open class Tween : RefCounted() {
   /**
    * Determines whether the [Tween] should run after process frames (see [Node.Process]) or physics
    * frames (see [Node.PhysicsProcess]).
-   * Default value is [constant TWEEN_PROCESS_IDLE].
+   * Default value is [TWEENPROCESSIDLE].
    */
   public fun setProcessMode(mode: TweenProcessMode): Tween? {
     TransferContext.writeArguments(LONG to mode.id)
@@ -504,9 +501,9 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Determines the behavior of the [Tween] when the [SceneTree] is paused. Check [enum
-   * TweenPauseMode] for options.
-   * Default value is [constant TWEEN_PAUSE_BOUND].
+   * Determines the behavior of the [Tween] when the [SceneTree] is paused. Check [TweenPauseMode]
+   * for options.
+   * Default value is [TWEENPAUSEBOUND].
    */
   public fun setPauseMode(mode: TweenPauseMode): Tween? {
     TransferContext.writeArguments(LONG to mode.id)
@@ -515,7 +512,7 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * If [param parallel] is `true`, the [Tweener]s appended after this method will by default run
+   * If [parallel] is `true`, the [Tweener]s appended after this method will by default run
    * simultaneously, as opposed to sequentially.
    */
   @JvmOverloads
@@ -566,7 +563,7 @@ public open class Tween : RefCounted() {
   /**
    * Sets the default transition type for [PropertyTweener]s and [MethodTweener]s animated by this
    * [Tween].
-   * If not specified, the default value is [constant TRANS_LINEAR].
+   * If not specified, the default value is [TRANSLINEAR].
    */
   public fun setTrans(trans: TransitionType): Tween? {
     TransferContext.writeArguments(LONG to trans.id)
@@ -577,7 +574,7 @@ public open class Tween : RefCounted() {
   /**
    * Sets the default ease type for [PropertyTweener]s and [MethodTweener]s animated by this
    * [Tween].
-   * If not specified, the default value is [constant EASE_IN_OUT].
+   * If not specified, the default value is [EASEINOUT].
    */
   public fun setEase(ease: EaseType): Tween? {
     TransferContext.writeArguments(LONG to ease.id)
@@ -665,7 +662,7 @@ public open class Tween : RefCounted() {
   ) {
     /**
      * If the [Tween] has a bound node, it will process when that node can process (see
-     * [Node.processMode]). Otherwise it's the same as [constant TWEEN_PAUSE_STOP].
+     * [Node.processMode]). Otherwise it's the same as [TWEENPAUSESTOP].
      */
     TWEEN_PAUSE_BOUND(0),
     /**
@@ -763,13 +760,11 @@ public open class Tween : RefCounted() {
      */
     EASE_OUT(1),
     /**
-     * A combination of [constant EASE_IN] and [constant EASE_OUT]. The interpolation is slowest at
-     * both ends.
+     * A combination of [EASEIN] and [EASEOUT]. The interpolation is slowest at both ends.
      */
     EASE_IN_OUT(2),
     /**
-     * A combination of [constant EASE_IN] and [constant EASE_OUT]. The interpolation is fastest at
-     * both ends.
+     * A combination of [EASEIN] and [EASEOUT]. The interpolation is fastest at both ends.
      */
     EASE_OUT_IN(3),
     ;
@@ -789,17 +784,16 @@ public open class Tween : RefCounted() {
      * This method can be used for manual interpolation of a value, when you don't want [Tween] to
      * do animating for you. It's similar to [@GlobalScope.lerp], but with support for custom
      * transition and easing.
-     * [param initial_value] is the starting value of the interpolation.
-     * [param delta_value] is the change of the value in the interpolation, i.e. it's equal to
+     * [initialValue] is the starting value of the interpolation.
+     * [deltaValue] is the change of the value in the interpolation, i.e. it's equal to
      * `final_value - initial_value`.
-     * [param elapsed_time] is the time in seconds that passed after the interpolation started and
-     * it's used to control the position of the interpolation. E.g. when it's equal to half of the
-     * [param duration], the interpolated value will be halfway between initial and final values. This
-     * value can also be greater than [param duration] or lower than 0, which will extrapolate the
-     * value.
-     * [param duration] is the total time of the interpolation.
-     * **Note:** If [param duration] is equal to `0`, the method will always return the final value,
-     * regardless of [param elapsed_time] provided.
+     * [elapsedTime] is the time in seconds that passed after the interpolation started and it's
+     * used to control the position of the interpolation. E.g. when it's equal to half of the
+     * [duration], the interpolated value will be halfway between initial and final values. This value
+     * can also be greater than [duration] or lower than 0, which will extrapolate the value.
+     * [duration] is the total time of the interpolation.
+     * **Note:** If [duration] is equal to `0`, the method will always return the final value,
+     * regardless of [elapsedTime] provided.
      */
     public fun interpolateValue(
       initialValue: Any?,

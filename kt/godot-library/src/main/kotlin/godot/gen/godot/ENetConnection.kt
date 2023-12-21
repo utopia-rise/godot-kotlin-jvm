@@ -43,8 +43,8 @@ public open class ENetConnection : RefCounted() {
   }
 
   /**
-   * Create an ENetHost like [createHost] which is also bound to the given [param bind_address] and
-   * [param bind_port].
+   * Create an ENetHost like [createHost] which is also bound to the given [bindAddress] and
+   * [bindPort].
    */
   @JvmOverloads
   public fun createHostBound(
@@ -61,9 +61,8 @@ public open class ENetConnection : RefCounted() {
   }
 
   /**
-   * Create an ENetHost that will allow up to [param max_peers] connected peers, each allocating up
-   * to [param max_channels] channels, optionally limiting bandwidth to [param in_bandwidth] and [param
-   * out_bandwidth].
+   * Create an ENetHost that will allow up to [maxPeers] connected peers, each allocating up to
+   * [maxChannels] channels, optionally limiting bandwidth to [inBandwidth] and [outBandwidth].
    */
   @JvmOverloads
   public fun createHost(
@@ -86,9 +85,9 @@ public open class ENetConnection : RefCounted() {
   }
 
   /**
-   * Initiates a connection to a foreign [param address] using the specified [param port] and
-   * allocating the requested [param channels]. Optional [param data] can be passed during connection
-   * in the form of a 32 bit integer.
+   * Initiates a connection to a foreign [address] using the specified [port] and allocating the
+   * requested [channels]. Optional [data] can be passed during connection in the form of a 32 bit
+   * integer.
    * **Note:** You must call either [createHost] or [createHostBound] before calling this method.
    */
   @JvmOverloads
@@ -105,10 +104,9 @@ public open class ENetConnection : RefCounted() {
 
   /**
    * Waits for events on the host specified and shuttles packets between the host and its peers. The
-   * returned [Array] will have 4 elements. An [enum EventType], the [ENetPacketPeer] which generated
-   * the event, the event associated data (if any), the event associated channel (if any). If the
-   * generated event is [constant EVENT_RECEIVE], the received packet will be queued to the associated
-   * [ENetPacketPeer].
+   * returned [Array] will have 4 elements. An [EventType], the [ENetPacketPeer] which generated the
+   * event, the event associated data (if any), the event associated channel (if any). If the generated
+   * event is [EVENTRECEIVE], the received packet will be queued to the associated [ENetPacketPeer].
    * Call this function regularly to handle connections, disconnections, and to receive new packets.
    */
   @JvmOverloads
@@ -144,8 +142,8 @@ public open class ENetConnection : RefCounted() {
   }
 
   /**
-   * Queues a [param packet] to be sent to all peers associated with the host over the specified
-   * [param channel]. See [ENetPacketPeer] `FLAG_*` constants for available packet flags.
+   * Queues a [packet] to be sent to all peers associated with the host over the specified
+   * [channel]. See [ENetPacketPeer] `FLAG_*` constants for available packet flags.
    */
   public fun broadcast(
     channel: Int,
@@ -186,8 +184,8 @@ public open class ENetConnection : RefCounted() {
   /**
    * Configure this ENetHost to use the custom Godot extension allowing DTLS encryption for ENet
    * clients. Call this before [connectToHost] to have ENet connect using DTLS validating the server
-   * certificate against [param hostname]. You can pass the optional [param client_options] parameter
-   * to customize the trusted certification authorities, or disable the common name verification. See
+   * certificate against [hostname]. You can pass the optional [clientOptions] parameter to customize
+   * the trusted certification authorities, or disable the common name verification. See
    * [TLSOptions.client] and [TLSOptions.clientUnsafe].
    */
   @JvmOverloads
@@ -207,7 +205,7 @@ public open class ENetConnection : RefCounted() {
   }
 
   /**
-   * Returns and resets host statistics. See [enum HostStatistic] for more info.
+   * Returns and resets host statistics. See [HostStatistic] for more info.
    */
   public fun popStatistic(statistic: HostStatistic): Double {
     TransferContext.writeArguments(LONG to statistic.id)
@@ -245,7 +243,7 @@ public open class ENetConnection : RefCounted() {
   }
 
   /**
-   * Sends a [param packet] toward a destination from the address and port currently bound by this
+   * Sends a [packet] toward a destination from the address and port currently bound by this
    * ENetConnection instance. 
    * This is useful as it serves to establish entries in NAT routing tables on all devices between
    * this bound instance and the public facing internet, allowing a prospective client's connection
@@ -282,12 +280,12 @@ public open class ENetConnection : RefCounted() {
     COMPRESS_RANGE_CODER(1),
     /**
      * [url=https://fastlz.org/]FastLZ[/url] compression. This option uses less CPU resources
-     * compared to [constant COMPRESS_ZLIB], at the expense of using more bandwidth.
+     * compared to [COMPRESSZLIB], at the expense of using more bandwidth.
      */
     COMPRESS_FASTLZ(2),
     /**
      * [url=https://www.zlib.net/]Zlib[/url] compression. This option uses less bandwidth compared
-     * to [constant COMPRESS_FASTLZ], at the expense of using more CPU resources.
+     * to [COMPRESSFASTLZ], at the expense of using more CPU resources.
      */
     COMPRESS_ZLIB(3),
     /**

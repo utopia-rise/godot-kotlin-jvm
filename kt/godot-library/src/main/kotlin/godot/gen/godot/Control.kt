@@ -70,8 +70,8 @@ import kotlin.jvm.JvmOverloads
  * Only one [Control] node can be in focus. Only the node in focus will receive events. To get the
  * focus, call [grabFocus]. [Control] nodes lose focus when another node grabs it, or if you hide the
  * node in focus.
- * Sets [mouseFilter] to [constant MOUSE_FILTER_IGNORE] to tell a [Control] node to ignore mouse or
- * touch events. You'll need it if you place an icon on top of a button.
+ * Sets [mouseFilter] to [MOUSEFILTERIGNORE] to tell a [Control] node to ignore mouse or touch
+ * events. You'll need it if you place an icon on top of a button.
  * [Theme] resources change the Control's appearance. If you change the [Theme] on a [Control] node,
  * it affects all of its children. To override some of the theme's parameters, call one of the
  * `add_theme_*_override` methods, like [addThemeFontOverride]. You can override the theme with the
@@ -136,7 +136,7 @@ public open class Control : CanvasItem() {
   public val minimumSizeChanged: Signal0 by signal()
 
   /**
-   * Emitted when the [constant NOTIFICATION_THEME_CHANGED] notification is sent.
+   * Emitted when the [NOTIFICATIONTHEMECHANGED] notification is sent.
    */
   public val themeChanged: Signal0 by signal()
 
@@ -192,7 +192,7 @@ public open class Control : CanvasItem() {
   /**
    * Anchors the left edge of the node to the origin, the center or the end of its parent control.
    * It changes how the left offset updates when the node moves or changes size. You can use one of the
-   * [enum Anchor] constants for convenience.
+   * [Anchor] constants for convenience.
    */
   public val anchorLeft: Float
     get() {
@@ -204,7 +204,7 @@ public open class Control : CanvasItem() {
   /**
    * Anchors the top edge of the node to the origin, the center or the end of its parent control. It
    * changes how the top offset updates when the node moves or changes size. You can use one of the
-   * [enum Anchor] constants for convenience.
+   * [Anchor] constants for convenience.
    */
   public val anchorTop: Float
     get() {
@@ -216,7 +216,7 @@ public open class Control : CanvasItem() {
   /**
    * Anchors the right edge of the node to the origin, the center or the end of its parent control.
    * It changes how the right offset updates when the node moves or changes size. You can use one of
-   * the [enum Anchor] constants for convenience.
+   * the [Anchor] constants for convenience.
    */
   public val anchorRight: Float
     get() {
@@ -228,7 +228,7 @@ public open class Control : CanvasItem() {
   /**
    * Anchors the bottom edge of the node to the origin, the center, or the end of its parent
    * control. It changes how the bottom offset updates when the node moves or changes size. You can use
-   * one of the [enum Anchor] constants for convenience.
+   * one of the [Anchor] constants for convenience.
    */
   public val anchorBottom: Float
     get() {
@@ -452,8 +452,8 @@ public open class Control : CanvasItem() {
 
   /**
    * Tells the parent [Container] nodes how they should resize and place the node on the X axis. Use
-   * a combination of the [enum SizeFlags] constants to change the flags. See the constants to learn
-   * what each does.
+   * a combination of the [SizeFlags] constants to change the flags. See the constants to learn what
+   * each does.
    */
   public var sizeFlagsHorizontal: SizeFlags
     get() {
@@ -468,8 +468,8 @@ public open class Control : CanvasItem() {
 
   /**
    * Tells the parent [Container] nodes how they should resize and place the node on the Y axis. Use
-   * a combination of the [enum SizeFlags] constants to change the flags. See the constants to learn
-   * what each does.
+   * a combination of the [SizeFlags] constants to change the flags. See the constants to learn what
+   * each does.
    */
   public var sizeFlagsVertical: SizeFlags
     get() {
@@ -483,10 +483,10 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * If the node and at least one of its neighbors uses the [constant SIZE_EXPAND] size flag, the
-   * parent [Container] will let it take more or less space depending on this property. If this node
-   * has a stretch ratio of 2 and its neighbor a ratio of 1, this node will take two thirds of the
-   * available space.
+   * If the node and at least one of its neighbors uses the [SIZEEXPAND] size flag, the parent
+   * [Container] will let it take more or less space depending on this property. If this node has a
+   * stretch ratio of 2 and its neighbor a ratio of 1, this node will take two thirds of the available
+   * space.
    */
   public var sizeFlagsStretchRatio: Float
     get() {
@@ -534,8 +534,8 @@ public open class Control : CanvasItem() {
 
   /**
    * The default tooltip text. The tooltip appears when the user's mouse cursor stays idle over this
-   * control for a few moments, provided that the [mouseFilter] property is not [constant
-   * MOUSE_FILTER_IGNORE]. The time required for the tooltip to appear can be changed with the
+   * control for a few moments, provided that the [mouseFilter] property is not [MOUSEFILTERIGNORE].
+   * The time required for the tooltip to appear can be changed with the
    * [ProjectSettings.gui/timers/tooltipDelaySec] option. See also [getTooltip].
    * The tooltip popup will use either a default implementation, or a custom one that you can
    * provide by overriding [_makeCustomTooltip]. The default tooltip includes a [PopupPanel] and
@@ -710,8 +710,8 @@ public open class Control : CanvasItem() {
 
   /**
    * When enabled, scroll wheel events processed by [_guiInput] will be passed to the parent control
-   * even if [mouseFilter] is set to [constant MOUSE_FILTER_STOP]. As it defaults to true, this allows
-   * nested scrollable containers to work out of the box.
+   * even if [mouseFilter] is set to [MOUSEFILTERSTOP]. As it defaults to true, this allows nested
+   * scrollable containers to work out of the box.
    * You should disable it on the root of your UI if you do not want scroll events to go to the
    * [Node.UnhandledInput] processing.
    */
@@ -899,8 +899,8 @@ public open class Control : CanvasItem() {
 
 
   /**
-   * Virtual method to be implemented by the user. Returns whether the given [param point] is inside
-   * this control.
+   * Virtual method to be implemented by the user. Returns whether the given [point] is inside this
+   * control.
    * If not overridden, default behavior is checking if the point is within control's Rect.
    * **Note:** If you want to check if a point is inside the control, you can use
    * `Rect2(Vector2.ZERO, size).has_point(point)`.
@@ -912,8 +912,8 @@ public open class Control : CanvasItem() {
   /**
    * User defined BiDi algorithm override function.
    * Returns an [Array] of [Vector3i] text ranges and text base directions, in the left-to-right
-   * order. Ranges should cover full source [param text] without overlaps. BiDi algorithm will be used
-   * on each range separately.
+   * order. Ranges should cover full source [text] without overlaps. BiDi algorithm will be used on
+   * each range separately.
    */
   public open fun _structuredTextParser(args: VariantArray<Any?>, text: String):
       VariantArray<Vector3i> {
@@ -924,7 +924,7 @@ public open class Control : CanvasItem() {
    * Virtual method to be implemented by the user. Returns the minimum size for this control.
    * Alternative to [customMinimumSize] for controlling minimum size via code. The actual minimum size
    * will be the max value of these two (in each axis separately).
-   * If not overridden, defaults to [constant Vector2.ZERO].
+   * If not overridden, defaults to [Vector2.ZERO].
    * **Note:** This method will not be called when the script is attached to a [Control] node that
    * already overrides its minimum size (e.g. [Label], [Button], [PanelContainer] etc.). It can only be
    * used with most basic GUI nodes, like [Control], [Container], [Panel] etc.
@@ -934,8 +934,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Virtual method to be implemented by the user. Returns the tooltip text for the position [param
-   * at_position] in control's local coordinates, which will typically appear when the cursor is
+   * Virtual method to be implemented by the user. Returns the tooltip text for the position
+   * [atPosition] in control's local coordinates, which will typically appear when the cursor is
    * resting over this control. See [getTooltip].
    * **Note:** If this method returns an empty [String], no tooltip is displayed.
    */
@@ -946,8 +946,8 @@ public open class Control : CanvasItem() {
   /**
    * Godot calls this method to get data that can be dragged and dropped onto controls that expect
    * drop data. Returns `null` if there is no data to drag. Controls that want to receive drop data
-   * should implement [_canDropData] and [_dropData]. [param at_position] is local to this control.
-   * Drag may be forced with [forceDrag].
+   * should implement [_canDropData] and [_dropData]. [atPosition] is local to this control. Drag may
+   * be forced with [forceDrag].
    * A preview that will follow the mouse that should represent the data can be set with
    * [setDragPreview]. A good time to set the preview is in this method.
    *
@@ -975,8 +975,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Godot calls this method to test if [param data] from a control's [_getDragData] can be dropped
-   * at [param at_position]. [param at_position] is local to this control.
+   * Godot calls this method to test if [data] from a control's [_getDragData] can be dropped at
+   * [atPosition]. [atPosition] is local to this control.
    * This method should only be used to test the data. Process the data in [_dropData].
    *
    * gdscript:
@@ -1002,9 +1002,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Godot calls this method to pass you the [param data] from a control's [_getDragData] result.
-   * Godot first calls [_canDropData] to test if [param data] is allowed to drop at [param at_position]
-   * where [param at_position] is local to this control.
+   * Godot calls this method to pass you the [data] from a control's [_getDragData] result. Godot
+   * first calls [_canDropData] to test if [data] is allowed to drop at [atPosition] where [atPosition]
+   * is local to this control.
    *
    * gdscript:
    * ```gdscript
@@ -1033,8 +1033,8 @@ public open class Control : CanvasItem() {
 
   /**
    * Virtual method to be implemented by the user. Returns a [Control] node that should be used as a
-   * tooltip instead of the default one. The [param for_text] includes the contents of the
-   * [tooltipText] property.
+   * tooltip instead of the default one. The [forText] includes the contents of the [tooltipText]
+   * property.
    * The returned node must be of type [Control] or Control-derived. It can have child nodes of any
    * type. It is freed when the tooltip disappears, so make sure you always provide a new instance (if
    * you want to use a pre-existing node from your scene tree, you can duplicate it and pass the
@@ -1119,11 +1119,10 @@ public open class Control : CanvasItem() {
    *
    * The event won't trigger if:
    * * clicking outside the control (see [_hasPoint]);
-   * * control has [mouseFilter] set to [constant MOUSE_FILTER_IGNORE];
+   * * control has [mouseFilter] set to [MOUSEFILTERIGNORE];
    * * control is obstructed by another [Control] on top of it, which doesn't have [mouseFilter] set
-   * to [constant MOUSE_FILTER_IGNORE];
-   * * control's parent has [mouseFilter] set to [constant MOUSE_FILTER_STOP] or has accepted the
-   * event;
+   * to [MOUSEFILTERIGNORE];
+   * * control's parent has [mouseFilter] set to [MOUSEFILTERSTOP] or has accepted the event;
    * * it happens outside the parent's rectangle and the parent has either [clipContents] enabled.
    * **Note:** Event position is relative to the control origin.
    */
@@ -1159,9 +1158,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the anchors to a [param preset] from [enum Control.LayoutPreset] enum. This is the code
-   * equivalent to using the Layout menu in the 2D editor.
-   * If [param keep_offsets] is `true`, control's position will also be updated.
+   * Sets the anchors to a [preset] from [Control.LayoutPreset] enum. This is the code equivalent to
+   * using the Layout menu in the 2D editor.
+   * If [keepOffsets] is `true`, control's position will also be updated.
    */
   @JvmOverloads
   public fun setAnchorsPreset(preset: LayoutPreset, keepOffsets: Boolean = false): Unit {
@@ -1170,12 +1169,12 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the offsets to a [param preset] from [enum Control.LayoutPreset] enum. This is the code
-   * equivalent to using the Layout menu in the 2D editor.
-   * Use parameter [param resize_mode] with constants from [enum Control.LayoutPresetMode] to better
-   * determine the resulting size of the [Control]. Constant size will be ignored if used with presets
-   * that change size, e.g. [constant PRESET_LEFT_WIDE].
-   * Use parameter [param margin] to determine the gap between the [Control] and the edges.
+   * Sets the offsets to a [preset] from [Control.LayoutPreset] enum. This is the code equivalent to
+   * using the Layout menu in the 2D editor.
+   * Use parameter [resizeMode] with constants from [Control.LayoutPresetMode] to better determine
+   * the resulting size of the [Control]. Constant size will be ignored if used with presets that
+   * change size, e.g. [PRESETLEFTWIDE].
+   * Use parameter [margin] to determine the gap between the [Control] and the edges.
    */
   @JvmOverloads
   public fun setOffsetsPreset(
@@ -1201,13 +1200,13 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the anchor for the specified [enum Side] to [param anchor]. A setter method for
-   * [anchorBottom], [anchorLeft], [anchorRight] and [anchorTop].
-   * If [param keep_offset] is `true`, offsets aren't updated after this operation.
-   * If [param push_opposite_anchor] is `true` and the opposite anchor overlaps this anchor, the
-   * opposite one will have its value overridden. For example, when setting left anchor to 1 and the
-   * right anchor has value of 0.5, the right anchor will also get value of 1. If [param
-   * push_opposite_anchor] was `false`, the left anchor would get value 0.5.
+   * Sets the anchor for the specified [Side] to [anchor]. A setter method for [anchorBottom],
+   * [anchorLeft], [anchorRight] and [anchorTop].
+   * If [keepOffset] is `true`, offsets aren't updated after this operation.
+   * If [pushOppositeAnchor] is `true` and the opposite anchor overlaps this anchor, the opposite
+   * one will have its value overridden. For example, when setting left anchor to 1 and the right
+   * anchor has value of 0.5, the right anchor will also get value of 1. If [pushOppositeAnchor] was
+   * `false`, the left anchor would get value 0.5.
    */
   @JvmOverloads
   public fun setAnchor(
@@ -1252,8 +1251,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the [position] to given [param position].
-   * If [param keep_offsets] is `true`, control's anchors will be updated instead of offsets.
+   * Sets the [position] to given [position].
+   * If [keepOffsets] is `true`, control's anchors will be updated instead of offsets.
    */
   @JvmOverloads
   public fun setPosition(position: Vector2, keepOffsets: Boolean = false): Unit {
@@ -1263,7 +1262,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Sets the size (see [size]).
-   * If [param keep_offsets] is `true`, control's anchors will be updated instead of offsets.
+   * If [keepOffsets] is `true`, control's anchors will be updated instead of offsets.
    */
   @JvmOverloads
   public fun setSize(size: Vector2, keepOffsets: Boolean = false): Unit {
@@ -1281,8 +1280,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the [globalPosition] to given [param position].
-   * If [param keep_offsets] is `true`, control's anchors will be updated instead of offsets.
+   * Sets the [globalPosition] to given [position].
+   * If [keepOffsets] is `true`, control's anchors will be updated instead of offsets.
    */
   @JvmOverloads
   public fun setGlobalPosition(position: Vector2, keepOffsets: Boolean = false): Unit {
@@ -1407,7 +1406,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Finds the next [Control] that can receive the focus on the specified [enum Side].
+   * Finds the next [Control] that can receive the focus on the specified [Side].
    * **Note:** This is different from [getFocusNeighbor], which returns the path of a specified
    * focus neighbor.
    */
@@ -1418,7 +1417,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Prevents `*_theme_*_override` methods from emitting [constant NOTIFICATION_THEME_CHANGED] until
+   * Prevents `*_theme_*_override` methods from emitting [NOTIFICATIONTHEMECHANGED] until
    * [endBulkThemeOverride] is called.
    */
   public fun beginBulkThemeOverride(): Unit {
@@ -1435,8 +1434,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme icon with the specified [param name]. Local overrides
-   * always take precedence when fetching theme items for the control. An override can be removed with
+   * Creates a local override for a theme icon with the specified [name]. Local overrides always
+   * take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeIconOverride].
    * See also [getThemeIcon].
    */
@@ -1446,9 +1445,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme [StyleBox] with the specified [param name]. Local
-   * overrides always take precedence when fetching theme items for the control. An override can be
-   * removed with [removeThemeStyleboxOverride].
+   * Creates a local override for a theme [StyleBox] with the specified [name]. Local overrides
+   * always take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeStyleboxOverride].
    * See also [getThemeStylebox].
    * **Example of modifying a property in a StyleBox by duplicating it:**
    *
@@ -1484,8 +1483,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme [Font] with the specified [param name]. Local overrides
-   * always take precedence when fetching theme items for the control. An override can be removed with
+   * Creates a local override for a theme [Font] with the specified [name]. Local overrides always
+   * take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeFontOverride].
    * See also [getThemeFont].
    */
@@ -1495,7 +1494,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme font size with the specified [param name]. Local overrides
+   * Creates a local override for a theme font size with the specified [name]. Local overrides
    * always take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeFontSizeOverride].
    * See also [getThemeFontSize].
@@ -1506,8 +1505,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme [Color] with the specified [param name]. Local overrides
-   * always take precedence when fetching theme items for the control. An override can be removed with
+   * Creates a local override for a theme [Color] with the specified [name]. Local overrides always
+   * take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeColorOverride].
    * See also [getThemeColor].
    * **Example of overriding a label's color and resetting it later:**
@@ -1538,8 +1537,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme constant with the specified [param name]. Local overrides
-   * always take precedence when fetching theme items for the control. An override can be removed with
+   * Creates a local override for a theme constant with the specified [name]. Local overrides always
+   * take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeConstantOverride].
    * See also [getThemeConstant].
    */
@@ -1549,7 +1548,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Removes a local override for a theme icon with the specified [param name] previously added by
+   * Removes a local override for a theme icon with the specified [name] previously added by
    * [addThemeIconOverride] or via the Inspector dock.
    */
   public fun removeThemeIconOverride(name: StringName): Unit {
@@ -1558,8 +1557,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Removes a local override for a theme [StyleBox] with the specified [param name] previously
-   * added by [addThemeStyleboxOverride] or via the Inspector dock.
+   * Removes a local override for a theme [StyleBox] with the specified [name] previously added by
+   * [addThemeStyleboxOverride] or via the Inspector dock.
    */
   public fun removeThemeStyleboxOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -1567,7 +1566,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Removes a local override for a theme [Font] with the specified [param name] previously added by
+   * Removes a local override for a theme [Font] with the specified [name] previously added by
    * [addThemeFontOverride] or via the Inspector dock.
    */
   public fun removeThemeFontOverride(name: StringName): Unit {
@@ -1576,8 +1575,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Removes a local override for a theme font size with the specified [param name] previously added
-   * by [addThemeFontSizeOverride] or via the Inspector dock.
+   * Removes a local override for a theme font size with the specified [name] previously added by
+   * [addThemeFontSizeOverride] or via the Inspector dock.
    */
   public fun removeThemeFontSizeOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -1585,8 +1584,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Removes a local override for a theme [Color] with the specified [param name] previously added
-   * by [addThemeColorOverride] or via the Inspector dock.
+   * Removes a local override for a theme [Color] with the specified [name] previously added by
+   * [addThemeColorOverride] or via the Inspector dock.
    */
   public fun removeThemeColorOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -1594,8 +1593,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Removes a local override for a theme constant with the specified [param name] previously added
-   * by [addThemeConstantOverride] or via the Inspector dock.
+   * Removes a local override for a theme constant with the specified [name] previously added by
+   * [addThemeConstantOverride] or via the Inspector dock.
    */
   public fun removeThemeConstantOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -1604,7 +1603,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Returns an icon from the first matching [Theme] in the tree if that [Theme] has an icon item
-   * with the specified [param name] and [param theme_type].
+   * with the specified [name] and [themeType].
    * See [getThemeColor] for details.
    */
   @JvmOverloads
@@ -1616,7 +1615,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Returns a [StyleBox] from the first matching [Theme] in the tree if that [Theme] has a stylebox
-   * item with the specified [param name] and [param theme_type].
+   * item with the specified [name] and [themeType].
    * See [getThemeColor] for details.
    */
   @JvmOverloads
@@ -1628,7 +1627,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Returns a [Font] from the first matching [Theme] in the tree if that [Theme] has a font item
-   * with the specified [param name] and [param theme_type].
+   * with the specified [name] and [themeType].
    * See [getThemeColor] for details.
    */
   @JvmOverloads
@@ -1640,7 +1639,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Returns a font size from the first matching [Theme] in the tree if that [Theme] has a font size
-   * item with the specified [param name] and [param theme_type].
+   * item with the specified [name] and [themeType].
    * See [getThemeColor] for details.
    */
   @JvmOverloads
@@ -1652,11 +1651,11 @@ public open class Control : CanvasItem() {
 
   /**
    * Returns a [Color] from the first matching [Theme] in the tree if that [Theme] has a color item
-   * with the specified [param name] and [param theme_type]. If [param theme_type] is omitted the class
-   * name of the current control is used as the type, or [themeTypeVariation] if it is defined. If the
-   * type is a class name its parent classes are also checked, in order of inheritance. If the type is
-   * a variation its base types are checked, in order of dependency, then the control's class name and
-   * its parent classes are checked.
+   * with the specified [name] and [themeType]. If [themeType] is omitted the class name of the current
+   * control is used as the type, or [themeTypeVariation] if it is defined. If the type is a class name
+   * its parent classes are also checked, in order of inheritance. If the type is a variation its base
+   * types are checked, in order of dependency, then the control's class name and its parent classes
+   * are checked.
    * For the current control its local overrides are considered first (see [addThemeColorOverride]),
    * then its assigned [theme]. After the current control, each parent control and its assigned [theme]
    * are considered; controls without a [theme] assigned are skipped. If no matching [Theme] is found
@@ -1691,7 +1690,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Returns a constant from the first matching [Theme] in the tree if that [Theme] has a constant
-   * item with the specified [param name] and [param theme_type].
+   * item with the specified [name] and [themeType].
    * See [getThemeColor] for details.
    */
   @JvmOverloads
@@ -1702,8 +1701,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme icon with the specified [param name] in
-   * this [Control] node.
+   * Returns `true` if there is a local override for a theme icon with the specified [name] in this
+   * [Control] node.
    * See [addThemeIconOverride].
    */
   public fun hasThemeIconOverride(name: StringName): Boolean {
@@ -1713,8 +1712,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme [StyleBox] with the specified [param
-   * name] in this [Control] node.
+   * Returns `true` if there is a local override for a theme [StyleBox] with the specified [name] in
+   * this [Control] node.
    * See [addThemeStyleboxOverride].
    */
   public fun hasThemeStyleboxOverride(name: StringName): Boolean {
@@ -1724,8 +1723,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme [Font] with the specified [param name]
-   * in this [Control] node.
+   * Returns `true` if there is a local override for a theme [Font] with the specified [name] in
+   * this [Control] node.
    * See [addThemeFontOverride].
    */
   public fun hasThemeFontOverride(name: StringName): Boolean {
@@ -1735,8 +1734,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme font size with the specified [param
-   * name] in this [Control] node.
+   * Returns `true` if there is a local override for a theme font size with the specified [name] in
+   * this [Control] node.
    * See [addThemeFontSizeOverride].
    */
   public fun hasThemeFontSizeOverride(name: StringName): Boolean {
@@ -1746,8 +1745,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme [Color] with the specified [param name]
-   * in this [Control] node.
+   * Returns `true` if there is a local override for a theme [Color] with the specified [name] in
+   * this [Control] node.
    * See [addThemeColorOverride].
    */
   public fun hasThemeColorOverride(name: StringName): Boolean {
@@ -1757,8 +1756,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme constant with the specified [param
-   * name] in this [Control] node.
+   * Returns `true` if there is a local override for a theme constant with the specified [name] in
+   * this [Control] node.
    * See [addThemeConstantOverride].
    */
   public fun hasThemeConstantOverride(name: StringName): Boolean {
@@ -1769,7 +1768,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has an icon item with the
-   * specified [param name] and [param theme_type].
+   * specified [name] and [themeType].
    * See [getThemeColor] for details.
    */
   @JvmOverloads
@@ -1781,7 +1780,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a stylebox item with the
-   * specified [param name] and [param theme_type].
+   * specified [name] and [themeType].
    * See [getThemeColor] for details.
    */
   @JvmOverloads
@@ -1793,7 +1792,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a font item with the
-   * specified [param name] and [param theme_type].
+   * specified [name] and [themeType].
    * See [getThemeColor] for details.
    */
   @JvmOverloads
@@ -1805,7 +1804,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a font size item with the
-   * specified [param name] and [param theme_type].
+   * specified [name] and [themeType].
    * See [getThemeColor] for details.
    */
   @JvmOverloads
@@ -1817,7 +1816,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a color item with the
-   * specified [param name] and [param theme_type].
+   * specified [name] and [themeType].
    * See [getThemeColor] for details.
    */
   @JvmOverloads
@@ -1829,7 +1828,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Returns `true` if there is a matching [Theme] in the tree that has a constant item with the
-   * specified [param name] and [param theme_type].
+   * specified [name] and [themeType].
    * See [getThemeColor] for details.
    */
   @JvmOverloads
@@ -1882,8 +1881,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the tooltip text for the position [param at_position] in control's local coordinates,
-   * which will typically appear when the cursor is resting over this control. By default, it returns
+   * Returns the tooltip text for the position [atPosition] in control's local coordinates, which
+   * will typically appear when the cursor is resting over this control. By default, it returns
    * [tooltipText].
    * This method can be overridden to customize its behavior. See [_getTooltip].
    * **Note:** If this method returns an empty [String], no tooltip is displayed.
@@ -1896,7 +1895,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the mouse cursor shape the control displays on mouse hover. See [enum CursorShape].
+   * Returns the mouse cursor shape the control displays on mouse hover. See [CursorShape].
    */
   @JvmOverloads
   public fun getCursorShape(position: Vector2 = Vector2(0, 0)): CursorShape {
@@ -1906,8 +1905,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Forces drag and bypasses [_getDragData] and [setDragPreview] by passing [param data] and [param
-   * preview]. Drag will start even if the mouse is neither over nor pressed on this control.
+   * Forces drag and bypasses [_getDragData] and [setDragPreview] by passing [data] and [preview].
+   * Drag will start even if the mouse is neither over nor pressed on this control.
    * The methods [_canDropData] and [_dropData] must be implemented on controls that want to receive
    * drop data.
    */
@@ -1997,7 +1996,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns `true` if a drag operation is successful. Alternative to
    * [Viewport.guiIsDragSuccessful].
-   * Best used with [constant Node.NOTIFICATION_DRAG_END].
+   * Best used with [Node.NOTIFICATIONDRAGEND].
    */
   public fun isDragSuccessful(): Boolean {
     TransferContext.writeArguments()
@@ -2006,7 +2005,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Moves the mouse cursor to [param position], relative to [position] of this [Control].
+   * Moves the mouse cursor to [position], relative to [position] of this [Control].
    * **Note:** [warpMouse] is only supported on Windows, macOS and Linux. It has no effect on
    * Android, iOS and Web.
    */
@@ -2127,8 +2126,8 @@ public open class Control : CanvasItem() {
     CURSOR_BDIAGSIZE(11),
     /**
      * Show the system's window resize mouse cursor when the user hovers the node. The cursor is a
-     * double-headed arrow that goes from the top left to the bottom right, the opposite of [constant
-     * CURSOR_BDIAGSIZE]. It tells the user they can resize the window or the panel both horizontally
+     * double-headed arrow that goes from the top left to the bottom right, the opposite of
+     * [CURSORBDIAGSIZE]. It tells the user they can resize the window or the panel both horizontally
      * and vertically.
      */
     CURSOR_FDIAGSIZE(12),
@@ -2139,12 +2138,12 @@ public open class Control : CanvasItem() {
     CURSOR_MOVE(13),
     /**
      * Show the system's vertical split mouse cursor when the user hovers the node. On Windows, it's
-     * the same as [constant CURSOR_VSIZE].
+     * the same as [CURSORVSIZE].
      */
     CURSOR_VSPLIT(14),
     /**
      * Show the system's horizontal split mouse cursor when the user hovers the node. On Windows,
-     * it's the same as [constant CURSOR_HSIZE].
+     * it's the same as [CURSORHSIZE].
      */
     CURSOR_HSPLIT(15),
     /**
@@ -2385,8 +2384,8 @@ public open class Control : CanvasItem() {
      * [signal mouse_exited] signals. This will not block other controls from receiving these events or
      * firing the signals. Ignored events will not be handled automatically.
      * **Note:** If the control has received [signal mouse_entered] but not [signal mouse_exited],
-     * changing the [mouseFilter] to [constant MOUSE_FILTER_IGNORE] will cause [signal mouse_exited] to
-     * be emitted.
+     * changing the [mouseFilter] to [MOUSEFILTERIGNORE] will cause [signal mouse_exited] to be
+     * emitted.
      */
     MOUSE_FILTER_IGNORE(2),
     ;
@@ -2531,7 +2530,7 @@ public open class Control : CanvasItem() {
      * is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event
      * reach it and regardless if it's currently focused or not.
      * **Note:** [CanvasItem.zIndex] doesn't affect which Control receives the notification.
-     * See also [constant NOTIFICATION_MOUSE_ENTER_SELF].
+     * See also [NOTIFICATIONMOUSEENTERSELF].
      */
     public final const val NOTIFICATION_MOUSE_ENTER: Long = 41
 
@@ -2540,7 +2539,7 @@ public open class Control : CanvasItem() {
      * is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event
      * reach it and regardless if it's currently focused or not.
      * **Note:** [CanvasItem.zIndex] doesn't affect which Control receives the notification.
-     * See also [constant NOTIFICATION_MOUSE_EXIT_SELF].
+     * See also [NOTIFICATIONMOUSEEXITSELF].
      */
     public final const val NOTIFICATION_MOUSE_EXIT: Long = 42
 
@@ -2549,7 +2548,7 @@ public open class Control : CanvasItem() {
      * other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if
      * it's currently focused or not.
      * **Note:** [CanvasItem.zIndex] doesn't affect which Control receives the notification.
-     * See also [constant NOTIFICATION_MOUSE_ENTER].
+     * See also [NOTIFICATIONMOUSEENTER].
      */
     public final const val NOTIFICATION_MOUSE_ENTER_SELF: Long = 60
 
@@ -2558,7 +2557,7 @@ public open class Control : CanvasItem() {
      * other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if
      * it's currently focused or not.
      * **Note:** [CanvasItem.zIndex] doesn't affect which Control receives the notification.
-     * See also [constant NOTIFICATION_MOUSE_EXIT].
+     * See also [NOTIFICATIONMOUSEEXIT].
      */
     public final const val NOTIFICATION_MOUSE_EXIT_SELF: Long = 61
 

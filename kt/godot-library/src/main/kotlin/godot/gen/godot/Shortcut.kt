@@ -61,7 +61,7 @@ public open class Shortcut : Resource() {
   }
 
   /**
-   * Returns whether any [InputEvent] in [events] equals [param event].
+   * Returns whether any [InputEvent] in [events] equals [event].
    */
   public fun matchesEvent(event: InputEvent): Boolean {
     TransferContext.writeArguments(OBJECT to event)

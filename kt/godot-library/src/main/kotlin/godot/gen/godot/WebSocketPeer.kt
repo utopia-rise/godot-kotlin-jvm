@@ -149,11 +149,11 @@ public open class WebSocketPeer : PacketPeer() {
 
   /**
    * Connects to the given URL. TLS certificates will be verified against the hostname when
-   * connecting using the `wss://` protocol. You can pass the optional [param tls_client_options]
-   * parameter to customize the trusted certification authorities, or disable the common name
-   * verification. See [TLSOptions.client] and [TLSOptions.clientUnsafe].
-   * **Note:** To avoid mixed content warnings or errors in Web, you may have to use a [param url]
-   * that starts with `wss://` (secure) instead of `ws://`. When doing so, make sure to use the fully
+   * connecting using the `wss://` protocol. You can pass the optional [tlsClientOptions] parameter to
+   * customize the trusted certification authorities, or disable the common name verification. See
+   * [TLSOptions.client] and [TLSOptions.clientUnsafe].
+   * **Note:** To avoid mixed content warnings or errors in Web, you may have to use a [url] that
+   * starts with `wss://` (secure) instead of `ws://`. When doing so, make sure to use the fully
    * qualified domain name that matches the one defined in the server's TLS certificate. Do not connect
    * directly via the IP address for `wss://` connections, as it won't match with the TLS certificate.
    */
@@ -165,9 +165,9 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   /**
-   * Accepts a peer connection performing the HTTP handshake as a WebSocket server. The [param
-   * stream] must be a valid TCP stream retrieved via [TCPServer.takeConnection], or a TLS stream
-   * accepted via [StreamPeerTLS.acceptStream].
+   * Accepts a peer connection performing the HTTP handshake as a WebSocket server. The [stream]
+   * must be a valid TCP stream retrieved via [TCPServer.takeConnection], or a TLS stream accepted via
+   * [StreamPeerTLS.acceptStream].
    * **Note:** Not supported in Web exports due to browsers' restrictions.
    */
   public fun acceptStream(stream: StreamPeer): GodotError {
@@ -177,8 +177,8 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   /**
-   * Sends the given [param message] using the desired [param write_mode]. When sending a [String],
-   * prefer using [sendText].
+   * Sends the given [message] using the desired [writeMode]. When sending a [String], prefer using
+   * [sendText].
    */
   @JvmOverloads
   public fun send(message: PackedByteArray, writeMode: WriteMode =
@@ -189,7 +189,7 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   /**
-   * Sends the given [param message] using WebSocket text mode. Prefer this method over
+   * Sends the given [message] using WebSocket text mode. Prefer this method over
    * [PacketPeer.putPacket] when interacting with third-party text-based API (e.g. when using [JSON]
    * formatted messages).
    */
@@ -200,7 +200,7 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   /**
-   * Returns `true` if the last received packet was sent as a text payload. See [enum WriteMode].
+   * Returns `true` if the last received packet was sent as a text payload. See [WriteMode].
    */
   public fun wasStringPacket(): Boolean {
     TransferContext.writeArguments()
@@ -218,12 +218,12 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   /**
-   * Closes this WebSocket connection. [param code] is the status code for the closure (see RFC 6455
-   * section 7.4 for a list of valid status codes). [param reason] is the human readable reason for
-   * closing the connection (can be any UTF-8 string that's smaller than 123 bytes). If [param code] is
-   * negative, the connection will be closed immediately without notifying the remote peer.
-   * **Note:** To achieve a clean close, you will need to keep polling until [constant STATE_CLOSED]
-   * is reached.
+   * Closes this WebSocket connection. [code] is the status code for the closure (see RFC 6455
+   * section 7.4 for a list of valid status codes). [reason] is the human readable reason for closing
+   * the connection (can be any UTF-8 string that's smaller than 123 bytes). If [code] is negative, the
+   * connection will be closed immediately without notifying the remote peer.
+   * **Note:** To achieve a clean close, you will need to keep polling until [STATECLOSED] is
+   * reached.
    * **Note:** The Web export might not support all status codes. Please refer to browser-specific
    * documentation for more details.
    */
@@ -294,7 +294,7 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   /**
-   * Returns the ready state of the connection. See [enum State].
+   * Returns the ready state of the connection. See [State].
    */
   public fun getReadyState(): State {
     TransferContext.writeArguments()
@@ -304,7 +304,7 @@ public open class WebSocketPeer : PacketPeer() {
 
   /**
    * Returns the received WebSocket close frame status code, or `-1` when the connection was not
-   * cleanly closed. Only call this method when [getReadyState] returns [constant STATE_CLOSED].
+   * cleanly closed. Only call this method when [getReadyState] returns [STATECLOSED].
    */
   public fun getCloseCode(): Int {
     TransferContext.writeArguments()
@@ -314,7 +314,7 @@ public open class WebSocketPeer : PacketPeer() {
 
   /**
    * Returns the received WebSocket close frame status reason string. Only call this method when
-   * [getReadyState] returns [constant STATE_CLOSED].
+   * [getReadyState] returns [STATECLOSED].
    */
   public fun getCloseReason(): String {
     TransferContext.writeArguments()
