@@ -33,6 +33,10 @@ namespace jni {
         JvmLoader::close_jvm_lib();
     }
 
+    bool Jvm::is_initialized() {
+        return vm;
+    }
+
     JavaVM* Jvm::create(const InitArgs& initArgs) {
         size_t nOptions {initArgs.options.size()};
         auto* options = new JavaVMOption[nOptions];

@@ -18,6 +18,10 @@ namespace jni {
         // This is not our responsability
     }
 
+    bool Jvm::is_initialized() {
+        return true;
+    }
+
     JavaVM* Jvm::create(const InitArgs& initArgs) {
         // Already existing Jvm
         return nullptr;

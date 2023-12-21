@@ -24,6 +24,8 @@ namespace jni {
         static void init(const InitArgs& initArgs, Type type);
         static void destroy();
 
+        static bool is_initialized();
+
         static Env attach();
         static void detach();
 
