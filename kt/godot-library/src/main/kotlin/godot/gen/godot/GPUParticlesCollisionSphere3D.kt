@@ -22,10 +22,9 @@ import kotlin.Suppress
  * A sphere-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.
  * Particle collision shapes work in real-time and can be moved, rotated and scaled during gameplay.
  * Unlike attractors, non-uniform scaling of collision shapes is *not* supported.
- * **Note:** [ParticleProcessMaterial.collisionMode] must be [constant
- * ParticleProcessMaterial.COLLISION_RIGID] or [constant
- * ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT] on the [GPUParticles3D]'s process material for
- * collision to work.
+ * **Note:** [ParticleProcessMaterial.collisionMode] must be
+ * [ParticleProcessMaterial.COLLISIONRIGID] or [ParticleProcessMaterial.COLLISIONHIDEONCONTACT] on the
+ * [GPUParticles3D]'s process material for collision to work.
  * **Note:** Particle collision only affects [GPUParticles3D], not [CPUParticles3D].
  */
 @GodotBaseType

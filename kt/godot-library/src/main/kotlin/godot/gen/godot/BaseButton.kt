@@ -31,7 +31,7 @@ import kotlin.Unit
 public open class BaseButton : Control() {
   /**
    * Emitted when the button is toggled or pressed. This is on [signal button_down] if [actionMode]
-   * is [constant ACTION_MODE_BUTTON_PRESS] and on [signal button_up] otherwise.
+   * is [ACTIONMODEBUTTONPRESS] and on [signal button_up] otherwise.
    * If you need to know the button's pressed state (and [toggleMode] is active), use [signal
    * toggled] instead.
    */
@@ -49,7 +49,7 @@ public open class BaseButton : Control() {
 
   /**
    * Emitted when the button was just toggled between pressed and normal states (only if
-   * [toggleMode] is active). The new state is contained in the [param toggled_on] argument.
+   * [toggleMode] is active). The new state is contained in the [toggledOn] argument.
    */
   public val toggled: Signal1<Boolean> by signal("toggledOn")
 
@@ -100,7 +100,7 @@ public open class BaseButton : Control() {
     }
 
   /**
-   * Determines when the button is considered clicked, one of the [enum ActionMode] constants.
+   * Determines when the button is considered clicked, one of the [ActionMode] constants.
    */
   public var actionMode: ActionMode
     get() {
@@ -245,7 +245,7 @@ public open class BaseButton : Control() {
   /**
    * Returns the visual state used to draw the button. This is useful mainly when implementing your
    * own draw code by either overriding _draw() or connecting to "draw" signal. The visual state of the
-   * button is defined by the [enum DrawMode] enum.
+   * button is defined by the [DrawMode] enum.
    */
   public fun getDrawMode(): DrawMode {
     TransferContext.writeArguments()

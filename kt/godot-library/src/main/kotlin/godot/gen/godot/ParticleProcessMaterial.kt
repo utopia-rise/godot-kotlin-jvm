@@ -141,7 +141,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Particles will be emitted inside this region. Use [enum EmissionShape] constants for values.
+   * Particles will be emitted inside this region. Use [EmissionShape] constants for values.
    */
   public var emissionShape: EmissionShape
     get() {
@@ -155,7 +155,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The sphere's radius if [emissionShape] is set to [constant EMISSION_SHAPE_SPHERE].
+   * The sphere's radius if [emissionShape] is set to [EMISSIONSHAPESPHERE].
    */
   public var emissionSphereRadius: Float
     get() {
@@ -169,7 +169,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The box's extents if [emissionShape] is set to [constant EMISSION_SHAPE_BOX].
+   * The box's extents if [emissionShape] is set to [EMISSIONSHAPEBOX].
    */
   @CoreTypeLocalCopy
   public var emissionBoxExtents: Vector3
@@ -185,9 +185,9 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Particles will be emitted at positions determined by sampling this texture at a random
-   * position. Used with [constant EMISSION_SHAPE_POINTS] and [constant
-   * EMISSION_SHAPE_DIRECTED_POINTS]. Can be created automatically from mesh or node by selecting
-   * "Create Emission Points from Mesh/Node" under the "Particles" tool in the toolbar.
+   * position. Used with [EMISSIONSHAPEPOINTS] and [EMISSIONSHAPEDIRECTEDPOINTS]. Can be created
+   * automatically from mesh or node by selecting "Create Emission Points from Mesh/Node" under the
+   * "Particles" tool in the toolbar.
    */
   public var emissionPointTexture: Texture2D?
     get() {
@@ -202,9 +202,9 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Particle velocity and rotation will be set by sampling this texture at the same point as the
-   * [emissionPointTexture]. Used only in [constant EMISSION_SHAPE_DIRECTED_POINTS]. Can be created
-   * automatically from mesh or node by selecting "Create Emission Points from Mesh/Node" under the
-   * "Particles" tool in the toolbar.
+   * [emissionPointTexture]. Used only in [EMISSIONSHAPEDIRECTEDPOINTS]. Can be created automatically
+   * from mesh or node by selecting "Create Emission Points from Mesh/Node" under the "Particles" tool
+   * in the toolbar.
    */
   public var emissionNormalTexture: Texture2D?
     get() {
@@ -237,8 +237,8 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The number of emission points if [emissionShape] is set to [constant EMISSION_SHAPE_POINTS] or
-   * [constant EMISSION_SHAPE_DIRECTED_POINTS].
+   * The number of emission points if [emissionShape] is set to [EMISSIONSHAPEPOINTS] or
+   * [EMISSIONSHAPEDIRECTEDPOINTS].
    */
   public var emissionPointCount: Int
     get() {
@@ -252,7 +252,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The axis of the ring when using the emitter [constant EMISSION_SHAPE_RING].
+   * The axis of the ring when using the emitter [EMISSIONSHAPERING].
    */
   @CoreTypeLocalCopy
   public var emissionRingAxis: Vector3
@@ -267,7 +267,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The height of the ring when using the emitter [constant EMISSION_SHAPE_RING].
+   * The height of the ring when using the emitter [EMISSIONSHAPERING].
    */
   public var emissionRingHeight: Float
     get() {
@@ -281,7 +281,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The radius of the ring when using the emitter [constant EMISSION_SHAPE_RING].
+   * The radius of the ring when using the emitter [EMISSIONSHAPERING].
    */
   public var emissionRingRadius: Float
     get() {
@@ -295,7 +295,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The inner radius of the ring when using the emitter [constant EMISSION_SHAPE_RING].
+   * The inner radius of the ring when using the emitter [EMISSIONSHAPERING].
    */
   public var emissionRingInnerRadius: Float
     get() {
@@ -325,8 +325,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Maximum initial rotation applied to each particle, in degrees.
    * Only applied when [particleFlagDisableZ] or [particleFlagRotateY] are `true` or the
-   * [BaseMaterial3D] being used to draw the particle is using [constant
-   * BaseMaterial3D.BILLBOARD_PARTICLES].
+   * [BaseMaterial3D] being used to draw the particle is using [BaseMaterial3D.BILLBOARDPARTICLES].
    */
   public var angleMax: Float
     get() {
@@ -473,8 +472,7 @@ public open class ParticleProcessMaterial : Material() {
    * Maximum initial angular velocity (rotation speed) applied to each particle in *degrees* per
    * second.
    * Only applied when [particleFlagDisableZ] or [particleFlagRotateY] are `true` or the
-   * [BaseMaterial3D] being used to draw the particle is using [constant
-   * BaseMaterial3D.BILLBOARD_PARTICLES].
+   * [BaseMaterial3D] being used to draw the particle is using [BaseMaterial3D.BILLBOARDPARTICLES].
    */
   public var angularVelocityMax: Float
     get() {
@@ -1362,7 +1360,7 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * The particles' friction. Values range from `0` (frictionless) to `1` (maximum friction). Only
-   * effective if [collisionMode] is [constant COLLISION_RIGID].
+   * effective if [collisionMode] is [COLLISIONRIGID].
    */
   public var collisionFriction: Float
     get() {
@@ -1377,7 +1375,7 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * The particles' bounciness. Values range from `0` (no bounce) to `1` (full bounciness). Only
-   * effective if [collisionMode] is [constant COLLISION_RIGID].
+   * effective if [collisionMode] is [COLLISIONRIGID].
    */
   public var collisionBounce: Float
     get() {
@@ -1458,8 +1456,8 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * The amount of particles to spawn from the subemitter node when a collision occurs. When
-   * combined with [constant COLLISION_HIDE_ON_CONTACT] on the main particles material, this can be
-   * used to achieve effects such as raindrops hitting the ground.
+   * combined with [COLLISIONHIDEONCONTACT] on the main particles material, this can be used to achieve
+   * effects such as raindrops hitting the ground.
    * **Note:** This value shouldn't exceed [GPUParticles2D.amount] or [GPUParticles3D.amount]
    * defined on the *subemitter node* (not the main node), relative to the subemitter's particle
    * lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter
@@ -1546,7 +1544,7 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
-   * The box's extents if [emissionShape] is set to [constant EMISSION_SHAPE_BOX].
+   * The box's extents if [emissionShape] is set to [EMISSIONSHAPEBOX].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -1571,7 +1569,7 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
-   * The axis of the ring when using the emitter [constant EMISSION_SHAPE_RING].
+   * The axis of the ring when using the emitter [EMISSIONSHAPERING].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -1798,7 +1796,7 @@ public open class ParticleProcessMaterial : Material() {
      */
     PARAM_SCALE_OVER_VELOCITY(17),
     /**
-     * Represents the size of the [enum Parameter] enum.
+     * Represents the size of the [Parameter] enum.
      */
     PARAM_MAX(18),
     /**
@@ -1844,7 +1842,7 @@ public open class ParticleProcessMaterial : Material() {
     PARTICLE_FLAG_DISABLE_Z(2),
     PARTICLE_FLAG_DAMPING_AS_FRICTION(3),
     /**
-     * Represents the size of the [enum ParticleFlags] enum.
+     * Represents the size of the [ParticleFlags] enum.
      */
     PARTICLE_FLAG_MAX(4),
     ;
@@ -1894,7 +1892,7 @@ public open class ParticleProcessMaterial : Material() {
      */
     EMISSION_SHAPE_RING(6),
     /**
-     * Represents the size of the [enum EmissionShape] enum.
+     * Represents the size of the [EmissionShape] enum.
      */
     EMISSION_SHAPE_MAX(7),
     ;
@@ -1917,7 +1915,7 @@ public open class ParticleProcessMaterial : Material() {
     SUB_EMITTER_AT_END(2),
     SUB_EMITTER_AT_COLLISION(3),
     /**
-     * Represents the size of the [enum SubEmitterMode] enum.
+     * Represents the size of the [SubEmitterMode] enum.
      */
     SUB_EMITTER_MAX(4),
     ;
@@ -1945,12 +1943,12 @@ public open class ParticleProcessMaterial : Material() {
     COLLISION_RIGID(1),
     /**
      * Hide particles instantly when colliding with a [GPUParticlesCollision3D] node. This can be
-     * combined with a subemitter that uses the [constant COLLISION_RIGID] collision mode to "replace"
-     * the parent particle with the subemitter on impact.
+     * combined with a subemitter that uses the [COLLISIONRIGID] collision mode to "replace" the parent
+     * particle with the subemitter on impact.
      */
     COLLISION_HIDE_ON_CONTACT(2),
     /**
-     * Represents the size of the [enum CollisionMode] enum.
+     * Represents the size of the [CollisionMode] enum.
      */
     COLLISION_MAX(3),
     ;

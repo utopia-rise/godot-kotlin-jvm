@@ -113,8 +113,8 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Adds an item, with text [param label] and (optionally) [param id]. If no [param id] is passed,
-   * the item index will be used as the item's ID. New items are appended at the end.
+   * Adds an item, with text [label] and (optionally) [id]. If no [id] is passed, the item index
+   * will be used as the item's ID. New items are appended at the end.
    */
   @JvmOverloads
   public fun addItem(label: String, id: Int = -1): Unit {
@@ -123,9 +123,8 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Adds an item, with a [param texture] icon, text [param label] and (optionally) [param id]. If
-   * no [param id] is passed, the item index will be used as the item's ID. New items are appended at
-   * the end.
+   * Adds an item, with a [texture] icon, text [label] and (optionally) [id]. If no [id] is passed,
+   * the item index will be used as the item's ID. New items are appended at the end.
    */
   @JvmOverloads
   public fun addIconItem(
@@ -138,7 +137,7 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Sets the text of the item at index [param idx].
+   * Sets the text of the item at index [idx].
    */
   public fun setItemText(idx: Int, text: String): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), STRING to text)
@@ -146,7 +145,7 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Sets the icon of the item at index [param idx].
+   * Sets the icon of the item at index [idx].
    */
   public fun setItemIcon(idx: Int, texture: Texture2D): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), OBJECT to texture)
@@ -154,7 +153,7 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Sets whether the item at index [param idx] is disabled.
+   * Sets whether the item at index [idx] is disabled.
    * Disabled items are drawn differently in the dropdown and are not selectable by the user. If the
    * current selected item is set as disabled, it will remain selected.
    */
@@ -164,7 +163,7 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Sets the ID of the item at index [param idx].
+   * Sets the ID of the item at index [idx].
    */
   public fun setItemId(idx: Int, id: Int): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), LONG to id.toLong())
@@ -181,7 +180,7 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Sets the tooltip of the item at index [param idx].
+   * Sets the tooltip of the item at index [idx].
    */
   public fun setItemTooltip(idx: Int, tooltip: String): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), STRING to tooltip)
@@ -189,7 +188,7 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Returns the text of the item at index [param idx].
+   * Returns the text of the item at index [idx].
    */
   public fun getItemText(idx: Int): String {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -198,7 +197,7 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Returns the icon of the item at index [param idx].
+   * Returns the icon of the item at index [idx].
    */
   public fun getItemIcon(idx: Int): Texture2D? {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -207,7 +206,7 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Returns the ID of the item at index [param idx].
+   * Returns the ID of the item at index [idx].
    */
   public fun getItemId(idx: Int): Int {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -216,7 +215,7 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Returns the index of the item with the given [param id].
+   * Returns the index of the item with the given [id].
    */
   public fun getItemIndex(id: Int): Int {
     TransferContext.writeArguments(LONG to id.toLong())
@@ -235,7 +234,7 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Returns the tooltip of the item at index [param idx].
+   * Returns the tooltip of the item at index [idx].
    */
   public fun getItemTooltip(idx: Int): String {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -244,7 +243,7 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Returns `true` if the item at index [param idx] is disabled.
+   * Returns `true` if the item at index [idx] is disabled.
    */
   public fun isItemDisabled(idx: Int): Boolean {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -253,7 +252,7 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Returns `true` if the item at index [param idx] is marked as a separator.
+   * Returns `true` if the item at index [idx] is marked as a separator.
    */
   public fun isItemSeparator(idx: Int): Boolean {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -263,8 +262,8 @@ public open class OptionButton : Button() {
 
   /**
    * Adds a separator to the list of items. Separators help to group items, and can optionally be
-   * given a [param text] header. A separator also gets an index assigned, and is appended at the end
-   * of the item list.
+   * given a [text] header. A separator also gets an index assigned, and is appended at the end of the
+   * item list.
    */
   @JvmOverloads
   public fun addSeparator(text: String = ""): Unit {
@@ -309,7 +308,7 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Removes the item at index [param idx].
+   * Removes the item at index [idx].
    */
   public fun removeItem(idx: Int): Unit {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -347,8 +346,8 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Returns the index of the first item which is not disabled, or marked as a separator. If [param
-   * from_last] is `true`, the items will be searched in reverse order.
+   * Returns the index of the first item which is not disabled, or marked as a separator. If
+   * [fromLast] is `true`, the items will be searched in reverse order.
    * Returns `-1` if no item is found.
    */
   @JvmOverloads

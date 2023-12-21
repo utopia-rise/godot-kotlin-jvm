@@ -51,8 +51,8 @@ public open class BitMap : Resource() {
 
   /**
    * Creates a bitmap that matches the given image dimensions, every element of the bitmap is set to
-   * `false` if the alpha value of the image at that position is equal to [param threshold] or less,
-   * and `true` in other case.
+   * `false` if the alpha value of the image at that position is equal to [threshold] or less, and
+   * `true` in other case.
    */
   @JvmOverloads
   public fun createFromImageAlpha(image: Image, threshold: Float = 0.1f): Unit {
@@ -125,7 +125,7 @@ public open class BitMap : Resource() {
   }
 
   /**
-   * Resizes the image to [param new_size].
+   * Resizes the image to [newSize].
    */
   public fun resize(newSize: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to newSize)
@@ -133,10 +133,10 @@ public open class BitMap : Resource() {
   }
 
   /**
-   * Applies morphological dilation or erosion to the bitmap. If [param pixels] is positive,
-   * dilation is applied to the bitmap. If [param pixels] is negative, erosion is applied to the
-   * bitmap. [param rect] defines the area where the morphological operation is applied. Pixels located
-   * outside the [param rect] are unaffected by [growMask].
+   * Applies morphological dilation or erosion to the bitmap. If [pixels] is positive, dilation is
+   * applied to the bitmap. If [pixels] is negative, erosion is applied to the bitmap. [rect] defines
+   * the area where the morphological operation is applied. Pixels located outside the [rect] are
+   * unaffected by [growMask].
    */
   public fun growMask(pixels: Int, rect: Rect2i): Unit {
     TransferContext.writeArguments(LONG to pixels.toLong(), RECT2I to rect)
@@ -144,9 +144,9 @@ public open class BitMap : Resource() {
   }
 
   /**
-   * Returns an image of the same size as the bitmap and with a [enum Image.Format] of type
-   * [constant Image.FORMAT_L8]. `true` bits of the bitmap are being converted into white pixels, and
-   * `false` bits into black.
+   * Returns an image of the same size as the bitmap and with a [Image.Format] of type
+   * [Image.FORMATL8]. `true` bits of the bitmap are being converted into white pixels, and `false`
+   * bits into black.
    */
   public fun convertToImage(): Image? {
     TransferContext.writeArguments()
@@ -162,8 +162,8 @@ public open class BitMap : Resource() {
    * [codeblock]
    * Rect2(Vector2(), get_size())
    * [/codeblock]
-   * [param epsilon] is passed to RDP to control how accurately the polygons cover the bitmap: a
-   * lower [param epsilon] corresponds to more points in the polygons.
+   * [epsilon] is passed to RDP to control how accurately the polygons cover the bitmap: a lower
+   * [epsilon] corresponds to more points in the polygons.
    */
   @JvmOverloads
   public fun opaqueToPolygons(rect: Rect2i, epsilon: Float = 2.0f):

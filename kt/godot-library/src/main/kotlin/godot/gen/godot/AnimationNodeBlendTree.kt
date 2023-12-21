@@ -87,8 +87,8 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
 
 
   /**
-   * Adds an [AnimationNode] at the given [param position]. The [param name] is used to identify the
-   * created sub animation node later.
+   * Adds an [AnimationNode] at the given [position]. The [name] is used to identify the created sub
+   * animation node later.
    */
   @JvmOverloads
   public fun addNode(
@@ -101,7 +101,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Returns the sub animation node with the specified [param name].
+   * Returns the sub animation node with the specified [name].
    */
   public fun getNode(name: StringName): AnimationNode? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -126,7 +126,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Returns `true` if a sub animation node with specified [param name] exists.
+   * Returns `true` if a sub animation node with specified [name] exists.
    */
   public fun hasNode(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -136,7 +136,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
 
   /**
    * Connects the output of an [AnimationNode] as input for another [AnimationNode], at the input
-   * port specified by [param input_index].
+   * port specified by [inputIndex].
    */
   public fun connectNode(
     inputNode: StringName,
@@ -164,7 +164,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Returns the position of the sub animation node with the specified [param name].
+   * Returns the position of the sub animation node with the specified [name].
    */
   public fun getNodePosition(name: StringName): Vector2 {
     TransferContext.writeArguments(STRING_NAME to name)

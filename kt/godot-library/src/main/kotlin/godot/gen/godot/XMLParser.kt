@@ -82,7 +82,7 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Returns the type of the current node. Compare with [enum NodeType] constants.
+   * Returns the type of the current node. Compare with [NodeType] constants.
    */
   public fun getNodeType(): NodeType {
     TransferContext.writeArguments()
@@ -92,7 +92,7 @@ public open class XMLParser : RefCounted() {
 
   /**
    * Returns the name of an element node. This method will raise an error if the currently parsed
-   * node is not of [constant NODE_ELEMENT] or [constant NODE_ELEMENT_END] type.
+   * node is not of [NODEELEMENT] or [NODEELEMENTEND] type.
    */
   public fun getNodeName(): String {
     TransferContext.writeArguments()
@@ -122,9 +122,8 @@ public open class XMLParser : RefCounted() {
 
   /**
    * Returns the number of attributes in the currently parsed element.
-   * **Note:** If this method is used while the currently parsed node is not [constant NODE_ELEMENT]
-   * or [constant NODE_ELEMENT_END], this count will not be updated and will still reflect the last
-   * element.
+   * **Note:** If this method is used while the currently parsed node is not [NODEELEMENT] or
+   * [NODEELEMENTEND], this count will not be updated and will still reflect the last element.
    */
   public fun getAttributeCount(): Int {
     TransferContext.writeArguments()
@@ -133,8 +132,7 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Returns the name of an attribute of the currently parsed element, specified by the [param idx]
-   * index.
+   * Returns the name of an attribute of the currently parsed element, specified by the [idx] index.
    */
   public fun getAttributeName(idx: Int): String {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -143,7 +141,7 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Returns the value of an attribute of the currently parsed element, specified by the [param idx]
+   * Returns the value of an attribute of the currently parsed element, specified by the [idx]
    * index.
    */
   public fun getAttributeValue(idx: Int): String {
@@ -153,7 +151,7 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Returns `true` if the currently parsed element has an attribute with the [param name].
+   * Returns `true` if the currently parsed element has an attribute with the [name].
    */
   public fun hasAttribute(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
@@ -162,8 +160,8 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Returns the value of an attribute of the currently parsed element, specified by its [param
-   * name]. This method will raise an error if the element has no such attribute.
+   * Returns the value of an attribute of the currently parsed element, specified by its [name].
+   * This method will raise an error if the element has no such attribute.
    */
   public fun getNamedAttributeValue(name: String): String {
     TransferContext.writeArguments(STRING to name)
@@ -172,8 +170,8 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Returns the value of an attribute of the currently parsed element, specified by its [param
-   * name]. This method will return an empty string if the element has no such attribute.
+   * Returns the value of an attribute of the currently parsed element, specified by its [name].
+   * This method will return an empty string if the element has no such attribute.
    */
   public fun getNamedAttributeValueSafe(name: String): String {
     TransferContext.writeArguments(STRING to name)
@@ -219,7 +217,7 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Opens an XML [param file] for parsing. This method returns an error code.
+   * Opens an XML [file] for parsing. This method returns an error code.
    */
   public fun `open`(`file`: String): GodotError {
     TransferContext.writeArguments(STRING to file)
@@ -228,7 +226,7 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Opens an XML raw [param buffer] for parsing. This method returns an error code.
+   * Opens an XML raw [buffer] for parsing. This method returns an error code.
    */
   public fun openBuffer(buffer: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)

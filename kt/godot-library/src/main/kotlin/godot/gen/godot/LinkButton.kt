@@ -44,8 +44,7 @@ public open class LinkButton : BaseButton() {
     }
 
   /**
-   * The underline mode to use for the text. See [enum LinkButton.UnderlineMode] for the available
-   * modes.
+   * The underline mode to use for the text. See [LinkButton.UnderlineMode] for the available modes.
    */
   public var underline: UnderlineMode
     get() {

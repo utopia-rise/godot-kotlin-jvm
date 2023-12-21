@@ -131,12 +131,12 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   }
 
   /**
-   * Starts a new multiplayer client connecting to the given [param url]. TLS certificates will be
+   * Starts a new multiplayer client connecting to the given [url]. TLS certificates will be
    * verified against the hostname when connecting using the `wss://` protocol. You can pass the
-   * optional [param tls_client_options] parameter to customize the trusted certification authorities,
-   * or disable the common name verification. See [TLSOptions.client] and [TLSOptions.clientUnsafe].
-   * **Note:** It is recommended to specify the scheme part of the URL, i.e. the [param url] should
-   * start with either `ws://` or `wss://`.
+   * optional [tlsClientOptions] parameter to customize the trusted certification authorities, or
+   * disable the common name verification. See [TLSOptions.client] and [TLSOptions.clientUnsafe].
+   * **Note:** It is recommended to specify the scheme part of the URL, i.e. the [url] should start
+   * with either `ws://` or `wss://`.
    */
   @JvmOverloads
   public fun createClient(url: String, tlsClientOptions: TLSOptions? = null): GodotError {
@@ -146,9 +146,8 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   }
 
   /**
-   * Starts a new multiplayer server listening on the given [param port]. You can optionally specify
-   * a [param bind_address], and provide valid [param tls_server_options] to use TLS. See
-   * [TLSOptions.server].
+   * Starts a new multiplayer server listening on the given [port]. You can optionally specify a
+   * [bindAddress], and provide valid [tlsServerOptions] to use TLS. See [TLSOptions.server].
    */
   @JvmOverloads
   public fun createServer(
@@ -162,7 +161,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   }
 
   /**
-   * Returns the [WebSocketPeer] associated to the given [param peer_id].
+   * Returns the [WebSocketPeer] associated to the given [peerId].
    */
   public fun getPeer(peerId: Int): WebSocketPeer? {
     TransferContext.writeArguments(LONG to peerId.toLong())

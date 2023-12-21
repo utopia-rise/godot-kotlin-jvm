@@ -176,7 +176,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
     PARAM_ANGULAR_SPRING_DAMPING(20),
     PARAM_ANGULAR_SPRING_EQUILIBRIUM_POINT(21),
     /**
-     * Represents the size of the [enum Param] enum.
+     * Represents the size of the [Param] enum.
      */
     PARAM_MAX(22),
     ;
@@ -213,7 +213,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
      */
     FLAG_ENABLE_LINEAR_MOTOR(5),
     /**
-     * Represents the size of the [enum Flag] enum.
+     * Represents the size of the [Flag] enum.
      */
     FLAG_MAX(6),
     ;

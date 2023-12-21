@@ -75,7 +75,7 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
      */
     QUAL_INSTANCE(2),
     /**
-     * Represents the size of the [enum Qualifier] enum.
+     * Represents the size of the [Qualifier] enum.
      */
     QUAL_MAX(3),
     ;

@@ -115,7 +115,7 @@ public open class PackedScene : Resource() {
 
   /**
    * Instantiates the scene's node hierarchy. Triggers child scene instantiation(s). Triggers a
-   * [constant Node.NOTIFICATION_SCENE_INSTANTIATED] notification on the root node.
+   * [Node.NOTIFICATIONSCENEINSTANTIATED] notification on the root node.
    */
   @JvmOverloads
   public fun instantiate(editState: GenEditState =
@@ -162,8 +162,8 @@ public open class PackedScene : Resource() {
      */
     GEN_EDIT_STATE_MAIN(2),
     /**
-     * It's similar to [constant GEN_EDIT_STATE_MAIN], but for the case where the scene is being
-     * instantiated to be the base of another one.
+     * It's similar to [GENEDITSTATEMAIN], but for the case where the scene is being instantiated to
+     * be the base of another one.
      * **Note:** Only available in editor builds.
      */
     GEN_EDIT_STATE_MAIN_INHERITED(3),

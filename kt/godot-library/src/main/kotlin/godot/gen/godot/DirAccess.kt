@@ -214,7 +214,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Changes the currently opened directory to the one passed as an argument. The argument can be
    * relative to the current directory (e.g. `newdir` or `../newdir`), or an absolute path (e.g.
    * `/tmp/newdir` or `res://somedir/newdir`).
-   * Returns one of the [enum Error] code constants ([constant OK] on success).
+   * Returns one of the [Error] code constants ([OK] on success).
    * **Note:** The new directory must be within the same scope, e.g. when you had opened a directory
    * inside `res://`, you can't change it to `user://` directory. If you need to open a directory in
    * another access scope, use [open] to create a new instance instead.
@@ -240,7 +240,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Creates a directory. The argument can be relative to the current directory, or an absolute
    * path. The target directory should be placed in an already existing directory (to create the full
    * path recursively, see [makeDirRecursive]).
-   * Returns one of the [enum Error] code constants ([constant OK] on success).
+   * Returns one of the [Error] code constants ([OK] on success).
    */
   public fun makeDir(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
@@ -251,7 +251,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   /**
    * Creates a target directory and all necessary intermediate directories in its path, by calling
    * [makeDir] recursively. The argument can be relative to the current directory, or an absolute path.
-   * Returns one of the [enum Error] code constants ([constant OK] on success).
+   * Returns one of the [Error] code constants ([OK] on success).
    */
   public fun makeDirRecursive(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
@@ -291,12 +291,12 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Copies the [param from] file to the [param to] destination. Both arguments should be paths to
-   * files, either relative or absolute. If the destination file exists and is not access-protected, it
-   * will be overwritten.
-   * If [param chmod_flags] is different than `-1`, the Unix permissions for the destination path
-   * will be set to the provided value, if available on the current operating system.
-   * Returns one of the [enum Error] code constants ([constant OK] on success).
+   * Copies the [from] file to the [to] destination. Both arguments should be paths to files, either
+   * relative or absolute. If the destination file exists and is not access-protected, it will be
+   * overwritten.
+   * If [chmodFlags] is different than `-1`, the Unix permissions for the destination path will be
+   * set to the provided value, if available on the current operating system.
+   * Returns one of the [Error] code constants ([OK] on success).
    */
   @JvmOverloads
   public fun copy(
@@ -310,10 +310,10 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Renames (move) the [param from] file or directory to the [param to] destination. Both arguments
-   * should be paths to files or directories, either relative or absolute. If the destination file or
-   * directory exists and is not access-protected, it will be overwritten.
-   * Returns one of the [enum Error] code constants ([constant OK] on success).
+   * Renames (move) the [from] file or directory to the [to] destination. Both arguments should be
+   * paths to files or directories, either relative or absolute. If the destination file or directory
+   * exists and is not access-protected, it will be overwritten.
+   * Returns one of the [Error] code constants ([OK] on success).
    */
   public fun rename(from: String, to: String): GodotError {
     TransferContext.writeArguments(STRING to from, STRING to to)
@@ -326,7 +326,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * current directory, or an absolute path. If the target directory is not empty, the operation will
    * fail.
    * If you don't want to delete the file/directory permanently, use [OS.moveToTrash] instead.
-   * Returns one of the [enum Error] code constants ([constant OK] on success).
+   * Returns one of the [Error] code constants ([OK] on success).
    */
   public fun remove(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
@@ -348,7 +348,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   public companion object {
     /**
      * Creates a new [DirAccess] object and opens an existing directory of the filesystem. The
-     * [param path] argument can be within the project tree (`res://folder`), the user directory
+     * [path] argument can be within the project tree (`res://folder`), the user directory
      * (`user://folder`) or an absolute path of the user filesystem (e.g. `/tmp/folder` or
      * `C:\tmp\folder`).
      * Returns `null` if opening the directory failed. You can use [getOpenError] to check the error
@@ -371,7 +371,7 @@ public open class DirAccess internal constructor() : RefCounted() {
 
     /**
      * Returns a [PackedStringArray] containing filenames of the directory contents, excluding
-     * directories, at the given [param path]. The array is sorted alphabetically.
+     * directories, at the given [path]. The array is sorted alphabetically.
      * Use [getFiles] if you want more control of what gets included.
      */
     public fun getFilesAt(path: String): PackedStringArray {
@@ -382,7 +382,7 @@ public open class DirAccess internal constructor() : RefCounted() {
 
     /**
      * Returns a [PackedStringArray] containing filenames of the directory contents, excluding
-     * files, at the given [param path]. The array is sorted alphabetically.
+     * files, at the given [path]. The array is sorted alphabetically.
      * Use [getDirectories] if you want more control of what gets included.
      */
     public fun getDirectoriesAt(path: String): PackedStringArray {

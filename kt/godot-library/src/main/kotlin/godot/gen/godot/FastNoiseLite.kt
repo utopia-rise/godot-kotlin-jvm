@@ -35,7 +35,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class FastNoiseLite : Noise() {
   /**
-   * The noise algorithm used. See [enum NoiseType].
+   * The noise algorithm used. See [NoiseType].
    */
   public var noiseType: NoiseType
     get() {
@@ -93,7 +93,7 @@ public open class FastNoiseLite : Noise() {
     }
 
   /**
-   * The method for combining octaves into a fractal. See [enum FractalType].
+   * The method for combining octaves into a fractal. See [FractalType].
    */
   public var fractalType: FractalType
     get() {
@@ -180,8 +180,8 @@ public open class FastNoiseLite : Noise() {
     }
 
   /**
-   * Determines how the distance to the nearest/second-nearest point is computed. See [enum
-   * CellularDistanceFunction] for options.
+   * Determines how the distance to the nearest/second-nearest point is computed. See
+   * [CellularDistanceFunction] for options.
    */
   public var cellularDistanceFunction: CellularDistanceFunction
     get() {
@@ -209,7 +209,7 @@ public open class FastNoiseLite : Noise() {
     }
 
   /**
-   * Return type from cellular noise calculations. See [enum CellularReturnType].
+   * Return type from cellular noise calculations. See [CellularReturnType].
    */
   public var cellularReturnType: CellularReturnType
     get() {
@@ -238,7 +238,7 @@ public open class FastNoiseLite : Noise() {
     }
 
   /**
-   * Sets the warp algorithm. See [enum DomainWarpType].
+   * Sets the warp algorithm. See [DomainWarpType].
    */
   public var domainWarpType: DomainWarpType
     get() {
@@ -281,8 +281,8 @@ public open class FastNoiseLite : Noise() {
     }
 
   /**
-   * The method for combining octaves into a fractal which is used to warp the space. See [enum
-   * DomainWarpFractalType].
+   * The method for combining octaves into a fractal which is used to warp the space. See
+   * [DomainWarpFractalType].
    */
   public var domainWarpFractalType: DomainWarpFractalType
     get() {
@@ -395,12 +395,12 @@ public open class FastNoiseLite : Noise() {
      */
     TYPE_CELLULAR(2),
     /**
-     * As opposed to [constant TYPE_PERLIN], gradients exist in a simplex lattice rather than a grid
-     * lattice, avoiding directional artifacts.
+     * As opposed to [TYPEPERLIN], gradients exist in a simplex lattice rather than a grid lattice,
+     * avoiding directional artifacts.
      */
     TYPE_SIMPLEX(0),
     /**
-     * Modified, higher quality version of [constant TYPE_SIMPLEX], but slower.
+     * Modified, higher quality version of [TYPESIMPLEX], but slower.
      */
     TYPE_SIMPLEX_SMOOTH(1),
     ;
@@ -462,8 +462,7 @@ public open class FastNoiseLite : Noise() {
      */
     DISTANCE_MANHATTAN(2),
     /**
-     * Blend of [constant DISTANCE_EUCLIDEAN] and [constant DISTANCE_MANHATTAN] to give curved cell
-     * boundaries
+     * Blend of [DISTANCEEUCLIDEAN] and [DISTANCEMANHATTAN] to give curved cell boundaries
      */
     DISTANCE_HYBRID(3),
     ;

@@ -318,8 +318,8 @@ public open class GPUParticles2D : Node2D() {
    * Multiplier for particle's collision radius. `1.0` corresponds to the size of the sprite. If
    * particles appear to sink into the ground when colliding, increase this value. If particles appear
    * to float when colliding, decrease this value. Only effective if
-   * [ParticleProcessMaterial.collisionMode] is [constant ParticleProcessMaterial.COLLISION_RIGID] or
-   * [constant ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT].
+   * [ParticleProcessMaterial.collisionMode] is [ParticleProcessMaterial.COLLISIONRIGID] or
+   * [ParticleProcessMaterial.COLLISIONHIDEONCONTACT].
    * **Note:** Particles always have a spherical collision shape.
    */
   public var collisionBaseSize: Float
@@ -369,7 +369,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * Particle draw order. Uses [enum DrawOrder] values.
+   * Particle draw order. Uses [DrawOrder] values.
    */
   public var drawOrder: DrawOrder
     get() {
@@ -497,8 +497,8 @@ public open class GPUParticles2D : Node2D() {
   }
 
   /**
-   * Emits a single particle. Whether [param xform], [param velocity], [param color] and [param
-   * custom] are applied depends on the value of [param flags]. See [enum EmitFlags].
+   * Emits a single particle. Whether [xform], [velocity], [color] and [custom] are applied depends
+   * on the value of [flags]. See [EmitFlags].
    */
   public fun emitParticle(
     xform: Transform2D,

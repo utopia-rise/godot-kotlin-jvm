@@ -104,9 +104,8 @@ public open class RegEx : RefCounted() {
   }
 
   /**
-   * Compiles and assign the search pattern to use. Returns [constant OK] if the compilation is
-   * successful. If an error is encountered, details are printed to standard output and an error is
-   * returned.
+   * Compiles and assign the search pattern to use. Returns [OK] if the compilation is successful.
+   * If an error is encountered, details are printed to standard output and an error is returned.
    */
   public fun compile(pattern: String): GodotError {
     TransferContext.writeArguments(STRING to pattern)
@@ -117,11 +116,11 @@ public open class RegEx : RefCounted() {
   /**
    * Searches the text for the compiled pattern. Returns a [RegExMatch] container of the first
    * matching result if found, otherwise `null`.
-   * The region to search within can be specified with [param offset] and [param end]. This is
-   * useful when searching for another match in the same [param subject] by calling this method again
-   * after a previous success. Note that setting these parameters differs from passing over a shortened
-   * string. For example, the start anchor `^` is not affected by [param offset], and the character
-   * before [param offset] will be checked for the word boundary `\b`.
+   * The region to search within can be specified with [offset] and [end]. This is useful when
+   * searching for another match in the same [subject] by calling this method again after a previous
+   * success. Note that setting these parameters differs from passing over a shortened string. For
+   * example, the start anchor `^` is not affected by [offset], and the character before [offset] will
+   * be checked for the word boundary `\b`.
    */
   @JvmOverloads
   public fun search(
@@ -137,11 +136,11 @@ public open class RegEx : RefCounted() {
   /**
    * Searches the text for the compiled pattern. Returns an array of [RegExMatch] containers for
    * each non-overlapping result. If no results were found, an empty array is returned instead.
-   * The region to search within can be specified with [param offset] and [param end]. This is
-   * useful when searching for another match in the same [param subject] by calling this method again
-   * after a previous success. Note that setting these parameters differs from passing over a shortened
-   * string. For example, the start anchor `^` is not affected by [param offset], and the character
-   * before [param offset] will be checked for the word boundary `\b`.
+   * The region to search within can be specified with [offset] and [end]. This is useful when
+   * searching for another match in the same [subject] by calling this method again after a previous
+   * success. Note that setting these parameters differs from passing over a shortened string. For
+   * example, the start anchor `^` is not affected by [offset], and the character before [offset] will
+   * be checked for the word boundary `\b`.
    */
   @JvmOverloads
   public fun searchAll(
@@ -158,11 +157,11 @@ public open class RegEx : RefCounted() {
    * Searches the text for the compiled pattern and replaces it with the specified string. Escapes
    * and backreferences such as `$1` and `$name` are expanded and resolved. By default, only the first
    * instance is replaced, but it can be changed for all instances (global replacement).
-   * The region to search within can be specified with [param offset] and [param end]. This is
-   * useful when searching for another match in the same [param subject] by calling this method again
-   * after a previous success. Note that setting these parameters differs from passing over a shortened
-   * string. For example, the start anchor `^` is not affected by [param offset], and the character
-   * before [param offset] will be checked for the word boundary `\b`.
+   * The region to search within can be specified with [offset] and [end]. This is useful when
+   * searching for another match in the same [subject] by calling this method again after a previous
+   * success. Note that setting these parameters differs from passing over a shortened string. For
+   * example, the start anchor `^` is not affected by [offset], and the character before [offset] will
+   * be checked for the word boundary `\b`.
    */
   @JvmOverloads
   public fun sub(

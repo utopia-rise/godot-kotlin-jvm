@@ -165,8 +165,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a [TileSetSource] to the TileSet. If [param atlas_source_id_override] is not -1, also set
-   * its source ID. Otherwise, a unique identifier is automatically generated.
+   * Adds a [TileSetSource] to the TileSet. If [atlasSourceIdOverride] is not -1, also set its
+   * source ID. Otherwise, a unique identifier is automatically generated.
    * The function returns the added source ID or -1 if the source could not be added.
    * **Warning:** A source cannot belong to two TileSets at the same time. If the added source was
    * attached to another [TileSet], it will be removed from that one.
@@ -204,7 +204,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Returns the source ID for source with index [param index].
+   * Returns the source ID for source with index [index].
    */
   public fun getSourceId(index: Int): Int {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -222,7 +222,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Returns the [TileSetSource] with ID [param source_id].
+   * Returns the [TileSetSource] with ID [sourceId].
    */
   public fun getSource(sourceId: Int): TileSetSource? {
     TransferContext.writeArguments(LONG to sourceId.toLong())
@@ -240,8 +240,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds an occlusion layer to the TileSet at the given position [param to_position] in the array.
-   * If [param to_position] is -1, adds it at the end of the array.
+   * Adds an occlusion layer to the TileSet at the given position [toPosition] in the array. If
+   * [toPosition] is -1, adds it at the end of the array.
    * Occlusion layers allow assigning occlusion polygons to atlas tiles.
    */
   @JvmOverloads
@@ -251,8 +251,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Moves the occlusion layer at index [param layer_index] to the given position [param
-   * to_position] in the array. Also updates the atlas tiles accordingly.
+   * Moves the occlusion layer at index [layerIndex] to the given position [toPosition] in the
+   * array. Also updates the atlas tiles accordingly.
    */
   public fun moveOcclusionLayer(layerIndex: Int, toPosition: Int): Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
@@ -260,8 +260,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Removes the occlusion layer at index [param layer_index]. Also updates the atlas tiles
-   * accordingly.
+   * Removes the occlusion layer at index [layerIndex]. Also updates the atlas tiles accordingly.
    */
   public fun removeOcclusionLayer(layerIndex: Int): Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong())
@@ -313,8 +312,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a physics layer to the TileSet at the given position [param to_position] in the array. If
-   * [param to_position] is -1, adds it at the end of the array.
+   * Adds a physics layer to the TileSet at the given position [toPosition] in the array. If
+   * [toPosition] is -1, adds it at the end of the array.
    * Physics layers allow assigning collision polygons to atlas tiles.
    */
   @JvmOverloads
@@ -324,8 +323,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Moves the physics layer at index [param layer_index] to the given position [param to_position]
-   * in the array. Also updates the atlas tiles accordingly.
+   * Moves the physics layer at index [layerIndex] to the given position [toPosition] in the array.
+   * Also updates the atlas tiles accordingly.
    */
   public fun movePhysicsLayer(layerIndex: Int, toPosition: Int): Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
@@ -333,8 +332,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Removes the physics layer at index [param layer_index]. Also updates the atlas tiles
-   * accordingly.
+   * Removes the physics layer at index [layerIndex]. Also updates the atlas tiles accordingly.
    */
   public fun removePhysicsLayer(layerIndex: Int): Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong())
@@ -406,8 +404,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a new terrain set at the given position [param to_position] in the array. If [param
-   * to_position] is -1, adds it at the end of the array.
+   * Adds a new terrain set at the given position [toPosition] in the array. If [toPosition] is -1,
+   * adds it at the end of the array.
    */
   @JvmOverloads
   public fun addTerrainSet(toPosition: Int = -1): Unit {
@@ -416,8 +414,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Moves the terrain set at index [param terrain_set] to the given position [param to_position] in
-   * the array. Also updates the atlas tiles accordingly.
+   * Moves the terrain set at index [terrainSet] to the given position [toPosition] in the array.
+   * Also updates the atlas tiles accordingly.
    */
   public fun moveTerrainSet(terrainSet: Int, toPosition: Int): Unit {
     TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to toPosition.toLong())
@@ -425,7 +423,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Removes the terrain set at index [param terrain_set]. Also updates the atlas tiles accordingly.
+   * Removes the terrain set at index [terrainSet]. Also updates the atlas tiles accordingly.
    */
   public fun removeTerrainSet(terrainSet: Int): Unit {
     TransferContext.writeArguments(LONG to terrainSet.toLong())
@@ -460,8 +458,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a new terrain to the given terrain set [param terrain_set] at the given position [param
-   * to_position] in the array. If [param to_position] is -1, adds it at the end of the array.
+   * Adds a new terrain to the given terrain set [terrainSet] at the given position [toPosition] in
+   * the array. If [toPosition] is -1, adds it at the end of the array.
    */
   @JvmOverloads
   public fun addTerrain(terrainSet: Int, toPosition: Int = -1): Unit {
@@ -470,8 +468,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Moves the terrain at index [param terrain_index] for terrain set [param terrain_set] to the
-   * given position [param to_position] in the array. Also updates the atlas tiles accordingly.
+   * Moves the terrain at index [terrainIndex] for terrain set [terrainSet] to the given position
+   * [toPosition] in the array. Also updates the atlas tiles accordingly.
    */
   public fun moveTerrain(
     terrainSet: Int,
@@ -483,8 +481,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Removes the terrain at index [param terrain_index] in the given terrain set [param
-   * terrain_set]. Also updates the atlas tiles accordingly.
+   * Removes the terrain at index [terrainIndex] in the given terrain set [terrainSet]. Also updates
+   * the atlas tiles accordingly.
    */
   public fun removeTerrain(terrainSet: Int, terrainIndex: Int): Unit {
     TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong())
@@ -544,8 +542,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a navigation layer to the TileSet at the given position [param to_position] in the array.
-   * If [param to_position] is -1, adds it at the end of the array.
+   * Adds a navigation layer to the TileSet at the given position [toPosition] in the array. If
+   * [toPosition] is -1, adds it at the end of the array.
    * Navigation layers allow assigning a navigable area to atlas tiles.
    */
   @JvmOverloads
@@ -555,8 +553,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Moves the navigation layer at index [param layer_index] to the given position [param
-   * to_position] in the array. Also updates the atlas tiles accordingly.
+   * Moves the navigation layer at index [layerIndex] to the given position [toPosition] in the
+   * array. Also updates the atlas tiles accordingly.
    */
   public fun moveNavigationLayer(layerIndex: Int, toPosition: Int): Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
@@ -564,8 +562,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Removes the navigation layer at index [param layer_index]. Also updates the atlas tiles
-   * accordingly.
+   * Removes the navigation layer at index [layerIndex]. Also updates the atlas tiles accordingly.
    */
   public fun removeNavigationLayer(layerIndex: Int): Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong())
@@ -592,9 +589,9 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Based on [param value], enables or disables the specified navigation layer of the TileSet
-   * navigation data layer identified by the given [param layer_index], given a navigation_layers
-   * [param layer_number] between 1 and 32.
+   * Based on [value], enables or disables the specified navigation layer of the TileSet navigation
+   * data layer identified by the given [layerIndex], given a navigation_layers [layerNumber] between 1
+   * and 32.
    */
   public fun setNavigationLayerLayerValue(
     layerIndex: Int,
@@ -607,8 +604,8 @@ public open class TileSet : Resource() {
 
   /**
    * Returns whether or not the specified navigation layer of the TileSet navigation data layer
-   * identified by the given [param layer_index] is enabled, given a navigation_layers [param
-   * layer_number] between 1 and 32.
+   * identified by the given [layerIndex] is enabled, given a navigation_layers [layerNumber] between 1
+   * and 32.
    */
   public fun getNavigationLayerLayerValue(layerIndex: Int, layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layerNumber.toLong())
@@ -626,8 +623,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a custom data layer to the TileSet at the given position [param to_position] in the array.
-   * If [param to_position] is -1, adds it at the end of the array.
+   * Adds a custom data layer to the TileSet at the given position [toPosition] in the array. If
+   * [toPosition] is -1, adds it at the end of the array.
    * Custom data layers allow assigning custom properties to atlas tiles.
    */
   @JvmOverloads
@@ -637,8 +634,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Moves the custom data layer at index [param layer_index] to the given position [param
-   * to_position] in the array. Also updates the atlas tiles accordingly.
+   * Moves the custom data layer at index [layerIndex] to the given position [toPosition] in the
+   * array. Also updates the atlas tiles accordingly.
    */
   public fun moveCustomDataLayer(layerIndex: Int, toPosition: Int): Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
@@ -646,8 +643,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Removes the custom data layer at index [param layer_index]. Also updates the atlas tiles
-   * accordingly.
+   * Removes the custom data layer at index [layerIndex]. Also updates the atlas tiles accordingly.
    */
   public fun removeCustomDataLayer(layerIndex: Int): Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong())
@@ -879,7 +875,7 @@ public open class TileSet : Resource() {
 
   /**
    * Adds a [TileMapPattern] to be stored in the TileSet resource. If provided, insert it at the
-   * given [param index].
+   * given [index].
    */
   @JvmOverloads
   public fun addPattern(pattern: TileMapPattern, index: Int = -1): Int {
@@ -889,7 +885,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Returns the [TileMapPattern] at the given [param index].
+   * Returns the [TileMapPattern] at the given [index].
    */
   @JvmOverloads
   public fun getPattern(index: Int = -1): TileMapPattern? {
@@ -956,8 +952,7 @@ public open class TileSet : Resource() {
      */
     TILE_LAYOUT_STACKED(0),
     /**
-     * Same as [constant TILE_LAYOUT_STACKED], but the first half-offset is negative instead of
-     * positive.
+     * Same as [TILELAYOUTSTACKED], but the first half-offset is negative instead of positive.
      */
     TILE_LAYOUT_STACKED_OFFSET(1),
     /**

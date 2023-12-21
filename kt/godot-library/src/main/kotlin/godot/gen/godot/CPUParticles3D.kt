@@ -229,7 +229,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Particle draw order. Uses [enum DrawOrder] values.
+   * Particle draw order. Uses [DrawOrder] values.
    */
   public var drawOrder: DrawOrder
     get() {
@@ -257,7 +257,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Particles will be emitted inside this region. See [enum EmissionShape] for possible values.
+   * Particles will be emitted inside this region. See [EmissionShape] for possible values.
    */
   public var emissionShape: EmissionShape
     get() {
@@ -271,7 +271,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * The sphere's radius if [enum EmissionShape] is set to [constant EMISSION_SHAPE_SPHERE].
+   * The sphere's radius if [EmissionShape] is set to [EMISSIONSHAPESPHERE].
    */
   public var emissionSphereRadius: Float
     get() {
@@ -285,7 +285,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * The rectangle's extents if [emissionShape] is set to [constant EMISSION_SHAPE_BOX].
+   * The rectangle's extents if [emissionShape] is set to [EMISSIONSHAPEBOX].
    */
   @CoreTypeLocalCopy
   public var emissionBoxExtents: Vector3
@@ -300,8 +300,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Sets the initial positions to spawn particles when using [constant EMISSION_SHAPE_POINTS] or
-   * [constant EMISSION_SHAPE_DIRECTED_POINTS].
+   * Sets the initial positions to spawn particles when using [EMISSIONSHAPEPOINTS] or
+   * [EMISSIONSHAPEDIRECTEDPOINTS].
    */
   public var emissionPoints: PackedVector3Array
     get() {
@@ -315,8 +315,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Sets the direction the particles will be emitted in when using [constant
-   * EMISSION_SHAPE_DIRECTED_POINTS].
+   * Sets the direction the particles will be emitted in when using [EMISSIONSHAPEDIRECTEDPOINTS].
    */
   public var emissionNormals: PackedVector3Array
     get() {
@@ -330,8 +329,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Sets the [Color]s to modulate particles by when using [constant EMISSION_SHAPE_POINTS] or
-   * [constant EMISSION_SHAPE_DIRECTED_POINTS].
+   * Sets the [Color]s to modulate particles by when using [EMISSIONSHAPEPOINTS] or
+   * [EMISSIONSHAPEDIRECTEDPOINTS].
    * **Note:** [emissionColors] multiplies the particle mesh's vertex colors. To have a visible
    * effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
@@ -349,7 +348,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * The axis of the ring when using the emitter [constant EMISSION_SHAPE_RING].
+   * The axis of the ring when using the emitter [EMISSIONSHAPERING].
    */
   @CoreTypeLocalCopy
   public var emissionRingAxis: Vector3
@@ -364,7 +363,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * The height of the ring when using the emitter [constant EMISSION_SHAPE_RING].
+   * The height of the ring when using the emitter [EMISSIONSHAPERING].
    */
   public var emissionRingHeight: Float
     get() {
@@ -378,7 +377,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * The radius of the ring when using the emitter [constant EMISSION_SHAPE_RING].
+   * The radius of the ring when using the emitter [EMISSIONSHAPERING].
    */
   public var emissionRingRadius: Float
     get() {
@@ -392,7 +391,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * The inner radius of the ring when using the emitter [constant EMISSION_SHAPE_RING].
+   * The inner radius of the ring when using the emitter [EMISSIONSHAPERING].
    */
   public var emissionRingInnerRadius: Float
     get() {
@@ -1118,7 +1117,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   /**
-   * The rectangle's extents if [emissionShape] is set to [constant EMISSION_SHAPE_BOX].
+   * The rectangle's extents if [emissionShape] is set to [EMISSIONSHAPEBOX].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -1143,7 +1142,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
 
   /**
-   * The axis of the ring when using the emitter [constant EMISSION_SHAPE_RING].
+   * The axis of the ring when using the emitter [EMISSIONSHAPERING].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -1347,7 +1346,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
      */
     PARAM_ANIM_OFFSET(11),
     /**
-     * Represents the size of the [enum Parameter] enum.
+     * Represents the size of the [Parameter] enum.
      */
     PARAM_MAX(12),
     ;
@@ -1378,7 +1377,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
      */
     PARTICLE_FLAG_DISABLE_Z(2),
     /**
-     * Represents the size of the [enum ParticleFlags] enum.
+     * Represents the size of the [ParticleFlags] enum.
      */
     PARTICLE_FLAG_MAX(3),
     ;
@@ -1428,7 +1427,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
      */
     EMISSION_SHAPE_RING(6),
     /**
-     * Represents the size of the [enum EmissionShape] enum.
+     * Represents the size of the [EmissionShape] enum.
      */
     EMISSION_SHAPE_MAX(7),
     ;

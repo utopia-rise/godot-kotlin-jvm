@@ -94,18 +94,18 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Sets properties of the slot with the given [param slot_index].
-   * If [param enable_left_port]/[param enable_right_port] is `true`, a port will appear and the
-   * slot will be able to be connected from this side.
-   * With [param type_left]/[param type_right] an arbitrary type can be assigned to each port. Two
-   * ports can be connected if they share the same type, or if the connection between their types is
-   * allowed in the parent [GraphEdit] (see [GraphEdit.addValidConnectionType]). Keep in mind that the
-   * [GraphEdit] has the final say in accepting the connection. Type compatibility simply allows the
-   * [signal GraphEdit.connection_request] signal to be emitted.
-   * Ports can be further customized using [param color_left]/[param color_right] and [param
-   * custom_icon_left]/[param custom_icon_right]. The color parameter adds a tint to the icon. The
-   * custom icon can be used to override the default port dot.
-   * Additionally, [param draw_stylebox] can be used to enable or disable drawing of the background
+   * Sets properties of the slot with the given [slotIndex].
+   * If [enableLeftPort]/[enableRightPort] is `true`, a port will appear and the slot will be able
+   * to be connected from this side.
+   * With [typeLeft]/[typeRight] an arbitrary type can be assigned to each port. Two ports can be
+   * connected if they share the same type, or if the connection between their types is allowed in the
+   * parent [GraphEdit] (see [GraphEdit.addValidConnectionType]). Keep in mind that the [GraphEdit] has
+   * the final say in accepting the connection. Type compatibility simply allows the [signal
+   * GraphEdit.connection_request] signal to be emitted.
+   * Ports can be further customized using [colorLeft]/[colorRight] and
+   * [customIconLeft]/[customIconRight]. The color parameter adds a tint to the icon. The custom icon
+   * can be used to override the default port dot.
+   * Additionally, [drawStylebox] can be used to enable or disable drawing of the background
    * stylebox for each slot. See [theme_item slot].
    * Individual properties can also be set using one of the `set_slot_*` methods.
    * **Note:** This method only sets properties of the slot. To create the slot itself, add a
@@ -129,8 +129,8 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Disables the slot with the given [param slot_index]. This will remove the corresponding input
-   * and output port from the GraphNode.
+   * Disables the slot with the given [slotIndex]. This will remove the corresponding input and
+   * output port from the GraphNode.
    */
   public fun clearSlot(slotIndex: Int): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
@@ -147,7 +147,7 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Returns `true` if left (input) side of the slot with the given [param slot_index] is enabled.
+   * Returns `true` if left (input) side of the slot with the given [slotIndex] is enabled.
    */
   public fun isSlotEnabledLeft(slotIndex: Int): Boolean {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
@@ -156,9 +156,8 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Toggles the left (input) side of the slot with the given [param slot_index]. If [param enable]
-   * is `true`, a port will appear on the left side and the slot will be able to be connected from this
-   * side.
+   * Toggles the left (input) side of the slot with the given [slotIndex]. If [enable] is `true`, a
+   * port will appear on the left side and the slot will be able to be connected from this side.
    */
   public fun setSlotEnabledLeft(slotIndex: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), BOOL to enable)
@@ -166,8 +165,8 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Sets the left (input) type of the slot with the given [param slot_index] to [param type]. If
-   * the value is negative, all connections will be disallowed to be created via user inputs.
+   * Sets the left (input) type of the slot with the given [slotIndex] to [type]. If the value is
+   * negative, all connections will be disallowed to be created via user inputs.
    */
   public fun setSlotTypeLeft(slotIndex: Int, type: Int): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), LONG to type.toLong())
@@ -175,7 +174,7 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Returns the left (input) type of the slot with the given [param slot_index].
+   * Returns the left (input) type of the slot with the given [slotIndex].
    */
   public fun getSlotTypeLeft(slotIndex: Int): Int {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
@@ -184,8 +183,7 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Sets the [Color] of the left (input) side of the slot with the given [param slot_index] to
-   * [param color].
+   * Sets the [Color] of the left (input) side of the slot with the given [slotIndex] to [color].
    */
   public fun setSlotColorLeft(slotIndex: Int, color: Color): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), COLOR to color)
@@ -193,7 +191,7 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Returns the left (input) [Color] of the slot with the given [param slot_index].
+   * Returns the left (input) [Color] of the slot with the given [slotIndex].
    */
   public fun getSlotColorLeft(slotIndex: Int): Color {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
@@ -202,7 +200,7 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Returns `true` if right (output) side of the slot with the given [param slot_index] is enabled.
+   * Returns `true` if right (output) side of the slot with the given [slotIndex] is enabled.
    */
   public fun isSlotEnabledRight(slotIndex: Int): Boolean {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
@@ -211,9 +209,8 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Toggles the right (output) side of the slot with the given [param slot_index]. If [param
-   * enable] is `true`, a port will appear on the right side and the slot will be able to be connected
-   * from this side.
+   * Toggles the right (output) side of the slot with the given [slotIndex]. If [enable] is `true`,
+   * a port will appear on the right side and the slot will be able to be connected from this side.
    */
   public fun setSlotEnabledRight(slotIndex: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), BOOL to enable)
@@ -221,8 +218,8 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Sets the right (output) type of the slot with the given [param slot_index] to [param type]. If
-   * the value is negative, all connections will be disallowed to be created via user inputs.
+   * Sets the right (output) type of the slot with the given [slotIndex] to [type]. If the value is
+   * negative, all connections will be disallowed to be created via user inputs.
    */
   public fun setSlotTypeRight(slotIndex: Int, type: Int): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), LONG to type.toLong())
@@ -230,7 +227,7 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Returns the right (output) type of the slot with the given [param slot_index].
+   * Returns the right (output) type of the slot with the given [slotIndex].
    */
   public fun getSlotTypeRight(slotIndex: Int): Int {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
@@ -239,8 +236,7 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Sets the [Color] of the right (output) side of the slot with the given [param slot_index] to
-   * [param color].
+   * Sets the [Color] of the right (output) side of the slot with the given [slotIndex] to [color].
    */
   public fun setSlotColorRight(slotIndex: Int, color: Color): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), COLOR to color)
@@ -248,7 +244,7 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Returns the right (output) [Color] of the slot with the given [param slot_index].
+   * Returns the right (output) [Color] of the slot with the given [slotIndex].
    */
   public fun getSlotColorRight(slotIndex: Int): Color {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
@@ -257,8 +253,7 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Returns true if the background [StyleBox] of the slot with the given [param slot_index] is
-   * drawn.
+   * Returns true if the background [StyleBox] of the slot with the given [slotIndex] is drawn.
    */
   public fun isSlotDrawStylebox(slotIndex: Int): Boolean {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
@@ -267,7 +262,7 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Toggles the background [StyleBox] of the slot with the given [param slot_index].
+   * Toggles the background [StyleBox] of the slot with the given [slotIndex].
    */
   public fun setSlotDrawStylebox(slotIndex: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), BOOL to enable)
@@ -284,7 +279,7 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Returns the position of the input port with the given [param port_idx].
+   * Returns the position of the input port with the given [portIdx].
    */
   public fun getInputPortPosition(portIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to portIdx.toLong())
@@ -293,7 +288,7 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Returns the type of the input port with the given [param port_idx].
+   * Returns the type of the input port with the given [portIdx].
    */
   public fun getInputPortType(portIdx: Int): Int {
     TransferContext.writeArguments(LONG to portIdx.toLong())
@@ -302,7 +297,7 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Returns the [Color] of the input port with the given [param port_idx].
+   * Returns the [Color] of the input port with the given [portIdx].
    */
   public fun getInputPortColor(portIdx: Int): Color {
     TransferContext.writeArguments(LONG to portIdx.toLong())
@@ -311,7 +306,7 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Returns the corresponding slot index of the input port with the given [param port_idx].
+   * Returns the corresponding slot index of the input port with the given [portIdx].
    */
   public fun getInputPortSlot(portIdx: Int): Int {
     TransferContext.writeArguments(LONG to portIdx.toLong())
@@ -329,7 +324,7 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Returns the position of the output port with the given [param port_idx].
+   * Returns the position of the output port with the given [portIdx].
    */
   public fun getOutputPortPosition(portIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to portIdx.toLong())
@@ -338,7 +333,7 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Returns the type of the output port with the given [param port_idx].
+   * Returns the type of the output port with the given [portIdx].
    */
   public fun getOutputPortType(portIdx: Int): Int {
     TransferContext.writeArguments(LONG to portIdx.toLong())
@@ -347,7 +342,7 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Returns the [Color] of the output port with the given [param port_idx].
+   * Returns the [Color] of the output port with the given [portIdx].
    */
   public fun getOutputPortColor(portIdx: Int): Color {
     TransferContext.writeArguments(LONG to portIdx.toLong())
@@ -356,7 +351,7 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Returns the corresponding slot index of the output port with the given [param port_idx].
+   * Returns the corresponding slot index of the output port with the given [portIdx].
    */
   public fun getOutputPortSlot(portIdx: Int): Int {
     TransferContext.writeArguments(LONG to portIdx.toLong())

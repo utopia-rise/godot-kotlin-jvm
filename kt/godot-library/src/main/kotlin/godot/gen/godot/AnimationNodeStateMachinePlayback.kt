@@ -53,8 +53,8 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    * Transitions from the current state to another one, following the shortest path.
    * If the path does not connect from the current state, the animation will play after the state
    * teleports.
-   * If [param reset_on_teleport] is `true`, the animation is played from the beginning when the
-   * travel cause a teleportation.
+   * If [resetOnTeleport] is `true`, the animation is played from the beginning when the travel
+   * cause a teleportation.
    */
   @JvmOverloads
   public fun travel(toNode: StringName, resetOnTeleport: Boolean = true): Unit {
@@ -64,7 +64,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
 
   /**
    * Starts playing the given animation.
-   * If [param reset] is `true`, the animation is played from the beginning.
+   * If [reset] is `true`, the animation is played from the beginning.
    */
   @JvmOverloads
   public fun start(node: StringName, reset: Boolean = true): Unit {

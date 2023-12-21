@@ -29,8 +29,8 @@ import kotlin.Unit
 @GodotBaseType
 public open class InputEventMouse internal constructor() : InputEventWithModifiers() {
   /**
-   * The mouse button mask identifier, one of or a bitwise combination of the [enum MouseButton]
-   * button masks.
+   * The mouse button mask identifier, one of or a bitwise combination of the [MouseButton] button
+   * masks.
    */
   public var buttonMask: MouseButtonMask
     get() {

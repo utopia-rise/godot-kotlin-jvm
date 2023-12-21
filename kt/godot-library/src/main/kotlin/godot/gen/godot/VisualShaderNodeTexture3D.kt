@@ -23,8 +23,8 @@ import kotlin.Suppress
 @GodotBaseType
 public open class VisualShaderNodeTexture3D : VisualShaderNodeSample3D() {
   /**
-   * A source texture. Used if [VisualShaderNodeSample3D.source] is set to [constant
-   * VisualShaderNodeSample3D.SOURCE_TEXTURE].
+   * A source texture. Used if [VisualShaderNodeSample3D.source] is set to
+   * [VisualShaderNodeSample3D.SOURCETEXTURE].
    */
   public var texture: Texture3D?
     get() {

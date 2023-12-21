@@ -91,7 +91,7 @@ public open class Tree : Control() {
   public val cellSelected: Signal0 by signal()
 
   /**
-   * Emitted instead of [signal item_selected] if [selectMode] is set to [constant SELECT_MULTI].
+   * Emitted instead of [signal item_selected] if [selectMode] is set to [SELECTMULTI].
    */
   public val multiSelected: Signal3<TreeItem, Long, Boolean> by signal("item", "column", "selected")
 
@@ -111,7 +111,7 @@ public open class Tree : Control() {
   public val itemEdited: Signal0 by signal()
 
   /**
-   * Emitted when an item with [constant TreeItem.CELL_MODE_CUSTOM] is clicked with a mouse button.
+   * Emitted when an item with [TreeItem.CELLMODECUSTOM] is clicked with a mouse button.
    */
   public val customItemClicked: Signal1<Long> by signal("mouseButtonIndex")
 
@@ -141,7 +141,7 @@ public open class Tree : Control() {
       "mouseButtonIndex")
 
   /**
-   * Emitted when a cell with the [constant TreeItem.CELL_MODE_CUSTOM] is clicked to be edited.
+   * Emitted when a cell with the [TreeItem.CELLMODECUSTOM] is clicked to be edited.
    */
   public val customPopupEdited: Signal1<Boolean> by signal("arrowClicked")
 
@@ -152,8 +152,7 @@ public open class Tree : Control() {
   public val itemActivated: Signal0 by signal()
 
   /**
-   * Emitted when a column's title is clicked with either [constant MOUSE_BUTTON_LEFT] or [constant
-   * MOUSE_BUTTON_RIGHT].
+   * Emitted when a column's title is clicked with either [MOUSEBUTTONLEFT] or [MOUSEBUTTONRIGHT].
    */
   public val columnTitleClicked: Signal2<Long, Long> by signal("column", "mouseButtonIndex")
 
@@ -276,9 +275,8 @@ public open class Tree : Control() {
     }
 
   /**
-   * The drop mode as an OR combination of flags. See [enum DropModeFlags] constants. Once dropping
-   * is done, reverts to [constant DROP_MODE_DISABLED]. Setting this during [Control.CanDropData] is
-   * recommended.
+   * The drop mode as an OR combination of flags. See [DropModeFlags] constants. Once dropping is
+   * done, reverts to [DROPMODEDISABLED]. Setting this during [Control.CanDropData] is recommended.
    * This controls the drop sections, i.e. the decision and drawing of possible drop locations based
    * on the mouse position.
    */
@@ -294,7 +292,7 @@ public open class Tree : Control() {
     }
 
   /**
-   * Allows single or multiple selection. See the [enum SelectMode] constants.
+   * Allows single or multiple selection. See the [SelectMode] constants.
    */
   public var selectMode: SelectMode
     get() {
@@ -349,12 +347,12 @@ public open class Tree : Control() {
   }
 
   /**
-   * Creates an item in the tree and adds it as a child of [param parent], which can be either a
-   * valid [TreeItem] or `null`.
-   * If [param parent] is `null`, the root item will be the parent, or the new item will be the root
+   * Creates an item in the tree and adds it as a child of [parent], which can be either a valid
+   * [TreeItem] or `null`.
+   * If [parent] is `null`, the root item will be the parent, or the new item will be the root
    * itself if the tree is empty.
-   * The new item will be the [param index]-th child of parent, or it will be the last child if
-   * there are not enough siblings.
+   * The new item will be the [index]-th child of parent, or it will be the last child if there are
+   * not enough siblings.
    */
   @JvmOverloads
   public fun createItem(parent: TreeItem? = null, index: Int = -1): TreeItem? {
@@ -446,7 +444,7 @@ public open class Tree : Control() {
 
   /**
    * Returns the next selected [TreeItem] after the given one, or `null` if the end is reached.
-   * If [param from] is `null`, this returns the first selected item.
+   * If [from] is `null`, this returns the first selected item.
    */
   public fun getNextSelected(from: TreeItem): TreeItem? {
     TransferContext.writeArguments(OBJECT to from)
@@ -456,9 +454,8 @@ public open class Tree : Control() {
 
   /**
    * Returns the currently focused item, or `null` if no item is focused.
-   * In [constant SELECT_ROW] and [constant SELECT_SINGLE] modes, the focused item is same as the
-   * selected item. In [constant SELECT_MULTI] mode, the focused item is the item under the focus
-   * cursor, not necessarily selected.
+   * In [SELECTROW] and [SELECTSINGLE] modes, the focused item is same as the selected item. In
+   * [SELECTMULTI] mode, the focused item is the item under the focus cursor, not necessarily selected.
    * To get the currently selected item(s), use [getNextSelected].
    */
   public fun getSelected(): TreeItem? {
@@ -477,10 +474,9 @@ public open class Tree : Control() {
 
   /**
    * Returns the currently focused column, or -1 if no column is focused.
-   * In [constant SELECT_SINGLE] mode, the focused column is the selected column. In [constant
-   * SELECT_ROW] mode, the focused column is always 0 if any item is selected. In [constant
-   * SELECT_MULTI] mode, the focused column is the column under the focus cursor, and there are not
-   * necessarily any column selected.
+   * In [SELECTSINGLE] mode, the focused column is the selected column. In [SELECTROW] mode, the
+   * focused column is always 0 if any item is selected. In [SELECTMULTI] mode, the focused column is
+   * the column under the focus cursor, and there are not necessarily any column selected.
    * To tell whether a column of an item is selected, use [TreeItem.isSelected].
    */
   public fun getSelectedColumn(): Int {
@@ -499,8 +495,8 @@ public open class Tree : Control() {
   }
 
   /**
-   * Deselects all tree items (rows and columns). In [constant SELECT_MULTI] mode also removes
-   * selection cursor.
+   * Deselects all tree items (rows and columns). In [SELECTMULTI] mode also removes selection
+   * cursor.
    */
   public fun deselectAll(): Unit {
     TransferContext.writeArguments()
@@ -549,8 +545,7 @@ public open class Tree : Control() {
 
   /**
    * Edits the selected tree item as if it was clicked.
-   * Either the item must be set editable with [TreeItem.setEditable] or [param force_edit] must be
-   * `true`.
+   * Either the item must be set editable with [TreeItem.setEditable] or [forceEdit] must be `true`.
    * Returns `true` if the item could be edited. Fails if no item is selected.
    */
   @JvmOverloads
@@ -571,9 +566,9 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the rectangle area for the specified [TreeItem]. If [param column] is specified, only
-   * get the position and size of that column, otherwise get the rectangle containing all columns. If a
-   * button index is specified, the rectangle of that button will be returned.
+   * Returns the rectangle area for the specified [TreeItem]. If [column] is specified, only get the
+   * position and size of that column, otherwise get the rectangle containing all columns. If a button
+   * index is specified, the rectangle of that button will be returned.
    */
   @JvmOverloads
   public fun getItemAreaRect(
@@ -596,7 +591,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the column index at [param position], or -1 if no item is there.
+   * Returns the column index at [position], or -1 if no item is there.
    */
   public fun getColumnAtPosition(position: Vector2): Int {
     TransferContext.writeArguments(VECTOR2 to position)
@@ -605,9 +600,9 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the drop section at [param position], or -100 if no item is there.
+   * Returns the drop section at [position], or -100 if no item is there.
    * Values -1, 0, or 1 will be returned for the "above item", "on item", and "below item" drop
-   * sections, respectively. See [enum DropModeFlags] for a description of each drop section.
+   * sections, respectively. See [DropModeFlags] for a description of each drop section.
    * To get the item which the returned drop section is relative to, use [getItemAtPosition].
    */
   public fun getDropSectionAtPosition(position: Vector2): Int {
@@ -617,7 +612,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the button ID at [param position], or -1 if no button is there.
+   * Returns the button ID at [position], or -1 if no button is there.
    */
   public fun getButtonIdAtPosition(position: Vector2): Int {
     TransferContext.writeArguments(VECTOR2 to position)
@@ -627,10 +622,10 @@ public open class Tree : Control() {
 
   /**
    * Makes the currently focused cell visible.
-   * This will scroll the tree if necessary. In [constant SELECT_ROW] mode, this will not do
-   * horizontal scrolling, as all the cells in the selected row is focused logically.
-   * **Note:** Despite the name of this method, the focus cursor itself is only visible in [constant
-   * SELECT_MULTI] mode.
+   * This will scroll the tree if necessary. In [SELECTROW] mode, this will not do horizontal
+   * scrolling, as all the cells in the selected row is focused logically.
+   * **Note:** Despite the name of this method, the focus cursor itself is only visible in
+   * [SELECTMULTI] mode.
    */
   public fun ensureCursorIsVisible(): Unit {
     TransferContext.writeArguments()
@@ -655,8 +650,8 @@ public open class Tree : Control() {
   }
 
   /**
-   * Sets the column title alignment. Note that [constant @GlobalScope.HORIZONTAL_ALIGNMENT_FILL] is
-   * not supported for column titles.
+   * Sets the column title alignment. Note that [@GlobalScope.HORIZONTALALIGNMENTFILL] is not
+   * supported for column titles.
    */
   public fun setColumnTitleAlignment(column: Int, titleAlignment: HorizontalAlignment): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to titleAlignment.id)
@@ -773,15 +768,15 @@ public open class Tree : Control() {
     DROP_MODE_DISABLED(0),
     /**
      * Enables the "on item" drop section. This drop section covers the entire item.
-     * When combined with [constant DROP_MODE_INBETWEEN], this drop section halves the height and
-     * stays centered vertically.
+     * When combined with [DROPMODEINBETWEEN], this drop section halves the height and stays
+     * centered vertically.
      */
     DROP_MODE_ON_ITEM(1),
     /**
      * Enables "above item" and "below item" drop sections. The "above item" drop section covers the
      * top half of the item, and the "below item" drop section covers the bottom half.
-     * When combined with [constant DROP_MODE_ON_ITEM], these drop sections halves the height and
-     * stays on top / bottom accordingly.
+     * When combined with [DROPMODEONITEM], these drop sections halves the height and stays on top /
+     * bottom accordingly.
      */
     DROP_MODE_INBETWEEN(2),
     ;

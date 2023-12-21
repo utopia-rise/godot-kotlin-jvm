@@ -59,7 +59,7 @@ public open class MultiplayerSynchronizer : Node() {
   public val deltaSynchronized: Signal0 by signal()
 
   /**
-   * Emitted when visibility of [param for_peer] is updated. See [updateVisibility].
+   * Emitted when visibility of [forPeer] is updated. See [updateVisibility].
    */
   public val visibilityChanged: Signal1<Long> by signal("forPeer")
 
@@ -124,7 +124,7 @@ public open class MultiplayerSynchronizer : Node() {
     }
 
   /**
-   * Specifies when visibility filters are updated (see [enum VisibilityUpdateMode] for options).
+   * Specifies when visibility filters are updated (see [VisibilityUpdateMode] for options).
    */
   public var visibilityUpdateMode: VisibilityUpdateMode
     get() {
@@ -158,8 +158,8 @@ public open class MultiplayerSynchronizer : Node() {
   }
 
   /**
-   * Updates the visibility of [param for_peer] according to visibility filters. If [param for_peer]
-   * is `0` (the default), all peers' visibilties are updated.
+   * Updates the visibility of [forPeer] according to visibility filters. If [forPeer] is `0` (the
+   * default), all peers' visibilties are updated.
    */
   @JvmOverloads
   public fun updateVisibility(forPeer: Int = 0): Unit {
@@ -169,7 +169,7 @@ public open class MultiplayerSynchronizer : Node() {
 
   /**
    * Adds a peer visibility filter for this synchronizer.
-   * [param filter] should take a peer ID [int] and return a [bool].
+   * [filter] should take a peer ID [int] and return a [bool].
    */
   public fun addVisibilityFilter(filter: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to filter)
@@ -185,8 +185,8 @@ public open class MultiplayerSynchronizer : Node() {
   }
 
   /**
-   * Sets the visibility of [param peer] to [param visible]. If [param peer] is `0`, the value of
-   * [publicVisibility] will be updated instead.
+   * Sets the visibility of [peer] to [visible]. If [peer] is `0`, the value of [publicVisibility]
+   * will be updated instead.
    */
   public fun setVisibilityFor(peer: Int, visible: Boolean): Unit {
     TransferContext.writeArguments(LONG to peer.toLong(), BOOL to visible)
@@ -194,7 +194,7 @@ public open class MultiplayerSynchronizer : Node() {
   }
 
   /**
-   * Queries the current visibility for peer [param peer].
+   * Queries the current visibility for peer [peer].
    */
   public fun getVisibilityFor(peer: Int): Boolean {
     TransferContext.writeArguments(LONG to peer.toLong())
@@ -206,13 +206,13 @@ public open class MultiplayerSynchronizer : Node() {
     id: Long,
   ) {
     /**
-     * Visibility filters are updated during process frames (see [constant
-     * Node.NOTIFICATION_INTERNAL_PROCESS]).
+     * Visibility filters are updated during process frames (see
+     * [Node.NOTIFICATIONINTERNALPROCESS]).
      */
     VISIBILITY_PROCESS_IDLE(0),
     /**
-     * Visibility filters are updated during physics frames (see [constant
-     * Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
+     * Visibility filters are updated during physics frames (see
+     * [Node.NOTIFICATIONINTERNALPHYSICSPROCESS]).
      */
     VISIBILITY_PROCESS_PHYSICS(1),
     /**

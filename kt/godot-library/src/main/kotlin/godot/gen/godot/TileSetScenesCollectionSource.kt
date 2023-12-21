@@ -45,7 +45,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   }
 
   /**
-   * Returns the scene tile ID of the scene tile at [param index].
+   * Returns the scene tile ID of the scene tile at [index].
    */
   public fun getSceneTileId(index: Int): Int {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -54,7 +54,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   }
 
   /**
-   * Returns whether this TileSet source has a scene tile with [param id].
+   * Returns whether this TileSet source has a scene tile with [id].
    */
   public fun hasSceneTileId(id: Int): Boolean {
     TransferContext.writeArguments(LONG to id.toLong())
@@ -74,8 +74,8 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   }
 
   /**
-   * Changes a scene tile's ID from [param id] to [param new_id]. This will fail if there is already
-   * a tile with an ID equal to [param new_id].
+   * Changes a scene tile's ID from [id] to [newId]. This will fail if there is already a tile with
+   * an ID equal to [newId].
    */
   public fun setSceneTileId(id: Int, newId: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), LONG to newId.toLong())
@@ -83,9 +83,8 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   }
 
   /**
-   * Assigns a [PackedScene] resource to the scene tile with [param id]. This will fail if the scene
-   * does not extend CanvasItem, as positioning properties are needed to place the scene on the
-   * TileMap.
+   * Assigns a [PackedScene] resource to the scene tile with [id]. This will fail if the scene does
+   * not extend CanvasItem, as positioning properties are needed to place the scene on the TileMap.
    */
   public fun setSceneTileScene(id: Int, packedScene: PackedScene): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), OBJECT to packedScene)
@@ -93,7 +92,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   }
 
   /**
-   * Returns the [PackedScene] resource of scene tile with [param id].
+   * Returns the [PackedScene] resource of scene tile with [id].
    */
   public fun getSceneTileScene(id: Int): PackedScene? {
     TransferContext.writeArguments(LONG to id.toLong())
@@ -102,8 +101,8 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   }
 
   /**
-   * Sets whether or not the scene tile with [param id] should display a placeholder in the editor.
-   * This might be useful for scenes that are not visible.
+   * Sets whether or not the scene tile with [id] should display a placeholder in the editor. This
+   * might be useful for scenes that are not visible.
    */
   public fun setSceneTileDisplayPlaceholder(id: Int, displayPlaceholder: Boolean): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), BOOL to displayPlaceholder)
@@ -111,7 +110,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   }
 
   /**
-   * Returns whether the scene tile with [param id] displays a placeholder in the editor.
+   * Returns whether the scene tile with [id] displays a placeholder in the editor.
    */
   public fun getSceneTileDisplayPlaceholder(id: Int): Boolean {
     TransferContext.writeArguments(LONG to id.toLong())
@@ -120,7 +119,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   }
 
   /**
-   * Remove the scene tile with [param id].
+   * Remove the scene tile with [id].
    */
   public fun removeSceneTile(id: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong())

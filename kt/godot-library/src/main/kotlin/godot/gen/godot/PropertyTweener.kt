@@ -79,7 +79,7 @@ public open class PropertyTweener : Tweener() {
   }
 
   /**
-   * Sets the type of used transition from [enum Tween.TransitionType]. If not set, the default
+   * Sets the type of used transition from [Tween.TransitionType]. If not set, the default
    * transition is used from the [Tween] that contains this Tweener.
    */
   public fun setTrans(trans: Tween.TransitionType): PropertyTweener? {
@@ -89,8 +89,8 @@ public open class PropertyTweener : Tweener() {
   }
 
   /**
-   * Sets the type of used easing from [enum Tween.EaseType]. If not set, the default easing is used
-   * from the [Tween] that contains this Tweener.
+   * Sets the type of used easing from [Tween.EaseType]. If not set, the default easing is used from
+   * the [Tween] that contains this Tweener.
    */
   public fun setEase(ease: Tween.EaseType): PropertyTweener? {
     TransferContext.writeArguments(LONG to ease.id)

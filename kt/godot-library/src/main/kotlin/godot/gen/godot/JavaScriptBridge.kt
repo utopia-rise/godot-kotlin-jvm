@@ -57,11 +57,11 @@ public object JavaScriptBridge : Object() {
   }
 
   /**
-   * Execute the string [param code] as JavaScript code within the browser window. This is a call to
-   * the actual global JavaScript function [code skip-lint]eval()[/code].
-   * If [param use_global_execution_context] is `true`, the code will be evaluated in the global
-   * execution context. Otherwise, it is evaluated in the execution context of a function within the
-   * engine's runtime environment.
+   * Execute the string ` as JavaScript code within the browser window. This is a call to the actual
+   * global JavaScript function [code skip-lint]eval()`.
+   * If [useGlobalExecutionContext] is `true`, the code will be evaluated in the global execution
+   * context. Otherwise, it is evaluated in the execution context of a function within the engine's
+   * runtime environment.
    */
   @JvmOverloads
   public fun eval(code: String, useGlobalExecutionContext: Boolean = false): Any? {
@@ -71,8 +71,8 @@ public object JavaScriptBridge : Object() {
   }
 
   /**
-   * Returns an interface to a JavaScript object that can be used by scripts. The [param interface]
-   * must be a valid property of the JavaScript `window`. The callback must accept a single [Array]
+   * Returns an interface to a JavaScript object that can be used by scripts. The [interface] must
+   * be a valid property of the JavaScript `window`. The callback must accept a single [Array]
    * argument, which will contain the JavaScript `arguments`. See [JavaScriptObject] for usage.
    */
   public fun getInterface(_interface: String): JavaScriptObject? {
@@ -93,8 +93,8 @@ public object JavaScriptBridge : Object() {
   }
 
   /**
-   * Creates a new JavaScript object using the `new` constructor. The [param object] must a valid
-   * property of the JavaScript `window`. See [JavaScriptObject] for usage.
+   * Creates a new JavaScript object using the `new` constructor. The [object] must a valid property
+   * of the JavaScript `window`. See [JavaScriptObject] for usage.
    */
   public fun createObject(_object: String, vararg __var_args: Any?): Any? {
     TransferContext.writeArguments(STRING to _object,  *__var_args.map { ANY to it }.toTypedArray())
@@ -103,10 +103,10 @@ public object JavaScriptBridge : Object() {
   }
 
   /**
-   * Prompts the user to download a file containing the specified [param buffer]. The file will have
-   * the given [param name] and [param mime] type.
+   * Prompts the user to download a file containing the specified [buffer]. The file will have the
+   * given [name] and [mime] type.
    * **Note:** The browser may override the [url=https://en.wikipedia.org/wiki/Media_type]MIME
-   * type[/url] provided based on the file [param name]'s extension.
+   * type[/url] provided based on the file [name]'s extension.
    * **Note:** Browsers might block the download if [downloadBuffer] is not being called from a user
    * interaction (e.g. button click).
    * **Note:** Browsers might ask the user for permission or block the download if multiple download

@@ -26,8 +26,8 @@ import kotlin.Suppress
 @GodotBaseType
 public open class FlowContainer : Container() {
   /**
-   * The alignment of the container's children (must be one of [constant ALIGNMENT_BEGIN], [constant
-   * ALIGNMENT_CENTER], or [constant ALIGNMENT_END]).
+   * The alignment of the container's children (must be one of [ALIGNMENTBEGIN], [ALIGNMENTCENTER],
+   * or [ALIGNMENTEND]).
    */
   public var alignment: AlignmentMode
     get() {

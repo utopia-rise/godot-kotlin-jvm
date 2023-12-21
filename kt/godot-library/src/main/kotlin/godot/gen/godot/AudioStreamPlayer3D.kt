@@ -349,8 +349,8 @@ public open class AudioStreamPlayer3D : Node3D() {
   }
 
   /**
-   * Queues the audio to play on the next physics frame, from the given position [param
-   * from_position], in seconds.
+   * Queues the audio to play on the next physics frame, from the given position [fromPosition], in
+   * seconds.
    */
   @JvmOverloads
   public fun play(fromPosition: Float = 0.0f): Unit {
@@ -418,9 +418,8 @@ public open class AudioStreamPlayer3D : Node3D() {
     ATTENUATION_LOGARITHMIC(2),
     /**
      * No attenuation of loudness according to distance. The sound will still be heard positionally,
-     * unlike an [AudioStreamPlayer]. [constant ATTENUATION_DISABLED] can be combined with a
-     * [maxDistance] value greater than `0.0` to achieve linear attenuation clamped to a sphere of a
-     * defined size.
+     * unlike an [AudioStreamPlayer]. [ATTENUATIONDISABLED] can be combined with a [maxDistance] value
+     * greater than `0.0` to achieve linear attenuation clamped to a sphere of a defined size.
      */
     ATTENUATION_DISABLED(3),
     ;
@@ -443,13 +442,12 @@ public open class AudioStreamPlayer3D : Node3D() {
      */
     DOPPLER_TRACKING_DISABLED(0),
     /**
-     * Executes doppler tracking during process frames (see [constant
-     * Node.NOTIFICATION_INTERNAL_PROCESS]).
+     * Executes doppler tracking during process frames (see [Node.NOTIFICATIONINTERNALPROCESS]).
      */
     DOPPLER_TRACKING_IDLE_STEP(1),
     /**
-     * Executes doppler tracking during physics frames (see [constant
-     * Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
+     * Executes doppler tracking during physics frames (see
+     * [Node.NOTIFICATIONINTERNALPHYSICSPROCESS]).
      */
     DOPPLER_TRACKING_PHYSICS_STEP(2),
     ;

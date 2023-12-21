@@ -35,8 +35,8 @@ import kotlin.Unit
 @GodotBaseType
 public open class Gradient : Resource() {
   /**
-   * The algorithm used to interpolate between points of the gradient. See [enum InterpolationMode]
-   * for available modes.
+   * The algorithm used to interpolate between points of the gradient. See [InterpolationMode] for
+   * available modes.
    */
   public var interpolationMode: InterpolationMode
     get() {
@@ -51,9 +51,9 @@ public open class Gradient : Resource() {
 
   /**
    * The color space used to interpolate between points of the gradient. It does not affect the
-   * returned colors, which will always be in sRGB space. See [enum ColorSpace] for available modes.
-   * **Note:** This setting has no effect when [interpolationMode] is set to [constant
-   * GRADIENT_INTERPOLATE_CONSTANT].
+   * returned colors, which will always be in sRGB space. See [ColorSpace] for available modes.
+   * **Note:** This setting has no effect when [interpolationMode] is set to
+   * [GRADIENTINTERPOLATECONSTANT].
    */
   public var interpolationColorSpace: ColorSpace
     get() {
@@ -114,7 +114,7 @@ public open class Gradient : Resource() {
   }
 
   /**
-   * Removes the color at index [param point].
+   * Removes the color at index [point].
    */
   public fun removePoint(point: Int): Unit {
     TransferContext.writeArguments(LONG to point.toLong())
@@ -122,7 +122,7 @@ public open class Gradient : Resource() {
   }
 
   /**
-   * Sets the offset for the gradient color at index [param point].
+   * Sets the offset for the gradient color at index [point].
    */
   public fun setOffset(point: Int, offset: Float): Unit {
     TransferContext.writeArguments(LONG to point.toLong(), DOUBLE to offset.toDouble())
@@ -130,7 +130,7 @@ public open class Gradient : Resource() {
   }
 
   /**
-   * Returns the offset of the gradient color at index [param point].
+   * Returns the offset of the gradient color at index [point].
    */
   public fun getOffset(point: Int): Float {
     TransferContext.writeArguments(LONG to point.toLong())
@@ -141,7 +141,7 @@ public open class Gradient : Resource() {
   /**
    * Reverses/mirrors the gradient.
    * **Note:** This method mirrors all points around the middle of the gradient, which may produce
-   * unexpected results when [interpolationMode] is set to [constant GRADIENT_INTERPOLATE_CONSTANT].
+   * unexpected results when [interpolationMode] is set to [GRADIENTINTERPOLATECONSTANT].
    */
   public fun reverse(): Unit {
     TransferContext.writeArguments()
@@ -149,7 +149,7 @@ public open class Gradient : Resource() {
   }
 
   /**
-   * Sets the color of the gradient color at index [param point].
+   * Sets the color of the gradient color at index [point].
    */
   public fun setColor(point: Int, color: Color): Unit {
     TransferContext.writeArguments(LONG to point.toLong(), COLOR to color)
@@ -157,7 +157,7 @@ public open class Gradient : Resource() {
   }
 
   /**
-   * Returns the color of the gradient color at index [param point].
+   * Returns the color of the gradient color at index [point].
    */
   public fun getColor(point: Int): Color {
     TransferContext.writeArguments(LONG to point.toLong())
@@ -166,7 +166,7 @@ public open class Gradient : Resource() {
   }
 
   /**
-   * Returns the interpolated color specified by [param offset].
+   * Returns the interpolated color specified by [offset].
    */
   public fun sample(offset: Float): Color {
     TransferContext.writeArguments(DOUBLE to offset.toDouble())

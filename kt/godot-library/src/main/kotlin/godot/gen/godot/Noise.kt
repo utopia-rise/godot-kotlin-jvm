@@ -93,7 +93,7 @@ public open class Noise internal constructor() : Resource() {
 
   /**
    * Returns an [Image] containing 2D noise values.
-   * **Note:** With [param normalize] set to `false`, the default implementation expects the noise
+   * **Note:** With [normalize] set to `false`, the default implementation expects the noise
    * generator to return values in the range `-1.0` to `1.0`.
    */
   @JvmOverloads
@@ -111,7 +111,7 @@ public open class Noise internal constructor() : Resource() {
 
   /**
    * Returns an [Image] containing seamless 2D noise values.
-   * **Note:** With [param normalize] set to `false`, the default implementation expects the noise
+   * **Note:** With [normalize] set to `false`, the default implementation expects the noise
    * generator to return values in the range `-1.0` to `1.0`.
    */
   @JvmOverloads
@@ -130,7 +130,7 @@ public open class Noise internal constructor() : Resource() {
 
   /**
    * Returns an [Array] of [Image]s containing 3D noise values for use with [ImageTexture3D.create].
-   * **Note:** With [param normalize] set to `false`, the default implementation expects the noise
+   * **Note:** With [normalize] set to `false`, the default implementation expects the noise
    * generator to return values in the range `-1.0` to `1.0`.
    */
   @JvmOverloads
@@ -149,7 +149,7 @@ public open class Noise internal constructor() : Resource() {
   /**
    * Returns an [Array] of [Image]s containing seamless 3D noise values for use with
    * [ImageTexture3D.create].
-   * **Note:** With [param normalize] set to `false`, the default implementation expects the noise
+   * **Note:** With [normalize] set to `false`, the default implementation expects the noise
    * generator to return values in the range `-1.0` to `1.0`.
    */
   @JvmOverloads

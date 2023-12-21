@@ -92,7 +92,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     }
 
   /**
-   * Controls the interpolation between animations. See [enum BlendMode] constants.
+   * Controls the interpolation between animations. See [BlendMode] constants.
    */
   public var blendMode: BlendMode
     get() {
@@ -126,10 +126,9 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   /**
-   * Adds a new point that represents a [param node] on the virtual axis at a given position set by
-   * [param pos]. You can insert it at a specific index using the [param at_index] argument. If you use
-   * the default value for [param at_index], the point is inserted at the end of the blend points
-   * array.
+   * Adds a new point that represents a [node] on the virtual axis at a given position set by [pos].
+   * You can insert it at a specific index using the [atIndex] argument. If you use the default value
+   * for [atIndex], the point is inserted at the end of the blend points array.
    */
   @JvmOverloads
   public fun addBlendPoint(
@@ -142,7 +141,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   /**
-   * Updates the position of the point at index [param point] on the blend axis.
+   * Updates the position of the point at index [point] on the blend axis.
    */
   public fun setBlendPointPosition(point: Int, pos: Float): Unit {
     TransferContext.writeArguments(LONG to point.toLong(), DOUBLE to pos.toDouble())
@@ -150,7 +149,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   /**
-   * Returns the position of the point at index [param point].
+   * Returns the position of the point at index [point].
    */
   public fun getBlendPointPosition(point: Int): Float {
     TransferContext.writeArguments(LONG to point.toLong())
@@ -159,7 +158,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   /**
-   * Changes the [AnimationNode] referenced by the point at index [param point].
+   * Changes the [AnimationNode] referenced by the point at index [point].
    */
   public fun setBlendPointNode(point: Int, node: AnimationRootNode): Unit {
     TransferContext.writeArguments(LONG to point.toLong(), OBJECT to node)
@@ -167,7 +166,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   /**
-   * Returns the [AnimationNode] referenced by the point at index [param point].
+   * Returns the [AnimationNode] referenced by the point at index [point].
    */
   public fun getBlendPointNode(point: Int): AnimationRootNode? {
     TransferContext.writeArguments(LONG to point.toLong())
@@ -176,7 +175,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   /**
-   * Removes the point at index [param point] from the blend axis.
+   * Removes the point at index [point] from the blend axis.
    */
   public fun removeBlendPoint(point: Int): Unit {
     TransferContext.writeArguments(LONG to point.toLong())
@@ -205,8 +204,8 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
      */
     BLEND_MODE_DISCRETE(1),
     /**
-     * Similar to [constant BLEND_MODE_DISCRETE], but starts the new animation at the last
-     * animation's playback position.
+     * Similar to [BLENDMODEDISCRETE], but starts the new animation at the last animation's playback
+     * position.
      */
     BLEND_MODE_DISCRETE_CARRY(2),
     ;

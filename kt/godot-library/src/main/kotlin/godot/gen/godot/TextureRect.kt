@@ -41,12 +41,11 @@ public open class TextureRect : Control() {
     }
 
   /**
-   * Defines how minimum size is determined based on the texture's size. See [enum ExpandMode] for
+   * Defines how minimum size is determined based on the texture's size. See [ExpandMode] for
    * options.
-   * **Note:** Using [constant EXPAND_FIT_WIDTH], [constant EXPAND_FIT_WIDTH_PROPORTIONAL],
-   * [constant EXPAND_FIT_HEIGHT] or [constant EXPAND_FIT_HEIGHT_PROPORTIONAL] may result in unstable
-   * behavior in some containers. This functionality is being re-evaluated and will change in the
-   * future.
+   * **Note:** Using [EXPANDFITWIDTH], [EXPANDFITWIDTHPROPORTIONAL], [EXPANDFITHEIGHT] or
+   * [EXPANDFITHEIGHTPROPORTIONAL] may result in unstable behavior in some containers. This
+   * functionality is being re-evaluated and will change in the future.
    */
   public var expandMode: ExpandMode
     get() {
@@ -60,8 +59,7 @@ public open class TextureRect : Control() {
     }
 
   /**
-   * Controls the texture's behavior when resizing the node's bounding rectangle. See [enum
-   * StretchMode].
+   * Controls the texture's behavior when resizing the node's bounding rectangle. See [StretchMode].
    */
   public var stretchMode: StretchMode
     get() {
@@ -126,7 +124,7 @@ public open class TextureRect : Control() {
      */
     EXPAND_FIT_WIDTH(2),
     /**
-     * Same as [constant EXPAND_FIT_WIDTH], but keeps texture's aspect ratio.
+     * Same as [EXPANDFITWIDTH], but keeps texture's aspect ratio.
      */
     EXPAND_FIT_WIDTH_PROPORTIONAL(3),
     /**
@@ -135,7 +133,7 @@ public open class TextureRect : Control() {
      */
     EXPAND_FIT_HEIGHT(4),
     /**
-     * Same as [constant EXPAND_FIT_HEIGHT], but keeps texture's aspect ratio.
+     * Same as [EXPANDFITHEIGHT], but keeps texture's aspect ratio.
      */
     EXPAND_FIT_HEIGHT_PROPORTIONAL(5),
     ;

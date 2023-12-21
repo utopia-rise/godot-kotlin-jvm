@@ -121,8 +121,8 @@ public open class AudioStreamPlayer : Node() {
     }
 
   /**
-   * If the audio configuration has more than two speakers, this sets the target channels. See [enum
-   * MixTarget] constants.
+   * If the audio configuration has more than two speakers, this sets the target channels. See
+   * [MixTarget] constants.
    */
   public var mixTarget: MixTarget
     get() {
@@ -174,7 +174,7 @@ public open class AudioStreamPlayer : Node() {
   }
 
   /**
-   * Plays the audio from the given [param from_position], in seconds.
+   * Plays the audio from the given [fromPosition], in seconds.
    */
   @JvmOverloads
   public fun play(fromPosition: Float = 0.0f): Unit {

@@ -84,8 +84,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
 
   /**
    * Lower priority transitions are preferred when travelling through the tree via
-   * [AnimationNodeStateMachinePlayback.travel] or [advanceMode] is set to [constant
-   * ADVANCE_MODE_AUTO].
+   * [AnimationNodeStateMachinePlayback.travel] or [advanceMode] is set to [ADVANCEMODEAUTO].
    */
   public var priority: Int
     get() {

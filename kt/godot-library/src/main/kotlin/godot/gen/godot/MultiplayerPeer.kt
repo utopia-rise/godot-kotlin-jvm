@@ -58,7 +58,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     }
 
   /**
-   * The manner in which to send packets to the target peer. See [enum TransferMode], and the
+   * The manner in which to send packets to the target peer. See [TransferMode], and the
    * [setTargetPeer] method.
    */
   public var transferMode: TransferMode
@@ -79,11 +79,10 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    * will only be in respect to the channel the packet is being sent on. Using different channels to
    * send **different and independent** state updates is a common way to optimize network usage and
    * decrease latency in fast-paced games.
-   * **Note:** The default channel (`0`) actually works as 3 separate channels (one for each [enum
-   * TransferMode]) so that [constant TRANSFER_MODE_RELIABLE] and [constant
-   * TRANSFER_MODE_UNRELIABLE_ORDERED] does not interact with each other by default. Refer to the
-   * specific network API documentation (e.g. ENet or WebRTC) to learn how to set up channels
-   * correctly.
+   * **Note:** The default channel (`0`) actually works as 3 separate channels (one for each
+   * [TransferMode]) so that [TRANSFERMODERELIABLE] and [TRANSFERMODEUNRELIABLEORDERED] does not
+   * interact with each other by default. Refer to the specific network API documentation (e.g. ENet or
+   * WebRTC) to learn how to set up channels correctly.
    */
   public var transferChannel: Int
     get() {
@@ -103,10 +102,10 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
 
   /**
    * Sets the peer to which packets will be sent.
-   * The [param id] can be one of: [constant TARGET_PEER_BROADCAST] to send to all connected peers,
-   * [constant TARGET_PEER_SERVER] to send to the peer acting as server, a valid peer ID to send to
-   * that specific peer, a negative peer ID to send to all peers except that one. By default, the
-   * target peer is [constant TARGET_PEER_BROADCAST].
+   * The [id] can be one of: [TARGETPEERBROADCAST] to send to all connected peers,
+   * [TARGETPEERSERVER] to send to the peer acting as server, a valid peer ID to send to that specific
+   * peer, a negative peer ID to send to all peers except that one. By default, the target peer is
+   * [TARGETPEERBROADCAST].
    */
   public fun setTargetPeer(id: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong())
@@ -134,7 +133,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   }
 
   /**
-   * Returns the [enum MultiplayerPeer.TransferMode] the remote peer used to send the next available
+   * Returns the [MultiplayerPeer.TransferMode] the remote peer used to send the next available
    * packet. See [PacketPeer.getAvailablePacketCount].
    */
   public fun getPacketMode(): TransferMode {
@@ -152,9 +151,8 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   }
 
   /**
-   * Immediately close the multiplayer peer returning to the state [constant
-   * CONNECTION_DISCONNECTED]. Connected peers will be dropped without emitting [signal
-   * peer_disconnected].
+   * Immediately close the multiplayer peer returning to the state [CONNECTIONDISCONNECTED].
+   * Connected peers will be dropped without emitting [signal peer_disconnected].
    */
   public fun close(): Unit {
     TransferContext.writeArguments()
@@ -162,7 +160,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   }
 
   /**
-   * Disconnects the given [param peer] from this host. If [param force] is `true` the [signal
+   * Disconnects the given [peer] from this host. If [force] is `true` the [signal
    * peer_disconnected] signal will not be emitted for this peer.
    */
   @JvmOverloads
@@ -172,7 +170,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   }
 
   /**
-   * Returns the current state of the connection. See [enum ConnectionStatus].
+   * Returns the current state of the connection. See [ConnectionStatus].
    */
   public fun getConnectionStatus(): ConnectionStatus {
     TransferContext.writeArguments()
@@ -241,15 +239,15 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   ) {
     /**
      * Packets are not acknowledged, no resend attempts are made for lost packets. Packets may
-     * arrive in any order. Potentially faster than [constant TRANSFER_MODE_UNRELIABLE_ORDERED]. Use
-     * for non-critical data, and always consider whether the order matters.
+     * arrive in any order. Potentially faster than [TRANSFERMODEUNRELIABLEORDERED]. Use for
+     * non-critical data, and always consider whether the order matters.
      */
     TRANSFER_MODE_UNRELIABLE(0),
     /**
      * Packets are not acknowledged, no resend attempts are made for lost packets. Packets are
-     * received in the order they were sent in. Potentially faster than [constant
-     * TRANSFER_MODE_RELIABLE]. Use for non-critical data or data that would be outdated if received
-     * late due to resend attempt(s) anyway, for example movement and positional data.
+     * received in the order they were sent in. Potentially faster than [TRANSFERMODERELIABLE]. Use for
+     * non-critical data or data that would be outdated if received late due to resend attempt(s)
+     * anyway, for example movement and positional data.
      */
     TRANSFER_MODE_UNRELIABLE_ORDERED(1),
     /**

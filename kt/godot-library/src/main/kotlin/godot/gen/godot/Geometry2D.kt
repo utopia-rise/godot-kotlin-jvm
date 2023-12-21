@@ -45,8 +45,8 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Returns `true` if [param point] is inside the circle or if it's located exactly *on* the
-   * circle's boundary, otherwise returns `false`.
+   * Returns `true` if [point] is inside the circle or if it's located exactly *on* the circle's
+   * boundary, otherwise returns `false`.
    */
   public fun isPointInCircle(
     point: Vector2,
@@ -59,11 +59,11 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Given the 2D segment ([param segment_from], [param segment_to]), returns the position on the
-   * segment (as a number between 0 and 1) at which the segment hits the circle that is located at
-   * position [param circle_position] and has radius [param circle_radius]. If the segment does not
-   * intersect the circle, -1 is returned (this is also the case if the line extending the segment
-   * would intersect the circle, but the segment does not).
+   * Given the 2D segment ([segmentFrom], [segmentTo]), returns the position on the segment (as a
+   * number between 0 and 1) at which the segment hits the circle that is located at position
+   * [circlePosition] and has radius [circleRadius]. If the segment does not intersect the circle, -1
+   * is returned (this is also the case if the line extending the segment would intersect the circle,
+   * but the segment does not).
    */
   public fun segmentIntersectsCircle(
     segmentFrom: Vector2,
@@ -77,9 +77,8 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Checks if the two segments ([param from_a], [param to_a]) and ([param from_b], [param to_b])
-   * intersect. If yes, return the point of intersection as [Vector2]. If no intersection takes place,
-   * returns `null`.
+   * Checks if the two segments ([fromA], [toA]) and ([fromB], [toB]) intersect. If yes, return the
+   * point of intersection as [Vector2]. If no intersection takes place, returns `null`.
    */
   public fun segmentIntersectsSegment(
     fromA: Vector2,
@@ -93,9 +92,8 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Checks if the two lines ([param from_a], [param dir_a]) and ([param from_b], [param dir_b])
-   * intersect. If yes, return the point of intersection as [Vector2]. If no intersection takes place,
-   * returns `null`.
+   * Checks if the two lines ([fromA], [dirA]) and ([fromB], [dirB]) intersect. If yes, return the
+   * point of intersection as [Vector2]. If no intersection takes place, returns `null`.
    * **Note:** The lines are specified using direction vectors, not end points.
    */
   public fun lineIntersectsLine(
@@ -110,10 +108,9 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Given the two 2D segments ([param p1], [param q1]) and ([param p2], [param q2]), finds those
-   * two points on the two segments that are closest to each other. Returns a [PackedVector2Array] that
-   * contains this point on ([param p1], [param q1]) as well the accompanying point on ([param p2],
-   * [param q2]).
+   * Given the two 2D segments ([p1], [q1]) and ([p2], [q2]), finds those two points on the two
+   * segments that are closest to each other. Returns a [PackedVector2Array] that contains this point
+   * on ([p1], [q1]) as well the accompanying point on ([p2], [q2]).
    */
   public fun getClosestPointsBetweenSegments(
     p1: Vector2,
@@ -128,8 +125,8 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Returns the 2D point on the 2D segment ([param s1], [param s2]) that is closest to [param
-   * point]. The returned point will always be inside the specified segment.
+   * Returns the 2D point on the 2D segment ([s1], [s2]) that is closest to [point]. The returned
+   * point will always be inside the specified segment.
    */
   public fun getClosestPointToSegment(
     point: Vector2,
@@ -142,9 +139,9 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Returns the 2D point on the 2D line defined by ([param s1], [param s2]) that is closest to
-   * [param point]. The returned point can be inside the segment ([param s1], [param s2]) or outside of
-   * it, i.e. somewhere on the line extending from the segment.
+   * Returns the 2D point on the 2D line defined by ([s1], [s2]) that is closest to [point]. The
+   * returned point can be inside the segment ([s1], [s2]) or outside of it, i.e. somewhere on the line
+   * extending from the segment.
    */
   public fun getClosestPointToSegmentUncapped(
     point: Vector2,
@@ -157,8 +154,7 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Returns if [param point] is inside the triangle specified by [param a], [param b] and [param
-   * c].
+   * Returns if [point] is inside the triangle specified by [a], [b] and [c].
    */
   public fun pointIsInsideTriangle(
     point: Vector2,
@@ -172,7 +168,7 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Returns `true` if [param polygon]'s vertices are ordered in clockwise order, otherwise returns
+   * Returns `true` if [polygon]'s vertices are ordered in clockwise order, otherwise returns
    * `false`.
    */
   public fun isPolygonClockwise(polygon: PackedVector2Array): Boolean {
@@ -182,8 +178,8 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Returns `true` if [param point] is inside [param polygon] or if it's located exactly *on*
-   * polygon's boundary, otherwise returns `false`.
+   * Returns `true` if [point] is inside [polygon] or if it's located exactly *on* polygon's
+   * boundary, otherwise returns `false`.
    */
   public fun isPointInPolygon(point: Vector2, polygon: PackedVector2Array): Boolean {
     TransferContext.writeArguments(VECTOR2 to point, PACKED_VECTOR2_ARRAY to polygon)
@@ -192,11 +188,11 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Triangulates the polygon specified by the points in [param polygon]. Returns a
-   * [PackedInt32Array] where each triangle consists of three consecutive point indices into [param
-   * polygon] (i.e. the returned array will have `n * 3` elements, with `n` being the number of found
-   * triangles). Output triangles will always be counter clockwise, and the contour will be flipped if
-   * it's clockwise. If the triangulation did not succeed, an empty [PackedInt32Array] is returned.
+   * Triangulates the polygon specified by the points in [polygon]. Returns a [PackedInt32Array]
+   * where each triangle consists of three consecutive point indices into [polygon] (i.e. the returned
+   * array will have `n * 3` elements, with `n` being the number of found triangles). Output triangles
+   * will always be counter clockwise, and the contour will be flipped if it's clockwise. If the
+   * triangulation did not succeed, an empty [PackedInt32Array] is returned.
    */
   public fun triangulatePolygon(polygon: PackedVector2Array): PackedInt32Array {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
@@ -205,11 +201,11 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Triangulates the area specified by discrete set of [param points] such that no point is inside
-   * the circumcircle of any resulting triangle. Returns a [PackedInt32Array] where each triangle
-   * consists of three consecutive point indices into [param points] (i.e. the returned array will have
-   * `n * 3` elements, with `n` being the number of found triangles). If the triangulation did not
-   * succeed, an empty [PackedInt32Array] is returned.
+   * Triangulates the area specified by discrete set of [points] such that no point is inside the
+   * circumcircle of any resulting triangle. Returns a [PackedInt32Array] where each triangle consists
+   * of three consecutive point indices into [points] (i.e. the returned array will have `n * 3`
+   * elements, with `n` being the number of found triangles). If the triangulation did not succeed, an
+   * empty [PackedInt32Array] is returned.
    */
   public fun triangulateDelaunay(points: PackedVector2Array): PackedInt32Array {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points)
@@ -228,7 +224,7 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Decomposes the [param polygon] into multiple convex hulls and returns an array of
+   * Decomposes the [polygon] into multiple convex hulls and returns an array of
    * [PackedVector2Array].
    */
   public fun decomposePolygonInConvex(polygon: PackedVector2Array):
@@ -239,8 +235,8 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Merges (combines) [param polygon_a] and [param polygon_b] and returns an array of merged
-   * polygons. This performs [constant OPERATION_UNION] between polygons.
+   * Merges (combines) [polygonA] and [polygonB] and returns an array of merged polygons. This
+   * performs [OPERATIONUNION] between polygons.
    * The operation may result in an outer polygon (boundary) and multiple inner polygons (holes)
    * produced which could be distinguished by calling [isPolygonClockwise].
    */
@@ -252,11 +248,11 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Clips [param polygon_a] against [param polygon_b] and returns an array of clipped polygons.
-   * This performs [constant OPERATION_DIFFERENCE] between polygons. Returns an empty array if [param
-   * polygon_b] completely overlaps [param polygon_a].
-   * If [param polygon_b] is enclosed by [param polygon_a], returns an outer polygon (boundary) and
-   * inner polygon (hole) which could be distinguished by calling [isPolygonClockwise].
+   * Clips [polygonA] against [polygonB] and returns an array of clipped polygons. This performs
+   * [OPERATIONDIFFERENCE] between polygons. Returns an empty array if [polygonB] completely overlaps
+   * [polygonA].
+   * If [polygonB] is enclosed by [polygonA], returns an outer polygon (boundary) and inner polygon
+   * (hole) which could be distinguished by calling [isPolygonClockwise].
    */
   public fun clipPolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
       VariantArray<PackedVector2Array> {
@@ -266,9 +262,9 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Intersects [param polygon_a] with [param polygon_b] and returns an array of intersected
-   * polygons. This performs [constant OPERATION_INTERSECTION] between polygons. In other words,
-   * returns common area shared by polygons. Returns an empty array if no intersection occurs.
+   * Intersects [polygonA] with [polygonB] and returns an array of intersected polygons. This
+   * performs [OPERATIONINTERSECTION] between polygons. In other words, returns common area shared by
+   * polygons. Returns an empty array if no intersection occurs.
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which
    * could be distinguished by calling [isPolygonClockwise].
    */
@@ -280,10 +276,9 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Mutually excludes common area defined by intersection of [param polygon_a] and [param
-   * polygon_b] (see [intersectPolygons]) and returns an array of excluded polygons. This performs
-   * [constant OPERATION_XOR] between polygons. In other words, returns all but common area between
-   * polygons.
+   * Mutually excludes common area defined by intersection of [polygonA] and [polygonB] (see
+   * [intersectPolygons]) and returns an array of excluded polygons. This performs [OPERATIONXOR]
+   * between polygons. In other words, returns all but common area between polygons.
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which
    * could be distinguished by calling [isPolygonClockwise].
    */
@@ -295,9 +290,9 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Clips [param polyline] against [param polygon] and returns an array of clipped polylines. This
-   * performs [constant OPERATION_DIFFERENCE] between the polyline and the polygon. This operation can
-   * be thought of as cutting a line with a closed shape.
+   * Clips [polyline] against [polygon] and returns an array of clipped polylines. This performs
+   * [OPERATIONDIFFERENCE] between the polyline and the polygon. This operation can be thought of as
+   * cutting a line with a closed shape.
    */
   public fun clipPolylineWithPolygon(polyline: PackedVector2Array, polygon: PackedVector2Array):
       VariantArray<PackedVector2Array> {
@@ -307,9 +302,9 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Intersects [param polyline] with [param polygon] and returns an array of intersected polylines.
-   * This performs [constant OPERATION_INTERSECTION] between the polyline and the polygon. This
-   * operation can be thought of as chopping a line with a closed shape.
+   * Intersects [polyline] with [polygon] and returns an array of intersected polylines. This
+   * performs [OPERATIONINTERSECTION] between the polyline and the polygon. This operation can be
+   * thought of as chopping a line with a closed shape.
    */
   public fun intersectPolylineWithPolygon(polyline: PackedVector2Array,
       polygon: PackedVector2Array): VariantArray<PackedVector2Array> {
@@ -319,13 +314,12 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Inflates or deflates [param polygon] by [param delta] units (pixels). If [param delta] is
-   * positive, makes the polygon grow outward. If [param delta] is negative, shrinks the polygon
-   * inward. Returns an array of polygons because inflating/deflating may result in multiple discrete
-   * polygons. Returns an empty array if [param delta] is negative and the absolute value of it
-   * approximately exceeds the minimum bounding rectangle dimensions of the polygon.
-   * Each polygon's vertices will be rounded as determined by [param join_type], see [enum
-   * PolyJoinType].
+   * Inflates or deflates [polygon] by [delta] units (pixels). If [delta] is positive, makes the
+   * polygon grow outward. If [delta] is negative, shrinks the polygon inward. Returns an array of
+   * polygons because inflating/deflating may result in multiple discrete polygons. Returns an empty
+   * array if [delta] is negative and the absolute value of it approximately exceeds the minimum
+   * bounding rectangle dimensions of the polygon.
+   * Each polygon's vertices will be rounded as determined by [joinType], see [PolyJoinType].
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which
    * could be distinguished by calling [isPolygonClockwise].
    * **Note:** To translate the polygon's vertices specifically, multiply them to a [Transform2D]:
@@ -359,14 +353,12 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Inflates or deflates [param polyline] by [param delta] units (pixels), producing polygons. If
-   * [param delta] is positive, makes the polyline grow outward. Returns an array of polygons because
-   * inflating/deflating may result in multiple discrete polygons. If [param delta] is negative,
-   * returns an empty array.
-   * Each polygon's vertices will be rounded as determined by [param join_type], see [enum
-   * PolyJoinType].
-   * Each polygon's endpoints will be rounded as determined by [param end_type], see [enum
-   * PolyEndType].
+   * Inflates or deflates [polyline] by [delta] units (pixels), producing polygons. If [delta] is
+   * positive, makes the polyline grow outward. Returns an array of polygons because
+   * inflating/deflating may result in multiple discrete polygons. If [delta] is negative, returns an
+   * empty array.
+   * Each polygon's vertices will be rounded as determined by [joinType], see [PolyJoinType].
+   * Each polygon's endpoints will be rounded as determined by [endType], see [PolyEndType].
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which
    * could be distinguished by calling [isPolygonClockwise].
    */
@@ -459,11 +451,11 @@ public object Geometry2D : Object() {
     id: Long,
   ) {
     /**
-     * Endpoints are joined using the [enum PolyJoinType] value and the path filled as a polygon.
+     * Endpoints are joined using the [PolyJoinType] value and the path filled as a polygon.
      */
     END_POLYGON(0),
     /**
-     * Endpoints are joined using the [enum PolyJoinType] value and the path filled as a polyline.
+     * Endpoints are joined using the [PolyJoinType] value and the path filled as a polyline.
      */
     END_JOINED(1),
     /**

@@ -36,7 +36,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class PhysicalBone3D : PhysicsBody3D() {
   /**
-   * Sets the joint type. See [enum JointType] for possible values.
+   * Sets the joint type. See [JointType] for possible values.
    */
   public var jointType: JointType
     get() {
@@ -171,7 +171,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
-   * Defines how [linearDamp] is applied. See [enum DampMode] for possible values.
+   * Defines how [linearDamp] is applied. See [DampMode] for possible values.
    */
   public var linearDampMode: DampMode
     get() {
@@ -203,7 +203,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
-   * Defines how [angularDamp] is applied. See [enum DampMode] for possible values.
+   * Defines how [angularDamp] is applied. See [DampMode] for possible values.
    */
   public var angularDampMode: DampMode
     get() {

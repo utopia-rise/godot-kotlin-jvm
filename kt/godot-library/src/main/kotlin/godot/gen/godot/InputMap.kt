@@ -57,7 +57,7 @@ public object InputMap : Object() {
   }
 
   /**
-   * Adds an empty action to the [InputMap] with a configurable [param deadzone].
+   * Adds an empty action to the [InputMap] with a configurable [deadzone].
    * An [InputEvent] can then be added to this action with [actionAddEvent].
    */
   @JvmOverloads
@@ -140,8 +140,8 @@ public object InputMap : Object() {
    * Returns `true` if the given event is part of an existing action. This method ignores keyboard
    * modifiers if the given [InputEvent] is not pressed (for proper release detection). See
    * [actionHasEvent] if you don't want this behavior.
-   * If [param exact_match] is `false`, it ignores additional input modifiers for [InputEventKey]
-   * and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
   @JvmOverloads
   public fun eventIsAction(

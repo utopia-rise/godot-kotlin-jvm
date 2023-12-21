@@ -42,11 +42,9 @@ public object ResourceSaver : Object() {
 
   /**
    * Saves a resource to disk to the given path, using a [ResourceFormatSaver] that recognizes the
-   * resource object. If [param path] is empty, [ResourceSaver] will try to use
-   * [Resource.resourcePath].
-   * The [param flags] bitmask can be specified to customize the save behavior using [enum
-   * SaverFlags] flags.
-   * Returns [constant OK] on success.
+   * resource object. If [path] is empty, [ResourceSaver] will try to use [Resource.resourcePath].
+   * The [flags] bitmask can be specified to customize the save behavior using [SaverFlags] flags.
+   * Returns [OK] on success.
    * **Note:** When the project is running, any generated UID associated with the resource will not
    * be saved as the required code is only executed in editor mode.
    */

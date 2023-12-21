@@ -24,7 +24,7 @@ import kotlin.Suppress
 public open class RDTextureView : RefCounted() {
   /**
    * Optional override for the data format to return sampled values in. The default value of
-   * [constant RenderingDevice.DATA_FORMAT_MAX] does not override the format.
+   * [RenderingDevice.DATAFORMATMAX] does not override the format.
    */
   public var formatOverride: RenderingDevice.DataFormat
     get() {

@@ -54,7 +54,7 @@ public open class RDShaderFile : Resource() {
   }
 
   /**
-   * Sets the SPIR-V [param bytecode] that will be compiled for the specified [param version].
+   * Sets the SPIR-V [bytecode] that will be compiled for the specified [version].
    */
   @JvmOverloads
   public fun setBytecode(bytecode: RDShaderSPIRV, version: StringName = StringName("")): Unit {
@@ -63,7 +63,7 @@ public open class RDShaderFile : Resource() {
   }
 
   /**
-   * Returns the SPIR-V intermediate representation for the specified shader [param version].
+   * Returns the SPIR-V intermediate representation for the specified shader [version].
    */
   @JvmOverloads
   public fun getSpirv(version: StringName = StringName("")): RDShaderSPIRV? {

@@ -118,9 +118,8 @@ public open class SkeletonModification2D : Resource() {
   }
 
   /**
-   * Takes an angle and clamps it so it is within the passed-in [param min] and [param max] range.
-   * [param invert] will inversely clamp the angle, clamping it to the range outside of the given
-   * bounds.
+   * Takes an angle and clamps it so it is within the passed-in [min] and [max] range. [invert] will
+   * inversely clamp the angle, clamping it to the range outside of the given bounds.
    */
   public fun clampAngle(
     angle: Float,

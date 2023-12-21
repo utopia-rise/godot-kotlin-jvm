@@ -103,7 +103,7 @@ public open class AudioEffectPitchShift : AudioEffect() {
      */
     FFT_SIZE_4096(4),
     /**
-     * Represents the size of the [enum FFTSize] enum.
+     * Represents the size of the [FFTSize] enum.
      */
     FFT_SIZE_MAX(5),
     ;

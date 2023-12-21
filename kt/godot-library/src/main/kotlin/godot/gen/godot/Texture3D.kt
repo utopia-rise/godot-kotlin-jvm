@@ -80,7 +80,7 @@ public open class Texture3D : Texture() {
   }
 
   /**
-   * Returns the current format being used by this texture. See [enum Image.Format] for details.
+   * Returns the current format being used by this texture. See [Image.Format] for details.
    */
   public fun getFormat(): Image.Format {
     TransferContext.writeArguments()

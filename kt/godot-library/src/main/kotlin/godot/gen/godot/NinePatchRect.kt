@@ -149,8 +149,8 @@ public open class NinePatchRect : Control() {
     }
 
   /**
-   * The stretch mode to use for horizontal stretching/tiling. See [enum
-   * NinePatchRect.AxisStretchMode] for possible values.
+   * The stretch mode to use for horizontal stretching/tiling. See [NinePatchRect.AxisStretchMode]
+   * for possible values.
    */
   public var axisStretchHorizontal: AxisStretchMode
     get() {
@@ -164,8 +164,8 @@ public open class NinePatchRect : Control() {
     }
 
   /**
-   * The stretch mode to use for vertical stretching/tiling. See [enum
-   * NinePatchRect.AxisStretchMode] for possible values.
+   * The stretch mode to use for vertical stretching/tiling. See [NinePatchRect.AxisStretchMode] for
+   * possible values.
    */
   public var axisStretchVertical: AxisStretchMode
     get() {
@@ -225,8 +225,8 @@ public open class NinePatchRect : Control() {
     /**
      * Repeats the center texture across the NinePatchRect, but will also stretch the texture to
      * make sure each tile is visible in full. This may cause the texture to be distorted, but less
-     * than [constant AXIS_STRETCH_MODE_STRETCH]. The texture must be seamless for this to work without
-     * displaying artifacts between edges.
+     * than [AXISSTRETCHMODESTRETCH]. The texture must be seamless for this to work without displaying
+     * artifacts between edges.
      */
     AXIS_STRETCH_MODE_TILE_FIT(2),
     ;

@@ -41,8 +41,8 @@ public open class StreamPeerGZIP : StreamPeer() {
   }
 
   /**
-   * Start the stream in compression mode with the given [param buffer_size], if [param use_deflate]
-   * is `true` uses deflate instead of GZIP.
+   * Start the stream in compression mode with the given [bufferSize], if [useDeflate] is `true`
+   * uses deflate instead of GZIP.
    */
   @JvmOverloads
   public fun startCompression(useDeflate: Boolean = false, bufferSize: Int = 65535): GodotError {
@@ -52,8 +52,8 @@ public open class StreamPeerGZIP : StreamPeer() {
   }
 
   /**
-   * Start the stream in decompression mode with the given [param buffer_size], if [param
-   * use_deflate] is `true` uses deflate instead of GZIP.
+   * Start the stream in decompression mode with the given [bufferSize], if [useDeflate] is `true`
+   * uses deflate instead of GZIP.
    */
   @JvmOverloads
   public fun startDecompression(useDeflate: Boolean = false, bufferSize: Int = 65535): GodotError {

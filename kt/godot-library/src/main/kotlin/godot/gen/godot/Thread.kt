@@ -45,11 +45,10 @@ public open class Thread : RefCounted() {
   }
 
   /**
-   * Starts a new [Thread] that calls [param callable].
+   * Starts a new [Thread] that calls [callable].
    * If the method takes some arguments, you can pass them using [Callable.bind].
-   * The [param priority] of the [Thread] can be changed by passing a value from the [enum Priority]
-   * enum.
-   * Returns [constant OK] on success, or [constant ERR_CANT_CREATE] on failure.
+   * The [priority] of the [Thread] can be changed by passing a value from the [Priority] enum.
+   * Returns [OK] on success, or [ERRCANTCREATE] on failure.
    */
   @JvmOverloads
   public fun start(callable: Callable, priority: Priority = Thread.Priority.PRIORITY_NORMAL):
@@ -136,12 +135,12 @@ public open class Thread : RefCounted() {
     /**
      * Sets whether the thread safety checks the engine normally performs in methods of certain
      * classes (e.g., [Node]) should happen **on the current thread**.
-     * The default, for every thread, is that they are enabled (as if called with [param enabled]
-     * being `true`).
+     * The default, for every thread, is that they are enabled (as if called with [enabled] being
+     * `true`).
      * Those checks are conservative. That means that they will only succeed in considering a call
      * thread-safe (and therefore allow it to happen) if the engine can guarantee such safety.
-     * Because of that, there may be cases where the user may want to disable them ([param enabled]
-     * being `false`) to make certain operations allowed again. By doing so, it becomes the user's
+     * Because of that, there may be cases where the user may want to disable them ([enabled] being
+     * `false`) to make certain operations allowed again. By doing so, it becomes the user's
      * responsibility to ensure thread safety (e.g., by using [Mutex]) for those objects that are
      * otherwise protected by the engine.
      * **Note:** This is an advanced usage of the engine. You are advised to use it only if you know

@@ -23,7 +23,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
   /**
-   * A type of operands and returned value. See [enum OpType] for options.
+   * A type of operands and returned value. See [OpType] for options.
    */
   public var opType: OpType
     get() {
@@ -37,7 +37,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     }
 
   /**
-   * A derivative function type. See [enum Function] for options.
+   * A derivative function type. See [Function] for options.
    */
   public var function: Function
     get() {
@@ -51,8 +51,8 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     }
 
   /**
-   * Sets the level of precision to use for the derivative function. See [enum Precision] for
-   * options. When using the GL Compatibility renderer, this setting has no effect.
+   * Sets the level of precision to use for the derivative function. See [Precision] for options.
+   * When using the GL Compatibility renderer, this setting has no effect.
    */
   public var precision: Precision
     get() {
@@ -90,7 +90,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
      */
     OP_TYPE_VECTOR_4D(3),
     /**
-     * Represents the size of the [enum OpType] enum.
+     * Represents the size of the [OpType] enum.
      */
     OP_TYPE_MAX(4),
     ;
@@ -121,7 +121,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
      */
     FUNC_Y(2),
     /**
-     * Represents the size of the [enum Function] enum.
+     * Represents the size of the [Function] enum.
      */
     FUNC_MAX(3),
     ;
@@ -147,19 +147,19 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     PRECISION_NONE(0),
     /**
      * The derivative will be calculated using the current fragment's neighbors (which may not
-     * include the current fragment). This tends to be faster than using [constant PRECISION_FINE], but
-     * may not be suitable when more precision is needed. This is equivalent to using `dFdxCoarse()` or
+     * include the current fragment). This tends to be faster than using [PRECISIONFINE], but may not
+     * be suitable when more precision is needed. This is equivalent to using `dFdxCoarse()` or
      * `dFdyCoarse()` in text shaders.
      */
     PRECISION_COARSE(1),
     /**
      * The derivative will be calculated using the current fragment and its immediate neighbors.
-     * This tends to be slower than using [constant PRECISION_COARSE], but may be necessary when more
-     * precision is needed. This is equivalent to using `dFdxFine()` or `dFdyFine()` in text shaders.
+     * This tends to be slower than using [PRECISIONCOARSE], but may be necessary when more precision
+     * is needed. This is equivalent to using `dFdxFine()` or `dFdyFine()` in text shaders.
      */
     PRECISION_FINE(2),
     /**
-     * Represents the size of the [enum Precision] enum.
+     * Represents the size of the [Precision] enum.
      */
     PRECISION_MAX(3),
     ;

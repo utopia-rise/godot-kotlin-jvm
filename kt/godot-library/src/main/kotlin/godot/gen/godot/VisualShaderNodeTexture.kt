@@ -25,7 +25,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class VisualShaderNodeTexture : VisualShaderNode() {
   /**
-   * Determines the source for the lookup. See [enum Source] for options.
+   * Determines the source for the lookup. See [Source] for options.
    */
   public var source: Source
     get() {
@@ -53,8 +53,8 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
     }
 
   /**
-   * Specifies the type of the texture if [source] is set to [constant SOURCE_TEXTURE]. See [enum
-   * TextureType] for options.
+   * Specifies the type of the texture if [source] is set to [SOURCETEXTURE]. See [TextureType] for
+   * options.
    */
   public var textureType: TextureType
     get() {
@@ -111,7 +111,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
      */
     SOURCE_ROUGHNESS(7),
     /**
-     * Represents the size of the [enum Source] enum.
+     * Represents the size of the [Source] enum.
      */
     SOURCE_MAX(8),
     ;
@@ -143,7 +143,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
      */
     TYPE_NORMAL_MAP(2),
     /**
-     * Represents the size of the [enum TextureType] enum.
+     * Represents the size of the [TextureType] enum.
      */
     TYPE_MAX(3),
     ;

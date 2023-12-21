@@ -56,8 +56,8 @@ public open class VideoStreamPlayback : Resource() {
   }
 
   /**
-   * Set the paused status of video playback. [_isPaused] must return [param paused]. Called in
-   * response to the [VideoStreamPlayer.paused] setter.
+   * Set the paused status of video playback. [_isPaused] must return [paused]. Called in response
+   * to the [VideoStreamPlayer.paused] setter.
    */
   public open fun _setPaused(paused: Boolean): Unit {
   }
@@ -85,14 +85,13 @@ public open class VideoStreamPlayback : Resource() {
   }
 
   /**
-   * Seeks to [param time] seconds. Called in response to the [VideoStreamPlayer.streamPosition]
-   * setter.
+   * Seeks to [time] seconds. Called in response to the [VideoStreamPlayer.streamPosition] setter.
    */
   public open fun _seek(time: Double): Unit {
   }
 
   /**
-   * Select the audio track [param idx]. Called when playback starts, and in response to the
+   * Select the audio track [idx]. Called when playback starts, and in response to the
    * [VideoStreamPlayer.audioTrack] setter.
    */
   public open fun _setAudioTrack(idx: Int): Unit {
@@ -106,7 +105,7 @@ public open class VideoStreamPlayback : Resource() {
   }
 
   /**
-   * Ticks video playback for [param delta] seconds. Called every frame as long as [_isPaused] and
+   * Ticks video playback for [delta] seconds. Called every frame as long as [_isPaused] and
    * [_isPlaying] return true.
    */
   public open fun _update(delta: Double): Unit {
@@ -127,9 +126,8 @@ public open class VideoStreamPlayback : Resource() {
   }
 
   /**
-   * Render [param num_frames] audio frames (of [_getChannels] floats each) from [param buffer],
-   * starting from index [param offset] in the array. Returns the number of audio frames rendered,
-   * or -1 on error.
+   * Render [numFrames] audio frames (of [_getChannels] floats each) from [buffer], starting from
+   * index [offset] in the array. Returns the number of audio frames rendered, or -1 on error.
    */
   @JvmOverloads
   public fun mixAudio(

@@ -49,7 +49,7 @@ public open class AudioStreamWAV : AudioStream() {
     }
 
   /**
-   * Audio format. See [enum Format] constants for values.
+   * Audio format. See [Format] constants for values.
    */
   public var format: Format
     get() {
@@ -64,7 +64,7 @@ public open class AudioStreamWAV : AudioStream() {
 
   /**
    * The loop mode. This information will be imported automatically from the WAV file if present.
-   * See [enum LoopMode] constants for values.
+   * See [LoopMode] constants for values.
    */
   public var loopMode: LoopMode
     get() {
@@ -150,9 +150,8 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   /**
-   * Saves the AudioStreamWAV as a WAV file to [param path]. Samples with IMA ADPCM format can't be
-   * saved.
-   * **Note:** A `.wav` extension is automatically appended to [param path] if it is missing.
+   * Saves the AudioStreamWAV as a WAV file to [path]. Samples with IMA ADPCM format can't be saved.
+   * **Note:** A `.wav` extension is automatically appended to [path] if it is missing.
    */
   public fun saveToWav(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)

@@ -46,11 +46,11 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
   }
 
   /**
-   * Replaces the existing [Image] data at the given [param layer] with this new image.
+   * Replaces the existing [Image] data at the given [layer] with this new image.
    * The given [Image] must have the same width, height, image format, and mipmapping flag as the
    * rest of the referenced images.
    * If the image format is unsupported, it will be decompressed and converted to a similar and
-   * supported [enum Image.Format].
+   * supported [Image.Format].
    * The update is immediate: it's synchronized with drawing.
    */
   public fun updateLayer(image: Image, layer: Int): Unit {

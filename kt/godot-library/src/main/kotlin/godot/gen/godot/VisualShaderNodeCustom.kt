@@ -88,9 +88,9 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
 
   /**
    * Override this method to define the returned type of each input port of the associated custom
-   * node (see [enum VisualShaderNode.PortType] for possible types).
+   * node (see [VisualShaderNode.PortType] for possible types).
    * Defining this method is **optional**, but recommended. If not overridden, input ports will
-   * return the [constant VisualShaderNode.PORT_TYPE_SCALAR] type.
+   * return the [VisualShaderNode.PORTTYPESCALAR] type.
    */
   public open fun _getInputPortType(port: Int): VisualShaderNode.PortType {
     throw NotImplementedError("_get_input_port_type is not implemented for VisualShaderNodeCustom")
@@ -138,9 +138,9 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
 
   /**
    * Override this method to define the returned type of each output port of the associated custom
-   * node (see [enum VisualShaderNode.PortType] for possible types).
+   * node (see [VisualShaderNode.PortType] for possible types).
    * Defining this method is **optional**, but recommended. If not overridden, output ports will
-   * return the [constant VisualShaderNode.PORT_TYPE_SCALAR] type.
+   * return the [VisualShaderNode.PORTTYPESCALAR] type.
    */
   public open fun _getOutputPortType(port: Int): VisualShaderNode.PortType {
     throw NotImplementedError("_get_output_port_type is not implemented for VisualShaderNodeCustom")
@@ -194,13 +194,12 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Override this method to define the actual shader code of the associated custom node. The shader
    * code should be returned as a string, which can have multiple lines (the `"""` multiline string
    * construct can be used for convenience).
-   * The [param input_vars] and [param output_vars] arrays contain the string names of the various
-   * input and output variables, as defined by `_get_input_*` and `_get_output_*` virtual methods in
-   * this class.
+   * The [inputVars] and [outputVars] arrays contain the string names of the various input and
+   * output variables, as defined by `_get_input_*` and `_get_output_*` virtual methods in this class.
    * The output ports can be assigned values in the shader code. For example, `return
    * output_vars[0] + " = " + input_vars[0] + ";"`.
-   * You can customize the generated code based on the shader [param mode] (see [enum Shader.Mode])
-   * and/or [param type] (see [enum VisualShader.Type]).
+   * You can customize the generated code based on the shader [mode] (see [Shader.Mode]) and/or
+   * [type] (see [VisualShader.Type]).
    * Defining this method is **required**.
    */
   public open fun _getCode(
@@ -218,8 +217,8 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * string construct can be used for convenience).
    * If there are multiple custom nodes of different types which use this feature the order of each
    * insertion is undefined.
-   * You can customize the generated code based on the shader [param mode] (see [enum Shader.Mode])
-   * and/or [param type] (see [enum VisualShader.Type]).
+   * You can customize the generated code based on the shader [mode] (see [Shader.Mode]) and/or
+   * [type] (see [VisualShader.Type]).
    * Defining this method is **optional**.
    */
   public open fun _getFuncCode(mode: Shader.Mode, type: VisualShader.Type): String {
@@ -233,7 +232,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * be used for convenience).
    * Be careful with this functionality as it can cause name conflicts with other custom nodes, so
    * be sure to give the defined entities unique names.
-   * You can customize the generated code based on the shader [param mode] (see [enum Shader.Mode]).
+   * You can customize the generated code based on the shader [mode] (see [Shader.Mode]).
    * Defining this method is **optional**.
    */
   public open fun _getGlobalCode(mode: Shader.Mode): String {
@@ -250,7 +249,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
 
   /**
    * Override this method to prevent the node to be visible in the member dialog for the certain
-   * [param mode] (see [enum Shader.Mode]) and/or [param type] (see [enum VisualShader.Type]).
+   * [mode] (see [Shader.Mode]) and/or [type] (see [VisualShader.Type]).
    * Defining this method is **optional**. If not overridden, it's `true`.
    */
   public open fun _isAvailable(mode: Shader.Mode, type: VisualShader.Type): Boolean {

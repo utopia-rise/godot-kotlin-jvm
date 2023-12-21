@@ -39,8 +39,8 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Sets the locale of the project. The [param locale] string will be standardized to match known
-   * locales (e.g. `en-US` would be matched to `en_US`).
+   * Sets the locale of the project. The [locale] string will be standardized to match known locales
+   * (e.g. `en-US` would be matched to `en_US`).
    * If translations have been loaded beforehand for the new locale, they will be applied.
    */
   public fun setLocale(locale: String): Unit {
@@ -79,8 +79,8 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns a [param locale] string standardized to match known locales (e.g. `en-US` would be
-   * matched to `en_US`).
+   * Returns a [locale] string standardized to match known locales (e.g. `en-US` would be matched to
+   * `en_US`).
    */
   public fun standardizeLocale(locale: String): String {
     TransferContext.writeArguments(STRING to locale)
@@ -98,7 +98,7 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns a readable language name for the [param language] code.
+   * Returns a readable language name for the [language] code.
    */
   public fun getLanguageName(language: String): String {
     TransferContext.writeArguments(STRING to language)
@@ -116,7 +116,7 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns a readable script name for the [param script] code.
+   * Returns a readable script name for the [script] code.
    */
   public fun getScriptName(script: String): String {
     TransferContext.writeArguments(STRING to script)
@@ -134,7 +134,7 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns a readable country name for the [param country] code.
+   * Returns a readable country name for the [country] code.
    */
   public fun getCountryName(country: String): String {
     TransferContext.writeArguments(STRING to country)
@@ -165,8 +165,8 @@ public object TranslationServer : Object() {
   /**
    * Returns the current locale's translation for the given message (key), plural message and
    * context.
-   * The number [param n] is the number or quantity of the plural object. It will be used to guide
-   * the translation system to fetch the correct plural form for the selected language.
+   * The number [n] is the number or quantity of the plural object. It will be used to guide the
+   * translation system to fetch the correct plural form for the selected language.
    */
   @JvmOverloads
   public fun translatePlural(
@@ -197,8 +197,8 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns the [Translation] instance based on the [param locale] passed in.
-   * It will return `null` if there is no [Translation] instance that matches the [param locale].
+   * Returns the [Translation] instance based on the [locale] passed in.
+   * It will return `null` if there is no [Translation] instance that matches the [locale].
    */
   public fun getTranslationObject(locale: String): Translation? {
     TransferContext.writeArguments(STRING to locale)
@@ -243,7 +243,7 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns the pseudolocalized string based on the [param message] passed in.
+   * Returns the pseudolocalized string based on the [message] passed in.
    */
   public fun pseudolocalize(message: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to message)

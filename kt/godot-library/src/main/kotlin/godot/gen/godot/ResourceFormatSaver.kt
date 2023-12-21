@@ -36,9 +36,9 @@ public open class ResourceFormatSaver : RefCounted() {
   }
 
   /**
-   * Saves the given resource object to a file at the target [param path]. [param flags] is a
-   * bitmask composed with [enum ResourceSaver.SaverFlags] constants.
-   * Returns [constant OK] on success, or an [enum Error] constant in case of failure.
+   * Saves the given resource object to a file at the target [path]. [flags] is a bitmask composed
+   * with [ResourceSaver.SaverFlags] constants.
+   * Returns [OK] on success, or an [Error] constant in case of failure.
    */
   public open fun _save(
     resource: Resource,
@@ -49,8 +49,8 @@ public open class ResourceFormatSaver : RefCounted() {
   }
 
   /**
-   * Sets a new UID for the resource at the given [param path]. Returns [constant OK] on success, or
-   * an [enum Error] constant in case of failure.
+   * Sets a new UID for the resource at the given [path]. Returns [OK] on success, or an [Error]
+   * constant in case of failure.
    */
   public open fun _setUid(path: String, uid: Long): GodotError {
     throw NotImplementedError("_set_uid is not implemented for ResourceFormatSaver")

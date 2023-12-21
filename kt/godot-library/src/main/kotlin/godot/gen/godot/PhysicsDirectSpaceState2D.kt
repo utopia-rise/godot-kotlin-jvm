@@ -44,8 +44,8 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    * `collider_id`: The colliding object's ID.
    * `rid`: The intersecting object's [RID].
    * `shape`: The shape index of the colliding shape.
-   * The number of intersections can be limited with the [param max_results] parameter, to reduce
-   * the processing time.
+   * The number of intersections can be limited with the [maxResults] parameter, to reduce the
+   * processing time.
    * **Note:** [ConcavePolygonShape2D]s and [CollisionPolygon2D]s in `Segments` build mode are not
    * solid shapes. Therefore, they will not be detected.
    */
@@ -83,8 +83,8 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    * `collider_id`: The colliding object's ID.
    * `rid`: The intersecting object's [RID].
    * `shape`: The shape index of the colliding shape.
-   * The number of intersections can be limited with the [param max_results] parameter, to reduce
-   * the processing time.
+   * The number of intersections can be limited with the [maxResults] parameter, to reduce the
+   * processing time.
    */
   @JvmOverloads
   public fun intersectShape(parameters: PhysicsShapeQueryParameters2D, maxResults: Int = 32):

@@ -70,7 +70,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   }
 
   /**
-   * Returns the current state of this channel, see [enum ChannelState].
+   * Returns the current state of this channel, see [ChannelState].
    */
   public fun getReadyState(): ChannelState {
     TransferContext.writeArguments()

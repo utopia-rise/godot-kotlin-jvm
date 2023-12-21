@@ -39,17 +39,17 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   }
 
   /**
-   * Moves the body along the vector [param motion]. In order to be frame rate independent in
-   * [Node.PhysicsProcess] or [Node.Process], [param motion] should be computed using `delta`.
+   * Moves the body along the vector [motion]. In order to be frame rate independent in
+   * [Node.PhysicsProcess] or [Node.Process], [motion] should be computed using `delta`.
    * Returns a [KinematicCollision2D], which contains information about the collision when stopped,
    * or when touching another body along the motion.
-   * If [param test_only] is `true`, the body does not move but the would-be collision information
-   * is given.
-   * [param safe_margin] is the extra margin used for collision recovery (see
-   * [CharacterBody2D.safeMargin] for more details).
-   * If [param recovery_as_collision] is `true`, any depenetration from the recovery phase is also
-   * reported as a collision; this is used e.g. by [CharacterBody2D] for improving floor detection
-   * during floor snapping.
+   * If [testOnly] is `true`, the body does not move but the would-be collision information is
+   * given.
+   * [safeMargin] is the extra margin used for collision recovery (see [CharacterBody2D.safeMargin]
+   * for more details).
+   * If [recoveryAsCollision] is `true`, any depenetration from the recovery phase is also reported
+   * as a collision; this is used e.g. by [CharacterBody2D] for improving floor detection during floor
+   * snapping.
    */
   @JvmOverloads
   public fun moveAndCollide(
@@ -65,18 +65,16 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
 
   /**
    * Checks for collisions without moving the body. In order to be frame rate independent in
-   * [Node.PhysicsProcess] or [Node.Process], [param motion] should be computed using `delta`.
+   * [Node.PhysicsProcess] or [Node.Process], [motion] should be computed using `delta`.
    * Virtually sets the node's position, scale and rotation to that of the given [Transform2D], then
-   * tries to move the body along the vector [param motion]. Returns `true` if a collision would stop
-   * the body from moving along the whole path.
-   * [param collision] is an optional object of type [KinematicCollision2D], which contains
-   * additional information about the collision when stopped, or when touching another body along the
-   * motion.
-   * [param safe_margin] is the extra margin used for collision recovery (see
-   * [CharacterBody2D.safeMargin] for more details).
-   * If [param recovery_as_collision] is `true`, any depenetration from the recovery phase is also
-   * reported as a collision; this is useful for checking whether the body would *touch* any other
-   * bodies.
+   * tries to move the body along the vector [motion]. Returns `true` if a collision would stop the
+   * body from moving along the whole path.
+   * [collision] is an optional object of type [KinematicCollision2D], which contains additional
+   * information about the collision when stopped, or when touching another body along the motion.
+   * [safeMargin] is the extra margin used for collision recovery (see [CharacterBody2D.safeMargin]
+   * for more details).
+   * If [recoveryAsCollision] is `true`, any depenetration from the recovery phase is also reported
+   * as a collision; this is useful for checking whether the body would *touch* any other bodies.
    */
   @JvmOverloads
   public fun testMove(

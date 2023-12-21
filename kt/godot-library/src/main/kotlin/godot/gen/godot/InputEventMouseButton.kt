@@ -44,7 +44,7 @@ public open class InputEventMouseButton : InputEventMouse() {
     }
 
   /**
-   * The mouse button identifier, one of the [enum MouseButton] button or button wheel constants.
+   * The mouse button identifier, one of the [MouseButton] button or button wheel constants.
    */
   public var buttonIndex: MouseButton
     get() {

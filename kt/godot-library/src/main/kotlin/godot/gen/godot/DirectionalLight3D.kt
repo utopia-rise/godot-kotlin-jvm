@@ -27,7 +27,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class DirectionalLight3D : Light3D() {
   /**
-   * The light's shadow rendering algorithm. See [enum ShadowMode].
+   * The light's shadow rendering algorithm. See [ShadowMode].
    */
   public var directionalShadowMode: ShadowMode
     get() {
@@ -43,7 +43,7 @@ public open class DirectionalLight3D : Light3D() {
   /**
    * If `true`, shadow detail is sacrificed in exchange for smoother transitions between splits.
    * Enabling shadow blend splitting also has a moderate performance cost. This is ignored when
-   * [directionalShadowMode] is [constant SHADOW_ORTHOGONAL].
+   * [directionalShadowMode] is [SHADOWORTHOGONAL].
    */
   public var directionalShadowBlendSplits: Boolean
     get() {
@@ -58,7 +58,7 @@ public open class DirectionalLight3D : Light3D() {
 
   /**
    * Set whether this [DirectionalLight3D] is visible in the sky, in the scene, or both in the sky
-   * and in the scene. See [enum SkyMode] for options.
+   * and in the scene. See [SkyMode] for options.
    */
   public var skyMode: SkyMode
     get() {
@@ -86,8 +86,7 @@ public open class DirectionalLight3D : Light3D() {
     SHADOW_ORTHOGONAL(0),
     /**
      * Splits the view frustum in 2 areas, each with its own shadow map. This shadow mode is a
-     * compromise between [constant SHADOW_ORTHOGONAL] and [constant SHADOW_PARALLEL_4_SPLITS] in terms
-     * of performance.
+     * compromise between [SHADOWORTHOGONAL] and [SHADOWPARALLEL4SPLITS] in terms of performance.
      */
     SHADOW_PARALLEL_2_SPLITS(1),
     /**

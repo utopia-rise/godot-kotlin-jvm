@@ -47,7 +47,7 @@ public open class ZIPReader : RefCounted() {
   }
 
   /**
-   * Opens the zip archive at the given [param path] and reads its file index.
+   * Opens the zip archive at the given [path] and reads its file index.
    */
   public fun `open`(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)

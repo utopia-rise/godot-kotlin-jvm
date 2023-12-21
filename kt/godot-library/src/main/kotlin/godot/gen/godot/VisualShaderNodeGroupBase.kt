@@ -81,8 +81,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   }
 
   /**
-   * Adds an input port with the specified [param type] (see [enum VisualShaderNode.PortType]) and
-   * [param name].
+   * Adds an input port with the specified [type] (see [VisualShaderNode.PortType]) and [name].
    */
   public fun addInputPort(
     id: Int,
@@ -128,8 +127,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   }
 
   /**
-   * Adds an output port with the specified [param type] (see [enum VisualShaderNode.PortType]) and
-   * [param name].
+   * Adds an output port with the specified [type] (see [VisualShaderNode.PortType]) and [name].
    */
   public fun addOutputPort(
     id: Int,
@@ -183,7 +181,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   }
 
   /**
-   * Sets the specified input port's type (see [enum VisualShaderNode.PortType]).
+   * Sets the specified input port's type (see [VisualShaderNode.PortType]).
    */
   public fun setInputPortType(id: Int, type: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), LONG to type.toLong())
@@ -199,7 +197,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   }
 
   /**
-   * Sets the specified output port's type (see [enum VisualShaderNode.PortType]).
+   * Sets the specified output port's type (see [VisualShaderNode.PortType]).
    */
   public fun setOutputPortType(id: Int, type: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), LONG to type.toLong())

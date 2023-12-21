@@ -27,7 +27,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class InputEventJoypadMotion : InputEvent() {
   /**
-   * Axis identifier. Use one of the [enum JoyAxis] axis constants.
+   * Axis identifier. Use one of the [JoyAxis] axis constants.
    */
   public var axis: JoyAxis
     get() {

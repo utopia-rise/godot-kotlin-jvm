@@ -42,8 +42,8 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class CharacterBody3D : PhysicsBody3D() {
   /**
-   * Sets the motion mode which defines the behavior of [moveAndSlide]. See [enum MotionMode]
-   * constants for available modes.
+   * Sets the motion mode which defines the behavior of [moveAndSlide]. See [MotionMode] constants
+   * for available modes.
    */
   public var motionMode: MotionMode
     get() {
@@ -58,9 +58,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
 
   /**
    * Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling)
-   * when calling [moveAndSlide]. Defaults to [constant Vector3.UP]. As the vector will be normalized
-   * it can't be equal to [constant Vector3.ZERO], if you want all collisions to be reported as walls,
-   * consider using [constant MOTION_MODE_FLOATING] as [motionMode].
+   * when calling [moveAndSlide]. Defaults to [Vector3.UP]. As the vector will be normalized it can't
+   * be equal to [Vector3.ZERO], if you want all collisions to be reported as walls, consider using
+   * [MOTIONMODEFLOATING] as [motionMode].
    */
   @CoreTypeLocalCopy
   public var upDirection: Vector3
@@ -122,8 +122,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
 
   /**
    * Minimum angle (in radians) where the body is allowed to slide when it encounters a slope. The
-   * default value equals 15 degrees. When [motionMode] is [constant MOTION_MODE_GROUNDED], it only
-   * affects movement if [floorBlockOnWall] is `true`.
+   * default value equals 15 degrees. When [motionMode] is [MOTIONMODEGROUNDED], it only affects
+   * movement if [floorBlockOnWall] is `true`.
    */
   public var wallMinSlideAngle: Float
     get() {
@@ -222,8 +222,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
 
   /**
    * Sets the behavior to apply when you leave a moving platform. By default, to be physically
-   * accurate, when you leave the last platform velocity is applied. See [enum PlatformOnLeave]
-   * constants for available behavior.
+   * accurate, when you leave the last platform velocity is applied. See [PlatformOnLeave] constants
+   * for available behavior.
    */
   public var platformOnLeave: PlatformOnLeave
     get() {
@@ -295,9 +295,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
 
   /**
    * Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling)
-   * when calling [moveAndSlide]. Defaults to [constant Vector3.UP]. As the vector will be normalized
-   * it can't be equal to [constant Vector3.ZERO], if you want all collisions to be reported as walls,
-   * consider using [constant MOTION_MODE_FLOATING] as [motionMode].
+   * when calling [moveAndSlide]. Defaults to [Vector3.UP]. As the vector will be normalized it can't
+   * be equal to [Vector3.ZERO], if you want all collisions to be reported as walls, consider using
+   * [MOTIONMODEFLOATING] as [motionMode].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -491,9 +491,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
   }
 
   /**
-   * Returns the floor's collision angle at the last collision point according to [param
-   * up_direction], which is [constant Vector3.UP] by default. This value is always positive and only
-   * valid after calling [moveAndSlide] and when [isOnFloor] returns `true`.
+   * Returns the floor's collision angle at the last collision point according to [upDirection],
+   * which is [Vector3.UP] by default. This value is always positive and only valid after calling
+   * [moveAndSlide] and when [isOnFloor] returns `true`.
    */
   @JvmOverloads
   public fun getFloorAngle(upDirection: Vector3 = Vector3(0, 1, 0)): Float {

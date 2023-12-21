@@ -52,10 +52,10 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   /**
    * Emitted when this MultiplayerAPI's [MultiplayerAPI.multiplayerPeer] connects to a new peer and
    * a valid [authCallback] is set. In this case, the [signal MultiplayerAPI.peer_connected] will not
-   * be emitted until [completeAuth] is called with given peer [param id]. While in this state, the
-   * peer will not be included in the list returned by [MultiplayerAPI.getPeers] (but in the one
-   * returned by [getAuthenticatingPeers]), and only authentication data will be sent or received. See
-   * [sendAuth] for sending authentication data.
+   * be emitted until [completeAuth] is called with given peer [id]. While in this state, the peer will
+   * not be included in the list returned by [MultiplayerAPI.getPeers] (but in the one returned by
+   * [getAuthenticatingPeers]), and only authentication data will be sent or received. See [sendAuth]
+   * for sending authentication data.
    */
   public val peerAuthenticating: Signal1<Long> by signal("id")
 
@@ -66,8 +66,8 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   public val peerAuthenticationFailed: Signal1<Long> by signal("id")
 
   /**
-   * Emitted when this MultiplayerAPI's [MultiplayerAPI.multiplayerPeer] receives a [param packet]
-   * with custom data (see [sendBytes]). ID is the peer ID of the peer that sent the packet.
+   * Emitted when this MultiplayerAPI's [MultiplayerAPI.multiplayerPeer] receives a [packet] with
+   * custom data (see [sendBytes]). ID is the peer ID of the peer that sent the packet.
    */
   public val peerPacket: Signal2<Long, PackedByteArray> by signal("id", "packet")
 
@@ -218,8 +218,8 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   }
 
   /**
-   * Disconnects the peer identified by [param id], removing it from the list of connected peers,
-   * and closing the underlying connection with it.
+   * Disconnects the peer identified by [id], removing it from the list of connected peers, and
+   * closing the underlying connection with it.
    */
   public fun disconnectPeer(id: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong())
@@ -237,8 +237,8 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   }
 
   /**
-   * Sends the specified [param data] to the remote peer identified by [param id] as part of an
-   * authentication message. This can be used to authenticate peers, and control when [signal
+   * Sends the specified [data] to the remote peer identified by [id] as part of an authentication
+   * message. This can be used to authenticate peers, and control when [signal
    * MultiplayerAPI.peer_connected] is emitted (and the remote peer accepted as one of the connected
    * peers).
    */
@@ -249,10 +249,10 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   }
 
   /**
-   * Mark the authentication step as completed for the remote peer identified by [param id]. The
-   * [signal MultiplayerAPI.peer_connected] signal will be emitted for this peer once the remote side
-   * also completes the authentication. No further authentication messages are expected to be received
-   * from this peer.
+   * Mark the authentication step as completed for the remote peer identified by [id]. The [signal
+   * MultiplayerAPI.peer_connected] signal will be emitted for this peer once the remote side also
+   * completes the authentication. No further authentication messages are expected to be received from
+   * this peer.
    * If a peer disconnects before completing authentication, either due to a network issue, the
    * [authTimeout] expiring, or manually calling [disconnectPeer], the [signal
    * peer_authentication_failed] signal will be emitted instead of [signal
@@ -265,7 +265,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   }
 
   /**
-   * Sends the given raw [param bytes] to a specific peer identified by [param id] (see
+   * Sends the given raw [bytes] to a specific peer identified by [id] (see
    * [MultiplayerPeer.setTargetPeer]). Default ID is `0`, i.e. broadcast to all peers.
    */
   @JvmOverloads

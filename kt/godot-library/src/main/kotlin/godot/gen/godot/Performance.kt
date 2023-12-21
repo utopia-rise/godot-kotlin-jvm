@@ -52,7 +52,7 @@ public object Performance : Object() {
 
   /**
    * Returns the value of one of the available built-in monitors. You should provide one of the
-   * [enum Monitor] constants as the argument, like this:
+   * [Monitor] constants as the argument, like this:
    *
    * gdscript:
    * ```gdscript
@@ -73,10 +73,10 @@ public object Performance : Object() {
   }
 
   /**
-   * Adds a custom monitor with the name [param id]. You can specify the category of the monitor
-   * using slash delimiters in [param id] (for example: `"Game/NumberOfNPCs"`). If there is more than
-   * one slash delimiter, then the default category is used. The default category is `"Custom"`. Prints
-   * an error if given [param id] is already present.
+   * Adds a custom monitor with the name [id]. You can specify the category of the monitor using
+   * slash delimiters in [id] (for example: `"Game/NumberOfNPCs"`). If there is more than one slash
+   * delimiter, then the default category is used. The default category is `"Custom"`. Prints an error
+   * if given [id] is already present.
    *
    * gdscript:
    * ```gdscript
@@ -145,8 +145,8 @@ public object Performance : Object() {
   }
 
   /**
-   * Removes the custom monitor with given [param id]. Prints an error if the given [param id] is
-   * already absent.
+   * Removes the custom monitor with given [id]. Prints an error if the given [id] is already
+   * absent.
    */
   public fun removeCustomMonitor(id: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to id)
@@ -154,7 +154,7 @@ public object Performance : Object() {
   }
 
   /**
-   * Returns `true` if custom monitor with the given [param id] is present, `false` otherwise.
+   * Returns `true` if custom monitor with the given [id] is present, `false` otherwise.
    */
   public fun hasCustomMonitor(id: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to id)
@@ -163,9 +163,8 @@ public object Performance : Object() {
   }
 
   /**
-   * Returns the value of custom monitor with given [param id]. The callable is called to get the
-   * value of custom monitor. See also [hasCustomMonitor]. Prints an error if the given [param id] is
-   * absent.
+   * Returns the value of custom monitor with given [id]. The callable is called to get the value of
+   * custom monitor. See also [hasCustomMonitor]. Prints an error if the given [id] is absent.
    */
   public fun getCustomMonitor(id: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to id)
@@ -266,7 +265,7 @@ public object Performance : Object() {
     /**
      * The amount of video memory used (texture and vertex memory combined, in bytes). Since this
      * metric also includes miscellaneous allocations, this value is always greater than the sum of
-     * [constant RENDER_TEXTURE_MEM_USED] and [constant RENDER_BUFFER_MEM_USED]. *Lower is better.*
+     * [RENDERTEXTUREMEMUSED] and [RENDERBUFFERMEMUSED]. *Lower is better.*
      */
     RENDER_VIDEO_MEM_USED(14),
     /**
@@ -346,7 +345,7 @@ public object Performance : Object() {
      */
     NAVIGATION_EDGE_FREE_COUNT(32),
     /**
-     * Represents the size of the [enum Monitor] enum.
+     * Represents the size of the [Monitor] enum.
      */
     MONITOR_MAX(33),
     ;

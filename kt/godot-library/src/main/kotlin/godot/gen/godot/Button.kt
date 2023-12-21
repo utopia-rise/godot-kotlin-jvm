@@ -105,8 +105,7 @@ public open class Button : BaseButton() {
     }
 
   /**
-   * Text alignment policy for the button's text, use one of the [enum HorizontalAlignment]
-   * constants.
+   * Text alignment policy for the button's text, use one of the [HorizontalAlignment] constants.
    */
   public var alignment: HorizontalAlignment
     get() {
@@ -120,8 +119,8 @@ public open class Button : BaseButton() {
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds the node's bounding rectangle. See [enum
-   * TextServer.OverrunBehavior] for a description of all modes.
+   * Sets the clipping behavior when the text exceeds the node's bounding rectangle. See
+   * [TextServer.OverrunBehavior] for a description of all modes.
    */
   public var textOverrunBehavior: TextServer.OverrunBehavior
     get() {
@@ -151,8 +150,8 @@ public open class Button : BaseButton() {
 
   /**
    * Specifies if the icon should be aligned horizontally to the left, right, or center of a button.
-   * Uses the same [enum HorizontalAlignment] constants as the text alignment. If centered horizontally
-   * and vertically, text will draw on top of the icon.
+   * Uses the same [HorizontalAlignment] constants as the text alignment. If centered horizontally and
+   * vertically, text will draw on top of the icon.
    */
   public var iconAlignment: HorizontalAlignment
     get() {
@@ -167,8 +166,8 @@ public open class Button : BaseButton() {
 
   /**
    * Specifies if the icon should be aligned vertically to the top, bottom, or center of a button.
-   * Uses the same [enum VerticalAlignment] constants as the text alignment. If centered horizontally
-   * and vertically, text will draw on top of the icon.
+   * Uses the same [VerticalAlignment] constants as the text alignment. If centered horizontally and
+   * vertically, text will draw on top of the icon.
    */
   public var verticalIconAlignment: VerticalAlignment
     get() {

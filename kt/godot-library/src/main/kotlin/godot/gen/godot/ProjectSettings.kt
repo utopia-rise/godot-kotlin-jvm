@@ -92,9 +92,9 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Returns the value of the setting identified by [param name]. If the setting doesn't exist and
-   * [param default_value] is specified, the value of [param default_value] is returned. Otherwise,
-   * `null` is returned.
+   * Returns the value of the setting identified by [name]. If the setting doesn't exist and
+   * [defaultValue] is specified, the value of [defaultValue] is returned. Otherwise, `null` is
+   * returned.
    * **Example:**
    *
    * gdscript:
@@ -209,8 +209,8 @@ public object ProjectSettings : Object() {
   /**
    * Adds a custom property info to a property. The dictionary must contain:
    * - `"name"`: [String] (the property's name)
-   * - `"type"`: [int] (see [enum Variant.Type])
-   * - optionally `"hint"`: [int] (see [enum PropertyHint]) and `"hint_string"`: [String]
+   * - `"type"`: [int] (see [Variant.Type])
+   * - optionally `"hint"`: [int] (see [PropertyHint]) and `"hint_string"`: [String]
    * **Example:**
    *
    * gdscript:
@@ -267,7 +267,7 @@ public object ProjectSettings : Object() {
 
   /**
    * Returns the localized path (starting with `res://`) corresponding to the absolute, native OS
-   * [param path]. See also [globalizePath].
+   * [path]. See also [globalizePath].
    */
   public fun localizePath(path: String): String {
     TransferContext.writeArguments(STRING to path)
@@ -276,7 +276,7 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Returns the absolute, native OS path corresponding to the localized [param path] (starting with
+   * Returns the absolute, native OS path corresponding to the localized [path] (starting with
    * `res://` or `user://`). The returned path will vary depending on the operating system and user
    * preferences. See [url=$DOCS_URL/tutorials/io/data_paths.html]File paths in Godot projects[/url] to
    * see what those paths convert to. See also [localizePath].
@@ -315,13 +315,13 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Loads the contents of the .pck or .zip file specified by [param pack] into the resource
-   * filesystem (`res://`). Returns `true` on success.
-   * **Note:** If a file from [param pack] shares the same path as a file already in the resource
-   * filesystem, any attempts to load that file will use the file from [param pack] unless [param
-   * replace_files] is set to `false`.
-   * **Note:** The optional [param offset] parameter can be used to specify the offset in bytes to
-   * the start of the resource pack. This is only supported for .pck files.
+   * Loads the contents of the .pck or .zip file specified by [pack] into the resource filesystem
+   * (`res://`). Returns `true` on success.
+   * **Note:** If a file from [pack] shares the same path as a file already in the resource
+   * filesystem, any attempts to load that file will use the file from [pack] unless [replaceFiles] is
+   * set to `false`.
+   * **Note:** The optional [offset] parameter can be used to specify the offset in bytes to the
+   * start of the resource pack. This is only supported for .pck files.
    */
   @JvmOverloads
   public fun loadResourcePack(

@@ -23,7 +23,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
   /**
-   * The function to be computed. See [enum Function] for options.
+   * The function to be computed. See [Function] for options.
    */
   public var function: Function
     get() {
@@ -53,7 +53,7 @@ public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
      */
     FUNC_TRANSPOSE(1),
     /**
-     * Represents the size of the [enum Function] enum.
+     * Represents the size of the [Function] enum.
      */
     FUNC_MAX(2),
     ;

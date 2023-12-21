@@ -41,7 +41,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Environment : Resource() {
   /**
-   * The background mode. See [enum BGMode] for possible values.
+   * The background mode. See [BGMode] for possible values.
    */
   public var backgroundMode: BGMode
     get() {
@@ -55,8 +55,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The [Color] displayed for clear areas of the scene. Only effective when using the [constant
-   * BG_COLOR] background mode.
+   * The [Color] displayed for clear areas of the scene. Only effective when using the [BGCOLOR]
+   * background mode.
    */
   @CoreTypeLocalCopy
   public var backgroundColor: Color
@@ -102,8 +102,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The maximum layer ID to display. Only effective when using the [constant BG_CANVAS] background
-   * mode.
+   * The maximum layer ID to display. Only effective when using the [BGCANVAS] background mode.
    */
   public var backgroundCanvasMaxLayer: Int
     get() {
@@ -286,8 +285,7 @@ public open class Environment : Resource() {
   /**
    * The white reference value for tonemapping (also called "whitepoint"). Higher values can make
    * highlights look less blown out, and will also slightly darken the whole scene as a result. Only
-   * effective if the [tonemapMode] isn't set to [constant TONE_MAPPER_LINEAR]. See also
-   * [tonemapExposure].
+   * effective if the [tonemapMode] isn't set to [TONEMAPPERLINEAR]. See also [tonemapExposure].
    */
   public var tonemapWhite: Float
     get() {
@@ -609,11 +607,11 @@ public open class Environment : Resource() {
 
   /**
    * If `true`, enables signed distance field global illumination for meshes that have their
-   * [GeometryInstance3D.giMode] set to [constant GeometryInstance3D.GI_MODE_STATIC]. SDFGI is a
-   * real-time global illumination technique that works well with procedurally generated and user-built
-   * levels, including in situations where geometry is created during gameplay. The signed distance
-   * field is automatically generated around the camera as it moves. Dynamic lights are supported, but
-   * dynamic occluders and emissive surfaces are not.
+   * [GeometryInstance3D.giMode] set to [GeometryInstance3D.GIMODESTATIC]. SDFGI is a real-time global
+   * illumination technique that works well with procedurally generated and user-built levels,
+   * including in situations where geometry is created during gameplay. The signed distance field is
+   * automatically generated around the camera as it moves. Dynamic lights are supported, but dynamic
+   * occluders and emissive surfaces are not.
    * **Note:** SDFGI is only supported in the Forward+ rendering method, not Mobile or
    * Compatibility.
    * **Performance:** SDFGI is relatively demanding on the GPU and is not suited to low-end hardware
@@ -881,9 +879,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * When using the [constant GLOW_BLEND_MODE_MIX] [glowBlendMode], this controls how much the
-   * source image is blended with the glow layer. A value of `0.0` makes the glow rendering invisible,
-   * while a value of `1.0` is equivalent to [constant GLOW_BLEND_MODE_REPLACE].
+   * When using the [GLOWBLENDMODEMIX] [glowBlendMode], this controls how much the source image is
+   * blended with the glow layer. A value of `0.0` makes the glow rendering invisible, while a value of
+   * `1.0` is equivalent to [GLOWBLENDMODEREPLACE].
    */
   public var glowMix: Float
     get() {
@@ -1082,7 +1080,7 @@ public open class Environment : Resource() {
   /**
    * If set above `0.0` (exclusive), blends between the fog's color and the color of the background
    * [Sky]. This has a small performance cost when set above `0.0`. Must have [backgroundMode] set to
-   * [constant BG_SKY].
+   * [BGSKY].
    * This is useful to simulate [url=https://en.wikipedia.org/wiki/Aerial_perspective]aerial
    * perspective[/url] in large scenes with low density fog. However, it is not very useful for
    * high-density fog, as the sky will shine through. When set to `1.0`, the fog color comes completely
@@ -1464,8 +1462,8 @@ public open class Environment : Resource() {
   }
 
   /**
-   * The [Color] displayed for clear areas of the scene. Only effective when using the [constant
-   * BG_COLOR] background mode.
+   * The [Color] displayed for clear areas of the scene. Only effective when using the [BGCOLOR]
+   * background mode.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -1616,9 +1614,9 @@ public open class Environment : Resource() {
 
 
   /**
-   * Sets the intensity of the glow level [param idx]. A value above `0.0` enables the level. Each
-   * level relies on the previous level. This means that enabling higher glow levels will slow down the
-   * glow effect rendering, even if previous levels aren't enabled.
+   * Sets the intensity of the glow level [idx]. A value above `0.0` enables the level. Each level
+   * relies on the previous level. This means that enabling higher glow levels will slow down the glow
+   * effect rendering, even if previous levels aren't enabled.
    */
   public fun setGlowLevel(idx: Int, intensity: Float): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), DOUBLE to intensity.toDouble())
@@ -1626,7 +1624,7 @@ public open class Environment : Resource() {
   }
 
   /**
-   * Returns the intensity of the glow level [param idx].
+   * Returns the intensity of the glow level [idx].
    */
   public fun getGlowLevel(idx: Int): Float {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -1666,7 +1664,7 @@ public open class Environment : Resource() {
      */
     BG_CAMERA_FEED(5),
     /**
-     * Represents the size of the [enum BGMode] enum.
+     * Represents the size of the [BGMode] enum.
      */
     BG_MAX(6),
     ;
@@ -1689,13 +1687,12 @@ public open class Environment : Resource() {
      */
     AMBIENT_SOURCE_BG(0),
     /**
-     * Disable ambient light. This provides a slight performance boost over [constant
-     * AMBIENT_SOURCE_SKY].
+     * Disable ambient light. This provides a slight performance boost over [AMBIENTSOURCESKY].
      */
     AMBIENT_SOURCE_DISABLED(1),
     /**
      * Specify a specific [Color] for ambient light. This provides a slight performance boost over
-     * [constant AMBIENT_SOURCE_SKY].
+     * [AMBIENTSOURCESKY].
      */
     AMBIENT_SOURCE_COLOR(2),
     /**
@@ -1757,14 +1754,14 @@ public open class Environment : Resource() {
     TONE_MAPPER_REINHARDT(1),
     /**
      * Filmic tonemapper operator. This avoids clipping bright highlights, with a resulting image
-     * that usually looks more vivid than [constant TONE_MAPPER_REINHARDT].
+     * that usually looks more vivid than [TONEMAPPERREINHARDT].
      */
     TONE_MAPPER_FILMIC(2),
     /**
      * Use the Academy Color Encoding System tonemapper. ACES is slightly more expensive than other
      * options, but it handles bright lighting in a more realistic fashion by desaturating it as it
-     * becomes brighter. ACES typically has a more contrasted output compared to [constant
-     * TONE_MAPPER_REINHARDT] and [constant TONE_MAPPER_FILMIC].
+     * becomes brighter. ACES typically has a more contrasted output compared to [TONEMAPPERREINHARDT]
+     * and [TONEMAPPERFILMIC].
      * **Note:** This tonemapping operator is called "ACES Fitted" in Godot 3.x.
      */
     TONE_MAPPER_ACES(3),

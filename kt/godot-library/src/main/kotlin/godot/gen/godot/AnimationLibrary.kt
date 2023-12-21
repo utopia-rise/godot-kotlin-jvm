@@ -35,23 +35,23 @@ import kotlin.Unit
 @GodotBaseType
 public open class AnimationLibrary : Resource() {
   /**
-   * Emitted when an [Animation] is added, under the key [param name].
+   * Emitted when an [Animation] is added, under the key [name].
    */
   public val animationAdded: Signal1<StringName> by signal("name")
 
   /**
-   * Emitted when an [Animation] stored with the key [param name] is removed.
+   * Emitted when an [Animation] stored with the key [name] is removed.
    */
   public val animationRemoved: Signal1<StringName> by signal("name")
 
   /**
-   * Emitted when the key for an [Animation] is changed, from [param name] to [param to_name].
+   * Emitted when the key for an [Animation] is changed, from [name] to [toName].
    */
   public val animationRenamed: Signal2<StringName, StringName> by signal("name", "toName")
 
   /**
    * Emitted when there's a change in one of the animations, e.g. tracks are added, moved or have
-   * changed paths. [param name] is the key of the animation that was changed.
+   * changed paths. [name] is the key of the animation that was changed.
    * See also [signal Resource.changed], which this acts as a relay for.
    */
   public val animationChanged: Signal1<StringName> by signal("name")
@@ -62,7 +62,7 @@ public open class AnimationLibrary : Resource() {
   }
 
   /**
-   * Adds the [param animation] to the library, accessible by the key [param name].
+   * Adds the [animation] to the library, accessible by the key [name].
    */
   public fun addAnimation(name: StringName, animation: Animation): GodotError {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to animation)
@@ -71,7 +71,7 @@ public open class AnimationLibrary : Resource() {
   }
 
   /**
-   * Removes the [Animation] with the key [param name].
+   * Removes the [Animation] with the key [name].
    */
   public fun removeAnimation(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -79,7 +79,7 @@ public open class AnimationLibrary : Resource() {
   }
 
   /**
-   * Changes the key of the [Animation] associated with the key [param name] to [param newname].
+   * Changes the key of the [Animation] associated with the key [name] to [newname].
    */
   public fun renameAnimation(name: StringName, newname: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newname)
@@ -87,7 +87,7 @@ public open class AnimationLibrary : Resource() {
   }
 
   /**
-   * Returns `true` if the library stores an [Animation] with [param name] as the key.
+   * Returns `true` if the library stores an [Animation] with [name] as the key.
    */
   public fun hasAnimation(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -96,7 +96,7 @@ public open class AnimationLibrary : Resource() {
   }
 
   /**
-   * Returns the [Animation] with the key [param name]. If the animation does not exist, `null` is
+   * Returns the [Animation] with the key [name]. If the animation does not exist, `null` is
    * returned and an error is logged.
    */
   public fun getAnimation(name: StringName): Animation? {

@@ -7,8 +7,8 @@ public enum class MouseButton(
   id: Long,
 ) {
   /**
-   * Enum value which doesn't correspond to any mouse button. This is used to initialize [enum
-   * MouseButton] properties with a generic state.
+   * Enum value which doesn't correspond to any mouse button. This is used to initialize
+   * [MouseButton] properties with a generic state.
    */
   MOUSE_BUTTON_NONE(0),
   /**

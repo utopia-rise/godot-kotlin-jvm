@@ -96,7 +96,7 @@ public open class VisualShader : Shader() {
   }
 
   /**
-   * Adds the specified [param node] to the shader.
+   * Adds the specified [node] to the shader.
    */
   public fun addNode(
     type: Type,
@@ -109,7 +109,7 @@ public open class VisualShader : Shader() {
   }
 
   /**
-   * Returns the shader node instance with specified [param type] and [param id].
+   * Returns the shader node instance with specified [type] and [id].
    */
   public fun getNode(type: Type, id: Int): VisualShaderNode? {
     TransferContext.writeArguments(LONG to type.id, LONG to id.toLong())
@@ -272,8 +272,8 @@ public open class VisualShader : Shader() {
   }
 
   /**
-   * Removes a varying value node with the given [param name]. Prints an error if a node with this
-   * name is not found.
+   * Removes a varying value node with the given [name]. Prints an error if a node with this name is
+   * not found.
    */
   public fun removeVarying(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
@@ -281,7 +281,7 @@ public open class VisualShader : Shader() {
   }
 
   /**
-   * Returns `true` if the shader has a varying with the given [param name].
+   * Returns `true` if the shader has a varying with the given [name].
    */
   public fun hasVarying(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
@@ -333,7 +333,7 @@ public open class VisualShader : Shader() {
      */
     TYPE_FOG(9),
     /**
-     * Represents the size of the [enum Type] enum.
+     * Represents the size of the [Type] enum.
      */
     TYPE_MAX(10),
     ;
@@ -360,7 +360,7 @@ public open class VisualShader : Shader() {
      */
     VARYING_MODE_FRAG_TO_LIGHT(1),
     /**
-     * Represents the size of the [enum VaryingMode] enum.
+     * Represents the size of the [VaryingMode] enum.
      */
     VARYING_MODE_MAX(2),
     ;
@@ -411,7 +411,7 @@ public open class VisualShader : Shader() {
      */
     VARYING_TYPE_TRANSFORM(7),
     /**
-     * Represents the size of the [enum VaryingType] enum.
+     * Represents the size of the [VaryingType] enum.
      */
     VARYING_TYPE_MAX(8),
     ;

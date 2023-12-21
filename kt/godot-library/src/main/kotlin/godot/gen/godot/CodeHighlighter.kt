@@ -332,8 +332,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Adds a color region such as comments or strings.
    * Both the start and end keys must be symbols. Only the start key has to be unique.
-   * [param line_only] denotes if the region should continue until the end of the line or carry over
-   * on to the next line. If the end key is blank this is automatically set to `true`.
+   * [lineOnly] denotes if the region should continue until the end of the line or carry over on to
+   * the next line. If the end key is blank this is automatically set to `true`.
    */
   @JvmOverloads
   public fun addColorRegion(

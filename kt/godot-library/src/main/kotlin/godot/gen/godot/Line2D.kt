@@ -151,7 +151,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The style to render the [texture] of the polyline. Use [enum LineTextureMode] constants.
+   * The style to render the [texture] of the polyline. Use [LineTextureMode] constants.
    */
   public var textureMode: LineTextureMode
     get() {
@@ -165,8 +165,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The style of the connections between segments of the polyline. Use [enum LineJointMode]
-   * constants.
+   * The style of the connections between segments of the polyline. Use [LineJointMode] constants.
    */
   public var jointMode: LineJointMode
     get() {
@@ -180,7 +179,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The style of the beginning of the polyline, if [closed] is `false`. Use [enum LineCapMode]
+   * The style of the beginning of the polyline, if [closed] is `false`. Use [LineCapMode]
    * constants.
    */
   public var beginCapMode: LineCapMode
@@ -195,7 +194,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The style of the end of the polyline, if [closed] is `false`. Use [enum LineCapMode] constants.
+   * The style of the end of the polyline, if [closed] is `false`. Use [LineCapMode] constants.
    */
   public var endCapMode: LineCapMode
     get() {
@@ -209,10 +208,10 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * Determines the miter limit of the polyline. Normally, when [jointMode] is set to [constant
-   * LINE_JOINT_SHARP], sharp angles fall back to using the logic of [constant LINE_JOINT_BEVEL] joints
-   * to prevent very long miters. Higher values of this property mean that the fallback to a bevel
-   * joint will happen at sharper angles.
+   * Determines the miter limit of the polyline. Normally, when [jointMode] is set to
+   * [LINEJOINTSHARP], sharp angles fall back to using the logic of [LINEJOINTBEVEL] joints to prevent
+   * very long miters. Higher values of this property mean that the fallback to a bevel joint will
+   * happen at sharper angles.
    */
   public var sharpLimit: Float
     get() {
@@ -285,8 +284,7 @@ public open class Line2D : Node2D() {
 
 
   /**
-   * Overwrites the position of the point at the given [param index] with the supplied [param
-   * position].
+   * Overwrites the position of the point at the given [index] with the supplied [position].
    */
   public fun setPointPosition(index: Int, position: Vector2): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), VECTOR2 to position)
@@ -294,7 +292,7 @@ public open class Line2D : Node2D() {
   }
 
   /**
-   * Returns the position of the point at index [param index].
+   * Returns the position of the point at index [index].
    */
   public fun getPointPosition(index: Int): Vector2 {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -312,12 +310,11 @@ public open class Line2D : Node2D() {
   }
 
   /**
-   * Adds a point with the specified [param position] relative to the polyline's own position. If no
-   * [param index] is provided, the new point will be added to the end of the points array.
-   * If [param index] is given, the new point is inserted before the existing point identified by
-   * index [param index]. The indices of the points after the new point get increased by 1. The
-   * provided [param index] must not exceed the number of existing points in the polyline. See
-   * [getPointCount].
+   * Adds a point with the specified [position] relative to the polyline's own position. If no
+   * [index] is provided, the new point will be added to the end of the points array.
+   * If [index] is given, the new point is inserted before the existing point identified by index
+   * [index]. The indices of the points after the new point get increased by 1. The provided [index]
+   * must not exceed the number of existing points in the polyline. See [getPointCount].
    */
   @JvmOverloads
   public fun addPoint(position: Vector2, index: Int = -1): Unit {
@@ -326,7 +323,7 @@ public open class Line2D : Node2D() {
   }
 
   /**
-   * Removes the point at index [param index] from the polyline.
+   * Removes the point at index [index] from the polyline.
    */
   public fun removePoint(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -347,7 +344,7 @@ public open class Line2D : Node2D() {
     /**
      * Makes the polyline's joints pointy, connecting the sides of the two segments by extending
      * them until they intersect. If the rotation of a joint is too big (based on [sharpLimit]), the
-     * joint falls back to [constant LINE_JOINT_BEVEL] to prevent very long miters.
+     * joint falls back to [LINEJOINTBEVEL] to prevent very long miters.
      */
     LINE_JOINT_SHARP(0),
     /**
@@ -408,13 +405,12 @@ public open class Line2D : Node2D() {
     LINE_TEXTURE_NONE(0),
     /**
      * Tiles the texture over the polyline. [CanvasItem.textureRepeat] of the [Line2D] node must be
-     * [constant CanvasItem.TEXTURE_REPEAT_ENABLED] or [constant CanvasItem.TEXTURE_REPEAT_MIRROR] for
-     * it to work properly.
+     * [CanvasItem.TEXTUREREPEATENABLED] or [CanvasItem.TEXTUREREPEATMIRROR] for it to work properly.
      */
     LINE_TEXTURE_TILE(1),
     /**
      * Stretches the texture across the polyline. [CanvasItem.textureRepeat] of the [Line2D] node
-     * must be [constant CanvasItem.TEXTURE_REPEAT_DISABLED] for best results.
+     * must be [CanvasItem.TEXTUREREPEATDISABLED] for best results.
      */
     LINE_TEXTURE_STRETCH(2),
     ;

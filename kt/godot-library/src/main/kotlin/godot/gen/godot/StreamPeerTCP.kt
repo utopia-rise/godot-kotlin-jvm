@@ -40,8 +40,8 @@ public open class StreamPeerTCP : StreamPeer() {
   /**
    * Opens the TCP socket, and binds it to the specified local address.
    * This method is generally not needed, and only used to force the subsequent call to
-   * [connectToHost] to use the specified [param host] and [param port] as source address. This can be
-   * desired in some NAT punchthrough techniques, or when forcing the source network interface.
+   * [connectToHost] to use the specified [host] and [port] as source address. This can be desired in
+   * some NAT punchthrough techniques, or when forcing the source network interface.
    */
   @JvmOverloads
   public fun bind(port: Int, host: String = "*"): GodotError {
@@ -51,8 +51,8 @@ public open class StreamPeerTCP : StreamPeer() {
   }
 
   /**
-   * Connects to the specified `host:port` pair. A hostname will be resolved if valid. Returns
-   * [constant OK] on success.
+   * Connects to the specified `host:port` pair. A hostname will be resolved if valid. Returns [OK]
+   * on success.
    */
   public fun connectToHost(host: String, port: Int): GodotError {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
@@ -70,7 +70,7 @@ public open class StreamPeerTCP : StreamPeer() {
   }
 
   /**
-   * Returns the status of the connection, see [enum Status].
+   * Returns the status of the connection, see [Status].
    */
   public fun getStatus(): Status {
     TransferContext.writeArguments()
@@ -114,8 +114,8 @@ public open class StreamPeerTCP : StreamPeer() {
   }
 
   /**
-   * If [param enabled] is `true`, packets will be sent immediately. If [param enabled] is `false`
-   * (the default), packet transfers will be delayed and combined using
+   * If [enabled] is `true`, packets will be sent immediately. If [enabled] is `false` (the
+   * default), packet transfers will be delayed and combined using
    * [url=https://en.wikipedia.org/wiki/Nagle&#37;27s_algorithm]Nagle's algorithm[/url].
    * **Note:** It's recommended to leave this disabled for applications that send large packets or
    * need to transfer a lot of data, as enabling this can decrease the total available bandwidth.

@@ -36,7 +36,7 @@ public open class Range : Control() {
    * connected to [signal value_changed], consider using a *debouncing* [Timer] to call the function
    * less often.
    * **Note:** Unlike signals such as [signal LineEdit.text_changed], [signal value_changed] is also
-   * emitted when [param value] is set directly via code.
+   * emitted when [value] is set directly via code.
    */
   public val valueChanged: Signal1<Double> by signal("value")
 
@@ -203,7 +203,7 @@ public open class Range : Control() {
   }
 
   /**
-   * Sets the [Range]'s current value to the specified [param value], without emitting the [signal
+   * Sets the [Range]'s current value to the specified [value], without emitting the [signal
    * value_changed] signal.
    */
   public fun setValueNoSignal(`value`: Double): Unit {

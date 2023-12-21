@@ -73,7 +73,7 @@ public open class VisualShaderNodeMix : VisualShaderNode() {
      */
     OP_TYPE_VECTOR_4D_SCALAR(6),
     /**
-     * Represents the size of the [enum OpType] enum.
+     * Represents the size of the [OpType] enum.
      */
     OP_TYPE_MAX(7),
     ;

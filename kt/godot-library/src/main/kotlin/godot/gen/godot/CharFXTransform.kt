@@ -206,8 +206,8 @@ public open class CharFXTransform : RefCounted() {
     }
 
   /**
-   * Glyph flags. See [enum TextServer.GraphemeFlag] for more info. Setting this property won't
-   * affect drawing.
+   * Glyph flags. See [TextServer.GraphemeFlag] for more info. Setting this property won't affect
+   * drawing.
    */
   public var glyphFlags: Int
     get() {

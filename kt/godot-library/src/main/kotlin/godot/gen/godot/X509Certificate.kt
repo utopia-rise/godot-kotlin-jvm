@@ -34,7 +34,7 @@ public open class X509Certificate : Resource() {
   }
 
   /**
-   * Saves a certificate to the given [param path] (should be a "*.crt" file).
+   * Saves a certificate to the given [path] (should be a "*.crt" file).
    */
   public fun save(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
@@ -43,7 +43,7 @@ public open class X509Certificate : Resource() {
   }
 
   /**
-   * Loads a certificate from [param path] ("*.crt" file).
+   * Loads a certificate from [path] ("*.crt" file).
    */
   public fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
@@ -62,7 +62,7 @@ public open class X509Certificate : Resource() {
   }
 
   /**
-   * Loads a certificate from the given [param string].
+   * Loads a certificate from the given [string].
    */
   public fun loadFromString(string: String): GodotError {
     TransferContext.writeArguments(STRING to string)

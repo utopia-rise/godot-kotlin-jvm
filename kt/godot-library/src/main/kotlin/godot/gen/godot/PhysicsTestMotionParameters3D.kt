@@ -98,10 +98,10 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     }
 
   /**
-   * If set to `true`, shapes of type [constant PhysicsServer3D.SHAPE_SEPARATION_RAY] are used to
-   * detect collisions and can stop the motion. Can be useful when snapping to the ground.
-   * If set to `false`, shapes of type [constant PhysicsServer3D.SHAPE_SEPARATION_RAY] are only used
-   * for separation when overlapping with other bodies. That's the main use for separation ray shapes.
+   * If set to `true`, shapes of type [PhysicsServer3D.SHAPESEPARATIONRAY] are used to detect
+   * collisions and can stop the motion. Can be useful when snapping to the ground.
+   * If set to `false`, shapes of type [PhysicsServer3D.SHAPESEPARATIONRAY] are only used for
+   * separation when overlapping with other bodies. That's the main use for separation ray shapes.
    */
   public var collideSeparationRay: Boolean
     get() {

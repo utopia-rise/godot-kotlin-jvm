@@ -100,7 +100,7 @@ public open class LightmapGIData : Resource() {
   }
 
   /**
-   * Returns the [NodePath] of the baked object at index [param user_idx].
+   * Returns the [NodePath] of the baked object at index [userIdx].
    */
   public fun getUserPath(userIdx: Int): NodePath {
     TransferContext.writeArguments(LONG to userIdx.toLong())

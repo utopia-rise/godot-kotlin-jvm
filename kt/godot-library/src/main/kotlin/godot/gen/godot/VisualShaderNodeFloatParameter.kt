@@ -42,8 +42,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     }
 
   /**
-   * Maximum value for range hints. Used if [hint] is set to [constant HINT_RANGE] or [constant
-   * HINT_RANGE_STEP].
+   * Maximum value for range hints. Used if [hint] is set to [HINTRANGE] or [HINTRANGESTEP].
    */
   public var min: Float
     get() {
@@ -57,8 +56,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     }
 
   /**
-   * Minimum value for range hints. Used if [hint] is set to [constant HINT_RANGE] or [constant
-   * HINT_RANGE_STEP].
+   * Minimum value for range hints. Used if [hint] is set to [HINTRANGE] or [HINTRANGESTEP].
    */
   public var max: Float
     get() {
@@ -72,8 +70,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     }
 
   /**
-   * Step (increment) value for the range hint with step. Used if [hint] is set to [constant
-   * HINT_RANGE_STEP].
+   * Step (increment) value for the range hint with step. Used if [hint] is set to [HINTRANGESTEP].
    */
   public var step: Float
     get() {
@@ -138,7 +135,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
      */
     HINT_RANGE_STEP(2),
     /**
-     * Represents the size of the [enum Hint] enum.
+     * Represents the size of the [Hint] enum.
      */
     HINT_MAX(3),
     ;

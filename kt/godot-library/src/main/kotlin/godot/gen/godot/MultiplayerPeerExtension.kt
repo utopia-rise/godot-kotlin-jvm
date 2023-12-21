@@ -68,7 +68,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
   }
 
   /**
-   * Called to get the [enum MultiplayerPeer.TransferMode] the remote peer used to send the next
+   * Called to get the [MultiplayerPeer.TransferMode] the remote peer used to send the next
    * available packet. See [MultiplayerPeer.getPacketMode].
    */
   public open fun _getPacketMode(): MultiplayerPeer.TransferMode {
@@ -141,7 +141,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
   }
 
   /**
-   * Called when the connected [param p_peer] should be forcibly disconnected (see
+   * Called when the connected [pPeer] should be forcibly disconnected (see
    * [MultiplayerPeer.disconnectPeer]).
    */
   public open fun _disconnectPeer(pPeer: Int, pForce: Boolean): Unit {

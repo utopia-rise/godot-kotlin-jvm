@@ -60,7 +60,7 @@ public open class ImageTexture : Texture2D() {
   }
 
   /**
-   * Returns the format of the texture, one of [enum Image.Format].
+   * Returns the format of the texture, one of [Image.Format].
    */
   public fun getFormat(): Image.Format {
     TransferContext.writeArguments()

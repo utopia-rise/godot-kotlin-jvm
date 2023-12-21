@@ -137,8 +137,8 @@ public open class ScrollContainer : Container() {
     }
 
   /**
-   * Controls whether horizontal scrollbar can be used and when it should be visible. See [enum
-   * ScrollMode] for options.
+   * Controls whether horizontal scrollbar can be used and when it should be visible. See
+   * [ScrollMode] for options.
    */
   public var horizontalScrollMode: ScrollMode
     get() {
@@ -152,8 +152,8 @@ public open class ScrollContainer : Container() {
     }
 
   /**
-   * Controls whether vertical scrollbar can be used and when it should be visible. See [enum
-   * ScrollMode] for options.
+   * Controls whether vertical scrollbar can be used and when it should be visible. See [ScrollMode]
+   * for options.
    */
   public var verticalScrollMode: ScrollMode
     get() {
@@ -208,7 +208,7 @@ public open class ScrollContainer : Container() {
   }
 
   /**
-   * Ensures the given [param control] is visible (must be a direct or indirect child of the
+   * Ensures the given [control] is visible (must be a direct or indirect child of the
    * ScrollContainer). Used by [followFocus].
    * **Note:** This will not work on a node that was just added during the same frame. If you want
    * to scroll to a newly added child, you must wait until the next frame using [signal

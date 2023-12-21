@@ -70,7 +70,7 @@ public open class XRController3D : XRNode3D() {
   }
 
   /**
-   * Returns `true` if the button with the given [param name] is pressed.
+   * Returns `true` if the button with the given [name] is pressed.
    */
   public fun isButtonPressed(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -79,8 +79,8 @@ public open class XRController3D : XRNode3D() {
   }
 
   /**
-   * Returns a [Variant] for the input with the given [param name]. This works for any input type,
-   * the variant will be typed according to the actions configuration.
+   * Returns a [Variant] for the input with the given [name]. This works for any input type, the
+   * variant will be typed according to the actions configuration.
    */
   public fun getInput(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -89,8 +89,8 @@ public open class XRController3D : XRNode3D() {
   }
 
   /**
-   * Returns a numeric value for the input with the given [param name]. This is used for triggers
-   * and grip sensors.
+   * Returns a numeric value for the input with the given [name]. This is used for triggers and grip
+   * sensors.
    */
   public fun getFloat(name: StringName): Float {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -99,7 +99,7 @@ public open class XRController3D : XRNode3D() {
   }
 
   /**
-   * Returns a [Vector2] for the input with the given [param name]. This is used for thumbsticks and
+   * Returns a [Vector2] for the input with the given [name]. This is used for thumbsticks and
    * thumbpads found on many controllers.
    */
   public fun getVector2(name: StringName): Vector2 {
@@ -109,7 +109,7 @@ public open class XRController3D : XRNode3D() {
   }
 
   /**
-   * Returns the hand holding this controller, if known. See [enum XRPositionalTracker.TrackerHand].
+   * Returns the hand holding this controller, if known. See [XRPositionalTracker.TrackerHand].
    */
   public fun getTrackerHand(): XRPositionalTracker.TrackerHand {
     TransferContext.writeArguments()

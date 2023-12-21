@@ -49,16 +49,16 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
   }
 
   /**
-   * Create server that listens to connections via [param port]. The port needs to be an available,
-   * unused port between 0 and 65535. Note that ports below 1024 are privileged and may require
-   * elevated permissions depending on the platform. To change the interface the server listens on, use
+   * Create server that listens to connections via [port]. The port needs to be an available, unused
+   * port between 0 and 65535. Note that ports below 1024 are privileged and may require elevated
+   * permissions depending on the platform. To change the interface the server listens on, use
    * [setBindIp]. The default IP is the wildcard `"*"`, which listens on all available interfaces.
-   * [param max_clients] is the maximum number of clients that are allowed at once, any number up to
-   * 4095 may be used, although the achievable number of simultaneous clients may be far lower and
-   * depends on the application. For additional details on the bandwidth parameters, see
-   * [createClient]. Returns [constant OK] if a server was created, [constant ERR_ALREADY_IN_USE] if
-   * this ENetMultiplayerPeer instance already has an open connection (in which case you need to call
-   * [MultiplayerPeer.close] first) or [constant ERR_CANT_CREATE] if the server could not be created.
+   * [maxClients] is the maximum number of clients that are allowed at once, any number up to 4095 may
+   * be used, although the achievable number of simultaneous clients may be far lower and depends on
+   * the application. For additional details on the bandwidth parameters, see [createClient]. Returns
+   * [OK] if a server was created, [ERRALREADYINUSE] if this ENetMultiplayerPeer instance already has
+   * an open connection (in which case you need to call [MultiplayerPeer.close] first) or
+   * [ERRCANTCREATE] if the server could not be created.
    */
   @JvmOverloads
   public fun createServer(
@@ -74,20 +74,20 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
   }
 
   /**
-   * Create client that connects to a server at [param address] using specified [param port]. The
-   * given address needs to be either a fully qualified domain name (e.g. `"www.example.com"`) or an IP
-   * address in IPv4 or IPv6 format (e.g. `"192.168.1.1"`). The [param port] is the port the server is
-   * listening on. The [param channel_count] parameter can be used to specify the number of ENet
-   * channels allocated for the connection. The [param in_bandwidth] and [param out_bandwidth]
-   * parameters can be used to limit the incoming and outgoing bandwidth to the given number of bytes
-   * per second. The default of 0 means unlimited bandwidth. Note that ENet will strategically drop
-   * packets on specific sides of a connection between peers to ensure the peer's bandwidth is not
-   * overwhelmed. The bandwidth parameters also determine the window size of a connection which limits
-   * the amount of reliable packets that may be in transit at any given time. Returns [constant OK] if
-   * a client was created, [constant ERR_ALREADY_IN_USE] if this ENetMultiplayerPeer instance already
-   * has an open connection (in which case you need to call [MultiplayerPeer.close] first) or [constant
-   * ERR_CANT_CREATE] if the client could not be created. If [param local_port] is specified, the
-   * client will also listen to the given port; this is useful for some NAT traversal techniques.
+   * Create client that connects to a server at [address] using specified [port]. The given address
+   * needs to be either a fully qualified domain name (e.g. `"www.example.com"`) or an IP address in
+   * IPv4 or IPv6 format (e.g. `"192.168.1.1"`). The [port] is the port the server is listening on. The
+   * [channelCount] parameter can be used to specify the number of ENet channels allocated for the
+   * connection. The [inBandwidth] and [outBandwidth] parameters can be used to limit the incoming and
+   * outgoing bandwidth to the given number of bytes per second. The default of 0 means unlimited
+   * bandwidth. Note that ENet will strategically drop packets on specific sides of a connection
+   * between peers to ensure the peer's bandwidth is not overwhelmed. The bandwidth parameters also
+   * determine the window size of a connection which limits the amount of reliable packets that may be
+   * in transit at any given time. Returns [OK] if a client was created, [ERRALREADYINUSE] if this
+   * ENetMultiplayerPeer instance already has an open connection (in which case you need to call
+   * [MultiplayerPeer.close] first) or [ERRCANTCREATE] if the client could not be created. If
+   * [localPort] is specified, the client will also listen to the given port; this is useful for some
+   * NAT traversal techniques.
    */
   @JvmOverloads
   public fun createClient(
@@ -104,12 +104,12 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
   }
 
   /**
-   * Initialize this [MultiplayerPeer] in mesh mode. The provided [param unique_id] will be used as
-   * the local peer network unique ID once assigned as the [MultiplayerAPI.multiplayerPeer]. In the
-   * mesh configuration you will need to set up each new peer manually using [ENetConnection] before
-   * calling [addMeshPeer]. While this technique is more advanced, it allows for better control over
-   * the connection process (e.g. when dealing with NAT punch-through) and for better distribution of
-   * the network load (which would otherwise be more taxing on the server).
+   * Initialize this [MultiplayerPeer] in mesh mode. The provided [uniqueId] will be used as the
+   * local peer network unique ID once assigned as the [MultiplayerAPI.multiplayerPeer]. In the mesh
+   * configuration you will need to set up each new peer manually using [ENetConnection] before calling
+   * [addMeshPeer]. While this technique is more advanced, it allows for better control over the
+   * connection process (e.g. when dealing with NAT punch-through) and for better distribution of the
+   * network load (which would otherwise be more taxing on the server).
    */
   public fun createMesh(uniqueId: Int): GodotError {
     TransferContext.writeArguments(LONG to uniqueId.toLong())
@@ -118,9 +118,8 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
   }
 
   /**
-   * Add a new remote peer with the given [param peer_id] connected to the given [param host].
-   * **Note:** The [param host] must have exactly one peer in the [constant
-   * ENetPacketPeer.STATE_CONNECTED] state.
+   * Add a new remote peer with the given [peerId] connected to the given [host].
+   * **Note:** The [host] must have exactly one peer in the [ENetPacketPeer.STATECONNECTED] state.
    */
   public fun addMeshPeer(peerId: Int, host: ENetConnection): GodotError {
     TransferContext.writeArguments(LONG to peerId.toLong(), OBJECT to host)
@@ -139,7 +138,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
   }
 
   /**
-   * Returns the [ENetPacketPeer] associated to the given [param id].
+   * Returns the [ENetPacketPeer] associated to the given [id].
    */
   public fun getPeer(id: Int): ENetPacketPeer? {
     TransferContext.writeArguments(LONG to id.toLong())

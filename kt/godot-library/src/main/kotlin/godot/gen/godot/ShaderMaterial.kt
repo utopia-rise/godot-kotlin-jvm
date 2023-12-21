@@ -54,8 +54,8 @@ public open class ShaderMaterial : Material() {
 
   /**
    * Changes the value set for this material of a uniform in the shader.
-   * **Note:** [param param] is case-sensitive and must match the name of the uniform in the code
-   * exactly (not the capitalized name in the inspector).
+   * **Note:** [param] is case-sensitive and must match the name of the uniform in the code exactly
+   * (not the capitalized name in the inspector).
    * **Note:** Changes to the shader uniform will be effective on all instances using this
    * [ShaderMaterial]. To prevent this, use per-instance uniforms with
    * [GeometryInstance3D.setInstanceShaderParameter] or duplicate the [ShaderMaterial] resource using

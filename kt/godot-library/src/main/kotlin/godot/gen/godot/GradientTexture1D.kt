@@ -53,10 +53,10 @@ public open class GradientTexture1D : Texture2D() {
     }
 
   /**
-   * If `true`, the generated texture will support high dynamic range ([constant Image.FORMAT_RGBAF]
-   * format). This allows for glow effects to work if [Environment.glowEnabled] is `true`. If `false`,
-   * the generated texture will use low dynamic range; overbright colors will be clamped ([constant
-   * Image.FORMAT_RGBA8] format).
+   * If `true`, the generated texture will support high dynamic range ([Image.FORMATRGBAF] format).
+   * This allows for glow effects to work if [Environment.glowEnabled] is `true`. If `false`, the
+   * generated texture will use low dynamic range; overbright colors will be clamped
+   * ([Image.FORMATRGBA8] format).
    */
   public var useHdr: Boolean
     get() {

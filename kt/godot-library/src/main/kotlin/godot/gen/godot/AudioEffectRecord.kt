@@ -31,7 +31,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioEffectRecord : AudioEffect() {
   /**
-   * Specifies the format in which the sample will be recorded. See [enum AudioStreamWAV.Format] for
+   * Specifies the format in which the sample will be recorded. See [AudioStreamWAV.Format] for
    * available formats.
    */
   public var format: AudioStreamWAV.Format

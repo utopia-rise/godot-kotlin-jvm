@@ -122,9 +122,9 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   }
 
   /**
-   * Enables or disables auto-advance for the given [param input] index. If enabled, state changes
-   * to the next input after playing the animation once. If enabled for the last input state, it loops
-   * to the first.
+   * Enables or disables auto-advance for the given [input] index. If enabled, state changes to the
+   * next input after playing the animation once. If enabled for the last input state, it loops to the
+   * first.
    */
   public fun setInputAsAutoAdvance(input: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to input.toLong(), BOOL to enable)
@@ -132,7 +132,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   }
 
   /**
-   * Returns `true` if auto-advance is enabled for the given [param input] index.
+   * Returns `true` if auto-advance is enabled for the given [input] index.
    */
   public fun isInputSetAsAutoAdvance(input: Int): Boolean {
     TransferContext.writeArguments(LONG to input.toLong())

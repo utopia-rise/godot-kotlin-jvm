@@ -63,7 +63,7 @@ public open class SplitContainer : Container() {
     }
 
   /**
-   * Determines the dragger's visibility. See [enum DraggerVisibility] for details.
+   * Determines the dragger's visibility. See [DraggerVisibility] for details.
    */
   public var draggerVisibility: DraggerVisibility
     get() {

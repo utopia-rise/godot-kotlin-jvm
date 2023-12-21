@@ -141,7 +141,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns the type of shape (see [enum ShapeType] constants).
+   * Returns the type of shape (see [ShapeType] constants).
    */
   public fun shapeGetType(shape: RID): ShapeType {
     TransferContext.writeArguments(_RID to shape)
@@ -187,8 +187,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the value for a space parameter. A list of available parameters is on the [enum
-   * SpaceParameter] constants.
+   * Sets the value for a space parameter. A list of available parameters is on the [SpaceParameter]
+   * constants.
    */
   public fun spaceSetParam(
     space: RID,
@@ -372,8 +372,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the value for an area parameter. A list of available parameters is on the [enum
-   * AreaParameter] constants.
+   * Sets the value for an area parameter. A list of available parameters is on the [AreaParameter]
+   * constants.
    */
   public fun areaSetParam(
     area: RID,
@@ -393,7 +393,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns an area parameter value. A list of available parameters is on the [enum AreaParameter]
+   * Returns an area parameter value. A list of available parameters is on the [AreaParameter]
    * constants.
    */
   public fun areaGetParam(area: RID, `param`: AreaParameter): Any? {
@@ -431,8 +431,8 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the area's body monitor callback. This callback will be called when any other (shape of a)
    * body enters or exits (a shape of) the given area, and must take the following five parameters:
-   * 1. an integer `status`: either [constant AREA_BODY_ADDED] or [constant AREA_BODY_REMOVED]
-   * depending on whether the other body shape entered or exited the area,
+   * 1. an integer `status`: either [AREABODYADDED] or [AREABODYREMOVED] depending on whether the
+   * other body shape entered or exited the area,
    * 2. an [RID] `body_rid`: the [RID] of the body that entered or exited the area,
    * 3. an integer `instance_id`: the `ObjectID` attached to the body,
    * 4. an integer `body_shape_idx`: the index of the shape of the body that entered or exited the
@@ -450,8 +450,8 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the area's area monitor callback. This callback will be called when any other (shape of
    * an) area enters or exits (a shape of) the given area, and must take the following five parameters:
-   * 1. an integer `status`: either [constant AREA_BODY_ADDED] or [constant AREA_BODY_REMOVED]
-   * depending on whether the other area's shape entered or exited the area,
+   * 1. an integer `status`: either [AREABODYADDED] or [AREABODYREMOVED] depending on whether the
+   * other area's shape entered or exited the area,
    * 2. an [RID] `area_rid`: the [RID] of the other area that entered or exited the area,
    * 3. an integer `instance_id`: the `ObjectID` attached to the other area,
    * 4. an integer `area_shape_idx`: the index of the shape of the other area that entered or exited
@@ -503,7 +503,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the body mode, from one of the [enum BodyMode] constants.
+   * Sets the body mode, from one of the [BodyMode] constants.
    */
   public fun bodySetMode(body: RID, mode: BodyMode): Unit {
     TransferContext.writeArguments(_RID to body, LONG to mode.id)
@@ -701,7 +701,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a body parameter. A list of available parameters is on the [enum BodyParameter] constants.
+   * Sets a body parameter. A list of available parameters is on the [BodyParameter] constants.
    */
   public fun bodySetParam(
     body: RID,
@@ -713,8 +713,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns the value of a body parameter. A list of available parameters is on the [enum
-   * BodyParameter] constants.
+   * Returns the value of a body parameter. A list of available parameters is on the [BodyParameter]
+   * constants.
    */
   public fun bodyGetParam(body: RID, `param`: BodyParameter): Any? {
     TransferContext.writeArguments(_RID to body, LONG to param.id)
@@ -732,7 +732,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a body state (see [enum BodyState] constants).
+   * Sets a body state (see [BodyState] constants).
    */
   public fun bodySetState(
     body: RID,
@@ -769,7 +769,7 @@ public object PhysicsServer3D : Object() {
    * An impulse is time-independent! Applying an impulse every frame would result in a
    * framerate-dependent force. For this reason, it should only be used when simulating one-time
    * impacts (use the "_force" functions otherwise).
-   * [param position] is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
   public fun bodyApplyImpulse(
@@ -805,7 +805,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Applies a positioned force to the body. A force is time dependent and meant to be applied every
    * physics update.
-   * [param position] is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
   public fun bodyApplyForce(
@@ -839,7 +839,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Adds a constant positioned force to the body that keeps being applied over time until cleared
    * with `body_set_constant_force(body, Vector3(0, 0, 0))`.
-   * [param position] is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
   public fun bodyAddConstantForce(
@@ -995,7 +995,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the body pickable with rays if [param enable] is set.
+   * Sets the body pickable with rays if [enable] is set.
    */
   public fun bodySetRayPickable(body: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to body, BOOL to enable)
@@ -1058,7 +1058,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a pin_joint parameter (see [enum PinJointParam] constants).
+   * Sets a pin_joint parameter (see [PinJointParam] constants).
    */
   public fun pinJointSetParam(
     joint: RID,
@@ -1070,7 +1070,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a pin_joint parameter (see [enum PinJointParam] constants).
+   * Gets a pin_joint parameter (see [PinJointParam] constants).
    */
   public fun pinJointGetParam(joint: RID, `param`: PinJointParam): Float {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
@@ -1124,7 +1124,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a hinge_joint parameter (see [enum HingeJointParam] constants).
+   * Sets a hinge_joint parameter (see [HingeJointParam] constants).
    */
   public fun hingeJointSetParam(
     joint: RID,
@@ -1136,7 +1136,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a hinge_joint parameter (see [enum HingeJointParam]).
+   * Gets a hinge_joint parameter (see [HingeJointParam]).
    */
   public fun hingeJointGetParam(joint: RID, `param`: HingeJointParam): Float {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
@@ -1145,7 +1145,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a hinge_joint flag (see [enum HingeJointFlag] constants).
+   * Sets a hinge_joint flag (see [HingeJointFlag] constants).
    */
   public fun hingeJointSetFlag(
     joint: RID,
@@ -1157,7 +1157,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a hinge_joint flag (see [enum HingeJointFlag] constants).
+   * Gets a hinge_joint flag (see [HingeJointFlag] constants).
    */
   public fun hingeJointGetFlag(joint: RID, flag: HingeJointFlag): Boolean {
     TransferContext.writeArguments(_RID to joint, LONG to flag.id)
@@ -1177,7 +1177,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a slider_joint parameter (see [enum SliderJointParam] constants).
+   * Gets a slider_joint parameter (see [SliderJointParam] constants).
    */
   public fun sliderJointSetParam(
     joint: RID,
@@ -1189,7 +1189,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a slider_joint parameter (see [enum SliderJointParam] constants).
+   * Gets a slider_joint parameter (see [SliderJointParam] constants).
    */
   public fun sliderJointGetParam(joint: RID, `param`: SliderJointParam): Float {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
@@ -1209,7 +1209,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a cone_twist_joint parameter (see [enum ConeTwistJointParam] constants).
+   * Sets a cone_twist_joint parameter (see [ConeTwistJointParam] constants).
    */
   public fun coneTwistJointSetParam(
     joint: RID,
@@ -1221,7 +1221,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a cone_twist_joint parameter (see [enum ConeTwistJointParam] constants).
+   * Gets a cone_twist_joint parameter (see [ConeTwistJointParam] constants).
    */
   public fun coneTwistJointGetParam(joint: RID, `param`: ConeTwistJointParam): Float {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
@@ -1285,7 +1285,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a generic_6_DOF_joint parameter (see [enum G6DOFJointAxisParam] constants).
+   * Sets a generic_6_DOF_joint parameter (see [G6DOFJointAxisParam] constants).
    */
   public fun generic6dofJointSetParam(
     joint: RID,
@@ -1298,7 +1298,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a generic_6_DOF_joint parameter (see [enum G6DOFJointAxisParam] constants).
+   * Gets a generic_6_DOF_joint parameter (see [G6DOFJointAxisParam] constants).
    */
   public fun generic6dofJointGetParam(
     joint: RID,
@@ -1311,7 +1311,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a generic_6_DOF_joint flag (see [enum G6DOFJointAxisFlag] constants).
+   * Sets a generic_6_DOF_joint flag (see [G6DOFJointAxisFlag] constants).
    */
   public fun generic6dofJointSetFlag(
     joint: RID,
@@ -1324,7 +1324,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a generic_6_DOF_joint flag (see [enum G6DOFJointAxisFlag] constants).
+   * Gets a generic_6_DOF_joint flag (see [G6DOFJointAxisFlag] constants).
    */
   public fun generic6dofJointGetFlag(
     joint: RID,
@@ -1354,8 +1354,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns information about the current state of the 3D physics engine. See [enum ProcessInfo]
-   * for a list of available states.
+   * Returns information about the current state of the 3D physics engine. See [ProcessInfo] for a
+   * list of available states.
    */
   public fun getProcessInfo(processInfo: ProcessInfo): Int {
     TransferContext.writeArguments(LONG to processInfo.id)
@@ -1387,7 +1387,7 @@ public object PhysicsServer3D : Object() {
      */
     JOINT_TYPE_6DOF(4),
     /**
-     * Represents the size of the [enum JointType] enum.
+     * Represents the size of the [JointType] enum.
      */
     JOINT_TYPE_MAX(5),
     ;
@@ -1595,7 +1595,7 @@ public object PhysicsServer3D : Object() {
      */
     SLIDER_JOINT_ANGULAR_ORTHOGONAL_DAMPING(21),
     /**
-     * Represents the size of the [enum SliderJointParam] enum.
+     * Represents the size of the [SliderJointParam] enum.
      */
     SLIDER_JOINT_MAX(22),
     ;
@@ -1829,7 +1829,7 @@ public object PhysicsServer3D : Object() {
     id: Long,
   ) {
     /**
-     * Constant to set/get gravity override mode in an area. See [enum AreaSpaceOverrideMode] for
+     * Constant to set/get gravity override mode in an area. See [AreaSpaceOverrideMode] for
      * possible values.
      */
     AREA_PARAM_GRAVITY_OVERRIDE_MODE(0),
@@ -1847,18 +1847,18 @@ public object PhysicsServer3D : Object() {
     AREA_PARAM_GRAVITY_IS_POINT(3),
     /**
      * Constant to set/get the distance at which the gravity strength is equal to the gravity
-     * controlled by [constant AREA_PARAM_GRAVITY]. For example, on a planet 100 meters in radius with
-     * a surface gravity of 4.0 m/s², set the gravity to 4.0 and the unit distance to 100.0. The
-     * gravity will have falloff according to the inverse square law, so in the example, at 200 meters
-     * from the center the gravity will be 1.0 m/s² (twice the distance, 1/4th the gravity), at 50
-     * meters it will be 16.0 m/s² (half the distance, 4x the gravity), and so on.
+     * controlled by [AREAPARAMGRAVITY]. For example, on a planet 100 meters in radius with a surface
+     * gravity of 4.0 m/s², set the gravity to 4.0 and the unit distance to 100.0. The gravity will
+     * have falloff according to the inverse square law, so in the example, at 200 meters from the
+     * center the gravity will be 1.0 m/s² (twice the distance, 1/4th the gravity), at 50 meters it
+     * will be 16.0 m/s² (half the distance, 4x the gravity), and so on.
      * The above is true only when the unit distance is a positive number. When this is set to 0.0,
      * the gravity will be constant regardless of distance.
      */
     AREA_PARAM_GRAVITY_POINT_UNIT_DISTANCE(4),
     /**
-     * Constant to set/get linear damping override mode in an area. See [enum AreaSpaceOverrideMode]
-     * for possible values.
+     * Constant to set/get linear damping override mode in an area. See [AreaSpaceOverrideMode] for
+     * possible values.
      */
     AREA_PARAM_LINEAR_DAMP_OVERRIDE_MODE(5),
     /**
@@ -1866,8 +1866,8 @@ public object PhysicsServer3D : Object() {
      */
     AREA_PARAM_LINEAR_DAMP(6),
     /**
-     * Constant to set/get angular damping override mode in an area. See [enum
-     * AreaSpaceOverrideMode] for possible values.
+     * Constant to set/get angular damping override mode in an area. See [AreaSpaceOverrideMode] for
+     * possible values.
      */
     AREA_PARAM_ANGULAR_DAMP_OVERRIDE_MODE(7),
     /**
@@ -2012,13 +2012,11 @@ public object PhysicsServer3D : Object() {
      */
     BODY_PARAM_GRAVITY_SCALE(5),
     /**
-     * Constant to set/get a body's linear damping mode. See [enum BodyDampMode] for possible
-     * values.
+     * Constant to set/get a body's linear damping mode. See [BodyDampMode] for possible values.
      */
     BODY_PARAM_LINEAR_DAMP_MODE(6),
     /**
-     * Constant to set/get a body's angular damping mode. See [enum BodyDampMode] for possible
-     * values.
+     * Constant to set/get a body's angular damping mode. See [BodyDampMode] for possible values.
      */
     BODY_PARAM_ANGULAR_DAMP_MODE(7),
     /**
@@ -2030,7 +2028,7 @@ public object PhysicsServer3D : Object() {
      */
     BODY_PARAM_ANGULAR_DAMP(9),
     /**
-     * Represents the size of the [enum BodyParameter] enum.
+     * Represents the size of the [BodyParameter] enum.
      */
     BODY_PARAM_MAX(10),
     ;

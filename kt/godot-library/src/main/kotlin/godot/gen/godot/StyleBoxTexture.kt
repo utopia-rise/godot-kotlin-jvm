@@ -179,8 +179,8 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   /**
-   * Controls how the stylebox's texture will be stretched or tiled horizontally. See [enum
-   * AxisStretchMode] for possible values.
+   * Controls how the stylebox's texture will be stretched or tiled horizontally. See
+   * [AxisStretchMode] for possible values.
    */
   public var axisStretchHorizontal: AxisStretchMode
     get() {
@@ -194,8 +194,8 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   /**
-   * Controls how the stylebox's texture will be stretched or tiled vertically. See [enum
-   * AxisStretchMode] for possible values.
+   * Controls how the stylebox's texture will be stretched or tiled vertically. See
+   * [AxisStretchMode] for possible values.
    */
   public var axisStretchVertical: AxisStretchMode
     get() {
@@ -310,7 +310,7 @@ public open class StyleBoxTexture : StyleBox() {
 
 
   /**
-   * Sets the margin to [param size] pixels for all sides.
+   * Sets the margin to [size] pixels for all sides.
    */
   public fun setTextureMarginAll(size: Float): Unit {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
@@ -318,7 +318,7 @@ public open class StyleBoxTexture : StyleBox() {
   }
 
   /**
-   * Sets the expand margin to [param size] pixels for all sides.
+   * Sets the expand margin to [size] pixels for all sides.
    */
   public fun setExpandMarginAll(size: Float): Unit {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
@@ -340,8 +340,8 @@ public open class StyleBoxTexture : StyleBox() {
     AXIS_STRETCH_MODE_TILE(1),
     /**
      * Repeats the stylebox's texture to match the stylebox's size according to the nine-patch
-     * system. Unlike [constant AXIS_STRETCH_MODE_TILE], the texture may be slightly stretched to make
-     * the nine-patch texture tile seamlessly.
+     * system. Unlike [AXISSTRETCHMODETILE], the texture may be slightly stretched to make the
+     * nine-patch texture tile seamlessly.
      */
     AXIS_STRETCH_MODE_TILE_FIT(2),
     ;

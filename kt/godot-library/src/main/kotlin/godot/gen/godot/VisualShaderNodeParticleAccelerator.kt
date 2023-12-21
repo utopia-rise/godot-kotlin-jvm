@@ -59,7 +59,7 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
      */
     MODE_TANGENTIAL(2),
     /**
-     * Represents the size of the [enum Mode] enum.
+     * Represents the size of the [Mode] enum.
      */
     MODE_MAX(3),
     ;

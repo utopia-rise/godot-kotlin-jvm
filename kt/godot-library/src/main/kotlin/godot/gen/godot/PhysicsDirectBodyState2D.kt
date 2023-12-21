@@ -274,7 +274,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    * An impulse is time-independent! Applying an impulse every frame would result in a
    * framerate-dependent force. For this reason, it should only be used when simulating one-time
    * impacts (use the "_force" functions otherwise).
-   * [param position] is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
   public fun applyImpulse(impulse: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
@@ -296,7 +296,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * Applies a positioned force to the body. A force is time dependent and meant to be applied every
    * physics update.
-   * [param position] is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
   public fun applyForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
@@ -329,7 +329,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * Adds a constant positioned force to the body that keeps being applied over time until cleared
    * with `constant_force = Vector2(0, 0)`.
-   * [param position] is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
   public fun addConstantForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {

@@ -35,7 +35,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class BackBufferCopy : Node2D() {
   /**
-   * Buffer mode. See [enum CopyMode] constants.
+   * Buffer mode. See [CopyMode] constants.
    */
   public var copyMode: CopyMode
     get() {
@@ -49,7 +49,7 @@ public open class BackBufferCopy : Node2D() {
     }
 
   /**
-   * The area covered by the [BackBufferCopy]. Only used if [copyMode] is [constant COPY_MODE_RECT].
+   * The area covered by the [BackBufferCopy]. Only used if [copyMode] is [COPYMODERECT].
    */
   @CoreTypeLocalCopy
   public var rect: Rect2
@@ -69,7 +69,7 @@ public open class BackBufferCopy : Node2D() {
   }
 
   /**
-   * The area covered by the [BackBufferCopy]. Only used if [copyMode] is [constant COPY_MODE_RECT].
+   * The area covered by the [BackBufferCopy]. Only used if [copyMode] is [COPYMODERECT].
    *
    * This is a helper function to make dealing with local copies easier. 
    *

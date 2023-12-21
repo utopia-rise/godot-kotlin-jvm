@@ -102,8 +102,8 @@ public open class PortableCompressedTexture2D : Texture2D() {
 
   /**
    * Initializes the compressed texture from a base image. The compression mode must be provided.
-   * [param normal_map] is recommended to ensure optimum quality if this image will be used as a
-   * normal map.
+   * [normalMap] is recommended to ensure optimum quality if this image will be used as a normal
+   * map.
    * If lossy compression is requested, the quality setting can optionally be provided. This maps to
    * Lossy WebP compression quality.
    */

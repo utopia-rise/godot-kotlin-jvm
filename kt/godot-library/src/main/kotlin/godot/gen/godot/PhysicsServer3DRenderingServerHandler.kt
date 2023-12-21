@@ -29,16 +29,16 @@ public open class PhysicsServer3DRenderingServerHandler : Object() {
 
   /**
    * Called by the [PhysicsServer3D] to set the position for the [SoftBody3D] vertex at the index
-   * specified by [param vertex_id].
-   * **Note:** The [param vertex] parameter used to be of type `const void*` prior to Godot 4.2.
+   * specified by [vertexId].
+   * **Note:** The [vertex] parameter used to be of type `const void*` prior to Godot 4.2.
    */
   public open fun _setVertex(vertexId: Int, vertex: Vector3): Unit {
   }
 
   /**
    * Called by the [PhysicsServer3D] to set the normal for the [SoftBody3D] vertex at the index
-   * specified by [param vertex_id].
-   * **Note:** The [param normal] parameter used to be of type `const void*` prior to Godot 4.2.
+   * specified by [vertexId].
+   * **Note:** The [normal] parameter used to be of type `const void*` prior to Godot 4.2.
    */
   public open fun _setNormal(vertexId: Int, normal: Vector3): Unit {
   }
@@ -50,7 +50,7 @@ public open class PhysicsServer3DRenderingServerHandler : Object() {
   }
 
   /**
-   * Sets the position for the [SoftBody3D] vertex at the index specified by [param vertex_id].
+   * Sets the position for the [SoftBody3D] vertex at the index specified by [vertexId].
    */
   public fun setVertex(vertexId: Int, vertex: Vector3): Unit {
     TransferContext.writeArguments(LONG to vertexId.toLong(), VECTOR3 to vertex)
@@ -58,7 +58,7 @@ public open class PhysicsServer3DRenderingServerHandler : Object() {
   }
 
   /**
-   * Sets the normal for the [SoftBody3D] vertex at the index specified by [param vertex_id].
+   * Sets the normal for the [SoftBody3D] vertex at the index specified by [vertexId].
    */
   public fun setNormal(vertexId: Int, normal: Vector3): Unit {
     TransferContext.writeArguments(LONG to vertexId.toLong(), VECTOR3 to normal)

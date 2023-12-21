@@ -224,8 +224,8 @@ public open class AudioStreamPlayer2D : Node2D() {
   }
 
   /**
-   * Queues the audio to play on the next physics frame, from the given position [param
-   * from_position], in seconds.
+   * Queues the audio to play on the next physics frame, from the given position [fromPosition], in
+   * seconds.
    */
   @JvmOverloads
   public fun play(fromPosition: Float = 0.0f): Unit {

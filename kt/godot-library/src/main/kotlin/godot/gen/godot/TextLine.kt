@@ -145,8 +145,8 @@ public open class TextLine : RefCounted() {
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds the text line's set width. See [enum
-   * TextServer.OverrunBehavior] for a description of all modes.
+   * Sets the clipping behavior when the text exceeds the text line's set width. See
+   * [TextServer.OverrunBehavior] for a description of all modes.
    */
   public var textOverrunBehavior: TextServer.OverrunBehavior
     get() {
@@ -199,8 +199,8 @@ public open class TextLine : RefCounted() {
   }
 
   /**
-   * Adds inline object to the text buffer, [param key] must be unique. In the text, object is
-   * represented as [param length] object replacement characters.
+   * Adds inline object to the text buffer, [key] must be unique. In the text, object is represented
+   * as [length] object replacement characters.
    */
   @JvmOverloads
   public fun addObject(
@@ -322,8 +322,8 @@ public open class TextLine : RefCounted() {
   }
 
   /**
-   * Draw text into a canvas item at a given position, with [param color]. [param pos] specifies the
-   * top left corner of the bounding box.
+   * Draw text into a canvas item at a given position, with [color]. [pos] specifies the top left
+   * corner of the bounding box.
    */
   @JvmOverloads
   public fun draw(
@@ -336,8 +336,8 @@ public open class TextLine : RefCounted() {
   }
 
   /**
-   * Draw text into a canvas item at a given position, with [param color]. [param pos] specifies the
-   * top left corner of the bounding box.
+   * Draw text into a canvas item at a given position, with [color]. [pos] specifies the top left
+   * corner of the bounding box.
    */
   @JvmOverloads
   public fun drawOutline(

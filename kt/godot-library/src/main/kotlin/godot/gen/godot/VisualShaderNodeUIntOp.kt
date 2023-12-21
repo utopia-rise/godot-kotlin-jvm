@@ -23,7 +23,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class VisualShaderNodeUIntOp : VisualShaderNode() {
   /**
-   * An operator to be applied to the inputs. See [enum Operator] for options.
+   * An operator to be applied to the inputs. See [Operator] for options.
    */
   public var `operator`: Operator
     get() {
@@ -98,7 +98,7 @@ public open class VisualShaderNodeUIntOp : VisualShaderNode() {
      */
     OP_BITWISE_RIGHT_SHIFT(11),
     /**
-     * Represents the size of the [enum Operator] enum.
+     * Represents the size of the [Operator] enum.
      */
     OP_ENUM_SIZE(12),
     ;

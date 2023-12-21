@@ -174,9 +174,9 @@ public open class UDPServer : RefCounted() {
   }
 
   /**
-   * Starts the server by opening a UDP socket listening on the given [param port]. You can
-   * optionally specify a [param bind_address] to only listen for packets sent to that address. See
-   * also [PacketPeerUDP.bind].
+   * Starts the server by opening a UDP socket listening on the given [port]. You can optionally
+   * specify a [bindAddress] to only listen for packets sent to that address. See also
+   * [PacketPeerUDP.bind].
    */
   @JvmOverloads
   public fun listen(port: Int, bindAddress: String = "*"): GodotError {

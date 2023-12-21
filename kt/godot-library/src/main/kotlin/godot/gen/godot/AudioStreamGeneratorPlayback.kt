@@ -47,8 +47,8 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
   }
 
   /**
-   * Returns `true` if a buffer of the size [param amount] can be pushed to the audio sample data
-   * buffer without overflowing it, `false` otherwise.
+   * Returns `true` if a buffer of the size [amount] can be pushed to the audio sample data buffer
+   * without overflowing it, `false` otherwise.
    */
   public fun canPushBuffer(amount: Int): Boolean {
     TransferContext.writeArguments(LONG to amount.toLong())

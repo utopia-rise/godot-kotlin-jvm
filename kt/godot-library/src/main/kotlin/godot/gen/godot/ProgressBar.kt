@@ -25,7 +25,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class ProgressBar : Range() {
   /**
-   * The fill direction. See [enum FillMode] for possible values.
+   * The fill direction. See [FillMode] for possible values.
    */
   public var fillMode: Int
     get() {

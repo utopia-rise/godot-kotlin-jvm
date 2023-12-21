@@ -145,7 +145,7 @@ public open class StyleBox : Resource() {
   }
 
   /**
-   * Sets the default margin to [param offset] pixels for all sides.
+   * Sets the default margin to [offset] pixels for all sides.
    */
   public fun setContentMarginAll(offset: Float): Unit {
     TransferContext.writeArguments(DOUBLE to offset.toDouble())
@@ -153,7 +153,7 @@ public open class StyleBox : Resource() {
   }
 
   /**
-   * Returns the content margin offset for the specified [enum Side].
+   * Returns the content margin offset for the specified [Side].
    * Positive values reduce size inwards, unlike [Control]'s margin values.
    */
   public fun getMargin(margin: Side): Float {
@@ -184,8 +184,8 @@ public open class StyleBox : Resource() {
   }
 
   /**
-   * Returns the [CanvasItem] that handles its [constant CanvasItem.NOTIFICATION_DRAW] or
-   * [CanvasItem.Draw] callback at this moment.
+   * Returns the [CanvasItem] that handles its [CanvasItem.NOTIFICATIONDRAW] or [CanvasItem.Draw]
+   * callback at this moment.
    */
   public fun getCurrentItemDrawn(): CanvasItem? {
     TransferContext.writeArguments()

@@ -78,7 +78,7 @@ public open class VisualShaderNodeSwitch : VisualShaderNode() {
      */
     OP_TYPE_TRANSFORM(7),
     /**
-     * Represents the size of the [enum OpType] enum.
+     * Represents the size of the [OpType] enum.
      */
     OP_TYPE_MAX(8),
     ;

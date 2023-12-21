@@ -52,8 +52,8 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * Partitioning algorithm for creating the navigation mesh polys. See [enum SamplePartitionType]
-   * for possible values.
+   * Partitioning algorithm for creating the navigation mesh polys. See [SamplePartitionType] for
+   * possible values.
    */
   public var samplePartitionType: SamplePartitionType
     get() {
@@ -67,7 +67,7 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * Determines which type of nodes will be parsed as geometry. See [enum ParsedGeometryType] for
+   * Determines which type of nodes will be parsed as geometry. See [ParsedGeometryType] for
    * possible values.
    */
   public var geometryParsedGeometryType: ParsedGeometryType
@@ -83,8 +83,8 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The physics layers to scan for static colliders.
-   * Only used when [geometryParsedGeometryType] is [constant PARSED_GEOMETRY_STATIC_COLLIDERS] or
-   * [constant PARSED_GEOMETRY_BOTH].
+   * Only used when [geometryParsedGeometryType] is [PARSEDGEOMETRYSTATICCOLLIDERS] or
+   * [PARSEDGEOMETRYBOTH].
    */
   public var geometryCollisionMask: Long
     get() {
@@ -98,7 +98,7 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * The source of the geometry used when baking. See [enum SourceGeometryMode] for possible values.
+   * The source of the geometry used when baking. See [SourceGeometryMode] for possible values.
    */
   public var geometrySourceGeometryMode: SourceGeometryMode
     get() {
@@ -113,8 +113,8 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The name of the group to scan for geometry.
-   * Only used when [geometrySourceGeometryMode] is [constant SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN]
-   * or [constant SOURCE_GEOMETRY_GROUPS_EXPLICIT].
+   * Only used when [geometrySourceGeometryMode] is [SOURCEGEOMETRYGROUPSWITHCHILDREN] or
+   * [SOURCEGEOMETRYGROUPSEXPLICIT].
    */
   public var geometrySourceGroupName: StringName
     get() {
@@ -456,8 +456,8 @@ public open class NavigationMesh : Resource() {
 
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [geometryCollisionMask],
-   * given a [param layer_number] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [geometryCollisionMask], given
+   * a [layerNumber] between 1 and 32.
    */
   public fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -466,7 +466,7 @@ public open class NavigationMesh : Resource() {
 
   /**
    * Returns whether or not the specified layer of the [geometryCollisionMask] is enabled, given a
-   * [param layer_number] between 1 and 32.
+   * [layerNumber] between 1 and 32.
    */
   public fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -510,8 +510,7 @@ public open class NavigationMesh : Resource() {
 
   /**
    * Initializes the navigation mesh by setting the vertices and indices according to a [Mesh].
-   * **Note:** The given [param mesh] must be of type [constant Mesh.PRIMITIVE_TRIANGLES] and have
-   * an index array.
+   * **Note:** The given [mesh] must be of type [Mesh.PRIMITIVETRIANGLES] and have an index array.
    */
   public fun createFromMesh(mesh: Mesh): Unit {
     TransferContext.writeArguments(OBJECT to mesh)
@@ -544,7 +543,7 @@ public open class NavigationMesh : Resource() {
      */
     SAMPLE_PARTITION_LAYERS(2),
     /**
-     * Represents the size of the [enum SamplePartitionType] enum.
+     * Represents the size of the [SamplePartitionType] enum.
      */
     SAMPLE_PARTITION_MAX(3),
     ;
@@ -573,12 +572,11 @@ public open class NavigationMesh : Resource() {
      */
     PARSED_GEOMETRY_STATIC_COLLIDERS(1),
     /**
-     * Both [constant PARSED_GEOMETRY_MESH_INSTANCES] and [constant
-     * PARSED_GEOMETRY_STATIC_COLLIDERS].
+     * Both [PARSEDGEOMETRYMESHINSTANCES] and [PARSEDGEOMETRYSTATICCOLLIDERS].
      */
     PARSED_GEOMETRY_BOTH(2),
     /**
-     * Represents the size of the [enum ParsedGeometryType] enum.
+     * Represents the size of the [ParsedGeometryType] enum.
      */
     PARSED_GEOMETRY_MAX(3),
     ;
@@ -610,7 +608,7 @@ public open class NavigationMesh : Resource() {
      */
     SOURCE_GEOMETRY_GROUPS_EXPLICIT(2),
     /**
-     * Represents the size of the [enum SourceGeometryMode] enum.
+     * Represents the size of the [SourceGeometryMode] enum.
      */
     SOURCE_GEOMETRY_MAX(3),
     ;

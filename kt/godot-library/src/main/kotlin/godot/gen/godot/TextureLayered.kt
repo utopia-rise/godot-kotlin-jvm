@@ -85,7 +85,7 @@ public open class TextureLayered : Texture() {
   }
 
   /**
-   * Returns the current format being used by this texture. See [enum Image.Format] for details.
+   * Returns the current format being used by this texture. See [Image.Format] for details.
    */
   public fun getFormat(): Image.Format {
     TransferContext.writeArguments()
@@ -140,7 +140,7 @@ public open class TextureLayered : Texture() {
   }
 
   /**
-   * Returns an [Image] resource with the data from specified [param layer].
+   * Returns an [Image] resource with the data from specified [layer].
    */
   public fun getLayerData(layer: Int): Image? {
     TransferContext.writeArguments(LONG to layer.toLong())

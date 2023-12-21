@@ -30,7 +30,7 @@ public open class EngineProfiler : RefCounted() {
   }
 
   /**
-   * Called when the profiler is enabled/disabled, along with a set of [param options].
+   * Called when the profiler is enabled/disabled, along with a set of [options].
    */
   public open fun _toggle(enable: Boolean, options: VariantArray<Any?>): Unit {
   }

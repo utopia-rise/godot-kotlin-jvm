@@ -25,7 +25,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class VisualShaderNodeBillboard : VisualShaderNode() {
   /**
-   * Controls how the object faces the camera. See [enum BillboardType].
+   * Controls how the object faces the camera. See [BillboardType].
    */
   public var billboardType: BillboardType
     get() {
@@ -78,7 +78,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
      */
     BILLBOARD_TYPE_PARTICLES(3),
     /**
-     * Represents the size of the [enum BillboardType] enum.
+     * Represents the size of the [BillboardType] enum.
      */
     BILLBOARD_TYPE_MAX(4),
     ;

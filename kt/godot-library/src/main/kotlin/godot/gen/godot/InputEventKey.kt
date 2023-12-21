@@ -44,7 +44,7 @@ public open class InputEventKey : InputEventWithModifiers() {
 
   /**
    * Latin label printed on the key in the current keyboard layout, which corresponds to one of the
-   * [enum Key] constants.
+   * [Key] constants.
    * To get a human-readable representation of the [InputEventKey], use
    * `OS.get_keycode_string(event.keycode)` where `event` is the [InputEventKey].
    * [codeblock]
@@ -67,7 +67,7 @@ public open class InputEventKey : InputEventWithModifiers() {
 
   /**
    * Represents the physical location of a key on the 101/102-key US QWERTY keyboard, which
-   * corresponds to one of the [enum Key] constants.
+   * corresponds to one of the [Key] constants.
    * To get a human-readable representation of the [InputEventKey], use [OS.getKeycodeString] in
    * combination with [DisplayServer.keyboardGetKeycodeFromPhysical]:
    *
@@ -104,7 +104,7 @@ public open class InputEventKey : InputEventWithModifiers() {
 
   /**
    * Represents the localized label printed on the key in the current keyboard layout, which
-   * corresponds to one of the [enum Key] constants or any valid Unicode character.
+   * corresponds to one of the [Key] constants or any valid Unicode character.
    * For keyboard layouts with a single label on the key, it is equivalent to [keycode].
    * To get a human-readable representation of the [InputEventKey], use
    * `OS.get_keycode_string(event.key_label)` where `event` is the [InputEventKey].

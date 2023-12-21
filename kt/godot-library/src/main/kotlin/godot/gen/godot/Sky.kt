@@ -42,7 +42,7 @@ public open class Sky : Resource() {
   /**
    * Sets the method for generating the radiance map from the sky. The radiance map is a cubemap
    * with increasingly blurry versions of the sky corresponding to different levels of roughness.
-   * Radiance maps can be expensive to calculate. See [enum ProcessMode] for options.
+   * Radiance maps can be expensive to calculate. See [ProcessMode] for options.
    */
   public var processMode: ProcessMode
     get() {
@@ -58,9 +58,9 @@ public open class Sky : Resource() {
   /**
    * The [Sky]'s radiance map size. The higher the radiance map size, the more detailed the lighting
    * from the [Sky] will be.
-   * See [enum RadianceSize] constants for values.
-   * **Note:** Some hardware will have trouble with higher radiance sizes, especially [constant
-   * RADIANCE_SIZE_512] and above. Only use such high values on high-end hardware.
+   * See [RadianceSize] constants for values.
+   * **Note:** Some hardware will have trouble with higher radiance sizes, especially
+   * [RADIANCESIZE512] and above. Only use such high values on high-end hardware.
    */
   public var radianceSize: RadianceSize
     get() {
@@ -110,7 +110,7 @@ public open class Sky : Resource() {
      */
     RADIANCE_SIZE_2048(6),
     /**
-     * Represents the size of the [enum RadianceSize] enum.
+     * Represents the size of the [RadianceSize] enum.
      */
     RADIANCE_SIZE_MAX(7),
     ;
@@ -130,22 +130,22 @@ public open class Sky : Resource() {
   ) {
     /**
      * Automatically selects the appropriate process mode based on your sky shader. If your shader
-     * uses `TIME` or `POSITION`, this will use [constant PROCESS_MODE_REALTIME]. If your shader uses
-     * any of the `LIGHT_*` variables or any custom uniforms, this uses [constant
-     * PROCESS_MODE_INCREMENTAL]. Otherwise, this defaults to [constant PROCESS_MODE_QUALITY].
+     * uses `TIME` or `POSITION`, this will use [PROCESSMODEREALTIME]. If your shader uses any of the
+     * `LIGHT_*` variables or any custom uniforms, this uses [PROCESSMODEINCREMENTAL]. Otherwise, this
+     * defaults to [PROCESSMODEQUALITY].
      */
     PROCESS_MODE_AUTOMATIC(0),
     /**
      * Uses high quality importance sampling to process the radiance map. In general, this results
-     * in much higher quality than [constant PROCESS_MODE_REALTIME] but takes much longer to generate.
-     * This should not be used if you plan on changing the sky at runtime. If you are finding that the
-     * reflection is not blurry enough and is showing sparkles or fireflies, try increasing
+     * in much higher quality than [PROCESSMODEREALTIME] but takes much longer to generate. This should
+     * not be used if you plan on changing the sky at runtime. If you are finding that the reflection
+     * is not blurry enough and is showing sparkles or fireflies, try increasing
      * [ProjectSettings.rendering/reflections/skyReflections/ggxSamples].
      */
     PROCESS_MODE_QUALITY(1),
     /**
-     * Uses the same high quality importance sampling to process the radiance map as [constant
-     * PROCESS_MODE_QUALITY], but updates over several frames. The number of frames is determined by
+     * Uses the same high quality importance sampling to process the radiance map as
+     * [PROCESSMODEQUALITY], but updates over several frames. The number of frames is determined by
      * [ProjectSettings.rendering/reflections/skyReflections/roughnessLayers]. Use this when you need
      * highest quality radiance maps, but have a sky that updates slowly.
      */
@@ -156,8 +156,8 @@ public open class Sky : Resource() {
      * update the sky every frame, consider turning on
      * [ProjectSettings.rendering/reflections/skyReflections/fastFilterHighQuality].
      * **Note:** The fast filtering algorithm is limited to 256×256 cubemaps, so [radianceSize] must
-     * be set to [constant RADIANCE_SIZE_256]. Otherwise, a warning is printed and the overridden
-     * radiance size is ignored.
+     * be set to [RADIANCESIZE256]. Otherwise, a warning is printed and the overridden radiance size is
+     * ignored.
      */
     PROCESS_MODE_REALTIME(3),
     ;

@@ -33,7 +33,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class InputEventJoypadButton : InputEvent() {
   /**
-   * Button identifier. One of the [enum JoyButton] button constants.
+   * Button identifier. One of the [JoyButton] button constants.
    */
   public var buttonIndex: JoyButton
     get() {

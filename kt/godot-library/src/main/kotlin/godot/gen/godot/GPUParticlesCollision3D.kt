@@ -22,10 +22,9 @@ import kotlin.Suppress
  * Particle collision shapes work in real-time and can be moved, rotated and scaled during gameplay.
  * Unlike attractors, non-uniform scaling of collision shapes is *not* supported.
  * Particle collision shapes can be temporarily disabled by hiding them.
- * **Note:** [ParticleProcessMaterial.collisionMode] must be [constant
- * ParticleProcessMaterial.COLLISION_RIGID] or [constant
- * ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT] on the [GPUParticles3D]'s process material for
- * collision to work.
+ * **Note:** [ParticleProcessMaterial.collisionMode] must be
+ * [ParticleProcessMaterial.COLLISIONRIGID] or [ParticleProcessMaterial.COLLISIONHIDEONCONTACT] on the
+ * [GPUParticles3D]'s process material for collision to work.
  * **Note:** Particle collision only affects [GPUParticles3D], not [CPUParticles3D].
  * **Note:** Particles pushed by a collider that is being moved will not be interpolated, which can
  * result in visible stuttering. This can be alleviated by setting [GPUParticles3D.fixedFps] to `0` or
@@ -36,8 +35,8 @@ public open class GPUParticlesCollision3D internal constructor() : VisualInstanc
   /**
    * The particle rendering layers ([VisualInstance3D.layers]) that will be affected by the
    * collision shape. By default, all particles that have [ParticleProcessMaterial.collisionMode] set
-   * to [constant ParticleProcessMaterial.COLLISION_RIGID] or [constant
-   * ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT] will be affected by a collision shape.
+   * to [ParticleProcessMaterial.COLLISIONRIGID] or [ParticleProcessMaterial.COLLISIONHIDEONCONTACT]
+   * will be affected by a collision shape.
    * After configuring particle nodes accordingly, specific layers can be unchecked to prevent
    * certain particles from being affected by attractors. For example, this can be used if you're using
    * an attractor as part of a spell effect but don't want the attractor to affect unrelated weather

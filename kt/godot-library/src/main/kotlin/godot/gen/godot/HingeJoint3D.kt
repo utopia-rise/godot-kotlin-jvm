@@ -102,7 +102,7 @@ public open class HingeJoint3D : Joint3D() {
      */
     PARAM_MOTOR_MAX_IMPULSE(7),
     /**
-     * Represents the size of the [enum Param] enum.
+     * Represents the size of the [Param] enum.
      */
     PARAM_MAX(8),
     ;
@@ -130,7 +130,7 @@ public open class HingeJoint3D : Joint3D() {
      */
     FLAG_ENABLE_MOTOR(1),
     /**
-     * Represents the size of the [enum Flag] enum.
+     * Represents the size of the [Flag] enum.
      */
     FLAG_MAX(2),
     ;

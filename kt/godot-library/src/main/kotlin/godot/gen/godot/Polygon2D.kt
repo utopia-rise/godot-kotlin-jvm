@@ -378,7 +378,7 @@ public open class Polygon2D : Node2D() {
 
 
   /**
-   * Adds a bone with the specified [param path] and [param weights].
+   * Adds a bone with the specified [path] and [weights].
    */
   public fun addBone(path: NodePath, weights: PackedFloat32Array): Unit {
     TransferContext.writeArguments(NODE_PATH to path, PACKED_FLOAT_32_ARRAY to weights)

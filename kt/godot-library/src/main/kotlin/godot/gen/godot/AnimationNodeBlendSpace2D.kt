@@ -136,7 +136,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     }
 
   /**
-   * Controls the interpolation between animations. See [enum BlendMode] constants.
+   * Controls the interpolation between animations. See [BlendMode] constants.
    */
   public var blendMode: BlendMode
     get() {
@@ -242,9 +242,9 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
 
   /**
-   * Adds a new point that represents a [param node] at the position set by [param pos]. You can
-   * insert it at a specific index using the [param at_index] argument. If you use the default value
-   * for [param at_index], the point is inserted at the end of the blend points array.
+   * Adds a new point that represents a [node] at the position set by [pos]. You can insert it at a
+   * specific index using the [atIndex] argument. If you use the default value for [atIndex], the point
+   * is inserted at the end of the blend points array.
    */
   @JvmOverloads
   public fun addBlendPoint(
@@ -257,7 +257,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Updates the position of the point at index [param point] on the blend axis.
+   * Updates the position of the point at index [point] on the blend axis.
    */
   public fun setBlendPointPosition(point: Int, pos: Vector2): Unit {
     TransferContext.writeArguments(LONG to point.toLong(), VECTOR2 to pos)
@@ -265,7 +265,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Returns the position of the point at index [param point].
+   * Returns the position of the point at index [point].
    */
   public fun getBlendPointPosition(point: Int): Vector2 {
     TransferContext.writeArguments(LONG to point.toLong())
@@ -274,7 +274,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Changes the [AnimationNode] referenced by the point at index [param point].
+   * Changes the [AnimationNode] referenced by the point at index [point].
    */
   public fun setBlendPointNode(point: Int, node: AnimationRootNode): Unit {
     TransferContext.writeArguments(LONG to point.toLong(), OBJECT to node)
@@ -282,7 +282,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Returns the [AnimationRootNode] referenced by the point at index [param point].
+   * Returns the [AnimationRootNode] referenced by the point at index [point].
    */
   public fun getBlendPointNode(point: Int): AnimationRootNode? {
     TransferContext.writeArguments(LONG to point.toLong())
@@ -291,7 +291,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Removes the point at index [param point] from the blend space.
+   * Removes the point at index [point] from the blend space.
    */
   public fun removeBlendPoint(point: Int): Unit {
     TransferContext.writeArguments(LONG to point.toLong())
@@ -308,10 +308,9 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Creates a new triangle using three points [param x], [param y], and [param z]. Triangles can
-   * overlap. You can insert the triangle at a specific index using the [param at_index] argument. If
-   * you use the default value for [param at_index], the point is inserted at the end of the blend
-   * points array.
+   * Creates a new triangle using three points [x], [y], and [z]. Triangles can overlap. You can
+   * insert the triangle at a specific index using the [atIndex] argument. If you use the default value
+   * for [atIndex], the point is inserted at the end of the blend points array.
    */
   @JvmOverloads
   public fun addTriangle(
@@ -325,8 +324,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Returns the position of the point at index [param point] in the triangle of index [param
-   * triangle].
+   * Returns the position of the point at index [point] in the triangle of index [triangle].
    */
   public fun getTrianglePoint(triangle: Int, point: Int): Int {
     TransferContext.writeArguments(LONG to triangle.toLong(), LONG to point.toLong())
@@ -335,7 +333,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Removes the triangle at index [param triangle] from the blend space.
+   * Removes the triangle at index [triangle] from the blend space.
    */
   public fun removeTriangle(triangle: Int): Unit {
     TransferContext.writeArguments(LONG to triangle.toLong())
@@ -364,8 +362,8 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
      */
     BLEND_MODE_DISCRETE(1),
     /**
-     * Similar to [constant BLEND_MODE_DISCRETE], but starts the new animation at the last
-     * animation's playback position.
+     * Similar to [BLENDMODEDISCRETE], but starts the new animation at the last animation's playback
+     * position.
      */
     BLEND_MODE_DISCRETE_CARRY(2),
     ;

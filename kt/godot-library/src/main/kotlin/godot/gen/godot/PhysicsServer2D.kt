@@ -151,28 +151,27 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the shape data that defines the configuration of the shape. The [param data] to be passed
+   * Sets the shape data that defines the configuration of the shape. The [data] to be passed
    * depends on the shape's type (see [shapeGetType]):
-   * - [constant SHAPE_WORLD_BOUNDARY]: an array of length two containing a [Vector2] `normal`
-   * direction and a [float] distance `d`,
-   * - [constant SHAPE_SEPARATION_RAY]: a dictionary containing the key `length` with a [float]
-   * value and the key `slide_on_slope` with a [bool] value,
-   * - [constant SHAPE_SEGMENT]: a [Rect2] `rect` containing the first point of the segment in
-   * `rect.position` and the second point of the segment in `rect.size`,
-   * - [constant SHAPE_CIRCLE]: a [float] `radius`,
-   * - [constant SHAPE_RECTANGLE]: a [Vector2] `half_extents`,
-   * - [constant SHAPE_CAPSULE]: an array of length two (or a [Vector2]) containing a [float]
-   * `height` and a [float] `radius`,
-   * - [constant SHAPE_CONVEX_POLYGON]: either a [PackedVector2Array] of points defining a convex
-   * polygon in counterclockwise order (the clockwise outward normal of each segment formed by
-   * consecutive points is calculated internally), or a [PackedFloat32Array] of length divisible by
-   * four so that every 4-tuple of [float]s contains the coordinates of a point followed by the
-   * coordinates of the clockwise outward normal vector to the segment between the current point and
-   * the next point,
-   * - [constant SHAPE_CONCAVE_POLYGON]: a [PackedVector2Array] of length divisible by two (each
-   * pair of points forms one segment).
-   * **Warning:** In the case of [constant SHAPE_CONVEX_POLYGON], this method does not check if the
-   * points supplied actually form a convex polygon (unlike the [CollisionPolygon2D.polygon] property).
+   * - [SHAPEWORLDBOUNDARY]: an array of length two containing a [Vector2] `normal` direction and a
+   * [float] distance `d`,
+   * - [SHAPESEPARATIONRAY]: a dictionary containing the key `length` with a [float] value and the
+   * key `slide_on_slope` with a [bool] value,
+   * - [SHAPESEGMENT]: a [Rect2] `rect` containing the first point of the segment in `rect.position`
+   * and the second point of the segment in `rect.size`,
+   * - [SHAPECIRCLE]: a [float] `radius`,
+   * - [SHAPERECTANGLE]: a [Vector2] `half_extents`,
+   * - [SHAPECAPSULE]: an array of length two (or a [Vector2]) containing a [float] `height` and a
+   * [float] `radius`,
+   * - [SHAPECONVEXPOLYGON]: either a [PackedVector2Array] of points defining a convex polygon in
+   * counterclockwise order (the clockwise outward normal of each segment formed by consecutive points
+   * is calculated internally), or a [PackedFloat32Array] of length divisible by four so that every
+   * 4-tuple of [float]s contains the coordinates of a point followed by the coordinates of the
+   * clockwise outward normal vector to the segment between the current point and the next point,
+   * - [SHAPECONCAVEPOLYGON]: a [PackedVector2Array] of length divisible by two (each pair of points
+   * forms one segment).
+   * **Warning:** In the case of [SHAPECONVEXPOLYGON], this method does not check if the points
+   * supplied actually form a convex polygon (unlike the [CollisionPolygon2D.polygon] property).
    */
   public fun shapeSetData(shape: RID, `data`: Any?): Unit {
     TransferContext.writeArguments(_RID to shape, ANY to data)
@@ -180,7 +179,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the shape's type (see [enum ShapeType]).
+   * Returns the shape's type (see [ShapeType]).
    */
   public fun shapeGetType(shape: RID): ShapeType {
     TransferContext.writeArguments(_RID to shape)
@@ -211,8 +210,8 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Activates or deactivates the space. If [param active] is `false`, then the physics server will
-   * not do anything with this space in its physics step.
+   * Activates or deactivates the space. If [active] is `false`, then the physics server will not do
+   * anything with this space in its physics step.
    */
   public fun spaceSetActive(space: RID, active: Boolean): Unit {
     TransferContext.writeArguments(_RID to space, BOOL to active)
@@ -229,8 +228,8 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the value of the given space parameter. See [enum SpaceParameter] for the list of
-   * available parameters.
+   * Sets the value of the given space parameter. See [SpaceParameter] for the list of available
+   * parameters.
    */
   public fun spaceSetParam(
     space: RID,
@@ -242,8 +241,8 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the value of the given space parameter. See [enum SpaceParameter] for the list of
-   * available parameters.
+   * Returns the value of the given space parameter. See [SpaceParameter] for the list of available
+   * parameters.
    */
   public fun spaceGetParam(space: RID, `param`: SpaceParameter): Float {
     TransferContext.writeArguments(_RID to space, LONG to param.id)
@@ -294,9 +293,9 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Adds a shape to the area, with the given local transform. The shape (together with its [param
-   * transform] and [param disabled] properties) is added to an array of shapes, and the shapes of an
-   * area are usually referenced by their index in this array.
+   * Adds a shape to the area, with the given local transform. The shape (together with its
+   * [transform] and [disabled] properties) is added to an array of shapes, and the shapes of an area
+   * are usually referenced by their index in this array.
    */
   @JvmOverloads
   public fun areaAddShape(
@@ -335,8 +334,8 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the disabled property of the area's shape with the given index. If [param disabled] is
-   * `true`, then the shape will not detect any other shapes entering or exiting it.
+   * Sets the disabled property of the area's shape with the given index. If [disabled] is `true`,
+   * then the shape will not detect any other shapes entering or exiting it.
    */
   public fun areaSetShapeDisabled(
     area: RID,
@@ -378,8 +377,8 @@ public object PhysicsServer2D : Object() {
   /**
    * Removes the shape with the given index from the area's array of shapes. The shape itself is not
    * deleted, so it can continue to be used elsewhere or added back later. As a result of this
-   * operation, the area's shapes which used to have indices higher than [param shape_idx] will have
-   * their index decreased by one.
+   * operation, the area's shapes which used to have indices higher than [shapeIdx] will have their
+   * index decreased by one.
    */
   public fun areaRemoveShape(area: RID, shapeIdx: Int): Unit {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx.toLong())
@@ -430,7 +429,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the value of the given area parameter. See [enum AreaParameter] for the list of available
+   * Sets the value of the given area parameter. See [AreaParameter] for the list of available
    * parameters.
    */
   public fun areaSetParam(
@@ -451,8 +450,8 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the value of the given area parameter. See [enum AreaParameter] for the list of
-   * available parameters.
+   * Returns the value of the given area parameter. See [AreaParameter] for the list of available
+   * parameters.
    */
   public fun areaGetParam(area: RID, `param`: AreaParameter): Any? {
     TransferContext.writeArguments(_RID to area, LONG to param.id)
@@ -510,8 +509,8 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the area's body monitor callback. This callback will be called when any other (shape of a)
    * body enters or exits (a shape of) the given area, and must take the following five parameters:
-   * 1. an integer `status`: either [constant AREA_BODY_ADDED] or [constant AREA_BODY_REMOVED]
-   * depending on whether the other body shape entered or exited the area,
+   * 1. an integer `status`: either [AREABODYADDED] or [AREABODYREMOVED] depending on whether the
+   * other body shape entered or exited the area,
    * 2. an [RID] `body_rid`: the [RID] of the body that entered or exited the area,
    * 3. an integer `instance_id`: the `ObjectID` attached to the body,
    * 4. an integer `body_shape_idx`: the index of the shape of the body that entered or exited the
@@ -529,8 +528,8 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the area's area monitor callback. This callback will be called when any other (shape of
    * an) area enters or exits (a shape of) the given area, and must take the following five parameters:
-   * 1. an integer `status`: either [constant AREA_BODY_ADDED] or [constant AREA_BODY_REMOVED]
-   * depending on whether the other area's shape entered or exited the area,
+   * 1. an integer `status`: either [AREABODYADDED] or [AREABODYREMOVED] depending on whether the
+   * other area's shape entered or exited the area,
    * 2. an [RID] `area_rid`: the [RID] of the other area that entered or exited the area,
    * 3. an integer `instance_id`: the `ObjectID` attached to the other area,
    * 4. an integer `area_shape_idx`: the index of the shape of the other area that entered or exited
@@ -546,8 +545,8 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets whether the area is monitorable or not. If [param monitorable] is `true`, the area
-   * monitoring callback of other areas will be called when this area enters or exits them.
+   * Sets whether the area is monitorable or not. If [monitorable] is `true`, the area monitoring
+   * callback of other areas will be called when this area enters or exits them.
    */
   public fun areaSetMonitorable(area: RID, monitorable: Boolean): Unit {
     TransferContext.writeArguments(_RID to area, BOOL to monitorable)
@@ -567,12 +566,12 @@ public object PhysicsServer2D : Object() {
 
   /**
    * Adds the body to the given space, after removing the body from the previously assigned space
-   * (if any). If the body's mode is set to [constant BODY_MODE_RIGID], then adding the body to a space
-   * will have the following additional effects:
-   * - If the parameter [constant BODY_PARAM_CENTER_OF_MASS] has never been set explicitly, then the
-   * value of that parameter will be recalculated based on the body's shapes.
-   * - If the parameter [constant BODY_PARAM_INERTIA] is set to a value `<= 0.0`, then the value of
-   * that parameter will be recalculated based on the body's shapes, mass, and center of mass.
+   * (if any). If the body's mode is set to [BODYMODERIGID], then adding the body to a space will have
+   * the following additional effects:
+   * - If the parameter [BODYPARAMCENTEROFMASS] has never been set explicitly, then the value of
+   * that parameter will be recalculated based on the body's shapes.
+   * - If the parameter [BODYPARAMINERTIA] is set to a value `<= 0.0`, then the value of that
+   * parameter will be recalculated based on the body's shapes, mass, and center of mass.
    * **Note:** To remove a body from a space without immediately adding it back elsewhere, use
    * `PhysicsServer2D.body_set_space(body, RID())`.
    */
@@ -592,7 +591,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the body's mode. See [enum BodyMode] for the list of available modes.
+   * Sets the body's mode. See [BodyMode] for the list of available modes.
    */
   public fun bodySetMode(body: RID, mode: BodyMode): Unit {
     TransferContext.writeArguments(_RID to body, LONG to mode.id)
@@ -600,7 +599,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the body's mode (see [enum BodyMode]).
+   * Returns the body's mode (see [BodyMode]).
    */
   public fun bodyGetMode(body: RID): BodyMode {
     TransferContext.writeArguments(_RID to body)
@@ -609,9 +608,9 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Adds a shape to the area, with the given local transform. The shape (together with its [param
-   * transform] and [param disabled] properties) is added to an array of shapes, and the shapes of a
-   * body are usually referenced by their index in this array.
+   * Adds a shape to the area, with the given local transform. The shape (together with its
+   * [transform] and [disabled] properties) is added to an array of shapes, and the shapes of a body
+   * are usually referenced by their index in this array.
    */
   @JvmOverloads
   public fun bodyAddShape(
@@ -680,8 +679,8 @@ public object PhysicsServer2D : Object() {
   /**
    * Removes the shape with the given index from the body's array of shapes. The shape itself is not
    * deleted, so it can continue to be used elsewhere or added back later. As a result of this
-   * operation, the body's shapes which used to have indices higher than [param shape_idx] will have
-   * their index decreased by one.
+   * operation, the body's shapes which used to have indices higher than [shapeIdx] will have their
+   * index decreased by one.
    */
   public fun bodyRemoveShape(body: RID, shapeIdx: Int): Unit {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx.toLong())
@@ -698,8 +697,8 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the disabled property of the body's shape with the given index. If [param disabled] is
-   * `true`, then the shape will be ignored in all collision detection.
+   * Sets the disabled property of the body's shape with the given index. If [disabled] is `true`,
+   * then the shape will be ignored in all collision detection.
    */
   public fun bodySetShapeDisabled(
     body: RID,
@@ -711,8 +710,8 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the one-way collision properties of the body's shape with the given index. If [param
-   * enable] is `true`, the one-way collision direction given by the shape's local upward axis
+   * Sets the one-way collision properties of the body's shape with the given index. If [enable] is
+   * `true`, the one-way collision direction given by the shape's local upward axis
    * `body_get_shape_transform(body, shape_idx).y` will be used to ignore collisions with the shape in
    * the opposite direction, and to ensure depenetration of kinematic bodies happens in this direction.
    */
@@ -765,7 +764,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the continuous collision detection mode using one of the [enum CCDMode] constants.
+   * Sets the continuous collision detection mode using one of the [CCDMode] constants.
    * Continuous collision detection tries to predict where a moving body would collide in between
    * physics updates, instead of moving it and correcting its movement if it collided.
    */
@@ -776,7 +775,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the body's continuous collision detection mode (see [enum CCDMode]).
+   * Returns the body's continuous collision detection mode (see [CCDMode]).
    */
   public fun bodyGetContinuousCollisionDetectionMode(body: RID): CCDMode {
     TransferContext.writeArguments(_RID to body)
@@ -839,7 +838,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the value of the given body parameter. See [enum BodyParameter] for the list of available
+   * Sets the value of the given body parameter. See [BodyParameter] for the list of available
    * parameters.
    */
   public fun bodySetParam(
@@ -852,8 +851,8 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the value of the given body parameter. See [enum BodyParameter] for the list of
-   * available parameters.
+   * Returns the value of the given body parameter. See [BodyParameter] for the list of available
+   * parameters.
    */
   public fun bodyGetParam(body: RID, `param`: BodyParameter): Any? {
     TransferContext.writeArguments(_RID to body, LONG to param.id)
@@ -871,7 +870,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the value of a body's state. See [enum BodyState] for the list of available states.
+   * Sets the value of a body's state. See [BodyState] for the list of available states.
    * **Note:** The state change doesn't take effect immediately. The state will change on the next
    * physics frame.
    */
@@ -885,8 +884,8 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the value of the given state of the body. See [enum BodyState] for the list of
-   * available states.
+   * Returns the value of the given state of the body. See [BodyState] for the list of available
+   * states.
    */
   public fun bodyGetState(body: RID, state: BodyState): Any? {
     TransferContext.writeArguments(_RID to body, LONG to state.id)
@@ -919,12 +918,12 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Applies a positioned impulse to the body. The impulse can affect rotation if [param position]
-   * is different from the body's center of mass.
+   * Applies a positioned impulse to the body. The impulse can affect rotation if [position] is
+   * different from the body's center of mass.
    * An impulse is time-independent! Applying an impulse every frame would result in a
    * framerate-dependent force. For this reason, it should only be used when simulating one-time
    * impacts (use the "_force" functions otherwise).
-   * [param position] is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
   public fun bodyApplyImpulse(
@@ -947,10 +946,10 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Applies a positioned force to the body. The force can affect rotation if [param position] is
+   * Applies a positioned force to the body. The force can affect rotation if [position] is
    * different from the body's center of mass. A force is time dependent and meant to be applied every
    * physics update.
-   * [param position] is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
   public fun bodyApplyForce(
@@ -983,10 +982,10 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Adds a constant positioned force to the body. The force can affect rotation if [param position]
-   * is different from the body's center of mass. The force remains applied over time until cleared
-   * with `PhysicsServer2D.body_set_constant_force(body, Vector2(0, 0))`.
-   * [param position] is the offset from the body origin in global coordinates.
+   * Adds a constant positioned force to the body. The force can affect rotation if [position] is
+   * different from the body's center of mass. The force remains applied over time until cleared with
+   * `PhysicsServer2D.body_set_constant_force(body, Vector2(0, 0))`.
+   * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
   public fun bodyAddConstantForce(
@@ -1056,8 +1055,8 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Adds [param excepted_body] to the body's list of collision exceptions, so that collisions with
-   * it are ignored.
+   * Adds [exceptedBody] to the body's list of collision exceptions, so that collisions with it are
+   * ignored.
    */
   public fun bodyAddCollisionException(body: RID, exceptedBody: RID): Unit {
     TransferContext.writeArguments(_RID to body, _RID to exceptedBody)
@@ -1065,8 +1064,8 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Removes [param excepted_body] from the body's list of collision exceptions, so that collisions
-   * with it are no longer ignored.
+   * Removes [exceptedBody] from the body's list of collision exceptions, so that collisions with it
+   * are no longer ignored.
    */
   public fun bodyRemoveCollisionException(body: RID, exceptedBody: RID): Unit {
     TransferContext.writeArguments(_RID to body, _RID to exceptedBody)
@@ -1074,8 +1073,8 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the maximum number of contacts that the body can report. If [param amount] is greater than
-   * zero, then the body will keep track of at most this many contacts with other bodies.
+   * Sets the maximum number of contacts that the body can report. If [amount] is greater than zero,
+   * then the body will keep track of at most this many contacts with other bodies.
    */
   public fun bodySetMaxContactsReported(body: RID, amount: Int): Unit {
     TransferContext.writeArguments(_RID to body, LONG to amount.toLong())
@@ -1116,7 +1115,7 @@ public object PhysicsServer2D : Object() {
    * [bodySetOmitForceIntegration]).
    * The force integration function takes the following two parameters:
    * 1. a [PhysicsDirectBodyState2D] `state`: used to retrieve and modify the body's state,
-   * 2. a [Variant] [param userdata]: optional user data.
+   * 2. a [Variant] [userdata]: optional user data.
    * **Note:** This callback is currently not called in Godot Physics.
    */
   @JvmOverloads
@@ -1177,7 +1176,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the value of the given joint parameter. See [enum JointParam] for the list of available
+   * Sets the value of the given joint parameter. See [JointParam] for the list of available
    * parameters.
    */
   public fun jointSetParam(
@@ -1190,7 +1189,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the value of the given joint parameter. See [enum JointParam] for the list of available
+   * Returns the value of the given joint parameter. See [JointParam] for the list of available
    * parameters.
    */
   public fun jointGetParam(joint: RID, `param`: JointParam): Float {
@@ -1218,10 +1217,10 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Makes the joint a pin joint. If [param body_b] is an empty [RID], then [param body_a] is pinned
-   * to the point [param anchor] (given in global coordinates); otherwise, [param body_a] is pinned to
-   * [param body_b] at the point [param anchor] (given in global coordinates). To set the parameters
-   * which are specific to the pin joint, see [pinJointSetParam].
+   * Makes the joint a pin joint. If [bodyB] is an empty [RID], then [bodyA] is pinned to the point
+   * [anchor] (given in global coordinates); otherwise, [bodyA] is pinned to [bodyB] at the point
+   * [anchor] (given in global coordinates). To set the parameters which are specific to the pin joint,
+   * see [pinJointSetParam].
    */
   @JvmOverloads
   public fun jointMakePin(
@@ -1251,10 +1250,10 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Makes the joint a damped spring joint, attached at the point [param anchor_a] (given in global
-   * coordinates) on the body [param body_a] and at the point [param anchor_b] (given in global
-   * coordinates) on the body [param body_b]. To set the parameters which are specific to the damped
-   * spring, see [dampedSpringJointSetParam].
+   * Makes the joint a damped spring joint, attached at the point [anchorA] (given in global
+   * coordinates) on the body [bodyA] and at the point [anchorB] (given in global coordinates) on the
+   * body [bodyB]. To set the parameters which are specific to the damped spring, see
+   * [dampedSpringJointSetParam].
    */
   @JvmOverloads
   public fun jointMakeDampedSpring(
@@ -1269,7 +1268,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets a pin joint flag (see [enum PinJointFlag] constants).
+   * Sets a pin joint flag (see [PinJointFlag] constants).
    */
   public fun pinJointSetFlag(
     joint: RID,
@@ -1281,7 +1280,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Gets a pin joint flag (see [enum PinJointFlag] constants).
+   * Gets a pin joint flag (see [PinJointFlag] constants).
    */
   public fun pinJointGetFlag(joint: RID, flag: PinJointFlag): Boolean {
     TransferContext.writeArguments(_RID to joint, LONG to flag.id)
@@ -1290,7 +1289,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets a pin joint parameter. See [enum PinJointParam] for a list of available parameters.
+   * Sets a pin joint parameter. See [PinJointParam] for a list of available parameters.
    */
   public fun pinJointSetParam(
     joint: RID,
@@ -1302,7 +1301,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the value of a pin joint parameter. See [enum PinJointParam] for a list of available
+   * Returns the value of a pin joint parameter. See [PinJointParam] for a list of available
    * parameters.
    */
   public fun pinJointGetParam(joint: RID, `param`: PinJointParam): Float {
@@ -1312,8 +1311,8 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the value of the given damped spring joint parameter. See [enum DampedSpringParam] for the
-   * list of available parameters.
+   * Sets the value of the given damped spring joint parameter. See [DampedSpringParam] for the list
+   * of available parameters.
    */
   public fun dampedSpringJointSetParam(
     joint: RID,
@@ -1325,8 +1324,8 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the value of the given damped spring joint parameter. See [enum DampedSpringParam] for
-   * the list of available parameters.
+   * Returns the value of the given damped spring joint parameter. See [DampedSpringParam] for the
+   * list of available parameters.
    */
   public fun dampedSpringJointGetParam(joint: RID, `param`: DampedSpringParam): Float {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
@@ -1335,7 +1334,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the joint's type (see [enum JointType]).
+   * Returns the joint's type (see [JointType]).
    */
   public fun jointGetType(joint: RID): JointType {
     TransferContext.writeArguments(_RID to joint)
@@ -1353,8 +1352,8 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Activates or deactivates the 2D physics server. If [param active] is `false`, then the physics
-   * server will not do anything in its physics step.
+   * Activates or deactivates the 2D physics server. If [active] is `false`, then the physics server
+   * will not do anything in its physics step.
    */
   public fun setActive(active: Boolean): Unit {
     TransferContext.writeArguments(BOOL to active)
@@ -1362,8 +1361,8 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns information about the current state of the 2D physics engine. See [enum ProcessInfo]
-   * for the list of available states.
+   * Returns information about the current state of the 2D physics engine. See [ProcessInfo] for the
+   * list of available states.
    */
   public fun getProcessInfo(processInfo: ProcessInfo): Int {
     TransferContext.writeArguments(LONG to processInfo.id)
@@ -1509,8 +1508,8 @@ public object PhysicsServer2D : Object() {
     id: Long,
   ) {
     /**
-     * Constant to set/get gravity override mode in an area. See [enum AreaSpaceOverrideMode] for
-     * possible values. The default value of this parameter is [constant AREA_SPACE_OVERRIDE_DISABLED].
+     * Constant to set/get gravity override mode in an area. See [AreaSpaceOverrideMode] for
+     * possible values. The default value of this parameter is [AREASPACEOVERRIDEDISABLED].
      */
     AREA_PARAM_GRAVITY_OVERRIDE_MODE(0),
     /**
@@ -1530,20 +1529,19 @@ public object PhysicsServer2D : Object() {
     AREA_PARAM_GRAVITY_IS_POINT(3),
     /**
      * Constant to set/get the distance at which the gravity strength is equal to the gravity
-     * controlled by [constant AREA_PARAM_GRAVITY]. For example, on a planet 100 pixels in radius with
-     * a surface gravity of 4.0 px/s², set the gravity to 4.0 and the unit distance to 100.0. The
-     * gravity will have falloff according to the inverse square law, so in the example, at 200 pixels
-     * from the center the gravity will be 1.0 px/s² (twice the distance, 1/4th the gravity), at 50
-     * pixels it will be 16.0 px/s² (half the distance, 4x the gravity), and so on.
+     * controlled by [AREAPARAMGRAVITY]. For example, on a planet 100 pixels in radius with a surface
+     * gravity of 4.0 px/s², set the gravity to 4.0 and the unit distance to 100.0. The gravity will
+     * have falloff according to the inverse square law, so in the example, at 200 pixels from the
+     * center the gravity will be 1.0 px/s² (twice the distance, 1/4th the gravity), at 50 pixels it
+     * will be 16.0 px/s² (half the distance, 4x the gravity), and so on.
      * The above is true only when the unit distance is a positive number. When the unit distance is
      * set to 0.0, the gravity will be constant regardless of distance. The default value of this
      * parameter is `0.0`.
      */
     AREA_PARAM_GRAVITY_POINT_UNIT_DISTANCE(4),
     /**
-     * Constant to set/get linear damping override mode in an area. See [enum AreaSpaceOverrideMode]
-     * for possible values. The default value of this parameter is [constant
-     * AREA_SPACE_OVERRIDE_DISABLED].
+     * Constant to set/get linear damping override mode in an area. See [AreaSpaceOverrideMode] for
+     * possible values. The default value of this parameter is [AREASPACEOVERRIDEDISABLED].
      */
     AREA_PARAM_LINEAR_DAMP_OVERRIDE_MODE(5),
     /**
@@ -1552,9 +1550,8 @@ public object PhysicsServer2D : Object() {
      */
     AREA_PARAM_LINEAR_DAMP(6),
     /**
-     * Constant to set/get angular damping override mode in an area. See [enum
-     * AreaSpaceOverrideMode] for possible values. The default value of this parameter is [constant
-     * AREA_SPACE_OVERRIDE_DISABLED].
+     * Constant to set/get angular damping override mode in an area. See [AreaSpaceOverrideMode] for
+     * possible values. The default value of this parameter is [AREASPACEOVERRIDEDISABLED].
      */
     AREA_PARAM_ANGULAR_DAMP_OVERRIDE_MODE(7),
     /**
@@ -1667,12 +1664,12 @@ public object PhysicsServer2D : Object() {
     BODY_PARAM_FRICTION(1),
     /**
      * Constant to set/get a body's mass. The default value of this parameter is `1.0`. If the
-     * body's mode is set to [constant BODY_MODE_RIGID], then setting this parameter will have the
-     * following additional effects:
-     * - If the parameter [constant BODY_PARAM_CENTER_OF_MASS] has never been set explicitly, then
-     * the value of that parameter will be recalculated based on the body's shapes.
-     * - If the parameter [constant BODY_PARAM_INERTIA] is set to a value `<= 0.0`, then the value
-     * of that parameter will be recalculated based on the body's shapes, mass, and center of mass.
+     * body's mode is set to [BODYMODERIGID], then setting this parameter will have the following
+     * additional effects:
+     * - If the parameter [BODYPARAMCENTEROFMASS] has never been set explicitly, then the value of
+     * that parameter will be recalculated based on the body's shapes.
+     * - If the parameter [BODYPARAMINERTIA] is set to a value `<= 0.0`, then the value of that
+     * parameter will be recalculated based on the body's shapes, mass, and center of mass.
      */
     BODY_PARAM_MASS(2),
     /**
@@ -1685,7 +1682,7 @@ public object PhysicsServer2D : Object() {
      * Constant to set/get a body's center of mass position in the body's local coordinate system.
      * The default value of this parameter is `Vector2(0,0)`. If this parameter is never set
      * explicitly, then it is recalculated based on the body's shapes when setting the parameter
-     * [constant BODY_PARAM_MASS] or when calling [bodySetSpace].
+     * [BODYPARAMMASS] or when calling [bodySetSpace].
      */
     BODY_PARAM_CENTER_OF_MASS(4),
     /**
@@ -1694,13 +1691,13 @@ public object PhysicsServer2D : Object() {
      */
     BODY_PARAM_GRAVITY_SCALE(5),
     /**
-     * Constant to set/get a body's linear damping mode. See [enum BodyDampMode] for possible
-     * values. The default value of this parameter is [constant BODY_DAMP_MODE_COMBINE].
+     * Constant to set/get a body's linear damping mode. See [BodyDampMode] for possible values. The
+     * default value of this parameter is [BODYDAMPMODECOMBINE].
      */
     BODY_PARAM_LINEAR_DAMP_MODE(6),
     /**
-     * Constant to set/get a body's angular damping mode. See [enum BodyDampMode] for possible
-     * values. The default value of this parameter is [constant BODY_DAMP_MODE_COMBINE].
+     * Constant to set/get a body's angular damping mode. See [BodyDampMode] for possible values.
+     * The default value of this parameter is [BODYDAMPMODECOMBINE].
      */
     BODY_PARAM_ANGULAR_DAMP_MODE(7),
     /**
@@ -1714,7 +1711,7 @@ public object PhysicsServer2D : Object() {
      */
     BODY_PARAM_ANGULAR_DAMP(9),
     /**
-     * Represents the size of the [enum BodyParameter] enum.
+     * Represents the size of the [BodyParameter] enum.
      */
     BODY_PARAM_MAX(10),
     ;
@@ -1803,7 +1800,7 @@ public object PhysicsServer2D : Object() {
      */
     JOINT_TYPE_DAMPED_SPRING(2),
     /**
-     * Represents the size of the [enum JointType] enum.
+     * Represents the size of the [JointType] enum.
      */
     JOINT_TYPE_MAX(3),
     ;

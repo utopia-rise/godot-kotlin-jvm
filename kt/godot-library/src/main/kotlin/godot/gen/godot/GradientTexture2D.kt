@@ -73,10 +73,10 @@ public open class GradientTexture2D : Texture2D() {
     }
 
   /**
-   * If `true`, the generated texture will support high dynamic range ([constant Image.FORMAT_RGBAF]
-   * format). This allows for glow effects to work if [Environment.glowEnabled] is `true`. If `false`,
-   * the generated texture will use low dynamic range; overbright colors will be clamped ([constant
-   * Image.FORMAT_RGBA8] format).
+   * If `true`, the generated texture will support high dynamic range ([Image.FORMATRGBAF] format).
+   * This allows for glow effects to work if [Environment.glowEnabled] is `true`. If `false`, the
+   * generated texture will use low dynamic range; overbright colors will be clamped
+   * ([Image.FORMATRGBA8] format).
    */
   public var useHdr: Boolean
     get() {
@@ -90,8 +90,8 @@ public open class GradientTexture2D : Texture2D() {
     }
 
   /**
-   * The gradient fill type, one of the [enum Fill] values. The texture is filled by interpolating
-   * colors starting from [fillFrom] to [fillTo] offsets.
+   * The gradient fill type, one of the [Fill] values. The texture is filled by interpolating colors
+   * starting from [fillFrom] to [fillTo] offsets.
    */
   public var fill: Fill
     get() {
@@ -135,7 +135,7 @@ public open class GradientTexture2D : Texture2D() {
     }
 
   /**
-   * The gradient repeat type, one of the [enum Repeat] values. The texture is filled starting from
+   * The gradient repeat type, one of the [Repeat] values. The texture is filled starting from
    * [fillFrom] to [fillTo] offsets by default, but the gradient fill can be repeated to cover the
    * entire texture.
    */

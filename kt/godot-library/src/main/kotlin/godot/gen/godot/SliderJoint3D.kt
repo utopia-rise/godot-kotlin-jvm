@@ -139,7 +139,7 @@ public open class SliderJoint3D : Joint3D() {
      */
     PARAM_ANGULAR_ORTHOGONAL_DAMPING(21),
     /**
-     * Represents the size of the [enum Param] enum.
+     * Represents the size of the [Param] enum.
      */
     PARAM_MAX(22),
     ;

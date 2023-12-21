@@ -185,7 +185,7 @@ public open class OpenXRInterface : XRInterface() {
 
   /**
    * If handtracking is enabled and motion range is supported, sets the currently configured motion
-   * range for [param hand] to [param motion_range].
+   * range for [hand] to [motionRange].
    */
   public fun setMotionRange(hand: Hand, motionRange: HandMotionRange): Unit {
     TransferContext.writeArguments(LONG to hand.id, LONG to motionRange.id)
@@ -194,7 +194,7 @@ public open class OpenXRInterface : XRInterface() {
 
   /**
    * If handtracking is enabled and motion range is supported, gets the currently configured motion
-   * range for [param hand].
+   * range for [hand].
    */
   public fun getMotionRange(hand: Hand): HandMotionRange {
     TransferContext.writeArguments(LONG to hand.id)
@@ -212,8 +212,8 @@ public open class OpenXRInterface : XRInterface() {
   }
 
   /**
-   * If handtracking is enabled, returns the rotation of a joint ([param joint]) of a hand ([param
-   * hand]) as provided by OpenXR.
+   * If handtracking is enabled, returns the rotation of a joint ([joint]) of a hand ([hand]) as
+   * provided by OpenXR.
    */
   public fun getHandJointRotation(hand: Hand, joint: HandJoints): Quaternion {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
@@ -222,8 +222,8 @@ public open class OpenXRInterface : XRInterface() {
   }
 
   /**
-   * If handtracking is enabled, returns the position of a joint ([param joint]) of a hand ([param
-   * hand]) as provided by OpenXR. This is relative to [XROrigin3D] without worldscale applied!
+   * If handtracking is enabled, returns the position of a joint ([joint]) of a hand ([hand]) as
+   * provided by OpenXR. This is relative to [XROrigin3D] without worldscale applied!
    */
   public fun getHandJointPosition(hand: Hand, joint: HandJoints): Vector3 {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
@@ -232,8 +232,8 @@ public open class OpenXRInterface : XRInterface() {
   }
 
   /**
-   * If handtracking is enabled, returns the radius of a joint ([param joint]) of a hand ([param
-   * hand]) as provided by OpenXR. This is without worldscale applied!
+   * If handtracking is enabled, returns the radius of a joint ([joint]) of a hand ([hand]) as
+   * provided by OpenXR. This is without worldscale applied!
    */
   public fun getHandJointRadius(hand: Hand, joint: HandJoints): Float {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
@@ -242,8 +242,8 @@ public open class OpenXRInterface : XRInterface() {
   }
 
   /**
-   * If handtracking is enabled, returns the linear velocity of a joint ([param joint]) of a hand
-   * ([param hand]) as provided by OpenXR. This is relative to [XROrigin3D] without worldscale applied!
+   * If handtracking is enabled, returns the linear velocity of a joint ([joint]) of a hand ([hand])
+   * as provided by OpenXR. This is relative to [XROrigin3D] without worldscale applied!
    */
   public fun getHandJointLinearVelocity(hand: Hand, joint: HandJoints): Vector3 {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
@@ -252,8 +252,8 @@ public open class OpenXRInterface : XRInterface() {
   }
 
   /**
-   * If handtracking is enabled, returns the angular velocity of a joint ([param joint]) of a hand
-   * ([param hand]) as provided by OpenXR. This is relative to [XROrigin3D]!
+   * If handtracking is enabled, returns the angular velocity of a joint ([joint]) of a hand
+   * ([hand]) as provided by OpenXR. This is relative to [XROrigin3D]!
    */
   public fun getHandJointAngularVelocity(hand: Hand, joint: HandJoints): Vector3 {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)

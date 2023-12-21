@@ -82,9 +82,9 @@ public object WorkerThreadPool : Object() {
   }
 
   /**
-   * Adds [param action] as a task to be executed by a worker thread. [param high_priority]
-   * determines if the task has a high priority or a low priority (default). You can optionally provide
-   * a [param description] to help with debugging.
+   * Adds [action] as a task to be executed by a worker thread. [highPriority] determines if the
+   * task has a high priority or a low priority (default). You can optionally provide a [description]
+   * to help with debugging.
    * Returns a task ID that can be used by other methods.
    */
   @JvmOverloads
@@ -109,12 +109,12 @@ public object WorkerThreadPool : Object() {
 
   /**
    * Pauses the thread that calls this method until the task with the given ID is completed.
-   * Returns [constant @GlobalScope.OK] if the task could be successfully awaited.
-   * Returns [constant @GlobalScope.ERR_INVALID_PARAMETER] if a task with the passed ID does not
-   * exist (maybe because it was already awaited and disposed of).
-   * Returns [constant @GlobalScope.ERR_BUSY] if the call is made from another running task and, due
-   * to task scheduling, the task to await is at a lower level in the call stack and therefore can't
-   * progress. This is an advanced situation that should only matter when some tasks depend on others.
+   * Returns [@GlobalScope.OK] if the task could be successfully awaited.
+   * Returns [@GlobalScope.ERRINVALIDPARAMETER] if a task with the passed ID does not exist (maybe
+   * because it was already awaited and disposed of).
+   * Returns [@GlobalScope.ERRBUSY] if the call is made from another running task and, due to task
+   * scheduling, the task to await is at a lower level in the call stack and therefore can't progress.
+   * This is an advanced situation that should only matter when some tasks depend on others.
    */
   public fun waitForTaskCompletion(taskId: Long): GodotError {
     TransferContext.writeArguments(LONG to taskId)
@@ -123,14 +123,14 @@ public object WorkerThreadPool : Object() {
   }
 
   /**
-   * Adds [param action] as a group task to be executed by the worker threads. The [Callable] will
-   * be called a number of times based on [param elements], with the first thread calling it with the
-   * value `0` as a parameter, and each consecutive execution incrementing this value by 1 until it
-   * reaches `element - 1`.
-   * The number of threads the task is distributed to is defined by [param tasks_needed], where the
-   * default value `-1` means it is distributed to all worker threads. [param high_priority] determines
-   * if the task has a high priority or a low priority (default). You can optionally provide a [param
-   * description] to help with debugging.
+   * Adds [action] as a group task to be executed by the worker threads. The [Callable] will be
+   * called a number of times based on [elements], with the first thread calling it with the value `0`
+   * as a parameter, and each consecutive execution incrementing this value by 1 until it reaches
+   * `element - 1`.
+   * The number of threads the task is distributed to is defined by [tasksNeeded], where the default
+   * value `-1` means it is distributed to all worker threads. [highPriority] determines if the task
+   * has a high priority or a low priority (default). You can optionally provide a [description] to
+   * help with debugging.
    * Returns a group task ID that can be used by other methods.
    */
   @JvmOverloads

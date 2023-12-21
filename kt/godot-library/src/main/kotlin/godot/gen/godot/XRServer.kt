@@ -162,7 +162,7 @@ public object XRServer : Object() {
   }
 
   /**
-   * Removes this [param interface].
+   * Removes this [interface].
    */
   public fun removeInterface(_interface: XRInterface): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
@@ -170,7 +170,7 @@ public object XRServer : Object() {
   }
 
   /**
-   * Returns the interface registered at the given [param idx] index in the list of interfaces.
+   * Returns the interface registered at the given [idx] index in the list of interfaces.
    */
   public fun getInterface(idx: Int): XRInterface? {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -188,8 +188,8 @@ public object XRServer : Object() {
   }
 
   /**
-   * Finds an interface by its [param name]. For example, if your project uses capabilities of an
-   * AR/VR platform, you can find the interface for that platform by name and initialize it.
+   * Finds an interface by its [name]. For example, if your project uses capabilities of an AR/VR
+   * platform, you can find the interface for that platform by name and initialize it.
    */
   public fun findInterface(name: String): XRInterface? {
     TransferContext.writeArguments(STRING to name)
@@ -206,7 +206,7 @@ public object XRServer : Object() {
   }
 
   /**
-   * Removes this positional [param tracker].
+   * Removes this positional [tracker].
    */
   public fun removeTracker(tracker: XRPositionalTracker): Unit {
     TransferContext.writeArguments(OBJECT to tracker)
@@ -214,7 +214,7 @@ public object XRServer : Object() {
   }
 
   /**
-   * Returns a dictionary of trackers for [param tracker_types].
+   * Returns a dictionary of trackers for [trackerTypes].
    */
   public fun getTrackers(trackerTypes: Int): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to trackerTypes.toLong())
@@ -223,7 +223,7 @@ public object XRServer : Object() {
   }
 
   /**
-   * Returns the positional tracker with the given [param tracker_name].
+   * Returns the positional tracker with the given [trackerName].
    */
   public fun getTracker(trackerName: StringName): XRPositionalTracker? {
     TransferContext.writeArguments(STRING_NAME to trackerName)

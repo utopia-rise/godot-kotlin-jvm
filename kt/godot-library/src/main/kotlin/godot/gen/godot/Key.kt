@@ -7,8 +7,8 @@ public enum class Key(
   id: Long,
 ) {
   /**
-   * Enum value which doesn't correspond to any key. This is used to initialize [enum Key]
-   * properties with a generic state.
+   * Enum value which doesn't correspond to any key. This is used to initialize [Key] properties
+   * with a generic state.
    */
   KEY_NONE(0),
   /**

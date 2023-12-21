@@ -7,19 +7,19 @@ public enum class MIDIMessage(
   id: Long,
 ) {
   /**
-   * Enum value which doesn't correspond to any MIDI message. This is used to initialize [enum
-   * MIDIMessage] properties with a generic state.
+   * Enum value which doesn't correspond to any MIDI message. This is used to initialize
+   * [MIDIMessage] properties with a generic state.
    */
   MIDI_MESSAGE_NONE(0),
   /**
-   * MIDI note OFF message. Not all MIDI devices send this event; some send [constant
-   * MIDI_MESSAGE_NOTE_ON] with zero velocity instead. See the documentation of [InputEventMIDI] for
-   * information of how to use MIDI inputs.
+   * MIDI note OFF message. Not all MIDI devices send this event; some send [MIDIMESSAGENOTEON] with
+   * zero velocity instead. See the documentation of [InputEventMIDI] for information of how to use
+   * MIDI inputs.
    */
   MIDI_MESSAGE_NOTE_OFF(8),
   /**
-   * MIDI note ON message. Some MIDI devices send this event with velocity zero instead of [constant
-   * MIDI_MESSAGE_NOTE_OFF], but implementations vary. See the documentation of [InputEventMIDI] for
+   * MIDI note ON message. Some MIDI devices send this event with velocity zero instead of
+   * [MIDIMESSAGENOTEOFF], but implementations vary. See the documentation of [InputEventMIDI] for
    * information of how to use MIDI inputs.
    */
   MIDI_MESSAGE_NOTE_ON(9),

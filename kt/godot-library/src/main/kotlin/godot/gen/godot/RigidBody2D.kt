@@ -58,14 +58,14 @@ public open class RigidBody2D : PhysicsBody2D() {
    * [TileMap]'s [Shape2D]s. Requires [contactMonitor] to be set to `true` and [maxContactsReported] to
    * be set high enough to detect all the collisions. [TileMap]s are detected if the [TileSet] has
    * Collision [Shape2D]s.
-   * [param body_rid] the [RID] of the other [PhysicsBody2D] or [TileSet]'s [CollisionObject2D] used
-   * by the [PhysicsServer2D].
-   * [param body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].
-   * [param body_shape_index] the index of the [Shape2D] of the other [PhysicsBody2D] or [TileMap]
-   * used by the [PhysicsServer2D]. Get the [CollisionShape2D] node with
+   * [bodyRid] the [RID] of the other [PhysicsBody2D] or [TileSet]'s [CollisionObject2D] used by the
+   * [PhysicsServer2D].
+   * [body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].
+   * [bodyShapeIndex] the index of the [Shape2D] of the other [PhysicsBody2D] or [TileMap] used by
+   * the [PhysicsServer2D]. Get the [CollisionShape2D] node with
    * `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.
-   * [param local_shape_index] the index of the [Shape2D] of this RigidBody2D used by the
-   * [PhysicsServer2D]. Get the [CollisionShape2D] node with
+   * [localShapeIndex] the index of the [Shape2D] of this RigidBody2D used by the [PhysicsServer2D].
+   * Get the [CollisionShape2D] node with
    * `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
   public val bodyShapeEntered: Signal4<RID, Node, Long, Long> by signal("bodyRid", "body",
@@ -76,14 +76,14 @@ public open class RigidBody2D : PhysicsBody2D() {
    * [PhysicsBody2D] or [TileMap]'s [Shape2D]s ends. Requires [contactMonitor] to be set to `true` and
    * [maxContactsReported] to be set high enough to detect all the collisions. [TileMap]s are detected
    * if the [TileSet] has Collision [Shape2D]s.
-   * [param body_rid] the [RID] of the other [PhysicsBody2D] or [TileSet]'s [CollisionObject2D] used
-   * by the [PhysicsServer2D].
-   * [param body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].
-   * [param body_shape_index] the index of the [Shape2D] of the other [PhysicsBody2D] or [TileMap]
-   * used by the [PhysicsServer2D]. Get the [CollisionShape2D] node with
+   * [bodyRid] the [RID] of the other [PhysicsBody2D] or [TileSet]'s [CollisionObject2D] used by the
+   * [PhysicsServer2D].
+   * [body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].
+   * [bodyShapeIndex] the index of the [Shape2D] of the other [PhysicsBody2D] or [TileMap] used by
+   * the [PhysicsServer2D]. Get the [CollisionShape2D] node with
    * `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.
-   * [param local_shape_index] the index of the [Shape2D] of this RigidBody2D used by the
-   * [PhysicsServer2D]. Get the [CollisionShape2D] node with
+   * [localShapeIndex] the index of the [Shape2D] of this RigidBody2D used by the [PhysicsServer2D].
+   * Get the [CollisionShape2D] node with
    * `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
   public val bodyShapeExited: Signal4<RID, Node, Long, Long> by signal("bodyRid", "body",
@@ -93,7 +93,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * Emitted when a collision with another [PhysicsBody2D] or [TileMap] occurs. Requires
    * [contactMonitor] to be set to `true` and [maxContactsReported] to be set high enough to detect all
    * the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.
-   * [param body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].
+   * [body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].
    */
   public val bodyEntered: Signal1<Node> by signal("body")
 
@@ -101,7 +101,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * Emitted when the collision with another [PhysicsBody2D] or [TileMap] ends. Requires
    * [contactMonitor] to be set to `true` and [maxContactsReported] to be set high enough to detect all
    * the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.
-   * [param body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].
+   * [body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].
    */
   public val bodyExited: Signal1<Node> by signal("body")
 
@@ -160,8 +160,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   /**
-   * Defines the way the body's center of mass is set. See [enum CenterOfMassMode] for possible
-   * values.
+   * Defines the way the body's center of mass is set. See [CenterOfMassMode] for possible values.
    */
   public var centerOfMassMode: CenterOfMassMode
     get() {
@@ -176,11 +175,11 @@ public open class RigidBody2D : PhysicsBody2D() {
 
   /**
    * The body's custom center of mass, relative to the body's origin position, when
-   * [centerOfMassMode] is set to [constant CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of
-   * the body, where applied forces only cause linear acceleration. Applying forces outside of the
-   * center of mass causes angular acceleration.
-   * When [centerOfMassMode] is set to [constant CENTER_OF_MASS_MODE_AUTO] (default value), the
-   * center of mass is automatically computed.
+   * [centerOfMassMode] is set to [CENTEROFMASSMODECUSTOM]. This is the balanced point of the body,
+   * where applied forces only cause linear acceleration. Applying forces outside of the center of mass
+   * causes angular acceleration.
+   * When [centerOfMassMode] is set to [CENTEROFMASSMODEAUTO] (default value), the center of mass is
+   * automatically computed.
    */
   @CoreTypeLocalCopy
   public var centerOfMass: Vector2
@@ -296,7 +295,7 @@ public open class RigidBody2D : PhysicsBody2D() {
 
   /**
    * The body's freeze mode. Can be used to set the body's behavior when [freeze] is enabled. See
-   * [enum FreezeMode] for possible values.
+   * [FreezeMode] for possible values.
    * For a body that is always frozen, use [StaticBody2D] or [AnimatableBody2D] instead.
    */
   public var freezeMode: FreezeMode
@@ -330,7 +329,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * Continuous collision detection tries to predict where a moving body will collide instead of
    * moving it and correcting its movement after collision. Continuous collision detection is slower,
    * but more precise and misses fewer collisions with small, fast-moving objects. Raycasting and
-   * shapecasting methods are available. See [enum CCDMode] for details.
+   * shapecasting methods are available. See [CCDMode] for details.
    */
   public var continuousCd: CCDMode
     get() {
@@ -397,7 +396,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   /**
-   * Defines how [linearDamp] is applied. See [enum DampMode] for possible values.
+   * Defines how [linearDamp] is applied. See [DampMode] for possible values.
    */
   public var linearDampMode: DampMode
     get() {
@@ -443,7 +442,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   /**
-   * Defines how [angularDamp] is applied. See [enum DampMode] for possible values.
+   * Defines how [angularDamp] is applied. See [DampMode] for possible values.
    */
   public var angularDampMode: DampMode
     get() {
@@ -512,11 +511,11 @@ public open class RigidBody2D : PhysicsBody2D() {
 
   /**
    * The body's custom center of mass, relative to the body's origin position, when
-   * [centerOfMassMode] is set to [constant CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of
-   * the body, where applied forces only cause linear acceleration. Applying forces outside of the
-   * center of mass causes angular acceleration.
-   * When [centerOfMassMode] is set to [constant CENTER_OF_MASS_MODE_AUTO] (default value), the
-   * center of mass is automatically computed.
+   * [centerOfMassMode] is set to [CENTEROFMASSMODECUSTOM]. This is the balanced point of the body,
+   * where applied forces only cause linear acceleration. Applying forces outside of the center of mass
+   * causes angular acceleration.
+   * When [centerOfMassMode] is set to [CENTEROFMASSMODEAUTO] (default value), the center of mass is
+   * automatically computed.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -637,7 +636,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * An impulse is time-independent! Applying an impulse every frame would result in a
    * framerate-dependent force. For this reason, it should only be used when simulating one-time
    * impacts (use the "_force" functions otherwise).
-   * [param position] is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
   public fun applyImpulse(impulse: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
@@ -671,7 +670,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   /**
    * Applies a positioned force to the body. A force is time dependent and meant to be applied every
    * physics update.
-   * [param position] is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
   public fun applyForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
@@ -703,7 +702,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   /**
    * Adds a constant positioned force to the body that keeps being applied over time until cleared
    * with `constant_force = Vector2(0, 0)`.
-   * [param position] is the offset from the body origin in global coordinates.
+   * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
   public fun addConstantForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
@@ -742,8 +741,8 @@ public open class RigidBody2D : PhysicsBody2D() {
      */
     FREEZE_MODE_STATIC(0),
     /**
-     * Kinematic body freeze mode. Similar to [constant FREEZE_MODE_STATIC], but collides with other
-     * bodies along its path when moved. Useful for a frozen body that needs to be animated.
+     * Kinematic body freeze mode. Similar to [FREEZEMODESTATIC], but collides with other bodies
+     * along its path when moved. Useful for a frozen body that needs to be animated.
      */
     FREEZE_MODE_KINEMATIC(1),
     ;

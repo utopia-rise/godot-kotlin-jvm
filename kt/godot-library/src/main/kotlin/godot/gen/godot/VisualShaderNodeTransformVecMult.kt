@@ -24,7 +24,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
   /**
-   * The multiplication type to be performed. See [enum Operator] for options.
+   * The multiplication type to be performed. See [Operator] for options.
    */
   public var `operator`: Operator
     get() {
@@ -64,7 +64,7 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
      */
     OP_3x3_BxA(3),
     /**
-     * Represents the size of the [enum Operator] enum.
+     * Represents the size of the [Operator] enum.
      */
     OP_MAX(4),
     ;

@@ -93,7 +93,7 @@ public open class NavigationPolygon : Resource() {
     }
 
   /**
-   * Determines which type of nodes will be parsed as geometry. See [enum ParsedGeometryType] for
+   * Determines which type of nodes will be parsed as geometry. See [ParsedGeometryType] for
    * possible values.
    */
   public var parsedGeometryType: ParsedGeometryType
@@ -109,8 +109,7 @@ public open class NavigationPolygon : Resource() {
 
   /**
    * The physics layers to scan for static colliders.
-   * Only used when [parsedGeometryType] is [constant PARSED_GEOMETRY_STATIC_COLLIDERS] or [constant
-   * PARSED_GEOMETRY_BOTH].
+   * Only used when [parsedGeometryType] is [PARSEDGEOMETRYSTATICCOLLIDERS] or [PARSEDGEOMETRYBOTH].
    */
   public var parsedCollisionMask: Long
     get() {
@@ -124,7 +123,7 @@ public open class NavigationPolygon : Resource() {
     }
 
   /**
-   * The source of the geometry used when baking. See [enum SourceGeometryMode] for possible values.
+   * The source of the geometry used when baking. See [SourceGeometryMode] for possible values.
    */
   public var sourceGeometryMode: SourceGeometryMode
     get() {
@@ -139,8 +138,8 @@ public open class NavigationPolygon : Resource() {
 
   /**
    * The group name of nodes that should be parsed for baking source geometry.
-   * Only used when [sourceGeometryMode] is [constant SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN] or
-   * [constant SOURCE_GEOMETRY_GROUPS_EXPLICIT].
+   * Only used when [sourceGeometryMode] is [SOURCEGEOMETRYGROUPSWITHCHILDREN] or
+   * [SOURCEGEOMETRYGROUPSEXPLICIT].
    */
   public var sourceGeometryGroupName: StringName
     get() {
@@ -309,8 +308,8 @@ public open class NavigationPolygon : Resource() {
   }
 
   /**
-   * Based on [param value], enables or disables the specified layer in the [parsedCollisionMask],
-   * given a [param layer_number] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [parsedCollisionMask], given a
+   * [layerNumber] between 1 and 32.
    */
   public fun setParsedCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -319,7 +318,7 @@ public open class NavigationPolygon : Resource() {
 
   /**
    * Returns whether or not the specified layer of the [parsedCollisionMask] is enabled, given a
-   * [param layer_number] between 1 and 32.
+   * [layerNumber] between 1 and 32.
    */
   public fun getParsedCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -350,12 +349,11 @@ public open class NavigationPolygon : Resource() {
      */
     PARSED_GEOMETRY_STATIC_COLLIDERS(1),
     /**
-     * Both [constant PARSED_GEOMETRY_MESH_INSTANCES] and [constant
-     * PARSED_GEOMETRY_STATIC_COLLIDERS].
+     * Both [PARSEDGEOMETRYMESHINSTANCES] and [PARSEDGEOMETRYSTATICCOLLIDERS].
      */
     PARSED_GEOMETRY_BOTH(2),
     /**
-     * Represents the size of the [enum ParsedGeometryType] enum.
+     * Represents the size of the [ParsedGeometryType] enum.
      */
     PARSED_GEOMETRY_MAX(3),
     ;
@@ -387,7 +385,7 @@ public open class NavigationPolygon : Resource() {
      */
     SOURCE_GEOMETRY_GROUPS_EXPLICIT(2),
     /**
-     * Represents the size of the [enum SourceGeometryMode] enum.
+     * Represents the size of the [SourceGeometryMode] enum.
      */
     SOURCE_GEOMETRY_MAX(3),
     ;

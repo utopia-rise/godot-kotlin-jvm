@@ -87,14 +87,14 @@ public open class JSON : Resource() {
   }
 
   /**
-   * Attempts to parse the [param json_text] provided.
-   * Returns an [enum Error]. If the parse was successful, it returns [constant OK] and the result
-   * can be retrieved using [data]. If unsuccessful, use [getErrorLine] and [getErrorMessage] for
-   * identifying the source of the failure.
+   * Attempts to parse the [jsonText] provided.
+   * Returns an [Error]. If the parse was successful, it returns [OK] and the result can be
+   * retrieved using [data]. If unsuccessful, use [getErrorLine] and [getErrorMessage] for identifying
+   * the source of the failure.
    * Non-static variant of [parseString], if you want custom error handling.
-   * The optional [param keep_text] argument instructs the parser to keep a copy of the original
-   * text. This text can be obtained later by using the [getParsedText] function and is used when
-   * saving the resource (instead of generating new text from [data]).
+   * The optional [keepText] argument instructs the parser to keep a copy of the original text. This
+   * text can be obtained later by using the [getParsedText] function and is used when saving the
+   * resource (instead of generating new text from [data]).
    */
   @JvmOverloads
   public fun parse(jsonText: String, keepText: Boolean = false): GodotError {
@@ -139,12 +139,12 @@ public open class JSON : Resource() {
      * **Note:** The JSON specification does not define integer or float types, but only a *number*
      * type. Therefore, converting a Variant to JSON text will convert all numerical values to [float]
      * types.
-     * **Note:** If [param full_precision] is `true`, when stringifying floats, the unreliable
-     * digits are stringified in addition to the reliable digits to guarantee exact decoding.
-     * The [param indent] parameter controls if and how something is indented, the string used for
-     * this parameter will be used where there should be an indent in the output, even spaces like `"  
-     * "` will work. `\t` and `\n` can also be used for a tab indent, or to make a newline for each
-     * indent respectively.
+     * **Note:** If [fullPrecision] is `true`, when stringifying floats, the unreliable digits are
+     * stringified in addition to the reliable digits to guarantee exact decoding.
+     * The [indent] parameter controls if and how something is indented, the string used for this
+     * parameter will be used where there should be an indent in the output, even spaces like `"   "`
+     * will work. `\t` and `\n` can also be used for a tab indent, or to make a newline for each indent
+     * respectively.
      * **Example output:**
      * [codeblock]
      * ## JSON.stringify(my_dictionary)
@@ -196,8 +196,8 @@ public open class JSON : Resource() {
     }
 
     /**
-     * Attempts to parse the [param json_string] provided and returns the parsed data. Returns
-     * `null` if parse failed.
+     * Attempts to parse the [jsonString] provided and returns the parsed data. Returns `null` if
+     * parse failed.
      */
     public fun parseString(jsonString: String): Any? {
       TransferContext.writeArguments(STRING to jsonString)

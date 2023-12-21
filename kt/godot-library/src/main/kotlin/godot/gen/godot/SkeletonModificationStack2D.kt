@@ -95,7 +95,7 @@ public open class SkeletonModificationStack2D : Resource() {
 
   /**
    * Executes all of the [SkeletonModification2D]s in the stack that use the same execution mode as
-   * the passed-in [param execution_mode], starting from index `0` to [modificationCount].
+   * the passed-in [executionMode], starting from index `0` to [modificationCount].
    * **Note:** The order of the modifications can matter depending on the modifications. For
    * example, modifications on a spine should operate before modifications on the arms in order to get
    * proper results.
@@ -114,7 +114,7 @@ public open class SkeletonModificationStack2D : Resource() {
   }
 
   /**
-   * Returns the [SkeletonModification2D] at the passed-in index, [param mod_idx].
+   * Returns the [SkeletonModification2D] at the passed-in index, [modIdx].
    */
   public fun getModification(modIdx: Int): SkeletonModification2D? {
     TransferContext.writeArguments(LONG to modIdx.toLong())
@@ -131,7 +131,7 @@ public open class SkeletonModificationStack2D : Resource() {
   }
 
   /**
-   * Deletes the [SkeletonModification2D] at the index position [param mod_idx], if it exists.
+   * Deletes the [SkeletonModification2D] at the index position [modIdx], if it exists.
    */
   public fun deleteModification(modIdx: Int): Unit {
     TransferContext.writeArguments(LONG to modIdx.toLong())
@@ -139,7 +139,7 @@ public open class SkeletonModificationStack2D : Resource() {
   }
 
   /**
-   * Sets the modification at [param mod_idx] to the passed-in modification, [param modification].
+   * Sets the modification at [modIdx] to the passed-in modification, [modification].
    */
   public fun setModification(modIdx: Int, modification: SkeletonModification2D): Unit {
     TransferContext.writeArguments(LONG to modIdx.toLong(), OBJECT to modification)

@@ -337,7 +337,7 @@ public object Engine : Object() {
   }
 
   /**
-   * Returns `true` if a singleton with given [param name] exists in global scope.
+   * Returns `true` if a singleton with given [name] exists in global scope.
    */
   public fun hasSingleton(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -346,7 +346,7 @@ public object Engine : Object() {
   }
 
   /**
-   * Returns a global singleton with given [param name]. Often used for plugins, e.g. GodotPayments.
+   * Returns a global singleton with given [name]. Often used for plugins, e.g. GodotPayments.
    */
   public fun getSingleton(name: StringName): Object? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -355,7 +355,7 @@ public object Engine : Object() {
   }
 
   /**
-   * Registers the given object as a singleton, globally available under [param name].
+   * Registers the given object as a singleton, globally available under [name].
    */
   public fun registerSingleton(name: StringName, instance: Object): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to instance)
@@ -363,8 +363,8 @@ public object Engine : Object() {
   }
 
   /**
-   * Unregisters the singleton registered under [param name]. The singleton object is not freed.
-   * Only works with user-defined singletons created with [registerSingleton].
+   * Unregisters the singleton registered under [name]. The singleton object is not freed. Only
+   * works with user-defined singletons created with [registerSingleton].
    */
   public fun unregisterSingleton(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -383,10 +383,9 @@ public object Engine : Object() {
   /**
    * Registers a [ScriptLanguage] instance to be available with `ScriptServer`.
    * Returns:
-   * - [constant OK] on success
-   * - [constant ERR_UNAVAILABLE] if `ScriptServer` has reached it limit and cannot register any new
-   * language
-   * - [constant ERR_ALREADY_EXISTS] if `ScriptServer` already contains a language with similar
+   * - [OK] on success
+   * - [ERRUNAVAILABLE] if `ScriptServer` has reached it limit and cannot register any new language
+   * - [ERRALREADYEXISTS] if `ScriptServer` already contains a language with similar
    * extension/name/type
    */
   public fun registerScriptLanguage(language: ScriptLanguage): GodotError {
@@ -398,8 +397,8 @@ public object Engine : Object() {
   /**
    * Unregisters the [ScriptLanguage] instance from `ScriptServer`.
    * Returns:
-   * - [constant OK] on success
-   * - [constant ERR_DOES_NOT_EXIST] if the language is already not registered in `ScriptServer`
+   * - [OK] on success
+   * - [ERRDOESNOTEXIST] if the language is already not registered in `ScriptServer`
    */
   public fun unregisterScriptLanguage(language: ScriptLanguage): GodotError {
     TransferContext.writeArguments(OBJECT to language)

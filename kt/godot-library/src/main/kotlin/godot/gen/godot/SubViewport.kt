@@ -178,7 +178,7 @@ public open class SubViewport : Viewport() {
      */
     CLEAR_MODE_NEVER(1),
     /**
-     * Clear the render target on the next frame, then switch to [constant CLEAR_MODE_NEVER].
+     * Clear the render target on the next frame, then switch to [CLEARMODENEVER].
      */
     CLEAR_MODE_ONCE(2),
     ;
@@ -201,7 +201,7 @@ public open class SubViewport : Viewport() {
      */
     UPDATE_DISABLED(0),
     /**
-     * Update the render target once, then switch to [constant UPDATE_DISABLED].
+     * Update the render target once, then switch to [UPDATEDISABLED].
      */
     UPDATE_ONCE(1),
     /**

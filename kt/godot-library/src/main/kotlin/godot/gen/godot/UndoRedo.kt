@@ -145,10 +145,10 @@ public open class UndoRedo : Object() {
   /**
    * Create a new action. After this is called, do all your calls to [addDoMethod], [addUndoMethod],
    * [addDoProperty], and [addUndoProperty], then commit the action with [commitAction].
-   * The way actions are merged is dictated by [param merge_mode]. See [enum MergeMode] for details.
-   * The way undo operation are ordered in actions is dictated by [param backward_undo_ops]. When
-   * [param backward_undo_ops] is `false` undo option are ordered in the same order they were added.
-   * Which means the first operation to be added will be the first to be undone.
+   * The way actions are merged is dictated by [mergeMode]. See [MergeMode] for details.
+   * The way undo operation are ordered in actions is dictated by [backwardUndoOps]. When
+   * [backwardUndoOps] is `false` undo option are ordered in the same order they were added. Which
+   * means the first operation to be added will be the first to be undone.
    */
   @JvmOverloads
   public fun createAction(
@@ -161,8 +161,8 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Commit the action. If [param execute] is `true` (which it is by default), all "do"
-   * methods/properties are called/set when this function is called.
+   * Commit the action. If [execute] is `true` (which it is by default), all "do" methods/properties
+   * are called/set when this function is called.
    */
   @JvmOverloads
   public fun commitAction(execute: Boolean = true): Unit {
@@ -197,8 +197,7 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Register a [param property] that would change its value to [param value] when the action is
-   * committed.
+   * Register a [property] that would change its value to [value] when the action is committed.
    */
   public fun addDoProperty(
     _object: Object,
@@ -210,8 +209,7 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Register a [param property] that would change its value to [param value] when the action is
-   * undone.
+   * Register a [property] that would change its value to [value] when the action is undone.
    */
   public fun addUndoProperty(
     _object: Object,
@@ -258,8 +256,7 @@ public open class UndoRedo : Object() {
 
   /**
    * Marks the next "do" and "undo" operations to be processed even if the action gets merged with
-   * another in the [constant MERGE_ENDS] mode. Return to normal operation using
-   * [endForceKeepInMergeEnds].
+   * another in the [MERGEENDS] mode. Return to normal operation using [endForceKeepInMergeEnds].
    */
   public fun startForceKeepInMergeEnds(): Unit {
     TransferContext.writeArguments()
@@ -268,7 +265,7 @@ public open class UndoRedo : Object() {
 
   /**
    * Stops marking operations as to be processed even if the action gets merged with another in the
-   * [constant MERGE_ENDS] mode. See [startForceKeepInMergeEnds].
+   * [MERGEENDS] mode. See [startForceKeepInMergeEnds].
    */
   public fun endForceKeepInMergeEnds(): Unit {
     TransferContext.writeArguments()
@@ -304,8 +301,8 @@ public open class UndoRedo : Object() {
 
   /**
    * Clear the undo/redo history and associated references.
-   * Passing `false` to [param increase_version] will prevent the version number from increasing
-   * when the history is cleared.
+   * Passing `false` to [increaseVersion] will prevent the version number from increasing when the
+   * history is cleared.
    */
   @JvmOverloads
   public fun clearHistory(increaseVersion: Boolean = true): Unit {
