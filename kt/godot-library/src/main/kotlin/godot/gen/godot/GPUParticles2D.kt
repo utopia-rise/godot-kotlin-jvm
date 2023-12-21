@@ -38,28 +38,29 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A 2D particle emitter.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/515](https://godotengine.org/asset-library/asset/515)
- *
- * 2D particle node used to create a variety of particle systems and effects. [godot.GPUParticles2D] features an emitter that generates some number of particles at a given rate.
- *
- * Use the [processMaterial] property to add a [godot.ParticleProcessMaterial] to configure particle appearance and behavior. Alternatively, you can add a [godot.ShaderMaterial] which will be applied to all particles.
- *
- * 2D particles can optionally collide with [godot.LightOccluder2D], but they don't collide with [godot.PhysicsBody2D] nodes.
+ * 2D particle node used to create a variety of particle systems and effects. [GPUParticles2D]
+ * features an emitter that generates some number of particles at a given rate.
+ * Use the [processMaterial] property to add a [ParticleProcessMaterial] to configure particle
+ * appearance and behavior. Alternatively, you can add a [ShaderMaterial] which will be applied to all
+ * particles.
+ * 2D particles can optionally collide with [LightOccluder2D], but they don't collide with
+ * [PhysicsBody2D] nodes.
  */
 @GodotBaseType
 public open class GPUParticles2D : Node2D() {
   /**
-   * Emitted when all active particles have finished processing. When [oneShot] is disabled, particles will process continuously, so this is never emitted.
-   *
-   * **Note:** Due to the particles being computed on the GPU there might be a delay before the signal gets emitted.
+   * Emitted when all active particles have finished processing. When [oneShot] is disabled,
+   * particles will process continuously, so this is never emitted.
+   * **Note:** Due to the particles being computed on the GPU there might be a delay before the
+   * signal gets emitted.
    */
   public val finished: Signal0 by signal()
 
   /**
-   * If `true`, particles are being emitted. [emitting] can be used to start and stop particles from emitting. However, if [oneShot] is `true` setting [emitting] to `true` will not restart the emission cycle until after all active particles finish processing. You can use the [finished] signal to be notified once all active particles finish processing.
+   * If `true`, particles are being emitted. [emitting] can be used to start and stop particles from
+   * emitting. However, if [oneShot] is `true` setting [emitting] to `true` will not restart the
+   * emission cycle until after all active particles finish processing. You can use the [signal
+   * finished] signal to be notified once all active particles finish processing.
    */
   public var emitting: Boolean
     get() {
@@ -73,9 +74,11 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * The number of particles to emit in one emission cycle. The effective emission rate is `(amount * amount_ratio) / lifetime` particles per second. Higher values will increase GPU requirements, even if not all particles are visible at a given time or if [amountRatio] is decreased.
-   *
-   * **Note:** Changing this value will cause the particle system to restart. To avoid this, change [amountRatio] instead.
+   * The number of particles to emit in one emission cycle. The effective emission rate is `(amount
+   * * amount_ratio) / lifetime` particles per second. Higher values will increase GPU requirements,
+   * even if not all particles are visible at a given time or if [amountRatio] is decreased.
+   * **Note:** Changing this value will cause the particle system to restart. To avoid this, change
+   * [amountRatio] instead.
    */
   public var amount: Int
     get() {
@@ -89,9 +92,15 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * The ratio of particles that should actually be emitted. If set to a value lower than `1.0`, this will set the amount of emitted particles throughout the lifetime to `amount * amount_ratio`. Unlike changing [amount], changing [amountRatio] while emitting does not affect already-emitted particles and doesn't cause the particle system to restart. [amountRatio] can be used to create effects that make the number of emitted particles vary over time.
-   *
-   * **Note:** Reducing the [amountRatio] has no performance benefit, since resources need to be allocated and processed for the total [amount] of particles regardless of the [amountRatio]. If you don't intend to change the number of particles emitted while the particles are emitting, make sure [amountRatio] is set to `1` and change [amount] to your liking instead.
+   * The ratio of particles that should actually be emitted. If set to a value lower than `1.0`,
+   * this will set the amount of emitted particles throughout the lifetime to `amount * amount_ratio`.
+   * Unlike changing [amount], changing [amountRatio] while emitting does not affect already-emitted
+   * particles and doesn't cause the particle system to restart. [amountRatio] can be used to create
+   * effects that make the number of emitted particles vary over time.
+   * **Note:** Reducing the [amountRatio] has no performance benefit, since resources need to be
+   * allocated and processed for the total [amount] of particles regardless of the [amountRatio]. If
+   * you don't intend to change the number of particles emitted while the particles are emitting, make
+   * sure [amountRatio] is set to `1` and change [amount] to your liking instead.
    */
   public var amountRatio: Float
     get() {
@@ -105,9 +114,11 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * Path to another [godot.GPUParticles2D] node that will be used as a subemitter (see [godot.ParticleProcessMaterial.subEmitterMode]). Subemitters can be used to achieve effects such as fireworks, sparks on collision, bubbles popping into water drops, and more.
-   *
-   * **Note:** When [subEmitter] is set, the target [godot.GPUParticles2D] node will no longer emit particles on its own.
+   * Path to another [GPUParticles2D] node that will be used as a subemitter (see
+   * [ParticleProcessMaterial.subEmitterMode]). Subemitters can be used to achieve effects such as
+   * fireworks, sparks on collision, bubbles popping into water drops, and more.
+   * **Note:** When [subEmitter] is set, the target [GPUParticles2D] node will no longer emit
+   * particles on its own.
    */
   public var subEmitter: NodePath
     get() {
@@ -121,7 +132,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * [godot.Material] for processing particles. Can be a [godot.ParticleProcessMaterial] or a [godot.ShaderMaterial].
+   * [Material] for processing particles. Can be a [ParticleProcessMaterial] or a [ShaderMaterial].
    */
   public var processMaterial: Material?
     get() {
@@ -136,8 +147,11 @@ public open class GPUParticles2D : Node2D() {
 
   /**
    * Particle texture. If `null`, particles will be squares with a size of 1×1 pixels.
-   *
-   * **Note:** To use a flipbook texture, assign a new [godot.CanvasItemMaterial] to the [godot.GPUParticles2D]'s [godot.CanvasItem.material] property, then enable [godot.CanvasItemMaterial.particlesAnimation] and set [godot.CanvasItemMaterial.particlesAnimHFrames], [godot.CanvasItemMaterial.particlesAnimVFrames], and [godot.CanvasItemMaterial.particlesAnimLoop] to match the flipbook texture.
+   * **Note:** To use a flipbook texture, assign a new [CanvasItemMaterial] to the
+   * [GPUParticles2D]'s [CanvasItem.material] property, then enable
+   * [CanvasItemMaterial.particlesAnimation] and set [CanvasItemMaterial.particlesAnimHFrames],
+   * [CanvasItemMaterial.particlesAnimVFrames], and [CanvasItemMaterial.particlesAnimLoop] to match the
+   * flipbook texture.
    */
   public var texture: Texture2D?
     get() {
@@ -151,7 +165,8 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * The amount of time each particle will exist (in seconds). The effective emission rate is `(amount * amount_ratio) / lifetime` particles per second.
+   * The amount of time each particle will exist (in seconds). The effective emission rate is
+   * `(amount * amount_ratio) / lifetime` particles per second.
    */
   public var lifetime: Double
     get() {
@@ -165,7 +180,8 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at the cycle's end.
+   * If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at
+   * the cycle's end.
    */
   public var oneShot: Boolean
     get() {
@@ -193,7 +209,8 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * Particle system's running speed scaling ratio. A value of `0` can be used to pause the particles.
+   * Particle system's running speed scaling ratio. A value of `0` can be used to pause the
+   * particles.
    */
   public var speedScale: Double
     get() {
@@ -207,7 +224,8 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * How rapidly particles in an emission cycle are emitted. If greater than `0`, there will be a gap in emissions before the next cycle begins.
+   * How rapidly particles in an emission cycle are emitted. If greater than `0`, there will be a
+   * gap in emissions before the next cycle begins.
    */
   public var explosiveness: Float
     get() {
@@ -235,7 +253,9 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * The particle system's frame rate is fixed to a value. For example, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself.
+   * The particle system's frame rate is fixed to a value. For example, changing the value to 2 will
+   * make the particles render at 2 frames per second. Note this does not slow down the simulation of
+   * the particle system itself.
    */
   public var fixedFps: Int
     get() {
@@ -249,7 +269,8 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * Enables particle interpolation, which makes the particle movement smoother when their [fixedFps] is lower than the screen refresh rate.
+   * Enables particle interpolation, which makes the particle movement smoother when their
+   * [fixedFps] is lower than the screen refresh rate.
    */
   public var interpolate: Boolean
     get() {
@@ -263,7 +284,8 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * If `true`, results in fractional delta calculation which has a smoother particles display effect.
+   * If `true`, results in fractional delta calculation which has a smoother particles display
+   * effect.
    */
   public var fractDelta: Boolean
     get() {
@@ -278,8 +300,8 @@ public open class GPUParticles2D : Node2D() {
 
   /**
    * Causes all the particles in this node to interpolate towards the end of their lifetime.
-   *
-   * **Note:** This only works when used with a [godot.ParticleProcessMaterial]. It needs to be manually implemented for custom process shaders.
+   * **Note:** This only works when used with a [ParticleProcessMaterial]. It needs to be manually
+   * implemented for custom process shaders.
    */
   public var interpToEnd: Float
     get() {
@@ -293,8 +315,11 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * Multiplier for particle's collision radius. `1.0` corresponds to the size of the sprite. If particles appear to sink into the ground when colliding, increase this value. If particles appear to float when colliding, decrease this value. Only effective if [godot.ParticleProcessMaterial.collisionMode] is [godot.ParticleProcessMaterial.COLLISION_RIGID] or [godot.ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT].
-   *
+   * Multiplier for particle's collision radius. `1.0` corresponds to the size of the sprite. If
+   * particles appear to sink into the ground when colliding, increase this value. If particles appear
+   * to float when colliding, decrease this value. Only effective if
+   * [ParticleProcessMaterial.collisionMode] is [constant ParticleProcessMaterial.COLLISION_RIGID] or
+   * [constant ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT].
    * **Note:** Particles always have a spherical collision shape.
    */
   public var collisionBaseSize: Float
@@ -309,9 +334,10 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * The [godot.core.Rect2] that determines the node's region which needs to be visible on screen for the particle system to be active.
-   *
-   * Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The [godot.core.Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.
+   * The [Rect2] that determines the node's region which needs to be visible on screen for the
+   * particle system to be active.
+   * Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The
+   * [Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.
    */
   @CoreTypeLocalCopy
   public var visibilityRect: Rect2
@@ -326,7 +352,10 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * If `true`, particles use the parent node's coordinate space (known as local coordinates). This will cause particles to move and rotate along the [godot.GPUParticles2D] node (and its parents) when it is moved or rotated. If `false`, particles use global coordinates; they will not move or rotate along the [godot.GPUParticles2D] node (and its parents) when it is moved or rotated.
+   * If `true`, particles use the parent node's coordinate space (known as local coordinates). This
+   * will cause particles to move and rotate along the [GPUParticles2D] node (and its parents) when it
+   * is moved or rotated. If `false`, particles use global coordinates; they will not move or rotate
+   * along the [GPUParticles2D] node (and its parents) when it is moved or rotated.
    */
   public var localCoords: Boolean
     get() {
@@ -355,8 +384,8 @@ public open class GPUParticles2D : Node2D() {
 
   /**
    * If `true`, enables particle trails using a mesh skinning system.
-   *
-   * **Note:** Unlike [godot.GPUParticles3D], the number of trail sections and subdivisions is set with the [trailSections] and [trailSectionSubdivisions] properties.
+   * **Note:** Unlike [GPUParticles3D], the number of trail sections and subdivisions is set with
+   * the [trailSections] and [trailSectionSubdivisions] properties.
    */
   public var trailEnabled: Boolean
     get() {
@@ -370,7 +399,8 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * The amount of time the particle's trail should represent (in seconds). Only effective if [trailEnabled] is `true`.
+   * The amount of time the particle's trail should represent (in seconds). Only effective if
+   * [trailEnabled] is `true`.
    */
   public var trailLifetime: Double
     get() {
@@ -384,7 +414,9 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * The number of sections to use for the particle trail rendering. Higher values can result in smoother trail curves, at the cost of performance due to increased mesh complexity. See also [trailSectionSubdivisions]. Only effective if [trailEnabled] is `true`.
+   * The number of sections to use for the particle trail rendering. Higher values can result in
+   * smoother trail curves, at the cost of performance due to increased mesh complexity. See also
+   * [trailSectionSubdivisions]. Only effective if [trailEnabled] is `true`.
    */
   public var trailSections: Int
     get() {
@@ -398,7 +430,9 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * The number of subdivisions to use for the particle trail rendering. Higher values can result in smoother trail curves, at the cost of performance due to increased mesh complexity. See also [trailSections]. Only effective if [trailEnabled] is `true`.
+   * The number of subdivisions to use for the particle trail rendering. Higher values can result in
+   * smoother trail curves, at the cost of performance due to increased mesh complexity. See also
+   * [trailSections]. Only effective if [trailEnabled] is `true`.
    */
   public var trailSectionSubdivisions: Int
     get() {
@@ -417,9 +451,10 @@ public open class GPUParticles2D : Node2D() {
   }
 
   /**
-   * The [godot.core.Rect2] that determines the node's region which needs to be visible on screen for the particle system to be active.
-   *
-   * Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The [godot.core.Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.
+   * The [Rect2] that determines the node's region which needs to be visible on screen for the
+   * particle system to be active.
+   * Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The
+   * [Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -444,8 +479,8 @@ public open class GPUParticles2D : Node2D() {
 
   /**
    * Returns a rectangle containing the positions of all existing particles.
-   *
-   * **Note:** When using threaded rendering this method synchronizes the rendering thread. Calling it often may have a negative impact on performance.
+   * **Note:** When using threaded rendering this method synchronizes the rendering thread. Calling
+   * it often may have a negative impact on performance.
    */
   public fun captureRect(): Rect2 {
     TransferContext.writeArguments()
@@ -462,7 +497,8 @@ public open class GPUParticles2D : Node2D() {
   }
 
   /**
-   * Emits a single particle. Whether [xform], [velocity], [color] and [custom] are applied depends on the value of [flags]. See [enum EmitFlags].
+   * Emits a single particle. Whether [param xform], [param velocity], [param color] and [param
+   * custom] are applied depends on the value of [param flags]. See [enum EmitFlags].
    */
   public fun emitParticle(
     xform: Transform2D,
@@ -476,7 +512,7 @@ public open class GPUParticles2D : Node2D() {
   }
 
   /**
-   * Sets this node's properties to match a given [godot.CPUParticles2D] node.
+   * Sets this node's properties to match a given [CPUParticles2D] node.
    */
   public fun convertFromParticles(particles: Node): Unit {
     TransferContext.writeArguments(OBJECT to particles)
@@ -491,11 +527,13 @@ public open class GPUParticles2D : Node2D() {
      */
     DRAW_ORDER_INDEX(0),
     /**
-     * Particles are drawn in order of remaining lifetime. In other words, the particle with the highest lifetime is drawn at the front.
+     * Particles are drawn in order of remaining lifetime. In other words, the particle with the
+     * highest lifetime is drawn at the front.
      */
     DRAW_ORDER_LIFETIME(1),
     /**
-     * Particles are drawn in reverse order of remaining lifetime. In other words, the particle with the lowest lifetime is drawn at the front.
+     * Particles are drawn in reverse order of remaining lifetime. In other words, the particle with
+     * the lowest lifetime is drawn at the front.
      */
     DRAW_ORDER_REVERSE_LIFETIME(2),
     ;
@@ -522,7 +560,8 @@ public open class GPUParticles2D : Node2D() {
      */
     EMIT_FLAG_ROTATION_SCALE(2),
     /**
-     * Particle starts with the specified velocity vector, which defines the emission direction and speed.
+     * Particle starts with the specified velocity vector, which defines the emission direction and
+     * speed.
      */
     EMIT_FLAG_VELOCITY(4),
     /**

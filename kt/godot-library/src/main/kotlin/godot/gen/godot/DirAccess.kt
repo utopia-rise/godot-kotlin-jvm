@@ -336,8 +336,8 @@ public open class DirAccess internal constructor() : RefCounted() {
 
   /**
    * Returns `true` if the file system or directory use case sensitive file names.
-   *
-   * **Note:** This method is implemented on macOS, Linux (for EXT4 and F2FS filesystems only) and Windows. On other platforms, it always returns `true`.
+   * **Note:** This method is implemented on macOS, Linux (for EXT4 and F2FS filesystems only) and
+   * Windows. On other platforms, it always returns `true`.
    */
   public fun isCaseSensitive(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)

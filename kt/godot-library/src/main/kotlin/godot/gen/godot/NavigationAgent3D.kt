@@ -418,7 +418,9 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * If `true`, and the agent uses 2D avoidance, it will remember the set y-axis velocity and reapply it after the avoidance step. While 2D avoidance has no y-axis and simulates on a flat plane this setting can help mitigate the most obvious clipping on uneven 3D geometry.
+   * If `true`, and the agent uses 2D avoidance, it will remember the set y-axis velocity and
+   * reapply it after the avoidance step. While 2D avoidance has no y-axis and simulates on a flat
+   * plane this setting can help mitigate the most obvious clipping on uneven 3D geometry.
    */
   public var keepYVelocity: Boolean
     get() {

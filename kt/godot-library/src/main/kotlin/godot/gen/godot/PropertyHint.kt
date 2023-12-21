@@ -132,6 +132,10 @@ public enum class PropertyHint(
    * not editable).
    */
   PROPERTY_HINT_COLOR_NO_ALPHA(21),
+  /**
+   * Hints that the property's value is an object encoded as object ID, with its type specified in
+   * the hint string. Used by the debugger.
+   */
   PROPERTY_HINT_OBJECT_ID(22),
   /**
    * If a property is [String], hints that the property represents a particular type (class). This
@@ -220,13 +224,44 @@ public enum class PropertyHint(
    * **Note:** The trailing colon is required for properly detecting built-in types.
    */
   PROPERTY_HINT_TYPE_STRING(23),
+  /**
+   * *Deprecated.* This hint is not used anywhere and will be removed in the future.
+   */
   PROPERTY_HINT_NODE_PATH_TO_EDITED_NODE(24),
+  /**
+   * Hints that an object is too big to be sent via the debugger.
+   */
   PROPERTY_HINT_OBJECT_TOO_BIG(25),
+  /**
+   * Hints that the hint string specifies valid node types for property of type [NodePath].
+   */
   PROPERTY_HINT_NODE_PATH_VALID_TYPES(26),
+  /**
+   * Hints that a [String] property is a path to a file. Editing it will show a file dialog for
+   * picking the path for the file to be saved at. The dialog has access to the project's directory.
+   * The hint string can be a set of filters with wildcards like `"*.png,*.jpg"`. See also
+   * [FileDialog.filters].
+   */
   PROPERTY_HINT_SAVE_FILE(27),
+  /**
+   * Hints that a [String] property is a path to a file. Editing it will show a file dialog for
+   * picking the path for the file to be saved at. The dialog has access to the entire filesystem. The
+   * hint string can be a set of filters with wildcards like `"*.png,*.jpg"`. See also
+   * [FileDialog.filters].
+   */
   PROPERTY_HINT_GLOBAL_SAVE_FILE(28),
+  /**
+   * Hints that an [int] property is an object ID.
+   * *Deprecated.* This hint is not used anywhere and will be removed in the future.
+   */
   PROPERTY_HINT_INT_IS_OBJECTID(29),
+  /**
+   * Hints that an [int] property is a pointer. Used by GDExtension.
+   */
   PROPERTY_HINT_INT_IS_POINTER(30),
+  /**
+   * Hints that a property is an [Array] with the stored type specified in the hint string.
+   */
   PROPERTY_HINT_ARRAY_TYPE(31),
   /**
    * Hints that a string property is a locale code. Editing it will show a locale dialog for picking
@@ -238,6 +273,10 @@ public enum class PropertyHint(
    * and, values are translated strings.
    */
   PROPERTY_HINT_LOCALIZABLE_STRING(33),
+  /**
+   * Hints that a property is an instance of a [Node]-derived type, optionally specified via the
+   * hint string (e.g. `"Node2D"`). Editing it will show a dialog for picking a node from the scene.
+   */
   PROPERTY_HINT_NODE_TYPE(34),
   /**
    * Hints that a quaternion property should disable the temporary euler editor.

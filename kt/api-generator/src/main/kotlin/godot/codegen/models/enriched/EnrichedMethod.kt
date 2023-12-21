@@ -36,7 +36,7 @@ class EnrichedMethod(val internal: Method, engineClassIndexName: String) : Calla
     override val type = internal.returnValue?.type?.sanitizeApiType()
     override val meta: String? = internal.returnValue?.meta
     override val nullable = isObjectSubClass() || type == GodotTypes.variant
-    override val documentation = internal.documentation
+    override val description = internal.description
 }
 
 fun List<Method>.toEnriched(engineClassIndexName: String) = map { EnrichedMethod(it, engineClassIndexName) }

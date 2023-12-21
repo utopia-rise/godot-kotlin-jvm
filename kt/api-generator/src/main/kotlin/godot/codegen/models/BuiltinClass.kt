@@ -14,5 +14,6 @@ data class BuiltinClass @JsonCreator constructor (
     @JsonProperty("constants") val constants: List<Constant>?,
     @JsonProperty("enums") val enums: List<Enum>?,
     @JsonProperty("indexing_return_type") val indexingReturnType: String?,
-    @JsonProperty("documentation") val documentation: String?
+    @JsonProperty("description") val description: String?,
+    @JsonProperty("brief_description") val briefDescription: String?
 )

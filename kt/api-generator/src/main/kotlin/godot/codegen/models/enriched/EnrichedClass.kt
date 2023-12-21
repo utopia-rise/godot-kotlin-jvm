@@ -17,7 +17,7 @@ class EnrichedClass(val internal: Class) : TypedTrait, IDocumented {
     val properties= internal.properties?.toEnriched() ?: listOf()
     val methods = internal.methods?.toEnriched(engineClassDBIndexName) ?: listOf()
     val apiType = ApiType.from(internal.apiType)
-    override val documentation = internal.documentation
+    override val description = internal.description
 
     override val type = name
 

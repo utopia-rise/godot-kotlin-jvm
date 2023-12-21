@@ -3109,11 +3109,13 @@ public open class TextServer internal constructor() : RefCounted() {
      */
     FIXED_SIZE_SCALE_DISABLE(0),
     /**
-     * Bitmap font is scaled to the closest integer multiple of the font's fixed size. This is the recommended option for pixel art fonts.
+     * Bitmap font is scaled to the closest integer multiple of the font's fixed size. This is the
+     * recommended option for pixel art fonts.
      */
     FIXED_SIZE_SCALE_INTEGER_ONLY(1),
     /**
-     * Bitmap font is scaled to an arbitrary (fractional) size. This is the recommended option for non-pixel art fonts.
+     * Bitmap font is scaled to an arbitrary (fractional) size. This is the recommended option for
+     * non-pixel art fonts.
      */
     FIXED_SIZE_SCALE_ENABLED(2),
     ;

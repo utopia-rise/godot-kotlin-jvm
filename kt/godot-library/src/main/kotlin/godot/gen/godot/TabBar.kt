@@ -38,7 +38,8 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class TabBar : Control() {
   /**
-   * Emitted when a tab is selected via click, directional input, or script, even if it is the current tab.
+   * Emitted when a tab is selected via click, directional input, or script, even if it is the
+   * current tab.
    */
   public val tabSelected: Signal1<Long> by signal("tab")
 

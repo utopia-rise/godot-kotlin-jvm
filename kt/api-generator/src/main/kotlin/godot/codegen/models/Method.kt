@@ -14,5 +14,6 @@ data class Method @JsonCreator constructor(
     @JsonProperty("return_value") val returnValue : ReturnValue?,
     @JsonProperty("return_type") val returnType: String?,
     @JsonProperty("arguments") val arguments : List<Argument>?,
-    @JsonProperty("documentation") val documentation: String?
+    @JsonProperty("description") val description: String?,
+    @JsonProperty("brief_description") val briefDescription: String?
 )

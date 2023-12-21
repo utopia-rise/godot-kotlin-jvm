@@ -10,5 +10,6 @@ data class Property @JsonCreator constructor(
     @JsonProperty("setter") val setter: String?,
     @JsonProperty("getter") val getter: String,
     @JsonProperty("index") val index: Int?,
-    @JsonProperty("documentation") val documentation: String?
+    @JsonProperty("description") val description: String?,
+    @JsonProperty("brief_description") val briefDescription: String?
 ) : TypedTrait

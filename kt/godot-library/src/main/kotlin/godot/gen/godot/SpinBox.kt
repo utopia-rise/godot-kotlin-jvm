@@ -25,58 +25,42 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * An input field for numbers.
- *
- * [godot.SpinBox] is a numerical input text field. It allows entering integers and floating point numbers.
- *
+ * [SpinBox] is a numerical input text field. It allows entering integers and floating point
+ * numbers.
  * **Example:**
  *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * var spin_box = SpinBox.new()
- *
  * add_child(spin_box)
- *
  * var line_edit = spin_box.get_line_edit()
- *
  * line_edit.context_menu_enabled = false
- *
  * spin_box.horizontal_alignment = LineEdit.HORIZONTAL_ALIGNMENT_RIGHT
- *
- * [/gdscript]
- *
- * [csharp]
- *
+ * ```
+ * csharp:
+ * ```csharp
  * var spinBox = new SpinBox();
- *
  * AddChild(spinBox);
- *
  * var lineEdit = spinBox.GetLineEdit();
- *
  * lineEdit.ContextMenuEnabled = false;
- *
  * spinBox.AlignHorizontal = LineEdit.HorizontalAlignEnum.Right;
+ * ```
  *
- * [/csharp]
- *
- * [/codeblocks]
- *
- * The above code will create a [godot.SpinBox], disable context menu on it and set the text alignment to right.
- *
- * See [godot.Range] class for more options over the [godot.SpinBox].
- *
- * **Note:** With the [godot.SpinBox]'s context menu disabled, you can right-click the bottom half of the spinbox to set the value to its minimum, while right-clicking the top half sets the value to its maximum.
- *
- * **Note:** [godot.SpinBox] relies on an underlying [godot.LineEdit] node. To theme a [godot.SpinBox]'s background, add theme items for [godot.LineEdit] and customize them.
- *
- * **Note:** If you want to implement drag and drop for the underlying [godot.LineEdit], you can use [godot.Control.setDragForwarding] on the node returned by [getLineEdit].
+ * The above code will create a [SpinBox], disable context menu on it and set the text alignment to
+ * right.
+ * See [Range] class for more options over the [SpinBox].
+ * **Note:** With the [SpinBox]'s context menu disabled, you can right-click the bottom half of the
+ * spinbox to set the value to its minimum, while right-clicking the top half sets the value to its
+ * maximum.
+ * **Note:** [SpinBox] relies on an underlying [LineEdit] node. To theme a [SpinBox]'s background,
+ * add theme items for [LineEdit] and customize them.
+ * **Note:** If you want to implement drag and drop for the underlying [LineEdit], you can use
+ * [Control.setDragForwarding] on the node returned by [getLineEdit].
  */
 @GodotBaseType
 public open class SpinBox : Range() {
   /**
-   * Changes the alignment of the underlying [godot.LineEdit].
+   * Changes the alignment of the underlying [LineEdit].
    */
   public var alignment: HorizontalAlignment
     get() {
@@ -90,7 +74,7 @@ public open class SpinBox : Range() {
     }
 
   /**
-   * If `true`, the [godot.SpinBox] will be editable. Otherwise, it will be read only.
+   * If `true`, the [SpinBox] will be editable. Otherwise, it will be read only.
    */
   public var editable: Boolean
     get() {
@@ -104,7 +88,8 @@ public open class SpinBox : Range() {
     }
 
   /**
-   * Sets the value of the [godot.Range] for this [godot.SpinBox] when the [godot.LineEdit] text is *changed* instead of *submitted*. See [godot.LineEdit.textChanged] and [godot.LineEdit.textSubmitted].
+   * Sets the value of the [Range] for this [SpinBox] when the [LineEdit] text is *changed* instead
+   * of *submitted*. See [signal LineEdit.text_changed] and [signal LineEdit.text_submitted].
    */
   public var updateOnTextChanged: Boolean
     get() {
@@ -118,7 +103,7 @@ public open class SpinBox : Range() {
     }
 
   /**
-   * Adds the specified prefix string before the numerical value of the [godot.SpinBox].
+   * Adds the specified prefix string before the numerical value of the [SpinBox].
    */
   public var prefix: String
     get() {
@@ -132,7 +117,7 @@ public open class SpinBox : Range() {
     }
 
   /**
-   * Adds the specified suffix string after the numerical value of the [godot.SpinBox].
+   * Adds the specified suffix string after the numerical value of the [SpinBox].
    */
   public var suffix: String
     get() {
@@ -146,7 +131,8 @@ public open class SpinBox : Range() {
     }
 
   /**
-   * If not `0`, [godot.Range.value] will always be rounded to a multiple of [customArrowStep] when interacting with the arrow buttons of the [godot.SpinBox].
+   * If not `0`, [Range.value] will always be rounded to a multiple of [customArrowStep] when
+   * interacting with the arrow buttons of the [SpinBox].
    */
   public var customArrowStep: Double
     get() {
@@ -160,7 +146,8 @@ public open class SpinBox : Range() {
     }
 
   /**
-   * If `true`, the [godot.SpinBox] will select the whole text when the [godot.LineEdit] gains focus. Clicking the up and down arrows won't trigger this behavior.
+   * If `true`, the [SpinBox] will select the whole text when the [LineEdit] gains focus. Clicking
+   * the up and down arrows won't trigger this behavior.
    */
   public var selectAllOnFocus: Boolean
     get() {
@@ -179,7 +166,7 @@ public open class SpinBox : Range() {
   }
 
   /**
-   * Applies the current value of this [godot.SpinBox].
+   * Applies the current value of this [SpinBox].
    */
   public fun apply(): Unit {
     TransferContext.writeArguments()
@@ -187,9 +174,10 @@ public open class SpinBox : Range() {
   }
 
   /**
-   * Returns the [godot.LineEdit] instance from this [godot.SpinBox]. You can use it to access properties and methods of [godot.LineEdit].
-   *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
+   * Returns the [LineEdit] instance from this [SpinBox]. You can use it to access properties and
+   * methods of [LineEdit].
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
+   * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public fun getLineEdit(): LineEdit? {
     TransferContext.writeArguments()

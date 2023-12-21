@@ -11,5 +11,6 @@ data class UtilityFunction @JsonCreator constructor (
     @JsonProperty("is_vararg") val isVararg : Boolean,
     @JsonProperty("hash") val hash : Long,
     @JsonProperty("arguments") val arguments : List<Argument>?,
-    @JsonProperty("documentation") val documentation: String?
+    @JsonProperty("description") val description: String?,
+    @JsonProperty("brief_description") val briefDescription: String?
 )
