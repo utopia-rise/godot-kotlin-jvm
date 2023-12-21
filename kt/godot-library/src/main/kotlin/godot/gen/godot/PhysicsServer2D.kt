@@ -1290,29 +1290,6 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets a pin joint flag (see [enum PinJointFlag] constants).
-   */
-  public fun pinJointSetFlag(
-    joint: RID,
-    flag: PinJointFlag,
-    enabled: Boolean,
-  ): Unit {
-    TransferContext.writeArguments(_RID to joint, LONG to flag.id, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_PIN_JOINT_SET_FLAG,
-        NIL)
-  }
-
-  /**
-   * Gets a pin joint flag (see [enum PinJointFlag] constants).
-   */
-  public fun pinJointGetFlag(joint: RID, flag: PinJointFlag): Boolean {
-    TransferContext.writeArguments(_RID to joint, LONG to flag.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_PIN_JOINT_GET_FLAG,
-        BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-  }
-
-  /**
    * Sets a pin joint parameter. See [enum PinJointParam] for a list of available parameters.
    */
   public fun pinJointSetParam(

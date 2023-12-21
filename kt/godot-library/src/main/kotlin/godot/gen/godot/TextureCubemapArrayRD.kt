@@ -12,19 +12,17 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * This imports a collection of textures from a PNG image into an [AtlasTexture] or 2D [ArrayMesh].
- * This can be used to save memory when importing 2D animations from spritesheets. Texture atlases are
- * only supported in 2D rendering, not 3D. See also [ResourceImporterTexture] and
- * [ResourceImporterLayeredTexture].
- * **Note:** [ResourceImporterTextureAtlas] does not handle importing [TileSetAtlasSource], which is
- * created using the [TileSet] editor instead.
+ * This texture class allows you to use a cubemap array texture created directly on the
+ * [RenderingDevice] as a texture for materials, meshes, etc.
  */
 @GodotBaseType
-public open class ResourceImporterTextureAtlas internal constructor() : ResourceImporter() {
+public open class TextureCubemapArrayRD : TextureLayeredRD() {
   public override fun new(scriptIndex: Int): Boolean {
-    callConstructor(ENGINECLASS_RESOURCEIMPORTERTEXTUREATLAS, scriptIndex)
+    callConstructor(ENGINECLASS_TEXTURECUBEMAPARRAYRD, scriptIndex)
     return true
   }
 
   public companion object
+
+  internal object MethodBindings
 }

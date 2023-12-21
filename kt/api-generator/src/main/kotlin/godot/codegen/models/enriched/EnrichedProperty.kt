@@ -49,7 +49,7 @@ class EnrichedProperty(val internal: Property) : CastableTrait, NullableTrait, I
     override val nullable = isObjectSubClass() || type == GodotTypes.variant
     override val meta: String?
         get() = getterMethod?.meta
-    override val documentation = internal.documentation
+    override val description = internal.description
 }
 
 fun List<Property>.toEnriched() = map {

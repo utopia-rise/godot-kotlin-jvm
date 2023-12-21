@@ -14,7 +14,8 @@ data class Class @JsonCreator constructor (
     @JsonProperty("properties") val properties: List<Property>?,
     @JsonProperty("constants") val constants: List<Constant>?,
     @JsonProperty("signals") val signals : List<Signal>?,
-    @JsonProperty("documentation") val documentation: String?
+    @JsonProperty("description") val description: String?,
+    @JsonProperty("brief_description") val briefDescription: String?
 ) {
     fun copy(newName: String) = Class(
         newName,
@@ -27,6 +28,7 @@ data class Class @JsonCreator constructor (
         properties,
         constants,
         signals,
-        documentation
+        description,
+        briefDescription
     )
 }

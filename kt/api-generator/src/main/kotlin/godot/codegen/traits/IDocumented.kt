@@ -22,11 +22,11 @@ private val languages = arrayOf(
 )
 
 interface IDocumented {
-    val documentation: String?
+    val description: String?
 
     val sanitizedDocumentation: String?
         get() {
-            var unicodeString = documentation
+            var unicodeString = description
                 ?.replace("/*", "&#47;*")
                 ?.replace("%", "&#37;")
                 ?.replace("*/", "*&#92;")

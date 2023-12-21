@@ -7,5 +7,5 @@ import godot.codegen.traits.IDocumented
 data class EnumValue @JsonCreator constructor(
     @JsonProperty("name") val name : String,
     @JsonProperty("value") val value : Long,
-    @JsonProperty("documentation") override val documentation: String? = null
+    @JsonProperty("description") override val description: String? = null
 ) : IDocumented

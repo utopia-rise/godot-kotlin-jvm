@@ -270,21 +270,6 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Global basis of this node. This is equivalent to `global_transform.basis`.
-   */
-  @CoreTypeLocalCopy
-  public var globalBasis: Basis
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_GET_GLOBAL_BASIS, BASIS)
-      return (TransferContext.readReturnValue(BASIS, false) as Basis)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BASIS to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE3D_SET_GLOBAL_BASIS, NIL)
-    }
-
-  /**
    * Rotation part of the global transformation in radians, specified in terms of YXZ-Euler angles
    * in the format (X angle, Y angle, Z angle).
    * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler

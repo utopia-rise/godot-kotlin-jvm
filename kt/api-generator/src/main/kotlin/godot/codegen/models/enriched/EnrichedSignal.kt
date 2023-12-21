@@ -12,7 +12,7 @@ class EnrichedSignal(val internal: Signal) : TypedTrait, IDocumented {
     val name = internal.name.convertToCamelCase().escapeKotlinReservedNames()
     val arguments = internal.arguments?.toEnriched() ?: listOf()
     override val type = "Signal${arguments.size}"
-    override val documentation = internal.documentation
+    override val description = internal.description
 
     init{
         if (arguments.size > Constraints.MAX_SIGNAL_ARG_COUNT) {

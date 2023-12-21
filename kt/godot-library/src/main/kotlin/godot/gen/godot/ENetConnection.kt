@@ -334,8 +334,9 @@ public open class ENetConnection : RefCounted() {
      */
     EVENT_DISCONNECT(2),
     /**
-     * A packet has been received from a peer. The array will contain the peer which sent the
-     * packet, the channel number upon which the packet was received, and the received packet.
+     * A packet has been received from a peer. The array will contain the peer which sent the packet
+     * and the channel number upon which the packet was received. The received packet will be queued to
+     * the associated [ENetPacketPeer].
      */
     EVENT_RECEIVE(3),
     ;

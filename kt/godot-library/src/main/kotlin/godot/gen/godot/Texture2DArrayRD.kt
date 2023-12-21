@@ -12,15 +12,17 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * This texture class allows you to use a cubemap array texture created directly on the
+ * This texture array class allows you to use a 2D array texture created directly on the
  * [RenderingDevice] as a texture for materials, meshes, etc.
  */
 @GodotBaseType
-public open class TextureCubemapArrayRD : TextureLayeredRD() {
+public open class Texture2DArrayRD : TextureLayeredRD() {
   public override fun new(scriptIndex: Int): Boolean {
-    callConstructor(ENGINECLASS_TEXTURECUBEMAPARRAYRD, scriptIndex)
+    callConstructor(ENGINECLASS_TEXTURE2DARRAYRD, scriptIndex)
     return true
   }
 
   public companion object
+
+  internal object MethodBindings
 }

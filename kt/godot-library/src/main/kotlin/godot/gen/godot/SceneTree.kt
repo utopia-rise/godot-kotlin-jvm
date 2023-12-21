@@ -38,36 +38,35 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Manages the game loop via a hierarchy of nodes.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/rendering/multiple_resolutions.html]($DOCS_URL/tutorials/rendering/multiple_resolutions.html)
- *
- * As one of the most important classes, the [godot.SceneTree] manages the hierarchy of nodes in a scene as well as scenes themselves. Nodes can be added, retrieved and removed. The whole scene tree (and thus the current scene) can be paused. Scenes can be loaded, switched and reloaded.
- *
- * You can also use the [godot.SceneTree] to organize your nodes into groups: every node can be assigned as many groups as you want to create, e.g. an "enemy" group. You can then iterate these groups or even call methods and set properties on all the group's members at once.
- *
- * [godot.SceneTree] is the default [godot.MainLoop] implementation used by scenes, and is thus in charge of the game loop.
+ * As one of the most important classes, the [SceneTree] manages the hierarchy of nodes in a scene
+ * as well as scenes themselves. Nodes can be added, retrieved and removed. The whole scene tree (and
+ * thus the current scene) can be paused. Scenes can be loaded, switched and reloaded.
+ * You can also use the [SceneTree] to organize your nodes into groups: every node can be assigned
+ * as many groups as you want to create, e.g. an "enemy" group. You can then iterate these groups or
+ * even call methods and set properties on all the group's members at once.
+ * [SceneTree] is the default [MainLoop] implementation used by scenes, and is thus in charge of the
+ * game loop.
  */
 @GodotBaseType
 public open class SceneTree : MainLoop() {
   /**
-   * Emitted whenever the [godot.SceneTree] hierarchy changed (children being moved or renamed, etc.).
+   * Emitted whenever the [SceneTree] hierarchy changed (children being moved or renamed, etc.).
    */
   public val treeChanged: Signal0 by signal()
 
   /**
-   * This signal is only emitted in the editor, it allows the editor to update the visibility of disabled nodes. Emitted whenever any node's [godot.Node.processMode] is changed.
+   * This signal is only emitted in the editor, it allows the editor to update the visibility of
+   * disabled nodes. Emitted whenever any node's [Node.processMode] is changed.
    */
   public val treeProcessModeChanged: Signal0 by signal()
 
   /**
-   * Emitted whenever a node is added to the [godot.SceneTree].
+   * Emitted whenever a node is added to the [SceneTree].
    */
   public val nodeAdded: Signal1<Node> by signal("node")
 
   /**
-   * Emitted whenever a node is removed from the [godot.SceneTree].
+   * Emitted whenever a node is removed from the [SceneTree].
    */
   public val nodeRemoved: Signal1<Node> by signal("node")
 
@@ -82,18 +81,17 @@ public open class SceneTree : MainLoop() {
   public val nodeConfigurationWarningChanged: Signal1<Node> by signal("node")
 
   /**
-   * Emitted immediately before [godot.Node.Process] is called on every node in the [godot.SceneTree].
+   * Emitted immediately before [Node.Process] is called on every node in the [SceneTree].
    */
   public val processFrame: Signal0 by signal()
 
   /**
-   * Emitted immediately before [godot.Node.PhysicsProcess] is called on every node in the [godot.SceneTree].
+   * Emitted immediately before [Node.PhysicsProcess] is called on every node in the [SceneTree].
    */
   public val physicsFrame: Signal0 by signal()
 
   /**
    * If `true`, the application automatically accepts quitting requests.
-   *
    * For mobile platforms, see [quitOnGoBack].
    */
   public var autoAcceptQuit: Boolean
@@ -108,9 +106,10 @@ public open class SceneTree : MainLoop() {
     }
 
   /**
-   * If `true`, the application quits automatically when navigating back (e.g. using the system "Back" button on Android).
-   *
-   * To handle 'Go Back' button when this option is disabled, use [godot.DisplayServer.WINDOW_EVENT_GO_BACK_REQUEST].
+   * If `true`, the application quits automatically when navigating back (e.g. using the system
+   * "Back" button on Android).
+   * To handle 'Go Back' button when this option is disabled, use [constant
+   * DisplayServer.WINDOW_EVENT_GO_BACK_REQUEST].
    */
   public var quitOnGoBack: Boolean
     get() {
@@ -124,9 +123,10 @@ public open class SceneTree : MainLoop() {
     }
 
   /**
-   * If `true`, collision shapes will be visible when running the game from the editor for debugging purposes.
-   *
-   * **Note:** This property is not designed to be changed at run-time. Changing the value of [debugCollisionsHint] while the project is running will not have the desired effect.
+   * If `true`, collision shapes will be visible when running the game from the editor for debugging
+   * purposes.
+   * **Note:** This property is not designed to be changed at run-time. Changing the value of
+   * [debugCollisionsHint] while the project is running will not have the desired effect.
    */
   public var debugCollisionsHint: Boolean
     get() {
@@ -140,9 +140,10 @@ public open class SceneTree : MainLoop() {
     }
 
   /**
-   * If `true`, curves from [godot.Path2D] and [godot.Path3D] nodes will be visible when running the game from the editor for debugging purposes.
-   *
-   * **Note:** This property is not designed to be changed at run-time. Changing the value of [debugPathsHint] while the project is running will not have the desired effect.
+   * If `true`, curves from [Path2D] and [Path3D] nodes will be visible when running the game from
+   * the editor for debugging purposes.
+   * **Note:** This property is not designed to be changed at run-time. Changing the value of
+   * [debugPathsHint] while the project is running will not have the desired effect.
    */
   public var debugPathsHint: Boolean
     get() {
@@ -156,9 +157,10 @@ public open class SceneTree : MainLoop() {
     }
 
   /**
-   * If `true`, navigation polygons will be visible when running the game from the editor for debugging purposes.
-   *
-   * **Note:** This property is not designed to be changed at run-time. Changing the value of [debugNavigationHint] while the project is running will not have the desired effect.
+   * If `true`, navigation polygons will be visible when running the game from the editor for
+   * debugging purposes.
+   * **Note:** This property is not designed to be changed at run-time. Changing the value of
+   * [debugNavigationHint] while the project is running will not have the desired effect.
    */
   public var debugNavigationHint: Boolean
     get() {
@@ -172,11 +174,9 @@ public open class SceneTree : MainLoop() {
     }
 
   /**
-   * If `true`, the [godot.SceneTree] is paused. Doing so will have the following behavior:
-   *
+   * If `true`, the [SceneTree] is paused. Doing so will have the following behavior:
    * - 2D and 3D physics will be stopped. This includes signals and collision detection.
-   *
-   * - [godot.Node.Process], [godot.Node.PhysicsProcess] and [godot.Node.Input] will not be called anymore in nodes.
+   * - [Node.Process], [Node.PhysicsProcess] and [Node.Input] will not be called anymore in nodes.
    */
   public var paused: Boolean
     get() {
@@ -205,8 +205,8 @@ public open class SceneTree : MainLoop() {
 
   /**
    * Returns the root node of the currently running scene, regardless of its structure.
-   *
-   * **Warning:** Setting this directly might not work as expected, and will *not* add or remove any nodes from the tree, consider using [changeSceneToFile] or [changeSceneToPacked] instead.
+   * **Warning:** Setting this directly might not work as expected, and will *not* add or remove any
+   * nodes from the tree, consider using [changeSceneToFile] or [changeSceneToPacked] instead.
    */
   public var currentScene: Node?
     get() {
@@ -220,7 +220,7 @@ public open class SceneTree : MainLoop() {
     }
 
   /**
-   * The [godot.SceneTree]'s root [godot.Window].
+   * The [SceneTree]'s root [Window].
    */
   public val root: Window?
     get() {
@@ -230,9 +230,11 @@ public open class SceneTree : MainLoop() {
     }
 
   /**
-   * If `true` (default value), enables automatic polling of the [godot.MultiplayerAPI] for this SceneTree during [processFrame].
-   *
-   * If `false`, you need to manually call [godot.MultiplayerAPI.poll] to process network packets and deliver RPCs. This allows running RPCs in a different loop (e.g. physics, thread, specific time step) and for manual [godot.Mutex] protection when accessing the [godot.MultiplayerAPI] from threads.
+   * If `true` (default value), enables automatic polling of the [MultiplayerAPI] for this SceneTree
+   * during [signal process_frame].
+   * If `false`, you need to manually call [MultiplayerAPI.poll] to process network packets and
+   * deliver RPCs. This allows running RPCs in a different loop (e.g. physics, thread, specific time
+   * step) and for manual [Mutex] protection when accessing the [MultiplayerAPI] from threads.
    */
   public var multiplayerPoll: Boolean
     get() {
@@ -252,8 +254,8 @@ public open class SceneTree : MainLoop() {
 
   /**
    * Returns `true` if the given group exists.
-   *
-   * A group exists if any [godot.Node] in the tree belongs to it (see [godot.Node.addToGroup]). Groups without nodes are removed automatically.
+   * A group exists if any [Node] in the tree belongs to it (see [Node.addToGroup]). Groups without
+   * nodes are removed automatically.
    */
   public fun hasGroup(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -262,51 +264,36 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Returns a [godot.SceneTreeTimer] which will emit [godot.SceneTreeTimer.timeout] after the given time in seconds elapsed in this [godot.SceneTree].
-   *
-   * If [processAlways] is set to `false`, pausing the [godot.SceneTree] will also pause the timer.
-   *
-   * If [processInPhysics] is set to `true`, will update the [godot.SceneTreeTimer] during the physics frame instead of the process frame (fixed framerate processing).
-   *
-   * If [ignoreTimeScale] is set to `true`, will ignore [godot.Engine.timeScale] and update the [godot.SceneTreeTimer] with the actual frame delta.
-   *
+   * Returns a [SceneTreeTimer] which will emit [signal SceneTreeTimer.timeout] after the given time
+   * in seconds elapsed in this [SceneTree].
+   * If [param process_always] is set to `false`, pausing the [SceneTree] will also pause the timer.
+   * If [param process_in_physics] is set to `true`, will update the [SceneTreeTimer] during the
+   * physics frame instead of the process frame (fixed framerate processing).
+   * If [param ignore_time_scale] is set to `true`, will ignore [Engine.timeScale] and update the
+   * [SceneTreeTimer] with the actual frame delta.
    * Commonly used to create a one-shot delay timer as in the following example:
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * func some_function():
-   *
    *     print("start")
-   *
    *     await get_tree().create_timer(1.0).timeout
-   *
    *     print("end")
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * public async Task SomeFunction()
-   *
    * {
-   *
    *     GD.Print("start");
-   *
    *     await ToSignal(GetTree().CreateTimer(1.0f), SceneTreeTimer.SignalName.Timeout);
-   *
    *     GD.Print("end");
-   *
    * }
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    *
    * The timer will be automatically freed after its time elapses.
-   *
-   * **Note:** The timer is processed after all of the nodes in the current frame, i.e. node's [godot.Node.Process] method would be called before the timer (or [godot.Node.PhysicsProcess] if [processInPhysics] is set to `true`).
+   * **Note:** The timer is processed after all of the nodes in the current frame, i.e. node's
+   * [Node.Process] method would be called before the timer (or [Node.PhysicsProcess] if [param
+   * process_in_physics] is set to `true`).
    */
   @JvmOverloads
   public fun createTimer(
@@ -321,9 +308,12 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Creates and returns a new [godot.Tween]. The Tween will start automatically on the next process frame or physics frame (depending on [enum Tween.TweenProcessMode]).
-   *
-   * **Note:** When creating a [godot.Tween] using this method, the [godot.Tween] will not be tied to the [godot.Node] that called it. It will continue to animate even if the [godot.Node] is freed, but it will automatically finish if there's nothing left to animate. If you want the [godot.Tween] to be automatically killed when the [godot.Node] is freed, use [godot.Node.createTween] or [godot.Tween.bindNode].
+   * Creates and returns a new [Tween]. The Tween will start automatically on the next process frame
+   * or physics frame (depending on [enum Tween.TweenProcessMode]).
+   * **Note:** When creating a [Tween] using this method, the [Tween] will not be tied to the [Node]
+   * that called it. It will continue to animate even if the [Node] is freed, but it will automatically
+   * finish if there's nothing left to animate. If you want the [Tween] to be automatically killed when
+   * the [Node] is freed, use [Node.createTween] or [Tween.bindNode].
    */
   public fun createTween(): Tween? {
     TransferContext.writeArguments()
@@ -332,7 +322,7 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Returns an array of currently existing [godot.Tween]s in the [godot.SceneTree] (both running and paused).
+   * Returns an array of currently existing [Tween]s in the [SceneTree] (both running and paused).
    */
   public fun getProcessedTweens(): VariantArray<Tween> {
     TransferContext.writeArguments()
@@ -341,7 +331,7 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Returns the number of nodes in this [godot.SceneTree].
+   * Returns the number of nodes in this [SceneTree].
    */
   public fun getNodeCount(): Int {
     TransferContext.writeArguments()
@@ -359,13 +349,13 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Quits the application at the end of the current iteration. Argument [exitCode] can optionally be given (defaulting to 0) to customize the exit status code.
-   *
-   * By convention, an exit code of `0` indicates success whereas a non-zero exit code indicates an error.
-   *
+   * Quits the application at the end of the current iteration. Argument [param exit_code] can
+   * optionally be given (defaulting to 0) to customize the exit status code.
+   * By convention, an exit code of `0` indicates success whereas a non-zero exit code indicates an
+   * error.
    * For portability reasons, the exit code should be set between 0 and 125 (inclusive).
-   *
-   * **Note:** On iOS this method doesn't work. Instead, as recommended by the iOS Human Interface Guidelines, the user is expected to close apps via the Home button.
+   * **Note:** On iOS this method doesn't work. Instead, as recommended by the iOS Human Interface
+   * Guidelines, the user is expected to close apps via the Home button.
    */
   @JvmOverloads
   public fun quit(exitCode: Int = 0): Unit {
@@ -374,7 +364,8 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Queues the given object for deletion, delaying the call to [godot.Object.free] to the end of the current frame.
+   * Queues the given object for deletion, delaying the call to [Object.free] to the end of the
+   * current frame.
    */
   public fun queueDelete(obj: Object): Unit {
     TransferContext.writeArguments(OBJECT to obj)
@@ -382,14 +373,18 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Calls [method] on each member of the given group, respecting the given [enum GroupCallFlags]. You can pass arguments to [method] by specifying them at the end of the method call. If a node doesn't have the given method or the argument list does not match (either in count or in types), it will be skipped.
-   *
-   * ```
-   * 				# Call the method in a deferred manner and in reverse order.
-   * 				get_tree().call_group_flags(SceneTree.GROUP_CALL_DEFERRED | SceneTree.GROUP_CALL_REVERSE)
-   * 				```
-   *
-   * **Note:** Group call flags are used to control the method calling behavior. By default, methods will be called immediately in a way similar to [callGroup]. However, if the [GROUP_CALL_DEFERRED] flag is present in the [flags] argument, methods will be called at the end of the frame in a way similar to [godot.Object.setDeferred].
+   * Calls [param method] on each member of the given group, respecting the given [enum
+   * GroupCallFlags]. You can pass arguments to [param method] by specifying them at the end of the
+   * method call. If a node doesn't have the given method or the argument list does not match (either
+   * in count or in types), it will be skipped.
+   * [codeblock]
+   * # Call the method in a deferred manner and in reverse order.
+   * get_tree().call_group_flags(SceneTree.GROUP_CALL_DEFERRED | SceneTree.GROUP_CALL_REVERSE)
+   * [/codeblock]
+   * **Note:** Group call flags are used to control the method calling behavior. By default, methods
+   * will be called immediately in a way similar to [callGroup]. However, if the [constant
+   * GROUP_CALL_DEFERRED] flag is present in the [param flags] argument, methods will be called at the
+   * end of the frame in a way similar to [Object.setDeferred].
    */
   public fun callGroupFlags(
     flags: Long,
@@ -402,9 +397,13 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Sends the given notification to all members of the [group], respecting the given [enum GroupCallFlags].
-   *
-   * **Note:** Group call flags are used to control the notification sending behavior. By default, notifications will be sent immediately in a way similar to [notifyGroup]. However, if the [GROUP_CALL_DEFERRED] flag is present in the [callFlags] argument, notifications will be sent at the end of the current frame in a way similar to using `Object.call_deferred("notification", ...)`.
+   * Sends the given notification to all members of the [param group], respecting the given [enum
+   * GroupCallFlags].
+   * **Note:** Group call flags are used to control the notification sending behavior. By default,
+   * notifications will be sent immediately in a way similar to [notifyGroup]. However, if the
+   * [constant GROUP_CALL_DEFERRED] flag is present in the [param call_flags] argument, notifications
+   * will be sent at the end of the current frame in a way similar to using
+   * `Object.call_deferred("notification", ...)`.
    */
   public fun notifyGroupFlags(
     callFlags: Long,
@@ -416,9 +415,12 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Sets the given [property] to [value] on all members of the given group, respecting the given [enum GroupCallFlags].
-   *
-   * **Note:** Group call flags are used to control the property setting behavior. By default, properties will be set immediately in a way similar to [setGroup]. However, if the [GROUP_CALL_DEFERRED] flag is present in the [callFlags] argument, properties will be set at the end of the frame in a way similar to [godot.Object.callDeferred].
+   * Sets the given [param property] to [param value] on all members of the given group, respecting
+   * the given [enum GroupCallFlags].
+   * **Note:** Group call flags are used to control the property setting behavior. By default,
+   * properties will be set immediately in a way similar to [setGroup]. However, if the [constant
+   * GROUP_CALL_DEFERRED] flag is present in the [param call_flags] argument, properties will be set at
+   * the end of the frame in a way similar to [Object.callDeferred].
    */
   public fun setGroupFlags(
     callFlags: Long,
@@ -431,9 +433,11 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Calls [method] on each member of the given group. You can pass arguments to [method] by specifying them at the end of the method call. If a node doesn't have the given method or the argument list does not match (either in count or in types), it will be skipped.
-   *
-   * **Note:** [callGroup] will call methods immediately on all members at once, which can cause stuttering if an expensive method is called on lots of members.
+   * Calls [param method] on each member of the given group. You can pass arguments to [param
+   * method] by specifying them at the end of the method call. If a node doesn't have the given method
+   * or the argument list does not match (either in count or in types), it will be skipped.
+   * **Note:** [callGroup] will call methods immediately on all members at once, which can cause
+   * stuttering if an expensive method is called on lots of members.
    */
   public fun callGroup(
     group: StringName,
@@ -445,9 +449,9 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Sends the given notification to all members of the [group].
-   *
-   * **Note:** [notifyGroup] will immediately notify all members at once, which can cause stuttering if an expensive method is called as a result of sending the notification to lots of members.
+   * Sends the given notification to all members of the [param group].
+   * **Note:** [notifyGroup] will immediately notify all members at once, which can cause stuttering
+   * if an expensive method is called as a result of sending the notification to lots of members.
    */
   public fun notifyGroup(group: StringName, notification: Int): Unit {
     TransferContext.writeArguments(STRING_NAME to group, LONG to notification.toLong())
@@ -455,9 +459,9 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Sets the given [property] to [value] on all members of the given group.
-   *
-   * **Note:** [setGroup] will set the property immediately on all members at once, which can cause stuttering if a property with an expensive setter is set on lots of members.
+   * Sets the given [param property] to [param value] on all members of the given group.
+   * **Note:** [setGroup] will set the property immediately on all members at once, which can cause
+   * stuttering if a property with an expensive setter is set on lots of members.
    */
   public fun setGroup(
     group: StringName,
@@ -478,7 +482,8 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Returns the first node in the specified group, or `null` if the group is empty or does not exist.
+   * Returns the first node in the specified group, or `null` if the group is empty or does not
+   * exist.
    */
   public fun getFirstNodeInGroup(group: StringName): Node? {
     TransferContext.writeArguments(STRING_NAME to group)
@@ -487,10 +492,10 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Changes the running scene to the one at the given [path], after loading it into a [godot.PackedScene] and creating a new instance.
-   *
-   * Returns [OK] on success, [ERR_CANT_OPEN] if the [path] cannot be loaded into a [godot.PackedScene], or [ERR_CANT_CREATE] if that scene cannot be instantiated.
-   *
+   * Changes the running scene to the one at the given [param path], after loading it into a
+   * [PackedScene] and creating a new instance.
+   * Returns [constant OK] on success, [constant ERR_CANT_OPEN] if the [param path] cannot be loaded
+   * into a [PackedScene], or [constant ERR_CANT_CREATE] if that scene cannot be instantiated.
    * **Note:** See [changeSceneToPacked] for details on the order of operations.
    */
   public fun changeSceneToFile(path: String): GodotError {
@@ -500,17 +505,18 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Changes the running scene to a new instance of the given [godot.PackedScene] (which must be valid).
-   *
-   * Returns [OK] on success, [ERR_CANT_CREATE] if the scene cannot be instantiated, or [ERR_INVALID_PARAMETER] if the scene is invalid.
-   *
+   * Changes the running scene to a new instance of the given [PackedScene] (which must be valid).
+   * Returns [constant OK] on success, [constant ERR_CANT_CREATE] if the scene cannot be
+   * instantiated, or [constant ERR_INVALID_PARAMETER] if the scene is invalid.
    * **Note:** Operations happen in the following order when [changeSceneToPacked] is called:
-   *
-   * 1. The current scene node is immediately removed from the tree. From that point, [godot.Node.getTree] called on the current (outgoing) scene will return `null`. [currentScene] will be `null`, too, because the new scene is not available yet.
-   *
-   * 2. At the end of the frame, the formerly current scene, already removed from the tree, will be deleted (freed from memory) and then the new scene will be instantiated and added to the tree. [godot.Node.getTree] and [currentScene] will be back to working as usual.
-   *
-   * This ensures that both scenes aren't running at the same time, while still freeing the previous scene in a safe way similar to [godot.Node.queueFree].
+   * 1. The current scene node is immediately removed from the tree. From that point, [Node.getTree]
+   * called on the current (outgoing) scene will return `null`. [currentScene] will be `null`, too,
+   * because the new scene is not available yet.
+   * 2. At the end of the frame, the formerly current scene, already removed from the tree, will be
+   * deleted (freed from memory) and then the new scene will be instantiated and added to the tree.
+   * [Node.getTree] and [currentScene] will be back to working as usual.
+   * This ensures that both scenes aren't running at the same time, while still freeing the previous
+   * scene in a safe way similar to [Node.queueFree].
    */
   public fun changeSceneToPacked(packedScene: PackedScene): GodotError {
     TransferContext.writeArguments(OBJECT to packedScene)
@@ -520,8 +526,9 @@ public open class SceneTree : MainLoop() {
 
   /**
    * Reloads the currently active scene.
-   *
-   * Returns [OK] on success, [ERR_UNCONFIGURED] if no [currentScene] was defined yet, [ERR_CANT_OPEN] if [currentScene] cannot be loaded into a [godot.PackedScene], or [ERR_CANT_CREATE] if the scene cannot be instantiated.
+   * Returns [constant OK] on success, [constant ERR_UNCONFIGURED] if no [currentScene] was defined
+   * yet, [constant ERR_CANT_OPEN] if [currentScene] cannot be loaded into a [PackedScene], or
+   * [constant ERR_CANT_CREATE] if the scene cannot be instantiated.
    */
   public fun reloadCurrentScene(): GodotError {
     TransferContext.writeArguments()
@@ -538,9 +545,11 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Sets a custom [godot.MultiplayerAPI] with the given [rootPath] (controlling also the relative subpaths), or override the default one if [rootPath] is empty.
-   *
-   * **Note:** No [godot.MultiplayerAPI] must be configured for the subpath containing [rootPath], nested custom multiplayers are not allowed. I.e. if one is configured for `"/root/Foo"` setting one for `"/root/Foo/Bar"` will cause an error.
+   * Sets a custom [MultiplayerAPI] with the given [param root_path] (controlling also the relative
+   * subpaths), or override the default one if [param root_path] is empty.
+   * **Note:** No [MultiplayerAPI] must be configured for the subpath containing [param root_path],
+   * nested custom multiplayers are not allowed. I.e. if one is configured for `"/root/Foo"` setting
+   * one for `"/root/Foo/Bar"` will cause an error.
    */
   @JvmOverloads
   public fun setMultiplayer(multiplayer: MultiplayerAPI, rootPath: NodePath = NodePath("")): Unit {
@@ -549,7 +558,9 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Searches for the [godot.MultiplayerAPI] configured for the given path, if one does not exist it searches the parent paths until one is found. If the path is empty, or none is found, the default one is returned. See [setMultiplayer].
+   * Searches for the [MultiplayerAPI] configured for the given path, if one does not exist it
+   * searches the parent paths until one is found. If the path is empty, or none is found, the default
+   * one is returned. See [setMultiplayer].
    */
   @JvmOverloads
   public fun getMultiplayer(forPath: NodePath = NodePath("")): MultiplayerAPI? {
@@ -575,8 +586,9 @@ public open class SceneTree : MainLoop() {
     GROUP_CALL_DEFERRED(2),
     /**
      * Call a group only once even if the call is executed many times.
-     *
-     * **Note:** Arguments are not taken into account when deciding whether the call is unique or not. Therefore when the same method is called with different arguments, only the first call will be performed.
+     * **Note:** Arguments are not taken into account when deciding whether the call is unique or
+     * not. Therefore when the same method is called with different arguments, only the first call will
+     * be performed.
      */
     GROUP_CALL_UNIQUE(4),
     ;

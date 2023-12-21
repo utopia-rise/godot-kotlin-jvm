@@ -78,6 +78,10 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMinorVersionPtr, NIL)
     }
 
+  /**
+   * The copyright string in the asset header of the GLTF file. This is set during import if present
+   * and export if non-empty. See the GLTF asset header documentation for more information.
+   */
   public var copyright: String
     get() {
       TransferContext.writeArguments()
@@ -87,21 +91,6 @@ public open class GLTFState : Resource() {
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setCopyrightPtr, NIL)
-    }
-
-  /**
-   * The copyright string in the asset header of the GLTF file. This is set during import if present
-   * and export if non-empty. See the GLTF asset header documentation for more information.
-   */
-  public var copyright: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_COPYRIGHT, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_COPYRIGHT, NIL)
     }
 
   public var glbData: PackedByteArray
@@ -223,6 +212,11 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBasePathPtr, NIL)
     }
 
+  /**
+   * The file name associated with this GLTF data. If it ends with `.gltf`, this is text-based GLTF,
+   * otherwise this is binary GLB. This will be set during import when appending from a file, and will
+   * be set during export when writing to a file. If writing to a buffer, this will be an empty string.
+   */
   public var filename: String
     get() {
       TransferContext.writeArguments()
@@ -232,22 +226,6 @@ public open class GLTFState : Resource() {
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setFilenamePtr, NIL)
-    }
-
-  /**
-   * The file name associated with this GLTF data. If it ends with `.gltf`, this is text-based GLTF,
-   * otherwise this is binary GLB. This will be set during import when appending from a file, and will
-   * be set during export when writing to a file. If writing to a buffer, this will be an empty string.
-   */
-  public var filename: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_GET_FILENAME, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSTATE_SET_FILENAME, NIL)
     }
 
   /**

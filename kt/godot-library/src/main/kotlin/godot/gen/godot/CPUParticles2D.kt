@@ -1118,7 +1118,8 @@ public open class CPUParticles2D : Node2D() {
      */
     DRAW_ORDER_INDEX(0),
     /**
-     * Particles are drawn in order of remaining lifetime. In other words, the particle with the highest lifetime is drawn at the front.
+     * Particles are drawn in order of remaining lifetime. In other words, the particle with the
+     * highest lifetime is drawn at the front.
      */
     DRAW_ORDER_LIFETIME(1),
     ;

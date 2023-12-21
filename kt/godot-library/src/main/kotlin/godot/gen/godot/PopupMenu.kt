@@ -34,34 +34,43 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A modal window used to display a list of options.
- *
- * [godot.PopupMenu] is a modal window used to display a list of options. Useful for toolbars and context menus.
- *
- * The size of a [godot.PopupMenu] can be limited by using [godot.Window.maxSize]. If the height of the list of items is larger than the maximum height of the [godot.PopupMenu], a [godot.ScrollContainer] within the popup will allow the user to scroll the contents. If no maximum size is set, or if it is set to `0`, the [godot.PopupMenu] height will be limited by its parent rect.
- *
- * All `set_*` methods allow negative item indices, i.e. `-1` to access the last item, `-2` to select the second-to-last item, and so on.
- *
- * **Incremental search:** Like [godot.ItemList] and [godot.Tree], [godot.PopupMenu] supports searching within the list while the control is focused. Press a key that matches the first letter of an item's name to select the first item starting with the given letter. After that point, there are two ways to perform incremental search: 1) Press the same key again before the timeout duration to select the next item starting with the same letter. 2) Press letter keys that match the rest of the word before the timeout duration to match to select the item in question directly. Both of these actions will be reset to the beginning of the list if the timeout duration has passed since the last keystroke was registered. You can adjust the timeout duration by changing [godot.ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
- *
- * **Note:** The ID values used for items are limited to 32 bits, not full 64 bits of [int]. This has a range of `-2^32` to `2^32 - 1`, i.e. `-2147483648` to `2147483647`.
+ * [PopupMenu] is a modal window used to display a list of options. Useful for toolbars and context
+ * menus.
+ * The size of a [PopupMenu] can be limited by using [Window.maxSize]. If the height of the list of
+ * items is larger than the maximum height of the [PopupMenu], a [ScrollContainer] within the popup
+ * will allow the user to scroll the contents. If no maximum size is set, or if it is set to `0`, the
+ * [PopupMenu] height will be limited by its parent rect.
+ * All `set_*` methods allow negative item indices, i.e. `-1` to access the last item, `-2` to
+ * select the second-to-last item, and so on.
+ * **Incremental search:** Like [ItemList] and [Tree], [PopupMenu] supports searching within the
+ * list while the control is focused. Press a key that matches the first letter of an item's name to
+ * select the first item starting with the given letter. After that point, there are two ways to
+ * perform incremental search: 1) Press the same key again before the timeout duration to select the
+ * next item starting with the same letter. 2) Press letter keys that match the rest of the word before
+ * the timeout duration to match to select the item in question directly. Both of these actions will be
+ * reset to the beginning of the list if the timeout duration has passed since the last keystroke was
+ * registered. You can adjust the timeout duration by changing
+ * [ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
+ * **Note:** The ID values used for items are limited to 32 bits, not full 64 bits of [int]. This
+ * has a range of `-2^32` to `2^32 - 1`, i.e. `-2147483648` to `2147483647`.
  */
 @GodotBaseType
 public open class PopupMenu : Popup() {
   /**
-   * Emitted when an item of some [id] is pressed or its accelerator is activated.
-   *
-   * **Note:** If [id] is negative (either explicitly or due to overflow), this will return the corresponding index instead.
+   * Emitted when an item of some [param id] is pressed or its accelerator is activated.
+   * **Note:** If [param id] is negative (either explicitly or due to overflow), this will return
+   * the corresponding index instead.
    */
   public val idPressed: Signal1<Long> by signal("id")
 
   /**
-   * Emitted when the user navigated to an item of some [id] using the [godot.ProjectSettings.input/uiUp] or [godot.ProjectSettings.input/uiDown] input action.
+   * Emitted when the user navigated to an item of some [param id] using the
+   * [ProjectSettings.input/uiUp] or [ProjectSettings.input/uiDown] input action.
    */
   public val idFocused: Signal1<Long> by signal("id")
 
   /**
-   * Emitted when an item of some [index] is pressed or its accelerator is activated.
+   * Emitted when an item of some [param index] is pressed or its accelerator is activated.
    */
   public val indexPressed: Signal1<Long> by signal("index")
 
@@ -71,7 +80,7 @@ public open class PopupMenu : Popup() {
   public val menuChanged: Signal0 by signal()
 
   /**
-   * If `true`, hides the [godot.PopupMenu] when an item is selected.
+   * If `true`, hides the [PopupMenu] when an item is selected.
    */
   public var hideOnItemSelection: Boolean
     get() {
@@ -85,7 +94,7 @@ public open class PopupMenu : Popup() {
     }
 
   /**
-   * If `true`, hides the [godot.PopupMenu] when a checkbox or radio button is selected.
+   * If `true`, hides the [PopupMenu] when a checkbox or radio button is selected.
    */
   public var hideOnCheckableItemSelection: Boolean
     get() {
@@ -99,7 +108,7 @@ public open class PopupMenu : Popup() {
     }
 
   /**
-   * If `true`, hides the [godot.PopupMenu] when a state item is selected.
+   * If `true`, hides the [PopupMenu] when a state item is selected.
    */
   public var hideOnStateItemSelection: Boolean
     get() {
@@ -113,7 +122,9 @@ public open class PopupMenu : Popup() {
     }
 
   /**
-   * Sets the delay time in seconds for the submenu item to popup on mouse hovering. If the popup menu is added as a child of another (acting as a submenu), it will inherit the delay time of the parent menu item.
+   * Sets the delay time in seconds for the submenu item to popup on mouse hovering. If the popup
+   * menu is added as a child of another (acting as a submenu), it will inherit the delay time of the
+   * parent menu item.
    */
   public var submenuPopupDelay: Float
     get() {
@@ -127,7 +138,7 @@ public open class PopupMenu : Popup() {
     }
 
   /**
-   * If `true`, allows navigating [godot.PopupMenu] with letter keys.
+   * If `true`, allows navigating [PopupMenu] with letter keys.
    */
   public var allowSearch: Boolean
     get() {
@@ -160,11 +171,11 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Checks the provided [event] against the [godot.PopupMenu]'s shortcuts and accelerators, and activates the first item with matching events. If [forGlobalOnly] is `true`, only shortcuts and accelerators with `global` set to `true` will be called.
-   *
+   * Checks the provided [param event] against the [PopupMenu]'s shortcuts and accelerators, and
+   * activates the first item with matching events. If [param for_global_only] is `true`, only
+   * shortcuts and accelerators with `global` set to `true` will be called.
    * Returns `true` if an item was successfully activated.
-   *
-   * **Note:** Certain [godot.Control]s, such as [godot.MenuButton], will call this method automatically.
+   * **Note:** Certain [Control]s, such as [MenuButton], will call this method automatically.
    */
   @JvmOverloads
   public fun activateItemByEvent(event: InputEvent, forGlobalOnly: Boolean = false): Boolean {
@@ -174,11 +185,14 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds a new item with text [label].
-   *
-   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
-   *
-   * **Note:** The provided [id] is used only in [idPressed] and [idFocused] signals. It's not related to the `index` arguments in e.g. [setItemChecked].
+   * Adds a new item with text [param label].
+   * An [param id] can optionally be provided, as well as an accelerator ([param accel]). If no
+   * [param id] is provided, one will be created from the index. If no [param accel] is provided, then
+   * the default value of 0 (corresponding to [constant @GlobalScope.KEY_NONE]) will be assigned to the
+   * item (which means it won't have any accelerator). See [getItemAccelerator] for more info on
+   * accelerators.
+   * **Note:** The provided [param id] is used only in [signal id_pressed] and [signal id_focused]
+   * signals. It's not related to the `index` arguments in e.g. [setItemChecked].
    */
   @JvmOverloads
   public fun addItem(
@@ -191,9 +205,12 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds a new item with text [label] and icon [texture].
-   *
-   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
+   * Adds a new item with text [param label] and icon [param texture].
+   * An [param id] can optionally be provided, as well as an accelerator ([param accel]). If no
+   * [param id] is provided, one will be created from the index. If no [param accel] is provided, then
+   * the default value of 0 (corresponding to [constant @GlobalScope.KEY_NONE]) will be assigned to the
+   * item (which means it won't have any accelerator). See [getItemAccelerator] for more info on
+   * accelerators.
    */
   @JvmOverloads
   public fun addIconItem(
@@ -207,11 +224,15 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds a new checkable item with text [label].
-   *
-   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
-   *
-   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
+   * Adds a new checkable item with text [param label].
+   * An [param id] can optionally be provided, as well as an accelerator ([param accel]). If no
+   * [param id] is provided, one will be created from the index. If no [param accel] is provided, then
+   * the default value of 0 (corresponding to [constant @GlobalScope.KEY_NONE]) will be assigned to the
+   * item (which means it won't have any accelerator). See [getItemAccelerator] for more info on
+   * accelerators.
+   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
+   * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
+   * control it.
    */
   @JvmOverloads
   public fun addCheckItem(
@@ -224,11 +245,15 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds a new checkable item with text [label] and icon [texture].
-   *
-   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
-   *
-   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
+   * Adds a new checkable item with text [param label] and icon [param texture].
+   * An [param id] can optionally be provided, as well as an accelerator ([param accel]). If no
+   * [param id] is provided, one will be created from the index. If no [param accel] is provided, then
+   * the default value of 0 (corresponding to [constant @GlobalScope.KEY_NONE]) will be assigned to the
+   * item (which means it won't have any accelerator). See [getItemAccelerator] for more info on
+   * accelerators.
+   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
+   * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
+   * control it.
    */
   @JvmOverloads
   public fun addIconCheckItem(
@@ -242,11 +267,15 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds a new radio check button with text [label].
-   *
-   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
-   *
-   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
+   * Adds a new radio check button with text [param label].
+   * An [param id] can optionally be provided, as well as an accelerator ([param accel]). If no
+   * [param id] is provided, one will be created from the index. If no [param accel] is provided, then
+   * the default value of 0 (corresponding to [constant @GlobalScope.KEY_NONE]) will be assigned to the
+   * item (which means it won't have any accelerator). See [getItemAccelerator] for more info on
+   * accelerators.
+   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
+   * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
+   * control it.
    */
   @JvmOverloads
   public fun addRadioCheckItem(
@@ -273,11 +302,15 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds a new multistate item with text [label].
-   *
-   * Contrarily to normal binary items, multistate items can have more than two states, as defined by [maxStates]. Each press or activate of the item will increase the state by one. The default value is defined by [defaultState].
-   *
-   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
+   * Adds a new multistate item with text [param label].
+   * Contrarily to normal binary items, multistate items can have more than two states, as defined
+   * by [param max_states]. Each press or activate of the item will increase the state by one. The
+   * default value is defined by [param default_state].
+   * An [param id] can optionally be provided, as well as an accelerator ([param accel]). If no
+   * [param id] is provided, one will be created from the index. If no [param accel] is provided, then
+   * the default value of 0 (corresponding to [constant @GlobalScope.KEY_NONE]) will be assigned to the
+   * item (which means it won't have any accelerator). See [getItemAccelerator] for more info on
+   * accelerators.
    */
   @JvmOverloads
   public fun addMultistateItem(
@@ -292,11 +325,10 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds a [godot.Shortcut].
-   *
-   * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
-   *
-   * If [allowEcho] is `true`, the shortcut can be activated with echo events.
+   * Adds a [Shortcut].
+   * An [param id] can optionally be provided. If no [param id] is provided, one will be created
+   * from the index.
+   * If [param allow_echo] is `true`, the shortcut can be activated with echo events.
    */
   @JvmOverloads
   public fun addShortcut(
@@ -310,11 +342,11 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds a new item and assigns the specified [godot.Shortcut] and icon [texture] to it. Sets the label of the checkbox to the [godot.Shortcut]'s name.
-   *
-   * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
-   *
-   * If [allowEcho] is `true`, the shortcut can be activated with echo events.
+   * Adds a new item and assigns the specified [Shortcut] and icon [param texture] to it. Sets the
+   * label of the checkbox to the [Shortcut]'s name.
+   * An [param id] can optionally be provided. If no [param id] is provided, one will be created
+   * from the index.
+   * If [param allow_echo] is `true`, the shortcut can be activated with echo events.
    */
   @JvmOverloads
   public fun addIconShortcut(
@@ -329,11 +361,13 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds a new checkable item and assigns the specified [godot.Shortcut] to it. Sets the label of the checkbox to the [godot.Shortcut]'s name.
-   *
-   * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
-   *
-   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
+   * Adds a new checkable item and assigns the specified [Shortcut] to it. Sets the label of the
+   * checkbox to the [Shortcut]'s name.
+   * An [param id] can optionally be provided. If no [param id] is provided, one will be created
+   * from the index.
+   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
+   * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
+   * control it.
    */
   @JvmOverloads
   public fun addCheckShortcut(
@@ -346,11 +380,13 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds a new checkable item and assigns the specified [godot.Shortcut] and icon [texture] to it. Sets the label of the checkbox to the [godot.Shortcut]'s name.
-   *
-   * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
-   *
-   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
+   * Adds a new checkable item and assigns the specified [Shortcut] and icon [param texture] to it.
+   * Sets the label of the checkbox to the [Shortcut]'s name.
+   * An [param id] can optionally be provided. If no [param id] is provided, one will be created
+   * from the index.
+   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
+   * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
+   * control it.
    */
   @JvmOverloads
   public fun addIconCheckShortcut(
@@ -364,11 +400,13 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds a new radio check button and assigns a [godot.Shortcut] to it. Sets the label of the checkbox to the [godot.Shortcut]'s name.
-   *
-   * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
-   *
-   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
+   * Adds a new radio check button and assigns a [Shortcut] to it. Sets the label of the checkbox to
+   * the [Shortcut]'s name.
+   * An [param id] can optionally be provided. If no [param id] is provided, one will be created
+   * from the index.
+   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
+   * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
+   * control it.
    */
   @JvmOverloads
   public fun addRadioCheckShortcut(
@@ -395,9 +433,12 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds an item that will act as a submenu of the parent [godot.PopupMenu] node when clicked. The [submenu] argument must be the name of an existing [godot.PopupMenu] that has been added as a child to this node. This submenu will be shown when the item is clicked, hovered for long enough, or activated using the `ui_select` or `ui_right` input actions.
-   *
-   * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
+   * Adds an item that will act as a submenu of the parent [PopupMenu] node when clicked. The [param
+   * submenu] argument must be the name of an existing [PopupMenu] that has been added as a child to
+   * this node. This submenu will be shown when the item is clicked, hovered for long enough, or
+   * activated using the `ui_select` or `ui_right` input actions.
+   * An [param id] can optionally be provided. If no [param id] is provided, one will be created
+   * from the index.
    */
   @JvmOverloads
   public fun addSubmenuItem(
@@ -410,7 +451,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets the text of the item at the given [index].
+   * Sets the text of the item at the given [param index].
    */
   public fun setItemText(index: Int, text: String): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), STRING to text)
@@ -426,7 +467,8 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets language code of item's text used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
+   * Sets language code of item's text used for line-breaking and text shaping algorithms, if left
+   * empty current locale is used instead.
    */
   public fun setItemLanguage(index: Int, language: String): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), STRING to language)
@@ -434,7 +476,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Replaces the [godot.Texture2D] icon of the item at the given [index].
+   * Replaces the [Texture2D] icon of the item at the given [param index].
    */
   public fun setItemIcon(index: Int, icon: Texture2D): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), OBJECT to icon)
@@ -442,7 +484,9 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets the maximum allowed width of the icon for the item at the given [index]. This limit is applied on top of the default size of the icon and on top of [theme_item icon_max_width]. The height is adjusted according to the icon's ratio.
+   * Sets the maximum allowed width of the icon for the item at the given [param index]. This limit
+   * is applied on top of the default size of the icon and on top of [theme_item icon_max_width]. The
+   * height is adjusted according to the icon's ratio.
    */
   public fun setItemIconMaxWidth(index: Int, width: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to width.toLong())
@@ -450,7 +494,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets a modulating [godot.core.Color] of the item's icon at the given [index].
+   * Sets a modulating [Color] of the item's icon at the given [param index].
    */
   public fun setItemIconModulate(index: Int, modulate: Color): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), COLOR to modulate)
@@ -458,7 +502,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets the checkstate status of the item at the given [index].
+   * Sets the checkstate status of the item at the given [param index].
    */
   public fun setItemChecked(index: Int, checked: Boolean): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), BOOL to checked)
@@ -466,9 +510,8 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets the [id] of the item at the given [index].
-   *
-   * The [id] is used in [idPressed] and [idFocused] signals.
+   * Sets the [param id] of the item at the given [param index].
+   * The [param id] is used in [signal id_pressed] and [signal id_focused] signals.
    */
   public fun setItemId(index: Int, id: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to id.toLong())
@@ -476,7 +519,10 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets the accelerator of the item at the given [index]. An accelerator is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. [accel] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
+   * Sets the accelerator of the item at the given [param index]. An accelerator is a keyboard
+   * shortcut that can be pressed to trigger the menu button even if it's not currently open. [param
+   * accel] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such
+   * as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    */
   public fun setItemAccelerator(index: Int, accel: Key): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to accel.id)
@@ -484,7 +530,8 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets the metadata of an item, which may be of any type. You can later get it with [getItemMetadata], which provides a simple way of assigning context data to items.
+   * Sets the metadata of an item, which may be of any type. You can later get it with
+   * [getItemMetadata], which provides a simple way of assigning context data to items.
    */
   public fun setItemMetadata(index: Int, metadata: Any?): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), ANY to metadata)
@@ -492,7 +539,8 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Enables/disables the item at the given [index]. When it is disabled, it can't be selected and its action can't be invoked.
+   * Enables/disables the item at the given [param index]. When it is disabled, it can't be selected
+   * and its action can't be invoked.
    */
   public fun setItemDisabled(index: Int, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), BOOL to disabled)
@@ -500,7 +548,8 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets the submenu of the item at the given [index]. The submenu is the name of a child [godot.PopupMenu] node that would be shown when the item is clicked.
+   * Sets the submenu of the item at the given [param index]. The submenu is the name of a child
+   * [PopupMenu] node that would be shown when the item is clicked.
    */
   public fun setItemSubmenu(index: Int, submenu: String): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), STRING to submenu)
@@ -508,7 +557,8 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Mark the item at the given [index] as a separator, which means that it would be displayed as a line. If `false`, sets the type of the item to plain text.
+   * Mark the item at the given [param index] as a separator, which means that it would be displayed
+   * as a line. If `false`, sets the type of the item to plain text.
    */
   public fun setItemAsSeparator(index: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), BOOL to enable)
@@ -516,9 +566,10 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets whether the item at the given [index] has a checkbox. If `false`, sets the type of the item to plain text.
-   *
-   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually.
+   * Sets whether the item at the given [param index] has a checkbox. If `false`, sets the type of
+   * the item to plain text.
+   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
+   * behavior and must be checked/unchecked manually.
    */
   public fun setItemAsCheckable(index: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), BOOL to enable)
@@ -526,7 +577,8 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets the type of the item at the given [index] to radio button. If `false`, sets the type of the item to plain text.
+   * Sets the type of the item at the given [param index] to radio button. If `false`, sets the type
+   * of the item to plain text.
    */
   public fun setItemAsRadioCheckable(index: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), BOOL to enable)
@@ -534,7 +586,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets the [godot.String] tooltip of the item at the given [index].
+   * Sets the [String] tooltip of the item at the given [param index].
    */
   public fun setItemTooltip(index: Int, tooltip: String): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), STRING to tooltip)
@@ -542,7 +594,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets a [godot.Shortcut] for the item at the given [index].
+   * Sets a [Shortcut] for the item at the given [param index].
    */
   @JvmOverloads
   public fun setItemShortcut(
@@ -555,7 +607,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets the horizontal offset of the item at the given [index].
+   * Sets the horizontal offset of the item at the given [param index].
    */
   public fun setItemIndent(index: Int, indent: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to indent.toLong())
@@ -571,7 +623,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Disables the [godot.Shortcut] of the item at the given [index].
+   * Disables the [Shortcut] of the item at the given [param index].
    */
   public fun setItemShortcutDisabled(index: Int, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), BOOL to disabled)
@@ -579,7 +631,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Toggles the check state of the item at the given [index].
+   * Toggles the check state of the item at the given [param index].
    */
   public fun toggleItemChecked(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -595,7 +647,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the text of the item at the given [index].
+   * Returns the text of the item at the given [param index].
    */
   public fun getItemText(index: Int): String {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -622,7 +674,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the icon of the item at the given [index].
+   * Returns the icon of the item at the given [param index].
    */
   public fun getItemIcon(index: Int): Texture2D? {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -631,7 +683,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the maximum allowed width of the icon for the item at the given [index].
+   * Returns the maximum allowed width of the icon for the item at the given [param index].
    */
   public fun getItemIconMaxWidth(index: Int): Int {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -640,7 +692,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns a [godot.core.Color] modulating the item's icon at the given [index].
+   * Returns a [Color] modulating the item's icon at the given [param index].
    */
   public fun getItemIconModulate(index: Int): Color {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -649,7 +701,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns `true` if the item at the given [index] is checked.
+   * Returns `true` if the item at the given [param index] is checked.
    */
   public fun isItemChecked(index: Int): Boolean {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -658,7 +710,8 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the ID of the item at the given [index]. `id` can be manually assigned, while index can not.
+   * Returns the ID of the item at the given [param index]. `id` can be manually assigned, while
+   * index can not.
    */
   public fun getItemId(index: Int): Int {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -667,7 +720,8 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the index of the item containing the specified [id]. Index is automatically assigned to each item by the engine and can not be set manually.
+   * Returns the index of the item containing the specified [param id]. Index is automatically
+   * assigned to each item by the engine and can not be set manually.
    */
   public fun getItemIndex(id: Int): Int {
     TransferContext.writeArguments(LONG to id.toLong())
@@ -676,7 +730,12 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the accelerator of the item at the given [index]. An accelerator is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The return value is an integer which is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]). If no accelerator is defined for the specified [index], [getItemAccelerator] returns `0` (corresponding to [@GlobalScope.KEY_NONE]).
+   * Returns the accelerator of the item at the given [param index]. An accelerator is a keyboard
+   * shortcut that can be pressed to trigger the menu button even if it's not currently open. The
+   * return value is an integer which is generally a combination of [enum KeyModifierMask]s and [enum
+   * Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]). If no accelerator is
+   * defined for the specified [param index], [getItemAccelerator] returns `0` (corresponding to
+   * [constant @GlobalScope.KEY_NONE]).
    */
   public fun getItemAccelerator(index: Int): Key {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -685,7 +744,8 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the metadata of the specified item, which might be of any type. You can set it with [setItemMetadata], which provides a simple way of assigning context data to items.
+   * Returns the metadata of the specified item, which might be of any type. You can set it with
+   * [setItemMetadata], which provides a simple way of assigning context data to items.
    */
   public fun getItemMetadata(index: Int): Any? {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -694,8 +754,8 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns `true` if the item at the given [index] is disabled. When it is disabled it can't be selected, or its action invoked.
-   *
+   * Returns `true` if the item at the given [param index] is disabled. When it is disabled it can't
+   * be selected, or its action invoked.
    * See [setItemDisabled] for more info on how to disable an item.
    */
   public fun isItemDisabled(index: Int): Boolean {
@@ -705,7 +765,8 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the submenu name of the item at the given [index]. See [addSubmenuItem] for more info on how to add a submenu.
+   * Returns the submenu name of the item at the given [param index]. See [addSubmenuItem] for more
+   * info on how to add a submenu.
    */
   public fun getItemSubmenu(index: Int): String {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -714,7 +775,8 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns `true` if the item is a separator. If it is, it will be displayed as a line. See [addSeparator] for more info on how to add a separator.
+   * Returns `true` if the item is a separator. If it is, it will be displayed as a line. See
+   * [addSeparator] for more info on how to add a separator.
    */
   public fun isItemSeparator(index: Int): Boolean {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -723,9 +785,10 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns `true` if the item at the given [index] is checkable in some way, i.e. if it has a checkbox or radio button.
-   *
-   * **Note:** Checkable items just display a checkmark or radio button, but don't have any built-in checking behavior and must be checked/unchecked manually.
+   * Returns `true` if the item at the given [param index] is checkable in some way, i.e. if it has
+   * a checkbox or radio button.
+   * **Note:** Checkable items just display a checkmark or radio button, but don't have any built-in
+   * checking behavior and must be checked/unchecked manually.
    */
   public fun isItemCheckable(index: Int): Boolean {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -734,9 +797,9 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns `true` if the item at the given [index] has radio button-style checkability.
-   *
-   * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in radio groups.
+   * Returns `true` if the item at the given [param index] has radio button-style checkability.
+   * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in
+   * radio groups.
    */
   public fun isItemRadioCheckable(index: Int): Boolean {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -754,7 +817,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the tooltip associated with the item at the given [index].
+   * Returns the tooltip associated with the item at the given [param index].
    */
   public fun getItemTooltip(index: Int): String {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -763,7 +826,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the [godot.Shortcut] associated with the item at the given [index].
+   * Returns the [Shortcut] associated with the item at the given [param index].
    */
   public fun getItemShortcut(index: Int): Shortcut? {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -772,7 +835,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the horizontal offset of the item at the given [index].
+   * Returns the horizontal offset of the item at the given [param index].
    */
   public fun getItemIndent(index: Int): Int {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -781,8 +844,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets the currently focused item as the given [index].
-   *
+   * Sets the currently focused item as the given [param index].
    * Passing `-1` as the index makes so that no item is focused.
    */
   public fun setFocusedItem(index: Int): Unit {
@@ -800,7 +862,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Moves the scroll view to make the item at the given [index] visible.
+   * Moves the scroll view to make the item at the given [param index] visible.
    */
   public fun scrollToItem(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -808,8 +870,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Removes the item at the given [index] from the menu.
-   *
+   * Removes the item at the given [param index] from the menu.
    * **Note:** The indices of items after the removed item will be shifted by one.
    */
   public fun removeItem(index: Int): Unit {
@@ -818,9 +879,9 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds a separator between items. Separators also occupy an index, which you can set by using the [id] parameter.
-   *
-   * A [label] can optionally be provided, which will appear at the center of the separator.
+   * Adds a separator between items. Separators also occupy an index, which you can set by using the
+   * [param id] parameter.
+   * A [param label] can optionally be provided, which will appear at the center of the separator.
    */
   @JvmOverloads
   public fun addSeparator(label: String = "", id: Int = -1): Unit {
@@ -829,7 +890,8 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Removes all items from the [godot.PopupMenu]. If [freeSubmenus] is `true`, the submenu nodes are automatically freed.
+   * Removes all items from the [PopupMenu]. If [param free_submenus] is `true`, the submenu nodes
+   * are automatically freed.
    */
   @JvmOverloads
   public fun clear(freeSubmenus: Boolean = false): Unit {

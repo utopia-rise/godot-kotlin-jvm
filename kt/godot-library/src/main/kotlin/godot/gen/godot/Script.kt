@@ -180,21 +180,12 @@ public open class Script internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true` if the script is an abstract script. An abstract script does not have a constructor and cannot be instantiated.
-   */
-  public fun isAbstract(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAbstractPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-  }
-
-  /**
    * Returns `true` if the script is an abstract script. An abstract script does not have a
    * constructor and cannot be instantiated.
    */
   public fun isAbstract(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_IS_ABSTRACT, BOOL)
+    TransferContext.callMethod(rawPtr, MethodBindings.isAbstractPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 

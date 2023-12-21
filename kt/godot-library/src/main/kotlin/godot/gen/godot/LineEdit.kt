@@ -32,50 +32,30 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * An input field for single-line text.
- *
- * [godot.LineEdit] provides an input field for editing a single line of text. It features many built-in shortcuts that are always available ([kbd]Ctrl[/kbd] here maps to [kbd]Cmd[/kbd] on macOS):
- *
+ * [LineEdit] provides an input field for editing a single line of text. It features many built-in
+ * shortcuts that are always available ([kbd]Ctrl[/kbd] here maps to [kbd]Cmd[/kbd] on macOS):
  * - [kbd]Ctrl + C[/kbd]: Copy
- *
  * - [kbd]Ctrl + X[/kbd]: Cut
- *
  * - [kbd]Ctrl + V[/kbd] or [kbd]Ctrl + Y[/kbd]: Paste/"yank"
- *
  * - [kbd]Ctrl + Z[/kbd]: Undo
- *
  * - [kbd]Ctrl + ~[/kbd]: Swap input direction.
- *
  * - [kbd]Ctrl + Shift + Z[/kbd]: Redo
- *
  * - [kbd]Ctrl + U[/kbd]: Delete text from the caret position to the beginning of the line
- *
  * - [kbd]Ctrl + K[/kbd]: Delete text from the caret position to the end of the line
- *
  * - [kbd]Ctrl + A[/kbd]: Select all text
- *
  * - [kbd]Up Arrow[/kbd]/[kbd]Down Arrow[/kbd]: Move the caret to the beginning/end of the line
- *
  * On macOS, some extra keyboard shortcuts are available:
- *
  * - [kbd]Cmd + F[/kbd]: Same as [kbd]Right Arrow[/kbd], move the caret one character right
- *
  * - [kbd]Cmd + B[/kbd]: Same as [kbd]Left Arrow[/kbd], move the caret one character left
- *
  * - [kbd]Cmd + P[/kbd]: Same as [kbd]Up Arrow[/kbd], move the caret to the previous line
- *
  * - [kbd]Cmd + N[/kbd]: Same as [kbd]Down Arrow[/kbd], move the caret to the next line
- *
  * - [kbd]Cmd + D[/kbd]: Same as [kbd]Delete[/kbd], delete the character on the right side of caret
- *
- * - [kbd]Cmd + H[/kbd]: Same as [kbd]Backspace[/kbd], delete the character on the left side of the caret
- *
+ * - [kbd]Cmd + H[/kbd]: Same as [kbd]Backspace[/kbd], delete the character on the left side of the
+ * caret
  * - [kbd]Cmd + A[/kbd]: Same as [kbd]Home[/kbd], move the caret to the beginning of the line
- *
  * - [kbd]Cmd + E[/kbd]: Same as [kbd]End[/kbd], move the caret to the end of the line
- *
- * - [kbd]Cmd + Left Arrow[/kbd]: Same as [kbd]Home[/kbd], move the caret to the beginning of the line
- *
+ * - [kbd]Cmd + Left Arrow[/kbd]: Same as [kbd]Home[/kbd], move the caret to the beginning of the
+ * line
  * - [kbd]Cmd + Right Arrow[/kbd]: Same as [kbd]End[/kbd], move the caret to the end of the line
  */
 @GodotBaseType
@@ -86,19 +66,20 @@ public open class LineEdit : Control() {
   public val textChanged: Signal1<String> by signal("newText")
 
   /**
-   * Emitted when appending text that overflows the [maxLength]. The appended text is truncated to fit [maxLength], and the part that couldn't fit is passed as the [rejectedSubstring] argument.
+   * Emitted when appending text that overflows the [maxLength]. The appended text is truncated to
+   * fit [maxLength], and the part that couldn't fit is passed as the [param rejected_substring]
+   * argument.
    */
   public val textChangeRejected: Signal1<String> by signal("rejectedSubstring")
 
   /**
-   * Emitted when the user presses [KEY_ENTER] on the [godot.LineEdit].
+   * Emitted when the user presses [constant KEY_ENTER] on the [LineEdit].
    */
   public val textSubmitted: Signal1<String> by signal("newText")
 
   /**
-   * String value of the [godot.LineEdit].
-   *
-   * **Note:** Changing text using this property won't emit the [textChanged] signal.
+   * String value of the [LineEdit].
+   * **Note:** Changing text using this property won't emit the [signal text_changed] signal.
    */
   public var text: String
     get() {
@@ -112,7 +93,8 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * Text shown when the [godot.LineEdit] is empty. It is **not** the [godot.LineEdit]'s default value (see [text]).
+   * Text shown when the [LineEdit] is empty. It is **not** the [LineEdit]'s default value (see
+   * [text]).
    */
   public var placeholderText: String
     get() {
@@ -140,51 +122,34 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * Maximum number of characters that can be entered inside the [godot.LineEdit]. If `0`, there is no limit.
-   *
-   * When a limit is defined, characters that would exceed [maxLength] are truncated. This happens both for existing [text] contents when setting the max length, or for new text inserted in the [godot.LineEdit], including pasting. If any input text is truncated, the [textChangeRejected] signal is emitted with the truncated substring as parameter.
-   *
+   * Maximum number of characters that can be entered inside the [LineEdit]. If `0`, there is no
+   * limit.
+   * When a limit is defined, characters that would exceed [maxLength] are truncated. This happens
+   * both for existing [text] contents when setting the max length, or for new text inserted in the
+   * [LineEdit], including pasting. If any input text is truncated, the [signal text_change_rejected]
+   * signal is emitted with the truncated substring as parameter.
    * **Example:**
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * text = "Hello world"
-   *
    * max_length = 5
-   *
    * # `text` becomes "Hello".
-   *
    * max_length = 10
-   *
    * text += " goodbye"
-   *
    * # `text` becomes "Hello good".
-   *
    * # `text_change_rejected` is emitted with "bye" as parameter.
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * Text = "Hello world";
-   *
    * MaxLength = 5;
-   *
    * // `Text` becomes "Hello".
-   *
    * MaxLength = 10;
-   *
    * Text += " goodbye";
-   *
    * // `Text` becomes "Hello good".
-   *
    * // `text_change_rejected` is emitted with "bye" as parameter.
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public var maxLength: Int
     get() {
@@ -212,7 +177,8 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * If `true`, the [godot.LineEdit] width will increase to stay longer than the [text]. It will **not** compress if the [text] is shortened.
+   * If `true`, the [LineEdit] width will increase to stay longer than the [text]. It will **not**
+   * compress if the [text] is shortened.
    */
   public var expandToTextLength: Boolean
     get() {
@@ -268,7 +234,8 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * If `true`, the [godot.LineEdit] will show a clear button if [text] is not empty, which can be used to clear the text quickly.
+   * If `true`, the [LineEdit] will show a clear button if [text] is not empty, which can be used to
+   * clear the text quickly.
    */
   public var clearButtonEnabled: Boolean
     get() {
@@ -297,7 +264,6 @@ public open class LineEdit : Control() {
 
   /**
    * If `false`, using middle mouse button to paste clipboard will be disabled.
-   *
    * **Note:** This method is only implemented on Linux.
    */
   public var middleMousePasteEnabled: Boolean
@@ -354,7 +320,8 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * Sets the icon that will appear in the right end of the [godot.LineEdit] if there's no [text], or always, if [clearButtonEnabled] is set to `false`.
+   * Sets the icon that will appear in the right end of the [LineEdit] if there's no [text], or
+   * always, if [clearButtonEnabled] is set to `false`.
    */
   public var rightIcon: Texture2D?
     get() {
@@ -368,7 +335,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * If `true`, the [godot.LineEdit] doesn't display decoration.
+   * If `true`, the [LineEdit] doesn't display decoration.
    */
   public var flat: Boolean
     get() {
@@ -396,7 +363,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * If `true`, the [godot.LineEdit] will select the whole text when it gains focus.
+   * If `true`, the [LineEdit] will select the whole text when it gains focus.
    */
   public var selectAllOnFocus: Boolean
     get() {
@@ -438,7 +405,8 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * The caret's column position inside the [godot.LineEdit]. When set, the text may scroll to accommodate it.
+   * The caret's column position inside the [LineEdit]. When set, the text may scroll to accommodate
+   * it.
    */
   public var caretColumn: Int
     get() {
@@ -452,7 +420,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * If `true`, the [godot.LineEdit] will always show the caret, even if focus is lost.
+   * If `true`, the [LineEdit] will always show the caret, even if focus is lost.
    */
   public var caretForceDisplayed: Boolean
     get() {
@@ -467,7 +435,6 @@ public open class LineEdit : Control() {
 
   /**
    * Allow moving caret, selecting and removing the individual composite character components.
-   *
    * **Note:** [kbd]Backspace[/kbd] is always removing individual composite character components.
    */
   public var caretMidGrapheme: Boolean
@@ -496,7 +463,9 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * The character to use to mask secret input. Only a single character can be used as the secret character. If it is longer than one character, only the first one will be used. If it is empty, a space will be used instead.
+   * The character to use to mask secret input. Only a single character can be used as the secret
+   * character. If it is longer than one character, only the first one will be used. If it is empty, a
+   * space will be used instead.
    */
   public var secretCharacter: String
     get() {
@@ -524,7 +493,8 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * Language code used for line-breaking and text shaping algorithms. If left empty, current locale is used instead.
+   * Language code used for line-breaking and text shaping algorithms. If left empty, current locale
+   * is used instead.
    */
   public var language: String
     get() {
@@ -573,7 +543,7 @@ public open class LineEdit : Control() {
   }
 
   /**
-   * Erases the [godot.LineEdit]'s [text].
+   * Erases the [LineEdit]'s [text].
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
@@ -581,35 +551,23 @@ public open class LineEdit : Control() {
   }
 
   /**
-   * Selects characters inside [godot.LineEdit] between [from] and [to]. By default, [from] is at the beginning and [to] at the end.
+   * Selects characters inside [LineEdit] between [param from] and [param to]. By default, [param
+   * from] is at the beginning and [param to] at the end.
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * text = "Welcome"
-   *
    * select() # Will select "Welcome".
-   *
    * select(4) # Will select "ome".
-   *
    * select(2, 5) # Will select "lco".
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * Text = "Welcome";
-   *
    * Select(); // Will select "Welcome".
-   *
    * Select(4); // Will select "ome".
-   *
    * Select(2, 5); // Will select "lco".
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   @JvmOverloads
   public fun select(from: Int = 0, to: Int = -1): Unit {
@@ -618,7 +576,7 @@ public open class LineEdit : Control() {
   }
 
   /**
-   * Selects the whole [godot.String].
+   * Selects the whole [String].
    */
   public fun selectAll(): Unit {
     TransferContext.writeArguments()
@@ -679,7 +637,8 @@ public open class LineEdit : Control() {
   }
 
   /**
-   * Inserts [text] at the caret. If the resulting value is longer than [maxLength], nothing happens.
+   * Inserts [param text] at the caret. If the resulting value is longer than [maxLength], nothing
+   * happens.
    */
   public fun insertTextAtCaret(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
@@ -687,7 +646,8 @@ public open class LineEdit : Control() {
   }
 
   /**
-   * Deletes one character at the caret's current position (equivalent to pressing [kbd]Delete[/kbd]).
+   * Deletes one character at the caret's current position (equivalent to pressing
+   * [kbd]Delete[/kbd]).
    */
   public fun deleteCharAtCaret(): Unit {
     TransferContext.writeArguments()
@@ -695,7 +655,8 @@ public open class LineEdit : Control() {
   }
 
   /**
-   * Deletes a section of the [text] going from position [fromColumn] to [toColumn]. Both parameters should be within the text's length.
+   * Deletes a section of the [text] going from position [param from_column] to [param to_column].
+   * Both parameters should be within the text's length.
    */
   public fun deleteText(fromColumn: Int, toColumn: Int): Unit {
     TransferContext.writeArguments(LONG to fromColumn.toLong(), LONG to toColumn.toLong())
@@ -711,87 +672,52 @@ public open class LineEdit : Control() {
   }
 
   /**
-   * Returns the [godot.PopupMenu] of this [godot.LineEdit]. By default, this menu is displayed when right-clicking on the [godot.LineEdit].
+   * Returns the [PopupMenu] of this [LineEdit]. By default, this menu is displayed when
+   * right-clicking on the [LineEdit].
+   * You can add custom menu items or remove standard ones. Make sure your IDs don't conflict with
+   * the standard ones (see [enum MenuItems]). For example:
    *
-   * You can add custom menu items or remove standard ones. Make sure your IDs don't conflict with the standard ones (see [enum MenuItems]). For example:
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * func _ready():
-   *
    *     var menu = get_menu()
-   *
    *     # Remove all items after "Redo".
-   *
    *     menu.item_count = menu.get_item_index(MENU_REDO) + 1
-   *
    *     # Add custom items.
-   *
    *     menu.add_separator()
-   *
    *     menu.add_item("Insert Date", MENU_MAX + 1)
-   *
    *     # Connect callback.
-   *
    *     menu.id_pressed.connect(_on_item_pressed)
    *
-   *
-   *
    * func _on_item_pressed(id):
-   *
    *     if id == MENU_MAX + 1:
-   *
    *         insert_text_at_caret(Time.get_date_string_from_system())
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * public override void _Ready()
-   *
    * {
-   *
    *     var menu = GetMenu();
-   *
    *     // Remove all items after "Redo".
-   *
    *     menu.ItemCount = menu.GetItemIndex(LineEdit.MenuItems.Redo) + 1;
-   *
    *     // Add custom items.
-   *
    *     menu.AddSeparator();
-   *
    *     menu.AddItem("Insert Date", LineEdit.MenuItems.Max + 1);
-   *
    *     // Add event handler.
-   *
    *     menu.IdPressed += OnItemPressed;
-   *
    * }
-   *
-   *
    *
    * public void OnItemPressed(int id)
-   *
    * {
-   *
    *     if (id == LineEdit.MenuItems.Max + 1)
-   *
    *     {
-   *
    *         InsertTextAtCaret(Time.GetDateStringFromSystem());
-   *
    *     }
-   *
    * }
+   * ```
    *
-   * [/csharp]
-   *
-   * [/codeblocks]
-   *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.Window.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
+   * you wish to hide it or any of its children, use their [Window.visible] property.
    */
   public fun getMenu(): PopupMenu? {
     TransferContext.writeArguments()
@@ -800,7 +726,8 @@ public open class LineEdit : Control() {
   }
 
   /**
-   * Returns whether the menu is visible. Use this instead of `get_menu().visible` to improve performance (so the creation of the menu is avoided).
+   * Returns whether the menu is visible. Use this instead of `get_menu().visible` to improve
+   * performance (so the creation of the menu is avoided).
    */
   public fun isMenuVisible(): Boolean {
     TransferContext.writeArguments()
@@ -821,16 +748,16 @@ public open class LineEdit : Control() {
     MENU_COPY(1),
     /**
      * Pastes the clipboard text over the selected text (or at the caret's position).
-     *
-     * Non-printable escape characters are automatically stripped from the OS clipboard via [godot.String.stripEscapes].
+     * Non-printable escape characters are automatically stripped from the OS clipboard via
+     * [String.stripEscapes].
      */
     MENU_PASTE(2),
     /**
-     * Erases the whole [godot.LineEdit] text.
+     * Erases the whole [LineEdit] text.
      */
     MENU_CLEAR(3),
     /**
-     * Selects the whole [godot.LineEdit] text.
+     * Selects the whole [LineEdit] text.
      */
     MENU_SELECT_ALL(4),
     /**
@@ -977,9 +904,10 @@ public open class LineEdit : Control() {
      */
     KEYBOARD_TYPE_EMAIL_ADDRESS(5),
     /**
-     * Virtual keyboard for entering a password. On most platforms, this should disable autocomplete and autocapitalization.
-     *
-     * **Note:** This is not supported on Web. Instead, this behaves identically to [KEYBOARD_TYPE_DEFAULT].
+     * Virtual keyboard for entering a password. On most platforms, this should disable autocomplete
+     * and autocapitalization.
+     * **Note:** This is not supported on Web. Instead, this behaves identically to [constant
+     * KEYBOARD_TYPE_DEFAULT].
      */
     KEYBOARD_TYPE_PASSWORD(6),
     /**

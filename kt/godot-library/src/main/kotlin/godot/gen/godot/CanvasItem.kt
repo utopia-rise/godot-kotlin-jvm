@@ -45,24 +45,27 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Abstract base class for everything in 2D space.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/528](https://godotengine.org/asset-library/asset/528)
- *
- * Abstract base class for everything in 2D space. Canvas items are laid out in a tree; children inherit and extend their parent's transform. [godot.CanvasItem] is extended by [godot.Control] for GUI-related nodes, and by [godot.Node2D] for 2D game objects.
- *
- * Any [godot.CanvasItem] can draw. For this, [queueRedraw] is called by the engine, then [NOTIFICATION_DRAW] will be received on idle time to request a redraw. Because of this, canvas items don't need to be redrawn on every frame, improving the performance significantly. Several functions for drawing on the [godot.CanvasItem] are provided (see `draw_*` functions). However, they can only be used inside [_draw], its corresponding [godot.Object.Notification] or methods connected to the [draw] signal.
- *
- * Canvas items are drawn in tree order on their canvas layer. By default, children are on top of their parents, so a root [godot.CanvasItem] will be drawn behind everything. This behavior can be changed on a per-item basis.
- *
- * A [godot.CanvasItem] can be hidden, which will also hide its children. By adjusting various other properties of a [godot.CanvasItem], you can also modulate its color (via [modulate] or [selfModulate]), change its Z-index, blend mode, and more.
+ * Abstract base class for everything in 2D space. Canvas items are laid out in a tree; children
+ * inherit and extend their parent's transform. [CanvasItem] is extended by [Control] for GUI-related
+ * nodes, and by [Node2D] for 2D game objects.
+ * Any [CanvasItem] can draw. For this, [queueRedraw] is called by the engine, then [constant
+ * NOTIFICATION_DRAW] will be received on idle time to request a redraw. Because of this, canvas items
+ * don't need to be redrawn on every frame, improving the performance significantly. Several functions
+ * for drawing on the [CanvasItem] are provided (see `draw_*` functions). However, they can only be
+ * used inside [_draw], its corresponding [Object.Notification] or methods connected to the [signal
+ * draw] signal.
+ * Canvas items are drawn in tree order on their canvas layer. By default, children are on top of
+ * their parents, so a root [CanvasItem] will be drawn behind everything. This behavior can be changed
+ * on a per-item basis.
+ * A [CanvasItem] can be hidden, which will also hide its children. By adjusting various other
+ * properties of a [CanvasItem], you can also modulate its color (via [modulate] or [selfModulate]),
+ * change its Z-index, blend mode, and more.
  */
 @GodotBaseType
 public open class CanvasItem internal constructor() : Node() {
   /**
-   * Emitted when the [godot.CanvasItem] must redraw, *after* the related [NOTIFICATION_DRAW] notification, and *before* [_draw] is called.
-   *
+   * Emitted when the [CanvasItem] must redraw, *after* the related [constant NOTIFICATION_DRAW]
+   * notification, and *before* [_draw] is called.
    * **Note:** Deferred connections do not allow drawing through the `draw_*` methods.
    */
   public val draw: Signal0 by signal()
@@ -78,14 +81,16 @@ public open class CanvasItem internal constructor() : Node() {
   public val hidden: Signal0 by signal()
 
   /**
-   * Emitted when the item's [godot.core.Rect2] boundaries (position or size) have changed, or when an action is taking place that may have impacted these boundaries (e.g. changing [godot.Sprite2D.texture]).
+   * Emitted when the item's [Rect2] boundaries (position or size) have changed, or when an action
+   * is taking place that may have impacted these boundaries (e.g. changing [Sprite2D.texture]).
    */
   public val itemRectChanged: Signal0 by signal()
 
   /**
-   * If `true`, this [godot.CanvasItem] is drawn. The node is only visible if all of its ancestors are visible as well (in other words, [isVisibleInTree] must return `true`).
-   *
-   * **Note:** For controls that inherit [godot.Popup], the correct way to make them visible is to call one of the multiple `popup*()` functions instead.
+   * If `true`, this [CanvasItem] is drawn. The node is only visible if all of its ancestors are
+   * visible as well (in other words, [isVisibleInTree] must return `true`).
+   * **Note:** For controls that inherit [Popup], the correct way to make them visible is to call
+   * one of the multiple `popup*()` functions instead.
    */
   public var visible: Boolean
     get() {
@@ -99,7 +104,8 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * The color applied to this [godot.CanvasItem]. This property does affect child [godot.CanvasItem]s, unlike [selfModulate] which only affects the node itself.
+   * The color applied to this [CanvasItem]. This property does affect child [CanvasItem]s, unlike
+   * [selfModulate] which only affects the node itself.
    */
   @CoreTypeLocalCopy
   public var modulate: Color
@@ -114,9 +120,11 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * The color applied to this [godot.CanvasItem]. This property does **not** affect child [godot.CanvasItem]s, unlike [modulate] which affects both the node itself and its children.
-   *
-   * **Note:** Internal children (e.g. sliders in [godot.ColorPicker] or tab bar in [godot.TabContainer]) are also not affected by this property (see `include_internal` parameter of [godot.Node.getChild] and other similar methods).
+   * The color applied to this [CanvasItem]. This property does **not** affect child [CanvasItem]s,
+   * unlike [modulate] which affects both the node itself and its children.
+   * **Note:** Internal children (e.g. sliders in [ColorPicker] or tab bar in [TabContainer]) are
+   * also not affected by this property (see `include_internal` parameter of [Node.getChild] and other
+   * similar methods).
    */
   @CoreTypeLocalCopy
   public var selfModulate: Color
@@ -145,7 +153,10 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * If `true`, this [godot.CanvasItem] will *not* inherit its transform from parent [godot.CanvasItem]s. Its draw order will also be changed to make it draw on top of other [godot.CanvasItem]s that do not have [topLevel] set to `true`. The [godot.CanvasItem] will effectively act as if it was placed as a child of a bare [godot.Node].
+   * If `true`, this [CanvasItem] will *not* inherit its transform from parent [CanvasItem]s. Its
+   * draw order will also be changed to make it draw on top of other [CanvasItem]s that do not have
+   * [topLevel] set to `true`. The [CanvasItem] will effectively act as if it was placed as a child of
+   * a bare [Node].
    */
   public var topLevel: Boolean
     get() {
@@ -173,7 +184,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * The rendering layers in which this [godot.CanvasItem] responds to [godot.Light2D] nodes.
+   * The rendering layers in which this [CanvasItem] responds to [Light2D] nodes.
    */
   public var lightMask: Int
     get() {
@@ -187,7 +198,9 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * The rendering layer in which this [godot.CanvasItem] is rendered by [godot.Viewport] nodes. A [godot.Viewport] will render a [godot.CanvasItem] if it and all its parents share a layer with the [godot.Viewport]'s canvas cull mask.
+   * The rendering layer in which this [CanvasItem] is rendered by [Viewport] nodes. A [Viewport]
+   * will render a [CanvasItem] if it and all its parents share a layer with the [Viewport]'s canvas
+   * cull mask.
    */
   public var visibilityLayer: Long
     get() {
@@ -201,9 +214,12 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * Z index. Controls the order in which the nodes render. A node with a higher Z index will display in front of others. Must be between [godot.RenderingServer.CANVAS_ITEM_Z_MIN] and [godot.RenderingServer.CANVAS_ITEM_Z_MAX] (inclusive).
-   *
-   * **Note:** Changing the Z index of a [godot.Control] only affects the drawing order, not the order in which input events are handled. This can be useful to implement certain UI animations, e.g. a menu where hovered items are scaled and should overlap others.
+   * Z index. Controls the order in which the nodes render. A node with a higher Z index will
+   * display in front of others. Must be between [constant RenderingServer.CANVAS_ITEM_Z_MIN] and
+   * [constant RenderingServer.CANVAS_ITEM_Z_MAX] (inclusive).
+   * **Note:** Changing the Z index of a [Control] only affects the drawing order, not the order in
+   * which input events are handled. This can be useful to implement certain UI animations, e.g. a menu
+   * where hovered items are scaled and should overlap others.
    */
   public var zIndex: Int
     get() {
@@ -217,7 +233,8 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * If `true`, the node's Z index is relative to its parent's Z index. If this node's Z index is 2 and its parent's effective Z index is 3, then this node's effective Z index will be 2 + 3 = 5.
+   * If `true`, the node's Z index is relative to its parent's Z index. If this node's Z index is 2
+   * and its parent's effective Z index is 3, then this node's effective Z index will be 2 + 3 = 5.
    */
   public var zAsRelative: Boolean
     get() {
@@ -231,9 +248,12 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * If `true`, child nodes with the lowest Y position are drawn before those with a higher Y position. If `false`, Y-sorting is disabled. Y-sorting only affects children that inherit from [godot.CanvasItem].
-   *
-   * You can nest nodes with Y-sorting. Child Y-sorted nodes are sorted in the same space as the parent Y-sort. This feature allows you to organize a scene better or divide it into multiple ones without changing your scene tree.
+   * If `true`, child nodes with the lowest Y position are drawn before those with a higher Y
+   * position. If `false`, Y-sorting is disabled. Y-sorting only affects children that inherit from
+   * [CanvasItem].
+   * You can nest nodes with Y-sorting. Child Y-sorted nodes are sorted in the same space as the
+   * parent Y-sort. This feature allows you to organize a scene better or divide it into multiple ones
+   * without changing your scene tree.
    */
   public var ySortEnabled: Boolean
     get() {
@@ -247,7 +267,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * The texture filtering mode to use on this [godot.CanvasItem].
+   * The texture filtering mode to use on this [CanvasItem].
    */
   public var textureFilter: TextureFilter
     get() {
@@ -261,7 +281,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * The texture repeating mode to use on this [godot.CanvasItem].
+   * The texture repeating mode to use on this [CanvasItem].
    */
   public var textureRepeat: TextureRepeat
     get() {
@@ -275,7 +295,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * The material applied to this [godot.CanvasItem].
+   * The material applied to this [CanvasItem].
    */
   public var material: Material?
     get() {
@@ -289,7 +309,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * If `true`, the parent [godot.CanvasItem]'s [material] property is used as this one's material.
+   * If `true`, the parent [CanvasItem]'s [material] property is used as this one's material.
    */
   public var useParentMaterial: Boolean
     get() {
@@ -308,7 +328,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * The color applied to this [godot.CanvasItem]. This property does affect child [godot.CanvasItem]s, unlike [selfModulate] which only affects the node itself.
+   * The color applied to this [CanvasItem]. This property does affect child [CanvasItem]s, unlike
+   * [selfModulate] which only affects the node itself.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -332,9 +353,11 @@ public open class CanvasItem internal constructor() : Node() {
 
 
   /**
-   * The color applied to this [godot.CanvasItem]. This property does **not** affect child [godot.CanvasItem]s, unlike [modulate] which affects both the node itself and its children.
-   *
-   * **Note:** Internal children (e.g. sliders in [godot.ColorPicker] or tab bar in [godot.TabContainer]) are also not affected by this property (see `include_internal` parameter of [godot.Node.getChild] and other similar methods).
+   * The color applied to this [CanvasItem]. This property does **not** affect child [CanvasItem]s,
+   * unlike [modulate] which affects both the node itself and its children.
+   * **Note:** Internal children (e.g. sliders in [ColorPicker] or tab bar in [TabContainer]) are
+   * also not affected by this property (see `include_internal` parameter of [Node.getChild] and other
+   * similar methods).
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -358,15 +381,15 @@ public open class CanvasItem internal constructor() : Node() {
 
 
   /**
-   * Called when [godot.CanvasItem] has been requested to redraw (after [queueRedraw] is called, either manually or by the engine).
-   *
-   * Corresponds to the [NOTIFICATION_DRAW] notification in [godot.Object.Notification].
+   * Called when [CanvasItem] has been requested to redraw (after [queueRedraw] is called, either
+   * manually or by the engine).
+   * Corresponds to the [constant NOTIFICATION_DRAW] notification in [Object.Notification].
    */
   public open fun _draw(): Unit {
   }
 
   /**
-   * Returns the canvas item RID used by [godot.RenderingServer] for this item.
+   * Returns the canvas item RID used by [RenderingServer] for this item.
    */
   public fun getCanvasItem(): RID {
     TransferContext.writeArguments()
@@ -375,7 +398,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns `true` if the node is present in the [godot.SceneTree], its [visible] property is `true` and all its ancestors are also visible. If any ancestor is hidden, this node will not be visible in the scene tree, and is consequently not drawn (see [_draw]).
+   * Returns `true` if the node is present in the [SceneTree], its [visible] property is `true` and
+   * all its ancestors are also visible. If any ancestor is hidden, this node will not be visible in
+   * the scene tree, and is consequently not drawn (see [_draw]).
    */
   public fun isVisibleInTree(): Boolean {
     TransferContext.writeArguments()
@@ -384,7 +409,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Show the [godot.CanvasItem] if it's currently hidden. This is equivalent to setting [visible] to `true`. For controls that inherit [godot.Popup], the correct way to make them visible is to call one of the multiple `popup*()` functions instead.
+   * Show the [CanvasItem] if it's currently hidden. This is equivalent to setting [visible] to
+   * `true`. For controls that inherit [Popup], the correct way to make them visible is to call one of
+   * the multiple `popup*()` functions instead.
    */
   public fun show(): Unit {
     TransferContext.writeArguments()
@@ -392,7 +419,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Hide the [godot.CanvasItem] if it's currently visible. This is equivalent to setting [visible] to `false`.
+   * Hide the [CanvasItem] if it's currently visible. This is equivalent to setting [visible] to
+   * `false`.
    */
   public fun hide(): Unit {
     TransferContext.writeArguments()
@@ -400,7 +428,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Queues the [godot.CanvasItem] to redraw. During idle time, if [godot.CanvasItem] is visible, [NOTIFICATION_DRAW] is sent and [_draw] is called. This only occurs **once** per frame, even if this method has been called multiple times.
+   * Queues the [CanvasItem] to redraw. During idle time, if [CanvasItem] is visible, [constant
+   * NOTIFICATION_DRAW] is sent and [_draw] is called. This only occurs **once** per frame, even if
+   * this method has been called multiple times.
    */
   public fun queueRedraw(): Unit {
     TransferContext.writeArguments()
@@ -409,8 +439,8 @@ public open class CanvasItem internal constructor() : Node() {
 
   /**
    * Moves this node to display on top of its siblings.
-   *
-   * Internally, the node is moved to the bottom of parent's children list. The method has no effect on nodes without a parent.
+   * Internally, the node is moved to the bottom of parent's children list. The method has no effect
+   * on nodes without a parent.
    */
   public fun moveToFront(): Unit {
     TransferContext.writeArguments()
@@ -418,9 +448,11 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a line from a 2D point to another, with a given color and width. It can be optionally antialiased. See also [drawMultiline] and [drawPolyline].
-   *
-   * If [width] is negative, then a two-point primitive will be drawn instead of a four-point one. This means that when the CanvasItem is scaled, the line will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
+   * Draws a line from a 2D point to another, with a given color and width. It can be optionally
+   * antialiased. See also [drawMultiline] and [drawPolyline].
+   * If [param width] is negative, then a two-point primitive will be drawn instead of a four-point
+   * one. This means that when the CanvasItem is scaled, the line will remain thin. If this behavior is
+   * not desired, then pass a positive [param width] like `1.0`.
    */
   @JvmOverloads
   public fun drawLine(
@@ -435,9 +467,11 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a dashed line from a 2D point to another, with a given color and width. See also [drawMultiline] and [drawPolyline].
-   *
-   * If [width] is negative, then a two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the line parts will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
+   * Draws a dashed line from a 2D point to another, with a given color and width. See also
+   * [drawMultiline] and [drawPolyline].
+   * If [param width] is negative, then a two-point primitives will be drawn instead of a four-point
+   * ones. This means that when the CanvasItem is scaled, the line parts will remain thin. If this
+   * behavior is not desired, then pass a positive [param width] like `1.0`.
    */
   @JvmOverloads
   public fun drawDashedLine(
@@ -453,9 +487,13 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws interconnected line segments with a uniform [color] and [width] and optional antialiasing (supported only for positive [width]). When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultiline] instead. See also [drawPolygon].
-   *
-   * If [width] is negative, it will be ignored and the polyline will be drawn using [godot.RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the polyline will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
+   * Draws interconnected line segments with a uniform [param color] and [param width] and optional
+   * antialiasing (supported only for positive [param width]). When drawing large amounts of lines,
+   * this is faster than using individual [drawLine] calls. To draw disconnected lines, use
+   * [drawMultiline] instead. See also [drawPolygon].
+   * If [param width] is negative, it will be ignored and the polyline will be drawn using [constant
+   * RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the polyline
+   * will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.
    */
   @JvmOverloads
   public fun drawPolyline(
@@ -469,9 +507,15 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws interconnected line segments with a uniform [width], point-by-point coloring, and optional antialiasing (supported only for positive [width]). Colors assigned to line points match by index between [points] and [colors], i.e. each line segment is filled with a gradient between the colors of the endpoints. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected lines, use [drawMultilineColors] instead. See also [drawPolygon].
-   *
-   * If [width] is negative, it will be ignored and the polyline will be drawn using [godot.RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the polyline will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
+   * Draws interconnected line segments with a uniform [param width], point-by-point coloring, and
+   * optional antialiasing (supported only for positive [param width]). Colors assigned to line points
+   * match by index between [param points] and [param colors], i.e. each line segment is filled with a
+   * gradient between the colors of the endpoints. When drawing large amounts of lines, this is faster
+   * than using individual [drawLine] calls. To draw disconnected lines, use [drawMultilineColors]
+   * instead. See also [drawPolygon].
+   * If [param width] is negative, it will be ignored and the polyline will be drawn using [constant
+   * RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the polyline
+   * will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.
    */
   @JvmOverloads
   public fun drawPolylineColors(
@@ -485,11 +529,17 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws an unfilled arc between the given angles with a uniform [color] and [width] and optional antialiasing (supported only for positive [width]). The larger the value of [pointCount], the smoother the curve. See also [drawCircle].
-   *
-   * If [width] is negative, it will be ignored and the arc will be drawn using [godot.RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the arc will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
-   *
-   * The arc is drawn from [startAngle] towards the value of [endAngle] so in clockwise direction if `start_angle < end_angle` and counter-clockwise otherwise. Passing the same angles but in reversed order will produce the same arc. If absolute difference of [startAngle] and [endAngle] is greater than [@GDScript.TAU] radians, then a full circle arc is drawn (i.e. arc will not overlap itself).
+   * Draws an unfilled arc between the given angles with a uniform [param color] and [param width]
+   * and optional antialiasing (supported only for positive [param width]). The larger the value of
+   * [param point_count], the smoother the curve. See also [drawCircle].
+   * If [param width] is negative, it will be ignored and the arc will be drawn using [constant
+   * RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the arc will
+   * remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.
+   * The arc is drawn from [param start_angle] towards the value of [param end_angle] so in
+   * clockwise direction if `start_angle < end_angle` and counter-clockwise otherwise. Passing the same
+   * angles but in reversed order will produce the same arc. If absolute difference of [param
+   * start_angle] and [param end_angle] is greater than [constant @GDScript.TAU] radians, then a full
+   * circle arc is drawn (i.e. arc will not overlap itself).
    */
   @JvmOverloads
   public fun drawArc(
@@ -507,9 +557,14 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws multiple disconnected lines with a uniform [width] and [color]. Each line is defined by two consecutive points from [points] array, i.e. i-th segment consists of `points[2 * i]`, `points[2 * i + 1]` endpoints. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw interconnected lines, use [drawPolyline] instead.
-   *
-   * If [width] is negative, then two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
+   * Draws multiple disconnected lines with a uniform [param width] and [param color]. Each line is
+   * defined by two consecutive points from [param points] array, i.e. i-th segment consists of
+   * `points[2 * i]`, `points[2 * i + 1]` endpoints. When drawing large amounts of lines, this is
+   * faster than using individual [drawLine] calls. To draw interconnected lines, use [drawPolyline]
+   * instead.
+   * If [param width] is negative, then two-point primitives will be drawn instead of a four-point
+   * ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior
+   * is not desired, then pass a positive [param width] like `1.0`.
    */
   @JvmOverloads
   public fun drawMultiline(
@@ -522,9 +577,14 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws multiple disconnected lines with a uniform [width] and segment-by-segment coloring. Each segment is defined by two consecutive points from [points] array and a corresponding color from [colors] array, i.e. i-th segment consists of `points[2 * i]`, `points[2 * i + 1]` endpoints and has `colors*` color. When drawing large amounts of lines, this is faster than using individual [drawLine] calls. To draw interconnected lines, use [drawPolylineColors] instead.
-   *
-   * If [width] is negative, then two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
+   * Draws multiple disconnected lines with a uniform [param width] and segment-by-segment coloring.
+   * Each segment is defined by two consecutive points from [param points] array and a corresponding
+   * color from [param colors] array, i.e. i-th segment consists of `points[2 * i]`, `points[2 * i +
+   * 1]` endpoints and has `colors[i]` color. When drawing large amounts of lines, this is faster than
+   * using individual [drawLine] calls. To draw interconnected lines, use [drawPolylineColors] instead.
+   * If [param width] is negative, then two-point primitives will be drawn instead of a four-point
+   * ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior
+   * is not desired, then pass a positive [param width] like `1.0`.
    */
   @JvmOverloads
   public fun drawMultilineColors(
@@ -537,13 +597,16 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a rectangle. If [filled] is `true`, the rectangle will be filled with the [color] specified. If [filled] is `false`, the rectangle will be drawn as a stroke with the [color] and [width] specified. See also [drawTextureRect].
-   *
-   * If [width] is negative, then two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
-   *
-   * **Note:** [width] is only effective if [filled] is `false`.
-   *
-   * **Note:** Unfilled rectangles drawn with a negative [width] may not display perfectly. For example, corners may be missing or brighter due to overlapping lines (for a translucent [color]).
+   * Draws a rectangle. If [param filled] is `true`, the rectangle will be filled with the [param
+   * color] specified. If [param filled] is `false`, the rectangle will be drawn as a stroke with the
+   * [param color] and [param width] specified. See also [drawTextureRect].
+   * If [param width] is negative, then two-point primitives will be drawn instead of a four-point
+   * ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior
+   * is not desired, then pass a positive [param width] like `1.0`.
+   * **Note:** [param width] is only effective if [param filled] is `false`.
+   * **Note:** Unfilled rectangles drawn with a negative [param width] may not display perfectly.
+   * For example, corners may be missing or brighter due to overlapping lines (for a translucent [param
+   * color]).
    */
   @JvmOverloads
   public fun drawRect(
@@ -582,7 +645,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a textured rectangle at a given position, optionally modulated by a color. If [transpose] is `true`, the texture will have its X and Y coordinates swapped. See also [drawRect] and [drawTextureRectRegion].
+   * Draws a textured rectangle at a given position, optionally modulated by a color. If [param
+   * transpose] is `true`, the texture will have its X and Y coordinates swapped. See also [drawRect]
+   * and [drawTextureRectRegion].
    */
   @JvmOverloads
   public fun drawTextureRect(
@@ -597,7 +662,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a textured rectangle from a texture's region (specified by [srcRect]) at a given position, optionally modulated by a color. If [transpose] is `true`, the texture will have its X and Y coordinates swapped. See also [drawTextureRect].
+   * Draws a textured rectangle from a texture's region (specified by [param src_rect]) at a given
+   * position, optionally modulated by a color. If [param transpose] is `true`, the texture will have
+   * its X and Y coordinates swapped. See also [drawTextureRect].
    */
   @JvmOverloads
   public fun drawTextureRectRegion(
@@ -613,11 +680,13 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a textured rectangle region of the multi-channel signed distance field texture at a given position, optionally modulated by a color. See [godot.FontFile.multichannelSignedDistanceField] for more information and caveats about MSDF font rendering.
-   *
-   * If [outline] is positive, each alpha channel value of pixel in region is set to maximum value of true distance in the [outline] radius.
-   *
-   * Value of the [pixelRange] should the same that was used during distance field texture generation.
+   * Draws a textured rectangle region of the multi-channel signed distance field texture at a given
+   * position, optionally modulated by a color. See [FontFile.multichannelSignedDistanceField] for more
+   * information and caveats about MSDF font rendering.
+   * If [param outline] is positive, each alpha channel value of pixel in region is set to maximum
+   * value of true distance in the [param outline] radius.
+   * Value of the [param pixel_range] should the same that was used during distance field texture
+   * generation.
    */
   @JvmOverloads
   public fun drawMsdfTextureRectRegion(
@@ -634,16 +703,16 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a textured rectangle region of the font texture with LCD subpixel anti-aliasing at a given position, optionally modulated by a color.
-   *
-   * Texture is drawn using the following blend operation, blend mode of the [godot.CanvasItemMaterial] is ignored:
-   *
-   * ```
-   * 				dst.r = texture.r * modulate.r * modulate.a + dst.r * (1.0 - texture.r * modulate.a);
-   * 				dst.g = texture.g * modulate.g * modulate.a + dst.g * (1.0 - texture.g * modulate.a);
-   * 				dst.b = texture.b * modulate.b * modulate.a + dst.b * (1.0 - texture.b * modulate.a);
-   * 				dst.a = modulate.a + dst.a * (1.0 - modulate.a);
-   * 				```
+   * Draws a textured rectangle region of the font texture with LCD subpixel anti-aliasing at a
+   * given position, optionally modulated by a color.
+   * Texture is drawn using the following blend operation, blend mode of the [CanvasItemMaterial] is
+   * ignored:
+   * [codeblock]
+   * dst.r = texture.r * modulate.r * modulate.a + dst.r * (1.0 - texture.r * modulate.a);
+   * dst.g = texture.g * modulate.g * modulate.a + dst.g * (1.0 - texture.g * modulate.a);
+   * dst.b = texture.b * modulate.b * modulate.a + dst.b * (1.0 - texture.b * modulate.a);
+   * dst.a = modulate.a + dst.a * (1.0 - modulate.a);
+   * [/codeblock]
    */
   @JvmOverloads
   public fun drawLcdTextureRectRegion(
@@ -665,7 +734,10 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a custom primitive. 1 point for a point, 2 points for a line, 3 points for a triangle, and 4 points for a quad. If 0 points or more than 4 points are specified, nothing will be drawn and an error message will be printed. See also [drawLine], [drawPolyline], [drawPolygon], and [drawRect].
+   * Draws a custom primitive. 1 point for a point, 2 points for a line, 3 points for a triangle,
+   * and 4 points for a quad. If 0 points or more than 4 points are specified, nothing will be drawn
+   * and an error message will be printed. See also [drawLine], [drawPolyline], [drawPolygon], and
+   * [drawRect].
    */
   @JvmOverloads
   public fun drawPrimitive(
@@ -679,7 +751,10 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a solid polygon of any number of points, convex or concave. Unlike [drawColoredPolygon], each point's color can be changed individually. See also [drawPolyline] and [drawPolylineColors]. If you need more flexibility (such as being able to use bones), use [godot.RenderingServer.canvasItemAddTriangleArray] instead.
+   * Draws a solid polygon of any number of points, convex or concave. Unlike [drawColoredPolygon],
+   * each point's color can be changed individually. See also [drawPolyline] and [drawPolylineColors].
+   * If you need more flexibility (such as being able to use bones), use
+   * [RenderingServer.canvasItemAddTriangleArray] instead.
    */
   @JvmOverloads
   public fun drawPolygon(
@@ -693,7 +768,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a colored polygon of any number of points, convex or concave. Unlike [drawPolygon], a single color must be specified for the whole polygon.
+   * Draws a colored polygon of any number of points, convex or concave. Unlike [drawPolygon], a
+   * single color must be specified for the whole polygon.
    */
   @JvmOverloads
   public fun drawColoredPolygon(
@@ -707,47 +783,34 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws [text] using the specified [font] at the [pos] (bottom-left corner using the baseline of the font). The text will have its color multiplied by [modulate]. If [width] is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
-   *
+   * Draws [param text] using the specified [param font] at the [param pos] (bottom-left corner
+   * using the baseline of the font). The text will have its color multiplied by [param modulate]. If
+   * [param width] is greater than or equal to 0, the text will be clipped if it exceeds the specified
+   * width.
    * **Example using the default project font:**
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * # If using this method in a script that redraws constantly, move the
-   *
    * # `default_font` declaration to a member variable assigned in `_ready()`
-   *
    * # so the Control is only created once.
-   *
    * var default_font = ThemeDB.fallback_font
-   *
    * var default_font_size = ThemeDB.fallback_font_size
-   *
-   * draw_string(default_font, Vector2(64, 64), "Hello world", HORIZONTAL_ALIGNMENT_LEFT, -1, default_font_size)
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * draw_string(default_font, Vector2(64, 64), "Hello world", HORIZONTAL_ALIGNMENT_LEFT, -1,
+   * default_font_size)
+   * ```
+   * csharp:
+   * ```csharp
    * // If using this method in a script that redraws constantly, move the
-   *
    * // `default_font` declaration to a member variable assigned in `_Ready()`
-   *
    * // so the Control is only created once.
-   *
    * Font defaultFont = ThemeDB.FallbackFont;
-   *
    * int defaultFontSize = ThemeDB.FallbackFontSize;
+   * DrawString(defaultFont, new Vector2(64, 64), "Hello world", HORIZONTAL_ALIGNMENT_LEFT, -1,
+   * defaultFontSize);
+   * ```
    *
-   * DrawString(defaultFont, new Vector2(64, 64), "Hello world", HORIZONTAL_ALIGNMENT_LEFT, -1, defaultFontSize);
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
-   *
-   * See also [godot.Font.drawString].
+   * See also [Font.drawString].
    */
   @JvmOverloads
   public fun drawString(
@@ -767,7 +830,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Breaks [text] into lines and draws it using the specified [font] at the [pos] (top-left corner). The text will have its color multiplied by [modulate]. If [width] is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
+   * Breaks [param text] into lines and draws it using the specified [param font] at the [param pos]
+   * (top-left corner). The text will have its color multiplied by [param modulate]. If [param width]
+   * is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
    */
   @JvmOverloads
   public fun drawMultilineString(
@@ -789,7 +854,10 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws [text] outline using the specified [font] at the [pos] (bottom-left corner using the baseline of the font). The text will have its color multiplied by [modulate]. If [width] is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
+   * Draws [param text] outline using the specified [param font] at the [param pos] (bottom-left
+   * corner using the baseline of the font). The text will have its color multiplied by [param
+   * modulate]. If [param width] is greater than or equal to 0, the text will be clipped if it exceeds
+   * the specified width.
    */
   @JvmOverloads
   public fun drawStringOutline(
@@ -810,7 +878,10 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Breaks [text] to the lines and draws text outline using the specified [font] at the [pos] (top-left corner). The text will have its color multiplied by [modulate]. If [width] is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
+   * Breaks [param text] to the lines and draws text outline using the specified [param font] at the
+   * [param pos] (top-left corner). The text will have its color multiplied by [param modulate]. If
+   * [param width] is greater than or equal to 0, the text will be clipped if it exceeds the specified
+   * width.
    */
   @JvmOverloads
   public fun drawMultilineStringOutline(
@@ -864,7 +935,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a [godot.Mesh] in 2D, using the provided texture. See [godot.MeshInstance2D] for related documentation.
+   * Draws a [Mesh] in 2D, using the provided texture. See [MeshInstance2D] for related
+   * documentation.
    */
   @JvmOverloads
   public fun drawMesh(
@@ -878,7 +950,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a [godot.MultiMesh] in 2D with the provided texture. See [godot.MultiMeshInstance2D] for related documentation.
+   * Draws a [MultiMesh] in 2D with the provided texture. See [MultiMeshInstance2D] for related
+   * documentation.
    */
   public fun drawMultimesh(multimesh: MultiMesh, texture: Texture2D): Unit {
     TransferContext.writeArguments(OBJECT to multimesh, OBJECT to texture)
@@ -886,9 +959,15 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Sets a custom transform for drawing via components. Anything drawn afterwards will be transformed by this.
-   *
-   * **Note:** [godot.FontFile.oversampling] does *not* take [scale] into account. This means that scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font rendering by enabling [godot.ProjectSettings.gui/theme/defaultFontMultichannelSignedDistanceField] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [godot.SystemFont.multichannelSignedDistanceField] can be enabled in the inspector.
+   * Sets a custom transform for drawing via components. Anything drawn afterwards will be
+   * transformed by this.
+   * **Note:** [FontFile.oversampling] does *not* take [param scale] into account. This means that
+   * scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry
+   * or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font rendering
+   * by enabling [ProjectSettings.gui/theme/defaultFontMultichannelSignedDistanceField] (applies to the
+   * default project font only), or enabling **Multichannel Signed Distance Field** in the import
+   * options of a DynamicFont for custom fonts. On system fonts,
+   * [SystemFont.multichannelSignedDistanceField] can be enabled in the inspector.
    */
   @JvmOverloads
   public fun drawSetTransform(
@@ -901,7 +980,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Sets a custom transform for drawing via matrix. Anything drawn afterwards will be transformed by this.
+   * Sets a custom transform for drawing via matrix. Anything drawn afterwards will be transformed
+   * by this.
    */
   public fun drawSetTransformMatrix(xform: Transform2D): Unit {
     TransferContext.writeArguments(TRANSFORM2D to xform)
@@ -909,7 +989,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Subsequent drawing commands will be ignored unless they fall within the specified animation slice. This is a faster way to implement animations that loop on background rather than redrawing constantly.
+   * Subsequent drawing commands will be ignored unless they fall within the specified animation
+   * slice. This is a faster way to implement animations that loop on background rather than redrawing
+   * constantly.
    */
   @JvmOverloads
   public fun drawAnimationSlice(
@@ -923,7 +1005,10 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * After submitting all animations slices via [drawAnimationSlice], this function can be used to revert drawing to its default state (all subsequent drawing commands will be visible). If you don't care about this particular use case, usage of this function after submitting the slices is not required.
+   * After submitting all animations slices via [drawAnimationSlice], this function can be used to
+   * revert drawing to its default state (all subsequent drawing commands will be visible). If you
+   * don't care about this particular use case, usage of this function after submitting the slices is
+   * not required.
    */
   public fun drawEndAnimation(): Unit {
     TransferContext.writeArguments()
@@ -940,7 +1025,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns the global transform matrix of this item, i.e. the combined transform up to the topmost [godot.CanvasItem] node. The topmost item is a [godot.CanvasItem] that either has no parent, has non-[godot.CanvasItem] parent or it has [topLevel] enabled.
+   * Returns the global transform matrix of this item, i.e. the combined transform up to the topmost
+   * [CanvasItem] node. The topmost item is a [CanvasItem] that either has no parent, has
+   * non-[CanvasItem] parent or it has [topLevel] enabled.
    */
   public fun getGlobalTransform(): Transform2D {
     TransferContext.writeArguments()
@@ -949,7 +1036,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns the transform from the local coordinate system of this [godot.CanvasItem] to the [godot.Viewport]s coordinate system.
+   * Returns the transform from the local coordinate system of this [CanvasItem] to the [Viewport]s
+   * coordinate system.
    */
   public fun getGlobalTransformWithCanvas(): Transform2D {
     TransferContext.writeArguments()
@@ -958,7 +1046,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns the transform from the coordinate system of the canvas, this item is in, to the [godot.Viewport]s embedders coordinate system.
+   * Returns the transform from the coordinate system of the canvas, this item is in, to the
+   * [Viewport]s embedders coordinate system.
    */
   public fun getViewportTransform(): Transform2D {
     TransferContext.writeArguments()
@@ -967,7 +1056,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns the viewport's boundaries as a [godot.core.Rect2].
+   * Returns the viewport's boundaries as a [Rect2].
    */
   public fun getViewportRect(): Rect2 {
     TransferContext.writeArguments()
@@ -976,7 +1065,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns the transform from the coordinate system of the canvas, this item is in, to the [godot.Viewport]s coordinate system.
+   * Returns the transform from the coordinate system of the canvas, this item is in, to the
+   * [Viewport]s coordinate system.
    */
   public fun getCanvasTransform(): Transform2D {
     TransferContext.writeArguments()
@@ -985,9 +1075,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns the transform of this [godot.CanvasItem] in global screen coordinates (i.e. taking window position into account). Mostly useful for editor plugins.
-   *
-   * Equals to [getGlobalTransform] if the window is embedded (see [godot.Viewport.guiEmbedSubwindows]).
+   * Returns the transform of this [CanvasItem] in global screen coordinates (i.e. taking window
+   * position into account). Mostly useful for editor plugins.
+   * Equals to [getGlobalTransform] if the window is embedded (see [Viewport.guiEmbedSubwindows]).
    */
   public fun getScreenTransform(): Transform2D {
     TransferContext.writeArguments()
@@ -996,7 +1086,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns the mouse's position in this [godot.CanvasItem] using the local coordinate system of this [godot.CanvasItem].
+   * Returns the mouse's position in this [CanvasItem] using the local coordinate system of this
+   * [CanvasItem].
    */
   public fun getLocalMousePosition(): Vector2 {
     TransferContext.writeArguments()
@@ -1005,9 +1096,10 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns the mouse's position in the [godot.CanvasLayer] that this [godot.CanvasItem] is in using the coordinate system of the [godot.CanvasLayer].
-   *
-   * **Note:** For screen-space coordinates (e.g. when using a non-embedded [godot.Popup]), you can use [godot.DisplayServer.mouseGetPosition].
+   * Returns the mouse's position in the [CanvasLayer] that this [CanvasItem] is in using the
+   * coordinate system of the [CanvasLayer].
+   * **Note:** For screen-space coordinates (e.g. when using a non-embedded [Popup]), you can use
+   * [DisplayServer.mouseGetPosition].
    */
   public fun getGlobalMousePosition(): Vector2 {
     TransferContext.writeArguments()
@@ -1016,7 +1108,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns the [RID] of the [godot.World2D] canvas where this item is in.
+   * Returns the [RID] of the [World2D] canvas where this item is in.
    */
   public fun getCanvas(): RID {
     TransferContext.writeArguments()
@@ -1025,7 +1117,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns the [godot.World2D] where this item is in.
+   * Returns the [World2D] where this item is in.
    */
   public fun getWorld2d(): World2D? {
     TransferContext.writeArguments()
@@ -1034,7 +1126,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * If [enable] is `true`, this node will receive [NOTIFICATION_LOCAL_TRANSFORM_CHANGED] when its local transform changes.
+   * If [param enable] is `true`, this node will receive [constant
+   * NOTIFICATION_LOCAL_TRANSFORM_CHANGED] when its local transform changes.
    */
   public fun setNotifyLocalTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -1051,7 +1144,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * If [enable] is `true`, this node will receive [NOTIFICATION_TRANSFORM_CHANGED] when its global transform changes.
+   * If [param enable] is `true`, this node will receive [constant NOTIFICATION_TRANSFORM_CHANGED]
+   * when its global transform changes.
    */
   public fun setNotifyTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -1068,7 +1162,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Forces the transform to update. Transform changes in physics are not instant for performance reasons. Transforms are accumulated and then set. Use this if you need an up-to-date transform when doing physics operations.
+   * Forces the transform to update. Transform changes in physics are not instant for performance
+   * reasons. Transforms are accumulated and then set. Use this if you need an up-to-date transform
+   * when doing physics operations.
    */
   public fun forceUpdateTransform(): Unit {
     TransferContext.writeArguments()
@@ -1076,7 +1172,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Assigns [screenPoint] as this node's new local transform.
+   * Assigns [param screen_point] as this node's new local transform.
    */
   public fun makeCanvasPositionLocal(screenPoint: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
@@ -1085,7 +1181,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Transformations issued by [event]'s inputs are applied in local space instead of global space.
+   * Transformations issued by [param event]'s inputs are applied in local space instead of global
+   * space.
    */
   public fun makeInputLocal(event: InputEvent): InputEvent? {
     TransferContext.writeArguments(OBJECT to event)
@@ -1094,7 +1191,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Set/clear individual bits on the rendering visibility layer. This simplifies editing this [godot.CanvasItem]'s visibility layer.
+   * Set/clear individual bits on the rendering visibility layer. This simplifies editing this
+   * [CanvasItem]'s visibility layer.
    */
   public fun setVisibilityLayerBit(layer: Long, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to layer, BOOL to enabled)
@@ -1114,35 +1212,47 @@ public open class CanvasItem internal constructor() : Node() {
     id: Long,
   ) {
     /**
-     * The [godot.CanvasItem] will inherit the filter from its parent.
+     * The [CanvasItem] will inherit the filter from its parent.
      */
     TEXTURE_FILTER_PARENT_NODE(0),
     /**
-     * The texture filter reads from the nearest pixel only. The simplest and fastest method of filtering. Useful for pixel art.
+     * The texture filter reads from the nearest pixel only. The simplest and fastest method of
+     * filtering. Useful for pixel art.
      */
     TEXTURE_FILTER_NEAREST(1),
     /**
-     * The texture filter blends between the nearest four pixels. Use this for most cases where you want to avoid a pixelated style.
+     * The texture filter blends between the nearest four pixels. Use this for most cases where you
+     * want to avoid a pixelated style.
      */
     TEXTURE_FILTER_LINEAR(2),
     /**
-     * The texture filter reads from the nearest pixel in the nearest mipmap. This is the fastest way to read from textures with mipmaps.
+     * The texture filter reads from the nearest pixel in the nearest mipmap. This is the fastest
+     * way to read from textures with mipmaps.
      */
     TEXTURE_FILTER_NEAREST_WITH_MIPMAPS(3),
     /**
-     * The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps. Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [godot.Camera2D] zoom), as mipmaps are important to smooth out pixels that are smaller than on-screen pixels.
+     * The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps. Use
+     * this for non-pixel art textures that may be viewed at a low scale (e.g. due to [Camera2D] zoom),
+     * as mipmaps are important to smooth out pixels that are smaller than on-screen pixels.
      */
     TEXTURE_FILTER_LINEAR_WITH_MIPMAPS(4),
     /**
-     * The texture filter reads from the nearest pixel, but selects a mipmap based on the angle between the surface and the camera view. This reduces artifacts on surfaces that are almost in line with the camera. The anisotropic filtering level can be changed by adjusting [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
-     *
-     * **Note:** This texture filter is rarely useful in 2D projects. [TEXTURE_FILTER_NEAREST_WITH_MIPMAPS] is usually more appropriate.
+     * The texture filter reads from the nearest pixel, but selects a mipmap based on the angle
+     * between the surface and the camera view. This reduces artifacts on surfaces that are almost in
+     * line with the camera. The anisotropic filtering level can be changed by adjusting
+     * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     * **Note:** This texture filter is rarely useful in 2D projects. [constant
+     * TEXTURE_FILTER_NEAREST_WITH_MIPMAPS] is usually more appropriate.
      */
     TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC(5),
     /**
-     * The texture filter blends between the nearest 4 pixels and selects a mipmap based on the angle between the surface and the camera view. This reduces artifacts on surfaces that are almost in line with the camera. This is the slowest of the filtering options, but results in the highest quality texturing. The anisotropic filtering level can be changed by adjusting [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
-     *
-     * **Note:** This texture filter is rarely useful in 2D projects. [TEXTURE_FILTER_LINEAR_WITH_MIPMAPS] is usually more appropriate.
+     * The texture filter blends between the nearest 4 pixels and selects a mipmap based on the
+     * angle between the surface and the camera view. This reduces artifacts on surfaces that are
+     * almost in line with the camera. This is the slowest of the filtering options, but results in the
+     * highest quality texturing. The anisotropic filtering level can be changed by adjusting
+     * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     * **Note:** This texture filter is rarely useful in 2D projects. [constant
+     * TEXTURE_FILTER_LINEAR_WITH_MIPMAPS] is usually more appropriate.
      */
     TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC(6),
     /**
@@ -1165,7 +1275,7 @@ public open class CanvasItem internal constructor() : Node() {
     id: Long,
   ) {
     /**
-     * The [godot.CanvasItem] will inherit the filter from its parent.
+     * The [CanvasItem] will inherit the filter from its parent.
      */
     TEXTURE_REPEAT_PARENT_NODE(0),
     /**
@@ -1204,11 +1314,13 @@ public open class CanvasItem internal constructor() : Node() {
      */
     CLIP_CHILDREN_DISABLED(0),
     /**
-     * Parent is used for the purposes of clipping only. Child is clipped to the parent's visible area, parent is not drawn.
+     * Parent is used for the purposes of clipping only. Child is clipped to the parent's visible
+     * area, parent is not drawn.
      */
     CLIP_CHILDREN_ONLY(1),
     /**
-     * Parent is used for clipping child, but parent is also drawn underneath child as normal before clipping child to its visible area.
+     * Parent is used for clipping child, but parent is also drawn underneath child as normal before
+     * clipping child to its visible area.
      */
     CLIP_CHILDREN_AND_DRAW(2),
     /**
@@ -1229,37 +1341,39 @@ public open class CanvasItem internal constructor() : Node() {
 
   public companion object {
     /**
-     * The [godot.CanvasItem]'s global transform has changed. This notification is only received if enabled by [setNotifyTransform].
+     * The [CanvasItem]'s global transform has changed. This notification is only received if
+     * enabled by [setNotifyTransform].
      */
     public final const val NOTIFICATION_TRANSFORM_CHANGED: Long = 2000
 
     /**
-     * The [godot.CanvasItem]'s local transform has changed. This notification is only received if enabled by [setNotifyLocalTransform].
+     * The [CanvasItem]'s local transform has changed. This notification is only received if enabled
+     * by [setNotifyLocalTransform].
      */
     public final const val NOTIFICATION_LOCAL_TRANSFORM_CHANGED: Long = 35
 
     /**
-     * The [godot.CanvasItem] is requested to draw (see [_draw]).
+     * The [CanvasItem] is requested to draw (see [_draw]).
      */
     public final const val NOTIFICATION_DRAW: Long = 30
 
     /**
-     * The [godot.CanvasItem]'s visibility has changed.
+     * The [CanvasItem]'s visibility has changed.
      */
     public final const val NOTIFICATION_VISIBILITY_CHANGED: Long = 31
 
     /**
-     * The [godot.CanvasItem] has entered the canvas.
+     * The [CanvasItem] has entered the canvas.
      */
     public final const val NOTIFICATION_ENTER_CANVAS: Long = 32
 
     /**
-     * The [godot.CanvasItem] has exited the canvas.
+     * The [CanvasItem] has exited the canvas.
      */
     public final const val NOTIFICATION_EXIT_CANVAS: Long = 33
 
     /**
-     * The [godot.CanvasItem]'s active [godot.World2D] changed.
+     * The [CanvasItem]'s active [World2D] changed.
      */
     public final const val NOTIFICATION_WORLD_2D_CHANGED: Long = 36
   }

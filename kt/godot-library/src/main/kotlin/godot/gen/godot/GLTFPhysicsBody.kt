@@ -101,6 +101,10 @@ public open class GLTFPhysicsBody : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAngularVelocityPtr, NIL)
     }
 
+  /**
+   * The center of mass of the body, in meters. This is in local space relative to the body. By
+   * default, the center of the mass is the body's origin.
+   */
   @CoreTypeLocalCopy
   public var centerOfMass: Vector3
     get() {
@@ -111,24 +115,6 @@ public open class GLTFPhysicsBody : Resource() {
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setCenterOfMassPtr, NIL)
-    }
-
-  /**
-   * The center of mass of the body, in meters. This is in local space relative to the body. By
-   * default, the center of the mass is the body's origin.
-   */
-  @CoreTypeLocalCopy
-  public var centerOfMass: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSBODY_GET_CENTER_OF_MASS, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GLTFPHYSICSBODY_SET_CENTER_OF_MASS, NIL)
     }
 
   /**

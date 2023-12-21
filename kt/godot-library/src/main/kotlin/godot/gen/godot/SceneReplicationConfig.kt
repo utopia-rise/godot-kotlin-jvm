@@ -97,25 +97,13 @@ public open class SceneReplicationConfig : Resource() {
     TransferContext.callMethod(rawPtr, MethodBindings.propertySetSpawnPtr, NIL)
   }
 
-  public fun propertyGetReplicationMode(path: NodePath): ReplicationMode {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.propertyGetReplicationModePtr, LONG)
-    return SceneReplicationConfig.ReplicationMode.from(TransferContext.readReturnValue(LONG) as Long)
-  }
-
-  public fun propertySetReplicationMode(path: NodePath, mode: ReplicationMode): Unit {
-    TransferContext.writeArguments(NODE_PATH to path, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.propertySetReplicationModePtr, NIL)
-  }
-
   /**
    * Returns the replication mode for the property identified by the given [param path]. See [enum
    * ReplicationMode].
    */
   public fun propertyGetReplicationMode(path: NodePath): ReplicationMode {
     TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_PROPERTY_GET_REPLICATION_MODE, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.propertyGetReplicationModePtr, LONG)
     return SceneReplicationConfig.ReplicationMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -125,8 +113,7 @@ public open class SceneReplicationConfig : Resource() {
    */
   public fun propertySetReplicationMode(path: NodePath, mode: ReplicationMode): Unit {
     TransferContext.writeArguments(NODE_PATH to path, LONG to mode.id)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_SCENEREPLICATIONCONFIG_PROPERTY_SET_REPLICATION_MODE, NIL)
+    TransferContext.callMethod(rawPtr, MethodBindings.propertySetReplicationModePtr, NIL)
   }
 
   /**
@@ -170,24 +157,6 @@ public open class SceneReplicationConfig : Resource() {
   public fun propertySetWatch(path: NodePath, enabled: Boolean): Unit {
     TransferContext.writeArguments(NODE_PATH to path, BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.propertySetWatchPtr, NIL)
-  }
-
-  public enum class ReplicationMode(
-    id: Long,
-  ) {
-    REPLICATION_MODE_NEVER(0),
-    REPLICATION_MODE_ALWAYS(1),
-    REPLICATION_MODE_ON_CHANGE(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
-    }
   }
 
   public enum class ReplicationMode(

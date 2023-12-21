@@ -50,30 +50,35 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 
 /**
- * Base class for all GUI controls. Adapts its position and size based on its parent control.
- *
- * Tutorials:
- * [https://github.com/godotengine/godot-demo-projects/tree/master/gui](https://github.com/godotengine/godot-demo-projects/tree/master/gui)
- *
- * Base class for all UI-related nodes. [godot.Control] features a bounding rectangle that defines its extents, an anchor position relative to its parent control or the current viewport, and offsets relative to the anchor. The offsets update automatically when the node, any of its parents, or the screen size change.
- *
- * For more information on Godot's UI system, anchors, offsets, and containers, see the related tutorials in the manual. To build flexible UIs, you'll need a mix of UI elements that inherit from [godot.Control] and [godot.Container] nodes.
- *
+ * Base class for all UI-related nodes. [Control] features a bounding rectangle that defines its
+ * extents, an anchor position relative to its parent control or the current viewport, and offsets
+ * relative to the anchor. The offsets update automatically when the node, any of its parents, or the
+ * screen size change.
+ * For more information on Godot's UI system, anchors, offsets, and containers, see the related
+ * tutorials in the manual. To build flexible UIs, you'll need a mix of UI elements that inherit from
+ * [Control] and [Container] nodes.
  * **User Interface nodes and input**
- *
- * Godot propagates input events via viewports. Each [godot.Viewport] is responsible for propagating [godot.InputEvent]s to their child nodes. As the [godot.SceneTree.root] is a [godot.Window], this already happens automatically for all UI elements in your game.
- *
- * Input events are propagated through the [godot.SceneTree] from the root node to all child nodes by calling [godot.Node.Input]. For UI elements specifically, it makes more sense to override the virtual method [_guiInput], which filters out unrelated input events, such as by checking z-order, [mouseFilter], focus, or if the event was inside of the control's bounding box.
- *
- * Call [acceptEvent] so no other node receives the event. Once you accept an input, it becomes handled so [godot.Node.UnhandledInput] will not process it.
- *
- * Only one [godot.Control] node can be in focus. Only the node in focus will receive events. To get the focus, call [grabFocus]. [godot.Control] nodes lose focus when another node grabs it, or if you hide the node in focus.
- *
- * Sets [mouseFilter] to [MOUSE_FILTER_IGNORE] to tell a [godot.Control] node to ignore mouse or touch events. You'll need it if you place an icon on top of a button.
- *
- * [godot.Theme] resources change the Control's appearance. If you change the [godot.Theme] on a [godot.Control] node, it affects all of its children. To override some of the theme's parameters, call one of the `add_theme_*_override` methods, like [addThemeFontOverride]. You can override the theme with the Inspector.
- *
- * **Note:** Theme items are *not* [godot.Object] properties. This means you can't access their values using [godot.Object.get] and [godot.Object.set]. Instead, use the `get_theme_*` and `add_theme_*_override` methods provided by this class.
+ * Godot propagates input events via viewports. Each [Viewport] is responsible for propagating
+ * [InputEvent]s to their child nodes. As the [SceneTree.root] is a [Window], this already happens
+ * automatically for all UI elements in your game.
+ * Input events are propagated through the [SceneTree] from the root node to all child nodes by
+ * calling [Node.Input]. For UI elements specifically, it makes more sense to override the virtual
+ * method [_guiInput], which filters out unrelated input events, such as by checking z-order,
+ * [mouseFilter], focus, or if the event was inside of the control's bounding box.
+ * Call [acceptEvent] so no other node receives the event. Once you accept an input, it becomes
+ * handled so [Node.UnhandledInput] will not process it.
+ * Only one [Control] node can be in focus. Only the node in focus will receive events. To get the
+ * focus, call [grabFocus]. [Control] nodes lose focus when another node grabs it, or if you hide the
+ * node in focus.
+ * Sets [mouseFilter] to [constant MOUSE_FILTER_IGNORE] to tell a [Control] node to ignore mouse or
+ * touch events. You'll need it if you place an icon on top of a button.
+ * [Theme] resources change the Control's appearance. If you change the [Theme] on a [Control] node,
+ * it affects all of its children. To override some of the theme's parameters, call one of the
+ * `add_theme_*_override` methods, like [addThemeFontOverride]. You can override the theme with the
+ * Inspector.
+ * **Note:** Theme items are *not* [Object] properties. This means you can't access their values
+ * using [Object.get] and [Object.set]. Instead, use the `get_theme_*` and `add_theme_*_override`
+ * methods provided by this class.
  */
 @GodotBaseType
 public open class Control : CanvasItem() {
@@ -83,29 +88,30 @@ public open class Control : CanvasItem() {
   public val resized: Signal0 by signal()
 
   /**
-   * Emitted when the node receives an [godot.InputEvent].
+   * Emitted when the node receives an [InputEvent].
    */
   public val guiInput: Signal1<InputEvent> by signal("event")
 
   /**
-   * Emitted when the mouse cursor enters the control's (or any child control's) visible area, that is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if it's currently focused or not.
-   *
-   * **Note:** [godot.CanvasItem.zIndex] doesn't affect, which Control receives the signal.
+   * Emitted when the mouse cursor enters the control's (or any child control's) visible area, that
+   * is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach
+   * it and regardless if it's currently focused or not.
+   * **Note:** [CanvasItem.zIndex] doesn't affect, which Control receives the signal.
    */
   public val mouseEntered: Signal0 by signal()
 
   /**
-   * Emitted when the mouse cursor leaves the control's (and all child control's) visible area, that is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if it's currently focused or not.
-   *
-   * **Note:** [godot.CanvasItem.zIndex] doesn't affect, which Control receives the signal.
-   *
-   * **Note:** If you want to check whether the mouse truly left the area, ignoring any top nodes, you can use code like this:
-   *
-   * ```
-   * 				func _on_mouse_exited():
-   * 				    if not Rect2(Vector2(), size).has_point(get_local_mouse_position()):
-   * 				        # Not hovering over area.
-   * 				```
+   * Emitted when the mouse cursor leaves the control's (and all child control's) visible area, that
+   * is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach
+   * it and regardless if it's currently focused or not.
+   * **Note:** [CanvasItem.zIndex] doesn't affect, which Control receives the signal.
+   * **Note:** If you want to check whether the mouse truly left the area, ignoring any top nodes,
+   * you can use code like this:
+   * [codeblock]
+   * func _on_mouse_exited():
+   *     if not Rect2(Vector2(), size).has_point(get_local_mouse_position()):
+   *         # Not hovering over area.
+   * [/codeblock]
    */
   public val mouseExited: Signal0 by signal()
 
@@ -130,12 +136,14 @@ public open class Control : CanvasItem() {
   public val minimumSizeChanged: Signal0 by signal()
 
   /**
-   * Emitted when the [NOTIFICATION_THEME_CHANGED] notification is sent.
+   * Emitted when the [constant NOTIFICATION_THEME_CHANGED] notification is sent.
    */
   public val themeChanged: Signal0 by signal()
 
   /**
-   * Enables whether rendering of [godot.CanvasItem] based children should be clipped to this control's rectangle. If `true`, parts of a child which would be visibly outside of this control's rectangle will not be rendered and won't receive input.
+   * Enables whether rendering of [CanvasItem] based children should be clipped to this control's
+   * rectangle. If `true`, parts of a child which would be visibly outside of this control's rectangle
+   * will not be rendered and won't receive input.
    */
   public var clipContents: Boolean
     get() {
@@ -149,7 +157,10 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * The minimum size of the node's bounding rectangle. If you set it to a value greater than (0, 0), the node's bounding rectangle will always have at least this size, even if its content is smaller. If it's set to (0, 0), the node sizes automatically to fit its content, be it a texture or child nodes.
+   * The minimum size of the node's bounding rectangle. If you set it to a value greater than (0,
+   * 0), the node's bounding rectangle will always have at least this size, even if its content is
+   * smaller. If it's set to (0, 0), the node sizes automatically to fit its content, be it a texture
+   * or child nodes.
    */
   @CoreTypeLocalCopy
   public var customMinimumSize: Vector2
@@ -164,7 +175,8 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Controls layout direction and text writing direction. Right-to-left layouts are necessary for certain languages (e.g. Arabic and Hebrew).
+   * Controls layout direction and text writing direction. Right-to-left layouts are necessary for
+   * certain languages (e.g. Arabic and Hebrew).
    */
   public var layoutDirection: LayoutDirection
     get() {
@@ -178,7 +190,9 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Anchors the left edge of the node to the origin, the center or the end of its parent control. It changes how the left offset updates when the node moves or changes size. You can use one of the [enum Anchor] constants for convenience.
+   * Anchors the left edge of the node to the origin, the center or the end of its parent control.
+   * It changes how the left offset updates when the node moves or changes size. You can use one of the
+   * [enum Anchor] constants for convenience.
    */
   public val anchorLeft: Float
     get() {
@@ -188,7 +202,9 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Anchors the top edge of the node to the origin, the center or the end of its parent control. It changes how the top offset updates when the node moves or changes size. You can use one of the [enum Anchor] constants for convenience.
+   * Anchors the top edge of the node to the origin, the center or the end of its parent control. It
+   * changes how the top offset updates when the node moves or changes size. You can use one of the
+   * [enum Anchor] constants for convenience.
    */
   public val anchorTop: Float
     get() {
@@ -198,7 +214,9 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Anchors the right edge of the node to the origin, the center or the end of its parent control. It changes how the right offset updates when the node moves or changes size. You can use one of the [enum Anchor] constants for convenience.
+   * Anchors the right edge of the node to the origin, the center or the end of its parent control.
+   * It changes how the right offset updates when the node moves or changes size. You can use one of
+   * the [enum Anchor] constants for convenience.
    */
   public val anchorRight: Float
     get() {
@@ -208,7 +226,9 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Anchors the bottom edge of the node to the origin, the center, or the end of its parent control. It changes how the bottom offset updates when the node moves or changes size. You can use one of the [enum Anchor] constants for convenience.
+   * Anchors the bottom edge of the node to the origin, the center, or the end of its parent
+   * control. It changes how the bottom offset updates when the node moves or changes size. You can use
+   * one of the [enum Anchor] constants for convenience.
    */
   public val anchorBottom: Float
     get() {
@@ -219,8 +239,9 @@ public open class Control : CanvasItem() {
 
   /**
    * Distance between the node's left edge and its parent control, based on [anchorLeft].
-   *
-   * Offsets are often controlled by one or multiple parent [godot.Container] nodes, so you should not modify them manually if your node is a direct child of a [godot.Container]. Offsets update automatically when you move or resize the node.
+   * Offsets are often controlled by one or multiple parent [Container] nodes, so you should not
+   * modify them manually if your node is a direct child of a [Container]. Offsets update automatically
+   * when you move or resize the node.
    */
   public var offsetLeft: Float
     get() {
@@ -235,8 +256,9 @@ public open class Control : CanvasItem() {
 
   /**
    * Distance between the node's top edge and its parent control, based on [anchorTop].
-   *
-   * Offsets are often controlled by one or multiple parent [godot.Container] nodes, so you should not modify them manually if your node is a direct child of a [godot.Container]. Offsets update automatically when you move or resize the node.
+   * Offsets are often controlled by one or multiple parent [Container] nodes, so you should not
+   * modify them manually if your node is a direct child of a [Container]. Offsets update automatically
+   * when you move or resize the node.
    */
   public var offsetTop: Float
     get() {
@@ -251,8 +273,9 @@ public open class Control : CanvasItem() {
 
   /**
    * Distance between the node's right edge and its parent control, based on [anchorRight].
-   *
-   * Offsets are often controlled by one or multiple parent [godot.Container] nodes, so you should not modify them manually if your node is a direct child of a [godot.Container]. Offsets update automatically when you move or resize the node.
+   * Offsets are often controlled by one or multiple parent [Container] nodes, so you should not
+   * modify them manually if your node is a direct child of a [Container]. Offsets update automatically
+   * when you move or resize the node.
    */
   public var offsetRight: Float
     get() {
@@ -267,8 +290,9 @@ public open class Control : CanvasItem() {
 
   /**
    * Distance between the node's bottom edge and its parent control, based on [anchorBottom].
-   *
-   * Offsets are often controlled by one or multiple parent [godot.Container] nodes, so you should not modify them manually if your node is a direct child of a [godot.Container]. Offsets update automatically when you move or resize the node.
+   * Offsets are often controlled by one or multiple parent [Container] nodes, so you should not
+   * modify them manually if your node is a direct child of a [Container]. Offsets update automatically
+   * when you move or resize the node.
    */
   public var offsetBottom: Float
     get() {
@@ -282,7 +306,9 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Controls the direction on the horizontal axis in which the control should grow if its horizontal minimum size is changed to be greater than its current size, as the control always has to be at least the minimum size.
+   * Controls the direction on the horizontal axis in which the control should grow if its
+   * horizontal minimum size is changed to be greater than its current size, as the control always has
+   * to be at least the minimum size.
    */
   public var growHorizontal: GrowDirection
     get() {
@@ -296,7 +322,9 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Controls the direction on the vertical axis in which the control should grow if its vertical minimum size is changed to be greater than its current size, as the control always has to be at least the minimum size.
+   * Controls the direction on the vertical axis in which the control should grow if its vertical
+   * minimum size is changed to be greater than its current size, as the control always has to be at
+   * least the minimum size.
    */
   public var growVertical: GrowDirection
     get() {
@@ -310,7 +338,8 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * The size of the node's bounding rectangle, in the node's coordinate system. [godot.Container] nodes update this property automatically.
+   * The size of the node's bounding rectangle, in the node's coordinate system. [Container] nodes
+   * update this property automatically.
    */
   @CoreTypeLocalCopy
   public val size: Vector2
@@ -321,7 +350,8 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * The node's position, relative to its containing node. It corresponds to the rectangle's top-left corner. The property is not affected by [pivotOffset].
+   * The node's position, relative to its containing node. It corresponds to the rectangle's
+   * top-left corner. The property is not affected by [pivotOffset].
    */
   @CoreTypeLocalCopy
   public val position: Vector2
@@ -332,7 +362,7 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * The node's global position, relative to the world (usually to the [godot.CanvasLayer]).
+   * The node's global position, relative to the world (usually to the [CanvasLayer]).
    */
   @CoreTypeLocalCopy
   public val globalPosition: Vector2
@@ -343,9 +373,10 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * The node's rotation around its pivot, in radians. See [pivotOffset] to change the pivot's position.
-   *
-   * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a script, use [rotationDegrees].
+   * The node's rotation around its pivot, in radians. See [pivotOffset] to change the pivot's
+   * position.
+   * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a
+   * script, use [rotationDegrees].
    */
   public var rotation: Float
     get() {
@@ -373,13 +404,22 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * The node's scale, relative to its [size]. Change this property to scale the node around its [pivotOffset]. The Control's [tooltipText] will also scale according to this value.
-   *
-   * **Note:** This property is mainly intended to be used for animation purposes. To support multiple resolutions in your project, use an appropriate viewport stretch mode as described in the [documentation]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) instead of scaling Controls individually.
-   *
-   * **Note:** [godot.FontFile.oversampling] does *not* take [godot.Control] [scale] into account. This means that scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font rendering by enabling [godot.ProjectSettings.gui/theme/defaultFontMultichannelSignedDistanceField] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [godot.SystemFont.multichannelSignedDistanceField] can be enabled in the inspector.
-   *
-   * **Note:** If the Control node is a child of a [godot.Container] node, the scale will be reset to `Vector2(1, 1)` when the scene is instantiated. To set the Control's scale when it's instantiated, wait for one frame using `await get_tree().process_frame` then set its [scale] property.
+   * The node's scale, relative to its [size]. Change this property to scale the node around its
+   * [pivotOffset]. The Control's [tooltipText] will also scale according to this value.
+   * **Note:** This property is mainly intended to be used for animation purposes. To support
+   * multiple resolutions in your project, use an appropriate viewport stretch mode as described in the
+   * [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]documentation[/url] instead of
+   * scaling Controls individually.
+   * **Note:** [FontFile.oversampling] does *not* take [Control] [scale] into account. This means
+   * that scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear
+   * blurry or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font
+   * rendering by enabling [ProjectSettings.gui/theme/defaultFontMultichannelSignedDistanceField]
+   * (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in
+   * the import options of a DynamicFont for custom fonts. On system fonts,
+   * [SystemFont.multichannelSignedDistanceField] can be enabled in the inspector.
+   * **Note:** If the Control node is a child of a [Container] node, the scale will be reset to
+   * `Vector2(1, 1)` when the scene is instantiated. To set the Control's scale when it's instantiated,
+   * wait for one frame using `await get_tree().process_frame` then set its [scale] property.
    */
   @CoreTypeLocalCopy
   public var scale: Vector2
@@ -394,7 +434,9 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * By default, the node's pivot is its top-left corner. When you change its [rotation] or [scale], it will rotate or scale around this pivot. Set this property to [size] / 2 to pivot around the Control's center.
+   * By default, the node's pivot is its top-left corner. When you change its [rotation] or [scale],
+   * it will rotate or scale around this pivot. Set this property to [size] / 2 to pivot around the
+   * Control's center.
    */
   @CoreTypeLocalCopy
   public var pivotOffset: Vector2
@@ -409,7 +451,9 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Tells the parent [godot.Container] nodes how they should resize and place the node on the X axis. Use a combination of the [enum SizeFlags] constants to change the flags. See the constants to learn what each does.
+   * Tells the parent [Container] nodes how they should resize and place the node on the X axis. Use
+   * a combination of the [enum SizeFlags] constants to change the flags. See the constants to learn
+   * what each does.
    */
   public var sizeFlagsHorizontal: SizeFlags
     get() {
@@ -423,7 +467,9 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Tells the parent [godot.Container] nodes how they should resize and place the node on the Y axis. Use a combination of the [enum SizeFlags] constants to change the flags. See the constants to learn what each does.
+   * Tells the parent [Container] nodes how they should resize and place the node on the Y axis. Use
+   * a combination of the [enum SizeFlags] constants to change the flags. See the constants to learn
+   * what each does.
    */
   public var sizeFlagsVertical: SizeFlags
     get() {
@@ -437,7 +483,10 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * If the node and at least one of its neighbors uses the [SIZE_EXPAND] size flag, the parent [godot.Container] will let it take more or less space depending on this property. If this node has a stretch ratio of 2 and its neighbor a ratio of 1, this node will take two thirds of the available space.
+   * If the node and at least one of its neighbors uses the [constant SIZE_EXPAND] size flag, the
+   * parent [Container] will let it take more or less space depending on this property. If this node
+   * has a stretch ratio of 2 and its neighbor a ratio of 1, this node will take two thirds of the
+   * available space.
    */
   public var sizeFlagsStretchRatio: Float
     get() {
@@ -451,8 +500,8 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Toggles if any text should automatically change to its translated version depending on the current locale.
-   *
+   * Toggles if any text should automatically change to its translated version depending on the
+   * current locale.
    * Also decides if the node's strings should be parsed for POT generation.
    */
   public var autoTranslate: Boolean
@@ -467,9 +516,10 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * If `true`, automatically converts code line numbers, list indices, [godot.SpinBox] and [godot.ProgressBar] values from the Western Arabic (0..9) to the numeral systems used in current locale.
-   *
-   * **Note:** Numbers within the text are not automatically converted, it can be done manually, using [godot.TextServer.formatNumber].
+   * If `true`, automatically converts code line numbers, list indices, [SpinBox] and [ProgressBar]
+   * values from the Western Arabic (0..9) to the numeral systems used in current locale.
+   * **Note:** Numbers within the text are not automatically converted, it can be done manually,
+   * using [TextServer.formatNumber].
    */
   public var localizeNumeralSystem: Boolean
     get() {
@@ -483,45 +533,33 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * The default tooltip text. The tooltip appears when the user's mouse cursor stays idle over this control for a few moments, provided that the [mouseFilter] property is not [MOUSE_FILTER_IGNORE]. The time required for the tooltip to appear can be changed with the [godot.ProjectSettings.gui/timers/tooltipDelaySec] option. See also [getTooltip].
+   * The default tooltip text. The tooltip appears when the user's mouse cursor stays idle over this
+   * control for a few moments, provided that the [mouseFilter] property is not [constant
+   * MOUSE_FILTER_IGNORE]. The time required for the tooltip to appear can be changed with the
+   * [ProjectSettings.gui/timers/tooltipDelaySec] option. See also [getTooltip].
+   * The tooltip popup will use either a default implementation, or a custom one that you can
+   * provide by overriding [_makeCustomTooltip]. The default tooltip includes a [PopupPanel] and
+   * [Label] whose theme properties can be customized using [Theme] methods with the `"TooltipPanel"`
+   * and `"TooltipLabel"` respectively. For example:
    *
-   * The tooltip popup will use either a default implementation, or a custom one that you can provide by overriding [_makeCustomTooltip]. The default tooltip includes a [godot.PopupPanel] and [godot.Label] whose theme properties can be customized using [godot.Theme] methods with the `"TooltipPanel"` and `"TooltipLabel"` respectively. For example:
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * var style_box = StyleBoxFlat.new()
-   *
    * style_box.set_bg_color(Color(1, 1, 0))
-   *
    * style_box.set_border_width_all(2)
-   *
    * # We assume here that the `theme` property has been assigned a custom Theme beforehand.
-   *
    * theme.set_stylebox("panel", "TooltipPanel", style_box)
-   *
    * theme.set_color("font_color", "TooltipLabel", Color(0, 1, 1))
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * var styleBox = new StyleBoxFlat();
-   *
    * styleBox.SetBgColor(new Color(1, 1, 0));
-   *
    * styleBox.SetBorderWidthAll(2);
-   *
    * // We assume here that the `Theme` property has been assigned a custom Theme beforehand.
-   *
    * Theme.SetStyleBox("panel", "TooltipPanel", styleBox);
-   *
    * Theme.SetColor("font_color", "TooltipLabel", new Color(0, 1, 1));
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public var tooltipText: String
     get() {
@@ -535,7 +573,10 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Tells Godot which node it should give focus to if the user presses the left arrow on the keyboard or left on a gamepad by default. You can change the key by editing the [godot.ProjectSettings.input/uiLeft] input action. The node must be a [godot.Control]. If this property is not set, Godot will give focus to the closest [godot.Control] to the left of this one.
+   * Tells Godot which node it should give focus to if the user presses the left arrow on the
+   * keyboard or left on a gamepad by default. You can change the key by editing the
+   * [ProjectSettings.input/uiLeft] input action. The node must be a [Control]. If this property is not
+   * set, Godot will give focus to the closest [Control] to the left of this one.
    */
   public var focusNeighborLeft: NodePath
     get() {
@@ -549,7 +590,10 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Tells Godot which node it should give focus to if the user presses the top arrow on the keyboard or top on a gamepad by default. You can change the key by editing the [godot.ProjectSettings.input/uiUp] input action. The node must be a [godot.Control]. If this property is not set, Godot will give focus to the closest [godot.Control] to the top of this one.
+   * Tells Godot which node it should give focus to if the user presses the top arrow on the
+   * keyboard or top on a gamepad by default. You can change the key by editing the
+   * [ProjectSettings.input/uiUp] input action. The node must be a [Control]. If this property is not
+   * set, Godot will give focus to the closest [Control] to the top of this one.
    */
   public var focusNeighborTop: NodePath
     get() {
@@ -563,7 +607,10 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Tells Godot which node it should give focus to if the user presses the right arrow on the keyboard or right on a gamepad by default. You can change the key by editing the [godot.ProjectSettings.input/uiRight] input action. The node must be a [godot.Control]. If this property is not set, Godot will give focus to the closest [godot.Control] to the right of this one.
+   * Tells Godot which node it should give focus to if the user presses the right arrow on the
+   * keyboard or right on a gamepad by default. You can change the key by editing the
+   * [ProjectSettings.input/uiRight] input action. The node must be a [Control]. If this property is
+   * not set, Godot will give focus to the closest [Control] to the right of this one.
    */
   public var focusNeighborRight: NodePath
     get() {
@@ -577,7 +624,10 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Tells Godot which node it should give focus to if the user presses the down arrow on the keyboard or down on a gamepad by default. You can change the key by editing the [godot.ProjectSettings.input/uiDown] input action. The node must be a [godot.Control]. If this property is not set, Godot will give focus to the closest [godot.Control] to the bottom of this one.
+   * Tells Godot which node it should give focus to if the user presses the down arrow on the
+   * keyboard or down on a gamepad by default. You can change the key by editing the
+   * [ProjectSettings.input/uiDown] input action. The node must be a [Control]. If this property is not
+   * set, Godot will give focus to the closest [Control] to the bottom of this one.
    */
   public var focusNeighborBottom: NodePath
     get() {
@@ -591,9 +641,11 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Tells Godot which node it should give focus to if the user presses [kbd]Tab[/kbd] on a keyboard by default. You can change the key by editing the [godot.ProjectSettings.input/uiFocusNext] input action.
-   *
-   * If this property is not set, Godot will select a "best guess" based on surrounding nodes in the scene tree.
+   * Tells Godot which node it should give focus to if the user presses [kbd]Tab[/kbd] on a keyboard
+   * by default. You can change the key by editing the [ProjectSettings.input/uiFocusNext] input
+   * action.
+   * If this property is not set, Godot will select a "best guess" based on surrounding nodes in the
+   * scene tree.
    */
   public var focusNext: NodePath
     get() {
@@ -607,9 +659,11 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Tells Godot which node it should give focus to if the user presses [kbd]Shift + Tab[/kbd] on a keyboard by default. You can change the key by editing the [godot.ProjectSettings.input/uiFocusPrev] input action.
-   *
-   * If this property is not set, Godot will select a "best guess" based on surrounding nodes in the scene tree.
+   * Tells Godot which node it should give focus to if the user presses [kbd]Shift + Tab[/kbd] on a
+   * keyboard by default. You can change the key by editing the [ProjectSettings.input/uiFocusPrev]
+   * input action.
+   * If this property is not set, Godot will select a "best guess" based on surrounding nodes in the
+   * scene tree.
    */
   public var focusPrevious: NodePath
     get() {
@@ -623,7 +677,8 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * The focus access mode for the control (None, Click or All). Only one Control can be focused at the same time, and it will receive keyboard, gamepad, and mouse signals.
+   * The focus access mode for the control (None, Click or All). Only one Control can be focused at
+   * the same time, and it will receive keyboard, gamepad, and mouse signals.
    */
   public var focusMode: FocusMode
     get() {
@@ -637,7 +692,10 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Controls whether the control will be able to receive mouse button input events through [_guiInput] and how these events should be handled. Also controls whether the control can receive the [mouseEntered], and [mouseExited] signals. See the constants to learn what each does.
+   * Controls whether the control will be able to receive mouse button input events through
+   * [_guiInput] and how these events should be handled. Also controls whether the control can receive
+   * the [signal mouse_entered], and [signal mouse_exited] signals. See the constants to learn what
+   * each does.
    */
   public var mouseFilter: MouseFilter
     get() {
@@ -651,9 +709,11 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * When enabled, scroll wheel events processed by [_guiInput] will be passed to the parent control even if [mouseFilter] is set to [MOUSE_FILTER_STOP]. As it defaults to true, this allows nested scrollable containers to work out of the box.
-   *
-   * You should disable it on the root of your UI if you do not want scroll events to go to the [godot.Node.UnhandledInput] processing.
+   * When enabled, scroll wheel events processed by [_guiInput] will be passed to the parent control
+   * even if [mouseFilter] is set to [constant MOUSE_FILTER_STOP]. As it defaults to true, this allows
+   * nested scrollable containers to work out of the box.
+   * You should disable it on the root of your UI if you do not want scroll events to go to the
+   * [Node.UnhandledInput] processing.
    */
   public var mouseForcePassScrollEvents: Boolean
     get() {
@@ -667,8 +727,8 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * The default cursor shape for this control. Useful for Godot plugins and applications or games that use the system's mouse cursors.
-   *
+   * The default cursor shape for this control. Useful for Godot plugins and applications or games
+   * that use the system's mouse cursors.
    * **Note:** On Linux, shapes may vary depending on the cursor theme of the system.
    */
   public var mouseDefaultCursorShape: CursorShape
@@ -683,7 +743,9 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * The [godot.Node] which must be a parent of the focused [godot.Control] for the shortcut to be activated. If `null`, the shortcut can be activated when any control is focused (a global shortcut). This allows shortcuts to be accepted only when the user has a certain area of the GUI focused.
+   * The [Node] which must be a parent of the focused [Control] for the shortcut to be activated. If
+   * `null`, the shortcut can be activated when any control is focused (a global shortcut). This allows
+   * shortcuts to be accepted only when the user has a certain area of the GUI focused.
    */
   public var shortcutContext: Node?
     get() {
@@ -697,9 +759,10 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * The [godot.Theme] resource this node and all its [godot.Control] and [godot.Window] children use. If a child node has its own [godot.Theme] resource set, theme items are merged with child's definitions having higher priority.
-   *
-   * **Note:** [godot.Window] styles will have no effect unless the window is embedded.
+   * The [Theme] resource this node and all its [Control] and [Window] children use. If a child node
+   * has its own [Theme] resource set, theme items are merged with child's definitions having higher
+   * priority.
+   * **Note:** [Window] styles will have no effect unless the window is embedded.
    */
   public var theme: Theme?
     get() {
@@ -713,13 +776,18 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * The name of a theme type variation used by this [godot.Control] to look up its own theme items. When empty, the class name of the node is used (e.g. [code skip-lint]Button` for the [godot.Button] control), as well as the class names of all parent classes (in order of inheritance).
-   *
-   * When set, this property gives the highest priority to the type of the specified name. This type can in turn extend another type, forming a dependency chain. See [godot.Theme.setTypeVariation]. If the theme item cannot be found using this type or its base types, lookup falls back on the class names.
-   *
-   * **Note:** To look up [godot.Control]'s own items use various `get_theme_*` methods without specifying `theme_type`.
-   *
-   * **Note:** Theme items are looked for in the tree order, from branch to root, where each [godot.Control] node is checked for its [theme] property. The earliest match against any type/class name is returned. The project-level Theme and the default Theme are checked last.
+   * The name of a theme type variation used by this [Control] to look up its own theme items. When
+   * empty, the class name of the node is used (e.g. [code skip-lint]Button[/code] for the [Button]
+   * control), as well as the class names of all parent classes (in order of inheritance).
+   * When set, this property gives the highest priority to the type of the specified name. This type
+   * can in turn extend another type, forming a dependency chain. See [Theme.setTypeVariation]. If the
+   * theme item cannot be found using this type or its base types, lookup falls back on the class
+   * names.
+   * **Note:** To look up [Control]'s own items use various `get_theme_*` methods without specifying
+   * `theme_type`.
+   * **Note:** Theme items are looked for in the tree order, from branch to root, where each
+   * [Control] node is checked for its [theme] property. The earliest match against any type/class name
+   * is returned. The project-level Theme and the default Theme are checked last.
    */
   public var themeTypeVariation: StringName
     get() {
@@ -738,7 +806,10 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * The minimum size of the node's bounding rectangle. If you set it to a value greater than (0, 0), the node's bounding rectangle will always have at least this size, even if its content is smaller. If it's set to (0, 0), the node sizes automatically to fit its content, be it a texture or child nodes.
+   * The minimum size of the node's bounding rectangle. If you set it to a value greater than (0,
+   * 0), the node's bounding rectangle will always have at least this size, even if its content is
+   * smaller. If it's set to (0, 0), the node sizes automatically to fit its content, be it a texture
+   * or child nodes.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -763,13 +834,22 @@ public open class Control : CanvasItem() {
 
 
   /**
-   * The node's scale, relative to its [size]. Change this property to scale the node around its [pivotOffset]. The Control's [tooltipText] will also scale according to this value.
-   *
-   * **Note:** This property is mainly intended to be used for animation purposes. To support multiple resolutions in your project, use an appropriate viewport stretch mode as described in the [documentation]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) instead of scaling Controls individually.
-   *
-   * **Note:** [godot.FontFile.oversampling] does *not* take [godot.Control] [scale] into account. This means that scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font rendering by enabling [godot.ProjectSettings.gui/theme/defaultFontMultichannelSignedDistanceField] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [godot.SystemFont.multichannelSignedDistanceField] can be enabled in the inspector.
-   *
-   * **Note:** If the Control node is a child of a [godot.Container] node, the scale will be reset to `Vector2(1, 1)` when the scene is instantiated. To set the Control's scale when it's instantiated, wait for one frame using `await get_tree().process_frame` then set its [scale] property.
+   * The node's scale, relative to its [size]. Change this property to scale the node around its
+   * [pivotOffset]. The Control's [tooltipText] will also scale according to this value.
+   * **Note:** This property is mainly intended to be used for animation purposes. To support
+   * multiple resolutions in your project, use an appropriate viewport stretch mode as described in the
+   * [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]documentation[/url] instead of
+   * scaling Controls individually.
+   * **Note:** [FontFile.oversampling] does *not* take [Control] [scale] into account. This means
+   * that scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear
+   * blurry or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font
+   * rendering by enabling [ProjectSettings.gui/theme/defaultFontMultichannelSignedDistanceField]
+   * (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in
+   * the import options of a DynamicFont for custom fonts. On system fonts,
+   * [SystemFont.multichannelSignedDistanceField] can be enabled in the inspector.
+   * **Note:** If the Control node is a child of a [Container] node, the scale will be reset to
+   * `Vector2(1, 1)` when the scene is instantiated. To set the Control's scale when it's instantiated,
+   * wait for one frame using `await get_tree().process_frame` then set its [scale] property.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -793,7 +873,9 @@ public open class Control : CanvasItem() {
 
 
   /**
-   * By default, the node's pivot is its top-left corner. When you change its [rotation] or [scale], it will rotate or scale around this pivot. Set this property to [size] / 2 to pivot around the Control's center.
+   * By default, the node's pivot is its top-left corner. When you change its [rotation] or [scale],
+   * it will rotate or scale around this pivot. Set this property to [size] / 2 to pivot around the
+   * Control's center.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -817,11 +899,11 @@ public open class Control : CanvasItem() {
 
 
   /**
-   * Virtual method to be implemented by the user. Returns whether the given [point] is inside this control.
-   *
+   * Virtual method to be implemented by the user. Returns whether the given [param point] is inside
+   * this control.
    * If not overridden, default behavior is checking if the point is within control's Rect.
-   *
-   * **Note:** If you want to check if a point is inside the control, you can use `Rect2(Vector2.ZERO, size).has_point(point)`.
+   * **Note:** If you want to check if a point is inside the control, you can use
+   * `Rect2(Vector2.ZERO, size).has_point(point)`.
    */
   public open fun _hasPoint(point: Vector2): Boolean {
     throw NotImplementedError("_has_point is not implemented for Control")
@@ -829,8 +911,9 @@ public open class Control : CanvasItem() {
 
   /**
    * User defined BiDi algorithm override function.
-   *
-   * Returns an [godot.Array] of [godot.Vector3i] text ranges and text base directions, in the left-to-right order. Ranges should cover full source [text] without overlaps. BiDi algorithm will be used on each range separately.
+   * Returns an [Array] of [Vector3i] text ranges and text base directions, in the left-to-right
+   * order. Ranges should cover full source [param text] without overlaps. BiDi algorithm will be used
+   * on each range separately.
    */
   public open fun _structuredTextParser(args: VariantArray<Any?>, text: String):
       VariantArray<Vector3i> {
@@ -838,302 +921,219 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Virtual method to be implemented by the user. Returns the minimum size for this control. Alternative to [customMinimumSize] for controlling minimum size via code. The actual minimum size will be the max value of these two (in each axis separately).
-   *
-   * If not overridden, defaults to [godot.Vector2.ZERO].
-   *
-   * **Note:** This method will not be called when the script is attached to a [godot.Control] node that already overrides its minimum size (e.g. [godot.Label], [godot.Button], [godot.PanelContainer] etc.). It can only be used with most basic GUI nodes, like [godot.Control], [godot.Container], [godot.Panel] etc.
+   * Virtual method to be implemented by the user. Returns the minimum size for this control.
+   * Alternative to [customMinimumSize] for controlling minimum size via code. The actual minimum size
+   * will be the max value of these two (in each axis separately).
+   * If not overridden, defaults to [constant Vector2.ZERO].
+   * **Note:** This method will not be called when the script is attached to a [Control] node that
+   * already overrides its minimum size (e.g. [Label], [Button], [PanelContainer] etc.). It can only be
+   * used with most basic GUI nodes, like [Control], [Container], [Panel] etc.
    */
   public open fun _getMinimumSize(): Vector2 {
     throw NotImplementedError("_get_minimum_size is not implemented for Control")
   }
 
   /**
-   * Virtual method to be implemented by the user. Returns the tooltip text for the position [atPosition] in control's local coordinates, which will typically appear when the cursor is resting over this control. See [getTooltip].
-   *
-   * **Note:** If this method returns an empty [godot.String], no tooltip is displayed.
+   * Virtual method to be implemented by the user. Returns the tooltip text for the position [param
+   * at_position] in control's local coordinates, which will typically appear when the cursor is
+   * resting over this control. See [getTooltip].
+   * **Note:** If this method returns an empty [String], no tooltip is displayed.
    */
   public open fun _getTooltip(atPosition: Vector2): String {
     throw NotImplementedError("_get_tooltip is not implemented for Control")
   }
 
   /**
-   * Godot calls this method to get data that can be dragged and dropped onto controls that expect drop data. Returns `null` if there is no data to drag. Controls that want to receive drop data should implement [_canDropData] and [_dropData]. [atPosition] is local to this control. Drag may be forced with [forceDrag].
+   * Godot calls this method to get data that can be dragged and dropped onto controls that expect
+   * drop data. Returns `null` if there is no data to drag. Controls that want to receive drop data
+   * should implement [_canDropData] and [_dropData]. [param at_position] is local to this control.
+   * Drag may be forced with [forceDrag].
+   * A preview that will follow the mouse that should represent the data can be set with
+   * [setDragPreview]. A good time to set the preview is in this method.
    *
-   * A preview that will follow the mouse that should represent the data can be set with [setDragPreview]. A good time to set the preview is in this method.
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * func _get_drag_data(position):
-   *
    *     var mydata = make_data() # This is your custom method generating the drag data.
-   *
-   *     set_drag_preview(make_preview(mydata)) # This is your custom method generating the preview of the drag data.
-   *
+   *     set_drag_preview(make_preview(mydata)) # This is your custom method generating the preview
+   * of the drag data.
    *     return mydata
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * public override Variant _GetDragData(Vector2 atPosition)
-   *
    * {
-   *
    *     var myData = MakeData(); // This is your custom method generating the drag data.
-   *
-   *     SetDragPreview(MakePreview(myData)); // This is your custom method generating the preview of the drag data.
-   *
+   *     SetDragPreview(MakePreview(myData)); // This is your custom method generating the preview
+   * of the drag data.
    *     return myData;
-   *
    * }
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public open fun _getDragData(atPosition: Vector2): Any? {
     throw NotImplementedError("_get_drag_data is not implemented for Control")
   }
 
   /**
-   * Godot calls this method to test if [data] from a control's [_getDragData] can be dropped at [atPosition]. [atPosition] is local to this control.
-   *
+   * Godot calls this method to test if [param data] from a control's [_getDragData] can be dropped
+   * at [param at_position]. [param at_position] is local to this control.
    * This method should only be used to test the data. Process the data in [_dropData].
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * func _can_drop_data(position, data):
-   *
    *     # Check position if it is relevant to you
-   *
    *     # Otherwise, just check data
-   *
    *     return typeof(data) == TYPE_DICTIONARY and data.has("expected")
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * public override bool _CanDropData(Vector2 atPosition, Variant data)
-   *
    * {
-   *
    *     // Check position if it is relevant to you
-   *
    *     // Otherwise, just check data
-   *
-   *     return data.VariantType == Variant.Type.Dictionary && data.AsGodotDictionary().ContainsKey("expected");
-   *
+   *     return data.VariantType == Variant.Type.Dictionary &&
+   * data.AsGodotDictionary().ContainsKey("expected");
    * }
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public open fun _canDropData(atPosition: Vector2, `data`: Any?): Boolean {
     throw NotImplementedError("_can_drop_data is not implemented for Control")
   }
 
   /**
-   * Godot calls this method to pass you the [data] from a control's [_getDragData] result. Godot first calls [_canDropData] to test if [data] is allowed to drop at [atPosition] where [atPosition] is local to this control.
+   * Godot calls this method to pass you the [param data] from a control's [_getDragData] result.
+   * Godot first calls [_canDropData] to test if [param data] is allowed to drop at [param at_position]
+   * where [param at_position] is local to this control.
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * func _can_drop_data(position, data):
-   *
    *     return typeof(data) == TYPE_DICTIONARY and data.has("color")
    *
-   *
-   *
    * func _drop_data(position, data):
-   *
    *     var color = data["color"]
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * public override bool _CanDropData(Vector2 atPosition, Variant data)
-   *
    * {
-   *
-   *     return data.VariantType == Variant.Type.Dictionary && dict.AsGodotDictionary().ContainsKey("color");
-   *
+   *     return data.VariantType == Variant.Type.Dictionary &&
+   * dict.AsGodotDictionary().ContainsKey("color");
    * }
-   *
-   *
    *
    * public override void _DropData(Vector2 atPosition, Variant data)
-   *
    * {
-   *
    *     Color color = data.AsGodotDictionary()["color"].AsColor();
-   *
    * }
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public open fun _dropData(atPosition: Vector2, `data`: Any?): Unit {
   }
 
   /**
-   * Virtual method to be implemented by the user. Returns a [godot.Control] node that should be used as a tooltip instead of the default one. The [forText] includes the contents of the [tooltipText] property.
-   *
-   * The returned node must be of type [godot.Control] or Control-derived. It can have child nodes of any type. It is freed when the tooltip disappears, so make sure you always provide a new instance (if you want to use a pre-existing node from your scene tree, you can duplicate it and pass the duplicated instance). When `null` or a non-Control node is returned, the default tooltip will be used instead.
-   *
-   * The returned node will be added as child to a [godot.PopupPanel], so you should only provide the contents of that panel. That [godot.PopupPanel] can be themed using [godot.Theme.setStylebox] for the type `"TooltipPanel"` (see [tooltipText] for an example).
-   *
-   * **Note:** The tooltip is shrunk to minimal size. If you want to ensure it's fully visible, you might want to set its [customMinimumSize] to some non-zero value.
-   *
-   * **Note:** The node (and any relevant children) should be [godot.CanvasItem.visible] when returned, otherwise, the viewport that instantiates it will not be able to calculate its minimum size reliably.
-   *
+   * Virtual method to be implemented by the user. Returns a [Control] node that should be used as a
+   * tooltip instead of the default one. The [param for_text] includes the contents of the
+   * [tooltipText] property.
+   * The returned node must be of type [Control] or Control-derived. It can have child nodes of any
+   * type. It is freed when the tooltip disappears, so make sure you always provide a new instance (if
+   * you want to use a pre-existing node from your scene tree, you can duplicate it and pass the
+   * duplicated instance). When `null` or a non-Control node is returned, the default tooltip will be
+   * used instead.
+   * The returned node will be added as child to a [PopupPanel], so you should only provide the
+   * contents of that panel. That [PopupPanel] can be themed using [Theme.setStylebox] for the type
+   * `"TooltipPanel"` (see [tooltipText] for an example).
+   * **Note:** The tooltip is shrunk to minimal size. If you want to ensure it's fully visible, you
+   * might want to set its [customMinimumSize] to some non-zero value.
+   * **Note:** The node (and any relevant children) should be [CanvasItem.visible] when returned,
+   * otherwise, the viewport that instantiates it will not be able to calculate its minimum size
+   * reliably.
    * **Example of usage with a custom-constructed node:**
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * func _make_custom_tooltip(for_text):
-   *
    *     var label = Label.new()
-   *
    *     label.text = for_text
-   *
    *     return label
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * public override Control _MakeCustomTooltip(string forText)
-   *
    * {
-   *
    *     var label = new Label();
-   *
    *     label.Text = forText;
-   *
    *     return label;
-   *
    * }
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    *
    * **Example of usage with a custom scene instance:**
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * func _make_custom_tooltip(for_text):
-   *
    *     var tooltip = preload("res://some_tooltip_scene.tscn").instantiate()
-   *
    *     tooltip.get_node("Label").text = for_text
-   *
    *     return tooltip
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * public override Control _MakeCustomTooltip(string forText)
-   *
    * {
-   *
-   *     Node tooltip = ResourceLoader.Load<PackedScene>("res://some_tooltip_scene.tscn").Instantiate();
-   *
+   *     Node tooltip =
+   * ResourceLoader.Load<PackedScene>("res://some_tooltip_scene.tscn").Instantiate();
    *     tooltip.GetNode<Label>("Label").Text = forText;
-   *
    *     return tooltip;
-   *
    * }
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public open fun _makeCustomTooltip(forText: String): Object? {
     throw NotImplementedError("_make_custom_tooltip is not implemented for Control")
   }
 
   /**
-   * Virtual method to be implemented by the user. Use this method to process and accept inputs on UI elements. See [acceptEvent].
-   *
+   * Virtual method to be implemented by the user. Use this method to process and accept inputs on
+   * UI elements. See [acceptEvent].
    * **Example usage for clicking a control:**
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * func _gui_input(event):
-   *
    *     if event is InputEventMouseButton:
-   *
    *         if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-   *
    *             print("I've been clicked D:")
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * public override void _GuiInput(InputEvent @event)
-   *
    * {
-   *
    *     if (@event is InputEventMouseButton mb)
-   *
    *     {
-   *
    *         if (mb.ButtonIndex == MouseButton.Left && mb.Pressed)
-   *
    *         {
-   *
    *             GD.Print("I've been clicked D:");
-   *
    *         }
-   *
    *     }
-   *
    * }
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    *
    * The event won't trigger if:
-   *
    * * clicking outside the control (see [_hasPoint]);
-   *
-   * * control has [mouseFilter] set to [MOUSE_FILTER_IGNORE];
-   *
-   * * control is obstructed by another [godot.Control] on top of it, which doesn't have [mouseFilter] set to [MOUSE_FILTER_IGNORE];
-   *
-   * * control's parent has [mouseFilter] set to [MOUSE_FILTER_STOP] or has accepted the event;
-   *
+   * * control has [mouseFilter] set to [constant MOUSE_FILTER_IGNORE];
+   * * control is obstructed by another [Control] on top of it, which doesn't have [mouseFilter] set
+   * to [constant MOUSE_FILTER_IGNORE];
+   * * control's parent has [mouseFilter] set to [constant MOUSE_FILTER_STOP] or has accepted the
+   * event;
    * * it happens outside the parent's rectangle and the parent has either [clipContents] enabled.
-   *
    * **Note:** Event position is relative to the control origin.
    */
   public open fun _guiInput(event: InputEvent): Unit {
   }
 
   /**
-   * Marks an input event as handled. Once you accept an input event, it stops propagating, even to nodes listening to [godot.Node.UnhandledInput] or [godot.Node.UnhandledKeyInput].
-   *
-   * **Note:** This does not affect the methods in [godot.Input], only the way events are propagated.
+   * Marks an input event as handled. Once you accept an input event, it stops propagating, even to
+   * nodes listening to [Node.UnhandledInput] or [Node.UnhandledKeyInput].
+   * **Note:** This does not affect the methods in [Input], only the way events are propagated.
    */
   public fun acceptEvent(): Unit {
     TransferContext.writeArguments()
@@ -1159,9 +1159,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the anchors to a [preset] from [enum Control.LayoutPreset] enum. This is the code equivalent to using the Layout menu in the 2D editor.
-   *
-   * If [keepOffsets] is `true`, control's position will also be updated.
+   * Sets the anchors to a [param preset] from [enum Control.LayoutPreset] enum. This is the code
+   * equivalent to using the Layout menu in the 2D editor.
+   * If [param keep_offsets] is `true`, control's position will also be updated.
    */
   @JvmOverloads
   public fun setAnchorsPreset(preset: LayoutPreset, keepOffsets: Boolean = false): Unit {
@@ -1170,11 +1170,12 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the offsets to a [preset] from [enum Control.LayoutPreset] enum. This is the code equivalent to using the Layout menu in the 2D editor.
-   *
-   * Use parameter [resizeMode] with constants from [enum Control.LayoutPresetMode] to better determine the resulting size of the [godot.Control]. Constant size will be ignored if used with presets that change size, e.g. [PRESET_LEFT_WIDE].
-   *
-   * Use parameter [margin] to determine the gap between the [godot.Control] and the edges.
+   * Sets the offsets to a [param preset] from [enum Control.LayoutPreset] enum. This is the code
+   * equivalent to using the Layout menu in the 2D editor.
+   * Use parameter [param resize_mode] with constants from [enum Control.LayoutPresetMode] to better
+   * determine the resulting size of the [Control]. Constant size will be ignored if used with presets
+   * that change size, e.g. [constant PRESET_LEFT_WIDE].
+   * Use parameter [param margin] to determine the gap between the [Control] and the edges.
    */
   @JvmOverloads
   public fun setOffsetsPreset(
@@ -1200,11 +1201,13 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the anchor for the specified [enum Side] to [anchor]. A setter method for [anchorBottom], [anchorLeft], [anchorRight] and [anchorTop].
-   *
-   * If [keepOffset] is `true`, offsets aren't updated after this operation.
-   *
-   * If [pushOppositeAnchor] is `true` and the opposite anchor overlaps this anchor, the opposite one will have its value overridden. For example, when setting left anchor to 1 and the right anchor has value of 0.5, the right anchor will also get value of 1. If [pushOppositeAnchor] was `false`, the left anchor would get value 0.5.
+   * Sets the anchor for the specified [enum Side] to [param anchor]. A setter method for
+   * [anchorBottom], [anchorLeft], [anchorRight] and [anchorTop].
+   * If [param keep_offset] is `true`, offsets aren't updated after this operation.
+   * If [param push_opposite_anchor] is `true` and the opposite anchor overlaps this anchor, the
+   * opposite one will have its value overridden. For example, when setting left anchor to 1 and the
+   * right anchor has value of 0.5, the right anchor will also get value of 1. If [param
+   * push_opposite_anchor] was `false`, the left anchor would get value 0.5.
    */
   @JvmOverloads
   public fun setAnchor(
@@ -1218,7 +1221,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Works the same as [setAnchor], but instead of `keep_offset` argument and automatic update of offset, it allows to set the offset yourself (see [setOffset]).
+   * Works the same as [setAnchor], but instead of `keep_offset` argument and automatic update of
+   * offset, it allows to set the offset yourself (see [setOffset]).
    */
   @JvmOverloads
   public fun setAnchorAndOffset(
@@ -1248,9 +1252,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the [position] to given [position].
-   *
-   * If [keepOffsets] is `true`, control's anchors will be updated instead of offsets.
+   * Sets the [position] to given [param position].
+   * If [param keep_offsets] is `true`, control's anchors will be updated instead of offsets.
    */
   @JvmOverloads
   public fun setPosition(position: Vector2, keepOffsets: Boolean = false): Unit {
@@ -1260,8 +1263,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Sets the size (see [size]).
-   *
-   * If [keepOffsets] is `true`, control's anchors will be updated instead of offsets.
+   * If [param keep_offsets] is `true`, control's anchors will be updated instead of offsets.
    */
   @JvmOverloads
   public fun setSize(size: Vector2, keepOffsets: Boolean = false): Unit {
@@ -1270,7 +1272,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Resets the size to [getCombinedMinimumSize]. This is equivalent to calling `set_size(Vector2())` (or any size below the minimum).
+   * Resets the size to [getCombinedMinimumSize]. This is equivalent to calling
+   * `set_size(Vector2())` (or any size below the minimum).
    */
   public fun resetSize(): Unit {
     TransferContext.writeArguments()
@@ -1278,9 +1281,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the [globalPosition] to given [position].
-   *
-   * If [keepOffsets] is `true`, control's anchors will be updated instead of offsets.
+   * Sets the [globalPosition] to given [param position].
+   * If [param keep_offsets] is `true`, control's anchors will be updated instead of offsets.
    */
   @JvmOverloads
   public fun setGlobalPosition(position: Vector2, keepOffsets: Boolean = false): Unit {
@@ -1316,17 +1318,15 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the position of this [godot.Control] in global screen coordinates (i.e. taking window position into account). Mostly useful for editor plugins.
-   *
-   * Equals to [globalPosition] if the window is embedded (see [godot.Viewport.guiEmbedSubwindows]).
-   *
+   * Returns the position of this [Control] in global screen coordinates (i.e. taking window
+   * position into account). Mostly useful for editor plugins.
+   * Equals to [globalPosition] if the window is embedded (see [Viewport.guiEmbedSubwindows]).
    * **Example usage for showing a popup:**
-   *
-   * ```
-   * 				popup_menu.position = get_screen_position() + get_local_mouse_position()
-   * 				popup_menu.reset_size()
-   * 				popup_menu.popup()
-   * 				```
+   * [codeblock]
+   * popup_menu.position = get_screen_position() + get_local_mouse_position()
+   * popup_menu.reset_size()
+   * popup_menu.popup()
+   * [/codeblock]
    */
   public fun getScreenPosition(): Vector2 {
     TransferContext.writeArguments()
@@ -1335,11 +1335,11 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the position and size of the control in the coordinate system of the containing node. See [position], [scale] and [size].
-   *
+   * Returns the position and size of the control in the coordinate system of the containing node.
+   * See [position], [scale] and [size].
    * **Note:** If [rotation] is not the default rotation, the resulting size is not meaningful.
-   *
-   * **Note:** Setting [godot.Viewport.guiSnapControlsToPixels] to `true` can lead to rounding inaccuracies between the displayed control and the returned [godot.core.Rect2].
+   * **Note:** Setting [Viewport.guiSnapControlsToPixels] to `true` can lead to rounding
+   * inaccuracies between the displayed control and the returned [Rect2].
    */
   public fun getRect(): Rect2 {
     TransferContext.writeArguments()
@@ -1348,11 +1348,12 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the position and size of the control relative to the containing canvas. See [globalPosition] and [size].
-   *
-   * **Note:** If the node itself or any parent [godot.CanvasItem] between the node and the canvas have a non default rotation or skew, the resulting size is likely not meaningful.
-   *
-   * **Note:** Setting [godot.Viewport.guiSnapControlsToPixels] to `true` can lead to rounding inaccuracies between the displayed control and the returned [godot.core.Rect2].
+   * Returns the position and size of the control relative to the containing canvas. See
+   * [globalPosition] and [size].
+   * **Note:** If the node itself or any parent [CanvasItem] between the node and the canvas have a
+   * non default rotation or skew, the resulting size is likely not meaningful.
+   * **Note:** Setting [Viewport.guiSnapControlsToPixels] to `true` can lead to rounding
+   * inaccuracies between the displayed control and the returned [Rect2].
    */
   public fun getGlobalRect(): Rect2 {
     TransferContext.writeArguments()
@@ -1371,8 +1372,8 @@ public open class Control : CanvasItem() {
 
   /**
    * Steal the focus from another control and become the focused control (see [focusMode]).
-   *
-   * **Note:** Using this method together with [godot.Callable.callDeferred] makes it more reliable, especially when called inside [godot.Node.Ready].
+   * **Note:** Using this method together with [Callable.callDeferred] makes it more reliable,
+   * especially when called inside [Node.Ready].
    */
   public fun grabFocus(): Unit {
     TransferContext.writeArguments()
@@ -1388,7 +1389,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Finds the previous (above in the tree) [godot.Control] that can receive the focus.
+   * Finds the previous (above in the tree) [Control] that can receive the focus.
    */
   public fun findPrevValidFocus(): Control? {
     TransferContext.writeArguments()
@@ -1397,7 +1398,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Finds the next (below in the tree) [godot.Control] that can receive the focus.
+   * Finds the next (below in the tree) [Control] that can receive the focus.
    */
   public fun findNextValidFocus(): Control? {
     TransferContext.writeArguments()
@@ -1406,9 +1407,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Finds the next [godot.Control] that can receive the focus on the specified [enum Side].
-   *
-   * **Note:** This is different from [getFocusNeighbor], which returns the path of a specified focus neighbor.
+   * Finds the next [Control] that can receive the focus on the specified [enum Side].
+   * **Note:** This is different from [getFocusNeighbor], which returns the path of a specified
+   * focus neighbor.
    */
   public fun findValidFocusNeighbor(side: Side): Control? {
     TransferContext.writeArguments(LONG to side.id)
@@ -1417,7 +1418,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Prevents `*_theme_*_override` methods from emitting [NOTIFICATION_THEME_CHANGED] until [endBulkThemeOverride] is called.
+   * Prevents `*_theme_*_override` methods from emitting [constant NOTIFICATION_THEME_CHANGED] until
+   * [endBulkThemeOverride] is called.
    */
   public fun beginBulkThemeOverride(): Unit {
     TransferContext.writeArguments()
@@ -1433,8 +1435,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme icon with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeIconOverride].
-   *
+   * Creates a local override for a theme icon with the specified [param name]. Local overrides
+   * always take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeIconOverride].
    * See also [getThemeIcon].
    */
   public fun addThemeIconOverride(name: StringName, texture: Texture2D): Unit {
@@ -1443,59 +1446,37 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme [godot.StyleBox] with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeStyleboxOverride].
-   *
+   * Creates a local override for a theme [StyleBox] with the specified [param name]. Local
+   * overrides always take precedence when fetching theme items for the control. An override can be
+   * removed with [removeThemeStyleboxOverride].
    * See also [getThemeStylebox].
-   *
    * **Example of modifying a property in a StyleBox by duplicating it:**
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * # The snippet below assumes the child node MyButton has a StyleBoxFlat assigned.
-   *
    * # Resources are shared across instances, so we need to duplicate it
-   *
    * # to avoid modifying the appearance of all other buttons.
-   *
    * var new_stylebox_normal = $MyButton.get_theme_stylebox("normal").duplicate()
-   *
    * new_stylebox_normal.border_width_top = 3
-   *
    * new_stylebox_normal.border_color = Color(0, 1, 0.5)
-   *
    * $MyButton.add_theme_stylebox_override("normal", new_stylebox_normal)
-   *
    * # Remove the stylebox override.
-   *
    * $MyButton.remove_theme_stylebox_override("normal")
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * // The snippet below assumes the child node MyButton has a StyleBoxFlat assigned.
-   *
    * // Resources are shared across instances, so we need to duplicate it
-   *
    * // to avoid modifying the appearance of all other buttons.
-   *
-   * StyleBoxFlat newStyleboxNormal = GetNode<Button>("MyButton").GetThemeStylebox("normal").Duplicate() as StyleBoxFlat;
-   *
+   * StyleBoxFlat newStyleboxNormal =
+   * GetNode<Button>("MyButton").GetThemeStylebox("normal").Duplicate() as StyleBoxFlat;
    * newStyleboxNormal.BorderWidthTop = 3;
-   *
    * newStyleboxNormal.BorderColor = new Color(0, 1, 0.5f);
-   *
    * GetNode<Button>("MyButton").AddThemeStyleboxOverride("normal", newStyleboxNormal);
-   *
    * // Remove the stylebox override.
-   *
    * GetNode<Button>("MyButton").RemoveThemeStyleboxOverride("normal");
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public fun addThemeStyleboxOverride(name: StringName, stylebox: StyleBox): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to stylebox)
@@ -1503,8 +1484,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme [godot.Font] with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeFontOverride].
-   *
+   * Creates a local override for a theme [Font] with the specified [param name]. Local overrides
+   * always take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeFontOverride].
    * See also [getThemeFont].
    */
   public fun addThemeFontOverride(name: StringName, font: Font): Unit {
@@ -1513,8 +1495,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme font size with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeFontSizeOverride].
-   *
+   * Creates a local override for a theme font size with the specified [param name]. Local overrides
+   * always take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeFontSizeOverride].
    * See also [getThemeFontSize].
    */
   public fun addThemeFontSizeOverride(name: StringName, fontSize: Int): Unit {
@@ -1523,47 +1506,31 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme [godot.core.Color] with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeColorOverride].
-   *
+   * Creates a local override for a theme [Color] with the specified [param name]. Local overrides
+   * always take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeColorOverride].
    * See also [getThemeColor].
-   *
    * **Example of overriding a label's color and resetting it later:**
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * # Given the child Label node "MyLabel", override its font color with a custom value.
-   *
    * $MyLabel.add_theme_color_override("font_color", Color(1, 0.5, 0))
-   *
    * # Reset the font color of the child label.
-   *
    * $MyLabel.remove_theme_color_override("font_color")
-   *
    * # Alternatively it can be overridden with the default value from the Label type.
-   *
    * $MyLabel.add_theme_color_override("font_color", get_theme_color("font_color", "Label"))
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * // Given the child Label node "MyLabel", override its font color with a custom value.
-   *
    * GetNode<Label>("MyLabel").AddThemeColorOverride("font_color", new Color(1, 0.5f, 0));
-   *
    * // Reset the font color of the child label.
-   *
    * GetNode<Label>("MyLabel").RemoveThemeColorOverride("font_color");
-   *
    * // Alternatively it can be overridden with the default value from the Label type.
-   *
-   * GetNode<Label>("MyLabel").AddThemeColorOverride("font_color", GetThemeColor("font_color", "Label"));
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * GetNode<Label>("MyLabel").AddThemeColorOverride("font_color", GetThemeColor("font_color",
+   * "Label"));
+   * ```
    */
   public fun addThemeColorOverride(name: StringName, color: Color): Unit {
     TransferContext.writeArguments(STRING_NAME to name, COLOR to color)
@@ -1571,8 +1538,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme constant with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeConstantOverride].
-   *
+   * Creates a local override for a theme constant with the specified [param name]. Local overrides
+   * always take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeConstantOverride].
    * See also [getThemeConstant].
    */
   public fun addThemeConstantOverride(name: StringName, constant: Int): Unit {
@@ -1581,7 +1549,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Removes a local override for a theme icon with the specified [name] previously added by [addThemeIconOverride] or via the Inspector dock.
+   * Removes a local override for a theme icon with the specified [param name] previously added by
+   * [addThemeIconOverride] or via the Inspector dock.
    */
   public fun removeThemeIconOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -1589,7 +1558,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Removes a local override for a theme [godot.StyleBox] with the specified [name] previously added by [addThemeStyleboxOverride] or via the Inspector dock.
+   * Removes a local override for a theme [StyleBox] with the specified [param name] previously
+   * added by [addThemeStyleboxOverride] or via the Inspector dock.
    */
   public fun removeThemeStyleboxOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -1597,7 +1567,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Removes a local override for a theme [godot.Font] with the specified [name] previously added by [addThemeFontOverride] or via the Inspector dock.
+   * Removes a local override for a theme [Font] with the specified [param name] previously added by
+   * [addThemeFontOverride] or via the Inspector dock.
    */
   public fun removeThemeFontOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -1605,7 +1576,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Removes a local override for a theme font size with the specified [name] previously added by [addThemeFontSizeOverride] or via the Inspector dock.
+   * Removes a local override for a theme font size with the specified [param name] previously added
+   * by [addThemeFontSizeOverride] or via the Inspector dock.
    */
   public fun removeThemeFontSizeOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -1613,7 +1585,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Removes a local override for a theme [godot.core.Color] with the specified [name] previously added by [addThemeColorOverride] or via the Inspector dock.
+   * Removes a local override for a theme [Color] with the specified [param name] previously added
+   * by [addThemeColorOverride] or via the Inspector dock.
    */
   public fun removeThemeColorOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -1621,7 +1594,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Removes a local override for a theme constant with the specified [name] previously added by [addThemeConstantOverride] or via the Inspector dock.
+   * Removes a local override for a theme constant with the specified [param name] previously added
+   * by [addThemeConstantOverride] or via the Inspector dock.
    */
   public fun removeThemeConstantOverride(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -1629,8 +1603,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns an icon from the first matching [godot.Theme] in the tree if that [godot.Theme] has an icon item with the specified [name] and [themeType].
-   *
+   * Returns an icon from the first matching [Theme] in the tree if that [Theme] has an icon item
+   * with the specified [param name] and [param theme_type].
    * See [getThemeColor] for details.
    */
   @JvmOverloads
@@ -1641,8 +1615,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns a [godot.StyleBox] from the first matching [godot.Theme] in the tree if that [godot.Theme] has a stylebox item with the specified [name] and [themeType].
-   *
+   * Returns a [StyleBox] from the first matching [Theme] in the tree if that [Theme] has a stylebox
+   * item with the specified [param name] and [param theme_type].
    * See [getThemeColor] for details.
    */
   @JvmOverloads
@@ -1653,8 +1627,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns a [godot.Font] from the first matching [godot.Theme] in the tree if that [godot.Theme] has a font item with the specified [name] and [themeType].
-   *
+   * Returns a [Font] from the first matching [Theme] in the tree if that [Theme] has a font item
+   * with the specified [param name] and [param theme_type].
    * See [getThemeColor] for details.
    */
   @JvmOverloads
@@ -1665,8 +1639,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns a font size from the first matching [godot.Theme] in the tree if that [godot.Theme] has a font size item with the specified [name] and [themeType].
-   *
+   * Returns a font size from the first matching [Theme] in the tree if that [Theme] has a font size
+   * item with the specified [param name] and [param theme_type].
    * See [getThemeColor] for details.
    */
   @JvmOverloads
@@ -1677,45 +1651,36 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns a [godot.core.Color] from the first matching [godot.Theme] in the tree if that [godot.Theme] has a color item with the specified [name] and [themeType]. If [themeType] is omitted the class name of the current control is used as the type, or [themeTypeVariation] if it is defined. If the type is a class name its parent classes are also checked, in order of inheritance. If the type is a variation its base types are checked, in order of dependency, then the control's class name and its parent classes are checked.
+   * Returns a [Color] from the first matching [Theme] in the tree if that [Theme] has a color item
+   * with the specified [param name] and [param theme_type]. If [param theme_type] is omitted the class
+   * name of the current control is used as the type, or [themeTypeVariation] if it is defined. If the
+   * type is a class name its parent classes are also checked, in order of inheritance. If the type is
+   * a variation its base types are checked, in order of dependency, then the control's class name and
+   * its parent classes are checked.
+   * For the current control its local overrides are considered first (see [addThemeColorOverride]),
+   * then its assigned [theme]. After the current control, each parent control and its assigned [theme]
+   * are considered; controls without a [theme] assigned are skipped. If no matching [Theme] is found
+   * in the tree, the custom project [Theme] (see [ProjectSettings.gui/theme/custom]) and the default
+   * [Theme] are used (see [ThemeDB]).
    *
-   * For the current control its local overrides are considered first (see [addThemeColorOverride]), then its assigned [theme]. After the current control, each parent control and its assigned [theme] are considered; controls without a [theme] assigned are skipped. If no matching [godot.Theme] is found in the tree, the custom project [godot.Theme] (see [godot.ProjectSettings.gui/theme/custom]) and the default [godot.Theme] are used (see [godot.ThemeDB]).
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * func _ready():
-   *
    *     # Get the font color defined for the current Control's class, if it exists.
-   *
    *     modulate = get_theme_color("font_color")
-   *
    *     # Get the font color defined for the Button class.
-   *
    *     modulate = get_theme_color("font_color", "Button")
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * public override void _Ready()
-   *
    * {
-   *
    *     // Get the font color defined for the current Control's class, if it exists.
-   *
    *     Modulate = GetThemeColor("font_color");
-   *
    *     // Get the font color defined for the Button class.
-   *
    *     Modulate = GetThemeColor("font_color", "Button");
-   *
    * }
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   @JvmOverloads
   public fun getThemeColor(name: StringName, themeType: StringName = StringName("")): Color {
@@ -1725,8 +1690,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns a constant from the first matching [godot.Theme] in the tree if that [godot.Theme] has a constant item with the specified [name] and [themeType].
-   *
+   * Returns a constant from the first matching [Theme] in the tree if that [Theme] has a constant
+   * item with the specified [param name] and [param theme_type].
    * See [getThemeColor] for details.
    */
   @JvmOverloads
@@ -1737,8 +1702,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme icon with the specified [name] in this [godot.Control] node.
-   *
+   * Returns `true` if there is a local override for a theme icon with the specified [param name] in
+   * this [Control] node.
    * See [addThemeIconOverride].
    */
   public fun hasThemeIconOverride(name: StringName): Boolean {
@@ -1748,8 +1713,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme [godot.StyleBox] with the specified [name] in this [godot.Control] node.
-   *
+   * Returns `true` if there is a local override for a theme [StyleBox] with the specified [param
+   * name] in this [Control] node.
    * See [addThemeStyleboxOverride].
    */
   public fun hasThemeStyleboxOverride(name: StringName): Boolean {
@@ -1759,8 +1724,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme [godot.Font] with the specified [name] in this [godot.Control] node.
-   *
+   * Returns `true` if there is a local override for a theme [Font] with the specified [param name]
+   * in this [Control] node.
    * See [addThemeFontOverride].
    */
   public fun hasThemeFontOverride(name: StringName): Boolean {
@@ -1770,8 +1735,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme font size with the specified [name] in this [godot.Control] node.
-   *
+   * Returns `true` if there is a local override for a theme font size with the specified [param
+   * name] in this [Control] node.
    * See [addThemeFontSizeOverride].
    */
   public fun hasThemeFontSizeOverride(name: StringName): Boolean {
@@ -1781,8 +1746,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme [godot.core.Color] with the specified [name] in this [godot.Control] node.
-   *
+   * Returns `true` if there is a local override for a theme [Color] with the specified [param name]
+   * in this [Control] node.
    * See [addThemeColorOverride].
    */
   public fun hasThemeColorOverride(name: StringName): Boolean {
@@ -1792,8 +1757,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme constant with the specified [name] in this [godot.Control] node.
-   *
+   * Returns `true` if there is a local override for a theme constant with the specified [param
+   * name] in this [Control] node.
    * See [addThemeConstantOverride].
    */
   public fun hasThemeConstantOverride(name: StringName): Boolean {
@@ -1803,8 +1768,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a matching [godot.Theme] in the tree that has an icon item with the specified [name] and [themeType].
-   *
+   * Returns `true` if there is a matching [Theme] in the tree that has an icon item with the
+   * specified [param name] and [param theme_type].
    * See [getThemeColor] for details.
    */
   @JvmOverloads
@@ -1815,8 +1780,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a matching [godot.Theme] in the tree that has a stylebox item with the specified [name] and [themeType].
-   *
+   * Returns `true` if there is a matching [Theme] in the tree that has a stylebox item with the
+   * specified [param name] and [param theme_type].
    * See [getThemeColor] for details.
    */
   @JvmOverloads
@@ -1827,8 +1792,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a matching [godot.Theme] in the tree that has a font item with the specified [name] and [themeType].
-   *
+   * Returns `true` if there is a matching [Theme] in the tree that has a font item with the
+   * specified [param name] and [param theme_type].
    * See [getThemeColor] for details.
    */
   @JvmOverloads
@@ -1839,8 +1804,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a matching [godot.Theme] in the tree that has a font size item with the specified [name] and [themeType].
-   *
+   * Returns `true` if there is a matching [Theme] in the tree that has a font size item with the
+   * specified [param name] and [param theme_type].
    * See [getThemeColor] for details.
    */
   @JvmOverloads
@@ -1851,8 +1816,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a matching [godot.Theme] in the tree that has a color item with the specified [name] and [themeType].
-   *
+   * Returns `true` if there is a matching [Theme] in the tree that has a color item with the
+   * specified [param name] and [param theme_type].
    * See [getThemeColor] for details.
    */
   @JvmOverloads
@@ -1863,8 +1828,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if there is a matching [godot.Theme] in the tree that has a constant item with the specified [name] and [themeType].
-   *
+   * Returns `true` if there is a matching [Theme] in the tree that has a constant item with the
+   * specified [param name] and [param theme_type].
    * See [getThemeColor] for details.
    */
   @JvmOverloads
@@ -1875,8 +1840,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the default base scale value from the first matching [godot.Theme] in the tree if that [godot.Theme] has a valid [godot.Theme.defaultBaseScale] value.
-   *
+   * Returns the default base scale value from the first matching [Theme] in the tree if that
+   * [Theme] has a valid [Theme.defaultBaseScale] value.
    * See [getThemeColor] for details.
    */
   public fun getThemeDefaultBaseScale(): Float {
@@ -1886,8 +1851,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the default font from the first matching [godot.Theme] in the tree if that [godot.Theme] has a valid [godot.Theme.defaultFont] value.
-   *
+   * Returns the default font from the first matching [Theme] in the tree if that [Theme] has a
+   * valid [Theme.defaultFont] value.
    * See [getThemeColor] for details.
    */
   public fun getThemeDefaultFont(): Font? {
@@ -1897,8 +1862,8 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the default font size value from the first matching [godot.Theme] in the tree if that [godot.Theme] has a valid [godot.Theme.defaultFontSize] value.
-   *
+   * Returns the default font size value from the first matching [Theme] in the tree if that [Theme]
+   * has a valid [Theme.defaultFontSize] value.
    * See [getThemeColor] for details.
    */
   public fun getThemeDefaultFontSize(): Int {
@@ -1917,11 +1882,11 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the tooltip text for the position [atPosition] in control's local coordinates, which will typically appear when the cursor is resting over this control. By default, it returns [tooltipText].
-   *
+   * Returns the tooltip text for the position [param at_position] in control's local coordinates,
+   * which will typically appear when the cursor is resting over this control. By default, it returns
+   * [tooltipText].
    * This method can be overridden to customize its behavior. See [_getTooltip].
-   *
-   * **Note:** If this method returns an empty [godot.String], no tooltip is displayed.
+   * **Note:** If this method returns an empty [String], no tooltip is displayed.
    */
   @JvmOverloads
   public fun getTooltip(atPosition: Vector2 = Vector2(0, 0)): String {
@@ -1941,9 +1906,10 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Forces drag and bypasses [_getDragData] and [setDragPreview] by passing [data] and [preview]. Drag will start even if the mouse is neither over nor pressed on this control.
-   *
-   * The methods [_canDropData] and [_dropData] must be implemented on controls that want to receive drop data.
+   * Forces drag and bypasses [_getDragData] and [setDragPreview] by passing [param data] and [param
+   * preview]. Drag will start even if the mouse is neither over nor pressed on this control.
+   * The methods [_canDropData] and [_dropData] must be implemented on controls that want to receive
+   * drop data.
    */
   public fun forceDrag(`data`: Any?, preview: Control): Unit {
     TransferContext.writeArguments(ANY to data, OBJECT to preview)
@@ -1951,31 +1917,21 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates an [godot.InputEventMouseButton] that attempts to click the control. If the event is received, the control acquires focus.
+   * Creates an [InputEventMouseButton] that attempts to click the control. If the event is
+   * received, the control acquires focus.
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * func _process(delta):
-   *
    *     grab_click_focus() # When clicking another Control node, this node will be clicked instead.
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * public override void _Process(double delta)
-   *
    * {
-   *
    *     GrabClickFocus(); // When clicking another Control node, this node will be clicked instead.
-   *
    * }
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public fun grabClickFocus(): Unit {
     TransferContext.writeArguments()
@@ -1983,11 +1939,12 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Forwards the handling of this control's [_getDragData],  [_canDropData] and [_dropData] virtual functions to delegate callables.
-   *
-   * For each argument, if not empty, the delegate callable is used, otherwise the local (virtual) function is used.
-   *
-   * The function format for each callable should be exactly the same as the virtual functions described above.
+   * Forwards the handling of this control's [_getDragData],  [_canDropData] and [_dropData] virtual
+   * functions to delegate callables.
+   * For each argument, if not empty, the delegate callable is used, otherwise the local (virtual)
+   * function is used.
+   * The function format for each callable should be exactly the same as the virtual functions
+   * described above.
    */
   public fun setDragForwarding(
     dragFunc: Callable,
@@ -1999,61 +1956,38 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Shows the given control at the mouse pointer. A good time to call this method is in [_getDragData]. The control must not be in the scene tree. You should not free the control, and you should not keep a reference to the control beyond the duration of the drag. It will be deleted automatically after the drag has ended.
+   * Shows the given control at the mouse pointer. A good time to call this method is in
+   * [_getDragData]. The control must not be in the scene tree. You should not free the control, and
+   * you should not keep a reference to the control beyond the duration of the drag. It will be deleted
+   * automatically after the drag has ended.
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * @export var color = Color(1, 0, 0, 1)
    *
-   *
-   *
    * func _get_drag_data(position):
-   *
    *     # Use a control that is not in the tree
-   *
    *     var cpb = ColorPickerButton.new()
-   *
    *     cpb.color = color
-   *
    *     cpb.size = Vector2(50, 50)
-   *
    *     set_drag_preview(cpb)
-   *
    *     return color
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
-   * [godot.Export]
-   *
+   * ```
+   * csharp:
+   * ```csharp
+   * [Export]
    * private Color _color = new Color(1, 0, 0, 1);
    *
-   *
-   *
    * public override Variant _GetDragData(Vector2 atPosition)
-   *
    * {
-   *
    *     // Use a control that is not in the tree
-   *
    *     var cpb = new ColorPickerButton();
-   *
    *     cpb.Color = _color;
-   *
    *     cpb.Size = new Vector2(50, 50);
-   *
    *     SetDragPreview(cpb);
-   *
    *     return _color;
-   *
    * }
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public fun setDragPreview(control: Control): Unit {
     TransferContext.writeArguments(OBJECT to control)
@@ -2061,9 +1995,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if a drag operation is successful. Alternative to [godot.Viewport.guiIsDragSuccessful].
-   *
-   * Best used with [godot.Node.NOTIFICATION_DRAG_END].
+   * Returns `true` if a drag operation is successful. Alternative to
+   * [Viewport.guiIsDragSuccessful].
+   * Best used with [constant Node.NOTIFICATION_DRAG_END].
    */
   public fun isDragSuccessful(): Boolean {
     TransferContext.writeArguments()
@@ -2072,9 +2006,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Moves the mouse cursor to [position], relative to [position] of this [godot.Control].
-   *
-   * **Note:** [warpMouse] is only supported on Windows, macOS and Linux. It has no effect on Android, iOS and Web.
+   * Moves the mouse cursor to [param position], relative to [position] of this [Control].
+   * **Note:** [warpMouse] is only supported on Windows, macOS and Linux. It has no effect on
+   * Android, iOS and Web.
    */
   public fun warpMouse(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
@@ -2082,7 +2016,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Invalidates the size cache in this node and in parent nodes up to top level. Intended to be used with [getMinimumSize] when the return value is changed. Setting [customMinimumSize] directly calls this method automatically.
+   * Invalidates the size cache in this node and in parent nodes up to top level. Intended to be
+   * used with [getMinimumSize] when the return value is changed. Setting [customMinimumSize] directly
+   * calls this method automatically.
    */
   public fun updateMinimumSize(): Unit {
     TransferContext.writeArguments()
@@ -2110,7 +2046,8 @@ public open class Control : CanvasItem() {
      */
     FOCUS_CLICK(1),
     /**
-     * The node can grab focus on mouse click, using the arrows and the Tab keys on the keyboard, or using the D-pad buttons on a gamepad. Use with [focusMode].
+     * The node can grab focus on mouse click, using the arrows and the Tab keys on the keyboard, or
+     * using the D-pad buttons on a gamepad. Use with [focusMode].
      */
     FOCUS_ALL(2),
     ;
@@ -2129,11 +2066,13 @@ public open class Control : CanvasItem() {
     id: Long,
   ) {
     /**
-     * Show the system's arrow mouse cursor when the user hovers the node. Use with [mouseDefaultCursorShape].
+     * Show the system's arrow mouse cursor when the user hovers the node. Use with
+     * [mouseDefaultCursorShape].
      */
     CURSOR_ARROW(0),
     /**
-     * Show the system's I-beam mouse cursor when the user hovers the node. The I-beam pointer has a shape similar to "I". It tells the user they can highlight or insert text.
+     * Show the system's I-beam mouse cursor when the user hovers the node. The I-beam pointer has a
+     * shape similar to "I". It tells the user they can highlight or insert text.
      */
     CURSOR_IBEAM(1),
     /**
@@ -2149,47 +2088,63 @@ public open class Control : CanvasItem() {
      */
     CURSOR_WAIT(4),
     /**
-     * Show the system's busy mouse cursor when the user hovers the node. Often an arrow with a small hourglass.
+     * Show the system's busy mouse cursor when the user hovers the node. Often an arrow with a
+     * small hourglass.
      */
     CURSOR_BUSY(5),
     /**
-     * Show the system's drag mouse cursor, often a closed fist or a cross symbol, when the user hovers the node. It tells the user they're currently dragging an item, like a node in the Scene dock.
+     * Show the system's drag mouse cursor, often a closed fist or a cross symbol, when the user
+     * hovers the node. It tells the user they're currently dragging an item, like a node in the Scene
+     * dock.
      */
     CURSOR_DRAG(6),
     /**
-     * Show the system's drop mouse cursor when the user hovers the node. It can be an open hand. It tells the user they can drop an item they're currently grabbing, like a node in the Scene dock.
+     * Show the system's drop mouse cursor when the user hovers the node. It can be an open hand. It
+     * tells the user they can drop an item they're currently grabbing, like a node in the Scene dock.
      */
     CURSOR_CAN_DROP(7),
     /**
-     * Show the system's forbidden mouse cursor when the user hovers the node. Often a crossed circle.
+     * Show the system's forbidden mouse cursor when the user hovers the node. Often a crossed
+     * circle.
      */
     CURSOR_FORBIDDEN(8),
     /**
-     * Show the system's vertical resize mouse cursor when the user hovers the node. A double-headed vertical arrow. It tells the user they can resize the window or the panel vertically.
+     * Show the system's vertical resize mouse cursor when the user hovers the node. A double-headed
+     * vertical arrow. It tells the user they can resize the window or the panel vertically.
      */
     CURSOR_VSIZE(9),
     /**
-     * Show the system's horizontal resize mouse cursor when the user hovers the node. A double-headed horizontal arrow. It tells the user they can resize the window or the panel horizontally.
+     * Show the system's horizontal resize mouse cursor when the user hovers the node. A
+     * double-headed horizontal arrow. It tells the user they can resize the window or the panel
+     * horizontally.
      */
     CURSOR_HSIZE(10),
     /**
-     * Show the system's window resize mouse cursor when the user hovers the node. The cursor is a double-headed arrow that goes from the bottom left to the top right. It tells the user they can resize the window or the panel both horizontally and vertically.
+     * Show the system's window resize mouse cursor when the user hovers the node. The cursor is a
+     * double-headed arrow that goes from the bottom left to the top right. It tells the user they can
+     * resize the window or the panel both horizontally and vertically.
      */
     CURSOR_BDIAGSIZE(11),
     /**
-     * Show the system's window resize mouse cursor when the user hovers the node. The cursor is a double-headed arrow that goes from the top left to the bottom right, the opposite of [CURSOR_BDIAGSIZE]. It tells the user they can resize the window or the panel both horizontally and vertically.
+     * Show the system's window resize mouse cursor when the user hovers the node. The cursor is a
+     * double-headed arrow that goes from the top left to the bottom right, the opposite of [constant
+     * CURSOR_BDIAGSIZE]. It tells the user they can resize the window or the panel both horizontally
+     * and vertically.
      */
     CURSOR_FDIAGSIZE(12),
     /**
-     * Show the system's move mouse cursor when the user hovers the node. It shows 2 double-headed arrows at a 90 degree angle. It tells the user they can move a UI element freely.
+     * Show the system's move mouse cursor when the user hovers the node. It shows 2 double-headed
+     * arrows at a 90 degree angle. It tells the user they can move a UI element freely.
      */
     CURSOR_MOVE(13),
     /**
-     * Show the system's vertical split mouse cursor when the user hovers the node. On Windows, it's the same as [CURSOR_VSIZE].
+     * Show the system's vertical split mouse cursor when the user hovers the node. On Windows, it's
+     * the same as [constant CURSOR_VSIZE].
      */
     CURSOR_VSPLIT(14),
     /**
-     * Show the system's horizontal split mouse cursor when the user hovers the node. On Windows, it's the same as [CURSOR_HSIZE].
+     * Show the system's horizontal split mouse cursor when the user hovers the node. On Windows,
+     * it's the same as [constant CURSOR_HSIZE].
      */
     CURSOR_HSPLIT(15),
     /**
@@ -2212,35 +2167,43 @@ public open class Control : CanvasItem() {
     id: Long,
   ) {
     /**
-     * Snap all 4 anchors to the top-left of the parent control's bounds. Use with [setAnchorsPreset].
+     * Snap all 4 anchors to the top-left of the parent control's bounds. Use with
+     * [setAnchorsPreset].
      */
     PRESET_TOP_LEFT(0),
     /**
-     * Snap all 4 anchors to the top-right of the parent control's bounds. Use with [setAnchorsPreset].
+     * Snap all 4 anchors to the top-right of the parent control's bounds. Use with
+     * [setAnchorsPreset].
      */
     PRESET_TOP_RIGHT(1),
     /**
-     * Snap all 4 anchors to the bottom-left of the parent control's bounds. Use with [setAnchorsPreset].
+     * Snap all 4 anchors to the bottom-left of the parent control's bounds. Use with
+     * [setAnchorsPreset].
      */
     PRESET_BOTTOM_LEFT(2),
     /**
-     * Snap all 4 anchors to the bottom-right of the parent control's bounds. Use with [setAnchorsPreset].
+     * Snap all 4 anchors to the bottom-right of the parent control's bounds. Use with
+     * [setAnchorsPreset].
      */
     PRESET_BOTTOM_RIGHT(3),
     /**
-     * Snap all 4 anchors to the center of the left edge of the parent control's bounds. Use with [setAnchorsPreset].
+     * Snap all 4 anchors to the center of the left edge of the parent control's bounds. Use with
+     * [setAnchorsPreset].
      */
     PRESET_CENTER_LEFT(4),
     /**
-     * Snap all 4 anchors to the center of the top edge of the parent control's bounds. Use with [setAnchorsPreset].
+     * Snap all 4 anchors to the center of the top edge of the parent control's bounds. Use with
+     * [setAnchorsPreset].
      */
     PRESET_CENTER_TOP(5),
     /**
-     * Snap all 4 anchors to the center of the right edge of the parent control's bounds. Use with [setAnchorsPreset].
+     * Snap all 4 anchors to the center of the right edge of the parent control's bounds. Use with
+     * [setAnchorsPreset].
      */
     PRESET_CENTER_RIGHT(6),
     /**
-     * Snap all 4 anchors to the center of the bottom edge of the parent control's bounds. Use with [setAnchorsPreset].
+     * Snap all 4 anchors to the center of the bottom edge of the parent control's bounds. Use with
+     * [setAnchorsPreset].
      */
     PRESET_CENTER_BOTTOM(7),
     /**
@@ -2248,31 +2211,43 @@ public open class Control : CanvasItem() {
      */
     PRESET_CENTER(8),
     /**
-     * Snap all 4 anchors to the left edge of the parent control. The left offset becomes relative to the left edge and the top offset relative to the top left corner of the node's parent. Use with [setAnchorsPreset].
+     * Snap all 4 anchors to the left edge of the parent control. The left offset becomes relative
+     * to the left edge and the top offset relative to the top left corner of the node's parent. Use
+     * with [setAnchorsPreset].
      */
     PRESET_LEFT_WIDE(9),
     /**
-     * Snap all 4 anchors to the top edge of the parent control. The left offset becomes relative to the top left corner, the top offset relative to the top edge, and the right offset relative to the top right corner of the node's parent. Use with [setAnchorsPreset].
+     * Snap all 4 anchors to the top edge of the parent control. The left offset becomes relative to
+     * the top left corner, the top offset relative to the top edge, and the right offset relative to
+     * the top right corner of the node's parent. Use with [setAnchorsPreset].
      */
     PRESET_TOP_WIDE(10),
     /**
-     * Snap all 4 anchors to the right edge of the parent control. The right offset becomes relative to the right edge and the top offset relative to the top right corner of the node's parent. Use with [setAnchorsPreset].
+     * Snap all 4 anchors to the right edge of the parent control. The right offset becomes relative
+     * to the right edge and the top offset relative to the top right corner of the node's parent. Use
+     * with [setAnchorsPreset].
      */
     PRESET_RIGHT_WIDE(11),
     /**
-     * Snap all 4 anchors to the bottom edge of the parent control. The left offset becomes relative to the bottom left corner, the bottom offset relative to the bottom edge, and the right offset relative to the bottom right corner of the node's parent. Use with [setAnchorsPreset].
+     * Snap all 4 anchors to the bottom edge of the parent control. The left offset becomes relative
+     * to the bottom left corner, the bottom offset relative to the bottom edge, and the right offset
+     * relative to the bottom right corner of the node's parent. Use with [setAnchorsPreset].
      */
     PRESET_BOTTOM_WIDE(12),
     /**
-     * Snap all 4 anchors to a vertical line that cuts the parent control in half. Use with [setAnchorsPreset].
+     * Snap all 4 anchors to a vertical line that cuts the parent control in half. Use with
+     * [setAnchorsPreset].
      */
     PRESET_VCENTER_WIDE(13),
     /**
-     * Snap all 4 anchors to a horizontal line that cuts the parent control in half. Use with [setAnchorsPreset].
+     * Snap all 4 anchors to a horizontal line that cuts the parent control in half. Use with
+     * [setAnchorsPreset].
      */
     PRESET_HCENTER_WIDE(14),
     /**
-     * Snap all 4 anchors to the respective corners of the parent control. Set all 4 offsets to 0 after you applied this preset and the [godot.Control] will fit its parent control. Use with [setAnchorsPreset].
+     * Snap all 4 anchors to the respective corners of the parent control. Set all 4 offsets to 0
+     * after you applied this preset and the [Control] will fit its parent control. Use with
+     * [setAnchorsPreset].
      */
     PRESET_FULL_RECT(15),
     ;
@@ -2389,17 +2364,29 @@ public open class Control : CanvasItem() {
     id: Long,
   ) {
     /**
-     * The control will receive mouse movement input events and mouse button input events if clicked on through [_guiInput]. And the control will receive the [mouseEntered] and [mouseExited] signals. These events are automatically marked as handled, and they will not propagate further to other controls. This also results in blocking signals in other controls.
+     * The control will receive mouse movement input events and mouse button input events if clicked
+     * on through [_guiInput]. And the control will receive the [signal mouse_entered] and [signal
+     * mouse_exited] signals. These events are automatically marked as handled, and they will not
+     * propagate further to other controls. This also results in blocking signals in other controls.
      */
     MOUSE_FILTER_STOP(0),
     /**
-     * The control will receive mouse movement input events and mouse button input events if clicked on through [_guiInput]. And the control will receive the [mouseEntered] and [mouseExited] signals. If this control does not handle the event, the parent control (if any) will be considered, and so on until there is no more parent control to potentially handle it. This also allows signals to fire in other controls. If no control handled it, the event will be passed to [godot.Node.ShortcutInput] for further processing.
+     * The control will receive mouse movement input events and mouse button input events if clicked
+     * on through [_guiInput]. And the control will receive the [signal mouse_entered] and [signal
+     * mouse_exited] signals. If this control does not handle the event, the parent control (if any)
+     * will be considered, and so on until there is no more parent control to potentially handle it.
+     * This also allows signals to fire in other controls. If no control handled it, the event will be
+     * passed to [Node.ShortcutInput] for further processing.
      */
     MOUSE_FILTER_PASS(1),
     /**
-     * The control will not receive mouse movement input events and mouse button input events if clicked on through [_guiInput]. The control will also not receive the [mouseEntered] nor [mouseExited] signals. This will not block other controls from receiving these events or firing the signals. Ignored events will not be handled automatically.
-     *
-     * **Note:** If the control has received [mouseEntered] but not [mouseExited], changing the [mouseFilter] to [MOUSE_FILTER_IGNORE] will cause [mouseExited] to be emitted.
+     * The control will not receive mouse movement input events and mouse button input events if
+     * clicked on through [_guiInput]. The control will also not receive the [signal mouse_entered] nor
+     * [signal mouse_exited] signals. This will not block other controls from receiving these events or
+     * firing the signals. Ignored events will not be handled automatically.
+     * **Note:** If the control has received [signal mouse_entered] but not [signal mouse_exited],
+     * changing the [mouseFilter] to [constant MOUSE_FILTER_IGNORE] will cause [signal mouse_exited] to
+     * be emitted.
      */
     MOUSE_FILTER_IGNORE(2),
     ;
@@ -2418,15 +2405,18 @@ public open class Control : CanvasItem() {
     id: Long,
   ) {
     /**
-     * The control will grow to the left or top to make up if its minimum size is changed to be greater than its current size on the respective axis.
+     * The control will grow to the left or top to make up if its minimum size is changed to be
+     * greater than its current size on the respective axis.
      */
     GROW_DIRECTION_BEGIN(0),
     /**
-     * The control will grow to the right or bottom to make up if its minimum size is changed to be greater than its current size on the respective axis.
+     * The control will grow to the right or bottom to make up if its minimum size is changed to be
+     * greater than its current size on the respective axis.
      */
     GROW_DIRECTION_END(1),
     /**
-     * The control will grow in both directions equally to make up if its minimum size is changed to be greater than its current size.
+     * The control will grow in both directions equally to make up if its minimum size is changed to
+     * be greater than its current size.
      */
     GROW_DIRECTION_BOTH(2),
     ;
@@ -2445,11 +2435,15 @@ public open class Control : CanvasItem() {
     id: Long,
   ) {
     /**
-     * Snaps one of the 4 anchor's sides to the origin of the node's `Rect`, in the top left. Use it with one of the `anchor_*` member variables, like [anchorLeft]. To change all 4 anchors at once, use [setAnchorsPreset].
+     * Snaps one of the 4 anchor's sides to the origin of the node's `Rect`, in the top left. Use it
+     * with one of the `anchor_*` member variables, like [anchorLeft]. To change all 4 anchors at once,
+     * use [setAnchorsPreset].
      */
     ANCHOR_BEGIN(0),
     /**
-     * Snaps one of the 4 anchor's sides to the end of the node's `Rect`, in the bottom right. Use it with one of the `anchor_*` member variables, like [anchorLeft]. To change all 4 anchors at once, use [setAnchorsPreset].
+     * Snaps one of the 4 anchor's sides to the end of the node's `Rect`, in the bottom right. Use
+     * it with one of the `anchor_*` member variables, like [anchorLeft]. To change all 4 anchors at
+     * once, use [setAnchorsPreset].
      */
     ANCHOR_END(1),
     ;
@@ -2533,38 +2527,38 @@ public open class Control : CanvasItem() {
     public final const val NOTIFICATION_RESIZED: Long = 40
 
     /**
-     * Sent when the mouse cursor enters the control's (or any child control's) visible area, that is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if it's currently focused or not.
-     *
-     * **Note:** [godot.CanvasItem.zIndex] doesn't affect which Control receives the notification.
-     *
-     * See also [NOTIFICATION_MOUSE_ENTER_SELF].
+     * Sent when the mouse cursor enters the control's (or any child control's) visible area, that
+     * is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event
+     * reach it and regardless if it's currently focused or not.
+     * **Note:** [CanvasItem.zIndex] doesn't affect which Control receives the notification.
+     * See also [constant NOTIFICATION_MOUSE_ENTER_SELF].
      */
     public final const val NOTIFICATION_MOUSE_ENTER: Long = 41
 
     /**
-     * Sent when the mouse cursor leaves the control's (and all child control's) visible area, that is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if it's currently focused or not.
-     *
-     * **Note:** [godot.CanvasItem.zIndex] doesn't affect which Control receives the notification.
-     *
-     * See also [NOTIFICATION_MOUSE_EXIT_SELF].
+     * Sent when the mouse cursor leaves the control's (and all child control's) visible area, that
+     * is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event
+     * reach it and regardless if it's currently focused or not.
+     * **Note:** [CanvasItem.zIndex] doesn't affect which Control receives the notification.
+     * See also [constant NOTIFICATION_MOUSE_EXIT_SELF].
      */
     public final const val NOTIFICATION_MOUSE_EXIT: Long = 42
 
     /**
-     * Sent when the mouse cursor enters the control's visible area, that is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if it's currently focused or not.
-     *
-     * **Note:** [godot.CanvasItem.zIndex] doesn't affect which Control receives the notification.
-     *
-     * See also [NOTIFICATION_MOUSE_ENTER].
+     * Sent when the mouse cursor enters the control's visible area, that is not occluded behind
+     * other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if
+     * it's currently focused or not.
+     * **Note:** [CanvasItem.zIndex] doesn't affect which Control receives the notification.
+     * See also [constant NOTIFICATION_MOUSE_ENTER].
      */
     public final const val NOTIFICATION_MOUSE_ENTER_SELF: Long = 60
 
     /**
-     * Sent when the mouse cursor leaves the control's visible area, that is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if it's currently focused or not.
-     *
-     * **Note:** [godot.CanvasItem.zIndex] doesn't affect which Control receives the notification.
-     *
-     * See also [NOTIFICATION_MOUSE_EXIT].
+     * Sent when the mouse cursor leaves the control's visible area, that is not occluded behind
+     * other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if
+     * it's currently focused or not.
+     * **Note:** [CanvasItem.zIndex] doesn't affect which Control receives the notification.
+     * See also [constant NOTIFICATION_MOUSE_EXIT].
      */
     public final const val NOTIFICATION_MOUSE_EXIT_SELF: Long = 61
 
@@ -2579,31 +2573,35 @@ public open class Control : CanvasItem() {
     public final const val NOTIFICATION_FOCUS_EXIT: Long = 44
 
     /**
-     * Sent when the node needs to refresh its theme items. This happens in one of the following cases:
-     *
+     * Sent when the node needs to refresh its theme items. This happens in one of the following
+     * cases:
      * - The [theme] property is changed on this node or any of its ancestors.
-     *
      * - The [themeTypeVariation] property is changed on this node.
-     *
      * - One of the node's theme property overrides is changed.
-     *
      * - The node enters the scene tree.
-     *
-     * **Note:** As an optimization, this notification won't be sent from changes that occur while this node is outside of the scene tree. Instead, all of the theme item updates can be applied at once when the node enters the scene tree.
+     * **Note:** As an optimization, this notification won't be sent from changes that occur while
+     * this node is outside of the scene tree. Instead, all of the theme item updates can be applied at
+     * once when the node enters the scene tree.
      */
     public final const val NOTIFICATION_THEME_CHANGED: Long = 45
 
     /**
-     * Sent when this node is inside a [godot.ScrollContainer] which has begun being scrolled when dragging the scrollable area *with a touch event*. This notification is *not* sent when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.
-     *
-     * **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [godot.ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is enabled.
+     * Sent when this node is inside a [ScrollContainer] which has begun being scrolled when
+     * dragging the scrollable area *with a touch event*. This notification is *not* sent when
+     * scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with
+     * keyboard/gamepad events.
+     * **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when
+     * [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is enabled.
      */
     public final const val NOTIFICATION_SCROLL_BEGIN: Long = 47
 
     /**
-     * Sent when this node is inside a [godot.ScrollContainer] which has stopped being scrolled when dragging the scrollable area *with a touch event*. This notification is *not* sent when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.
-     *
-     * **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [godot.ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is enabled.
+     * Sent when this node is inside a [ScrollContainer] which has stopped being scrolled when
+     * dragging the scrollable area *with a touch event*. This notification is *not* sent when
+     * scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with
+     * keyboard/gamepad events.
+     * **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when
+     * [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is enabled.
      */
     public final const val NOTIFICATION_SCROLL_END: Long = 48
 

@@ -85,22 +85,6 @@ public open class AudioStreamRandomizer : AudioStream() {
       TransferContext.callMethod(rawPtr, MethodBindings.setStreamsCountPtr, NIL)
     }
 
-  /**
-   * The number of streams in the stream pool.
-   */
-  public var streamsCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_GET_STREAMS_COUNT, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMIZER_SET_STREAMS_COUNT, NIL)
-    }
-
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_AUDIOSTREAMRANDOMIZER, scriptIndex)
     return true

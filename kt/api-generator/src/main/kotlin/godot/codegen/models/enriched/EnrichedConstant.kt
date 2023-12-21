@@ -7,7 +7,7 @@ import godot.codegen.traits.TypedTrait
 
 class EnrichedConstant(val internal: Constant) : TypedTrait, IDocumented {
     override val type = internal.type?.sanitizeApiType() ?: "int"
-    override val documentation = internal.documentation
+    override val description = internal.description
 }
 
 fun List<Constant>.toEnriched() = map { EnrichedConstant(it) }

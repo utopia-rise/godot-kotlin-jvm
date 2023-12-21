@@ -65,7 +65,8 @@ class ClassService(
                     returnValue = ReturnValue(returnType, null),
                     returnType = null,
                     arguments = arguments,
-                    documentation = null
+                    description = null,
+                    briefDescription = null
                 ),
                 clazz.engineClassDBIndexName
             )

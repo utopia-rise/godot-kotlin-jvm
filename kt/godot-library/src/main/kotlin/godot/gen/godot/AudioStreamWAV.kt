@@ -24,21 +24,18 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * Stores audio data loaded from WAV files.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/io/runtime_file_loading_and_saving.html]($DOCS_URL/tutorials/io/runtime_file_loading_and_saving.html)
- *
- * AudioStreamWAV stores sound samples loaded from WAV files. To play the stored sound, use an [godot.AudioStreamPlayer] (for non-positional audio) or [godot.AudioStreamPlayer2D]/[godot.AudioStreamPlayer3D] (for positional audio). The sound can be looped.
- *
- * This class can also be used to store dynamically-generated PCM audio data. See also [godot.AudioStreamGenerator] for procedural audio generation.
+ * AudioStreamWAV stores sound samples loaded from WAV files. To play the stored sound, use an
+ * [AudioStreamPlayer] (for non-positional audio) or [AudioStreamPlayer2D]/[AudioStreamPlayer3D] (for
+ * positional audio). The sound can be looped.
+ * This class can also be used to store dynamically-generated PCM audio data. See also
+ * [AudioStreamGenerator] for procedural audio generation.
  */
 @GodotBaseType
 public open class AudioStreamWAV : AudioStream() {
   /**
    * Contains the audio data in bytes.
-   *
-   * **Note:** This property expects signed PCM8 data. To convert unsigned PCM8 to signed PCM8, subtract 128 from each byte.
+   * **Note:** This property expects signed PCM8 data. To convert unsigned PCM8 to signed PCM8,
+   * subtract 128 from each byte.
    */
   public var `data`: PackedByteArray
     get() {
@@ -66,7 +63,8 @@ public open class AudioStreamWAV : AudioStream() {
     }
 
   /**
-   * The loop mode. This information will be imported automatically from the WAV file if present. See [enum LoopMode] constants for values.
+   * The loop mode. This information will be imported automatically from the WAV file if present.
+   * See [enum LoopMode] constants for values.
    */
   public var loopMode: LoopMode
     get() {
@@ -80,7 +78,8 @@ public open class AudioStreamWAV : AudioStream() {
     }
 
   /**
-   * The loop start point (in number of samples, relative to the beginning of the sample). This information will be imported automatically from the WAV file if present.
+   * The loop start point (in number of samples, relative to the beginning of the sample). This
+   * information will be imported automatically from the WAV file if present.
    */
   public var loopBegin: Int
     get() {
@@ -94,7 +93,8 @@ public open class AudioStreamWAV : AudioStream() {
     }
 
   /**
-   * The loop end point (in number of samples, relative to the beginning of the sample). This information will be imported automatically from the WAV file if present.
+   * The loop end point (in number of samples, relative to the beginning of the sample). This
+   * information will be imported automatically from the WAV file if present.
    */
   public var loopEnd: Int
     get() {
@@ -108,11 +108,16 @@ public open class AudioStreamWAV : AudioStream() {
     }
 
   /**
-   * The sample rate for mixing this audio. Higher values require more storage space, but result in better quality.
-   *
-   * In games, common sample rates in use are `11025`, `16000`, `22050`, `32000`, `44100`, and `48000`.
-   *
-   * According to the [godot.Nyquist-Shannon sampling theorem](https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem), there is no quality difference to human hearing when going past 40,000 Hz (since most humans can only hear up to ~20,000 Hz, often less). If you are using lower-pitched sounds such as voices, lower sample rates such as `32000` or `22050` may be usable with no loss in quality.
+   * The sample rate for mixing this audio. Higher values require more storage space, but result in
+   * better quality.
+   * In games, common sample rates in use are `11025`, `16000`, `22050`, `32000`, `44100`, and
+   * `48000`.
+   * According to the
+   * [url=https://en.wikipedia.org/wiki/Nyquist&#37;E2&#37;80&#37;93Shannon_sampling_theorem]Nyquist-Shannon
+   * sampling theorem[/url], there is no quality difference to human hearing when going past 40,000 Hz
+   * (since most humans can only hear up to ~20,000 Hz, often less). If you are using lower-pitched
+   * sounds such as voices, lower sample rates such as `32000` or `22050` may be usable with no loss in
+   * quality.
    */
   public var mixRate: Int
     get() {
@@ -145,9 +150,9 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   /**
-   * Saves the AudioStreamWAV as a WAV file to [path]. Samples with IMA ADPCM format can't be saved.
-   *
-   * **Note:** A `.wav` extension is automatically appended to [path] if it is missing.
+   * Saves the AudioStreamWAV as a WAV file to [param path]. Samples with IMA ADPCM format can't be
+   * saved.
+   * **Note:** A `.wav` extension is automatically appended to [param path] if it is missing.
    */
   public fun saveToWav(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
