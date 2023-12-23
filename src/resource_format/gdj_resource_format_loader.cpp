@@ -1,10 +1,25 @@
 #include "gdj_resource_format_loader.h"
 
 #include "godotkotlin_defs.h"
-#include "kotlin_language.h"
 #include "kotlin_script.h"
 #include "logging.h"
+#include "modules/kotlin_jvm/src/language/kotlin_language.h"
 #include "type_manager.h"
+
+void GdjResourceFormatLoader::get_recognized_extensions(List<String>* p_extensions) const {
+    p_extensions->push_back(GODOT_KOTLIN_SCRIPT_EXTENSION);
+    p_extensions->push_back(GODOT_JVM_REGISTRATION_FILE_EXTENSION);
+}
+
+String GdjResourceFormatLoader::get_resource_type(const String& p_path) const {
+    return p_path.get_extension().to_lower() == GODOT_JVM_REGISTRATION_FILE_EXTENSION
+           ? KotlinLanguage::get_instance()->get_type()
+           : "";
+}
+
+bool GdjResourceFormatLoader::handles_type(const String& p_type) const {
+    return p_type == "Script" || p_type == KotlinLanguage::get_instance()->get_type();
+}
 
 Error kt_read_all_file_utf8(const String& p_path, String& r_content) {
     Vector<uint8_t> sourcef;
@@ -51,18 +66,4 @@ Ref<Resource> GdjResourceFormatLoader::load(const String& p_path, const String& 
 
     if (r_error) { *r_error = load_err; }
     return ref;
-}
-
-void GdjResourceFormatLoader::get_recognized_extensions(List<String>* p_extensions) const {
-    p_extensions->push_back(GODOT_KOTLIN_REGISTRATION_FILE_EXTENSION);
-}
-
-bool GdjResourceFormatLoader::handles_type(const String& p_type) const {
-    return p_type == "Script" || p_type == KotlinLanguage::get_instance()->get_type();
-}
-
-String GdjResourceFormatLoader::get_resource_type(const String& p_path) const {
-    return p_path.get_extension().to_lower() == GODOT_KOTLIN_REGISTRATION_FILE_EXTENSION
-           ? KotlinLanguage::get_instance()->get_type()
-           : "";
 }

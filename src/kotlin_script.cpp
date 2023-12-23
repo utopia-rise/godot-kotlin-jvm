@@ -3,8 +3,8 @@
 #include "core/os/thread.h"
 #include "gd_kotlin.h"
 #include "kotlin_instance.h"
-#include "kotlin_language.h"
 #include "logging.h"
+#include "modules/kotlin_jvm/src/language/kotlin_language.h"
 
 bool KotlinScript::can_instantiate() const {
 #ifdef TOOLS_ENABLED

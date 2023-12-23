@@ -1,7 +1,7 @@
 #ifndef GODOT_JVM_KOTLIN_LANGUAGE_H
 #define GODOT_JVM_KOTLIN_LANGUAGE_H
 
-#include <core/object/script_language.h>
+#include "core/object/script_language.h"
 
 class KotlinLanguage : public ScriptLanguage {
 public:
@@ -81,32 +81,6 @@ public:
 
     void thread_exit() override;
 
-    String debug_get_error() const override;
-
-    int debug_get_stack_level_count() const override;
-
-    int debug_get_stack_level_line(int p_level) const override;
-
-    String debug_get_stack_level_function(int p_level) const override;
-
-    String debug_get_stack_level_source(int p_level) const override;
-
-    void debug_get_stack_level_locals(int p_level, List<String>* p_locals, List<Variant>* p_values, int p_max_subitems, int p_max_depth) override;
-
-    void debug_get_stack_level_members(int p_level, List<String>* p_members, List<Variant>* p_values, int p_max_subitems, int p_max_depth) override;
-
-    ScriptInstance* debug_get_stack_level_instance(int p_level) override;
-
-    void debug_get_globals(List<String>* p_globals, List<Variant>* p_values, int p_max_subitems, int p_max_depth) override;
-
-    String debug_parse_stack_level_expression(int p_level, const String& p_expression, int p_max_subitems, int p_max_depth) override;
-
-    Vector<StackInfo> debug_get_current_stack_info() override;
-
-    void reload_all_scripts() override;
-
-    void reload_tool_script(const Ref<Script>& p_script, bool p_soft_reload) override;
-
     void get_recognized_extensions(List<String>* p_extensions) const override;
 
     void get_public_functions(List<MethodInfo>* p_functions) const override;
@@ -114,14 +88,6 @@ public:
     void get_public_constants(List<Pair<String, Variant>>* p_constants) const override;
 
     void get_public_annotations(List<MethodInfo>* p_annotations) const override;
-
-    void profiling_start() override;
-
-    void profiling_stop() override;
-
-    int profiling_get_accumulated_data(ProfilingInfo* p_info_arr, int p_info_max) override;
-
-    int profiling_get_frame_data(ProfilingInfo* p_info_arr, int p_info_max) override;
 
     void frame() override;
 

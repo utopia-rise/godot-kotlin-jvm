@@ -10,6 +10,9 @@ public:
     GdjResourceFormatLoader(const GdjResourceFormatLoader&) = delete;
     void operator=(const GdjResourceFormatLoader&) = delete;
 
+    void get_recognized_extensions(List<String>* p_extensions) const override;
+    String get_resource_type(const String& p_path) const override;
+    bool handles_type(const String& p_type) const override;
     Ref<Resource> load(
       const String& p_path,
       const String& p_original_path = "",
@@ -18,10 +21,9 @@ public:
       float* r_progress = nullptr,
       CacheMode p_cache_mode = CACHE_MODE_REUSE
     ) override;
-    void get_recognized_extensions(List<String>* p_extensions) const override;
-    bool handles_type(const String& p_type) const override;
 
-    String get_resource_type(const String& p_path) const override;
+
+
 };
 
 #endif// GODOT_JVM_KT_RESOURCE_LOADER_H

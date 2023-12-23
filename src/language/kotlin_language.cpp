@@ -1,10 +1,9 @@
 #include "kotlin_language.h"
 
+#include "core/io/resource_loader.h"
 #include "gd_kotlin.h"
 #include "godotkotlin_defs.h"
 #include "kotlin_script.h"
-
-#include <core/io/resource_loader.h>
 
 static const String GODOT_ENTRY_PATH {"res://build/generated/ksp"};
 
@@ -14,7 +13,7 @@ KotlinLanguage* KotlinLanguage::get_instance() {
 }
 
 String KotlinLanguage::get_name() const {
-    return "Kotlin";
+    return GODOT_KOTLIN_LANGUAGE_NAME;
 }
 
 void KotlinLanguage::init() {
@@ -22,7 +21,7 @@ void KotlinLanguage::init() {
 }
 
 String KotlinLanguage::get_type() const {
-    return "KotlinScript";
+    return GODOT_KOTLIN_SCRIPT_NAME;
 }
 
 void KotlinLanguage::finish() {
@@ -284,54 +283,9 @@ void KotlinLanguage::thread_exit() {
     ScriptLanguage::thread_exit();
 }
 
-String KotlinLanguage::debug_get_error() const {
-    return String();
-}
-
-int KotlinLanguage::debug_get_stack_level_count() const {
-    return 0;
-}
-
-int KotlinLanguage::debug_get_stack_level_line(int p_level) const {
-    return 0;
-}
-
-String KotlinLanguage::debug_get_stack_level_function(int p_level) const {
-    return String();
-}
-
-String KotlinLanguage::debug_get_stack_level_source(int p_level) const {
-    return String();
-}
-
-void KotlinLanguage::debug_get_stack_level_locals(int p_level, List<String>* p_locals, List<Variant>* p_values, int p_max_subitems, int p_max_depth) {
-
-}
-
-void KotlinLanguage::debug_get_stack_level_members(int p_level, List<String>* p_members, List<Variant>* p_values, int p_max_subitems, int p_max_depth) {
-
-}
-
-ScriptInstance* KotlinLanguage::debug_get_stack_level_instance(int p_level) {
-    return ScriptLanguage::debug_get_stack_level_instance(p_level);
-}
-
-void KotlinLanguage::debug_get_globals(List<String>* p_globals, List<Variant>* p_values, int p_max_subitems, int p_max_depth) {}
-
-String KotlinLanguage::debug_parse_stack_level_expression(int p_level, const String& p_expression, int p_max_subitems, int p_max_depth) {
-    return String();
-}
-
-Vector<ScriptLanguage::StackInfo> KotlinLanguage::debug_get_current_stack_info() {
-    return ScriptLanguage::debug_get_current_stack_info();
-}
-
-void KotlinLanguage::reload_all_scripts() {}
-
-void KotlinLanguage::reload_tool_script(const Ref<Script>& p_script, bool p_soft_reload) {}
-
 void KotlinLanguage::get_recognized_extensions(List<String>* p_extensions) const {
     p_extensions->push_back(GODOT_KOTLIN_SCRIPT_EXTENSION);
+    p_extensions->push_back(GODOT_JVM_REGISTRATION_FILE_EXTENSION);
 }
 
 String KotlinLanguage::get_extension() const {
@@ -344,24 +298,12 @@ void KotlinLanguage::get_public_constants(List<Pair<String, Variant>>* p_constan
 
 void KotlinLanguage::get_public_annotations(List<MethodInfo>* p_annotations) const {}
 
-void KotlinLanguage::profiling_start() {}
-
-void KotlinLanguage::profiling_stop() {}
-
-int KotlinLanguage::profiling_get_accumulated_data(ScriptLanguage::ProfilingInfo* p_info_arr, int p_info_max) {
-    return 0;
-}
-
-int KotlinLanguage::profiling_get_frame_data(ScriptLanguage::ProfilingInfo* p_info_arr, int p_info_max) {
-    return 0;
-}
-
 void KotlinLanguage::frame() {
     ScriptLanguage::frame();
 }
 
 bool KotlinLanguage::handles_global_class_type(const String& p_type) const {
-    return p_type == "KotlinScript";
+    return p_type == GODOT_KOTLIN_SCRIPT_NAME;
 }
 
 String KotlinLanguage::get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path) const {

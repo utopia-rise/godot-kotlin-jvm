@@ -5,10 +5,10 @@
 #include <editor/export/editor_export.h>
 #endif
 
+#include "modules/kotlin_jvm/src/language/kotlin_language.h"
 #include "register_types.h"
 #include "resource_format/gdj_resource_format_loader.h"
 #include "resource_format/kt_resource_format_saver.h"
-#include "src/kotlin_language.h"
 #include "src/kotlin_script.h"
 
 Ref<GdjResourceFormatLoader> resource_format_loader;
