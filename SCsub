@@ -31,3 +31,4 @@ module_env.add_source_files(module_env.modules_sources, "src/jni/platforms/*.cpp
 module_env.add_source_files(module_env.modules_sources, "src/memory/*.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/memory/bridges/*.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/resource_format/*.cpp")
+module_env.add_source_files(module_env.modules_sources, "src/language/*.cpp")

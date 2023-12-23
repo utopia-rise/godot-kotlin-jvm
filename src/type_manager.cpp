@@ -15,8 +15,8 @@ void TypeManager::clear() {
     engine_type_names.clear();
     java_engine_types_constructors.clear();
     engine_singleton_names.clear();
-    user_scripts.clear();
-    user_scripts_map.clear();
+    named_user_scripts.clear();
+    named_user_scripts_map.clear();
 }
 
 int TypeManager::get_java_engine_type_constructor_index_for_type(const StringName& p_type_name) const {
@@ -37,11 +37,11 @@ const String& TypeManager::get_engine_singleton_name_for_index(int p_index) cons
 
 const Ref<KotlinScript>& TypeManager::get_user_script_for_index(int p_index) const {
     // No check. Meant to be a fast operation
-    return user_scripts[p_index];
+    return named_user_scripts[p_index];
 }
 
 const Ref<KotlinScript> TypeManager::get_user_script_from_name(StringName name) const {
-    if (HashMap<StringName, Ref<KotlinScript>>::ConstIterator element = user_scripts_map.find(name)) {
+    if (HashMap<StringName, Ref<KotlinScript>>::ConstIterator element = named_user_scripts_map.find(name)) {
         return element->value;
     }
     return Ref<KotlinScript>();
@@ -70,47 +70,58 @@ void TypeManager::register_engine_singletons(jni::Env& p_env, jni::JObjectArray&
 }
 
 void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
-    LocalVector<Ref<KotlinScript>> scripts;
+    Vector<Ref<KotlinScript>> scripts;
 
+    //We first deal with named scripts.
 #ifdef TOOLS_ENABLED
     // This tool-only block handles script reloading.
     // We have to compare the previous scripts to the new ones and create/update/delete accordingly
 
-    HashMap<StringName, Ref<KotlinScript>> script_cache = user_scripts_map;
-    user_scripts.clear();
-    user_scripts_map.clear();
+    HashMap<StringName, Ref<KotlinScript>> script_cache = named_user_scripts_map;
+    named_user_scripts.clear();
+    named_user_scripts_map.clear();
+    filepath_to_name_map.clear();
 
     for (KtClass* kotlin_class : classes) {
-        // First check if the scripts already exist
-        Ref<KotlinScript> ref = script_cache[kotlin_class->registered_class_name];
+        String script_name = kotlin_class->registered_class_name;
+          // First check if the scripts already exist
+        Ref<KotlinScript> ref = script_cache[script_name];
         if (!ref.is_null()) {
             delete ref->kotlin_class;
             ref->kotlin_class = kotlin_class;
+
 #ifdef DEV_ENABLED
-            LOG_VERBOSE(vformat("Kotlin Script updated: %s", kotlin_class->registered_class_name));
+            LOG_VERBOSE(vformat("Kotlin Script updated: %s", script_name));
 #endif
         } else {
             // Script doesn't exist so we create it.
             ref.instantiate();
             ref->kotlin_class = kotlin_class;
+            ref->mode = KotlinScript::AccessMode::NAME;
 #ifdef DEV_ENABLED
-            LOG_VERBOSE(vformat("Kotlin Script created: %s", kotlin_class->registered_class_name));
+            LOG_VERBOSE(vformat("Kotlin Script created: %s", script_name));
 #endif
         }
 
         scripts.push_back(ref);
-        script_cache.erase(kotlin_class->registered_class_name);
+        script_cache.erase(script_name);
+
+        String source_path = kotlin_class->compilation_time_relative_registration_file_path;
+        if(FileAccess::exists(source_path)){
+            filepath_to_name_map[source_path] = script_name;
+        }
     }
 
-    // Only scripts left in the cache are the ones that have been removed or placeholders without associated .kt
+    // Only scripts left in the cache are the ones that have been removed or placeholders without associated KtClass
     // We simply delete their kotlin_class if they got one
-    for (KeyValue<StringName, Ref<KotlinScript>> keyValue : script_cache) {
+    for (const KeyValue<StringName, Ref<KotlinScript>>& keyValue : script_cache) {
         Ref<KotlinScript> ref = keyValue.value;
         if (ref->kotlin_class) {
 #ifdef DEV_ENABLED
             LOG_VERBOSE(vformat("Kotlin Script deleted: %s", ref->kotlin_class->registered_class_name));
 #endif
             delete ref->kotlin_class;
+            ref->kotlin_class = nullptr;
         }
 
         // We only add them back if they are in use, otherwise we let the Script die.
@@ -118,14 +129,17 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     }
 
 #else
+    // This part handles the first and only loading of script happening in exports.
+    // It assumes that all scripts are properly built into the .jar and won't be reloaded.
 #ifdef DEBUG_ENABLED
-    JVM_ERR_FAIL_COND_MSG(user_scripts.size() != 0, "Kotlin scripts are being initialized more than once.");
+    JVM_ERR_FAIL_COND_MSG(named_user_scripts.size() != 0, "Kotlin scripts are being initialized more than once.");
 #endif
 
     for (KtClass* kotlin_class : classes) {
         Ref<KotlinScript> ref;
         ref.instantiate();
         ref->kotlin_class = kotlin_class;
+        ref->mode = KotlinScript::AccessMode::NAME;
         scripts.push_back(ref);
 #ifdef DEV_ENABLED
         LOG_VERBOSE(vformat("Kotlin Script created: %s", kotlin_class->registered_class_name));
@@ -133,26 +147,52 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     }
 #endif
 
-    for (Ref<KotlinScript> script : scripts) {
-        user_scripts.push_back(script);
-        user_scripts_map[script->get_global_name()] = script;
+    for (const Ref<KotlinScript>& script : scripts) {
+        named_user_scripts.push_back(script);
+        named_user_scripts_map[script->get_global_name()] = script;
+    }
+
+    // Now we deal with path script.
+    Vector<Ref<KotlinScript>> path_script_cache =  path_user_scripts;
+    path_user_scripts.clear();
+    for (Ref<KotlinScript>& script : path_script_cache) {
+        String path = script->get_path();
+        // No need to delete the KotlinClass, it has already been done with the namedScript that shares it.
+        script->kotlin_class = nullptr;
+        if(filepath_to_name_map.has(path)){
+            script->kotlin_class = named_user_scripts_map[filepath_to_name_map[path]]->kotlin_class;
+            path_user_scripts.push_back(script);
+        }
     }
 
 #ifdef TOOLS_ENABLED
-    for (Ref<KotlinScript> script : user_scripts) {
+    for (const Ref<KotlinScript>& script : named_user_scripts) {
+        // We have to delay the update_export. The engine is not fully initialized and scripts can cause undefined behaviors.
+        MessageQueue::get_singleton()->push_callable(callable_mp(script.ptr(), &KotlinScript::update_exports));
+    }
+    for (const Ref<KotlinScript>& script : path_user_scripts) {
         // We have to delay the update_export. The engine is not fully initialized and scripts can cause undefined behaviors.
         MessageQueue::get_singleton()->push_callable(callable_mp(script.ptr(), &KotlinScript::update_exports));
     }
 #endif
 }
 
-Ref<KotlinScript> TypeManager::create_placeholder_script(String p_path) {
+Ref<KotlinScript> TypeManager::create_script(const String& p_path, bool named) {
     // Placeholder scripts have to be registered in the TypeManager in order to be transformed in valid scripts when the jar is built.
     Ref<KotlinScript> ref;
     ref.instantiate();
     ref->set_path(p_path, true);
-    user_scripts_map[ref->get_global_name()] = ref;
-    user_scripts.push_back(ref);
+    if(named){
+        ref->mode = KotlinScript::NAME;
+        named_user_scripts_map[ref->get_global_name()] = ref;
+        named_user_scripts.push_back(ref);
+    } else {
+        ref->mode = KotlinScript::PATH;
+        if(filepath_to_name_map.has(p_path)){
+            ref->kotlin_class = named_user_scripts_map[filepath_to_name_map[p_path]]->kotlin_class;
+        }
+        path_user_scripts.push_back(ref);
+    }
     return ref;
 }
 

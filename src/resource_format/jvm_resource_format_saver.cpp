@@ -1,18 +1,18 @@
-#include "kt_resource_format_saver.h"
+#include "jvm_resource_format_saver.h"
 
 #include "godotkotlin_defs.h"
-#include "kotlin_language.h"
 #include "kotlin_script.h"
+#include "language/kotlin_language.h"
 
-void KtResourceFormatSaver::get_recognized_extensions(const Ref<Resource>& p_resource, List<String>* p_extensions) const {
-    if (Object::cast_to<KotlinScript>(p_resource.ptr())) { p_extensions->push_back(GODOT_KOTLIN_REGISTRATION_FILE_EXTENSION); }
+void JvmResourceFormatSaver::get_recognized_extensions(const Ref<Resource>& p_resource, List<String>* p_extensions) const {
+    if (recognize(p_resource)) { p_extensions->push_back(GODOT_KOTLIN_SCRIPT_EXTENSION); }
 }
 
-bool KtResourceFormatSaver::recognize(const Ref<Resource>& p_resource) const {
+bool JvmResourceFormatSaver::recognize(const Ref<Resource>& p_resource) const {
     return Object::cast_to<KotlinScript>(p_resource.ptr()) != nullptr;
 }
 
-Error KtResourceFormatSaver::save(const Ref<Resource>& p_resource, const String& p_path, uint32_t p_flags) {
+Error JvmResourceFormatSaver::save(const Ref<Resource>& p_resource, const String& p_path, uint32_t p_flags) {
     Ref<KotlinScript> kotlin_script = p_resource;
     ERR_FAIL_COND_V(kotlin_script.is_null(), ERR_INVALID_PARAMETER);
 

@@ -15,7 +15,7 @@ void GodotKotlinJvmEditor::on_file_system_dock_file_moved(// NOLINT(readability-
   const String& file,
   const String& new_file
 ) {
-    if (file.ends_with(String(".") + GODOT_KOTLIN_REGISTRATION_FILE_EXTENSION)) {
+    if (file.ends_with(String(".") + GODOT_JVM_REGISTRATION_FILE_EXTENSION)) {
         LOG_WARNING(
           vformat("You should not move registration files in the godot editor! Use the IDE for that. File moved: %s -> %s", file, new_file)
         );
@@ -25,7 +25,7 @@ void GodotKotlinJvmEditor::on_file_system_dock_file_moved(// NOLINT(readability-
 void GodotKotlinJvmEditor::on_file_system_dock_file_removed(// NOLINT(readability-convert-member-functions-to-static)
   const String& file
 ) {
-    if (file.ends_with(String(".") + GODOT_KOTLIN_REGISTRATION_FILE_EXTENSION)) {
+    if (file.ends_with(String(".") + GODOT_JVM_REGISTRATION_FILE_EXTENSION)) {
         LOG_WARNING(vformat("You should not remove registration files in the godot editor! Use the IDE for that. File removed: %s", file));
     }
 }
@@ -37,7 +37,7 @@ void GodotKotlinJvmEditor::on_file_system_dock_folder_moved(// NOLINT(readabilit
     Ref<DirAccess> dir_access {DirAccess::create_for_path(new_folder)};
     String file_path = dir_access->get_next();
     while (!file_path.is_empty()) {
-        if (file_path.ends_with(String(".") + GODOT_KOTLIN_REGISTRATION_FILE_EXTENSION)) {
+        if (file_path.ends_with(String(".") + GODOT_JVM_REGISTRATION_FILE_EXTENSION)) {
             LOG_WARNING(vformat("You should not move folders with registration files in the godot editor! Use the IDE for that. Folder moved: %s", folder)
             );
             break;
