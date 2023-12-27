@@ -16,6 +16,14 @@ fun Project.configureThirdPartyPlugins() {
     pluginManager.apply(IdeaExtPlugin::class.java) //needed so idea can find and index the generated sources from ksp
     pluginManager.apply(ShadowPlugin::class.java)
 
+    // apply the idea plugin to the *root* project.
+    // this is necessary because the IntelliJ IDEA plugin is used for managing some
+    // of our tasks, and its capabilities are available only on the root project.
+    if(this.rootProject != this.project) {
+        this.rootProject.pluginManager.apply(IdeaPlugin::class.java)
+        this.rootProject.pluginManager.apply(IdeaExtPlugin::class.java)
+    }
+
     addKspGeneratedSourcesToMainSourceSet()
 
     afterEvaluate {
