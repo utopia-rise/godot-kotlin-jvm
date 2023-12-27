@@ -34,21 +34,17 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Abstract base class for 2D shapes used for physics collision.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/physics/physics_introduction.html]($DOCS_URL/tutorials/physics/physics_introduction.html)
- *
  * Abstract base class for all 2D shapes, intended for use in physics.
- *
- * **Performance:** Primitive shapes, especially [godot.CircleShape2D], are fast to check collisions against. [godot.ConvexPolygonShape2D] is slower, and [godot.ConcavePolygonShape2D] is the slowest.
+ * **Performance:** Primitive shapes, especially [CircleShape2D], are fast to check collisions
+ * against. [ConvexPolygonShape2D] is slower, and [ConcavePolygonShape2D] is the slowest.
  */
 @GodotBaseType
 public open class Shape2D internal constructor() : Resource() {
   /**
-   * The shape's custom solver bias. Defines how much bodies react to enforce contact separation when this shape is involved.
-   *
-   * When set to `0`, the default value from [godot.ProjectSettings.physics/2d/solver/defaultContactBias] is used.
+   * The shape's custom solver bias. Defines how much bodies react to enforce contact separation
+   * when this shape is involved.
+   * When set to `0`, the default value from [ProjectSettings.physics/2d/solver/defaultContactBias]
+   * is used.
    */
   public var customSolverBias: Float
     get() {
@@ -68,8 +64,8 @@ public open class Shape2D internal constructor() : Resource() {
 
   /**
    * Returns `true` if this shape is colliding with another.
-   *
-   * This method needs the transformation matrix for this shape ([localXform]), the shape to check collisions with ([withShape]), and the transformation matrix of that shape ([shapeXform]).
+   * This method needs the transformation matrix for this shape ([localXform]), the shape to check
+   * collisions with ([withShape]), and the transformation matrix of that shape ([shapeXform]).
    */
   public fun collide(
     localXform: Transform2D,
@@ -83,8 +79,10 @@ public open class Shape2D internal constructor() : Resource() {
 
   /**
    * Returns whether this shape would collide with another, if a given movement was applied.
-   *
-   * This method needs the transformation matrix for this shape ([localXform]), the movement to test on this shape ([localMotion]), the shape to check collisions with ([withShape]), the transformation matrix of that shape ([shapeXform]), and the movement to test onto the other object ([shapeMotion]).
+   * This method needs the transformation matrix for this shape ([localXform]), the movement to test
+   * on this shape ([localMotion]), the shape to check collisions with ([withShape]), the
+   * transformation matrix of that shape ([shapeXform]), and the movement to test onto the other object
+   * ([shapeMotion]).
    */
   public fun collideWithMotion(
     localXform: Transform2D,
@@ -100,12 +98,14 @@ public open class Shape2D internal constructor() : Resource() {
 
   /**
    * Returns a list of contact point pairs where this shape touches another.
-   *
-   * If there are no collisions, the returned list is empty. Otherwise, the returned list contains contact points arranged in pairs, with entries alternating between points on the boundary of this shape and points on the boundary of [withShape].
-   *
-   * A collision pair A, B can be used to calculate the collision normal with `(B - A).normalized()`, and the collision depth with `(B - A).length()`. This information is typically used to separate shapes, particularly in collision solvers.
-   *
-   * This method needs the transformation matrix for this shape ([localXform]), the shape to check collisions with ([withShape]), and the transformation matrix of that shape ([shapeXform]).
+   * If there are no collisions, the returned list is empty. Otherwise, the returned list contains
+   * contact points arranged in pairs, with entries alternating between points on the boundary of this
+   * shape and points on the boundary of [withShape].
+   * A collision pair A, B can be used to calculate the collision normal with `(B -
+   * A).normalized()`, and the collision depth with `(B - A).length()`. This information is typically
+   * used to separate shapes, particularly in collision solvers.
+   * This method needs the transformation matrix for this shape ([localXform]), the shape to check
+   * collisions with ([withShape]), and the transformation matrix of that shape ([shapeXform]).
    */
   public fun collideAndGetContacts(
     localXform: Transform2D,
@@ -119,13 +119,18 @@ public open class Shape2D internal constructor() : Resource() {
   }
 
   /**
-   * Returns a list of contact point pairs where this shape would touch another, if a given movement was applied.
-   *
-   * If there would be no collisions, the returned list is empty. Otherwise, the returned list contains contact points arranged in pairs, with entries alternating between points on the boundary of this shape and points on the boundary of [withShape].
-   *
-   * A collision pair A, B can be used to calculate the collision normal with `(B - A).normalized()`, and the collision depth with `(B - A).length()`. This information is typically used to separate shapes, particularly in collision solvers.
-   *
-   * This method needs the transformation matrix for this shape ([localXform]), the movement to test on this shape ([localMotion]), the shape to check collisions with ([withShape]), the transformation matrix of that shape ([shapeXform]), and the movement to test onto the other object ([shapeMotion]).
+   * Returns a list of contact point pairs where this shape would touch another, if a given movement
+   * was applied.
+   * If there would be no collisions, the returned list is empty. Otherwise, the returned list
+   * contains contact points arranged in pairs, with entries alternating between points on the boundary
+   * of this shape and points on the boundary of [withShape].
+   * A collision pair A, B can be used to calculate the collision normal with `(B -
+   * A).normalized()`, and the collision depth with `(B - A).length()`. This information is typically
+   * used to separate shapes, particularly in collision solvers.
+   * This method needs the transformation matrix for this shape ([localXform]), the movement to test
+   * on this shape ([localMotion]), the shape to check collisions with ([withShape]), the
+   * transformation matrix of that shape ([shapeXform]), and the movement to test onto the other object
+   * ([shapeMotion]).
    */
   public fun collideWithMotionAndGetContacts(
     localXform: Transform2D,
@@ -141,7 +146,8 @@ public open class Shape2D internal constructor() : Resource() {
   }
 
   /**
-   * Draws a solid shape onto a [godot.CanvasItem] with the [godot.RenderingServer] API filled with the specified [color]. The exact drawing method is specific for each shape and cannot be configured.
+   * Draws a solid shape onto a [CanvasItem] with the [RenderingServer] API filled with the
+   * specified [color]. The exact drawing method is specific for each shape and cannot be configured.
    */
   public fun draw(canvasItem: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to canvasItem, COLOR to color)
@@ -149,7 +155,7 @@ public open class Shape2D internal constructor() : Resource() {
   }
 
   /**
-   * Returns a [godot.core.Rect2] representing the shapes boundary.
+   * Returns a [Rect2] representing the shapes boundary.
    */
   public fun getRect(): Rect2 {
     TransferContext.writeArguments()

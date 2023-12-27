@@ -27,9 +27,8 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A [godot.StyleBox] that displays a single line of a given color and thickness.
- *
- * A [godot.StyleBox] that displays a single line of a given color and thickness. The line can be either horizontal or vertical. Useful for separators.
+ * A [StyleBox] that displays a single line of a given color and thickness. The line can be either
+ * horizontal or vertical. Useful for separators.
  */
 @GodotBaseType
 public open class StyleBoxLine : StyleBox() {
@@ -49,7 +48,8 @@ public open class StyleBoxLine : StyleBox() {
     }
 
   /**
-   * The number of pixels the line will extend before the [godot.StyleBoxLine]'s bounds. If set to a negative value, the line will begin inside the [godot.StyleBoxLine]'s bounds.
+   * The number of pixels the line will extend before the [StyleBoxLine]'s bounds. If set to a
+   * negative value, the line will begin inside the [StyleBoxLine]'s bounds.
    */
   public var growBegin: Float
     get() {
@@ -63,7 +63,8 @@ public open class StyleBoxLine : StyleBox() {
     }
 
   /**
-   * The number of pixels the line will extend past the [godot.StyleBoxLine]'s bounds. If set to a negative value, the line will end inside the [godot.StyleBoxLine]'s bounds.
+   * The number of pixels the line will extend past the [StyleBoxLine]'s bounds. If set to a
+   * negative value, the line will end inside the [StyleBoxLine]'s bounds.
    */
   public var growEnd: Float
     get() {

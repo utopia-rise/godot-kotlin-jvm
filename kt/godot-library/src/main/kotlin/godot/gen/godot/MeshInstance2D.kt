@@ -19,12 +19,9 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Node used for displaying a [godot.Mesh] in 2D.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/2d/2d_meshes.html]($DOCS_URL/tutorials/2d/2d_meshes.html)
- *
- * Node used for displaying a [godot.Mesh] in 2D. A [godot.MeshInstance2D] can be automatically created from an existing [godot.Sprite2D] via a tool in the editor toolbar. Select the [godot.Sprite2D] node, then choose **Sprite2D > Convert to MeshInstance2D** at the top of the 2D editor viewport.
+ * Node used for displaying a [Mesh] in 2D. A [MeshInstance2D] can be automatically created from an
+ * existing [Sprite2D] via a tool in the editor toolbar. Select the [Sprite2D] node, then choose
+ * **Sprite2D > Convert to MeshInstance2D** at the top of the 2D editor viewport.
  */
 @GodotBaseType
 public open class MeshInstance2D : Node2D() {
@@ -34,7 +31,7 @@ public open class MeshInstance2D : Node2D() {
   public val textureChanged: Signal0 by signal()
 
   /**
-   * The [godot.Mesh] that will be drawn by the [godot.MeshInstance2D].
+   * The [Mesh] that will be drawn by the [MeshInstance2D].
    */
   public var mesh: Mesh?
     get() {
@@ -48,7 +45,8 @@ public open class MeshInstance2D : Node2D() {
     }
 
   /**
-   * The [godot.Texture2D] that will be used if using the default [godot.CanvasItemMaterial]. Can be accessed as `TEXTURE` in CanvasItem shader.
+   * The [Texture2D] that will be used if using the default [CanvasItemMaterial]. Can be accessed as
+   * `TEXTURE` in CanvasItem shader.
    */
   public var texture: Texture2D?
     get() {

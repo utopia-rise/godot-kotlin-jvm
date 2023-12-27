@@ -22,29 +22,27 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Describes a mapping of bone names for retargeting [godot.Skeleton3D] into common names defined by a [godot.SkeletonProfile].
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/assets_pipeline/retargeting_3d_skeletons.html]($DOCS_URL/tutorials/assets_pipeline/retargeting_3d_skeletons.html)
- *
- * This class contains a dictionary that uses a list of bone names in [godot.SkeletonProfile] as key names.
- *
- * By assigning the actual [godot.Skeleton3D] bone name as the key value, it maps the [godot.Skeleton3D] to the [godot.SkeletonProfile].
+ * This class contains a dictionary that uses a list of bone names in [SkeletonProfile] as key
+ * names.
+ * By assigning the actual [Skeleton3D] bone name as the key value, it maps the [Skeleton3D] to the
+ * [SkeletonProfile].
  */
 @GodotBaseType
 public open class BoneMap : Resource() {
   /**
-   * This signal is emitted when change the key value in the [godot.BoneMap]. This is used to validate mapping and to update [godot.BoneMap] editor.
+   * This signal is emitted when change the key value in the [BoneMap]. This is used to validate
+   * mapping and to update [BoneMap] editor.
    */
   public val boneMapUpdated: Signal0 by signal()
 
   /**
-   * This signal is emitted when change the value in profile or change the reference of profile. This is used to update key names in the [godot.BoneMap] and to redraw the [godot.BoneMap] editor.
+   * This signal is emitted when change the value in profile or change the reference of profile.
+   * This is used to update key names in the [BoneMap] and to redraw the [BoneMap] editor.
    */
   public val profileUpdated: Signal0 by signal()
 
   /**
-   * A [godot.SkeletonProfile] of the mapping target. Key names in the [godot.BoneMap] are synchronized with it.
+   * A [SkeletonProfile] of the mapping target. Key names in the [BoneMap] are synchronized with it.
    */
   public var profile: SkeletonProfile?
     get() {
@@ -64,7 +62,6 @@ public open class BoneMap : Resource() {
 
   /**
    * Returns a skeleton bone name is mapped to [profileBoneName].
-   *
    * In the retargeting process, the returned bone name is the bone name of the source skeleton.
    */
   public fun getSkeletonBoneName(profileBoneName: StringName): StringName {
@@ -75,7 +72,6 @@ public open class BoneMap : Resource() {
 
   /**
    * Maps a skeleton bone name to [profileBoneName].
-   *
    * In the retargeting process, the setting bone name is the bone name of the source skeleton.
    */
   public fun setSkeletonBoneName(profileBoneName: StringName, skeletonBoneName: StringName): Unit {
@@ -84,8 +80,8 @@ public open class BoneMap : Resource() {
   }
 
   /**
-   * Returns a profile bone name having [skeletonBoneName]. If not found, an empty [godot.StringName] will be returned.
-   *
+   * Returns a profile bone name having [skeletonBoneName]. If not found, an empty [StringName] will
+   * be returned.
    * In the retargeting process, the returned bone name is the bone name of the target skeleton.
    */
   public fun findProfileBoneName(skeletonBoneName: StringName): StringName {

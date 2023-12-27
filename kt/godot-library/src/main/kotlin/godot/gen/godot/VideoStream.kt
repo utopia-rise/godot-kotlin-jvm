@@ -19,19 +19,15 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * Base resource for video streams.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/io/runtime_file_loading_and_saving.html]($DOCS_URL/tutorials/io/runtime_file_loading_and_saving.html)
- *
- * Base resource type for all video streams. Classes that derive from [godot.VideoStream] can all be used as resource types to play back videos in [godot.VideoStreamPlayer].
+ * Base resource type for all video streams. Classes that derive from [VideoStream] can all be used
+ * as resource types to play back videos in [VideoStreamPlayer].
  */
 @GodotBaseType
 public open class VideoStream : Resource() {
   /**
-   * The video file path or URI that this [godot.VideoStream] resource handles.
-   *
-   * For [godot.VideoStreamTheora], this filename should be an Ogg Theora video file with the `.ogv` extension.
+   * The video file path or URI that this [VideoStream] resource handles.
+   * For [VideoStreamTheora], this filename should be an Ogg Theora video file with the `.ogv`
+   * extension.
    */
   public var `file`: String
     get() {
@@ -50,7 +46,8 @@ public open class VideoStream : Resource() {
   }
 
   /**
-   * Called when the video starts playing, to initialize and return a subclass of [godot.VideoStreamPlayback].
+   * Called when the video starts playing, to initialize and return a subclass of
+   * [VideoStreamPlayback].
    */
   public open fun _instantiatePlayback(): VideoStreamPlayback? {
     throw NotImplementedError("_instantiate_playback is not implemented for VideoStream")

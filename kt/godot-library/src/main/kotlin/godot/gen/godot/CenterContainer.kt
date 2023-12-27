@@ -17,17 +17,13 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A container that keeps child controls in its center.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
- *
- * [godot.CenterContainer] is a container that keeps all of its child controls in its center at their minimum size.
+ * [CenterContainer] is a container that keeps all of its child controls in its center at their
+ * minimum size.
  */
 @GodotBaseType
 public open class CenterContainer : Container() {
   /**
-   * If `true`, centers children relative to the [godot.CenterContainer]'s top left corner.
+   * If `true`, centers children relative to the [CenterContainer]'s top left corner.
    */
   public var useTopLeft: Boolean
     get() {

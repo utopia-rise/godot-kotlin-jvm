@@ -19,35 +19,22 @@ import kotlin.Suppress
 import kotlin.jvm.JvmOverloads
 
 /**
- * TLS configuration for clients and servers.
+ * TLSOptions abstracts the configuration options for the [StreamPeerTLS] and [PacketPeerDTLS]
+ * classes.
+ * Objects of this class cannot be instantiated directly, and one of the static methods [client],
+ * [clientUnsafe], or [server] should be used instead.
  *
- * TLSOptions abstracts the configuration options for the [godot.StreamPeerTLS] and [godot.PacketPeerDTLS] classes.
- *
- * Objects of this class cannot be instantiated directly, and one of the static methods [client], [clientUnsafe], or [server] should be used instead.
- *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * # Create a TLS client configuration which uses our custom trusted CA chain.
- *
  * var client_trusted_cas = load("res://my_trusted_cas.crt")
- *
  * var client_tls_options = TLSOptions.client(client_trusted_cas)
  *
- *
- *
  * # Create a TLS server configuration.
- *
  * var server_certs = load("res://my_server_cas.crt")
- *
  * var server_key = load("res://my_server_key.key")
- *
  * var server_tls_options = TLSOptions.server(server_key, server_certs)
- *
- * [/gdscript]
- *
- * [/codeblocks]
+ * ```
  */
 @GodotBaseType
 public open class TLSOptions internal constructor() : RefCounted() {
@@ -58,11 +45,13 @@ public open class TLSOptions internal constructor() : RefCounted() {
 
   public companion object {
     /**
-     * Creates a TLS client configuration which validates certificates and their common names (fully qualified domain names).
-     *
-     * You can specify a custom [trustedChain] of certification authorities (the default CA list will be used if `null`), and optionally provide a [commonNameOverride] if you expect the certificate to have a common name other than the server FQDN.
-     *
-     * **Note:** On the Web platform, TLS verification is always enforced against the CA list of the web browser. This is considered a security feature.
+     * Creates a TLS client configuration which validates certificates and their common names (fully
+     * qualified domain names).
+     * You can specify a custom [trustedChain] of certification authorities (the default CA list
+     * will be used if `null`), and optionally provide a [commonNameOverride] if you expect the
+     * certificate to have a common name other than the server FQDN.
+     * **Note:** On the Web platform, TLS verification is always enforced against the CA list of the
+     * web browser. This is considered a security feature.
      */
     @JvmOverloads
     public fun client(trustedChain: X509Certificate? = null, commonNameOverride: String = ""):
@@ -73,9 +62,12 @@ public open class TLSOptions internal constructor() : RefCounted() {
     }
 
     /**
-     * Creates an **unsafe** TLS client configuration where certificate validation is optional. You can optionally provide a valid [trustedChain], but the common name of the certificates will never be checked. Using this configuration for purposes other than testing **is not recommended**.
-     *
-     * **Note:** On the Web platform, TLS verification is always enforced against the CA list of the web browser. This is considered a security feature.
+     * Creates an **unsafe** TLS client configuration where certificate validation is optional. You
+     * can optionally provide a valid [trustedChain], but the common name of the certificates will
+     * never be checked. Using this configuration for purposes other than testing **is not
+     * recommended**.
+     * **Note:** On the Web platform, TLS verification is always enforced against the CA list of the
+     * web browser. This is considered a security feature.
      */
     @JvmOverloads
     public fun clientUnsafe(trustedChain: X509Certificate? = null): TLSOptions? {
@@ -86,8 +78,8 @@ public open class TLSOptions internal constructor() : RefCounted() {
 
     /**
      * Creates a TLS server configuration using the provided [key] and [certificate].
-     *
-     * **Note:** The [certificate] should include the full certificate chain up to the signing CA (certificates file can be concatenated using a general purpose text editor).
+     * **Note:** The [certificate] should include the full certificate chain up to the signing CA
+     * (certificates file can be concatenated using a general purpose text editor).
      */
     public fun server(key: CryptoKey, certificate: X509Certificate): TLSOptions? {
       TransferContext.writeArguments(OBJECT to key, OBJECT to certificate)

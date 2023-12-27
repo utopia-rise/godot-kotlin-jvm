@@ -18,16 +18,17 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Holds a reference to an [godot.Object]'s instance ID.
- *
- * Utility class which holds a reference to the internal identifier of an [godot.Object] instance, as given by [godot.Object.getInstanceId]. This ID can then be used to retrieve the object instance with [@GlobalScope.instanceFromId].
- *
- * This class is used internally by the editor inspector and script debugger, but can also be used in plugins to pass and display objects as their IDs.
+ * Utility class which holds a reference to the internal identifier of an [Object] instance, as
+ * given by [Object.getInstanceId]. This ID can then be used to retrieve the object instance with
+ * [@GlobalScope.instanceFromId].
+ * This class is used internally by the editor inspector and script debugger, but can also be used
+ * in plugins to pass and display objects as their IDs.
  */
 @GodotBaseType
 public open class EncodedObjectAsID : RefCounted() {
   /**
-   * The [godot.Object] identifier stored in this [godot.EncodedObjectAsID] instance. The object instance can be retrieved with [@GlobalScope.instanceFromId].
+   * The [Object] identifier stored in this [EncodedObjectAsID] instance. The object instance can be
+   * retrieved with [@GlobalScope.instanceFromId].
    */
   public var objectId: Long
     get() {

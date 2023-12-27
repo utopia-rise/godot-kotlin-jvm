@@ -35,12 +35,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Provides direct access to a physics body in the [godot.PhysicsServer3D].
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/physics/ray-casting.html]($DOCS_URL/tutorials/physics/ray-casting.html)
- *
- * Provides direct access to a physics body in the [godot.PhysicsServer3D], allowing safe changes to physics properties. This object is passed via the direct state callback of [godot.RigidBody3D], and is intended for changing the direct state of that body. See [godot.RigidBody3D.IntegrateForces].
+ * Provides direct access to a physics body in the [PhysicsServer3D], allowing safe changes to
+ * physics properties. This object is passed via the direct state callback of [RigidBody3D], and is
+ * intended for changing the direct state of that body. See [RigidBody3D.IntegrateForces].
  */
 @GodotBaseType
 public open class PhysicsDirectBodyState3D internal constructor() : Object() {
@@ -118,7 +115,8 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
     }
 
   /**
-   * The body's center of mass position relative to the body's center in the global coordinate system.
+   * The body's center of mass position relative to the body's center in the global coordinate
+   * system.
    */
   @CoreTypeLocalCopy
   public val centerOfMass: Vector3
@@ -139,9 +137,6 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
       return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
     }
 
-  /**
-   *
-   */
   @CoreTypeLocalCopy
   public val principalInertiaAxes: Basis
     get() {
@@ -287,7 +282,8 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
 
 
   /**
-   * Returns the body's velocity at the given relative position, including both translation and rotation.
+   * Returns the body's velocity at the given relative position, including both translation and
+   * rotation.
    */
   public fun getVelocityAtLocalPosition(localPosition: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to localPosition)
@@ -297,9 +293,9 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
 
   /**
    * Applies a directional impulse without affecting rotation.
-   *
-   * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
-   *
+   * An impulse is time-independent! Applying an impulse every frame would result in a
+   * framerate-dependent force. For this reason, it should only be used when simulating one-time
+   * impacts (use the "_force" functions otherwise).
    * This is equivalent to using [applyImpulse] at the body's center of mass.
    */
   @JvmOverloads
@@ -310,9 +306,9 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
 
   /**
    * Applies a positioned impulse to the body.
-   *
-   * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
-   *
+   * An impulse is time-independent! Applying an impulse every frame would result in a
+   * framerate-dependent force. For this reason, it should only be used when simulating one-time
+   * impacts (use the "_force" functions otherwise).
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
@@ -323,10 +319,11 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
 
   /**
    * Applies a rotational impulse to the body without affecting the position.
-   *
-   * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
-   *
-   * **Note:** [inverseInertia] is required for this to work. To have [inverseInertia], an active [godot.CollisionShape3D] must be a child of the node, or you can manually set [inverseInertia].
+   * An impulse is time-independent! Applying an impulse every frame would result in a
+   * framerate-dependent force. For this reason, it should only be used when simulating one-time
+   * impacts (use the "_force" functions otherwise).
+   * **Note:** [inverseInertia] is required for this to work. To have [inverseInertia], an active
+   * [CollisionShape3D] must be a child of the node, or you can manually set [inverseInertia].
    */
   public fun applyTorqueImpulse(impulse: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse)
@@ -334,8 +331,8 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   }
 
   /**
-   * Applies a directional force without affecting rotation. A force is time dependent and meant to be applied every physics update.
-   *
+   * Applies a directional force without affecting rotation. A force is time dependent and meant to
+   * be applied every physics update.
    * This is equivalent to using [applyForce] at the body's center of mass.
    */
   @JvmOverloads
@@ -345,8 +342,8 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   }
 
   /**
-   * Applies a positioned force to the body. A force is time dependent and meant to be applied every physics update.
-   *
+   * Applies a positioned force to the body. A force is time dependent and meant to be applied every
+   * physics update.
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
@@ -356,9 +353,10 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   }
 
   /**
-   * Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update.
-   *
-   * **Note:** [inverseInertia] is required for this to work. To have [inverseInertia], an active [godot.CollisionShape3D] must be a child of the node, or you can manually set [inverseInertia].
+   * Applies a rotational force without affecting position. A force is time dependent and meant to
+   * be applied every physics update.
+   * **Note:** [inverseInertia] is required for this to work. To have [inverseInertia], an active
+   * [CollisionShape3D] must be a child of the node, or you can manually set [inverseInertia].
    */
   public fun applyTorque(torque: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to torque)
@@ -366,8 +364,8 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   }
 
   /**
-   * Adds a constant directional force without affecting rotation that keeps being applied over time until cleared with `constant_force = Vector3(0, 0, 0)`.
-   *
+   * Adds a constant directional force without affecting rotation that keeps being applied over time
+   * until cleared with `constant_force = Vector3(0, 0, 0)`.
    * This is equivalent to using [addConstantForce] at the body's center of mass.
    */
   @JvmOverloads
@@ -377,8 +375,8 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   }
 
   /**
-   * Adds a constant positioned force to the body that keeps being applied over time until cleared with `constant_force = Vector3(0, 0, 0)`.
-   *
+   * Adds a constant positioned force to the body that keeps being applied over time until cleared
+   * with `constant_force = Vector3(0, 0, 0)`.
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
@@ -388,7 +386,8 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   }
 
   /**
-   * Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `constant_torque = Vector3(0, 0, 0)`.
+   * Adds a constant rotational force without affecting position that keeps being applied over time
+   * until cleared with `constant_torque = Vector3(0, 0, 0)`.
    */
   public fun addConstantTorque(torque: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to torque)
@@ -397,7 +396,6 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
 
   /**
    * Sets the body's total constant positional forces applied during each physics update.
-   *
    * See [addConstantForce] and [addConstantCentralForce].
    */
   public fun setConstantForce(force: Vector3): Unit {
@@ -407,7 +405,6 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
 
   /**
    * Returns the body's total constant positional forces applied during each physics update.
-   *
    * See [addConstantForce] and [addConstantCentralForce].
    */
   public fun getConstantForce(): Vector3 {
@@ -418,7 +415,6 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
 
   /**
    * Sets the body's total constant rotational forces applied during each physics update.
-   *
    * See [addConstantTorque].
    */
   public fun setConstantTorque(torque: Vector3): Unit {
@@ -428,7 +424,6 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
 
   /**
    * Returns the body's total constant rotational forces applied during each physics update.
-   *
    * See [addConstantTorque].
    */
   public fun getConstantTorque(): Vector3 {
@@ -439,8 +434,8 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
 
   /**
    * Returns the number of contacts this body has with other bodies.
-   *
-   * **Note:** By default, this returns 0 unless bodies are configured to monitor contacts. See [godot.RigidBody3D.contactMonitor].
+   * **Note:** By default, this returns 0 unless bodies are configured to monitor contacts. See
+   * [RigidBody3D.contactMonitor].
    */
   public fun getContactCount(): Int {
     TransferContext.writeArguments()

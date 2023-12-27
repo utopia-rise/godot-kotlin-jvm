@@ -18,14 +18,13 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Multiplies a [godot.Transform3D] and a [godot.core.Vector3] within the visual shader graph.
- *
- * A multiplication operation on a transform (4x4 matrix) and a vector, with support for different multiplication operators.
+ * A multiplication operation on a transform (4x4 matrix) and a vector, with support for different
+ * multiplication operators.
  */
 @GodotBaseType
 public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
   /**
-   * The multiplication type to be performed. See [enum Operator] for options.
+   * The multiplication type to be performed. See [Operator] for options.
    */
   public var `operator`: Operator
     get() {
@@ -55,15 +54,17 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
      */
     OP_BxA(1),
     /**
-     * Multiplies transform `a` by the vector `b`, skipping the last row and column of the transform.
+     * Multiplies transform `a` by the vector `b`, skipping the last row and column of the
+     * transform.
      */
     OP_3x3_AxB(2),
     /**
-     * Multiplies vector `b` by the transform `a`, skipping the last row and column of the transform.
+     * Multiplies vector `b` by the transform `a`, skipping the last row and column of the
+     * transform.
      */
     OP_3x3_BxA(3),
     /**
-     * Represents the size of the [enum Operator] enum.
+     * Represents the size of the [Operator] enum.
      */
     OP_MAX(4),
     ;

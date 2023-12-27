@@ -21,14 +21,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A [godot.Transform3D] constant for use within the visual shader graph.
- *
- * A constant [godot.Transform3D], which can be used as an input node.
+ * A constant [Transform3D], which can be used as an input node.
  */
 @GodotBaseType
 public open class VisualShaderNodeTransformConstant : VisualShaderNodeConstant() {
   /**
-   * A [godot.Transform3D] constant which represents the state of this node.
+   * A [Transform3D] constant which represents the state of this node.
    */
   @CoreTypeLocalCopy
   public var constant: Transform3D
@@ -48,7 +46,7 @@ public open class VisualShaderNodeTransformConstant : VisualShaderNodeConstant()
   }
 
   /**
-   * A [godot.Transform3D] constant which represents the state of this node.
+   * A [Transform3D] constant which represents the state of this node.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

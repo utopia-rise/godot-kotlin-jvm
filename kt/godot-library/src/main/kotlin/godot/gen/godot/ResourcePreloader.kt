@@ -23,11 +23,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A node used to preload sub-resources inside a scene.
- *
- * This node is used to preload sub-resources inside a scene, so when the scene is loaded, all the resources are ready to use and can be retrieved from the preloader. You can add the resources using the ResourcePreloader tab when the node is selected.
- *
- * GDScript has a simplified [@GDScript.preload] built-in method which can be used in most situations, leaving the use of [godot.ResourcePreloader] for more advanced scenarios.
+ * This node is used to preload sub-resources inside a scene, so when the scene is loaded, all the
+ * resources are ready to use and can be retrieved from the preloader. You can add the resources using
+ * the ResourcePreloader tab when the node is selected.
+ * GDScript has a simplified [@GDScript.preload] built-in method which can be used in most
+ * situations, leaving the use of [ResourcePreloader] for more advanced scenarios.
  */
 @GodotBaseType
 public open class ResourcePreloader : Node() {
@@ -37,7 +37,9 @@ public open class ResourcePreloader : Node() {
   }
 
   /**
-   * Adds a resource to the preloader with the given [name]. If a resource with the given [name] already exists, the new resource will be renamed to "[name] N" where N is an incrementing number starting from 2.
+   * Adds a resource to the preloader with the given [name]. If a resource with the given [name]
+   * already exists, the new resource will be renamed to "[name] N" where N is an incrementing number
+   * starting from 2.
    */
   public fun addResource(name: StringName, resource: Resource): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to resource)

@@ -12,9 +12,8 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A visual shader node that makes particles emitted in a sphere shape.
- *
- * [godot.VisualShaderNodeParticleEmitter] that makes the particles emitted in sphere shape with the specified inner and outer radii.
+ * [VisualShaderNodeParticleEmitter] that makes the particles emitted in sphere shape with the
+ * specified inner and outer radii.
  */
 @GodotBaseType
 public open class VisualShaderNodeParticleSphereEmitter : VisualShaderNodeParticleEmitter() {

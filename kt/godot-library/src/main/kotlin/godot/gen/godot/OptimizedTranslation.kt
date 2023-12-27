@@ -18,9 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * An optimized translation, used by default for CSV Translations.
- *
- * An optimized translation, used by default for CSV Translations. Uses real-time compressed translations, which results in very small dictionaries.
+ * An optimized translation, used by default for CSV Translations. Uses real-time compressed
+ * translations, which results in very small dictionaries.
  */
 @GodotBaseType
 public open class OptimizedTranslation : Translation() {
@@ -30,7 +29,7 @@ public open class OptimizedTranslation : Translation() {
   }
 
   /**
-   * Generates and sets an optimized translation from the given [godot.Translation] resource.
+   * Generates and sets an optimized translation from the given [Translation] resource.
    */
   public fun generate(from: Translation): Unit {
     TransferContext.writeArguments(OBJECT to from)

@@ -27,9 +27,8 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Provides parameters for [godot.PhysicsDirectSpaceState2D.intersectPoint].
- *
- * By changing various properties of this object, such as the point position, you can configure the parameters for [godot.PhysicsDirectSpaceState2D.intersectPoint].
+ * By changing various properties of this object, such as the point position, you can configure the
+ * parameters for [PhysicsDirectSpaceState2D.intersectPoint].
  */
 @GodotBaseType
 public open class PhysicsPointQueryParameters2D : RefCounted() {
@@ -49,8 +48,8 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
     }
 
   /**
-   * If different from `0`, restricts the query to a specific canvas layer specified by its instance ID. See [godot.Object.getInstanceId].
-   *
+   * If different from `0`, restricts the query to a specific canvas layer specified by its instance
+   * ID. See [Object.getInstanceId].
    * If `0`, restricts the query to the Viewport's default canvas layer.
    */
   public var canvasInstanceId: Long
@@ -65,7 +64,10 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
     }
 
   /**
-   * The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The physics layers the query will detect (as a bitmask). By default, all collision layers are
+   * detected. See
+   * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
+   * layers and masks[/url] in the documentation for more information.
    */
   public var collisionMask: Long
     get() {
@@ -79,7 +81,8 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
     }
 
   /**
-   * The list of object [RID]s that will be excluded from collisions. Use [godot.CollisionObject2D.getRid] to get the [RID] associated with a [godot.CollisionObject2D]-derived node.
+   * The list of object [RID]s that will be excluded from collisions. Use [CollisionObject2D.getRid]
+   * to get the [RID] associated with a [CollisionObject2D]-derived node.
    */
   public var exclude: VariantArray<RID>
     get() {
@@ -93,7 +96,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
     }
 
   /**
-   * If `true`, the query will take [godot.PhysicsBody2D]s into account.
+   * If `true`, the query will take [PhysicsBody2D]s into account.
    */
   public var collideWithBodies: Boolean
     get() {
@@ -107,7 +110,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
     }
 
   /**
-   * If `true`, the query will take [godot.Area2D]s into account.
+   * If `true`, the query will take [Area2D]s into account.
    */
   public var collideWithAreas: Boolean
     get() {

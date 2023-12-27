@@ -22,8 +22,18 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * This node allows you to create a cylinder (or cone) for use with the CSG system.
+ * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a
+ * significant CPU cost compared to creating a [MeshInstance3D] with a [PrimitiveMesh]. Moving a CSG
+ * node within another CSG node also has a significant CPU cost, so it should be avoided during
+ * gameplay.
+ */
 @GodotBaseType
 public open class CSGCylinder3D : CSGPrimitive3D() {
+  /**
+   * The radius of the cylinder.
+   */
   public var radius: Float
     get() {
       TransferContext.writeArguments()
@@ -35,6 +45,9 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
     }
 
+  /**
+   * The height of the cylinder.
+   */
   public var height: Float
     get() {
       TransferContext.writeArguments()
@@ -46,6 +59,10 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
     }
 
+  /**
+   * The number of sides of the cylinder, the higher this number the more detail there will be in
+   * the cylinder.
+   */
   public var sides: Int
     get() {
       TransferContext.writeArguments()
@@ -57,6 +74,9 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSidesPtr, NIL)
     }
 
+  /**
+   * If `true` a cone is created, the [radius] will only apply to one side.
+   */
   public var cone: Boolean
     get() {
       TransferContext.writeArguments()
@@ -68,6 +88,10 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setConePtr, NIL)
     }
 
+  /**
+   * If `true` the normals of the cylinder are set to give a smooth effect making the cylinder seem
+   * rounded. If `false` the cylinder will have a flat shaded look.
+   */
   public var smoothFaces: Boolean
     get() {
       TransferContext.writeArguments()
@@ -79,6 +103,9 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSmoothFacesPtr, NIL)
     }
 
+  /**
+   * The material used to render the cylinder.
+   */
   public var material: Material?
     get() {
       TransferContext.writeArguments()

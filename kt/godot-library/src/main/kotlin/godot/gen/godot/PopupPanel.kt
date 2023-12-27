@@ -12,9 +12,9 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A popup with a panel background.
- *
- * A popup with a configurable panel background. Any child controls added to this node will be stretched to fit the panel's size (similar to how [godot.PanelContainer] works). If you are making windows, see [godot.Window].
+ * A popup with a configurable panel background. Any child controls added to this node will be
+ * stretched to fit the panel's size (similar to how [PanelContainer] works). If you are making
+ * windows, see [Window].
  */
 @GodotBaseType
 public open class PopupPanel : Popup() {

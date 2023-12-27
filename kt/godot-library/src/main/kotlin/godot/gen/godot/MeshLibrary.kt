@@ -29,12 +29,8 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Library of meshes.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/125](https://godotengine.org/asset-library/asset/125)
- *
- * A library of meshes. Contains a list of [godot.Mesh] resources, each with a name and ID. Each item can also include collision and navigation shapes. This resource is used in [godot.GridMap].
+ * A library of meshes. Contains a list of [Mesh] resources, each with a name and ID. Each item can
+ * also include collision and navigation shapes. This resource is used in [GridMap].
  */
 @GodotBaseType
 public open class MeshLibrary : Resource() {
@@ -45,7 +41,6 @@ public open class MeshLibrary : Resource() {
 
   /**
    * Creates a new item in the library with the given ID.
-   *
    * You can get an unused ID from [getLastUnusedItemId].
    */
   public fun createItem(id: Int): Unit {
@@ -55,8 +50,8 @@ public open class MeshLibrary : Resource() {
 
   /**
    * Sets the item's name.
-   *
-   * This name is shown in the editor. It can also be used to look up the item later using [findItemByName].
+   * This name is shown in the editor. It can also be used to look up the item later using
+   * [findItemByName].
    */
   public fun setItemName(id: Int, name: String): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), STRING to name)
@@ -105,8 +100,8 @@ public open class MeshLibrary : Resource() {
 
   /**
    * Sets an item's collision shapes.
-   *
-   * The array should consist of [godot.Shape3D] objects, each followed by a [godot.Transform3D] that will be applied to it. For shapes that should not have a transform, use [godot.Transform3D.IDENTITY].
+   * The array should consist of [Shape3D] objects, each followed by a [Transform3D] that will be
+   * applied to it. For shapes that should not have a transform, use [Transform3D.IDENTITY].
    */
   public fun setItemShapes(id: Int, shapes: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), ARRAY to shapes)
@@ -178,8 +173,7 @@ public open class MeshLibrary : Resource() {
 
   /**
    * Returns an item's collision shapes.
-   *
-   * The array consists of each [godot.Shape3D] followed by its [godot.Transform3D].
+   * The array consists of each [Shape3D] followed by its [Transform3D].
    */
   public fun getItemShapes(id: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to id.toLong())
@@ -188,7 +182,10 @@ public open class MeshLibrary : Resource() {
   }
 
   /**
-   * When running in the editor, returns a generated item preview (a 3D rendering in isometric perspective). When used in a running project, returns the manually-defined item preview which can be set using [setItemPreview]. Returns an empty [godot.Texture2D] if no preview was manually set in a running project.
+   * When running in the editor, returns a generated item preview (a 3D rendering in isometric
+   * perspective). When used in a running project, returns the manually-defined item preview which can
+   * be set using [setItemPreview]. Returns an empty [Texture2D] if no preview was manually set in a
+   * running project.
    */
   public fun getItemPreview(id: Int): Texture2D? {
     TransferContext.writeArguments(LONG to id.toLong())

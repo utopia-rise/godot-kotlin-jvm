@@ -12,9 +12,8 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A [godot.Cubemap] parameter node to be used within the visual shader graph.
- *
- * Translated to `uniform samplerCube` in the shader language. The output value can be used as port for [godot.VisualShaderNodeCubemap].
+ * Translated to `uniform samplerCube` in the shader language. The output value can be used as port
+ * for [VisualShaderNodeCubemap].
  */
 @GodotBaseType
 public open class VisualShaderNodeCubemapParameter : VisualShaderNodeTextureParameter() {

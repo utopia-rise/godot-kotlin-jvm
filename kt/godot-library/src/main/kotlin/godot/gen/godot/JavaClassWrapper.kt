@@ -17,9 +17,6 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 
-/**
- *
- */
 @GodotBaseType
 public object JavaClassWrapper : Object() {
   public override fun new(scriptIndex: Int): Boolean {
@@ -27,9 +24,6 @@ public object JavaClassWrapper : Object() {
     return false
   }
 
-  /**
-   *
-   */
   public fun wrap(name: String): JavaClass? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.wrapPtr, OBJECT)

@@ -19,8 +19,17 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * This node enables OpenXR's hand tracking functionality. The node should be a child node of an
+ * [XROrigin3D] node, tracking will update its position to where the player's actual hand is
+ * positioned. This node also updates the skeleton of a properly skinned hand model. The hand mesh
+ * should be a child node of this node.
+ */
 @GodotBaseType
 public open class OpenXRHand : Node3D() {
+  /**
+   * Specifies whether this node tracks the left or right hand of the player.
+   */
   public var hand: Hands
     get() {
       TransferContext.writeArguments()
@@ -32,6 +41,9 @@ public open class OpenXRHand : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setHandPtr, NIL)
     }
 
+  /**
+   * Set the motion range (if supported) limiting the hand motion.
+   */
   public var motionRange: MotionRange
     get() {
       TransferContext.writeArguments()
@@ -43,6 +55,9 @@ public open class OpenXRHand : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMotionRangePtr, NIL)
     }
 
+  /**
+   * Set a [Skeleton3D] node for which the pose positions will be updated.
+   */
   public var handSkeleton: NodePath
     get() {
       TransferContext.writeArguments()
@@ -62,8 +77,17 @@ public open class OpenXRHand : Node3D() {
   public enum class Hands(
     id: Long,
   ) {
+    /**
+     * Tracking the player's left hand.
+     */
     HAND_LEFT(0),
+    /**
+     * Tracking the player's right hand.
+     */
     HAND_RIGHT(1),
+    /**
+     * Maximum supported hands.
+     */
     HAND_MAX(2),
     ;
 
@@ -80,8 +104,17 @@ public open class OpenXRHand : Node3D() {
   public enum class MotionRange(
     id: Long,
   ) {
+    /**
+     * When player grips, hand skeleton will form a full fist.
+     */
     MOTION_RANGE_UNOBSTRUCTED(0),
+    /**
+     * When player grips, hand skeleton conforms to the controller the player is holding.
+     */
     MOTION_RANGE_CONFORM_TO_CONTROLLER(1),
+    /**
+     * Maximum supported motion ranges.
+     */
     MOTION_RANGE_MAX(2),
     ;
 

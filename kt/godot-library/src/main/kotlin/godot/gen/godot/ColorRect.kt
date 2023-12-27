@@ -21,12 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A control that displays a solid color rectangle.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/515](https://godotengine.org/asset-library/asset/515)
- *
- * Displays a rectangle filled with a solid [color]. If you need to display the border alone, consider using a [godot.Panel] instead.
+ * Displays a rectangle filled with a solid [color]. If you need to display the border alone,
+ * consider using a [Panel] instead.
  */
 @GodotBaseType
 public open class ColorRect : Control() {

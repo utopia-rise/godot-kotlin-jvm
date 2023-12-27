@@ -23,11 +23,10 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A physics joint that allows for complex movement and rotation between two 3D physics bodies.
- *
- * The [godot.Generic6DOFJoint3D] (6 Degrees Of Freedom) joint allows for implementing custom types of joints by locking the rotation and translation of certain axes.
- *
- * The first 3 DOF represent the linear motion of the physics bodies and the last 3 DOF represent the angular motion of the physics bodies. Each axis can be either locked, or limited.
+ * The [Generic6DOFJoint3D] (6 Degrees Of Freedom) joint allows for implementing custom types of
+ * joints by locking the rotation and translation of certain axes.
+ * The first 3 DOF represent the linear motion of the physics bodies and the last 3 DOF represent
+ * the angular motion of the physics bodies. Each axis can be either locked, or limited.
  */
 @GodotBaseType
 public open class Generic6DOFJoint3D : Joint3D() {
@@ -36,102 +35,66 @@ public open class Generic6DOFJoint3D : Joint3D() {
     return true
   }
 
-  /**
-   *
-   */
   public fun setParamX(`param`: Param, `value`: Float): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setParamXPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun getParamX(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParamXPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  /**
-   *
-   */
   public fun setParamY(`param`: Param, `value`: Float): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setParamYPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun getParamY(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParamYPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  /**
-   *
-   */
   public fun setParamZ(`param`: Param, `value`: Float): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setParamZPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun getParamZ(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParamZPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  /**
-   *
-   */
   public fun setFlagX(flag: Flag, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setFlagXPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun getFlagX(flag: Flag): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getFlagXPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  /**
-   *
-   */
   public fun setFlagY(flag: Flag, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setFlagYPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun getFlagY(flag: Flag): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getFlagYPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  /**
-   *
-   */
   public fun setFlagZ(flag: Flag, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setFlagZPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun getFlagZ(flag: Flag): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getFlagZPtr, BOOL)
@@ -169,17 +132,8 @@ public open class Generic6DOFJoint3D : Joint3D() {
      * The maximum force the linear motor will apply while trying to reach the velocity target.
      */
     PARAM_LINEAR_MOTOR_FORCE_LIMIT(6),
-    /**
-     *
-     */
     PARAM_LINEAR_SPRING_STIFFNESS(7),
-    /**
-     *
-     */
     PARAM_LINEAR_SPRING_DAMPING(8),
-    /**
-     *
-     */
     PARAM_LINEAR_SPRING_EQUILIBRIUM_POINT(9),
     /**
      * The minimum rotation in negative direction to break loose and rotate around the axes.
@@ -206,7 +160,8 @@ public open class Generic6DOFJoint3D : Joint3D() {
      */
     PARAM_ANGULAR_FORCE_LIMIT(15),
     /**
-     * When rotating across the axes, this error tolerance factor defines how much the correction gets slowed down. The lower, the slower.
+     * When rotating across the axes, this error tolerance factor defines how much the correction
+     * gets slowed down. The lower, the slower.
      */
     PARAM_ANGULAR_ERP(16),
     /**
@@ -217,20 +172,11 @@ public open class Generic6DOFJoint3D : Joint3D() {
      * Maximum acceleration for the motor at the axes.
      */
     PARAM_ANGULAR_MOTOR_FORCE_LIMIT(18),
-    /**
-     *
-     */
     PARAM_ANGULAR_SPRING_STIFFNESS(19),
-    /**
-     *
-     */
     PARAM_ANGULAR_SPRING_DAMPING(20),
-    /**
-     *
-     */
     PARAM_ANGULAR_SPRING_EQUILIBRIUM_POINT(21),
     /**
-     * Represents the size of the [enum Param] enum.
+     * Represents the size of the [Param] enum.
      */
     PARAM_MAX(22),
     ;
@@ -256,13 +202,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
      * If enabled, rotational motion is possible within the given limits.
      */
     FLAG_ENABLE_ANGULAR_LIMIT(1),
-    /**
-     *
-     */
     FLAG_ENABLE_LINEAR_SPRING(3),
-    /**
-     *
-     */
     FLAG_ENABLE_ANGULAR_SPRING(2),
     /**
      * If enabled, there is a rotational motor across these axes.
@@ -273,7 +213,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
      */
     FLAG_ENABLE_LINEAR_MOTOR(5),
     /**
-     * Represents the size of the [enum Flag] enum.
+     * Represents the size of the [Flag] enum.
      */
     FLAG_MAX(6),
     ;

@@ -3,11 +3,12 @@ package godot.codegen.models.enriched
 import godot.codegen.models.ApiType
 import godot.codegen.models.Class
 import godot.codegen.models.custom.AdditionalImport
+import godot.codegen.traits.IDocumented
 import godot.codegen.traits.TypedTrait
 import godot.tools.common.extensions.escapeUnderscore
 import java.util.*
 
-class EnrichedClass(val internal: Class) : TypedTrait {
+class EnrichedClass(val internal: Class) : TypedTrait, IDocumented {
     val constants= internal.constants?.toEnriched() ?: listOf()
     val signals = internal.signals?.toEnriched() ?: listOf()
     val name = internal.name.escapeUnderscore()
@@ -16,6 +17,7 @@ class EnrichedClass(val internal: Class) : TypedTrait {
     val properties= internal.properties?.toEnriched() ?: listOf()
     val methods = internal.methods?.toEnriched(engineClassDBIndexName) ?: listOf()
     val apiType = ApiType.from(internal.apiType)
+    override val description = internal.description
 
     override val type = name
 

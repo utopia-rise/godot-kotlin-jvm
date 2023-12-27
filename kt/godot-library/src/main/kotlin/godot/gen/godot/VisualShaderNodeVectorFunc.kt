@@ -18,14 +18,12 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A vector function to be used within the visual shader graph.
- *
  * A visual shader node able to perform different functions using vectors.
  */
 @GodotBaseType
 public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
   /**
-   * The function to be performed. See [enum Function] for options.
+   * The function to be performed. See [Function] for options.
    */
   public var function: Function
     get() {
@@ -147,7 +145,8 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
      */
     FUNC_ROUNDEVEN(24),
     /**
-     * Extracts the sign of the parameter, i.e. returns `-1` if the parameter is negative, `1` if it's positive and `0` otherwise.
+     * Extracts the sign of the parameter, i.e. returns `-1` if the parameter is negative, `1` if
+     * it's positive and `0` otherwise.
      */
     FUNC_SIGN(25),
     /**
@@ -171,7 +170,8 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
      */
     FUNC_TANH(30),
     /**
-     * Returns a value equal to the nearest integer to the parameter whose absolute value is not larger than the absolute value of the parameter.
+     * Returns a value equal to the nearest integer to the parameter whose absolute value is not
+     * larger than the absolute value of the parameter.
      */
     FUNC_TRUNC(31),
     /**
@@ -179,7 +179,7 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
      */
     FUNC_ONEMINUS(32),
     /**
-     * Represents the size of the [enum Function] enum.
+     * Represents the size of the [Function] enum.
      */
     FUNC_MAX(33),
     ;

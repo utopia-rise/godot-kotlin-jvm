@@ -19,6 +19,10 @@ import kotlin.Suppress
 
 @GodotBaseType
 public open class GLTFTexture : Resource() {
+  /**
+   * The index of the image associated with this texture, see [GLTFState.getImages]. If -1, then
+   * this texture does not have an image assigned.
+   */
   public var srcImage: Int
     get() {
       TransferContext.writeArguments()
@@ -30,6 +34,10 @@ public open class GLTFTexture : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSrcImagePtr, NIL)
     }
 
+  /**
+   * ID of the texture sampler to use when sampling the image. If -1, then the default texture
+   * sampler is used (linear filtering, and repeat wrapping in both axes).
+   */
   public var sampler: Int
     get() {
       TransferContext.writeArguments()

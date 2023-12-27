@@ -25,246 +25,137 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Helper class to implement a UDP server.
- *
- * A simple server that opens a UDP socket and returns connected [godot.PacketPeerUDP] upon receiving new packets. See also [godot.PacketPeerUDP.connectToHost].
- *
- * After starting the server ([listen]), you will need to [poll] it at regular intervals (e.g. inside [godot.Node.Process]) for it to process new packets, delivering them to the appropriate [godot.PacketPeerUDP], and taking new connections.
- *
+ * A simple server that opens a UDP socket and returns connected [PacketPeerUDP] upon receiving new
+ * packets. See also [PacketPeerUDP.connectToHost].
+ * After starting the server ([listen]), you will need to [poll] it at regular intervals (e.g.
+ * inside [Node.Process]) for it to process new packets, delivering them to the appropriate
+ * [PacketPeerUDP], and taking new connections.
  * Below a small example of how it can be used:
  *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * # server_node.gd
- *
  * class_name ServerNode
- *
  * extends Node
- *
- *
  *
  * var server := UDPServer.new()
- *
  * var peers = []
  *
- *
- *
  * func _ready():
- *
  *     server.listen(4242)
  *
- *
- *
  * func _process(delta):
- *
  *     server.poll() # Important!
- *
  *     if server.is_connection_available():
- *
  *         var peer: PacketPeerUDP = server.take_connection()
- *
  *         var packet = peer.get_packet()
- *
- *         print("Accepted peer: %s:%s" % [peer.get_packet_ip(), peer.get_packet_port()])
- *
- *         print("Received data: %s" % [packet.get_string_from_utf8()])
- *
+ *         print("Accepted peer: &#37;s:&#37;s" &#37; [peer.get_packet_ip(),
+ * peer.get_packet_port()])
+ *         print("Received data: &#37;s" &#37; [packet.get_string_from_utf8()])
  *         # Reply so it knows we received the message.
- *
  *         peer.put_packet(packet)
- *
  *         # Keep a reference so we can keep contacting the remote peer.
- *
  *         peers.append(peer)
  *
- *
- *
  *     for i in range(0, peers.size()):
- *
  *         pass # Do something with the connected peers.
- *
- * [/gdscript]
- *
- * [csharp]
- *
+ * ```
+ * csharp:
+ * ```csharp
  * // ServerNode.cs
- *
  * using Godot;
- *
  * using System.Collections.Generic;
  *
- *
- *
  * public partial class ServerNode : Node
- *
  * {
- *
  *     private UdpServer _server = new UdpServer();
- *
  *     private List<PacketPeerUdp> _peers  = new List<PacketPeerUdp>();
  *
- *
- *
  *     public override void _Ready()
- *
  *     {
- *
  *         _server.Listen(4242);
- *
  *     }
- *
- *
  *
  *     public override void _Process(double delta)
- *
  *     {
- *
  *         _server.Poll(); // Important!
- *
  *         if (_server.IsConnectionAvailable())
- *
  *         {
- *
  *             PacketPeerUdp peer = _server.TakeConnection();
- *
  *             byte[] packet = peer.GetPacket();
- *
  *             GD.Print($"Accepted Peer: {peer.GetPacketIP()}:{peer.GetPacketPort()}");
- *
  *             GD.Print($"Received Data: {packet.GetStringFromUtf8()}");
- *
  *             // Reply so it knows we received the message.
- *
  *             peer.PutPacket(packet);
- *
  *             // Keep a reference so we can keep contacting the remote peer.
- *
  *             _peers.Add(peer);
- *
  *         }
- *
  *         foreach (var peer in _peers)
- *
  *         {
- *
  *             // Do something with the peers.
- *
  *         }
- *
  *     }
- *
  * }
+ * ```
  *
- * [/csharp]
  *
- * [/codeblocks]
- *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * # client_node.gd
- *
  * class_name ClientNode
- *
  * extends Node
  *
- *
- *
  * var udp := PacketPeerUDP.new()
- *
  * var connected = false
  *
- *
- *
  * func _ready():
- *
  *     udp.connect_to_host("127.0.0.1", 4242)
  *
- *
- *
  * func _process(delta):
- *
  *     if !connected:
- *
  *         # Try to contact server
- *
  *         udp.put_packet("The answer is... 42!".to_utf8_buffer())
- *
  *     if udp.get_available_packet_count() > 0:
- *
- *         print("Connected: %s" % udp.get_packet().get_string_from_utf8())
- *
+ *         print("Connected: &#37;s" &#37; udp.get_packet().get_string_from_utf8())
  *         connected = true
- *
- * [/gdscript]
- *
- * [csharp]
- *
+ * ```
+ * csharp:
+ * ```csharp
  * // ClientNode.cs
- *
  * using Godot;
  *
- *
- *
  * public partial class ClientNode : Node
- *
  * {
- *
  *     private PacketPeerUdp _udp = new PacketPeerUdp();
- *
  *     private bool _connected = false;
  *
- *
- *
  *     public override void _Ready()
- *
  *     {
- *
  *         _udp.ConnectToHost("127.0.0.1", 4242);
- *
  *     }
- *
- *
  *
  *     public override void _Process(double delta)
- *
  *     {
- *
  *         if (!_connected)
- *
  *         {
- *
  *             // Try to contact server
- *
  *             _udp.PutPacket("The Answer Is..42!".ToUtf8Buffer());
- *
  *         }
- *
  *         if (_udp.GetAvailablePacketCount() > 0)
- *
  *         {
- *
  *             GD.Print($"Connected: {_udp.GetPacket().GetStringFromUtf8()}");
- *
  *             _connected = true;
- *
  *         }
- *
  *     }
- *
  * }
- *
- * [/csharp]
- *
- * [/codeblocks]
+ * ```
  */
 @GodotBaseType
 public open class UDPServer : RefCounted() {
   /**
-   * Define the maximum number of pending connections, during [poll], any new pending connection exceeding that value will be automatically dropped. Setting this value to `0` effectively prevents any new pending connection to be accepted (e.g. when all your players have connected).
+   * Define the maximum number of pending connections, during [poll], any new pending connection
+   * exceeding that value will be automatically dropped. Setting this value to `0` effectively prevents
+   * any new pending connection to be accepted (e.g. when all your players have connected).
    */
   public var maxPendingConnections: Int
     get() {
@@ -283,7 +174,9 @@ public open class UDPServer : RefCounted() {
   }
 
   /**
-   * Starts the server by opening a UDP socket listening on the given [port]. You can optionally specify a [bindAddress] to only listen for packets sent to that address. See also [godot.PacketPeerUDP.bind].
+   * Starts the server by opening a UDP socket listening on the given [port]. You can optionally
+   * specify a [bindAddress] to only listen for packets sent to that address. See also
+   * [PacketPeerUDP.bind].
    */
   @JvmOverloads
   public fun listen(port: Int, bindAddress: String = "*"): GodotError {
@@ -293,7 +186,11 @@ public open class UDPServer : RefCounted() {
   }
 
   /**
-   * Call this method at regular intervals (e.g. inside [godot.Node.Process]) to process new packets. And packet from known address/port pair will be delivered to the appropriate [godot.PacketPeerUDP], any packet received from an unknown address/port pair will be added as a pending connection (see [isConnectionAvailable], [takeConnection]). The maximum number of pending connection is defined via [maxPendingConnections].
+   * Call this method at regular intervals (e.g. inside [Node.Process]) to process new packets. And
+   * packet from known address/port pair will be delivered to the appropriate [PacketPeerUDP], any
+   * packet received from an unknown address/port pair will be added as a pending connection (see
+   * [isConnectionAvailable], [takeConnection]). The maximum number of pending connection is defined
+   * via [maxPendingConnections].
    */
   public fun poll(): GodotError {
     TransferContext.writeArguments()
@@ -329,7 +226,9 @@ public open class UDPServer : RefCounted() {
   }
 
   /**
-   * Returns the first pending connection (connected to the appropriate address/port). Will return `null` if no new connection is available. See also [isConnectionAvailable], [godot.PacketPeerUDP.connectToHost].
+   * Returns the first pending connection (connected to the appropriate address/port). Will return
+   * `null` if no new connection is available. See also [isConnectionAvailable],
+   * [PacketPeerUDP.connectToHost].
    */
   public fun takeConnection(): PacketPeerUDP? {
     TransferContext.writeArguments()
@@ -338,7 +237,8 @@ public open class UDPServer : RefCounted() {
   }
 
   /**
-   * Stops the server, closing the UDP socket if open. Will close all connected [godot.PacketPeerUDP] accepted via [takeConnection] (remote peers will not be notified).
+   * Stops the server, closing the UDP socket if open. Will close all connected [PacketPeerUDP]
+   * accepted via [takeConnection] (remote peers will not be notified).
    */
   public fun stop(): Unit {
     TransferContext.writeArguments()

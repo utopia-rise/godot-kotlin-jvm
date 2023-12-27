@@ -20,17 +20,13 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Occludes light cast by a Light2D, casting shadows.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/2d/2d_lights_and_shadows.html]($DOCS_URL/tutorials/2d/2d_lights_and_shadows.html)
- *
- * Occludes light cast by a Light2D, casting shadows. The LightOccluder2D must be provided with an [godot.OccluderPolygon2D] in order for the shadow to be computed.
+ * Occludes light cast by a Light2D, casting shadows. The LightOccluder2D must be provided with an
+ * [OccluderPolygon2D] in order for the shadow to be computed.
  */
 @GodotBaseType
 public open class LightOccluder2D : Node2D() {
   /**
-   * The [godot.OccluderPolygon2D] used to compute the shadow.
+   * The [OccluderPolygon2D] used to compute the shadow.
    */
   public var occluder: OccluderPolygon2D?
     get() {
@@ -44,7 +40,8 @@ public open class LightOccluder2D : Node2D() {
     }
 
   /**
-   * If enabled, the occluder will be part of a real-time generated signed distance field that can be used in custom shaders.
+   * If enabled, the occluder will be part of a real-time generated signed distance field that can
+   * be used in custom shaders.
    */
   public var sdfCollision: Boolean
     get() {
@@ -58,7 +55,8 @@ public open class LightOccluder2D : Node2D() {
     }
 
   /**
-   * The LightOccluder2D's occluder light mask. The LightOccluder2D will cast shadows only from Light2D(s) that have the same light mask(s).
+   * The LightOccluder2D's occluder light mask. The LightOccluder2D will cast shadows only from
+   * Light2D(s) that have the same light mask(s).
    */
   public var occluderLightMask: Int
     get() {

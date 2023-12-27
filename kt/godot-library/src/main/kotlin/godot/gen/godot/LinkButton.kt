@@ -23,11 +23,9 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * A button that represents a link.
- *
- * A button that represents a link. This type of button is primarily used for interactions that cause a context change (like linking to a web page).
- *
- * See also [godot.BaseButton] which contains common properties and methods associated with this node.
+ * A button that represents a link. This type of button is primarily used for interactions that
+ * cause a context change (like linking to a web page).
+ * See also [BaseButton] which contains common properties and methods associated with this node.
  */
 @GodotBaseType
 public open class LinkButton : BaseButton() {
@@ -46,7 +44,7 @@ public open class LinkButton : BaseButton() {
     }
 
   /**
-   * The underline mode to use for the text. See [enum LinkButton.UnderlineMode] for the available modes.
+   * The underline mode to use for the text. See [LinkButton.UnderlineMode] for the available modes.
    */
   public var underline: UnderlineMode
     get() {
@@ -60,33 +58,24 @@ public open class LinkButton : BaseButton() {
     }
 
   /**
-   * The [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier) for this [godot.LinkButton]. If set to a valid URI, pressing the button opens the URI using the operating system's default program for the protocol (via [godot.OS.shellOpen]). HTTP and HTTPS URLs open the default web browser.
-   *
+   * The [url=https://en.wikipedia.org/wiki/Uniform_Resource_Identifier]URI[/url] for this
+   * [LinkButton]. If set to a valid URI, pressing the button opens the URI using the operating
+   * system's default program for the protocol (via [OS.shellOpen]). HTTP and HTTPS URLs open the
+   * default web browser.
    * **Examples:**
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * uri = "https://godotengine.org"  # Opens the URL in the default web browser.
-   *
    * uri = "C:\SomeFolder"  # Opens the file explorer at the given path.
-   *
    * uri = "C:\SomeImage.png"  # Opens the given image in the default viewing app.
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * Uri = "https://godotengine.org"; // Opens the URL in the default web browser.
-   *
    * Uri = "C:\SomeFolder"; // Opens the file explorer at the given path.
-   *
    * Uri = "C:\SomeImage.png"; // Opens the given image in the default viewing app.
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public var uri: String
     get() {
@@ -114,7 +103,8 @@ public open class LinkButton : BaseButton() {
     }
 
   /**
-   * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
+   * Language code used for line-breaking and text shaping algorithms, if left empty current locale
+   * is used instead.
    */
   public var language: String
     get() {
@@ -170,7 +160,8 @@ public open class LinkButton : BaseButton() {
      */
     UNDERLINE_MODE_ALWAYS(0),
     /**
-     * The LinkButton will show an underline at the bottom of its text when the mouse cursor is over it.
+     * The LinkButton will show an underline at the bottom of its text when the mouse cursor is over
+     * it.
      */
     UNDERLINE_MODE_ON_HOVER(1),
     /**

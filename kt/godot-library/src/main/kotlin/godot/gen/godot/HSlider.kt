@@ -12,9 +12,8 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A horizontal slider that goes from left (min) to right (max).
- *
- * A horizontal slider, used to adjust a value by moving a grabber along a horizontal axis. It is a [godot.Range]-based control and goes from left (min) to right (max).
+ * A horizontal slider, used to adjust a value by moving a grabber along a horizontal axis. It is a
+ * [Range]-based control and goes from left (min) to right (max).
  */
 @GodotBaseType
 public open class HSlider : Slider() {

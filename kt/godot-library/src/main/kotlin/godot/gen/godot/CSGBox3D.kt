@@ -21,8 +21,18 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * This node allows you to create a box for use with the CSG system.
+ * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a
+ * significant CPU cost compared to creating a [MeshInstance3D] with a [PrimitiveMesh]. Moving a CSG
+ * node within another CSG node also has a significant CPU cost, so it should be avoided during
+ * gameplay.
+ */
 @GodotBaseType
 public open class CSGBox3D : CSGPrimitive3D() {
+  /**
+   * The box's width, height and depth.
+   */
   @CoreTypeLocalCopy
   public var size: Vector3
     get() {
@@ -35,6 +45,9 @@ public open class CSGBox3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
     }
 
+  /**
+   * The material used to render the box.
+   */
   public var material: Material?
     get() {
       TransferContext.writeArguments()
@@ -52,6 +65,8 @@ public open class CSGBox3D : CSGPrimitive3D() {
   }
 
   /**
+   * The box's width, height and depth.
+   *
    * This is a helper function to make dealing with local copies easier. 
    *
    * For more information, see our

@@ -328,6 +328,13 @@ void GDKotlin::finish() {
 #endif
         return;
     }
+
+#ifdef TOOLS_ENABLED
+    if (!jni::Jvm::is_initialized()) {
+        return;
+    }
+#endif
+
     auto env = jni::Jvm::current_env();
 
     bootstrap->finish(env);

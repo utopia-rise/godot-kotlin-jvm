@@ -29,34 +29,30 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Container for [godot.Animation] resources.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/animation/index.html]($DOCS_URL/tutorials/animation/index.html)
- *
- * An animation library stores a set of animations accessible through [godot.StringName] keys, for use with [godot.AnimationPlayer] nodes.
+ * An animation library stores a set of animations accessible through [StringName] keys, for use
+ * with [AnimationPlayer] nodes.
  */
 @GodotBaseType
 public open class AnimationLibrary : Resource() {
   /**
-   * Emitted when an [godot.Animation] is added, under the key [name].
+   * Emitted when an [Animation] is added, under the key [name].
    */
   public val animationAdded: Signal1<StringName> by signal("name")
 
   /**
-   * Emitted when an [godot.Animation] stored with the key [name] is removed.
+   * Emitted when an [Animation] stored with the key [name] is removed.
    */
   public val animationRemoved: Signal1<StringName> by signal("name")
 
   /**
-   * Emitted when the key for an [godot.Animation] is changed, from [name] to [toName].
+   * Emitted when the key for an [Animation] is changed, from [name] to [toName].
    */
   public val animationRenamed: Signal2<StringName, StringName> by signal("name", "toName")
 
   /**
-   * Emitted when there's a change in one of the animations, e.g. tracks are added, moved or have changed paths. [name] is the key of the animation that was changed.
-   *
-   * See also [godot.Resource.changed], which this acts as a relay for.
+   * Emitted when there's a change in one of the animations, e.g. tracks are added, moved or have
+   * changed paths. [name] is the key of the animation that was changed.
+   * See also [signal Resource.changed], which this acts as a relay for.
    */
   public val animationChanged: Signal1<StringName> by signal("name")
 
@@ -75,7 +71,7 @@ public open class AnimationLibrary : Resource() {
   }
 
   /**
-   * Removes the [godot.Animation] with the key [name].
+   * Removes the [Animation] with the key [name].
    */
   public fun removeAnimation(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -83,7 +79,7 @@ public open class AnimationLibrary : Resource() {
   }
 
   /**
-   * Changes the key of the [godot.Animation] associated with the key [name] to [newname].
+   * Changes the key of the [Animation] associated with the key [name] to [newname].
    */
   public fun renameAnimation(name: StringName, newname: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newname)
@@ -91,7 +87,7 @@ public open class AnimationLibrary : Resource() {
   }
 
   /**
-   * Returns `true` if the library stores an [godot.Animation] with [name] as the key.
+   * Returns `true` if the library stores an [Animation] with [name] as the key.
    */
   public fun hasAnimation(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -100,7 +96,8 @@ public open class AnimationLibrary : Resource() {
   }
 
   /**
-   * Returns the [godot.Animation] with the key [name]. If the animation does not exist, `null` is returned and an error is logged.
+   * Returns the [Animation] with the key [name]. If the animation does not exist, `null` is
+   * returned and an error is logged.
    */
   public fun getAnimation(name: StringName): Animation? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -109,7 +106,7 @@ public open class AnimationLibrary : Resource() {
   }
 
   /**
-   * Returns the keys for the [godot.Animation]s stored in the library.
+   * Returns the keys for the [Animation]s stored in the library.
    */
   public fun getAnimationList(): VariantArray<StringName> {
     TransferContext.writeArguments()

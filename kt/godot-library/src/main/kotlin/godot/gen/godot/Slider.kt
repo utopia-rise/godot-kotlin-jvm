@@ -22,9 +22,8 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Abstract base class for sliders.
- *
- * Abstract base class for sliders, used to adjust a value by moving a grabber along a horizontal or vertical axis. Sliders are [godot.Range]-based controls.
+ * Abstract base class for sliders, used to adjust a value by moving a grabber along a horizontal or
+ * vertical axis. Sliders are [Range]-based controls.
  */
 @GodotBaseType
 public open class Slider internal constructor() : Range() {
@@ -34,12 +33,14 @@ public open class Slider internal constructor() : Range() {
   public val dragStarted: Signal0 by signal()
 
   /**
-   * Emitted when dragging stops. If [valueChanged] is true, [godot.Range.value] is different from the value when you started the dragging.
+   * Emitted when dragging stops. If [valueChanged] is true, [Range.value] is different from the
+   * value when you started the dragging.
    */
   public val dragEnded: Signal1<Boolean> by signal("valueChanged")
 
   /**
-   * If `true`, the slider can be interacted with. If `false`, the value can be changed only by code.
+   * If `true`, the slider can be interacted with. If `false`, the value can be changed only by
+   * code.
    */
   public var editable: Boolean
     get() {
@@ -67,7 +68,8 @@ public open class Slider internal constructor() : Range() {
     }
 
   /**
-   * Number of ticks displayed on the slider, including border ticks. Ticks are uniformly-distributed value markers.
+   * Number of ticks displayed on the slider, including border ticks. Ticks are
+   * uniformly-distributed value markers.
    */
   public var tickCount: Int
     get() {

@@ -36,16 +36,13 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A tracked object.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/xr/index.html]($DOCS_URL/tutorials/xr/index.html)
- *
- * An instance of this object represents a device that is tracked, such as a controller or anchor point. HMDs aren't represented here as they are handled internally.
- *
- * As controllers are turned on and the [godot.XRInterface] detects them, instances of this object are automatically added to this list of active tracking objects accessible through the [godot.XRServer].
- *
- * The [godot.XRController3D] and [godot.XRAnchor3D] both consume objects of this type and should be used in your project. The positional trackers are just under-the-hood objects that make this all work. These are mostly exposed so that GDExtension-based interfaces can interact with them.
+ * An instance of this object represents a device that is tracked, such as a controller or anchor
+ * point. HMDs aren't represented here as they are handled internally.
+ * As controllers are turned on and the [XRInterface] detects them, instances of this object are
+ * automatically added to this list of active tracking objects accessible through the [XRServer].
+ * The [XRController3D] and [XRAnchor3D] both consume objects of this type and should be used in
+ * your project. The positional trackers are just under-the-hood objects that make this all work. These
+ * are mostly exposed so that GDExtension-based interfaces can interact with them.
  */
 @GodotBaseType
 public open class XRPositionalTracker : RefCounted() {
@@ -60,7 +57,8 @@ public open class XRPositionalTracker : RefCounted() {
   public val poseLostTracking: Signal1<XRPose> by signal("pose")
 
   /**
-   * Emitted when a button on this tracker is pressed. Note that many XR runtimes allow other inputs to be mapped to buttons.
+   * Emitted when a button on this tracker is pressed. Note that many XR runtimes allow other inputs
+   * to be mapped to buttons.
    */
   public val buttonPressed: Signal1<String> by signal("name")
 
@@ -99,10 +97,10 @@ public open class XRPositionalTracker : RefCounted() {
     }
 
   /**
-   * The unique name of this tracker. The trackers that are available differ between various XR runtimes and can often be configured by the user. Godot maintains a number of reserved names that it expects the [godot.XRInterface] to implement if applicable:
-   *
+   * The unique name of this tracker. The trackers that are available differ between various XR
+   * runtimes and can often be configured by the user. Godot maintains a number of reserved names that
+   * it expects the [XRInterface] to implement if applicable:
    * - `left_hand` identifies the controller held in the players left hand
-   *
    * - `right_hand` identifies the controller held in the players right hand
    */
   public var name: StringName
@@ -131,7 +129,8 @@ public open class XRPositionalTracker : RefCounted() {
     }
 
   /**
-   * The profile associated with this tracker, interface dependent but will indicate the type of controller being tracked.
+   * The profile associated with this tracker, interface dependent but will indicate the type of
+   * controller being tracked.
    */
   public var profile: String
     get() {
@@ -173,7 +172,7 @@ public open class XRPositionalTracker : RefCounted() {
   }
 
   /**
-   * Returns the current [godot.XRPose] state object for the bound [name] pose.
+   * Returns the current [XRPose] state object for the bound [name] pose.
    */
   public fun getPose(name: StringName): XRPose? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -182,7 +181,9 @@ public open class XRPositionalTracker : RefCounted() {
   }
 
   /**
-   * Marks this pose as invalid, we don't clear the last reported state but it allows users to decide if trackers need to be hidden if we lose tracking or just remain at their last known position.
+   * Marks this pose as invalid, we don't clear the last reported state but it allows users to
+   * decide if trackers need to be hidden if we lose tracking or just remain at their last known
+   * position.
    */
   public fun invalidatePose(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -190,7 +191,8 @@ public open class XRPositionalTracker : RefCounted() {
   }
 
   /**
-   * Sets the transform, linear velocity, angular velocity and tracking confidence for the given pose. This method is called by a [godot.XRInterface] implementation and should not be used directly.
+   * Sets the transform, linear velocity, angular velocity and tracking confidence for the given
+   * pose. This method is called by a [XRInterface] implementation and should not be used directly.
    */
   public fun setPose(
     name: StringName,
@@ -204,7 +206,8 @@ public open class XRPositionalTracker : RefCounted() {
   }
 
   /**
-   * Returns an input for this tracker. It can return a boolean, float or [godot.core.Vector2] value depending on whether the input is a button, trigger or thumbstick/thumbpad.
+   * Returns an input for this tracker. It can return a boolean, float or [Vector2] value depending
+   * on whether the input is a button, trigger or thumbstick/thumbpad.
    */
   public fun getInput(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -213,7 +216,8 @@ public open class XRPositionalTracker : RefCounted() {
   }
 
   /**
-   * Changes the value for the given input. This method is called by a [godot.XRInterface] implementation and should not be used directly.
+   * Changes the value for the given input. This method is called by a [XRInterface] implementation
+   * and should not be used directly.
    */
   public fun setInput(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)

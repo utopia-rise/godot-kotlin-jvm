@@ -20,16 +20,13 @@ import kotlin.Suppress
 
 /**
  * An audio effect that can be used to adjust the intensity of stereo panning.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
- *
- * An audio effect that can be used to adjust the intensity of stereo panning.
  */
 @GodotBaseType
 public open class AudioEffectStereoEnhance : AudioEffect() {
   /**
-   * Values greater than 1.0 increase intensity of any panning on audio passing through this effect, whereas values less than 1.0 will decrease the panning intensity. A value of 0.0 will downmix audio to mono.
+   * Values greater than 1.0 increase intensity of any panning on audio passing through this effect,
+   * whereas values less than 1.0 will decrease the panning intensity. A value of 0.0 will downmix
+   * audio to mono.
    */
   public var panPullout: Float
     get() {
@@ -42,9 +39,6 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
       TransferContext.callMethod(rawPtr, MethodBindings.setPanPulloutPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var timePulloutMs: Float
     get() {
       TransferContext.writeArguments()
@@ -56,9 +50,6 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTimePulloutPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var surround: Float
     get() {
       TransferContext.writeArguments()

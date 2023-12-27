@@ -32,12 +32,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A 3D shape that sweeps a region of space to detect [godot.CollisionObject3D]s.
- *
- * Shape casting allows to detect collision objects by sweeping its [shape] along the cast direction determined by [targetPosition]. This is similar to [godot.RayCast3D], but it allows for sweeping a region of space, rather than just a straight line. [godot.ShapeCast3D] can detect multiple collision objects. It is useful for things like wide laser beams or snapping a simple shape to a floor.
- *
- * Immediate collision overlaps can be done with the [targetPosition] set to `Vector3(0, 0, 0)` and by calling [forceShapecastUpdate] within the same physics frame. This helps to overcome some limitations of [godot.Area3D] when used as an instantaneous detection area, as collision information isn't immediately available to it.
- *
+ * Shape casting allows to detect collision objects by sweeping its [shape] along the cast direction
+ * determined by [targetPosition]. This is similar to [RayCast3D], but it allows for sweeping a region
+ * of space, rather than just a straight line. [ShapeCast3D] can detect multiple collision objects. It
+ * is useful for things like wide laser beams or snapping a simple shape to a floor.
+ * Immediate collision overlaps can be done with the [targetPosition] set to `Vector3(0, 0, 0)` and
+ * by calling [forceShapecastUpdate] within the same physics frame. This helps to overcome some
+ * limitations of [Area3D] when used as an instantaneous detection area, as collision information isn't
+ * immediately available to it.
  * **Note:** Shape casting is more computationally expensive than ray casting.
  */
 @GodotBaseType
@@ -57,7 +59,7 @@ public open class ShapeCast3D : Node3D() {
     }
 
   /**
-   * The [godot.Shape3D]-derived shape to be used for collision queries.
+   * The [Shape3D]-derived shape to be used for collision queries.
    */
   public var shape: Shape3D?
     get() {
@@ -100,7 +102,8 @@ public open class ShapeCast3D : Node3D() {
     }
 
   /**
-   * The collision margin for the shape. A larger margin helps detecting collisions more consistently, at the cost of precision.
+   * The collision margin for the shape. A larger margin helps detecting collisions more
+   * consistently, at the cost of precision.
    */
   public var margin: Float
     get() {
@@ -128,7 +131,10 @@ public open class ShapeCast3D : Node3D() {
     }
 
   /**
-   * The shape's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The shape's collision mask. Only objects in at least one collision layer enabled in the mask
+   * will be detected. See
+   * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
+   * layers and masks[/url] in the documentation for more information.
    */
   public var collisionMask: Long
     get() {
@@ -142,7 +148,7 @@ public open class ShapeCast3D : Node3D() {
     }
 
   /**
-   * If `true`, collisions with [godot.Area3D]s will be reported.
+   * If `true`, collisions with [Area3D]s will be reported.
    */
   public var collideWithAreas: Boolean
     get() {
@@ -156,7 +162,7 @@ public open class ShapeCast3D : Node3D() {
     }
 
   /**
-   * If `true`, collisions with [godot.PhysicsBody3D]s will be reported.
+   * If `true`, collisions with [PhysicsBody3D]s will be reported.
    */
   public var collideWithBodies: Boolean
     get() {
@@ -170,9 +176,11 @@ public open class ShapeCast3D : Node3D() {
     }
 
   /**
-   * The custom color to use to draw the shape in the editor and at run-time if **Visible Collision Shapes** is enabled in the **Debug** menu. This color will be highlighted at run-time if the [godot.ShapeCast3D] is colliding with something.
-   *
-   * If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in [godot.ProjectSettings.debug/shapes/collision/shapeColor] is used.
+   * The custom color to use to draw the shape in the editor and at run-time if **Visible Collision
+   * Shapes** is enabled in the **Debug** menu. This color will be highlighted at run-time if the
+   * [ShapeCast3D] is colliding with something.
+   * If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in
+   * [ProjectSettings.debug/shapes/collision/shapeColor] is used.
    */
   @CoreTypeLocalCopy
   public var debugShapeCustomColor: Color
@@ -216,9 +224,11 @@ public open class ShapeCast3D : Node3D() {
 
 
   /**
-   * The custom color to use to draw the shape in the editor and at run-time if **Visible Collision Shapes** is enabled in the **Debug** menu. This color will be highlighted at run-time if the [godot.ShapeCast3D] is colliding with something.
-   *
-   * If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in [godot.ProjectSettings.debug/shapes/collision/shapeColor] is used.
+   * The custom color to use to draw the shape in the editor and at run-time if **Visible Collision
+   * Shapes** is enabled in the **Debug** menu. This color will be highlighted at run-time if the
+   * [ShapeCast3D] is colliding with something.
+   * If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in
+   * [ProjectSettings.debug/shapes/collision/shapeColor] is used.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -243,7 +253,7 @@ public open class ShapeCast3D : Node3D() {
 
 
   /**
-   * *Obsoleted.* Use [godot.Resource.changed] instead.
+   * *Obsoleted.* Use [signal Resource.changed] instead.
    */
   public fun resourceChanged(resource: Resource): Unit {
     TransferContext.writeArguments(OBJECT to resource)
@@ -251,7 +261,8 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * Returns whether any object is intersecting with the shape's vector (considering the vector length).
+   * Returns whether any object is intersecting with the shape's vector (considering the vector
+   * length).
    */
   public fun isColliding(): Boolean {
     TransferContext.writeArguments()
@@ -260,7 +271,9 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * The number of collisions detected at the point of impact. Use this to iterate over multiple collisions as provided by [getCollider], [getColliderShape], [getCollisionPoint], and [getCollisionNormal] methods.
+   * The number of collisions detected at the point of impact. Use this to iterate over multiple
+   * collisions as provided by [getCollider], [getColliderShape], [getCollisionPoint], and
+   * [getCollisionNormal] methods.
    */
   public fun getCollisionCount(): Int {
     TransferContext.writeArguments()
@@ -269,8 +282,9 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * Updates the collision information for the shape immediately, without waiting for the next `_physics_process` call. Use this method, for example, when the shape or its parent has changed state.
-   *
+   * Updates the collision information for the shape immediately, without waiting for the next
+   * `_physics_process` call. Use this method, for example, when the shape or its parent has changed
+   * state.
    * **Note:** `enabled == true` is not required for this to work.
    */
   public fun forceShapecastUpdate(): Unit {
@@ -279,7 +293,8 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * Returns the collided [godot.Object] of one of the multiple collisions at [index], or `null` if no object is intersecting the shape (i.e. [isColliding] returns `false`).
+   * Returns the collided [Object] of one of the multiple collisions at [index], or `null` if no
+   * object is intersecting the shape (i.e. [isColliding] returns `false`).
    */
   public fun getCollider(index: Int): Object? {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -297,7 +312,8 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * Returns the shape ID of the colliding shape of one of the multiple collisions at [index], or `0` if no object is intersecting the shape (i.e. [isColliding] returns `false`).
+   * Returns the shape ID of the colliding shape of one of the multiple collisions at [index], or
+   * `0` if no object is intersecting the shape (i.e. [isColliding] returns `false`).
    */
   public fun getColliderShape(index: Int): Int {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -306,8 +322,8 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * Returns the collision point of one of the multiple collisions at [index] where the shape intersects the colliding object.
-   *
+   * Returns the collision point of one of the multiple collisions at [index] where the shape
+   * intersects the colliding object.
    * **Note:** this point is in the **global** coordinate system.
    */
   public fun getCollisionPoint(index: Int): Vector3 {
@@ -326,7 +342,8 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * The fraction from the [godot.ShapeCast3D]'s origin to its [targetPosition] (between 0 and 1) of how far the shape can move without triggering a collision.
+   * The fraction from the [ShapeCast3D]'s origin to its [targetPosition] (between 0 and 1) of how
+   * far the shape can move without triggering a collision.
    */
   public fun getClosestCollisionSafeFraction(): Float {
     TransferContext.writeArguments()
@@ -335,7 +352,8 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * The fraction from the [godot.ShapeCast3D]'s origin to its [targetPosition] (between 0 and 1) of how far the shape must move to trigger a collision.
+   * The fraction from the [ShapeCast3D]'s origin to its [targetPosition] (between 0 and 1) of how
+   * far the shape must move to trigger a collision.
    */
   public fun getClosestCollisionUnsafeFraction(): Float {
     TransferContext.writeArguments()
@@ -352,7 +370,8 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * Adds a collision exception so the shape does not report collisions with the specified [godot.CollisionObject3D] node.
+   * Adds a collision exception so the shape does not report collisions with the specified
+   * [CollisionObject3D] node.
    */
   public fun addException(node: CollisionObject3D): Unit {
     TransferContext.writeArguments(OBJECT to node)
@@ -368,7 +387,8 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * Removes a collision exception so the shape does report collisions with the specified [godot.CollisionObject3D] node.
+   * Removes a collision exception so the shape does report collisions with the specified
+   * [CollisionObject3D] node.
    */
   public fun removeException(node: CollisionObject3D): Unit {
     TransferContext.writeArguments(OBJECT to node)
@@ -376,7 +396,7 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * Removes all collision exceptions for this [godot.ShapeCast3D].
+   * Removes all collision exceptions for this [ShapeCast3D].
    */
   public fun clearExceptions(): Unit {
     TransferContext.writeArguments()
@@ -384,7 +404,8 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [collisionMask], given a [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionMask], given a
+   * [layerNumber] between 1 and 32.
    */
   public fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -392,7 +413,8 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a
+   * [layerNumber] between 1 and 32.
    */
   public fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())

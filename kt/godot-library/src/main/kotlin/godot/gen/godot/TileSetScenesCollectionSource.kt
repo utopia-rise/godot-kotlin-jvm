@@ -22,11 +22,11 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Exposes a set of scenes as tiles for a [godot.TileSet] resource.
- *
- * When placed on a [godot.TileMap], tiles from [godot.TileSetScenesCollectionSource] will automatically instantiate an associated scene at the cell's position in the TileMap.
- *
- * Scenes are instantiated as children of the [godot.TileMap] when it enters the tree. If you add/remove a scene tile in the [godot.TileMap] that is already inside the tree, the [godot.TileMap] will automatically instantiate/free the scene accordingly.
+ * When placed on a [TileMap], tiles from [TileSetScenesCollectionSource] will automatically
+ * instantiate an associated scene at the cell's position in the TileMap.
+ * Scenes are instantiated as children of the [TileMap] when it enters the tree. If you add/remove a
+ * scene tile in the [TileMap] that is already inside the tree, the [TileMap] will automatically
+ * instantiate/free the scene accordingly.
  */
 @GodotBaseType
 public open class TileSetScenesCollectionSource : TileSetSource() {
@@ -64,7 +64,6 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
 
   /**
    * Creates a scene-based tile out of the given scene.
-   *
    * Returns a newly generated unique ID.
    */
   @JvmOverloads
@@ -75,7 +74,8 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   }
 
   /**
-   * Changes a scene tile's ID from [id] to [newId]. This will fail if there is already a tile with an ID equal to [newId].
+   * Changes a scene tile's ID from [id] to [newId]. This will fail if there is already a tile with
+   * an ID equal to [newId].
    */
   public fun setSceneTileId(id: Int, newId: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), LONG to newId.toLong())
@@ -83,7 +83,8 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   }
 
   /**
-   * Assigns a [godot.PackedScene] resource to the scene tile with [id]. This will fail if the scene does not extend CanvasItem, as positioning properties are needed to place the scene on the TileMap.
+   * Assigns a [PackedScene] resource to the scene tile with [id]. This will fail if the scene does
+   * not extend CanvasItem, as positioning properties are needed to place the scene on the TileMap.
    */
   public fun setSceneTileScene(id: Int, packedScene: PackedScene): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), OBJECT to packedScene)
@@ -91,7 +92,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   }
 
   /**
-   * Returns the [godot.PackedScene] resource of scene tile with [id].
+   * Returns the [PackedScene] resource of scene tile with [id].
    */
   public fun getSceneTileScene(id: Int): PackedScene? {
     TransferContext.writeArguments(LONG to id.toLong())
@@ -100,7 +101,8 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   }
 
   /**
-   * Sets whether or not the scene tile with [id] should display a placeholder in the editor. This might be useful for scenes that are not visible.
+   * Sets whether or not the scene tile with [id] should display a placeholder in the editor. This
+   * might be useful for scenes that are not visible.
    */
   public fun setSceneTileDisplayPlaceholder(id: Int, displayPlaceholder: Boolean): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), BOOL to displayPlaceholder)

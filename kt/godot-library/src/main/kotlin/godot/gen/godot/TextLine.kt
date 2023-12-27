@@ -42,9 +42,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Holds a line of text.
- *
- * Abstraction over [godot.TextServer] for handling a single line of text.
+ * Abstraction over [TextServer] for handling a single line of text.
  */
 @GodotBaseType
 public open class TextLine : RefCounted() {
@@ -133,7 +131,7 @@ public open class TextLine : RefCounted() {
     }
 
   /**
-   * Line alignment rules. For more info see [godot.TextServer].
+   * Line alignment rules. For more info see [TextServer].
    */
   public var flags: TextServer.JustificationFlag
     get() {
@@ -147,7 +145,8 @@ public open class TextLine : RefCounted() {
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds the text line's set width. See [enum TextServer.OverrunBehavior] for a description of all modes.
+   * Sets the clipping behavior when the text exceeds the text line's set width. See
+   * [TextServer.OverrunBehavior] for a description of all modes.
    */
   public var textOverrunBehavior: TextServer.OverrunBehavior
     get() {
@@ -175,8 +174,8 @@ public open class TextLine : RefCounted() {
 
   /**
    * Overrides BiDi for the structured text.
-   *
-   * Override ranges should cover full source text without overlaps. BiDi algorithm will be used on each range separately.
+   * Override ranges should cover full source text without overlaps. BiDi algorithm will be used on
+   * each range separately.
    */
   public fun setBidiOverride(`override`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(ARRAY to override)
@@ -200,7 +199,8 @@ public open class TextLine : RefCounted() {
   }
 
   /**
-   * Adds inline object to the text buffer, [key] must be unique. In the text, object is represented as [length] object replacement characters.
+   * Adds inline object to the text buffer, [key] must be unique. In the text, object is represented
+   * as [length] object replacement characters.
    */
   @JvmOverloads
   public fun addObject(
@@ -275,7 +275,8 @@ public open class TextLine : RefCounted() {
   }
 
   /**
-   * Returns the text ascent (number of pixels above the baseline for horizontal layout or to the left of baseline for vertical).
+   * Returns the text ascent (number of pixels above the baseline for horizontal layout or to the
+   * left of baseline for vertical).
    */
   public fun getLineAscent(): Float {
     TransferContext.writeArguments()
@@ -284,7 +285,8 @@ public open class TextLine : RefCounted() {
   }
 
   /**
-   * Returns the text descent (number of pixels below the baseline for horizontal layout or to the right of baseline for vertical).
+   * Returns the text descent (number of pixels below the baseline for horizontal layout or to the
+   * right of baseline for vertical).
    */
   public fun getLineDescent(): Float {
     TransferContext.writeArguments()
@@ -320,7 +322,8 @@ public open class TextLine : RefCounted() {
   }
 
   /**
-   * Draw text into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
+   * Draw text into a canvas item at a given position, with [color]. [pos] specifies the top left
+   * corner of the bounding box.
    */
   @JvmOverloads
   public fun draw(
@@ -333,7 +336,8 @@ public open class TextLine : RefCounted() {
   }
 
   /**
-   * Draw text into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
+   * Draw text into a canvas item at a given position, with [color]. [pos] specifies the top left
+   * corner of the bounding box.
    */
   @JvmOverloads
   public fun drawOutline(
@@ -347,7 +351,8 @@ public open class TextLine : RefCounted() {
   }
 
   /**
-   * Returns caret character offset at the specified pixel offset at the baseline. This function always returns a valid position.
+   * Returns caret character offset at the specified pixel offset at the baseline. This function
+   * always returns a valid position.
    */
   public fun hitTest(coords: Float): Int {
     TransferContext.writeArguments(DOUBLE to coords.toDouble())

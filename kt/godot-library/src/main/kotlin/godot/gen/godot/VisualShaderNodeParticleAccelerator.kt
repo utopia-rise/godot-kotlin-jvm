@@ -18,9 +18,8 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A visual shader node that accelerates particles.
- *
- * Particle accelerator can be used in "process" step of particle shader. It will accelerate the particles. Connect it to the Velocity output port.
+ * Particle accelerator can be used in "process" step of particle shader. It will accelerate the
+ * particles. Connect it to the Velocity output port.
  */
 @GodotBaseType
 public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
@@ -55,11 +54,12 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
      */
     MODE_RADIAL(1),
     /**
-     * The particles will be accelerated tangentially to the radius vector from center to their position.
+     * The particles will be accelerated tangentially to the radius vector from center to their
+     * position.
      */
     MODE_TANGENTIAL(2),
     /**
-     * Represents the size of the [enum Mode] enum.
+     * Represents the size of the [Mode] enum.
      */
     MODE_MAX(3),
     ;

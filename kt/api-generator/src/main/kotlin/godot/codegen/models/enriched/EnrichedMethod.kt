@@ -5,13 +5,14 @@ import godot.codegen.extensions.isObjectSubClass
 import godot.codegen.models.Argument
 import godot.codegen.models.Method
 import godot.codegen.traits.CallableTrait
+import godot.codegen.traits.IDocumented
 import godot.codegen.workarounds.sanitizeApiType
 import godot.tools.common.constants.Constraints
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.extensions.convertToCamelCase
 import java.util.*
 
-class EnrichedMethod(val internal: Method, engineClassIndexName: String) : CallableTrait {
+class EnrichedMethod(val internal: Method, engineClassIndexName: String) : CallableTrait, IDocumented {
     override val arguments = internal.arguments?.toEnriched() ?: listOf()
     override val isVararg = internal.isVararg
     val name: String
@@ -35,6 +36,7 @@ class EnrichedMethod(val internal: Method, engineClassIndexName: String) : Calla
     override val type = internal.returnValue?.type?.sanitizeApiType()
     override val meta: String? = internal.returnValue?.meta
     override val nullable = isObjectSubClass() || type == GodotTypes.variant
+    override val description = internal.description
 }
 
 fun List<Method>.toEnriched(engineClassIndexName: String) = map { EnrichedMethod(it, engineClassIndexName) }

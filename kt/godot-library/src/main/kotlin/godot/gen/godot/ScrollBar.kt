@@ -21,9 +21,8 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Abstract base class for scrollbars.
- *
- * Abstract base class for scrollbars, typically used to navigate through content that extends beyond the visible area of a control. Scrollbars are [godot.Range]-based controls.
+ * Abstract base class for scrollbars, typically used to navigate through content that extends
+ * beyond the visible area of a control. Scrollbars are [Range]-based controls.
  */
 @GodotBaseType
 public open class ScrollBar internal constructor() : Range() {
@@ -33,7 +32,8 @@ public open class ScrollBar internal constructor() : Range() {
   public val scrolling: Signal0 by signal()
 
   /**
-   * Overrides the step used when clicking increment and decrement buttons or when using arrow keys when the [godot.ScrollBar] is focused.
+   * Overrides the step used when clicking increment and decrement buttons or when using arrow keys
+   * when the [ScrollBar] is focused.
    */
   public var customStep: Float
     get() {

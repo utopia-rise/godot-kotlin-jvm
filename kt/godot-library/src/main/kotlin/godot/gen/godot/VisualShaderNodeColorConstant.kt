@@ -21,16 +21,13 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A [godot.core.Color] constant to be used within the visual shader graph.
- *
- * Has two output ports representing RGB and alpha channels of [godot.core.Color].
- *
+ * Has two output ports representing RGB and alpha channels of [Color].
  * Translated to `vec3 rgb` and `float alpha` in the shader language.
  */
 @GodotBaseType
 public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
   /**
-   * A [godot.core.Color] constant which represents a state of this node.
+   * A [Color] constant which represents a state of this node.
    */
   @CoreTypeLocalCopy
   public var constant: Color
@@ -50,7 +47,7 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
   }
 
   /**
-   * A [godot.core.Color] constant which represents a state of this node.
+   * A [Color] constant which represents a state of this node.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

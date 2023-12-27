@@ -29,9 +29,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Provides parameters for [godot.PhysicsDirectSpaceState3D.intersectRay].
- *
- * By changing various properties of this object, such as the ray position, you can configure the parameters for [godot.PhysicsDirectSpaceState3D.intersectRay].
+ * By changing various properties of this object, such as the ray position, you can configure the
+ * parameters for [PhysicsDirectSpaceState3D.intersectRay].
  */
 @GodotBaseType
 public open class PhysicsRayQueryParameters3D : RefCounted() {
@@ -66,7 +65,10 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     }
 
   /**
-   * The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The physics layers the query will detect (as a bitmask). By default, all collision layers are
+   * detected. See
+   * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
+   * layers and masks[/url] in the documentation for more information.
    */
   public var collisionMask: Long
     get() {
@@ -80,7 +82,8 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     }
 
   /**
-   * The list of object [RID]s that will be excluded from collisions. Use [godot.CollisionObject3D.getRid] to get the [RID] associated with a [godot.CollisionObject3D]-derived node.
+   * The list of object [RID]s that will be excluded from collisions. Use [CollisionObject3D.getRid]
+   * to get the [RID] associated with a [CollisionObject3D]-derived node.
    */
   public var exclude: VariantArray<RID>
     get() {
@@ -94,7 +97,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     }
 
   /**
-   * If `true`, the query will take [godot.PhysicsBody3D]s into account.
+   * If `true`, the query will take [PhysicsBody3D]s into account.
    */
   public var collideWithBodies: Boolean
     get() {
@@ -108,7 +111,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     }
 
   /**
-   * If `true`, the query will take [godot.Area3D]s into account.
+   * If `true`, the query will take [Area3D]s into account.
    */
   public var collideWithAreas: Boolean
     get() {
@@ -122,7 +125,8 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     }
 
   /**
-   * If `true`, the query will detect a hit when starting inside shapes. In this case the collision normal will be `Vector3(0, 0, 0)`. Does not affect concave polygon shapes or heightmap shapes.
+   * If `true`, the query will detect a hit when starting inside shapes. In this case the collision
+   * normal will be `Vector3(0, 0, 0)`. Does not affect concave polygon shapes or heightmap shapes.
    */
   public var hitFromInside: Boolean
     get() {
@@ -136,7 +140,8 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     }
 
   /**
-   * If `true`, the query will hit back faces with concave polygon shapes with back face enabled or heightmap shapes.
+   * If `true`, the query will hit back faces with concave polygon shapes with back face enabled or
+   * heightmap shapes.
    */
   public var hitBackFaces: Boolean
     get() {
@@ -204,12 +209,12 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
 
   public companion object {
     /**
-     * Returns a new, pre-configured [godot.PhysicsRayQueryParameters3D] object. Use it to quickly create query parameters using the most common options.
-     *
-     * ```
-     * 				var query = PhysicsRayQueryParameters3D.create(position, position + Vector3(0, -10, 0))
-     * 				var collision = get_world_3d().direct_space_state.intersect_ray(query)
-     * 				```
+     * Returns a new, pre-configured [PhysicsRayQueryParameters3D] object. Use it to quickly create
+     * query parameters using the most common options.
+     * [codeblock]
+     * var query = PhysicsRayQueryParameters3D.create(position, position + Vector3(0, -10, 0))
+     * var collision = get_world_3d().direct_space_state.intersect_ray(query)
+     * [/codeblock]
      */
     @JvmOverloads
     public fun create(

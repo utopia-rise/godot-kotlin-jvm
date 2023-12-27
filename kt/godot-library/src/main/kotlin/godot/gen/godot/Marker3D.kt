@@ -19,9 +19,8 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Generic 3D position hint for editing.
- *
- * Generic 3D position hint for editing. It's just like a plain [godot.Node3D], but it displays as a cross in the 3D editor at all times.
+ * Generic 3D position hint for editing. It's just like a plain [Node3D], but it displays as a cross
+ * in the 3D editor at all times.
  */
 @GodotBaseType
 public open class Marker3D : Node3D() {

@@ -24,23 +24,21 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Server keeping track of different cameras accessible in Godot.
- *
- * The [godot.CameraServer] keeps track of different cameras accessible in Godot. These are external cameras such as webcams or the cameras on your phone.
- *
+ * The [CameraServer] keeps track of different cameras accessible in Godot. These are external
+ * cameras such as webcams or the cameras on your phone.
  * It is notably used to provide AR modules with a video feed from the camera.
- *
- * **Note:** This class is currently only implemented on macOS and iOS. On other platforms, no [godot.CameraFeed]s will be available.
+ * **Note:** This class is currently only implemented on macOS and iOS. On other platforms, no
+ * [CameraFeed]s will be available.
  */
 @GodotBaseType
 public object CameraServer : Object() {
   /**
-   * Emitted when a [godot.CameraFeed] is added (e.g. a webcam is plugged in).
+   * Emitted when a [CameraFeed] is added (e.g. a webcam is plugged in).
    */
   public val cameraFeedAdded: Signal1<Long> by signal("id")
 
   /**
-   * Emitted when a [godot.CameraFeed] is removed (e.g. a webcam is unplugged).
+   * Emitted when a [CameraFeed] is removed (e.g. a webcam is unplugged).
    */
   public val cameraFeedRemoved: Signal1<Long> by signal("id")
 
@@ -50,7 +48,7 @@ public object CameraServer : Object() {
   }
 
   /**
-   * Returns the [godot.CameraFeed] corresponding to the camera with the given [index].
+   * Returns the [CameraFeed] corresponding to the camera with the given [index].
    */
   public fun getFeed(index: Int): CameraFeed? {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -59,7 +57,7 @@ public object CameraServer : Object() {
   }
 
   /**
-   * Returns the number of [godot.CameraFeed]s registered.
+   * Returns the number of [CameraFeed]s registered.
    */
   public fun getFeedCount(): Int {
     TransferContext.writeArguments()
@@ -68,7 +66,7 @@ public object CameraServer : Object() {
   }
 
   /**
-   * Returns an array of [godot.CameraFeed]s.
+   * Returns an array of [CameraFeed]s.
    */
   public fun feeds(): VariantArray<CameraFeed> {
     TransferContext.writeArguments()
@@ -100,7 +98,7 @@ public object CameraServer : Object() {
      */
     FEED_RGBA_IMAGE(0),
     /**
-     * The [godot.YCbCr](https://en.wikipedia.org/wiki/YCbCr) camera image.
+     * The [url=https://en.wikipedia.org/wiki/YCbCr]YCbCr[/url] camera image.
      */
     FEED_YCBCR_IMAGE(0),
     /**

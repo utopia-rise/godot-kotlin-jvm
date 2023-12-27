@@ -23,14 +23,13 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A horizontal menu bar that creates a [godot.MenuButton] for each [godot.PopupMenu] child.
- *
- * A horizontal menu bar that creates a [godot.MenuButton] for each [godot.PopupMenu] child. New items are created by adding [godot.PopupMenu]s to this node.
+ * A horizontal menu bar that creates a [MenuButton] for each [PopupMenu] child. New items are
+ * created by adding [PopupMenu]s to this node.
  */
 @GodotBaseType
 public open class MenuBar : Control() {
   /**
-   * Flat [godot.MenuBar] don't display item decoration.
+   * Flat [MenuBar] don't display item decoration.
    */
   public var flat: Boolean
     get() {
@@ -44,7 +43,7 @@ public open class MenuBar : Control() {
     }
 
   /**
-   * Position in the global menu to insert first [godot.MenuBar] item at.
+   * Position in the global menu to insert first [MenuBar] item at.
    */
   public var startIndex: Int
     get() {
@@ -58,7 +57,8 @@ public open class MenuBar : Control() {
     }
 
   /**
-   * If `true`, when the cursor hovers above menu item, it will close the current [godot.PopupMenu] and open the other one.
+   * If `true`, when the cursor hovers above menu item, it will close the current [PopupMenu] and
+   * open the other one.
    */
   public var switchOnHover: Boolean
     get() {
@@ -72,7 +72,7 @@ public open class MenuBar : Control() {
     }
 
   /**
-   * If `true`, [godot.MenuBar] will use system global menu when supported.
+   * If `true`, [MenuBar] will use system global menu when supported.
    */
   public var preferGlobalMenu: Boolean
     get() {
@@ -100,7 +100,8 @@ public open class MenuBar : Control() {
     }
 
   /**
-   * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
+   * Language code used for line-breaking and text shaping algorithms, if left empty current locale
+   * is used instead.
    */
   public var language: String
     get() {
@@ -127,7 +128,7 @@ public open class MenuBar : Control() {
   }
 
   /**
-   * Returns `true`, if system global menu is supported and used by this [godot.MenuBar].
+   * Returns `true`, if system global menu is supported and used by this [MenuBar].
    */
   public fun isNativeMenu(): Boolean {
     TransferContext.writeArguments()
@@ -213,7 +214,7 @@ public open class MenuBar : Control() {
   }
 
   /**
-   * Returns [godot.PopupMenu] associated with menu item.
+   * Returns [PopupMenu] associated with menu item.
    */
   public fun getMenuPopup(menu: Int): PopupMenu? {
     TransferContext.writeArguments(LONG to menu.toLong())

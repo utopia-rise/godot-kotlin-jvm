@@ -22,16 +22,17 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A node that provides a thickened polygon shape (a prism) to a [godot.CollisionObject3D] parent.
- *
- * A node that provides a thickened polygon shape (a prism) to a [godot.CollisionObject3D] parent and allows to edit it. The polygon can be concave or convex. This can give a detection shape to an [godot.Area3D] or turn [godot.PhysicsBody3D] into a solid object.
- *
- * **Warning:** A non-uniformly scaled [godot.CollisionShape3D] will likely not behave as expected. Make sure to keep its scale the same on all axes and adjust its shape resource instead.
+ * A node that provides a thickened polygon shape (a prism) to a [CollisionObject3D] parent and
+ * allows to edit it. The polygon can be concave or convex. This can give a detection shape to an
+ * [Area3D] or turn [PhysicsBody3D] into a solid object.
+ * **Warning:** A non-uniformly scaled [CollisionShape3D] will likely not behave as expected. Make
+ * sure to keep its scale the same on all axes and adjust its shape resource instead.
  */
 @GodotBaseType
 public open class CollisionPolygon3D : Node3D() {
   /**
-   * Length that the resulting collision extends in either direction perpendicular to its 2D polygon.
+   * Length that the resulting collision extends in either direction perpendicular to its 2D
+   * polygon.
    */
   public var depth: Float
     get() {
@@ -60,8 +61,9 @@ public open class CollisionPolygon3D : Node3D() {
 
   /**
    * Array of vertices which define the 2D polygon in the local XY plane.
-   *
-   * **Note:** The returned value is a copy of the original. Methods which mutate the size or properties of the return value will not impact the original polygon. To change properties of the polygon, assign it to a temporary variable and make changes before reassigning the class property.
+   * **Note:** The returned value is a copy of the original. Methods which mutate the size or
+   * properties of the return value will not impact the original polygon. To change properties of the
+   * polygon, assign it to a temporary variable and make changes before reassigning the class property.
    */
   public var polygon: PackedVector2Array
     get() {
@@ -75,7 +77,7 @@ public open class CollisionPolygon3D : Node3D() {
     }
 
   /**
-   * The collision margin for the generated [godot.Shape3D]. See [godot.Shape3D.margin] for more details.
+   * The collision margin for the generated [Shape3D]. See [Shape3D.margin] for more details.
    */
   public var margin: Float
     get() {

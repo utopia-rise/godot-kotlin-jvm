@@ -18,8 +18,6 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A base type for the nodes that perform vector operations within the visual shader graph.
- *
  * This is an abstract class. See the derived types for descriptions of the possible operations.
  */
 @GodotBaseType
@@ -59,7 +57,7 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
      */
     OP_TYPE_VECTOR_4D(2),
     /**
-     * Represents the size of the [enum OpType] enum.
+     * Represents the size of the [OpType] enum.
      */
     OP_TYPE_MAX(3),
     ;

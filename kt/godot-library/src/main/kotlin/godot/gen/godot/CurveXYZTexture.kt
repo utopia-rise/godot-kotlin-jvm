@@ -19,16 +19,18 @@ import kotlin.Suppress
 import kotlin.jvm.JvmName
 
 /**
- * A 1D texture where the red, green, and blue color channels correspond to points on 3 curves.
- *
- * A 1D texture where the red, green, and blue color channels correspond to points on 3 [godot.Curve] resources. Compared to using separate [godot.CurveTexture]s, this further simplifies the task of saving curves as image files.
- *
- * If you only need to store one curve within a single texture, use [godot.CurveTexture] instead. See also [godot.GradientTexture1D] and [godot.GradientTexture2D].
+ * A 1D texture where the red, green, and blue color channels correspond to points on 3 [Curve]
+ * resources. Compared to using separate [CurveTexture]s, this further simplifies the task of saving
+ * curves as image files.
+ * If you only need to store one curve within a single texture, use [CurveTexture] instead. See also
+ * [GradientTexture1D] and [GradientTexture2D].
  */
 @GodotBaseType
 public open class CurveXYZTexture : Texture2D() {
   /**
-   * The width of the texture (in pixels). Higher values make it possible to represent high-frequency data better (such as sudden direction changes), at the cost of increased generation time and memory usage.
+   * The width of the texture (in pixels). Higher values make it possible to represent
+   * high-frequency data better (such as sudden direction changes), at the cost of increased generation
+   * time and memory usage.
    */
   public var width: Int
     @JvmName("getWidth_prop")
@@ -40,7 +42,7 @@ public open class CurveXYZTexture : Texture2D() {
     }
 
   /**
-   * The [godot.Curve] that is rendered onto the texture's red channel.
+   * The [Curve] that is rendered onto the texture's red channel.
    */
   public var curveX: Curve?
     get() {
@@ -54,7 +56,7 @@ public open class CurveXYZTexture : Texture2D() {
     }
 
   /**
-   * The [godot.Curve] that is rendered onto the texture's green channel.
+   * The [Curve] that is rendered onto the texture's green channel.
    */
   public var curveY: Curve?
     get() {
@@ -68,7 +70,7 @@ public open class CurveXYZTexture : Texture2D() {
     }
 
   /**
-   * The [godot.Curve] that is rendered onto the texture's blue channel.
+   * The [Curve] that is rendered onto the texture's blue channel.
    */
   public var curveZ: Curve?
     get() {

@@ -21,21 +21,18 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Audio effect used for recording the sound from an audio bus.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/527](https://godotengine.org/asset-library/asset/527)
- *
- * Allows the user to record the sound from an audio bus. This can include all audio output by Godot when used on the "Master" audio bus.
- *
- * Can be used (with an [godot.AudioStreamMicrophone]) to record from a microphone.
- *
- * It sets and gets the format in which the audio file will be recorded (8-bit, 16-bit, or compressed). It checks whether or not the recording is active, and if it is, records the sound. It then returns the recorded sample.
+ * Allows the user to record the sound from an audio bus. This can include all audio output by Godot
+ * when used on the "Master" audio bus.
+ * Can be used (with an [AudioStreamMicrophone]) to record from a microphone.
+ * It sets and gets the format in which the audio file will be recorded (8-bit, 16-bit, or
+ * compressed). It checks whether or not the recording is active, and if it is, records the sound. It
+ * then returns the recorded sample.
  */
 @GodotBaseType
 public open class AudioEffectRecord : AudioEffect() {
   /**
-   * Specifies the format in which the sample will be recorded. See [enum AudioStreamWAV.Format] for available formats.
+   * Specifies the format in which the sample will be recorded. See [AudioStreamWAV.Format] for
+   * available formats.
    */
   public var format: AudioStreamWAV.Format
     get() {
@@ -54,7 +51,8 @@ public open class AudioEffectRecord : AudioEffect() {
   }
 
   /**
-   * If `true`, the sound will be recorded. Note that restarting the recording will remove the previously recorded sample.
+   * If `true`, the sound will be recorded. Note that restarting the recording will remove the
+   * previously recorded sample.
    */
   public fun setRecordingActive(record: Boolean): Unit {
     TransferContext.writeArguments(BOOL to record)

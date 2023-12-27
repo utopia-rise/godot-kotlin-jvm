@@ -20,21 +20,17 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Texture-based button. Supports Pressed, Hover, Disabled and Focused states.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
- *
- * [godot.TextureButton] has the same functionality as [godot.Button], except it uses sprites instead of Godot's [godot.Theme] resource. It is faster to create, but it doesn't support localization like more complex [godot.Control]s.
- *
+ * [TextureButton] has the same functionality as [Button], except it uses sprites instead of Godot's
+ * [Theme] resource. It is faster to create, but it doesn't support localization like more complex
+ * [Control]s.
  * The "normal" state must contain a texture ([textureNormal]); other textures are optional.
- *
- * See also [godot.BaseButton] which contains common properties and methods associated with this node.
+ * See also [BaseButton] which contains common properties and methods associated with this node.
  */
 @GodotBaseType
 public open class TextureButton : BaseButton() {
   /**
-   * Texture to display by default, when the node is **not** in the disabled, hover or pressed state. This texture is still displayed in the focused state, with [textureFocused] drawn on top.
+   * Texture to display by default, when the node is **not** in the disabled, hover or pressed
+   * state. This texture is still displayed in the focused state, with [textureFocused] drawn on top.
    */
   public var textureNormal: Texture2D?
     get() {
@@ -48,7 +44,8 @@ public open class TextureButton : BaseButton() {
     }
 
   /**
-   * Texture to display on mouse down over the node, if the node has keyboard focus and the player presses the Enter key or if the player presses the [godot.BaseButton.shortcut] key.
+   * Texture to display on mouse down over the node, if the node has keyboard focus and the player
+   * presses the Enter key or if the player presses the [BaseButton.shortcut] key.
    */
   public var texturePressed: Texture2D?
     get() {
@@ -76,7 +73,7 @@ public open class TextureButton : BaseButton() {
     }
 
   /**
-   * Texture to display when the node is disabled. See [godot.BaseButton.disabled].
+   * Texture to display when the node is disabled. See [BaseButton.disabled].
    */
   public var textureDisabled: Texture2D?
     get() {
@@ -90,7 +87,12 @@ public open class TextureButton : BaseButton() {
     }
 
   /**
-   * Texture to display when the node has mouse or keyboard focus. [textureFocused] is displayed *over* the base texture, so a partially transparent texture should be used to ensure the base texture remains visible. A texture that represents an outline or an underline works well for this purpose. To disable the focus visual effect, assign a fully transparent texture of any size. Note that disabling the focus visual effect will harm keyboard/controller navigation usability, so this is not recommended for accessibility reasons.
+   * Texture to display when the node has mouse or keyboard focus. [textureFocused] is displayed
+   * *over* the base texture, so a partially transparent texture should be used to ensure the base
+   * texture remains visible. A texture that represents an outline or an underline works well for this
+   * purpose. To disable the focus visual effect, assign a fully transparent texture of any size. Note
+   * that disabling the focus visual effect will harm keyboard/controller navigation usability, so this
+   * is not recommended for accessibility reasons.
    */
   public var textureFocused: Texture2D?
     get() {
@@ -104,7 +106,8 @@ public open class TextureButton : BaseButton() {
     }
 
   /**
-   * Pure black and white [godot.BitMap] image to use for click detection. On the mask, white pixels represent the button's clickable area. Use it to create buttons with curved shapes.
+   * Pure black and white [BitMap] image to use for click detection. On the mask, white pixels
+   * represent the button's clickable area. Use it to create buttons with curved shapes.
    */
   public var textureClickMask: BitMap?
     get() {
@@ -118,7 +121,8 @@ public open class TextureButton : BaseButton() {
     }
 
   /**
-   * If `true`, the size of the texture won't be considered for minimum size calculation, so the [godot.TextureButton] can be shrunk down past the texture size.
+   * If `true`, the size of the texture won't be considered for minimum size calculation, so the
+   * [TextureButton] can be shrunk down past the texture size.
    */
   public var ignoreTextureSize: Boolean
     get() {
@@ -132,7 +136,8 @@ public open class TextureButton : BaseButton() {
     }
 
   /**
-   * Controls the texture's behavior when you resize the node's bounding rectangle. See the [enum StretchMode] constants for available options.
+   * Controls the texture's behavior when you resize the node's bounding rectangle. See the
+   * [StretchMode] constants for available options.
    */
   public var stretchMode: StretchMode
     get() {
@@ -198,15 +203,18 @@ public open class TextureButton : BaseButton() {
      */
     STRETCH_KEEP_CENTERED(3),
     /**
-     * Scale the texture to fit the node's bounding rectangle, but maintain the texture's aspect ratio.
+     * Scale the texture to fit the node's bounding rectangle, but maintain the texture's aspect
+     * ratio.
      */
     STRETCH_KEEP_ASPECT(4),
     /**
-     * Scale the texture to fit the node's bounding rectangle, center it, and maintain its aspect ratio.
+     * Scale the texture to fit the node's bounding rectangle, center it, and maintain its aspect
+     * ratio.
      */
     STRETCH_KEEP_ASPECT_CENTERED(5),
     /**
-     * Scale the texture so that the shorter side fits the bounding rectangle. The other side clips to the node's limits.
+     * Scale the texture so that the shorter side fits the bounding rectangle. The other side clips
+     * to the node's limits.
      */
     STRETCH_KEEP_ASPECT_COVERED(6),
     ;

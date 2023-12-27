@@ -12,9 +12,8 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A visual shader node that makes particles emitted in a box shape.
- *
- * [godot.VisualShaderNodeParticleEmitter] that makes the particles emitted in box shape with the specified extents.
+ * [VisualShaderNodeParticleEmitter] that makes the particles emitted in box shape with the
+ * specified extents.
  */
 @GodotBaseType
 public open class VisualShaderNodeParticleBoxEmitter : VisualShaderNodeParticleEmitter() {

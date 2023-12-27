@@ -21,9 +21,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Class representing a capsule-shaped [godot.PrimitiveMesh].
- *
- * Class representing a capsule-shaped [godot.PrimitiveMesh].
+ * Class representing a capsule-shaped [PrimitiveMesh].
  */
 @GodotBaseType
 public open class CapsuleMesh : PrimitiveMesh() {

@@ -27,12 +27,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A language translation that maps a collection of strings to their individual translations.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/i18n/locales.html]($DOCS_URL/tutorials/i18n/locales.html)
- *
- * [godot.Translation]s are resources that can be loaded and unloaded on demand. They map a collection of strings to their individual translations, and they also provide convenience methods for pluralization.
+ * [Translation]s are resources that can be loaded and unloaded on demand. They map a collection of
+ * strings to their individual translations, and they also provide convenience methods for
+ * pluralization.
  */
 @GodotBaseType
 public open class Translation : Resource() {
@@ -76,8 +73,8 @@ public open class Translation : Resource() {
 
   /**
    * Adds a message if nonexistent, followed by its translation.
-   *
-   * An additional context could be used to specify the translation context or differentiate polysemic words.
+   * An additional context could be used to specify the translation context or differentiate
+   * polysemic words.
    */
   @JvmOverloads
   public fun addMessage(
@@ -91,8 +88,8 @@ public open class Translation : Resource() {
 
   /**
    * Adds a message involving plural translation if nonexistent, followed by its translation.
-   *
-   * An additional context could be used to specify the translation context or differentiate polysemic words.
+   * An additional context could be used to specify the translation context or differentiate
+   * polysemic words.
    */
   @JvmOverloads
   public fun addPluralMessage(
@@ -116,8 +113,8 @@ public open class Translation : Resource() {
 
   /**
    * Returns a message's translation involving plurals.
-   *
-   * The number [n] is the number or quantity of the plural object. It will be used to guide the translation system to fetch the correct plural form for the selected language.
+   * The number [n] is the number or quantity of the plural object. It will be used to guide the
+   * translation system to fetch the correct plural form for the selected language.
    */
   @JvmOverloads
   public fun getPluralMessage(

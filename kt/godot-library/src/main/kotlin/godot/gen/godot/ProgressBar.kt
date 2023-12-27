@@ -19,14 +19,13 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A control used for visual representation of a percentage.
- *
- * A control used for visual representation of a percentage. Shows fill percentage from right to left.
+ * A control used for visual representation of a percentage. Shows fill percentage from right to
+ * left.
  */
 @GodotBaseType
 public open class ProgressBar : Range() {
   /**
-   * The fill direction. See [enum FillMode] for possible values.
+   * The fill direction. See [FillMode] for possible values.
    */
   public var fillMode: Int
     get() {
@@ -62,11 +61,15 @@ public open class ProgressBar : Range() {
     id: Long,
   ) {
     /**
-     * The progress bar fills from begin to end horizontally, according to the language direction. If [godot.Control.isLayoutRtl] returns `false`, it fills from left to right, and if it returns `true`, it fills from right to left.
+     * The progress bar fills from begin to end horizontally, according to the language direction.
+     * If [Control.isLayoutRtl] returns `false`, it fills from left to right, and if it returns `true`,
+     * it fills from right to left.
      */
     FILL_BEGIN_TO_END(0),
     /**
-     * The progress bar fills from end to begin horizontally, according to the language direction. If [godot.Control.isLayoutRtl] returns `false`, it fills from right to left, and if it returns `true`, it fills from left to right.
+     * The progress bar fills from end to begin horizontally, according to the language direction.
+     * If [Control.isLayoutRtl] returns `false`, it fills from right to left, and if it returns `true`,
+     * it fills from left to right.
      */
     FILL_END_TO_BEGIN(1),
     /**

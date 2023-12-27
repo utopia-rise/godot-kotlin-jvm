@@ -23,8 +23,18 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * This object stores suggested bindings for an interaction profile. Interaction profiles define the
+ * metadata for a tracked XR device such as an XR controller.
+ * For more information see the
+ * [url=https://www.khronos.org/registry/OpenXR/specs/1.0/html/xrspec.html#semantic-path-interaction-profiles]interaction
+ * profiles info in the OpenXR specification[/url].
+ */
 @GodotBaseType
 public open class OpenXRInteractionProfile : Resource() {
+  /**
+   * The interaction profile path identifying the XR device.
+   */
   public var interactionProfilePath: String
     get() {
       TransferContext.writeArguments()
@@ -36,6 +46,9 @@ public open class OpenXRInteractionProfile : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setInteractionProfilePathPtr, NIL)
     }
 
+  /**
+   * Action bindings for this interaction profile.
+   */
   public var bindings: VariantArray<Any?>?
     get() {
       TransferContext.writeArguments()
@@ -52,12 +65,18 @@ public open class OpenXRInteractionProfile : Resource() {
     return true
   }
 
+  /**
+   * Get the number of bindings in this interaction profile.
+   */
   public fun getBindingCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBindingCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  /**
+   * Retrieve the binding at this index.
+   */
   public fun getBinding(index: Int): OpenXRIPBinding? {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBindingPtr, OBJECT)

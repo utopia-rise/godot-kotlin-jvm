@@ -26,16 +26,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A button that brings up a [godot.ColorPicker] when pressed.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/517](https://godotengine.org/asset-library/asset/517)
- *
- * Encapsulates a [godot.ColorPicker], making it accessible by pressing a button. Pressing the button will toggle the [godot.ColorPicker]'s visibility.
- *
- * See also [godot.BaseButton] which contains common properties and methods associated with this node.
- *
- * **Note:** By default, the button may not be wide enough for the color preview swatch to be visible. Make sure to set [godot.Control.customMinimumSize] to a big enough value to give the button enough space.
+ * Encapsulates a [ColorPicker], making it accessible by pressing a button. Pressing the button will
+ * toggle the [ColorPicker]'s visibility.
+ * See also [BaseButton] which contains common properties and methods associated with this node.
+ * **Note:** By default, the button may not be wide enough for the color preview swatch to be
+ * visible. Make sure to set [Control.customMinimumSize] to a big enough value to give the button
+ * enough space.
  */
 @GodotBaseType
 public open class ColorPickerButton : Button() {
@@ -45,12 +41,12 @@ public open class ColorPickerButton : Button() {
   public val colorChanged: Signal1<Color> by signal("color")
 
   /**
-   * Emitted when the [godot.ColorPicker] is closed.
+   * Emitted when the [ColorPicker] is closed.
    */
   public val popupClosed: Signal0 by signal()
 
   /**
-   * Emitted when the [godot.ColorPicker] is created (the button is pressed for the first time).
+   * Emitted when the [ColorPicker] is created (the button is pressed for the first time).
    */
   public val pickerCreated: Signal0 by signal()
 
@@ -70,7 +66,7 @@ public open class ColorPickerButton : Button() {
     }
 
   /**
-   * If `true`, the alpha channel in the displayed [godot.ColorPicker] will be visible.
+   * If `true`, the alpha channel in the displayed [ColorPicker] will be visible.
    */
   public var editAlpha: Boolean
     get() {
@@ -113,9 +109,9 @@ public open class ColorPickerButton : Button() {
 
 
   /**
-   * Returns the [godot.ColorPicker] that this node toggles.
-   *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
+   * Returns the [ColorPicker] that this node toggles.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
+   * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public fun getPicker(): ColorPicker? {
     TransferContext.writeArguments()
@@ -124,9 +120,10 @@ public open class ColorPickerButton : Button() {
   }
 
   /**
-   * Returns the control's [godot.PopupPanel] which allows you to connect to popup signals. This allows you to handle events when the ColorPicker is shown or hidden.
-   *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.Window.visible] property.
+   * Returns the control's [PopupPanel] which allows you to connect to popup signals. This allows
+   * you to handle events when the ColorPicker is shown or hidden.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
+   * you wish to hide it or any of its children, use their [Window.visible] property.
    */
   public fun getPopup(): PopupPanel? {
     TransferContext.writeArguments()

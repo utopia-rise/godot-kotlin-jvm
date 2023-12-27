@@ -20,17 +20,16 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Exposes a set of tiles for a [godot.TileSet] resource.
- *
- * Exposes a set of tiles for a [godot.TileSet] resource.
- *
- * Tiles in a source are indexed with two IDs, coordinates ID (of type Vector2i) and an alternative ID (of type int), named according to their use in the [godot.TileSetAtlasSource] class.
- *
- * Depending on the TileSet source type, those IDs might have restrictions on their values, this is why the base [godot.TileSetSource] class only exposes getters for them.
- *
- * You can iterate over all tiles exposed by a TileSetSource by first iterating over coordinates IDs using [getTilesCount] and [getTileId], then over alternative IDs using [getAlternativeTilesCount] and [getAlternativeTileId].
- *
- * **Warning:** [godot.TileSetSource] can only be added to one TileSet at the same time. Calling [godot.TileSet.addSource] on a second [godot.TileSet] will remove the source from the first one.
+ * Exposes a set of tiles for a [TileSet] resource.
+ * Tiles in a source are indexed with two IDs, coordinates ID (of type Vector2i) and an alternative
+ * ID (of type int), named according to their use in the [TileSetAtlasSource] class.
+ * Depending on the TileSet source type, those IDs might have restrictions on their values, this is
+ * why the base [TileSetSource] class only exposes getters for them.
+ * You can iterate over all tiles exposed by a TileSetSource by first iterating over coordinates IDs
+ * using [getTilesCount] and [getTileId], then over alternative IDs using [getAlternativeTilesCount]
+ * and [getAlternativeTileId].
+ * **Warning:** [TileSetSource] can only be added to one TileSet at the same time. Calling
+ * [TileSet.addSource] on a second [TileSet] will remove the source from the first one.
  */
 @GodotBaseType
 public open class TileSetSource internal constructor() : Resource() {
@@ -68,9 +67,8 @@ public open class TileSetSource internal constructor() : Resource() {
 
   /**
    * Returns the number of alternatives tiles for the coordinates ID [atlasCoords].
-   *
-   * For [godot.TileSetAtlasSource], this always return at least 1, as the base tile with ID 0 is always part of the alternatives list.
-   *
+   * For [TileSetAtlasSource], this always return at least 1, as the base tile with ID 0 is always
+   * part of the alternatives list.
    * Returns -1 if there is not tile at the given coords.
    */
   public fun getAlternativeTilesCount(atlasCoords: Vector2i): Int {
@@ -89,7 +87,8 @@ public open class TileSetSource internal constructor() : Resource() {
   }
 
   /**
-   * Returns if the base tile at coordinates [atlasCoords] has an alternative with ID [alternativeTile].
+   * Returns if the base tile at coordinates [atlasCoords] has an alternative with ID
+   * [alternativeTile].
    */
   public fun hasAlternativeTile(atlasCoords: Vector2i, alternativeTile: Int): Boolean {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeTile.toLong())

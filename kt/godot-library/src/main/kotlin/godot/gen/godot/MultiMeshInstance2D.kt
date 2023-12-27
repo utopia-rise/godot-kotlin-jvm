@@ -19,11 +19,8 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Node that instances a [godot.MultiMesh] in 2D.
- *
- * [godot.MultiMeshInstance2D] is a specialized node to instance a [godot.MultiMesh] resource in 2D.
- *
- * Usage is the same as [godot.MultiMeshInstance3D].
+ * [MultiMeshInstance2D] is a specialized node to instance a [MultiMesh] resource in 2D.
+ * Usage is the same as [MultiMeshInstance3D].
  */
 @GodotBaseType
 public open class MultiMeshInstance2D : Node2D() {
@@ -33,7 +30,7 @@ public open class MultiMeshInstance2D : Node2D() {
   public val textureChanged: Signal0 by signal()
 
   /**
-   * The [godot.MultiMesh] that will be drawn by the [godot.MultiMeshInstance2D].
+   * The [MultiMesh] that will be drawn by the [MultiMeshInstance2D].
    */
   public var multimesh: MultiMesh?
     get() {
@@ -47,7 +44,8 @@ public open class MultiMeshInstance2D : Node2D() {
     }
 
   /**
-   * The [godot.Texture2D] that will be used if using the default [godot.CanvasItemMaterial]. Can be accessed as `TEXTURE` in CanvasItem shader.
+   * The [Texture2D] that will be used if using the default [CanvasItemMaterial]. Can be accessed as
+   * `TEXTURE` in CanvasItem shader.
    */
   public var texture: Texture2D?
     get() {

@@ -12,8 +12,6 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Calculates the determinant of a [godot.Transform3D] within the visual shader graph.
- *
  * Translates to `determinant(x)` in the shader language.
  */
 @GodotBaseType

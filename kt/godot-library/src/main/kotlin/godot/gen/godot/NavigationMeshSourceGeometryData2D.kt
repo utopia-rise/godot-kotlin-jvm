@@ -23,8 +23,6 @@ import kotlin.Unit
 
 /**
  * Container for parsed source geometry data used in navigation mesh baking.
- *
- * Container for parsed source geometry data used in navigation mesh baking.
  */
 @GodotBaseType
 public open class NavigationMeshSourceGeometryData2D : Resource() {

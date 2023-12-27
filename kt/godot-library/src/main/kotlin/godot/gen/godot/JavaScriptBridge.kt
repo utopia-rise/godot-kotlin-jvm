@@ -33,19 +33,21 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Singleton that connects the engine with the browser's JavaScript context in Web export.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/export/exporting_for_web.html#calling-javascript-from-script]($DOCS_URL/tutorials/export/exporting_for_web.html#calling-javascript-from-script)
- *
- * The JavaScriptBridge singleton is implemented only in the Web export. It's used to access the browser's JavaScript context. This allows interaction with embedding pages or calling third-party JavaScript APIs.
- *
- * **Note:** This singleton can be disabled at build-time to improve security. By default, the JavaScriptBridge singleton is enabled. Official export templates also have the JavaScriptBridge singleton enabled. See [godot.Compiling for the Web]($DOCS_URL/contributing/development/compiling/compiling_for_web.html) in the documentation for more information.
+ * The JavaScriptBridge singleton is implemented only in the Web export. It's used to access the
+ * browser's JavaScript context. This allows interaction with embedding pages or calling third-party
+ * JavaScript APIs.
+ * **Note:** This singleton can be disabled at build-time to improve security. By default, the
+ * JavaScriptBridge singleton is enabled. Official export templates also have the JavaScriptBridge
+ * singleton enabled. See
+ * [url=$DOCS_URL/contributing/development/compiling/compiling_for_web.html]Compiling for the Web[/url]
+ * in the documentation for more information.
  */
 @GodotBaseType
 public object JavaScriptBridge : Object() {
   /**
-   * Emitted when an update for this progressive web app has been detected but is waiting to be activated because a previous version is active. See [pwaUpdate] to force the update to take place immediately.
+   * Emitted when an update for this progressive web app has been detected but is waiting to be
+   * activated because a previous version is active. See [pwaUpdate] to force the update to take place
+   * immediately.
    */
   public val pwaUpdateAvailable: Signal0 by signal()
 
@@ -55,9 +57,11 @@ public object JavaScriptBridge : Object() {
   }
 
   /**
-   * Execute the string [code] as JavaScript code within the browser window. This is a call to the actual global JavaScript function [code skip-lint]eval()`.
-   *
-   * If [useGlobalExecutionContext] is `true`, the code will be evaluated in the global execution context. Otherwise, it is evaluated in the execution context of a function within the engine's runtime environment.
+   * Execute the string ` as JavaScript code within the browser window. This is a call to the actual
+   * global JavaScript function [code skip-lint]eval()`.
+   * If [useGlobalExecutionContext] is `true`, the code will be evaluated in the global execution
+   * context. Otherwise, it is evaluated in the execution context of a function within the engine's
+   * runtime environment.
    */
   @JvmOverloads
   public fun eval(code: String, useGlobalExecutionContext: Boolean = false): Any? {
@@ -67,7 +71,9 @@ public object JavaScriptBridge : Object() {
   }
 
   /**
-   * Returns an interface to a JavaScript object that can be used by scripts. The [interface] must be a valid property of the JavaScript `window`. The callback must accept a single [godot.Array] argument, which will contain the JavaScript `arguments`. See [godot.JavaScriptObject] for usage.
+   * Returns an interface to a JavaScript object that can be used by scripts. The [interface] must
+   * be a valid property of the JavaScript `window`. The callback must accept a single [Array]
+   * argument, which will contain the JavaScript `arguments`. See [JavaScriptObject] for usage.
    */
   public fun getInterface(_interface: String): JavaScriptObject? {
     TransferContext.writeArguments(STRING to _interface)
@@ -76,7 +82,9 @@ public object JavaScriptBridge : Object() {
   }
 
   /**
-   * Creates a reference to a [godot.Callable] that can be used as a callback by JavaScript. The reference must be kept until the callback happens, or it won't be called at all. See [godot.JavaScriptObject] for usage.
+   * Creates a reference to a [Callable] that can be used as a callback by JavaScript. The reference
+   * must be kept until the callback happens, or it won't be called at all. See [JavaScriptObject] for
+   * usage.
    */
   public fun createCallback(callable: Callable): JavaScriptObject? {
     TransferContext.writeArguments(CALLABLE to callable)
@@ -85,7 +93,8 @@ public object JavaScriptBridge : Object() {
   }
 
   /**
-   * Creates a new JavaScript object using the `new` constructor. The [object] must a valid property of the JavaScript `window`. See [godot.JavaScriptObject] for usage.
+   * Creates a new JavaScript object using the `new` constructor. The [object] must a valid property
+   * of the JavaScript `window`. See [JavaScriptObject] for usage.
    */
   public fun createObject(_object: String, vararg __var_args: Any?): Any? {
     TransferContext.writeArguments(STRING to _object,  *__var_args.map { ANY to it }.toTypedArray())
@@ -94,13 +103,14 @@ public object JavaScriptBridge : Object() {
   }
 
   /**
-   * Prompts the user to download a file containing the specified [buffer]. The file will have the given [name] and [mime] type.
-   *
-   * **Note:** The browser may override the [godot.MIME type](https://en.wikipedia.org/wiki/Media_type) provided based on the file [name]'s extension.
-   *
-   * **Note:** Browsers might block the download if [downloadBuffer] is not being called from a user interaction (e.g. button click).
-   *
-   * **Note:** Browsers might ask the user for permission or block the download if multiple download requests are made in a quick succession.
+   * Prompts the user to download a file containing the specified [buffer]. The file will have the
+   * given [name] and [mime] type.
+   * **Note:** The browser may override the [url=https://en.wikipedia.org/wiki/Media_type]MIME
+   * type[/url] provided based on the file [name]'s extension.
+   * **Note:** Browsers might block the download if [downloadBuffer] is not being called from a user
+   * interaction (e.g. button click).
+   * **Note:** Browsers might ask the user for permission or block the download if multiple download
+   * requests are made in a quick succession.
    */
   @JvmOverloads
   public fun downloadBuffer(
@@ -114,7 +124,6 @@ public object JavaScriptBridge : Object() {
 
   /**
    * Returns `true` if a new version of the progressive web app is waiting to be activated.
-   *
    * **Note:** Only relevant when exported as a Progressive Web App.
    */
   public fun pwaNeedsUpdate(): Boolean {
@@ -124,11 +133,11 @@ public object JavaScriptBridge : Object() {
   }
 
   /**
-   * Performs the live update of the progressive web app. Forcing the new version to be installed and the page to be reloaded.
-   *
+   * Performs the live update of the progressive web app. Forcing the new version to be installed
+   * and the page to be reloaded.
    * **Note:** Your application will be **reloaded in all browser tabs**.
-   *
-   * **Note:** Only relevant when exported as a Progressive Web App and [pwaNeedsUpdate] returns `true`.
+   * **Note:** Only relevant when exported as a Progressive Web App and [pwaNeedsUpdate] returns
+   * `true`.
    */
   public fun pwaUpdate(): GodotError {
     TransferContext.writeArguments()
@@ -138,8 +147,8 @@ public object JavaScriptBridge : Object() {
 
   /**
    * Force synchronization of the persistent file system (when enabled).
-   *
-   * **Note:** This is only useful for modules or extensions that can't use [godot.FileAccess] to write files.
+   * **Note:** This is only useful for modules or extensions that can't use [FileAccess] to write
+   * files.
    */
   public fun forceFsSync(): Unit {
     TransferContext.writeArguments()

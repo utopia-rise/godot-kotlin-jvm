@@ -18,14 +18,13 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Texture for 3D that is bound to a texture created on the [godot.RenderingDevice].
- *
- * This texture class allows you to use a 3D texture created directly on the [godot.RenderingDevice] as a texture for materials, meshes, etc.
+ * This texture class allows you to use a 3D texture created directly on the [RenderingDevice] as a
+ * texture for materials, meshes, etc.
  */
 @GodotBaseType
 public open class Texture3DRD : Texture3D() {
   /**
-   * The RID of the texture object created on the [godot.RenderingDevice].
+   * The RID of the texture object created on the [RenderingDevice].
    */
   public var textureRdRid: RID
     get() {

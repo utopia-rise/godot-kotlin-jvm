@@ -21,11 +21,6 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Adds a filter to the audio bus.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
- *
  * Allows frequencies other than the [cutoffHz] to pass.
  */
 @GodotBaseType
@@ -72,9 +67,6 @@ public open class AudioEffectFilter : AudioEffect() {
       TransferContext.callMethod(rawPtr, MethodBindings.setGainPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var db: FilterDB
     get() {
       TransferContext.writeArguments()
@@ -94,21 +86,9 @@ public open class AudioEffectFilter : AudioEffect() {
   public enum class FilterDB(
     id: Long,
   ) {
-    /**
-     *
-     */
     FILTER_6DB(0),
-    /**
-     *
-     */
     FILTER_12DB(1),
-    /**
-     *
-     */
     FILTER_18DB(2),
-    /**
-     *
-     */
     FILTER_24DB(3),
     ;
 

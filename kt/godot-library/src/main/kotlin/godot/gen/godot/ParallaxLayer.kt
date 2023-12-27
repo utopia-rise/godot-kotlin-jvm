@@ -21,13 +21,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A parallax scrolling layer to be used with [godot.ParallaxBackground].
- *
- * A ParallaxLayer must be the child of a [godot.ParallaxBackground] node. Each ParallaxLayer can be set to move at different speeds relative to the camera movement or the [godot.ParallaxBackground.scrollOffset] value.
- *
+ * A ParallaxLayer must be the child of a [ParallaxBackground] node. Each ParallaxLayer can be set
+ * to move at different speeds relative to the camera movement or the [ParallaxBackground.scrollOffset]
+ * value.
  * This node's children will be affected by its scroll offset.
- *
- * **Note:** Any changes to this node's position and scale made after it enters the scene will be ignored.
+ * **Note:** Any changes to this node's position and scale made after it enters the scene will be
+ * ignored.
  */
 @GodotBaseType
 public open class ParallaxLayer : Node2D() {
@@ -47,7 +46,8 @@ public open class ParallaxLayer : Node2D() {
     }
 
   /**
-   * The ParallaxLayer's offset relative to the parent ParallaxBackground's [godot.ParallaxBackground.scrollOffset].
+   * The ParallaxLayer's offset relative to the parent ParallaxBackground's
+   * [ParallaxBackground.scrollOffset].
    */
   @CoreTypeLocalCopy
   public var motionOffset: Vector2
@@ -62,10 +62,10 @@ public open class ParallaxLayer : Node2D() {
     }
 
   /**
-   * The ParallaxLayer's [godot.Texture2D] repeating. Useful for creating an infinite scrolling background. If an axis is set to `0`, the [godot.Texture2D] will not be repeated.
-   *
-   * If the length of the viewport axis is bigger than twice the repeated axis size, it will not repeat infinitely, as the parallax layer only draws 2 instances of the texture at any given time.
-   *
+   * The ParallaxLayer's [Texture2D] repeating. Useful for creating an infinite scrolling
+   * background. If an axis is set to `0`, the [Texture2D] will not be repeated.
+   * If the length of the viewport axis is bigger than twice the repeated axis size, it will not
+   * repeat infinitely, as the parallax layer only draws 2 instances of the texture at any given time.
    * **Note:** Despite its name, the texture will not be mirrored, it will simply be repeated.
    */
   @CoreTypeLocalCopy
@@ -110,7 +110,8 @@ public open class ParallaxLayer : Node2D() {
 
 
   /**
-   * The ParallaxLayer's offset relative to the parent ParallaxBackground's [godot.ParallaxBackground.scrollOffset].
+   * The ParallaxLayer's offset relative to the parent ParallaxBackground's
+   * [ParallaxBackground.scrollOffset].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -134,10 +135,10 @@ public open class ParallaxLayer : Node2D() {
 
 
   /**
-   * The ParallaxLayer's [godot.Texture2D] repeating. Useful for creating an infinite scrolling background. If an axis is set to `0`, the [godot.Texture2D] will not be repeated.
-   *
-   * If the length of the viewport axis is bigger than twice the repeated axis size, it will not repeat infinitely, as the parallax layer only draws 2 instances of the texture at any given time.
-   *
+   * The ParallaxLayer's [Texture2D] repeating. Useful for creating an infinite scrolling
+   * background. If an axis is set to `0`, the [Texture2D] will not be repeated.
+   * If the length of the viewport axis is bigger than twice the repeated axis size, it will not
+   * repeat infinitely, as the parallax layer only draws 2 instances of the texture at any given time.
    * **Note:** Despite its name, the texture will not be mirrored, it will simply be repeated.
    *
    * This is a helper function to make dealing with local copies easier. 

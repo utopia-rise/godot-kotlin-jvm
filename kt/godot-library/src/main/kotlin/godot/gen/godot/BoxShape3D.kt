@@ -21,14 +21,10 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A 3D box shape used for physics collision.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/125](https://godotengine.org/asset-library/asset/125)
- *
- * A 3D box shape, intended for use in physics. Usually used to provide a shape for a [godot.CollisionShape3D].
- *
- * **Performance:** [godot.BoxShape3D] is fast to check collisions against. It is faster than [godot.CapsuleShape3D] and [godot.CylinderShape3D], but slower than [godot.SphereShape3D].
+ * A 3D box shape, intended for use in physics. Usually used to provide a shape for a
+ * [CollisionShape3D].
+ * **Performance:** [BoxShape3D] is fast to check collisions against. It is faster than
+ * [CapsuleShape3D] and [CylinderShape3D], but slower than [SphereShape3D].
  */
 @GodotBaseType
 public open class BoxShape3D : Shape3D() {

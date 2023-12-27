@@ -18,10 +18,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Calculates a Step function within the visual shader graph.
- *
  * Translates to `step(edge, x)` in the shader language.
- *
  * Returns `0.0` if `x` is smaller than `edge` and `1.0` otherwise.
  */
 @GodotBaseType
@@ -77,7 +74,7 @@ public open class VisualShaderNodeStep : VisualShaderNode() {
      */
     OP_TYPE_VECTOR_4D_SCALAR(6),
     /**
-     * Represents the size of the [enum OpType] enum.
+     * Represents the size of the [OpType] enum.
      */
     OP_TYPE_MAX(7),
     ;

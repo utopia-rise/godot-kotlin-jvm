@@ -21,11 +21,10 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base class for creating [godot.ImageFormatLoader] extensions (adding support for extra image formats).
- *
- * The engine supports multiple image formats out of the box (PNG, SVG, JPEG, WebP to name a few), but you can choose to implement support for additional image formats by extending this class.
- *
- * Be sure to respect the documented return types and values. You should create an instance of it, and call [addFormatLoader] to register that loader during the initialization phase.
+ * The engine supports multiple image formats out of the box (PNG, SVG, JPEG, WebP to name a few),
+ * but you can choose to implement support for additional image formats by extending this class.
+ * Be sure to respect the documented return types and values. You should create an instance of it,
+ * and call [addFormatLoader] to register that loader during the initialization phase.
  */
 @GodotBaseType
 public open class ImageFormatLoaderExtension : ImageFormatLoader() {
@@ -35,7 +34,8 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
   }
 
   /**
-   * Returns the list of file extensions for this image format. Files with the given extensions will be treated as image file and loaded using this class.
+   * Returns the list of file extensions for this image format. Files with the given extensions will
+   * be treated as image file and loaded using this class.
    */
   public open fun _getRecognizedExtensions(): PackedStringArray {
     throw NotImplementedError("_get_recognized_extensions is not implemented for ImageFormatLoaderExtension")
@@ -54,7 +54,8 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
   }
 
   /**
-   * Add this format loader to the engine, allowing it to recognize the file extensions returned by [_getRecognizedExtensions].
+   * Add this format loader to the engine, allowing it to recognize the file extensions returned by
+   * [_getRecognizedExtensions].
    */
   public fun addFormatLoader(): Unit {
     TransferContext.writeArguments()

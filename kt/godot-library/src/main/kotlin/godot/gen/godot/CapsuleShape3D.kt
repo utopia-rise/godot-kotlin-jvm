@@ -19,14 +19,10 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A 3D capsule shape used for physics collision.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/675](https://godotengine.org/asset-library/asset/675)
- *
- * A 3D capsule shape, intended for use in physics. Usually used to provide a shape for a [godot.CollisionShape3D].
- *
- * **Performance:** [godot.CapsuleShape3D] is fast to check collisions against. It is faster than [godot.CylinderShape3D], but slower than [godot.SphereShape3D] and [godot.BoxShape3D].
+ * A 3D capsule shape, intended for use in physics. Usually used to provide a shape for a
+ * [CollisionShape3D].
+ * **Performance:** [CapsuleShape3D] is fast to check collisions against. It is faster than
+ * [CylinderShape3D], but slower than [SphereShape3D] and [BoxShape3D].
  */
 @GodotBaseType
 public open class CapsuleShape3D : Shape3D() {

@@ -31,8 +31,18 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Represents a physics body as defined by the `OMI_physics_body` GLTF extension. This class is an
+ * intermediary between the GLTF data and Godot's nodes, and it's abstracted in a way that allows
+ * adding support for different GLTF physics extensions in the future.
+ */
 @GodotBaseType
 public open class GLTFPhysicsBody : Resource() {
+  /**
+   * The type of the body. When importing, this controls what type of [CollisionObject3D] node Godot
+   * should generate. Valid values are "static", "kinematic", "character", "rigid", "vehicle", and
+   * "trigger".
+   */
   public var bodyType: String
     get() {
       TransferContext.writeArguments()
@@ -44,6 +54,10 @@ public open class GLTFPhysicsBody : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBodyTypePtr, NIL)
     }
 
+  /**
+   * The mass of the physics body, in kilograms. This is only used when the body type is "rigid" or
+   * "vehicle".
+   */
   public var mass: Float
     get() {
       TransferContext.writeArguments()
@@ -55,6 +69,10 @@ public open class GLTFPhysicsBody : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMassPtr, NIL)
     }
 
+  /**
+   * The linear velocity of the physics body, in meters per second. This is only used when the body
+   * type is "rigid" or "vehicle".
+   */
   @CoreTypeLocalCopy
   public var linearVelocity: Vector3
     get() {
@@ -67,6 +85,10 @@ public open class GLTFPhysicsBody : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setLinearVelocityPtr, NIL)
     }
 
+  /**
+   * The angular velocity of the physics body, in radians per second. This is only used when the
+   * body type is "rigid" or "vehicle".
+   */
   @CoreTypeLocalCopy
   public var angularVelocity: Vector3
     get() {
@@ -79,6 +101,10 @@ public open class GLTFPhysicsBody : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAngularVelocityPtr, NIL)
     }
 
+  /**
+   * The center of mass of the body, in meters. This is in local space relative to the body. By
+   * default, the center of the mass is the body's origin.
+   */
   @CoreTypeLocalCopy
   public var centerOfMass: Vector3
     get() {
@@ -91,6 +117,12 @@ public open class GLTFPhysicsBody : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCenterOfMassPtr, NIL)
     }
 
+  /**
+   * The inertia tensor of the physics body, in kilogram meter squared (kg⋅m²). This is only used
+   * when the body type is "rigid" or "vehicle".
+   * When converted to a Godot [RigidBody3D] node, if this value is zero, then the inertia will be
+   * calculated automatically.
+   */
   @CoreTypeLocalCopy
   public var inertiaTensor: Basis
     get() {
@@ -109,6 +141,9 @@ public open class GLTFPhysicsBody : Resource() {
   }
 
   /**
+   * The linear velocity of the physics body, in meters per second. This is only used when the body
+   * type is "rigid" or "vehicle".
+   *
    * This is a helper function to make dealing with local copies easier. 
    *
    * For more information, see our
@@ -131,6 +166,9 @@ public open class GLTFPhysicsBody : Resource() {
 
 
   /**
+   * The angular velocity of the physics body, in radians per second. This is only used when the
+   * body type is "rigid" or "vehicle".
+   *
    * This is a helper function to make dealing with local copies easier. 
    *
    * For more information, see our
@@ -153,6 +191,9 @@ public open class GLTFPhysicsBody : Resource() {
 
 
   /**
+   * The center of mass of the body, in meters. This is in local space relative to the body. By
+   * default, the center of the mass is the body's origin.
+   *
    * This is a helper function to make dealing with local copies easier. 
    *
    * For more information, see our
@@ -175,6 +216,11 @@ public open class GLTFPhysicsBody : Resource() {
 
 
   /**
+   * The inertia tensor of the physics body, in kilogram meter squared (kg⋅m²). This is only used
+   * when the body type is "rigid" or "vehicle".
+   * When converted to a Godot [RigidBody3D] node, if this value is zero, then the inertia will be
+   * calculated automatically.
+   *
    * This is a helper function to make dealing with local copies easier. 
    *
    * For more information, see our
@@ -196,12 +242,18 @@ public open class GLTFPhysicsBody : Resource() {
   }
 
 
+  /**
+   * Converts this GLTFPhysicsBody instance into a Godot [CollisionObject3D] node.
+   */
   public fun toNode(): CollisionObject3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.toNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as CollisionObject3D?)
   }
 
+  /**
+   * Serializes this GLTFPhysicsBody instance into a [Dictionary].
+   */
   public fun toDictionary(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.toDictionaryPtr, DICTIONARY)
@@ -209,12 +261,18 @@ public open class GLTFPhysicsBody : Resource() {
   }
 
   public companion object {
+    /**
+     * Create a new GLTFPhysicsBody instance from the given Godot [CollisionObject3D] node.
+     */
     public fun fromNode(bodyNode: CollisionObject3D): GLTFPhysicsBody? {
       TransferContext.writeArguments(OBJECT to bodyNode)
       TransferContext.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as GLTFPhysicsBody?)
     }
 
+    /**
+     * Creates a new GLTFPhysicsBody instance by parsing the given [Dictionary].
+     */
     public fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFPhysicsBody? {
       TransferContext.writeArguments(DICTIONARY to dictionary)
       TransferContext.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)

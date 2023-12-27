@@ -40,9 +40,8 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Settings for a single tile in a [godot.TileSet].
- *
- * [godot.TileData] object represents a single tile in a [godot.TileSet]. It is usually edited using the tileset editor, but it can be modified at runtime using [godot.TileMap.TileDataRuntimeUpdate].
+ * [TileData] object represents a single tile in a [TileSet]. It is usually edited using the tileset
+ * editor, but it can be modified at runtime using [TileMap.TileDataRuntimeUpdate].
  */
 @GodotBaseType
 public open class TileData : Object() {
@@ -80,7 +79,8 @@ public open class TileData : Object() {
     }
 
   /**
-   * If `true`, the tile will display transposed, i.e. with horizontal and vertical texture UVs swapped.
+   * If `true`, the tile will display transposed, i.e. with horizontal and vertical texture UVs
+   * swapped.
    */
   public var transpose: Boolean
     get() {
@@ -124,7 +124,8 @@ public open class TileData : Object() {
     }
 
   /**
-   * The [godot.Material] to use for this [godot.TileData]. This can be a [godot.CanvasItemMaterial] to use the default shader, or a [godot.ShaderMaterial] to use a custom shader.
+   * The [Material] to use for this [TileData]. This can be a [CanvasItemMaterial] to use the
+   * default shader, or a [ShaderMaterial] to use a custom shader.
    */
   public var material: Material?
     get() {
@@ -138,7 +139,7 @@ public open class TileData : Object() {
     }
 
   /**
-   * Ordering index of this tile, relative to [godot.TileMap].
+   * Ordering index of this tile, relative to [TileMap].
    */
   public var zIndex: Int
     get() {
@@ -278,7 +279,8 @@ public open class TileData : Object() {
   }
 
   /**
-   * Sets the constant linear velocity. This does not move the tile. This linear velocity is applied to objects colliding with this tile. This is useful to create conveyor belts.
+   * Sets the constant linear velocity. This does not move the tile. This linear velocity is applied
+   * to objects colliding with this tile. This is useful to create conveyor belts.
    */
   public fun setConstantLinearVelocity(layerId: Int, velocity: Vector2): Unit {
     TransferContext.writeArguments(LONG to layerId.toLong(), VECTOR2 to velocity)
@@ -295,7 +297,8 @@ public open class TileData : Object() {
   }
 
   /**
-   * Sets the constant angular velocity. This does not rotate the tile. This angular velocity is applied to objects colliding with this tile.
+   * Sets the constant angular velocity. This does not rotate the tile. This angular velocity is
+   * applied to objects colliding with this tile.
    */
   public fun setConstantAngularVelocity(layerId: Int, velocity: Float): Unit {
     TransferContext.writeArguments(LONG to layerId.toLong(), DOUBLE to velocity.toDouble())
@@ -345,7 +348,8 @@ public open class TileData : Object() {
   }
 
   /**
-   * Sets the points of the polygon at index [polygonIndex] for TileSet physics layer with index [layerId].
+   * Sets the points of the polygon at index [polygonIndex] for TileSet physics layer with index
+   * [layerId].
    */
   public fun setCollisionPolygonPoints(
     layerId: Int,
@@ -357,7 +361,8 @@ public open class TileData : Object() {
   }
 
   /**
-   * Returns the points of the polygon at index [polygonIndex] for TileSet physics layer with index [layerId].
+   * Returns the points of the polygon at index [polygonIndex] for TileSet physics layer with index
+   * [layerId].
    */
   public fun getCollisionPolygonPoints(layerId: Int, polygonIndex: Int): PackedVector2Array {
     TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong())
@@ -367,7 +372,8 @@ public open class TileData : Object() {
   }
 
   /**
-   * Enables/disables one-way collisions on the polygon at index [polygonIndex] for TileSet physics layer with index [layerId].
+   * Enables/disables one-way collisions on the polygon at index [polygonIndex] for TileSet physics
+   * layer with index [layerId].
    */
   public fun setCollisionPolygonOneWay(
     layerId: Int,
@@ -379,7 +385,8 @@ public open class TileData : Object() {
   }
 
   /**
-   * Returns whether one-way collisions are enabled for the polygon at index [polygonIndex] for TileSet physics layer with index [layerId].
+   * Returns whether one-way collisions are enabled for the polygon at index [polygonIndex] for
+   * TileSet physics layer with index [layerId].
    */
   public fun isCollisionPolygonOneWay(layerId: Int, polygonIndex: Int): Boolean {
     TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong())
@@ -388,7 +395,8 @@ public open class TileData : Object() {
   }
 
   /**
-   * Enables/disables one-way collisions on the polygon at index [polygonIndex] for TileSet physics layer with index [layerId].
+   * Enables/disables one-way collisions on the polygon at index [polygonIndex] for TileSet physics
+   * layer with index [layerId].
    */
   public fun setCollisionPolygonOneWayMargin(
     layerId: Int,
@@ -400,7 +408,8 @@ public open class TileData : Object() {
   }
 
   /**
-   * Returns the one-way margin (for one-way platforms) of the polygon at index [polygonIndex] for TileSet physics layer with index [layerId].
+   * Returns the one-way margin (for one-way platforms) of the polygon at index [polygonIndex] for
+   * TileSet physics layer with index [layerId].
    */
   public fun getCollisionPolygonOneWayMargin(layerId: Int, polygonIndex: Int): Float {
     TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong())
@@ -434,7 +443,8 @@ public open class TileData : Object() {
   }
 
   /**
-   * Returns the navigation polygon of the tile for the TileSet navigation layer with index [layerId].
+   * Returns the navigation polygon of the tile for the TileSet navigation layer with index
+   * [layerId].
    */
   public fun getNavigationPolygon(layerId: Int): NavigationPolygon? {
     TransferContext.writeArguments(LONG to layerId.toLong())

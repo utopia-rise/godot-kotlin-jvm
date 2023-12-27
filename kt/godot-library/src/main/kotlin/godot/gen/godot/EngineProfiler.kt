@@ -18,11 +18,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base class for creating custom profilers.
- *
- * This class can be used to implement custom profilers that are able to interact with the engine and editor debugger.
- *
- * See [godot.EngineDebugger] and [godot.EditorDebuggerPlugin] for more information.
+ * This class can be used to implement custom profilers that are able to interact with the engine
+ * and editor debugger.
+ * See [EngineDebugger] and [EditorDebuggerPlugin] for more information.
  */
 @GodotBaseType
 public open class EngineProfiler : RefCounted() {
@@ -38,13 +36,15 @@ public open class EngineProfiler : RefCounted() {
   }
 
   /**
-   * Called when data is added to profiler using [godot.EngineDebugger.profilerAddFrameData].
+   * Called when data is added to profiler using [EngineDebugger.profilerAddFrameData].
    */
   public open fun _addFrame(`data`: VariantArray<Any?>): Unit {
   }
 
   /**
-   * Called once every engine iteration when the profiler is active with information about the current frame. All time values are in seconds. Lower values represent faster processing times and are therefore considered better.
+   * Called once every engine iteration when the profiler is active with information about the
+   * current frame. All time values are in seconds. Lower values represent faster processing times and
+   * are therefore considered better.
    */
   public open fun _tick(
     frameTime: Double,

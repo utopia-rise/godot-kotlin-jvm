@@ -277,10 +277,22 @@ void KotlinLanguage::remove_named_global_constant(const StringName& p_name) {
 }
 
 void KotlinLanguage::thread_enter() {
+#ifdef TOOLS_ENABLED
+    if (!jni::Jvm::is_initialized()) {
+        return;
+    }
+#endif
+
     jni::Jvm::attach();
 }
 
 void KotlinLanguage::thread_exit() {
+#ifdef TOOLS_ENABLED
+    if (!jni::Jvm::is_initialized()) {
+        return;
+    }
+#endif
+
     jni::Jvm::detach();
 }
 

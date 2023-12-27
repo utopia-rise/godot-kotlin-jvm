@@ -18,11 +18,13 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * AudioStream that lets the user play custom streams at any time from code, simultaneously using a single player.
- *
- * AudioStream that lets the user play custom streams at any time from code, simultaneously using a single player.
- *
- * Playback control is done via the [godot.AudioStreamPlaybackPolyphonic] instance set inside the player, which can be obtained via [godot.AudioStreamPlayer.getStreamPlayback], [godot.AudioStreamPlayer2D.getStreamPlayback] or [godot.AudioStreamPlayer3D.getStreamPlayback] methods. Obtaining the playback instance is only valid after the `stream` property is set as an [godot.AudioStreamPolyphonic] in those players.
+ * AudioStream that lets the user play custom streams at any time from code, simultaneously using a
+ * single player.
+ * Playback control is done via the [AudioStreamPlaybackPolyphonic] instance set inside the player,
+ * which can be obtained via [AudioStreamPlayer.getStreamPlayback],
+ * [AudioStreamPlayer2D.getStreamPlayback] or [AudioStreamPlayer3D.getStreamPlayback] methods.
+ * Obtaining the playback instance is only valid after the `stream` property is set as an
+ * [AudioStreamPolyphonic] in those players.
  */
 @GodotBaseType
 public open class AudioStreamPolyphonic : AudioStream() {

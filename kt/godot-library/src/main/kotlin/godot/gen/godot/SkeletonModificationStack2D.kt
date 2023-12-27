@@ -24,18 +24,19 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A resource that holds a stack of [godot.SkeletonModification2D]s.
- *
- * This resource is used by the Skeleton and holds a stack of [godot.SkeletonModification2D]s.
- *
- * This controls the order of the modifications and how they are applied. Modification order is especially important for full-body IK setups, as you need to execute the modifications in the correct order to get the desired results. For example, you want to execute a modification on the spine *before* the arms on a humanoid skeleton.
- *
- * This resource also controls how strongly all of the modifications are applied to the [godot.Skeleton2D].
+ * This resource is used by the Skeleton and holds a stack of [SkeletonModification2D]s.
+ * This controls the order of the modifications and how they are applied. Modification order is
+ * especially important for full-body IK setups, as you need to execute the modifications in the
+ * correct order to get the desired results. For example, you want to execute a modification on the
+ * spine *before* the arms on a humanoid skeleton.
+ * This resource also controls how strongly all of the modifications are applied to the
+ * [Skeleton2D].
  */
 @GodotBaseType
 public open class SkeletonModificationStack2D : Resource() {
   /**
-   * If `true`, the modification's in the stack will be called. This is handled automatically through the [godot.Skeleton2D] node.
+   * If `true`, the modification's in the stack will be called. This is handled automatically
+   * through the [Skeleton2D] node.
    */
   public var enabled: Boolean
     get() {
@@ -49,7 +50,9 @@ public open class SkeletonModificationStack2D : Resource() {
     }
 
   /**
-   * The interpolation strength of the modifications in stack. A value of `0` will make it where the modifications are not applied, a strength of `0.5` will be half applied, and a strength of `1` will allow the modifications to be fully applied and override the [godot.Skeleton2D] [godot.Bone2D] poses.
+   * The interpolation strength of the modifications in stack. A value of `0` will make it where the
+   * modifications are not applied, a strength of `0.5` will be half applied, and a strength of `1`
+   * will allow the modifications to be fully applied and override the [Skeleton2D] [Bone2D] poses.
    */
   public var strength: Float
     get() {
@@ -82,7 +85,8 @@ public open class SkeletonModificationStack2D : Resource() {
   }
 
   /**
-   * Sets up the modification stack so it can execute. This function should be called by [godot.Skeleton2D] and shouldn't be manually called unless you know what you are doing.
+   * Sets up the modification stack so it can execute. This function should be called by
+   * [Skeleton2D] and shouldn't be manually called unless you know what you are doing.
    */
   public fun setup(): Unit {
     TransferContext.writeArguments()
@@ -90,9 +94,11 @@ public open class SkeletonModificationStack2D : Resource() {
   }
 
   /**
-   * Executes all of the [godot.SkeletonModification2D]s in the stack that use the same execution mode as the passed-in [executionMode], starting from index `0` to [modificationCount].
-   *
-   * **Note:** The order of the modifications can matter depending on the modifications. For example, modifications on a spine should operate before modifications on the arms in order to get proper results.
+   * Executes all of the [SkeletonModification2D]s in the stack that use the same execution mode as
+   * the passed-in [executionMode], starting from index `0` to [modificationCount].
+   * **Note:** The order of the modifications can matter depending on the modifications. For
+   * example, modifications on a spine should operate before modifications on the arms in order to get
+   * proper results.
    */
   public fun execute(delta: Float, executionMode: Int): Unit {
     TransferContext.writeArguments(DOUBLE to delta.toDouble(), LONG to executionMode.toLong())
@@ -100,7 +106,7 @@ public open class SkeletonModificationStack2D : Resource() {
   }
 
   /**
-   * Enables all [godot.SkeletonModification2D]s in the stack.
+   * Enables all [SkeletonModification2D]s in the stack.
    */
   public fun enableAllModifications(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
@@ -108,7 +114,7 @@ public open class SkeletonModificationStack2D : Resource() {
   }
 
   /**
-   * Returns the [godot.SkeletonModification2D] at the passed-in index, [modIdx].
+   * Returns the [SkeletonModification2D] at the passed-in index, [modIdx].
    */
   public fun getModification(modIdx: Int): SkeletonModification2D? {
     TransferContext.writeArguments(LONG to modIdx.toLong())
@@ -117,7 +123,7 @@ public open class SkeletonModificationStack2D : Resource() {
   }
 
   /**
-   * Adds the passed-in [godot.SkeletonModification2D] to the stack.
+   * Adds the passed-in [SkeletonModification2D] to the stack.
    */
   public fun addModification(modification: SkeletonModification2D): Unit {
     TransferContext.writeArguments(OBJECT to modification)
@@ -125,7 +131,7 @@ public open class SkeletonModificationStack2D : Resource() {
   }
 
   /**
-   * Deletes the [godot.SkeletonModification2D] at the index position [modIdx], if it exists.
+   * Deletes the [SkeletonModification2D] at the index position [modIdx], if it exists.
    */
   public fun deleteModification(modIdx: Int): Unit {
     TransferContext.writeArguments(LONG to modIdx.toLong())
@@ -150,7 +156,7 @@ public open class SkeletonModificationStack2D : Resource() {
   }
 
   /**
-   * Returns the [godot.Skeleton2D] node that the SkeletonModificationStack2D is bound to.
+   * Returns the [Skeleton2D] node that the SkeletonModificationStack2D is bound to.
    */
   public fun getSkeleton(): Skeleton2D? {
     TransferContext.writeArguments()

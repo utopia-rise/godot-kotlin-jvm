@@ -29,9 +29,10 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Provides common settings to customize the text in a [godot.Label].
- *
- * [godot.LabelSettings] is a resource that provides common settings to customize the text in a [godot.Label]. It will take priority over the properties defined in [godot.Control.theme]. The resource can be shared between multiple labels and changed on the fly, so it's convenient and flexible way to setup text style.
+ * [LabelSettings] is a resource that provides common settings to customize the text in a [Label].
+ * It will take priority over the properties defined in [Control.theme]. The resource can be shared
+ * between multiple labels and changed on the fly, so it's convenient and flexible way to setup text
+ * style.
  */
 @GodotBaseType
 public open class LabelSettings : Resource() {
@@ -50,7 +51,7 @@ public open class LabelSettings : Resource() {
     }
 
   /**
-   * [godot.Font] used for the text.
+   * [Font] used for the text.
    */
   public var font: Font?
     get() {

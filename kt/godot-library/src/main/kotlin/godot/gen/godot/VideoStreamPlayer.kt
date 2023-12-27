@@ -30,18 +30,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A control used for video playback.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/animation/playing_videos.html]($DOCS_URL/tutorials/animation/playing_videos.html)
- *
- * A control used for playback of [godot.VideoStream] resources.
- *
- * Supported video formats are [godot.Ogg Theora](https://www.theora.org/) (`.ogv`, [godot.VideoStreamTheora]) and any format exposed via a GDExtension plugin.
- *
+ * A control used for playback of [VideoStream] resources.
+ * Supported video formats are [url=https://www.theora.org/]Ogg Theora[/url] (`.ogv`,
+ * [VideoStreamTheora]) and any format exposed via a GDExtension plugin.
  * **Note:** Due to a bug, VideoStreamPlayer does not support localization remapping yet.
- *
- * **Warning:** On Web, video playback *will* perform poorly due to missing architecture-specific assembly optimizations.
+ * **Warning:** On Web, video playback *will* perform poorly due to missing architecture-specific
+ * assembly optimizations.
  */
 @GodotBaseType
 public open class VideoStreamPlayer : Control() {
@@ -135,7 +129,8 @@ public open class VideoStreamPlayer : Control() {
     }
 
   /**
-   * If `true`, the video scales to the control size. Otherwise, the control minimum size will be automatically adjusted to match the video stream's dimensions.
+   * If `true`, the video scales to the control size. Otherwise, the control minimum size will be
+   * automatically adjusted to match the video stream's dimensions.
    */
   public var expand: Boolean
     get() {
@@ -178,8 +173,8 @@ public open class VideoStreamPlayer : Control() {
 
   /**
    * The current position of the stream, in seconds.
-   *
-   * **Note:** Changing this value won't have any effect as seeking is not implemented yet, except in video formats implemented by a GDExtension add-on.
+   * **Note:** Changing this value won't have any effect as seeking is not implemented yet, except
+   * in video formats implemented by a GDExtension add-on.
    */
   public var streamPosition: Double
     get() {
@@ -212,7 +207,8 @@ public open class VideoStreamPlayer : Control() {
   }
 
   /**
-   * Starts the video playback from the beginning. If the video is paused, this will not unpause the video.
+   * Starts the video playback from the beginning. If the video is paused, this will not unpause the
+   * video.
    */
   public fun play(): Unit {
     TransferContext.writeArguments()
@@ -221,8 +217,8 @@ public open class VideoStreamPlayer : Control() {
 
   /**
    * Stops the video playback and sets the stream position to 0.
-   *
-   * **Note:** Although the stream position will be set to 0, the first frame of the video stream won't become the current frame.
+   * **Note:** Although the stream position will be set to 0, the first frame of the video stream
+   * won't become the current frame.
    */
   public fun stop(): Unit {
     TransferContext.writeArguments()
@@ -231,7 +227,6 @@ public open class VideoStreamPlayer : Control() {
 
   /**
    * Returns `true` if the video is playing.
-   *
    * **Note:** The video is still considered playing if paused during playback.
    */
   public fun isPlaying(): Boolean {
@@ -251,8 +246,9 @@ public open class VideoStreamPlayer : Control() {
 
   /**
    * The length of the current stream, in seconds.
-   *
-   * **Note:** For [godot.VideoStreamTheora] streams (the built-in format supported by Godot), this value will always be zero, as getting the stream length is not implemented yet. The feature may be supported by video formats implemented by a GDExtension add-on.
+   * **Note:** For [VideoStreamTheora] streams (the built-in format supported by Godot), this value
+   * will always be zero, as getting the stream length is not implemented yet. The feature may be
+   * supported by video formats implemented by a GDExtension add-on.
    */
   public fun getStreamLength(): Double {
     TransferContext.writeArguments()
@@ -261,7 +257,7 @@ public open class VideoStreamPlayer : Control() {
   }
 
   /**
-   * Returns the current frame as a [godot.Texture2D].
+   * Returns the current frame as a [Texture2D].
    */
   public fun getVideoTexture(): Texture2D? {
     TransferContext.writeArguments()

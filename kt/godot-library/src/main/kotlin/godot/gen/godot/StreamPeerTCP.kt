@@ -24,11 +24,11 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A stream peer that handles TCP connections.
- *
- * A stream peer that handles TCP connections. This object can be used to connect to TCP servers, or also is returned by a TCP server.
- *
- * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
+ * A stream peer that handles TCP connections. This object can be used to connect to TCP servers, or
+ * also is returned by a TCP server.
+ * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
+ * export preset before exporting the project or using one-click deploy. Otherwise, network
+ * communication of any kind will be blocked by Android.
  */
 @GodotBaseType
 public open class StreamPeerTCP : StreamPeer() {
@@ -39,8 +39,9 @@ public open class StreamPeerTCP : StreamPeer() {
 
   /**
    * Opens the TCP socket, and binds it to the specified local address.
-   *
-   * This method is generally not needed, and only used to force the subsequent call to [connectToHost] to use the specified [host] and [port] as source address. This can be desired in some NAT punchthrough techniques, or when forcing the source network interface.
+   * This method is generally not needed, and only used to force the subsequent call to
+   * [connectToHost] to use the specified [host] and [port] as source address. This can be desired in
+   * some NAT punchthrough techniques, or when forcing the source network interface.
    */
   @JvmOverloads
   public fun bind(port: Int, host: String = "*"): GodotError {
@@ -50,7 +51,8 @@ public open class StreamPeerTCP : StreamPeer() {
   }
 
   /**
-   * Connects to the specified `host:port` pair. A hostname will be resolved if valid. Returns [OK] on success.
+   * Connects to the specified `host:port` pair. A hostname will be resolved if valid. Returns [OK]
+   * on success.
    */
   public fun connectToHost(host: String, port: Int): GodotError {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
@@ -68,7 +70,7 @@ public open class StreamPeerTCP : StreamPeer() {
   }
 
   /**
-   * Returns the status of the connection, see [enum Status].
+   * Returns the status of the connection, see [Status].
    */
   public fun getStatus(): Status {
     TransferContext.writeArguments()
@@ -112,9 +114,11 @@ public open class StreamPeerTCP : StreamPeer() {
   }
 
   /**
-   * If [enabled] is `true`, packets will be sent immediately. If [enabled] is `false` (the default), packet transfers will be delayed and combined using [godot.Nagle's algorithm](https://en.wikipedia.org/wiki/Nagle%27s_algorithm).
-   *
-   * **Note:** It's recommended to leave this disabled for applications that send large packets or need to transfer a lot of data, as enabling this can decrease the total available bandwidth.
+   * If [enabled] is `true`, packets will be sent immediately. If [enabled] is `false` (the
+   * default), packet transfers will be delayed and combined using
+   * [url=https://en.wikipedia.org/wiki/Nagle&#37;27s_algorithm]Nagle's algorithm[/url].
+   * **Note:** It's recommended to leave this disabled for applications that send large packets or
+   * need to transfer a lot of data, as enabling this can decrease the total available bandwidth.
    */
   public fun setNoDelay(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
@@ -125,19 +129,19 @@ public open class StreamPeerTCP : StreamPeer() {
     id: Long,
   ) {
     /**
-     * The initial status of the [godot.StreamPeerTCP]. This is also the status after disconnecting.
+     * The initial status of the [StreamPeerTCP]. This is also the status after disconnecting.
      */
     STATUS_NONE(0),
     /**
-     * A status representing a [godot.StreamPeerTCP] that is connecting to a host.
+     * A status representing a [StreamPeerTCP] that is connecting to a host.
      */
     STATUS_CONNECTING(1),
     /**
-     * A status representing a [godot.StreamPeerTCP] that is connected to a host.
+     * A status representing a [StreamPeerTCP] that is connected to a host.
      */
     STATUS_CONNECTED(2),
     /**
-     * A status representing a [godot.StreamPeerTCP] in error state.
+     * A status representing a [StreamPeerTCP] in error state.
      */
     STATUS_ERROR(3),
     ;

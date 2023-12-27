@@ -29,26 +29,22 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A customizable [godot.StyleBox] that doesn't use a texture.
- *
- * By configuring various properties of this style box, you can achieve many common looks without the need of a texture. This includes optionally rounded borders, antialiasing, shadows, and skew.
- *
- * Setting corner radius to high values is allowed. As soon as corners overlap, the stylebox will switch to a relative system.
- *
+ * By configuring various properties of this style box, you can achieve many common looks without
+ * the need of a texture. This includes optionally rounded borders, antialiasing, shadows, and skew.
+ * Setting corner radius to high values is allowed. As soon as corners overlap, the stylebox will
+ * switch to a relative system.
  * **Example:**
- *
- * ```
- * 		height = 30
- * 		corner_radius_top_left = 50
- * 		corner_radius_bottom_left = 100
- * 		```
- *
- * The relative system now would take the 1:2 ratio of the two left corners to calculate the actual corner width. Both corners added will **never** be more than the height. Result:
- *
- * ```
- * 		corner_radius_top_left: 10
- * 		corner_radius_bottom_left: 20
- * 		```
+ * [codeblock]
+ * height = 30
+ * corner_radius_top_left = 50
+ * corner_radius_bottom_left = 100
+ * [/codeblock]
+ * The relative system now would take the 1:2 ratio of the two left corners to calculate the actual
+ * corner width. Both corners added will **never** be more than the height. Result:
+ * [codeblock]
+ * corner_radius_top_left: 10
+ * corner_radius_bottom_left: 20
+ * [/codeblock]
  */
 @GodotBaseType
 public open class StyleBoxFlat : StyleBox() {
@@ -82,9 +78,14 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   /**
-   * If set to a non-zero value on either axis, [skew] distorts the StyleBox horizontally and/or vertically. This can be used for "futuristic"-style UIs. Positive values skew the StyleBox towards the right (X axis) and upwards (Y axis), while negative values skew the StyleBox towards the left (X axis) and downwards (Y axis).
-   *
-   * **Note:** To ensure text does not touch the StyleBox's edges, consider increasing the [godot.StyleBox]'s content margin (see [godot.StyleBox.contentMarginBottom]). It is preferable to increase the content margin instead of the expand margin (see [expandMarginBottom]), as increasing the expand margin does not increase the size of the clickable area for [godot.Control]s.
+   * If set to a non-zero value on either axis, [skew] distorts the StyleBox horizontally and/or
+   * vertically. This can be used for "futuristic"-style UIs. Positive values skew the StyleBox towards
+   * the right (X axis) and upwards (Y axis), while negative values skew the StyleBox towards the left
+   * (X axis) and downwards (Y axis).
+   * **Note:** To ensure text does not touch the StyleBox's edges, consider increasing the
+   * [StyleBox]'s content margin (see [StyleBox.contentMarginBottom]). It is preferable to increase the
+   * content margin instead of the expand margin (see [expandMarginBottom]), as increasing the expand
+   * margin does not increase the size of the clickable area for [Control]s.
    */
   @CoreTypeLocalCopy
   public var skew: Vector2
@@ -240,11 +241,13 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   /**
-   * This sets the number of vertices used for each corner. Higher values result in rounder corners but take more processing power to compute. When choosing a value, you should take the corner radius ([setCornerRadiusAll]) into account.
-   *
-   * For corner radii less than 10, `4` or `5` should be enough. For corner radii less than 30, values between `8` and `12` should be enough.
-   *
-   * A corner detail of `1` will result in chamfered corners instead of rounded corners, which is useful for some artistic effects.
+   * This sets the number of vertices used for each corner. Higher values result in rounder corners
+   * but take more processing power to compute. When choosing a value, you should take the corner
+   * radius ([setCornerRadiusAll]) into account.
+   * For corner radii less than 10, `4` or `5` should be enough. For corner radii less than 30,
+   * values between `8` and `12` should be enough.
+   * A corner detail of `1` will result in chamfered corners instead of rounded corners, which is
+   * useful for some artistic effects.
    */
   public var cornerDetail: Int
     get() {
@@ -258,9 +261,11 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   /**
-   * Expands the stylebox outside of the control rect on the left edge. Useful in combination with [borderWidthLeft] to draw a border outside the control rect.
-   *
-   * **Note:** Unlike [godot.StyleBox.contentMarginLeft], [expandMarginLeft] does *not* affect the size of the clickable area for [godot.Control]s. This can negatively impact usability if used wrong, as the user may try to click an area of the StyleBox that cannot actually receive clicks.
+   * Expands the stylebox outside of the control rect on the left edge. Useful in combination with
+   * [borderWidthLeft] to draw a border outside the control rect.
+   * **Note:** Unlike [StyleBox.contentMarginLeft], [expandMarginLeft] does *not* affect the size of
+   * the clickable area for [Control]s. This can negatively impact usability if used wrong, as the user
+   * may try to click an area of the StyleBox that cannot actually receive clicks.
    */
   public var expandMarginLeft: Float
     get() {
@@ -274,9 +279,11 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   /**
-   * Expands the stylebox outside of the control rect on the top edge. Useful in combination with [borderWidthTop] to draw a border outside the control rect.
-   *
-   * **Note:** Unlike [godot.StyleBox.contentMarginTop], [expandMarginTop] does *not* affect the size of the clickable area for [godot.Control]s. This can negatively impact usability if used wrong, as the user may try to click an area of the StyleBox that cannot actually receive clicks.
+   * Expands the stylebox outside of the control rect on the top edge. Useful in combination with
+   * [borderWidthTop] to draw a border outside the control rect.
+   * **Note:** Unlike [StyleBox.contentMarginTop], [expandMarginTop] does *not* affect the size of
+   * the clickable area for [Control]s. This can negatively impact usability if used wrong, as the user
+   * may try to click an area of the StyleBox that cannot actually receive clicks.
    */
   public var expandMarginTop: Float
     get() {
@@ -290,9 +297,11 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   /**
-   * Expands the stylebox outside of the control rect on the right edge. Useful in combination with [borderWidthRight] to draw a border outside the control rect.
-   *
-   * **Note:** Unlike [godot.StyleBox.contentMarginRight], [expandMarginRight] does *not* affect the size of the clickable area for [godot.Control]s. This can negatively impact usability if used wrong, as the user may try to click an area of the StyleBox that cannot actually receive clicks.
+   * Expands the stylebox outside of the control rect on the right edge. Useful in combination with
+   * [borderWidthRight] to draw a border outside the control rect.
+   * **Note:** Unlike [StyleBox.contentMarginRight], [expandMarginRight] does *not* affect the size
+   * of the clickable area for [Control]s. This can negatively impact usability if used wrong, as the
+   * user may try to click an area of the StyleBox that cannot actually receive clicks.
    */
   public var expandMarginRight: Float
     get() {
@@ -306,9 +315,11 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   /**
-   * Expands the stylebox outside of the control rect on the bottom edge. Useful in combination with [borderWidthBottom] to draw a border outside the control rect.
-   *
-   * **Note:** Unlike [godot.StyleBox.contentMarginBottom], [expandMarginBottom] does *not* affect the size of the clickable area for [godot.Control]s. This can negatively impact usability if used wrong, as the user may try to click an area of the StyleBox that cannot actually receive clicks.
+   * Expands the stylebox outside of the control rect on the bottom edge. Useful in combination with
+   * [borderWidthBottom] to draw a border outside the control rect.
+   * **Note:** Unlike [StyleBox.contentMarginBottom], [expandMarginBottom] does *not* affect the
+   * size of the clickable area for [Control]s. This can negatively impact usability if used wrong, as
+   * the user may try to click an area of the StyleBox that cannot actually receive clicks.
    */
   public var expandMarginBottom: Float
     get() {
@@ -366,9 +377,11 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   /**
-   * Antialiasing draws a small ring around the edges, which fades to transparency. As a result, edges look much smoother. This is only noticeable when using rounded corners or [skew].
-   *
-   * **Note:** When using beveled corners with 45-degree angles ([cornerDetail] = 1), it is recommended to set [antiAliasing] to `false` to ensure crisp visuals and avoid possible visual glitches.
+   * Antialiasing draws a small ring around the edges, which fades to transparency. As a result,
+   * edges look much smoother. This is only noticeable when using rounded corners or [skew].
+   * **Note:** When using beveled corners with 45-degree angles ([cornerDetail] = 1), it is
+   * recommended to set [antiAliasing] to `false` to ensure crisp visuals and avoid possible visual
+   * glitches.
    */
   public var antiAliasing: Boolean
     get() {
@@ -382,9 +395,11 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   /**
-   * This changes the size of the antialiasing effect. `1.0` is recommended for an optimal result at 100% scale, identical to how rounded rectangles are rendered in web browsers and most vector drawing software.
-   *
-   * **Note:** Higher values may produce a blur effect but can also create undesired artifacts on small boxes with large-radius corners.
+   * This changes the size of the antialiasing effect. `1.0` is recommended for an optimal result at
+   * 100&#37; scale, identical to how rounded rectangles are rendered in web browsers and most vector
+   * drawing software.
+   * **Note:** Higher values may produce a blur effect but can also create undesired artifacts on
+   * small boxes with large-radius corners.
    */
   public var antiAliasingSize: Float
     get() {
@@ -427,9 +442,14 @@ public open class StyleBoxFlat : StyleBox() {
 
 
   /**
-   * If set to a non-zero value on either axis, [skew] distorts the StyleBox horizontally and/or vertically. This can be used for "futuristic"-style UIs. Positive values skew the StyleBox towards the right (X axis) and upwards (Y axis), while negative values skew the StyleBox towards the left (X axis) and downwards (Y axis).
-   *
-   * **Note:** To ensure text does not touch the StyleBox's edges, consider increasing the [godot.StyleBox]'s content margin (see [godot.StyleBox.contentMarginBottom]). It is preferable to increase the content margin instead of the expand margin (see [expandMarginBottom]), as increasing the expand margin does not increase the size of the clickable area for [godot.Control]s.
+   * If set to a non-zero value on either axis, [skew] distorts the StyleBox horizontally and/or
+   * vertically. This can be used for "futuristic"-style UIs. Positive values skew the StyleBox towards
+   * the right (X axis) and upwards (Y axis), while negative values skew the StyleBox towards the left
+   * (X axis) and downwards (Y axis).
+   * **Note:** To ensure text does not touch the StyleBox's edges, consider increasing the
+   * [StyleBox]'s content margin (see [StyleBox.contentMarginBottom]). It is preferable to increase the
+   * content margin instead of the expand margin (see [expandMarginBottom]), as increasing the expand
+   * margin does not increase the size of the clickable area for [Control]s.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

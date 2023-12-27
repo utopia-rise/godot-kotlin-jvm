@@ -21,16 +21,10 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Adds a distortion audio effect to an Audio bus.
- *
- * Modifies the sound to make it distorted.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
- *
  * Different types are available: clip, tan, lo-fi (bit crushing), overdrive, or waveshape.
- *
- * By distorting the waveform the frequency content changes, which will often make the sound "crunchy" or "abrasive". For games, it can simulate sound coming from some saturated device or speaker very efficiently.
+ * By distorting the waveform the frequency content changes, which will often make the sound
+ * "crunchy" or "abrasive". For games, it can simulate sound coming from some saturated device or
+ * speaker very efficiently.
  */
 @GodotBaseType
 public open class AudioEffectDistortion : AudioEffect() {
@@ -49,7 +43,8 @@ public open class AudioEffectDistortion : AudioEffect() {
     }
 
   /**
-   * Increases or decreases the volume before the effect, in decibels. Value can range from -60 to 60.
+   * Increases or decreases the volume before the effect, in decibels. Value can range from -60 to
+   * 60.
    */
   public var preGain: Float
     get() {
@@ -63,7 +58,8 @@ public open class AudioEffectDistortion : AudioEffect() {
     }
 
   /**
-   * High-pass filter, in Hz. Frequencies higher than this value will not be affected by the distortion. Value can range from 1 to 20000.
+   * High-pass filter, in Hz. Frequencies higher than this value will not be affected by the
+   * distortion. Value can range from 1 to 20000.
    */
   public var keepHfHz: Float
     get() {
@@ -91,7 +87,8 @@ public open class AudioEffectDistortion : AudioEffect() {
     }
 
   /**
-   * Increases or decreases the volume after the effect, in decibels. Value can range from -80 to 24.
+   * Increases or decreases the volume after the effect, in decibels. Value can range from -80 to
+   * 24.
    */
   public var postGain: Float
     get() {
@@ -116,20 +113,20 @@ public open class AudioEffectDistortion : AudioEffect() {
      * Digital distortion effect which cuts off peaks at the top and bottom of the waveform.
      */
     MODE_CLIP(0),
-    /**
-     *
-     */
     MODE_ATAN(1),
     /**
-     * Low-resolution digital distortion effect (bit depth reduction). You can use it to emulate the sound of early digital audio devices.
+     * Low-resolution digital distortion effect (bit depth reduction). You can use it to emulate the
+     * sound of early digital audio devices.
      */
     MODE_LOFI(2),
     /**
-     * Emulates the warm distortion produced by a field effect transistor, which is commonly used in solid-state musical instrument amplifiers. The [drive] property has no effect in this mode.
+     * Emulates the warm distortion produced by a field effect transistor, which is commonly used in
+     * solid-state musical instrument amplifiers. The [drive] property has no effect in this mode.
      */
     MODE_OVERDRIVE(3),
     /**
-     * Waveshaper distortions are used mainly by electronic musicians to achieve an extra-abrasive sound.
+     * Waveshaper distortions are used mainly by electronic musicians to achieve an extra-abrasive
+     * sound.
      */
     MODE_WAVESHAPE(4),
     ;

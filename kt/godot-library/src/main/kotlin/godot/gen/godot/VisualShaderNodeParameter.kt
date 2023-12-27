@@ -20,14 +20,14 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * A base type for the parameters within the visual shader graph.
- *
- * A parameter represents a variable in the shader which is set externally, i.e. from the [godot.ShaderMaterial]. Parameters are exposed as properties in the [godot.ShaderMaterial] and can be assigned from the Inspector or from a script.
+ * A parameter represents a variable in the shader which is set externally, i.e. from the
+ * [ShaderMaterial]. Parameters are exposed as properties in the [ShaderMaterial] and can be assigned
+ * from the Inspector or from a script.
  */
 @GodotBaseType
 public open class VisualShaderNodeParameter internal constructor() : VisualShaderNode() {
   /**
-   * Name of the parameter, by which it can be accessed through the [godot.ShaderMaterial] properties.
+   * Name of the parameter, by which it can be accessed through the [ShaderMaterial] properties.
    */
   public var parameterName: String
     get() {
@@ -63,7 +63,7 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
     id: Long,
   ) {
     /**
-     * The parameter will be tied to the [godot.ShaderMaterial] using this shader.
+     * The parameter will be tied to the [ShaderMaterial] using this shader.
      */
     QUAL_NONE(0),
     /**
@@ -71,11 +71,11 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
      */
     QUAL_GLOBAL(1),
     /**
-     * The parameter will be tied to the node with attached [godot.ShaderMaterial] using this shader.
+     * The parameter will be tied to the node with attached [ShaderMaterial] using this shader.
      */
     QUAL_INSTANCE(2),
     /**
-     * Represents the size of the [enum Qualifier] enum.
+     * Represents the size of the [Qualifier] enum.
      */
     QUAL_MAX(3),
     ;

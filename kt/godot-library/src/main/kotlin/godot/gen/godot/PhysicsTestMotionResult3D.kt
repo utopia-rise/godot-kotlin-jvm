@@ -26,9 +26,7 @@ import kotlin.Suppress
 import kotlin.jvm.JvmOverloads
 
 /**
- * Describes the motion and collision result from [godot.PhysicsServer3D.bodyTestMotion].
- *
- * Describes the motion and collision result from [godot.PhysicsServer3D.bodyTestMotion].
+ * Describes the motion and collision result from [PhysicsServer3D.bodyTestMotion].
  */
 @GodotBaseType
 public open class PhysicsTestMotionResult3D : RefCounted() {
@@ -56,7 +54,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   }
 
   /**
-   * Returns the maximum fraction of the motion that can occur without a collision, between `0` and `1`.
+   * Returns the maximum fraction of the motion that can occur without a collision, between `0` and
+   * `1`.
    */
   public fun getCollisionSafeFraction(): Float {
     TransferContext.writeArguments()
@@ -65,7 +64,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   }
 
   /**
-   * Returns the minimum fraction of the motion needed to collide, if a collision occurred, between `0` and `1`.
+   * Returns the minimum fraction of the motion needed to collide, if a collision occurred, between
+   * `0` and `1`.
    */
   public fun getCollisionUnsafeFraction(): Float {
     TransferContext.writeArguments()
@@ -83,7 +83,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   }
 
   /**
-   * Returns the point of collision in global coordinates given a collision index (the deepest collision by default), if a collision occurred.
+   * Returns the point of collision in global coordinates given a collision index (the deepest
+   * collision by default), if a collision occurred.
    */
   @JvmOverloads
   public fun getCollisionPoint(collisionIndex: Int = 0): Vector3 {
@@ -93,7 +94,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   }
 
   /**
-   * Returns the colliding body's shape's normal at the point of collision given a collision index (the deepest collision by default), if a collision occurred.
+   * Returns the colliding body's shape's normal at the point of collision given a collision index
+   * (the deepest collision by default), if a collision occurred.
    */
   @JvmOverloads
   public fun getCollisionNormal(collisionIndex: Int = 0): Vector3 {
@@ -103,7 +105,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   }
 
   /**
-   * Returns the colliding body's velocity given a collision index (the deepest collision by default), if a collision occurred.
+   * Returns the colliding body's velocity given a collision index (the deepest collision by
+   * default), if a collision occurred.
    */
   @JvmOverloads
   public fun getColliderVelocity(collisionIndex: Int = 0): Vector3 {
@@ -113,7 +116,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   }
 
   /**
-   * Returns the unique instance ID of the colliding body's attached [godot.Object] given a collision index (the deepest collision by default), if a collision occurred. See [godot.Object.getInstanceId].
+   * Returns the unique instance ID of the colliding body's attached [Object] given a collision
+   * index (the deepest collision by default), if a collision occurred. See [Object.getInstanceId].
    */
   @JvmOverloads
   public fun getColliderId(collisionIndex: Int = 0): Long {
@@ -123,7 +127,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   }
 
   /**
-   * Returns the colliding body's [RID] used by the [godot.PhysicsServer3D] given a collision index (the deepest collision by default), if a collision occurred.
+   * Returns the colliding body's [RID] used by the [PhysicsServer3D] given a collision index (the
+   * deepest collision by default), if a collision occurred.
    */
   @JvmOverloads
   public fun getColliderRid(collisionIndex: Int = 0): RID {
@@ -133,7 +138,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   }
 
   /**
-   * Returns the colliding body's attached [godot.Object] given a collision index (the deepest collision by default), if a collision occurred.
+   * Returns the colliding body's attached [Object] given a collision index (the deepest collision
+   * by default), if a collision occurred.
    */
   @JvmOverloads
   public fun getCollider(collisionIndex: Int = 0): Object? {
@@ -143,7 +149,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   }
 
   /**
-   * Returns the colliding body's shape index given a collision index (the deepest collision by default), if a collision occurred. See [godot.CollisionObject3D].
+   * Returns the colliding body's shape index given a collision index (the deepest collision by
+   * default), if a collision occurred. See [CollisionObject3D].
    */
   @JvmOverloads
   public fun getColliderShape(collisionIndex: Int = 0): Int {
@@ -153,7 +160,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   }
 
   /**
-   * Returns the moving object's colliding shape given a collision index (the deepest collision by default), if a collision occurred.
+   * Returns the moving object's colliding shape given a collision index (the deepest collision by
+   * default), if a collision occurred.
    */
   @JvmOverloads
   public fun getCollisionLocalShape(collisionIndex: Int = 0): Int {
@@ -163,7 +171,8 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   }
 
   /**
-   * Returns the length of overlap along the collision normal given a collision index (the deepest collision by default), if a collision occurred.
+   * Returns the length of overlap along the collision normal given a collision index (the deepest
+   * collision by default), if a collision occurred.
    */
   @JvmOverloads
   public fun getCollisionDepth(collisionIndex: Int = 0): Float {

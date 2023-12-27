@@ -18,11 +18,10 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A modification that holds and executes a [godot.SkeletonModificationStack2D].
- *
- * This [godot.SkeletonModification2D] holds a reference to a [godot.SkeletonModificationStack2D], allowing you to use multiple modification stacks on a single [godot.Skeleton2D].
- *
- * **Note:** The modifications in the held [godot.SkeletonModificationStack2D] will only be executed if their execution mode matches the execution mode of the SkeletonModification2DStackHolder.
+ * This [SkeletonModification2D] holds a reference to a [SkeletonModificationStack2D], allowing you
+ * to use multiple modification stacks on a single [Skeleton2D].
+ * **Note:** The modifications in the held [SkeletonModificationStack2D] will only be executed if
+ * their execution mode matches the execution mode of the SkeletonModification2DStackHolder.
  */
 @GodotBaseType
 public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
@@ -32,7 +31,8 @@ public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
   }
 
   /**
-   * Sets the [godot.SkeletonModificationStack2D] that this modification is holding. This modification stack will then be executed when this modification is executed.
+   * Sets the [SkeletonModificationStack2D] that this modification is holding. This modification
+   * stack will then be executed when this modification is executed.
    */
   public fun setHeldModificationStack(heldModificationStack: SkeletonModificationStack2D): Unit {
     TransferContext.writeArguments(OBJECT to heldModificationStack)
@@ -40,7 +40,7 @@ public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
   }
 
   /**
-   * Returns the [godot.SkeletonModificationStack2D] that this modification is holding.
+   * Returns the [SkeletonModificationStack2D] that this modification is holding.
    */
   public fun getHeldModificationStack(): SkeletonModificationStack2D? {
     TransferContext.writeArguments()

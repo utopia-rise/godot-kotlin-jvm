@@ -20,9 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Texture format (used by [godot.RenderingDevice]).
- *
- * This object is used by [godot.RenderingDevice].
+ * This object is used by [RenderingDevice].
  */
 @GodotBaseType
 public open class RDTextureFormat : RefCounted() {
@@ -157,17 +155,11 @@ public open class RDTextureFormat : RefCounted() {
     return true
   }
 
-  /**
-   *
-   */
   public fun addShareableFormat(format: RenderingDevice.DataFormat): Unit {
     TransferContext.writeArguments(LONG to format.id)
     TransferContext.callMethod(rawPtr, MethodBindings.addShareableFormatPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun removeShareableFormat(format: RenderingDevice.DataFormat): Unit {
     TransferContext.writeArguments(LONG to format.id)
     TransferContext.callMethod(rawPtr, MethodBindings.removeShareableFormatPtr, NIL)

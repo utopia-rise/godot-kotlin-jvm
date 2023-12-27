@@ -24,9 +24,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * А node that dynamically copies or overrides the 3D transform of a bone in its parent [godot.Skeleton3D].
- *
- * This node selects a bone in a [godot.Skeleton3D] and attaches to it. This means that the [godot.BoneAttachment3D] node will either dynamically copy or override the 3D transform of the selected bone.
+ * This node selects a bone in a [Skeleton3D] and attaches to it. This means that the
+ * [BoneAttachment3D] node will either dynamically copy or override the 3D transform of the selected
+ * bone.
  */
 @GodotBaseType
 public open class BoneAttachment3D : Node3D() {
@@ -59,7 +59,9 @@ public open class BoneAttachment3D : Node3D() {
     }
 
   /**
-   * Whether the BoneAttachment3D node will override the bone pose of the bone it is attached to. When set to `true`, the BoneAttachment3D node can change the pose of the bone. When set to `false`, the BoneAttachment3D will always be set to the bone's transform.
+   * Whether the BoneAttachment3D node will override the bone pose of the bone it is attached to.
+   * When set to `true`, the BoneAttachment3D node can change the pose of the bone. When set to
+   * `false`, the BoneAttachment3D will always be set to the bone's transform.
    */
   public var overridePose: Boolean
     get() {
@@ -78,7 +80,9 @@ public open class BoneAttachment3D : Node3D() {
   }
 
   /**
-   * A function that is called automatically when the [godot.Skeleton3D] the BoneAttachment3D node is using has a bone that has changed its pose. This function is where the BoneAttachment3D node updates its position so it is correctly bound when it is *not* set to override the bone pose.
+   * A function that is called automatically when the [Skeleton3D] the BoneAttachment3D node is
+   * using has a bone that has changed its pose. This function is where the BoneAttachment3D node
+   * updates its position so it is correctly bound when it is *not* set to override the bone pose.
    */
   public fun onBonePoseUpdate(boneIndex: Int): Unit {
     TransferContext.writeArguments(LONG to boneIndex.toLong())
@@ -86,7 +90,9 @@ public open class BoneAttachment3D : Node3D() {
   }
 
   /**
-   * Sets whether the BoneAttachment3D node will use an external [godot.Skeleton3D] node rather than attempting to use its parent node as the [godot.Skeleton3D]. When set to `true`, the BoneAttachment3D node will use the external [godot.Skeleton3D] node set in [setExternalSkeleton].
+   * Sets whether the BoneAttachment3D node will use an external [Skeleton3D] node rather than
+   * attempting to use its parent node as the [Skeleton3D]. When set to `true`, the BoneAttachment3D
+   * node will use the external [Skeleton3D] node set in [setExternalSkeleton].
    */
   public fun setUseExternalSkeleton(useExternalSkeleton: Boolean): Unit {
     TransferContext.writeArguments(BOOL to useExternalSkeleton)
@@ -94,7 +100,8 @@ public open class BoneAttachment3D : Node3D() {
   }
 
   /**
-   * Returns whether the BoneAttachment3D node is using an external [godot.Skeleton3D] rather than attempting to use its parent node as the [godot.Skeleton3D].
+   * Returns whether the BoneAttachment3D node is using an external [Skeleton3D] rather than
+   * attempting to use its parent node as the [Skeleton3D].
    */
   public fun getUseExternalSkeleton(): Boolean {
     TransferContext.writeArguments()
@@ -103,7 +110,8 @@ public open class BoneAttachment3D : Node3D() {
   }
 
   /**
-   * Sets the [godot.core.NodePath] to the external skeleton that the BoneAttachment3D node should use. See [setUseExternalSkeleton] to enable the external [godot.Skeleton3D] node.
+   * Sets the [NodePath] to the external skeleton that the BoneAttachment3D node should use. See
+   * [setUseExternalSkeleton] to enable the external [Skeleton3D] node.
    */
   public fun setExternalSkeleton(externalSkeleton: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to externalSkeleton)
@@ -111,7 +119,7 @@ public open class BoneAttachment3D : Node3D() {
   }
 
   /**
-   * Returns the [godot.core.NodePath] to the external [godot.Skeleton3D] node, if one has been set.
+   * Returns the [NodePath] to the external [Skeleton3D] node, if one has been set.
    */
   public fun getExternalSkeleton(): NodePath {
     TransferContext.writeArguments()

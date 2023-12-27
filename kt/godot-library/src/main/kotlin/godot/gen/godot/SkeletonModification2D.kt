@@ -24,16 +24,16 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base class for resources that operate on [godot.Bone2D]s in a [godot.Skeleton2D].
- *
- * This resource provides an interface that can be expanded so code that operates on [godot.Bone2D] nodes in a [godot.Skeleton2D] can be mixed and matched together to create complex interactions.
- *
- * This is used to provide Godot with a flexible and powerful Inverse Kinematics solution that can be adapted for many different uses.
+ * This resource provides an interface that can be expanded so code that operates on [Bone2D] nodes
+ * in a [Skeleton2D] can be mixed and matched together to create complex interactions.
+ * This is used to provide Godot with a flexible and powerful Inverse Kinematics solution that can
+ * be adapted for many different uses.
  */
 @GodotBaseType
 public open class SkeletonModification2D : Resource() {
   /**
-   * If `true`, the modification's [_execute] function will be called by the [godot.SkeletonModificationStack2D].
+   * If `true`, the modification's [_execute] function will be called by the
+   * [SkeletonModificationStack2D].
    */
   public var enabled: Boolean
     get() {
@@ -47,7 +47,8 @@ public open class SkeletonModification2D : Resource() {
     }
 
   /**
-   * The execution mode for the modification. This tells the modification stack when to execute the modification. Some modifications have settings that are only available in certain execution modes.
+   * The execution mode for the modification. This tells the modification stack when to execute the
+   * modification. Some modifications have settings that are only available in certain execution modes.
    */
   public var executionMode: Int
     get() {
@@ -66,7 +67,8 @@ public open class SkeletonModification2D : Resource() {
   }
 
   /**
-   * Executes the given modification. This is where the modification performs whatever function it is designed to do.
+   * Executes the given modification. This is where the modification performs whatever function it
+   * is designed to do.
    */
   public open fun _execute(delta: Double): Unit {
   }
@@ -78,15 +80,17 @@ public open class SkeletonModification2D : Resource() {
   }
 
   /**
-   * Used for drawing **editor-only** modification gizmos. This function will only be called in the Godot editor and can be overridden to draw custom gizmos.
-   *
-   * **Note:** You will need to use the Skeleton2D from [godot.SkeletonModificationStack2D.getSkeleton] and it's draw functions, as the [godot.SkeletonModification2D] resource cannot draw on its own.
+   * Used for drawing **editor-only** modification gizmos. This function will only be called in the
+   * Godot editor and can be overridden to draw custom gizmos.
+   * **Note:** You will need to use the Skeleton2D from [SkeletonModificationStack2D.getSkeleton]
+   * and it's draw functions, as the [SkeletonModification2D] resource cannot draw on its own.
    */
   public open fun _drawEditorGizmo(): Unit {
   }
 
   /**
-   * Returns the [godot.SkeletonModificationStack2D] that this modification is bound to. Through the modification stack, you can access the Skeleton2D the modification is operating on.
+   * Returns the [SkeletonModificationStack2D] that this modification is bound to. Through the
+   * modification stack, you can access the Skeleton2D the modification is operating on.
    */
   public fun getModificationStack(): SkeletonModificationStack2D? {
     TransferContext.writeArguments()
@@ -95,7 +99,9 @@ public open class SkeletonModification2D : Resource() {
   }
 
   /**
-   * Manually allows you to set the setup state of the modification. This function should only rarely be used, as the [godot.SkeletonModificationStack2D] the modification is bound to should handle setting the modification up.
+   * Manually allows you to set the setup state of the modification. This function should only
+   * rarely be used, as the [SkeletonModificationStack2D] the modification is bound to should handle
+   * setting the modification up.
    */
   public fun setIsSetup(isSetup: Boolean): Unit {
     TransferContext.writeArguments(BOOL to isSetup)
@@ -112,7 +118,8 @@ public open class SkeletonModification2D : Resource() {
   }
 
   /**
-   * Takes an angle and clamps it so it is within the passed-in [min] and [max] range. [invert] will inversely clamp the angle, clamping it to the range outside of the given bounds.
+   * Takes an angle and clamps it so it is within the passed-in [min] and [max] range. [invert] will
+   * inversely clamp the angle, clamping it to the range outside of the given bounds.
    */
   public fun clampAngle(
     angle: Float,
@@ -126,7 +133,8 @@ public open class SkeletonModification2D : Resource() {
   }
 
   /**
-   * Sets whether this modification will call [_drawEditorGizmo] in the Godot editor to draw modification-specific gizmos.
+   * Sets whether this modification will call [_drawEditorGizmo] in the Godot editor to draw
+   * modification-specific gizmos.
    */
   public fun setEditorDrawGizmo(drawGizmo: Boolean): Unit {
     TransferContext.writeArguments(BOOL to drawGizmo)
@@ -134,7 +142,8 @@ public open class SkeletonModification2D : Resource() {
   }
 
   /**
-   * Returns whether this modification will call [_drawEditorGizmo] in the Godot editor to draw modification-specific gizmos.
+   * Returns whether this modification will call [_drawEditorGizmo] in the Godot editor to draw
+   * modification-specific gizmos.
    */
   public fun getEditorDrawGizmo(): Boolean {
     TransferContext.writeArguments()

@@ -12,12 +12,9 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A PBR (Physically Based Rendering) material to be used on 3D objects.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/3d/standard_material_3d.html]($DOCS_URL/tutorials/3d/standard_material_3d.html)
- *
- * [godot.StandardMaterial3D]'s properties are inherited from [godot.BaseMaterial3D]. [godot.StandardMaterial3D] uses separate textures for ambient occlusion, roughness and metallic maps. To use a single ORM map for all 3 textures, use an [godot.ORMMaterial3D] instead.
+ * [StandardMaterial3D]'s properties are inherited from [BaseMaterial3D]. [StandardMaterial3D] uses
+ * separate textures for ambient occlusion, roughness and metallic maps. To use a single ORM map for
+ * all 3 textures, use an [ORMMaterial3D] instead.
  */
 @GodotBaseType
 public open class StandardMaterial3D : BaseMaterial3D() {
