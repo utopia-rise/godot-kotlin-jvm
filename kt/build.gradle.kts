@@ -5,6 +5,7 @@ plugins {
     // prevents the kotlin plugin being applied multiple times (once per subproject) as this is not supported. Done as suggested by the kotlin plugin
     alias(libs.plugins.kotlin.jvm) apply false
     id("com.utopia-rise.versioninfo")
+    alias(libs.plugins.gradleIntelliJPlugin) apply false
 }
 
 version = fullGodotKotlinJvmVersion
