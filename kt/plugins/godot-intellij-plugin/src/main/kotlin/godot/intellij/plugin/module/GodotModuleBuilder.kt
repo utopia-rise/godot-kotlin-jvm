@@ -277,8 +277,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                     .replace("ARTEFACT_ID", artifact)
             )
         }
-        copyTemplateFile(basePath, "default_env.tres")
-        copyTemplateFile(basePath, "icon.png")
+        copyTemplateFile(basePath, "icon.svg")
         copyTemplateFile(basePath, "project.godot") { outFile ->
             outFile.writeText(
                 outFile
