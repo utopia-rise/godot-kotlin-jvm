@@ -277,10 +277,26 @@ void KotlinLanguage::remove_named_global_constant(const StringName& p_name) {
 }
 
 void KotlinLanguage::thread_enter() {
+    //TODO: Remove this ifdef and its content while reworking GDKotlin and moving out logic of finding JVM.
+#ifdef DEBUG_ENABLED
+    if (!jni::Jvm::is_initialized()) {
+        LOG_ERROR("JavaVM is not initialized, please make sure your project contains an embedded JVM or JAVA_HOME environment variable is setup");
+        return;
+    }
+#endif
+
     jni::Jvm::attach();
 }
 
 void KotlinLanguage::thread_exit() {
+    //TODO: Remove this ifdef and its content while reworking GDKotlin and moving out logic of finding JVM.
+#ifdef DEBUG_ENABLED
+    if (!jni::Jvm::is_initialized()) {
+        LOG_ERROR("JavaVM is not initialized, please make sure your project contains an embedded JVM or JAVA_HOME environment variable is setup");
+        return;
+    }
+#endif
+
     jni::Jvm::detach();
 }
 

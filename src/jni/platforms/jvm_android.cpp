@@ -45,6 +45,10 @@ namespace jni {
     Jvm::Type Jvm::get_type() {
         return vm_type;
     }
+
+    bool Jvm::is_initialized() {
+        return true;
+    }
 }// namespace jni
 
 #endif
