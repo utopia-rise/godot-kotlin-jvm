@@ -31,6 +31,8 @@ namespace jni {
 
         static Type get_type();
 
+        static bool is_initialized();
+
     private:
         Jvm() = default;
         static JavaVM* vm;
