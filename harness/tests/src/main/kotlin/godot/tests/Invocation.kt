@@ -41,11 +41,13 @@ import godot.core.asStringName
 import godot.core.dictionaryOf
 import godot.core.variantArrayOf
 import godot.extensions.getNodeAs
+import godot.global.GD
 import godot.registration.Range
 import godot.signals.signal
 import godot.tests.subpackage.OtherScript
 import godot.util.RealT
 import org.joda.time.DateTime
+import kotlin.concurrent.thread
 
 enum class TestEnum {
 	ENUM_1,
@@ -434,6 +436,13 @@ class Invocation : Node3D() {
 
 	init {
 		println("Hello Invocation!")
+
+		thread(name = "invocation_thread") {
+			while (true) {
+				GD.print("In thread: ${Thread.currentThread()}")
+				Thread.sleep(1000)
+			}
+		}
 	}
 
 	override fun _onDestroy() {

@@ -328,14 +328,11 @@ void GDKotlin::finish() {
 #endif
         return;
     }
-    auto env = jni::Jvm::current_env();
-
-    bootstrap->finish(env);
 
     delete transfer_context;
     transfer_context = nullptr;
-    delete bootstrap;
-    bootstrap = nullptr;
+
+    auto env = jni::Jvm::current_env();
 
     TypeManager::get_instance().clear();
 
@@ -357,6 +354,10 @@ void GDKotlin::finish() {
         jni::MethodId clean_up_method_id {garbage_collector_cls.get_method_id(env, "cleanUp", "()V")};
         garbage_collector_instance.call_void_method(env, clean_up_method_id);
     }
+
+    bootstrap->finish(env);
+    delete bootstrap;
+    bootstrap = nullptr;
 
     LongStringQueue::destroy();
     BridgesManager::get_instance().delete_bridges();
