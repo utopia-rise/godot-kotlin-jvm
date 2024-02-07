@@ -21,5 +21,12 @@
   },
   {
     "name": "godot.tests.reflection.BaseReflectionTest"
+  },
+  {
+    "name": "godot.tests.reflection.GH571_ReflectionTest$TestClass",
+    "allPublicMethods": true,
+    "allDeclaredFields":true,
+    "allDeclaredMethods":true,
+    "allDeclaredConstructors":true
   }
 ]
