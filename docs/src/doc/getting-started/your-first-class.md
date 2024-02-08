@@ -18,7 +18,7 @@ class Simple: Node3D() {
 }
 ```
 
-The [classes](../user-guide/classes.md) section covers in detail what we did here, but for now `@RegisterClass` will register the class to Godot. Now we can trigger a build.
+The [classes](../user-guide/classes.md) section covers in details what we did here, but for now `@RegisterClass` will register the class to Godot. Now we can trigger a build.
 
 ```shell
 ./gradlew build

@@ -1,4 +1,4 @@
-The module uses semantic versioning for its own versions but adds a suffix for the supported godot version:
+The module uses semantic versioning for its own versions but adds a suffix for the supported Godot version:
 
 Full version: `0.8.1-4.2.0`
 

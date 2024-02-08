@@ -2,6 +2,6 @@ While Kotlin and Godot supports a wide range of platforms, this module for the m
 
 - Windows X64
 - Linux X64
-- MacOS X64
+- MacOS X64 / arm64
 - Android (arm64v8)
 - iOS (arm64v8)

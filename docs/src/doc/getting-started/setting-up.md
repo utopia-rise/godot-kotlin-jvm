@@ -20,7 +20,7 @@ If you do not want to use our IntelliJ IDEA plugin you can follow these steps to
 !!! note
     The following steps requires Gradle to be installed, checkout their [website](https://gradle.org) for installation instructions.
 
-Firstly, you need to setup a gradle [wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html). The wrapper will ensure that anyone who wants to build your project from source will use the same gradle version.
+Firstly, you need to setup a Gradle [wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html). The wrapper will ensure that anyone who wants to build your project from source will use the same gradle version.
 
 === "Windows" 
     ```shell
@@ -40,7 +40,7 @@ The above command will create three files, which will be empty for now.
 gradle wrapper --gradle-version=6.8
 ```
 
-You should have the wrapper setup after running the command above. Up next is setting up the gradle build. Open up `build.gradle.kts` and paste the following:
+You should have the wrapper setup after running the command above. Up next is setting up the Gradle build. Open up `build.gradle.kts` and paste the following:
 
 === "build.gradle.kts"
     ```kt
@@ -57,4 +57,6 @@ You should have the wrapper setup after running the command above. Up next is se
 !!! note 
     Replace `$kotlinVersion` and `$godotkotlinVersion` to the appropriate version you want to use.
 
-The snippet above uses our gradle plugin. Without the plugin, you will have to manually define all needed dependencies, manually register your classes, signals, properties, functions and manually create and copy the needed jar's to the appropriate locations.
+The snippet above uses our Gradle plugin. Without the plugin, you will have to manually define all needed
+dependencies, manually register your classes, signals, properties, functions and manually create and copy
+the needed JAR's to the appropriate locations.
