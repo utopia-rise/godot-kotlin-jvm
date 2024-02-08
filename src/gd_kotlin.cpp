@@ -469,19 +469,23 @@ bool GDKotlin::check_configuration() {
         configuration_errors.push_back(
           {"JAVA_HOME not defined",
            "JAVA_HOME environment variable is not defined. This is necessary for Godot-Jvm to work while you develop "
-           "on your machine.\n"
-           "You can continue to use the editor but all Godot-Jvm related functionality remains disabled until you "
-           "define JAVA_HOME and restart the editor."}
+           "on your machine."}
         );
 
+#ifdef MACOS_ENABLED
         OS::get_singleton()->alert(
-          "JAVA_HOME environment variable is not defined. This is necessary for Godot-Jvm to work while you develop "
-          "on your machine.\n"
-          "You can continue to use the editor but all Godot-Jvm related functionality remains disabled until you "
-          "define JAVA_HOME and restart the editor.",
+          "The environment variable JAVA_HOME is not found. If you launched the editor "
+          "through a double click on Godot.app, also make sure that JAVA_HOME is set through launchctl: `launchctl setenv JAVA_HOME </path/to/jdk>`",
+          ""
+        );
+#else
+        OS::get_singleton()->alert(
+          "The environment variable JAVA_HOME is not found.",
           "JAVA_HOME not defined. Godot-JVM module won't be loaded!"
         );
+#endif
 
+        exit(1); // TODO: remove once we refactor gd_kotlin and move init checks
         has_configuration_error = true;
     }
     return !has_configuration_error;
