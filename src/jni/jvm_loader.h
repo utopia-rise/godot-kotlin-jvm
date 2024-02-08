@@ -32,13 +32,13 @@ namespace jni {
         static CreateJavaVM get_create_jvm_function();
         static GetCreatedJavaVMs get_get_created_java_vm_function();
         static void close_jvm_lib();
+        static String get_embedded_jre_path();
 
     private:
         static void* jvmLib;
         static void load_jvm_lib();
         static String get_jvm_lib_path();
         static String get_path_to_locally_installed_jvm();
-        static String get_embedded_jre_path();
     };
 }// namespace jni
 
