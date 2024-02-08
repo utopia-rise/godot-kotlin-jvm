@@ -11,7 +11,7 @@ data class Type(
     val allSuperTypes: List<Type>
         get() = collectSupertypes()
 
-    private fun Type.collectSupertypes(): List<Type> {
+    private fun collectSupertypes(): List<Type> {
         return listOf(
             *supertypes.toTypedArray(),
             *supertypes.flatMap { it.collectSupertypes() }.toTypedArray()
