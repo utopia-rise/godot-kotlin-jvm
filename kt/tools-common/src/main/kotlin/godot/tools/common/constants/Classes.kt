@@ -1,6 +1,6 @@
 package godot.tools.common.constants
 
-import com.squareup.kotlinpoet.*
+import com.squareup.kotlinpoet.ClassName
 
 object GodotKotlinJvmTypes{
     const val color = "Color"
@@ -12,6 +12,7 @@ object GodotKotlinJvmTypes{
     const val nodePath = "NodePath"
     const val variant = "Any"
     const val refCounted = "RefCounted"
+    const val resource = "Resource"
     const val obj = "Object"
     const val signal = "Signal"
 

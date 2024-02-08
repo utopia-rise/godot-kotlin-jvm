@@ -3,7 +3,38 @@ package godot.entrygenerator.ext
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeName
 import godot.entrygenerator.model.Type
-import godot.tools.common.constants.*
+import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotTypes
+import godot.tools.common.constants.VARIANT_TYPE_AABB
+import godot.tools.common.constants.VARIANT_TYPE_ANY
+import godot.tools.common.constants.VARIANT_TYPE_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_BOOL
+import godot.tools.common.constants.VARIANT_TYPE_DOUBLE
+import godot.tools.common.constants.VARIANT_TYPE_JVM_BYTE
+import godot.tools.common.constants.VARIANT_TYPE_JVM_FLOAT
+import godot.tools.common.constants.VARIANT_TYPE_JVM_INT
+import godot.tools.common.constants.VARIANT_TYPE_LONG
+import godot.tools.common.constants.VARIANT_TYPE_NIL
+import godot.tools.common.constants.VARIANT_TYPE_NODE_PATH
+import godot.tools.common.constants.VARIANT_TYPE_OBJECT
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_BYTE_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_COLOR_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_FLOAT_32_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_FLOAT_64_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_INT_32_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_INT_64_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_STRING_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_VECTOR2_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_VECTOR3_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_STRING
+import godot.tools.common.constants.VARIANT_TYPE_STRING_NAME
+import godot.tools.common.constants.VARIANT_TYPE_TRANSFORM2D
+import godot.tools.common.constants.VARIANT_TYPE_TRANSFORM3D
+import godot.tools.common.constants.VARIANT_TYPE__RID
+import godot.tools.common.constants.godotApiPackage
+import godot.tools.common.constants.godotCorePackage
+import godot.tools.common.constants.godotUtilPackage
+import godot.tools.common.constants.variantTypePackage
 import godot.tools.common.extensions.convertToCamelCase
 import java.util.*
 
@@ -89,6 +120,10 @@ fun Type.isReference(): Boolean = fqName == "$godotApiPackage.${GodotKotlinJvmTy
     .allSuperTypes
     .any { supertype -> supertype.fqName == "$godotApiPackage.${GodotKotlinJvmTypes.refCounted}" }
 
+fun Type.isResource(): Boolean = fqName == "$godotApiPackage.${GodotKotlinJvmTypes.resource}" || this
+    .allSuperTypes
+    .any { supertype -> supertype.fqName == "$godotApiPackage.${GodotKotlinJvmTypes.resource}" }
+
 fun Type.isGodotPrimitive(): Boolean = when (fqName) {
     Int::class.qualifiedName,
     "$godotUtilPackage.${GodotKotlinJvmTypes.naturalT}",
@@ -154,6 +189,22 @@ fun Type.getAsVariantTypeOrdinal(): Int? = when (fqName) {
     } else {
         null
     }
+}
+
+fun Type.getAsGodotClassName(): String = when {
+    fqName == Boolean::class.qualifiedName -> "bool"
+    fqName == Int::class.qualifiedName ||
+        fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.naturalT}" ||
+        fqName == Long::class.qualifiedName ||
+        fqName == Byte::class.qualifiedName ||
+        fqName == Short::class.qualifiedName ||
+        fqName == Enum::class.qualifiedName -> "int"
+    fqName == Float::class.qualifiedName ||
+        fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.realT}" ||
+        fqName == Double::class.qualifiedName -> "float"
+    fqName == String::class.qualifiedName -> "String"
+    fqName.startsWith(godotCorePackage) -> fqName.substringAfterLast(".")
+    else -> registeredName() ?: fqName.substringAfterLast(".")
 }
 
 fun Type.isCompatibleListType(): Boolean {

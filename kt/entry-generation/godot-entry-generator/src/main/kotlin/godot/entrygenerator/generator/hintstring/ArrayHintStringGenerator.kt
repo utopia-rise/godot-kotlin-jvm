@@ -1,6 +1,14 @@
 package godot.entrygenerator.generator.hintstring
 
-import godot.entrygenerator.ext.*
+import godot.entrygenerator.ext.baseGodotType
+import godot.entrygenerator.ext.getAsGodotClassName
+import godot.entrygenerator.ext.getAsVariantTypeOrdinal
+import godot.entrygenerator.ext.getCompatibleListType
+import godot.entrygenerator.ext.isCompatibleList
+import godot.entrygenerator.ext.isCoreType
+import godot.entrygenerator.ext.isGodotPrimitive
+import godot.entrygenerator.ext.isNodeType
+import godot.entrygenerator.ext.isResource
 import godot.entrygenerator.model.EnumAnnotation
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.Type
@@ -40,27 +48,31 @@ class ArrayHintStringGenerator(
                     // "2:int"
                     // "24/34:Button"
                     // "24/17:Texture"
-                    // ./gradlew kspKotlin -Dkotlin.daemon.jvm.options="-Xdebug,-Xrunjdwp:transport=dt_socket\,address=8765\,server=y\,suspend=y"
                     loop@ while (currentElementType != null) {
                         when {
                             currentElementType.isCompatibleList() -> {
-                                append(":28") //variant.type.array.ordinal
+                                append("28") // Variant::ARRAY
                                 currentElementType = currentElementType.arguments().firstOrNull()
                             }
 
                             currentElementType.isGodotPrimitive() || currentElementType.isCoreType() -> {
-                                append(":${currentElementType.getAsVariantTypeOrdinal()}")
+                                append("${currentElementType.getAsVariantTypeOrdinal()}:${currentElementType.getAsGodotClassName()}")
                                 break@loop
                             }
 
-                            currentElementType.isNodeType() || currentElementType.isReference() -> {
-                                val objectVariantType = ":24"
+                            currentElementType.isNodeType() || currentElementType.isResource() -> {
+                                val objectVariantType = "24" // Variant::OBJECT
 
+                                val propertyType = when {
+                                    currentElementType.isNodeType() -> "34" // PropertyHint::PROPERTY_HINT_NODE_TYPE
+                                    currentElementType.isResource() -> "17" // PropertyHint::PROPERTY_HINT_RESOURCE_TYPE
+                                    else -> ""
+                                }
                                 val className = currentElementType.registeredName()
                                     ?: currentElementType.baseGodotType()?.fqName?.substringAfterLast(".")
 
                                 val subTypeString = if (className != null) {
-                                    "/$className"
+                                    "/$propertyType:$className"
                                 } else {
                                     ""
                                 }
@@ -75,7 +87,6 @@ class ArrayHintStringGenerator(
                             }
                         }
                     }
-                    delete(0, 1)
                 }
             }
         }
