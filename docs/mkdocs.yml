@@ -11,12 +11,14 @@ theme:
     - scheme: default
       toggle:
         icon: material/toggle-switch-off-outline
-        name: Switch to dark mode
+        name: Switch to Dark mode
     - scheme: slate
       toggle:
         icon: material/toggle-switch
-        name: Switch to light mode
+        name: Switch to Light mode
   logo: assets/img/logo.png
+  font:
+    code: JetBrains Mono
   features:
     - navigation.tabs
     - navigation.expand
@@ -49,7 +51,7 @@ nav:
   - Getting started:
       - Requirements: getting-started/requirements.md
       - Setting up: getting-started/setting-up.md
-      - Your first class: getting-started/your-first-class.md
+      - Your first Class: getting-started/your-first-class.md
   - User guide:
     - API differences: user-guide/api-differences.md
     - Classes: user-guide/classes.md
@@ -64,11 +66,11 @@ nav:
     - Supported platforms: user-guide/supported-platforms.md
     - Advanced:
       - Abstract Classes: user-guide/advanced/abstract_classes.md
-      - Custom src dirs: user-guide/advanced/custom-src-dirs.md
-      - Custom gradle wrapper path: user-guide/advanced/custom_gradle_wrapper_path.md
-      - Gradle plugin configuration: user-guide/advanced/gradle-plugin-configuration.md
-      - Commandline args: user-guide/advanced/commandline-args.md
-      - Kotlin singletons: user-guide/advanced/kotlin-singleton.md
+      - Custom Source Directories: user-guide/advanced/custom-src-dirs.md
+      - Custom Gradle Wrapper path: user-guide/advanced/custom_gradle_wrapper_path.md
+      - Gradle Plugin configuration: user-guide/advanced/gradle-plugin-configuration.md
+      - Command-line Arguments: user-guide/advanced/commandline-args.md
+      - Kotlin Singletons: user-guide/advanced/kotlin-singleton.md
       - GraalVM native-image: user-guide/advanced/graal-vm-native-image.md
   - Develop libraries:
       - Introduction: develop-libraries/introduction.md
@@ -79,9 +81,9 @@ nav:
     - Guidelines: contribution/guidelines.md
     - Setup: contribution/setup.md
     - Build with C# support: contribution/build-with-csharp-support.md
-    - Support for other jvm based languages: contribution/support_for_other_jvm_based_languages.md
-    - Knowledge base:
-        - Artefact differentiation: contribution/knowledge-base/artefact-differentiation.md
-        - Entry generation: contribution/knowledge-base/entry-generation.md
-        - Shared buffer: contribution/knowledge-base/shared-buffer.md
+    - Support for other JVM-based languages: contribution/support_for_other_jvm_based_languages.md
+    - Knowledge Base:
+        - Artefact Differentiation: contribution/knowledge-base/artefact-differentiation.md
+        - Entry Generation: contribution/knowledge-base/entry-generation.md
+        - Shared Buffer: contribution/knowledge-base/shared-buffer.md
         - Memory Management: contribution/knowledge-base/memory-management.md
