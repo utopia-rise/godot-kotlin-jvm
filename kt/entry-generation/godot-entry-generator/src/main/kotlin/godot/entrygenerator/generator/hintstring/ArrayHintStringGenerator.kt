@@ -29,7 +29,7 @@ class ArrayHintStringGenerator(
             elementType != null && elementType.fqName == Any::class.qualifiedName -> ""
             elementType != null && elementType.kind == TypeKind.ENUM_CLASS -> {
                 propertyHintAnnotation?.enumValueNames?.joinToString(",")?.let { enumValuesHintString ->
-                    ":2/2:$enumValuesHintString" //2 = VariantType.LONG.ordinal | 3 = PropertyHint.ENUM.ordinal
+                    "2/2:$enumValuesHintString" //2 = VariantType.LONG.ordinal | 3 = PropertyHint.ENUM.ordinal
                 } ?: ""
             }
 
