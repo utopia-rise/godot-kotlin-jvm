@@ -1,5 +1,7 @@
 package godot.entrygenerator.generator.hintstring
 
+import godot.core.PropertyHint
+import godot.core.VariantType
 import godot.entrygenerator.ext.baseGodotType
 import godot.entrygenerator.ext.getAsGodotClassName
 import godot.entrygenerator.ext.getAsVariantTypeOrdinal
@@ -29,7 +31,7 @@ class ArrayHintStringGenerator(
             elementType != null && elementType.fqName == Any::class.qualifiedName -> ""
             elementType != null && elementType.kind == TypeKind.ENUM_CLASS -> {
                 propertyHintAnnotation?.enumValueNames?.joinToString(",")?.let { enumValuesHintString ->
-                    "2/2:$enumValuesHintString" //2 = VariantType.LONG.ordinal | 3 = PropertyHint.ENUM.ordinal
+                    "${VariantType.LONG.id}/${VariantType.LONG.id}:$enumValuesHintString"
                 } ?: ""
             }
 
@@ -51,7 +53,7 @@ class ArrayHintStringGenerator(
                     loop@ while (currentElementType != null) {
                         when {
                             currentElementType.isCompatibleList() -> {
-                                append("28") // Variant::ARRAY
+                                append(VariantType.ARRAY.id)
                                 currentElementType = currentElementType.arguments().firstOrNull()
                             }
 
@@ -61,11 +63,11 @@ class ArrayHintStringGenerator(
                             }
 
                             currentElementType.isNodeType() || currentElementType.isResource() -> {
-                                val objectVariantType = "24" // Variant::OBJECT
+                                val objectVariantType = VariantType.OBJECT.id
 
                                 val propertyType = when {
-                                    currentElementType.isNodeType() -> "34" // PropertyHint::PROPERTY_HINT_NODE_TYPE
-                                    currentElementType.isResource() -> "17" // PropertyHint::PROPERTY_HINT_RESOURCE_TYPE
+                                    currentElementType.isNodeType() -> PropertyHint.NODE_TYPE.ordinal
+                                    currentElementType.isResource() -> PropertyHint.RESOURCE_TYPE.ordinal
                                     else -> ""
                                 }
                                 val className = currentElementType.registeredName()
