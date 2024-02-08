@@ -1,21 +1,12 @@
 package godot.annotation.processor.ext
 
-import com.google.devtools.ksp.getAllSuperTypes
-import com.google.devtools.ksp.getConstructors
-import com.google.devtools.ksp.getDeclaredProperties
-import com.google.devtools.ksp.isAbstract
-import com.google.devtools.ksp.isPublic
+import com.google.devtools.ksp.*
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterConstructor
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
-import godot.entrygenerator.model.ClassAnnotation
-import godot.entrygenerator.model.Clazz
-import godot.entrygenerator.model.RegisteredClass
-import godot.entrygenerator.model.RegisteredFunction
-import godot.entrygenerator.model.RegisteredProperty
-import godot.entrygenerator.model.RegisteredSignal
+import godot.entrygenerator.model.*
 import java.io.File
 
 internal fun KSClassDeclaration.mapToClazz(
@@ -35,7 +26,7 @@ internal fun KSClassDeclaration.mapToClazz(
         .toList()
 
     val registeredFunctions = getAllFunctions()
-        .mapNotNull { it.mapToRegisteredFunction(this) }
+        .mapNotNull { it.mapToRegisteredFunction(this, isFqNameRegistrationEnabled, classNamePrefix, projectBaseDir) }
         .toList()
 
     val declaredProperties = getDeclaredProperties()
@@ -46,14 +37,14 @@ internal fun KSClassDeclaration.mapToClazz(
                 property.findOverridee()?.annotations?.any { it.fqNameUnsafe == RegisterProperty::class.qualifiedName } == true
         }
         .map {
-            it.mapToRegisteredProperty()
+            it.mapToRegisteredProperty(isFqNameRegistrationEnabled, classNamePrefix, projectBaseDir)
         }
         .toList()
     val registeredSignals = allProperties
         .filter { property ->
             property.annotations.any { it.fqNameUnsafe == RegisterSignal::class.qualifiedName }
         }
-        .map { it.mapToRegisteredSignal(declaredProperties.toList()) }
+        .map { it.mapToRegisteredSignal(declaredProperties.toList(), isFqNameRegistrationEnabled, classNamePrefix, projectBaseDir) }
         .toList()
 
     val shouldBeRegistered = annotations.any { it.fqNameUnsafe == RegisterClass::class.qualifiedName } ||
@@ -71,10 +62,13 @@ internal fun KSClassDeclaration.mapToClazz(
                 constructor.annotations.any { it.fqNameUnsafe == RegisterConstructor::class.qualifiedName } ||
                     constructor.parameters.isEmpty()
             }
-            .map { it.mapToRegisteredConstructor() }
+            .map { it.mapToRegisteredConstructor(isFqNameRegistrationEnabled, classNamePrefix, projectBaseDir) }
             .toList()
 
         RegisteredClass(
+            registeredName = requireNotNull(provideRegisteredClassName(isFqNameRegistrationEnabled, classNamePrefix)) {
+                "Failed to calculate RegisteredName for a registered class: ${this.qualifiedName?.asString()}. This is a bug. Please report it on Github"
+            },
             fqName = fqName,
             relativeSourcePath = relativeSourcePath,
             supertypes = supertypeDeclarations,
