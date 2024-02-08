@@ -21,14 +21,24 @@
 #define JVM_ERR_FAIL_COND_V_MSG(condition, ret_var, message) \
     ERR_FAIL_COND_V_MSG(condition, ret_var, vformat("Godot-JVM: %s", message))
 
+#ifdef DEBUG_ENABLED
 #define JVM_CRASH_COND_MSG(condition, message) \
     if (unlikely(condition)) { OS::get_singleton()->alert(message, "Fatal error"); } \
     CRASH_COND_MSG(condition, vformat("Godot-JVM: %s", message))
+#else
+#define JVM_CRASH_COND_MSG(condition, message) \
+    CRASH_COND_MSG(condition, vformat("Godot-JVM: %s", message))
+#endif
 
+#ifdef DEBUG_ENABLED
 #define JVM_CRASH_NOW_MSG(message) \
     OS::get_singleton()->alert(                \
         message,                               \
         "Fatal error"                          \
     );                                         \
     CRASH_NOW_MSG(vformat("Godot-JVM: %s", message))
+#else
+#define JVM_CRASH_NOW_MSG(message) \
+    CRASH_NOW_MSG(vformat("Godot-JVM: %s", message))
+#endif
 #endif// GODOT_JVM_LOGGING_H
