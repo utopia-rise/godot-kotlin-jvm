@@ -3,10 +3,10 @@
 ## General
 
 To make it more language agnostic, the entry generator provides a set of model classes which represent the needed information about the source code by the entry genenerator.
-It expects this information to be gathered and assembled by the calling tool and to be provided in the entry point of the entry gen.
+It expects this information to be gathered and assembled by the calling tool and to be provided in the entry point of the entry generator.
 
-For Kotlin and Java, this tool is `godot-kotlin-symbol-processor` (a Kotlin compiler's plugin), which analyses the source code, and gathers the information needed by the entry gen.
-It then calls the entry gen which in turn generates the needed entry files.
+For Kotlin and Java, this tool is `godot-kotlin-symbol-processor` (a Kotlin compiler's plugin), which analyses the source code, and gathers the information needed by the entry generator.
+It then calls the entry generator which in turn generates the needed entry files.
 
 ## The godot-kotlin-symbol-processor
 
@@ -19,8 +19,8 @@ Meaning it in essence is a compiler plugin which lets you inspect the source cod
 This means for us that we can work against a more stable api and the work of keeping it up to date with Kotlin compiler changes is offloaded
 to a well maintained open source project with far more people with better knowledge about the internal workings of the Kotlin compiler.
 
-We use our implementation of a Kotlin Symbol Processing to gather all needed information for the entry gen and convert it into the format it understands.
-With this it should be more easy to implement additional JVM languages as the entry gen itself can stay the same for all languages. Only the symbol processor has to change per language.
+We use our implementation of a Kotlin Symbol Processing to gather all needed information for the entry generator and convert it into the format it understands.
+With this it should be more easy to implement additional JVM languages as the entry generator itself can stay the same for all languages. Only the symbol processor has to change per language.
 
 ## Default Value Extraction
 
@@ -30,7 +30,7 @@ we implemented this ourselves in the `godot-kotlin-symbol-processor` as well.
 
 ## Debugging
 
-As `godot-kotlin-symbol-processor` is a Kotlin compiler plugin and thus the execution context of the entry gen is as well,
+As `godot-kotlin-symbol-processor` is a Kotlin compiler plugin and thus the execution context of the entry generator is as well,
 it cannot be debugged traditionally by just clicking the Debug button on the `build` task in IntelliJ IDEA like you would do normally for KAPT annotation processors.
 
 To debug a project, open a terminal, change to project's root directory and type the following command:
