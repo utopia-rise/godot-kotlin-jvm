@@ -11,9 +11,11 @@ hide:
 If you are looking for the documentation for Godot Kotlin/Native; you can find it [here](https://godot-kotlin.readthedocs.io/en/latest/).
 
 ## State
+
 This project is in alpha, it is by no means production ready.
 
 ### What's not working
+
 The items in this list are explicitly mentioned here as these will be implemented in future versions.
 Also consider the [API Differences](user-guide/api-differences.md) section for general differences
 and limitations which will not be or cannot be adressed in the near forseable future or ever.
@@ -23,12 +25,12 @@ and limitations which will not be or cannot be adressed in the near forseable fu
 - No plugin support, you cannot use Godot Kotlin/JVM to write plugins and addons yet.
 - We support desktop OS (Linux, MacOS, Windows), Android and iOS.
 
-### Bug Reporting and Questions
+### Bug reporting and questions
 
 If you find bugs, please report an [issue on GitHub](https://github.com/utopia-rise/godot-kotlin-jvm/issues) - but check for duplicates first. If you have questions or need help, you can ask on [Discord](https://discord.gg/zpb5Ru7v9x) in the `questions` and `help` channels respectively.
 If you don't have Discord or you don't want to use it, please file an issue on GitHub.
 
-## Supported Languages
+## Supported languages
 
 The main language supported is Kotlin. We do however support Java experimentally. It should be possible to support other JVM-based languages as well but this is not the focus of this project. If you want to have support for other languages, have a look at [support for other JVM-based languages](contribution/support_for_other_jvm_based_languages.md).
 
@@ -44,4 +46,4 @@ Get our pre-built engine builds and export templates from the latest [GitHub rel
 
 ## Developer discussion
 
-Ask questions and collaborate on [Discord](https://discord.gg/zpb5Ru7v9x).
+Please feel free to ask questions and collaborate on our [Discord](https://discord.gg/zpb5Ru7v9x) server.

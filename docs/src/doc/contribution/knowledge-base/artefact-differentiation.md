@@ -4,7 +4,7 @@ This document describes what the individual artefacts are for and how they are u
 
 ### Overview
 
-The `godot-library` contains the godot api as kotlin classes as well as registration code.
+The `godot-library` contains the godot api as Kotlin classes as well as registration code.
 It is automatically added as a dependency to the users code by the `godot-gradle-plugin`.
 Hence, it is deployed to `mavenCentral`. It is also used as a dependency by `godot-bootstrap` and
 thus present in the `godot-bootstrap.jar` which gets shipped alongside the engine.

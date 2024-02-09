@@ -7,7 +7,7 @@ class RotatingCube: Node3D() {
 }
 ```
 
-## Registration Files
+## Registration files
 
 For each class you register, a corresponding registration file is generated (a `gdj` file). These are the files you attach to nodes.
 

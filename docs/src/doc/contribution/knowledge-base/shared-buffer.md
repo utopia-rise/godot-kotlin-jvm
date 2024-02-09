@@ -29,7 +29,7 @@ When it is done that way, the string is stored in a queue so we can retrieve the
 of reading from the buffer. In most cases, you would rarely reach that maximum size in a video game.
 Other dynamic types like `Array` and `Dictionary` are not an issue as only their pointers is sent to the JVM.
 
-## Buffer Structure
+## Buffer structure
 
 The first value of the buffer is always an `Int` that indicates the number of variables to read.
 Each variable starts with another integer (the *ordinal*) indicating its type then followed by the relevant data of that type.

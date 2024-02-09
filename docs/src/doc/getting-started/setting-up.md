@@ -1,4 +1,5 @@
 ## Setting up using IntelliJ IDEA project wizard
+
 The easiest way to setup a new project is via IntelliJ's project wizard (you need to install our IntelliJ IDEA [plugin](./requirements.md#intellij-idea-plugin)).
 
 In IntelliJ IDEA click `New Project` and select `Godot Kotlin JVM`. Fill out the fields and click `Next` when you are done.
@@ -15,12 +16,14 @@ IntelliJ IDEA should open up your project and if you wait for a bit you should s
 
 
 ## Setting up manually
+
 If you do not want to use our IntelliJ IDEA plugin you can follow these steps to setup a project.
 
 !!! note
     The following steps requires Gradle to be installed, checkout their [website](https://gradle.org) for installation instructions.
 
-Firstly, you need to setup a Gradle [wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html). The wrapper will ensure that anyone who wants to build your project from source will use the same gradle version.
+Firstly, you need to setup a Gradle [wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html).
+The wrapper will ensure that anyone who wants to build your project from source will use the same Gradle version.
 
 === "Windows" 
     ```shell
@@ -40,7 +43,8 @@ The above command will create three files, which will be empty for now.
 gradle wrapper --gradle-version=6.8
 ```
 
-You should have the wrapper setup after running the command above. Up next is setting up the Gradle build. Open up `build.gradle.kts` and paste the following:
+You should have the wrapper setup after running the command above.
+Up next is setting up the Gradle build. Open up `build.gradle.kts` and paste the following:
 
 === "build.gradle.kts"
     ```kt

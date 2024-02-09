@@ -33,6 +33,7 @@ Once the build completes, you will be able to use your class in Godot. Simply at
 
 
 ## Final project structure
+
 The final project should look like this:
 
 ![Final project structure](../assets/img/final_project_structure.png)

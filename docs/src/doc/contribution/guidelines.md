@@ -5,7 +5,7 @@ is the "Owner" of said code.
 This maintainer is usually the one who implemented it or has the most knowledge about that particular part of the module.
 General code may not have a specific "Owner". In this case the fallback is: all Maintainers.
 
-## Before Contributing
+## Before contributing
 
 Before you start to invest your precious time in writing code that you want to contribute, consider following these guidelines.
 They are here to make the lives of all people involved easier.
@@ -17,7 +17,7 @@ They are here to make the lives of all people involved easier.
 
 ## Code
 
-### Code Style
+### Code style
 
 We enforce the code style to match the official Kotlin [coding conventions](https://kotlinlang.org/docs/reference/coding-conventions.html).
 Read there on how to set those up for your IDE. We will enforce this later on through CI and linting.

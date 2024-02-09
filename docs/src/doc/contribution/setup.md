@@ -26,7 +26,7 @@ Make sure that Java is installed and its `PATH` set in your system as well (**at
 stands for the JMX port of you choice. You can then set up remote debug configuration in Intellij IDEA.
 
 
-## Publishing Locally
+## Publishing locally
 
 In order to publish our artifacts locally, you'll need to run `gradlew :tools-common:publishToMavenLocal publishToMavenLocal`
 
@@ -52,7 +52,7 @@ pluginManagement {
 }
 ```
 
-## Important Notes
+## Important notes
 
 When you build a sample, it generates a `godot-bootstrap.jar` in `build/libs`.
 This JAR is needed by the engine to function correctly. You need to copy this jar to `<godot-root>/bin`.

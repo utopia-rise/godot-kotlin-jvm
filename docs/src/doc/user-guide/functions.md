@@ -17,14 +17,14 @@ Function names should follow Kotlin's style which is `camelCase`. For consistenc
 your functions are actually registered as `snake_case`.
 Therefore, a function called `doSomething()` in Kotlin is usable in GDScript as `do_something()`.
 
-## Virtual Functions
+## Virtual functions
 
 Virtual functions (like `_ready`, `_process` and `_physics_process`) are declared as overridable functions.
 The default implementation throws a `NotImplementedException`, so you have to override it if you plan to expose
 a virtual function to Godot. Remember, just overriding is not enough to use that function - you have to explicitly
 register it as well with `@RegisterFunction`.
 
-## Arguments Count
+## Arguments count
 
 Godot limits the allowed argument count of functions to `8`. Thus, this binding also has this limitation.
 If you want to pass more than 8 parameters in a function, you need to wrap them in a container

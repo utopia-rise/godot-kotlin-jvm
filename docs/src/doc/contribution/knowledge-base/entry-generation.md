@@ -1,4 +1,4 @@
-# Entry Generation
+# Entry generation
 
 ## General
 

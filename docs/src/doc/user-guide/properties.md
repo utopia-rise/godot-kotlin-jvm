@@ -17,7 +17,7 @@ class RotatingCube: Node3D() {
 Property names should follow Kotlin's style which is `camelCase`. For consistency with Godot's style,
 your properties are actually registered as `snake_case`. So a property `someFlag` in Kotlin is usable in GDScript as `some_flag`.
 
-## Exporting Properties
+## Exporting properties
 
 A registered property can be exported (a.k.a make it visible in the Godot editor) by annotating it with `@Export`.
 A property can be exported if it is a core type, a primitive or inherits from `godot.RefCounted`.
@@ -37,7 +37,7 @@ A default value can **only** contain compile time constants and only references 
 !!! danger
     If you set a default value in code and a different value in the `inspector` the value of the latter will override the value in code after `init` and before `_enter_tree`.
 
-## Type Hint Registration
+## Type hint registration
 
 This module provides a plethora of annotations for defining property type hints.
 These annotations controls how Godot display the property in the inspector.

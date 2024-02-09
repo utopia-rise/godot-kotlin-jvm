@@ -1,7 +1,7 @@
 The basic project setup is the same as for regular Godot Kotlin/JVM projects.
 Head over to the corresponding [getting started](../getting-started/requirements.md) guide to set up the basics of the project.
 
-## Library Specific Setup
+## Library specific setup
 
 The following configuration properties for customizing the behaviour of your library are available to you in the `build.gradle.kts` file:
 

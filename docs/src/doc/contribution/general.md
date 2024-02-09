@@ -1,4 +1,5 @@
-We encourage you to contribute to the project if you want. Even if you don't have any idea how the module works or if it seems overwhelming at first, we're here to help you getting started.
+We encourage you to contribute to the project if you want. Even if you don't have any idea how
+the module works or if it seems overwhelming at first, we're here to help you getting started.
 
 ## Keywords
 

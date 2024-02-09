@@ -7,7 +7,7 @@ Have a look at the [classes](classes.md) documentation for more information.
 !!! Reason
     Contrary to GDScript, Kotlin is a compiled language. Hence, if you use a library which defines scripts you can not attach those to nodes anymore as the source files don't exist. You only have a jar of the library. While in GDScript you still have the sources when using an addon. With our registration files our compiler plugin is able to extract those from the libraries you use and provide them to you, so you can also attach scripts from libraries you use.
 
-## Class and Member registration
+## Class and member registration
 
 Contrary to what you might be used to from GDScript or C#, this binding requires you to explicitly define which classes
 and which members of those classes should be exposed to Godot.  
@@ -16,7 +16,7 @@ which you might not want to expose.
 See the individual sections in the `user-guide` in this documentation to see how to register your classes and members so
 you can use them from godot and other scripting languages.
 
-## Instance Types and Singletons
+## Instance types and singletons
 
 Creating a new instance of a Godot type can be done like any Kotlin types.
 
@@ -25,13 +25,13 @@ val node3D = Node3D()
 val vec = Vector3()
 ```
 
-Godot singletons are mapped as Kotlin objects.
+Godot's singletons are mapped as Kotlin objects.
 
 ```kotlin
 Physics2DServer.areaGetTransform(area)
 ```
 
-## Core Types
+## Core types
 
 Godot's built-in types are passed by value (except for `Dictionary` and `VariantArray` - more on this later), so the following snippet won't work as expected.
 
@@ -58,7 +58,7 @@ node3D.rotationMutate {
 
 The snippet above is functionally equivalent to the previous one.
 
-## Collection Types
+## Collection types
 
 While `VariantArray` and `Dictionary` are passed by reference, the value returned by the retrieval methods (`VariantArray.get(...)` and `Dictionary.get(...)`) are not.
 
@@ -79,24 +79,24 @@ dictionary.get("foo") {
 }
 ``` 
 
-## Enums and Constants
+## Enums and constants
 
 Godot enums are mapped to Kotlin enums, the generated enum exposes a `value` property that represents the value in Godot. Constants in Godot classes that represent an enum value (such as `Node.PAUSE_MODE_INHERIT`) are not present in this module, please use the generated enum instead (`Node.PauseMode.INHERIT`).
 
-## Signals and Exposed Methods
+## Signals and exposed methods
 
 In GDScript, signals can have any number of arguments, this is not possible in Kotlin as it is a statically typed language.
 At the moment, you can create signals and expose them to Godot with at most 10 parameters.
 
 If you need more than 10 parameters, you can either use the not typesafe function `connect(signalAsString, targetObject, targetMethodAsString)` and the corresponding emit function or you can write your own typesafe extension functions like we did, to further increase the supported arg count. Keep in mind that you pass in the converted function and signal names (snake_case) to the above mentioned functions.  
 
-## Renamed Symbols
+## Renamed symbols
 
 To avoid confusion and conflict with Kotlin types, the following Godot symbol is renamed.
 
 - `Array` -> `VariantArray` (to avoid confusion with a built-in type in Kotlin)
 
-## Global Functions
+## Global functions
 
 In GDScript, some functions are always available (such as mathematical or RNG functions).
 The complete list can be found on the following [page](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html) of Godot's documentaion.
@@ -104,7 +104,7 @@ The complete list can be found on the following [page](https://docs.godotengine.
 In Kotlin, global functions are available inside the `GD` object singleton. However, don't forget that some functions couldn't be reproduced in Kotlin.
 E.g., the `load()` function is available but `preload()` is not.
 
-## Additional Functions
+## Additional functions
 
 For comfort, some Objects got some additional functions to enjoy some Kotlin syntax sugar.
 You can find them all [in this folder](https://github.com/utopia-rise/godot-kotlin-jvm/tree/master/kt/godot-library/src/main/kotlin/godot/extensions).
