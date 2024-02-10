@@ -50,28 +50,6 @@ namespace jni {
         p_env.check_exceptions();
     }
 
-    void JObject::delete_ref(jni::Env& p_env) {
-        jobjectRefType ref_type = p_env.env->GetObjectRefType(obj);
-        switch (ref_type) {
-            case JNIInvalidRefType:
-#ifdef DEBUG_ENABLED
-                JVM_CRASH_NOW_MSG("Tried to delete invalid ref type");
-#else
-                LOG_ERROR("Tried to delete invalid ref type");
-#endif
-                break;
-            case JNILocalRefType:
-                delete_local_ref(p_env);
-                break;
-            case JNIGlobalRefType:
-                delete_global_ref(p_env);
-                break;
-            case JNIWeakGlobalRefType:
-                delete_weak_ref(p_env);
-                break;
-        }
-    }
-
     void JObject::delete_weak_ref(Env& p_env) {
         p_env.env->DeleteWeakGlobalRef(obj);
         p_env.check_exceptions();
