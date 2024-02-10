@@ -40,7 +40,7 @@ by using jlink with rosetta and an amd64 jdk on an arm64 MacOS.
 
 ## Specifics
 
-`godot-bootstrap.jar` and `main.jar` are copied into `pck` during the export process. As a real file path is needed to handle them, they are copied on the first game version start from `res://` to `user://` (we check if they exist and also check the md5 hash) to only update when needed. Don't forget to remove them when writing an uninstaller for your game.
+`godot-bootstrap.jar` and `usercode.jar` are copied into `pck` during the export process. As a real file path is needed to handle them, they are copied on the first game version start from `res://` to `user://` (we check if they exist and also check the md5 hash) to only update when needed. Don't forget to remove them when writing an uninstaller for your game.
 
 ## Android
 !!! warning
@@ -80,7 +80,7 @@ On android, we do not embed a JVM, we use the existing ART provided by the OS. I
     ```
 
 !!!danger
-    Similar to the desktop targets, the game copies the needed jar files to the `user://` directory upon first execution or if the files have changed. On android this is the applications `files` folder. If you do IO operations on Android, never empty the whole `files` folder! Only delete what you have added or exclude the following two files when clearing the `files` folder: `godot-bootstrap-dex.jar` and `main-dex.jar`.
+    Similar to the desktop targets, the game copies the needed jar files to the `user://` directory upon first execution or if the files have changed. On android this is the applications `files` folder. If you do IO operations on Android, never empty the whole `files` folder! Only delete what you have added or exclude the following two files when clearing the `files` folder: `godot-bootstrap-dex.jar` and `usercode-dex.jar`.
 
 ## GraalVM Native Image
 
@@ -89,7 +89,7 @@ On android, we do not embed a JVM, we use the existing ART provided by the OS. I
 
 In order to build for graalvm, follow `GraalVM native-image` section in [advanced user guide](./advanced/graal-vm-native-image.md).
 
-The `main.jar` and `godot-bootstrap.jar` are compiled into a single `usercode` shared library is copied into `pck` during the export process. Similar to the regular export versions, the `usercode` shared library is copied to the `user://` dir. Don't forget to delete it when creating an uninstaller.
+The `usercode.jar` and `godot-bootstrap.jar` are compiled into a single `usercode` shared library is copied into `pck` during the export process. Similar to the regular export versions, the `usercode` shared library is copied to the `user://` dir. Don't forget to delete it when creating an uninstaller.
 
 On desktop platform default export is inferred by the `godot_kotin_configuration.json` file. You still can export for `jvm` and `native-image`, by adding feature `export-all-jvm`. In this case, the default JVM started by engine is the one from `godot_kotin_configuration.json` and can be overridden by command line.  
 

@@ -21,12 +21,12 @@ public:
     Bootstrap(jni::JObject p_wrapped);
     ~Bootstrap() = default;
 
-    void init(jni::Env& p_env, bool p_is_editor, const String& p_project_path, const String& p_jar_path, const String& p_jar_file, const jni::JObject& p_class_loader);
+    void init(jni::Env& p_env, const String& p_jar_file, const jni::JObject& p_class_loader);
     void finish(jni::Env& p_env);
 
     // clang-format off
     DECLARE_JNI_METHODS(
-            JNI_METHOD(INIT, "init", "(ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V")
+            JNI_METHOD(INIT, "init", "(Ljava/lang/String;Ljava/lang/ClassLoader;)V")
             JNI_METHOD(FINISH, "finish", "()V")
     )
     // clang-format on

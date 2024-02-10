@@ -172,7 +172,8 @@ void GDKotlin::init() {
         }
 
         String debug_command {
-          "-agentlib:jdwp=transport=dt_socket,server=y,suspend=" + suspend + ",address=" + jvm_debug_address + ":" + jvm_debug_port};
+          "-agentlib:jdwp=transport=dt_socket,server=y,suspend=" + suspend + ",address=" + jvm_debug_address + ":" + jvm_debug_port
+        };
         args.option(debug_command.utf8());
     }
 
@@ -224,15 +225,15 @@ void GDKotlin::init() {
 #endif
 
 #ifdef __ANDROID__
-    String main_jar_file {"main-dex.jar"};
-    _check_and_copy_jar(main_jar_file);
+    String usercode_jar_file {"usercode-dex.jar"};
+    _check_and_copy_jar(usercode_jar_file);
 #else
-    String main_jar_file;
+    String usercode_jar_file;
     if (configuration.get_vm_type() == jni::Jvm::GRAAL_NATIVE_IMAGE) {
-        main_jar_file = "graal_usercode";
+        usercode_jar_file = "graal_usercode";
     } else {
-        main_jar_file = "main.jar";
-        _check_and_copy_jar(main_jar_file);
+        usercode_jar_file = "usercode.jar";
+        _check_and_copy_jar(usercode_jar_file);
     }
 #endif
 
@@ -252,17 +253,17 @@ void GDKotlin::finish() {
 }
 
 void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
-//#ifdef DEV_ENABLED
+    // #ifdef DEV_ENABLED
     LOG_INFO("Loading classes ...");
-//#endif
+    // #endif
     Vector<KtClass*> classes;
     for (auto i = 0; i < p_classes.length(p_env); i++) {
         KtClass* kt_class = new KtClass(p_classes.get(p_env, i));
         kt_class->fetch_members();
         classes.append(kt_class);
-//#ifdef DEV_ENABLED
+        // #ifdef DEV_ENABLED
         LOG_VERBOSE(vformat("Loaded class %s : %s, as %s", kt_class->registered_class_name, kt_class->base_godot_class));
-//#endif
+        // #endif
     }
     TypeManager::get_instance().create_and_update_scripts(classes);
 }
@@ -283,11 +284,11 @@ Error GDKotlin::_split_jvm_debug_argument(const String& cmd_arg, String& result)
     return OK;
 }
 
-void GDKotlin::_check_and_copy_jar(const String& jar_name) {
-#ifndef TOOLS_ENABLED
+String GDKotlin::_check_and_copy_jar(const String& jar_name) {
     String libs_res_path {"res://build/libs"};
-    String jar_user_path {vformat("user://%s", jar_name)};
     String jar_res_path {vformat("%s/%s", libs_res_path, jar_name)};
+#ifndef TOOLS_ENABLED
+    String jar_user_path {vformat("user://%s", jar_name)};
 
     if (!FileAccess::exists(jar_user_path) || FileAccess::get_md5(jar_user_path) != FileAccess::get_md5(jar_res_path)) {
 #ifdef DEBUG_ENABLED
@@ -303,35 +304,16 @@ void GDKotlin::_check_and_copy_jar(const String& jar_name) {
 
         dir_access->copy(jar_res_path, jar_user_path);
     }
+    return jar_user_path;
+#else
+    return jar_res_path;
 #endif
 }
 
-jni::JObject GDKotlin::_prepare_class_loader(jni::Env& p_env, jni::Jvm::Type type) {
+jni::JObject GDKotlin::_prepare_class_loader(jni::Env& p_env, jni::Jvm::Type type, const String& usercode_jar) {
     if (type == jni::Jvm::GRAAL_NATIVE_IMAGE) { return jni::JObject(); }
-#ifdef __ANDROID__
-    String bootstrap_jar_file {"godot-bootstrap-dex.jar"};
-    String main_jar_file {"main-dex.jar"};
-#else
-    String bootstrap_jar_file {"godot-bootstrap.jar"};
-#endif
 
-    _check_and_copy_jar(bootstrap_jar_file);
-
-#ifdef TOOLS_ENABLED
-    String bootstrap_jar {OS::get_singleton()->get_executable_path().get_base_dir() + "/godot-bootstrap.jar"};
-#else
-    String bootstrap_jar {ProjectSettings::get_singleton()->globalize_path(vformat("user://%s", bootstrap_jar_file))};
-#endif
-
-#ifdef TOOLS_ENABLED
-    JVM_CRASH_COND_MSG(!FileAccess::exists(bootstrap_jar), "No godot-bootstrap.jar found! This file needs to stay alongside the godot editor executable!");
-#elif DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(!FileAccess::exists(bootstrap_jar), "No godot-bootstrap.jar found!");
-#endif
-
-    LOG_INFO(vformat("Loading bootstrap jar: %s", bootstrap_jar));
-
-    jni::JObject class_loader {ClassLoader::provide_loader(p_env, bootstrap_jar, jni::JObject(nullptr))};
+    jni::JObject class_loader {ClassLoader::provide_loader(p_env, usercode_jar, jni::JObject(nullptr))};
     ClassLoader::set_default_loader(class_loader);
     class_loader.delete_local_ref(p_env);
 
@@ -415,20 +397,25 @@ void GDKotlin::load() {
 
     jni::Env env {jni::Jvm::current_env()};
 
-    jni::JObject class_loader {_prepare_class_loader(env, configuration.get_vm_type())};
+    String usercode_jar {assemble_usercode_path()};
+    String usercode_jar_absolute_path {project_settings->globalize_path(usercode_jar)};
 
-#ifdef __ANDROID__
-    String main_jar_file {"main-dex.jar"};
-    _check_and_copy_jar(main_jar_file);
+    Ref<FileAccess> usercode_jar_file_access {FileAccess::create_for_path(usercode_jar)};
+    if (!usercode_jar_file_access->file_exists(usercode_jar)) {
+        String error_message {
+          vformat("No usercode jar found at path %s! No kotlin classes will be loaded. Ensure your project is properly built", usercode_jar)
+        };
+#ifdef TOOLS_ENABLED
+        LOG_WARNING(error_message);
+#elif DEBUG_ENABLED
+        JVM_CRASH_NOW_MSG(error_message);
 #else
-    String main_jar_file;
-    if (configuration.get_vm_type() == jni::Jvm::GRAAL_NATIVE_IMAGE) {
-        main_jar_file = "graal_usercode";
-    } else {
-        main_jar_file = "main.jar";
-        _check_and_copy_jar(main_jar_file);
-    }
+        LOG_ERROR(error_message);
 #endif
+        return;
+    }
+
+    jni::JObject class_loader {_prepare_class_loader(env, configuration.get_vm_type(), usercode_jar_absolute_path)};
 
     initialize_classes();
 
@@ -448,8 +435,7 @@ void GDKotlin::load() {
 
     // Garbage Collector
     jni::JClass garbage_collector_cls {env.load_class("godot.core.memory.MemoryManager", class_loader)};
-    jni::FieldId garbage_collector_instance_field {
-      garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/memory/MemoryManager;")};
+    jni::FieldId garbage_collector_instance_field {garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/memory/MemoryManager;")};
     jni::JObject garbage_collector_instance {garbage_collector_cls.get_static_object_field(env, garbage_collector_instance_field)};
     JVM_CRASH_COND_MSG(garbage_collector_instance.is_null(), "Failed to retrieve MemoryManager instance");
 
@@ -471,8 +457,7 @@ void GDKotlin::load() {
     }
 
     if (!true) {
-        jni::MethodId set_should_display_method_id {
-          garbage_collector_cls.get_method_id(env, "setShouldDisplayLeakInstancesOnClose", "(Z)V")};
+        jni::MethodId set_should_display_method_id {garbage_collector_cls.get_method_id(env, "setShouldDisplayLeakInstancesOnClose", "(Z)V")};
         jvalue d_arg[1] = {jni::to_jni_arg(false)};
         garbage_collector_instance.call_void_method(env, set_should_display_method_id, d_arg);
     }
@@ -483,28 +468,12 @@ void GDKotlin::load() {
     bootstrap = new Bootstrap(instance);
     Bootstrap::register_hooks(load_classes_hook, register_engine_types_hook);
     Bootstrap::initialize_class("godot.runtime.Bootstrap");
-    bool is_editor = Engine::get_singleton()->is_editor_hint();
-
-#ifdef TOOLS_ENABLED
-    String jar_path {project_settings->globalize_path("res://build/libs/")};
-#else
-    String jar_path {project_settings->globalize_path("user://")};
-#endif
-
-    String project_path {project_settings->globalize_path("res://")};
-
-#ifdef __ANDROID__
-    String main_jar {ProjectSettings::get_singleton()->globalize_path(vformat("user://%s", main_jar_file))};
-#endif
 
     bootstrap->init(
       env,
-      is_editor,
-      project_path,
-      jar_path,
-      main_jar_file,
+      usercode_jar_absolute_path,
 #ifdef __ANDROID__
-      ClassLoader::provide_loader(env, main_jar, class_loader)
+      ClassLoader::provide_loader(env, usercode_jar_absolute_path, class_loader)
 #else
       jni::JObject()
 #endif
@@ -513,6 +482,8 @@ void GDKotlin::load() {
 }
 
 void GDKotlin::unload() {
+    if (!is_initialized) return;
+
     LOG_INFO("1");
     is_initialized = false;
 
@@ -523,8 +494,8 @@ void GDKotlin::unload() {
 
     if (is_gc_started) {
         jni::JClass garbage_collector_cls {env.load_class("godot.core.memory.MemoryManager", ClassLoader::get_default_loader())};
-        jni::FieldId garbage_collector_instance_field {
-          garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/memory/MemoryManager;")};
+        jni::FieldId garbage_collector_instance_field {garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/memory/MemoryManager;")
+        };
         jni::JObject garbage_collector_instance {garbage_collector_cls.get_static_object_field(env, garbage_collector_instance_field)};
         JVM_CRASH_COND_MSG(garbage_collector_instance.is_null(), "Failed to retrieve MemoryManager instance");
         jni::MethodId close_method_id {garbage_collector_cls.get_method_id(env, "close", "()V")};
@@ -541,13 +512,12 @@ void GDKotlin::unload() {
         is_gc_started = false;
     }
 
-//    Vector<KtClass*> empty_vector;
-//    TypeManager::get_instance().create_and_update_scripts(empty_vector);
+    // Vector<KtClass*> empty_vector;
+    // TypeManager::get_instance().create_and_update_scripts(empty_vector);
 
     LOG_INFO("3");
     delete bootstrap;
     bootstrap = nullptr;
-
 
     LOG_INFO("4");
 
@@ -568,7 +538,7 @@ void GDKotlin::unload() {
     LOG_INFO("10");
     TypeManager::get_instance().clear();
     LOG_INFO("11");
-//    TypeManager::destroy();
+    // TypeManager::destroy();
 
     LOG_INFO("12");
     deinitialize_classes();
@@ -576,4 +546,20 @@ void GDKotlin::unload() {
     LOG_INFO("13");
     ClassLoader::delete_default_loader(env);
     LOG_INFO("14");
+}
+
+String GDKotlin::assemble_usercode_path() {
+#ifdef __ANDROID__
+    String usercode_jar_file {"usercode-dex.jar"};
+    return _check_and_copy_jar(usercode_jar_file);
+#else
+    String usercode_jar_file;
+    if (configuration.get_vm_type() == jni::Jvm::GRAAL_NATIVE_IMAGE) {
+        usercode_jar_file = "graal_usercode";
+        return usercode_jar_file;
+    } else {
+        usercode_jar_file = "usercode.jar";
+        return _check_and_copy_jar(usercode_jar_file);
+    }
+#endif
 }

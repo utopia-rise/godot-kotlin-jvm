@@ -4,10 +4,10 @@
 
 ClassLoader::ClassLoader() : class_loader {jni::JObject()} {}
 
-jni::JObject to_java_url(jni::Env& env, const String& bootstrapJar) {
+jni::JObject to_java_url(jni::Env& env, const String& full_jar_path) {
     jni::JClass cls {env.find_class("java/io/File")};
     jni::MethodId ctor {cls.get_constructor_method_id(env, "(Ljava/lang/String;)V")};
-    jni::JObject path {env.new_string(bootstrapJar.utf8().get_data())};
+    jni::JObject path {env.new_string(full_jar_path.utf8().get_data())};
     jvalue args[1] = {jni::to_jni_arg(path)};
     jni::JObject file {cls.new_instance(env, ctor, args)};
     assert(!file.is_null());

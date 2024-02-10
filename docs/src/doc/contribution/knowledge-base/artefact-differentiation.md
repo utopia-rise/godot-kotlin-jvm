@@ -16,14 +16,14 @@ The `godot-bootstrap` is shipped alongside the engine for editor use and is bund
 
 ## main
 ### Overview
-The `main.jar` is built when the user builds his code. It is a shadowJar containing only the users code as well as all the dependencies the user has defined recursively. This is needed so they and all dependencies and the dependencies of the dependencies are present at runtime.
+The `usercode.jar` is built when the user builds his code. It is a shadowJar containing only the users code as well as all the dependencies the user has defined recursively. This is needed so they and all dependencies and the dependencies of the dependencies are present at runtime.
 
 ### Usage
 This jar is bundled together with the game executable during export and executed through the `godot-bootstrap` during runtime. It is nowhere else used.
 
 ## usercode
 ### Overview
-The `usercode` artifact is a shared library which is only used on GraalVM native image builds. It contains all code from the `main.jar` and the `godot-bootstrap.jar`.
+The `usercode` artifact is a shared library which is only used on GraalVM native image builds. It contains all code from the `usercode.jar` and the `godot-bootstrap.jar`.
 
 ### Usage
-It replaces the `godot-bootstrap.jar` and the `main.jar` when the game is exported. It is only used when configured either as a commandline arg or through the configuration file (see [GraalVM documentation](../../user-guide/advanced/graal-vm-native-image.md) for more information). While it is used (either in game or editor) no usercode can be reloaded.
+It replaces the `godot-bootstrap.jar` and the `usercode.jar` when the game is exported. It is only used when configured either as a commandline arg or through the configuration file (see [GraalVM documentation](../../user-guide/advanced/graal-vm-native-image.md) for more information). While it is used (either in game or editor) no usercode can be reloaded.

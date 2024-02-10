@@ -175,7 +175,7 @@ void GodotKotlinJvmEditor::_notificationv(int p_notification, bool p_reversed) {
     if (p_notification == NOTIFICATION_READY) {
         ClassDB::bind_method(D_METHOD("reload"), &GodotKotlinJvmEditor::reload);
 
-        file_watcher = new FileWatcher("res://build/libs/main.jar", reload_callback);
+        file_watcher = new FileWatcher("res://build/libs/usercode.jar", reload_callback);
         file_watcher->start();
     }
     if (p_notification == NOTIFICATION_EXIT_TREE) {

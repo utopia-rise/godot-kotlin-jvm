@@ -25,8 +25,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
         add_ios_project_static_lib(ProjectSettings::get_singleton()->globalize_path("res://build/libs/ios/usercode.a"));
         return;
     } else if (is_android_export) {
-        files_to_add.push_back("res://build/libs/main-dex.jar");
-        files_to_add.push_back("res://build/libs/godot-bootstrap-dex.jar");
+        files_to_add.push_back("res://build/libs/usercode-dex.jar");
         _generate_export_configuration_file(jni::Jvm::ART);
     } else {
         String graal_usercode_lib;
@@ -38,8 +37,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
             graal_usercode_lib = "usercode.so";
         }
         if (p_features.has(all_jvm_feature)) {
-            files_to_add.push_back("res://build/libs/main.jar");
-            files_to_add.push_back("res://build/libs/godot-bootstrap.jar");
+            files_to_add.push_back("res://build/libs/usercode.jar");
             files_to_add.push_back(vformat("res://build/libs/%s", graal_usercode_lib));
             _generate_export_configuration_file(GDKotlin::get_instance().get_configuration().get_vm_type());
 
@@ -51,8 +49,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
                 jni::Jvm::Type jvm_type {configuration.get_vm_type()};
                 switch (jvm_type) {
                     case jni::Jvm::JVM:
-                        files_to_add.push_back("res://build/libs/main.jar");
-                        files_to_add.push_back("res://build/libs/godot-bootstrap.jar");
+                        files_to_add.push_back("res://build/libs/usercode.jar");
                         _generate_export_configuration_file(jni::Jvm::JVM);
 
                         break;

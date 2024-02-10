@@ -20,16 +20,11 @@ void Bootstrap::register_hooks(LoadClassesHook p_load_classes_hook, RegisterMana
     Bootstrap::register_engine_type = p_register_managed_engine_types_hook;
 }
 
-void Bootstrap::init(jni::Env& p_env, bool p_is_editor, const String& p_project_path, const String& p_jar_path, const String& p_jar_file, const jni::JObject& p_class_loader) {
-    LOCAL_FRAME(3);
+void Bootstrap::init(jni::Env& p_env, const String& p_jar_file, const jni::JObject& p_class_loader) {
+    LOCAL_FRAME(1);
     jni::MethodId init_method = jni_methods.INIT.method_id;
-    jni::JObject project_path = p_env.new_string(p_project_path.utf8().get_data());
-    jni::JObject jar_path = p_env.new_string(p_jar_path.utf8().get_data());
     jni::JObject jar_file {p_env.new_string(p_jar_file.utf8().get_data())};
-    jvalue args[5] = {
-      jni::to_jni_arg(p_is_editor),
-      jni::to_jni_arg(project_path),
-      jni::to_jni_arg(jar_path),
+    jvalue args[2] = {
       jni::to_jni_arg(jar_file),
       jni::to_jni_arg(p_class_loader)};
     wrapped.call_void_method(p_env, init_method, args);
