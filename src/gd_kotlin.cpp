@@ -236,17 +236,17 @@ void GDKotlin::finish() {
 }
 
 void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
-    // #ifdef DEV_ENABLED
+#ifdef DEV_ENABLED
     LOG_INFO("Loading classes ...");
-    // #endif
+#endif
     Vector<KtClass*> classes;
     for (auto i = 0; i < p_classes.length(p_env); i++) {
         KtClass* kt_class = new KtClass(p_classes.get(p_env, i));
         kt_class->fetch_members();
         classes.append(kt_class);
-        // #ifdef DEV_ENABLED
+#ifdef DEV_ENABLED
         LOG_VERBOSE(vformat("Loaded class %s : %s, as %s", kt_class->registered_class_name, kt_class->base_godot_class));
-        // #endif
+#endif
     }
     TypeManager::get_instance().create_and_update_scripts(classes);
 }
