@@ -6,7 +6,6 @@ import godot.core.NodePath
 import godot.core.ObjectID
 import godot.core.StringName
 import godot.core.VariantType
-import godot.core.asObject
 import godot.util.VoidPtr
 import godot.util.info
 import godot.util.warning
