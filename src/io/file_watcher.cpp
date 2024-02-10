@@ -18,6 +18,7 @@ void FileWatcher::start() {
 }
 
 void FileWatcher::stop() {
+    stop_signal = true;
     thread.wait_to_finish();
 }
 
@@ -26,7 +27,7 @@ void FileWatcher::check_file_for_changes(void* user_data) {
     LOG_INFO("Initializing file watch");
     FileWatcher* file_watcher = static_cast<FileWatcher*>(user_data);
 
-    while (file_watcher && !file_watcher->finish_signal) {
+    while (file_watcher && !file_watcher->stop_signal) {
         LOG_INFO("Checking file");
         Error err;
         Ref<FileAccess> file_access {FileAccess::open(file_watcher->monitored_file, FileAccess::READ, &err)};

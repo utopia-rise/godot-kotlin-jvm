@@ -23,7 +23,7 @@ private:
     String monitored_file;
     String last_md5_hash;
     FileChangedCallback file_changed_callback;
-    bool finish_signal = false;
+    bool stop_signal = false;
 
     static void check_file_for_changes(void* user_data);
 };

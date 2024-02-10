@@ -4,6 +4,7 @@
 #ifndef GODOT_JVM_GODOT_KOTLIN_JVM_EDITOR_H
 #define GODOT_JVM_GODOT_KOTLIN_JVM_EDITOR_H
 
+#include "io/file_watcher.h"
 #include "menu_option.h"
 
 #include <editor/editor_plugin.h>
@@ -23,6 +24,8 @@ protected:
 
 private:
     GodotKotlinJvmEditor();
+
+    FileWatcher* file_watcher;
 };
 
 // class GodotKotlinJvmEditor : public EditorPlugin {
