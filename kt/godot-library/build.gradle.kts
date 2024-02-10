@@ -1,4 +1,3 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import versioninfo.fullGodotKotlinJvmVersion
 
 plugins {
@@ -6,7 +5,6 @@ plugins {
     id("com.utopia-rise.api-generator")
     id("com.utopia-rise.godot-publish")
     id("com.utopia-rise.versioninfo")
-    alias(libs.plugins.shadowJar)
     alias(libs.plugins.kotlinPreProcessors)
 }
 
@@ -34,9 +32,6 @@ java {
 }
 
 dependencies {
-    // added here as a transitive dependency so the user can use reflection
-    // we need to add it here so reflection is available where the code is loaded (Bootstrap.kt) otherwise it will not work
-    api(kotlin("reflect", version = libs.versions.kotlin.get()))
     implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
     testImplementation("junit", "junit", "4.12")
 }
@@ -45,33 +40,6 @@ dependencies {
 tasks {
     compileKotlin {
         dependsOn(generateAPI)
-    }
-
-    build.get().finalizedBy(shadowJar)
-
-    @Suppress("UNUSED_VARIABLE")
-    val jar by getting {
-        outputs.upToDateWhen {
-            // force this to always run. So we ensure that the bootstrap jar in the godot bin dir is always up to date
-            // only relevant for local testing
-            false
-        }
-        finalizedBy(shadowJar)
-    }
-
-    val copyBootstrapJar by creating(Copy::class.java) {
-        group = "godot-kotlin-jvm"
-        from(shadowJar)
-        destinationDir = File("${projectDir.absolutePath}/../../../../bin/")
-        dependsOn(shadowJar)
-    }
-
-    withType<ShadowJar> {
-        archiveBaseName.set("godot-bootstrap")
-        archiveVersion.set("")
-        archiveClassifier.set("")
-        exclude("**/module-info.class") //for android support: excludes java 9+ module info which cannot be parsed by the dx tool
-        finalizedBy(copyBootstrapJar)
     }
 
     // here so the sourcesJar task has an explicit dependency on the generateApi task. Needed since gradle 8

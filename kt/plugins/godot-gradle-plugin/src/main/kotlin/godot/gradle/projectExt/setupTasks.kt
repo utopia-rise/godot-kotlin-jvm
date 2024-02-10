@@ -2,22 +2,22 @@ package godot.gradle.projectExt
 
 import godot.gradle.tasks.android.checkAndroidJarAccessibleTask
 import godot.gradle.tasks.android.checkD8ToolAccessibleTask
-import godot.gradle.tasks.android.createMainDexFileTask
-import godot.gradle.tasks.android.packageBootstrapDexJarTask
-import godot.gradle.tasks.android.packageMainDexJarTask
+import godot.gradle.tasks.android.createUsercodeDexFileTask
+import godot.gradle.tasks.android.packageUsercodeDexJarTask
 import godot.gradle.tasks.createBuildLockTask
 import godot.gradle.tasks.deleteBuildLockTask
 import godot.gradle.tasks.generateGdIgnoreFilesTask
-import godot.gradle.tasks.graal.*
+import godot.gradle.tasks.graal.checkNativeImageToolAccessibleTask
+import godot.gradle.tasks.graal.checkPresenceOfDefaultGraalJniConfigTask
+import godot.gradle.tasks.graal.createGraalNativeImageTask
 import godot.gradle.tasks.graal.ios.checkPresenceOfDefaultGraalIOSConfigsTask
 import godot.gradle.tasks.graal.ios.compileIOSGraalFixTask
 import godot.gradle.tasks.graal.ios.createIOSGraalNativeImageTask
 import godot.gradle.tasks.graal.ios.createIOSStaticLibraryTask
-import godot.gradle.tasks.packageBootstrapJarTask
-import godot.gradle.tasks.packageMainJarTask
+import godot.gradle.tasks.packageUsercodeJarTask
+import godot.gradle.tasks.setupAfterIdeaSyncTasks
 import godot.gradle.tasks.setupBuildTask
 import godot.gradle.tasks.setupCleanTask
-import godot.gradle.tasks.setupAfterIdeaSyncTasks
 import org.gradle.api.Project
 
 fun Project.setupTasks() {
@@ -25,11 +25,7 @@ fun Project.setupTasks() {
         with(it) {
             val createBuildLockTask = createBuildLockTask()
             val deleteBuildLockTask = deleteBuildLockTask()
-            val packageBootstrapJarTask = packageBootstrapJarTask(
-                createBuildLockTask = createBuildLockTask,
-                deleteBuildLockTask = deleteBuildLockTask
-            )
-            val packageMainJarTask = packageMainJarTask(
+            val packageUsercodeJarTask = packageUsercodeJarTask(
                 createBuildLockTask = createBuildLockTask,
                 deleteBuildLockTask = deleteBuildLockTask
             )
@@ -38,19 +34,13 @@ fun Project.setupTasks() {
             // START: android specific tasks
             val checkD8ToolAccessibleTask = checkD8ToolAccessibleTask()
             val checkAndroidJarAccessibleTask = checkAndroidJarAccessibleTask()
-            val packageBootstrapDexJarTask = packageBootstrapDexJarTask(
+            val createUsercodeDexFileTask = createUsercodeDexFileTask(
                 checkAndroidJarAccessibleTask = checkAndroidJarAccessibleTask,
                 checkD8ToolAccessibleTask = checkD8ToolAccessibleTask,
-                packageBootstrapJarTask = packageBootstrapJarTask
+                packageUsercodeJarTask = packageUsercodeJarTask
             )
-            val createMainDexFileTask = createMainDexFileTask(
-                checkAndroidJarAccessibleTask = checkAndroidJarAccessibleTask,
-                checkD8ToolAccessibleTask = checkD8ToolAccessibleTask,
-                packageBootstrapDexJarTask = packageBootstrapDexJarTask,
-                packageMainJarTask = packageMainJarTask
-            )
-            val packageMainDexJarTask = packageMainDexJarTask(
-                createMainDexFileTask = createMainDexFileTask
+            val packageUsercodeDexJarTask = packageUsercodeDexJarTask(
+                createUsercodeDexFileTask = createUsercodeDexFileTask
             )
             // END: android specific tasks
 
@@ -63,14 +53,12 @@ fun Project.setupTasks() {
             val createGraalNativeImageTask = createGraalNativeImageTask(
                 checkNativeImageToolAccessibleTask = checkNativeImageToolAccessibleTask,
                 checkPresenceOfDefaultGraalJniConfigTask = checkPresenceOfDefaultGraalJniConfigTask,
-                packageMainJarTask = packageMainJarTask,
-                packageBootstrapJarTask = packageBootstrapJarTask
+                packageUsercodeJarTask = packageUsercodeJarTask,
             )
             val createIOSGraalNativeImageTask = createIOSGraalNativeImageTask(
                 checkNativeImageToolAccessibleTask = checkNativeImageToolAccessibleTask,
                 checkPresenceOfDefaultGraalIOSConfigsTask = checkPresenceOfDefaultGraalIOSConfigsTask,
-                packageMainJarTask = packageMainJarTask,
-                packageBootstrapJarTask = packageBootstrapJarTask
+                packageUsercodeJarTask = packageUsercodeJarTask,
             )
             val compileIOSGraalFixTask = compileIOSGraalFixTask()
             val createIOSStaticLibraryTask = createIOSStaticLibraryTask(
@@ -82,11 +70,9 @@ fun Project.setupTasks() {
             @Suppress("UNUSED_VARIABLE")
             val buildTask = setupBuildTask(
                 createBuildLockTask = createBuildLockTask,
-                packageBootstrapJarTask = packageBootstrapJarTask,
-                packageMainJarTask = packageMainJarTask,
+                packageUsercodeJarTask = packageUsercodeJarTask,
                 deleteBuildLockTask = deleteBuildLockTask,
-                packageBootstrapDexJarTask = packageBootstrapDexJarTask,
-                packageMainDexJarTask = packageMainDexJarTask,
+                packageUsercodeDexJarTask = packageUsercodeDexJarTask,
                 createGraalNativeImageTask = createGraalNativeImageTask,
                 createIOSTask = createIOSStaticLibraryTask,
                 generateGdIgnoreFilesTask = generateGdIgnoreFilesTask,

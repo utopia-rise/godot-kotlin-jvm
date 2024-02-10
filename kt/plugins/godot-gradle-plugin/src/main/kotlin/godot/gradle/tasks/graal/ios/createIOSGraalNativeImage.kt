@@ -11,18 +11,16 @@ import java.io.File
 fun Project.createIOSGraalNativeImageTask(
     checkNativeImageToolAccessibleTask: TaskProvider<out Task>,
     checkPresenceOfDefaultGraalIOSConfigsTask: TaskProvider<out Task>,
-    packageMainJarTask: TaskProvider<out Task>,
-    packageBootstrapJarTask: TaskProvider<out Task>
+    packageUsercodeJarTask: TaskProvider<out Task>,
 ): TaskProvider<out Task> = tasks.register("createIOSGraalNativeImage", Exec::class.java) {
     with(it) {
         group = "godot-kotlin-jvm-internal"
-        description = "INTERNAL TASK ! Converts main.jar and bootstrap.jar into a GraalVM ios native image."
+        description = "INTERNAL TASK! Converts usercode.jar into a GraalVM ios native image."
 
         dependsOn(
             checkNativeImageToolAccessibleTask,
             checkPresenceOfDefaultGraalIOSConfigsTask,
-            packageMainJarTask,
-            packageBootstrapJarTask
+            packageUsercodeJarTask,
         )
 
         doFirst {
@@ -64,8 +62,7 @@ fun Project.createIOSGraalNativeImageTask(
                 ""
             }
 
-            val mainJar = File(libsDir, "main.jar")
-            val godotBootstrapJar = File(libsDir, "godot-bootstrap.jar")
+            val usercodeJar = File(libsDir, "usercode.jar")
 
             val arguments = arrayOf(
                 godotJvmExtension.graalVmDirectory
@@ -75,7 +72,7 @@ fun Project.createIOSGraalNativeImageTask(
                     .resolve("native-image")
                     .absolutePath,
                 "-cp",
-                "${godotBootstrapJar.absolutePath}:${mainJar.absolutePath}",
+                usercodeJar.absolutePath,
                 "--no-server",
                 "-H:+ExitAfterRelocatableImageWrite",
                 "--features=org.graalvm.home.HomeFinderFeature",

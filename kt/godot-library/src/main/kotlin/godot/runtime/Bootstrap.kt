@@ -7,19 +7,14 @@ import godot.core.variantMapper
 import godot.registration.ClassRegistry
 import godot.registration.Entry
 import godot.util.err
-import godot.util.info
 import godot.util.warning
 import java.io.File
 import java.net.URL
 import java.net.URLClassLoader
-import java.nio.file.FileSystems
 import java.nio.file.Paths
-import java.nio.file.StandardWatchEventKinds
 import java.nio.file.WatchService
 import java.util.*
-import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
-import java.util.concurrent.TimeUnit
 
 
 internal class Bootstrap {
@@ -35,17 +30,17 @@ internal class Bootstrap {
             doInitGraal()
         } else {
             val libsDir = Paths.get(jarRootDir)
-            val mainJarPath = libsDir.resolve(jarFile)
+            val usercodeJarPath = libsDir.resolve(jarFile)
 
 
-            if (File(mainJarPath.toString()).exists()) {
-                doInit(mainJarPath.toUri().toURL(), loader)
+            if (File(usercodeJarPath.toString()).exists()) {
+                doInit(usercodeJarPath.toUri().toURL(), loader)
             } else {
                 if (isEditor) {
                     ::warning
                 } else {
                     ::err
-                }.invoke("No main.jar detected. No classes will be loaded. Build the gradle project to load classes")
+                }.invoke("No usercode.jar detected. No classes will be loaded. Build the gradle project to load classes")
             }
 
 //            if (isEditor) {
@@ -77,10 +72,10 @@ internal class Bootstrap {
 //                            serviceLoader.reload()
 //                        }
 //
-//                        if (File(mainJarPath.toString()).exists()) {
-//                            doInit(mainJarPath.toUri().toURL(), null) //no classloader so new main jar get's loaded
+//                        if (File(usercodeJarPath.toString()).exists()) {
+//                            doInit(usercodeJarPath.toUri().toURL(), null) //no classloader so new main jar get's loaded
 //                        } else {
-//                            warning("No main.jar detected. No classes will be loaded. Build the project to load classes")
+//                            warning("No usercode.jar detected. No classes will be loaded. Build the project to load classes")
 //                        }
 //                    }
 //                }, 3, 3, TimeUnit.SECONDS)
@@ -95,8 +90,8 @@ internal class Bootstrap {
         serviceLoader.reload()
     }
 
-    private fun doInit(mainJar: URL, classLoader: ClassLoader?) {
-        classloader = classLoader ?: URLClassLoader(arrayOf(mainJar), this::class.java.classLoader)
+    private fun doInit(usercodeJar: URL, classLoader: ClassLoader?) {
+        classloader = classLoader ?: URLClassLoader(arrayOf(usercodeJar), this::class.java.classLoader)
         Thread.currentThread().contextClassLoader = classloader
         serviceLoader = ServiceLoader.load(Entry::class.java, classloader)
         initializeUsingEntry()

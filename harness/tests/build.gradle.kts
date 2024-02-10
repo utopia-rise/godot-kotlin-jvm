@@ -37,6 +37,8 @@ godot {
 }
 
 dependencies {
+    implementation(kotlin("reflect")) // reflection dependencies for reflection tests
+
     implementation("joda-time:joda-time:2.10.6") // external dependency to test dependency inclusion in mainCompilation
 
     implementation("com.godot.tests:hierarchical-library")

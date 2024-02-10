@@ -6,7 +6,7 @@ import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.TaskProvider
 
-fun Project.packageMainJarTask(
+fun Project.packageUsercodeJarTask(
     createBuildLockTask: TaskProvider<out Task>,
     deleteBuildLockTask: TaskProvider<out Task>,
 ): TaskProvider<out Task> {
@@ -15,18 +15,13 @@ fun Project.packageMainJarTask(
             group = "godot-kotlin-jvm"
             description = "Creates a fat jar containing game code and all dependencies of it"
 
-            archiveBaseName.set("main")
+            archiveBaseName.set("usercode")
             archiveVersion.set("")
             archiveClassifier.set("")
 
-            // merges all service files from all dependencies into on
+            // merges all service files from all dependencies into one
             // needed so we can loop over and load all entry files from within Bootstrap.kt
             mergeServiceFiles()
-
-            dependencies {
-                it.exclude(it.dependency("org.jetbrains.kotlin:kotlin-stdlib.*"))
-                it.exclude(it.dependency("com.utopia-rise:$godotLibraryArtifactName:.*"))
-            }
 
             dependsOn(
                 createBuildLockTask,

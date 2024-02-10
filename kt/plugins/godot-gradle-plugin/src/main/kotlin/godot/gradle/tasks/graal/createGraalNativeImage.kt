@@ -11,29 +11,23 @@ import java.io.File
 fun Project.createGraalNativeImageTask(
     checkNativeImageToolAccessibleTask: TaskProvider<out Task>,
     checkPresenceOfDefaultGraalJniConfigTask: TaskProvider<out Task>,
-    packageMainJarTask: TaskProvider<out Task>,
-    packageBootstrapJarTask: TaskProvider<out Task>
+    packageUsercodeJarTask: TaskProvider<out Task>,
 ): TaskProvider<out Task> {
     return tasks.register("createGraalNativeImage", Exec::class.java) {
         with(it) {
             group = "godot-kotlin-jvm"
-            description = "Converts main.jar and bootstrap.jar into a GraalVM native image."
+            description = "Converts usercode.jar into a GraalVM native image."
 
             dependsOn(
                 checkNativeImageToolAccessibleTask,
                 checkPresenceOfDefaultGraalJniConfigTask,
-                packageMainJarTask,
-                packageBootstrapJarTask
+                packageUsercodeJarTask,
             )
 
             doFirst {
                 val libsDir = project.buildDir.resolve("libs")
-                val resourcesDir = project.buildDir.resolve("resources")
 
-
-                val mainJar = File(libsDir, "main.jar")
-                val godotBootstrapJar = File(libsDir, "godot-bootstrap.jar")
-
+                val usercodeJar = File(libsDir, "usercode.jar")
 
                 workingDir = libsDir
 
@@ -75,17 +69,12 @@ fun Project.createGraalNativeImageTask(
                     mutableListOf(
                         "cmd",
                         "/c",
-
                         "(",
-
                         godotJvmExtension.windowsDeveloperVCVarsPath.get().asFile.absolutePath,
-
                         "&&",
-
-                        graalBinDir
-                            .resolve("native-image.cmd"),
+                        graalBinDir.resolve("native-image.cmd"),
                         "-cp",
-                        "\"${godotBootstrapJar.absolutePath}\";\"${mainJar.absolutePath}\"",
+                        "\"${usercodeJar.absolutePath}\"",
                         "--shared",
                         "-H:Name=usercode",
                         jniConfigurationFilesArgument,
@@ -95,10 +84,9 @@ fun Project.createGraalNativeImageTask(
 
                 } else {
                     mutableListOf(
-                        graalBinDir
-                            .resolve("native-image"),
+                        graalBinDir.resolve("native-image"),
                         "-cp",
-                        "${godotBootstrapJar.absolutePath}:${mainJar.absolutePath}",
+                        usercodeJar.absolutePath,
                         "--shared",
                         "-H:Name=usercode",
                         jniConfigurationFilesArgument,
