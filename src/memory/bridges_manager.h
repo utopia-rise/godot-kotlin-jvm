@@ -54,11 +54,17 @@ class BridgesManager {
         fill = new T(bridge_instance);
     }
 
+    template<class T>
+    void deinitialize_bridge(const char* jvm_class_name, T*& fill) {
+        T::deinitialize_class(jvm_class_name);
+    }
+
 public:
     BridgesManager(const BridgesManager&) = delete;
     static BridgesManager& get_instance();
 
     void initialize_bridges(jni::Env& env, jni::JObject class_loader);
+    void deinitialize_bridges(jni::Env& env, jni::JObject class_loader);
     void delete_bridges();
 };
 

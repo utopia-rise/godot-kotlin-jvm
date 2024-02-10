@@ -17,6 +17,8 @@ public:
 
     void write_return_value(jni::Env& p_env, Variant& variant);
 
+    void de_init(jni::Env& p_env);
+
     void read_return_value(jni::Env& p_env, Variant& r_ret);
 
     void write_args(jni::Env& p_env, const Variant** p_args, int args_size);

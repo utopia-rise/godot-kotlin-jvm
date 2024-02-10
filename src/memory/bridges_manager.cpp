@@ -30,6 +30,29 @@ void BridgesManager::initialize_bridges(jni::Env& env, jni::JObject class_loader
     initialize_bridge(env, class_loader, bridges::PACKED_VECTOR3_ARRAY_BRIDGE_CLASS_NAME, packed_vector3_array_bridge);
 }
 
+void BridgesManager::deinitialize_bridges(jni::Env& env, jni::JObject class_loader) {
+    deinitialize_bridge(bridges::MEMORY_BRIDGE_CLASS_NAME, memory_bridge);
+
+    deinitialize_bridge(bridges::GD_PRINT_BRIDGE_CLASS_NAME, gd_print_bridge);
+
+    deinitialize_bridge(bridges::CALLABLE_BRIDGE_CLASS_NAME, callable_bridge);
+    deinitialize_bridge(bridges::VARIANT_ARRAY_BRIDGE_CLASS_NAME, variant_array_bridge);
+    deinitialize_bridge(bridges::DICTIONARY_BRIDGE_CLASS_NAME, dictionary_bridge);
+    deinitialize_bridge(bridges::RID_BRIDGE_CLASS_NAME, rid_bridge);
+    deinitialize_bridge(bridges::STRING_NAME_BRIDGE_CLASS_NAME, string_name_bridge);
+    deinitialize_bridge(bridges::NODE_PATH_BRIDGE_CLASS_NAME, node_path_bridge);
+
+    deinitialize_bridge(bridges::PACKED_BYTE_ARRAY_BRIDGE_CLASS_NAME, packed_byte_array_bridge);
+    deinitialize_bridge(bridges::PACKED_COLOR_ARRAY_BRIDGE_CLASS_NAME, packed_color_array_bridge);
+    deinitialize_bridge(bridges::PACKED_INT_32_ARRAY_BRIDGE_CLASS_NAME, packed_int_32_array_bridge);
+    deinitialize_bridge(bridges::PACKED_INT_64_ARRAY_BRIDGE_CLASS_NAME, packed_int_64_array_bridge);
+    deinitialize_bridge(bridges::PACKED_FLOAT_32_ARRAY_BRIDGE_CLASS_NAME, packed_float_32_array_bridge);
+    deinitialize_bridge(bridges::PACKED_FLOAT_64_ARRAY_BRIDGE_CLASS_NAME, packed_float_64_array_bridge);
+    deinitialize_bridge(bridges::PACKED_STRING_ARRAY_BRIDGE_CLASS_NAME, packed_string_array_bridge);
+    deinitialize_bridge(bridges::PACKED_VECTOR2_ARRAY_BRIDGE_CLASS_NAME, packed_vector2_array_bridge);
+    deinitialize_bridge(bridges::PACKED_VECTOR3_ARRAY_BRIDGE_CLASS_NAME, packed_vector3_array_bridge);
+}
+
 BridgesManager::BridgesManager() :
   memory_bridge(nullptr),
   gd_print_bridge(nullptr),

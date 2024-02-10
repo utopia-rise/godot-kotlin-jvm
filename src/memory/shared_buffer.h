@@ -45,6 +45,14 @@ public:
     _FORCE_INLINE_ bool is_init() const { return ptr != nullptr; }
 
     _FORCE_INLINE_ void rewind() { position = 0; }
+
+    _FORCE_INLINE_ void de_init() {
+        rewind();
+        ptr = nullptr;
+#ifdef DEBUG_ENABLED
+        capacity = 0;
+#endif
+    }
 };
 
 #endif// GODOT_JVM_SHARED_BUFFER_H

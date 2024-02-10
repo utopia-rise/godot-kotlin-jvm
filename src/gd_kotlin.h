@@ -27,6 +27,7 @@ private:
     static void _check_and_copy_jar(const String& jar_name);
     static jni::JObject _prepare_class_loader(jni::Env& p_env, jni::Jvm::Type type);
     static void initialize_classes();
+    static void deinitialize_classes();
 
     bool check_configuration();
 
@@ -44,6 +45,10 @@ public:
     GDKotlin& operator=(const GDKotlin&) = delete;
 
     void init();
+
+    void reload();
+    void load();
+    void unload();
 
     void finish();
 

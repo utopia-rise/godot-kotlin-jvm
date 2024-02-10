@@ -10,6 +10,7 @@
                                                             \
 public:                                                     \
     static void initialize_class(const char* p_class_name); \
+    static void deinitialize_class(const char* p_class_name); \
                                                             \
 private:                                                    \
     struct JNIMethods {                                     \
@@ -25,6 +26,12 @@ private:                                                    \
         jni::JClass clazz {env.load_class(p_class_name, ClassLoader::get_default_loader())}; \
         __VA_ARGS__                                                                          \
         if (methods.size() > 0) { clazz.register_natives(env, methods); }                    \
+        clazz.delete_local_ref(env);                                                         \
+    }                                                         \
+    void C::deinitialize_class(const char* p_class_name) {                                     \
+        jni::Env env {jni::Jvm::current_env()};                                              \
+        jni::JClass clazz {env.load_class(p_class_name, ClassLoader::get_default_loader())}; \
+        clazz.unregister_natives(env);                                                       \
         clazz.delete_local_ref(env);                                                         \
     }
 

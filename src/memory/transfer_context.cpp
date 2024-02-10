@@ -187,3 +187,7 @@ void TransferContext::free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p
 
     memdelete(owner);
 }
+
+void TransferContext::de_init(jni::Env& p_env) {
+    get_and_rewind_buffer(p_env)->de_init();
+}

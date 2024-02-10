@@ -48,43 +48,43 @@ internal class Bootstrap {
                 }.invoke("No main.jar detected. No classes will be loaded. Build the gradle project to load classes")
             }
 
-            if (isEditor) {
-                watchService = FileSystems.getDefault().newWatchService()
-                val watchKey = getBuildLockDir(projectRootDir).toPath().register(
-                    watchService,
-                    StandardWatchEventKinds.ENTRY_CREATE,
-                    StandardWatchEventKinds.ENTRY_DELETE,
-                    StandardWatchEventKinds.ENTRY_MODIFY,
-                )
-
-                executor = Executors.newSingleThreadScheduledExecutor { runnable ->
-                    val thread = Thread(runnable)
-                    thread.isDaemon = true
-                    thread
-                }
-
-                executor!!.scheduleAtFixedRate({
-                    val events = watchKey.pollEvents()
-                    if (events.isNotEmpty()) {
-                        if (File(getBuildLockDir(projectRootDir), "buildLock.lock").exists()) {
-                            info("Build lock present. Not reloading...")
-                            return@scheduleAtFixedRate
-                        }
-                        info("Changes detected, reloading classes ...")
-
-                        if(::serviceLoader.isInitialized){
-                            clearClassesCache()
-                            serviceLoader.reload()
-                        }
-
-                        if (File(mainJarPath.toString()).exists()) {
-                            doInit(mainJarPath.toUri().toURL(), null) //no classloader so new main jar get's loaded
-                        } else {
-                            warning("No main.jar detected. No classes will be loaded. Build the project to load classes")
-                        }
-                    }
-                }, 3, 3, TimeUnit.SECONDS)
-            }
+//            if (isEditor) {
+//                watchService = FileSystems.getDefault().newWatchService()
+//                val watchKey = getBuildLockDir(projectRootDir).toPath().register(
+//                    watchService,
+//                    StandardWatchEventKinds.ENTRY_CREATE,
+//                    StandardWatchEventKinds.ENTRY_DELETE,
+//                    StandardWatchEventKinds.ENTRY_MODIFY,
+//                )
+//
+//                executor = Executors.newSingleThreadScheduledExecutor { runnable ->
+//                    val thread = Thread(runnable)
+//                    thread.isDaemon = true
+//                    thread
+//                }
+//
+//                executor!!.scheduleAtFixedRate({
+//                    val events = watchKey.pollEvents()
+//                    if (events.isNotEmpty()) {
+//                        if (File(getBuildLockDir(projectRootDir), "buildLock.lock").exists()) {
+//                            info("Build lock present. Not reloading...")
+//                            return@scheduleAtFixedRate
+//                        }
+//                        info("Changes detected, reloading classes ...")
+//
+//                        if(::serviceLoader.isInitialized){
+//                            clearClassesCache()
+//                            serviceLoader.reload()
+//                        }
+//
+//                        if (File(mainJarPath.toString()).exists()) {
+//                            doInit(mainJarPath.toUri().toURL(), null) //no classloader so new main jar get's loaded
+//                        } else {
+//                            warning("No main.jar detected. No classes will be loaded. Build the project to load classes")
+//                        }
+//                    }
+//                }, 3, 3, TimeUnit.SECONDS)
+//            }
         }
     }
 
