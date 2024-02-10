@@ -46,6 +46,7 @@ public:
 
     _FORCE_INLINE_ void rewind() { position = 0; }
 
+    // TODO: refactoring the shared buffer needs to be reset upon reloading. NOTE this currently breaks in multithreaded cases
     _FORCE_INLINE_ void de_init() {
         rewind();
         ptr = nullptr;

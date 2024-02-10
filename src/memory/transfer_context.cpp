@@ -188,6 +188,7 @@ void TransferContext::free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p
     memdelete(owner);
 }
 
+// TODO: refactoring the shared buffer needs to be reset upon reloading. NOTE this currently breaks in multithreaded cases. Reason for this is the thread_local static SharedBuffer shared_buffer above
 void TransferContext::de_init(jni::Env& p_env) {
     get_and_rewind_buffer(p_env)->de_init();
 }

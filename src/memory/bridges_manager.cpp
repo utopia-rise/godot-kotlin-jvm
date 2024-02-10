@@ -30,6 +30,7 @@ void BridgesManager::initialize_bridges(jni::Env& env, jni::JObject class_loader
     initialize_bridge(env, class_loader, bridges::PACKED_VECTOR3_ARRAY_BRIDGE_CLASS_NAME, packed_vector3_array_bridge);
 }
 
+// TODO: refactoring each registered bridge needs to be unregistered again upon reloading
 void BridgesManager::deinitialize_bridges(jni::Env& env, jni::JObject class_loader) {
     deinitialize_bridge(bridges::MEMORY_BRIDGE_CLASS_NAME, memory_bridge);
 

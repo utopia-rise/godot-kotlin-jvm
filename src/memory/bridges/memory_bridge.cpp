@@ -120,6 +120,7 @@ bool MemoryBridge::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance,
 }
 
 void MemoryBridge::notify_leak(JNIEnv* p_raw_env, jobject p_instance) {
+    // TODO: refactoring this crash needs to be dealt with. Currently we need to disable this otherwise our reloading crashes
 //#ifdef DEBUG_ENABLED
 //    JVM_CRASH_NOW_MSG("JVM instances are leaking.");
 //#endif

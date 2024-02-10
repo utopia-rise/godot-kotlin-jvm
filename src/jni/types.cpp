@@ -129,6 +129,7 @@ namespace jni {
         env.check_exceptions();
     }
 
+    // TODO: refactoring upon reloading we need to unregister all registered native methods
     void JClass::unregister_natives(Env& env) {
         env.env->UnregisterNatives((jclass) obj);
         env.check_exceptions();
