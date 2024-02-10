@@ -1,14 +1,11 @@
 #include "gd_kotlin.h"
 
-#include "io/file_watcher.h"
 #include "jni/class_loader.h"
 #include "memory/bridges_manager.h"
 
 #include <core/config/project_settings.h>
 #include <core/io/resource_loader.h>
 #include <main/main.h>
-
-#include <functional>
 
 #ifndef TOOLS_ENABLED
 
@@ -219,19 +216,6 @@ void GDKotlin::init() {
         case jni::Jvm::ART:
             LOG_INFO(vformat("Using jvm type: %s", GdKotlinConfiguration::art_string_identifier));
             break;
-    }
-#endif
-
-#ifdef __ANDROID__
-    String usercode_jar_file {"usercode-dex.jar"};
-    _check_and_copy_jar(usercode_jar_file);
-#else
-    String usercode_jar_file;
-    if (configuration.get_vm_type() == jni::Jvm::GRAAL_NATIVE_IMAGE) {
-        usercode_jar_file = "graal_usercode";
-    } else {
-        usercode_jar_file = "usercode.jar";
-        _check_and_copy_jar(usercode_jar_file);
     }
 #endif
 
