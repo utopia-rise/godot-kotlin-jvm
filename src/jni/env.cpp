@@ -34,10 +34,10 @@ namespace jni {
         } else {
             static jmethodID loadClassMethodId;
 
-//            if (loadClassMethodId == nullptr) {
+            if (loadClassMethodId == nullptr) {
                 auto cls = find_class("java/lang/ClassLoader");
                 loadClassMethodId = cls.get_method_id(*this, "loadClass", "(Ljava/lang/String;)Ljava/lang/Class;");
-//            }
+            }
             jvalue args[1] = {static_cast<JValue>(new_string(name)).value};
             jni::JObject ret = class_loader.call_object_method(*this, loadClassMethodId, args);
             return JClass((jclass) ret.obj);
