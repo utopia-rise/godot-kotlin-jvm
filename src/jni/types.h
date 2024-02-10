@@ -57,6 +57,8 @@ namespace jni {
 
         void delete_global_ref(Env& p_env);
 
+        void delete_ref(Env& p_env);
+
         template<class T>
         inline T new_weak_ref(Env& env);
 

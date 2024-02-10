@@ -513,16 +513,13 @@ void GDKotlin::load() {
 }
 
 void GDKotlin::unload() {
+    LOG_INFO("1");
+    is_initialized = false;
 
     auto env = jni::Jvm::current_env();
-
     bootstrap->finish(env);
 
-    transfer_context->de_init(env);
-    delete transfer_context;
-    transfer_context = nullptr;
-    delete bootstrap;
-    bootstrap = nullptr;
+    LOG_INFO("2");
 
     if (is_gc_started) {
         jni::JClass garbage_collector_cls {env.load_class("godot.core.memory.MemoryManager", ClassLoader::get_default_loader())};
@@ -541,18 +538,42 @@ void GDKotlin::unload() {
 #endif
         jni::MethodId clean_up_method_id {garbage_collector_cls.get_method_id(env, "cleanUp", "()V")};
         garbage_collector_instance.call_void_method(env, clean_up_method_id);
+        is_gc_started = false;
     }
 
-    LongStringQueue::destroy();
+//    Vector<KtClass*> empty_vector;
+//    TypeManager::get_instance().create_and_update_scripts(empty_vector);
+
+    LOG_INFO("3");
+    delete bootstrap;
+    bootstrap = nullptr;
+
+
+    LOG_INFO("4");
+
     BridgesManager::get_instance().deinitialize_bridges(env, ClassLoader::get_default_loader());
+    LOG_INFO("5");
     BridgesManager::get_instance().delete_bridges();
+    LOG_INFO("6");
 
-    Vector<KtClass*> empty_vector;
-    TypeManager::get_instance().create_and_update_scripts(empty_vector);
+    LongStringQueue::destroy();
+    LOG_INFO("7");
+
+    transfer_context->de_init(env);
+    LOG_INFO("8");
+    delete transfer_context;
+    transfer_context = nullptr;
+
+    LOG_INFO("9");
+    LOG_INFO("10");
     TypeManager::get_instance().clear();
-    TypeManager::destroy();
+    LOG_INFO("11");
+//    TypeManager::destroy();
 
+    LOG_INFO("12");
     deinitialize_classes();
 
+    LOG_INFO("13");
     ClassLoader::delete_default_loader(env);
+    LOG_INFO("14");
 }

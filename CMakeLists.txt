@@ -15,9 +15,9 @@ add_compile_definitions(DEV_ENABLED)
 
 # platforms
 #add_compile_definitions(WINDOWS_ENABLED)
-#add_compile_definitions(X11_ENABLED)
+add_compile_definitions(X11_ENABLED)
 #add_compile_definitions(OSX_ENABLED)
-add_compile_definitions(IOS_ENABLED)
+#add_compile_definitions(IOS_ENABLED)
 #add_compile_definitions(__ANDROID__)
 
 # Get sources

@@ -271,5 +271,11 @@ KotlinScript::~KotlinScript() {
 #ifdef TOOLS_ENABLED
     exported_members_default_value_cache.clear();
 #endif
-    if (kotlin_class) { delete kotlin_class; }
+    if (kotlin_class) {
+        if (kotlin_class->registered_class_name == "godot_tests_library_fqname_FQNLSimpleChild") {
+            StringName blubb = kotlin_class->registered_class_name,
+            LOG_INFO(blubb);
+        }
+        delete kotlin_class;
+    }
 }
