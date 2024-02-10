@@ -9,11 +9,17 @@ public:
     static GdKotlinConfiguration from_json(const String& json_string);
     static GdKotlinConfiguration load_gd_kotlin_configuration_or_default(const String& configuration_path);
 
-    jni::Jvm::Type get_vm_type() const;
+    [[nodiscard]] jni::Jvm::Type get_vm_type() const;
     void set_vm_type(jni::Jvm::Type p_type);
 
-    int get_max_string_size() const;
+    [[nodiscard]] int get_max_string_size() const;
     void set_max_string_size(int p_max_string_size);
+
+    void set_force_gc(bool force_gc);
+    [[nodiscard]] bool get_is_force_gc() const;
+
+    void set_gc_enabled(bool gc_enabled);
+    [[nodiscard]] bool get_is_gc_enabled() const;
 
     ~GdKotlinConfiguration() = default;
 
@@ -26,6 +32,8 @@ public:
 private:
     jni::Jvm::Type vm_type;
     int max_string_size;
+    bool is_force_gc = false;
+    bool is_gc_enabled = true;
 
     static constexpr const char* vm_type_identifier {"vm_type"};
     static constexpr const char* max_string_size_identifier {"max_string_size"};

@@ -95,8 +95,6 @@ void GDKotlin::init() {
     String jvm_debug_port;
     String jvm_debug_address;
     String jvm_jmx_port;
-    bool is_gc_force_mode {false};
-    bool is_gc_activated {true};
     bool is_waiting_for_debugger {true};
     bool should_display_leaked_jvm_instances_on_close {true};
     const List<String>& cmdline_args {OS::get_singleton()->get_cmdline_args()};
@@ -143,11 +141,11 @@ void GDKotlin::init() {
                 );
             }
         } else if (cmd_arg == "--jvm-force-gc") {
-            is_gc_force_mode = true;
+            configuration.set_force_gc(true);
             // TODO: Link to documentation
             LOG_WARNING("GC is started in force mode, this should only be done for debugging purpose");
         } else if (cmd_arg == "--jvm-disable-gc") {
-            is_gc_activated = false;
+            configuration.set_gc_enabled(false);
             // TODO: Link to documentation
             LOG_WARNING("GC thread was disable. --jvm-disable-gc should only be used for debugging purpose");
         } else if (cmd_arg == "--jvm-disable-closing-leaks-warning") {
@@ -248,6 +246,7 @@ void GDKotlin::finish() {
         return;
     }
     unload();
+    TypeManager::destroy();// this should not be called during reloading! Only on exit!
     jni::Jvm::destroy();
     LOG_INFO("Shutting down JVM ...");
 }
@@ -441,25 +440,19 @@ void GDKotlin::load() {
 
     BridgesManager::get_instance().initialize_bridges(env, class_loader);
 
-    if (true) {
-        if (false) {
+    if (configuration.get_is_gc_enabled()) {
+        if (configuration.get_is_force_gc()) {
 #ifdef DEBUG_ENABLED
             LOG_VERBOSE("Starting GC thread with force mode.");
 #endif
         }
         jni::MethodId start_method_id {garbage_collector_cls.get_method_id(env, "start", "(Z)V")};
-        jvalue start_args[2] = {jni::to_jni_arg(false)};
+        jvalue start_args[2] = {jni::to_jni_arg(configuration.get_is_force_gc())};
         garbage_collector_instance.call_void_method(env, start_method_id, start_args);
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE("GC thread started.");
 #endif
         is_gc_started = true;
-    }
-
-    if (!true) {
-        jni::MethodId set_should_display_method_id {garbage_collector_cls.get_method_id(env, "setShouldDisplayLeakInstancesOnClose", "(Z)V")};
-        jvalue d_arg[1] = {jni::to_jni_arg(false)};
-        garbage_collector_instance.call_void_method(env, set_should_display_method_id, d_arg);
     }
 
     jni::JClass bootstrap_cls = env.load_class("godot.runtime.Bootstrap", class_loader);
@@ -483,14 +476,10 @@ void GDKotlin::load() {
 
 void GDKotlin::unload() {
     if (!is_initialized) return;
-
-    LOG_INFO("1");
     is_initialized = false;
 
     auto env = jni::Jvm::current_env();
     bootstrap->finish(env);
-
-    LOG_INFO("2");
 
     if (is_gc_started) {
         jni::JClass garbage_collector_cls {env.load_class("godot.core.memory.MemoryManager", ClassLoader::get_default_loader())};
@@ -512,40 +501,23 @@ void GDKotlin::unload() {
         is_gc_started = false;
     }
 
-    // Vector<KtClass*> empty_vector;
-    // TypeManager::get_instance().create_and_update_scripts(empty_vector);
-
-    LOG_INFO("3");
     delete bootstrap;
     bootstrap = nullptr;
 
-    LOG_INFO("4");
-
     BridgesManager::get_instance().deinitialize_bridges(env, ClassLoader::get_default_loader());
-    LOG_INFO("5");
     BridgesManager::get_instance().delete_bridges();
-    LOG_INFO("6");
 
     LongStringQueue::destroy();
-    LOG_INFO("7");
 
     transfer_context->de_init(env);
-    LOG_INFO("8");
     delete transfer_context;
     transfer_context = nullptr;
 
-    LOG_INFO("9");
-    LOG_INFO("10");
     TypeManager::get_instance().clear();
-    LOG_INFO("11");
-    // TypeManager::destroy();
 
-    LOG_INFO("12");
     deinitialize_classes();
 
-    LOG_INFO("13");
     ClassLoader::delete_default_loader(env);
-    LOG_INFO("14");
 }
 
 String GDKotlin::assemble_usercode_path() {

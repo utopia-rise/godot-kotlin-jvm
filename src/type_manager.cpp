@@ -15,6 +15,8 @@ void TypeManager::clear() {
     engine_type_names.clear();
     java_engine_types_constructors.clear();
     engine_singleton_names.clear();
+
+    // TODO: refactoring these need to survive reloading
 //    user_scripts.clear();
 //    user_scripts_map.clear();
 }

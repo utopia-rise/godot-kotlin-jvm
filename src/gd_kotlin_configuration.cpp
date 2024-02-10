@@ -100,3 +100,19 @@ GdKotlinConfiguration::GdKotlinConfiguration() :
 GdKotlinConfiguration::GdKotlinConfiguration(jni::Jvm::Type p_vm_type, int p_max_string_size) :
   vm_type(p_vm_type),
   max_string_size(p_max_string_size) {}
+
+void GdKotlinConfiguration::set_force_gc(bool force_gc) {
+    is_force_gc = force_gc;
+}
+
+bool GdKotlinConfiguration::get_is_force_gc() const {
+    return is_force_gc;
+}
+
+void GdKotlinConfiguration::set_gc_enabled(bool gc_enabled) {
+    is_gc_enabled = gc_enabled;
+}
+
+bool GdKotlinConfiguration::get_is_gc_enabled() const {
+    return is_gc_enabled;
+}
