@@ -9,8 +9,6 @@ JavaInstanceWrapper::JavaInstanceWrapper(jni::JObject p_wrapped) : is_weak(false
 
 JavaInstanceWrapper::~JavaInstanceWrapper() {
     jni::Env env {jni::Jvm::current_env()};
-//    wrapped.delete_ref(env);
-//    //TODO: ask tristan if it relly is relevant which what ref this is or if we can just delete it no matter what ref it is
     if (is_weak) {
         wrapped.delete_weak_ref(env);
     } else {
