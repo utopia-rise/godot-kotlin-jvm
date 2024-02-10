@@ -16,7 +16,7 @@ void TypeManager::clear() {
     java_engine_types_constructors.clear();
     engine_singleton_names.clear();
 
-    // TODO: refactoring these need to survive reloading
+    // TODO: refactoring these need to survive reloading but we need to clean them up at exit somehow (this is currently not the case with this PoC
 //    user_scripts.clear();
 //    user_scripts_map.clear();
 }
