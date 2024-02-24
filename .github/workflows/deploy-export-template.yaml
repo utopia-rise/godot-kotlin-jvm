@@ -284,40 +284,40 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
 
-      - name: Download android debug export armv7 binary
+      - name: Download android template_debug export armv7 binary
         uses: actions/download-artifact@v3
         with:
-          name: android-export-debug-binary-armv7
+          name: android-export-template_debug-binary-armv7
           path: platform/android/java/lib/libs/debug/armeabi-v7a
 
-      - name: Download android release export armv7 binary
+      - name: Download android template_release export armv7 binary
         uses: actions/download-artifact@v3
         with:
-          name: android-export-${{ inputs.target }}-binary-armv7
+          name: android-export-template_release-binary-armv7
           path: platform/android/java/lib/libs/release/armeabi-v7a
 
-      - name: Download android debug export arm64v8 binary
+      - name: Download android template_debug export arm64v8 binary
         uses: actions/download-artifact@v3
         with:
-          name: android-export-debug-binary-arm64v8
+          name: android-export-template_debug-binary-arm64v8
           path: platform/android/java/lib/libs/debug/arm64-v8a
 
-      - name: Download android release export arm64v8 binary
+      - name: Download android template_release export arm64v8 binary
         uses: actions/download-artifact@v3
         with:
-          name: android-export-release-binary-arm64v8
+          name: android-export-template_release-binary-arm64v8
           path: platform/android/java/lib/libs/release/arm64-v8a
 
-      - name: Download android debug export x86_64 binary
+      - name: Download android template_debug export x86_64 binary
         uses: actions/download-artifact@v3
         with:
-          name: android-export-debug-binary-x86_64
+          name: android-export-template_debug-binary-x86_64
           path: platform/android/java/lib/libs/debug/x86_64
 
-      - name: Download android release export x86_64 binary
+      - name: Download android template_release export x86_64 binary
         uses: actions/download-artifact@v3
         with:
-          name: android-export-release-binary-x86_64
+          name: android-export-template_release-binary-x86_64
           path: platform/android/java/lib/libs/release/x86_64
 
       - name: Build android export templates
