@@ -31,6 +31,13 @@ jobs:
         with:
           repository: godotengine/godot
           ref: 4.2-stable
+      # TODO: remove once on godot 4.2.2 or newer!
+      - name: Cherry pick macos fix
+        run: |
+         git fetch -a
+         git config --global user.email "mario@super.com"
+         git config --global user.name "Super Mario"
+         git cherry-pick a2c1c01941a3dec3e2a361d9dc21bb0390efcbaf
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
         with:
@@ -79,6 +86,13 @@ jobs:
         with:
           repository: godotengine/godot
           ref: 4.2-stable
+      # TODO: remove once on godot 4.2.2 or newer!
+      - name: Cherry pick macos fix
+        run: |
+          git fetch -a
+          git config --global user.email "mario@super.com"
+          git config --global user.name "Super Mario"
+          git cherry-pick a2c1c01941a3dec3e2a361d9dc21bb0390efcbaf
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
         with:
@@ -161,6 +175,13 @@ jobs:
         with:
           repository: godotengine/godot
           ref: 4.2-stable
+      # TODO: remove once on godot 4.2.2 or newer!
+      - name: Cherry pick macos fix
+        run: |
+          git fetch -a
+          git config --global user.email "mario@super.com"
+          git config --global user.name "Super Mario"
+          git cherry-pick a2c1c01941a3dec3e2a361d9dc21bb0390efcbaf
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
         with:
