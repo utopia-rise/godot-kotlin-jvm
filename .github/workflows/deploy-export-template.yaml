@@ -240,23 +240,7 @@ jobs:
 
   build-android-export-template:
     needs: [deploy-export-template]
-    strategy:
-      matrix:
-        name: [ Android-debug, Android-release ]
-        include:
-          - name: Android-debug
-            os: ubuntu-20.04
-            java-version: 11
-            target: template_debug
-            base-path: platform/android/java/lib/libs/debug
-            apk-name: android_debug.apk
-          - name: Android-release
-            os: ubuntu-20.04
-            java-version: 11
-            target: template_release
-            base-path: platform/android/java/lib/libs/release
-            apk-name: android_release.apk
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-20.04
     steps:
       - name: Download release informations
         uses: actions/download-artifact@v3
@@ -282,20 +266,71 @@ jobs:
           path: modules/kotlin_jvm
           submodules: recursive
 
-      - name: Build android export template
-        uses: ./modules/kotlin_jvm/.github/actions/create-android-export-template
-        with:
-          target: ${{ matrix.target }}
-          base-path: ${{ matrix.base-path }}
+      - name: Setup Godot dependencies
+        uses: ./.github/actions/godot-deps
 
-      - name: Upload android export template ${{ matrix.target }}
+      - name: Set up JDK 17
+        uses: actions/setup-java@v1
+        with:
+          java-version: 17
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+
+      - name: Download android debug export armv7 binary
+        uses: actions/download-artifact@v3
+        with:
+          name: android-export-debug-binary-armv7
+          path: platform/android/java/lib/libs/debug/armeabi-v7a
+
+      - name: Download android release export armv7 binary
+        uses: actions/download-artifact@v3
+        with:
+          name: android-export-${{ inputs.target }}-binary-armv7
+          path: platform/android/java/lib/libs/release/armeabi-v7a
+
+      - name: Download android debug export arm64v8 binary
+        uses: actions/download-artifact@v3
+        with:
+          name: android-export-debug-binary-arm64v8
+          path: platform/android/java/lib/libs/debug/arm64-v8a
+
+      - name: Download android release export arm64v8 binary
+        uses: actions/download-artifact@v3
+        with:
+          name: android-export-release-binary-arm64v8
+          path: platform/android/java/lib/libs/release/arm64-v8a
+
+      - name: Download android debug export x86_64 binary
+        uses: actions/download-artifact@v3
+        with:
+          name: android-export-debug-binary-x86_64
+          path: platform/android/java/lib/libs/debug/x86_64
+
+      - name: Download android release export x86_64 binary
+        uses: actions/download-artifact@v3
+        with:
+          name: android-export-release-binary-x86_64
+          path: platform/android/java/lib/libs/release/x86_64
+
+      - name: Build android export templates
+        shell: bash
+        run: |
+          cd platform/android/java/ && ./gradlew generateGodotTemplates
+
+      - name: Upload android export template debug
         uses: actions/upload-artifact@v3
         with:
-          path: bin/${{ matrix.apk-name }}
-          name: ${{ matrix.apk-name }}
+          path: bin/android_debug.apk
+          name: android_debug.apk
+
+      - name: Upload android export template release
+        uses: actions/upload-artifact@v3
+        with:
+          path: bin/android_release.apk
+          name: android_release.apk
 
       - name: Upload android source
-        if: matrix.target == 'template_release' #we only need to do this once doesn't matter for which target
         uses: actions/upload-artifact@v3
         with:
           path: bin/android_source.zip
