@@ -165,15 +165,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: 4.2.1-stable
-
-      # TODO: remove once on godot 4.2.2 or newer!
-      - name: Cherry pick macos fix
-        run: |
-          git fetch -a
-          git config --global user.email "mario@super.com"
-          git config --global user.name "Super Mario"
-          git cherry-pick a2c1c01941a3dec3e2a361d9dc21bb0390efcbaf
+          ref: 4.2-stable
 
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
@@ -266,7 +258,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: 4.2.1-stable
+          ref: 4.2-stable
 
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
@@ -285,40 +277,40 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
 
-      - name: Download android template_debug export armv7 binary
+      - name: Download android debug export armv7 binary
         uses: actions/download-artifact@v3
         with:
-          name: android-export-template_debug-binary-armv7
+          name: android-export-debug-binary-armv7
           path: platform/android/java/lib/libs/debug/armeabi-v7a
 
-      - name: Download android template_release export armv7 binary
+      - name: Download android release export armv7 binary
         uses: actions/download-artifact@v3
         with:
-          name: android-export-template_release-binary-armv7
+          name: android-export-${{ inputs.target }}-binary-armv7
           path: platform/android/java/lib/libs/release/armeabi-v7a
 
-      - name: Download android template_debug export arm64v8 binary
+      - name: Download android debug export arm64v8 binary
         uses: actions/download-artifact@v3
         with:
-          name: android-export-template_debug-binary-arm64v8
+          name: android-export-debug-binary-arm64v8
           path: platform/android/java/lib/libs/debug/arm64-v8a
 
-      - name: Download android template_release export arm64v8 binary
+      - name: Download android release export arm64v8 binary
         uses: actions/download-artifact@v3
         with:
-          name: android-export-template_release-binary-arm64v8
+          name: android-export-release-binary-arm64v8
           path: platform/android/java/lib/libs/release/arm64-v8a
 
-      - name: Download android template_debug export x86_64 binary
+      - name: Download android debug export x86_64 binary
         uses: actions/download-artifact@v3
         with:
-          name: android-export-template_debug-binary-x86_64
+          name: android-export-debug-binary-x86_64
           path: platform/android/java/lib/libs/debug/x86_64
 
-      - name: Download android template_release export x86_64 binary
+      - name: Download android release export x86_64 binary
         uses: actions/download-artifact@v3
         with:
-          name: android-export-template_release-binary-x86_64
+          name: android-export-release-binary-x86_64
           path: platform/android/java/lib/libs/release/x86_64
 
       - name: Build android export templates
@@ -418,7 +410,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: 4.2.1-stable
+          ref: 4.2-stable
 
       - name: Get release export template binary
         uses: actions/download-artifact@v3
@@ -477,7 +469,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: 4.2.1-stable
+          ref: 4.2-stable
 
       - name: Get release export template binary
         uses: actions/download-artifact@v3
@@ -507,8 +499,7 @@ jobs:
           mkdir -p macos_template.app/Contents/MacOS
           cp libgodot.ios.template_release.arm64.a ios_xcode/libgodot.ios.release.xcframework/ios-arm64/libgodot.a
           cp libgodot.ios.template_debug.arm64.a ios_xcode/libgodot.ios.debug.xcframework/ios-arm64/libgodot.a
-          mv ios_xcode/ ios/
-          zip -q -9 -r ios.zip ios
+          zip -q -9 -r ios.zip ios_xcode
 
       - name: Upload iOS template app
         uses: actions/upload-artifact@v3
@@ -619,7 +610,7 @@ jobs:
 
       - name: Create version.txt
         run: |
-          refVersion=4.2.1-stable #for easier search and replace with other `ref` occurrences
+          refVersion=4.1.2-stable #for easier search and replace with other `ref` occurrences
           templatesVersion=${refVersion//-/.} #replace `-` with `.` in templates version
           echo "$templatesVersion" > templates/version.txt
         shell: bash
