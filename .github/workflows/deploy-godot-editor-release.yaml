@@ -87,7 +87,7 @@ jobs:
       - name: Cherry pick macos fix
         run: |
           git fetch -a
-          git cherry-pick 96296e4
+          git cherry-pick -m 96296e4
 
       - name: Setup Vulkan SDK
         if: matrix.platform == 'macos'
