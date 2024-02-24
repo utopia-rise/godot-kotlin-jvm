@@ -76,6 +76,11 @@ jobs:
           repository: godotengine/godot
           ref: 4.2-stable
 
+      - name: Cherry pick macos fix
+        run: |
+          git fetch -a
+          git cherry-pick 96296e4
+
       - name: Setup Vulkan SDK
         if: matrix.platform == 'macos'
         run: misc/scripts/install_vulkan_sdk_macos.sh
