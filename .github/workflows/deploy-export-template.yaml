@@ -617,7 +617,7 @@ jobs:
 
       - name: Create version.txt
         run: |
-          refVersion=4.1.2-stable #for easier search and replace with other `ref` occurrences
+          refVersion=4.2-stable #for easier search and replace with other `ref` occurrences
           templatesVersion=${refVersion//-/.} #replace `-` with `.` in templates version
           echo "$templatesVersion" > templates/version.txt
         shell: bash
