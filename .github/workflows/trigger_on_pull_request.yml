@@ -6,9 +6,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  setup:
+  setup-build-variables:
     # Fake job to define outputs which can be used in the other jobs
-    name: 🛠️ Setup
+    name: 🛠️ Setup build variables
     runs-on: ubuntu-latest
     steps:
       - run: |
@@ -22,7 +22,7 @@ jobs:
     name: ☕ Build Jvm
     uses: ./.github/workflows/builds_jvm.yml
     needs:
-      - setup
+      - setup-build-variables
     with:
       godot-version: ${{ needs.setup.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup.outputs['jvm-version'] }}
@@ -31,7 +31,7 @@ jobs:
     name: 🤖 Build Android
     uses: ./.github/workflows/builds_android.yml
     needs:
-      - setup
+      - setup-build-variables
     with:
       godot-version: ${{ needs.setup.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup.outputs['jvm-version'] }}
@@ -40,7 +40,7 @@ jobs:
     name: 🍏 Build iOS
     uses: ./.github/workflows/builds_ios.yml
     needs:
-      - setup
+      - setup-build-variables
     with:
       godot-version: ${{ needs.setup.outputs['godot-version'] }}
 
@@ -48,7 +48,7 @@ jobs:
     name: 🐧 Build Linux
     uses: ./.github/workflows/builds_linux.yml
     needs:
-      - setup
+      - setup-build-variables
     with:
       godot-version: ${{ needs.setup.outputs['godot-version'] }}
 
@@ -56,7 +56,7 @@ jobs:
     name: 🍎 Build macOS
     uses: ./.github/workflows/builds_macos.yml
     needs:
-      - setup
+      - setup-build-variables
     with:
       godot-version: ${{ needs.setup.outputs['godot-version'] }}
 
@@ -64,7 +64,7 @@ jobs:
     name: 🪟 Build Windows
     uses: ./.github/workflows/builds_windows.yml
     needs:
-      - setup
+      - setup-build-variables
     with:
       godot-version: ${{ needs.setup.outputs['godot-version'] }}
 
@@ -72,7 +72,7 @@ jobs:
     name: 🍎 Assemble macos
     uses: ./.github/workflows/assemble_macos.yml
     needs:
-      - setup
+      - setup-build-variables
       - build-jvm
       - build-macos
     with:
@@ -83,7 +83,7 @@ jobs:
     name: 🍎 Assemble ios
     uses: ./.github/workflows/assemble_ios.yml
     needs:
-      - setup
+      - setup-build-variables
       - build-ios
     with:
       godot-kotlin-jvm-version: ${{ needs.setup.outputs['godot-kotlin-jvm-version'] }}
@@ -93,7 +93,7 @@ jobs:
     name: 🐧 Assemble linux
     uses: ./.github/workflows/assemble_linux.yml
     needs:
-      - setup
+      - setup-build-variables
       - build-jvm
       - build-linux
     with:
@@ -104,7 +104,7 @@ jobs:
     name: 🪟 Assemble windows
     uses: ./.github/workflows/assemble_windows.yml
     needs:
-      - setup
+      - setup-build-variables
       - build-jvm
       - build-windows
     with:
@@ -115,7 +115,7 @@ jobs:
     name: 🤖+🍏+🐧+🍎+🪟 Assemble export templates
     uses: ./.github/workflows/assemble_export_templates.yml
     needs:
-      - setup
+      - setup-build-variables
       - build-android # uploads finished export template directly
       - assemble-ios # export templates need to be packed into xcode project
       - build-linux # uploads finished export template directly
@@ -129,7 +129,7 @@ jobs:
     name: 🐧 Test Linux
     uses: ./.github/workflows/tests_linux.yml
     needs:
-      - setup
+      - setup-build-variables
       - build-jvm
       - build-linux
     with:
@@ -140,9 +140,9 @@ jobs:
     name: 🍎 Test Macos
     uses: ./.github/workflows/tests_macos.yml
     needs:
-      - setup
+      - setup-build-variables
       - build-jvm
-      - build-macos
+      - assemble-macos # we need the universal binary
     with:
       godot-version: ${{ needs.setup.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup.outputs['jvm-version'] }}
@@ -151,7 +151,7 @@ jobs:
     name: 🪟 Test Windows
     uses: ./.github/workflows/tests_windows.yml
     needs:
-      - setup
+      - setup-build-variables
       - build-jvm
       - build-windows
     with:

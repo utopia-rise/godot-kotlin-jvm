@@ -20,8 +20,10 @@ jobs:
         include:
           - name: debug tests
             target: debug
+            editor-binary: godot.windows.editor.dev.x86_64.exe
           - name: release tests
             target: release
+            editor-binary: godot.windows.editor.x86_64.exe
 
     steps:
       - name: Clone Godot Engine
@@ -65,4 +67,4 @@ jobs:
         run: |
           cd modules/kotlin_jvm/harness/tests/
           jlink --add-modules java.base,java.logging --output jre
-          ./run_godot_kotlin_tests.bat ../../../../bin/godot.*
+          ./run_godot_kotlin_tests.bat ../../../../bin/${{ matrix.editor-binary }}

@@ -25,6 +25,9 @@ jobs:
           - name: Create universal editor binary debug
             target: debug
     steps:
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v4
+
       - name: Download ${{ matrix.target }} x86_64 editor
         uses: actions/download-artifact@v3
         with:
@@ -111,6 +114,9 @@ jobs:
           - name: Create export template universal binary debug
             target: debug
     steps:
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v4
+
       - name: Download ${{ matrix.target }} x86_64 export_template
         uses: actions/download-artifact@v3
         with:
