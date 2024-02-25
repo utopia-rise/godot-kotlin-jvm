@@ -15,7 +15,7 @@ concurrency:
 jobs:
   build-windows:
     # Windows 10 with latest image
-    runs-on: "windows-latest"
+    runs-on: windows-latest
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false

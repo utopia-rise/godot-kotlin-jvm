@@ -13,7 +13,8 @@ concurrency:
 
 jobs:
   create-windows-editor-zip:
-    runs-on: ubuntu-20.04
+    # does not need to run on windows -> only packs a zip
+    runs-on: ubuntu-latest
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false

@@ -11,7 +11,7 @@ concurrency:
 
 jobs:
   ios-template:
-    runs-on: "macos-latest"
+    runs-on: macos-latest
     name: Build ios template (all)
 
     steps:

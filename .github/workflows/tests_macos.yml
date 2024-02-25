@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   test-linux:
-    runs-on: "ubuntu-20.04"
+    runs-on: macos-latest
     name: ${{ matrix.name }}
     strategy:
       matrix:
