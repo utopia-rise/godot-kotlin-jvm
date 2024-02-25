@@ -108,7 +108,7 @@ jobs:
       jvm-version: 17
 
   test-macos:
-    name: 🍎 Test Linux
+    name: 🍎 Test Macos
     uses: ./.github/workflows/tests_macos.yml
     needs:
       - build-jvm
@@ -118,7 +118,7 @@ jobs:
       jvm-version: 17
 
   test-windows:
-    name: 🪟 Test Linux
+    name: 🪟 Test Windows
     uses: ./.github/workflows/tests_windows.yml
     needs:
       - build-jvm
