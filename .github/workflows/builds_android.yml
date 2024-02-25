@@ -45,26 +45,47 @@ jobs:
       - name: Setup python and scons
         uses: ./.github/actions/godot-deps
 
-      - name: Compilation (arm32)
+      - name: Compilation release (arm32)
         uses: ./.github/actions/godot-build
         with:
           sconsflags: ${{ env.SCONSFLAGS }} arch=arm32
           platform: android
           target: template_release
 
-      - name: Compilation (arm64)
+      - name: Compilation release (arm64)
         uses: ./.github/actions/godot-build
         with:
           sconsflags: ${{ env.SCONSFLAGS }} arch=arm64
           platform: android
           target: template_release
 
-      - name: Compilation (x86_64)
+      - name: Compilation release (x86_64)
         uses: ./.github/actions/godot-build
         with:
           sconsflags: ${{ env.SCONSFLAGS }} arch=x86_64
           platform: android
           target: template_release
+
+      - name: Compilation debug (arm32)
+        uses: ./.github/actions/godot-build
+        with:
+          sconsflags: ${{ env.SCONSFLAGS }} arch=arm32
+          platform: android
+          target: template_debug
+
+      - name: Compilation debug (arm64)
+        uses: ./.github/actions/godot-build
+        with:
+          sconsflags: ${{ env.SCONSFLAGS }} arch=arm64
+          platform: android
+          target: template_debug
+
+      - name: Compilation debug (x86_64)
+        uses: ./.github/actions/godot-build
+        with:
+          sconsflags: ${{ env.SCONSFLAGS }} arch=x86_64
+          platform: android
+          target: template_debug
 
       - name: Generate Godot templates
         run: |
