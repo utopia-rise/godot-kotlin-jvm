@@ -1,11 +1,6 @@
 name: PR Checks
 on: [pull_request]
 
-# Global Settings
-env:
-  GODOT_VERSION: '4.2-stable'
-  JVM_VERSION: 17
-
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-runner
   cancel-in-progress: true
@@ -15,7 +10,7 @@ jobs:
     name: ♨ Jvm
     uses: ./.github/workflows/jvm_builds.yml
     with:
-      godot-version: ${{ env.GODOT_VERSION }}
+      godot-version: 4.2-stable
       jvm-version: 17
 
   #  android-build:
@@ -30,7 +25,7 @@ jobs:
     name: 🐧 Linux
     uses: ./.github/workflows/linux_builds.yml
     with:
-      godot-version: ${{ env.GODOT_VERSION }}
+      godot-version: 4.2-stable
 
 #  macos-build:
 #    name: 🍎 macOS
@@ -40,4 +35,4 @@ jobs:
     name: 🏁 Windows
     uses: ./.github/workflows/windows_builds.yml
     with:
-      godot-version: ${{ env.GODOT_VERSION }}
+      godot-version: 4.2-stable
