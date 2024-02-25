@@ -31,7 +31,7 @@ jobs:
       - name: Compilation
         uses: eskatos/gradle-command-action@v1
         with:
-          wrapper-directory: modules/kotlin_jvm/kt/
+          gradle-executable: modules/kotlin_jvm/kt/gradlew
           build-root-directory: modules/kotlin_jvm/kt/
           arguments: build -Prelease # we build the release bootstrap jar here. Debug gets its own trigger later
 
@@ -86,7 +86,7 @@ jobs:
       - name: Bootstrap debug compilation
         uses: eskatos/gradle-command-action@v1
         with:
-          wrapper-directory: modules/kotlin_jvm/kt/
+          gradle-executable: modules/kotlin_jvm/kt/gradlew
           build-root-directory: modules/kotlin_jvm/kt/
           arguments: :godot-library:build -Pdebug
 
