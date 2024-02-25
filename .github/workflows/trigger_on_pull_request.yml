@@ -55,7 +55,7 @@ jobs:
       godot-version: 4.2-stable
 
   assemble-linux:
-    name: 🍎 Assemble linux
+    name: 🐧 Assemble linux
     uses: ./.github/workflows/assemble_linux.yml
     needs:
       - build-jvm
