@@ -1,14 +1,13 @@
 @echo off
 setlocal enabledelayedexpansion
 
-set gut=%~dp0
 set tests=0
 set passing=0
 set isJvmClosed=0
 
 echo %cd%
 
-FOR /F "tokens=* USEBACKQ" %%F IN (`%~dp1 -s --headless --path %cd% addons/gut/gut_cmdln.gd`) DO (
+FOR /F "tokens=* USEBACKQ" %%F IN (`%~dp0 -s --headless --path %cd% addons/gut/gut_cmdln.gd`) DO (
     ECHO %%F
 
     REM Capture the number of tests
