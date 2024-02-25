@@ -14,7 +14,7 @@ concurrency:
 jobs:
   build-jvm:
     runs-on: "ubuntu-20.04"
-    name: Jvm Builds
+    name: Build Jvm artifacts
 
     steps:
       - name: Clone Godot Engine

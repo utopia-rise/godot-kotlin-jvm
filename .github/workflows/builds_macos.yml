@@ -17,42 +17,42 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: Editor release x86_64 (target=editor)
+          - name: Build editor release x86_64 (target=editor)
             cache-name: macos-editor-release
             target: editor
             sconsflags: arch=x86_64
 
-          - name: Editor debug x86_64 (target=editor, dev_build=yes, debug_symbols=true )
+          - name: Build editor debug x86_64 (target=editor, dev_build=yes, debug_symbols=true )
             cache-name: macos-editor-debug
             target: editor
             sconsflags: arch=x86_64 dev_build=yes debug_symbols=true
 
-          - name: Release template x86_64
+          - name: Build release template x86_64
             cache-name: macos-template_release
             target: template_release
             sconsflags: arch=x86_64
 
-          - name: Debug template x86_64
+          - name: Build debug template x86_64
             cache-name: macos-template_debug
             target: template_debug
             sconsflags: arch=x86_64
 
-          - name: Editor release arm64 (target=editor)
+          - name: Build editor release arm64 (target=editor)
             cache-name: macos-editor-release
             target: editor
             sconsflags: arch=arm64
 
-          - name: Editor debug arm64 (target=editor, dev_build=yes, debug_symbols=true )
+          - name: Build editor debug arm64 (target=editor, dev_build=yes, debug_symbols=true )
             cache-name: macos-editor-debug
             target: editor
             sconsflags: arch=arm64 dev_build=yes debug_symbols=true
 
-          - name: Release template arm64
+          - name: Build release template arm64
             cache-name: macos-template_release
             target: template_release
             sconsflags: arch=arm64
 
-          - name: Debug template arm64
+          - name: Build debug template arm64
             cache-name: macos-template_debug
             target: template_debug
             sconsflags: arch=arm64
