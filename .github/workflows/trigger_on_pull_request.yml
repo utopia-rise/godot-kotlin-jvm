@@ -88,11 +88,11 @@ jobs:
     name: 🤖+🍏+🐧+🍎+🪟 Assemble export templates
     uses: ./.github/workflows/assemble_export_templates.yml
     needs:
-      - build-android
-      - assemble-ios
-      - assemble-linux
-      - assemble-macos
-      - assemble-windows
+      - build-android # uploads finished export template directly
+      - assemble-ios # export templates need to be packed into xcode project
+      - build-linux # uploads finished export template directly
+      - assemble-macos # export templates need to be packed into app
+      - build-windows # uploads finished export template directly
     with:
       godot-kotlin-jvm-version: 0.8.1-4.2.0
       godot-version: 4.2-stable
