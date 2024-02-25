@@ -58,7 +58,6 @@ jobs:
     name: 🍎 Assemble ios
     uses: ./.github/workflows/assemble_ios.yml
     needs:
-      - build-jvm
       - build-ios
     with:
       godot-kotlin-jvm-version: 0.8.1-4.2.0
