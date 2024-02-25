@@ -49,7 +49,7 @@ jobs:
           path: godot.macos.editor.${{ matrix.target }}.universal
 
   create-macos-editor-app:
-    needs: [ create-macos-universal ]
+    needs: [ create-macos-editor-universal ]
     runs-on: macos-latest
     name: ${{ matrix.name }}
     strategy:
@@ -135,7 +135,7 @@ jobs:
           path: godot.macos.template_${{ matrix.target }}.universal
 
   create-macos-export-template-app:
-    needs: [ create-macos-universal ]
+    needs: [ create-macos-export-template-universal ]
     runs-on: macos-latest
     name: Create macos export template app
     steps:
