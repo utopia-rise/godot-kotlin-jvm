@@ -13,13 +13,18 @@ jobs:
       godot-version: 4.2-stable
       jvm-version: 17
 
-  #  android-build:
-#    name: 🤖 Android
-#    uses: ./.github/workflows/android_builds.yml
+  android-build:
+    name: 🤖 Android
+    uses: ./.github/workflows/builds_android.yml
+    with:
+      godot-version: 4.2-stable
+      jvm-version: 17
 
-#  ios-build:
-#    name: 🍏 iOS
-#    uses: ./.github/workflows/ios_builds.yml
+  ios-build:
+    name: 🍏 iOS
+    uses: ./.github/workflows/ios_builds.yml
+    with:
+      godot-version: 4.2-stable
 
   linux-build:
     name: 🐧 Linux
