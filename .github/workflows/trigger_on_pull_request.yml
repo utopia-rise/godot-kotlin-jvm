@@ -65,7 +65,7 @@ jobs:
       godot-version: 4.2-stable
 
   assemble-windows:
-    name: 🍎 Assemble windows
+    name: 🪟 Assemble windows
     uses: ./.github/workflows/assemble_windows.yml
     needs:
       - build-jvm
