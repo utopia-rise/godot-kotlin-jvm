@@ -7,7 +7,7 @@ concurrency:
 
 jobs:
   jvm-build:
-    name: ♨ Jvm
+    name: ☕ Jvm
     uses: ./.github/workflows/jvm_builds.yml
     with:
       godot-version: 4.2-stable

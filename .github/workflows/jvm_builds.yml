@@ -1,4 +1,4 @@
-name: ♨ Jvm Builds
+name: ☕ Jvm Builds
 on:
   workflow_call:
     inputs:
@@ -14,7 +14,7 @@ concurrency:
 jobs:
   build-jvm:
     runs-on: "ubuntu-20.04"
-    name: ♨ Jvm Builds
+    name: ☕ Jvm Builds
 
     steps:
       - name: Clone Godot Engine
