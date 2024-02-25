@@ -80,7 +80,7 @@ jobs:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 
   assemble-ios:
-    name: 🍎 Assemble ios
+    name: 🍏 Assemble ios
     uses: ./.github/workflows/assemble_ios.yml
     needs:
       - setup-build-variables
