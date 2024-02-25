@@ -23,12 +23,12 @@ jobs:
         id: get_godot_version
         run: echo ::set-output name=GODOT_VERSION::$(echo "$GITHUB_REF" | grep -Po '^(?:refs\/tags\/\d+.\d+.\d+-)\K(\d+.\d+.\d+)((?=-SNAPSHOT$)|$)')
       - name: Clone Godot Engine
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: godotengine/godot
           ref: 4.2-stable
       - name: Clone Godot JVM module.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: modules/kotlin_jvm
           submodules: recursive

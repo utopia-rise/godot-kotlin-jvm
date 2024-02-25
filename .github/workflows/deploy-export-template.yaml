@@ -159,7 +159,7 @@ jobs:
           echo "::set-output name=godot_kotlin_jvm_version::$(${{ matrix.cat_command }} godot_kotlin_jvm_version/godot_kotlin_jvm_version.txt)"
 
       - name: Clone Godot Engine
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: godotengine/godot
           ref: 4.2-stable
@@ -173,7 +173,7 @@ jobs:
           git cherry-pick a2c1c01941a3dec3e2a361d9dc21bb0390efcbaf
 
       - name: Clone Godot JVM module.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: modules/kotlin_jvm
           submodules: recursive
@@ -260,13 +260,13 @@ jobs:
           echo "::set-output name=godot_kotlin_jvm_version::$(cat godot_kotlin_jvm_version/godot_kotlin_jvm_version.txt)"
 
       - name: Clone Godot Engine
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: godotengine/godot
           ref: 4.2-stable
 
       - name: Clone Godot JVM module.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: modules/kotlin_jvm
           submodules: recursive
@@ -370,7 +370,7 @@ jobs:
           echo "::set-output name=godot_kotlin_jvm_version::$(cat godot_kotlin_jvm_version/godot_kotlin_jvm_version.txt)"
 
       - name: Clone Godot JVM module.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
@@ -412,7 +412,7 @@ jobs:
           echo "::set-output name=godot_kotlin_jvm_version::$(cat godot_kotlin_jvm_version/godot_kotlin_jvm_version.txt)"
 
       - name: Clone Godot Engine
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: godotengine/godot
           ref: 4.2-stable
@@ -471,7 +471,7 @@ jobs:
           echo "::set-output name=godot_kotlin_jvm_version::$(cat godot_kotlin_jvm_version/godot_kotlin_jvm_version.txt)"
 
       - name: Clone Godot Engine
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: godotengine/godot
           ref: 4.2-stable
@@ -487,7 +487,7 @@ jobs:
           name: ios-template-template_debug-binary-arm64
 
       - name: Clone MoltenVK
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: KhronosGroup/MoltenVK
           path: MoltenVk

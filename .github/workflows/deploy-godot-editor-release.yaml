@@ -68,7 +68,7 @@ jobs:
           echo "::set-output name=godot_kotlin_jvm_version::$(${{ matrix.cat_command }} godot_kotlin_jvm_version/godot_kotlin_jvm_version.txt)"
 
       - name: Clone Godot Engine
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: godotengine/godot
           ref: 4.2.1-stable
@@ -95,7 +95,7 @@ jobs:
         shell: bash
 
       - name: Clone Godot JVM module.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: modules/kotlin_jvm
           submodules: recursive
@@ -196,7 +196,7 @@ jobs:
           echo "::set-output name=godot_kotlin_jvm_version::$(cat godot_kotlin_jvm_version/godot_kotlin_jvm_version.txt)"
 
       - name: Clone Godot JVM module.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
@@ -239,7 +239,7 @@ jobs:
           echo "::set-output name=godot_kotlin_jvm_version::$(cat godot_kotlin_jvm_version/godot_kotlin_jvm_version.txt)"
 
       - name: Clone Godot Engine
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: godotengine/godot
           ref: 4.2.1-stable

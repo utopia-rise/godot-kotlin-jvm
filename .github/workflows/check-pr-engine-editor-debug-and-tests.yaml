@@ -28,7 +28,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Clone Godot Engine
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: godotengine/godot
           ref: 4.2-stable
@@ -40,7 +40,7 @@ jobs:
          git config --global user.name "Super Mario"
          git cherry-pick a2c1c01941a3dec3e2a361d9dc21bb0390efcbaf
       - name: Clone Godot JVM module.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: modules/kotlin_jvm
           submodules: recursive
@@ -83,7 +83,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Clone Godot Engine
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: godotengine/godot
           ref: 4.2-stable
@@ -95,7 +95,7 @@ jobs:
           git config --global user.name "Super Mario"
           git cherry-pick a2c1c01941a3dec3e2a361d9dc21bb0390efcbaf
       - name: Clone Godot JVM module.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: modules/kotlin_jvm
           submodules: recursive
@@ -139,7 +139,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Clone Godot JVM module.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: Create MacOs universal binary
@@ -172,7 +172,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Clone Godot Engine
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: godotengine/godot
           ref: 4.2-stable
@@ -184,7 +184,7 @@ jobs:
           git config --global user.name "Super Mario"
           git cherry-pick a2c1c01941a3dec3e2a361d9dc21bb0390efcbaf
       - name: Clone Godot JVM module.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: modules/kotlin_jvm
           submodules: recursive

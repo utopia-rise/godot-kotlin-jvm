@@ -8,12 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone Godot Engine
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: godotengine/godot
           ref: 4.2-stable
       - name: Clone Godot JVM module.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: modules/kotlin_jvm
           submodules: recursive

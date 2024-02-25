@@ -13,7 +13,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Clone Godot JVM module.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Checkout submodules
         uses: snickerbockers/submodules-init@v4
       - name: Set up JDK ${{ matrix.java-version }}
