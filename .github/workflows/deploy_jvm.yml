@@ -2,6 +2,13 @@ name: 🚀 Deploy
 
 on:
   workflow_call:
+    inputs:
+      godot-kotlin-jvm-version:
+        type: string
+      release_url:
+        type: string
+      jvm-version:
+        type: string
 
 env:
   GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII: ${{ secrets.GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII }}
