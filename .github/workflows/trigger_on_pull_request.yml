@@ -8,7 +8,7 @@ concurrency:
 jobs:
   jvm-build:
     name: ☕ Jvm
-    uses: ./.github/workflows/jvm_builds.yml
+    uses: ./.github/workflows/builds_jvm.yml
     with:
       godot-version: 4.2-stable
       jvm-version: 17
@@ -23,18 +23,18 @@ jobs:
 
   linux-build:
     name: 🐧 Linux
-    uses: ./.github/workflows/linux_builds.yml
+    uses: ./.github/workflows/builds_linux.yml
     with:
       godot-version: 4.2-stable
 
   macos-build:
     name: 🍎 macOS
-    uses: ./.github/workflows/macos_builds.yml
+    uses: ./.github/workflows/builds_macos.yml
     with:
       godot-version: 4.2-stable
 
   windows-build:
     name: 🪟 Windows
-    uses: ./.github/workflows/windows_builds.yml
+    uses: ./.github/workflows/builds_windows.yml
     with:
       godot-version: 4.2-stable
