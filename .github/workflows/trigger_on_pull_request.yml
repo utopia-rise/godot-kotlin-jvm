@@ -22,7 +22,7 @@ jobs:
 
   build-ios:
     name: 🍏 Build iOS
-    uses: ./.github/workflows/ios_builds.yml
+    uses: ./.github/workflows/builds_ios.yml
     with:
       godot-version: 4.2-stable
 
