@@ -7,7 +7,7 @@ set isJvmClosed=0
 
 echo %cd%
 
-FOR /F "tokens=* USEBACKQ" %%F IN (`%~dp0 -s --headless --path %cd% addons/gut/gut_cmdln.gd`) DO (
+FOR /F "tokens=* USEBACKQ" %%F IN (`%~dp0 -s --headless --path "%cd%"" addons/gut/gut_cmdln.gd`) DO (
     ECHO %%F
 
     REM Capture the number of tests
