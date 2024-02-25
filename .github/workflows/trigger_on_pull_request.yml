@@ -2,16 +2,25 @@ name: PR Checks
 on: [ pull_request ]
 
 concurrency:
-  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-runner
+  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-trigger_on_pull_request
   cancel-in-progress: true
 
 jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      godot-kotlin-jvm-version: "0.8.1-4.2.0"
+      godot-version: "4.2-stable"
+      jvm-version: "17"
+
   build-jvm:
     name: ☕ Build Jvm
     uses: ./.github/workflows/builds_jvm.yml
+    needs:
+      - setup
     with:
-      godot-version: 4.2-stable
-      jvm-version: 17
+      godot-version: ${{ needs.setup.outputs['godot-version'] }}
+      jvm-version: ${{ needs.setup.outputs['jvm-version'] }}
 
   build-android:
     name: 🤖 Build Android

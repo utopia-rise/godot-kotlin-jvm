@@ -8,7 +8,7 @@ on:
         type: string
 
 concurrency:
-  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-ios
+  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-ios_assemble
   cancel-in-progress: true
 
 jobs:
@@ -21,6 +21,9 @@ jobs:
         with:
           repository: godotengine/godot
           ref: ${{ inputs.godot-version }}
+
+      - name: Setup python and scons
+        uses: ./.github/actions/godot-deps
 
       - name: Download ios export template binaries
         uses: actions/download-artifact@v3
