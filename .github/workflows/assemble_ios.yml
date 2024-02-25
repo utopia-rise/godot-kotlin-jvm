@@ -53,5 +53,5 @@ jobs:
       - name: Upload iOS template app
         uses: actions/upload-artifact@v3
         with:
-          path: export_template_all_ios
-          name: export_template_all_ios.zip
+          name: export_template_all_ios
+          path: export_template_all_ios.zip
