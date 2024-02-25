@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: adopt-hotspot
-          java-version: ${{ inputs.jvm-version }}
+          java-version: 17
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
