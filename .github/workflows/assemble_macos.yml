@@ -26,7 +26,7 @@ jobs:
             target: debug
     steps:
       - name: Download ${{ matrix.target }} editor
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: macos-editor-${{ matrix.target }}
 
@@ -70,13 +70,13 @@ jobs:
           ref: ${{ inputs.godot-version }}
 
       - name: Download ${{ matrix.target }} editor
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: macos-editor-${{ matrix.target }}-universal
           path: .
 
       - name: Download ${{ matrix.target }} bootstrap jar
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: godot-bootstrap_${{ matrix.target }}
           path: .
@@ -93,7 +93,7 @@ jobs:
         shell: bash
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: godot-kotlin-jvm_editor_macos_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
           path: godot-kotlin-jvm_editor_macos_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip

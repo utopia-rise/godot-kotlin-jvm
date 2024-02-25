@@ -26,13 +26,13 @@ jobs:
             target: debug
     steps:
       - name: Download ${{ matrix.target }} editor
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: windows-editor-${{ matrix.target }}
           path: godot-kotlin-jvm_editor_windows_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
 
       - name: Download ${{ matrix.target }} bootstrap jar
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: godot-bootstrap_${{ matrix.target }}
           path: godot-kotlin-jvm_editor_windows_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
