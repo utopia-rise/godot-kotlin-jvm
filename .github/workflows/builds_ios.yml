@@ -45,7 +45,7 @@ jobs:
         with:
           sconsflags: ${{ env.SCONSFLAGS }}
           platform: ios
-          target: template_release
+          target: template_debug
 
       - name: Upload artifact
         uses: ./.github/actions/upload-artifact
