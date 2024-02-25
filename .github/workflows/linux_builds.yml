@@ -5,7 +5,6 @@ on:
 # Global Settings
 env:
   GODOT_VERSION: 4.2-stable
-  SCONSFLAGS: verbose=yes warnings=extra werror=yes module_text_server_fb_enabled=yes
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-linux
@@ -65,7 +64,7 @@ jobs:
       - name: Compilation
         uses: ./.github/actions/godot-build
         with:
-          sconsflags: ${{ env.SCONSFLAGS }} ${{ matrix.sconsflags }}
+          sconsflags: ${{ matrix.sconsflags }}
           platform: linuxbsd
           target: ${{ matrix.target }}
 
