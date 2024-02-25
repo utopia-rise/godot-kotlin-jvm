@@ -12,7 +12,7 @@ concurrency:
 jobs:
   ios-template:
     runs-on: "macos-latest"
-    name: Template (target=template_release)
+    name: Build ios template (all)
 
     steps:
       - name: Clone Godot Engine
