@@ -54,7 +54,7 @@ jobs:
       - name: Download export templates
         uses: ./.github/actions/download-artifact
         with:
-          name: godot-kotlin-jvm_export_templates_${{ inputs.godot_kotlin_jvm_version }}.tpz
+          name: godot-kotlin-jvm_export_templates_${{ inputs.godot-kotlin-jvm-version }}.tpz
           path: '.'
 
       - name: Upload export templates to github release
@@ -63,6 +63,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ inputs.release_url }}
-          asset_path: godot-kotlin-jvm_export_templates_${{ inputs.godot_kotlin_jvm_version }}.tpz
-          asset_name: godot-kotlin-jvm_export_templates_${{ inputs.godot_kotlin_jvm_version }}.tpz
+          asset_path: godot-kotlin-jvm_export_templates_${{ inputs.godot-kotlin-jvm-version }}.tpz
+          asset_name: godot-kotlin-jvm_export_templates_${{ inputs.godot-kotlin-jvm-version }}.tpz
           asset_content_type: application/octet-stream
