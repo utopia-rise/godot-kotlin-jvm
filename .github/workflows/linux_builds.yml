@@ -21,13 +21,11 @@ jobs:
             cache-name: linux-editor-release
             target: editor
             sconsflags: ''
-            bin: "./bin/godot.linuxbsd.editor.x86_64"
 
           - name: Editor dev (target=editor, dev_build=yes, debug_symbols=true )
             cache-name: linux-editor-dev
             target: editor
             sconsflags: dev_build=yes debug_symbols=true
-            bin: "./bin/godot.linuxbsd.editor.dev.x86_64"
 
           - name: Release template
             cache-name: linux-template_release

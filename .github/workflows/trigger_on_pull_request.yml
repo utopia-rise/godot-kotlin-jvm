@@ -27,9 +27,11 @@ jobs:
     with:
       godot-version: 4.2-stable
 
-#  macos-build:
-#    name: 🍎 macOS
-#    uses: ./.github/workflows/macos_builds.yml
+  macos-build:
+    name: 🍎 macOS
+    uses: ./.github/workflows/macos_builds.yml
+    with:
+      godot-version: 4.2-stable
 
   windows-build:
     name: 🪟 Windows

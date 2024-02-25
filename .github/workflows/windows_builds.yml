@@ -25,13 +25,11 @@ jobs:
             cache-name: windows-editor-release
             target: editor
             sconsflags: ''
-            bin: "./bin/godot.windows.editor.x86_64.exe"
 
           - name: Editor dev (target=editor, dev_build=yes, debug_symbols=true )
             cache-name: windows-editor-dev
             target: editor
             sconsflags: dev_build=yes debug_symbols=true
-            bin: "./bin/godot.windows.editor.dev.x86_64.exe"
 
           - name: Release template
             cache-name: windows-template_release
