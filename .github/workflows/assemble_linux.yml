@@ -1,0 +1,49 @@
+name: 🐧 Assemble Linux
+on:
+  workflow_call:
+    inputs:
+      godot-kotlin-jvm-version:
+        type: string
+      godot-version:
+        type: string
+
+concurrency:
+  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-macos
+  cancel-in-progress: true
+
+jobs:
+  create-linux-editor-zip:
+    runs-on: ubuntu-20.04
+    name: ${{ matrix.name }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Create editor zip release
+            target: release
+
+          - name: Create editor zip debug
+            target: debug
+    steps:
+      - name: Download ${{ matrix.target }} editor
+        uses: ./.github/actions/download-artifact
+        with:
+          name: linux-editor-${{ matrix.target }}
+          path: godot-kotlin-jvm_editor_linuxbsd_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
+
+      - name: Download ${{ matrix.target }} bootstrap jar
+        uses: ./.github/actions/download-artifact
+        with:
+          name: godot-bootstrap_${{ matrix.target }}
+          path: godot-kotlin-jvm_editor_linuxbsd_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
+
+      - name: Create linux editor zip
+        run: |
+          zip -q -9 -r godot-kotlin-jvm_editor_linuxbsd_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip godot-kotlin-jvm_editor_linuxbsd_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}/*
+        shell: bash
+
+      - name: Upload artifact
+        uses: ./.github/actions/upload-artifact
+        with:
+          name: godot-kotlin-jvm_editor_linuxbsd_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
+          path: godot-kotlin-jvm_editor_linuxbsd_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip

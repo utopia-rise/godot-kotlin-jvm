@@ -51,6 +51,17 @@ jobs:
       - build-jvm
       - build-macos
     with:
+      godot-kotlin-jvm-version: 0.8.1-4.2.0
+      godot-version: 4.2-stable
+
+  assemble-linux:
+    name: 🍎 Assemble macOS
+    uses: ./.github/workflows/assemble_linux.yml
+    needs:
+      - build-jvm
+      - build-linux
+    with:
+      godot-kotlin-jvm-version: 0.8.1-4.2.0
       godot-version: 4.2-stable
 
   test-linux:

@@ -2,6 +2,8 @@ name: 🍎 Assemble macOS
 on:
   workflow_call:
     inputs:
+      godot-kotlin-jvm-version:
+        type: string
       godot-version:
         type: string
 
@@ -87,11 +89,11 @@ jobs:
           chmod +x Godot.app/Contents/MacOS/Godot
           cp godot-bootstrap.jar Godot.app/Contents/MacOS/
           chmod +x Godot.app/Contents/MacOS/godot-bootstrap.jar
-          zip -q -9 -r godot-editor-${{ matrix.target }}-macos.zip Godot.app
+          zip -q -9 -r godot-kotlin-jvm_editor_macos_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip Godot.app
         shell: bash
 
       - name: Upload artifact
         uses: ./.github/actions/upload-artifact
         with:
-          name: macos-editor-${{ matrix.target }}-app
-          path: godot-editor-${{ matrix.target }}-macos.zip
+          name: godot-kotlin-jvm_editor_macos_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
+          path: godot-kotlin-jvm_editor_macos_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
