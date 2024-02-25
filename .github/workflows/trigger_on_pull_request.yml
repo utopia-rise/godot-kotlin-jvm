@@ -15,8 +15,8 @@ jobs:
     name: ♨ Jvm
     uses: ./.github/workflows/jvm_builds.yml
     with:
-      godot-version: ${{ env.GODOT_VERSION }}
-      jvm-version: ${{ env.JVM_VERSION }}
+      godot-version: 4.2-stable
+      jvm-version: 17
 
   #  android-build:
 #    name: 🤖 Android
@@ -30,7 +30,7 @@ jobs:
     name: 🐧 Linux
     uses: ./.github/workflows/linux_builds.yml
     with:
-      godot-version: ${{ env.GODOT_VERSION }}
+      godot-version: 4.2-stable
 
 #  macos-build:
 #    name: 🍎 macOS
