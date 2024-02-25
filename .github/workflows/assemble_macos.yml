@@ -21,9 +21,11 @@ jobs:
         include:
           - name: Create universal editor binary release
             target: release
+            editor-target-insert: ''
 
           - name: Create universal editor binary debug
             target: debug
+            editor-target-insert: '.dev'
     steps:
       - name: Clone Godot JVM module.
         uses: actions/checkout@v4
@@ -41,8 +43,8 @@ jobs:
       - name: Create ${{ matrix.target }} OSX universal binary
         uses: ./.github/actions/create-macos-universal-binary
         with:
-          amd-64-binary: godot.macos.editor.${{ matrix.target }}.x86_64
-          arm-64-binary: godot.macos.editor.${{ matrix.target }}.arm64
+          amd-64-binary: godot.macos.editor${{ matrix.editor-target-insert }}.x86_64
+          arm-64-binary: godot.macos.editor${{ matrix.editor-target-insert }}.arm64
           universal-output-binary: godot.macos.editor.${{ matrix.target }}.universal
 
       - name: Upload ${{ matrix.target }} macos universal artifact
@@ -61,9 +63,11 @@ jobs:
         include:
           - name: Create editor app release
             target: release
+            arch: universal
 
           - name: Create editor app debug
             target: debug
+            arch: universal
     steps:
       - name: Clone Godot Engine
         uses: actions/checkout@v4
@@ -91,14 +95,14 @@ jobs:
           chmod +x Godot.app/Contents/MacOS/Godot
           cp godot-bootstrap.jar Godot.app/Contents/MacOS/
           chmod +x Godot.app/Contents/MacOS/godot-bootstrap.jar
-          zip -q -9 -r godot-kotlin-jvm_editor_macos_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip Godot.app
+          zip -q -9 -r godot-kotlin-jvm_editor_macos_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip Godot.app
         shell: bash
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: godot-kotlin-jvm_editor_macos_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
-          path: godot-kotlin-jvm_editor_macos_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
+          name: godot-kotlin-jvm_editor_macos_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
+          path: godot-kotlin-jvm_editor_macos_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
 
 
   create-macos-export-template-universal:

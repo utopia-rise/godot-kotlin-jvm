@@ -22,29 +22,31 @@ jobs:
         include:
           - name: Create editor zip release
             target: release
+            arch: x86_64
 
           - name: Create editor zip debug
             target: debug
+            arch: x86_64
     steps:
       - name: Download ${{ matrix.target }} editor
         uses: actions/download-artifact@v3
         with:
-          name: editor_${{ matrix.target }}_windows_x86_64
-          path: godot-kotlin-jvm_editor_windows_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
+          name: editor_${{ matrix.target }}_windows_${{ matrix.arch }}
+          path: godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
 
       - name: Download ${{ matrix.target }} bootstrap jar
         uses: actions/download-artifact@v3
         with:
           name: jvm_godot-bootstrap_${{ matrix.target }}
-          path: godot-kotlin-jvm_editor_windows_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
+          path: godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
 
       - name: Create windows editor zip
         run: |
-          zip godot-kotlin-jvm_editor_windows_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip godot-kotlin-jvm_editor_windows_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}/*
+          zip godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}/*
         shell: bash
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: godot-kotlin-jvm_editor_windows_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
-          path: godot-kotlin-jvm_editor_windows_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
+          name: godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
+          path: godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
