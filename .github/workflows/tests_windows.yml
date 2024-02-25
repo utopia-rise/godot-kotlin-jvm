@@ -1,4 +1,4 @@
-name: 🐧 Linux Tests
+name: 🪟 Windows Tests
 on:
   workflow_call:
     inputs:
@@ -8,7 +8,7 @@ on:
         type: number
 
 concurrency:
-  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-linux
+  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-windows
   cancel-in-progress: true
 
 jobs:
@@ -45,10 +45,10 @@ jobs:
         with:
           cache-read-only: false
 
-      - name: Download linux editor ${{ matrix.target }}
+      - name: Download windows editor ${{ matrix.target }}
         uses: ./.github/actions/download-artifact
         with:
-          name: editor_${{ matrix.target }}_linux_x86_64
+          name: editor_${{ matrix.target }}_windows_x86_64
           path: './bin'
 
       - name: Download godot-bootstrap ${{ matrix.target }}
@@ -64,7 +64,5 @@ jobs:
       - name: Run Tests
         run: |
           cd modules/kotlin_jvm/harness/tests/
-          chmod +x run_godot_kotlin_tests.sh
-          chmod +x ../../../../bin/godot.*
           jlink --add-modules java.base,java.logging --output jre
-          ./run_godot_kotlin_tests.sh ../../../../bin/godot.*
+          ./run_godot_kotlin_tests.bat ../../../../bin/godot.*

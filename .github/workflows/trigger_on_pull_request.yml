@@ -83,3 +83,23 @@ jobs:
     with:
       godot-version: 4.2-stable
       jvm-version: 17
+
+  test-macos:
+    name: 🍎 Test Linux
+    uses: ./.github/workflows/tests_macos.yml
+    needs:
+      - build-jvm
+      - build-macos
+    with:
+      godot-version: 4.2-stable
+      jvm-version: 17
+
+  test-windows:
+    name: 🪟 Test Linux
+    uses: ./.github/workflows/tests_windows.yml
+    needs:
+      - build-jvm
+      - build-windows
+    with:
+      godot-version: 4.2-stable
+      jvm-version: 17
