@@ -8,6 +8,9 @@ concurrency:
 jobs:
   setup:
     runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Setup done"
     outputs:
       godot-kotlin-jvm-version: "0.8.1-4.2.0"
       godot-version: "4.2-stable"
