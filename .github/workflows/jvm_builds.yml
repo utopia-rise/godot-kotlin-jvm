@@ -8,38 +8,13 @@ on:
         type: number
 
 concurrency:
-  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-linux
+  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-jvm
   cancel-in-progress: true
 
 jobs:
-  build-linux:
+  build-jvm:
     runs-on: "ubuntu-20.04"
-    name: ${{ matrix.name }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - name: Editor release (target=editor)
-            cache-name: linux-editor-release
-            target: editor
-            sconsflags: ''
-            bin: "./bin/godot.linuxbsd.editor.x86_64"
-
-          - name: Editor dev (target=editor, dev_build=yes, debug_symbols=true )
-            cache-name: linux-editor-dev
-            target: editor
-            sconsflags: dev_build=yes debug_symbols=true
-            bin: "./bin/godot.linuxbsd.editor.dev.x86_64"
-
-          - name: Release template
-            cache-name: linux-template_release
-            target: template_release
-            sconsflags: ''
-
-          - name: Debug template
-            cache-name: linux-template_debug
-            target: template_debug
-            sconsflags: ''
+    name: ♨ Jvm Builds
 
     steps:
       - name: Clone Godot Engine
