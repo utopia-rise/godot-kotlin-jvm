@@ -55,8 +55,8 @@ jobs:
       godot-version: 4.2-stable
 
   assemble-ios:
-    name: 🍎 Assemble macos
-    uses: ./.github/workflows/assemble_macos.yml
+    name: 🍎 Assemble ios
+    uses: ./.github/workflows/assemble_ios.yml
     needs:
       - build-jvm
       - build-ios

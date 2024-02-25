@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  create-macos-editor-universal:
+  create-ios-export-template-universal:
     runs-on: macos-latest
     name: Assemble iOS export template
     steps:
