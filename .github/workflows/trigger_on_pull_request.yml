@@ -7,6 +7,8 @@ concurrency:
 
 jobs:
   setup:
+    # Fake job to define outputs which can be used in the other jobs
+    name: 🛠️ Setup
     runs-on: ubuntu-latest
     steps:
       - run: |
