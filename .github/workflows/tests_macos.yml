@@ -5,7 +5,7 @@ on:
       godot-version:
         type: string
       jvm-version:
-        type: number
+        type: string
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-macos_tests
