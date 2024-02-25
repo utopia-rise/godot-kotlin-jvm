@@ -68,3 +68,4 @@ jobs:
           cd modules/kotlin_jvm/harness/tests/
           jlink --add-modules java.base,java.logging --output jre
           ./run_godot_kotlin_tests.bat ../../../../bin/${{ matrix.editor-binary }}
+        timeout-minutes: 15
