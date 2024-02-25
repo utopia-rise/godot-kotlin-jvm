@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  create-macos-universal:
+  create-macos-editor-universal:
     runs-on: macos-latest
     name: ${{ matrix.name }}
     strategy:
@@ -45,7 +45,7 @@ jobs:
       - name: Upload ${{ matrix.target }} macos universal artifact
         uses: actions/upload-artifact@v3
         with:
-          name: editor${{ matrix.target }}_macos_universal
+          name: editor_${{ matrix.target }}_macos_universal
           path: godot.macos.editor.${{ matrix.target }}.universal
 
   create-macos-editor-app:
@@ -96,3 +96,79 @@ jobs:
         with:
           name: godot-kotlin-jvm_editor_macos_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
           path: godot-kotlin-jvm_editor_macos_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
+
+
+  create-macos-export-template-universal:
+    runs-on: macos-latest
+    name: ${{ matrix.name }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Create export template universal binary release
+            target: release
+
+          - name: Create export template universal binary debug
+            target: debug
+    steps:
+      - name: Download ${{ matrix.target }} x86_64 export_template
+        uses: actions/download-artifact@v3
+        with:
+          name: export_template_${{ matrix.target }}_macos_x86_64
+
+      - name: Download ${{ matrix.target }} arm64 export_template
+        uses: actions/download-artifact@v3
+        with:
+          name: export_template_${{ matrix.target }}_macos_arm64
+
+      - name: Create macos universal binary
+        uses: ./.github/actions/create-macos-universal-binary
+        with:
+          amd-64-binary: godot.macos.template_${{ matrix.target }}.x86_64
+          arm-64-binary: godot.macos.template_${{ matrix.target }}.arm64
+          universal-output-binary: godot.macos.template_${{ matrix.target }}.universal
+
+      - name: Upload ${{ matrix.target }} macos universal artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: export_template_${{ matrix.target }}_macos_universal
+          path: godot.macos.template_${{ matrix.target }}.universal
+
+  create-macos-export-template-app:
+    needs: [ create-macos-universal ]
+    runs-on: macos-latest
+    name: Create macos export template app
+    steps:
+      - name: Clone Godot Engine
+        uses: actions/checkout@v4
+        with:
+          repository: godotengine/godot
+          ref: ${{ inputs.godot-version }}
+
+      - name: Download debug export_template
+        uses: actions/download-artifact@v3
+        with:
+          name: export_template_debug_macos_universal
+          path: .
+
+      - name: Download release export_template
+        uses: actions/download-artifact@v3
+        with:
+          name: export_template_release_macos_universal
+          path: .
+
+      - name: Create MacOs template app
+        run: |
+          cp -r misc/dist/macos_template.app .
+          mkdir -p macos_template.app/Contents/MacOS
+          cp godot.macos.template_release.universal macos_template.app/Contents/MacOS/godot_macos_release.universal
+          cp godot.macos.template_debug.universal macos_template.app/Contents/MacOS/godot_macos_debug.universal
+          chmod +x macos_template.app/Contents/MacOS/godot_macos*
+          zip -q -9 -r export_template_all_macos.zip macos_template.app
+        shell: bash
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: export_template_all_macos
+          path: export_template_all_macos.zip

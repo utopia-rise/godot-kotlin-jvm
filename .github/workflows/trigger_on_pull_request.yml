@@ -54,6 +54,16 @@ jobs:
       godot-kotlin-jvm-version: 0.8.1-4.2.0
       godot-version: 4.2-stable
 
+  assemble-ios:
+    name: 🍎 Assemble macos
+    uses: ./.github/workflows/assemble_macos.yml
+    needs:
+      - build-jvm
+      - build-ios
+    with:
+      godot-kotlin-jvm-version: 0.8.1-4.2.0
+      godot-version: 4.2-stable
+
   assemble-linux:
     name: 🐧 Assemble linux
     uses: ./.github/workflows/assemble_linux.yml
@@ -70,6 +80,19 @@ jobs:
     needs:
       - build-jvm
       - build-windows
+    with:
+      godot-kotlin-jvm-version: 0.8.1-4.2.0
+      godot-version: 4.2-stable
+
+  assemble-export-templates:
+    name: 🤖+🍏+🐧+🍎+🪟 Assemble export templates
+    uses: ./.github/workflows/assemble_export_templates.yml
+    needs:
+      - build-android
+      - assemble-ios
+      - assemble-linux
+      - assemble-macos
+      - assemble-windows
     with:
       godot-kotlin-jvm-version: 0.8.1-4.2.0
       godot-version: 4.2-stable

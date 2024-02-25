@@ -1,0 +1,54 @@
+name: 🍏 Assemble iOS
+on:
+  workflow_call:
+    inputs:
+      godot-kotlin-jvm-version:
+        type: string
+      godot-version:
+        type: string
+
+concurrency:
+  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-ios
+  cancel-in-progress: true
+
+jobs:
+  create-macos-editor-universal:
+    runs-on: macos-latest
+    name: Assemble iOS export template
+    steps:
+      - name: Clone Godot Engine
+        uses: actions/checkout@v4
+        with:
+          repository: godotengine/godot
+          ref: ${{ inputs.godot-version }}
+
+      - name: Download ios export template binaries
+        uses: actions/download-artifact@v3
+        with:
+          name: export_template_ios_all
+
+      - name: Clone MoltenVK
+        uses: actions/checkout@v4
+        with:
+          repository: KhronosGroup/MoltenVK
+          path: MoltenVk
+          ref: v1.2.6
+
+      - name: Build MoltenVK
+        run: |
+          cd MoltenVK && ./fetchDependencies --ios && make ios
+
+      - name: Create iOS template app
+        run: |
+          cp -r misc/dist/ios_xcode .
+          cp -r MoltenVK/Package/Release/MoltenVK/MoltenVK.xcframework ios_xcode/
+          mkdir -p macos_template.app/Contents/MacOS
+          cp libgodot.ios.template_release.arm64.a ios_xcode/libgodot.ios.release.xcframework/ios-arm64/libgodot.a
+          cp libgodot.ios.template_debug.arm64.a ios_xcode/libgodot.ios.debug.xcframework/ios-arm64/libgodot.a
+          zip -q -9 -r export_template_all_ios.zip ios_xcode
+
+      - name: Upload iOS template app
+        uses: actions/upload-artifact@v3
+        with:
+          path: export_template_all_ios
+          name: export_template_all_ios.zip
