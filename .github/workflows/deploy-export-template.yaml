@@ -1,10 +1,7 @@
 #This workflow can only run on master! See the limitation mentioned in "Note:" here: https://docs.github.com/en/actions/reference/events-that-trigger-workflows#workflow_run
 name: Deploy Export Template
 on:
-  workflow_run:
-    workflows: [ "Create Draft Release" ]
-    types:
-      - completed
+  workflow_call:
 
 env:
   SCONS_CACHE_MSVC_CONFIG: true

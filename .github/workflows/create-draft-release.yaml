@@ -1,9 +1,6 @@
 name: Create Draft Release
 on:
-  push:
-    tags:
-      - '\d+.\d+.\d+-\d+.\d+.\d+-SNAPSHOT'
-      - '\d+.\d+.\d+-\d+.\d+.\d+'
+  workflow_call:
 
 jobs:
   create-draft-release:

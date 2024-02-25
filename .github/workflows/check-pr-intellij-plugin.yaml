@@ -1,8 +1,6 @@
 name: Check PR - Intellij Plugin
 on:
-  pull_request:
-    paths:
-      - 'kt/plugins/godot-intellij-plugin/**'
+  workflow_call:
 
 jobs:
   build-intellij-plugin:

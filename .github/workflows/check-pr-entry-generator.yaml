@@ -1,9 +1,7 @@
 name: Check PR - Entry Generator
 
 on:
-  pull_request:
-    paths:
-      - 'kt/entry-generation/godot-entry-generator/**'
+  workflow_call:
 
 jobs:
   build_entry_generator:

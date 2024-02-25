@@ -1,9 +1,8 @@
 name: Deploy Gradle Plugin Release
 
+
 on:
-  push:
-    tags:
-      - '\d+.\d+.\d+-\d+.\d+.\d+'
+  workflow_call:
 
 jobs:
   deploy_godot_gradle_plugin_release:

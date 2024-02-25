@@ -1,5 +1,6 @@
 name: Check PR - Engine Editor Release
-on: [pull_request]
+on:
+  workflow_call:
 
 env:
   SCONS_CACHE_MSVC_CONFIG: true

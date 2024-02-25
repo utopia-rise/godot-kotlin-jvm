@@ -1,9 +1,7 @@
 name: Check PR - Godot Kotlin Symbol Processor
 
 on:
-  pull_request:
-    paths:
-      - 'kt/entry-generation/godot-kotlin-symbol-processor/**'
+  workflow_call:
 
 jobs:
   build_godot_kotlin_symbol_processor:

@@ -1,10 +1,7 @@
 name: Deploy Godot Build Props
 
 on:
-  push:
-    tags:
-      - '\d+.\d+.\d+-\d+.\d+.\d+-SNAPSHOT'
-      - '\d+.\d+.\d+-\d+.\d+.\d+'
+  workflow_call:
 
 jobs:
   deploy_godot_build_props:

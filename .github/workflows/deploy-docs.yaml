@@ -1,9 +1,8 @@
 name: Deploy docs
 
+
 on:
-  push:
-    tags:
-      - '\d+.\d+.\d+-\d+.\d+.\d+'
+  workflow_call:
 
 jobs:
   publish_stable_tag:

@@ -1,9 +1,7 @@
 name: Deploy Gradle Plugin Snapshot
 
 on:
-  push:
-    tags:
-      - '\d+.\d+.\d+-\d+.\d+.\d+-SNAPSHOT'
+  workflow_call:
 
 jobs:
   deploy_godot_gradle_plugin_snapshot:
