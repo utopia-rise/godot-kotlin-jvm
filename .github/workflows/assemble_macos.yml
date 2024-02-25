@@ -25,10 +25,15 @@ jobs:
           - name: Create universal editor binary debug
             target: debug
     steps:
-      - name: Download ${{ matrix.target }} editor
+      - name: Download ${{ matrix.target }} x86_64 editor
         uses: actions/download-artifact@v3
         with:
-          name: macos-editor-${{ matrix.target }}
+          name: editor_${{ matrix.target }}_macos_x86_64
+
+      - name: Download ${{ matrix.target }} arm64 editor
+        uses: actions/download-artifact@v3
+        with:
+          name: editor_${{ matrix.target }}_macos_arm64
 
       - name: Create ${{ matrix.target }} OSX universal binary
         uses: ./.github/actions/create-macos-universal-binary
@@ -40,13 +45,7 @@ jobs:
       - name: Upload ${{ matrix.target }} macos universal artifact
         uses: actions/upload-artifact@v3
         with:
-          name: macos-editor-${{ matrix.target }}-universal
-          path: godot.macos.editor.${{ matrix.target }}.universal
-
-      - name: Upload artifact
-        uses: ./.github/actions/upload-artifact
-        with:
-          name: macos-editor-${{ matrix.target }}-universal
+          name: editor${{ matrix.target }}_macos_universal
           path: godot.macos.editor.${{ matrix.target }}.universal
 
   create-macos-editor-app:
@@ -72,13 +71,13 @@ jobs:
       - name: Download ${{ matrix.target }} editor
         uses: actions/download-artifact@v3
         with:
-          name: macos-editor-${{ matrix.target }}-universal
+          name: editor_${{ matrix.target }}_macos_universal
           path: .
 
       - name: Download ${{ matrix.target }} bootstrap jar
         uses: actions/download-artifact@v3
         with:
-          name: godot-bootstrap_${{ matrix.target }}
+          name: jvm_godot-bootstrap_${{ matrix.target }}
           path: .
 
       - name: Create MacOs editor app

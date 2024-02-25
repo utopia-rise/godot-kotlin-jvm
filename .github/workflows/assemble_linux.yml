@@ -28,13 +28,13 @@ jobs:
       - name: Download ${{ matrix.target }} editor
         uses: actions/download-artifact@v3
         with:
-          name: linux-editor-${{ matrix.target }}
+          name: editor_${{ matrix.target }}_linux_x86_64
           path: godot-kotlin-jvm_editor_linuxbsd_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
 
       - name: Download ${{ matrix.target }} bootstrap jar
         uses: actions/download-artifact@v3
         with:
-          name: godot-bootstrap_${{ matrix.target }}
+          name: jvm_godot-bootstrap_${{ matrix.target }}
           path: godot-kotlin-jvm_editor_linuxbsd_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
 
       - name: Create linux editor zip

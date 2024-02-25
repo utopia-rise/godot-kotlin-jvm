@@ -22,22 +22,22 @@ jobs:
       matrix:
         include:
           - name: Build editor release (target=editor)
-            cache-name: windows-editor-release
+            cache-name: editor_release_windows_x86_64
             target: editor
             sconsflags: ''
 
           - name: Build editor debug (target=editor, dev_build=yes, debug_symbols=true )
-            cache-name: windows-editor-debug
+            cache-name: editor_debug_windows_x86_64
             target: editor
             sconsflags: dev_build=yes debug_symbols=true
 
           - name: Build release template
-            cache-name: windows-template_release
+            cache-name: export_template_release_windows_x86_64
             target: template_release
             sconsflags: ''
 
           - name: Build debug template
-            cache-name: windows-template_debug
+            cache-name: export_template_debug_windows_x86_64
             target: template_debug
             sconsflags: ''
 

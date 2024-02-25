@@ -96,3 +96,5 @@ jobs:
 
       - name: Upload artifact
         uses: ./.github/actions/upload-artifact
+        with:
+          name: export_template_android_all

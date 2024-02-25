@@ -17,23 +17,23 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: Build editor release (target=editor)
-            cache-name: linux-editor-release
+          - name: Build editor release x86_64 (target=editor)
+            cache-name: editor_release_linux_x86_64
             target: editor
             sconsflags: ''
 
           - name: Build editor debug (target=editor, dev_build=yes, debug_symbols=true )
-            cache-name: linux-editor-debug
+            cache-name: editor_debug_linux_x86_64
             target: editor
             sconsflags: dev_build=yes debug_symbols=true
 
-          - name: Build release template
-            cache-name: linux-template_release
+          - name: Build release template x86_64
+            cache-name: export_template_release_linux_x86_64
             target: template_release
             sconsflags: ''
 
-          - name: Build debug template
-            cache-name: linux-template_debug
+          - name: Build debug template x86_64
+            cache-name: export_template_debug_linux_x86_64
             target: template_debug
             sconsflags: ''
 

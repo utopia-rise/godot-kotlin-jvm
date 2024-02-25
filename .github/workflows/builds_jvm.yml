@@ -46,49 +46,49 @@ jobs:
       - name: Upload api-generator artifact
         uses: ./.github/actions/upload-artifact
         with:
-          name: api-generator
+          name: jvm_api-generator
           path: modules/kotlin_jvm/kt/api-generator/build/libs/api-generator.jar
 
       - name: Upload release bootstrap artifact
         uses: ./.github/actions/upload-artifact
         with:
-          name: godot-bootstrap_release
+          name: jvm_godot-bootstrap_release
           path: modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar
 
       - name: Upload entry-generator artifact
         uses: ./.github/actions/upload-artifact
         with:
-          name: entry-generator
+          name: jvm_entry-generator
           path: modules/kotlin_jvm/kt/entry-generation/godot-entry-generator/build/libs/godot-entry-generator-*.jar
 
       - name: Upload ksp-symbol-processor artifact
         uses: ./.github/actions/upload-artifact
         with:
-          name: ksp-symbol-processor
+          name: jvm_ksp-symbol-processor
           path: modules/kotlin_jvm/kt/entry-generation/godot-kotlin-symbol-processor/build/libs/godot-kotlin-symbol-processor-*.jar
 
       - name: Upload gradle-plugin artifact
         uses: ./.github/actions/upload-artifact
         with:
-          name: gradle-plugin
+          name: jvm_gradle-plugin
           path: modules/kotlin_jvm/kt/plugins/godot-gradle-plugin/build/libs/godot-gradle-plugin-*.jar
 
       - name: Upload intellij-plugin artifact
         uses: ./.github/actions/upload-artifact
         with:
-          name: intellij-plugin
+          name: jvm_intellij-plugin
           path: modules/kotlin_jvm/kt/plugins/godot-intellij-plugin/build/distributions/godot-jvm-idea-plugin-*.zip
 
       - name: Upload plugins-common artifact
         uses: ./.github/actions/upload-artifact
         with:
-          name: plugins-common
+          name: jvm_plugins-common
           path: modules/kotlin_jvm/kt/plugins/godot-plugins-common/build/libs/godot-plugins-common-*.jar
 
       - name: Upload tools-common artifact
         uses: ./.github/actions/upload-artifact
         with:
-          name: tools-common
+          name: jvm_tools-common
           path: modules/kotlin_jvm/kt/tools-common/build/libs/tools-common-*.jar
 
       - name: Bootstrap debug compilation
@@ -98,5 +98,5 @@ jobs:
       - name: Upload debug bootstrap artifact
         uses: ./.github/actions/upload-artifact
         with:
-          name: godot-bootstrap_debug
+          name: jvm_godot-bootstrap_debug
           path: modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar

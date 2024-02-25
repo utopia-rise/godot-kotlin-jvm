@@ -49,13 +49,13 @@ jobs:
       - name: Download Linux Editor ${{ matrix.target }}
         uses: ./.github/actions/download-artifact
         with:
-          name: linux-editor-${{ matrix.target }}
+          name: editor_${{ matrix.target }}_linux_x86_64
           path: './bin'
 
       - name: Download godot-bootstrap ${{ matrix.target }}
         uses: ./.github/actions/download-artifact
         with:
-          name: godot-bootstrap_${{ matrix.target }}
+          name: jvm_godot-bootstrap_${{ matrix.target }}
           path: './bin'
 
       - name: Build tests project

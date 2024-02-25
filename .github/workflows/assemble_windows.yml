@@ -28,13 +28,13 @@ jobs:
       - name: Download ${{ matrix.target }} editor
         uses: actions/download-artifact@v3
         with:
-          name: windows-editor-${{ matrix.target }}
+          name: editor_${{ matrix.target }}_windows_x86_64
           path: godot-kotlin-jvm_editor_windows_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
 
       - name: Download ${{ matrix.target }} bootstrap jar
         uses: actions/download-artifact@v3
         with:
-          name: godot-bootstrap_${{ matrix.target }}
+          name: jvm_godot-bootstrap_${{ matrix.target }}
           path: godot-kotlin-jvm_editor_windows_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
 
       - name: Create windows editor zip
