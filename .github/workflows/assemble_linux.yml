@@ -8,7 +8,7 @@ on:
         type: string
 
 concurrency:
-  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-macos
+  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-linux
   cancel-in-progress: true
 
 jobs:
@@ -26,24 +26,24 @@ jobs:
             target: debug
     steps:
       - name: Download ${{ matrix.target }} editor
-        uses: ./.github/actions/download-artifact
+        uses: actions/download-artifact@v4
         with:
           name: linux-editor-${{ matrix.target }}
           path: godot-kotlin-jvm_editor_linuxbsd_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
 
       - name: Download ${{ matrix.target }} bootstrap jar
-        uses: ./.github/actions/download-artifact
+        uses: actions/download-artifact@v4
         with:
           name: godot-bootstrap_${{ matrix.target }}
           path: godot-kotlin-jvm_editor_linuxbsd_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
 
       - name: Create linux editor zip
         run: |
-          zip -q -9 -r godot-kotlin-jvm_editor_linuxbsd_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip godot-kotlin-jvm_editor_linuxbsd_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}/*
+          zip godot-kotlin-jvm_editor_linuxbsd_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip godot-kotlin-jvm_editor_linuxbsd_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}/*
         shell: bash
 
       - name: Upload artifact
-        uses: ./.github/actions/upload-artifact
+        uses: actions/upload-artifact@v4
         with:
           name: godot-kotlin-jvm_editor_linuxbsd_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
           path: godot-kotlin-jvm_editor_linuxbsd_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip

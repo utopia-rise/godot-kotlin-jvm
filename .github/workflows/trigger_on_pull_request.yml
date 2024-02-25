@@ -1,5 +1,5 @@
 name: PR Checks
-on: [pull_request]
+on: [ pull_request ]
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-runner
@@ -45,7 +45,7 @@ jobs:
       godot-version: 4.2-stable
 
   assemble-macos:
-    name: 🍎 Assemble macOS
+    name: 🍎 Assemble macos
     uses: ./.github/workflows/assemble_macos.yml
     needs:
       - build-jvm
@@ -55,11 +55,21 @@ jobs:
       godot-version: 4.2-stable
 
   assemble-linux:
-    name: 🍎 Assemble macOS
+    name: 🍎 Assemble linux
     uses: ./.github/workflows/assemble_linux.yml
     needs:
       - build-jvm
       - build-linux
+    with:
+      godot-kotlin-jvm-version: 0.8.1-4.2.0
+      godot-version: 4.2-stable
+
+  assemble-windows:
+    name: 🍎 Assemble windows
+    uses: ./.github/workflows/assemble_windows.yml
+    needs:
+      - build-jvm
+      - build-windows
     with:
       godot-kotlin-jvm-version: 0.8.1-4.2.0
       godot-version: 4.2-stable
