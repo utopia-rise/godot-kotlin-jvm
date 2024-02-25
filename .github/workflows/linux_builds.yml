@@ -46,7 +46,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: ${{ GODOT_VERSION }}
+          ref: ${{ env.GODOT_VERSION }}
 
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
