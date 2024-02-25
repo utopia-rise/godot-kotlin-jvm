@@ -32,7 +32,7 @@ jobs:
 #    uses: ./.github/workflows/macos_builds.yml
 
   windows-build:
-    name: 🏁 Windows
+    name: 🪟 Windows
     uses: ./.github/workflows/windows_builds.yml
     with:
       godot-version: 4.2-stable
