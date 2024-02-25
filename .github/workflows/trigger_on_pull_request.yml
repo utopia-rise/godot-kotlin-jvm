@@ -44,6 +44,15 @@ jobs:
     with:
       godot-version: 4.2-stable
 
+  assemble-macos:
+    name: 🍎 Assemble macOS
+    uses: ./.github/workflows/assemble_macos.yml
+    needs:
+      - build-jvm
+      - build-macos
+    with:
+      godot-version: 4.2-stable
+
   test-linux:
     name: 🐧 Test Linux
     uses: ./.github/workflows/tests_linux.yml

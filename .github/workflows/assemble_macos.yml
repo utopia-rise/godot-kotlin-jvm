@@ -1,0 +1,97 @@
+name: 🍎 Assemble macOS
+on:
+  workflow_call:
+    inputs:
+      godot-version:
+        type: string
+
+concurrency:
+  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-macos
+  cancel-in-progress: true
+
+jobs:
+  create-macos-universal:
+    runs-on: macos-latest
+    name: ${{ matrix.name }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Create universal editor binary release
+            target: release
+
+          - name: Create universal editor binary debug
+            target: debug
+    steps:
+      - name: Download ${{ matrix.target }} editor
+        uses: ./.github/actions/download-artifact
+        with:
+          name: macos-editor-${{ matrix.target }}
+
+      - name: Create ${{ matrix.target }} OSX universal binary
+        uses: ./.github/actions/create-macos-universal-binary
+        with:
+          amd-64-binary: godot.macos.editor.${{ matrix.target }}.x86_64
+          arm-64-binary: godot.macos.editor.${{ matrix.target }}.arm64
+          universal-output-binary: godot.macos.editor.${{ matrix.target }}.universal
+
+      - name: Upload ${{ matrix.target }} macos universal artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: macos-editor-${{ matrix.target }}-universal
+          path: godot.macos.editor.${{ matrix.target }}.universal
+
+      - name: Upload artifact
+        uses: ./.github/actions/upload-artifact
+        with:
+          name: macos-editor-${{ matrix.target }}-universal
+          path: godot.macos.editor.${{ matrix.target }}.universal
+
+  create-macos-editor-app:
+    needs: [ create-macos-universal ]
+    runs-on: macos-latest
+    name: ${{ matrix.name }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Create editor app release
+            target: release
+
+          - name: Create editor app debug
+            target: debug
+    steps:
+      - name: Clone Godot Engine
+        uses: actions/checkout@v4
+        with:
+          repository: godotengine/godot
+          ref: ${{ inputs.godot-version }}
+
+      - name: Download ${{ matrix.target }} editor
+        uses: ./.github/actions/download-artifact
+        with:
+          name: macos-editor-${{ matrix.target }}-universal
+          path: .
+
+      - name: Download ${{ matrix.target }} bootstrap jar
+        uses: ./.github/actions/download-artifact
+        with:
+          name: godot-bootstrap_${{ matrix.target }}
+          path: .
+
+      - name: Create MacOs editor app
+        run: |
+          cp -r misc/dist/macos_tools.app ./Godot.app
+          mkdir -p Godot.app/Contents/MacOS
+          cp godot.macos.editor.${{ matrix.target }}.universal Godot.app/Contents/MacOS/Godot
+          chmod +x Godot.app/Contents/MacOS/Godot
+          cp godot-bootstrap.jar Godot.app/Contents/MacOS/
+          chmod +x Godot.app/Contents/MacOS/godot-bootstrap.jar
+          zip -q -9 -r godot-editor-${{ matrix.target }}-macos.zip Godot.app
+        shell: bash
+
+      - name: Upload artifact
+        uses: ./.github/actions/upload-artifact
+        with:
+          name: macos-editor-${{ matrix.target }}-app
+          path: godot-editor-${{ matrix.target }}-macos.zip
