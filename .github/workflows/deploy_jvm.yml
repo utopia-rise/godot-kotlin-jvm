@@ -5,6 +5,8 @@ on:
     inputs:
       godot-kotlin-jvm-version:
         type: string
+      godot-version:
+        type: string
       release_url:
         type: string
       jvm-version:
