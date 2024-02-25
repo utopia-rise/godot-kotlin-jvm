@@ -1,10 +1,9 @@
 name: 🐧 Linux Builds
 on:
   workflow_call:
-
-# Global Settings
-env:
-  GODOT_VERSION: 4.2-stable
+    inputs:
+      godot-version:
+        type: string
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-linux
@@ -45,7 +44,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: ${{ env.GODOT_VERSION }}
+          ref: ${{ inputs.godot-version }}
 
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
@@ -76,6 +75,5 @@ jobs:
 
       - name: Upload artifact
         uses: ./.github/actions/upload-artifact
-        if: ${{ matrix.artifact }}
         with:
           name: ${{ matrix.cache-name }}
