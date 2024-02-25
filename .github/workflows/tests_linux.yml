@@ -1,0 +1,68 @@
+name: 🐧 Linux Tests
+on:
+  workflow_call:
+    inputs:
+      godot-version:
+        type: string
+      jvm-version:
+        type: number
+
+concurrency:
+  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-linux
+  cancel-in-progress: true
+
+jobs:
+  test-linux:
+    runs-on: "ubuntu-20.04"
+    name: ${{ matrix.name }}
+    strategy:
+      matrix:
+        name: [ Debug, Release ]
+        include:
+          - name: Debug
+            target: debug
+          - name: Release
+            target: release
+
+    steps:
+      - name: Clone Godot Engine
+        uses: actions/checkout@v4
+        with:
+          repository: godotengine/godot
+          ref: ${{ inputs.godot-version }}
+
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v4
+        with:
+          path: modules/kotlin_jvm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: adopt-hotspot
+          java-version: ${{ inputs.jvm-version }}
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Download Linux Editor ${{ matrix.target }}
+        uses: ./.github/actions/download-artifact
+        with:
+          name: linux-editor-${{ matrix.target }}
+
+      - name: Download godot-bootstrap ${{ matrix.target }}
+        uses: ./.github/actions/download-artifact
+        with:
+          name: godot-bootstrap_${{ matrix.target }}
+          path: './bin'
+
+      - name: Build tests project
+        run: |
+          modules/kotlin_jvm/harness/tests/gradlew -p modules/kotlin_jvm/harness/tests/ build -Prelease
+
+      - name: Run Tests
+        run: |
+          cd modules/kotlin_jvm/harness/tests/
+          chmod +x run_godot_kotlin_tests.sh
+          chmod +x ../../../../bin/godot.*
+          jlink --add-modules java.base,java.logging --output jre
+          ./run_godot_kotlin_tests.sh ../../../../bin/godot.*

@@ -26,8 +26,8 @@ jobs:
             target: editor
             sconsflags: ''
 
-          - name: Editor dev (target=editor, dev_build=yes, debug_symbols=true )
-            cache-name: windows-editor-dev
+          - name: Editor debug (target=editor, dev_build=yes, debug_symbols=true )
+            cache-name: windows-editor-debug
             target: editor
             sconsflags: dev_build=yes debug_symbols=true
 

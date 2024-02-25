@@ -6,40 +6,50 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  jvm-build:
-    name: ☕ Jvm
+  build-jvm:
+    name: ☕ Build Jvm
     uses: ./.github/workflows/builds_jvm.yml
     with:
       godot-version: 4.2-stable
       jvm-version: 17
 
-  android-build:
-    name: 🤖 Android
+  build-android:
+    name: 🤖 Build Android
     uses: ./.github/workflows/builds_android.yml
     with:
       godot-version: 4.2-stable
       jvm-version: 17
 
-  ios-build:
-    name: 🍏 iOS
+  build-ios:
+    name: 🍏 Build iOS
     uses: ./.github/workflows/ios_builds.yml
     with:
       godot-version: 4.2-stable
 
-  linux-build:
-    name: 🐧 Linux
+  build-linux:
+    name: 🐧 Build Linux
     uses: ./.github/workflows/builds_linux.yml
     with:
       godot-version: 4.2-stable
 
-  macos-build:
-    name: 🍎 macOS
+  build-macos:
+    name: 🍎 Build macOS
     uses: ./.github/workflows/builds_macos.yml
     with:
       godot-version: 4.2-stable
 
-  windows-build:
-    name: 🪟 Windows
+  build-windows:
+    name: 🪟 Build Windows
     uses: ./.github/workflows/builds_windows.yml
     with:
       godot-version: 4.2-stable
+
+  test-linux:
+    name: 🐧 Test Linux
+    uses: ./.github/workflows/tests_linux.yml
+    needs:
+      - build-jvm
+      - build-linux
+    with:
+      godot-version: 4.2-stable
+      jvm-version: 17
