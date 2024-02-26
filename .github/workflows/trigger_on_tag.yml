@@ -45,9 +45,6 @@ jobs:
           echo "godot-kotlin-jvm-version=$(cat deploy_godot_kotlin_jvm_version.txt)" >> $GITHUB_OUTPUT
 
     outputs:
-      release_url: "undefined"
-      godot-kotlin-jvm-version: "undefined"
-      godot-version: "undefined"
       jvm-version: "17"
 
   build-jvm:
