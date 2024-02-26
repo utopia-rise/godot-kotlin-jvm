@@ -22,8 +22,8 @@ env:
 
 
 jobs:
-  create-draft-release:
-    name: Create github draft release
+  deploy-jvm:
+    name: Deploy jvm artifacts
     runs-on: ubuntu-latest
     steps:
       - name: Clone Godot Engine
