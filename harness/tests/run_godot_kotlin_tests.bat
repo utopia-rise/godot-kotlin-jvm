@@ -1,46 +1,49 @@
 @echo off
 setlocal enabledelayedexpansion
 
+rem start command in background that we want to monitor
+start /b %1 -s --headless --path %cd% addons/gut/gut_cmdln.gd >temp.txt
+
 set tests=0
 set passing=0
-set isJvmClosed=0
+set jvm_closed=0
+set result=0
 
-echo %cd%
+for /F "delims=" %%l in (temp.txt) do (
+    rem Output to the console and capture values
+    echo %%l
 
-FOR /F "tokens=* USEBACKQ" %%F IN (`%~dp0 -s --headless --path "%cd%"" addons/gut/gut_cmdln.gd`) DO (
-    ECHO %%F
+    echo %%l | findstr /C:"Tests" >nul
+    if errorlevel 1 set tests=%%l
 
-    REM Capture the number of tests
-    echo %%F | findstr /C:"Tests" 1>nul
-    IF !ERRORLEVEL! EQU 0 (
-        FOR /F "tokens=2 USEBACKQ" %%G IN ('echo %%F') DO set tests=%%G
-    )
+    echo %%l | findstr /C:"Passing" >nul
+    if errorlevel 1 set passing=%%l
 
-    REM Capture the number of passing tests
-    echo %%F | findstr /C:"Passing" 1>nul
-    IF !ERRORLEVEL! EQU 0 (
-        FOR /F "tokens=2 USEBACKQ" %%G IN ('echo %%F') DO set passing=%%G
-    )
-
-    REM Capture if JVM has closed
-    echo %%F | findstr /C:"Shutting down JVM ..." 1>nul
-    IF !ERRORLEVEL! EQU 0 SET isJvmClosed=1
+    echo %%l | findstr /C:"Shutting down JVM" >nul
+    if errorlevel 1 set jvm_closed=1
 )
 
-IF %tests% EQU 0 (
-    ECHO ERROR: No tests were found.
-    exit 1
+if %tests% equ 0 (
+    echo ERROR: No tests were found.
+    set result=1
+    goto end
 )
 
-IF !isJvmClosed! EQU 0 (
-    ECHO ERROR: JVM has not closed properly!
-    exit 1
+if %jvm_closed% equ 0 (
+    echo ERROR: JVM has not closed properly !
+    set result=1
+    goto end
 )
 
-IF !tests! EQU !passing! (
-    ECHO Tests passed successfully!
-    exit 0
-) ELSE (
-    ECHO ERROR: Some assertions failed!
-    exit 1
+if not %tests% equ %passing% (
+    echo ERROR: Some assertions failed!
+    set result=1
+    goto end
 )
+
+:end
+
+rem Display the content of temp.txt
+type temp.txt
+
+exit %result%
