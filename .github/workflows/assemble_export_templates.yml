@@ -77,7 +77,9 @@ jobs:
         shell: bash
 
       - name: Compress templates folder to tpz
-        run: zip -r godot-kotlin-jvm_export_templates_${{ inputs.godot-kotlin-jvm-version }}.tpz templates
+        run: |
+          cd templates
+          zip -r godot-kotlin-jvm_export_templates_${{ inputs.godot-kotlin-jvm-version }}.tpz *
         shell: bash
 
       - name: Upload artifact
