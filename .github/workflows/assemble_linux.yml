@@ -41,8 +41,8 @@ jobs:
 
       - name: Create linux editor zip
         run: |
-          cd godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
-          zip -r godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip *
+          cd godot-kotlin-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
+          zip -r godot-kotlin-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip *
         shell: bash
 
       - name: Upload artifact
