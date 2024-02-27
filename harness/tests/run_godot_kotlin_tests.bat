@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 rem start command in background that we want to monitor
-%1 -s --headless --path %cd% addons/gut/gut_cmdln.gd >temp.txt 2>&1 || echo.
+(start /b %1 -s --headless --path %cd% addons/gut/gut_cmdln.gd >temp.txt) 2>nul || echo
 
 set tests=0
 set passing=0
