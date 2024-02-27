@@ -1,4 +1,3 @@
-@echo off
 setlocal enabledelayedexpansion
 
 rem start command in background that we want to monitor
