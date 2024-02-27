@@ -3,46 +3,31 @@ setlocal enabledelayedexpansion
 rem start command in background that we want to monitor
 (%1 -s --headless --path %cd% addons/gut/gut_cmdln.gd >temp.txt) 2>nul || echo
 
-set tests=0
-set passing=0
-set jvm_closed=0
-set result=0
+set /a test_count=0
+set /a passed_test_count=0
+set jvm_closed=false
 
-for /F "delims=" %%l in (temp.txt) do (
-    rem Output to the console and capture values
-    echo %%l
-
-    echo %%l | findstr /C:"Tests" >nul
-    if errorlevel 1 set tests=%%l
-
-    echo %%l | findstr /C:"Passing" >nul
-    if errorlevel 1 set passing=%%l
-
-    echo %%l | findstr /C:"Shutting down JVM" >nul
-    if errorlevel 1 set jvm_closed=1
+for /f "delims=" %%i in (temp.txt) do (
+    echo %%i | findstr /C:"Tests" 1>nul && set /a test_count+=1
+    echo %%i | findstr /C:"Passing" 1>nul && set /a passed_test_count+=1
+    echo %%i | findstr /C:"Shutting down JVM" 1>nul && set jvm_closed=true
 )
 
-if %tests% equ 0 (
-    echo ERROR: No tests were found.
-    set result=1
-    goto end
+if !test_count!==0 (
+    echo No tests found
+    exit /b 1
 )
 
-if %jvm_closed% equ 0 (
-    echo ERROR: JVM has not closed properly !
-    set result=1
-    goto end
+if not !test_count!==!passed_test_count! (
+    echo Some assertions failed
+    exit /b 1
 )
 
-if not %tests% equ %passing% (
-    echo ERROR: Some assertions failed!
-    set result=1
-    goto end
+if !jvm_closed!==false (
+    echo JVM did not close properly
+    exit /b 1
 )
 
-:end
-
-rem Display the content of temp.txt
-type temp.txt
-
-exit %result%
+echo All tests passed
+exit /b 0
+Endlocal
