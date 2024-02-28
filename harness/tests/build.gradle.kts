@@ -66,10 +66,10 @@ tasks {
         val editorExecutable: String = projectDir
                 .resolve("../../../../bin")
                 .listFiles()
-                .also {
+                ?.also {
                     println("[${it.joinToString()}]")
                 }
-                ?.firstOrNull { it.startsWith("godot.") }
+                ?.firstOrNull { it.name.startsWith("godot.") }
                 ?.absolutePath
                 ?: run {
                     throw Exception("Could not find editor executable")
