@@ -66,6 +66,9 @@ tasks {
         val editorExecutable: String = projectDir
             .resolve("../../../../bin")
             .listFiles()
+            .also {
+                println(it)
+            }
             ?.firstOrNull { it.startsWith("godot.") && it.isFile && it.canExecute() }
             ?.absolutePath
             ?: run {
