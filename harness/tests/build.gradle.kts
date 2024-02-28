@@ -63,17 +63,18 @@ tasks {
     register("runGutTests", Exec::class.java) {
         group = "verification"
 
-        val editorExecutable: String = projectDir
-            .resolve("../../../../bin")
-            .listFiles()
-            .also {
-                println(it)
-            }
-            ?.firstOrNull { it.startsWith("godot.") && it.isFile && it.canExecute() }
-            ?.absolutePath
-            ?: run {
-                throw Exception("Could not find editor executable")
-            }
+        val editorExecutable: String
+            get = projectDir
+                .resolve("../../../../bin")
+                .listFiles()
+                .also {
+                    println(it)
+                }
+                ?.firstOrNull { it.startsWith("godot.") && it.isFile && it.canExecute() }
+                ?.absolutePath
+                ?: run {
+                    throw Exception("Could not find editor executable")
+                }
 
         var testCount = 0
         var successfulTestCount = 0
