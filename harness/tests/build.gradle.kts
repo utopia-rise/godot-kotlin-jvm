@@ -69,7 +69,7 @@ tasks {
                 .also {
                     println("[${it.joinToString()}]")
                 }
-                ?.firstOrNull { it.startsWith("godot.") && it.isFile && it.canExecute() }
+                ?.firstOrNull { it.startsWith("godot.") }
                 ?.absolutePath
                 ?: run {
                     throw Exception("Could not find editor executable")
