@@ -63,8 +63,7 @@ tasks {
     register("runGutTests", Exec::class.java) {
         group = "verification"
 
-        val editorExecutable: String
-            get = projectDir
+        val editorExecutable: String = projectDir
                 .resolve("../../../../bin")
                 .listFiles()
                 .also {
@@ -110,25 +109,25 @@ tasks {
 
         if (HostManager.hostIsMingw) {
             commandLine(
-                "cmd",
-                "/c",
-                editorExecutable,
-                "-s",
-                "--headless",
-                "--path",
-                projectDir,
-                "addons/gut/gut_cmdln.gd",
+                    "cmd",
+                    "/c",
+                    editorExecutable,
+                    "-s",
+                    "--headless",
+                    "--path",
+                    projectDir,
+                    "addons/gut/gut_cmdln.gd",
             )
         } else {
             commandLine(
-                "bash",
-                "-c",
-                editorExecutable,
-                "-s",
-                "--headless",
-                "--path",
-                projectDir,
-                "addons/gut/gut_cmdln.gd",
+                    "bash",
+                    "-c",
+                    editorExecutable,
+                    "-s",
+                    "--headless",
+                    "--path",
+                    projectDir,
+                    "addons/gut/gut_cmdln.gd",
             )
         }
     }
