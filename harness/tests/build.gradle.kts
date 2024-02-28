@@ -67,7 +67,7 @@ tasks {
                 .resolve("../../../../bin")
                 .listFiles()
                 .also {
-                    println(it)
+                    println("[${it.joinToString()}]")
                 }
                 ?.firstOrNull { it.startsWith("godot.") && it.isFile && it.canExecute() }
                 ?.absolutePath
