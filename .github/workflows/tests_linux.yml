@@ -67,5 +67,5 @@ jobs:
           chmod +x run_godot_kotlin_tests.sh
           chmod +x ../../../../bin/godot.*
           jlink --add-modules java.base,java.logging --output jre
-          ./run_godot_kotlin_tests.sh ../../../../bin/godot.*
+          ./gradlew runGutTests -PeditorExecutable=../../../../bin/godot.*
         timeout-minutes: 15
