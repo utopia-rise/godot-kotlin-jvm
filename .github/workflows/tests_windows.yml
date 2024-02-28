@@ -20,10 +20,8 @@ jobs:
         include:
           - name: debug tests
             target: debug
-            editor-binary: godot.windows.editor.dev.x86_64.exe
           - name: release tests
             target: release
-            editor-binary: godot.windows.editor.x86_64.exe
 
     steps:
       - name: Clone Godot Engine
@@ -67,5 +65,5 @@ jobs:
         run: |
           cd modules/kotlin_jvm/harness/tests/
           jlink --add-modules java.base,java.logging --output jre
-          ./gradlew runGutTests -PeditorExecutable=..\..\..\..\bin\${{ matrix.editor-binary }}
+          ./gradlew runGutTests
         timeout-minutes: 15
