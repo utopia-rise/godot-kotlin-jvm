@@ -64,7 +64,6 @@ jobs:
       - name: Run Tests
         run: |
           cd modules/kotlin_jvm/harness/tests/
-          chmod +x run_godot_kotlin_tests.sh
           chmod +x ../../../../bin/godot.*
           jlink --add-modules java.base,java.logging --output jre
           ./gradlew runGutTests
