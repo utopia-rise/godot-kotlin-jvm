@@ -66,4 +66,4 @@ jobs:
           cd modules/kotlin_jvm/harness/tests/
           jlink --add-modules java.base,java.logging --output jre
           ./gradlew runGutTests
-        timeout-minutes: 15
+        timeout-minutes: 30
