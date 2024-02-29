@@ -73,15 +73,24 @@ tasks {
                 ?.absolutePath
                 ?: throw Exception("Could not find editor executable")
 
-        var testCount = 0
-        var successfulTestCount = 0
+        var didAllTestsPass = false
         var isJvmClosed = false
 
         doLast {
-            if (testCount == 0) {
-                throw Exception("ERROR: No tests were found")
+            val outputLines = standardOutput.toString().split("\n")
+
+            outputLines.forEach { line ->
+                when {
+                    line.contains("All tests passed") -> {
+                        didAllTestsPass = true
+                    }
+                    line.contains("JVM GC thread was closed") -> {
+                        isJvmClosed = true
+                    }
+                }
             }
-            if (testCount != successfulTestCount) {
+
+            if (!didAllTestsPass) {
                 throw Exception("ERROR: Some assertions failed")
             }
             if (!isJvmClosed) {
@@ -89,21 +98,6 @@ tasks {
             }
         }
 
-        standardOutput = object : OutputStream() {
-            override fun write(b: Int) {
-                val string = String(byteArrayOf(b.toByte()))
-                if (string.contains("test_")) {
-                    testCount++
-                }
-                if (string.contains("[Passed]")) {
-                    successfulTestCount++
-                }
-                if (string.contains("JVM GC thread was closed")) {
-                    isJvmClosed = true
-                }
-                print(string)
-            }
-        }
 
         isIgnoreExitValue = true
 
