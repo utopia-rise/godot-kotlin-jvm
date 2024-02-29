@@ -98,7 +98,6 @@ tasks {
             }
         }
 
-
         isIgnoreExitValue = true
 
         if (HostManager.hostIsMingw) {
