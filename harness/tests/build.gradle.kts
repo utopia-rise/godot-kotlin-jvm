@@ -92,13 +92,13 @@ tasks {
         standardOutput = object : OutputStream() {
             override fun write(b: Int) {
                 val string = String(byteArrayOf(b.toByte()))
-                if (string.contains("Tests")) {
+                if (string.contains("test_")) {
                     testCount++
                 }
-                if (string.contains("Passing")) {
+                if (string.contains("[Passed]")) {
                     successfulTestCount++
                 }
-                if (string.contains("Shutting down JVM")) {
+                if (string.contains("JVM GC thread was closed")) {
                     isJvmClosed = true
                 }
                 print(string)
