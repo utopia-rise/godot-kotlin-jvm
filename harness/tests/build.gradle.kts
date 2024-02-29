@@ -111,15 +111,13 @@ tasks {
             commandLine(
                     "cmd",
                     "/c",
-                    editorExecutable,
-                    "-s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+                    "$editorExecutable -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
             )
         } else {
             commandLine(
                     "bash",
                     "-c",
-                    editorExecutable,
-                    "-s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+                    "$editorExecutable -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
             )
         }
     }
