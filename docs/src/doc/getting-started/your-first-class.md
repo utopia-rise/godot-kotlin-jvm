@@ -34,6 +34,32 @@ Once the build completes, you will be able to use your class in Godot. Simply at
 
 ## Final project structure
 
-The final project should look like this:
+The final filesystem project should look like this:
 
-![Final project structure](../assets/img/final_project_structure.png)
+```
+~/Dev/Workspace/kotlin-godot-demo tree
+.
+├── build
+│   └── libs
+├── build.gradle.kts
+├── gdj
+├── gradle
+│   └── wrapper
+│       ├── gradle-wrapper.jar
+│       └── gradle-wrapper.properties
+├── gradlew
+├── gradlew.bat
+├── icon.svg
+├── kotlin-godot-demo.iml
+├── project.godot
+├── settings.gradle.kts
+└── src
+    └── main
+        └── kotlin
+            └── com
+                └── utopiarise
+                    └── demo
+                        └── Simple.kt
+
+12 directories, 10 files
+```
