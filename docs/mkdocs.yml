@@ -8,14 +8,23 @@ theme:
   name: material
   favicon: assets/img/favicon.ico
   palette:
-    - scheme: default
+    - media: "(prefers-color-scheme)"
+      primary: deep purple
       toggle:
-        icon: material/toggle-switch-off-outline
-        name: Switch to Dark mode
-    - scheme: slate
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
       toggle:
-        icon: material/toggle-switch
-        name: Switch to Light mode
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
   logo: assets/img/logo.png
   font:
     code: JetBrains Mono
@@ -37,6 +46,7 @@ markdown_extensions:
   - pymdownx.highlight
   - pymdownx.superfences
   - pymdownx.tabbed
+  - pymdownx.details
   - admonition
   - meta
 
@@ -51,7 +61,7 @@ nav:
   - Getting Started:
       - Requirements: getting-started/requirements.md
       - Setting-up: getting-started/setting-up.md
-      - Your first class: getting-started/your-first-class.md
+      - Your first Kotlin class: getting-started/your-first-class.md
   - User guide:
     - API differences: user-guide/api-differences.md
     - Classes: user-guide/classes.md
