@@ -32,7 +32,7 @@ If you don't have Discord or you don't want to use it, please file an issue on G
 
 ## Supported languages
 
-The main language supported is Kotlin. We do however support Java experimentally. It should be possible to support other JVM-based languages as well but this is not the focus of this project. If you want to have support for other languages, have a look at [support for other JVM-based languages](contribution/support_for_other_jvm_based_languages.md).
+The main language supported is Kotlin. We do however support Java experimentally. It should be possible to support other JVM-based languages as well but this is not the focus of this project. If you want to have support for other languages, have a look at [support for other JVM-based languages](contribution/support-for-other-jvm-based-languages.md).
 
 ## Supported Kotlin version
 
