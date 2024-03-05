@@ -1,8 +1,8 @@
 To build our module, you need to same dependencies as the ones described in the [official Godot documentation](https://docs.godotengine.org/en/stable/development/compiling/index.html).
 
-Make sure that Java is installed and its PATH set in your system as well (at least Java 11 is needed!).
+Make sure that Java is installed and its `PATH` set in your system as well (**at least Java 11 is needed**).
 
-1. Clone godot repo with the stable tag you want to develop for: `git clone git@github.com:godotengine/godot.git 4.1.2-stable --recursive`
+1. Clone Godot's repository with the stable tag you want to develop for: `git clone git@github.com:godotengine/godot.git 4.1.2-stable --recursive`
 
 2. In the `godot-root` dir, run the following command: `git submodule add git@github.com:utopia-rise/godot-kotlin-jvm.git modules/kotlin_jvm`
 
@@ -27,11 +27,14 @@ stands for the JMX port of you choice. You can then set up remote debug configur
 
 
 ## Publishing locally
+
 In order to publish our artifacts locally, you'll need to run `gradlew :tools-common:publishToMavenLocal publishToMavenLocal`
 
-Check in you maven local repository what the version is you've just published: `ls ~/.m2/repository/com/utopia-rise/godot-gradle-plugin`. The version should look something like this: `0.7.2-4.1.2-c8df371-SNAPSHOT`.
+Check in you maven local repository what the version is you've just published: `ls ~/.m2/repository/com/utopia-rise/godot-gradle-plugin`.
+The version should look something like this: `0.7.2-4.1.2-c8df371-SNAPSHOT`.
 
 Your test project should use `mavenLocal()` in the repositories block in `build.gradle.kts` and the following in `settings.gradle.kts`:
+
 ```kotlin
 pluginManagement {
     repositories {
@@ -49,8 +52,11 @@ pluginManagement {
 }
 ```
 
-## Important things to note:
-When you build a sample, it generates a `godot-bootstrap.jar` in `build/libs`. This jar is needed by the engine to function correctly. You need to copy this jar to `<godot-root>/bin`. If you want to automate that, consider using the following gradle task in the samples `build.gradle.kts`- but don't commit it!
+## Important notes
+
+When you build a sample, it generates a `godot-bootstrap.jar` in `build/libs`.
+This JAR is needed by the engine to function correctly. You need to copy this jar to `<godot-root>/bin`.
+If you want to automate that, consider using the following gradle task in the samples `build.gradle.kts`- but don't commit it!
 
 ```kt
 afterEvaluate {

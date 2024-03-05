@@ -8,13 +8,15 @@ To export your game, you need to add our export templates to Godot. After you've
 ![Select install from file](../assets/img/export_template_manager_install_from_file.png)
 ![Select tpz](../assets/img/export_template_manager_select_tpz.png)
 
-After the export templates have been added, you can export your game. Your game `jar` will be included in `pck`. On desktop platforms, this also copies the jre folder of your project in the exported game folder.
+After the export templates have been added, you can export your game. Your game `jar` will be included in `pck`.
+On desktop platforms, this also copies the JRE folder of your project in the exported game folder.
 
 !!!danger
     The official export templates from Godot will not work! You have to use our export templates or build your own! Therefore, you cannot just hit the "Download and Install" button in the export template manager!
 
 
 ## Requirements
+
 To export your game, you need to have an embedded JRE created. Run the following command within your project's root.
 
 - amd64 systems:
@@ -31,18 +33,22 @@ The above command will create a very minimal JVM, if you need extra features you
 - `jdk.jdwp.agent` to enable remote debugging
 - `jdk.management.agent` to enable JMX.
 
-*Special note for MacOS*: To create a universal app, you'll need both amd64 and arm64 JRE. You can create an amd64 jre
-by using jlink with rosetta and an amd64 jdk on an arm64 MacOS.
+*Special note for MacOS*: To create a universal app, you'll need both amd64 and arm64 JRE. You can create an amd64 JRE
+by using `jlink` with rosetta and an amd64 JDK on an arm64 MacOS.
 
-!!!warning Correct jre for desktops
+!!!warning Correct JRE for desktops
     For desktop exports you need to make exports based on the platform you're on, as exporting will copy the generated jre folder to
-    your export. An MacOS jre will not work on windows, so you'll need a windows host to export for windows.
+    your export. An MacOS JRE will not work on Windows, so you'll need a Windows host to export for Windows.
 
 ## Specifics
 
-`godot-bootstrap.jar` and `main.jar` are copied into `pck` during the export process. As a real file path is needed to handle them, they are copied on the first game version start from `res://` to `user://` (we check if they exist and also check the md5 hash) to only update when needed. Don't forget to remove them when writing an uninstaller for your game.
+`godot-bootstrap.jar` and `main.jar` are copied into `pck` during the export process.
+As a real file path is needed to handle them, they are copied on the first game version start
+from `res://` to `user://` (we check if they exist and also check the md5 hash) to only update when needed.
+Don't forget to remove them when writing an uninstaller for your game.
 
 ## Android
+
 !!! warning
     If you plan to export your game to android, make sure the libraries you use, are actually compatible with android.
 
@@ -55,9 +61,10 @@ In order to build for Android, set the `isAndroidExportEnabled` flag to `true` i
     }
     ```
 
-On android, we do not embed a JVM, we use the existing ART provided by the OS. In order for your game to load the necessary jar files, they need to be converted into dex format. Our gradle plugin will handle this for you, but you need to fulfill the following requirements:
+On Android, we do not embed a JVM, we use the existing VM provided by the OS. In order for your game to load the necessary JAR files,
+they need to be converted into `.dex` format. Our Gradle plugin will handle this for you, but you need to fulfill the following requirements:
 
-- Android SDK installed
+- Android SDK installed.
 - `d8` tool resolvable by setting the `d8ToolPath` to the file path of `d8`:
     ```kt
     godot {
@@ -65,7 +72,7 @@ On android, we do not embed a JVM, we use the existing ART provided by the OS. I
     }
     ```
 
-- Setting the `androidCompileSdkDir` to your target sdk version (most of the time, you want to set it to the newest version available):
+- Setting the `androidCompileSdkDir` to your target SDK version (most of the time, you want to set it to the newest version available):
     ```kt
     godot {
         androidCompileSdkDir = File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-30")
@@ -80,25 +87,26 @@ On android, we do not embed a JVM, we use the existing ART provided by the OS. I
     ```
 
 !!!danger
-    Similar to the desktop targets, the game copies the needed jar files to the `user://` directory upon first execution or if the files have changed. On android this is the applications `files` folder. If you do IO operations on Android, never empty the whole `files` folder! Only delete what you have added or exclude the following two files when clearing the `files` folder: `godot-bootstrap-dex.jar` and `main-dex.jar`.
+    Similar to the desktop targets, the game copies the needed jar files to the `user://` directory upon first execution or if the files have changed. On Android this is the applications `files` folder. If you do IO operations on Android, never empty the whole `files` folder! Only delete what you have added or exclude the following two files when clearing the `files` folder: `godot-bootstrap-dex.jar` and `main-dex.jar`.
 
 ## GraalVM Native Image
 
 !!! warning
-    GraalVM native image is an advanced feature and requires a lot of work to support. Especially if you rely on many third party libraries.
+    GraalVM Native Image is an advanced feature and requires a lot of work to support. Especially if you rely on many third party libraries.
 
 In order to build for graalvm, follow `GraalVM native-image` section in [advanced user guide](./advanced/graal-vm-native-image.md).
 
 The `main.jar` and `godot-bootstrap.jar` are compiled into a single `usercode` shared library is copied into `pck` during the export process. Similar to the regular export versions, the `usercode` shared library is copied to the `user://` dir. Don't forget to delete it when creating an uninstaller.
 
-On desktop platform default export is inferred by the `godot_kotin_configuration.json` file. You still can export for `jvm` and `native-image`, by adding feature `export-all-jvm`. In this case, the default JVM started by engine is the one from `godot_kotin_configuration.json` and can be overridden by command line.  
+On desktop platform default export is inferred by the `godot_kotin_configuration.json` file. You still can export for `jvm` and `native-image`, by adding feature `export-all-jvm`. In this case, the default JVM started by engine is the one from `godot_kotin_configuration.json` and can be overridden by command-line.
 
 ## iOS
 
 !!! warning
     IOS export is experimental.
 
-Additionally, to the regular GraalVM configuration mentioned above, add the following in `build.gradle.kts`:  
+Additionally, to the regular GraalVM configuration mentioned above, add the following in `build.gradle.kts`:
+
 ```kotlin
 godot {
     isGraalNativeImageExportEnabled.set(true)
@@ -108,4 +116,4 @@ godot {
 ```
 
 !!! warning
-    With this export you don't have a choice regarding JVM embedding in the app. Godot kotlin's gradle plugin will automatically download a iOS static JDK libraries and pack it with your code for iOS.
+    With this export you don't have a choice regarding JVM embedding in the app. Godot Kotlin's Gradle plugin will automatically download a iOS static JDK libraries and pack it with your code for iOS.

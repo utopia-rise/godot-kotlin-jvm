@@ -1,4 +1,4 @@
-You can define and derive from any abstract class you define, as long as any of your superclasses is a godot class.
+You can define and derive from any abstract class you define, as long as any of your superclasses is a Godot class.
 
 This allows you to define default functions for your inheriting classes and override them in some, but not all subclasses if you want.
 
@@ -10,11 +10,12 @@ Under the hood, we only register your normal classes, and let them register all 
     For this reason, the `@RegisterClass` annotation is optional for abstract classes.
 
 !!! warning
-    As in kotlin, you cannot instantiate abstract classes directly from any other scripting language like GDScript! In fact, godot does not even know (or care) that your abstract class exists.
+    As in Kotlin, you cannot instantiate abstract classes directly from any other scripting language like GDScript! In fact, godot does not even know (or care) that your abstract class exists.
 
 # Example
 
 Abstract class definition:
+
 ```kotlin
 // register class annotation is optional for abstract classes
 abstract class AbstractClassInheritanceParent: Node() {
@@ -37,6 +38,7 @@ abstract class AbstractClassInheritanceParent: Node() {
 ```
 
 Child class definition:
+
 ```kotlin
 @RegisterClass
 class AbstractClassInheritanceChild: AbstractClassInheritanceParent() {
