@@ -150,6 +150,15 @@ public open class NavigationRegion3D : Node3D() {
   }
 
   /**
+   * Returns the [RID] of this region on the [godot.NavigationServer3D]. Combined with [godot.NavigationServer3D.mapGetClosestPointOwner] can be used to identify the [godot.NavigationRegion3D] closest to a point on the merged navigation map.
+   */
+  public fun getRid(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  /**
    * Sets the [RID] of the navigation map this region should use. By default the region will automatically join the [godot.World3D] default navigation map so this function is only required to override the default map.
    */
   public fun setNavigationMap(navigationMap: RID): Unit {
@@ -184,7 +193,9 @@ public open class NavigationRegion3D : Node3D() {
   }
 
   /**
-   * Returns the [RID] of this region on the [godot.NavigationServer3D]. Combined with [godot.NavigationServer3D.mapGetClosestPointOwner] can be used to identify the [godot.NavigationRegion3D] closest to a point on the merged navigation map.
+   * Returns the [RID] of this region on the [godot.NavigationServer3D].
+   *
+   * *Deprecated.* Use [getRid] instead.
    */
   public fun getRegionRid(): RID {
     TransferContext.writeArguments()
@@ -204,6 +215,8 @@ public open class NavigationRegion3D : Node3D() {
   public companion object
 
   internal object MethodBindings {
+    public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationRegion3D", "get_rid")
+
     public val setNavigationMeshPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationRegion3D", "set_navigation_mesh")
 

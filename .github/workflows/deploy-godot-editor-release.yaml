@@ -74,7 +74,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: 4.2-stable
+          ref: 4.2.1-stable
 
       # TODO: remove once on godot 4.2.2 or newer!
       - name: Cherry pick macos fix
@@ -237,7 +237,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: 4.2-stable
+          ref: 4.2.1-stable
 
       - name: Get editor binary
         uses: actions/download-artifact@v3

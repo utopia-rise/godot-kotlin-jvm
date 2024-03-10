@@ -39,8 +39,6 @@ import kotlin.Unit
  *
  * Supported video formats are [godot.Ogg Theora](https://www.theora.org/) (`.ogv`, [godot.VideoStreamTheora]) and any format exposed via a GDExtension plugin.
  *
- * **Note:** Due to a bug, VideoStreamPlayer does not support localization remapping yet.
- *
  * **Warning:** On Web, video playback *will* perform poorly due to missing architecture-specific assembly optimizations.
  */
 @GodotBaseType
