@@ -15,6 +15,9 @@ public:
     int get_max_string_size() const;
     void set_max_string_size(int p_max_string_size);
 
+    String get_scene_jvm_args() const;
+    void set_jvm_scene_args(String p_scene_jvm_args);
+
     ~GdKotlinConfiguration() = default;
 
     static constexpr const char* jvm_string_identifier {"jvm"};
@@ -26,11 +29,13 @@ public:
 private:
     jni::Jvm::Type vm_type;
     int max_string_size;
+    String scene_jvm_args;
 
     static constexpr const char* vm_type_identifier {"vm_type"};
     static constexpr const char* max_string_size_identifier {"max_string_size"};
+    static constexpr const char* scene_jvm_args_identifier {"scene_jvm_args"};
 
-    GdKotlinConfiguration(jni::Jvm::Type p_vm_type, int p_max_string_size);
+    GdKotlinConfiguration(jni::Jvm::Type p_vm_type, int p_max_string_size, String p_scene_jvm_args);
 };
 
 #endif// GODOT_JVM_GD_KOTLIN_CONFIGURATION_H

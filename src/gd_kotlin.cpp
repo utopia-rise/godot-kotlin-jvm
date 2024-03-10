@@ -154,6 +154,10 @@ void GDKotlin::init() {
         }
     }
 
+    if (!Engine::get_singleton()->is_editor_hint()) {
+        args.option(configuration.get_scene_jvm_args().utf8());
+    }
+
     if (!jvm_debug_port.is_empty() || !jvm_debug_address.is_empty()) {
         if (jvm_debug_address.is_empty()) {
             jvm_debug_address = "*";
