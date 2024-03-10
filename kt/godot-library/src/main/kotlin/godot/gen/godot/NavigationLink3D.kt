@@ -9,12 +9,14 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.RID
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
+import godot.core.VariantType._RID
 import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
@@ -206,6 +208,15 @@ public open class NavigationLink3D : Node3D() {
 
 
   /**
+   * Returns the [RID] of this link on the [godot.NavigationServer3D].
+   */
+  public fun getRid(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  /**
    * Based on [value], enables or disables the specified layer in the [navigationLayers] bitmask, given a [layerNumber] between 1 and 32.
    */
   public fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean): Unit {
@@ -259,6 +270,8 @@ public open class NavigationLink3D : Node3D() {
   public companion object
 
   internal object MethodBindings {
+    public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationLink3D", "get_rid")
+
     public val setEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationLink3D", "set_enabled")
 

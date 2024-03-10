@@ -180,6 +180,15 @@ public open class NavigationRegion2D : Node2D() {
   }
 
   /**
+   * Returns the [RID] of this region on the [godot.NavigationServer2D]. Combined with [godot.NavigationServer2D.mapGetClosestPointOwner] can be used to identify the [godot.NavigationRegion2D] closest to a point on the merged navigation map.
+   */
+  public fun getRid(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  /**
    * Sets the [RID] of the navigation map this region should use. By default the region will automatically join the [godot.World2D] default navigation map so this function is only required to override the default map.
    */
   public fun setNavigationMap(navigationMap: RID): Unit {
@@ -231,7 +240,9 @@ public open class NavigationRegion2D : Node2D() {
   }
 
   /**
-   * Returns the [RID] of this region on the [godot.NavigationServer2D]. Combined with [godot.NavigationServer2D.mapGetClosestPointOwner] can be used to identify the [godot.NavigationRegion2D] closest to a point on the merged navigation map.
+   * Returns the [RID] of this region on the [godot.NavigationServer2D].
+   *
+   * *Deprecated.* Use [getRid] instead.
    */
   public fun getRegionRid(): RID {
     TransferContext.writeArguments()
@@ -251,6 +262,8 @@ public open class NavigationRegion2D : Node2D() {
   public companion object
 
   internal object MethodBindings {
+    public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationRegion2D", "get_rid")
+
     public val setNavigationPolygonPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationRegion2D", "set_navigation_polygon")
 
