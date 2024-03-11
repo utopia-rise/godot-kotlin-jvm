@@ -502,12 +502,12 @@ jobs:
 
       - name: Create iOS template app
         run: |
-          cp -r misc/dist/ios_xcode .
-          cp -r MoltenVK/Package/Release/MoltenVK/MoltenVK.xcframework ios_xcode/
+          cp -r misc/dist/ios .
+          cp -r MoltenVK/Package/Release/MoltenVK/MoltenVK.xcframework ios/
           mkdir -p macos_template.app/Contents/MacOS
-          cp libgodot.ios.template_release.arm64.a ios_xcode/libgodot.ios.release.xcframework/ios-arm64/libgodot.a
-          cp libgodot.ios.template_debug.arm64.a ios_xcode/libgodot.ios.debug.xcframework/ios-arm64/libgodot.a
-          zip -q -9 -r ios.zip ios_xcode
+          cp libgodot.ios.template_release.arm64.a ios/libgodot.ios.release.xcframework/ios-arm64/libgodot.a
+          cp libgodot.ios.template_debug.arm64.a ios/libgodot.ios.debug.xcframework/ios-arm64/libgodot.a
+          zip -q -9 -r ios.zip ios
 
       - name: Upload iOS template app
         uses: actions/upload-artifact@v3
