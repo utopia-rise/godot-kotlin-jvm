@@ -77,7 +77,7 @@ nav:
     - Advanced:
       - Abstract classes: user-guide/advanced/abstract-classes.md
       - Custom source directories: user-guide/advanced/custom-src-dirs.md
-      - Custom gradle wrapper path: user-guide/advanced/custom-gradle-wrapper-path.md
+      - Custom Gradle wrapper path: user-guide/advanced/custom-gradle-wrapper-path.md
       - Gradle plugin configuration: user-guide/advanced/gradle-plugin-configuration.md
       - Command-line arguments: user-guide/advanced/commandline-args.md
       - Kotlin singletons: user-guide/advanced/kotlin-singleton.md
@@ -93,7 +93,7 @@ nav:
     - Build with C# support: contribution/build-with-csharp-support.md
     - Support for other JVM-based languages: contribution/support-for-other-jvm-based-languages.md
     - Knowledge base:
-        - Artefact differentiation: contribution/knowledge-base/artefact-differentiation.md
+        - Artifact differentiation: contribution/knowledge-base/artifact-differentiation.md
         - Entry generation: contribution/knowledge-base/entry-generation.md
         - Shared buffer: contribution/knowledge-base/shared-buffer.md
         - Memory management: contribution/knowledge-base/memory-management.md
