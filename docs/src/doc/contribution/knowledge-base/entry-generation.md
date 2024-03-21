@@ -16,7 +16,7 @@ Furthermore, `MpApt` introduced a lot of maintenance work to keep it up to date 
 
 To mitigate that problem we switched to [KSP (Kotlin Symbol Processing API)](https://github.com/google/ksp) which is basically a Kotlin Annotation Processor (KAPT) on steroids.
 Meaning it in essence is a compiler plugin which lets you inspect the source code being compiled through a abstracted and simplified API.
-This means for us that we can work against a more stable api and the work of keeping it up to date with Kotlin compiler changes is offloaded
+This means for us that we can work against a more stable API and the work of keeping it up to date with Kotlin compiler changes is offloaded
 to a well maintained open source project with far more people with better knowledge about the internal workings of the Kotlin compiler.
 
 We use our implementation of a Kotlin Symbol Processing to gather all needed information for the entry generator and convert it into the format it understands.
