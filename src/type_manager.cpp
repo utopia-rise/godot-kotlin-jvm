@@ -103,10 +103,12 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
 #endif
         }
 
+        ref->set_path( kotlin_class->compilation_time_relative_registration_file_path, true);
+
         scripts.push_back(ref);
         script_cache.erase(script_name);
 
-        String source_path = kotlin_class->compilation_time_relative_registration_file_path;
+        String source_path = "res://" + kotlin_class->relative_source_path;
         if(FileAccess::exists(source_path)){
             filepath_to_name_map[source_path] = script_name;
         }
@@ -140,6 +142,7 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
         ref.instantiate();
         ref->kotlin_class = kotlin_class;
         ref->mode = KotlinScript::AccessMode::NAME;
+        ref->set_path( kotlin_class->compilation_time_relative_registration_file_path, true);
         scripts.push_back(ref);
 #ifdef DEV_ENABLED
         LOG_VERBOSE(vformat("Kotlin Script created: %s", kotlin_class->registered_class_name));
@@ -182,16 +185,16 @@ Ref<KotlinScript> TypeManager::create_script(const String& p_path, bool named) {
     Ref<KotlinScript> ref;
     ref.instantiate();
     ref->set_path(p_path, true);
-    if(named){
+    if(named) {
         ref->mode = KotlinScript::NAME;
         named_user_scripts_map[ref->get_global_name()] = ref;
         named_user_scripts.push_back(ref);
     } else {
         ref->mode = KotlinScript::PATH;
-        if(filepath_to_name_map.has(p_path)){
+        if(filepath_to_name_map.has(p_path)) {
             ref->kotlin_class = named_user_scripts_map[filepath_to_name_map[p_path]]->kotlin_class;
+            path_user_scripts.push_back(ref);
         }
-        path_user_scripts.push_back(ref);
     }
     return ref;
 }

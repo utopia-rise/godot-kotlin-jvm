@@ -39,8 +39,12 @@ Ref<Script> KotlinScript::get_base_script() const {
 
 StringName KotlinScript::get_global_name() const {
     //Path based scripts don't have names.
-    if (mode != NAME) { return ""; }
-    if (is_valid()) { return kotlin_class->registered_class_name; }
+    if (mode != NAME) {
+        return "";
+    }
+    if (is_valid()) {
+        return kotlin_class->registered_class_name;
+    }
     // Scripts are either (valid and loaded from .jar) or (placeholders and loaded from .gdj)
     // Even in the case of an invalid file, we can then use its path to find the right name.
     String path = get_path();
@@ -131,10 +135,10 @@ bool KotlinScript::is_abstract() const {
 
 ScriptLanguage* KotlinScript::get_language() const {
     switch(mode){
-        case PATH:
-            return KotlinLanguage::get_instance();
-        default:
+        case NAME:
             return JvmLanguage::get_instance();
+        default:
+            return KotlinLanguage::get_instance();
     }
 }
 

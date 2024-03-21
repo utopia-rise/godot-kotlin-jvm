@@ -81,7 +81,7 @@ func test_switch_script():
     test_script.free()
     
 func test_path_script():
-    var test_script: BindingTest = load("res://src/main/kotlin/godot/tests/binding/BindingTest.kt").new()
+    var test_script: Object = load("res://src/main/kotlin/godot/tests/binding/BindingTest.kt").new()
     var bound_obj: Object = load("res://src/main/kotlin/godot/tests/binding/BindingA.kt").new()
     
     var clazz = test_script.get_class_name(bound_obj)

@@ -78,7 +78,7 @@ Script* JvmLanguage::create_script() const {
 }
 
 String JvmLanguage::get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path) const {
-    if (p_path.begins_with(GODOT_ENTRY_PATH)) { return {}; }
+    if (p_path.begins_with(GODOT_ENTRY_PATH) || !p_path.ends_with(GODOT_JVM_REGISTRATION_FILE_EXTENSION)) { return {}; }
 
     String script_name = KotlinScript::get_script_file_name(p_path);
     Ref<KotlinScript> script = TypeManager::get_instance().get_user_script_from_name(script_name);
