@@ -54,7 +54,7 @@ GdKotlinConfiguration GdKotlinConfiguration::from_json(const String& json_string
     Variant max_string_size_variant {dictionary[max_string_size_identifier]};
     if (max_string_size_variant.get_type() == Variant::INT) { max_string_size = max_string_size_variant; }
 
-    String scene_jvm_args {""};
+    String scene_jvm_args;
     Variant scene_jvm_args_variant {dictionary[scene_jvm_args_identifier]};
     if (scene_jvm_args_variant.get_type() == Variant::STRING) { scene_jvm_args = scene_jvm_args_variant; }
 
@@ -97,20 +97,20 @@ void GdKotlinConfiguration::set_max_string_size(int p_max_string_size) {
     max_string_size = p_max_string_size;
 }
 
-String GdKotlinConfiguration::get_scene_jvm_args() const {
+const String& GdKotlinConfiguration::get_scene_jvm_args() const {
     return scene_jvm_args;
 }
 
-void GdKotlinConfiguration::set_jvm_scene_args(String p_scene_jvm_args) {
+void GdKotlinConfiguration::set_jvm_scene_args(const String& p_scene_jvm_args) {
     scene_jvm_args = p_scene_jvm_args;
 }
 
 GdKotlinConfiguration::GdKotlinConfiguration() :
   vm_type(jni::Jvm::JVM),
   max_string_size(LongStringQueue::max_string_size),
-  scene_jvm_args("") {}
+  scene_jvm_args() {}
 
-GdKotlinConfiguration::GdKotlinConfiguration(jni::Jvm::Type p_vm_type, int p_max_string_size, String p_scene_jvm_args) :
+GdKotlinConfiguration::GdKotlinConfiguration(jni::Jvm::Type p_vm_type, int p_max_string_size, const String& p_scene_jvm_args) :
   vm_type(p_vm_type),
   max_string_size(p_max_string_size),
   scene_jvm_args(p_scene_jvm_args) {}
