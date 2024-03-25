@@ -6,39 +6,6 @@ class RotatingCube: Node3D() {
     // ...
 }
 ```
-## Source files .kt
-
-Just like you would do with GDScript, you can directly assign your Kotlin files to Node to act like scripts.
-This is the most straightforward method to use Kotlin scripts but not the most flexible. 
-
-The limitations are the following:
-- Your files must be located in a valid source set defined in your gradle configuration file.
-- Scripts written in a location outside the Godot project can't be used as the engine won't be able to find them. This applies to modules or libraries.
-- You can't have several script classes defined in a single file, only one of them will be usable.
-
-If those limitations don't apply to you, feel free to use Kotlin source files directly.
-
-## Registration files .gdj
-
-For each class you register, a corresponding registration file is generated (a `gdj` file). Like the .kt files, you can attach them to Nodes.
-They have several benefits over source files:
-- .gdj can be placed wherever you want in your Godot project, you are not limited to the source set.
-- Each script get its own .gdj. This includes scripts in different modules and libraries.
-- If a source file contains several scripts. A different .gdj will be generated for each.
-- Registration files are language agnostic, they are generated for Kotlin and Java files with no difference.
-- When creating a script from code using its registered name. The module is going to use the registration file as the script. Therefore, registration files are treated as the default way to use scripts inside the module.
-
-### Location
-
-By default, these files are generated into a folder called `gdj` in the root of your project.
-
-You can however configure the destination folder inside your `build.gradle.kts`:
-
-```kotlin
-godot {
-    registrationFileBaseDir.set(<folder>)
-}
-```
 
 ### Naming
 
@@ -210,3 +177,6 @@ The `@RegisterClass` annotation takes only one argument:
 ## Tool Mode
 
 Annotate your class with `@Tool` to make it a tool class (note that `@RegisterClass` is required for this annotation to take effect).
+
+!! Caution
+    This is currently not implemented.
