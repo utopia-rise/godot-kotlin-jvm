@@ -17,6 +17,8 @@ void TypeManager::clear() {
     engine_singleton_names.clear();
     named_user_scripts.clear();
     named_user_scripts_map.clear();
+    path_user_scripts.clear();;
+    filepath_to_name_map.clear();
 }
 
 int TypeManager::get_java_engine_type_constructor_index_for_type(const StringName& p_type_name) const {

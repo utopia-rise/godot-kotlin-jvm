@@ -291,6 +291,9 @@ KotlinScript::~KotlinScript() {
 #ifdef TOOLS_ENABLED
     exported_members_default_value_cache.clear();
 #endif
-    delete kotlin_class;
-    kotlin_class = nullptr;
+    if(mode == NAME){
+        // The .gdj is the one that should delete the KtClass. Without this condition, it would be deleted 2 times.
+        delete kotlin_class;
+        kotlin_class = nullptr;
+    }
 }
