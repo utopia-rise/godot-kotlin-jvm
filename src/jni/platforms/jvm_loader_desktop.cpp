@@ -13,6 +13,12 @@ void jni::JvmLoader::load_jvm_lib() {
 
     if (OS::get_singleton()->open_dynamic_library(libPath, jvmLib) != OK) {
         LOG_ERROR(String("Failed to load the jvm dynamic library from path ") + libPath + "!");
+#ifdef DEBUG_ENABLED
+        OS::get_singleton()->alert(
+          String("Failed to load the jvm dynamic library from path ") + libPath + "!",
+          "Failure while creating jvm"
+        );
+#endif
         exit(1);
     }
 }
@@ -28,6 +34,12 @@ jni::CreateJavaVM jni::JvmLoader::get_create_jvm_function() {
     void* createJavaVMSymbolHandle;
     if (OS::get_singleton()->get_dynamic_library_symbol_handle(jvmLib, "JNI_CreateJavaVM", createJavaVMSymbolHandle) != OK) {
         LOG_ERROR("Failed to get JNI_CreateJavaVM symbol handle");
+#ifdef DEBUG_ENABLED
+        OS::get_singleton()->alert(
+          "Failed to get JNI_CreateJavaVM symbol handle",
+          "Failure while creating jvm"
+        );
+#endif
         exit(1);
     }
     return reinterpret_cast<CreateJavaVM>(createJavaVMSymbolHandle);
@@ -38,6 +50,12 @@ jni::GetCreatedJavaVMs jni::JvmLoader::get_get_created_java_vm_function() {
     void* getCreatedJavaVMsSymbolHandle;
     if (OS::get_singleton()->get_dynamic_library_symbol_handle(jvmLib, "JNI_GetCreatedJavaVMs", getCreatedJavaVMsSymbolHandle) != OK) {
         LOG_ERROR("Failed to get JNI_GetCreatedJavaVMs symbol handle");
+#ifdef DEBUG_ENABLED
+        OS::get_singleton()->alert(
+          "Failed to get JNI_GetCreatedJavaVMs symbol handle",
+          "Failure while creating jvm"
+        );
+#endif
         exit(1);
     }
     return reinterpret_cast<GetCreatedJavaVMs>(getCreatedJavaVMsSymbolHandle);
@@ -48,6 +66,12 @@ String jni::JvmLoader::get_jvm_lib_path() {
     if (!FileAccess::exists(embeddedJrePath)) {
         // Cannot find graal usercode, so no JVM can be found, make crash.
         if (Jvm::get_type() == Jvm::GRAAL_NATIVE_IMAGE) {
+#ifdef DEBUG_ENABLED
+            OS::get_singleton()->alert(
+              "This usually happens when you define that your project should be executed using graalvm but did not successfully compile your project and thus usercode.(sh, dll, dylib) cannot be found.",
+              "Cannot find Graal VM user code native image"
+              );
+#endif
             JVM_CRASH_NOW_MSG("Cannot find Graal VM user code native image");
         }
 
@@ -72,6 +96,19 @@ String jni::JvmLoader::get_path_to_locally_installed_jvm() {
 
     if (javaHome.is_empty()) {
         LOG_ERROR("JAVA_HOME is not defined! Exiting...");
+#ifdef DEBUG_ENABLED
+#ifdef MACOS_ENABLED
+        OS::get_singleton()->alert(
+          "The environment variable JAVA_HOME is not found and there is no embedded jvm. If you launched the editor ",
+          "through a double click on Godot.app, also make sure that JAVA_HOME is set through launchctl: `launchctl setenv JAVA_HOME </path/to/jdk>`"
+        );
+#else
+        OS::get_singleton()->alert(
+          "The environment variable JAVA_HOME is not found and there is no embedded jvm.",
+          "JAVA_HOME is not defined"
+        );
+#endif
+#endif
         exit(1);
     }
 
@@ -83,6 +120,12 @@ String jni::JvmLoader::get_path_to_locally_installed_jvm() {
 
     if (!FileAccess::exists(pathToLocallyInstalledJvmLib)) {
         LOG_ERROR(vformat("No jvm found at %s! Exiting...", pathToLocallyInstalledJvmLib));
+#ifdef DEBUG_ENABLED
+        OS::get_singleton()->alert(
+          vformat("No jvm found at %s! Make sure JAVA_HOME points to the correct directory", pathToLocallyInstalledJvmLib),
+          "Failure while creating jvm"
+        );
+#endif
         exit(1);
     }
     return pathToLocallyInstalledJvmLib;

@@ -169,7 +169,8 @@ void GDKotlin::init() {
         }
 
         String debug_command {
-          "-agentlib:jdwp=transport=dt_socket,server=y,suspend=" + suspend + ",address=" + jvm_debug_address + ":" + jvm_debug_port};
+          "-agentlib:jdwp=transport=dt_socket,server=y,suspend=" + suspend + ",address=" + jvm_debug_address + ":" + jvm_debug_port
+        };
         args.option(debug_command.utf8());
     }
 
@@ -257,8 +258,7 @@ void GDKotlin::init() {
 
     // Garbage Collector
     jni::JClass garbage_collector_cls {env.load_class("godot.core.memory.MemoryManager", class_loader)};
-    jni::FieldId garbage_collector_instance_field {
-      garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/memory/MemoryManager;")};
+    jni::FieldId garbage_collector_instance_field {garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/memory/MemoryManager;")};
     jni::JObject garbage_collector_instance {garbage_collector_cls.get_static_object_field(env, garbage_collector_instance_field)};
     JVM_CRASH_COND_MSG(garbage_collector_instance.is_null(), "Failed to retrieve MemoryManager instance");
 
@@ -280,8 +280,7 @@ void GDKotlin::init() {
     }
 
     if (!should_display_leaked_jvm_instances_on_close) {
-        jni::MethodId set_should_display_method_id {
-          garbage_collector_cls.get_method_id(env, "setShouldDisplayLeakInstancesOnClose", "(Z)V")};
+        jni::MethodId set_should_display_method_id {garbage_collector_cls.get_method_id(env, "setShouldDisplayLeakInstancesOnClose", "(Z)V")};
         jvalue d_arg[1] = {jni::to_jni_arg(false)};
         garbage_collector_instance.call_void_method(env, set_should_display_method_id, d_arg);
     }
@@ -341,8 +340,8 @@ void GDKotlin::finish() {
 
     if (is_gc_started) {
         jni::JClass garbage_collector_cls {env.load_class("godot.core.memory.MemoryManager", ClassLoader::get_default_loader())};
-        jni::FieldId garbage_collector_instance_field {
-          garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/memory/MemoryManager;")};
+        jni::FieldId garbage_collector_instance_field {garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/memory/MemoryManager;")
+        };
         jni::JObject garbage_collector_instance {garbage_collector_cls.get_static_object_field(env, garbage_collector_instance_field)};
         JVM_CRASH_COND_MSG(garbage_collector_instance.is_null(), "Failed to retrieve MemoryManager instance");
         jni::MethodId close_method_id {garbage_collector_cls.get_method_id(env, "close", "()V")};
@@ -470,10 +469,23 @@ bool GDKotlin::check_configuration() {
         configuration_errors.push_back(
           {"JAVA_HOME not defined",
            "JAVA_HOME environment variable is not defined. This is necessary for Godot-Jvm to work while you develop "
-           "on your machine.\n"
-           "You can continue to use the editor but all Godot-Jvm related functionality remains disabled until you "
-           "define JAVA_HOME and restart the editor."}
+           "on your machine."}
         );
+
+#ifdef MACOS_ENABLED
+        OS::get_singleton()->alert(
+          "The environment variable JAVA_HOME is not found. If you launched the editor "
+          "through a double click on Godot.app, also make sure that JAVA_HOME is set through launchctl: `launchctl setenv JAVA_HOME </path/to/jdk>`",
+          ""
+        );
+#else
+        OS::get_singleton()->alert(
+          "The environment variable JAVA_HOME is not found.",
+          "JAVA_HOME not defined. Godot-JVM module won't be loaded!"
+        );
+#endif
+
+        exit(1); // TODO: remove once we refactor gd_kotlin and move init checks
         has_configuration_error = true;
     }
     return !has_configuration_error;
