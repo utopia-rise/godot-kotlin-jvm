@@ -33,6 +33,9 @@ fun Project.setupConfigurationsAndCompilations() {
         with(it.dependencies) {
             add(dependencies.create("org.jetbrains.kotlin:kotlin-stdlib:${kotlinJvmExtension.coreLibrariesVersion}"))
             add(dependencies.create("com.utopia-rise:$godotLibraryArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
+
+            // add reflection explicitly so it's usable in exported projects as well. See: GH-571
+            add(dependencies.create("org.jetbrains.kotlin:kotlin-reflect:${GodotBuildProperties.supportedKotlinVersion}"))
         }
     }
 }

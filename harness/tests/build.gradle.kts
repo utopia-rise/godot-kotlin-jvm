@@ -42,6 +42,11 @@ dependencies {
     implementation("com.godot.tests:hierarchical-library")
     implementation("com.godot.tests:flattened-library")
     implementation("com.godot.tests:fqname-library")
+
+
+    // reflection test cases: see GH-571
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.16.1")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.16.1")
 }
 
 
