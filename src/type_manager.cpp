@@ -99,7 +99,6 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
             // Script doesn't exist so we create it.
             ref.instantiate();
             ref->kotlin_class = kotlin_class;
-            ref->mode = KotlinScript::AccessMode::NAME;
 #ifdef DEV_ENABLED
             LOG_VERBOSE(vformat("Kotlin Script created: %s", script_name));
 #endif
@@ -188,11 +187,9 @@ Ref<KotlinScript> TypeManager::create_script(const String& p_path, bool named) {
     ref.instantiate();
     ref->set_path(p_path, true);
     if(named) {
-        ref->mode = KotlinScript::NAME;
         named_user_scripts_map[ref->get_global_name()] = ref;
         named_user_scripts.push_back(ref);
     } else {
-        ref->mode = KotlinScript::PATH;
         if(filepath_to_name_map.has(p_path)) {
             ref->kotlin_class = named_user_scripts_map[filepath_to_name_map[p_path]]->kotlin_class;
             path_user_scripts.push_back(ref);

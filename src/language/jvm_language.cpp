@@ -62,7 +62,7 @@ void JvmLanguage::get_recognized_extensions(List<String>* p_extensions) const {
 }
 
 bool JvmLanguage::handles_global_class_type(const String& p_type) const {
-    return p_type == GODOT_KOTLIN_SCRIPT_NAME;
+    return p_type == GODOT_JVM_SCRIPT_NAME;
 }
 
 bool JvmLanguage::has_named_classes() const {

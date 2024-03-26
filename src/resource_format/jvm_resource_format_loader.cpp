@@ -13,7 +13,7 @@ String JvmResourceFormatLoader::get_resource_type(const String& p_path) const {
     String ext = p_path.get_extension().to_lower();
 
     if (ext == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
-        return GODOT_KOTLIN_SCRIPT_NAME;
+        return GODOT_JVM_SCRIPT_NAME;
     } else if (ext == GODOT_KOTLIN_SCRIPT_EXTENSION) {
         return GODOT_KOTLIN_SCRIPT_NAME;
     }
