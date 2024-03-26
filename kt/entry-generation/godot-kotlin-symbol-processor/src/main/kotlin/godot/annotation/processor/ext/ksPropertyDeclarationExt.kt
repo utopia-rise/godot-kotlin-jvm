@@ -4,16 +4,19 @@ import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSPropertyDeclaration
 import com.google.devtools.ksp.symbol.Modifier
+import godot.annotation.processor.Settings
 import godot.annotation.processor.compiler.PsiProvider
 import godot.entrygenerator.ext.hasAnnotation
-import godot.entrygenerator.model.*
-import java.io.File
+import godot.entrygenerator.model.EnumAnnotation
+import godot.entrygenerator.model.EnumHintStringAnnotation
+import godot.entrygenerator.model.EnumListHintStringAnnotation
+import godot.entrygenerator.model.PropertyAnnotation
+import godot.entrygenerator.model.RegisteredProperty
+import godot.entrygenerator.model.RegisteredSignal
 
 internal fun KSPropertyDeclaration.mapToRegisteredProperty(
-    isFqNameRegistrationEnabled: Boolean,
-    classNamePrefix: String?,
-    projectBaseDir: File,
-    ): RegisteredProperty {
+    settings: Settings,
+): RegisteredProperty {
     val fqName = requireNotNull(qualifiedName?.asString()) {
         "Qualified name for a registered property declaration cannot be null"
     }
@@ -53,7 +56,8 @@ internal fun KSPropertyDeclaration.mapToRegisteredProperty(
         !annotations.hasAnnotation<EnumAnnotation>() &&
         typeDeclaration.qualifiedName?.asString()?.startsWith("kotlin.collections") == true
     ) {
-        val containingTypeDeclaration = (type.resolve().arguments.firstOrNull()?.type?.resolve()?.declaration as? KSClassDeclaration)
+        val containingTypeDeclaration =
+            (type.resolve().arguments.firstOrNull()?.type?.resolve()?.declaration as? KSClassDeclaration)
         if (containingTypeDeclaration?.classKind == ClassKind.ENUM_CLASS) {
             annotations.add(
                 EnumListHintStringAnnotation( //here we already know it has to be a enumList as enumFlags are already covered in the annotation resolving
@@ -69,7 +73,7 @@ internal fun KSPropertyDeclaration.mapToRegisteredProperty(
         }
     }
 
-    val mappedType = requireNotNull(type.mapToType(isFqNameRegistrationEnabled, classNamePrefix, projectBaseDir)) {
+    val mappedType = requireNotNull(type.mapToType(settings)) {
         "type of property $fqName cannot be null"
     }
 
@@ -86,17 +90,15 @@ internal fun KSPropertyDeclaration.mapToRegisteredProperty(
 
 internal fun KSPropertyDeclaration.mapToRegisteredSignal(
     declaredProperties: List<KSPropertyDeclaration>,
-    isFqNameRegistrationEnabled: Boolean,
-    classNamePrefix: String?,
-    projectBaseDir: File,
-    ): RegisteredSignal {
+    settings: Settings,
+): RegisteredSignal {
     val fqName = requireNotNull(qualifiedName?.asString()) {
         "Qualified name for a registered property declaration cannot be null"
     }
     val annotations = annotations
         .mapNotNull { it.mapToAnnotation(this) as? PropertyAnnotation }
 
-    val mappedType = requireNotNull(type.mapToType(isFqNameRegistrationEnabled, classNamePrefix, projectBaseDir)) {
+    val mappedType = requireNotNull(type.mapToType(settings)) {
         "type of property $fqName cannot be null"
     }
 
@@ -115,7 +117,7 @@ internal fun KSPropertyDeclaration.mapToRegisteredSignal(
         parameterTypes = type.resolve().arguments.map { ksTypeArgument ->
             requireNotNull(requireNotNull(ksTypeArgument.type) {
                 "typeArgument's type of type $mappedType cannot be null"
-            }.mapToType(isFqNameRegistrationEnabled, classNamePrefix, projectBaseDir)) {
+            }.mapToType(settings)) {
                 "Type of signal $fqName cannot be null"
             }
         },

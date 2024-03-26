@@ -1,15 +1,18 @@
 package godot.annotation.processor.ext
 
-import com.google.devtools.ksp.symbol.*
+import com.google.devtools.ksp.symbol.ClassKind
+import com.google.devtools.ksp.symbol.KSClassDeclaration
+import com.google.devtools.ksp.symbol.KSDeclaration
+import com.google.devtools.ksp.symbol.KSType
+import com.google.devtools.ksp.symbol.KSTypeAlias
+import com.google.devtools.ksp.symbol.KSTypeReference
 import godot.annotation.RegisterClass
+import godot.annotation.processor.Settings
 import godot.entrygenerator.model.Type
 import godot.entrygenerator.model.TypeKind
-import java.io.File
 
 internal fun KSTypeReference.mapToType(
-    isFqNameRegistrationEnabled: Boolean,
-    classNamePrefix: String?,
-    projectBaseDir: File,
+    settings: Settings,
 ): Type {
     val resolvedType = resolve()
     val declaration = resolvedType.declaration
@@ -19,8 +22,8 @@ internal fun KSTypeReference.mapToType(
     }.removeSuffix("?")
 
     val superTypes = when (val declaration = declaration) {
-        is KSClassDeclaration -> declaration.superTypes.mapNotNull { it.mapToType(isFqNameRegistrationEnabled, classNamePrefix, projectBaseDir) }.toList()
-        is KSTypeAlias -> listOfNotNull(declaration.type.mapToType(isFqNameRegistrationEnabled, classNamePrefix, projectBaseDir))
+        is KSClassDeclaration -> declaration.superTypes.mapNotNull { it.mapToType(settings) }.toList()
+        is KSTypeAlias -> listOfNotNull(declaration.type.mapToType(settings))
         else -> throw IllegalStateException("Unknown declaration type $declaration for type reference")
     }
 
@@ -39,21 +42,19 @@ internal fun KSTypeReference.mapToType(
         kind = typeKind,
         isNullable = resolvedType.isMarkedNullable,
         supertypes = superTypes,
-        arguments = { resolvedType.arguments.mapNotNull { it.type?.mapToType(isFqNameRegistrationEnabled, classNamePrefix, projectBaseDir) } },
-        registeredName = { resolvedType.provideRegisteredClassName(isFqNameRegistrationEnabled, classNamePrefix) },
+        arguments = { resolvedType.arguments.mapNotNull { it.type?.mapToType(settings) } },
+        registeredName = { resolvedType.provideRegisteredClassName(settings) },
     )
 }
 
 internal fun KSType.provideRegisteredClassName(
-    isFqNameRegistrationEnabled: Boolean,
-    classNamePrefix: String?,
+    settings: Settings,
 ): String? {
-    return this.declaration.provideRegisteredClassName(isFqNameRegistrationEnabled, classNamePrefix)
+    return this.declaration.provideRegisteredClassName(settings)
 }
 
 internal fun KSDeclaration.provideRegisteredClassName(
-    isFqNameRegistrationEnabled: Boolean,
-    classNamePrefix: String?,
+    settings: Settings,
 ): String? {
     val registerClassAnnotation = annotations
         .firstOrNull { it.fqNameUnsafe == RegisterClass::class.qualifiedName }
@@ -66,7 +67,7 @@ internal fun KSDeclaration.provideRegisteredClassName(
     val fqName = this.qualifiedName?.asString() ?: return null
 
     val registeredName = if (customName.isNullOrEmpty()) {
-        if (isFqNameRegistrationEnabled) {
+        if (settings.isFqNameRegistrationEnabled) {
             fqName.replace(".", "_")
         } else {
             if (fqName.contains(".")) {
@@ -79,16 +80,16 @@ internal fun KSDeclaration.provideRegisteredClassName(
         customName
     }
 
-    return if (classNamePrefix != null) {
+    return if (settings.classPrefix != null) {
         if (registeredName.contains("_")) {
             val packageName = registeredName.substringBeforeLast("_")
             val classNameWithPrefix = registeredName
                 .substringAfterLast("_")
-                .let { className -> "${classNamePrefix.uppercase()}$className" }
+                .let { className -> "${settings.classPrefix.uppercase()}$className" }
 
             "${packageName}_$classNameWithPrefix"
         } else {
-            "${classNamePrefix.uppercase()}$registeredName"
+            "${settings.classPrefix.uppercase()}$registeredName"
         }
     } else {
         registeredName

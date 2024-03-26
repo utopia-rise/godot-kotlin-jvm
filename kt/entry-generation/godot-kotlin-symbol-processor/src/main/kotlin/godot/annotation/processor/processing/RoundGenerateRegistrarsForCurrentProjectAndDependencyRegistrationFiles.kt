@@ -30,9 +30,7 @@ internal class RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistration
 ) : BaseRound() {
     override fun executeInternal(): List<KSAnnotated> {
         val registerAnnotationVisitor = RegistrationAnnotationVisitor(
-            isFqNameRegistrationEnabled = settings.isFqNameRegistrationEnabled,
-            classNamePrefix = settings.classPrefix,
-            projectBaseDir = settings.projectBaseDir,
+            settings = settings,
         )
 
         resolver.getNewFiles().ifEmpty { resolver.getAllFiles() }.toList().map {
