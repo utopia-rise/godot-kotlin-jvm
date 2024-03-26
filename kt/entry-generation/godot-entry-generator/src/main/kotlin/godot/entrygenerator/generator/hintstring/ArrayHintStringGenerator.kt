@@ -1,17 +1,23 @@
 package godot.entrygenerator.generator.hintstring
 
+import godot.core.PropertyHint
+import godot.core.VariantType
+import godot.entrygenerator.ext.baseGodotType
+import godot.entrygenerator.ext.getAsGodotClassName
 import godot.entrygenerator.ext.getAsVariantTypeOrdinal
 import godot.entrygenerator.ext.getCompatibleListType
 import godot.entrygenerator.ext.isCompatibleList
 import godot.entrygenerator.ext.isCoreType
 import godot.entrygenerator.ext.isGodotPrimitive
+import godot.entrygenerator.ext.isNodeType
+import godot.entrygenerator.ext.isResource
 import godot.entrygenerator.model.EnumAnnotation
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.Type
 import godot.entrygenerator.model.TypeKind
 
 class ArrayHintStringGenerator(
-    registeredProperty: RegisteredProperty
+    registeredProperty: RegisteredProperty,
 ) : PropertyHintStringGenerator<EnumAnnotation>(registeredProperty) {
 
 
@@ -25,9 +31,10 @@ class ArrayHintStringGenerator(
             elementType != null && elementType.fqName == Any::class.qualifiedName -> ""
             elementType != null && elementType.kind == TypeKind.ENUM_CLASS -> {
                 propertyHintAnnotation?.enumValueNames?.joinToString(",")?.let { enumValuesHintString ->
-                    "2/2:$enumValuesHintString" //2 = VariantType.LONG.ordinal | 3 = PropertyHint.ENUM.ordinal
+                    "${VariantType.LONG.id}/${VariantType.LONG.id}:$enumValuesHintString"
                 } ?: ""
             }
+
             else -> {
                 buildString {
                     var currentElementType: Type? = elementType
@@ -39,23 +46,49 @@ class ArrayHintStringGenerator(
                         }
                     }
 
+                    // subType/subTypeHint:nextSubtype ... etc.
+                    // "2:int"
+                    // "24/34:Button"
+                    // "24/17:Texture"
                     loop@ while (currentElementType != null) {
                         when {
                             currentElementType.isCompatibleList() -> {
-                                append(":28") //variant.type.array.ordinal
+                                append(VariantType.ARRAY.id)
                                 currentElementType = currentElementType.arguments().firstOrNull()
                             }
+
                             currentElementType.isGodotPrimitive() || currentElementType.isCoreType() -> {
-                                append(":${currentElementType.getAsVariantTypeOrdinal()}")
+                                append("${currentElementType.getAsVariantTypeOrdinal()}:${currentElementType.getAsGodotClassName()}")
                                 break@loop
                             }
+
+                            currentElementType.isNodeType() || currentElementType.isResource() -> {
+                                val objectVariantType = VariantType.OBJECT.id
+
+                                val propertyType = when {
+                                    currentElementType.isNodeType() -> PropertyHint.NODE_TYPE.ordinal
+                                    currentElementType.isResource() -> PropertyHint.RESOURCE_TYPE.ordinal
+                                    else -> ""
+                                }
+                                val className = currentElementType.registeredName()
+                                    ?: currentElementType.baseGodotType()?.fqName?.substringAfterLast(".")
+
+                                val subTypeString = if (className != null) {
+                                    "/$propertyType:$className"
+                                } else {
+                                    ""
+                                }
+
+                                append("$objectVariantType$subTypeString")
+                                break@loop
+                            }
+
                             else -> {
                                 clear()
                                 break@loop
                             }
                         }
                     }
-                    delete(0, 1)
                 }
             }
         }

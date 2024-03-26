@@ -5,8 +5,19 @@ data class Type(
     val kind: TypeKind,
     val isNullable: Boolean,
     val supertypes: List<Type>,
-    val arguments: () -> List<Type>
-)
+    val arguments: () -> List<Type>,
+    val registeredName: () -> String?,
+) {
+    val allSuperTypes: List<Type>
+        get() = collectSupertypes()
+
+    private fun collectSupertypes(): List<Type> {
+        return listOf(
+            *supertypes.toTypedArray(),
+            *supertypes.flatMap { it.collectSupertypes() }.toTypedArray()
+        )
+    }
+}
 
 enum class TypeKind {
     INTERFACE,

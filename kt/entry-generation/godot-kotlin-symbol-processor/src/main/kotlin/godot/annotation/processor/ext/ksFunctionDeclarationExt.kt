@@ -4,18 +4,21 @@ import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.google.devtools.ksp.symbol.Modifier
 import godot.annotation.RegisterFunction
+import godot.annotation.processor.Settings
 import godot.entrygenerator.model.ConstructorAnnotation
 import godot.entrygenerator.model.FunctionAnnotation
 import godot.entrygenerator.model.RegisteredConstructor
 import godot.entrygenerator.model.RegisteredFunction
 
-internal fun KSFunctionDeclaration.mapToRegisteredConstructor(): RegisteredConstructor {
+internal fun KSFunctionDeclaration.mapToRegisteredConstructor(
+    settings: Settings,
+): RegisteredConstructor {
     return RegisteredConstructor(
         fqName = requireNotNull(qualifiedName?.asString() ?: parentDeclaration?.qualifiedName?.asString()) {
             "Qualified name for a registered constructor declaration cannot be null"
         },
         parameters = parameters.map { ksValueParameter ->
-            ksValueParameter.mapToValueParameter()
+            ksValueParameter.mapToValueParameter(settings)
         },
         annotations = annotations
             .mapNotNull { it.mapToAnnotation(this) as? ConstructorAnnotation }
@@ -25,19 +28,22 @@ internal fun KSFunctionDeclaration.mapToRegisteredConstructor(): RegisteredConst
 }
 
 
-internal fun KSFunctionDeclaration.mapToRegisteredFunction(currentClass: KSClassDeclaration): RegisteredFunction? {
+internal fun KSFunctionDeclaration.mapToRegisteredFunction(
+    currentClass: KSClassDeclaration,
+    settings: Settings,
+): RegisteredFunction? {
     return if (annotations.any { it.fqNameUnsafe == RegisterFunction::class.qualifiedName }) {
         val fqName = requireNotNull(qualifiedName?.asString()) {
             "Qualified name for a registered function declaration cannot be null"
         }
-        val parameters = parameters.map { it.mapToValueParameter() }
+        val parameters = parameters.map { it.mapToValueParameter(settings) }
         val annotations = annotations.mapNotNull { it.mapToAnnotation(this) as? FunctionAnnotation }
         RegisteredFunction(
             fqName = fqName,
             isOverridee = this.modifiers.contains(Modifier.OVERRIDE),
             isDeclaredInThisClass = parentDeclaration == currentClass,
             parameters = parameters,
-            returnType = returnType?.mapToType(),
+            returnType = returnType?.mapToType(settings),
             annotations = annotations.toList(),
             symbolProcessorSource = this
         )

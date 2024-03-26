@@ -95,14 +95,14 @@ fun Type.isCoreType(): Boolean {
 }
 
 fun Type.isNodeType(): Boolean {
-    return fqName == "$godotApiPackage.${GodotTypes.node}" || supertypes.any { supertype -> supertype.isNodeType() }
+    return fqName == "$godotApiPackage.${GodotTypes.node}" || allSuperTypes.any { supertype -> supertype.fqName == "$godotApiPackage.${GodotTypes.node}" }
 }
 
 fun Type.baseGodotType(): Type? {
     return if (fqName.startsWith(godotApiPackage)) {
         this
     } else {
-        supertypes.firstNotNullOfOrNull { supertype -> supertype.baseGodotType() }
+        allSuperTypes.firstOrNull { supertype -> supertype.fqName.startsWith(godotApiPackage) }
     }
 }
 
@@ -113,13 +113,16 @@ fun Type.toTypeName(): TypeName = ClassName(
 
 fun Type.isCompatibleList(): Boolean = when (fqName) {
     "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" -> true
-    else -> supertypes.any { it.isCompatibleList() }
+    else -> allSuperTypes.any { it.fqName == "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" }
 }
 
-fun Type.isReference(): Boolean = fqName == "$godotApiPackage.${GodotKotlinJvmTypes.refCounted}" ||
-    this
-        .supertypes
-        .any { supertype -> supertype.isReference() }
+fun Type.isReference(): Boolean = fqName == "$godotApiPackage.${GodotKotlinJvmTypes.refCounted}" || this
+    .allSuperTypes
+    .any { supertype -> supertype.fqName == "$godotApiPackage.${GodotKotlinJvmTypes.refCounted}" }
+
+fun Type.isResource(): Boolean = fqName == "$godotApiPackage.${GodotKotlinJvmTypes.resource}" || this
+    .allSuperTypes
+    .any { supertype -> supertype.fqName == "$godotApiPackage.${GodotKotlinJvmTypes.resource}" }
 
 fun Type.isGodotPrimitive(): Boolean = when (fqName) {
     Int::class.qualifiedName,
@@ -186,6 +189,22 @@ fun Type.getAsVariantTypeOrdinal(): Int? = when (fqName) {
     } else {
         null
     }
+}
+
+fun Type.getAsGodotClassName(): String = when {
+    fqName == Boolean::class.qualifiedName -> "bool"
+    fqName == Int::class.qualifiedName ||
+        fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.naturalT}" ||
+        fqName == Long::class.qualifiedName ||
+        fqName == Byte::class.qualifiedName ||
+        fqName == Short::class.qualifiedName ||
+        fqName == Enum::class.qualifiedName -> "int"
+    fqName == Float::class.qualifiedName ||
+        fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.realT}" ||
+        fqName == Double::class.qualifiedName -> "float"
+    fqName == String::class.qualifiedName -> "String"
+    fqName.startsWith(godotCorePackage) -> fqName.substringAfterLast(".")
+    else -> registeredName() ?: fqName.substringAfterLast(".")
 }
 
 fun Type.isCompatibleListType(): Boolean {

@@ -36,7 +36,7 @@ it cannot be debugged traditionally by just clicking the Debug button on the `bu
 To debug a project, open a terminal, change to project's root directory and type the following command:
 
 ```bash
-./gradlew build --no-daemon -Dorg.gradle.debug=true -Dkotlin.compiler.execution.strategy="in-process" -Dkotlin.daemon.jvm.options="-Xdebug,-Xrunjdwp:transport=dt_socket,address=5005,server=y,suspend=n"
+./gradlew kspKotlin -Dkotlin.daemon.jvm.options="-Xdebug,-Xrunjdwp:transport=dt_socket\,address=8765\,server=y\,suspend=y"
 ```
 
 This will halt the compilation until you attach a remote debugger. You can find a pre-configured run for it in the sample project `tests` called `DebugEntryGenerator`.
@@ -44,5 +44,4 @@ This will halt the compilation until you attach a remote debugger. You can find 
 !!! note
     Compilation with attached debugger will be way slower. Especially for the initial build. So, please, be patient. It takes some time until it hits your breakpoints.
 
-Keep in mind: as this spawns a new daemon for each build, no incremental build is supported.
-Each build builds everything. If you need to debug a incremental build issue, the only way at the moment is logging relevant debug information to a file.
+Keep in mind: As this spawns a new daemon for each build, no incremental build is supported. Each build builds everything. If you need to debug a incremental build issue, the only way atm is to log relevant debug information to a file.

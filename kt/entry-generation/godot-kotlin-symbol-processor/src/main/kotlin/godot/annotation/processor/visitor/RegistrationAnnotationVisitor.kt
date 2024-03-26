@@ -8,21 +8,19 @@ import godot.annotation.RegisterConstructor
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
+import godot.annotation.processor.Settings
 import godot.annotation.processor.ext.fqNameUnsafe
 import godot.annotation.processor.ext.hasCompilationErrors
 import godot.annotation.processor.ext.mapToClazz
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.SourceFile
-import java.io.File
 
 /**
  * Collects [RegisterClass], [RegisterConstructor], [RegisterFunction], [RegisterProperty], [RegisterSignal] annotations
  * for registrar generation and entry generation
  */
 internal class RegistrationAnnotationVisitor(
-    private val isFqNameRegistrationEnabled: Boolean,
-    private val classNamePrefix: String?,
-    private val projectBaseDir: File,
+    private val settings: Settings,
 ) : KSVisitorVoid() {
 
     private val registerAnnotations = listOf(
@@ -49,7 +47,7 @@ internal class RegistrationAnnotationVisitor(
                         if (declaration.hasCompilationErrors()) {
                             null
                         } else {
-                            val clazz = declaration.mapToClazz(isFqNameRegistrationEnabled, classNamePrefix, projectBaseDir)
+                            val clazz = declaration.mapToClazz(settings)
                             if (clazz is RegisteredClass) {
                                 clazz
                             } else null
