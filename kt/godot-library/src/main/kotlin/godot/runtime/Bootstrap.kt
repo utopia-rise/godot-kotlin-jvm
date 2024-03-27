@@ -93,6 +93,7 @@ internal class Bootstrap {
         watchService?.close()
         clearClassesCache()
         serviceLoader.reload()
+        Thread.currentThread().threadGroup.interrupt()
     }
 
     private fun doInit(mainJar: URL, classLoader: ClassLoader?) {
