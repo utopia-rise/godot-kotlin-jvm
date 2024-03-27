@@ -5,7 +5,10 @@
 #include "language/kotlin_language.h"
 
 void JvmResourceFormatSaver::get_recognized_extensions(const Ref<Resource>& p_resource, List<String>* p_extensions) const {
-    if (recognize(p_resource)) { p_extensions->push_back(GODOT_KOTLIN_SCRIPT_EXTENSION); }
+    if (recognize(p_resource)) {
+        p_extensions->push_back(GODOT_KOTLIN_SCRIPT_EXTENSION);
+        p_extensions->push_back(GODOT_JVM_REGISTRATION_FILE_EXTENSION);
+    }
 }
 
 bool JvmResourceFormatSaver::recognize(const Ref<Resource>& p_resource) const {

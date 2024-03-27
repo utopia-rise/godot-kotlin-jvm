@@ -127,8 +127,30 @@ void JvmLanguage::get_doc_comment_delimiters(List<String>* p_delimiters) const {
 
 void JvmLanguage::get_string_delimiters(List<String>* p_delimiters) const {}
 
+String JvmLanguage::get_template(const String& p_class_name, const String& p_base_class_name) const {
+    String kotlinClassTemplate {"// THIS FILE IS GENERATED! DO NOT EDIT OR DELETE IT. EDIT OR DELETE THE ASSOCIATED SOURCE CODE FILE INSTEAD\n"
+                                "// Note: You can however freely move this file inside your godot project if you want. Keep in mind however, that if you rename the originating source code file, this file will be deleted and regenerated as a new file instead of being updated! Other modifications to the source file however, will result in this file being updated.\n"
+                                "\n"
+                                "registeredName = %CLASS%\n"
+                                "fqName = godot.%CLASS%\n"
+                                "relativeSourcePath = \"\"\n"
+                                "baseType = %BASE%\n"
+                                "supertypes = [\n"
+                                "    godot.%BASE%\n"
+                                "]\n"
+                                "signals = []\n"
+                                "properties = []\n"
+                                "functions = []\n"
+    };
+    return kotlinClassTemplate.replace("%BASE%", p_base_class_name).replace("%CLASS%", p_class_name);
+}
+
 Ref<Script> JvmLanguage::make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const {
-    return {};
+    Ref<KotlinScript> kotlin_script;
+    kotlin_script.instantiate();
+    kotlin_script->set_source_code(get_template(p_class_name, p_base_class_name));
+    kotlin_script->set_name(p_class_name);
+    return kotlin_script;
 }
 
 Vector<ScriptLanguage::ScriptTemplate> JvmLanguage::get_built_in_templates(StringName p_object) {
