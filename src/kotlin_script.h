@@ -12,9 +12,16 @@ class KotlinScript : public Script {
     friend class KotlinInstance;
     friend class TypeManager;
 
+    enum AccessMode {
+        NONE,
+        PATH,
+        NAME,
+    };
+
 private:
     KtClass* kotlin_class;
     String source;
+    AccessMode mode;
 
     template<bool isCreator>
     ScriptInstance* _instance_create(const Variant** p_args, int p_argcount, Object* p_this);
@@ -97,7 +104,7 @@ public:
     void update_exports() override;
     Vector<DocData::ClassDoc> get_documentation() const override;
     PropertyInfo get_class_category() const override;
-    virtual String get_class_icon_path() const override;
+    String get_class_icon_path() const override;
 
 #endif
 

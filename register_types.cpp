@@ -5,14 +5,16 @@
 #include <editor/export/editor_export.h>
 #endif
 
+#include "gd_kotlin.h"
+#include "language/jvm_language.h"
+#include "language/kotlin_language.h"
 #include "register_types.h"
-#include "resource_format/gdj_resource_format_loader.h"
-#include "resource_format/kt_resource_format_saver.h"
-#include "src/kotlin_language.h"
+#include "resource_format/jvm_resource_format_loader.h"
+#include "resource_format/jvm_resource_format_saver.h"
 #include "src/kotlin_script.h"
 
-Ref<GdjResourceFormatLoader> resource_format_loader;
-Ref<KtResourceFormatSaver> resource_format_saver;
+Ref<JvmResourceFormatLoader> resource_format_loader;
+Ref<JvmResourceFormatSaver> resource_format_saver;
 
 #ifdef TOOLS_ENABLED
 static void editor_init() {
@@ -29,7 +31,10 @@ static EditorPlugin* godot_kotlin_jvm_editor_plugin_creator_func() {
 void initialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
     if (p_level == MODULE_INITIALIZATION_LEVEL_SCENE) {
         GDREGISTER_CLASS(KotlinScript);
+
+        ScriptServer::register_language(JvmLanguage::get_instance());
         ScriptServer::register_language(KotlinLanguage::get_instance());
+
         resource_format_loader.instantiate();
         ResourceLoader::add_resource_format_loader(resource_format_loader);
         resource_format_saver.instantiate();
@@ -50,6 +55,10 @@ void uninitialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
     KotlinLanguage* kotlin_language {KotlinLanguage::get_instance()};
     ScriptServer::unregister_language(kotlin_language);
     memdelete(kotlin_language);
+
+    JvmLanguage* jvm_language {JvmLanguage::get_instance()};
+    ScriptServer::unregister_language(jvm_language);
+    memdelete(jvm_language);
 
     ResourceLoader::remove_resource_format_loader((resource_format_loader));
     ResourceSaver::remove_resource_format_saver(resource_format_saver);

@@ -1,9 +1,8 @@
 #include "kotlin_instance.h"
 
-#include "core/core_string_names.h"
 #include "gd_kotlin.h"
-#include "kotlin_language.h"
 #include "kt_class.h"
+#include "language/kotlin_language.h"
 
 KotlinInstance::KotlinInstance(Object* p_owner, KtObject* p_kt_object, KotlinScript* p_script) :
   owner(p_owner),
