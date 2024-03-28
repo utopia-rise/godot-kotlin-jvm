@@ -24,7 +24,7 @@ bool JvmResourceFormatLoader::handles_type(const String& p_type) const {
     return p_type == "Script" || p_type == GODOT_KOTLIN_SCRIPT_NAME || p_type == GODOT_JVM_SCRIPT_NAME;
 }
 
-Error kt_read_all_file_utf8(const String& p_path, String& r_content) {
+Error read_all_file_utf8(const String& p_path, String& r_content) {
     Vector<uint8_t> source_file;
     Error err;
     Ref<FileAccess> file_access {FileAccess::open(p_path, FileAccess::READ, &err)};
@@ -70,7 +70,7 @@ Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& 
     }
 
     String source_code;
-    Error load_err {kt_read_all_file_utf8(p_path, source_code)};
+    Error load_err {read_all_file_utf8(p_path, source_code)};
 
     ref->set_source_code(source_code);
 

@@ -28,7 +28,7 @@ Error JvmResourceFormatSaver::save(const Ref<Resource>& p_resource, const String
 
     Error err;
     Ref<FileAccess> file {FileAccess::open(p_path, FileAccess::WRITE, &err)};
-    JVM_ERR_FAIL_COND_V_MSG(err != OK, err, "Cannot save Kotlin script file '" + p_path + "'.");
+    JVM_ERR_FAIL_COND_V_MSG(err != OK, err, "Cannot save Script file '" + p_path + "'.");
     file->store_string(kotlin_script->get_source_code());
 
     if (file->get_error() != OK && file->get_error() != ERR_FILE_EOF) { return ERR_CANT_CREATE; }

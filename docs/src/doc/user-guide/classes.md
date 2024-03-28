@@ -7,6 +7,8 @@ class RotatingCube: Node3D() {
 }
 ```
 
+Each registered classes will generate its own .gdj files. For more information, read [registration files](../user-guide/api-differences.md#registration-files-gdj).
+
 ### Naming
 
 Classes need to be registered with a unique name as Godot does not support namespaces (or packages in this case) for script classes.
@@ -178,5 +180,5 @@ The `@RegisterClass` annotation takes only one argument:
 
 Annotate your class with `@Tool` to make it a tool class (note that `@RegisterClass` is required for this annotation to take effect).
 
-!! Caution
+!!! Caution
     This is currently not implemented.

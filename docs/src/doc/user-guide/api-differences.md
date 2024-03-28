@@ -5,9 +5,6 @@ Godot Kotlin/JVM offers two different ways to attach scripts:
 - Source files
 - Registration files.
 
-!!! Reason
-    Contrary to GDScript, Kotlin is a compiled language. Hence, if you use a library which defines scripts you can not attach those to nodes anymore as the source files don't exist. You only have a jar of the library. While in GDScript you still have the sources when using an addon. With our registration files our compiler plugin is able to extract those from the libraries you use and provide them to you, so you can also attach scripts from libraries you use.
-
 ## Source files .kt
 
 Just like you would do with GDScript, you can directly attach your Kotlin files to Nodes as scripts.
@@ -16,7 +13,7 @@ This is the most straightforward method to use Kotlin scripts but not the most f
 The limitations are the following:
 
 - Your files must be located inside a valid source set defined in your gradle configuration file.
-- Scripts written in a location outside the Godot project can't be used as the engine won't be able to find them. This applies to modules or libraries.
+- Scripts written in a location outside the Godot project can't be used as the engine won't be able to find them. This applies to modules and libraries.
 - if several script classes are defined inside a single file, only one of them will be usable.
 - The script is nameless. You won't be able to write code in GDScript like (doesn't apply to Kotlin code):
     ```kotlin
@@ -38,7 +35,7 @@ They have several benefits over source files:
 - Registration files are language agnostic, they are generated for Kotlin and Java files with no difference.
 - When creating a script from code using its registered name. The module is going to use the registration file as the script. Therefore, registration files are treated as the default way to use scripts inside the module.
 
-By default, these files are generated into a folder called `gdj` in the root of your project if it comes from an external source.
+By default, these files are generated into a folder called `gdj` in the root of your project.
 
 You can however configure the destination folder inside your `build.gradle.kts`:
 
@@ -47,6 +44,10 @@ godot {
     registrationFileBaseDir.set(<folder>)
 }
 ```
+
+!!! Reason
+    Contrary to GDScript, Kotlin is a compiled language. Hence, if you use a library which defines scripts you can not attach those to nodes anymore as the source files don't exist. You only have a jar of the library. While in GDScript you still have the sources when using an addon. With our registration files our compiler plugin is able to extract those from the libraries you use and provide them to you, so you can also attach scripts from libraries you use.
+
 
 ## Class and member registration
 

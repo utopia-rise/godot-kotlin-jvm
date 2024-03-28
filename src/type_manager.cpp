@@ -87,14 +87,14 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
             ref->kotlin_class = kotlin_class;
 
 #ifdef DEV_ENABLED
-            LOG_VERBOSE(vformat("Kotlin Script updated: %s", script_name));
+            LOG_VERBOSE(vformat("JVM Script updated: %s", script_name));
 #endif
         } else {
             // Script doesn't exist so we create it.
             ref.instantiate();
             ref->kotlin_class = kotlin_class;
 #ifdef DEV_ENABLED
-            LOG_VERBOSE(vformat("Kotlin Script created: %s", script_name));
+            LOG_VERBOSE(vformat("JVM Script created: %s", script_name));
 #endif
         }
 
@@ -113,7 +113,7 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
         Ref<KotlinScript> ref = keyValue.value;
         if (ref->kotlin_class) {
 #ifdef DEV_ENABLED
-            LOG_VERBOSE(vformat("Kotlin Script deleted: %s", ref->kotlin_class->registered_class_name));
+            LOG_VERBOSE(vformat("JVM Script deleted: %s", ref->kotlin_class->registered_class_name));
 #endif
             delete ref->kotlin_class;
             ref->kotlin_class = nullptr;
@@ -127,7 +127,7 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     // This part handles the first and only loading of script happening in exports.
     // It assumes that all scripts are properly built into the .jar and won't be reloaded.
 #ifdef DEBUG_ENABLED
-    JVM_ERR_FAIL_COND_MSG(named_user_scripts.size() != 0, "Kotlin scripts are being initialized more than once.");
+    JVM_ERR_FAIL_COND_MSG(named_user_scripts.size() != 0, "JVM scripts are being initialized more than once.");
 #endif
 
     for (KtClass* kotlin_class : classes) {
