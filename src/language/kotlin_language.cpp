@@ -154,7 +154,8 @@ void KotlinLanguage::get_string_delimiters(List<String>* p_delimiters) const {
 }
 
 String KotlinLanguage::get_template(const String& p_class_name, const String& p_base_class_name) const {
-    String kotlinClassTemplate {"%PACKAGE%"
+    String kotlinClassTemplate {"%PACKAGE%\n"
+                                "\n"
                                 "import " GODOT_KOTLIN_PACKAGE ".%BASE%\n"
                                 "import godot.annotation.RegisterClass\n"
                                 "import godot.annotation.RegisterFunction\n"

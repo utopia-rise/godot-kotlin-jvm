@@ -25,9 +25,16 @@ Error JvmResourceFormatSaver::save(const Ref<Resource>& p_resource, const String
                       .trim_suffix("/")
                       .replace("/", ".")};
 
-    if (!package.is_empty()) { package = "package " + package + "\n\n"; }
+    if (!package.is_empty()) { package = "package " + package; }
 
-    String source = kotlin_script->get_source_code().replace("%PACKAGE%", package);
+    String source = kotlin_script->get_source_code().replace("%PACKAGE%", package).strip_edges(true, false);
+
+    if (!FileAccess::exists(p_path) && p_path.get_extension() == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
+        LOG_WARNING("It's not recommended to create .gdj files directly as they are generated automatically from .kt "
+                    "sources when building your project.\n"
+                    "Create a .kt with a matching registered class if you don't want this file to get deleted the next "
+                    "time you build.");
+    }
 
     Error err;
     Ref<FileAccess> file {FileAccess::open(p_path, FileAccess::WRITE, &err)};

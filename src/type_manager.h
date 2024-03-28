@@ -1,8 +1,8 @@
 #ifndef GODOT_JVM_TYPE_MANAGER_H
 #define GODOT_JVM_TYPE_MANAGER_H
 
-#include "kotlin_script.h"
 #include "java_singleton_wrapper.h"
+#include "kotlin_script.h"
 
 #include <core/string/string_name.h>
 #include <core/templates/hash_map.h>

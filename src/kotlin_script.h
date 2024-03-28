@@ -12,7 +12,7 @@ class KotlinScript : public Script {
     friend class KotlinInstance;
     friend class TypeManager;
 
-    enum AccessMode{
+    enum AccessMode {
         NONE,
         PATH,
         NAME,

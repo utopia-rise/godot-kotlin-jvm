@@ -2,14 +2,7 @@
 
 #include <core/io/resource_loader.h>
 
-JNI_INIT_STATICS_FOR_CLASS(
-        TypeManager,
-        INIT_NATIVE_METHOD(
-                "getMethodBindPtr$godot_library",
-                "(Ljava/lang/String;Ljava/lang/String;)J",
-                TypeManager::get_method_bind_ptr
-        )
-)
+JNI_INIT_STATICS_FOR_CLASS(TypeManager, INIT_NATIVE_METHOD("getMethodBindPtr$godot_library", "(Ljava/lang/String;Ljava/lang/String;)J", TypeManager::get_method_bind_ptr))
 
 void TypeManager::clear() {
     engine_type_names.clear();
@@ -17,7 +10,8 @@ void TypeManager::clear() {
     engine_singleton_names.clear();
     named_user_scripts.clear();
     named_user_scripts_map.clear();
-    path_user_scripts.clear();;
+    path_user_scripts.clear();
+    ;
     filepath_to_name_map.clear();
 }
 
@@ -74,7 +68,7 @@ void TypeManager::register_engine_singletons(jni::Env& p_env, jni::JObjectArray&
 void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     Vector<Ref<KotlinScript>> scripts;
 
-    //We first deal with named scripts.
+    // We first deal with named scripts.
 #ifdef TOOLS_ENABLED
     // This tool-only block handles script reloading.
     // We have to compare the previous scripts to the new ones and create/update/delete accordingly
@@ -86,7 +80,7 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
 
     for (KtClass* kotlin_class : classes) {
         String script_name = kotlin_class->registered_class_name;
-          // First check if the scripts already exist
+        // First check if the scripts already exist
         Ref<KotlinScript> ref = script_cache[script_name];
         if (!ref.is_null()) {
             delete ref->kotlin_class;
@@ -104,15 +98,13 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
 #endif
         }
 
-        ref->set_path( kotlin_class->compilation_time_relative_registration_file_path, true);
+        ref->set_path(kotlin_class->compilation_time_relative_registration_file_path, true);
 
         scripts.push_back(ref);
         script_cache.erase(script_name);
 
         String source_path = "res://" + kotlin_class->relative_source_path;
-        if(FileAccess::exists(source_path)){
-            filepath_to_name_map[source_path] = script_name;
-        }
+        if (FileAccess::exists(source_path)) { filepath_to_name_map[source_path] = script_name; }
     }
 
     // Only scripts left in the cache are the ones that have been removed or placeholders without associated KtClass
@@ -143,7 +135,7 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
         ref.instantiate();
         ref->kotlin_class = kotlin_class;
         ref->mode = KotlinScript::AccessMode::NAME;
-        ref->set_path( kotlin_class->compilation_time_relative_registration_file_path, true);
+        ref->set_path(kotlin_class->compilation_time_relative_registration_file_path, true);
         scripts.push_back(ref);
 #ifdef DEV_ENABLED
         LOG_VERBOSE(vformat("Kotlin Script created: %s", kotlin_class->registered_class_name));
@@ -157,13 +149,13 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     }
 
     // Now we deal with path script.
-    Vector<Ref<KotlinScript>> path_script_cache =  path_user_scripts;
+    Vector<Ref<KotlinScript>> path_script_cache = path_user_scripts;
     path_user_scripts.clear();
     for (Ref<KotlinScript>& script : path_script_cache) {
         String path = script->get_path();
         // No need to delete the KotlinClass, it has already been done with the namedScript that shares it.
         script->kotlin_class = nullptr;
-        if(filepath_to_name_map.has(path)){
+        if (filepath_to_name_map.has(path)) {
             script->kotlin_class = named_user_scripts_map[filepath_to_name_map[path]]->kotlin_class;
             path_user_scripts.push_back(script);
         }
@@ -186,11 +178,11 @@ Ref<KotlinScript> TypeManager::create_script(const String& p_path, bool named) {
     Ref<KotlinScript> ref;
     ref.instantiate();
     ref->set_path(p_path, true);
-    if(named) {
+    if (named) {
         named_user_scripts_map[ref->get_global_name()] = ref;
         named_user_scripts.push_back(ref);
     } else {
-        if(filepath_to_name_map.has(p_path)) {
+        if (filepath_to_name_map.has(p_path)) {
             ref->kotlin_class = named_user_scripts_map[filepath_to_name_map[p_path]]->kotlin_class;
             path_user_scripts.push_back(ref);
         }
@@ -219,6 +211,4 @@ TypeManager* TypeManager::init() {
     return native_instance;
 }
 
-TypeManager::TypeManager(jni::JObject p_wrapped) : JavaSingletonWrapper<TypeManager>(p_wrapped) {
-
-}
+TypeManager::TypeManager(jni::JObject p_wrapped) : JavaSingletonWrapper<TypeManager>(p_wrapped) {}

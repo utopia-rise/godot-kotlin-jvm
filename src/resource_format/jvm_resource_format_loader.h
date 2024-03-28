@@ -21,9 +21,6 @@ public:
       float* r_progress = nullptr,
       CacheMode p_cache_mode = CACHE_MODE_REUSE
     ) override;
-
-
-
 };
 
 #endif// GODOT_JVM_KT_RESOURCE_LOADER_H
