@@ -19,16 +19,6 @@ Error JvmResourceFormatSaver::save(const Ref<Resource>& p_resource, const String
     Ref<KotlinScript> kotlin_script = p_resource;
     ERR_FAIL_COND_V(kotlin_script.is_null(), ERR_INVALID_PARAMETER);
 
-    String package {p_path.replace("src/main/kotlin/", "")
-                      .trim_prefix("res://")
-                      .trim_suffix(kotlin_script->get_name() + "." + KotlinLanguage::get_instance()->get_extension())
-                      .trim_suffix("/")
-                      .replace("/", ".")};
-
-    if (!package.is_empty()) { package = "package " + package; }
-
-    String source = kotlin_script->get_source_code().replace("%PACKAGE%", package).strip_edges(true, false);
-
     if (!FileAccess::exists(p_path) && p_path.get_extension() == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
         LOG_WARNING("It's not recommended to create .gdj files directly as they are generated automatically from .kt "
                     "sources when building your project.\n"
@@ -39,7 +29,7 @@ Error JvmResourceFormatSaver::save(const Ref<Resource>& p_resource, const String
     Error err;
     Ref<FileAccess> file {FileAccess::open(p_path, FileAccess::WRITE, &err)};
     JVM_ERR_FAIL_COND_V_MSG(err != OK, err, "Cannot save Kotlin script file '" + p_path + "'.");
-    file->store_string(source);
+    file->store_string(kotlin_script->get_source_code());
 
     if (file->get_error() != OK && file->get_error() != ERR_FILE_EOF) { return ERR_CANT_CREATE; }
 

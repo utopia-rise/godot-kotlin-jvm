@@ -200,6 +200,17 @@ void KotlinScript::set_path(const String& p_path, bool p_take_over) {
     String extension = p_path.get_extension();
     if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION) {
         mode = PATH;
+        if(source.contains(PACKAGE_TEMPLATE)){
+            String package {p_path.replace("src/main/kotlin/", "")
+                              .trim_prefix("res://")
+                              .trim_suffix(get_name() + "." + KotlinLanguage::get_instance()->get_extension())
+                              .trim_suffix("/")
+                              .replace("/", ".")};
+
+            if (!package.is_empty()) { package = "package " + package; }
+
+            source = source.replace(PACKAGE_TEMPLATE, package).strip_edges(true, false);
+        }
     } else if (extension == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
         mode = NAME;
     } else {
@@ -227,7 +238,7 @@ PropertyInfo KotlinScript::get_class_category() const {
 
 String KotlinScript::get_class_icon_path() const {
     // TODO/4.2
-    return String();
+    return {};
 }
 
 PlaceHolderScriptInstance* KotlinScript::placeholder_instance_create(Object* p_this) {

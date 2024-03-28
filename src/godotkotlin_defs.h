@@ -11,9 +11,12 @@
 #define GODOT_KOTLIN_SCRIPT_EXTENSION "kt"
 #define GODOT_KOTLIN_SCRIPT_NAME "KotlinScript"
 #define GODOT_KOTLIN_LANGUAGE_NAME "Kotlin"
-#define GODOT_KOTLIN_INDENTATION "    "
 
 #define GODOT_KOTLIN_PACKAGE "godot"
 #define GODOT_ENTRY_PATH "res://build/generated/ksp"
+
+#define PACKAGE_TEMPLATE "%PACKAGE%"
+#define BASE_TEMPLATE "%BASE%"
+#define CLASS_TEMPLATE "%CLASS%"
 
 #endif// GODOT_JVM_GODOTKOTLIN_DEFS_H

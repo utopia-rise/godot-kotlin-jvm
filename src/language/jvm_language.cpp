@@ -4,6 +4,24 @@
 #include "godotkotlin_defs.h"
 #include "kotlin_script.h"
 
+constexpr const char* GDJ_TEMPLATE =
+  "// THIS FILE IS GENERATED! DO NOT EDIT OR DELETE IT. EDIT OR DELETE THE ASSOCIATED SOURCE CODE FILE INSTEAD\n"
+  "// Note: You can however freely move this file inside your godot project if you want. Keep in mind however, "
+  "that if you rename the originating source code file, this file will be deleted and regenerated as a new file "
+  "instead of being updated! Other modifications to the source file however, will result in this file being "
+  "updated.\n"
+  "\n"
+  "registeredName = " CLASS_TEMPLATE "\n"
+  "fqName = " GODOT_KOTLIN_PACKAGE "." CLASS_TEMPLATE "\n"
+  "relativeSourcePath = \"\"\n"
+  "baseType = " BASE_TEMPLATE "\n"
+  "supertypes = [\n"
+  "    godot." BASE_TEMPLATE "\n"
+  "]\n"
+  "signals = []\n"
+  "properties = []\n"
+  "functions = []\n";
+
 JvmLanguage* JvmLanguage::get_instance() {
     static JvmLanguage* instance {memnew(JvmLanguage)};
     return instance;
@@ -105,7 +123,7 @@ void JvmLanguage::get_reserved_words(List<String>* p_words) const {
                                             "supertypes",
                                             "signals",
                                             "properties",
-                                            "functions ",
+                                            "functions",
                                             nullptr
     };
     const char** w = _reserved_words;
@@ -127,32 +145,13 @@ void JvmLanguage::get_doc_comment_delimiters(List<String>* p_delimiters) const {
 
 void JvmLanguage::get_string_delimiters(List<String>* p_delimiters) const {}
 
-String JvmLanguage::get_template(const String& p_class_name, const String& p_base_class_name) const {
-    String kotlinClassTemplate {
-      "// THIS FILE IS GENERATED! DO NOT EDIT OR DELETE IT. EDIT OR DELETE THE ASSOCIATED SOURCE CODE FILE INSTEAD\n"
-      "// Note: You can however freely move this file inside your godot project if you want. Keep in mind however, "
-      "that if you rename the originating source code file, this file will be deleted and regenerated as a new file "
-      "instead of being updated! Other modifications to the source file however, will result in this file being "
-      "updated.\n"
-      "\n"
-      "registeredName = %CLASS%\n"
-      "fqName = " GODOT_KOTLIN_PACKAGE ".%CLASS%\n"
-      "relativeSourcePath = \"\"\n"
-      "baseType = %BASE%\n"
-      "supertypes = [\n"
-      "    godot.%BASE%\n"
-      "]\n"
-      "signals = []\n"
-      "properties = []\n"
-      "functions = []\n"
-    };
-    return kotlinClassTemplate.replace("%BASE%", p_base_class_name).replace("%CLASS%", p_class_name);
-}
-
 Ref<Script> JvmLanguage::make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const {
     Ref<KotlinScript> kotlin_script;
     kotlin_script.instantiate();
-    kotlin_script->set_source_code(get_template(p_class_name, p_base_class_name));
+    String processed_template {
+        String(GDJ_TEMPLATE).replace(BASE_TEMPLATE, p_base_class_name).replace(CLASS_TEMPLATE, p_class_name.to_pascal_case())
+    };
+    kotlin_script->set_source_code(processed_template);
     kotlin_script->set_name(p_class_name);
     return kotlin_script;
 }
