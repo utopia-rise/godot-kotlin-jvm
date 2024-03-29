@@ -173,23 +173,6 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
 #endif
 }
 
-Ref<KotlinScript> TypeManager::create_script(const String& p_path, bool named) {
-    // Placeholder scripts have to be registered in the TypeManager in order to be transformed in valid scripts when the jar is built.
-    Ref<KotlinScript> ref;
-    ref.instantiate();
-    ref->set_path(p_path, true);
-    if (named) {
-        named_user_scripts_map[ref->get_global_name()] = ref;
-        named_user_scripts.push_back(ref);
-    } else {
-        if (filepath_to_name_map.has(p_path)) {
-            ref->kotlin_class = named_user_scripts_map[filepath_to_name_map[p_path]]->kotlin_class;
-            path_user_scripts.push_back(ref);
-        }
-    }
-    return ref;
-}
-
 uintptr_t TypeManager::get_method_bind_ptr(JNIEnv* p_raw_env, jobject j_instance, jstring p_class_name, jstring p_method_name) {
     jni::Env env {p_raw_env};
     String class_name {env.from_jstring(jni::JString(p_class_name))};

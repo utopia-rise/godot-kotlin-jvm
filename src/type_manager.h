@@ -21,7 +21,8 @@ public:
     void register_engine_types(jni::Env& p_env, jni::JObjectArray& p_engine_types);
     void register_engine_singletons(jni::Env& p_env, jni::JObjectArray& p_singletons);
     void create_and_update_scripts(Vector<KtClass*>& classes);
-    Ref<KotlinScript> create_script(const String& p_path, bool named);
+    template<bool named>
+    Ref<KotlinScript> create_script(const String& p_path);
 
     static uintptr_t get_method_bind_ptr(JNIEnv* p_raw_env, jobject j_instance, jstring p_class_name, jstring p_method_name);
 
@@ -49,5 +50,23 @@ private:
 
     TypeManager(jni::JObject p_wrapped);
 };
+
+template<bool named>
+Ref<KotlinScript> TypeManager::create_script(const String& p_path) {
+    // Placeholder scripts have to be registered in the TypeManager in order to be transformed in valid scripts when the jar is built.
+    Ref<KotlinScript> ref;
+    ref.instantiate();
+    ref->set_path(p_path, true);
+    if (named) {
+        named_user_scripts_map[ref->get_global_name()] = ref;
+        named_user_scripts.push_back(ref);
+    } else {
+        if (filepath_to_name_map.has(p_path)) {
+            ref->kotlin_class = named_user_scripts_map[filepath_to_name_map[p_path]]->kotlin_class;
+            path_user_scripts.push_back(ref);
+        }
+    }
+    return ref;
+}
 
 #endif// GODOT_JVM_TYPE_MANAGER_H

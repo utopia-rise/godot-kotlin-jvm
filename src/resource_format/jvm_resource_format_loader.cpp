@@ -56,7 +56,7 @@ Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& 
 #ifdef TOOLS_ENABLED
             // If we reach that location, it means that the script file being loaded hasn't been built into the .jar.
             // We create a script placeholder instead. When reloading, it will be properly updated with the correct KtClass.
-            ref = TypeManager::get_instance().create_script(p_path, true);
+            ref = TypeManager::get_instance().create_script<true>(p_path);
 #elif DEBUG_ENABLED
             // All scripts are supposed to be already in cache when not in the editor.
             if (r_error) { *r_error = Error::ERR_UNAVAILABLE; }
@@ -66,7 +66,7 @@ Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& 
     } else if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION) {
         // Path scripts are always created from the resource_loader and set in the resource cache afterward.
         // If we reach that location, it means the script doesn't exist.
-        ref = TypeManager::get_instance().create_script(p_path, false);
+        ref = TypeManager::get_instance().create_script<false>(p_path);
     }
 
     String source_code;
