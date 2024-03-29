@@ -75,9 +75,11 @@ tasks {
 
         var didAllTestsPass = false
         var isJvmClosed = false
+        val testOutputFile = File("$projectDir/test_output.txt")
+        standardOutput = testOutputFile.outputStream()
 
         doLast {
-            val outputLines = standardOutput.toString().split("\n")
+            val outputLines = testOutputFile.readText().split("\n")
 
             outputLines.forEach { line ->
                 when {
