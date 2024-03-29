@@ -2,11 +2,11 @@
 #define GODOT_JVM_TYPE_MANAGER_H
 
 #include "java_singleton_wrapper.h"
+#include "jni/env.h"
 #include "kotlin_script.h"
 
 #include <core/string/string_name.h>
 #include <core/templates/hash_map.h>
-#include <modules/kotlin_jvm/src/jni/env.h>
 
 class TypeManager : public JavaSingletonWrapper<TypeManager> {
 public:

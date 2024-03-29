@@ -1,7 +1,7 @@
 #ifndef KOTLIN_JVM_LANGUAGE_H
 #define KOTLIN_JVM_LANGUAGE_H
 
-#include "core/object/script_language.h"
+#include <core/object/script_language.h>
 
 class JvmLanguage : public ScriptLanguage {
 public:

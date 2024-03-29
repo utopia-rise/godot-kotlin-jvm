@@ -2,7 +2,6 @@
 
 #include "godotkotlin_defs.h"
 #include "kotlin_script.h"
-#include "language/kotlin_language.h"
 
 void JvmResourceFormatSaver::get_recognized_extensions(const Ref<Resource>& p_resource, List<String>* p_extensions) const {
     if (recognize(p_resource)) {

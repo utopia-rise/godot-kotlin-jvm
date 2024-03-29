@@ -1,12 +1,13 @@
 #include "kotlin_script.h"
 
-#include "core/os/thread.h"
 #include "gd_kotlin.h"
 #include "godotkotlin_defs.h"
 #include "kotlin_instance.h"
 #include "language/jvm_language.h"
 #include "language/kotlin_language.h"
 #include "logging.h"
+
+#include <core/os/thread.h>
 
 bool KotlinScript::can_instantiate() const {
 #ifdef TOOLS_ENABLED
@@ -200,7 +201,7 @@ void KotlinScript::set_path(const String& p_path, bool p_take_over) {
     String extension = p_path.get_extension();
     if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION) {
         mode = PATH;
-        if(source.contains(PACKAGE_TEMPLATE)){
+        if (source.contains(PACKAGE_TEMPLATE)) {
             String package {p_path.replace("src/main/kotlin/", "")
                               .trim_prefix("res://")
                               .trim_suffix(get_name() + "." + KotlinLanguage::get_instance()->get_extension())

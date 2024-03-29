@@ -1,11 +1,11 @@
 #include "kotlin_language.h"
 
-#include "core/io/resource_loader.h"
+#include <core/io/resource_loader.h>
 #include "gd_kotlin.h"
 #include "godotkotlin_defs.h"
 
-constexpr const char* KOTLIN_TEMPLATE =
-  PACKAGE_TEMPLATE"\n"
+constexpr const char* KOTLIN_TEMPLATE = PACKAGE_TEMPLATE
+  "\n"
   "\n"
   "import " GODOT_KOTLIN_PACKAGE "." BASE_TEMPLATE "\n"
   "import godot.annotation.RegisterClass\n"
@@ -183,9 +183,7 @@ void KotlinLanguage::get_string_delimiters(List<String>* p_delimiters) const {
 Ref<Script> KotlinLanguage::make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const {
     Ref<KotlinScript> kotlin_script;
     kotlin_script.instantiate();
-    String processed_template {
-      p_template.replace(CLASS_TEMPLATE, p_class_name.to_pascal_case())
-    };
+    String processed_template {p_template.replace(CLASS_TEMPLATE, p_class_name.to_pascal_case())};
     kotlin_script->set_source_code(processed_template);
     kotlin_script->set_name(p_class_name);
     return kotlin_script;
@@ -193,7 +191,7 @@ Ref<Script> KotlinLanguage::make_template(const String& p_template, const String
 
 Vector<ScriptLanguage::ScriptTemplate> KotlinLanguage::get_built_in_templates(StringName p_object) {
     Vector<ScriptLanguage::ScriptTemplate> templates;
-    if(ClassDB::is_parent_class(p_object, "Node")){
+    if (ClassDB::is_parent_class(p_object, "Node")) {
         ScriptLanguage::ScriptTemplate script_template {
           String(p_object),
           String("Default"),

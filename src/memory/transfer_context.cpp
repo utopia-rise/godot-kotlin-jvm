@@ -1,7 +1,7 @@
 #include "transfer_context.h"
 
 #include "gd_kotlin.h"
-#include "modules/kotlin_jvm/src/kotlin_instance.h"
+#include "kotlin_instance.h"
 
 // clang-format off
 JNI_INIT_STATICS_FOR_CLASS(
