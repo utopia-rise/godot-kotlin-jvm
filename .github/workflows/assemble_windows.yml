@@ -50,4 +50,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
-          path: godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
+          path: godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}/godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip

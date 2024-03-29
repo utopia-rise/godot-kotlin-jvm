@@ -86,4 +86,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: godot-kotlin-jvm_export_templates_${{ inputs.godot-kotlin-jvm-version }}.tpz
-          path: godot-kotlin-jvm_export_templates_${{ inputs.godot-kotlin-jvm-version }}.tpz
+          path: templates/godot-kotlin-jvm_export_templates_${{ inputs.godot-kotlin-jvm-version }}.tpz
