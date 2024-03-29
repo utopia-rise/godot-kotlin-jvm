@@ -93,7 +93,7 @@ tasks {
             }
 
             if (!didAllTestsPass) {
-                printnn(testOutputFile.readText())
+                println(testOutputFile.readText())
                 throw Exception("ERROR: Some assertions failed")
             }
             if (!isJvmClosed) {
