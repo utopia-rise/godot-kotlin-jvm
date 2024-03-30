@@ -190,7 +190,7 @@ TypeManager* TypeManager::init() {
     jni::JClass type_manager_cls {env.load_class("godot.core.TypeManager", class_loader)};
     jni::FieldId instance_field {type_manager_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/TypeManager;")};
     jni::JObject type_manager_instance {type_manager_cls.get_static_object_field(env, instance_field)};
-    JVM_CRASH_COND_MSG(type_manager_instance.is_null(), "Failed to retreive TypeManager instance");
+    JVM_CRASH_COND_MSG(type_manager_instance.is_null(), "Failed to retrieve TypeManager instance");
 
     auto* native_instance = new TypeManager(type_manager_instance);
     type_manager_cls.delete_local_ref(env);

@@ -24,11 +24,18 @@ GdjLanguage* GdjLanguage::get_instance() {
 }
 
 void GdjLanguage::init() {
+#ifdef TOOLS_ENABLED
+    if (Engine::get_singleton()->is_project_manager_hint()) {
+        LOG_VERBOSE("Detected that we're in the project manager. Won't initialize kotlin lang.");
+        return;
+    }
+#endif
     GDKotlin::get_instance().init();
 }
 
 void GdjLanguage::frame() {
 #ifdef TOOLS_ENABLED
+    if (Engine::get_singleton()->is_project_manager_hint()) { return; }
     TypeManager::get_instance().update_all_exports_if_dirty();
 #endif
 }

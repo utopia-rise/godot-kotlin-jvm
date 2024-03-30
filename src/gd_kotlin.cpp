@@ -60,13 +60,6 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
 }
 
 void GDKotlin::init() {
-    if (Engine::get_singleton()->is_project_manager_hint()) {
-#ifdef DEBUG_ENABLED
-        LOG_VERBOSE("Detected that we're in the project manager. Won't initialize kotlin lang.");
-#endif
-        return;
-    }
-
     if (!check_configuration()) { return; }
 
     jni::InitArgs args;
