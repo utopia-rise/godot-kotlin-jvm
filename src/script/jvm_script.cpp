@@ -8,9 +8,17 @@
 #include "language/kotlin_language.h"
 #include "logging.h"
 
-Variant JvmScript::_new(const Variant** p_args, int p_argcount, Callable::CallError& r_error) {
-    r_error.error = Callable::CallError::CALL_OK;
+Variant JvmScript::_new(const Variant** p_args, int p_arg_count, Callable::CallError& r_error) {
+    Object* obj = _object_create(p_args, p_arg_count);
+    if (obj) {
+        r_error.error = Callable::CallError::CALL_OK;
+        return {obj};
+    }
+    r_error.error = Callable::CallError::CALL_ERROR_INVALID_ARGUMENT;
+    return {};
+}
 
+Object* JvmScript::_object_create(const Variant** p_args, int p_arg_count) {
 #ifdef DEBUG_ENABLED
     JVM_CRASH_COND_MSG(
       !is_valid(),
@@ -19,14 +27,14 @@ Variant JvmScript::_new(const Variant** p_args, int p_argcount, Callable::CallEr
 #endif
     Object* owner {ClassDB::instantiate(kotlin_class->base_godot_class)};
 
-    ScriptInstance* instance {_instance_create<true>(p_args, p_argcount, owner)};
+    ScriptInstance* instance {_instance_create<true>(p_args, p_arg_count, owner)};
     owner->set_script_instance(instance);
     if (!instance) {
         memdelete(owner);// no owner, sorry
-        return {};
+        return nullptr;
     }
 
-    return {owner};
+    return owner;
 }
 
 bool JvmScript::can_instantiate() const {
@@ -69,7 +77,7 @@ ScriptInstance* JvmScript::instance_create(Object* p_this) {
 }
 
 template<bool isCreator>
-ScriptInstance* JvmScript::_instance_create(const Variant** p_args, int p_argcount, Object* p_this) {
+ScriptInstance* JvmScript::_instance_create(const Variant** p_args, int p_arg_count, Object* p_this) {
     if (isCreator) {
         KotlinBindingManager::set_instance_binding(p_this);
     } else {
@@ -85,7 +93,7 @@ ScriptInstance* JvmScript::_instance_create(const Variant** p_args, int p_argcou
 #endif
 
     jni::Env env = jni::Jvm::current_env();
-    KtObject* wrapped = kotlin_class->create_instance(env, p_args, p_argcount, p_this);
+    KtObject* wrapped = kotlin_class->create_instance(env, p_args, p_arg_count, p_this);
     return memnew(JvmInstance(p_this, wrapped, this));
 }
 
@@ -220,8 +228,7 @@ void JvmScript::update_exports() {
     exported_members_default_value_cache.clear();
     if (!is_valid()) { return; }
 
-    Callable::CallError call;
-    Object* tmp_object {_new({}, 0, call)};
+    Object* tmp_object = _object_create({}, 0);
     JvmInstance* kotlin_script_instance {reinterpret_cast<JvmInstance*>(tmp_object->get_script_instance())};
 
     List<PropertyInfo> exported_properties;
@@ -270,4 +277,8 @@ StringName NamedScript::get_global_name() const {
     // Even in the case of an invalid file, we can then use its path to find the right name.
     String path = get_path();
     return get_script_file_name(path);
+}
+
+void JvmScript::_bind_methods() {
+    ClassDB::bind_vararg_method(METHOD_FLAGS_DEFAULT, "new", &JvmScript::_new, MethodInfo("new"));
 }

@@ -60,12 +60,12 @@ private:
 
 template<class C>
 Ref<JvmScript> TypeManager::create_script(const String& p_path) {
-    if (!std::is_base_of<JvmScript, C>()) return {};
+    if constexpr(!std::is_base_of<JvmScript, C>()) return {};
     // Placeholder scripts have to be registered in the TypeManager in order to be transformed in valid scripts when the jar is built.
     Ref<C> ref;
     ref.instantiate();
     ref->set_path(p_path, true);
-    if (std::is_base_of<NamedScript, C>()) {
+    if constexpr(std::is_base_of<NamedScript, C>()) {
         named_user_scripts_map[ref->get_global_name()] = ref;
         named_user_scripts.push_back(ref);
     } else if (std::is_base_of<PathScript, C>()) {

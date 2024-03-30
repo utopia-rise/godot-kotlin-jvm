@@ -3,7 +3,6 @@
 
 // keep in sync with godot.tools.common.constants.FileExtensions.GodotKotlinJvm.registrationFile
 
-
 #define GODOT_JVM_REGISTRATION_FILE_EXTENSION "gdj"
 #define GODOT_JVM_SCRIPT_NAME "GdjScript"
 #define GODOT_JVM_LANGUAGE_NAME "Gdj"

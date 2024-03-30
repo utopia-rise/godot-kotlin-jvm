@@ -4,11 +4,12 @@
 #include "jvm_script.h"
 
 class GdjScript : public NamedScript {
-    GDCLASS(GdjScript, Script);
+    GDCLASS(GdjScript, JvmScript);
 
 public:
     GdjScript() = default;
     ~GdjScript() override = default;
+
     ScriptLanguage* get_language() const override;
     void set_path(const String& p_path, bool p_take_over) override;
 

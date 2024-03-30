@@ -4,11 +4,12 @@
 #include "jvm_script.h"
 
 class KotlinScript : public PathScript {
-    GDCLASS(KotlinScript, Script);
+    GDCLASS(KotlinScript, JvmScript);
 
 public:
     KotlinScript() = default;
     ~KotlinScript() override = default;
+
     ScriptLanguage* get_language() const override;
     void set_path(const String& p_path, bool p_take_over) override;
 

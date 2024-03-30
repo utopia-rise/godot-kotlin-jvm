@@ -7,6 +7,8 @@
 class JvmInstance;
 
 class JvmScript : public Script {
+    GDCLASS(JvmScript, Script);
+
     friend class JvmInstance;
     friend class TypeManager;
 
@@ -15,13 +17,14 @@ protected:
     String source;
 
     template<bool isCreator>
-    ScriptInstance* _instance_create(const Variant** p_args, int p_argcount, Object* p_this);
+    ScriptInstance* _instance_create(const Variant** p_args, int p_arg_count, Object* p_this);
+    Object* _object_create(const Variant** p_args, int p_arg_count);
 
 public:
     JvmScript();
     ~JvmScript() override;
 
-    Variant _new(const Variant** p_args, int p_argcount, Callable::CallError& r_error);
+    Variant _new(const Variant** p_args, int p_arg_count, Callable::CallError& r_error);
     bool can_instantiate() const override;
     bool inherits_script(const Ref<Script>& p_script) const override;
     Ref<Script> get_base_script() const override;
@@ -65,6 +68,9 @@ public:
     PropertyInfo get_class_category() const override;
     String get_class_icon_path() const override;
 #endif
+
+protected:
+    static void _bind_methods();
 };
 
 class PathScript : public JvmScript {

@@ -21,6 +21,4 @@ void KotlinScript::set_path(const String& p_path, bool p_take_over) {
     }
 }
 
-void KotlinScript::_bind_methods() {
-    ClassDB::bind_vararg_method(METHOD_FLAGS_DEFAULT, "new", &KotlinScript::_new, MethodInfo("new"));
-}
+void KotlinScript::_bind_methods() {}

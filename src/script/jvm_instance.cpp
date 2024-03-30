@@ -170,7 +170,7 @@ const Variant JvmInstance::get_rpc_config() const {
 }
 
 ScriptLanguage* JvmInstance::get_language() {
-    return KotlinLanguage::get_instance();
+    return script->get_language();
 }
 
 bool JvmInstance::property_can_revert(const StringName& p_name) const {

@@ -21,6 +21,4 @@ void JavaScript::set_path(const String& p_path, bool p_take_over) {
     }
 }
 
-void JavaScript::_bind_methods() {
-    ClassDB::bind_vararg_method(METHOD_FLAGS_DEFAULT, "new", &JavaScript::_new, MethodInfo("new"));
-}
+void JavaScript::_bind_methods() {}

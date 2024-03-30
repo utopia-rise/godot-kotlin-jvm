@@ -132,10 +132,9 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
 #endif
 
     for (KtClass* kotlin_class : classes) {
-        Ref<JvmScript> ref;
+        Ref<GdjScript> ref;
         ref.instantiate();
         ref->kotlin_class = kotlin_class;
-        ref->mode = JvmScript::AccessMode::NAME;
         ref->set_path(kotlin_class->compilation_time_relative_registration_file_path, true);
         scripts.push_back(ref);
 #ifdef DEV_ENABLED

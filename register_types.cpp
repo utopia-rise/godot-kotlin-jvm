@@ -36,6 +36,7 @@ static EditorPlugin* godot_kotlin_jvm_editor_plugin_creator_func() {
 
 void initialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
     if (p_level == MODULE_INITIALIZATION_LEVEL_SCENE) {
+        GDREGISTER_ABSTRACT_CLASS(JvmScript);
         GDREGISTER_CLASS(GdjScript);
         GDREGISTER_CLASS(KotlinScript);
         GDREGISTER_CLASS(JavaScript);
