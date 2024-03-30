@@ -82,12 +82,17 @@ func test_switch_script():
     
 func test_path_script():
     var test_script: Object = load("res://src/main/kotlin/godot/tests/binding/BindingTest.kt").new()
-    var bound_obj: Object = load("res://src/main/kotlin/godot/tests/binding/BindingA.kt").new()
-    
-    var clazz = test_script.get_class_name(bound_obj)
+
+    var kotlin_script: Object = load("res://src/main/kotlin/godot/tests/binding/BindingA.kt").new()
+    var clazz = test_script.get_class_name(kotlin_script)
     assert_eq(clazz, "BindingA", "Type should be BindingA")
+
+    var java_script: Object = load("res://src/main/java/godot/tests/JavaTestClass.java").new()
+    var clazz = test_script.get_class_name(kotlin_script)
+    assert_eq(clazz, "JavaTestClass", "Type should be JavaTestClass")
     
-    bound_obj.free()
+    kotlin_script.free()
+    java_script.free()
     test_script.free()
     
 func test_path_script_and_named_script_equality():
