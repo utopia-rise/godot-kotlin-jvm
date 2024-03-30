@@ -9,8 +9,12 @@
 #define GODOT_JVM_LANGUAGE_NAME "Gdj"
 
 #define GODOT_KOTLIN_SCRIPT_EXTENSION "kt"
-#define GODOT_KOTLIN_SCRIPT_NAME "KotlinScript"
+#define GODOT_KOTLIN_SCRIPT_NAME "JvmScript"
 #define GODOT_KOTLIN_LANGUAGE_NAME "Kotlin"
+
+#define GODOT_JAVA_SCRIPT_EXTENSION "java"
+#define GODOT_JAVA_SCRIPT_NAME "JavaScript"
+#define GODOT_JAVA_LANGUAGE_NAME "Java"
 
 #define GODOT_KOTLIN_PACKAGE "godot"
 #define GODOT_ENTRY_PATH "res://build/generated/ksp"

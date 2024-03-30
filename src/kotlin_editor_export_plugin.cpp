@@ -140,7 +140,7 @@ void KotlinEditorExportPlugin::_copy_jre_to(const char* jre_folder, Ref<DirAcces
 }
 
 String KotlinEditorExportPlugin::get_name() const {
-    return "KotlinScript";
+    return "JvmScriptGodot Kotlin/Jvm";
 }
 
 #endif

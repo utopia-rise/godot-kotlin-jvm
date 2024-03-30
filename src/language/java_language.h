@@ -1,18 +1,16 @@
-#ifndef GODOT_JVM_KOTLIN_LANGUAGE_H
-#define GODOT_JVM_KOTLIN_LANGUAGE_H
+#ifndef GODOT_JVM_JAVA_LANGUAGE_H
+#define GODOT_JVM_JAVA_LANGUAGE_H
 
 #include "jvm_language.h"
 
-#include <core/object/script_language.h>
-
-class KotlinLanguage : public JvmLanguage {
+class JavaLanguage : public JvmLanguage {
 public:
-    KotlinLanguage() = default;
-    ~KotlinLanguage() override = default;
-    KotlinLanguage(const KotlinLanguage&) = delete;
-    void operator=(const KotlinLanguage&) = delete;
+    JavaLanguage() = default;
+    ~JavaLanguage() override = default;
+    JavaLanguage(const JavaLanguage&) = delete;
+    void operator=(const JavaLanguage&) = delete;
 
-    static KotlinLanguage* get_instance();
+    static JavaLanguage* get_instance();
 
     String get_name() const override;
     String get_type() const override;
@@ -35,4 +33,4 @@ public:
     bool is_using_templates() override;
 };
 
-#endif// GODOT_JVM_KOTLIN_LANGUAGE_H
+#endif// GODOT_JVM_JAVA_LANGUAGE_H

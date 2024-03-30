@@ -1,7 +1,7 @@
 #include "jvm_resource_format_saver.h"
 
 #include "godotkotlin_defs.h"
-#include "kotlin_script.h"
+#include "script/jvm_script.h"
 
 void JvmResourceFormatSaver::get_recognized_extensions(const Ref<Resource>& p_resource, List<String>* p_extensions) const {
     if (recognize(p_resource)) {
@@ -11,11 +11,11 @@ void JvmResourceFormatSaver::get_recognized_extensions(const Ref<Resource>& p_re
 }
 
 bool JvmResourceFormatSaver::recognize(const Ref<Resource>& p_resource) const {
-    return Object::cast_to<KotlinScript>(p_resource.ptr()) != nullptr;
+    return Object::cast_to<JvmScript>(p_resource.ptr()) != nullptr;
 }
 
 Error JvmResourceFormatSaver::save(const Ref<Resource>& p_resource, const String& p_path, uint32_t p_flags) {
-    Ref<KotlinScript> kotlin_script = p_resource;
+    Ref<JvmScript> kotlin_script = p_resource;
     ERR_FAIL_COND_V(kotlin_script.is_null(), ERR_INVALID_PARAMETER);
 
     if (!FileAccess::exists(p_path) && p_path.get_extension() == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {

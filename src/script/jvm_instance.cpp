@@ -1,10 +1,10 @@
-#include "kotlin_instance.h"
+#include "jvm_instance.h"
 
 #include "gd_kotlin.h"
 #include "kt_class.h"
 #include "language/kotlin_language.h"
 
-KotlinInstance::KotlinInstance(Object* p_owner, KtObject* p_kt_object, KotlinScript* p_script) :
+JvmInstance::JvmInstance(Object* p_owner, KtObject* p_kt_object, JvmScript* p_script) :
   owner(p_owner),
   kt_object(p_kt_object),
   kt_class(p_script->kotlin_class),
@@ -13,24 +13,24 @@ KotlinInstance::KotlinInstance(Object* p_owner, KtObject* p_kt_object, KotlinScr
     kt_object->swap_to_weak_unsafe();
 }
 
-KotlinInstance::~KotlinInstance() {
+JvmInstance::~JvmInstance() {
     if (delete_flag) { GDKotlin::get_instance().transfer_context->remove_script_instance(owner->get_instance_id()); }
     memdelete(kt_object);
 }
 
-Object* KotlinInstance::get_owner() {
+Object* JvmInstance::get_owner() {
     return owner;
 }
 
-bool KotlinInstance::set(const StringName& p_name, const Variant& p_value) {
+bool JvmInstance::set(const StringName& p_name, const Variant& p_value) {
     jni::LocalFrame localFrame(1000);
 
-    if (KtProperty* ktProperty {kt_class->get_property(p_name)}) {
+    if (KtProperty * ktProperty {kt_class->get_property(p_name)}) {
         ktProperty->call_set(kt_object, p_value);
         return true;
     }
 
-    if (KtFunction* function {kt_class->get_method(SNAME("_set"))}) {
+    if (KtFunction * function {kt_class->get_method(SNAME("_set"))}) {
         Variant ret;
         const int arg_count = 2;
         Variant name = p_name;
@@ -42,7 +42,7 @@ bool KotlinInstance::set(const StringName& p_name, const Variant& p_value) {
     return false;
 }
 
-bool KotlinInstance::get(const StringName& p_name, Variant& r_ret) const {
+bool JvmInstance::get(const StringName& p_name, Variant& r_ret) const {
     jni::LocalFrame localFrame(1000);
 
     KtProperty* ktProperty {kt_class->get_property(p_name)};
@@ -57,7 +57,7 @@ bool KotlinInstance::get(const StringName& p_name, Variant& r_ret) const {
         return true;
     }
 
-    if (KtFunction* function {kt_class->get_method(SNAME("_get"))}) {
+    if (KtFunction * function {kt_class->get_method(SNAME("_get"))}) {
         const int arg_count = 1;
         Variant name = p_name;
         const Variant* args[arg_count] = {&name};
@@ -69,7 +69,7 @@ bool KotlinInstance::get(const StringName& p_name, Variant& r_ret) const {
 }
 
 #ifdef TOOLS_ENABLED
-bool KotlinInstance::get_or_default(const StringName& p_name, Variant& r_ret) const {
+bool JvmInstance::get_or_default(const StringName& p_name, Variant& r_ret) const {
     jni::LocalFrame localFrame(1000);
 
     KtProperty* ktProperty {kt_class->get_property(p_name)};
@@ -82,10 +82,10 @@ bool KotlinInstance::get_or_default(const StringName& p_name, Variant& r_ret) co
 }
 #endif
 
-void KotlinInstance::get_property_list(List<PropertyInfo>* p_properties) const {
+void JvmInstance::get_property_list(List<PropertyInfo>* p_properties) const {
     kt_class->get_property_list(p_properties);
 
-    if (KtFunction* function {kt_class->get_method(SNAME("_get_property_list"))}) {
+    if (KtFunction * function {kt_class->get_method(SNAME("_get_property_list"))}) {
         Variant ret_var;
         function->invoke(kt_object, {}, 0, ret_var);
         Array ret_array = ret_var;
@@ -95,23 +95,23 @@ void KotlinInstance::get_property_list(List<PropertyInfo>* p_properties) const {
     }
 }
 
-Variant::Type KotlinInstance::get_property_type(const StringName& p_name, bool* r_is_valid) const {
+Variant::Type JvmInstance::get_property_type(const StringName& p_name, bool* r_is_valid) const {
     return Variant::VECTOR3;
 }
 
-void KotlinInstance::get_property_state(List<Pair<StringName, Variant>>& state) {
+void JvmInstance::get_property_state(List<Pair<StringName, Variant>>& state) {
     ScriptInstance::get_property_state(state);
 }
 
-void KotlinInstance::get_method_list(List<MethodInfo>* p_list) const {
+void JvmInstance::get_method_list(List<MethodInfo>* p_list) const {
     kt_class->get_method_list(p_list);
 }
 
-bool KotlinInstance::has_method(const StringName& p_method) const {
+bool JvmInstance::has_method(const StringName& p_method) const {
     return kt_class->get_method(p_method) != nullptr;
 }
 
-Variant KotlinInstance::callp(const StringName& p_method, const Variant** p_args, int p_argcount, Callable::CallError& r_error) {
+Variant JvmInstance::callp(const StringName& p_method, const Variant** p_args, int p_argcount, Callable::CallError& r_error) {
     KtFunction* function {kt_class->get_method(p_method)};
     Variant ret_var;
     if (function) {
@@ -122,59 +122,59 @@ Variant KotlinInstance::callp(const StringName& p_method, const Variant** p_args
     return ret_var;
 }
 
-void KotlinInstance::notification(int p_notification, bool p_reversed) {
+void JvmInstance::notification(int p_notification, bool p_reversed) {
     if (p_notification == Object::NOTIFICATION_PREDELETE) { delete_flag = false; }
 
     kt_class->do_notification(kt_object, p_notification, p_reversed);
 }
 
-void KotlinInstance::validate_property(PropertyInfo& p_property) const {
-    if (KtFunction* function { kt_class->get_method(SNAME("_validate_property")) }) {
+void JvmInstance::validate_property(PropertyInfo& p_property) const {
+    if (KtFunction * function {kt_class->get_method(SNAME("_validate_property"))}) {
         Variant ret_var;
         Variant property_arg = (Dictionary) p_property;
         const int arg_count {1};
-        const Variant* args[arg_count] = { &property_arg };
+        const Variant* args[arg_count] = {&property_arg};
         function->invoke(kt_object, args, arg_count, ret_var);
         p_property = PropertyInfo::from_dict(property_arg);
     }
 }
 
-String KotlinInstance::to_string(bool* r_valid) {
+String JvmInstance::to_string(bool* r_valid) {
     return ScriptInstance::to_string(r_valid);
 }
 
-void KotlinInstance::refcount_incremented() {}
+void JvmInstance::refcount_incremented() {}
 
-bool KotlinInstance::refcount_decremented() {
+bool JvmInstance::refcount_decremented() {
     return true;
 }
 
-Ref<Script> KotlinInstance::get_script() const {
+Ref<Script> JvmInstance::get_script() const {
     return script;
 }
 
-bool KotlinInstance::is_placeholder() const {
+bool JvmInstance::is_placeholder() const {
     return ScriptInstance::is_placeholder();
 }
 
-void KotlinInstance::property_set_fallback(const StringName& p_name, const Variant& p_value, bool* r_valid) {
+void JvmInstance::property_set_fallback(const StringName& p_name, const Variant& p_value, bool* r_valid) {
     ScriptInstance::property_set_fallback(p_name, p_value, r_valid);
 }
 
-Variant KotlinInstance::property_get_fallback(const StringName& p_name, bool* r_valid) {
+Variant JvmInstance::property_get_fallback(const StringName& p_name, bool* r_valid) {
     return ScriptInstance::property_get_fallback(p_name, r_valid);
 }
 
-const Variant KotlinInstance::get_rpc_config() const {
+const Variant JvmInstance::get_rpc_config() const {
     return kt_class->get_rpc_config();
 }
 
-ScriptLanguage* KotlinInstance::get_language() {
+ScriptLanguage* JvmInstance::get_language() {
     return KotlinLanguage::get_instance();
 }
 
-bool KotlinInstance::property_can_revert(const StringName& p_name) const {
-    if (KtFunction* function {kt_class->get_method(SNAME("_property_can_revert"))}) {
+bool JvmInstance::property_can_revert(const StringName& p_name) const {
+    if (KtFunction * function {kt_class->get_method(SNAME("_property_can_revert"))}) {
         const int arg_count = 1;
         Variant ret;
         Variant name = p_name;
@@ -186,8 +186,8 @@ bool KotlinInstance::property_can_revert(const StringName& p_name) const {
     return false;
 }
 
-bool KotlinInstance::property_get_revert(const StringName& p_name, Variant& r_ret) const {
-    if (KtFunction* function {kt_class->get_method(SNAME("_property_get_revert"))}) {
+bool JvmInstance::property_get_revert(const StringName& p_name, Variant& r_ret) const {
+    if (KtFunction * function {kt_class->get_method(SNAME("_property_get_revert"))}) {
         const int arg_count = 1;
         Variant name = p_name;
         const Variant* args[arg_count] = {&name};

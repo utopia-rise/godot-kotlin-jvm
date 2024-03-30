@@ -1,5 +1,7 @@
 #include "type_manager.h"
 
+#include "script/gdj_script.h"
+
 #include <core/io/resource_loader.h>
 
 JNI_INIT_STATICS_FOR_CLASS(TypeManager, INIT_NATIVE_METHOD("getMethodBindPtr$godot_library", "(Ljava/lang/String;Ljava/lang/String;)J", TypeManager::get_method_bind_ptr))
@@ -11,7 +13,6 @@ void TypeManager::clear() {
     named_user_scripts.clear();
     named_user_scripts_map.clear();
     path_user_scripts.clear();
-    ;
     filepath_to_name_map.clear();
 }
 
@@ -31,16 +32,16 @@ const String& TypeManager::get_engine_singleton_name_for_index(int p_index) cons
     return engine_singleton_names[p_index];
 }
 
-const Ref<KotlinScript>& TypeManager::get_user_script_for_index(int p_index) const {
+const Ref<NamedScript>& TypeManager::get_user_script_for_index(int p_index) const {
     // No check. Meant to be a fast operation
     return named_user_scripts[p_index];
 }
 
-const Ref<KotlinScript> TypeManager::get_user_script_from_name(StringName name) const {
-    if (HashMap<StringName, Ref<KotlinScript>>::ConstIterator element = named_user_scripts_map.find(name)) {
+Ref<NamedScript> TypeManager::get_user_script_from_name(const StringName& name) const {
+    if (HashMap<StringName, Ref<NamedScript>>::ConstIterator element = named_user_scripts_map.find(name)) {
         return element->value;
     }
-    return Ref<KotlinScript>();
+    return Ref<JvmScript>();
 }
 
 void TypeManager::register_engine_types(jni::Env& p_env, jni::JObjectArray& p_engine_types) {
@@ -66,14 +67,14 @@ void TypeManager::register_engine_singletons(jni::Env& p_env, jni::JObjectArray&
 }
 
 void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
-    Vector<Ref<KotlinScript>> scripts;
+    Vector<Ref<JvmScript>> scripts;
 
     // We first deal with named scripts.
 #ifdef TOOLS_ENABLED
     // This tool-only block handles script reloading.
     // We have to compare the previous scripts to the new ones and create/update/delete accordingly
 
-    HashMap<StringName, Ref<KotlinScript>> script_cache = named_user_scripts_map;
+    HashMap<StringName, Ref<NamedScript>> script_cache = named_user_scripts_map;
     named_user_scripts.clear();
     named_user_scripts_map.clear();
     filepath_to_name_map.clear();
@@ -81,7 +82,7 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     for (KtClass* kotlin_class : classes) {
         String script_name = kotlin_class->registered_class_name;
         // First check if the scripts already exist
-        Ref<KotlinScript> ref = script_cache[script_name];
+        Ref<GdjScript> ref = script_cache[script_name];
         if (!ref.is_null()) {
             delete ref->kotlin_class;
             ref->kotlin_class = kotlin_class;
@@ -109,8 +110,8 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
 
     // Only scripts left in the cache are the ones that have been removed or placeholders without associated KtClass
     // We simply delete their kotlin_class if they got one
-    for (const KeyValue<StringName, Ref<KotlinScript>>& keyValue : script_cache) {
-        Ref<KotlinScript> ref = keyValue.value;
+    for (const KeyValue<StringName, Ref<NamedScript>>& keyValue : script_cache) {
+        Ref<JvmScript> ref = keyValue.value;
         if (ref->kotlin_class) {
 #ifdef DEV_ENABLED
             LOG_VERBOSE(vformat("JVM Script deleted: %s", ref->kotlin_class->registered_class_name));
@@ -131,10 +132,10 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
 #endif
 
     for (KtClass* kotlin_class : classes) {
-        Ref<KotlinScript> ref;
+        Ref<JvmScript> ref;
         ref.instantiate();
         ref->kotlin_class = kotlin_class;
-        ref->mode = KotlinScript::AccessMode::NAME;
+        ref->mode = JvmScript::AccessMode::NAME;
         ref->set_path(kotlin_class->compilation_time_relative_registration_file_path, true);
         scripts.push_back(ref);
 #ifdef DEV_ENABLED
@@ -143,15 +144,15 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     }
 #endif
 
-    for (const Ref<KotlinScript>& script : scripts) {
+    for (const Ref<JvmScript>& script : scripts) {
         named_user_scripts.push_back(script);
         named_user_scripts_map[script->get_global_name()] = script;
     }
 
     // Now we deal with path script.
-    Vector<Ref<KotlinScript>> path_script_cache = path_user_scripts;
+    Vector<Ref<PathScript>> path_script_cache = path_user_scripts;
     path_user_scripts.clear();
-    for (Ref<KotlinScript>& script : path_script_cache) {
+    for (Ref<PathScript>& script : path_script_cache) {
         String path = script->get_path();
         // No need to delete the KotlinClass, it has already been done with the namedScript that shares it.
         script->kotlin_class = nullptr;
@@ -160,18 +161,20 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
             path_user_scripts.push_back(script);
         }
     }
+}
 
 #ifdef TOOLS_ENABLED
-    for (const Ref<KotlinScript>& script : named_user_scripts) {
-        // We have to delay the update_export. The engine is not fully initialized and scripts can cause undefined behaviors.
-        MessageQueue::get_singleton()->push_callable(callable_mp(script.ptr(), &KotlinScript::update_exports));
+void TypeManager::update_all_exports_if_dirty() {
+    if (!types_dirty) return;
+    for (const Ref<NamedScript>& script : named_user_scripts) {
+        script->update_exports();
     }
-    for (const Ref<KotlinScript>& script : path_user_scripts) {
-        // We have to delay the update_export. The engine is not fully initialized and scripts can cause undefined behaviors.
-        MessageQueue::get_singleton()->push_callable(callable_mp(script.ptr(), &KotlinScript::update_exports));
+    for (const Ref<PathScript>& script : path_user_scripts) {
+        script->update_exports();
     }
-#endif
+    types_dirty = false;
 }
+#endif
 
 uintptr_t TypeManager::get_method_bind_ptr(JNIEnv* p_raw_env, jobject j_instance, jstring p_class_name, jstring p_method_name) {
     jni::Env env {p_raw_env};
@@ -194,4 +197,4 @@ TypeManager* TypeManager::init() {
     return native_instance;
 }
 
-TypeManager::TypeManager(jni::JObject p_wrapped) : JavaSingletonWrapper<TypeManager>(p_wrapped) {}
+TypeManager::TypeManager(jni::JObject p_wrapped) : JavaSingletonWrapper<TypeManager>(p_wrapped), types_dirty {false} {}

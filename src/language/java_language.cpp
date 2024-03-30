@@ -1,12 +1,12 @@
-#include "kotlin_language.h"
+#include "java_language.h"
 
 #include "gd_kotlin.h"
 #include "godotkotlin_defs.h"
-#include "script/kotlin_script.h"
+#include "script/java_script.h"
 
 #include <core/io/resource_loader.h>
 
-constexpr const char* KOTLIN_TEMPLATE = PACKAGE_TEMPLATE
+constexpr const char* JAVA_TEMPLATE = PACKAGE_TEMPLATE
   "\n"
   "\n"
   "import " GODOT_KOTLIN_PACKAGE "." BASE_TEMPLATE "\n"
@@ -33,28 +33,28 @@ constexpr const char* KOTLIN_TEMPLATE = PACKAGE_TEMPLATE
   "    }\n"
   "}\n";
 
-KotlinLanguage* KotlinLanguage::get_instance() {
-    static KotlinLanguage* instance {memnew(KotlinLanguage)};
+JavaLanguage* JavaLanguage::get_instance() {
+    static JavaLanguage* instance {memnew(JavaLanguage)};
     return instance;
 }
 
-String KotlinLanguage::get_name() const {
-    return GODOT_KOTLIN_LANGUAGE_NAME;
+String JavaLanguage::get_name() const {
+    return GODOT_JAVA_LANGUAGE_NAME;
 }
 
-String KotlinLanguage::get_type() const {
-    return GODOT_KOTLIN_SCRIPT_NAME;
+String JavaLanguage::get_type() const {
+    return GODOT_JAVA_SCRIPT_NAME;
 }
 
-String KotlinLanguage::get_extension() const {
-    return GODOT_KOTLIN_SCRIPT_EXTENSION;
+String JavaLanguage::get_extension() const {
+    return GODOT_JAVA_SCRIPT_EXTENSION;
 }
 
-void KotlinLanguage::get_recognized_extensions(List<String>* p_extensions) const {
-    p_extensions->push_back(GODOT_KOTLIN_SCRIPT_EXTENSION);
+void JavaLanguage::get_recognized_extensions(List<String>* p_extensions) const {
+    p_extensions->push_back(GODOT_JAVA_SCRIPT_EXTENSION);
 }
 
-void KotlinLanguage::get_reserved_words(List<String>* p_words) const {
+void JavaLanguage::get_reserved_words(List<String>* p_words) const {
     static const char* _reserved_words[] = {// RESERVED KEYWORDS
                                             "as",
                                             "as?",
@@ -152,69 +152,69 @@ void KotlinLanguage::get_reserved_words(List<String>* p_words) const {
     }
 }
 
-bool KotlinLanguage::is_control_flow_keyword(String p_keyword) const {
+bool JavaLanguage::is_control_flow_keyword(String p_keyword) const {
     return p_keyword == "break" || p_keyword == "catch" || p_keyword == "continue" || p_keyword == "do"
         || p_keyword == "else" || p_keyword == "finally" || p_keyword == "for" || p_keyword == "if" || p_keyword == "return"
         || p_keyword == "when" || p_keyword == "throw" || p_keyword == "try" || p_keyword == "while";
 }
 
-void KotlinLanguage::get_comment_delimiters(List<String>* p_delimiters) const {
+void JavaLanguage::get_comment_delimiters(List<String>* p_delimiters) const {
     p_delimiters->push_back("//");
     p_delimiters->push_back("/* */");
 }
 
-void KotlinLanguage::get_doc_comment_delimiters(List<String>* p_delimiters) const {
+void JavaLanguage::get_doc_comment_delimiters(List<String>* p_delimiters) const {
     p_delimiters->push_back("/** */");
 }
 
-void KotlinLanguage::get_string_delimiters(List<String>* p_delimiters) const {
+void JavaLanguage::get_string_delimiters(List<String>* p_delimiters) const {
     p_delimiters->push_back("' '");
     p_delimiters->push_back("\" \"");
 }
 
-Ref<Script> KotlinLanguage::make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const {
-    Ref<KotlinScript> kotlin_script;
-    kotlin_script.instantiate();
+Ref<Script> JavaLanguage::make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const {
+    Ref<JavaScript> java_script;
+    java_script.instantiate();
     String processed_template {p_template.replace(CLASS_TEMPLATE, p_class_name.to_pascal_case())};
-    kotlin_script->set_source_code(processed_template);
-    kotlin_script->set_name(p_class_name);
-    return kotlin_script;
+    java_script->set_source_code(processed_template);
+    java_script->set_name(p_class_name);
+    return java_script;
 }
 
-Vector<ScriptLanguage::ScriptTemplate> KotlinLanguage::get_built_in_templates(StringName p_object) {
+Vector<ScriptLanguage::ScriptTemplate> JavaLanguage::get_built_in_templates(StringName p_object) {
     Vector<ScriptLanguage::ScriptTemplate> templates;
     if (ClassDB::is_parent_class(p_object, "Node")) {
         ScriptLanguage::ScriptTemplate script_template {
           String(p_object),
           String("Default"),
           String("Base template for Node based scripts with default Godot cycle methods"),
-          String(KOTLIN_TEMPLATE).replace(BASE_TEMPLATE, p_object)
+          String(JAVA_TEMPLATE).replace(BASE_TEMPLATE, p_object)
         };
         templates.append(script_template);
     }
     return templates;
 }
 
-bool KotlinLanguage::is_using_templates() {
+bool JavaLanguage::is_using_templates() {
     return true;
 }
 
-Script* KotlinLanguage::create_script() const {
-    return memnew(KotlinScript);
+Script* JavaLanguage::create_script() const {
+    return memnew(JavaScript);
 }
 
-bool KotlinLanguage::has_named_classes() const {
+bool JavaLanguage::has_named_classes() const {
     return false;
 }
 
-bool KotlinLanguage::supports_builtin_mode() const {
+bool JavaLanguage::supports_builtin_mode() const {
     return false;
 }
 
-String KotlinLanguage::get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path) const {
+String JavaLanguage::get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path) const {
     return {};
 }
 
-bool KotlinLanguage::handles_global_class_type(const String& p_type) const {
+bool JavaLanguage::handles_global_class_type(const String& p_type) const {
     return false;
 }
