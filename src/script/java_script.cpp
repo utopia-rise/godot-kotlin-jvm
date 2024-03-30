@@ -9,7 +9,7 @@ ScriptLanguage* JavaScript::get_language() const {
 
 void JavaScript::set_path(const String& p_path, bool p_take_over) {
     if (source.contains(PACKAGE_TEMPLATE)) {
-        String package {p_path.replace("src/main/kotlin/", "")
+        String package {p_path.replace("src/main/java/", "")
                           .trim_prefix("res://")
                           .trim_suffix(get_name() + "." + JavaLanguage::get_instance()->get_extension())
                           .trim_suffix("/")

@@ -14,21 +14,23 @@ constexpr const char* JAVA_TEMPLATE = PACKAGE_TEMPLATE
   "import godot.annotation.RegisterFunction\n"
   "\n"
   "@RegisterClass\n"
-  "class " CLASS_TEMPLATE ": " BASE_TEMPLATE "() {\n"
+  "public class " CLASS_TEMPLATE " extends " BASE_TEMPLATE " {\n"
   "\n"
   "    // Declare member variables here. Examples:\n"
-  "    // val a = 2;\n"
-  "    // val b = \"text\";\n"
+  "    // private int a = 2;\n"
+  "    // private String b = \"text\";\n"
   "\n"
   "    // Called when the node enters the scene tree for the first time.\n"
   "    @RegisterFunction\n"
-  "    override fun _ready() {\n"
+  "    @Override\n"
+  "    public void _ready() {\n"
   "        \n"
   "    }\n"
   "\n"
   "    // Called every frame. 'delta' is the elapsed time since the previous frame.\n"
   "    @RegisterFunction\n"
-  "    override fun _process(delta: Double) {\n"
+  "    @Override\n"
+  "    public void _process(double delta) {\n"
   "        \n"
   "    }\n"
   "}\n";
@@ -55,92 +57,56 @@ void JavaLanguage::get_recognized_extensions(List<String>* p_extensions) const {
 }
 
 void JavaLanguage::get_reserved_words(List<String>* p_words) const {
-    static const char* _reserved_words[] = {// RESERVED KEYWORDS
-                                            "as",
-                                            "as?",
-                                            "break",
-                                            "class",
-                                            "continue",
-                                            "do",
-                                            "else",
-                                            "false",
-                                            "for",
-                                            "fun",
-                                            "if",
-                                            "in",
-                                            "!in",
-                                            "interface",
-                                            "is",
-                                            "!is",
-                                            "null",
-                                            "object",
-                                            "package",
-                                            "return",
-                                            "super",
-                                            "this",
-                                            "throw",
-                                            "true",
-                                            "try",
-                                            "typealias",
-                                            "typeof",
-                                            "val",
-                                            "var",
-                                            "when",
-                                            "while",
-
-                                            // SOFT KEYWORDS
-                                            "by",
-                                            "catch",
-                                            "constructor",
-                                            "delegate",
-                                            "dynamic",
-                                            "field",
-                                            "file",
-                                            "finally",
-                                            "get",
-                                            "import",
-                                            "init",
-                                            "param",
-                                            "property",
-                                            "receiveris",
-                                            "set",
-                                            "setparam",
-                                            "where",
-
-                                            // MODIFIERS KEYWORDS
-                                            "actual",
+    static const char* _reserved_words[] = {
                                             "abstract",
-                                            "annotation",
-                                            "companion",
+                                            "assert",
+                                            "boolean",
+                                            "break",
+                                            "byte",
+                                            "case",
+                                            "catch",
+                                            "char",
+                                            "class",
                                             "const",
-                                            "crossinline",
-                                            "data",
+                                            "continue",
+                                            "default",
+                                            "do",
+                                            "double",
+                                            "else",
                                             "enum",
-                                            "expect",
-                                            "external",
+                                            "extends",
                                             "final",
-                                            "infix",
-                                            "inline",
-                                            "inner",
-                                            "internal",
-                                            "lateinit",
-                                            "noinline",
-                                            "open",
-                                            "operator",
-                                            "out",
-                                            "override",
+                                            "finally",
+                                            "float",
+                                            "for",
+                                            "if",
+                                            "implements",
+                                            "import",
+                                            "instanceof",
+                                            "int",
+                                            "interface",
+                                            "long",
+                                            "native",
+                                            "new",
+                                            "package",
                                             "private",
                                             "protected",
                                             "public",
-                                            "reified",
-                                            "sealed",
-                                            "suspend",
-                                            "tailrec",
-                                            "vararg",
-
-                                            // SPECIAL IDENTIFIERS
-                                            "it",
-
+                                            "return",
+                                            "short",
+                                            "static",
+                                            "strictfp",
+                                            "super",
+                                            "switch",
+                                            "synchronized",
+                                            "this",
+                                            "throw",
+                                            "throws",
+                                            "transient",
+                                            "try",
+                                            "void",
+                                            "volatile",
+                                            "while",
                                             nullptr
     };
 
