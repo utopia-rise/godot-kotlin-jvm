@@ -7,21 +7,7 @@ class RotatingCube: Node3D() {
 }
 ```
 
-## Registration files
-
-For each class you register, a corresponding registration file is generated (a `gdj` file). These are the files you attach to nodes.
-
-### Location
-
-By default, these files are generated into a folder called `gdj` in the root of your project.
-
-You can however configure the destination folder inside your `build.gradle.kts`:
-
-```kotlin
-godot {
-    registrationFileBaseDir.set(<folder>)
-}
-```
+Each registered classes will generate its own .gdj files. For more information, read [registration files](../user-guide/api-differences.md#registration-files-gdj).
 
 ### Naming
 
@@ -193,3 +179,6 @@ The `@RegisterClass` annotation takes only one argument:
 ## Tool Mode
 
 Annotate your class with `@Tool` to make it a tool class (note that `@RegisterClass` is required for this annotation to take effect).
+
+!!! Caution
+    This is currently not implemented.

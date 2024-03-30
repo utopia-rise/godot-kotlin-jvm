@@ -1,32 +1,65 @@
 #include "kotlin_language.h"
 
+#include <core/io/resource_loader.h>
 #include "gd_kotlin.h"
 #include "godotkotlin_defs.h"
-#include "kotlin_script.h"
 
-#include <core/io/resource_loader.h>
-
-static const String GODOT_ENTRY_PATH {"res://build/generated/ksp"};
+constexpr const char* KOTLIN_TEMPLATE = PACKAGE_TEMPLATE
+  "\n"
+  "\n"
+  "import " GODOT_KOTLIN_PACKAGE "." BASE_TEMPLATE "\n"
+  "import godot.annotation.RegisterClass\n"
+  "import godot.annotation.RegisterFunction\n"
+  "\n"
+  "@RegisterClass\n"
+  "class " CLASS_TEMPLATE ": " BASE_TEMPLATE "() {\n"
+  "\n"
+  "    // Declare member variables here. Examples:\n"
+  "    // val a = 2;\n"
+  "    // val b = \"text\";\n"
+  "\n"
+  "    // Called when the node enters the scene tree for the first time.\n"
+  "    @RegisterFunction\n"
+  "    override fun _ready() {\n"
+  "        \n"
+  "    }\n"
+  "\n"
+  "    // Called every frame. 'delta' is the elapsed time since the previous frame.\n"
+  "    @RegisterFunction\n"
+  "    override fun _process(delta: Double) {\n"
+  "        \n"
+  "    }\n"
+  "}\n";
 
 KotlinLanguage* KotlinLanguage::get_instance() {
     static KotlinLanguage* instance {memnew(KotlinLanguage)};
     return instance;
 }
 
-String KotlinLanguage::get_name() const {
-    return "Kotlin";
-}
+void KotlinLanguage::init() {}
 
-void KotlinLanguage::init() {
-    GDKotlin::get_instance().init();
+void KotlinLanguage::frame() {}
+
+void KotlinLanguage::finish() {}
+
+void KotlinLanguage::thread_enter() {}
+
+void KotlinLanguage::thread_exit() {}
+
+String KotlinLanguage::get_name() const {
+    return GODOT_KOTLIN_LANGUAGE_NAME;
 }
 
 String KotlinLanguage::get_type() const {
-    return "KotlinScript";
+    return GODOT_KOTLIN_SCRIPT_NAME;
 }
 
-void KotlinLanguage::finish() {
-    GDKotlin::get_instance().finish();
+String KotlinLanguage::get_extension() const {
+    return GODOT_KOTLIN_SCRIPT_EXTENSION;
+}
+
+void KotlinLanguage::get_recognized_extensions(List<String>* p_extensions) const {
+    p_extensions->push_back(GODOT_KOTLIN_SCRIPT_EXTENSION);
 }
 
 void KotlinLanguage::get_reserved_words(List<String>* p_words) const {
@@ -116,7 +149,8 @@ void KotlinLanguage::get_reserved_words(List<String>* p_words) const {
                                             // SPECIAL IDENTIFIERS
                                             "it",
 
-                                            nullptr};
+                                            nullptr
+    };
 
     const char** w = _reserved_words;
 
@@ -137,7 +171,7 @@ void KotlinLanguage::get_comment_delimiters(List<String>* p_delimiters) const {
     p_delimiters->push_back("/* */");
 }
 
-void KotlinLanguage::get_doc_comment_delimiters(List<String> *p_delimiters) const {
+void KotlinLanguage::get_doc_comment_delimiters(List<String>* p_delimiters) const {
     p_delimiters->push_back("/** */");
 }
 
@@ -146,39 +180,10 @@ void KotlinLanguage::get_string_delimiters(List<String>* p_delimiters) const {
     p_delimiters->push_back("\" \"");
 }
 
-String KotlinLanguage::get_template(const String& p_class_name, const String& p_base_class_name) const {
-    String kotlinClassTemplate {"%PACKAGE%"
-                                "import " GODOT_KOTLIN_PACKAGE ".%BASE%\n"
-                                "import godot.annotation.RegisterClass\n"
-                                "import godot.annotation.RegisterFunction\n"
-                                "\n"
-                                "@RegisterClass\n"
-                                "class %CLASS% : %BASE%() {\n"
-                                "\n"
-                                "    // Declare member variables here. Examples:\n"
-                                "    // val a = 2;\n"
-                                "    // val b = \"text\";\n"
-                                "\n"
-                                "    // Called when the node enters the scene tree for the first time.\n"
-                                "    @RegisterFunction\n"
-                                "    override fun _ready() {\n"
-                                "        \n"
-                                "    }\n"
-                                "\n"
-                                "    // Called every frame. 'delta' is the elapsed time since the previous frame.\n"
-                                "    @RegisterFunction\n"
-                                "    override fun _process(delta: Double) {\n"
-                                "        \n"
-                                "    }\n"
-                                "}\n"};
-    return kotlinClassTemplate.replace("%BASE%", p_base_class_name).replace("%CLASS%", p_class_name);
-}
-
 Ref<Script> KotlinLanguage::make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const {
     Ref<KotlinScript> kotlin_script;
     kotlin_script.instantiate();
-    String processed_template {
-      p_template.replace("_BASE_", p_base_class_name).replace("_CLASS_", p_class_name).replace("_TS_", GODOT_KOTLIN_IDENTATION)};
+    String processed_template {p_template.replace(CLASS_TEMPLATE, p_class_name.to_pascal_case())};
     kotlin_script->set_source_code(processed_template);
     kotlin_script->set_name(p_class_name);
     return kotlin_script;
@@ -186,12 +191,15 @@ Ref<Script> KotlinLanguage::make_template(const String& p_template, const String
 
 Vector<ScriptLanguage::ScriptTemplate> KotlinLanguage::get_built_in_templates(StringName p_object) {
     Vector<ScriptLanguage::ScriptTemplate> templates;
-    ScriptLanguage::ScriptTemplate script_template {
-      String("Node"),
-      String("Default"),
-      String("Base template for Node with default Godot cycle methods"),
-      get_template(p_object, "Node")};
-    templates.append(script_template);
+    if (ClassDB::is_parent_class(p_object, "Node")) {
+        ScriptLanguage::ScriptTemplate script_template {
+          String(p_object),
+          String("Default"),
+          String("Base template for Node based scripts with default Godot cycle methods"),
+          String(KOTLIN_TEMPLATE).replace(BASE_TEMPLATE, p_object)
+        };
+        templates.append(script_template);
+    }
     return templates;
 }
 
@@ -276,32 +284,23 @@ void KotlinLanguage::remove_named_global_constant(const StringName& p_name) {
     ScriptLanguage::remove_named_global_constant(p_name);
 }
 
-void KotlinLanguage::thread_enter() {
-    //TODO: Remove this ifdef and its content while reworking GDKotlin and moving out logic of finding JVM.
-#ifdef DEBUG_ENABLED
-    if (!jni::Jvm::is_initialized()) {
-        LOG_ERROR("JavaVM is not initialized, please make sure your project contains an embedded JVM or JAVA_HOME environment variable is setup");
-        return;
-    }
-#endif
+void KotlinLanguage::get_public_functions(List<MethodInfo>* p_functions) const {}
 
-    jni::Jvm::attach();
+void KotlinLanguage::get_public_constants(List<Pair<String, Variant>>* p_constants) const {}
+
+void KotlinLanguage::get_public_annotations(List<MethodInfo>* p_annotations) const {}
+
+bool KotlinLanguage::handles_global_class_type(const String& p_type) const {
+    return false;
 }
 
-void KotlinLanguage::thread_exit() {
-    //TODO: Remove this ifdef and its content while reworking GDKotlin and moving out logic of finding JVM.
-#ifdef DEBUG_ENABLED
-    if (!jni::Jvm::is_initialized()) {
-        LOG_ERROR("JavaVM is not initialized, please make sure your project contains an embedded JVM or JAVA_HOME environment variable is setup");
-        return;
-    }
-#endif
-
-    jni::Jvm::detach();
+String KotlinLanguage::get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path) const {
+    return {};
 }
 
+// Dummy Implementations
 String KotlinLanguage::debug_get_error() const {
-    return String();
+    return {};
 }
 
 int KotlinLanguage::debug_get_stack_level_count() const {
@@ -313,90 +312,37 @@ int KotlinLanguage::debug_get_stack_level_line(int p_level) const {
 }
 
 String KotlinLanguage::debug_get_stack_level_function(int p_level) const {
-    return String();
+    return {};
 }
 
 String KotlinLanguage::debug_get_stack_level_source(int p_level) const {
-    return String();
+    return {};
 }
 
 void KotlinLanguage::debug_get_stack_level_locals(int p_level, List<String>* p_locals, List<Variant>* p_values, int p_max_subitems, int p_max_depth) {
-
 }
 
 void KotlinLanguage::debug_get_stack_level_members(int p_level, List<String>* p_members, List<Variant>* p_values, int p_max_subitems, int p_max_depth) {
-
-}
-
-ScriptInstance* KotlinLanguage::debug_get_stack_level_instance(int p_level) {
-    return ScriptLanguage::debug_get_stack_level_instance(p_level);
 }
 
 void KotlinLanguage::debug_get_globals(List<String>* p_globals, List<Variant>* p_values, int p_max_subitems, int p_max_depth) {}
 
 String KotlinLanguage::debug_parse_stack_level_expression(int p_level, const String& p_expression, int p_max_subitems, int p_max_depth) {
-    return String();
+    return {};
 }
-
-Vector<ScriptLanguage::StackInfo> KotlinLanguage::debug_get_current_stack_info() {
-    return ScriptLanguage::debug_get_current_stack_info();
-}
-
-void KotlinLanguage::reload_all_scripts() {}
-
-void KotlinLanguage::reload_tool_script(const Ref<Script>& p_script, bool p_soft_reload) {}
-
-void KotlinLanguage::get_recognized_extensions(List<String>* p_extensions) const {
-    p_extensions->push_back(GODOT_KOTLIN_SCRIPT_EXTENSION);
-}
-
-String KotlinLanguage::get_extension() const {
-    return GODOT_KOTLIN_SCRIPT_EXTENSION;
-}
-
-void KotlinLanguage::get_public_functions(List<MethodInfo>* p_functions) const {}
-
-void KotlinLanguage::get_public_constants(List<Pair<String, Variant>>* p_constants) const {}
-
-void KotlinLanguage::get_public_annotations(List<MethodInfo>* p_annotations) const {}
 
 void KotlinLanguage::profiling_start() {}
 
 void KotlinLanguage::profiling_stop() {}
 
-int KotlinLanguage::profiling_get_accumulated_data(ScriptLanguage::ProfilingInfo* p_info_arr, int p_info_max) {
+int KotlinLanguage::profiling_get_accumulated_data(ProfilingInfo* p_info_arr, int p_info_max) {
     return 0;
 }
 
-int KotlinLanguage::profiling_get_frame_data(ScriptLanguage::ProfilingInfo* p_info_arr, int p_info_max) {
+int KotlinLanguage::profiling_get_frame_data(ProfilingInfo* p_info_arr, int p_info_max) {
     return 0;
 }
 
-void KotlinLanguage::frame() {
-    ScriptLanguage::frame();
-}
+void KotlinLanguage::reload_all_scripts() {}
 
-bool KotlinLanguage::handles_global_class_type(const String& p_type) const {
-    return p_type == "KotlinScript";
-}
-
-String KotlinLanguage::get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path) const {
-    if (p_path.begins_with(GODOT_ENTRY_PATH)) { return String(); }
-
-    String script_name = KotlinScript::get_script_file_name(p_path);
-    Ref<KotlinScript> script = TypeManager::get_instance().get_user_script_from_name(script_name);
-    if (!script.is_null() && script.is_valid()) {
-        if (r_base_type) {
-            if (script->get_base_script().is_null()) {
-                *r_base_type = script->get_instance_base_type();
-            } else {
-                *r_base_type = script->get_base_script()->get_global_name();
-            }
-        }
-        return script->get_global_name();
-    }
-
-    return String();
-}
-
-KotlinLanguage::KotlinLanguage() {}
+void KotlinLanguage::reload_tool_script(const Ref<Script>& p_script, bool p_soft_reload) {}

@@ -1,10 +1,13 @@
 #include "kotlin_script.h"
 
-#include "core/os/thread.h"
 #include "gd_kotlin.h"
+#include "godotkotlin_defs.h"
 #include "kotlin_instance.h"
-#include "kotlin_language.h"
+#include "language/jvm_language.h"
+#include "language/kotlin_language.h"
 #include "logging.h"
+
+#include <core/os/thread.h>
 
 bool KotlinScript::can_instantiate() const {
 #ifdef TOOLS_ENABLED
@@ -30,12 +33,14 @@ bool KotlinScript::inherits_script(const Ref<Script>& p_script) const {
 }
 
 Ref<Script> KotlinScript::get_base_script() const {
-    if (!is_valid() || kotlin_class->registered_supertypes.size() == 0) { return Ref<Script>(); }
+    if (!is_valid() || kotlin_class->registered_supertypes.size() == 0) { return {}; }
     StringName parent_name = kotlin_class->registered_supertypes[0];
     return TypeManager::get_instance().get_user_script_from_name(parent_name);
 }
 
 StringName KotlinScript::get_global_name() const {
+    // Path based scripts don't have names.
+    if (mode != NAME) { return ""; }
     if (is_valid()) { return kotlin_class->registered_class_name; }
     // Scripts are either (valid and loaded from .jar) or (placeholders and loaded from .gdj)
     // Even in the case of an invalid file, we can then use its path to find the right name.
@@ -46,7 +51,7 @@ StringName KotlinScript::get_global_name() const {
 StringName KotlinScript::get_instance_base_type() const {
     if (is_valid()) { return kotlin_class->base_godot_class; }
     // not found
-    return StringName();
+    return {};
 }
 
 ScriptInstance* KotlinScript::instance_create(Object* p_this) {
@@ -126,7 +131,12 @@ bool KotlinScript::is_abstract() const {
 }
 
 ScriptLanguage* KotlinScript::get_language() const {
-    return KotlinLanguage::get_instance();
+    switch (mode) {
+        case NAME:
+            return JvmLanguage::get_instance();
+        default:
+            return KotlinLanguage::get_instance();
+    }
 }
 
 bool KotlinScript::has_script_signal(const StringName& p_signal) const {
@@ -188,6 +198,25 @@ Variant KotlinScript::_new(const Variant** p_args, int p_argcount, Callable::Cal
 }
 
 void KotlinScript::set_path(const String& p_path, bool p_take_over) {
+    String extension = p_path.get_extension();
+    if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION) {
+        mode = PATH;
+        if (source.contains(PACKAGE_TEMPLATE)) {
+            String package {p_path.replace("src/main/kotlin/", "")
+                              .trim_prefix("res://")
+                              .trim_suffix(get_name() + "." + KotlinLanguage::get_instance()->get_extension())
+                              .trim_suffix("/")
+                              .replace("/", ".")};
+
+            if (!package.is_empty()) { package = "package " + package; }
+
+            source = source.replace(PACKAGE_TEMPLATE, package).strip_edges(true, false);
+        }
+    } else if (extension == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
+        mode = NAME;
+    } else {
+        mode = NONE;
+    }
     Resource::set_path(p_path, p_take_over);
 }
 
@@ -210,12 +239,11 @@ PropertyInfo KotlinScript::get_class_category() const {
 
 String KotlinScript::get_class_icon_path() const {
     // TODO/4.2
-    return String();
+    return {};
 }
 
 PlaceHolderScriptInstance* KotlinScript::placeholder_instance_create(Object* p_this) {
-    PlaceHolderScriptInstance* placeholder {
-      memnew(PlaceHolderScriptInstance(KotlinLanguage::get_instance(), Ref<Script>(this), p_this))};
+    PlaceHolderScriptInstance* placeholder {memnew(PlaceHolderScriptInstance(KotlinLanguage::get_instance(), Ref<Script>(this), p_this))};
 
     List<PropertyInfo> exported_properties;
     get_script_exported_property_list(&exported_properties);
@@ -242,9 +270,9 @@ void KotlinScript::update_exports() {
     List<PropertyInfo> exported_properties;
     get_script_exported_property_list(&exported_properties);
 
-    for (int i = 0; i < exported_properties.size(); ++i) {
+    for (auto& exported_property : exported_properties) {
         Variant default_value;
-        const String& property_name {exported_properties[i].name};
+        const String& property_name {exported_property.name};
         kotlin_script_instance->get_or_default(property_name, default_value);
         exported_members_default_value_cache[property_name] = default_value;
     }
@@ -265,11 +293,15 @@ void KotlinScript::_bind_methods() {
     ClassDB::bind_vararg_method(METHOD_FLAGS_DEFAULT, "new", &KotlinScript::_new, MethodInfo("new"));
 }
 
-KotlinScript::KotlinScript() : kotlin_class(nullptr) {}
+KotlinScript::KotlinScript() : kotlin_class(nullptr), mode(NONE) {}
 
 KotlinScript::~KotlinScript() {
 #ifdef TOOLS_ENABLED
     exported_members_default_value_cache.clear();
 #endif
-    if (kotlin_class) { delete kotlin_class; }
+    if (mode == NAME) {
+        // The .gdj is the one that should delete the KtClass. Without this condition, it would be deleted 2 times.
+        delete kotlin_class;
+        kotlin_class = nullptr;
+    }
 }
