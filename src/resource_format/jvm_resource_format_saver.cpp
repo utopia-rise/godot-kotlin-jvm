@@ -20,9 +20,9 @@ Error JvmResourceFormatSaver::save(const Ref<Resource>& p_resource, const String
     ERR_FAIL_COND_V(kotlin_script.is_null(), ERR_INVALID_PARAMETER);
 
     if (!FileAccess::exists(p_path) && p_path.get_extension() == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
-        LOG_WARNING("It's not recommended to create .gdj files directly as they are generated automatically from .kt "
-                    "sources when building your project.\n"
-                    "Create a .kt with a matching registered class if you don't want this file to get deleted the next "
+        LOG_WARNING("It's not recommended to create .gdj files directly as they are generated automatically from jvm source files "
+                    "when building your project.\n"
+                    "Register a class with a matching name if you don't want this file to get deleted the next "
                     "time you build.");
     }
 

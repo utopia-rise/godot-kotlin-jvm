@@ -26,7 +26,7 @@ GdjLanguage* GdjLanguage::get_instance() {
 void GdjLanguage::init() {
 #ifdef TOOLS_ENABLED
     if (Engine::get_singleton()->is_project_manager_hint()) {
-        LOG_VERBOSE("Detected that we're in the project manager. Won't initialize kotlin lang.");
+        LOG_VERBOSE("Detected that we're in the project manager. Won't initialize Godot Kotlin/JVM module.");
         return;
     }
 #endif

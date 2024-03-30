@@ -138,7 +138,7 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
         ref->set_path(kotlin_class->compilation_time_relative_registration_file_path, true);
         scripts.push_back(ref);
 #ifdef DEV_ENABLED
-        LOG_VERBOSE(vformat("Kotlin Script created: %s", kotlin_class->registered_class_name));
+        LOG_VERBOSE(vformat("JVM Script created: %s", kotlin_class->registered_class_name));
 #endif
     }
 #endif
