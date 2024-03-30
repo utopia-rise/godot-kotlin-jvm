@@ -9,9 +9,9 @@
 constexpr const char* JAVA_TEMPLATE = PACKAGE_TEMPLATE
   "\n"
   "\n"
-  "import " GODOT_KOTLIN_PACKAGE "." BASE_TEMPLATE "\n"
-  "import godot.annotation.RegisterClass\n"
-  "import godot.annotation.RegisterFunction\n"
+  "import " GODOT_KOTLIN_PACKAGE "." BASE_TEMPLATE ";\n"
+  "import godot.annotation.RegisterClass;\n"
+  "import godot.annotation.RegisterFunction;\n"
   "\n"
   "@RegisterClass\n"
   "public class " CLASS_TEMPLATE " extends " BASE_TEMPLATE " {\n"

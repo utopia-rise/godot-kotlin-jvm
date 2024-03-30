@@ -15,7 +15,7 @@ void JavaScript::set_path(const String& p_path, bool p_take_over) {
                           .trim_suffix("/")
                           .replace("/", ".")};
 
-        if (!package.is_empty()) { package = "package " + package; }
+        if (!package.is_empty()) { package = "package " + package + ";";}
 
         source = source.replace(PACKAGE_TEMPLATE, package).strip_edges(true, false);
     }
