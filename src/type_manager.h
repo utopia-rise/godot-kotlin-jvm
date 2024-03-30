@@ -23,7 +23,7 @@ public:
     void create_and_update_scripts(Vector<KtClass*>& classes);
 
     template<class C>
-    Ref<JvmScript> create_script(const String& p_path);
+    Ref<C> create_script(const String& p_path);
 
 #ifdef TOOLS_ENABLED
     void update_all_exports_if_dirty();
@@ -59,7 +59,7 @@ private:
 };
 
 template<class C>
-Ref<JvmScript> TypeManager::create_script(const String& p_path) {
+Ref<C> TypeManager::create_script(const String& p_path) {
     if constexpr(!std::is_base_of<JvmScript, C>()) return {};
     // Placeholder scripts have to be registered in the TypeManager in order to be transformed in valid scripts when the jar is built.
     Ref<C> ref;
@@ -68,7 +68,7 @@ Ref<JvmScript> TypeManager::create_script(const String& p_path) {
     if constexpr(std::is_base_of<NamedScript, C>()) {
         named_user_scripts_map[ref->get_global_name()] = ref;
         named_user_scripts.push_back(ref);
-    } else if (std::is_base_of<PathScript, C>()) {
+    } else if constexpr(std::is_base_of<PathScript, C>()) {
         if (filepath_to_name_map.has(p_path)) {
             ref->kotlin_class = named_user_scripts_map[filepath_to_name_map[p_path]]->kotlin_class;
             path_user_scripts.push_back(ref);

@@ -10,6 +10,7 @@
 void JvmResourceFormatLoader::get_recognized_extensions(List<String>* p_extensions) const {
     p_extensions->push_back(GODOT_JVM_REGISTRATION_FILE_EXTENSION);
     p_extensions->push_back(GODOT_KOTLIN_SCRIPT_EXTENSION);
+    p_extensions->push_back(GODOT_JAVA_SCRIPT_EXTENSION);
 }
 
 String JvmResourceFormatLoader::get_resource_type(const String& p_path) const {
@@ -19,12 +20,14 @@ String JvmResourceFormatLoader::get_resource_type(const String& p_path) const {
         return GODOT_JVM_SCRIPT_NAME;
     } else if (ext == GODOT_KOTLIN_SCRIPT_EXTENSION) {
         return GODOT_KOTLIN_SCRIPT_NAME;
+    } else if (ext == GODOT_JAVA_SCRIPT_EXTENSION) {
+        return GODOT_JAVA_SCRIPT_NAME;
     }
     return "";
 }
 
 bool JvmResourceFormatLoader::handles_type(const String& p_type) const {
-    return p_type == "Script" || p_type == GODOT_KOTLIN_SCRIPT_NAME || p_type == GODOT_JVM_SCRIPT_NAME;
+    return p_type == "Script" || p_type == GODOT_KOTLIN_SCRIPT_NAME || p_type == GODOT_JVM_SCRIPT_NAME  || p_type == GODOT_JAVA_SCRIPT_NAME;
 }
 
 Error read_all_file_utf8(const String& p_path, String& r_content) {
@@ -63,7 +66,7 @@ Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& 
 #elif DEBUG_ENABLED
             // All scripts are supposed to be already in cache when not in the editor.
             if (r_error) { *r_error = Error::ERR_UNAVAILABLE; }
-            return Ref<JvmScript>();
+            return Ref<GdjScript>();
 #endif
         }
     }
@@ -77,7 +80,6 @@ Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& 
 
     String source_code;
     Error load_err {read_all_file_utf8(p_path, source_code)};
-
     ref->set_source_code(source_code);
 
     if (r_error) { *r_error = load_err; }

@@ -7,6 +7,7 @@ void JvmResourceFormatSaver::get_recognized_extensions(const Ref<Resource>& p_re
     if (recognize(p_resource)) {
         p_extensions->push_back(GODOT_KOTLIN_SCRIPT_EXTENSION);
         p_extensions->push_back(GODOT_JVM_REGISTRATION_FILE_EXTENSION);
+        p_extensions->push_back(GODOT_JAVA_SCRIPT_EXTENSION);
     }
 }
 

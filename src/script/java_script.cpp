@@ -19,6 +19,7 @@ void JavaScript::set_path(const String& p_path, bool p_take_over) {
 
         source = source.replace(PACKAGE_TEMPLATE, package).strip_edges(true, false);
     }
+    Resource::set_path(p_path, p_take_over);
 }
 
 void JavaScript::_bind_methods() {}
