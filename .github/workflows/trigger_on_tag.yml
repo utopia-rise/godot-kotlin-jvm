@@ -13,6 +13,7 @@ jobs:
   create-draft-release:
     name: 📝 Create draft release
     uses: ./.github/workflows/deploy_create_draft_release.yml
+    secrets: inherit # needed so that this sub workflow can also access github secrets for this workflow
 
   setup-build-variables:
     name: 🛠️ Setup build variables
@@ -168,7 +169,7 @@ jobs:
     with:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
       release_url: ${{ needs.setup-build-variables.outputs['release_url'] }}
-    secrets: inherit
+    secrets: inherit # needed so that this sub workflow can also access github secrets for this workflow
 
   deploy-jvm:
     name: 🚀 Deploy Jvm artifacts
@@ -181,4 +182,4 @@ jobs:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
-    secrets: inherit
+    secrets: inherit # needed so that this sub workflow can also access github secrets for this workflow
