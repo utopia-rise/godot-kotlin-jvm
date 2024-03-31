@@ -100,19 +100,3 @@ jobs:
         with:
           name: jvm_godot-bootstrap_debug
           path: modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar
-
-      - name: Build tests project
-        run: |
-          modules/kotlin_jvm/harness/tests/gradlew -p modules/kotlin_jvm/harness/tests/ build -Pdebug
-
-      - name: Upload tests main.jar
-        uses: ./.github/actions/upload-artifact
-        with:
-          name: tests_main_jar
-          path: modules/kotlin_jvm/harness/tests/build/libs/main.jar
-
-      - name: Upload tests godot-bootstrap.jar
-        uses: ./.github/actions/upload-artifact
-        with:
-          name: tests_godot_bootstrap_jar
-          path: modules/kotlin_jvm/harness/tests/build/libs/godot-bootstrap.jar
