@@ -28,7 +28,7 @@ jobs:
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
 
   build-android:
-    name: 🤖 Build And Assemble Android
+    name: 🤖 Build and Assemble Android
     uses: ./.github/workflows/builds_android.yml
     needs:
       - setup-build-variables

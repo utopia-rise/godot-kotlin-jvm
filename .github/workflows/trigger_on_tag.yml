@@ -41,10 +41,10 @@ jobs:
       - name: Save release infos as variables
         run: |
           echo "release_url=$(cat deploy_release_url.txt)" >> $GITHUB_OUTPUT
-          echo "godot_version=$(cat deploy_godot_version.txt)" >> $GITHUB_OUTPUT
-          echo "godot-kotlin-jvm-version=$(cat deploy_godot_kotlin_jvm_version.txt)" >> $GITHUB_OUTPUT
-
+          echo "Setup done"
     outputs:
+      godot-kotlin-jvm-version: "0.8.1-4.2.0"
+      godot-version: "4.2-stable"
       jvm-version: "17"
 
   build-jvm:
@@ -57,7 +57,7 @@ jobs:
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
 
   build-android:
-    name: 🤖 Build Android
+    name: 🤖 Build and Assemble Android
     uses: ./.github/workflows/builds_android.yml
     needs:
       - setup-build-variables
@@ -109,7 +109,7 @@ jobs:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 
   assemble-ios:
-    name: 🍎 Assemble ios
+    name: 🍏 Assemble ios
     uses: ./.github/workflows/assemble_ios.yml
     needs:
       - setup-build-variables
@@ -168,6 +168,7 @@ jobs:
     with:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
       release_url: ${{ needs.setup-build-variables.outputs['release_url'] }}
+    secrets: inherit
 
   deploy-jvm:
     name: 🚀 Deploy Jvm artifacts
@@ -180,3 +181,4 @@ jobs:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
+    secrets: inherit
