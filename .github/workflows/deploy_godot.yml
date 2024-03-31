@@ -40,7 +40,7 @@ jobs:
             arch: universal
     steps:
       - name: Download ${{ matrix.platform }} ${{ matrix.target }} editor for ${{ matrix.arch }}
-        uses: ./.github/actions/download-artifact
+        uses: actions/download-artifact@v3
         with:
           name: godot-kotlin-jvm_editor_${{ matrix.platform }}_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
           path: '.'
@@ -60,7 +60,7 @@ jobs:
     name: Deploy export templates
     steps:
       - name: Download export templates
-        uses: ./.github/actions/download-artifact
+        uses: actions/download-artifact@v3
         with:
           name: godot-kotlin-jvm_export_templates_${{ inputs.godot-kotlin-jvm-version }}.tpz
           path: '.'
