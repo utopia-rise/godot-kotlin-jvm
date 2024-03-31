@@ -30,6 +30,14 @@ jobs:
           - platform: windows
             target: release
             arch: x86_64
+
+          - platform: macos
+            target: debug
+            arch: universal
+
+          - platform: macos
+            target: release
+            arch: universal
     steps:
       - name: Download ${{ matrix.platform }} ${{ matrix.target }} editor for ${{ matrix.arch }}
         uses: ./.github/actions/download-artifact
