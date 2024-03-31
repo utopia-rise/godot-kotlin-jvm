@@ -1,0 +1,16 @@
+name: Create MacOs universal binary
+description: Creates a MacOs universal binary
+inputs:
+  amd-64-binary:
+    description: AMD64 arch binary name
+  arm-64-binary:
+    description: ARM64 arch binary name
+  universal-output-binary:
+    description: Name for the output universal binary
+runs:
+  using: composite
+  steps:
+    - name: Create MacOs universal binary
+      shell: sh
+      run: |
+        lipo -create ${{ inputs.amd-64-binary }} ${{ inputs.arm-64-binary }} -output ${{ inputs.universal-output-binary }}
