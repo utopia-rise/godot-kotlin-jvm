@@ -21,27 +21,7 @@ jobs:
     needs:
       - create-draft-release
     steps:
-      - name: Download deploy_release_url
-        uses: actions/download-artifact@v3
-        with:
-          name: deploy_release_url
-          path: .
-
-      - name: Download deploy_godot_version
-        uses: actions/download-artifact@v3
-        with:
-          name: deploy_godot_version
-          path: .
-
-      - name: Download deploy_godot_kotlin_jvm_version
-        uses: actions/download-artifact@v3
-        with:
-          name: deploy_godot_kotlin_jvm_version
-          path: .
-
-      - name: Save release infos as variables
-        run: |
-          echo "release_url=$(cat deploy_release_url.txt)" >> $GITHUB_OUTPUT
+      - run: |
           echo "Setup done"
     outputs: # defined here explicitly, so it only needs to be defined here. All other workflows can just reference it
       godot-kotlin-jvm-version: "0.8.3-4.2.1"
@@ -168,7 +148,6 @@ jobs:
       - assemble-windows
     with:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
-      release_url: ${{ needs.setup-build-variables.outputs['release_url'] }}
     secrets: inherit # needed so that this sub workflow can also access github secrets for this workflow
 
   deploy-jvm:
