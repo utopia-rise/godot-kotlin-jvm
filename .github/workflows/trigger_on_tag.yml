@@ -146,6 +146,7 @@ jobs:
       - assemble-linux
       - assemble-macos
       - assemble-windows
+      - assemble-export-templates
     with:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
     secrets: inherit # needed so that this sub workflow can also access github secrets for this workflow
