@@ -57,9 +57,17 @@ jobs:
           name: jvm_godot-bootstrap_${{ matrix.target }}
           path: './bin'
 
-      - name: Build tests project
-        run: |
-          modules/kotlin_jvm/harness/tests/gradlew -p modules/kotlin_jvm/harness/tests/ build -P${{ matrix.target }}
+      - name: Download tests main jar
+        uses: ./.github/actions/download-artifact
+        with:
+          name: tests_main_jar
+          path: './modules/kotlin_jvm/harness/tests/build/libs/main.jar'
+
+      - name: Download tests godot-bootstrap jar
+        uses: ./.github/actions/download-artifact
+        with:
+          name: tests_godot_bootstrap_jar
+          path: './modules/kotlin_jvm/harness/tests/build/libs/godot-bootstrap.jar'
 
       - name: Run Tests
         run: |
