@@ -50,7 +50,7 @@ jobs:
 
   build-jvm:
     name: ☕ Build Jvm
-    uses: ./.github/workflows/builds_jvm.yml
+    uses: ./.github/workflows/build_jvm.yml
     needs:
       - setup-build-variables
     with:
@@ -59,7 +59,7 @@ jobs:
 
   build-android:
     name: 🤖 Build and Assemble Android
-    uses: ./.github/workflows/builds_android.yml
+    uses: ./.github/workflows/build_android.yml
     needs:
       - setup-build-variables
     with:
@@ -68,7 +68,7 @@ jobs:
 
   build-ios:
     name: 🍏 Build iOS
-    uses: ./.github/workflows/builds_ios.yml
+    uses: ./.github/workflows/build_ios.yml
     needs:
       - setup-build-variables
     with:
@@ -76,7 +76,7 @@ jobs:
 
   build-linux:
     name: 🐧 Build Linux
-    uses: ./.github/workflows/builds_linux.yml
+    uses: ./.github/workflows/build_linux.yml
     needs:
       - setup-build-variables
     with:
@@ -84,7 +84,7 @@ jobs:
 
   build-macos:
     name: 🍎 Build macOS
-    uses: ./.github/workflows/builds_macos.yml
+    uses: ./.github/workflows/build_macos.yml
     needs:
       - setup-build-variables
     with:
@@ -92,7 +92,7 @@ jobs:
 
   build-windows:
     name: 🪟 Build Windows
-    uses: ./.github/workflows/builds_windows.yml
+    uses: ./.github/workflows/build_windows.yml
     needs:
       - setup-build-variables
     with:
