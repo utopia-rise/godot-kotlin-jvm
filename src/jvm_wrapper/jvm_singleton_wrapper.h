@@ -67,7 +67,7 @@ void JvmSingletonWrapper<Derived, FqName>::initialize() {
     jni::FieldId singleton_instance_field =
       singleton_cls.get_static_field_id(env, "INSTANCE", vformat("L%s;", FqName).replace(".", "/").utf8().ptr());
     jni::JObject singleton_instance = singleton_cls.get_static_object_field(env, singleton_instance_field);
-    JVM_CRASH_COND_MSG(singleton_instance.is_null(), "Failed to retrieve" + String(FqName) + "instance");
+    JVM_CRASH_COND_MSG(singleton_instance.is_null(), "Failed to retrieve " + String(FqName) + " instance");
 
     _instance = new Derived(singleton_instance);
 

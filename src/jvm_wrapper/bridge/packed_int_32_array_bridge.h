@@ -5,7 +5,7 @@
 
 namespace bridges {
 
-    JVM_SINGLETON_WRAPPER(PackedInt32IntArrayBridge, "godot.core.PackedInt32IntArray$Bridge") {
+    JVM_SINGLETON_WRAPPER(PackedInt32IntArrayBridge, "godot.core.PackedInt32Array$Bridge") {
         SINGLETON_CLASS(PackedInt32IntArrayBridge)
 
         // clang-format off
