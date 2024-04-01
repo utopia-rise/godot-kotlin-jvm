@@ -5,7 +5,7 @@
 
 namespace bridges {
 
-    JVM_SINGLETON_WRAPPER(RidBridge, "godot.core.Rid$Bridge") {
+    JVM_SINGLETON_WRAPPER(RidBridge, "godot.core.RID$Bridge") {
         SINGLETON_CLASS(RidBridge)
 
         // clang-format off
