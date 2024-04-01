@@ -1,7 +1,7 @@
 #include "jvm_instance.h"
 
 #include "gd_kotlin.h"
-#include "kt_class.h"
+#include "jvm_wrapper/registration/kt_class.h"
 #include "language/kotlin_language.h"
 
 JvmInstance::JvmInstance(Object* p_owner, KtObject* p_kt_object, JvmScript* p_script) :

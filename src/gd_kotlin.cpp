@@ -1,7 +1,8 @@
 #include "gd_kotlin.h"
 
+#include "bridges_manager.h"
 #include "jni/class_loader.h"
-#include "memory/bridges_manager.h"
+#include "jvm_wrapper/memory/transfer_context.h"
 
 #include <core/config/project_settings.h>
 #include <core/io/resource_loader.h>

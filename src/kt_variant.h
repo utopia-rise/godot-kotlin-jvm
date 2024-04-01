@@ -1,18 +1,17 @@
 #ifndef GODOT_JVM_KT_VARIANT_H
 #define GODOT_JVM_KT_VARIANT_H
 
+#include "binding/kotlin_binding_manager.h"
 #include "jni/wrapper.h"
+#include "jvm_wrapper/memory/long_string_queue.h"
+#include "jvm_wrapper/memory/type_manager.h"
 #include "logging.h"
-#include "long_string_queue.h"
-#include "memory/kotlin_binding_manager.h"
-#include "memory/shared_buffer.h"
-#include "type_manager.h"
+#include "shared_buffer.h"
 
 #include <core/io/marshalls.h>
 #include <core/os/os.h>
 #include <core/variant/variant.h>
 
-// TODO/4.0 implement new types
 namespace ktvariant {
 
     const int LONG_SIZE = 8;

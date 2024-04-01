@@ -13,7 +13,7 @@ JNI_INIT_STATICS_FOR_CLASS(
 Bootstrap::LoadClassesHook Bootstrap::load_classes {};
 Bootstrap::RegisterManagedEngineTypesHook Bootstrap::register_engine_type {};
 
-Bootstrap::Bootstrap(jni::JObject p_wrapped) : JavaInstanceWrapper(p_wrapped) {}
+Bootstrap::Bootstrap(jni::JObject p_wrapped) : JvmInstanceWrapper(p_wrapped) {}
 
 void Bootstrap::register_hooks(LoadClassesHook p_load_classes_hook, RegisterManagedEngineTypesHook p_register_managed_engine_types_hook) {
     Bootstrap::load_classes = p_load_classes_hook;

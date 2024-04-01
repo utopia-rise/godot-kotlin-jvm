@@ -1,9 +1,9 @@
 #ifndef GODOT_JVM_BOOTSTRAP_H
 #define GODOT_JVM_BOOTSTRAP_H
 
-#include "java_instance_wrapper.h"
+#include "jvm_wrapper/jvm_instance_wrapper.h"
 
-class Bootstrap : public JavaInstanceWrapper {
+class Bootstrap : public JvmInstanceWrapper {
 public:
     // clang-format off
     typedef void (*LoadClassesHook)(JNIEnv* p_env, jobject p_this, jobjectArray classes);
