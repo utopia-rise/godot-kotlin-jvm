@@ -25,12 +25,12 @@ Object* JvmInstance::get_owner() {
 bool JvmInstance::set(const StringName& p_name, const Variant& p_value) {
     jni::LocalFrame localFrame(1000);
 
-    if (KtProperty * ktProperty {kt_class->get_property(p_name)}) {
+    if (KtProperty* ktProperty {kt_class->get_property(p_name)}) {
         ktProperty->call_set(kt_object, p_value);
         return true;
     }
 
-    if (KtFunction * function {kt_class->get_method(SNAME("_set"))}) {
+    if (KtFunction* function {kt_class->get_method(SNAME("_set"))}) {
         Variant ret;
         const int arg_count = 2;
         Variant name = p_name;
@@ -57,7 +57,7 @@ bool JvmInstance::get(const StringName& p_name, Variant& r_ret) const {
         return true;
     }
 
-    if (KtFunction * function {kt_class->get_method(SNAME("_get"))}) {
+    if (KtFunction* function {kt_class->get_method(SNAME("_get"))}) {
         const int arg_count = 1;
         Variant name = p_name;
         const Variant* args[arg_count] = {&name};
@@ -85,7 +85,7 @@ bool JvmInstance::get_or_default(const StringName& p_name, Variant& r_ret) const
 void JvmInstance::get_property_list(List<PropertyInfo>* p_properties) const {
     kt_class->get_property_list(p_properties);
 
-    if (KtFunction * function {kt_class->get_method(SNAME("_get_property_list"))}) {
+    if (KtFunction* function {kt_class->get_method(SNAME("_get_property_list"))}) {
         Variant ret_var;
         function->invoke(kt_object, {}, 0, ret_var);
         Array ret_array = ret_var;
@@ -129,7 +129,7 @@ void JvmInstance::notification(int p_notification, bool p_reversed) {
 }
 
 void JvmInstance::validate_property(PropertyInfo& p_property) const {
-    if (KtFunction * function {kt_class->get_method(SNAME("_validate_property"))}) {
+    if (KtFunction* function {kt_class->get_method(SNAME("_validate_property"))}) {
         Variant ret_var;
         Variant property_arg = (Dictionary) p_property;
         const int arg_count {1};
@@ -174,7 +174,7 @@ ScriptLanguage* JvmInstance::get_language() {
 }
 
 bool JvmInstance::property_can_revert(const StringName& p_name) const {
-    if (KtFunction * function {kt_class->get_method(SNAME("_property_can_revert"))}) {
+    if (KtFunction* function {kt_class->get_method(SNAME("_property_can_revert"))}) {
         const int arg_count = 1;
         Variant ret;
         Variant name = p_name;
@@ -187,7 +187,7 @@ bool JvmInstance::property_can_revert(const StringName& p_name) const {
 }
 
 bool JvmInstance::property_get_revert(const StringName& p_name, Variant& r_ret) const {
-    if (KtFunction * function {kt_class->get_method(SNAME("_property_get_revert"))}) {
+    if (KtFunction* function {kt_class->get_method(SNAME("_property_get_revert"))}) {
         const int arg_count = 1;
         Variant name = p_name;
         const Variant* args[arg_count] = {&name};
