@@ -1,27 +1,28 @@
 #include "jvm_resource_format_saver.h"
 
 #include "godotkotlin_defs.h"
-#include "kotlin_script.h"
+#include "script/jvm_script.h"
 
 void JvmResourceFormatSaver::get_recognized_extensions(const Ref<Resource>& p_resource, List<String>* p_extensions) const {
     if (recognize(p_resource)) {
         p_extensions->push_back(GODOT_KOTLIN_SCRIPT_EXTENSION);
         p_extensions->push_back(GODOT_JVM_REGISTRATION_FILE_EXTENSION);
+        p_extensions->push_back(GODOT_JAVA_SCRIPT_EXTENSION);
     }
 }
 
 bool JvmResourceFormatSaver::recognize(const Ref<Resource>& p_resource) const {
-    return Object::cast_to<KotlinScript>(p_resource.ptr()) != nullptr;
+    return Object::cast_to<JvmScript>(p_resource.ptr()) != nullptr;
 }
 
 Error JvmResourceFormatSaver::save(const Ref<Resource>& p_resource, const String& p_path, uint32_t p_flags) {
-    Ref<KotlinScript> kotlin_script = p_resource;
+    Ref<JvmScript> kotlin_script = p_resource;
     ERR_FAIL_COND_V(kotlin_script.is_null(), ERR_INVALID_PARAMETER);
 
     if (!FileAccess::exists(p_path) && p_path.get_extension() == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
-        LOG_WARNING("It's not recommended to create .gdj files directly as they are generated automatically from .kt "
-                    "sources when building your project.\n"
-                    "Create a .kt with a matching registered class if you don't want this file to get deleted the next "
+        LOG_WARNING("It's not recommended to create .gdj files directly as they are generated automatically from jvm source files "
+                    "when building your project.\n"
+                    "Register a class with a matching name if you don't want this file to get deleted the next "
                     "time you build.");
     }
 

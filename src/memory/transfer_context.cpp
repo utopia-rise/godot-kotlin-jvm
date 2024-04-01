@@ -1,7 +1,7 @@
 #include "transfer_context.h"
 
 #include "gd_kotlin.h"
-#include "kotlin_instance.h"
+#include "script/jvm_instance.h"
 
 // clang-format off
 JNI_INIT_STATICS_FOR_CLASS(
@@ -152,8 +152,8 @@ void TransferContext::create_native_object(JNIEnv* p_raw_env, jobject p_instance
     int script_index {static_cast<int>(p_script_index)};
     if (script_index != -1) {
         KtObject* kt_object = memnew(KtObject(jni::JObject(p_object), ptr->is_ref_counted()));
-        Ref<KotlinScript> kotlin_script {TypeManager::get_instance().get_user_script_for_index(script_index)};
-        KotlinInstance* script = memnew(KotlinInstance(ptr, kt_object, kotlin_script.ptr()));
+        Ref<JvmScript> kotlin_script {TypeManager::get_instance().get_user_script_for_index(script_index)};
+        JvmInstance* script = memnew(JvmInstance(ptr, kt_object, kotlin_script.ptr()));
         ptr->set_script_instance(script);
     }
 

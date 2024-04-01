@@ -5,28 +5,28 @@ Godot Kotlin/JVM offers two different ways to attach scripts:
 - Source files
 - Registration files.
 
-## Source files .kt
+## Source files .kt and .java
 
-Just like you would do with GDScript, you can directly attach your Kotlin files to Nodes as scripts.
+Just like you would do with GDScript, you can directly attach your Kotlin/Java files to Nodes as scripts.
 This is the most straightforward method to use Kotlin scripts but not the most flexible.
 
 The limitations are the following:
 
 - Your files must be located inside a valid source set defined in your gradle configuration file.
 - Scripts written in a location outside the Godot project can't be used as the engine won't be able to find them. This applies to modules and libraries.
-- if several script classes are defined inside a single file, only one of them will be usable.
+- If several script classes are defined inside a single file, only one of them will be usable.
 - The script is nameless. You won't be able to write code in GDScript like (doesn't apply to Kotlin code):
     ```kotlin
     var test_script: MyScript = load("res://pathToScript/MyScript.kt").new() // Wrong
     var test_script: Node = load("res://pathToScript/MyScript.kt").new() // Correct
     ```
-    The same applies if you use a Godot object with a .kt attached to it
+    The same applies if you use a Godot object with a .kt/.java attached to it
 
 If those limitations don't apply to you, feel free to use Kotlin source files directly.
 
 ## Registration files .gdj
 
-For each class you register to Godot, a corresponding registration file is generated (a `gdj` file) during compilation. Like the .kt files, you can attach them to Nodes.
+For each class you register to Godot, a corresponding registration file is generated (a `gdj` file) during compilation. Like the source files, you can attach them to Nodes.
 They have several benefits over source files:
 
 - .gdj can be placed wherever you want in your Godot project, you are not limited to the source set.

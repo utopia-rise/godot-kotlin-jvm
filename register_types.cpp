@@ -1,17 +1,23 @@
 #ifdef TOOLS_ENABLED
 #include "kotlin_editor_export_plugin.h"
 #include "src/editor/godot_kotlin_jvm_editor.h"
+
 #include <editor/editor_node.h>
 #include <editor/export/editor_export.h>
 #endif
 
 #include "gd_kotlin.h"
+#include "language/gdj_language.h"
+#include "language/java_language.h"
 #include "language/jvm_language.h"
 #include "language/kotlin_language.h"
 #include "register_types.h"
 #include "resource_format/jvm_resource_format_loader.h"
 #include "resource_format/jvm_resource_format_saver.h"
-#include "src/kotlin_script.h"
+#include "script/gdj_script.h"
+#include "script/java_script.h"
+#include "script/jvm_script.h"
+#include "script/kotlin_script.h"
 
 Ref<JvmResourceFormatLoader> resource_format_loader;
 Ref<JvmResourceFormatSaver> resource_format_saver;
@@ -30,10 +36,14 @@ static EditorPlugin* godot_kotlin_jvm_editor_plugin_creator_func() {
 
 void initialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
     if (p_level == MODULE_INITIALIZATION_LEVEL_SCENE) {
+        GDREGISTER_ABSTRACT_CLASS(JvmScript);
+        GDREGISTER_CLASS(GdjScript);
         GDREGISTER_CLASS(KotlinScript);
+        GDREGISTER_CLASS(JavaScript);
 
-        ScriptServer::register_language(JvmLanguage::get_instance());
+        ScriptServer::register_language(GdjLanguage::get_instance());
         ScriptServer::register_language(KotlinLanguage::get_instance());
+        ScriptServer::register_language(JavaLanguage::get_instance());
 
         resource_format_loader.instantiate();
         ResourceLoader::add_resource_format_loader(resource_format_loader);
@@ -44,7 +54,7 @@ void initialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
 #ifdef TOOLS_ENABLED
     if (p_level == MODULE_INITIALIZATION_LEVEL_EDITOR) {
         EditorNode::add_init_callback(editor_init);
-        //EditorPlugins::add_create_func(godot_kotlin_jvm_editor_plugin_creator_func);
+        // EditorPlugins::add_create_func(godot_kotlin_jvm_editor_plugin_creator_func);
     }
 #endif
 }
@@ -52,11 +62,15 @@ void initialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
 void uninitialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
     if (p_level != MODULE_INITIALIZATION_LEVEL_SERVERS) { return; }
 
+    JavaLanguage* java_language {JavaLanguage::get_instance()};
+    ScriptServer::unregister_language(java_language);
+    memdelete(java_language);
+
     KotlinLanguage* kotlin_language {KotlinLanguage::get_instance()};
     ScriptServer::unregister_language(kotlin_language);
     memdelete(kotlin_language);
 
-    JvmLanguage* jvm_language {JvmLanguage::get_instance()};
+    JvmLanguage* jvm_language {GdjLanguage::get_instance()};
     ScriptServer::unregister_language(jvm_language);
     memdelete(jvm_language);
 

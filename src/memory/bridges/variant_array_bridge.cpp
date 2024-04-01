@@ -77,7 +77,7 @@ uintptr_t VariantArrayBridge::engine_call_constructor_typed(JNIEnv* p_raw_env, j
     StringName base_class_name;
     Variant script;
     if (userTypeIndex != -1) {
-        const Ref<KotlinScript>& kotlin_script {TypeManager::get_instance().get_user_script_for_index(userTypeIndex)};
+        const Ref<JvmScript>& kotlin_script {TypeManager::get_instance().get_user_script_for_index(userTypeIndex)};
         base_class_name = kotlin_script->get_instance_base_type();
         script = kotlin_script;
     } else if (engineTypeIndex != -1) {

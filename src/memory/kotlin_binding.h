@@ -9,7 +9,7 @@ class KotlinBindingManager;
 
 class KotlinBinding {
     friend class KotlinBindingManager;
-    friend class KotlinInstance;
+    friend class JvmInstance;
 
     enum class BindingStatus {
         CREATED,

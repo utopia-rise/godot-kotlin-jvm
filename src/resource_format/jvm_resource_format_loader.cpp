@@ -1,12 +1,16 @@
 #include "jvm_resource_format_loader.h"
 
 #include "godotkotlin_defs.h"
-#include "kotlin_script.h"
+#include "script/gdj_script.h"
+#include "script/java_script.h"
+#include "script/jvm_script.h"
+#include "script/kotlin_script.h"
 #include "type_manager.h"
 
 void JvmResourceFormatLoader::get_recognized_extensions(List<String>* p_extensions) const {
     p_extensions->push_back(GODOT_JVM_REGISTRATION_FILE_EXTENSION);
     p_extensions->push_back(GODOT_KOTLIN_SCRIPT_EXTENSION);
+    p_extensions->push_back(GODOT_JAVA_SCRIPT_EXTENSION);
 }
 
 String JvmResourceFormatLoader::get_resource_type(const String& p_path) const {
@@ -16,12 +20,14 @@ String JvmResourceFormatLoader::get_resource_type(const String& p_path) const {
         return GODOT_JVM_SCRIPT_NAME;
     } else if (ext == GODOT_KOTLIN_SCRIPT_EXTENSION) {
         return GODOT_KOTLIN_SCRIPT_NAME;
+    } else if (ext == GODOT_JAVA_SCRIPT_EXTENSION) {
+        return GODOT_JAVA_SCRIPT_NAME;
     }
     return "";
 }
 
 bool JvmResourceFormatLoader::handles_type(const String& p_type) const {
-    return p_type == "Script" || p_type == GODOT_KOTLIN_SCRIPT_NAME || p_type == GODOT_JVM_SCRIPT_NAME;
+    return p_type == "Script" || p_type == GODOT_KOTLIN_SCRIPT_NAME || p_type == GODOT_JVM_SCRIPT_NAME  || p_type == GODOT_JAVA_SCRIPT_NAME;
 }
 
 Error read_all_file_utf8(const String& p_path, String& r_content) {
@@ -45,33 +51,35 @@ Error read_all_file_utf8(const String& p_path, String& r_content) {
 }
 
 Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& p_original_path, Error* r_error, bool p_use_sub_threads, float* r_progress, CacheMode p_cache_mode) {
-    Ref<KotlinScript> ref;
+    Ref<JvmScript> ref;
 
     String extension = p_path.get_extension();
     if (extension == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
         // We don't import Kotlin scripts so p_path == p_original_path
-        String script_name = KotlinScript::get_script_file_name(p_path);
+        String script_name = JvmScript::get_script_file_name(p_path);
         ref = TypeManager::get_instance().get_user_script_from_name(script_name);
         if (ref.is_null()) {
 #ifdef TOOLS_ENABLED
             // If we reach that location, it means that the script file being loaded hasn't been built into the .jar.
             // We create a script placeholder instead. When reloading, it will be properly updated with the correct KtClass.
-            ref = TypeManager::get_instance().create_script<true>(p_path);
+            ref = TypeManager::get_instance().create_script<GdjScript>(p_path);
 #elif DEBUG_ENABLED
             // All scripts are supposed to be already in cache when not in the editor.
             if (r_error) { *r_error = Error::ERR_UNAVAILABLE; }
-            return Ref<KotlinScript>();
+            return Ref<GdjScript>();
 #endif
         }
-    } else if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION) {
-        // Path scripts are always created from the resource_loader and set in the resource cache afterward.
-        // If we reach that location, it means the script doesn't exist.
-        ref = TypeManager::get_instance().create_script<false>(p_path);
+    }
+    // Path scripts are always created from the resource_loader and set in the resource cache afterward.
+    // If we reach that location, it means the script doesn't exist.
+    else if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION) {
+        ref = TypeManager::get_instance().create_script<KotlinScript>(p_path);
+    } else if (extension == GODOT_JAVA_SCRIPT_EXTENSION) {
+        ref = TypeManager::get_instance().create_script<JavaScript>(p_path);
     }
 
     String source_code;
     Error load_err {read_all_file_utf8(p_path, source_code)};
-
     ref->set_source_code(source_code);
 
     if (r_error) { *r_error = load_err; }

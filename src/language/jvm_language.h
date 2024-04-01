@@ -5,47 +5,17 @@
 
 class JvmLanguage : public ScriptLanguage {
 public:
-    JvmLanguage() = default;
-    ~JvmLanguage() override = default;
-    JvmLanguage(const JvmLanguage&) = delete;
-    void operator=(const JvmLanguage&) = delete;
-
-    static JvmLanguage* get_instance();
-
     void init() override;
     void frame() override;
     void finish() override;
-
-    void thread_enter() override;
-    void thread_exit() override;
-
-    String get_name() const override;
-    String get_type() const override;
-    String get_extension() const override;
-    void get_recognized_extensions(List<String>* p_extensions) const override;
-
-    bool handles_global_class_type(const String& p_type) const override;
-    String get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path) const override;
-    bool has_named_classes() const override;
-    bool supports_builtin_mode() const override;
-    Script* create_script() const override;
-
-    void get_reserved_words(List<String>* p_words) const override;
-    bool is_control_flow_keyword(String p_keyword) const override;
-    void get_comment_delimiters(List<String>* p_delimiters) const override;
-    void get_doc_comment_delimiters(List<String>* p_delimiters) const override;
-    void get_string_delimiters(List<String>* p_delimiters) const override;
-    Ref<Script> make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const override;
-    Vector<ScriptTemplate> get_built_in_templates(StringName p_object) override;
-    bool is_using_templates() override;
 
     bool validate(
       const String& p_script,
       const String& p_path,
       List<String>* r_functions,
-      List<ScriptLanguage::ScriptError>* r_errors = nullptr,
-      List<ScriptLanguage::Warning>* r_warnings = nullptr,
-      HashSet<int>* r_safe_lines = nullptr
+      List<ScriptLanguage::ScriptError>* r_errors,
+      List<ScriptLanguage::Warning>* r_warnings,
+      HashSet<int>* r_safe_lines
     ) const override;
     String validate_path(const String& p_path) const override;
 

@@ -4,9 +4,9 @@
 #include "bootstrap.h"
 #include "gd_kotlin_configuration.h"
 #include "jni/wrapper.h"
-#include "kotlin_script.h"
 #include "kt_class.h"
 #include "memory/transfer_context.h"
+#include "script/jvm_script.h"
 
 #include <core/string/ustring.h>
 
