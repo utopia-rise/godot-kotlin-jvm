@@ -1,7 +1,5 @@
 #include "bridges_manager.h"
 
-#include "constants.h"
-
 BridgesManager& BridgesManager::get_instance() {
     static BridgesManager bridgesManager;
     return bridgesManager;

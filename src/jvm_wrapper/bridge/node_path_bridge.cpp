@@ -1,34 +1,9 @@
 #include "node_path_bridge.h"
 
 #include "bridges_utils.h"
-#include "constants.h"
 #include "gd_kotlin.h"
 
 using namespace bridges;
-
-// clang-format off
-JNI_INIT_STATICS_FOR_CLASS(
-    NodePathBridge,
-    INIT_NATIVE_METHOD("engine_call_constructor", "()J", NodePathBridge::engine_call_constructor)
-    INIT_NATIVE_METHOD("engine_call_constructor_string", "()J", NodePathBridge::engine_call_constructor_string)
-    INIT_NATIVE_METHOD("engine_call_constructor_node_path", "()J", NodePathBridge::engine_call_constructor_node_path)
-    INIT_NATIVE_METHOD("engine_call_path", "(J)V", NodePathBridge::engine_call_path)
-    INIT_NATIVE_METHOD("engine_call_getAsPropertyPath", "(J)V", NodePathBridge::engine_call_getAsPropertyPath)
-    INIT_NATIVE_METHOD("engine_call_getName", "(J)V", NodePathBridge::engine_call_getName)
-    INIT_NATIVE_METHOD("engine_call_getNameCount", "(J)V", NodePathBridge::engine_call_getNameCount)
-    INIT_NATIVE_METHOD("engine_call_getSubname", "(J)V", NodePathBridge::engine_call_getSubname)
-    INIT_NATIVE_METHOD("engine_call_getSubnameCount", "(J)V", NodePathBridge::engine_call_getSubnameCount)
-    INIT_NATIVE_METHOD("engine_call_isAbsolute", "(J)V", NodePathBridge::engine_call_isAbsolute)
-    INIT_NATIVE_METHOD("engine_call_hash", "(J)V",  NodePathBridge::engine_call_hash)
-    INIT_NATIVE_METHOD("engine_call_isEmpty", "(J)V", NodePathBridge::engine_call_isEmpty)
-    INIT_NATIVE_METHOD("engine_call_getConcatenatedSubnames", "(J)V", NodePathBridge::engine_call_getConcatenatedSubnames)
-    INIT_NATIVE_METHOD("engine_call_getConcatenatedNames", "(J)V", NodePathBridge::engine_call_getConcatenatedNames)
-    INIT_NATIVE_METHOD("engine_call_equals", "(J)V", NodePathBridge::engine_call_equals)
-  )
-
-// clang-format on
-
-NodePathBridge::NodePathBridge(jni::JObject p_wrapped) : JvmInstanceWrapper(p_wrapped) {}
 
 uintptr_t NodePathBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
     return reinterpret_cast<uintptr_t>(memnew(NodePath));

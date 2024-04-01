@@ -5,12 +5,11 @@
 
 namespace jni {
     struct JavaMethodSignature {
-        const char* name;
-        const char* signature;
+        char* name = nullptr;
+        char* signature = nullptr;
         MethodId method_id;
 
-        JavaMethodSignature() = delete;
-        JavaMethodSignature(const char* p_name, const char* p_signature);
+        JavaMethodSignature() = default;
         ~JavaMethodSignature() = default;
 
         void init(Env& env, JClass cls);

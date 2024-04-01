@@ -1,25 +1,9 @@
 #include "rid_bridge.h"
 
 #include "bridges_utils.h"
-#include "constants.h"
 #include "gd_kotlin.h"
 
 using namespace bridges;
-
-// clang-format off
-JNI_INIT_STATICS_FOR_CLASS(
-    RidBridge,
-    INIT_NATIVE_METHOD("engine_call_constructor","()J", RidBridge::engine_call_constructor)
-    INIT_NATIVE_METHOD("engine_call_constructor","(J)J", RidBridge::engine_call_constructor_arg)
-    INIT_NATIVE_METHOD("engine_call_getID", ("(J)V"), RidBridge::engine_call_getID)
-    INIT_NATIVE_METHOD("engine_call_isValid","(J)V", RidBridge::engine_call_isValid)
-    INIT_NATIVE_METHOD("engine_call_compareTo","(J)V", RidBridge::engine_call_compareTo)
-    INIT_NATIVE_METHOD("engine_call_equals", ("(J)V"), RidBridge::engine_call_equals)
-  )
-
-// clang-format on
-
-RidBridge::RidBridge(jni::JObject p_wrapped) : JvmInstanceWrapper(p_wrapped) {}
 
 uintptr_t RidBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
     return reinterpret_cast<uintptr_t>(memnew(RID));

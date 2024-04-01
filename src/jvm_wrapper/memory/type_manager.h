@@ -7,7 +7,14 @@
 #include "jvm_wrapper/jvm_singleton_wrapper.h"
 #include "script/jvm_script.h"
 
-class TypeManager : public JvmSingletonWrapper<TypeManager> {
+// clang-format off
+JVM_SINGLETON_WRAPPER(TypeManager, "godot.core.TypeManager") {
+    SINGLETON_CLASS(TypeManager)
+
+    INIT_JNI_BINDINGS(
+        INIT_NATIVE_METHOD("getMethodBindPtr$godot_library", "(Ljava/lang/String;Ljava/lang/String;)J",TypeManager::get_method_bind_ptr)
+    )
+
 public:
     void clear();
     int get_java_engine_type_constructor_index_for_type(const StringName& p_type_name) const;
@@ -17,9 +24,9 @@ public:
     const Ref<NamedScript>& get_user_script_for_index(int p_index) const;
     Ref<NamedScript> get_user_script_from_name(const StringName& name) const;
 
-    void register_engine_types(jni::Env& p_env, jni::JObjectArray& p_engine_types);
-    void register_engine_singletons(jni::Env& p_env, jni::JObjectArray& p_singletons);
-    void create_and_update_scripts(Vector<KtClass*>& classes);
+    void register_engine_types(jni::Env & p_env, jni::JObjectArray & p_engine_types);
+    void register_engine_singletons(jni::Env & p_env, jni::JObjectArray & p_singletons);
+    void create_and_update_scripts(Vector<KtClass*> & classes);
 
     template<class C>
     Ref<C> create_script(const String& p_path);
@@ -28,18 +35,8 @@ public:
     void update_all_exports_if_dirty();
 #endif
 
-    static uintptr_t get_method_bind_ptr(JNIEnv* p_raw_env, jobject j_instance, jstring p_class_name, jstring p_method_name);
+    static uintptr_t get_method_bind_ptr(JNIEnv * p_raw_env, jobject j_instance, jstring p_class_name, jstring p_method_name);
 
-    static TypeManager* init();
-
-    ~TypeManager() = default;
-
-    TypeManager(const TypeManager&) = delete;
-    TypeManager& operator=(const TypeManager&) = delete;
-
-    // clang-format off
-    DECLARE_JNI_METHODS()
-    // clang-format on
 
 private:
     Vector<StringName> engine_type_names;
@@ -53,20 +50,18 @@ private:
     HashMap<String, StringName> filepath_to_name_map;
 
     bool types_dirty;
-
-    TypeManager(jni::JObject p_wrapped);
 };
 
 template<class C>
 Ref<C> TypeManager::create_script(const String& p_path) {
-    if constexpr(!std::is_base_of<JvmScript, C>()) return {};
+    if constexpr (!std::is_base_of<JvmScript, C>()) return {};
     // Placeholder scripts have to be registered in the TypeManager in order to be transformed in valid scripts when the jar is built.
     Ref<C> ref;
     ref.instantiate();
-    if constexpr(std::is_base_of<NamedScript, C>()) {
+    if constexpr (std::is_base_of<NamedScript, C>()) {
         named_user_scripts_map[ref->get_global_name()] = ref;
         named_user_scripts.push_back(ref);
-    } else if constexpr(std::is_base_of<PathScript, C>()) {
+    } else if constexpr (std::is_base_of<PathScript, C>()) {
         if (filepath_to_name_map.has(p_path)) {
             ref->kotlin_class = named_user_scripts_map[filepath_to_name_map[p_path]]->kotlin_class;
             path_user_scripts.push_back(ref);
@@ -75,4 +70,5 @@ Ref<C> TypeManager::create_script(const String& p_path) {
     return ref;
 }
 
+// clang-format on
 #endif// GODOT_JVM_TYPE_MANAGER_H

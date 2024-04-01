@@ -3,9 +3,18 @@
 
 #include "jvm_wrapper/jvm_singleton_wrapper.h"
 
-class LongStringQueue : public JvmSingletonWrapper<LongStringQueue> {
-private:
-    LongStringQueue(jni::JObject p_wrapped);
+JVM_SINGLETON_WRAPPER(LongStringQueue, "godot.core.LongStringQueue") {
+    SINGLETON_CLASS(LongStringQueue)
+    // clang-format off
+    JNI_METHOD(QUEUE_STRING)
+    JNI_METHOD(SET_STRING_MAX_SIZE)
+
+    INIT_JNI_BINDINGS(
+        INIT_JNI_METHOD(QUEUE_STRING, "queueString", "(Ljava/lang/String;)V")
+        INIT_JNI_METHOD(SET_STRING_MAX_SIZE, "setStringMaxSize", "(I)V")
+        INIT_NATIVE_METHOD("sendStringToCPP", "(Ljava/lang/String;)V", LongStringQueue::send_string_to_cpp)
+    )
+    // clang-format on
 
 public:
     static int max_string_size;
@@ -22,12 +31,6 @@ public:
 
     static LongStringQueue* init();
 
-    // clang-format off
-    DECLARE_JNI_METHODS(
-            JNI_METHOD(QUEUE_STRING, "queueString", "(Ljava/lang/String;)V")
-            JNI_METHOD(SET_STRING_MAX_SIZE, "setStringMaxSize", "(I)V")
-    )
-    // clang-format on
 };
 
 #endif// GODOT_JVM_LONG_STRING_QUEUE_H

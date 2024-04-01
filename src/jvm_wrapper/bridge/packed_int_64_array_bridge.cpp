@@ -1,44 +1,9 @@
 #include "packed_int_64_array_bridge.h"
 
 #include "bridges_utils.h"
-#include "constants.h"
 #include "gd_kotlin.h"
 
 using namespace bridges;
-
-// clang-format off
-JNI_INIT_STATICS_FOR_CLASS(
-    PackedInt64IntArrayBridge,
-    INIT_NATIVE_METHOD("engine_call_constructor", "()J", PackedInt64IntArrayBridge::engine_call_constructor)
-    INIT_NATIVE_METHOD("engine_call_constructor_packed_array", "()J", PackedInt64IntArrayBridge::engine_call_constructor_packed_array)
-    INIT_NATIVE_METHOD("engine_call_constructor_array", "()J", PackedInt64IntArrayBridge::engine_call_constructor_array)
-    INIT_NATIVE_METHOD("engine_call_append", "(J)V", PackedInt64IntArrayBridge::engine_call_append)
-    INIT_NATIVE_METHOD("engine_call_appendArray", "(J)V", PackedInt64IntArrayBridge::engine_call_appendArray)
-    INIT_NATIVE_METHOD("engine_call_bsearch", "(J)V", PackedInt64IntArrayBridge::engine_call_bsearch)
-    INIT_NATIVE_METHOD("engine_call_clear", "(J)V", PackedInt64IntArrayBridge::engine_call_clear)
-    INIT_NATIVE_METHOD("engine_call_count", "(J)V", PackedInt64IntArrayBridge::engine_call_count)
-    INIT_NATIVE_METHOD("engine_call_duplicate", "(J)V", PackedInt64IntArrayBridge::engine_call_duplicate)
-    INIT_NATIVE_METHOD("engine_call_fill", "(J)V", PackedInt64IntArrayBridge::engine_call_fill)
-    INIT_NATIVE_METHOD("engine_call_find", "(J)V", PackedInt64IntArrayBridge::engine_call_find)
-    INIT_NATIVE_METHOD("engine_call_is_empty", "(J)V", PackedInt64IntArrayBridge::engine_call_is_empty)
-    INIT_NATIVE_METHOD("engine_call_get", "(J)V", PackedInt64IntArrayBridge::engine_call_get)
-    INIT_NATIVE_METHOD("engine_call_has", "(J)V", PackedInt64IntArrayBridge::engine_call_has)
-    INIT_NATIVE_METHOD("engine_call_insert", "(J)V", PackedInt64IntArrayBridge::engine_call_insert)
-    INIT_NATIVE_METHOD("engine_call_reverse", "(J)V", PackedInt64IntArrayBridge::engine_call_reverse)
-    INIT_NATIVE_METHOD("engine_call_pushback", "(J)V", PackedInt64IntArrayBridge::engine_call_pushback)
-    INIT_NATIVE_METHOD("engine_call_remove_at", "(J)V", PackedInt64IntArrayBridge::engine_call_remove_at)
-    INIT_NATIVE_METHOD("engine_call_resize", "(J)V", PackedInt64IntArrayBridge::engine_call_resize)
-    INIT_NATIVE_METHOD("engine_call_rfind", "(J)V", PackedInt64IntArrayBridge::engine_call_rfind)
-    INIT_NATIVE_METHOD("engine_call_set", "(J)V", PackedInt64IntArrayBridge::engine_call_set)
-    INIT_NATIVE_METHOD("engine_call_size", "(J)V", PackedInt64IntArrayBridge::engine_call_size)
-    INIT_NATIVE_METHOD("engine_call_slice", "(J)V", PackedInt64IntArrayBridge::engine_call_slice)
-    INIT_NATIVE_METHOD("engine_call_sort", "(J)V", PackedInt64IntArrayBridge::engine_call_sort)
-    INIT_NATIVE_METHOD("engine_call_to_byte_array", "(J)V", PackedInt64IntArrayBridge::engine_call_to_byte_array)
-  )
-
-// clang-format on
-
-PackedInt64IntArrayBridge::PackedInt64IntArrayBridge(jni::JObject p_wrapped) : JvmInstanceWrapper(p_wrapped) {}
 
 uintptr_t PackedInt64IntArrayBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
     return reinterpret_cast<uintptr_t>(memnew(PackedInt64Array));

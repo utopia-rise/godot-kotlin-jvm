@@ -6,7 +6,23 @@
 #include "jvm_wrapper/jvm_instance_wrapper.h"
 #include "scene/main/multiplayer_api.h"
 
-struct KtRpcConfig : public JvmInstanceWrapper {
+JVM_INSTANCE_WRAPPER(KtRpcConfig, "godot.core.KtRpcConfig") {
+
+    // clang-format off
+    JNI_METHOD(GET_RPC_MODE_ID)
+    JNI_METHOD(GET_RPC_CALL_LOCAL)
+    JNI_METHOD(GET_RPC_TRANSFER_MODE_ID)
+    JNI_METHOD(GET_RPC_CHANNEL)
+
+    INIT_JNI_BINDINGS(
+        INIT_JNI_METHOD(GET_RPC_MODE_ID, "getRpcModeId", "()I")
+        INIT_JNI_METHOD(GET_RPC_CALL_LOCAL, "getRpcCallLocal", "()Z")
+        INIT_JNI_METHOD(GET_RPC_TRANSFER_MODE_ID, "getRpcTransferModeId", "()I")
+        INIT_JNI_METHOD(GET_RPC_CHANNEL, "getRpcChannel", "()I")
+    )
+    // clang-format on
+
+public:
     explicit KtRpcConfig(jni::JObject p_wrapped);
     ~KtRpcConfig() = default;
 
@@ -17,14 +33,7 @@ struct KtRpcConfig : public JvmInstanceWrapper {
 
     Dictionary toRpcConfigDictionary();
 
-    // clang-format off
-    DECLARE_JNI_METHODS(
-        JNI_METHOD(GET_RPC_MODE_ID, "getRpcModeId", "()I")
-        JNI_METHOD(GET_RPC_CALL_LOCAL, "getRpcCallLocal", "()Z")
-        JNI_METHOD(GET_RPC_TRANSFER_MODE_ID, "getRpcTransferModeId", "()I")
-        JNI_METHOD(GET_RPC_CHANNEL, "getRpcChannel", "()I")
-    )
-    // clang-format on
+
 };
 
 #endif// GODOT_JVM_KT_RPC_CONFIG_H

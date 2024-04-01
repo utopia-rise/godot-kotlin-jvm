@@ -1,38 +1,9 @@
 #include "dictionary_bridge.h"
 
 #include "bridges_utils.h"
-#include "constants.h"
 #include "gd_kotlin.h"
 
 using namespace bridges;
-
-// clang-format off
-JNI_INIT_STATICS_FOR_CLASS(
-    DictionaryBridge,
-    INIT_NATIVE_METHOD("engine_call_constructor", "()J", DictionaryBridge::engine_call_constructor)
-    INIT_NATIVE_METHOD("engine_call_clear", "(J)V", DictionaryBridge::engine_call_clear)
-    INIT_NATIVE_METHOD("engine_call_duplicate", "(J)V", DictionaryBridge::engine_call_duplicate)
-    INIT_NATIVE_METHOD("engine_call_is_empty","(J)V", DictionaryBridge::engine_call_is_empty)
-    INIT_NATIVE_METHOD("engine_call_erase", "(J)V", DictionaryBridge::engine_call_erase)
-    INIT_NATIVE_METHOD("engine_call_find_key", "(J)V", DictionaryBridge::engine_call_find_key)
-    INIT_NATIVE_METHOD("engine_call_get", "(J)V", DictionaryBridge::engine_call_get)
-    INIT_NATIVE_METHOD("engine_call_has", "(J)V", DictionaryBridge::engine_call_has)
-    INIT_NATIVE_METHOD("engine_call_hasAll", "(J)V", DictionaryBridge::engine_call_hasAll)
-    INIT_NATIVE_METHOD("engine_call_hash", "(J)V", DictionaryBridge::engine_call_hash)
-    INIT_NATIVE_METHOD("engine_call_is_read_only", "(J)V", DictionaryBridge::engine_call_is_read_only)
-    INIT_NATIVE_METHOD("engine_call_keys", "(J)V", DictionaryBridge::engine_call_keys)
-    INIT_NATIVE_METHOD("engine_call_make_read_only", "(J)V", DictionaryBridge::engine_call_make_read_only)
-    INIT_NATIVE_METHOD("engine_call_merge", "(J)V", DictionaryBridge::engine_call_merge)
-    INIT_NATIVE_METHOD("engine_call_size", "(J)V", DictionaryBridge::engine_call_size)
-    INIT_NATIVE_METHOD("engine_call_values", "(J)V", DictionaryBridge::engine_call_values)
-    INIT_NATIVE_METHOD("engine_call_operator_get", "(J)V", DictionaryBridge::engine_call_operator_get)
-    INIT_NATIVE_METHOD("engine_call_operator_set", "(J)V", DictionaryBridge::engine_call_operator_set)
-    INIT_NATIVE_METHOD("engine_call_equals", "(J)V", DictionaryBridge::engine_call_equals)
-  )
-
-// clang-format on
-
-DictionaryBridge::DictionaryBridge(jni::JObject p_wrapped) : JvmInstanceWrapper(p_wrapped) {}
 
 uintptr_t DictionaryBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
     return reinterpret_cast<uintptr_t>(memnew(Dictionary));

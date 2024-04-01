@@ -1,46 +1,47 @@
-#ifndef GODOT_JVM_JAVAINSTANCEWRAPPER_H
-#define GODOT_JVM_JAVAINSTANCEWRAPPER_H
+#ifndef GODOT_JVM_JVM_INSTANCE_WRAPPER_H
+#define GODOT_JVM_JVM_INSTANCE_WRAPPER_H
 
 #include "jni/class_loader.h"
 #include "jni/wrapper.h"
 
-#define JNI_METHOD(var_name, name, signature) jni::JavaMethodSignature var_name {name, signature};
+#define JVM_INSTANCE_WRAPPER(NAME, FQNAME)         \
+    constexpr char NAME##QualifiedName[] = FQNAME; \
+    class NAME : public JvmInstanceWrapper<NAME##QualifiedName>
 
-#define DECLARE_JNI_METHODS(...)                            \
-                                                            \
-public:                                                     \
-    static void initialize_class(const char* p_class_name); \
-                                                            \
-private:                                                    \
-    struct JNIMethods {                                     \
-        __VA_ARGS__                                         \
-    };                                                      \
-    static JNIMethods jni_methods;
+#define JNI_METHOD(var_name) inline static jni::MethodId var_name {nullptr};
 
-#define JNI_INIT_STATICS_FOR_CLASS(C, ...)                                                   \
-    C::JNIMethods C::jni_methods {};                                                         \
-    void C::initialize_class(const char* p_class_name) {                                     \
-        jni::Env env {jni::Jvm::current_env()};                                              \
-        Vector<jni::JNativeMethod> methods;                                                  \
-        jni::JClass clazz {env.load_class(p_class_name, ClassLoader::get_default_loader())}; \
-        __VA_ARGS__                                                                          \
-        if (methods.size() > 0) { clazz.register_natives(env, methods); }                    \
-        clazz.delete_local_ref(env);                                                         \
-    }
-
-#define INIT_JNI_METHOD(name) jni_methods.name.init(env, clazz);
+#define INIT_JNI_METHOD(var_name, name, signature) var_name = clazz.get_method_id(env, name, signature);
 
 #define INIT_NATIVE_METHOD(string_name, signature, function) \
     methods.push_back({const_cast<char*>(string_name), const_cast<char*>(signature), (void*) function});
+
+#define INIT_JNI_BINDINGS(...)                                                                             \
+                                                                                                           \
+public:                                                                                                    \
+    static void initialize_jni_binding() {                                                                 \
+        jni::Env env {jni::Jvm::current_env()};                                                            \
+        Vector<jni::JNativeMethod> methods;                                                                \
+        jni::JClass clazz {env.load_class(get_fully_qualified_name(), ClassLoader::get_default_loader())}; \
+                                                                                                           \
+        __VA_ARGS__                                                                                        \
+        if (methods.size() > 0) { clazz.register_natives(env, methods); }                                  \
+        clazz.delete_local_ref(env);                                                                       \
+    }                                                                                                      \
+                                                                                                           \
+private:
+
+#define CALL_JVM_METHOD(ENV, METHOD) call_jvm_method(ENV, METHOD)
+#define CALL_JVM_METHOD_WITH_ARG(ENV, METHOD, ARGS) call_jvm_method(ENV, METHOD, ARGS)
 
 /**
  * This class wraps a JObject representing a JVM instance.
  * This class is a base that allows to setup JavaToNative and NativeToJava call easily.
  * One implementation must be provided for every JVM class you wish to use.
- * Use JNI_INIT_STATICS_FOR_CLASS macro to create a static instance that will handle the JNI setup for that class.
+ * Use INIT_JNI_BINDINGS macro to create a static instance that will handle the JNI setup for that class.
  * Note that the jni::JObject p_wrapped argument in the constructor must be a local reference.
  * It will automatically be promoted to global and the local deleted.
  */
+template<const char* FqName>
 class JvmInstanceWrapper {
 protected:
     bool is_weak;
@@ -50,12 +51,76 @@ protected:
 
     ~JvmInstanceWrapper();
 
+    _FORCE_INLINE_ jni::JObject call_jvm_method(jni::Env& p_env, jni::MethodId p_method, jvalue* p_args = {}) const;
+
 public:
     bool is_ref_weak() const;
+
+    const jni::JObject& get_wrapped() const;
 
     void swap_to_strong_unsafe();
 
     void swap_to_weak_unsafe();
+
+    static const char* get_fully_qualified_name();
 };
 
-#endif// GODOT_JVM_JAVAINSTANCEWRAPPER_H
+template<const char* FqName>
+const jni::JObject& JvmInstanceWrapper<FqName>::get_wrapped() const {
+    return wrapped;
+}
+
+template<const char* FqName>
+_FORCE_INLINE_ jni::JObject JvmInstanceWrapper<FqName>::call_jvm_method(jni::Env& p_env, jni::MethodId p_method, jvalue* p_args) const {
+    return wrapped.call_object_method(p_env, p_method, p_args);
+}
+
+template<const char* FqName>
+JvmInstanceWrapper<FqName>::JvmInstanceWrapper(jni::JObject p_wrapped) : is_weak(false) {
+    // When created, it's a strong reference by default
+    jni::Env env {jni::Jvm::current_env()};
+    wrapped = p_wrapped.new_global_ref<jni::JObject>(env);
+    p_wrapped.delete_local_ref(env);
+}
+
+template<const char* FqName>
+JvmInstanceWrapper<FqName>::~JvmInstanceWrapper() {
+    jni::Env env {jni::Jvm::current_env()};
+    if (is_weak) {
+        wrapped.delete_weak_ref(env);
+    } else {
+        wrapped.delete_global_ref(env);
+    }
+}
+
+template<const char* FqName>
+bool JvmInstanceWrapper<FqName>::is_ref_weak() const {
+    return is_weak;
+}
+
+template<const char* FqName>
+void JvmInstanceWrapper<FqName>::swap_to_strong_unsafe() {
+    // Assume the reference is currently weak
+    jni::Env env {jni::Jvm::current_env()};
+    jni::JObject new_ref = wrapped.new_global_ref<jni::JObject>(env);
+    wrapped.delete_weak_ref(env);
+    wrapped = new_ref;
+    is_weak = false;
+}
+
+template<const char* FqName>
+void JvmInstanceWrapper<FqName>::swap_to_weak_unsafe() {
+    // Assume the reference is currently strong
+    jni::Env env {jni::Jvm::current_env()};
+    jni::JObject new_ref = wrapped.new_weak_ref<jni::JObject>(env);
+    wrapped.delete_global_ref(env);
+    wrapped = new_ref;
+    is_weak = true;
+}
+
+template<const char* FqName>
+const char* JvmInstanceWrapper<FqName>::get_fully_qualified_name() {
+    return FqName;
+}
+
+#endif// GODOT_JVM_JVM_INSTANCE_WRAPPER_H

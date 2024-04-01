@@ -5,15 +5,23 @@
 #include "kt_variant.h"
 #include "shared_buffer.h"
 
-class TransferContext : public JvmInstanceWrapper {
+// clang-format off
+JVM_SINGLETON_WRAPPER(TransferContext, "godot.core.memory.TransferContext") {
+    SINGLETON_CLASS(TransferContext)
+
+    JNI_METHOD(GET_BUFFER)
+    JNI_METHOD(REMOVE_SCRIPT)
+
+    INIT_JNI_BINDINGS(
+        INIT_JNI_METHOD(GET_BUFFER, "getBuffer", "()Ljava/nio/ByteBuffer;")
+        INIT_JNI_METHOD(REMOVE_SCRIPT, "removeScriptInstance", "(J)V")
+        INIT_NATIVE_METHOD("icall", "(JJI)V", TransferContext::icall)
+        INIT_NATIVE_METHOD("createNativeObject", "(ILgodot/core/KtObject;I)V", TransferContext::create_native_object)
+        INIT_NATIVE_METHOD("getSingleton", "(I)V", TransferContext::get_singleton)
+        INIT_NATIVE_METHOD("freeObject", "(J)V", TransferContext::free_object)
+    )
+
 public:
-    TransferContext(jni::JObject p_wrapped);
-
-    ~TransferContext();
-
-    TransferContext(const TransferContext&) = delete;
-
-    void operator=(const TransferContext&) = delete;
 
     void write_return_value(jni::Env& p_env, Variant& variant);
 
@@ -47,13 +55,7 @@ private:
             ktvariant::get_variant_from_buffer(buffer, p_args[i]);
         }
     }
-
-    // clang-format off
-    DECLARE_JNI_METHODS(
-            JNI_METHOD(GET_BUFFER, "getBuffer", "()Ljava/nio/ByteBuffer;")
-            JNI_METHOD(REMOVE_SCRIPT, "removeScriptInstance", "(J)V")
-    )
-    // clang-format on
 };
 
+// clang-format on
 #endif// GODOT_JVM_TRANSFER_CONTEXT_H

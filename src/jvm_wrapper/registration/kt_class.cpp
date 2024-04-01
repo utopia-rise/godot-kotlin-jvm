@@ -4,24 +4,6 @@
 #include "jvm_wrapper/memory/transfer_context.h"
 #include "gd_kotlin.h"
 
-// clang-format off
-JNI_INIT_STATICS_FOR_CLASS(
-    KtClass,
-    INIT_JNI_METHOD(GET_REGISTERED_NAME)
-    INIT_JNI_METHOD(GET_RELATIVE_SOURCE_PATH)
-    INIT_JNI_METHOD(GET_COMPILATION_TIME_RELATIVE_REGISTRATION_FILE_PATH)
-    INIT_JNI_METHOD(GET_REGISTERED_SUPERTYPES)
-    INIT_JNI_METHOD(GET_BASE_GODOT_CLASS)
-    INIT_JNI_METHOD(GET_FUNCTIONS)
-    INIT_JNI_METHOD(GET_PROPERTIES)
-    INIT_JNI_METHOD(GET_SIGNAL_INFOS)
-    INIT_JNI_METHOD(GET_CONSTRUCTORS)
-    INIT_JNI_METHOD(GET_HAS_NOTIFICATION)
-    INIT_JNI_METHOD(DO_NOTIFICATION)
-)
-
-// clang-format on
-
 KtClass::KtClass(jni::JObject p_wrapped) : JvmInstanceWrapper(p_wrapped),
   constructors {},
   _has_notification() {
@@ -82,37 +64,31 @@ KtSignalInfo* KtClass::get_signal(const StringName& p_signal_name) {
 }
 
 String KtClass::get_registered_name(jni::Env& env) {
-    jni::MethodId getter {jni_methods.GET_REGISTERED_NAME.method_id};
-    jni::JObject ret {wrapped.call_object_method(env, getter)};
+    jni::JObject ret = CALL_JVM_METHOD(env, GET_REGISTERED_NAME);
     return env.from_jstring(jni::JString((jstring) ret.obj));
 }
 
 String KtClass::get_relative_source_path(jni::Env& env) {
-    jni::MethodId getter {jni_methods.GET_RELATIVE_SOURCE_PATH.method_id};
-    jni::JObject ret {wrapped.call_object_method(env, getter)};
+    jni::JObject ret = CALL_JVM_METHOD(env, GET_RELATIVE_SOURCE_PATH);
     return env.from_jstring(jni::JString((jstring) ret.obj));
 }
 
 String KtClass::get_compilation_time_relative_registration_file_path(jni::Env& env) {
-    jni::MethodId getter {jni_methods.GET_COMPILATION_TIME_RELATIVE_REGISTRATION_FILE_PATH.method_id};
-    jni::JObject ret {wrapped.call_object_method(env, getter)};
+    jni::JObject ret = CALL_JVM_METHOD(env, GET_COMPILATION_TIME_RELATIVE_REGISTRATION_FILE_PATH);
     return env.from_jstring(jni::JString((jstring) ret.obj));
 }
 
 StringName KtClass::get_base_godot_class(jni::Env& env) {
-    jni::MethodId getter {jni_methods.GET_BASE_GODOT_CLASS.method_id};
-    jni::JObject ret {wrapped.call_object_method(env, getter)};
-    return StringName(env.from_jstring(jni::JString((jstring) ret.obj)));
+    jni::JObject ret = CALL_JVM_METHOD(env, GET_BASE_GODOT_CLASS);
+    return {env.from_jstring(jni::JString((jstring) ret.obj))};
 }
 
 bool KtClass::get_has_notification(jni::Env& env) {
-    jni::MethodId getter {jni_methods.GET_HAS_NOTIFICATION.method_id};
-    return static_cast<bool>(wrapped.call_boolean_method(env, getter));
+    return static_cast<bool>(wrapped.call_boolean_method(env, GET_HAS_NOTIFICATION));
 }
 
 void KtClass::fetch_registered_supertypes(jni::Env& env) {
-    jni::MethodId getSuperClassesMethod {jni_methods.GET_REGISTERED_SUPERTYPES.method_id};
-    jni::JObjectArray classesArray {wrapped.call_object_method(env, getSuperClassesMethod)};
+    jni::JObjectArray classesArray = CALL_JVM_METHOD(env, GET_REGISTERED_SUPERTYPES);
     for (int i = 0; i < classesArray.length(env); i++) {
         StringName parent_name = StringName(env.from_jstring(jni::JString(classesArray.get(env, i))));
         registered_supertypes.append(parent_name);
@@ -124,8 +100,7 @@ void KtClass::fetch_registered_supertypes(jni::Env& env) {
 }
 
 void KtClass::fetch_methods(jni::Env& env) {
-    jni::MethodId getFunctionsMethod {jni_methods.GET_FUNCTIONS.method_id};
-    jni::JObjectArray functionsArray {wrapped.call_object_method(env, getFunctionsMethod)};
+    jni::JObjectArray functionsArray = CALL_JVM_METHOD(env, GET_FUNCTIONS);
     for (int i = 0; i < functionsArray.length(env); i++) {
         jni::JObject object = functionsArray.get(env, i);
         auto* ktFunction {new KtFunction(object)};
@@ -138,8 +113,7 @@ void KtClass::fetch_methods(jni::Env& env) {
 }
 
 void KtClass::fetch_properties(jni::Env& env) {
-    jni::MethodId getPropertiesMethod {jni_methods.GET_PROPERTIES.method_id};
-    jni::JObjectArray propertiesArray {wrapped.call_object_method(env, getPropertiesMethod)};
+    jni::JObjectArray propertiesArray = CALL_JVM_METHOD(env, GET_PROPERTIES);
     for (int i = 0; i < propertiesArray.length(env); i++) {
         auto* ktProperty {new KtProperty(propertiesArray.get(env, i))};
         properties[ktProperty->get_name()] = ktProperty;
@@ -151,8 +125,7 @@ void KtClass::fetch_properties(jni::Env& env) {
 }
 
 void KtClass::fetch_signals(jni::Env& env) {
-    jni::MethodId get_signal_infos_method = jni_methods.GET_SIGNAL_INFOS.method_id;
-    jni::JObjectArray signal_info_array {wrapped.call_object_method(env, get_signal_infos_method)};
+    jni::JObjectArray signal_info_array = CALL_JVM_METHOD(env, GET_SIGNAL_INFOS);
     for (int i = 0; i < signal_info_array.length(env); i++) {
         auto* kt_signal_info {new KtSignalInfo(signal_info_array.get(env, i))};
         signal_infos[kt_signal_info->name] = kt_signal_info;
@@ -164,8 +137,7 @@ void KtClass::fetch_signals(jni::Env& env) {
 }
 
 void KtClass::fetch_constructors(jni::Env& env) {
-    jni::MethodId get_constructors_method {jni_methods.GET_CONSTRUCTORS.method_id};
-    jni::JObjectArray constructors_array {wrapped.call_object_method(env, get_constructors_method)};
+    jni::JObjectArray constructors_array = CALL_JVM_METHOD(env, GET_CONSTRUCTORS);
     for (int i = 0; i < constructors_array.length(env); i++) {
         const jni::JObject& constructor {constructors_array.get(env, i)};
         KtConstructor* kt_constructor {nullptr};
@@ -215,9 +187,8 @@ void KtClass::do_notification(KtObject* p_instance, int p_notification, bool p_r
     TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     transfer_context->write_args(env, args, arg_size);
 
-    jni::MethodId do_notification_method { jni_methods.DO_NOTIFICATION.method_id };
     jvalue call_args[1] = {jni::to_jni_arg(p_instance->get_wrapped())};
-    wrapped.call_void_method(env, do_notification_method, call_args);
+    CALL_JVM_METHOD_WITH_ARG(env, DO_NOTIFICATION, call_args);
 }
 
 void KtClass::fetch_members() {

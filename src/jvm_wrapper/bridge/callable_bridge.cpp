@@ -1,39 +1,12 @@
 #include "callable_bridge.h"
 
 #include "bridges_utils.h"
-#include "constants.h"
 #include "gd_kotlin.h"
 #include "jni/class_loader.h"
 
 using namespace bridges;
 
-// clang-format off
-JNI_INIT_STATICS_FOR_CLASS(
-    CallableBridge,
-    INIT_NATIVE_METHOD("engine_call_constructor", "()J", CallableBridge::engine_call_constructor)
-    INIT_NATIVE_METHOD("engine_call_constructor_object_string_name", "()J", CallableBridge::engine_call_constructor_object_string_name)
-    //INIT_NATIVE_METHOD("engine_call_constructor_kt_custom_callable", "(Lgodot/core/KtCustomCallable;)J", CallableBridge::engine_call_constructor_kt_custom_callable)
-    INIT_NATIVE_METHOD("engine_call_copy_constructor", "()J", CallableBridge::engine_call_copy_constructor)
-    INIT_NATIVE_METHOD("engine_call_bind", "(J)V", CallableBridge::engine_call_bind)
-    INIT_NATIVE_METHOD("engine_call_bindv", "(J)V", CallableBridge::engine_call_bindv)
-    INIT_NATIVE_METHOD("engine_call_call", "(J)V", CallableBridge::engine_call_call)
-    INIT_NATIVE_METHOD("engine_call_call_deferred", "(J)V", CallableBridge::engine_call_call_deferred)
-    INIT_NATIVE_METHOD("engine_call_callv", "(J)V", CallableBridge::engine_call_callv)
-    INIT_NATIVE_METHOD("engine_call_get_bound_arguments", "(J)V", CallableBridge::engine_call_get_bound_arguments)
-    INIT_NATIVE_METHOD("engine_call_get_bound_arguments_count", "(J)V", CallableBridge::engine_call_get_bound_arguments_count)
-    INIT_NATIVE_METHOD("engine_call_get_method", "(J)V", CallableBridge::engine_call_get_method)
-    INIT_NATIVE_METHOD("engine_call_get_object", "(J)V", CallableBridge::engine_call_get_object)
-    INIT_NATIVE_METHOD("engine_call_get_object_id", "(J)V", CallableBridge::engine_call_get_object_id)
-    INIT_NATIVE_METHOD("engine_call_hash", "(J)V", CallableBridge::engine_call_hash)
-    INIT_NATIVE_METHOD("engine_call_is_custom", "(J)V", CallableBridge::engine_call_is_custom)
-    INIT_NATIVE_METHOD("engine_call_is_null", "(J)V",CallableBridge::engine_call_is_null)
-    INIT_NATIVE_METHOD("engine_call_is_standard", "(J)V", CallableBridge::engine_call_is_standard)
-    INIT_NATIVE_METHOD("engine_call_is_valid", "(J)V", CallableBridge::engine_call_is_valid)
-    INIT_NATIVE_METHOD("engine_call_rpc", "(J)V", CallableBridge::engine_call_rpc)
-    INIT_NATIVE_METHOD("engine_call_rpc_id", "(J)V",CallableBridge::engine_call_rpc_id)
-    INIT_NATIVE_METHOD("engine_call_unbind", "(J)V", CallableBridge::engine_call_unbind)
-  )
-// clang-format on
+
 
 CallableBridge::StringNames CallableBridge::string_names;
 

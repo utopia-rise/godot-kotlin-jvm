@@ -1,63 +1,81 @@
 #ifndef GODOT_JVM_PACKED_BYTE_ARRAY_BRIDGE_H
 #define GODOT_JVM_PACKED_BYTE_ARRAY_BRIDGE_H
 
-#include "jvm_wrapper/jvm_instance_wrapper.h"
+#include "jvm_wrapper/jvm_singleton_wrapper.h"
 
 namespace bridges {
 
-    class PackedByteArrayBridge : JvmInstanceWrapper {
-    private:
-        struct StringNames {
-            StringName func_compress_name;
-            StringName func_decompress_name;
-            StringName func_decompress_dynamic_name;
-            StringName func_get_string_from_ascii_name;
-            StringName func_get_string_from_utf16_name;
-            StringName func_get_string_from_utf32_name;
-            StringName func_get_string_from_utf8_name;
-            StringName func_has_encoded_var_name;
-            StringName func_hex_encode_name;
+    JVM_SINGLETON_WRAPPER(PackedByteArrayBridge, "godot.core.PackedByteArray$Bridge") {
+        SINGLETON_CLASS(PackedByteArrayBridge)
 
-            StringName func_decode_double_name;
-            StringName func_decode_float_name;
-            StringName func_decode_half_name;
-            StringName func_decode_s16_name;
-            StringName func_decode_s32_name;
-            StringName func_decode_s64_name;
-            StringName func_decode_s8_name;
-            StringName func_decode_u16_name;
-            StringName func_decode_u32_name;
-            StringName func_decode_u64_name;
-            StringName func_decode_u8_name;
-            StringName func_decode_var_name;
-            StringName func_decode_var_size_name;
-
-            StringName func_encode_double_name;
-            StringName func_encode_float_name;
-            StringName func_encode_half_name;
-            StringName func_encode_s16_name;
-            StringName func_encode_s32_name;
-            StringName func_encode_s64_name;
-            StringName func_encode_s8_name;
-            StringName func_encode_u16_name;
-            StringName func_encode_u32_name;
-            StringName func_encode_u64_name;
-            StringName func_encode_u8_name;
-            StringName func_encode_var_name;
-
-            StringName func_to_float32_array_name;
-            StringName func_to_float64_array_name;
-            StringName func_to_int32_array_name;
-            StringName func_to_int64_array_name;
-        };
-
-        static StringNames string_names;
+        // clang-format off
+        INIT_JNI_BINDINGS(
+            INIT_NATIVE_METHOD("engine_call_constructor", "()J", PackedByteArrayBridge::engine_call_constructor)
+            INIT_NATIVE_METHOD("engine_call_constructor_packed_array", "()J", PackedByteArrayBridge::engine_call_constructor_packed_array)
+            INIT_NATIVE_METHOD("engine_call_constructor_array", "()J", PackedByteArrayBridge::engine_call_constructor_array)
+            INIT_NATIVE_METHOD("engine_call_append", "(J)V", PackedByteArrayBridge::engine_call_append)
+            INIT_NATIVE_METHOD("engine_call_appendArray", "(J)V", PackedByteArrayBridge::engine_call_appendArray)
+            INIT_NATIVE_METHOD("engine_call_bsearch", "(J)V", PackedByteArrayBridge::engine_call_bsearch)
+            INIT_NATIVE_METHOD("engine_call_clear", "(J)V", PackedByteArrayBridge::engine_call_clear)
+            INIT_NATIVE_METHOD("engine_call_compress", "(J)V", PackedByteArrayBridge::engine_call_compress)
+            INIT_NATIVE_METHOD("engine_call_count", "(J)V", PackedByteArrayBridge::engine_call_count)
+            INIT_NATIVE_METHOD("engine_call_decode_double", "(J)V", PackedByteArrayBridge::engine_call_decode_double)
+            INIT_NATIVE_METHOD("engine_call_decode_float", "(J)V", PackedByteArrayBridge::engine_call_decode_float)
+            INIT_NATIVE_METHOD("engine_call_decode_half", "(J)V", PackedByteArrayBridge::engine_call_decode_half)
+            INIT_NATIVE_METHOD("engine_call_decode_s16", "(J)V", PackedByteArrayBridge::engine_call_decode_s16)
+            INIT_NATIVE_METHOD("engine_call_decode_s32", "(J)V", PackedByteArrayBridge::engine_call_decode_s32)
+            INIT_NATIVE_METHOD("engine_call_decode_s64", "(J)V", PackedByteArrayBridge::engine_call_decode_s64)
+            INIT_NATIVE_METHOD("engine_call_decode_s8", "(J)V", PackedByteArrayBridge::engine_call_decode_s8)
+            INIT_NATIVE_METHOD("engine_call_decode_u16", "(J)V", PackedByteArrayBridge::engine_call_decode_u16)
+            INIT_NATIVE_METHOD("engine_call_decode_u32", "(J)V", PackedByteArrayBridge::engine_call_decode_u32)
+            INIT_NATIVE_METHOD("engine_call_decode_u64", "(J)V", PackedByteArrayBridge::engine_call_decode_u64)
+            INIT_NATIVE_METHOD("engine_call_decode_u8", "(J)V", PackedByteArrayBridge::engine_call_decode_u8)
+            INIT_NATIVE_METHOD("engine_call_decode_var", "(J)V", PackedByteArrayBridge::engine_call_decode_var)
+            INIT_NATIVE_METHOD("engine_call_decode_var_size", "(J)V", PackedByteArrayBridge::engine_call_decode_var_size)
+            INIT_NATIVE_METHOD("engine_call_decompress", "(J)V", PackedByteArrayBridge::engine_call_decompress)
+            INIT_NATIVE_METHOD("engine_call_decompress_dynamic", "(J)V", PackedByteArrayBridge::engine_call_decompress_dynamic)
+            INIT_NATIVE_METHOD("engine_call_duplicate", "(J)V", PackedByteArrayBridge::engine_call_duplicate)
+            INIT_NATIVE_METHOD("engine_call_encode_double", "(J)V", PackedByteArrayBridge::engine_call_encode_double)
+            INIT_NATIVE_METHOD("engine_call_encode_float", "(J)V", PackedByteArrayBridge::engine_call_encode_float)
+            INIT_NATIVE_METHOD("engine_call_encode_half", "(J)V", PackedByteArrayBridge::engine_call_encode_half)
+            INIT_NATIVE_METHOD("engine_call_encode_s16", "(J)V", PackedByteArrayBridge::engine_call_encode_s16)
+            INIT_NATIVE_METHOD("engine_call_encode_s32", "(J)V", PackedByteArrayBridge::engine_call_encode_s32)
+            INIT_NATIVE_METHOD("engine_call_encode_s64", "(J)V", PackedByteArrayBridge::engine_call_encode_s64)
+            INIT_NATIVE_METHOD("engine_call_encode_s8", "(J)V", PackedByteArrayBridge::engine_call_encode_s8)
+            INIT_NATIVE_METHOD("engine_call_encode_u16", "(J)V", PackedByteArrayBridge::engine_call_encode_u16)
+            INIT_NATIVE_METHOD("engine_call_encode_u32", "(J)V", PackedByteArrayBridge::engine_call_encode_u32)
+            INIT_NATIVE_METHOD("engine_call_encode_u64", "(J)V", PackedByteArrayBridge::engine_call_encode_u64)
+            INIT_NATIVE_METHOD("engine_call_encode_u8", "(J)V", PackedByteArrayBridge::engine_call_encode_u8)
+            INIT_NATIVE_METHOD("engine_call_encode_var", "(J)V", PackedByteArrayBridge::engine_call_encode_var)
+            INIT_NATIVE_METHOD("engine_call_fill", "(J)V", PackedByteArrayBridge::engine_call_fill)
+            INIT_NATIVE_METHOD("engine_call_find", "(J)V", PackedByteArrayBridge::engine_call_find)
+            INIT_NATIVE_METHOD("engine_call_is_empty", "(J)V", PackedByteArrayBridge::engine_call_is_empty)
+            INIT_NATIVE_METHOD("engine_call_get_string_from_ascii", "(J)V", PackedByteArrayBridge::engine_call_get_string_from_ascii)
+            INIT_NATIVE_METHOD("engine_call_get_string_from_utf16", "(J)V", PackedByteArrayBridge::engine_call_get_string_from_utf16)
+            INIT_NATIVE_METHOD("engine_call_get_string_from_utf32", "(J)V", PackedByteArrayBridge::engine_call_get_string_from_utf32)
+            INIT_NATIVE_METHOD("engine_call_get_string_from_utf8", "(J)V", PackedByteArrayBridge::engine_call_get_string_from_utf8)
+            INIT_NATIVE_METHOD("engine_call_has", "(J)V", PackedByteArrayBridge::engine_call_has)
+            INIT_NATIVE_METHOD("engine_call_has_encoded_var", "(J)V", PackedByteArrayBridge::engine_call_has_encoded_var)
+            INIT_NATIVE_METHOD("engine_call_hex_encode", "(J)V", PackedByteArrayBridge::engine_call_hex_encode)
+            INIT_NATIVE_METHOD("engine_call_get", "(J)V", PackedByteArrayBridge::engine_call_get)
+            INIT_NATIVE_METHOD("engine_call_insert", "(J)V", PackedByteArrayBridge::engine_call_insert)
+            INIT_NATIVE_METHOD("engine_call_reverse", "(J)V", PackedByteArrayBridge::engine_call_reverse)
+            INIT_NATIVE_METHOD("engine_call_rfind", "(J)V", PackedByteArrayBridge::engine_call_rfind)
+            INIT_NATIVE_METHOD("engine_call_pushback", "(J)V", PackedByteArrayBridge::engine_call_pushback)
+            INIT_NATIVE_METHOD("engine_call_remove_at", "(J)V", PackedByteArrayBridge::engine_call_remove_at)
+            INIT_NATIVE_METHOD("engine_call_resize", "(J)V", PackedByteArrayBridge::engine_call_resize)
+            INIT_NATIVE_METHOD("engine_call_set", "(J)V", PackedByteArrayBridge::engine_call_set)
+            INIT_NATIVE_METHOD("engine_call_size", "(J)V", PackedByteArrayBridge::engine_call_size)
+            INIT_NATIVE_METHOD("engine_call_slice", "(J)V", PackedByteArrayBridge::engine_call_slice)
+            INIT_NATIVE_METHOD("engine_call_sort", "(J)V", PackedByteArrayBridge::engine_call_sort)
+            INIT_NATIVE_METHOD("engine_call_to_float32_array", "(J)V", PackedByteArrayBridge::engine_call_to_float32_array)
+            INIT_NATIVE_METHOD("engine_call_to_float64_array", "(J)V", PackedByteArrayBridge::engine_call_to_float64_array)
+            INIT_NATIVE_METHOD("engine_call_to_int32_array", "(J)V", PackedByteArrayBridge::engine_call_to_int32_array)
+            INIT_NATIVE_METHOD("engine_call_to_int64_array", "(J)V", PackedByteArrayBridge::engine_call_to_int64_array)
+        )
+        // clang-format on
 
     public:
-        PackedByteArrayBridge(jni::JObject p_wrapped);
-
-        ~PackedByteArrayBridge();
-
         static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance);
 
         static uintptr_t engine_call_constructor_packed_array(JNIEnv* p_raw_env, jobject p_instance);
@@ -154,10 +172,6 @@ namespace bridges {
         static void engine_call_to_float64_array(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_to_int32_array(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_to_int64_array(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
-        // clang-format off
-        DECLARE_JNI_METHODS()
-        // clang-format on
     };
 
 }// namespace bridge

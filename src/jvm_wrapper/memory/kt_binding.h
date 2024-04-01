@@ -4,7 +4,7 @@
 #include "jni/wrapper.h"
 #include "jvm_wrapper/jvm_instance_wrapper.h"
 
-class KtBinding : public JvmInstanceWrapper {
+JVM_INSTANCE_WRAPPER(KtBinding, "godot.core.memory.GodotBinding") {
 public:
     explicit KtBinding(jni::JObject p_wrapped);
     ~KtBinding();

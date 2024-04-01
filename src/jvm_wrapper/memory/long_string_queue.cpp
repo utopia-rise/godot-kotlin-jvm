@@ -2,15 +2,6 @@
 
 #include "jni/class_loader.h"
 
-// clang-format off
-JNI_INIT_STATICS_FOR_CLASS(
-    LongStringQueue,
-    INIT_JNI_METHOD(QUEUE_STRING)
-    INIT_JNI_METHOD(SET_STRING_MAX_SIZE)
-    INIT_NATIVE_METHOD("sendStringToCPP", "(Ljava/lang/String;)V", LongStringQueue::send_string_to_cpp)
-)
-// clang-format on
-
 // If changed, remember to change also LongStringQueue::stringMaxSize on JVM side  and the StringTest.kt
 int LongStringQueue::max_string_size = 512;
 

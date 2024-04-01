@@ -7,21 +7,22 @@
 #include "jni/wrapper.h"
 #include "jvm_wrapper/jvm_instance_wrapper.h"
 
-class KtObject : public JvmInstanceWrapper {
+JVM_INSTANCE_WRAPPER(KtObject, "godot.core.KtObject") {
+
+    // clang-format off
+    JNI_METHOD(ON_DESTROY)
+
+    INIT_JNI_BINDINGS(
+        INIT_JNI_METHOD(ON_DESTROY, "_onDestroy", "()V")
+    )
+    // clang-format on
+
 private:
     bool is_ref;
 
 public:
     explicit KtObject(jni::JObject p_wrapped, bool p_is_ref);
     ~KtObject();
-
-    const jni::JObject& get_wrapped() const;
-
-    // clang-format off
-    DECLARE_JNI_METHODS(
-        JNI_METHOD(ON_DESTROY, "_onDestroy", "()V")
-    )
-    // clang-format on
 };
 
 #endif// GODOT_JVM_KT_OBJECT_H

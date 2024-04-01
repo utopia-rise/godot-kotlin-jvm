@@ -3,13 +3,6 @@
 #include "core/io/resource_loader.h"
 #include "script/gdj_script.h"
 
-// clang-format off
-JNI_INIT_STATICS_FOR_CLASS(
-  TypeManager,
-  INIT_NATIVE_METHOD("getMethodBindPtr$godot_library", "(Ljava/lang/String;Ljava/lang/String;)J",TypeManager::get_method_bind_ptr)
-  )
-// clang-format on
-
 void TypeManager::clear() {
     engine_type_names.clear();
     java_engine_types_constructors.clear();
@@ -168,18 +161,4 @@ uintptr_t TypeManager::get_method_bind_ptr(JNIEnv* p_raw_env, jobject j_instance
     return reinterpret_cast<uintptr_t>(ClassDB::get_method(class_name, method_name));
 }
 
-TypeManager* TypeManager::init() {
-    jni::Env env {jni::Jvm::current_env()};
-    jni::JObject class_loader {ClassLoader::get_default_loader()};
-
-    jni::JClass type_manager_cls {env.load_class("godot.core.TypeManager", class_loader)};
-    jni::FieldId instance_field {type_manager_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/TypeManager;")};
-    jni::JObject type_manager_instance {type_manager_cls.get_static_object_field(env, instance_field)};
-    JVM_CRASH_COND_MSG(type_manager_instance.is_null(), "Failed to retrieve TypeManager instance");
-
-    auto* native_instance = new TypeManager(type_manager_instance);
-    type_manager_cls.delete_local_ref(env);
-    return native_instance;
-}
-
-TypeManager::TypeManager(jni::JObject p_wrapped) : JvmSingletonWrapper<TypeManager>(p_wrapped), types_dirty {false} {}
+TypeManager::~TypeManager() = default;

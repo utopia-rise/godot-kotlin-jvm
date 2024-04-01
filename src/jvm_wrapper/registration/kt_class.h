@@ -12,7 +12,36 @@
 
 const int MAX_CONSTRUCTOR_SIZE = MAX_CONSTRUCTOR_ARG_COUNT + 1;
 
-class KtClass : public JvmInstanceWrapper {
+JVM_INSTANCE_WRAPPER(KtClass, "godot.core.KtClass") {
+
+    // clang-format off
+    JNI_METHOD(GET_REGISTERED_NAME)
+    JNI_METHOD(GET_RELATIVE_SOURCE_PATH)
+    JNI_METHOD(GET_COMPILATION_TIME_RELATIVE_REGISTRATION_FILE_PATH)
+    JNI_METHOD(GET_REGISTERED_SUPERTYPES)
+    JNI_METHOD(GET_BASE_GODOT_CLASS)
+    JNI_METHOD(GET_FUNCTIONS)
+    JNI_METHOD(GET_PROPERTIES)
+    JNI_METHOD(GET_SIGNAL_INFOS)
+    JNI_METHOD(GET_CONSTRUCTORS)
+    JNI_METHOD(GET_HAS_NOTIFICATION)
+    JNI_METHOD(DO_NOTIFICATION)
+
+    INIT_JNI_BINDINGS(
+        INIT_JNI_METHOD(GET_REGISTERED_NAME, "getRegisteredName", "()Ljava/lang/String;")
+        INIT_JNI_METHOD(GET_RELATIVE_SOURCE_PATH, "getRelativeSourcePath", "()Ljava/lang/String;")
+        INIT_JNI_METHOD(GET_COMPILATION_TIME_RELATIVE_REGISTRATION_FILE_PATH, "getCompilationTimeRelativeRegistrationFilePath", "()Ljava/lang/String;")
+        INIT_JNI_METHOD(GET_REGISTERED_SUPERTYPES, "getRegisteredSupertypes", "()[Ljava/lang/String;")
+        INIT_JNI_METHOD(GET_BASE_GODOT_CLASS, "getBaseGodotClass", "()Ljava/lang/String;")
+        INIT_JNI_METHOD(GET_FUNCTIONS, "getFunctions", "()[Lgodot/core/KtFunction;")
+        INIT_JNI_METHOD(GET_PROPERTIES, "getProperties", "()[Lgodot/core/KtProperty;")
+        INIT_JNI_METHOD(GET_SIGNAL_INFOS, "getSignalInfos", "()[Lgodot/core/KtSignalInfo;")
+        INIT_JNI_METHOD(GET_CONSTRUCTORS, "getConstructors", "()[Lgodot/core/KtConstructor;")
+        INIT_JNI_METHOD(GET_HAS_NOTIFICATION, "getHasNotification", "()Z")
+        INIT_JNI_METHOD(DO_NOTIFICATION, "doNotification", "(Lgodot/core/KtObject;)V")
+    )
+
+    // clang-format on
 public:
     StringName registered_class_name;
     StringName relative_source_path;
@@ -85,22 +114,6 @@ private:
         }
         members.clear();
     }
-
-    // clang-format off
-    DECLARE_JNI_METHODS(
-            JNI_METHOD(GET_REGISTERED_NAME, "getRegisteredName", "()Ljava/lang/String;")
-            JNI_METHOD(GET_RELATIVE_SOURCE_PATH, "getRelativeSourcePath", "()Ljava/lang/String;")
-            JNI_METHOD(GET_COMPILATION_TIME_RELATIVE_REGISTRATION_FILE_PATH, "getCompilationTimeRelativeRegistrationFilePath", "()Ljava/lang/String;")
-            JNI_METHOD(GET_REGISTERED_SUPERTYPES, "getRegisteredSupertypes", "()[Ljava/lang/String;")
-            JNI_METHOD(GET_BASE_GODOT_CLASS, "getBaseGodotClass", "()Ljava/lang/String;")
-            JNI_METHOD(GET_FUNCTIONS, "getFunctions", "()[Lgodot/core/KtFunction;")
-            JNI_METHOD(GET_PROPERTIES, "getProperties", "()[Lgodot/core/KtProperty;")
-            JNI_METHOD(GET_SIGNAL_INFOS, "getSignalInfos", "()[Lgodot/core/KtSignalInfo;")
-            JNI_METHOD(GET_CONSTRUCTORS, "getConstructors", "()[Lgodot/core/KtConstructor;")
-            JNI_METHOD(GET_HAS_NOTIFICATION, "getHasNotification", "()Z")
-            JNI_METHOD(DO_NOTIFICATION, "doNotification", "(Lgodot/core/KtObject;)V")
-    )
-    // clang-format on
 };
 
 #endif// GODOT_JVM_KTCLASS_H

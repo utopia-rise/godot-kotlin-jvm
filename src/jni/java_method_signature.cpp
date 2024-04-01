@@ -1,8 +1,8 @@
 #include "java_method_signature.h"
 
-jni::JavaMethodSignature::JavaMethodSignature(const char* p_name, const char* p_signature) :
-  name(p_name),
-  signature(p_signature),
+jni::JavaMethodSignature::JavaMethodSignature() :
+  name(nullptr),
+  signature(nullptr),
   method_id(nullptr) {}
 
 void jni::JavaMethodSignature::init(Env& env, JClass cls) {

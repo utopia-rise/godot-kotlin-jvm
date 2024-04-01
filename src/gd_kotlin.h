@@ -1,11 +1,11 @@
 #ifndef GODOT_JVM_GD_KOTLIN_H
 #define GODOT_JVM_GD_KOTLIN_H
 
-#include "bootstrap.h"
 #include "gd_kotlin_configuration.h"
 #include "jni/wrapper.h"
-#include "jvm_wrapper/registration/kt_class.h"
+#include "jvm_wrapper/bootstrap.h"
 #include "jvm_wrapper/memory/transfer_context.h"
+#include "jvm_wrapper/registration/kt_class.h"
 #include "script/jvm_script.h"
 
 #include <core/string/ustring.h>

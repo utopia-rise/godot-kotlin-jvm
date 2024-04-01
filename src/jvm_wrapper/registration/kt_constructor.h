@@ -4,7 +4,17 @@
 #include "jvm_wrapper/jvm_instance_wrapper.h"
 #include "kt_object.h"
 
-class KtConstructor : public JvmInstanceWrapper {
+JVM_INSTANCE_WRAPPER(KtConstructor, "godot.core.KtConstructor") {
+    // clang-format off
+    JNI_METHOD(GET_PARAMETER_COUNT)
+    JNI_METHOD(CONSTRUCT)
+
+    INIT_JNI_BINDINGS(
+        INIT_JNI_METHOD(GET_PARAMETER_COUNT, "getParameterCount", "()I")
+        INIT_JNI_METHOD(CONSTRUCT, "construct", "(JJ)Lgodot/core/KtObject;")
+    )
+    // clang-format on
+
 public:
     explicit KtConstructor(jni::JObject p_wrapped);
     ~KtConstructor() = default;
@@ -12,13 +22,6 @@ public:
 
 private:
     int parameter_count;
-
-    // clang-format off
-    DECLARE_JNI_METHODS(
-            JNI_METHOD(GET_PARAMETER_COUNT, "getParameterCount", "()I")
-            JNI_METHOD(CONSTRUCT, "construct", "(JJ)Lgodot/core/KtObject;")
-    )
-    // clang-format on
 };
 
 #endif// GODOT_JVM_KT_CONSTRUCTOR_H

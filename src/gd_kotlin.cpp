@@ -236,25 +236,10 @@ void GDKotlin::init() {
 
     initialize_classes();
 
-    TypeManager::get_instance();
-
-    jni::JClass transfer_ctx_cls = env.load_class("godot.core.memory.TransferContext", class_loader);
-    jni::FieldId transfer_ctx_instance_field = transfer_ctx_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/memory/TransferContext;");
-    jni::JObject transfer_ctx_instance = transfer_ctx_cls.get_static_object_field(env, transfer_ctx_instance_field);
-    JVM_CRASH_COND_MSG(transfer_ctx_instance.is_null(), "Failed to retrieve TransferContext instance");
-    transfer_context = new TransferContext(transfer_ctx_instance);
-
-    LongStringQueue::get_instance();
     int max_string_size {configuration.get_max_string_size()};
     if (max_string_size != LongStringQueue::max_string_size) {
         LongStringQueue::get_instance().set_string_max_size(max_string_size);
     }
-
-    // Garbage Collector
-    jni::JClass garbage_collector_cls {env.load_class("godot.core.memory.MemoryManager", class_loader)};
-    jni::FieldId garbage_collector_instance_field {garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/memory/MemoryManager;")};
-    jni::JObject garbage_collector_instance {garbage_collector_cls.get_static_object_field(env, garbage_collector_instance_field)};
-    JVM_CRASH_COND_MSG(garbage_collector_instance.is_null(), "Failed to retrieve MemoryManager instance");
 
     BridgesManager::get_instance().initialize_bridges(env, class_loader);
 
@@ -491,21 +476,4 @@ bool GDKotlin::initialized() const {
 
 const Vector<Pair<String, String>>& GDKotlin::get_configuration_errors() const {
     return configuration_errors;
-}
-
-void GDKotlin::initialize_classes() {
-    TypeManager::initialize_class("godot.core.TypeManager");
-    TransferContext::initialize_class("godot.core.memory.TransferContext");
-    LongStringQueue::initialize_class("godot.core.LongStringQueue");
-
-    KtObject::initialize_class("godot.core.KtObject");
-
-    KtPropertyInfo::initialize_class("godot.core.KtPropertyInfo");
-    KtProperty::initialize_class("godot.core.KtProperty");
-    KtConstructor::initialize_class("godot.core.KtConstructor");
-    KtSignalInfo::initialize_class("godot.core.KtSignalInfo");
-    KtRpcConfig::initialize_class("godot.core.KtRpcConfig");
-    KtFunctionInfo::initialize_class("godot.core.KtFunctionInfo");
-    KtFunction::initialize_class("godot.core.KtFunction");
-    KtClass::initialize_class("godot.core.KtClass");
 }

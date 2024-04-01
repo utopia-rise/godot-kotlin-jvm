@@ -1,21 +1,8 @@
 #include "gd_print_bridge.h"
 
-#include "constants.h"
 #include "gd_kotlin.h"
 
 using namespace bridges;
-
-// clang-format off
-JNI_INIT_STATICS_FOR_CLASS(
-    GDPrintBridge,
-    INIT_NATIVE_METHOD("print", "()V", GDPrintBridge::print)
-    INIT_NATIVE_METHOD("printErr", "()V", GDPrintBridge::print_err)
-    INIT_NATIVE_METHOD("printRaw", "()V", GDPrintBridge::print_raw)
-  )
-
-// clang-format on
-
-GDPrintBridge::GDPrintBridge(jni::JObject p_wrapped) : JvmInstanceWrapper(p_wrapped) {}
 
 void GDPrintBridge::print(JNIEnv* p_raw_env, jobject p_instance) {
     jni::Env env {p_raw_env};

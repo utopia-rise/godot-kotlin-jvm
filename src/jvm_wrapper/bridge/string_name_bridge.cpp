@@ -1,23 +1,9 @@
 #include "string_name_bridge.h"
 
 #include "bridges_utils.h"
-#include "constants.h"
 #include "gd_kotlin.h"
 
 using namespace bridges;
-
-// clang-format off
-JNI_INIT_STATICS_FOR_CLASS(
-    StringNameBridge,
-    INIT_NATIVE_METHOD("engine_call_constructor","()J", StringNameBridge::engine_call_constructor)
-    INIT_NATIVE_METHOD("engine_call_copy_constructor","()J", StringNameBridge::engine_call_copy_constructor)
-    INIT_NATIVE_METHOD("engine_call_constructor_string", ("()J"), StringNameBridge::engine_call_constructor_string)
-    INIT_NATIVE_METHOD("engine_call_operator_string","(J)V", StringNameBridge::engine_call_operator_string)
-  )
-
-// clang-format on
-
-StringNameBridge::StringNameBridge(jni::JObject p_wrapped) : JvmInstanceWrapper(p_wrapped) {}
 
 uintptr_t StringNameBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
     return reinterpret_cast<uintptr_t>(memnew(StringName));

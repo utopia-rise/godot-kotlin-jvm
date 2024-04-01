@@ -1,64 +1,9 @@
 #include "variant_array_bridge.h"
 
 #include "bridges_utils.h"
-#include "constants.h"
 #include "gd_kotlin.h"
 
 using namespace bridges;
-
-// clang-format off
-JNI_INIT_STATICS_FOR_CLASS(
-    VariantArrayBridge,
-    INIT_NATIVE_METHOD("engine_call_constructor", "()J", VariantArrayBridge::engine_call_constructor)
-    INIT_NATIVE_METHOD("engine_call_constructor_typed","()J", VariantArrayBridge::engine_call_constructor_typed)
-    INIT_NATIVE_METHOD("engine_call_size","(J)V", VariantArrayBridge::engine_call_size)
-    INIT_NATIVE_METHOD("engine_call_clear","(J)V", VariantArrayBridge::engine_call_clear)
-    INIT_NATIVE_METHOD("engine_call_isEmpty","(J)V", VariantArrayBridge::engine_call_is_empty)
-    INIT_NATIVE_METHOD("engine_call_hash","(J)V", VariantArrayBridge::engine_call_hash)
-    INIT_NATIVE_METHOD("engine_call_reverse","(J)V", VariantArrayBridge::engine_call_reverse)
-    INIT_NATIVE_METHOD("engine_call_removeAt","(J)V", VariantArrayBridge::engine_call_remove_at)
-    INIT_NATIVE_METHOD("engine_call_resize","(J)V", VariantArrayBridge::engine_call_resize)
-    INIT_NATIVE_METHOD("engine_call_shuffle","(J)V", VariantArrayBridge::engine_call_shuffle)
-    INIT_NATIVE_METHOD("engine_call_sort","(J)V", VariantArrayBridge::engine_call_sort)
-    INIT_NATIVE_METHOD("engine_call_sortCustom","(J)V", VariantArrayBridge::engine_call_sortCustom)
-    INIT_NATIVE_METHOD("engine_call_append","(J)V", VariantArrayBridge::engine_call_append)
-    INIT_NATIVE_METHOD("engine_call_bsearch","(J)V", VariantArrayBridge::engine_call_bsearch)
-    INIT_NATIVE_METHOD("engine_call_bsearchCustom","(J)V", VariantArrayBridge::engine_call_bsearchCustom)
-    INIT_NATIVE_METHOD("engine_call_count","(J)V", VariantArrayBridge::engine_call_count)
-    INIT_NATIVE_METHOD("engine_call_duplicate","(J)V", VariantArrayBridge::engine_call_duplicate)
-    INIT_NATIVE_METHOD("engine_call_erase","(J)V", VariantArrayBridge::engine_call_erase)
-    INIT_NATIVE_METHOD("engine_call_find","(J)V", VariantArrayBridge::engine_call_find)
-    INIT_NATIVE_METHOD("engine_call_front","(J)V", VariantArrayBridge::engine_call_front)
-    INIT_NATIVE_METHOD("engine_call_has","(J)V", VariantArrayBridge::engine_call_has)
-    INIT_NATIVE_METHOD("engine_call_insert","(J)V", VariantArrayBridge::engine_call_insert)
-    INIT_NATIVE_METHOD("engine_call_max","(J)V", VariantArrayBridge::engine_call_max)
-    INIT_NATIVE_METHOD("engine_call_min","(J)V", VariantArrayBridge::engine_call_min)
-    INIT_NATIVE_METHOD("engine_call_popBack","(J)V", VariantArrayBridge::engine_call_popBack)
-    INIT_NATIVE_METHOD("engine_call_popFront","(J)V", VariantArrayBridge::engine_call_popFront)
-    INIT_NATIVE_METHOD("engine_call_pushBack","(J)V", VariantArrayBridge::engine_call_pushBack)
-    INIT_NATIVE_METHOD("engine_call_pushFront","(J)V", VariantArrayBridge::engine_call_pushFront)
-    INIT_NATIVE_METHOD("engine_call_rfind","(J)V", VariantArrayBridge::engine_call_rfind)
-    INIT_NATIVE_METHOD("engine_call_slice","(J)V", VariantArrayBridge::engine_call_slice)
-    INIT_NATIVE_METHOD("engine_call_operator_set","(J)V", VariantArrayBridge::engine_call_operator_set)
-    INIT_NATIVE_METHOD("engine_call_operator_get","(J)V", VariantArrayBridge::engine_call_operator_get)
-    INIT_NATIVE_METHOD("engine_call_all","(J)V", VariantArrayBridge::engine_call_all)
-    INIT_NATIVE_METHOD("engine_call_any","(J)V", VariantArrayBridge::engine_call_any)
-    INIT_NATIVE_METHOD("engine_call_appendArray","(J)V", VariantArrayBridge::engine_call_appendArray)
-    INIT_NATIVE_METHOD("engine_call_back","(J)V", VariantArrayBridge::engine_call_back)
-    INIT_NATIVE_METHOD("engine_call_fill","(J)V", VariantArrayBridge::engine_call_fill)
-    INIT_NATIVE_METHOD("engine_call_filter","(J)V", VariantArrayBridge::engine_call_filter)
-    INIT_NATIVE_METHOD("engine_call_getTypedClassName","(J)V", VariantArrayBridge::engine_call_getTypedClassName)
-    INIT_NATIVE_METHOD("engine_call_getTypedScript","(J)V", VariantArrayBridge::engine_call_getTypedScript)
-    INIT_NATIVE_METHOD("engine_call_isReadOnly","(J)V", VariantArrayBridge::engine_call_isReadOnly)
-    INIT_NATIVE_METHOD("engine_call_isTyped","(J)V", VariantArrayBridge::engine_call_isTyped)
-    INIT_NATIVE_METHOD("engine_call_map","(J)V", VariantArrayBridge::engine_call_map)
-    INIT_NATIVE_METHOD("engine_call_pickRandom","(J)V", VariantArrayBridge::engine_call_pickRandom)
-    INIT_NATIVE_METHOD("engine_call_reduce","(J)V", VariantArrayBridge::engine_call_reduce)
-  )
-
-// clang-format on
-
-VariantArrayBridge::VariantArrayBridge(jni::JObject p_wrapped) : JvmInstanceWrapper(p_wrapped) {}
 
 uintptr_t VariantArrayBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
     return reinterpret_cast<uintptr_t>(memnew(Array));

@@ -3,25 +3,13 @@
 #include "gd_kotlin.h"
 #include "script/jvm_instance.h"
 
-// clang-format off
-JNI_INIT_STATICS_FOR_CLASS(
-    TransferContext,
-    INIT_JNI_METHOD(GET_BUFFER)
-    INIT_JNI_METHOD(REMOVE_SCRIPT)
-    INIT_NATIVE_METHOD("icall", "(JJI)V", TransferContext::icall)
-    INIT_NATIVE_METHOD("createNativeObject", "(ILgodot/core/KtObject;I)V", TransferContext::create_native_object)
-    INIT_NATIVE_METHOD("getSingleton", "(I)V", TransferContext::get_singleton)
-    INIT_NATIVE_METHOD("freeObject", "(J)V", TransferContext::free_object)
-)
-// clang-format on
-
 const int MAX_STACK_SIZE = MAX_FUNCTION_ARG_COUNT * 8;
 
 thread_local static Variant variant_args[MAX_STACK_SIZE];// NOLINT(cert-err58-cpp)
 thread_local static const Variant* variant_args_ptr[MAX_STACK_SIZE];
 thread_local static int stack_offset = -1;
 
-TransferContext::TransferContext(jni::JObject p_wrapped) : JvmInstanceWrapper(p_wrapped) {}
+TransferContext::TransferContext(jni::JObject p_wrapped) : JvmSingletonWrapper(p_wrapped) {}
 
 TransferContext::~TransferContext() {
     for (auto& variant_arg : variant_args) {
@@ -33,8 +21,7 @@ SharedBuffer* TransferContext::get_and_rewind_buffer(jni::Env& p_env) {
     thread_local static SharedBuffer shared_buffer;
 
     if (unlikely(!shared_buffer.is_init())) {
-        jni::MethodId method = jni_methods.GET_BUFFER.method_id;
-        jni::JObject buffer = wrapped.call_object_method(p_env, method);
+        jni::JObject buffer = CALL_JVM_METHOD(p_env, GET_BUFFER);
         JVM_CRASH_COND_MSG(buffer.is_null(), "Buffer is null");
         auto* address {static_cast<uint8_t*>(p_env.get_direct_buffer_address(buffer))};
 #ifdef DEBUG_ENABLED
@@ -49,9 +36,8 @@ SharedBuffer* TransferContext::get_and_rewind_buffer(jni::Env& p_env) {
 
 void TransferContext::remove_script_instance(uint64_t id) {
     jni::Env env {jni::Jvm::current_env()};
-    jni::MethodId method = jni_methods.REMOVE_SCRIPT.method_id;
     jvalue args[1] = {jni::to_jni_arg(id)};
-    wrapped.call_object_method(env, method, args);
+    CALL_JVM_METHOD_WITH_ARG(env, REMOVE_SCRIPT, args);
 }
 
 void TransferContext::read_return_value(jni::Env& p_env, Variant& r_ret) {

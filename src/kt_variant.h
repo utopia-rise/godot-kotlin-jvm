@@ -287,8 +287,7 @@ namespace ktvariant {
         to_kt_array[Variant::TRANSFORM3D] = to_kvariant_fromTRANSFORM3D;
         to_kt_array[Variant::PROJECTION] = to_kvariant_fromPROJECTION;
         to_kt_array[Variant::COLOR] = to_kvariant_fromCOLOR;
-        to_kt_array[Variant::CALLABLE] =  to_kvariant_fromNATIVECORETYPE < Variant::CALLABLE, Callable,
-        &Variant::operator Callable>;
+        to_kt_array[Variant::CALLABLE] = to_kvariant_fromNATIVECORETYPE < Variant::CALLABLE, Callable, &Variant::operator Callable>;
         to_kt_array[Variant::SIGNAL] = to_kvariant_fromSIGNAL;
         to_kt_array[Variant::DICTIONARY] = to_kvariant_fromNATIVECORETYPE < Variant::DICTIONARY, Dictionary,
         &Variant::operator Dictionary>;
