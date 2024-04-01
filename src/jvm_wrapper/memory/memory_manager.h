@@ -7,7 +7,7 @@
 #include <jni.h>
 
 // clang-format off
-JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager$MemoryBridge") {
+JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager") {
     SINGLETON_CLASS(MemoryManager)
 
     JNI_METHOD(START)
@@ -43,7 +43,7 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager$MemoryBrid
     static void notify_leak(JNIEnv* p_raw_env, jobject p_instance);
 
 public:
-    void start();
+    void start(bool force_gc);
     void setDisplayLeaks(bool b);
     void clean_up();
     bool is_closed();

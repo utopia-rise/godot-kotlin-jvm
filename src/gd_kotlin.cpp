@@ -248,7 +248,7 @@ void GDKotlin::init() {
 #endif
         }
 
-        MemoryManager::get_instance().start();
+        MemoryManager::get_instance().start(is_gc_force_mode);
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE("GC thread started.");
 #endif

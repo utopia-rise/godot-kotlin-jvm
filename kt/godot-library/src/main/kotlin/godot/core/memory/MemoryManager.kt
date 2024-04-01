@@ -185,7 +185,7 @@ internal object MemoryManager {
         return nativeCoreTypeMap[ptr]?.get()
     }
 
-    fun isInstanceValid(ktObject: KtObject) = MemoryBridge.checkInstance(ktObject.rawPtr, ktObject.id.id)
+    fun isInstanceValid(ktObject: KtObject) = checkInstance(ktObject.rawPtr, ktObject.id.id)
 
     fun start(forceJvmGarbageCollector: Boolean) {
         MemoryManager.forceJvmGarbageCollector = forceJvmGarbageCollector
@@ -232,7 +232,7 @@ internal object MemoryManager {
         }
 
         for (ref in bindingList) {
-            MemoryBridge.bindInstance(ref.value!!.id.id, ref)
+            bindInstance(ref.value!!.id.id, ref)
             isActive = true
         }
         bindingList.clear()
@@ -267,7 +267,7 @@ internal object MemoryManager {
         // We let cpp destroy the references in `deleteList`
         for (ref in deleteList) {
             if (ref.id.isReference) {
-                MemoryBridge.decrementRefCounter(ref.id.id)
+                decrementRefCounter(ref.id.id)
             }
         }
 
@@ -286,7 +286,7 @@ internal object MemoryManager {
         // Same as before for NativeCoreTypes
         while (counter < CHECK_NUMBER) {
             val ref = (nativeReferenceQueue.poll() ?: break) as NativeCoreWeakReference
-            if (MemoryBridge.unrefNativeCoreType(ref.ptr, ref.variantType.baseOrdinal)) {
+            if (unrefNativeCoreType(ref.ptr, ref.variantType.baseOrdinal)) {
                 nativeCoreTypeMap.remove(ref.ptr)
                 isActive = true
             }
@@ -306,7 +306,7 @@ internal object MemoryManager {
     fun cleanUp() {
         for (singletonIndex in singletonIndexes) {
             val id = ObjectDB[singletonIndex]!!.id
-            MemoryBridge.unbindInstance(id.id)
+            unbindInstance(id.id)
             ObjectDB[singletonIndex] = null
         }
 
@@ -341,7 +341,7 @@ internal object MemoryManager {
                             for (entry in leakedObjects) {
                                 val obj = entry.get()!!.value!!
                                 append("    ${obj::class.simpleName} ${entry.id.id} ")
-                                append("C++ instance alive: ${MemoryBridge.checkInstance(obj.rawPtr, obj.id.id)}")
+                                append("C++ instance alive: ${checkInstance(obj.rawPtr, obj.id.id)}")
                                 append(System.lineSeparator())
                             }
                             appendLine("${nativeCoreTypeMap.size} Leaked native core types:")
@@ -352,7 +352,7 @@ internal object MemoryManager {
                         }
                     }
                 )
-                MemoryBridge.notifyLeak()
+                notifyLeak()
                 break
             }
         }
@@ -370,15 +370,14 @@ internal object MemoryManager {
             System.gc()
         }
     }
-
-    private object MemoryBridge {
-        external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
-        external fun bindInstance(instanceId: Long, obj: GodotBinding)
-        external fun unbindInstance(instanceId: Long)
-        external fun decrementRefCounter(instanceId: Long)
-        external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
-        external fun notifyLeak()
-    }
+    
+    external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
+    external fun bindInstance(instanceId: Long, obj: GodotBinding)
+    external fun unbindInstance(instanceId: Long)
+    external fun decrementRefCounter(instanceId: Long)
+    external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
+    external fun notifyLeak()
+    
 
     private enum class GCState {
         NONE,

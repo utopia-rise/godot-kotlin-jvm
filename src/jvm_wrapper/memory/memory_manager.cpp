@@ -104,8 +104,9 @@ void MemoryManager::notify_leak(JNIEnv* p_raw_env, jobject p_instance) {
 #endif
 }
 
-void MemoryManager::start() {
+void MemoryManager::start(bool force_gc) {
     jni::Env env {jni::Jvm::current_env()};
+    jvalue start_args[1] = {jni::to_jni_arg(force_gc)};
     CALL_JVM_METHOD(env, START);
 }
 
