@@ -3,7 +3,11 @@
 #include "kotlin_editor_export_plugin.h"
 
 #include "gd_kotlin.h"
+#include "godotkotlin_defs.h"
 #include "jni/jni_constants.h"
+#include "script/gdj_script.h"
+#include "script/java_script.h"
+#include "script/kotlin_script.h"
 
 #include <core/config/project_settings.h>
 
@@ -46,8 +50,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
         } else {
             if (FileAccess::exists(configuration_path)) {
                 Ref<FileAccess> configuration_access_read {FileAccess::open(configuration_path, FileAccess::READ)};
-                GdKotlinConfiguration configuration {
-                  GdKotlinConfiguration::from_json(configuration_access_read->get_as_utf8_string())};
+                GdKotlinConfiguration configuration {GdKotlinConfiguration::from_json(configuration_access_read->get_as_utf8_string())};
                 jni::Jvm::Type jvm_type {configuration.get_vm_type()};
                 switch (jvm_type) {
                     case jni::Jvm::JVM:
@@ -141,6 +144,38 @@ void KotlinEditorExportPlugin::_copy_jre_to(const char* jre_folder, Ref<DirAcces
 
 String KotlinEditorExportPlugin::get_name() const {
     return "Godot Kotlin/Jvm";
+}
+
+bool KotlinEditorExportPlugin::_begin_customize_resources(const Ref<EditorExportPlatform>& p_platform, const Vector<String>& p_features) {
+    return true;
+}
+
+uint64_t KotlinEditorExportPlugin::_get_customization_configuration_hash() const {
+    // Mandatory to implement when customizing resources. The hash is used to keep separate configuration depending on the export options.
+    // We simply return a constant as source files are going to be cleared regardless of the configuration.
+    return 0;
+}
+
+Ref<Resource> KotlinEditorExportPlugin::_customize_resource(const Ref<Resource>& p_resource, const String& p_path) {
+    String ext = p_path.get_extension();
+
+    // We create a new resource, otherwise it overwrites the one in the project, not just in the export.
+    // After export, source files are only used to find the right script in the .jar using its path or name.
+    if (ext == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
+        Ref<GdjScript> exported_script;
+        exported_script.instantiate();
+        return exported_script;
+    } else if (ext == GODOT_KOTLIN_SCRIPT_EXTENSION) {
+        Ref<KotlinScript> exported_script;
+        exported_script.instantiate();
+        return exported_script;
+    } else if (ext == GODOT_JAVA_SCRIPT_EXTENSION) {
+        Ref<JavaScript> exported_script;
+        exported_script.instantiate();
+        return exported_script;
+    } else {
+        return {};
+    }
 }
 
 #endif
