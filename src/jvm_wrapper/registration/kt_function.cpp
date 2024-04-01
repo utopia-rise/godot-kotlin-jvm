@@ -36,11 +36,11 @@ KtFunctionInfo* KtFunction::get_kt_function_info() {
 void KtFunction::invoke(const KtObject* instance, const Variant** p_args, int args_count, Variant& r_ret) {
     jni::Env env {jni::Jvm::current_env()};
 
-    TransferContext* transferContext = GDKotlin::get_instance().transfer_context;
-    transferContext->write_args(env, p_args, args_count);
+    TransferContext& transferContext = TransferContext::get_instance();
+    transferContext.write_args(env, p_args, args_count);
     jvalue call_args[1] = {jni::to_jni_arg(instance->get_wrapped())};
     CALL_JVM_METHOD_WITH_ARG(env, INVOKE, call_args);
-    transferContext->read_return_value(env, r_ret);
+    transferContext.read_return_value(env, r_ret);
 }
 
 KtFunctionInfo::KtFunctionInfo(jni::JObject p_wrapped) : JvmInstanceWrapper(p_wrapped) {
@@ -77,8 +77,8 @@ MethodInfo KtFunctionInfo::to_method_info() const {
     MethodInfo methodInfo;
     methodInfo.name = name;
     List<PropertyInfo> pInfoList;
-    for (int i = 0; i < arguments.size(); ++i) {
-        pInfoList.push_back(arguments[i]->toPropertyInfo());
+    for (auto argument : arguments) {
+        pInfoList.push_back(argument->toPropertyInfo());
     }
     methodInfo.arguments = pInfoList;
     methodInfo.return_val = return_val->toPropertyInfo();

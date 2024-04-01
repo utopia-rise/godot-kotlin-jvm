@@ -7,17 +7,17 @@
     constexpr char NAME##QualifiedName[] = FQNAME; \
     class NAME : public JvmSingletonWrapper<NAME, NAME##QualifiedName>
 
-#define SINGLETON_CLASS(NAME)                                    \
-    friend class JvmSingletonWrapper<NAME, NAME##QualifiedName>; \
-                                                                 \
-public:                                                          \
-    NAME(const NAME&) = delete;                                  \
-    void operator=(const NAME&) = delete;                        \
-    NAME& operator=(NAME&&) noexcept = delete;                   \
-    NAME(NAME&&) noexcept = delete;                              \
-                                                                 \
-protected:                                                       \
-    explicit NAME(jni::JObject p_wrapped);                       \
+#define SINGLETON_CLASS(NAME)                                                                            \
+    friend class JvmSingletonWrapper<NAME, NAME##QualifiedName>;                                         \
+                                                                                                         \
+public:                                                                                                  \
+    NAME(const NAME&) = delete;                                                                          \
+    void operator=(const NAME&) = delete;                                                                \
+    NAME& operator=(NAME&&) noexcept = delete;                                                           \
+    NAME(NAME&&) noexcept = delete;                                                                      \
+                                                                                                         \
+protected:                                                                                               \
+    explicit NAME(jni::JObject p_wrapped) : JvmSingletonWrapper<NAME, NAME##QualifiedName>(p_wrapped) {} \
     ~NAME();
 
 /**
@@ -31,7 +31,7 @@ protected:                                                       \
  */
 template<class Derived, const char* FqName>
 class JvmSingletonWrapper : public JvmInstanceWrapper<FqName> {
-    static Derived* instance;
+    static Derived* _instance;
 
 public:
     static Derived& get_instance();
@@ -50,12 +50,12 @@ protected:
 };
 
 template<class Derived, const char* FqName>
-Derived* JvmSingletonWrapper<Derived, FqName>::instance {nullptr};
+Derived* JvmSingletonWrapper<Derived, FqName>::_instance {nullptr};
 
 template<class Derived, const char* FqName>
 Derived& JvmSingletonWrapper<Derived, FqName>::get_instance() {
-    if (unlikely(!instance)) { Derived::initialize(); }
-    return *instance;
+    if (unlikely(!_instance)) { Derived::initialize(); }
+    return *_instance;
 }
 
 template<class Derived, const char* FqName>
@@ -69,15 +69,15 @@ void JvmSingletonWrapper<Derived, FqName>::initialize() {
     jni::JObject singleton_instance = singleton_cls.get_static_object_field(env, singleton_instance_field);
     JVM_CRASH_COND_MSG(singleton_instance.is_null(), "Failed to retrieve LongStringQueue instance");
 
-    instance = new Derived(singleton_instance);
+    _instance = new Derived(singleton_instance);
 
     Derived::initialize_jni_binding();
 }
 
 template<class Derived, const char* FqName>
 void JvmSingletonWrapper<Derived, FqName>::destroy() {
-    delete instance;
-    instance = nullptr;
+    delete _instance;
+    _instance = nullptr;
 }
 
 template<class Derived, const char* FqName>

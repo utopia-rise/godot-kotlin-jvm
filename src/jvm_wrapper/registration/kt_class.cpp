@@ -184,8 +184,8 @@ void KtClass::do_notification(KtObject* p_instance, int p_notification, bool p_r
     Variant reversed = p_reversed;
     const int arg_size = 2;
     const Variant* args[arg_size] = {&notification, &reversed};
-    TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
-    transfer_context->write_args(env, args, arg_size);
+
+    TransferContext::get_instance().write_args(env, args, arg_size);
 
     jvalue call_args[1] = {jni::to_jni_arg(p_instance->get_wrapped())};
     CALL_JVM_METHOD_WITH_ARG(env, DO_NOTIFICATION, call_args);

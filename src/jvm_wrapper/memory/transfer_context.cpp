@@ -9,8 +9,6 @@ thread_local static Variant variant_args[MAX_STACK_SIZE];// NOLINT(cert-err58-cp
 thread_local static const Variant* variant_args_ptr[MAX_STACK_SIZE];
 thread_local static int stack_offset = -1;
 
-TransferContext::TransferContext(jni::JObject p_wrapped) : JvmSingletonWrapper(p_wrapped) {}
-
 TransferContext::~TransferContext() {
     for (auto& variant_arg : variant_args) {
         variant_arg = Variant();
@@ -74,10 +72,9 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong
         stack_offset = 0;
     }
 
-    TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
     jni::Env env {rawEnv};
 
-    SharedBuffer* buffer {transfer_context->get_and_rewind_buffer(env)};
+    SharedBuffer* buffer {get_instance().get_and_rewind_buffer(env)};
     uint32_t args_size {read_args_size(buffer)};
 
     auto* ptr {reinterpret_cast<Object*>(static_cast<uintptr_t>(j_ptr))};
@@ -146,9 +143,8 @@ void TransferContext::create_native_object(JNIEnv* p_raw_env, jobject p_instance
     id = ptr->get_instance_id();
 
     jni::Env env {p_raw_env};
-    TransferContext* transfer_context {GDKotlin::get_instance().transfer_context};
 
-    SharedBuffer* buffer {transfer_context->get_and_rewind_buffer(env)};
+    SharedBuffer* buffer {get_instance().get_and_rewind_buffer(env)};
     buffer->increment_position(encode_uint64(raw_ptr, buffer->get_cursor()));
     buffer->increment_position(encode_uint64(id, buffer->get_cursor()));
 }
@@ -159,7 +155,7 @@ void TransferContext::get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint 
     )};
     jni::Env env {p_raw_env};
 
-    SharedBuffer* buffer {GDKotlin::get_instance().transfer_context->get_and_rewind_buffer(env)};
+    SharedBuffer* buffer {get_instance().get_and_rewind_buffer(env)};
     buffer->increment_position(encode_uint64(reinterpret_cast<uintptr_t>(singleton), buffer->get_cursor()));
     buffer->increment_position(encode_uint64(singleton->get_instance_id(), buffer->get_cursor()));
 }

@@ -12,19 +12,21 @@ uintptr_t StringNameBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p
 uintptr_t StringNameBridge::engine_call_copy_constructor(JNIEnv* p_raw_env, jobject p_instance) {
     jni::Env env {p_raw_env};
     Variant args[1] = {};
-    GDKotlin::get_instance().transfer_context->read_args(env, args);
+    TransferContext::get_instance().read_args(env, args);
     return reinterpret_cast<uintptr_t>(memnew(StringName(args[0].operator StringName())));
 }
 
 uintptr_t StringNameBridge::engine_call_constructor_string(JNIEnv* p_raw_env, jobject p_instance) {
     jni::Env env {p_raw_env};
     Variant args[1] = {};
-    GDKotlin::get_instance().transfer_context->read_args(env, args);
+    TransferContext::get_instance().read_args(env, args);
     return reinterpret_cast<uintptr_t>(memnew(StringName(args[0].operator String())));
 }
 
 void StringNameBridge::engine_call_operator_string(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
     Variant result {from_uint_to_ptr<StringName>(p_raw_ptr)->operator String()};
-    GDKotlin::get_instance().transfer_context->write_return_value(env, result);
+    TransferContext::get_instance().write_return_value(env, result);
 }
+
+StringNameBridge::~StringNameBridge() = default;

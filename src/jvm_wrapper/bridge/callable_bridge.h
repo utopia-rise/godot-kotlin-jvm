@@ -34,14 +34,6 @@ namespace bridges {
         )
         // clang-format on
 
-    private:
-        struct StringNames {
-            StringName func_rpc;
-            StringName func_rpc_id;
-        };
-
-        static StringNames string_names;
-
     public:
         static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance);
 

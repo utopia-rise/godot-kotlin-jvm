@@ -1,12 +1,6 @@
 #include "memory_manager.h"
 
 #include "binding/kotlin_binding_manager.h"
-#include "constants.h"
-#include "core/object/object.h"
-#include "jvm_wrapper/memory/kt_binding.h"
-#include "logging.h"
-
-MemoryManager::MemoryManager(jni::JObject p_wrapped) : JvmSingletonWrapper(p_wrapped) {}
 
 bool MemoryManager::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id) {
     auto* instance {reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr))};
@@ -109,3 +103,28 @@ void MemoryManager::notify_leak(JNIEnv* p_raw_env, jobject p_instance) {
     JVM_CRASH_NOW_MSG("JVM instances are leaking.");
 #endif
 }
+
+void MemoryManager::start() {
+    jni::Env env {jni::Jvm::current_env()};
+    CALL_JVM_METHOD(env, START);
+}
+
+void MemoryManager::setDisplayLeaks(bool b) {
+    jni::Env env {jni::Jvm::current_env()};
+    jvalue args[1] = {jni::to_jni_arg(b)};
+    CALL_JVM_METHOD_WITH_ARG(env, SET_DISPLAY, args);
+}
+
+void MemoryManager::clean_up() {
+    jni::Env env {jni::Jvm::current_env()};
+    CALL_JVM_METHOD(env, CLEAN_UP);
+}
+
+bool MemoryManager::is_closed() {
+    jni::Env env {jni::Jvm::current_env()};
+    return wrapped.call_boolean_method(env, IS_CLOSED);
+}
+
+void MemoryManager::close() {}
+
+MemoryManager::~MemoryManager() = default;

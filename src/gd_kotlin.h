@@ -26,7 +26,6 @@ private:
 
     static void _check_and_copy_jar(const String& jar_name);
     static jni::JObject _prepare_class_loader(jni::Env& p_env, jni::Jvm::Type type);
-    static void initialize_classes();
 
     bool check_configuration();
 
@@ -35,8 +34,6 @@ private:
     Vector<Pair<String, String>> configuration_errors;
 
 public:
-    TransferContext* transfer_context;
-
     GDKotlin(const GDKotlin&) = delete;
 
     static GDKotlin& get_instance();

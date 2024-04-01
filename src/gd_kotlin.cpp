@@ -1,7 +1,7 @@
 #include "gd_kotlin.h"
 
-#include "bridges_manager.h"
 #include "jni/class_loader.h"
+#include "jni_initializer.h"
 #include "jvm_wrapper/memory/transfer_context.h"
 
 #include <core/config/project_settings.h>
@@ -234,14 +234,12 @@ void GDKotlin::init() {
     }
 #endif
 
-    initialize_classes();
+    initialize_jni_classes();
 
     int max_string_size {configuration.get_max_string_size()};
     if (max_string_size != LongStringQueue::max_string_size) {
         LongStringQueue::get_instance().set_string_max_size(max_string_size);
     }
-
-    BridgesManager::get_instance().initialize_bridges(env, class_loader);
 
     if (is_gc_activated) {
         if (is_gc_force_mode) {
@@ -249,9 +247,8 @@ void GDKotlin::init() {
             LOG_VERBOSE("Starting GC thread with force mode.");
 #endif
         }
-        jni::MethodId start_method_id {garbage_collector_cls.get_method_id(env, "start", "(Z)V")};
-        jvalue start_args[2] = {jni::to_jni_arg(is_gc_force_mode)};
-        garbage_collector_instance.call_void_method(env, start_method_id, start_args);
+
+        MemoryManager::get_instance().start();
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE("GC thread started.");
 #endif
@@ -259,9 +256,7 @@ void GDKotlin::init() {
     }
 
     if (!should_display_leaked_jvm_instances_on_close) {
-        jni::MethodId set_should_display_method_id {garbage_collector_cls.get_method_id(env, "setShouldDisplayLeakInstancesOnClose", "(Z)V")};
-        jvalue d_arg[1] = {jni::to_jni_arg(false)};
-        garbage_collector_instance.call_void_method(env, set_should_display_method_id, d_arg);
+        MemoryManager::get_instance().setDisplayLeaks(false);
     }
 
     jni::JClass bootstrap_cls = env.load_class("godot.runtime.Bootstrap", class_loader);
@@ -269,7 +264,6 @@ void GDKotlin::init() {
     jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
     bootstrap = new Bootstrap(instance);
     Bootstrap::register_hooks(load_classes_hook, register_engine_types_hook);
-    Bootstrap::initialize_class("godot.runtime.Bootstrap");
     bool is_editor = Engine::get_singleton()->is_editor_hint();
 
 #ifdef TOOLS_ENABLED
@@ -310,35 +304,24 @@ void GDKotlin::finish() {
 
     bootstrap->finish(env);
 
-    delete transfer_context;
-    transfer_context = nullptr;
     delete bootstrap;
     bootstrap = nullptr;
 
     TypeManager::get_instance().clear();
 
     if (is_gc_started) {
-        jni::JClass garbage_collector_cls {env.load_class("godot.core.memory.MemoryManager", ClassLoader::get_default_loader())};
-        jni::FieldId garbage_collector_instance_field {garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/memory/MemoryManager;")
-        };
-        jni::JObject garbage_collector_instance {garbage_collector_cls.get_static_object_field(env, garbage_collector_instance_field)};
-        JVM_CRASH_COND_MSG(garbage_collector_instance.is_null(), "Failed to retrieve MemoryManager instance");
-        jni::MethodId close_method_id {garbage_collector_cls.get_method_id(env, "close", "()V")};
-        garbage_collector_instance.call_void_method(env, close_method_id);
-        jni::MethodId has_closed_method_id {garbage_collector_cls.get_method_id(env, "isClosed", "()Z")};
-        while (!garbage_collector_instance.call_boolean_method(env, has_closed_method_id)) {
+        MemoryManager::get_instance().close();
+
+        while (!MemoryManager::get_instance().is_closed()) {
             OS::get_singleton()->delay_usec(600000);
         }
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE("JVM GC thread was closed");
 #endif
-        jni::MethodId clean_up_method_id {garbage_collector_cls.get_method_id(env, "cleanUp", "()V")};
-        garbage_collector_instance.call_void_method(env, clean_up_method_id);
+        MemoryManager::get_instance().clean_up();
     }
 
-    LongStringQueue::destroy();
-    BridgesManager::get_instance().delete_bridges();
-    TypeManager::destroy();
+    destroy_jni_classes();
 
     ClassLoader::delete_default_loader(env);
     jni::Jvm::destroy();
@@ -401,7 +384,7 @@ void GDKotlin::_check_and_copy_jar(const String& jar_name) {
 }
 
 jni::JObject GDKotlin::_prepare_class_loader(jni::Env& p_env, jni::Jvm::Type type) {
-    if (type == jni::Jvm::GRAAL_NATIVE_IMAGE) { return jni::JObject(); }
+    if (type == jni::Jvm::GRAAL_NATIVE_IMAGE) { return {}; }
 #ifdef __ANDROID__
     String bootstrap_jar_file {"godot-bootstrap-dex.jar"};
     String main_jar_file {"main-dex.jar"};
@@ -438,8 +421,7 @@ GDKotlin::GDKotlin() :
   bootstrap(nullptr),
   is_gc_started(false),
   configuration(GdKotlinConfiguration::load_gd_kotlin_configuration_or_default(gd_kotlin_configuration_path)),
-  is_initialized(false),
-  transfer_context(nullptr) {}
+  is_initialized(false) {}
 
 bool GDKotlin::check_configuration() {
     bool has_configuration_error = false;

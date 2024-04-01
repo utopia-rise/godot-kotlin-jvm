@@ -49,7 +49,7 @@ private:
     Vector<Ref<PathScript>> path_user_scripts;
     HashMap<String, StringName> filepath_to_name_map;
 
-    bool types_dirty;
+    bool types_dirty = false;
 };
 
 template<class C>
