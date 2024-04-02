@@ -24,8 +24,8 @@ public:
     const Ref<NamedScript>& get_user_script_for_index(int p_index) const;
     Ref<NamedScript> get_user_script_from_name(const StringName& name) const;
 
-    void register_engine_types(jni::Env & p_env, jni::JObjectArray & p_engine_types);
-    void register_engine_singletons(jni::Env & p_env, jni::JObjectArray & p_singletons);
+    void register_engine_types(jni::Env& p_env, jni::JObjectArray & p_engine_types);
+    void register_engine_singletons(jni::Env& p_env, jni::JObjectArray & p_singletons);
     void create_and_update_scripts(Vector<KtClass*> & classes);
 
     template<class C>

@@ -11,10 +11,10 @@
 #include "../jvm_loader.h"
 #include "jni/jvm.h"
 
-
 namespace jni {
+    static thread_local Env* env = nullptr;
+
     JavaVM* Jvm::vm = nullptr;
-    Env* Jvm::env = nullptr;
     jint Jvm::version = 0;
     Jvm::Type Jvm::vm_type {Jvm::JVM};
 
@@ -63,6 +63,7 @@ namespace jni {
 
         delete[] options;
         JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to create a new vm!");
+        env = new Env(jni_env);
         return java_vm;
     }
 
@@ -79,22 +80,25 @@ namespace jni {
         JNIEnv* r_env;
         auto result = vm->AttachCurrentThread((void**) &r_env, nullptr);
         JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to attach vm to current thread!");
-        Jvm::env = new Env(r_env);
+        env = new Env(r_env);
         return Env(r_env);
     }
 
     void Jvm::detach() {
         auto result = vm->DetachCurrentThread();
         JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to detach vm to current thread!");
-        delete Jvm::env;
-        Jvm::env = nullptr;
+        delete env;
+        env = nullptr;
     }
 
     Env Jvm::current_env() {
-        JNIEnv* r_env;
-        auto result = vm->GetEnv((void**) &r_env, version);
-        JVM_CRASH_COND_MSG(result == JNI_EDETACHED, "Current thread is not attached!");
-        return Env(r_env);
+        if (unlikely(!env)) {
+            JNIEnv* r_env;
+            auto result = vm->GetEnv((void**) &r_env, version);
+            JVM_CRASH_COND_MSG(result == JNI_EDETACHED, "Current thread is not attached!");
+            env = new Env(r_env);
+        }
+        return *env;
     }
 
     Jvm::Type Jvm::get_type() {

@@ -203,11 +203,11 @@ void GDKotlin::init() {
     }
 #endif
 
-    JniLifecycleManager::initialize_jni_classes();
+    JniLifecycleManager::initialize_jni_classes(env);
 
     int max_string_size {configuration.get_max_string_size()};
     if (max_string_size != LongStringQueue::max_string_size) {
-        LongStringQueue::get_instance().set_string_max_size(max_string_size);
+        LongStringQueue::get_instance().set_string_max_size(env, max_string_size);
     }
 
     if (is_gc_activated) {
@@ -217,7 +217,7 @@ void GDKotlin::init() {
 #endif
         }
 
-        MemoryManager::get_instance().start(is_gc_force_mode);
+        MemoryManager::get_instance().start(env, is_gc_force_mode);
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE("GC thread started.");
 #endif
@@ -225,10 +225,10 @@ void GDKotlin::init() {
     }
 
     if (!should_display_leaked_jvm_instances_on_close) {
-        MemoryManager::get_instance().setDisplayLeaks(false);
+        MemoryManager::get_instance().setDisplayLeaks(env, false);
     }
 
-    bootstrap = Bootstrap::create_instance();
+    bootstrap = Bootstrap::create_instance(env);
 
 #ifdef TOOLS_ENABLED
     String jar_path {project_settings->globalize_path("res://build/libs/")};
@@ -268,15 +268,15 @@ void GDKotlin::finish() {
     TypeManager::get_instance().clear();
 
     if (is_gc_started) {
-        MemoryManager::get_instance().close();
+        MemoryManager::get_instance().close(env);
 
-        while (!MemoryManager::get_instance().is_closed()) {
+        while (!MemoryManager::get_instance().is_closed(env)) {
             OS::get_singleton()->delay_usec(600000);
         }
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE("JVM GC thread was closed");
 #endif
-        MemoryManager::get_instance().clean_up();
+        MemoryManager::get_instance().clean_up(env);
     }
 
     JniLifecycleManager::destroy_jni_classes();
@@ -290,10 +290,12 @@ void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
 #ifdef DEV_ENABLED
     LOG_INFO("Loading classes ...");
 #endif
+
+    jni::Env env {jni::Jvm::current_env()};
     Vector<KtClass*> classes;
     for (auto i = 0; i < p_classes.length(p_env); i++) {
-        KtClass* kt_class = new KtClass(p_classes.get(p_env, i));
-        kt_class->fetch_members();
+        KtClass* kt_class = new KtClass(env, p_classes.get(p_env, i));
+        kt_class->fetch_members(env);
         classes.append(kt_class);
 #ifdef DEV_ENABLED
         LOG_VERBOSE(vformat("Loaded class %s : %s", kt_class->registered_class_name, kt_class->base_godot_class));

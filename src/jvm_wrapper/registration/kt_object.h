@@ -21,7 +21,7 @@ private:
     bool is_ref;
 
 public:
-    explicit KtObject(jni::JObject p_wrapped, bool p_is_ref);
+    explicit KtObject(jni::Env& p_env, jni::JObject p_wrapped, bool p_is_ref);
     ~KtObject();
 };
 

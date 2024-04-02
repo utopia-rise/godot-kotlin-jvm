@@ -27,7 +27,7 @@ JVM_INSTANCE_WRAPPER(KtPropertyInfo, "godot.core.KtPropertyInfo") {
     // clang-format on
 
 public:
-    explicit KtPropertyInfo(jni::JObject p_wrapped);
+    explicit KtPropertyInfo(jni::Env& p_env, jni::JObject p_wrapped);
     ~KtPropertyInfo() = default;
 
     Variant::Type type;
@@ -62,18 +62,18 @@ JVM_INSTANCE_WRAPPER(KtProperty, "godot.core.KtProperty") {
     bool is_ref;
 
 public:
-    explicit KtProperty(jni::JObject p_wrapped);
+    explicit KtProperty(jni::Env& p_env, jni::JObject p_wrapped);
     ~KtProperty();
 
     StringName get_name() const;
 
     PropertyInfo get_member_info();
 
-    void call_get(KtObject* instance, Variant& r_ret);
-    void call_set(KtObject* instance, const Variant& p_value);
+    void call_get(jni::Env& p_env, KtObject* instance, Variant& r_ret);
+    void call_set(jni::Env& p_env, KtObject* instance, const Variant& p_value);
 
 #ifdef TOOLS_ENABLED
-    void safe_call_get(KtObject* instance, Variant& r_ret);
+    void safe_call_get(jni::Env& p_env, KtObject* instance, Variant& r_ret);
 #endif
 };
 

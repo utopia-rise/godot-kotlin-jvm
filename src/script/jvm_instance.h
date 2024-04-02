@@ -15,7 +15,7 @@ private:
     bool delete_flag;
 
 public:
-    JvmInstance(Object* p_owner, KtObject* p_kt_object, JvmScript* p_script);
+    JvmInstance(jni::Env& p_env, Object* p_owner, KtObject* p_kt_object, JvmScript* p_script);
     ~JvmInstance() override;
 
     bool set(const StringName& p_name, const Variant& p_value) override;
@@ -30,7 +30,7 @@ public:
     void get_method_list(List<MethodInfo>* p_list) const override;
     bool has_method(const StringName& p_method) const override;
     Variant callp(const StringName& p_method, const Variant** p_args, int p_argcount, Callable::CallError& r_error) override;
-    void notification(int p_notification, bool p_reversed = false) override;
+    void notification(int p_notification, bool p_reversed) override;
     virtual void validate_property(PropertyInfo& p_property) const override;
     String to_string(bool* r_valid) override;
     void refcount_incremented() override;
