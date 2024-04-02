@@ -126,6 +126,9 @@ bool MemoryManager::is_closed() {
     return wrapped.call_boolean_method(env, IS_CLOSED);
 }
 
-void MemoryManager::close() {}
+void MemoryManager::close() {
+    jni::Env env {jni::Jvm::current_env()};
+    CALL_JVM_METHOD(env, CLOSE);
+}
 
 MemoryManager::~MemoryManager() = default;

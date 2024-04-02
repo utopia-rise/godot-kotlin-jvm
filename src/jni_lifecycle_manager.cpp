@@ -29,6 +29,7 @@ void JniLifecycleManager::initialize_jni_classes() {
     MemoryManager::initialize();
 
     bridges::GDPrintBridge::initialize();
+
     bridges::CallableBridge::initialize();
     bridges::DictionaryBridge::initialize();
     bridges::RidBridge::initialize();
@@ -69,12 +70,12 @@ void JniLifecycleManager::destroy_jni_classes() {
 
     bridges::GDPrintBridge::destroy();
 
-    bridges::GDPrintBridge::destroy();
     bridges::CallableBridge::destroy();
     bridges::DictionaryBridge::destroy();
     bridges::RidBridge::destroy();
     bridges::StringNameBridge::destroy();
     bridges::NodePathBridge::destroy();
+    bridges::VariantArrayBridge::destroy();
 
     bridges::PackedByteArrayBridge::destroy();
     bridges::PackedColorArrayBridge::destroy();

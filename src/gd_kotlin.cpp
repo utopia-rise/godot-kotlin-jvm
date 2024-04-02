@@ -258,12 +258,6 @@ void GDKotlin::init() {
 }
 
 void GDKotlin::finish() {
-    if (Engine::get_singleton()->is_project_manager_hint()) {
-#ifdef DEBUG_ENABLED
-        LOG_VERBOSE("Detected that we're in the project manager. No cleanup necessary");
-#endif
-        return;
-    }
     auto env = jni::Jvm::current_env();
 
     bootstrap->finish(env);
