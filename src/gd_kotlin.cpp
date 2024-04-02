@@ -1,8 +1,9 @@
 #include "gd_kotlin.h"
 
 #include "jni/class_loader.h"
-#include "jni_initializer.h"
+#include "jni_lifecycle_manager.h"
 #include "jvm_wrapper/memory/transfer_context.h"
+#include "jvm_wrapper/memory/memory_manager.h"
 
 #include <core/config/project_settings.h>
 #include <core/io/resource_loader.h>
@@ -26,38 +27,6 @@ static constexpr const char* gd_kotlin_configuration_path {"res://godot_kotlin_c
 GDKotlin& GDKotlin::get_instance() {
     static GDKotlin instance;
     return instance;
-}
-
-void load_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
-    jni::Env env(p_env);
-    jni::JObjectArray classes {jni::JObjectArray(p_classes)};
-    jni::JObject j_object {p_this};
-
-    GDKotlin::get_instance().register_classes(env, classes);
-
-    j_object.delete_local_ref(env);
-    classes.delete_local_ref(env);
-}
-
-void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types, jobjectArray p_singleton_names) {
-#ifdef DEV_ENABLED
-    LOG_VERBOSE("Starting to register managed engine types...");
-#endif
-    jni::Env env(p_env);
-
-    jni::JObjectArray engine_types {p_engine_types};
-    TypeManager::get_instance().register_engine_types(env, engine_types);
-
-    jni::JObjectArray singleton_names {p_singleton_names};
-    TypeManager::get_instance().register_engine_singletons(env, singleton_names);
-
-    jni::JObject j_object {p_this};
-    j_object.delete_local_ref(env);
-    engine_types.delete_local_ref(env);
-    singleton_names.delete_local_ref(env);
-#ifdef DEV_ENABLED
-    LOG_VERBOSE("Done registering managed engine types...");
-#endif
 }
 
 void GDKotlin::init() {
@@ -234,7 +203,7 @@ void GDKotlin::init() {
     }
 #endif
 
-    initialize_jni_classes();
+    JniLifecycleManager::initialize_jni_classes();
 
     int max_string_size {configuration.get_max_string_size()};
     if (max_string_size != LongStringQueue::max_string_size) {
@@ -263,7 +232,7 @@ void GDKotlin::init() {
     jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");
     jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
     bootstrap = new Bootstrap(instance);
-    Bootstrap::register_hooks(load_classes_hook, register_engine_types_hook);
+
     bool is_editor = Engine::get_singleton()->is_editor_hint();
 
 #ifdef TOOLS_ENABLED
@@ -321,7 +290,7 @@ void GDKotlin::finish() {
         MemoryManager::get_instance().clean_up();
     }
 
-    destroy_jni_classes();
+    JniLifecycleManager::destroy_jni_classes();
 
     ClassLoader::delete_default_loader(env);
     jni::Jvm::destroy();
@@ -338,7 +307,7 @@ void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
         kt_class->fetch_members();
         classes.append(kt_class);
 #ifdef DEV_ENABLED
-        LOG_VERBOSE(vformat("Loaded class %s : %s, as %s", kt_class->registered_class_name, kt_class->base_godot_class));
+        LOG_VERBOSE(vformat("Loaded class %s : %s", kt_class->registered_class_name, kt_class->base_godot_class));
 #endif
     }
     TypeManager::get_instance().create_and_update_scripts(classes);

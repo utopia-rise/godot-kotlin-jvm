@@ -1,15 +1,41 @@
 #include "bootstrap.h"
 
+#include "gd_kotlin.h"
 
-Bootstrap::LoadClassesHook Bootstrap::load_classes {};
-Bootstrap::RegisterManagedEngineTypesHook Bootstrap::register_engine_type {};
+void Bootstrap::load_classes(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
+    jni::Env env(p_env);
+    jni::JObjectArray classes {jni::JObjectArray(p_classes)};
+    jni::JObject j_object {p_this};
+
+    GDKotlin::get_instance().register_classes(env, classes);
+
+    j_object.delete_local_ref(env);
+    classes.delete_local_ref(env);
+}
+
+void Bootstrap::register_engine_type(JNIEnv* p_env, jobject p_this, jobjectArray p_classes_names, jobjectArray p_singleton_names) {
+#ifdef DEV_ENABLED
+    LOG_VERBOSE("Starting to register managed engine types...");
+#endif
+    jni::Env env(p_env);
+
+    jni::JObjectArray engine_types {p_classes_names};
+    TypeManager::get_instance().register_engine_types(env, engine_types);
+
+    jni::JObjectArray singleton_names {p_singleton_names};
+    TypeManager::get_instance().register_engine_singletons(env, singleton_names);
+
+    jni::JObject j_object {p_this};
+    j_object.delete_local_ref(env);
+    engine_types.delete_local_ref(env);
+    singleton_names.delete_local_ref(env);
+#ifdef DEV_ENABLED
+    LOG_VERBOSE("Done registering managed engine types...");
+#endif
+}
 
 Bootstrap::Bootstrap(jni::JObject p_wrapped) : JvmInstanceWrapper(p_wrapped) {}
 
-void Bootstrap::register_hooks(LoadClassesHook p_load_classes_hook, RegisterManagedEngineTypesHook p_register_managed_engine_types_hook) {
-    Bootstrap::load_classes = p_load_classes_hook;
-    Bootstrap::register_engine_type = p_register_managed_engine_types_hook;
-}
 
 void Bootstrap::init(jni::Env& p_env, bool p_is_editor, const String& p_project_path, const String& p_jar_path, const String& p_jar_file, const jni::JObject& p_class_loader) {
     LOCAL_FRAME(3);

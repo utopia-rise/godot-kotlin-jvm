@@ -15,20 +15,15 @@ JVM_INSTANCE_WRAPPER(Bootstrap, "godot.runtime.Bootstrap") {
         INIT_NATIVE_METHOD("loadClasses", "([Lgodot/core/KtClass;)V", Bootstrap::load_classes)
         INIT_NATIVE_METHOD("registerManagedEngineTypes", "([Ljava/lang/String;[Ljava/lang/String;)V", Bootstrap::register_engine_type)
     )
+    // clang-format on
 
 public:
 
-    typedef void (*LoadClassesHook)(JNIEnv* p_env, jobject p_this, jobjectArray classes);
-    typedef void (*RegisterManagedEngineTypesHook)(
-      JNIEnv* p_env, jobject p_this, jobjectArray classes_names,
-      jobjectArray singleton_names
-      );
-    // clang-format on
-
-    static LoadClassesHook load_classes;
-    static RegisterManagedEngineTypesHook register_engine_type;
-
-    static void register_hooks(LoadClassesHook p_load_classes_hook, RegisterManagedEngineTypesHook p_register_managed_engine_types_hook);
+    static void load_classes(JNIEnv* p_env, jobject p_this, jobjectArray p_classes);
+    static void register_engine_type(
+      JNIEnv* p_env, jobject p_this, jobjectArray p_classes_names,
+      jobjectArray p_singleton_names
+    );
 
     explicit Bootstrap(jni::JObject p_wrapped);
     ~Bootstrap() = default;

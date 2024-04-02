@@ -1,12 +1,10 @@
-#ifndef GODOT_JVM_JNI_INITIALIZER_H
-#define GODOT_JVM_JNI_INITIALIZER_H
+#include "jni_lifecycle_manager.h"
 
-#include "jvm_wrapper/memory/transfer_context.h"
-#include "jvm_wrapper/memory/memory_manager.h"
-#include "jvm_wrapper/bridge/gd_print_bridge.h"
+#include "jvm_wrapper/bootstrap.h"
 #include "jvm_wrapper/bridge/callable_bridge.h"
-#include "jvm_wrapper/bridge/variant_array_bridge.h"
 #include "jvm_wrapper/bridge/dictionary_bridge.h"
+#include "jvm_wrapper/bridge/gd_print_bridge.h"
+#include "jvm_wrapper/bridge/node_path_bridge.h"
 #include "jvm_wrapper/bridge/packed_byte_array_bridge.h"
 #include "jvm_wrapper/bridge/packed_color_array_bridge.h"
 #include "jvm_wrapper/bridge/packed_float_32_array_bridge.h"
@@ -16,12 +14,14 @@
 #include "jvm_wrapper/bridge/packed_string_array_bridge.h"
 #include "jvm_wrapper/bridge/packed_vector2_array_bridge.h"
 #include "jvm_wrapper/bridge/packed_vector3_array_bridge.h"
-#include "jvm_wrapper/bridge/node_path_bridge.h"
 #include "jvm_wrapper/bridge/rid_bridge.h"
 #include "jvm_wrapper/bridge/string_name_bridge.h"
+#include "jvm_wrapper/bridge/variant_array_bridge.h"
+#include "jvm_wrapper/memory/memory_manager.h"
+#include "jvm_wrapper/memory/transfer_context.h"
 #include "jvm_wrapper/registration//kt_class.h"
 
-void initialize_jni_classes() {
+void JniLifecycleManager::initialize_jni_classes() {
     // Singleton
     TransferContext::initialize();
     TypeManager::initialize();
@@ -29,13 +29,12 @@ void initialize_jni_classes() {
     MemoryManager::initialize();
 
     bridges::GDPrintBridge::initialize();
-
-    bridges::GDPrintBridge::initialize();
     bridges::CallableBridge::initialize();
     bridges::DictionaryBridge::initialize();
     bridges::RidBridge::initialize();
     bridges::StringNameBridge::initialize();
     bridges::NodePathBridge::initialize();
+    bridges::VariantArrayBridge::initialize();
 
     bridges::PackedByteArrayBridge::initialize();
     bridges::PackedColorArrayBridge::initialize();
@@ -48,6 +47,7 @@ void initialize_jni_classes() {
     bridges::PackedVector3ArrayBridge::initialize();
 
     //Instance
+    Bootstrap::initialize_jni_binding();
     KtObject::initialize_jni_binding();
 
     KtPropertyInfo::initialize_jni_binding();
@@ -60,7 +60,7 @@ void initialize_jni_classes() {
     KtClass::initialize_jni_binding();
 }
 
-void destroy_jni_classes() {
+void JniLifecycleManager::destroy_jni_classes() {
     // Singleton
     TransferContext::destroy();
     TypeManager::destroy();
@@ -86,5 +86,3 @@ void destroy_jni_classes() {
     bridges::PackedVector2ArrayBridge::destroy();
     bridges::PackedVector3ArrayBridge::destroy();
 }
-
-#endif// GODOT_JVM_JNI_INITIALIZER_H

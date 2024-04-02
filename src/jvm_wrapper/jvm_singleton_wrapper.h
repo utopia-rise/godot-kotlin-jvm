@@ -2,9 +2,10 @@
 #define GODOT_JVM_JVM_SINGLETON_WRAPPER_H
 
 #include "jvm_instance_wrapper.h"
+#include "jni_lifecycle_manager.h"
 
 #define JVM_SINGLETON_WRAPPER(NAME, FQNAME)        \
-    constexpr char NAME##QualifiedName[] = FQNAME; \
+    inline constexpr char NAME##QualifiedName[] = FQNAME; \
     class NAME : public JvmSingletonWrapper<NAME, NAME##QualifiedName>
 
 #define SINGLETON_CLASS(NAME)                                                                            \
@@ -31,22 +32,24 @@ protected:                                                                      
  */
 template<class Derived, const char* FqName>
 class JvmSingletonWrapper : public JvmInstanceWrapper<FqName> {
-    static Derived* _instance;
+    friend class JniLifecycleManager;
 
-public:
-    static Derived& get_instance();
+    static Derived* _instance;
 
     static void initialize();
     static void destroy();
+
+protected:
+    explicit JvmSingletonWrapper(jni::JObject p_wrapped);
+    ~JvmSingletonWrapper() = default;
+
+public:
+    static Derived& get_instance();
 
     JvmSingletonWrapper(const JvmSingletonWrapper<Derived, FqName>&) = delete;
     void operator=(const JvmSingletonWrapper<Derived, FqName>&) = delete;
     JvmSingletonWrapper<Derived, FqName>& operator=(JvmSingletonWrapper<Derived, FqName>&&) noexcept = delete;
     JvmSingletonWrapper(JvmSingletonWrapper<Derived, FqName>&& instance) noexcept = delete;
-
-protected:
-    explicit JvmSingletonWrapper(jni::JObject p_wrapped);
-    ~JvmSingletonWrapper() = default;
 };
 
 template<class Derived, const char* FqName>
@@ -54,12 +57,13 @@ Derived* JvmSingletonWrapper<Derived, FqName>::_instance {nullptr};
 
 template<class Derived, const char* FqName>
 Derived& JvmSingletonWrapper<Derived, FqName>::get_instance() {
-    if (unlikely(!_instance)) { Derived::initialize(); }
+    JVM_CRASH_COND_MSG(!_instance, String(FqName) + " singleton is not initialized.");
     return *_instance;
 }
 
 template<class Derived, const char* FqName>
 void JvmSingletonWrapper<Derived, FqName>::initialize() {
+    JVM_CRASH_COND_MSG(_instance, String(FqName) + " singleton is already initialized.");
     jni::Env env {jni::Jvm::current_env()};
     jni::JObject class_loader = ClassLoader::get_default_loader();
 
@@ -67,7 +71,7 @@ void JvmSingletonWrapper<Derived, FqName>::initialize() {
     jni::FieldId singleton_instance_field =
       singleton_cls.get_static_field_id(env, "INSTANCE", vformat("L%s;", FqName).replace(".", "/").utf8().ptr());
     jni::JObject singleton_instance = singleton_cls.get_static_object_field(env, singleton_instance_field);
-    JVM_CRASH_COND_MSG(singleton_instance.is_null(), "Failed to retrieve " + String(FqName) + " instance");
+    JVM_CRASH_COND_MSG(singleton_instance.is_null(), "Failed to retrieve " + String(FqName) + " singleton");
 
     _instance = new Derived(singleton_instance);
 

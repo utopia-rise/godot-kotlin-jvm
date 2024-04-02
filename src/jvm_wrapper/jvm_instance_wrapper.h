@@ -5,7 +5,7 @@
 #include "jni/wrapper.h"
 
 #define JVM_INSTANCE_WRAPPER(NAME, FQNAME)         \
-    constexpr char NAME##QualifiedName[] = FQNAME; \
+    inline constexpr char NAME##QualifiedName[] = FQNAME; \
     class NAME : public JvmInstanceWrapper<NAME##QualifiedName>
 
 #define JNI_METHOD(var_name) inline static jni::MethodId var_name {nullptr};
