@@ -228,12 +228,7 @@ void GDKotlin::init() {
         MemoryManager::get_instance().setDisplayLeaks(false);
     }
 
-    jni::JClass bootstrap_cls = env.load_class("godot.runtime.Bootstrap", class_loader);
-    jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");
-    jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
-    bootstrap = new Bootstrap(instance);
-
-    bool is_editor = Engine::get_singleton()->is_editor_hint();
+    bootstrap = Bootstrap::create_instance();
 
 #ifdef TOOLS_ENABLED
     String jar_path {project_settings->globalize_path("res://build/libs/")};
@@ -249,7 +244,7 @@ void GDKotlin::init() {
 
     bootstrap->init(
       env,
-      is_editor,
+      Engine::get_singleton()->is_editor_hint(),
       project_path,
       jar_path,
       main_jar_file,

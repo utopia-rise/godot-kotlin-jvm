@@ -31,7 +31,7 @@ protected:                                                                      
  * @tparam FqName
  */
 template<class Derived, const char* FqName>
-class JvmSingletonWrapper : public JvmInstanceWrapper<FqName> {
+class JvmSingletonWrapper : public JvmInstanceWrapper<Derived, FqName> {
     friend class JniLifecycleManager;
 
     static Derived* _instance;
@@ -50,7 +50,15 @@ public:
     void operator=(const JvmSingletonWrapper<Derived, FqName>&) = delete;
     JvmSingletonWrapper<Derived, FqName>& operator=(JvmSingletonWrapper<Derived, FqName>&&) noexcept = delete;
     JvmSingletonWrapper(JvmSingletonWrapper<Derived, FqName>&& instance) noexcept = delete;
+
+    static Derived* create_instance();
 };
+
+template<class Derived, const char* FqName>
+Derived* JvmSingletonWrapper<Derived, FqName>::create_instance() {
+    LOG_ERROR("Can't create a new instance of a this class. Returning the singleton instead");
+    return _instance;
+}
 
 template<class Derived, const char* FqName>
 Derived* JvmSingletonWrapper<Derived, FqName>::_instance {nullptr};
@@ -86,6 +94,6 @@ void JvmSingletonWrapper<Derived, FqName>::destroy() {
 
 template<class Derived, const char* FqName>
 JvmSingletonWrapper<Derived, FqName>::JvmSingletonWrapper(jni::JObject p_wrapped) :
-  JvmInstanceWrapper<FqName>(p_wrapped) {}
+  JvmInstanceWrapper<Derived, FqName>(p_wrapped) {}
 
 #endif// GODOT_JVM_JVM_SINGLETON_WRAPPER_H

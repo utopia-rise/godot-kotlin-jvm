@@ -6,7 +6,7 @@
 
 #define JVM_INSTANCE_WRAPPER(NAME, FQNAME)         \
     inline constexpr char NAME##QualifiedName[] = FQNAME; \
-    class NAME : public JvmInstanceWrapper<NAME##QualifiedName>
+    class NAME : public JvmInstanceWrapper<NAME, NAME##QualifiedName>
 
 #define JNI_METHOD(var_name) inline static jni::MethodId var_name {nullptr};
 
@@ -41,14 +41,13 @@ private:
  * Note that the jni::JObject p_wrapped argument in the constructor must be a local reference.
  * It will automatically be promoted to global and the local deleted.
  */
-template<const char* FqName>
+template<class Derived, const char* FqName>
 class JvmInstanceWrapper {
 protected:
     bool is_weak;
     jni::JObject wrapped;
-
+    
     explicit JvmInstanceWrapper(jni::JObject p_wrapped);
-
     ~JvmInstanceWrapper();
 
     _FORCE_INLINE_ jni::JObject call_jvm_method(jni::Env& p_env, jni::MethodId p_method, jvalue* p_args = {}) const;
@@ -63,28 +62,29 @@ public:
     void swap_to_weak_unsafe();
 
     static const char* get_fully_qualified_name();
+    
+    static Derived* create_instance();
 };
 
-template<const char* FqName>
-const jni::JObject& JvmInstanceWrapper<FqName>::get_wrapped() const {
-    return wrapped;
-}
-
-template<const char* FqName>
-_FORCE_INLINE_ jni::JObject JvmInstanceWrapper<FqName>::call_jvm_method(jni::Env& p_env, jni::MethodId p_method, jvalue* p_args) const {
-    return wrapped.call_object_method(p_env, p_method, p_args);
-}
-
-template<const char* FqName>
-JvmInstanceWrapper<FqName>::JvmInstanceWrapper(jni::JObject p_wrapped) : is_weak(false) {
+template<class Derived, const char* FqName>
+JvmInstanceWrapper<Derived, FqName>::JvmInstanceWrapper(jni::JObject p_wrapped) : is_weak(false) {
     // When created, it's a strong reference by default
     jni::Env env {jni::Jvm::current_env()};
     wrapped = p_wrapped.new_global_ref<jni::JObject>(env);
     p_wrapped.delete_local_ref(env);
 }
 
-template<const char* FqName>
-JvmInstanceWrapper<FqName>::~JvmInstanceWrapper() {
+template<class Derived, const char* FqName>
+Derived* JvmInstanceWrapper<Derived, FqName>::create_instance() {
+    jni::Env env {jni::Jvm::current_env()};
+    jni::JClass bootstrap_cls = env.load_class(FqName, ClassLoader::get_default_loader());
+    jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");
+    jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
+    return new Derived(instance);
+}
+
+template<class Derived, const char* FqName>
+JvmInstanceWrapper<Derived, FqName>::~JvmInstanceWrapper() {
     jni::Env env {jni::Jvm::current_env()};
     if (is_weak) {
         wrapped.delete_weak_ref(env);
@@ -93,13 +93,13 @@ JvmInstanceWrapper<FqName>::~JvmInstanceWrapper() {
     }
 }
 
-template<const char* FqName>
-bool JvmInstanceWrapper<FqName>::is_ref_weak() const {
+template<class Derived, const char* FqName>
+bool JvmInstanceWrapper<Derived, FqName>::is_ref_weak() const {
     return is_weak;
 }
 
-template<const char* FqName>
-void JvmInstanceWrapper<FqName>::swap_to_strong_unsafe() {
+template<class Derived, const char* FqName>
+void JvmInstanceWrapper<Derived, FqName>::swap_to_strong_unsafe() {
     // Assume the reference is currently weak
     jni::Env env {jni::Jvm::current_env()};
     jni::JObject new_ref = wrapped.new_global_ref<jni::JObject>(env);
@@ -108,8 +108,8 @@ void JvmInstanceWrapper<FqName>::swap_to_strong_unsafe() {
     is_weak = false;
 }
 
-template<const char* FqName>
-void JvmInstanceWrapper<FqName>::swap_to_weak_unsafe() {
+template<class Derived, const char* FqName>
+void JvmInstanceWrapper<Derived, FqName>::swap_to_weak_unsafe() {
     // Assume the reference is currently strong
     jni::Env env {jni::Jvm::current_env()};
     jni::JObject new_ref = wrapped.new_weak_ref<jni::JObject>(env);
@@ -118,9 +118,19 @@ void JvmInstanceWrapper<FqName>::swap_to_weak_unsafe() {
     is_weak = true;
 }
 
-template<const char* FqName>
-const char* JvmInstanceWrapper<FqName>::get_fully_qualified_name() {
+template<class Derived, const char* FqName>
+const char* JvmInstanceWrapper<Derived, FqName>::get_fully_qualified_name() {
     return FqName;
+}
+
+template<class Derived, const char* FqName>
+const jni::JObject& JvmInstanceWrapper<Derived, FqName>::get_wrapped() const {
+    return wrapped;
+}
+
+template<class Derived, const char* FqName>
+_FORCE_INLINE_ jni::JObject JvmInstanceWrapper<Derived, FqName>::call_jvm_method(jni::Env& p_env, jni::MethodId p_method, jvalue* p_args) const {
+    return wrapped.call_object_method(p_env, p_method, p_args);
 }
 
 #endif// GODOT_JVM_JVM_INSTANCE_WRAPPER_H
