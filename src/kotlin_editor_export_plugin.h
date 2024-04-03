@@ -15,9 +15,7 @@ public:
     String get_name() const override;
 
     // Source files editions
-    bool _begin_customize_resources(const Ref<EditorExportPlatform> &p_platform, const Vector<String> &p_features) override;
-    uint64_t _get_customization_configuration_hash() const override;
-    Ref<Resource> _customize_resource(const Ref<Resource> &p_resource, const String &p_path) override;
+    void _export_file(const String &p_path, const String &p_type, const HashSet<String> &p_features) override;
 
 
 private:
