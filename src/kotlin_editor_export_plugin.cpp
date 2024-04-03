@@ -146,35 +146,12 @@ String KotlinEditorExportPlugin::get_name() const {
     return "Godot Kotlin/Jvm";
 }
 
-bool KotlinEditorExportPlugin::_begin_customize_resources(const Ref<EditorExportPlatform>& p_platform, const Vector<String>& p_features) {
-    return true;
-}
-
-uint64_t KotlinEditorExportPlugin::_get_customization_configuration_hash() const {
-    // Mandatory to implement when customizing resources. The hash is used to keep separate configuration depending on the export options.
-    // We simply return a constant as source files are going to be cleared regardless of the configuration.
-    return 0;
-}
-
-Ref<Resource> KotlinEditorExportPlugin::_customize_resource(const Ref<Resource>& p_resource, const String& p_path) {
+void KotlinEditorExportPlugin::_export_file(const String& p_path, const String& p_type, const HashSet<String>& p_features) {
     String ext = p_path.get_extension();
-
-    // We create a new resource, otherwise it overwrites the one in the project, not just in the export.
-    // After export, source files are only used to find the right script in the .jar using its path or name.
-    if (ext == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
-        Ref<GdjScript> exported_script;
-        exported_script.instantiate();
-        return exported_script;
-    } else if (ext == GODOT_KOTLIN_SCRIPT_EXTENSION) {
-        Ref<KotlinScript> exported_script;
-        exported_script.instantiate();
-        return exported_script;
-    } else if (ext == GODOT_JAVA_SCRIPT_EXTENSION) {
-        Ref<JavaScript> exported_script;
-        exported_script.instantiate();
-        return exported_script;
-    } else {
-        return {};
+    if (ext == GODOT_JVM_REGISTRATION_FILE_EXTENSION || ext == GODOT_KOTLIN_SCRIPT_EXTENSION || ext == GODOT_JAVA_SCRIPT_EXTENSION) {
+        // We replace the original script with another with the same path and name but empty content.
+        // The remap boolean ensures that the original file is not kept for the export.
+        add_file(p_path, Vector<uint8_t>(), true);
     }
 }
 

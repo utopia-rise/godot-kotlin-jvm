@@ -64,7 +64,6 @@ Ref<C> TypeManager::create_script(const String& p_path) {
     // Placeholder scripts have to be registered in the TypeManager in order to be transformed in valid scripts when the jar is built.
     Ref<C> ref;
     ref.instantiate();
-    ref->set_path(p_path, true);
     if constexpr(std::is_base_of<NamedScript, C>()) {
         named_user_scripts_map[ref->get_global_name()] = ref;
         named_user_scripts.push_back(ref);

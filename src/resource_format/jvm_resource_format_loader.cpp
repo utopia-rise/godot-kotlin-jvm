@@ -27,9 +27,10 @@ String JvmResourceFormatLoader::get_resource_type(const String& p_path) const {
 }
 
 bool JvmResourceFormatLoader::handles_type(const String& p_type) const {
-    return p_type == "Script" || p_type == GODOT_KOTLIN_SCRIPT_NAME || p_type == GODOT_JVM_SCRIPT_NAME  || p_type == GODOT_JAVA_SCRIPT_NAME;
+    return p_type == "Script" || p_type == GODOT_KOTLIN_SCRIPT_NAME || p_type == GODOT_JVM_SCRIPT_NAME || p_type == GODOT_JAVA_SCRIPT_NAME;
 }
 
+#ifdef TOOLS_ENABLED
 Error read_all_file_utf8(const String& p_path, String& r_content) {
     Vector<uint8_t> source_file;
     Error err;
@@ -49,6 +50,7 @@ Error read_all_file_utf8(const String& p_path, String& r_content) {
     r_content = source;
     return OK;
 }
+#endif
 
 Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& p_original_path, Error* r_error, bool p_use_sub_threads, float* r_progress, CacheMode p_cache_mode) {
     Ref<JvmScript> ref;
@@ -63,10 +65,6 @@ Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& 
             // If we reach that location, it means that the script file being loaded hasn't been built into the .jar.
             // We create a script placeholder instead. When reloading, it will be properly updated with the correct KtClass.
             ref = TypeManager::get_instance().create_script<GdjScript>(p_path);
-#elif DEBUG_ENABLED
-            // All scripts are supposed to be already in cache when not in the editor.
-            if (r_error) { *r_error = Error::ERR_UNAVAILABLE; }
-            return Ref<GdjScript>();
 #endif
         }
     }
@@ -78,10 +76,17 @@ Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& 
         ref = TypeManager::get_instance().create_script<JavaScript>(p_path);
     }
 
-    String source_code;
-    Error load_err {read_all_file_utf8(p_path, source_code)};
-    ref->set_source_code(source_code);
+    if (ref.is_valid()) {
+#ifdef TOOLS_ENABLED
+        String source_code;
+        Error load_err {read_all_file_utf8(p_path, source_code)};
+        if (r_error) { *r_error = load_err; }
+        ref->set_source_code(source_code);
+#endif
+        ref->set_path(p_path, true);
+    } else {
+        if (r_error) { *r_error = Error::ERR_UNAVAILABLE; }
+    }
 
-    if (r_error) { *r_error = load_err; }
     return ref;
 }
