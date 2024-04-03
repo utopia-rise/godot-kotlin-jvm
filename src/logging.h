@@ -22,7 +22,7 @@
 #define LOG_DEV_VERBOSE(message) LOG_VERBOSE(message)
 #else
 #define LOG_DEV(message)
-#define LOG_VERBOSE(message)
+#define LOG_DEV_VERBOSE(message)
 #endif
 
 #define JVM_ERR_FAIL_COND_MSG(condition, message) ERR_FAIL_COND_MSG(condition, vformat("Godot-JVM: %s", message))
