@@ -371,12 +371,12 @@ internal object MemoryManager {
         }
     }
     
-    external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
-    external fun bindInstance(instanceId: Long, obj: GodotBinding)
-    external fun unbindInstance(instanceId: Long)
-    external fun decrementRefCounter(instanceId: Long)
-    external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
-    external fun notifyLeak()
+    private external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
+    private external fun bindInstance(instanceId: Long, obj: GodotBinding)
+    private external fun unbindInstance(instanceId: Long)
+    private external fun decrementRefCounter(instanceId: Long)
+    private external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
+    private external fun notifyLeak()
     
 
     private enum class GCState {

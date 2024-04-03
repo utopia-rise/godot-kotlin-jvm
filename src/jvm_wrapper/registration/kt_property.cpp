@@ -16,15 +16,15 @@ KtPropertyInfo::KtPropertyInfo(jni::JObject p_wrapped) : JvmInstanceWrapper(p_wr
 
     type = static_cast<Variant::Type>(wrapped.call_int_method(env, GET_TYPE));
 
-    jni::JString jname = CALL_JVM_METHOD(env, GET_NAME);
+    jni::JString jname = wrapped.call_object_method(env, GET_NAME);
     name = env.from_jstring(jname);
 
-    jni::JString jclass_name = CALL_JVM_METHOD(env, GET_CLASS_NAME);
+    jni::JString jclass_name = wrapped.call_object_method(env, GET_CLASS_NAME);
     class_name = env.from_jstring(jclass_name);
 
     hint = static_cast<PropertyHint>(wrapped.call_int_method(env, GET_HINT));
 
-    jni::JString jhint_string = CALL_JVM_METHOD(env, GET_HINT_STRING);
+    jni::JString jhint_string = wrapped.call_object_method(env, GET_HINT_STRING);
     hint_string = env.from_jstring(jhint_string);
 
     visible_in_editor = wrapped.call_boolean_method(env, GET_VISIBLE_IN_EDITOR);
@@ -51,7 +51,7 @@ PropertyInfo KtPropertyInfo::toPropertyInfo() {
 
 KtProperty::KtProperty(jni::JObject p_wrapped) : JvmInstanceWrapper(p_wrapped) {
     jni::Env env {jni::Jvm::current_env()};
-    propertyInfo = new KtPropertyInfo(CALL_JVM_METHOD(env, GET_KT_PROPERTY_INFO));
+    propertyInfo = new KtPropertyInfo(wrapped.call_object_method(env, GET_KT_PROPERTY_INFO));
     is_ref = wrapped.call_boolean_method(env, IS_REF);
 }
 

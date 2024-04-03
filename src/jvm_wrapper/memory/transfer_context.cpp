@@ -19,7 +19,7 @@ SharedBuffer* TransferContext::get_and_rewind_buffer(jni::Env& p_env) {
     thread_local static SharedBuffer shared_buffer;
 
     if (unlikely(!shared_buffer.is_init())) {
-        jni::JObject buffer = CALL_JVM_METHOD(p_env, GET_BUFFER);
+        jni::JObject buffer = wrapped.call_object_method(p_env, GET_BUFFER);
         JVM_CRASH_COND_MSG(buffer.is_null(), "Buffer is null");
         auto* address {static_cast<uint8_t*>(p_env.get_direct_buffer_address(buffer))};
 #ifdef DEBUG_ENABLED
@@ -35,7 +35,7 @@ SharedBuffer* TransferContext::get_and_rewind_buffer(jni::Env& p_env) {
 void TransferContext::remove_script_instance(uint64_t id) {
     jni::Env env {jni::Jvm::current_env()};
     jvalue args[1] = {jni::to_jni_arg(id)};
-    CALL_JVM_METHOD_WITH_ARG(env, REMOVE_SCRIPT, args);
+    wrapped.call_object_method(env, REMOVE_SCRIPT, args);
 }
 
 void TransferContext::read_return_value(jni::Env& p_env, Variant& r_ret) {

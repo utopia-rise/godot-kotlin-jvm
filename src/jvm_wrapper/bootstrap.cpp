@@ -48,9 +48,9 @@ void Bootstrap::init(jni::Env& p_env, bool p_is_editor, const String& p_project_
       jni::to_jni_arg(jar_path),
       jni::to_jni_arg(jar_file),
       jni::to_jni_arg(p_class_loader)};
-    CALL_JVM_METHOD_WITH_ARG(p_env, INIT, args);
+    wrapped.call_void_method(p_env, INIT, args);
 }
 
 void Bootstrap::finish(jni::Env& p_env) {
-    CALL_JVM_METHOD(p_env, FINISH);
+    wrapped.call_void_method(p_env, FINISH);
 }

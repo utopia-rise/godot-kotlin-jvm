@@ -5,10 +5,10 @@
 KtSignalInfo::KtSignalInfo(jni::JObject p_wrapped) : JvmInstanceWrapper(p_wrapped) {
     jni::Env env {jni::Jvm::current_env()};
 
-    jni::JString string = CALL_JVM_METHOD(env, GET_NAME);
+    jni::JString string = wrapped.call_object_method(env, GET_NAME);
     name = env.from_jstring(string);
 
-    jni::JObjectArray args_array {CALL_JVM_METHOD(env, GET_ARGUMENTS)};
+    jni::JObjectArray args_array {wrapped.call_object_method(env, GET_ARGUMENTS)};
 
     for (int i = 0; i < args_array.length(env); i++) {
         arguments.push_back(new KtPropertyInfo(args_array.get(env, i)));

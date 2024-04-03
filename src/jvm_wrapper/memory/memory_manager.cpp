@@ -107,18 +107,18 @@ void MemoryManager::notify_leak(JNIEnv* p_raw_env, jobject p_instance) {
 void MemoryManager::start(bool force_gc) {
     jni::Env env {jni::Jvm::current_env()};
     jvalue start_args[1] = {jni::to_jni_arg(force_gc)};
-    CALL_JVM_METHOD_WITH_ARG(env, START, start_args);
+    wrapped.call_void_method(env, START, start_args);
 }
 
 void MemoryManager::setDisplayLeaks(bool b) {
     jni::Env env {jni::Jvm::current_env()};
     jvalue args[1] = {jni::to_jni_arg(b)};
-    CALL_JVM_METHOD_WITH_ARG(env, SET_DISPLAY, args);
+    wrapped.call_void_method(env, SET_DISPLAY, args);
 }
 
 void MemoryManager::clean_up() {
     jni::Env env {jni::Jvm::current_env()};
-    CALL_JVM_METHOD(env, CLEAN_UP);
+    wrapped.call_void_method(env, CLEAN_UP);
 }
 
 bool MemoryManager::is_closed() {
@@ -128,7 +128,7 @@ bool MemoryManager::is_closed() {
 
 void MemoryManager::close() {
     jni::Env env {jni::Jvm::current_env()};
-    CALL_JVM_METHOD(env, CLOSE);
+    wrapped.call_void_method(env, CLOSE);
 }
 
 MemoryManager::~MemoryManager() = default;

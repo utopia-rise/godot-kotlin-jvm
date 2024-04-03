@@ -5,7 +5,7 @@
 
 KtFunction::KtFunction(jni::JObject p_wrapped) : JvmInstanceWrapper(p_wrapped), parameter_count(-1) {
     jni::Env env {jni::Jvm::current_env()};
-    method_info = new KtFunctionInfo( CALL_JVM_METHOD(env, GET_FUNCTION_INFO));
+    method_info = new KtFunctionInfo( wrapped.call_object_method(env, GET_FUNCTION_INFO));
     parameter_count = wrapped.call_int_method(env, GET_PARAMETER_COUNT);
 }
 
@@ -39,23 +39,23 @@ void KtFunction::invoke(const KtObject* instance, const Variant** p_args, int ar
     TransferContext& transferContext = TransferContext::get_instance();
     transferContext.write_args(env, p_args, args_count);
     jvalue call_args[1] = {jni::to_jni_arg(instance->get_wrapped())};
-    CALL_JVM_METHOD_WITH_ARG(env, INVOKE, call_args);
+    wrapped.call_void_method(env, INVOKE, call_args);
     transferContext.read_return_value(env, r_ret);
 }
 
 KtFunctionInfo::KtFunctionInfo(jni::JObject p_wrapped) : JvmInstanceWrapper(p_wrapped) {
     jni::Env env {jni::Jvm::current_env()};
 
-    jni::JString string = CALL_JVM_METHOD(env, GET_NAME);
+    jni::JString string = wrapped.call_object_method(env, GET_NAME);
     name = env.from_jstring(string);
 
-    jni::JObjectArray propertyInfoArray = CALL_JVM_METHOD(env, GET_ARGUMENTS);
+    jni::JObjectArray propertyInfoArray = wrapped.call_object_method(env, GET_ARGUMENTS);
     for (int i = 0; i < propertyInfoArray.length(env); i++) {
         arguments.push_back(new KtPropertyInfo(propertyInfoArray.get(env, i)));
     }
 
-    return_val = new KtPropertyInfo(CALL_JVM_METHOD(env, GET_RETURN_VAL));
-    rpc_config = new KtRpcConfig(CALL_JVM_METHOD(env, GET_RPC_CONFIG));
+    return_val = new KtPropertyInfo(wrapped.call_object_method(env, GET_RETURN_VAL));
+    rpc_config = new KtRpcConfig(wrapped.call_object_method(env, GET_RPC_CONFIG));
 
     propertyInfoArray.delete_local_ref(env);
     string.delete_local_ref(env);

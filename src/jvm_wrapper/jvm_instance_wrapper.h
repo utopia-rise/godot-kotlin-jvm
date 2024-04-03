@@ -30,9 +30,6 @@ public:                                                                         
                                                                                                            \
 private:
 
-#define CALL_JVM_METHOD(ENV, METHOD) call_jvm_method(ENV, METHOD)
-#define CALL_JVM_METHOD_WITH_ARG(ENV, METHOD, ARGS) call_jvm_method(ENV, METHOD, ARGS)
-
 /**
  * This class wraps a JObject representing a JVM instance.
  * This class is a base that allows to setup JavaToNative and NativeToJava call easily.
@@ -49,8 +46,6 @@ protected:
     
     explicit JvmInstanceWrapper(jni::JObject p_wrapped);
     ~JvmInstanceWrapper();
-
-    _FORCE_INLINE_ jni::JObject call_jvm_method(jni::Env& p_env, jni::MethodId p_method, jvalue* p_args = {}) const;
 
 public:
     bool is_ref_weak() const;
@@ -126,11 +121,6 @@ const char* JvmInstanceWrapper<Derived, FqName>::get_fully_qualified_name() {
 template<class Derived, const char* FqName>
 const jni::JObject& JvmInstanceWrapper<Derived, FqName>::get_wrapped() const {
     return wrapped;
-}
-
-template<class Derived, const char* FqName>
-_FORCE_INLINE_ jni::JObject JvmInstanceWrapper<Derived, FqName>::call_jvm_method(jni::Env& p_env, jni::MethodId p_method, jvalue* p_args) const {
-    return wrapped.call_object_method(p_env, p_method, p_args);
 }
 
 #endif// GODOT_JVM_JVM_INSTANCE_WRAPPER_H
