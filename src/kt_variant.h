@@ -1,18 +1,17 @@
 #ifndef GODOT_JVM_KT_VARIANT_H
 #define GODOT_JVM_KT_VARIANT_H
 
+#include "binding/kotlin_binding_manager.h"
 #include "jni/wrapper.h"
+#include "jvm_wrapper/memory/long_string_queue.h"
+#include "jvm_wrapper/memory/type_manager.h"
 #include "logging.h"
-#include "long_string_queue.h"
-#include "memory/kotlin_binding_manager.h"
-#include "memory/shared_buffer.h"
-#include "type_manager.h"
+#include "shared_buffer.h"
 
 #include <core/io/marshalls.h>
 #include <core/os/os.h>
 #include <core/variant/variant.h>
 
-// TODO/4.0 implement new types
 namespace ktvariant {
 
     const int LONG_SIZE = 8;
@@ -288,8 +287,7 @@ namespace ktvariant {
         to_kt_array[Variant::TRANSFORM3D] = to_kvariant_fromTRANSFORM3D;
         to_kt_array[Variant::PROJECTION] = to_kvariant_fromPROJECTION;
         to_kt_array[Variant::COLOR] = to_kvariant_fromCOLOR;
-        to_kt_array[Variant::CALLABLE] =  to_kvariant_fromNATIVECORETYPE < Variant::CALLABLE, Callable,
-        &Variant::operator Callable>;
+        to_kt_array[Variant::CALLABLE] = to_kvariant_fromNATIVECORETYPE < Variant::CALLABLE, Callable, &Variant::operator Callable>;
         to_kt_array[Variant::SIGNAL] = to_kvariant_fromSIGNAL;
         to_kt_array[Variant::DICTIONARY] = to_kvariant_fromNATIVECORETYPE < Variant::DICTIONARY, Dictionary,
         &Variant::operator Dictionary>;

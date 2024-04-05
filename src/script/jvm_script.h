@@ -2,7 +2,7 @@
 #define GODOT_JVM_JVM_SCRIPT_H
 
 #include "core/object/script_language.h"
-#include "kt_class.h"
+#include "jvm_wrapper/registration/kt_class.h"
 
 class JvmInstance;
 

@@ -86,21 +86,13 @@
       {"name": "setShouldDisplayLeakInstancesOnClose", "parameterTypes":["boolean"]},
       {"name":"close","parameterTypes":[] },
       {"name":"isClosed","parameterTypes":[] },
-      {"name":"start","parameterTypes":["boolean"] }
-    ]
-  },
-  {
-    "name" : "godot.core.memory.MemoryManager$MemoryBridge",
-    "fields" : [
-      { "name" : "INSTANCE" }
-    ],
-    "methods" : [
-      { "name" : "checkInstance", "parameterTypes" : ["long", "long"] },
-      { "name" : "bindInstance", "parameterTypes" : ["long", "godot.core.memory.GodotBinding"] },
-      { "name" : "unbindInstance", "parameterTypes" : ["long"] },
-      { "name" : "decrementRefCounter", "parameterTypes" : ["long"] },
-      { "name" : "unrefNativeCoreType", "parameterTypes" : ["long", "int"] },
-      { "name" : "notifyLeak", "parameterTypes" : [] }
+      {"name":"start","parameterTypes":["boolean"] },
+      {"name" : "checkInstance", "parameterTypes" : ["long", "long"] },
+      {"name" : "bindInstance", "parameterTypes" : ["long", "godot.core.memory.GodotBinding"] },
+      {"name" : "unbindInstance", "parameterTypes" : ["long"] },
+      {"name" : "decrementRefCounter", "parameterTypes" : ["long"] },
+      {"name" : "unrefNativeCoreType", "parameterTypes" : ["long", "int"] },
+      {"name" : "notifyLeak", "parameterTypes" : [] }
     ]
   },
   {
