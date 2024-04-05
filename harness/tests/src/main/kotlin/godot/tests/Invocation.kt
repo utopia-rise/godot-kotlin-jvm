@@ -511,7 +511,7 @@ class Invocation : Node3D() {
 	fun removeNullableNavMesh(navigationMesh: NavigationMesh?) = nullableArray.remove(navigationMesh)
 
 	@RegisterFunction
-	fun removeNullableNavMeshWithIndex(index: Int) = nullableArray.remove(index)
+	fun removeNullableNavMeshWithIndex(index: Int) = nullableArray.removeAt(index)
 
 //	TODO: This will fail to register as we cannot register nullable return type
 //	@RegisterFunction
@@ -530,7 +530,7 @@ class Invocation : Node3D() {
 	fun removeNavMesh(navigationMesh: NavigationMesh) = navMeshes.remove(navigationMesh)
 
 	@RegisterFunction
-	fun removeNavMeshWithIndex(index: Int) = navMeshes.remove(index)
+	fun removeNavMeshWithIndex(index: Int) = navMeshes.removeAt(index)
 
 	@RegisterFunction
 	fun getNavMeshFromArray(index: Int) = navMeshes[index]
