@@ -678,6 +678,19 @@ class Basis() : CoreType {
     }
 
     /**
+     * Just as before, there's no need for the param inside square brackets.
+     * Use the parameter names directly. Also, keep in mind that the description inside the brackets should match the actual parameter names used in the function signature.
+     */
+    fun rotateToward(to: Basis, delta: RealT): Basis {
+        return Basis(
+            getRotationQuaternion().rotateToward(
+                to.getRotationQuaternion(),
+                delta
+            )
+        )
+    }
+
+    /**
      * Introduce an additional scaling specified by the given 3D scaling factor.
      */
     fun scaled(scale: Vector3): Basis {

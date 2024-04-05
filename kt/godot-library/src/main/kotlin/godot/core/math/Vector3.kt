@@ -9,6 +9,7 @@ import godot.util.bezierInterpolate
 import godot.util.cubicInterpolateInTime
 import godot.util.fposmod
 import godot.util.isEqualApprox
+import godot.util.isZeroApprox
 import godot.util.lerp
 import godot.util.snapped
 import godot.util.toRealT
@@ -492,6 +493,37 @@ class Vector3(
         this.x = ret.x
         this.y = ret.y
         this.z = ret.z
+    }
+
+    /**
+     * Returns the result of rotating this vector toward [to], by increment [delta] (in radians).
+     * Passing a negative [delta] will rotate toward the opposite of [to].
+     * This method supports vectors of different length, with the same behavior as [slerp].
+     * If the vectors are colinear, this method behaves like [moveToward]. If [to] has a length of zero, this method behaves like [lerp].
+     */
+    fun rotateToward(to: Vector3, delta: RealT): Vector3 {
+        val unsignedDelta: RealT
+        val unsignedTo: Vector3
+
+        if (delta < 0.0) {
+            unsignedDelta = -delta
+            unsignedTo = -to
+        } else {
+            unsignedDelta = delta
+            unsignedTo = to
+        }
+
+        val angle = abs(angleTo(to))
+
+        if (angle < unsignedDelta) {
+            if (unsignedTo.lengthSquared().isZeroApprox()) {
+                // Prevent locking up when to is (0, 0).
+                return lerp(unsignedTo, unsignedDelta)
+            }
+            return moveToward(unsignedTo, unsignedDelta * unsignedTo.length())
+        }
+
+        return slerp(unsignedTo, unsignedDelta / angle)
     }
 
     /**

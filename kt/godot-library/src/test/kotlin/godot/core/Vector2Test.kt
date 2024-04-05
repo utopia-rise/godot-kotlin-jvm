@@ -94,6 +94,32 @@ class TestVector2 {
 
         val moveTowardResult = Vector2(1, 0).moveToward(Vector2(10, 0), 3.0)
         checkMessage(moveTowardResult == Vector2(4, 0)) { "Vector2 move_toward should work as expected." }
+
+        checkMessage(
+            Vector2(0, 1).rotateToward(
+                Vector2(0, -1),
+                PI * 0.5
+            ).isEqualApprox(Vector2(1, 0))
+        ) { "Vector2 rotate_toward should work as expected." }
+
+        checkMessage(
+            Vector2(1, 0).rotateToward(
+                Vector2(0, 1),
+                -PI * 0.5
+            ).isEqualApprox(Vector2(0, -1))
+        ) { "Vector2 rotate_toward with negative delta should behave as expected." }
+        checkMessage(
+            Vector2(1, 1).rotateToward(
+                Vector2(10, 10),
+                0.5
+            ).isEqualApprox(Vector2(6, 6))
+        ) { "Vector2 rotate_toward with colinear inputs should behave as expected." }
+        checkMessage(
+            Vector2(10, 10).rotateToward(
+                Vector2(0, 0),
+                0.5
+            ).isEqualApprox(Vector2(5, 5))
+        ) { "Vector2 rotate_toward with second input as zero should behave as expected." }
     }
 
     @Test
