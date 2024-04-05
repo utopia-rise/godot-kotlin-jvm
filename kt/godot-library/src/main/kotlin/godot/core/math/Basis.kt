@@ -678,8 +678,8 @@ class Basis() : CoreType {
     }
 
     /**
-     * Just as before, there's no need for the param inside square brackets.
-     * Use the parameter names directly. Also, keep in mind that the description inside the brackets should match the actual parameter names used in the function signature.
+     * Assuming that the matrix is a proper rotation matrix, returns the result of rotating toward [to] by [delta] (in radians).
+     * Passing a negative [delta] will rotate toward the inverse of [to].
      */
     fun rotateToward(to: Basis, delta: RealT): Basis {
         return Basis(
