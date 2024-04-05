@@ -3,8 +3,8 @@
 
 #include "core/object/script_language.h"
 #include "jvm_script.h"
-#include "kt_class.h"
-#include "memory/kotlin_binding_manager.h"
+#include "jvm_wrapper/registration/kt_class.h"
+#include "binding/kotlin_binding_manager.h"
 
 class JvmInstance : public ScriptInstance {
 private:

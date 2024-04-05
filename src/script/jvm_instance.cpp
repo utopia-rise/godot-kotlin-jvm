@@ -1,7 +1,7 @@
 #include "jvm_instance.h"
 
 #include "gd_kotlin.h"
-#include "kt_class.h"
+#include "jvm_wrapper/registration/kt_class.h"
 #include "language/kotlin_language.h"
 
 JvmInstance::JvmInstance(Object* p_owner, KtObject* p_kt_object, JvmScript* p_script) :
@@ -14,7 +14,7 @@ JvmInstance::JvmInstance(Object* p_owner, KtObject* p_kt_object, JvmScript* p_sc
 }
 
 JvmInstance::~JvmInstance() {
-    if (delete_flag) { GDKotlin::get_instance().transfer_context->remove_script_instance(owner->get_instance_id()); }
+    if (delete_flag) { TransferContext::get_instance().remove_script_instance(owner->get_instance_id()); }
     memdelete(kt_object);
 }
 
