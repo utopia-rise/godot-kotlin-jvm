@@ -23,7 +23,7 @@ JVM_INSTANCE_WRAPPER(KtRpcConfig, "godot.core.KtRpcConfig") {
     // clang-format on
 
 public:
-    explicit KtRpcConfig(jni::JObject p_wrapped);
+    explicit KtRpcConfig(jni::Env& p_env, jni::JObject p_wrapped);
     ~KtRpcConfig() = default;
 
     MultiplayerAPI::RPCMode rpc_mode;

@@ -25,7 +25,7 @@ public:
       jobjectArray p_singleton_names
     );
 
-    explicit Bootstrap(jni::JObject p_wrapped);
+    Bootstrap(jni::Env& p_env, jni::JObject p_wrapped);
     ~Bootstrap() = default;
 
     void init(jni::Env& p_env, bool p_is_editor, const String& p_project_path, const String& p_jar_path, const String& p_jar_file, const jni::JObject& p_class_loader);

@@ -13,7 +13,8 @@ void KotlinBinding::refcount_incremented_unsafe() {
     if (refcount > 1 && kt_binding->is_ref_weak()) {
         // The JVM holds a reference to that object already, if the counter is greater than 1, it means the native side holds a reference as well.
         // The reference is changed to a strong one so the JVM instance is not collected if it is not referenced anymore on the JVM side.
-        kt_binding->swap_to_strong_unsafe();
+        jni::Env env {jni::Jvm::current_env()};
+        kt_binding->swap_to_strong_unsafe(env);
     }
 }
 
@@ -28,7 +29,8 @@ bool KotlinBinding::refcount_decremented_unsafe() {
     if (refcount == 1 && !kt_binding->is_ref_weak()) {
         // The JVM holds a reference to that object already, if the counter is equal to 1, it means the JVM is the only side with a reference to the object.
         // The reference is changed to a weak one so the JVM instance can be collected if it is not referenced anymore on the JVM side.
-        kt_binding->swap_to_weak_unsafe();
+        jni::Env env {jni::Jvm::current_env()};
+        kt_binding->swap_to_weak_unsafe(env);
     }
     // Return true when the counter is 0, it means that the JVM and the native side are no longer using the reference, so it can be safely deleted.
     return refcount == 0;
@@ -36,7 +38,9 @@ bool KotlinBinding::refcount_decremented_unsafe() {
 
 void KotlinBinding::set_kt_binding(jni::JObject j_object) {
     JVM_CRASH_COND_MSG(kt_binding, "Trying to set a KtBinding on an already bound Object");
-    kt_binding = memnew(KtBinding(j_object));
+
+    jni::Env env {jni::Jvm::current_env()};
+    kt_binding = memnew(KtBinding(env, j_object));
 
     if (!owner->is_ref_counted()) {
         return;
@@ -48,7 +52,7 @@ void KotlinBinding::set_kt_binding(jni::JObject j_object) {
     if (refcount == 1 && !kt_binding->is_ref_weak()) {
         // The JVM holds a reference to that object already, if the counter is equal to 1, it means the JVM is the only side with a reference to the object.
         // The reference is changed to a weak one so the JVM instance can be collected if it is not referenced anymore on the JVM side.
-        kt_binding->swap_to_weak_unsafe();
+        kt_binding->swap_to_weak_unsafe(env);
     }
     status = BindingStatus::BOUND;
 }

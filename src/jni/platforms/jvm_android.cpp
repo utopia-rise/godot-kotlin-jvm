@@ -6,7 +6,6 @@
 
 namespace jni {
     JavaVM* Jvm::vm = nullptr;
-    Env* Jvm::env = nullptr;
     jint Jvm::version = 0;
     Jvm::Type Jvm::vm_type {Jvm::ART};
 

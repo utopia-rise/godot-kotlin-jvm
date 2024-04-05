@@ -94,7 +94,7 @@ ScriptInstance* JvmScript::_instance_create(const Variant** p_args, int p_arg_co
 
     jni::Env env = jni::Jvm::current_env();
     KtObject* wrapped = kotlin_class->create_instance(env, p_args, p_arg_count, p_this);
-    return memnew(JvmInstance(p_this, wrapped, this));
+    return memnew(JvmInstance(env, p_this, wrapped, this));
 }
 
 bool JvmScript::instance_has(const Object* p_this) const {

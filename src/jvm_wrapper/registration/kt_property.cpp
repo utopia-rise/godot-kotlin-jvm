@@ -3,35 +3,25 @@
 #include "gd_kotlin.h"
 #include "jni/class_loader.h"
 
-// clang-format off
+KtPropertyInfo::KtPropertyInfo(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanceWrapper(p_env, p_wrapped) {
+    type = static_cast<Variant::Type>(wrapped.call_int_method(p_env, GET_TYPE));
 
+    jni::JString jname = wrapped.call_object_method(p_env, GET_NAME);
+    name = p_env.from_jstring(jname);
 
+    jni::JString jclass_name = wrapped.call_object_method(p_env, GET_CLASS_NAME);
+    class_name = p_env.from_jstring(jclass_name);
 
+    hint = static_cast<PropertyHint>(wrapped.call_int_method(p_env, GET_HINT));
 
-// clang-format on
+    jni::JString jhint_string = wrapped.call_object_method(p_env, GET_HINT_STRING);
+    hint_string = p_env.from_jstring(jhint_string);
 
-KtPropertyInfo::KtPropertyInfo(jni::JObject p_wrapped) : JvmInstanceWrapper(p_wrapped) {
-    jni::Env env {jni::Jvm::current_env()};
+    visible_in_editor = wrapped.call_boolean_method(p_env, GET_VISIBLE_IN_EDITOR);
 
-
-    type = static_cast<Variant::Type>(wrapped.call_int_method(env, GET_TYPE));
-
-    jni::JString jname = wrapped.call_object_method(env, GET_NAME);
-    name = env.from_jstring(jname);
-
-    jni::JString jclass_name = wrapped.call_object_method(env, GET_CLASS_NAME);
-    class_name = env.from_jstring(jclass_name);
-
-    hint = static_cast<PropertyHint>(wrapped.call_int_method(env, GET_HINT));
-
-    jni::JString jhint_string = wrapped.call_object_method(env, GET_HINT_STRING);
-    hint_string = env.from_jstring(jhint_string);
-
-    visible_in_editor = wrapped.call_boolean_method(env, GET_VISIBLE_IN_EDITOR);
-
-    jhint_string.delete_local_ref(env);
-    jclass_name.delete_local_ref(env);
-    jname.delete_local_ref(env);
+    jhint_string.delete_local_ref(p_env);
+    jclass_name.delete_local_ref(p_env);
+    jname.delete_local_ref(p_env);
 }
 
 PropertyInfo KtPropertyInfo::toPropertyInfo() {
@@ -49,10 +39,9 @@ PropertyInfo KtPropertyInfo::toPropertyInfo() {
     return info;
 }
 
-KtProperty::KtProperty(jni::JObject p_wrapped) : JvmInstanceWrapper(p_wrapped) {
-    jni::Env env {jni::Jvm::current_env()};
-    propertyInfo = new KtPropertyInfo(wrapped.call_object_method(env, GET_KT_PROPERTY_INFO));
-    is_ref = wrapped.call_boolean_method(env, IS_REF);
+KtProperty::KtProperty(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanceWrapper(p_env, p_wrapped) {
+    propertyInfo = new KtPropertyInfo(p_env, wrapped.call_object_method(p_env, GET_KT_PROPERTY_INFO));
+    is_ref = wrapped.call_boolean_method(p_env, IS_REF);
 }
 
 KtProperty::~KtProperty() {
@@ -67,32 +56,29 @@ PropertyInfo KtProperty::get_member_info() {
     return propertyInfo->toPropertyInfo();
 }
 
-void KtProperty::call_get(KtObject* instance, Variant& r_ret) {
-    jni::Env env {jni::Jvm::current_env()};
+void KtProperty::call_get(jni::Env& p_env, KtObject* instance, Variant& r_ret) {
     jvalue call_args[1] = {jni::to_jni_arg(instance->get_wrapped())};
-    wrapped.call_void_method(env, CALL_GET, call_args);
-    TransferContext::get_instance().read_return_value(env, r_ret);
+    wrapped.call_void_method(p_env, CALL_GET, call_args);
+    TransferContext::get_instance().read_return_value(p_env, r_ret);
 }
 
-void KtProperty::call_set(KtObject* instance, const Variant& p_value) {
-    jni::Env env {jni::Jvm::current_env()};
+void KtProperty::call_set(jni::Env& p_env, KtObject* instance, const Variant& p_value) {
     const Variant* arg[1] = {&p_value};
-    TransferContext::get_instance().write_args(env, arg, 1);
+    TransferContext::get_instance().write_args(p_env, arg, 1);
     jvalue args[1] = {jni::to_jni_arg(instance->get_wrapped())};
-    wrapped.call_void_method(env, CALL_SET, args);
+    wrapped.call_void_method(p_env, CALL_SET, args);
 }
 
 #ifdef TOOLS_ENABLED
-void KtProperty::safe_call_get(KtObject* instance, Variant& r_ret) {
-    jni::Env env {jni::Jvm::current_env()};
+void KtProperty::safe_call_get(jni::Env& p_env, KtObject* instance, Variant& r_ret) {
     jvalue call_args[1] = {jni::to_jni_arg(instance->get_wrapped())};
-    wrapped.call_void_method_noexcept(env, CALL_GET, call_args);
-    if (env.exception_check()) {
+    wrapped.call_void_method_noexcept(p_env, CALL_GET, call_args);
+    if (p_env.exception_check()) {
         Callable::CallError error;
         Variant::construct(propertyInfo->type, r_ret, {}, 0, error);
-        env.exception_clear();
+        p_env.exception_clear();
         return;
     }
-    TransferContext::get_instance().read_return_value(env, r_ret);
+    TransferContext::get_instance().read_return_value(p_env, r_ret);
 }
 #endif

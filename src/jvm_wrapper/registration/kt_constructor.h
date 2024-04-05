@@ -16,9 +16,9 @@ JVM_INSTANCE_WRAPPER(KtConstructor, "godot.core.KtConstructor") {
     // clang-format on
 
 public:
-    explicit KtConstructor(jni::JObject p_wrapped);
+    explicit KtConstructor(jni::Env& p_env, jni::JObject p_wrapped);
     ~KtConstructor() = default;
-    KtObject* create_instance(const Variant** p_args, Object* p_owner);
+    KtObject* create_instance(jni::Env& env, const Variant** p_args, Object* p_owner);
 
 private:
     int parameter_count;

@@ -24,21 +24,15 @@ JVM_SINGLETON_WRAPPER(TransferContext, "godot.core.memory.TransferContext") {
 public:
 
     void write_return_value(jni::Env& p_env, Variant& variant);
-
     void read_return_value(jni::Env& p_env, Variant& r_ret);
-
     void write_args(jni::Env& p_env, const Variant** p_args, int args_size);
-
     uint32_t read_args(jni::Env& p_env, Variant* args);
 
-    void remove_script_instance(uint64_t id);
+    void remove_script_instance(jni::Env& p_env, uint64_t id);
 
     static void icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong j_method_ptr, jint expectedReturnType);
-
     static void create_native_object(JNIEnv* p_raw_env, jobject instance, jint p_class_index, jobject p_object, jint p_script_index);
-
     static void get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index);
-
     static void free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
 
 private:

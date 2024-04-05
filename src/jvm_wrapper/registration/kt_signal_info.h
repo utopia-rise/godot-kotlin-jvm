@@ -18,7 +18,7 @@ JVM_INSTANCE_WRAPPER(KtSignalInfo, "godot.core.KtSignalInfo") {
     // clang-format on
 
 public:
-    explicit KtSignalInfo(jni::JObject p_wrapped);
+    explicit KtSignalInfo(jni::Env& p_env, jni::JObject p_wrapped);
     ~KtSignalInfo();
 
     String name;

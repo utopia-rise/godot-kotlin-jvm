@@ -2,20 +2,19 @@
 
 #include "jni/class_loader.h"
 
-KtSignalInfo::KtSignalInfo(jni::JObject p_wrapped) : JvmInstanceWrapper(p_wrapped) {
-    jni::Env env {jni::Jvm::current_env()};
+KtSignalInfo::KtSignalInfo(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanceWrapper(p_env, p_wrapped) {
 
-    jni::JString string = wrapped.call_object_method(env, GET_NAME);
-    name = env.from_jstring(string);
+    jni::JString string = wrapped.call_object_method(p_env, GET_NAME);
+    name = p_env.from_jstring(string);
 
-    jni::JObjectArray args_array {wrapped.call_object_method(env, GET_ARGUMENTS)};
+    jni::JObjectArray args_array {wrapped.call_object_method(p_env, GET_ARGUMENTS)};
 
-    for (int i = 0; i < args_array.length(env); i++) {
-        arguments.push_back(new KtPropertyInfo(args_array.get(env, i)));
+    for (int i = 0; i < args_array.length(p_env); i++) {
+        arguments.push_back(new KtPropertyInfo(p_env, args_array.get(p_env, i)));
     }
 
-    string.delete_local_ref(env);
-    args_array.delete_local_ref(env);
+    string.delete_local_ref(p_env);
+    args_array.delete_local_ref(p_env);
 }
 
 KtSignalInfo::~KtSignalInfo() {
