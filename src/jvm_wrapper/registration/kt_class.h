@@ -49,7 +49,7 @@ public:
     Vector<StringName> registered_supertypes;
     StringName base_godot_class;
 
-    explicit KtClass(jni::JObject p_wrapped);
+    explicit KtClass(jni::Env& p_env, jni::JObject p_wrapped);
 
     ~KtClass();
 
@@ -67,11 +67,11 @@ public:
 
     void get_signal_list(List<MethodInfo>* p_list);
 
-    void fetch_members();
+    void fetch_members(jni::Env& env);
 
     const Dictionary get_rpc_config();
 
-    void do_notification(KtObject* p_instance, int p_notification, bool p_reversed);
+    void do_notification(jni::Env& env, KtObject* p_instance, int p_notification, bool p_reversed);
 
 private:
     HashMap<StringName, KtFunction*> methods;

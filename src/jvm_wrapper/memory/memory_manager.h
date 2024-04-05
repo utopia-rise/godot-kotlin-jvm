@@ -43,11 +43,11 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager") {
     static void notify_leak(JNIEnv* p_raw_env, jobject p_instance);
 
 public:
-    void start(bool force_gc);
-    void setDisplayLeaks(bool b);
-    void clean_up();
-    bool is_closed();
-    void close();
+    void start(jni::Env& p_env, bool force_gc);
+    void setDisplayLeaks(jni::Env& p_env, bool b);
+    void clean_up(jni::Env& p_env);
+    bool is_closed(jni::Env& p_env);
+    void close(jni::Env& p_env);
 };
 // clang-format on
 #endif// GODOT_JVM_MEMORY_MANAGER_H

@@ -19,17 +19,13 @@ JVM_SINGLETON_WRAPPER(LongStringQueue, "godot.core.LongStringQueue") {
 public:
     static int max_string_size;
 
-    void set_string_max_size(int max_size);
+    void set_string_max_size(jni::Env& p_env, int max_size);
+    void send_string_to_jvm(jni::Env& p_env, const String& str);
 
     static String poll_string();
-
     static void queue_string(const String& str);
 
-    void send_string_to_jvm(const String& str);
-
     static void send_string_to_cpp(JNIEnv* p_raw_env, jobject p_instance, jstring p_string);
-
-    static LongStringQueue* init();
 
 };
 
