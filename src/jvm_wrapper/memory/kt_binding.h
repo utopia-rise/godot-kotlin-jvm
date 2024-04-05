@@ -6,7 +6,7 @@
 
 JVM_INSTANCE_WRAPPER(KtBinding, "godot.core.memory.GodotBinding") {
 public:
-    explicit KtBinding(jni::JObject p_wrapped);
+    explicit KtBinding(jni::Env& p_env, jni::JObject p_wrapped);
     ~KtBinding();
 };
 

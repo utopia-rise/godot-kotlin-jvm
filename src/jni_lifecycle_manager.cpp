@@ -21,44 +21,44 @@
 #include "jvm_wrapper/memory/transfer_context.h"
 #include "jvm_wrapper/registration//kt_class.h"
 
-void JniLifecycleManager::initialize_jni_classes() {
+void JniLifecycleManager::initialize_jni_classes(jni::Env& p_env) {
     // Singleton
-    TransferContext::initialize();
-    TypeManager::initialize();
-    LongStringQueue::initialize();
-    MemoryManager::initialize();
+    TransferContext::initialize(p_env);
+    TypeManager::initialize(p_env);
+    LongStringQueue::initialize(p_env);
+    MemoryManager::initialize(p_env);
 
-    bridges::GDPrintBridge::initialize();
+    bridges::GDPrintBridge::initialize(p_env);
 
-    bridges::CallableBridge::initialize();
-    bridges::DictionaryBridge::initialize();
-    bridges::RidBridge::initialize();
-    bridges::StringNameBridge::initialize();
-    bridges::NodePathBridge::initialize();
-    bridges::VariantArrayBridge::initialize();
+    bridges::CallableBridge::initialize(p_env);
+    bridges::DictionaryBridge::initialize(p_env);
+    bridges::RidBridge::initialize(p_env);
+    bridges::StringNameBridge::initialize(p_env);
+    bridges::NodePathBridge::initialize(p_env);
+    bridges::VariantArrayBridge::initialize(p_env);
 
-    bridges::PackedByteArrayBridge::initialize();
-    bridges::PackedColorArrayBridge::initialize();
-    bridges::PackedFloat32ArrayBridge::initialize();
-    bridges::PackedFloat64ArrayBridge::initialize();
-    bridges::PackedInt32IntArrayBridge::initialize();
-    bridges::PackedInt64IntArrayBridge::initialize();
-    bridges::PackedStringArrayBridge::initialize();
-    bridges::PackedVector2ArrayBridge::initialize();
-    bridges::PackedVector3ArrayBridge::initialize();
+    bridges::PackedByteArrayBridge::initialize(p_env);
+    bridges::PackedColorArrayBridge::initialize(p_env);
+    bridges::PackedFloat32ArrayBridge::initialize(p_env);
+    bridges::PackedFloat64ArrayBridge::initialize(p_env);
+    bridges::PackedInt32IntArrayBridge::initialize(p_env);
+    bridges::PackedInt64IntArrayBridge::initialize(p_env);
+    bridges::PackedStringArrayBridge::initialize(p_env);
+    bridges::PackedVector2ArrayBridge::initialize(p_env);
+    bridges::PackedVector3ArrayBridge::initialize(p_env);
 
     //Instance
-    Bootstrap::initialize_jni_binding();
-    KtObject::initialize_jni_binding();
+    Bootstrap::initialize_jni_binding(p_env);
+    KtObject::initialize_jni_binding(p_env);
 
-    KtPropertyInfo::initialize_jni_binding();
-    KtProperty::initialize_jni_binding();
-    KtConstructor::initialize_jni_binding();
-    KtSignalInfo::initialize_jni_binding();
-    KtRpcConfig::initialize_jni_binding();
-    KtFunctionInfo::initialize_jni_binding();
-    KtFunction::initialize_jni_binding();
-    KtClass::initialize_jni_binding();
+    KtPropertyInfo::initialize_jni_binding(p_env);
+    KtProperty::initialize_jni_binding(p_env);
+    KtConstructor::initialize_jni_binding(p_env);
+    KtSignalInfo::initialize_jni_binding(p_env);
+    KtRpcConfig::initialize_jni_binding(p_env);
+    KtFunctionInfo::initialize_jni_binding(p_env);
+    KtFunction::initialize_jni_binding(p_env);
+    KtClass::initialize_jni_binding(p_env);
 }
 
 void JniLifecycleManager::destroy_jni_classes() {

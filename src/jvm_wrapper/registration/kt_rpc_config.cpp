@@ -1,6 +1,6 @@
 #include "kt_rpc_config.h"
 
-KtRpcConfig::KtRpcConfig(jni::JObject p_wrapped) : JvmInstanceWrapper(p_wrapped) {
+KtRpcConfig::KtRpcConfig(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanceWrapper(p_env, p_wrapped) {
     jni::Env env {jni::Jvm::current_env()};
 
     rpc_mode = static_cast<MultiplayerAPI::RPCMode>(wrapped.call_int_method(env, GET_RPC_MODE_ID));

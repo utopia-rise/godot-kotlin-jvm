@@ -34,7 +34,7 @@ void Bootstrap::register_engine_type(JNIEnv* p_env, jobject p_this, jobjectArray
 #endif
 }
 
-Bootstrap::Bootstrap(jni::JObject p_wrapped) : JvmInstanceWrapper(p_wrapped) {}
+Bootstrap::Bootstrap(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanceWrapper(p_env, p_wrapped) {}
 
 
 void Bootstrap::init(jni::Env& p_env, bool p_is_editor, const String& p_project_path, const String& p_jar_path, const String& p_jar_file, const jni::JObject& p_class_loader) {

@@ -48,7 +48,8 @@ namespace ktvariant {
         int size = char_string.size();
         if (unlikely(size > LongStringQueue::max_string_size)) {
             des->increment_position(encode_uint32(true, des->get_cursor()));
-            LongStringQueue::get_instance().send_string_to_jvm(str);
+            jni::Env env = jni::Jvm::current_env();
+            LongStringQueue::get_instance().send_string_to_jvm(env, str);
         } else {
             des->increment_position(encode_uint32(false, des->get_cursor()));
             des->increment_position(encode_uint32(char_string.size(), des->get_cursor()));

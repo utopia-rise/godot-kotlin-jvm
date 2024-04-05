@@ -36,7 +36,6 @@ namespace jni {
     private:
         Jvm() = default;
         static JavaVM* vm;
-        static Env* env;
         static jint version;
         static Type vm_type;
 
