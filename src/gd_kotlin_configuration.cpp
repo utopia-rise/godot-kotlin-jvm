@@ -1,6 +1,6 @@
 #include "gd_kotlin_configuration.h"
 
-#include "long_string_queue.h"
+#include "jvm_wrapper/memory/long_string_queue.h"
 
 #include <core/config/engine.h>
 #include <core/io/json.h>

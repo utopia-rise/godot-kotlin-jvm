@@ -1,11 +1,11 @@
 #include "jvm_resource_format_loader.h"
 
 #include "godotkotlin_defs.h"
+#include "jvm_wrapper/memory/type_manager.h"
 #include "script/gdj_script.h"
 #include "script/java_script.h"
 #include "script/jvm_script.h"
 #include "script/kotlin_script.h"
-#include "type_manager.h"
 
 void JvmResourceFormatLoader::get_recognized_extensions(List<String>* p_extensions) const {
     p_extensions->push_back(GODOT_JVM_REGISTRATION_FILE_EXTENSION);

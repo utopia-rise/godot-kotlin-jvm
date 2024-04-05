@@ -40,6 +40,12 @@ void GdjLanguage::frame() {
 }
 
 void GdjLanguage::finish() {
+#ifdef TOOLS_ENABLED
+    if (Engine::get_singleton()->is_project_manager_hint()) {
+        LOG_VERBOSE("Detected that we're in the project manager. No cleanup necessary");
+        return;
+    }
+#endif
     GDKotlin::get_instance().finish();
 }
 

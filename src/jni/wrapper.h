@@ -10,7 +10,6 @@
 #include "jvm_loader.h"
 #endif
 
-#include "java_method_signature.h"
 #include "local_frame.h"
 #include "types.h"
 

@@ -1,11 +1,11 @@
 #ifndef GODOT_JVM_GD_KOTLIN_H
 #define GODOT_JVM_GD_KOTLIN_H
 
-#include "bootstrap.h"
 #include "gd_kotlin_configuration.h"
 #include "jni/wrapper.h"
-#include "kt_class.h"
-#include "memory/transfer_context.h"
+#include "jvm_wrapper/bootstrap.h"
+#include "jvm_wrapper/memory/transfer_context.h"
+#include "jvm_wrapper/registration/kt_class.h"
 #include "script/jvm_script.h"
 
 #include <core/string/ustring.h>
@@ -26,7 +26,6 @@ private:
 
     static void _check_and_copy_jar(const String& jar_name);
     static jni::JObject _prepare_class_loader(jni::Env& p_env, jni::Jvm::Type type);
-    static void initialize_classes();
 
     bool check_configuration();
 
@@ -35,8 +34,6 @@ private:
     Vector<Pair<String, String>> configuration_errors;
 
 public:
-    TransferContext* transfer_context;
-
     GDKotlin(const GDKotlin&) = delete;
 
     static GDKotlin& get_instance();

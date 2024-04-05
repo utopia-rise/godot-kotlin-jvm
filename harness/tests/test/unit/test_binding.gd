@@ -88,7 +88,7 @@ func test_path_script():
     assert_eq(clazz, "BindingA", "Type should be BindingA")
 
     var java_script: Object = load("res://src/main/java/godot/tests/JavaTestClass.java").new()
-    var clazz = test_script.get_class_name(kotlin_script)
+    clazz = test_script.get_class_name(java_script)
     assert_eq(clazz, "JavaTestClass", "Type should be JavaTestClass")
     
     kotlin_script.free()

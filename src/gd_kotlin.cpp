@@ -1,7 +1,9 @@
 #include "gd_kotlin.h"
 
 #include "jni/class_loader.h"
-#include "memory/bridges_manager.h"
+#include "jni_lifecycle_manager.h"
+#include "jvm_wrapper/memory/transfer_context.h"
+#include "jvm_wrapper/memory/memory_manager.h"
 
 #include <core/config/project_settings.h>
 #include <core/io/resource_loader.h>
@@ -25,38 +27,6 @@ static constexpr const char* gd_kotlin_configuration_path {"res://godot_kotlin_c
 GDKotlin& GDKotlin::get_instance() {
     static GDKotlin instance;
     return instance;
-}
-
-void load_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
-    jni::Env env(p_env);
-    jni::JObjectArray classes {jni::JObjectArray(p_classes)};
-    jni::JObject j_object {p_this};
-
-    GDKotlin::get_instance().register_classes(env, classes);
-
-    j_object.delete_local_ref(env);
-    classes.delete_local_ref(env);
-}
-
-void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types, jobjectArray p_singleton_names) {
-#ifdef DEV_ENABLED
-    LOG_VERBOSE("Starting to register managed engine types...");
-#endif
-    jni::Env env(p_env);
-
-    jni::JObjectArray engine_types {p_engine_types};
-    TypeManager::get_instance().register_engine_types(env, engine_types);
-
-    jni::JObjectArray singleton_names {p_singleton_names};
-    TypeManager::get_instance().register_engine_singletons(env, singleton_names);
-
-    jni::JObject j_object {p_this};
-    j_object.delete_local_ref(env);
-    engine_types.delete_local_ref(env);
-    singleton_names.delete_local_ref(env);
-#ifdef DEV_ENABLED
-    LOG_VERBOSE("Done registering managed engine types...");
-#endif
 }
 
 void GDKotlin::init() {
@@ -233,29 +203,12 @@ void GDKotlin::init() {
     }
 #endif
 
-    initialize_classes();
+    JniLifecycleManager::initialize_jni_classes();
 
-    TypeManager::get_instance();
-
-    jni::JClass transfer_ctx_cls = env.load_class("godot.core.memory.TransferContext", class_loader);
-    jni::FieldId transfer_ctx_instance_field = transfer_ctx_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/memory/TransferContext;");
-    jni::JObject transfer_ctx_instance = transfer_ctx_cls.get_static_object_field(env, transfer_ctx_instance_field);
-    JVM_CRASH_COND_MSG(transfer_ctx_instance.is_null(), "Failed to retrieve TransferContext instance");
-    transfer_context = new TransferContext(transfer_ctx_instance);
-
-    LongStringQueue::get_instance();
     int max_string_size {configuration.get_max_string_size()};
     if (max_string_size != LongStringQueue::max_string_size) {
         LongStringQueue::get_instance().set_string_max_size(max_string_size);
     }
-
-    // Garbage Collector
-    jni::JClass garbage_collector_cls {env.load_class("godot.core.memory.MemoryManager", class_loader)};
-    jni::FieldId garbage_collector_instance_field {garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/memory/MemoryManager;")};
-    jni::JObject garbage_collector_instance {garbage_collector_cls.get_static_object_field(env, garbage_collector_instance_field)};
-    JVM_CRASH_COND_MSG(garbage_collector_instance.is_null(), "Failed to retrieve MemoryManager instance");
-
-    BridgesManager::get_instance().initialize_bridges(env, class_loader);
 
     if (is_gc_activated) {
         if (is_gc_force_mode) {
@@ -263,9 +216,8 @@ void GDKotlin::init() {
             LOG_VERBOSE("Starting GC thread with force mode.");
 #endif
         }
-        jni::MethodId start_method_id {garbage_collector_cls.get_method_id(env, "start", "(Z)V")};
-        jvalue start_args[2] = {jni::to_jni_arg(is_gc_force_mode)};
-        garbage_collector_instance.call_void_method(env, start_method_id, start_args);
+
+        MemoryManager::get_instance().start(is_gc_force_mode);
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE("GC thread started.");
 #endif
@@ -273,18 +225,10 @@ void GDKotlin::init() {
     }
 
     if (!should_display_leaked_jvm_instances_on_close) {
-        jni::MethodId set_should_display_method_id {garbage_collector_cls.get_method_id(env, "setShouldDisplayLeakInstancesOnClose", "(Z)V")};
-        jvalue d_arg[1] = {jni::to_jni_arg(false)};
-        garbage_collector_instance.call_void_method(env, set_should_display_method_id, d_arg);
+        MemoryManager::get_instance().setDisplayLeaks(false);
     }
 
-    jni::JClass bootstrap_cls = env.load_class("godot.runtime.Bootstrap", class_loader);
-    jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");
-    jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
-    bootstrap = new Bootstrap(instance);
-    Bootstrap::register_hooks(load_classes_hook, register_engine_types_hook);
-    Bootstrap::initialize_class("godot.runtime.Bootstrap");
-    bool is_editor = Engine::get_singleton()->is_editor_hint();
+    bootstrap = Bootstrap::create_instance();
 
 #ifdef TOOLS_ENABLED
     String jar_path {project_settings->globalize_path("res://build/libs/")};
@@ -300,7 +244,7 @@ void GDKotlin::init() {
 
     bootstrap->init(
       env,
-      is_editor,
+      Engine::get_singleton()->is_editor_hint(),
       project_path,
       jar_path,
       main_jar_file,
@@ -314,45 +258,28 @@ void GDKotlin::init() {
 }
 
 void GDKotlin::finish() {
-    if (Engine::get_singleton()->is_project_manager_hint()) {
-#ifdef DEBUG_ENABLED
-        LOG_VERBOSE("Detected that we're in the project manager. No cleanup necessary");
-#endif
-        return;
-    }
     auto env = jni::Jvm::current_env();
 
     bootstrap->finish(env);
 
-    delete transfer_context;
-    transfer_context = nullptr;
     delete bootstrap;
     bootstrap = nullptr;
 
     TypeManager::get_instance().clear();
 
     if (is_gc_started) {
-        jni::JClass garbage_collector_cls {env.load_class("godot.core.memory.MemoryManager", ClassLoader::get_default_loader())};
-        jni::FieldId garbage_collector_instance_field {garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/memory/MemoryManager;")
-        };
-        jni::JObject garbage_collector_instance {garbage_collector_cls.get_static_object_field(env, garbage_collector_instance_field)};
-        JVM_CRASH_COND_MSG(garbage_collector_instance.is_null(), "Failed to retrieve MemoryManager instance");
-        jni::MethodId close_method_id {garbage_collector_cls.get_method_id(env, "close", "()V")};
-        garbage_collector_instance.call_void_method(env, close_method_id);
-        jni::MethodId has_closed_method_id {garbage_collector_cls.get_method_id(env, "isClosed", "()Z")};
-        while (!garbage_collector_instance.call_boolean_method(env, has_closed_method_id)) {
+        MemoryManager::get_instance().close();
+
+        while (!MemoryManager::get_instance().is_closed()) {
             OS::get_singleton()->delay_usec(600000);
         }
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE("JVM GC thread was closed");
 #endif
-        jni::MethodId clean_up_method_id {garbage_collector_cls.get_method_id(env, "cleanUp", "()V")};
-        garbage_collector_instance.call_void_method(env, clean_up_method_id);
+        MemoryManager::get_instance().clean_up();
     }
 
-    LongStringQueue::destroy();
-    BridgesManager::get_instance().delete_bridges();
-    TypeManager::destroy();
+    JniLifecycleManager::destroy_jni_classes();
 
     ClassLoader::delete_default_loader(env);
     jni::Jvm::destroy();
@@ -369,7 +296,7 @@ void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
         kt_class->fetch_members();
         classes.append(kt_class);
 #ifdef DEV_ENABLED
-        LOG_VERBOSE(vformat("Loaded class %s : %s, as %s", kt_class->registered_class_name, kt_class->base_godot_class));
+        LOG_VERBOSE(vformat("Loaded class %s : %s", kt_class->registered_class_name, kt_class->base_godot_class));
 #endif
     }
     TypeManager::get_instance().create_and_update_scripts(classes);
@@ -415,7 +342,7 @@ void GDKotlin::_check_and_copy_jar(const String& jar_name) {
 }
 
 jni::JObject GDKotlin::_prepare_class_loader(jni::Env& p_env, jni::Jvm::Type type) {
-    if (type == jni::Jvm::GRAAL_NATIVE_IMAGE) { return jni::JObject(); }
+    if (type == jni::Jvm::GRAAL_NATIVE_IMAGE) { return {}; }
 #ifdef __ANDROID__
     String bootstrap_jar_file {"godot-bootstrap-dex.jar"};
     String main_jar_file {"main-dex.jar"};
@@ -452,8 +379,7 @@ GDKotlin::GDKotlin() :
   bootstrap(nullptr),
   is_gc_started(false),
   configuration(GdKotlinConfiguration::load_gd_kotlin_configuration_or_default(gd_kotlin_configuration_path)),
-  is_initialized(false),
-  transfer_context(nullptr) {}
+  is_initialized(false) {}
 
 bool GDKotlin::check_configuration() {
     bool has_configuration_error = false;
@@ -490,21 +416,4 @@ bool GDKotlin::initialized() const {
 
 const Vector<Pair<String, String>>& GDKotlin::get_configuration_errors() const {
     return configuration_errors;
-}
-
-void GDKotlin::initialize_classes() {
-    TypeManager::initialize_class("godot.core.TypeManager");
-    TransferContext::initialize_class("godot.core.memory.TransferContext");
-    LongStringQueue::initialize_class("godot.core.LongStringQueue");
-
-    KtObject::initialize_class("godot.core.KtObject");
-
-    KtPropertyInfo::initialize_class("godot.core.KtPropertyInfo");
-    KtProperty::initialize_class("godot.core.KtProperty");
-    KtConstructor::initialize_class("godot.core.KtConstructor");
-    KtSignalInfo::initialize_class("godot.core.KtSignalInfo");
-    KtRpcConfig::initialize_class("godot.core.KtRpcConfig");
-    KtFunctionInfo::initialize_class("godot.core.KtFunctionInfo");
-    KtFunction::initialize_class("godot.core.KtFunction");
-    KtClass::initialize_class("godot.core.KtClass");
 }
