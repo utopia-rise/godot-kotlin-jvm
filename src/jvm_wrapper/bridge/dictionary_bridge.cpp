@@ -45,7 +45,6 @@ void DictionaryBridge::engine_call_find_key(JNIEnv* p_raw_env, jobject p_instanc
 
 void DictionaryBridge::engine_call_get(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    TransferContext* transfer_context = &TransferContext::get_instance();
     Variant args[2] = {};
     TransferContext::get_instance().read_args(env, args);
     Variant variant {from_uint_to_ptr<Dictionary>(p_raw_ptr)->get(args[0], args[1])};
@@ -54,7 +53,6 @@ void DictionaryBridge::engine_call_get(JNIEnv* p_raw_env, jobject p_instance, jl
 
 void DictionaryBridge::engine_call_has(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    TransferContext* transfer_context = &TransferContext::get_instance();
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
     Variant variant {from_uint_to_ptr<Dictionary>(p_raw_ptr)->has(args[0])};
@@ -63,7 +61,6 @@ void DictionaryBridge::engine_call_has(JNIEnv* p_raw_env, jobject p_instance, jl
 
 void DictionaryBridge::engine_call_hasAll(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    TransferContext* transfer_context = &TransferContext::get_instance();
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
     Variant variant {from_uint_to_ptr<Dictionary>(p_raw_ptr)->has_all(args[0])};
@@ -113,7 +110,6 @@ void DictionaryBridge::engine_call_values(JNIEnv* p_raw_env, jobject p_instance,
 
 void DictionaryBridge::engine_call_operator_get(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    TransferContext* transfer_context = &TransferContext::get_instance();
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
     Variant variant {from_uint_to_ptr<Dictionary>(p_raw_ptr)->operator[](args[0])};
@@ -129,7 +125,6 @@ void DictionaryBridge::engine_call_operator_set(JNIEnv* p_raw_env, jobject p_ins
 
 void DictionaryBridge::engine_call_equals(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    TransferContext* transfer_context = &TransferContext::get_instance();
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
     Variant variant {*from_uint_to_ptr<Dictionary>(p_raw_ptr) == args[0].operator Dictionary()};

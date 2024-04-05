@@ -104,13 +104,11 @@ void PackedVector3ArrayBridge::engine_call_insert(JNIEnv* p_raw_env, jobject p_i
 
 void PackedVector3ArrayBridge::engine_call_is_empty(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    TransferContext* transfer_context = &TransferContext::get_instance();
     Variant variant {from_uint_to_ptr<PackedVector3Array>(p_raw_ptr)->is_empty()};
     TransferContext::get_instance().write_return_value(env, variant);
 }
 
 void PackedVector3ArrayBridge::engine_call_reverse(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env {p_raw_env};
     from_uint_to_ptr<PackedVector3Array>(p_raw_ptr)->reverse();
 }
 

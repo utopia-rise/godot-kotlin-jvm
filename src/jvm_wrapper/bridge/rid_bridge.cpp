@@ -31,7 +31,6 @@ void RidBridge::engine_call_isValid(JNIEnv* p_raw_env, jobject p_instance, jlong
 
 void RidBridge::engine_call_compareTo(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    TransferContext* transfer_context = &TransferContext::get_instance();
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
     Variant variant {*from_uint_to_ptr<RID>(p_raw_ptr) < args[0].operator ::RID()};
@@ -40,7 +39,6 @@ void RidBridge::engine_call_compareTo(JNIEnv* p_raw_env, jobject p_instance, jlo
 
 void RidBridge::engine_call_equals(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    TransferContext* transfer_context = &TransferContext::get_instance();
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
     Variant variant {*from_uint_to_ptr<RID>(p_raw_ptr) == args[0].operator ::RID()};

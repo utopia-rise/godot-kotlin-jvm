@@ -2,7 +2,6 @@
 
 #include "bridges_utils.h"
 #include "gd_kotlin.h"
-#include "jni/class_loader.h"
 
 using namespace bridges;
 
@@ -33,7 +32,6 @@ uintptr_t CallableBridge::engine_call_copy_constructor(JNIEnv* p_raw_env, jobjec
 
 void CallableBridge::engine_call_bind(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    TransferContext* transfer_context = &TransferContext::get_instance();
 
     Variant args[MAX_FUNCTION_ARG_COUNT];
     uint32_t args_size {TransferContext::get_instance().read_args(env, args)};
@@ -58,7 +56,6 @@ void CallableBridge::engine_call_bindv(JNIEnv* p_raw_env, jobject p_instance, jl
 
 void CallableBridge::engine_call_call(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    TransferContext* transfer_context = &TransferContext::get_instance();
 
     Variant args[MAX_FUNCTION_ARG_COUNT];
     uint32_t args_size {TransferContext::get_instance().read_args(env, args)};
@@ -76,7 +73,6 @@ void CallableBridge::engine_call_call(JNIEnv* p_raw_env, jobject p_instance, jlo
 
 void CallableBridge::engine_call_call_deferred(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    TransferContext* transfer_context = &TransferContext::get_instance();
 
     Variant args[MAX_FUNCTION_ARG_COUNT];
     uint32_t args_size {TransferContext::get_instance().read_args(env, args)};
@@ -170,7 +166,6 @@ void CallableBridge::engine_call_is_valid(JNIEnv* p_raw_env, jobject p_instance,
 
 void CallableBridge::engine_call_rpc(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    TransferContext* transfer_context = &TransferContext::get_instance();
 
     Variant args[MAX_FUNCTION_ARG_COUNT];
     uint32_t args_size {TransferContext::get_instance().read_args(env, args)};
@@ -185,7 +180,6 @@ void CallableBridge::engine_call_rpc(JNIEnv* p_raw_env, jobject p_instance, jlon
 
 void CallableBridge::engine_call_rpc_id(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    TransferContext* transfer_context = &TransferContext::get_instance();
 
     Variant args[MAX_FUNCTION_ARG_COUNT];
     uint32_t args_size {TransferContext::get_instance().read_args(env, args)};

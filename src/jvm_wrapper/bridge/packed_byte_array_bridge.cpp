@@ -365,7 +365,6 @@ void PackedByteArrayBridge::engine_call_is_empty(JNIEnv* p_raw_env, jobject p_in
 
 void PackedByteArrayBridge::engine_call_get_string_from_ascii(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    TransferContext* transfer_context = &TransferContext::get_instance();
 
     Variant pool {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
 
@@ -386,7 +385,6 @@ void PackedByteArrayBridge::engine_call_get_string_from_utf32(JNIEnv* p_raw_env,
 
 void PackedByteArrayBridge::engine_call_get_string_from_utf8(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    TransferContext* transfer_context = &TransferContext::get_instance();
 
     Variant pool {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
 
@@ -415,7 +413,6 @@ void PackedByteArrayBridge::engine_call_has_encoded_var(JNIEnv* p_raw_env, jobje
 
 void PackedByteArrayBridge::engine_call_hex_encode(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    TransferContext* transfer_context = &TransferContext::get_instance();
 
     Variant pool {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
 
