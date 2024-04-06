@@ -130,7 +130,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     /**
      * Removes an element from the array by index.
      */
-    fun remove(position: Int) {
+    fun removeAt(position: Int) {
         TransferContext.writeArguments(VariantType.JVM_INT to position)
         Bridge.engine_call_removeAt(_handle)
     }
@@ -552,7 +552,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     }
 
     override fun iterator(): MutableIterator<T> {
-        return IndexedIterator(this::size, this::get, this::remove)
+        return IndexedIterator(this::size, this::get, this::removeAt)
     }
 
     /**
@@ -628,20 +628,19 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
         external fun engine_call_operator_set(_handle: VoidPtr)
         external fun engine_call_operator_get(_handle: VoidPtr)
     }
-}
 
-
-//CONSTRUCTOR
-@Suppress("FunctionName")
-inline fun <reified T> VariantArray(): VariantArray<T> {
-    val variantType = variantMapper[T::class]
-    checkNotNull(variantType) {
-        "Can't create a VariantArray with generic ${T::class}."
+    companion object{
+        inline operator fun <reified T> invoke(): VariantArray<T> {
+            val variantType = variantMapper[T::class]
+            checkNotNull(variantType) {
+                "Can't create a VariantArray with generic ${T::class}."
+            }
+            return VariantArray(
+                variantType,
+                T::class
+            )
+        }
     }
-    return VariantArray<T>(
-        variantType,
-        T::class
-    )
 }
 
 //HELPER

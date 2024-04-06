@@ -110,6 +110,28 @@ class TestVector3 {
                 0.0
             )
         ) { "moveToward() should return the expected result." }
+
+        checkMessage(
+            Vector3(1, 0, 0).rotateToward(
+                Vector3(0, 1, 0),
+                TAU / 8.0
+            ).isEqualApprox(Vector3(SQRT12, SQRT12, 0))
+        ) { "Vector3 rotate_toward should work as expected." }
+        checkMessage(
+            Vector3(1, 0, 0).rotateToward(
+                Vector3(0, 1, 0), -TAU / 8.0
+            ).isEqualApprox(Vector3(SQRT12, -SQRT12, 0))
+        ) { "Vector3 rotate_toward with negative delta should behave as expected." }
+        checkMessage(
+            Vector3(1, 1, 1).rotateToward(
+                Vector3(10, 10, 10), 0.5
+            ).isEqualApprox(Vector3(6, 6, 6))
+        ) { "Vector3 rotate_toward with colinear inputs should behave as expected." }
+        checkMessage(
+            Vector3(10, 10, 10).rotateToward(
+                Vector3(0, 0, 0), 0.5
+            ).isEqualApprox(Vector3(5, 5, 5))
+        ) { "Vector3 rotate_toward with second input as zero should behave as expected." }
     }
 
     @Test

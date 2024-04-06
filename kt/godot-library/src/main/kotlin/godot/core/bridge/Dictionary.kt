@@ -358,19 +358,21 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         external fun engine_call_operator_set(_handle: VoidPtr)
         external fun engine_call_equals(_handle: VoidPtr)
     }
-}
 
-@Suppress("FunctionName")
-inline fun <reified K, reified V> Dictionary(): Dictionary<K, V> {
-    val keyVariantType = variantMapper[K::class]
-    checkNotNull(keyVariantType) {
-        "Can't create a Dictionary with generic key ${K::class}."
+
+    companion object {
+        inline operator fun <reified K, reified V> invoke(): Dictionary<K, V> {
+            val keyVariantType = variantMapper[K::class]
+            checkNotNull(keyVariantType) {
+                "Can't create a Dictionary with generic key ${K::class}."
+            }
+            val valVariantType = variantMapper[V::class]
+            checkNotNull(valVariantType) {
+                "Can't create a Dictionary with generic value ${V::class}."
+            }
+            return Dictionary(keyVariantType, valVariantType)
+        }
     }
-    val valVariantType = variantMapper[V::class]
-    checkNotNull(valVariantType) {
-        "Can't create a Dictionary with generic value ${V::class}."
-    }
-    return Dictionary<K, V>(keyVariantType, valVariantType)
 }
 
 inline fun <reified K, reified V> dictionaryOf(vararg args: Pair<K, V>) = Dictionary<K, V>().also {
@@ -378,7 +380,7 @@ inline fun <reified K, reified V> dictionaryOf(vararg args: Pair<K, V>) = Dictio
 }
 
 /**
- * Convert an Map into a Dictionary
+ * Convert a Map into a Dictionary
  */
 inline fun <reified K, reified V> Map<K, V>.toDictionary() = Dictionary<K, V>().also {
     it.putAll(this)

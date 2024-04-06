@@ -678,6 +678,19 @@ class Basis() : CoreType {
     }
 
     /**
+     * Assuming that the matrix is a proper rotation matrix, returns the result of rotating toward [to] by [delta] (in radians).
+     * Passing a negative [delta] will rotate toward the inverse of [to].
+     */
+    fun rotateToward(to: Basis, delta: RealT): Basis {
+        return Basis(
+            getRotationQuaternion().rotateToward(
+                to.getRotationQuaternion(),
+                delta
+            )
+        )
+    }
+
+    /**
      * Introduce an additional scaling specified by the given 3D scaling factor.
      */
     fun scaled(scale: Vector3): Basis {

@@ -215,6 +215,32 @@ class Quaternion(
     }
 
     /**
+     * Returns the result of rotating toward [to] by [delta] (in radians). Passing a negative [delta] will rotate toward the inverse of [to].
+     *
+     * **Note:** Both quaternions must be normalized.
+     */
+    fun rotateToward(to: Quaternion, delta: Double): Quaternion {
+        val unsignedDelta: RealT
+        val unsignedTo: Quaternion
+
+        if (delta < 0.0) {
+            unsignedDelta = -delta
+            unsignedTo = to.inverse()
+        } else {
+            unsignedDelta = delta
+            unsignedTo = to
+        }
+
+        val angle = angleTo(unsignedTo)
+
+        return if (angle < unsignedDelta) {
+            unsignedTo
+        } else {
+            slerp(unsignedTo, unsignedDelta / angle)
+        }
+    }
+
+    /**
      * Sets the quaternion to a rotation which rotates around axis by the specified angle, in radians. The axis must be a normalized vector.
      */
     fun setAxisAndAngle(axis: Vector3, angle: RealT) {
