@@ -8,7 +8,7 @@ JvmConfiguration::JvmConfiguration() :
   jvm_debug_address {""},
   jvm_jmx_port {-1},
   jvm_args {""},
-  wait_for_debugger {false},
+  wait_for_debugger {true},
   max_string_size {0},
   force_gc {false},
   disable_gc {false},

@@ -40,10 +40,10 @@ void GDKotlin::fetchJvmConfiguration(JvmConfiguration& jvm_configuration) {
         String content = file_access->get_as_utf8_string();
 
         // The function is going to mutate the provided configuration with the valid values found in the file.
-        // If some of the value parsed in the files are invalid, it will return true;
+        // If some of the values parsed in the file are invalid, it will return true;
         invalid_file_content = JvmConfiguration::parse_configuration_json(content, jvm_configuration);
         if (invalid_file_content) {
-            LOG_WARNING("Configuration file is malformed.A new one will be created. Edit again if necessary.");
+            LOG_WARNING("Configuration file is malformed. A new one will be created. Edit again if necessary.");
         }
     }
 
@@ -77,21 +77,25 @@ void GDKotlin::init() {
     args.option("-Xcheck:jni");
 #endif
 
-    String jvm_debug_port = String::num_int64(configuration.jvm_debug_port);
-    String jvm_debug_address = configuration.jvm_debug_address;
-    String jvm_jmx_port = String::num_int64(configuration.jvm_jmx_port);
+    if (configuration.jvm_debug_port != -1) {
+        String jvm_debug_port = String::num_int64(configuration.jvm_debug_port);
+        String jvm_debug_address = configuration.jvm_debug_address;
 
-    String suspend;
-    if (configuration.wait_for_debugger) {
-        suspend = "y";
-    } else {
-        suspend = "n";
+        String suspend;
+        if (configuration.wait_for_debugger) {
+            suspend = "y";
+        } else {
+            suspend = "n";
+        }
+
+        String debug_command {
+          "-agentlib:jdwp=transport=dt_socket,server=y,suspend=" + suspend + ",address=" + jvm_debug_address + ":" + jvm_debug_port
+        };
+        args.option(debug_command.utf8());
     }
 
-    String debug_command {"-agentlib:jdwp=transport=dt_socket,server=y,suspend=" + suspend + ",address=" + jvm_debug_address + ":" + jvm_debug_port};
-    args.option(debug_command.utf8());
-
     if (configuration.jvm_jmx_port >= 0) {
+        String jvm_jmx_port = String::num_int64(configuration.jvm_jmx_port);
         String port_command {"-Dcom.sun.management.jmxremote.port=" + jvm_jmx_port};
         String rmi_port {"-Dcom.sun.management.jmxremote.rmi.port=" + jvm_jmx_port};
         args.option("-Djava.rmi.server.hostname=127.0.0.1");
@@ -110,9 +114,7 @@ void GDKotlin::init() {
     if (configuration.vm_type == jni::Jvm::GRAAL_NATIVE_IMAGE) { _check_and_copy_jar(LIB_GRAAL_VM_RELATIVE_PATH); }
 #endif
 
-    if (!Engine::get_singleton()->is_editor_hint()) {
-        args.option(configuration.jvm_args.utf8());
-    }
+    if (!Engine::get_singleton()->is_editor_hint()) { args.option(configuration.jvm_args.utf8()); }
 
     jni::Jvm::init(args, configuration.vm_type);
     LOG_INFO("Starting JVM ...");
