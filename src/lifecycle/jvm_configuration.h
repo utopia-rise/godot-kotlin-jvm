@@ -42,13 +42,13 @@ static constexpr const char* DEFAULT_JVM_ADDRESS {"*"};
 struct JvmConfiguration {
     jni::Jvm::Type vm_type;
 
-    int64_t jvm_debug_port;
+    int32_t jvm_debug_port;
     String jvm_debug_address;
     bool wait_for_debugger;
-    int64_t jvm_jmx_port;
+    int32_t jvm_jmx_port;
 
     // 0 means "auto". The module will let the LongStringQueue::max_string_size as it is.
-    uint16_t max_string_size;
+    int32_t max_string_size;
 
     bool force_gc;
     bool disable_gc;

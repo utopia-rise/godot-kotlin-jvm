@@ -28,6 +28,7 @@ bool JvmConfiguration::parse_configuration_json(const String& json_string, JvmCo
     Dictionary json_dict = result;
     if (json_dict.has(VM_TYPE_JSON_IDENTIFIER)) {
         String value = json_dict[VM_TYPE_JSON_IDENTIFIER];
+        LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", VM_TYPE_JSON_IDENTIFIER, value))
         if (value == AUTO_STRING) {
             json_config.vm_type = jni::Jvm::NONE;
         } else if (value == JVM_STRING) {
@@ -40,24 +41,33 @@ bool JvmConfiguration::parse_configuration_json(const String& json_string, JvmCo
             is_invalid = true;
             LOG_WARNING(vformat("Wrong JVM type in configuration file: %s. It will be ignored", value));
         }
-    } else if (json_dict.has(DEBUG_PORT_JSON_IDENTIFIER)) {
-        uint16_t port = json_dict[DEBUG_PORT_JSON_IDENTIFIER];
+        json_dict.erase(VM_TYPE_JSON_IDENTIFIER);
+    }
+    if (json_dict.has(DEBUG_PORT_JSON_IDENTIFIER)) {
+        int32_t port = json_dict[DEBUG_PORT_JSON_IDENTIFIER];
+        LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", DEBUG_PORT_JSON_IDENTIFIER, port));
         if (port >= 0 && port <= 65535) {
             json_config.jvm_debug_port = port;
         } else {
             is_invalid = true;
             LOG_WARNING(vformat("Invalid JVM port value in configuration file: %s. It will be ignored", port));
         }
-    } else if (json_dict.has(DEBUG_ADDRESS_JSON_IDENTIFIER)) {
+        json_dict.erase(DEBUG_PORT_JSON_IDENTIFIER);
+    }
+    if (json_dict.has(DEBUG_ADDRESS_JSON_IDENTIFIER)) {
         String address = json_dict[DEBUG_ADDRESS_JSON_IDENTIFIER];
+        LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", DEBUG_ADDRESS_JSON_IDENTIFIER, address));
         if (address.is_valid_ip_address()) {
             json_config.jvm_debug_address = address;
         } else {
             is_invalid = true;
             LOG_WARNING(vformat("Invalid JVM address value in configuration file: %s. It will be ignored", address));
         }
-    } else if (json_dict.has(WAIT_FOR_DEBUGGER_JSON_IDENTIFIER)) {
+        json_dict.erase(DEBUG_ADDRESS_JSON_IDENTIFIER);
+    }
+    if (json_dict.has(WAIT_FOR_DEBUGGER_JSON_IDENTIFIER)) {
         String boolean = json_dict[WAIT_FOR_DEBUGGER_JSON_IDENTIFIER];
+        LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", WAIT_FOR_DEBUGGER_JSON_IDENTIFIER, boolean));
         if (boolean == TRUE_STRING) {
             json_config.wait_for_debugger = true;
         } else if (boolean == FALSE_STRING) {
@@ -66,24 +76,33 @@ bool JvmConfiguration::parse_configuration_json(const String& json_string, JvmCo
             is_invalid = true;
             LOG_WARNING(vformat("Invalid Waiting for Debugger value in configuration file: %s. It will be ignored", boolean));
         }
-    } else if (json_dict.has(JMX_PORT_JSON_IDENTIFIER)) {
-        uint16_t port = json_dict[JMX_PORT_JSON_IDENTIFIER];
+        json_dict.erase(WAIT_FOR_DEBUGGER_JSON_IDENTIFIER);
+    }
+    if (json_dict.has(JMX_PORT_JSON_IDENTIFIER)) {
+        int32_t port = json_dict[JMX_PORT_JSON_IDENTIFIER];
+        LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", JMX_PORT_JSON_IDENTIFIER, port));
         if (port >= 0 && port <= 65535) {
             json_config.jvm_jmx_port = port;
         } else {
             is_invalid = true;
             LOG_WARNING(vformat("Invalid JMX port value in configuration file: %s. It will be ignored", port));
         }
-    } else if (json_dict.has(MAX_STRING_SIZE_JSON_IDENTIFIER)) {
-        String size = json_dict[MAX_STRING_SIZE_JSON_IDENTIFIER];
-        if (size.is_valid_int()) {
-            json_config.jvm_jmx_port = size.to_int();
+        json_dict.erase(JMX_PORT_JSON_IDENTIFIER);
+    }
+    if (json_dict.has(MAX_STRING_SIZE_JSON_IDENTIFIER)) {
+        int32_t size = json_dict[MAX_STRING_SIZE_JSON_IDENTIFIER];
+        LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", MAX_STRING_SIZE_JSON_IDENTIFIER, size));
+        if (size >= 0) {
+            json_config.max_string_size = size;
         } else {
             is_invalid = true;
             LOG_WARNING(vformat("Invalid Maximum String Size value in configuration file: %s. It will be ignored", size));
         }
-    } else if (json_dict.has(FORCE_GC_JSON_IDENTIFIER)) {
+        json_dict.erase(MAX_STRING_SIZE_JSON_IDENTIFIER);
+    }
+    if (json_dict.has(FORCE_GC_JSON_IDENTIFIER)) {
         String boolean = json_dict[FORCE_GC_JSON_IDENTIFIER];
+        LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", FORCE_GC_JSON_IDENTIFIER, boolean));
         if (boolean == TRUE_STRING) {
             json_config.force_gc = true;
         } else if (boolean == FALSE_STRING) {
@@ -92,8 +111,11 @@ bool JvmConfiguration::parse_configuration_json(const String& json_string, JvmCo
             is_invalid = true;
             LOG_WARNING(vformat("Invalid Force GC value in configuration file: %s. It will be ignored", boolean));
         }
-    } else if (json_dict.has(DISABLE_GC_JSON_IDENTIFIER)) {
+        json_dict.erase(FORCE_GC_JSON_IDENTIFIER);
+    }
+    if (json_dict.has(DISABLE_GC_JSON_IDENTIFIER)) {
         String boolean = json_dict[DISABLE_GC_JSON_IDENTIFIER];
+        LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", DISABLE_GC_JSON_IDENTIFIER, boolean));
         if (boolean == TRUE_STRING) {
             json_config.disable_gc = true;
         } else if (boolean == FALSE_STRING) {
@@ -102,8 +124,11 @@ bool JvmConfiguration::parse_configuration_json(const String& json_string, JvmCo
             is_invalid = true;
             LOG_WARNING(vformat("Invalid Disable GC value in configuration file: %s. It will be ignored", boolean));
         }
-    } else if (json_dict.has(DISABLE_LEAK_WARNING_JSON_IDENTIFIER)) {
+        json_dict.erase(DISABLE_GC_JSON_IDENTIFIER);
+    }
+    if (json_dict.has(DISABLE_LEAK_WARNING_JSON_IDENTIFIER)) {
         String boolean = json_dict[DISABLE_LEAK_WARNING_JSON_IDENTIFIER];
+        LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", DISABLE_LEAK_WARNING_JSON_IDENTIFIER, boolean));
         if (boolean == TRUE_STRING) {
             json_config.disable_leak_warning_on_close = true;
         } else if (boolean == FALSE_STRING) {
@@ -112,8 +137,22 @@ bool JvmConfiguration::parse_configuration_json(const String& json_string, JvmCo
             is_invalid = true;
             LOG_WARNING(vformat("Invalid Disable Leak Warning value in configuration file: %s. It will be ignored", boolean));
         }
-    } else if (json_dict.has(JVM_ARGUMENTS_JSON_IDENTIFIER)) {
+        json_dict.erase(DISABLE_LEAK_WARNING_JSON_IDENTIFIER);
+    }
+    if (json_dict.has(JVM_ARGUMENTS_JSON_IDENTIFIER)) {
         json_config.jvm_args = json_dict[JVM_ARGUMENTS_JSON_IDENTIFIER];
+        LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", JVM_ARGUMENTS_JSON_IDENTIFIER, json_config.jvm_args))
+        json_dict.erase(JVM_ARGUMENTS_JSON_IDENTIFIER);
+    }
+
+    if(!json_dict.is_empty()){
+        Array keys = json_dict.keys();
+        for(int i = 0; i < keys.size(); i++){
+            String key = keys[i];
+            String value = json_dict[key];
+            LOG_WARNING(vformat("Invalid json configuration argument: %s -> %s", key, value));
+        }
+        is_invalid = true;
     }
 
     return is_invalid;
@@ -148,13 +187,12 @@ String JvmConfiguration::export_configuration_to_json(const JvmConfiguration& co
 
     json[WAIT_FOR_DEBUGGER_JSON_IDENTIFIER] = configuration.wait_for_debugger;
 
-    if (configuration.jvm_jmx_port >= 0) { json[DEBUG_PORT_JSON_IDENTIFIER] = configuration.jvm_jmx_port; }
+    if (configuration.jvm_jmx_port >= 0) { json[JMX_PORT_JSON_IDENTIFIER] = configuration.jvm_jmx_port; }
 
     json[MAX_STRING_SIZE_JSON_IDENTIFIER] = configuration.max_string_size;
 
     json[FORCE_GC_JSON_IDENTIFIER] = configuration.force_gc;
     json[DISABLE_GC_JSON_IDENTIFIER] = configuration.disable_gc;
-    json[DISABLE_LEAK_WARNING_JSON_IDENTIFIER] = configuration.disable_leak_warning_on_close;
     json[DISABLE_LEAK_WARNING_JSON_IDENTIFIER] = configuration.disable_leak_warning_on_close;
     json[JVM_ARGUMENTS_JSON_IDENTIFIER] = configuration.jvm_args;
 
@@ -251,6 +289,10 @@ void JvmConfiguration::parse_command_line(const List<String>& args, HashMap<Stri
             configuration_map[DISABLE_GC_CMD_IDENTIFIER] = get_cmd_bool_or_default(value, TRUE_STRING);
         } else if (identifier == DISABLE_LEAK_WARNING_CMD_IDENTIFIER) {
             configuration_map[DISABLE_LEAK_WARNING_CMD_IDENTIFIER] = get_cmd_bool_or_default(value, TRUE_STRING);
+        }
+
+        for (const auto& map_element : configuration_map) {
+            LOG_DEV_VERBOSE(vformat("Value for commandline argument: %s -> %s", map_element.key, map_element.value))
         }
     }
 }

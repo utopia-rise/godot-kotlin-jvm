@@ -41,9 +41,10 @@ void GDKotlin::fetchJvmConfiguration(JvmConfiguration& jvm_configuration) {
 
         // The function is going to mutate the provided configuration with the valid values found in the file.
         // If some of the values parsed in the file are invalid, it will return true;
+        LOG_VERBOSE("Parsing JSON configuration file...")
         invalid_file_content = JvmConfiguration::parse_configuration_json(content, jvm_configuration);
         if (invalid_file_content) {
-            LOG_WARNING("Configuration file is malformed. One or several settings won't be applied.");
+            LOG_WARNING("Configuration file is malformed. One or several settings might not be applied.");
         }
     } else {
         // No need for a warning, it's most likely the first time the project is run.
@@ -62,7 +63,9 @@ void GDKotlin::fetchJvmConfiguration(JvmConfiguration& jvm_configuration) {
 #endif
 
     HashMap<String, Variant> cmd_argument_map;
+    LOG_VERBOSE("Parsing commandline arguments...")
     JvmConfiguration::parse_command_line(OS::get_singleton()->get_cmdline_args(), cmd_argument_map);
+    LOG_VERBOSE("Creating final JVM configuration...")
     JvmConfiguration::merge_with_command_line(jvm_configuration, cmd_argument_map);
     JvmConfiguration::sanitize_and_log_configuration(jvm_configuration);
 }
