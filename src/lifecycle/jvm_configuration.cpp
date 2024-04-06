@@ -211,7 +211,7 @@ void JvmConfiguration::parse_command_line(const List<String>& args, HashMap<Stri
             } else if (value == ART_STRING) {
                 configuration_map[VM_TYPE_CMD_IDENTIFIER] = jni::Jvm::ART;
             } else {
-                LOG_WARNING("Wrong JVM type in command line arguments. It will be ignored");
+                LOG_WARNING(vformat("Wrong JVM type in command line arguments: %s. It will be ignored", value));
             }
         } else if (identifier == DEBUG_PORT_CMD_IDENTIFIER) {
             uint16_t port = -1;
