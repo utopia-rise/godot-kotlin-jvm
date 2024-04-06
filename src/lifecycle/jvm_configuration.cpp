@@ -307,26 +307,26 @@ void JvmConfiguration::sanitize_and_log_configuration(JvmConfiguration& config) 
 #ifdef __ANDROID__
     if (config.vm_type == jni::Jvm::Type::NONE) {
         config.vm_type = jni::Jvm::Type::ART;
-        LOG_INFO("You are running on Android. Switching VM mode to ART");
+        LOG_INFO("You are running on Android. VM set to ART");
     } else if (config.vm_type != jni::Jvm::Type::ART) {
         config.vm_type = jni::Jvm::Type::ART;
-        LOG_WARNING("You are running on Android. Switching VM mode to ART");
+        LOG_WARNING("You are running on Android. Switching VM to ART");
     }
 #elif IOS_ENABLED
     if (config.vm_type == jni::Jvm::Type::NONE) {
         config.vm_type = jni::Jvm::Type::GRAAL_NATIVE_IMAGE;
-        LOG_INFO("You are running on iOS. Switching VM mode to Graal native_image");
+        LOG_INFO("You are running on iOS. VM set to Graal native_image");
     } else if (config.vm_type != jni::Jvm::Type::GRAAL_NATIVE_IMAGE) {
         config.vm_type = jni::Jvm::Type::GRAAL_NATIVE_IMAGE;
-        LOG_WARNING("You are running on iOS. Switching VM mode to Graal native_image");
+        LOG_WARNING("You are running on iOS. Switching VM to Graal native_image");
     }
 #else
     if (config.vm_type == jni::Jvm::Type::NONE) {
         config.vm_type = jni::Jvm::Type::JVM;
-        LOG_INFO("You are running on iOS. Switching VM mode to JVM");
+        LOG_INFO("You are running on desktop. VM set to JVM");
     } else if (config.vm_type == jni::Jvm::Type::ART) {
         config.vm_type = jni::Jvm::Type::JVM;
-        LOG_WARNING("You can't run ART on desktop. Switching VM mode to JVM");
+        LOG_WARNING("You can't run ART on desktop. Switching VM to JVM");
     }
 #endif
 
