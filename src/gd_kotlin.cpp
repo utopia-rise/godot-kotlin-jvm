@@ -110,6 +110,10 @@ void GDKotlin::init() {
     if (configuration.vm_type == jni::Jvm::GRAAL_NATIVE_IMAGE) { _check_and_copy_jar(LIB_GRAAL_VM_RELATIVE_PATH); }
 #endif
 
+    if (!Engine::get_singleton()->is_editor_hint()) {
+        args.option(configuration.jvm_args.utf8());
+    }
+
     jni::Jvm::init(args, configuration.vm_type);
     LOG_INFO("Starting JVM ...");
 

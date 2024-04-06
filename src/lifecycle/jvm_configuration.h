@@ -7,12 +7,14 @@
 static constexpr const char* VM_TYPE_JSON_IDENTIFIER {"vm_type"};
 static constexpr const char* DEBUG_PORT_JSON_IDENTIFIER {"debug-port"};
 static constexpr const char* DEBUG_ADDRESS_JSON_IDENTIFIER {"debug_address"};
-static constexpr const char* WAIT_FOR_DEBUGGER_JSON_IDENTIFIER {"wait_for_debugger"};
 static constexpr const char* JMX_PORT_JSON_IDENTIFIER {"jmx_port"};
+static constexpr const char* WAIT_FOR_DEBUGGER_JSON_IDENTIFIER {"wait_for_debugger"};
 static constexpr const char* MAX_STRING_SIZE_JSON_IDENTIFIER {"max_string_size"};
 static constexpr const char* FORCE_GC_JSON_IDENTIFIER {"force_gc"};
 static constexpr const char* DISABLE_GC_JSON_IDENTIFIER {"disable_gc"};
 static constexpr const char* DISABLE_LEAK_WARNING_JSON_IDENTIFIER {"disable_closing_leaks_warning"};
+static constexpr const char* JVM_ARGUMENTS_JSON_IDENTIFIER {"jvm_args"};
+
 
 // COMMAND LINE IDENTIFIER
 static constexpr const char* VM_TYPE_CMD_IDENTIFIER {"--java-vm-type"};
@@ -42,8 +44,8 @@ struct JvmConfiguration {
 
     int64_t jvm_debug_port;
     String jvm_debug_address;
-    int64_t jvm_jmx_port;
     bool wait_for_debugger;
+    int64_t jvm_jmx_port;
 
     // 0 means "auto". The module will let the LongStringQueue::max_string_size as it is.
     uint16_t max_string_size;
@@ -52,6 +54,8 @@ struct JvmConfiguration {
     bool disable_gc;
 
     bool disable_leak_warning_on_close;
+
+    String jvm_args;
 
     JvmConfiguration();
     ~JvmConfiguration() = default;

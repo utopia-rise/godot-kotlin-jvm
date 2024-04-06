@@ -7,6 +7,7 @@ JvmConfiguration::JvmConfiguration() :
   jvm_debug_port {-1},
   jvm_debug_address {""},
   jvm_jmx_port {-1},
+  jvm_args {""},
   wait_for_debugger {false},
   max_string_size {0},
   force_gc {false},
@@ -111,7 +112,10 @@ bool JvmConfiguration::parse_configuration_json(const String& json_string, JvmCo
             is_invalid = true;
             LOG_WARNING(vformat("Invalid Disable Leak Warning value in configuration file: %s. It will be ignored", boolean));
         }
+    } else if (json_dict.has(JVM_ARGUMENTS_JSON_IDENTIFIER)) {
+        json_config.jvm_args = json_dict[JVM_ARGUMENTS_JSON_IDENTIFIER];
     }
+
     return is_invalid;
 }
 
@@ -149,8 +153,10 @@ String JvmConfiguration::export_configuration_to_json(const JvmConfiguration& co
     json[MAX_STRING_SIZE_JSON_IDENTIFIER] = configuration.max_string_size;
 
     json[FORCE_GC_JSON_IDENTIFIER] = configuration.force_gc;
-    json[DISABLE_GC_JSON_IDENTIFIER] = !configuration.disable_gc;
-    json[DISABLE_LEAK_WARNING_JSON_IDENTIFIER] = !configuration.disable_leak_warning_on_close;
+    json[DISABLE_GC_JSON_IDENTIFIER] = configuration.disable_gc;
+    json[DISABLE_LEAK_WARNING_JSON_IDENTIFIER] = configuration.disable_leak_warning_on_close;
+    json[DISABLE_LEAK_WARNING_JSON_IDENTIFIER] = configuration.disable_leak_warning_on_close;
+    json[JVM_ARGUMENTS_JSON_IDENTIFIER] = configuration.jvm_args;
 
     return Variant(json).to_json_string();
 }
@@ -295,6 +301,10 @@ void JvmConfiguration::sanitize_and_log_configuration(JvmConfiguration& config) 
     }
 
     if (config.disable_leak_warning_on_close) { LOG_WARNING("You won't be notified if you Kotlin code has leaks"); }
+
+    if (!config.jvm_args.is_empty()) {
+        LOG_WARNING(vformat("Custom JVM args are provided, be sure they are valid: %s", config.jvm_args));
+    }
 
 #ifdef __ANDROID__
     if (config.vm_type == jni::Jvm::Type::NONE) {
