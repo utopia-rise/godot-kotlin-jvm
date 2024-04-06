@@ -307,7 +307,7 @@ void JvmConfiguration::sanitize_and_log_configuration(JvmConfiguration& config) 
 #ifdef __ANDROID__
     if (config.vm_type == jni::Jvm::Type::NONE) {
         config.vm_type = jni::Jvm::Type::ART;
-        LOG_INFO("You are running on Android. VM set to ART");
+        LOG_INFO("You are running on Android. VM automatically set to ART");
     } else if (config.vm_type != jni::Jvm::Type::ART) {
         config.vm_type = jni::Jvm::Type::ART;
         LOG_WARNING("You are running on Android. Switching VM to ART");
@@ -315,7 +315,7 @@ void JvmConfiguration::sanitize_and_log_configuration(JvmConfiguration& config) 
 #elif IOS_ENABLED
     if (config.vm_type == jni::Jvm::Type::NONE) {
         config.vm_type = jni::Jvm::Type::GRAAL_NATIVE_IMAGE;
-        LOG_INFO("You are running on iOS. VM set to Graal native_image");
+        LOG_INFO("You are running on iOS. VM automatically set to Graal native_image");
     } else if (config.vm_type != jni::Jvm::Type::GRAAL_NATIVE_IMAGE) {
         config.vm_type = jni::Jvm::Type::GRAAL_NATIVE_IMAGE;
         LOG_WARNING("You are running on iOS. Switching VM to Graal native_image");
@@ -323,27 +323,26 @@ void JvmConfiguration::sanitize_and_log_configuration(JvmConfiguration& config) 
 #else
     if (config.vm_type == jni::Jvm::Type::NONE) {
         config.vm_type = jni::Jvm::Type::JVM;
-        LOG_INFO("You are running on desktop. VM set to JVM");
+        LOG_INFO("You are running on desktop. VM automatically set to JVM");
     } else if (config.vm_type == jni::Jvm::Type::ART) {
         config.vm_type = jni::Jvm::Type::JVM;
         LOG_WARNING("You can't run ART on desktop. Switching VM to JVM");
     }
 #endif
-
-#ifdef DEBUG_ENABLED
-    switch (config.vm_type) {
-        case jni::Jvm::JVM:
-            LOG_INFO(vformat("Using jvm type: %s", JVM_STRING));
-            break;
-        case jni::Jvm::GRAAL_NATIVE_IMAGE:
-            LOG_INFO(vformat("Using jvm type: %s", GRAAL_NATIVE_IMAGE_STRING));
-            break;
-        case jni::Jvm::ART:
-            LOG_INFO(vformat("Using jvm type: %s", ART_STRING));
-            break;
-        case jni::Jvm::NONE:
-            // Should never happen.
-            break;
+    else {
+        switch (config.vm_type) {
+            case jni::Jvm::JVM:
+                LOG_INFO(vformat("VM set to %s", JVM_STRING));
+                break;
+            case jni::Jvm::GRAAL_NATIVE_IMAGE:
+                LOG_INFO(vformat("VM set to %s", GRAAL_NATIVE_IMAGE_STRING));
+                break;
+            case jni::Jvm::ART:
+                LOG_INFO(vformat("VM set to %s", ART_STRING));
+                break;
+            case jni::Jvm::NONE:
+                // Should never happen.
+                break;
+        }
     }
-#endif
 }
