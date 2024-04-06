@@ -22,7 +22,7 @@ bool JvmConfiguration::parse_configuration_json(const String& json_string, JvmCo
 
     if (error != OK || result.get_type() != Variant::DICTIONARY) {
         LOG_ERROR("Error parsing Godot Kotlin configuration file! Falling back to default configuration");
-        return false;
+        return true;
     }
 
     Dictionary json_dict = result;
