@@ -46,7 +46,7 @@ bool JvmConfiguration::parse_configuration_json(const String& json_string, JvmCo
     if (json_dict.has(DEBUG_PORT_JSON_IDENTIFIER)) {
         int32_t port = json_dict[DEBUG_PORT_JSON_IDENTIFIER];
         LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", DEBUG_PORT_JSON_IDENTIFIER, port));
-        if (port >= 0 && port <= 65535) {
+        if (port >= -1 && port <= 65535) {
             json_config.jvm_debug_port = port;
         } else {
             is_invalid = true;
@@ -57,7 +57,7 @@ bool JvmConfiguration::parse_configuration_json(const String& json_string, JvmCo
     if (json_dict.has(DEBUG_ADDRESS_JSON_IDENTIFIER)) {
         String address = json_dict[DEBUG_ADDRESS_JSON_IDENTIFIER];
         LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", DEBUG_ADDRESS_JSON_IDENTIFIER, address));
-        if (address.is_valid_ip_address()) {
+        if (address.is_valid_ip_address() || address.is_empty()) {
             json_config.jvm_debug_address = address;
         } else {
             is_invalid = true;
@@ -81,7 +81,7 @@ bool JvmConfiguration::parse_configuration_json(const String& json_string, JvmCo
     if (json_dict.has(JMX_PORT_JSON_IDENTIFIER)) {
         int32_t port = json_dict[JMX_PORT_JSON_IDENTIFIER];
         LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", JMX_PORT_JSON_IDENTIFIER, port));
-        if (port >= 0 && port <= 65535) {
+        if (port >= -1 && port <= 65535) {
             json_config.jvm_jmx_port = port;
         } else {
             is_invalid = true;
@@ -179,24 +179,21 @@ String JvmConfiguration::export_configuration_to_json(const JvmConfiguration& co
     }
     json[VM_TYPE_JSON_IDENTIFIER] = vm_type_value;
 
-    if (configuration.jvm_debug_port >= 0) { json[DEBUG_PORT_JSON_IDENTIFIER] = configuration.jvm_debug_port; }
-
-    if (!configuration.jvm_debug_address.is_empty()) {
-        json[DEBUG_ADDRESS_JSON_IDENTIFIER] = configuration.jvm_debug_address;
-    }
-
+    json[DEBUG_PORT_JSON_IDENTIFIER] = configuration.jvm_debug_port;
+    json[DEBUG_ADDRESS_JSON_IDENTIFIER] = configuration.jvm_debug_address;
     json[WAIT_FOR_DEBUGGER_JSON_IDENTIFIER] = configuration.wait_for_debugger;
 
-    if (configuration.jvm_jmx_port >= 0) { json[JMX_PORT_JSON_IDENTIFIER] = configuration.jvm_jmx_port; }
+    json[JMX_PORT_JSON_IDENTIFIER] = configuration.jvm_jmx_port;
 
     json[MAX_STRING_SIZE_JSON_IDENTIFIER] = configuration.max_string_size;
 
     json[FORCE_GC_JSON_IDENTIFIER] = configuration.force_gc;
     json[DISABLE_GC_JSON_IDENTIFIER] = configuration.disable_gc;
     json[DISABLE_LEAK_WARNING_JSON_IDENTIFIER] = configuration.disable_leak_warning_on_close;
+
     json[JVM_ARGUMENTS_JSON_IDENTIFIER] = configuration.jvm_args;
 
-    return Variant(json).to_json_string();
+    return JSON::stringify(json, "    ", true, false);
 }
 
 Error split_argument(const String& cmd_arg, String& identifier, String& value) {
