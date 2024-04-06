@@ -143,9 +143,8 @@ void GDKotlin::init() {
 
     JniLifecycleManager::initialize_jni_classes(env);
 
-    int max_string_size {configuration.max_string_size};
-    if (max_string_size != LongStringQueue::max_string_size) {
-        LongStringQueue::get_instance().set_string_max_size(env, max_string_size);
+    if (configuration.max_string_size != 0) {
+        LongStringQueue::get_instance().set_string_max_size(env, configuration.max_string_size);
     }
 
     if (!configuration.disable_gc) {
