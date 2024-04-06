@@ -284,8 +284,8 @@ void JvmConfiguration::sanitize_and_log_configuration(JvmConfiguration& config) 
 
     if (config.max_string_size != 0) {
         LOG_WARNING(vformat(
-          "Warning ! The max string size was changed to %s which modify the size of the buffer,"
-          " this is not a recommended practice",
+          "The max string size was changed to %s which can modify the size of the shared buffer. "
+          "Be aware that it might impact performance and memory usage.",
           config.max_string_size
         ));
     }
