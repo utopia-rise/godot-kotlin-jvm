@@ -43,13 +43,16 @@ void GDKotlin::fetchJvmConfiguration(JvmConfiguration& jvm_configuration) {
         // If some of the values parsed in the file are invalid, it will return true;
         invalid_file_content = JvmConfiguration::parse_configuration_json(content, jvm_configuration);
         if (invalid_file_content) {
-            LOG_WARNING("Configuration file is malformed. A new one will be created. Edit again if necessary.");
+            LOG_WARNING("Configuration file is malformed. One or several settings won't be applied.");
         }
+    } else {
+        // No need for a warning, it's most likely the first time the project is run.
+        LOG_INFO("No JVM configuration file found. Default settings for your platform will be used.");
     }
 
 #ifdef TOOLS_ENABLED
     // If configuration is missing or malformed, then we write a new one.
-    // Valid values from the json files should  be in the instance already, so they won't be lost when writing to disk.
+    // Valid values from the json file should be in the instance already, so they won't be lost when writing to disk.
     if (invalid_file_content || !configuration_file_exist) {
         Ref<FileAccess> file_access = FileAccess::open(jvm_configuration_path, FileAccess::WRITE);
         String json = JvmConfiguration::export_configuration_to_json(jvm_configuration);
