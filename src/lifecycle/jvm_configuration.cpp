@@ -294,16 +294,14 @@ void JvmConfiguration::sanitize_and_log_configuration(JvmConfiguration& config) 
     if (config.force_gc) {
         config.disable_gc = false;
         LOG_WARNING("GC is started in force mode, this should only be done for debugging purpose");
+    } else if (config.disable_gc) {
+        LOG_WARNING("GC thread was disable. this should only be used for debugging purpose");
     }
 
-    if (config.disable_gc) {
-        LOG_WARNING("GC thread was disable. --jvm-disable-gc should only be used for debugging purpose");
-    }
-
-    if (config.disable_leak_warning_on_close) { LOG_WARNING("You won't be notified if you Kotlin code has leaks"); }
+    if (config.disable_leak_warning_on_close) { LOG_WARNING("You won't be notified if your Kotlin code got instances leaking"); }
 
     if (!config.jvm_args.is_empty()) {
-        LOG_WARNING(vformat("Custom JVM args are provided, be sure they are valid: %s", config.jvm_args));
+        LOG_WARNING(vformat("Custom JVM arguments are provided, be sure they are valid: %s", config.jvm_args));
     }
 
 #ifdef __ANDROID__
