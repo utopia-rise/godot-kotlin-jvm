@@ -1,9 +1,9 @@
 #include "gd_kotlin.h"
 
 #include "jni/class_loader.h"
-#include "jni_lifecycle_manager.h"
-#include "jvm_wrapper/memory/transfer_context.h"
 #include "jvm_wrapper/memory/memory_manager.h"
+#include "jvm_wrapper/memory/transfer_context.h"
+#include "lifecycle/jni_lifecycle_manager.h"
 
 #include <core/config/project_settings.h>
 #include <core/io/resource_loader.h>
@@ -22,14 +22,51 @@
 
 #endif
 
-static constexpr const char* gd_kotlin_configuration_path {"res://godot_kotlin_configuration.json"};
+static constexpr const char* jvm_configuration_path {"res://godot_kotlin_configuration.json"};
+
+GDKotlin::GDKotlin() : bootstrap(nullptr), is_gc_started(false), configuration({}), is_initialized(false) {}
 
 GDKotlin& GDKotlin::get_instance() {
     static GDKotlin instance;
     return instance;
 }
 
+void GDKotlin::fetchJvmConfiguration(JvmConfiguration& jvm_configuration) {
+    bool invalid_file_content = false;
+    bool configuration_file_exist = FileAccess::exists(jvm_configuration_path);
+
+    if (configuration_file_exist) {
+        Ref<FileAccess> file_access = FileAccess::open(jvm_configuration_path, FileAccess::READ);
+        String content = file_access->get_as_utf8_string();
+
+        // The function is going to mutate the provided configuration with the valid values found in the file.
+        // If some of the value parsed in the files are invalid, it will return true;
+        invalid_file_content = JvmConfiguration::parse_configuration_json(content, jvm_configuration);
+        if (invalid_file_content) {
+            LOG_WARNING("Configuration file is malformed.A new one will be created. Edit again if necessary.");
+        }
+    }
+
+#ifdef TOOLS_ENABLED
+    // If configuration is missing or malformed, then we write a new one.
+    // Valid values from the json files should  be in the instance already, so they won't be lost when writing to disk.
+    if (invalid_file_content || !configuration_file_exist) {
+        Ref<FileAccess> file_access = FileAccess::open(jvm_configuration_path, FileAccess::WRITE);
+        String json = JvmConfiguration::export_configuration_to_json(jvm_configuration);
+        LOG_INFO(vformat("Writing a new configuration file to disk at %s", jvm_configuration_path));
+        file_access->store_string(json);
+    }
+#endif
+
+    HashMap<String, Variant> cmd_argument_map;
+    JvmConfiguration::parse_command_line(OS::get_singleton()->get_cmdline_args(), cmd_argument_map);
+    JvmConfiguration::merge_with_command_line(jvm_configuration, cmd_argument_map);
+    JvmConfiguration::sanitize_and_log_configuration(jvm_configuration);
+}
+
 void GDKotlin::init() {
+    fetchJvmConfiguration(configuration);
+
     if (!check_configuration()) { return; }
 
     jni::InitArgs args;
@@ -40,104 +77,21 @@ void GDKotlin::init() {
     args.option("-Xcheck:jni");
 #endif
 
-    String jvm_type_argument {
-#ifdef __ANDROID__
-      "art"
-#elif defined IOS_ENABLED
-      GdKotlinConfiguration::graal_native_image_string_identifier
-#else
-      ""
-#endif
-    };
+    String jvm_debug_port = String::num_int64(configuration.jvm_debug_port);
+    String jvm_debug_address = configuration.jvm_debug_address;
+    String jvm_jmx_port = String::num_int64(configuration.jvm_jmx_port);
 
-    // Initialize remote jvm debug if one of jvm debug arguments is encountered.
-    // Initialize if jvm GC should be forced
-    String jvm_debug_port;
-    String jvm_debug_address;
-    String jvm_jmx_port;
-    bool is_gc_force_mode {false};
-    bool is_gc_activated {true};
-    bool is_waiting_for_debugger {true};
-    bool should_display_leaked_jvm_instances_on_close {true};
-    const List<String>& cmdline_args {OS::get_singleton()->get_cmdline_args()};
-    for (int i = 0; i < cmdline_args.size(); ++i) {
-        const String cmd_arg {cmdline_args[i]};
-        if (cmd_arg.find("--dump-extension-api") >= 0) {
-            return;
-        } else if (cmd_arg.find("--java-vm-type") >= 0) {
-            _split_jvm_debug_argument(cmd_arg, jvm_type_argument);
-#ifdef __ANDROID__
-            LOG_WARNING("You're running android, will use ART.");
-#elif IOS_ENABLED
-            LOG_WARNING("You're running ios, will use graal native-image.");
-#endif
-        } else if (cmd_arg.find("--jvm-debug-port") >= 0) {
-            if (_split_jvm_debug_argument(cmd_arg, jvm_debug_port) == OK) {
-                if (jvm_debug_port.is_empty()) { jvm_debug_port = "5005"; }
-            } else {
-                break;
-            }
-        } else if (cmd_arg.find("--jvm-debug-address") >= 0) {
-            if (_split_jvm_debug_argument(cmd_arg, jvm_debug_address) == OK) {
-                if (jvm_debug_address.is_empty()) { jvm_debug_address = "*"; }
-            } else {
-                break;
-            }
-        } else if (cmd_arg.find("--wait-for-debugger") >= 0) {
-            String is_waiting_for_debugger_as_string;
-            if (_split_jvm_debug_argument(cmd_arg, is_waiting_for_debugger_as_string) == OK) {
-                is_waiting_for_debugger = is_waiting_for_debugger_as_string == "true";
-            } else {
-                break;
-            }
-        } else if (cmd_arg.find("--jvm-jmx-port") >= 0) {
-            if (_split_jvm_debug_argument(cmd_arg, jvm_jmx_port) == OK) {
-                if (jvm_jmx_port.is_empty()) { jvm_jmx_port = "9010"; }
-            }
-        } else if (cmd_arg.find("--jvm-to-engine-max-string-size") >= 0) {
-            String result;
-            if (_split_jvm_debug_argument(cmd_arg, result) == OK) {
-                configuration.set_max_string_size(result.to_int());
-                // https://godot-kotl.in/en/latest/advanced/commandline-args/
-                LOG_WARNING(vformat("Warning ! The max string size was changed to %s which modify the size of the buffer, this is not a recommended practice", result)
-                );
-            }
-        } else if (cmd_arg == "--jvm-force-gc") {
-            is_gc_force_mode = true;
-            // TODO: Link to documentation
-            LOG_WARNING("GC is started in force mode, this should only be done for debugging purpose");
-        } else if (cmd_arg == "--jvm-disable-gc") {
-            is_gc_activated = false;
-            // TODO: Link to documentation
-            LOG_WARNING("GC thread was disable. --jvm-disable-gc should only be used for debugging purpose");
-        } else if (cmd_arg == "--jvm-disable-closing-leaks-warning") {
-            LOG_WARNING("JVM leaked instances will not be displayed in console (see "
-                        "--jvm-disable-closing-leaks-warning)");
-            should_display_leaked_jvm_instances_on_close = false;
-        }
+    String suspend;
+    if (configuration.wait_for_debugger) {
+        suspend = "y";
+    } else {
+        suspend = "n";
     }
 
-    if (!jvm_debug_port.is_empty() || !jvm_debug_address.is_empty()) {
-        if (jvm_debug_address.is_empty()) {
-            jvm_debug_address = "*";
-        } else if (jvm_debug_port.is_empty()) {
-            jvm_debug_port = "5005";
-        }
+    String debug_command {"-agentlib:jdwp=transport=dt_socket,server=y,suspend=" + suspend + ",address=" + jvm_debug_address + ":" + jvm_debug_port};
+    args.option(debug_command.utf8());
 
-        String suspend;
-        if (is_waiting_for_debugger) {
-            suspend = "y";
-        } else {
-            suspend = "n";
-        }
-
-        String debug_command {
-          "-agentlib:jdwp=transport=dt_socket,server=y,suspend=" + suspend + ",address=" + jvm_debug_address + ":" + jvm_debug_port
-        };
-        args.option(debug_command.utf8());
-    }
-
-    if (!jvm_jmx_port.is_empty()) {
+    if (configuration.jvm_jmx_port >= 0) {
         String port_command {"-Dcom.sun.management.jmxremote.port=" + jvm_jmx_port};
         String rmi_port {"-Dcom.sun.management.jmxremote.rmi.port=" + jvm_jmx_port};
         args.option("-Djava.rmi.server.hostname=127.0.0.1");
@@ -151,51 +105,26 @@ void GDKotlin::init() {
         LOG_VERBOSE(vformat("Started JMX on port: %s", jvm_jmx_port));
 #endif
     }
-#ifdef IOS_ENABLED
-    configuration.set_vm_type(jni::Jvm::GRAAL_NATIVE_IMAGE);
-#elif !defined(__ANDROID__)
-    if (jvm_type_argument == GdKotlinConfiguration::jvm_string_identifier) {
-        configuration.set_vm_type(jni::Jvm::JVM);
-    } else if (jvm_type_argument == GdKotlinConfiguration::graal_native_image_string_identifier) {
-        configuration.set_vm_type(jni::Jvm::GRAAL_NATIVE_IMAGE);
-    }
 
-    if (configuration.get_vm_type() == jni::Jvm::GRAAL_NATIVE_IMAGE) {
-        _check_and_copy_jar(LIB_GRAAL_VM_RELATIVE_PATH);
-    }
-#else
-    configuration.set_vm_type(jni::Jvm::ART);
+#ifndef __ANDROID__
+    if (configuration.vm_type == jni::Jvm::GRAAL_NATIVE_IMAGE) { _check_and_copy_jar(LIB_GRAAL_VM_RELATIVE_PATH); }
 #endif
 
-    jni::Jvm::init(args, configuration.get_vm_type());
+    jni::Jvm::init(args, configuration.vm_type);
     LOG_INFO("Starting JVM ...");
-
-#ifdef DEBUG_ENABLED
-    switch (configuration.get_vm_type()) {
-        case jni::Jvm::JVM:
-            LOG_INFO(vformat("Using jvm type: %s", GdKotlinConfiguration::jvm_string_identifier));
-            break;
-        case jni::Jvm::GRAAL_NATIVE_IMAGE:
-            LOG_INFO(vformat("Using jvm type: %s", GdKotlinConfiguration::graal_native_image_string_identifier));
-            break;
-        case jni::Jvm::ART:
-            LOG_INFO(vformat("Using jvm type: %s", GdKotlinConfiguration::art_string_identifier));
-            break;
-    }
-#endif
 
     auto project_settings = ProjectSettings::get_singleton();
 
     jni::Env env {jni::Jvm::current_env()};
 
-    jni::JObject class_loader {_prepare_class_loader(env, configuration.get_vm_type())};
+    jni::JObject class_loader {_prepare_class_loader(env, configuration.vm_type)};
 
 #ifdef __ANDROID__
     String main_jar_file {"main-dex.jar"};
     _check_and_copy_jar(main_jar_file);
 #else
     String main_jar_file;
-    if (configuration.get_vm_type() == jni::Jvm::GRAAL_NATIVE_IMAGE) {
+    if (configuration.vm_type == jni::Jvm::GRAAL_NATIVE_IMAGE) {
         main_jar_file = "graal_usercode";
     } else {
         main_jar_file = "main.jar";
@@ -205,28 +134,26 @@ void GDKotlin::init() {
 
     JniLifecycleManager::initialize_jni_classes(env);
 
-    int max_string_size {configuration.get_max_string_size()};
+    int max_string_size {configuration.max_string_size};
     if (max_string_size != LongStringQueue::max_string_size) {
         LongStringQueue::get_instance().set_string_max_size(env, max_string_size);
     }
 
-    if (is_gc_activated) {
-        if (is_gc_force_mode) {
+    if (!configuration.disable_gc) {
+        if (configuration.force_gc) {
 #ifdef DEBUG_ENABLED
             LOG_VERBOSE("Starting GC thread with force mode.");
 #endif
         }
 
-        MemoryManager::get_instance().start(env, is_gc_force_mode);
+        MemoryManager::get_instance().start(env, configuration.force_gc);
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE("GC thread started.");
 #endif
         is_gc_started = true;
     }
 
-    if (!should_display_leaked_jvm_instances_on_close) {
-        MemoryManager::get_instance().setDisplayLeaks(env, false);
-    }
+    if (configuration.disable_leak_warning_on_close) { MemoryManager::get_instance().setDisplayLeaks(env, false); }
 
     bootstrap = Bootstrap::create_instance(env);
 
@@ -304,20 +231,8 @@ void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
     TypeManager::get_instance().create_and_update_scripts(classes);
 }
 
-const GdKotlinConfiguration& GDKotlin::get_configuration() {
+const JvmConfiguration& GDKotlin::get_configuration() {
     return configuration;
-}
-
-Error GDKotlin::_split_jvm_debug_argument(const String& cmd_arg, String& result) {
-    Vector<String> jvm_debug_split {cmd_arg.split("=")};
-
-    if (jvm_debug_split.size() == 2) {
-        result = jvm_debug_split[1];
-    } else if (jvm_debug_split.size() != 1) {
-        print_error(vformat("Unrecognized --jvm-debug arg pattern: %s", cmd_arg));
-        return FAILED;
-    }
-    return OK;
 }
 
 void GDKotlin::_check_and_copy_jar(const String& jar_name) {
@@ -377,12 +292,6 @@ jni::JObject GDKotlin::_prepare_class_loader(jni::Env& p_env, jni::Jvm::Type typ
     return class_loader;
 }
 
-GDKotlin::GDKotlin() :
-  bootstrap(nullptr),
-  is_gc_started(false),
-  configuration(GdKotlinConfiguration::load_gd_kotlin_configuration_or_default(gd_kotlin_configuration_path)),
-  is_initialized(false) {}
-
 bool GDKotlin::check_configuration() {
     bool has_configuration_error = false;
     if (Engine::get_singleton()->is_editor_hint() && OS::get_singleton()->get_environment("JAVA_HOME").is_empty()) {
@@ -396,17 +305,15 @@ bool GDKotlin::check_configuration() {
 #ifdef MACOS_ENABLED
         OS::get_singleton()->alert(
           "The environment variable JAVA_HOME is not found. If you launched the editor "
-          "through a double click on Godot.app, also make sure that JAVA_HOME is set through launchctl: `launchctl setenv JAVA_HOME </path/to/jdk>`",
+          "through a double click on Godot.app, also make sure that JAVA_HOME is set through launchctl: `launchctl "
+          "setenv JAVA_HOME </path/to/jdk>`",
           ""
         );
 #else
-        OS::get_singleton()->alert(
-          "The environment variable JAVA_HOME is not found.",
-          "JAVA_HOME not defined. Godot-JVM module won't be loaded!"
-        );
+        OS::get_singleton()->alert("The environment variable JAVA_HOME is not found.", "JAVA_HOME not defined. Godot-JVM module won't be loaded!");
 #endif
 
-        exit(1); // TODO: remove once we refactor gd_kotlin and move init checks
+        exit(1);// TODO: remove once we refactor gd_kotlin and move init checks
         has_configuration_error = true;
     }
     return !has_configuration_error;

@@ -1,8 +1,8 @@
 #ifndef GODOT_JVM_JVM_SINGLETON_WRAPPER_H
 #define GODOT_JVM_JVM_SINGLETON_WRAPPER_H
 
-#include "jni_lifecycle_manager.h"
 #include "jvm_instance_wrapper.h"
+#include "lifecycle/jni_lifecycle_manager.h"
 
 #define JVM_SINGLETON_WRAPPER(NAME, FQNAME)               \
     inline constexpr char NAME##QualifiedName[] = FQNAME; \

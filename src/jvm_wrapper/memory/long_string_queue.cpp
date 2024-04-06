@@ -3,7 +3,7 @@
 #include "jni/class_loader.h"
 
 // If changed, remember to change also LongStringQueue::stringMaxSize on JVM side  and the StringTest.kt
-int LongStringQueue::max_string_size = 512;
+uint16_t LongStringQueue::max_string_size = 512;
 
 thread_local static List<String> string_queue;// NOLINT(cert-err58-cpp)
 
