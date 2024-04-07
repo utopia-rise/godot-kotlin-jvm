@@ -2,18 +2,6 @@
 
 #include "core/io/json.h"
 
-JvmConfiguration::JvmConfiguration() :
-  vm_type {jni::Jvm::Type::NONE},
-  jvm_debug_port {-1},
-  jvm_debug_address {""},
-  jvm_jmx_port {-1},
-  jvm_args {""},
-  wait_for_debugger {true},
-  max_string_size {0},
-  force_gc {false},
-  disable_gc {false},
-  disable_leak_warning_on_close {false} {}
-
 bool JvmConfiguration::parse_configuration_json(const String& json_string, JvmConfiguration& json_config) {
     bool is_invalid = false;
     JSON json;

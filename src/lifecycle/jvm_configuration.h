@@ -15,7 +15,6 @@ static constexpr const char* DISABLE_GC_JSON_IDENTIFIER {"disable_gc"};
 static constexpr const char* DISABLE_LEAK_WARNING_JSON_IDENTIFIER {"disable_closing_leaks_warning"};
 static constexpr const char* JVM_ARGUMENTS_JSON_IDENTIFIER {"jvm_args"};
 
-
 // COMMAND LINE IDENTIFIER
 static constexpr const char* VM_TYPE_CMD_IDENTIFIER {"--java-vm-type"};
 static constexpr const char* DEBUG_PORT_CMD_IDENTIFIER {"--jvm-debug-port"};
@@ -40,24 +39,24 @@ static constexpr const uint64_t DEFAULT_JVM_PORT {5005};
 static constexpr const char* DEFAULT_JVM_ADDRESS {"*"};
 
 struct JvmConfiguration {
-    jni::Jvm::Type vm_type;
+    jni::Jvm::Type vm_type {jni::Jvm::Type::NONE};
 
-    int32_t jvm_debug_port;
-    String jvm_debug_address;
-    bool wait_for_debugger;
-    int32_t jvm_jmx_port;
+    int32_t jvm_debug_port {-1};
+    String jvm_debug_address {""};
+    bool wait_for_debugger {true};
+    int32_t jvm_jmx_port {-1};
 
     // 0 means "auto". The module will let the LongStringQueue::max_string_size as it is.
-    int32_t max_string_size;
+    int32_t max_string_size {0};
 
-    bool force_gc;
-    bool disable_gc;
+    bool force_gc {false};
+    bool disable_gc {false};
 
-    bool disable_leak_warning_on_close;
+    bool disable_leak_warning_on_close {false};
 
-    String jvm_args;
+    String jvm_args {""};
 
-    JvmConfiguration();
+    JvmConfiguration() = default;
     ~JvmConfiguration() = default;
 
     static bool parse_configuration_json(const String& json_string, JvmConfiguration& json_config);
