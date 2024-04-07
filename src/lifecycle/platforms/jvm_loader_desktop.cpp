@@ -1,10 +1,9 @@
 #if defined WINDOWS_ENABLED || defined X11_ENABLED || defined MACOS_ENABLED
 
-#include "modules/kotlin_jvm/src/jni/jvm_loader.h"
-
-#include <core/config/project_settings.h>
-#include <core/os/os.h>
-#include <jni/jni_constants.h>
+#include "core/config/project_settings.h"
+#include "core/os/os.h"
+#include "jni/jni_constants.h"
+#include "lifecycle/jvm_loader.h"
 
 void* jni::JvmLoader::jvmLib {nullptr};
 

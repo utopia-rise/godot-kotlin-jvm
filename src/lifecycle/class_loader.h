@@ -1,7 +1,7 @@
 #ifndef GODOT_JVM_CLASS_LOADER_H
 #define GODOT_JVM_CLASS_LOADER_H
 
-#include "wrapper.h"
+#include "jni/wrapper.h"
 
 class ClassLoader {
 private:

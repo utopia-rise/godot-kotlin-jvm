@@ -1,7 +1,7 @@
 #ifndef GODOT_LOADER_INIT_ARGS_H
 #define GODOT_LOADER_INIT_ARGS_H
-#include <jni.h>
 
+#include <jni.h>
 #include <string>
 #include <vector>
 

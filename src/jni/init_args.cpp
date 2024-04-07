@@ -1,6 +1,4 @@
-#if defined WINDOWS_ENABLED || defined X11_ENABLED || defined MACOS_ENABLED || defined IOS_ENABLED
-
-#include "../init_args.h"
+#include "jni/init_args.h"
 
 namespace jni {
     void InitArgs::option(const char* option) {
@@ -13,5 +11,3 @@ namespace jni {
 
     InitArgs::InitArgs() : version(JNI_VERSION_1_8) {}
 }// namespace jni
-
-#endif

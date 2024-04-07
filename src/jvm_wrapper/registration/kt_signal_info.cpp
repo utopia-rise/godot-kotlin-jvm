@@ -1,6 +1,6 @@
 #include "kt_signal_info.h"
 
-#include "jni/class_loader.h"
+#include "lifecycle/class_loader.h"
 
 KtSignalInfo::KtSignalInfo(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanceWrapper(p_env, p_wrapped) {
 

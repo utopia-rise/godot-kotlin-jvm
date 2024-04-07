@@ -7,7 +7,7 @@
 #ifndef GODOT_LOADER_JVM_LOADER_H
 #define GODOT_LOADER_JVM_LOADER_H
 
-#include "jvm.h"
+#include "jni/jvm.h"
 
 #ifdef __linux__
 #define LIB_JVM_RELATIVE_PATH "lib/server/libjvm.so"

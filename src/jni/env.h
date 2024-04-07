@@ -1,5 +1,6 @@
 #ifndef GODOT_LOADER_ENV_H
 #define GODOT_LOADER_ENV_H
+
 #include "logging.h"
 #include "types.h"
 

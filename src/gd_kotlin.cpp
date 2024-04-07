@@ -1,9 +1,10 @@
 #include "gd_kotlin.h"
 
-#include "jni/class_loader.h"
 #include "jvm_wrapper/memory/memory_manager.h"
 #include "jvm_wrapper/memory/transfer_context.h"
+#include "lifecycle/class_loader.h"
 #include "lifecycle/jni_lifecycle_manager.h"
+#include "lifecycle/jvm_loader.h"
 
 #include <core/config/project_settings.h>
 #include <core/io/resource_loader.h>

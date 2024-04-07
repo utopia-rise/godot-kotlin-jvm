@@ -1,5 +1,6 @@
 #ifndef GODOT_LOADER_JVM_H
 #define GODOT_LOADER_JVM_H
+
 #include "env.h"
 #include "init_args.h"
 #include "jni.h"

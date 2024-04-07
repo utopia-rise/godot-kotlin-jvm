@@ -1,7 +1,3 @@
-//
-// Created by raniejade on 11/9/20.
-//
-
 #ifndef GODOT_JVM_LOCAL_FRAME_H
 #define GODOT_JVM_LOCAL_FRAME_H
 
