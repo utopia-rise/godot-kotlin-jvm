@@ -2,12 +2,18 @@
 
 #include "core/config/project_settings.h"
 #include "core/os/os.h"
-#include "jni/jni_constants.h"
+#include "lifecycle/jni_constants.h"
 #include "lifecycle/jvm_loader.h"
 
-void* jni::JvmLoader::jvmLib {nullptr};
+#include <cassert>
 
-void jni::JvmLoader::load_jvm_lib() {
+#ifndef NO_USE_STDLIB
+#include <locale>
+#endif
+
+void* JvmLoader::jvmLib {nullptr};
+
+void JvmLoader::load_jvm_lib() {
     String libPath {get_jvm_lib_path()};
 
     if (OS::get_singleton()->open_dynamic_library(libPath, jvmLib) != OK) {
@@ -22,13 +28,17 @@ void jni::JvmLoader::load_jvm_lib() {
     }
 }
 
-void jni::JvmLoader::close_jvm_lib() {
+void JvmLoader::close_jvm() {
+    jni::Jvm::destroy();
     if (OS::get_singleton()->close_dynamic_library(jvmLib) != OK) {
         LOG_ERROR("Failed to close the jvm dynamic library!");
     }
 }
 
-jni::CreateJavaVM jni::JvmLoader::get_create_jvm_function() {
+jni::CreateJavaVM JvmLoader::get_create_jvm_function() {
+#ifdef IOS_ENABLED
+    return &JNI_CreateJavaVM;
+#else
     if (jvmLib == nullptr) { load_jvm_lib(); }
     void* createJavaVMSymbolHandle;
     if (OS::get_singleton()->get_dynamic_library_symbol_handle(jvmLib, "JNI_CreateJavaVM", createJavaVMSymbolHandle) != OK) {
@@ -41,30 +51,16 @@ jni::CreateJavaVM jni::JvmLoader::get_create_jvm_function() {
 #endif
         exit(1);
     }
-    return reinterpret_cast<CreateJavaVM>(createJavaVMSymbolHandle);
-}
-
-jni::GetCreatedJavaVMs jni::JvmLoader::get_get_created_java_vm_function() {
-    if (jvmLib == nullptr) { load_jvm_lib(); }
-    void* getCreatedJavaVMsSymbolHandle;
-    if (OS::get_singleton()->get_dynamic_library_symbol_handle(jvmLib, "JNI_GetCreatedJavaVMs", getCreatedJavaVMsSymbolHandle) != OK) {
-        LOG_ERROR("Failed to get JNI_GetCreatedJavaVMs symbol handle");
-#ifdef DEBUG_ENABLED
-        OS::get_singleton()->alert(
-          "Failed to get JNI_GetCreatedJavaVMs symbol handle",
-          "Failure while creating jvm"
-        );
+    return reinterpret_cast<jni::CreateJavaVM>(createJavaVMSymbolHandle);
 #endif
-        exit(1);
-    }
-    return reinterpret_cast<GetCreatedJavaVMs>(getCreatedJavaVMsSymbolHandle);
 }
 
-String jni::JvmLoader::get_jvm_lib_path() {
+
+String JvmLoader::get_jvm_lib_path() {
     String embeddedJrePath {get_embedded_jre_path()};
     if (!FileAccess::exists(embeddedJrePath)) {
         // Cannot find graal usercode, so no JVM can be found, make crash.
-        if (Jvm::get_type() == Jvm::GRAAL_NATIVE_IMAGE) {
+        if (jni::Jvm::get_type() == jni::JvmType::GRAAL_NATIVE_IMAGE) {
 #ifdef DEBUG_ENABLED
             OS::get_singleton()->alert(
               "This usually happens when you define that your project should be executed using graalvm but did not successfully compile your project and thus usercode.(sh, dll, dylib) cannot be found.",
@@ -90,7 +86,7 @@ String jni::JvmLoader::get_jvm_lib_path() {
     return embeddedJrePath;
 }
 
-String jni::JvmLoader::get_path_to_locally_installed_jvm() {
+String JvmLoader::get_path_to_locally_installed_jvm() {
     String javaHome {OS::get_singleton()->get_environment("JAVA_HOME")};
 
     if (javaHome.is_empty()) {
@@ -130,9 +126,9 @@ String jni::JvmLoader::get_path_to_locally_installed_jvm() {
     return pathToLocallyInstalledJvmLib;
 }
 
-String jni::JvmLoader::get_embedded_jre_path() {
+String JvmLoader::get_embedded_jre_path() {
     String jre_path;
-    if (Jvm::get_type() == Jvm::GRAAL_NATIVE_IMAGE) {
+    if (jni::Jvm::get_type() == jni::JvmType::GRAAL_NATIVE_IMAGE) {
         String user_code_dir {
 #ifdef TOOLS_ENABLED
           "res://build/libs/"
@@ -167,3 +163,37 @@ String jni::JvmLoader::get_embedded_jre_path() {
 }
 
 #endif
+
+JavaVM* JvmLoader::create_jvm(const InitArgs& initArgs, jni::JvmType type) {
+    size_t nOptions {initArgs.options.size()};
+    auto* options = new JavaVMOption[nOptions];
+    JavaVMInitArgs args;
+    args.version = initArgs.version;
+    args.nOptions = nOptions;
+    args.options = options;
+
+    for (auto i = 0; i < nOptions; i++) {
+        args.options[i].optionString = (char*) initArgs.options[i].ptr();
+    }
+
+    JavaVM* java_vm {nullptr};
+    JNIEnv* jni_env {nullptr};
+
+#ifndef NO_USE_STDLIB
+    std::locale global;
+#endif
+
+    jint result {JvmLoader::get_create_jvm_function()(&java_vm, reinterpret_cast<void**>(&jni_env), &args)};
+
+    // Set std::local::global to value it was before creating JVM.
+    // See https://github.com/utopia-rise/godot-kotlin-jvm/issues/166
+    // and https://github.com/utopia-rise/godot-kotlin-jvm/issues/170
+#ifndef NO_USE_STDLIB
+    std::locale::global(global);
+#endif
+
+    delete[] options;
+    JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to create a new vm!");
+    jni::Jvm::initialize(java_vm, type, initArgs.version);
+    return java_vm;
+}

@@ -18,13 +18,13 @@ bool JvmConfiguration::parse_configuration_json(const String& json_string, JvmCo
         String value = json_dict[VM_TYPE_JSON_IDENTIFIER];
         LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", VM_TYPE_JSON_IDENTIFIER, value))
         if (value == AUTO_STRING) {
-            json_config.vm_type = jni::Jvm::NONE;
+            json_config.vm_type = jni::JvmType::NONE;
         } else if (value == JVM_STRING) {
-            json_config.vm_type = jni::Jvm::JVM;
+            json_config.vm_type = jni::JvmType::JVM;
         } else if (value == GRAAL_NATIVE_IMAGE_STRING) {
-            json_config.vm_type = jni::Jvm::GRAAL_NATIVE_IMAGE;
+            json_config.vm_type = jni::JvmType::GRAAL_NATIVE_IMAGE;
         } else if (value == ART_STRING) {
-            json_config.vm_type = jni::Jvm::ART;
+            json_config.vm_type = jni::JvmType::ART;
         } else {
             is_invalid = true;
             LOG_WARNING(vformat("Wrong JVM type in configuration file: %s. It will be ignored", value));
@@ -152,16 +152,16 @@ String JvmConfiguration::export_configuration_to_json(const JvmConfiguration& co
 
     String vm_type_value;
     switch (configuration.vm_type) {
-        case jni::Jvm::NONE:
+        case jni::JvmType::NONE:
             vm_type_value = AUTO_STRING;
             break;
-        case jni::Jvm::Type::JVM:
+        case jni::JvmType::JVM:
             vm_type_value = JVM_STRING;
             break;
-        case jni::Jvm::Type::GRAAL_NATIVE_IMAGE:
+        case jni::JvmType::GRAAL_NATIVE_IMAGE:
             vm_type_value = GRAAL_NATIVE_IMAGE_STRING;
             break;
-        case jni::Jvm::Type::ART:
+        case jni::JvmType::ART:
             vm_type_value = ART_STRING;
             break;
     }
@@ -226,13 +226,13 @@ void JvmConfiguration::parse_command_line(const List<String>& args, HashMap<Stri
 
         if (identifier == VM_TYPE_CMD_IDENTIFIER) {
             if (value == AUTO_STRING) {
-                configuration_map[VM_TYPE_CMD_IDENTIFIER] = jni::Jvm::NONE;
+                configuration_map[VM_TYPE_CMD_IDENTIFIER] = jni::JvmType::NONE;
             } else if (value == JVM_STRING) {
-                configuration_map[VM_TYPE_CMD_IDENTIFIER] = jni::Jvm::JVM;
+                configuration_map[VM_TYPE_CMD_IDENTIFIER] = jni::JvmType::JVM;
             } else if (value == GRAAL_NATIVE_IMAGE_STRING) {
-                configuration_map[VM_TYPE_CMD_IDENTIFIER] = jni::Jvm::GRAAL_NATIVE_IMAGE;
+                configuration_map[VM_TYPE_CMD_IDENTIFIER] = jni::JvmType::GRAAL_NATIVE_IMAGE;
             } else if (value == ART_STRING) {
-                configuration_map[VM_TYPE_CMD_IDENTIFIER] = jni::Jvm::ART;
+                configuration_map[VM_TYPE_CMD_IDENTIFIER] = jni::JvmType::ART;
             } else {
                 LOG_WARNING(vformat("Wrong JVM type in command line arguments: %s. It will be ignored", value));
             }
@@ -332,42 +332,42 @@ void JvmConfiguration::sanitize_and_log_configuration(JvmConfiguration& config) 
     }
 
 #ifdef __ANDROID__
-    if (config.vm_type == jni::Jvm::Type::NONE) {
-        config.vm_type = jni::Jvm::Type::ART;
+    if (config.vm_type == jni::JvmType::NONE) {
+        config.vm_type = jni::JvmType::ART;
         LOG_INFO("You are running on Android. VM automatically set to ART");
-    } else if (config.vm_type != jni::Jvm::Type::ART) {
-        config.vm_type = jni::Jvm::Type::ART;
+    } else if (config.vm_type != jni::JvmType::ART) {
+        config.vm_type = jni::JvmType::ART;
         LOG_WARNING("You are running on Android. Switching VM to ART");
     }
 #elif IOS_ENABLED
-    if (config.vm_type == jni::Jvm::Type::NONE) {
-        config.vm_type = jni::Jvm::Type::GRAAL_NATIVE_IMAGE;
+    if (config.vm_type == jni::JvmType::NONE) {
+        config.vm_type = jni::JvmType::GRAAL_NATIVE_IMAGE;
         LOG_INFO("You are running on iOS. VM automatically set to Graal native_image");
-    } else if (config.vm_type != jni::Jvm::Type::GRAAL_NATIVE_IMAGE) {
-        config.vm_type = jni::Jvm::Type::GRAAL_NATIVE_IMAGE;
+    } else if (config.vm_type != jni::JvmType::GRAAL_NATIVE_IMAGE) {
+        config.vm_type = jni::JvmType::GRAAL_NATIVE_IMAGE;
         LOG_WARNING("You are running on iOS. Switching VM to Graal native_image");
     }
 #else
-    if (config.vm_type == jni::Jvm::Type::NONE) {
-        config.vm_type = jni::Jvm::Type::JVM;
+    if (config.vm_type == jni::JvmType::NONE) {
+        config.vm_type = jni::JvmType::JVM;
         LOG_INFO("You are running on desktop. VM automatically set to JVM");
-    } else if (config.vm_type == jni::Jvm::Type::ART) {
-        config.vm_type = jni::Jvm::Type::JVM;
+    } else if (config.vm_type == jni::JvmType::ART) {
+        config.vm_type = jni::JvmType::JVM;
         LOG_WARNING("You can't run ART on desktop. Switching VM to JVM");
     }
 #endif
     else {
         switch (config.vm_type) {
-            case jni::Jvm::JVM:
+            case jni::JvmType::JVM:
                 LOG_INFO(vformat("VM set to %s", JVM_STRING));
                 break;
-            case jni::Jvm::GRAAL_NATIVE_IMAGE:
+            case jni::JvmType::GRAAL_NATIVE_IMAGE:
                 LOG_INFO(vformat("VM set to %s", GRAAL_NATIVE_IMAGE_STRING));
                 break;
-            case jni::Jvm::ART:
+            case jni::JvmType::ART:
                 LOG_INFO(vformat("VM set to %s", ART_STRING));
                 break;
-            case jni::Jvm::NONE:
+            case jni::JvmType::NONE:
                 // Should never happen.
                 break;
         }

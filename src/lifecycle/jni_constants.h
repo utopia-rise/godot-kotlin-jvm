@@ -8,9 +8,9 @@ namespace jni {
         static constexpr const char* JRE_ARM64 {"jre-arm64"};
         static constexpr const char* CURRENT_RUNTIME_JRE {
 #ifdef __arm64__
-          JniConstants::JRE_ARM64
+          JRE_ARM64
 #else
-          JniConstants::JRE_AMD64
+          JRE_AMD64
 #endif
         };
     };

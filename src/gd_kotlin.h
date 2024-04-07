@@ -19,7 +19,7 @@ private:
     JvmConfiguration configuration;
 
     static void _check_and_copy_jar(const String& jar_name);
-    static jni::JObject _prepare_class_loader(jni::Env& p_env, jni::Jvm::Type type);
+    static jni::JObject _prepare_class_loader(jni::Env& p_env, jni::JvmType type);
 
     bool check_configuration();
 
@@ -33,6 +33,8 @@ public:
     GDKotlin(const GDKotlin&) = delete;
     GDKotlin& operator=(const GDKotlin&) = delete;
 
+    static GDKotlin& get_instance();
+
     const JvmConfiguration& get_configuration();
 
     void init();
@@ -40,8 +42,6 @@ public:
 
     void register_classes(jni::Env& p_env, jni::JObjectArray p_classes);
 
-
-    static GDKotlin& get_instance();
     bool initialized() const;
     const Vector<Pair<String, String>>& get_configuration_errors() const;
 };

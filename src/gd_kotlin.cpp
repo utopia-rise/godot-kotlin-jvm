@@ -76,7 +76,7 @@ void GDKotlin::init() {
 
     if (!check_configuration()) { return; }
 
-    jni::InitArgs args;
+    InitArgs args;
 #ifndef __ANDROID__
     args.version = JNI_VERSION_1_8;
 #endif
@@ -118,12 +118,12 @@ void GDKotlin::init() {
     }
 
 #ifndef __ANDROID__
-    if (configuration.vm_type == jni::Jvm::GRAAL_NATIVE_IMAGE) { _check_and_copy_jar(LIB_GRAAL_VM_RELATIVE_PATH); }
+    if (configuration.vm_type == jni::JvmType::GRAAL_NATIVE_IMAGE) { _check_and_copy_jar(LIB_GRAAL_VM_RELATIVE_PATH); }
 #endif
 
     if (!Engine::get_singleton()->is_editor_hint()) { args.option(configuration.jvm_args.utf8()); }
 
-    jni::Jvm::init(args, configuration.vm_type);
+    JvmLoader::create_jvm(args, configuration.vm_type);
     LOG_INFO("Starting JVM ...");
 
     auto project_settings = ProjectSettings::get_singleton();
@@ -137,7 +137,7 @@ void GDKotlin::init() {
     _check_and_copy_jar(main_jar_file);
 #else
     String main_jar_file;
-    if (configuration.vm_type == jni::Jvm::GRAAL_NATIVE_IMAGE) {
+    if (configuration.vm_type == jni::JvmType::GRAAL_NATIVE_IMAGE) {
         main_jar_file = "graal_usercode";
     } else {
         main_jar_file = "main.jar";
@@ -221,7 +221,7 @@ void GDKotlin::finish() {
     JniLifecycleManager::destroy_jni_classes();
 
     ClassLoader::delete_default_loader(env);
-    jni::Jvm::destroy();
+    JvmLoader::close_jvm();
     LOG_INFO("Shutting down JVM ...");
 }
 
@@ -270,8 +270,8 @@ void GDKotlin::_check_and_copy_jar(const String& jar_name) {
 #endif
 }
 
-jni::JObject GDKotlin::_prepare_class_loader(jni::Env& p_env, jni::Jvm::Type type) {
-    if (type == jni::Jvm::GRAAL_NATIVE_IMAGE) { return {}; }
+jni::JObject GDKotlin::_prepare_class_loader(jni::Env& p_env, jni::JvmType type) {
+    if (type == jni::JvmType::GRAAL_NATIVE_IMAGE) { return {}; }
 #ifdef __ANDROID__
     String bootstrap_jar_file {"godot-bootstrap-dex.jar"};
     String main_jar_file {"main-dex.jar"};

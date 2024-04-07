@@ -39,7 +39,7 @@ static constexpr const uint64_t DEFAULT_JVM_PORT {5005};
 static constexpr const char* DEFAULT_JVM_ADDRESS {"*"};
 
 struct JvmConfiguration {
-    jni::Jvm::Type vm_type {jni::Jvm::Type::NONE};
+    jni::JvmType vm_type {jni::JvmType::NONE};
 
     int32_t jvm_debug_port {-1};
     String jvm_debug_address {""};

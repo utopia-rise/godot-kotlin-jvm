@@ -4,7 +4,7 @@
 
 #include "gd_kotlin.h"
 #include "godotkotlin_defs.h"
-#include "jni/jni_constants.h"
+#include "lifecycle/jni_constants.h"
 #include "lifecycle/jvm_configuration.h"
 
 #include <core/config/project_settings.h>
@@ -23,13 +23,13 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
     bool is_android_export {p_features.has("android")};
     bool is_osx_export {p_features.has("macos")};
     if (is_ios_export) {
-        _generate_export_configuration_file(jni::Jvm::GRAAL_NATIVE_IMAGE);
+        _generate_export_configuration_file(jni::JvmType::GRAAL_NATIVE_IMAGE);
         add_ios_project_static_lib(ProjectSettings::get_singleton()->globalize_path("res://build/libs/ios/usercode.a"));
         return;
     } else if (is_android_export) {
         files_to_add.push_back("res://build/libs/main-dex.jar");
         files_to_add.push_back("res://build/libs/godot-bootstrap-dex.jar");
-        _generate_export_configuration_file(jni::Jvm::ART);
+        _generate_export_configuration_file(jni::JvmType::ART);
     } else {
         String graal_usercode_lib;
         if (p_features.has("windows")) {
@@ -50,17 +50,17 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
                 Ref<FileAccess> configuration_access_read {FileAccess::open(configuration_path, FileAccess::READ)};
                 JvmConfiguration configuration;
                 JvmConfiguration::parse_configuration_json(configuration_access_read->get_as_utf8_string(), configuration);
-                jni::Jvm::Type jvm_type {configuration.vm_type};
+                jni::JvmType jvm_type {configuration.vm_type};
                 switch (jvm_type) {
-                    case jni::Jvm::JVM:
+                    case jni::JvmType::JVM:
                         files_to_add.push_back("res://build/libs/main.jar");
                         files_to_add.push_back("res://build/libs/godot-bootstrap.jar");
-                        _generate_export_configuration_file(jni::Jvm::JVM);
+                        _generate_export_configuration_file(jni::JvmType::JVM);
 
                         break;
-                    case jni::Jvm::GRAAL_NATIVE_IMAGE:
+                    case jni::JvmType::GRAAL_NATIVE_IMAGE:
                         files_to_add.push_back(vformat("res://build/libs/%s", graal_usercode_lib));
-                        _generate_export_configuration_file(jni::Jvm::GRAAL_NATIVE_IMAGE);
+                        _generate_export_configuration_file(jni::JvmType::GRAAL_NATIVE_IMAGE);
                         is_graal_only = true;
 
                         break;
@@ -109,7 +109,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
     LOG_INFO("Finished Godot-Jvm specific exports.");
 }
 
-void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::Jvm::Type vm_type) {
+void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::JvmType vm_type) {
     JvmConfiguration configuration = GDKotlin::get_instance().get_configuration(); // Copy
     configuration.vm_type = vm_type; // We only need to change the vm type
 

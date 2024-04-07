@@ -26,7 +26,7 @@ GdjLanguage* GdjLanguage::get_instance() {
 void GdjLanguage::init() {
 #ifdef TOOLS_ENABLED
     if (Engine::get_singleton()->is_project_manager_hint()) {
-        LOG_VERBOSE("Detected that we're in the project manager. Won't initialize Godot Kotlin/JVM module.");
+        LOG_DEV_VERBOSE("Detected that we're in the project manager. Won't initialize Godot Kotlin/JVM module.");
         return;
     }
 #endif
@@ -43,7 +43,7 @@ void GdjLanguage::frame() {
 void GdjLanguage::finish() {
 #ifdef TOOLS_ENABLED
     if (Engine::get_singleton()->is_project_manager_hint()) {
-        LOG_VERBOSE("Detected that we're in the project manager. No cleanup necessary");
+        LOG_DEV_VERBOSE("Detected that we're in the project manager. No cleanup necessary");
         return;
     }
 #endif
@@ -51,28 +51,16 @@ void GdjLanguage::finish() {
 }
 
 void GdjLanguage::thread_enter() {
-    // TODO: Remove this ifdef and its content while reworking GDKotlin and moving out logic of finding JVM.
-#ifdef DEBUG_ENABLED
-    if (!jni::Jvm::is_initialized()) {
-        LOG_ERROR("JavaVM is not initialized, please make sure your project contains an embedded JVM or JAVA_HOME "
-                  "environment variable is setup");
-        return;
-    }
+#ifdef TOOLS_ENABLED
+    if (Engine::get_singleton()->is_project_manager_hint()) { return; }
 #endif
-
     jni::Jvm::attach();
 }
 
 void GdjLanguage::thread_exit() {
-    // TODO: Remove this ifdef and its content while reworking GDKotlin and moving out logic of finding JVM.
-#ifdef DEBUG_ENABLED
-    if (!jni::Jvm::is_initialized()) {
-        LOG_ERROR("JavaVM is not initialized, please make sure your project contains an embedded JVM or JAVA_HOME "
-                  "environment variable is setup");
-        return;
-    }
+#ifdef TOOLS_ENABLED
+    if (Engine::get_singleton()->is_project_manager_hint()) { return; }
 #endif
-
     jni::Jvm::detach();
 }
 
