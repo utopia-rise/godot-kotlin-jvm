@@ -13,9 +13,10 @@ namespace jni {
     class Jvm {
     public:
         enum Type {
-            JVM,
-            GRAAL_NATIVE_IMAGE,
-            ART
+            NONE = 0,
+            JVM = 1,
+            GRAAL_NATIVE_IMAGE = 2,
+            ART = 3,
         };
 
         Jvm(const Jvm&) = delete;
@@ -43,5 +44,7 @@ namespace jni {
         static JavaVM* get_existing();
     };
 }// namespace jni
+
+VARIANT_ENUM_CAST(jni::Jvm::Type)
 
 #endif// GODOT_LOADER_JVM_H

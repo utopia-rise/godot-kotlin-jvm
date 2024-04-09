@@ -16,7 +16,7 @@ namespace jni {
 
     JavaVM* Jvm::vm = nullptr;
     jint Jvm::version = 0;
-    Jvm::Type Jvm::vm_type {Jvm::JVM};
+    Jvm::Type Jvm::vm_type {Jvm::NONE};
 
     void Jvm::init(const InitArgs& initArgs, Type type) {
         vm_type = type;
