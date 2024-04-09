@@ -5,9 +5,7 @@
 #include "gd_kotlin.h"
 #include "godotkotlin_defs.h"
 #include "jni/jni_constants.h"
-#include "script/gdj_script.h"
-#include "script/java_script.h"
-#include "script/kotlin_script.h"
+#include "lifecycle/jvm_configuration.h"
 
 #include <core/config/project_settings.h>
 
@@ -45,13 +43,14 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
             files_to_add.push_back("res://build/libs/main.jar");
             files_to_add.push_back("res://build/libs/godot-bootstrap.jar");
             files_to_add.push_back(vformat("res://build/libs/%s", graal_usercode_lib));
-            _generate_export_configuration_file(GDKotlin::get_instance().get_configuration().get_vm_type());
+            _generate_export_configuration_file(GDKotlin::get_instance().get_configuration().vm_type);
 
         } else {
             if (FileAccess::exists(configuration_path)) {
                 Ref<FileAccess> configuration_access_read {FileAccess::open(configuration_path, FileAccess::READ)};
-                GdKotlinConfiguration configuration {GdKotlinConfiguration::from_json(configuration_access_read->get_as_utf8_string())};
-                jni::Jvm::Type jvm_type {configuration.get_vm_type()};
+                JvmConfiguration configuration;
+                JvmConfiguration::parse_configuration_json(configuration_access_read->get_as_utf8_string(), configuration);
+                jni::Jvm::Type jvm_type {configuration.vm_type};
                 switch (jvm_type) {
                     case jni::Jvm::JVM:
                         files_to_add.push_back("res://build/libs/main.jar");
@@ -111,10 +110,10 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
 }
 
 void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::Jvm::Type vm_type) {
-    GdKotlinConfiguration configuration;
-    configuration.set_vm_type(vm_type);
-    configuration.set_max_string_size(GDKotlin::get_instance().get_configuration().get_max_string_size());
-    const char32_t* json_string {configuration.to_json().get_data()};
+    JvmConfiguration configuration = GDKotlin::get_instance().get_configuration(); // Copy
+    configuration.vm_type = vm_type; // We only need to change the vm type
+
+    const char32_t* json_string {JvmConfiguration::export_configuration_to_json(configuration).get_data()};
     Vector<uint8_t> json_bytes;
     for (int i = 0; json_string[i] != '\0'; ++i) {
         json_bytes.push_back(json_string[i]);

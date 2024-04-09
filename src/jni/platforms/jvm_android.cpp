@@ -7,10 +7,10 @@
 namespace jni {
     JavaVM* Jvm::vm = nullptr;
     jint Jvm::version = 0;
-    Jvm::Type Jvm::vm_type {Jvm::ART};
+    Jvm::Type Jvm::vm_type {Jvm::NONE};
 
     void Jvm::init(const InitArgs& initArgs, Type type) {
-        // Do nothing, jvm is already there.
+        vm_type = type;
     }
 
     void Jvm::destroy() {
