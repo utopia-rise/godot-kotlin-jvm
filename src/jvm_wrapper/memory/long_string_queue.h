@@ -17,7 +17,7 @@ JVM_SINGLETON_WRAPPER(LongStringQueue, "godot.core.LongStringQueue") {
     // clang-format on
 
 public:
-    static int max_string_size;
+    static uint16_t max_string_size;
 
     void set_string_max_size(jni::Env& p_env, int max_size);
     void send_string_to_jvm(jni::Env& p_env, const String& str);
