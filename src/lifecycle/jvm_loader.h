@@ -3,8 +3,8 @@
 #ifndef GODOT_LOADER_JVM_LOADER_H
 #define GODOT_LOADER_JVM_LOADER_H
 
-#include "init_args.h"
 #include "jni/jvm.h"
+#include "jvm_loading_configuration.h"
 
 #ifdef X11_ENABLED
 #define LIB_JVM_RELATIVE_PATH "lib/server/libjvm.so"
@@ -23,7 +23,7 @@
 
 class JvmLoader {
 public:
-    static JavaVM* create_jvm(const InitArgs& initArgs, jni::JvmType type);
+    static JavaVM* create_jvm(const JvmLoadingConfiguration& initArgs, jni::JvmType type);
     static jni::CreateJavaVM get_create_jvm_function();
     static void close_jvm();
 

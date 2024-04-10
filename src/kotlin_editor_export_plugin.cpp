@@ -5,7 +5,7 @@
 #include "gd_kotlin.h"
 #include "godotkotlin_defs.h"
 #include "lifecycle/jni_constants.h"
-#include "lifecycle/jvm_configuration.h"
+#include "lifecycle/jvm_user_configuration.h"
 
 #include <core/config/project_settings.h>
 
@@ -48,8 +48,8 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
         } else {
             if (FileAccess::exists(configuration_path)) {
                 Ref<FileAccess> configuration_access_read {FileAccess::open(configuration_path, FileAccess::READ)};
-                JvmConfiguration configuration;
-                JvmConfiguration::parse_configuration_json(configuration_access_read->get_as_utf8_string(), configuration);
+                JvmUserConfiguration configuration;
+                JvmUserConfiguration::parse_configuration_json(configuration_access_read->get_as_utf8_string(), configuration);
                 jni::JvmType jvm_type {configuration.vm_type};
                 switch (jvm_type) {
                     case jni::JvmType::JVM:
@@ -110,10 +110,10 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
 }
 
 void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::JvmType vm_type) {
-    JvmConfiguration configuration = GDKotlin::get_instance().get_configuration(); // Copy
+    JvmUserConfiguration configuration = GDKotlin::get_instance().get_configuration(); // Copy
     configuration.vm_type = vm_type; // We only need to change the vm type
 
-    const char32_t* json_string {JvmConfiguration::export_configuration_to_json(configuration).get_data()};
+    const char32_t* json_string {JvmUserConfiguration::export_configuration_to_json(configuration).get_data()};
     Vector<uint8_t> json_bytes;
     for (int i = 0; json_string[i] != '\0'; ++i) {
         json_bytes.push_back(json_string[i]);

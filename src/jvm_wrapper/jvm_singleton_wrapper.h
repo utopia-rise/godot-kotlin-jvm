@@ -2,7 +2,7 @@
 #define GODOT_JVM_JVM_SINGLETON_WRAPPER_H
 
 #include "jvm_instance_wrapper.h"
-#include "lifecycle/jni_lifecycle_manager.h"
+#include "lifecycle/jvm_manager.h"
 
 #define JVM_SINGLETON_WRAPPER(NAME, FQNAME)               \
     inline constexpr char NAME##QualifiedName[] = FQNAME; \
@@ -33,7 +33,7 @@ protected:                                                                \
  */
 template<class Derived, const char* FqName>
 class JvmSingletonWrapper : public JvmInstanceWrapper<Derived, FqName> {
-    friend class JniLifecycleManager;
+    friend class JvmManager;
 
     static Derived* _instance;
 

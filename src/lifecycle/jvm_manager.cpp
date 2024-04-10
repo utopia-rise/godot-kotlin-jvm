@@ -1,5 +1,4 @@
-#include "jni_lifecycle_manager.h"
-
+#include "jvm_manager.h"
 #include "jvm_wrapper/bootstrap.h"
 #include "jvm_wrapper/bridge/callable_bridge.h"
 #include "jvm_wrapper/bridge/dictionary_bridge.h"
@@ -21,7 +20,7 @@
 #include "jvm_wrapper/memory/transfer_context.h"
 #include "jvm_wrapper/registration//kt_class.h"
 
-void JniLifecycleManager::initialize_jni_classes(jni::Env& p_env) {
+void JvmManager::initialize_jni_classes(jni::Env& p_env) {
     // Singleton
     TransferContext::initialize(p_env);
     TypeManager::initialize(p_env);
@@ -61,7 +60,7 @@ void JniLifecycleManager::initialize_jni_classes(jni::Env& p_env) {
     KtClass::initialize_jni_binding(p_env);
 }
 
-void JniLifecycleManager::destroy_jni_classes() {
+void JvmManager::destroy_jni_classes() {
     // Singleton
     TransferContext::destroy();
     TypeManager::destroy();

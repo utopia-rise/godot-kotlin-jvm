@@ -1,5 +1,5 @@
-#ifndef GODOT_JVM_JVM_CONFIGURATION_H
-#define GODOT_JVM_JVM_CONFIGURATION_H
+#ifndef GODOT_JVM_JVM_USER_CONFIGURATION_H
+#define GODOT_JVM_JVM_USER_CONFIGURATION_H
 
 #include "jni/jvm.h"
 
@@ -38,7 +38,7 @@ static constexpr const char* FALSE_STRING {"false"};
 static constexpr const uint64_t DEFAULT_JVM_PORT {5005};
 static constexpr const char* DEFAULT_JVM_ADDRESS {"*"};
 
-struct JvmConfiguration {
+struct JvmUserConfiguration {
     jni::JvmType vm_type {jni::JvmType::NONE};
 
     int32_t jvm_debug_port {-1};
@@ -56,16 +56,16 @@ struct JvmConfiguration {
 
     String jvm_args {""};
 
-    JvmConfiguration() = default;
-    ~JvmConfiguration() = default;
+    JvmUserConfiguration() = default;
+    ~JvmUserConfiguration() = default;
 
-    static bool parse_configuration_json(const String& json_string, JvmConfiguration& json_config);
-    static String export_configuration_to_json(const JvmConfiguration& configuration);
+    static bool parse_configuration_json(const String& json_string, JvmUserConfiguration& json_config);
+    static String export_configuration_to_json(const JvmUserConfiguration& configuration);
 
     static void parse_command_line(const List<String>& args, HashMap<String, Variant>& configuration_map);
 
-    static void merge_with_command_line(JvmConfiguration& json_config, const HashMap<String, Variant>& cmd_map);
-    static void sanitize_and_log_configuration(JvmConfiguration& config);
+    static void merge_with_command_line(JvmUserConfiguration& json_config, const HashMap<String, Variant>& cmd_map);
+    static void sanitize_and_log_configuration(JvmUserConfiguration& config);
 };
 
-#endif// GODOT_JVM_JVM_CONFIGURATION_H
+#endif// GODOT_JVM_JVM_USER_CONFIGURATION_H

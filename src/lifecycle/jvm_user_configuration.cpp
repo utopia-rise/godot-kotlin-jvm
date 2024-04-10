@@ -1,8 +1,7 @@
-#include "jvm_configuration.h"
-
 #include "core/io/json.h"
+#include "jvm_user_configuration.h"
 
-bool JvmConfiguration::parse_configuration_json(const String& json_string, JvmConfiguration& json_config) {
+bool JvmUserConfiguration::parse_configuration_json(const String& json_string, JvmUserConfiguration& json_config) {
     bool is_invalid = false;
     JSON json;
     Error error {json.parse(json_string)};
@@ -146,7 +145,7 @@ bool JvmConfiguration::parse_configuration_json(const String& json_string, JvmCo
     return is_invalid;
 }
 
-String JvmConfiguration::export_configuration_to_json(const JvmConfiguration& configuration) {
+String JvmUserConfiguration::export_configuration_to_json(const JvmUserConfiguration& configuration) {
     // This function assumes all values are valid.
     Dictionary json;
 
@@ -213,8 +212,8 @@ bool get_cmd_bool_or_default(const String& value, bool default_if_empty) {
     }
 }
 
-void JvmConfiguration::parse_command_line(const List<String>& args, HashMap<String, Variant>& configuration_map) {
-    // We use a HashMap instead of JvmConfiguration so we can still make the difference between a JvmConfiguration
+void JvmUserConfiguration::parse_command_line(const List<String>& args, HashMap<String, Variant>& configuration_map) {
+    // We use a HashMap instead of JvmUserConfiguration so we can still make the difference between a JvmUserConfiguration
     // default value and the absence of the matching command line argument. Knowing this is essential when merging with
     // the json configuration later.
 
@@ -287,7 +286,7 @@ void replace_json_value_by_cmd_value(const HashMap<String, Variant>& map, T& jso
     if (map.has(cmd_key)) { json_value = VariantCaster<T>::cast(map[cmd_key]); }
 }
 
-void JvmConfiguration::merge_with_command_line(JvmConfiguration& json_config, const HashMap<String, Variant>& cmd_map) {
+void JvmUserConfiguration::merge_with_command_line(JvmUserConfiguration& json_config, const HashMap<String, Variant>& cmd_map) {
     replace_json_value_by_cmd_value(cmd_map, json_config.vm_type, VM_TYPE_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.jvm_debug_port, DEBUG_PORT_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.jvm_debug_address, DEBUG_ADDRESS_CMD_IDENTIFIER);
@@ -299,7 +298,7 @@ void JvmConfiguration::merge_with_command_line(JvmConfiguration& json_config, co
     replace_json_value_by_cmd_value(cmd_map, json_config.disable_leak_warning_on_close, DISABLE_LEAK_WARNING_CMD_IDENTIFIER);
 }
 
-void JvmConfiguration::sanitize_and_log_configuration(JvmConfiguration& config) {
+void JvmUserConfiguration::sanitize_and_log_configuration(JvmUserConfiguration& config) {
     // Initialize remote jvm debug if one of jvm debug arguments is encountered.
     if (config.jvm_debug_port >= 0 || !config.jvm_debug_address.is_empty()) {
         if (config.jvm_debug_address.is_empty()) {

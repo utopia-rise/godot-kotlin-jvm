@@ -164,7 +164,7 @@ String JvmLoader::get_embedded_jre_path() {
 
 #endif
 
-JavaVM* JvmLoader::create_jvm(const InitArgs& initArgs, jni::JvmType type) {
+JavaVM* JvmLoader::create_jvm(const JvmLoadingConfiguration& initArgs, jni::JvmType type) {
     size_t nOptions {initArgs.options.size()};
     auto* options = new JavaVMOption[nOptions];
     JavaVMInitArgs args;
