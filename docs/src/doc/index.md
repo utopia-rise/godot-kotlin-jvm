@@ -48,7 +48,7 @@ The current latest release is compatible with Kotlin version `1.9.23`.
 Get our pre-built engine builds and export templates from the latest [GitHub releases](https://github.com/utopia-rise/godot-kotlin-jvm/releases).
 
 Contrary to the official binaries, there are two builds of the editor per Platform: debug and release.
-Usually you only need release. But if you encounter crashes in the Godot Editor, we kindly ask you to reproduce the error with the debug build of the editor and provide the crash error messages so we can see the stack traces and properly help with the error. 
+`release` editors are the editors you use normally. `debug` editors provide debug symbols and are intended to provide better stacktraces in case of crashes of the editor. Please use those when submitting bugreports. 
 
 !!! warning
     This module will NOT work with the official Godot Editor and Export Templates! To be able to use Kotlin and Java scripts in Godot, you need our Editor and Export Templates builds.
