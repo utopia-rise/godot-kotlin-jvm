@@ -50,7 +50,7 @@ Get our pre-built engine builds and export templates from the latest [GitHub rel
 Contrary to the official binaries, there are two builds of the editor per Platform: debug and release.
 Usually you only need release. But if you encounter crashes in the Godot Editor, we kindly ask you to reproduce the error with the debug build of the editor and provide the crash error messages so we can see the stack traces and properly help with the error. 
 
-!!! info
+!!! warning
     This module will NOT work with the official Godot Editor and Export Templates! To be able to use Kotlin and Java scripts in Godot, you need our Editor and Export Templates builds.
 
 ## Developer discussion
