@@ -41,7 +41,7 @@ This module relies on a Kotlin *compiler plugin* for registering your classes an
 The current latest release is compatible with Kotlin version `1.9.23`.
 
 !!! info
-  It is possible to use this module with other Kotlin versions as well but we do not provide any guarantees for it. You find more infos in the [Gradle Plugin configuration](user-guide/advanced/gradle-plugin-configuration.md#disable-build-failure-on-kotlin-version-mismatch) section.
+    It is possible to use this module with other Kotlin versions as well but we do not provide any guarantees for it. You find more infos in the [Gradle Plugin configuration](user-guide/advanced/gradle-plugin-configuration.md#disable-build-failure-on-kotlin-version-mismatch) section.
 
 ## Custom engine builds
 
@@ -51,7 +51,7 @@ Contrary to the official binaries, there are two builds of the editor per Platfo
 Usually you only need release. But if you encounter crashes in the Godot Editor, we kindly ask you to reproduce the error with the debug build of the editor and provide the crash error messages so we can see the stack traces and properly help with the error. 
 
 !!! info
-  This module will NOT work with the official Godot Editor and Export Templates! To be able to use Kotlin and Java scripts in Godot, you need our Editor and Export Templates builds.
+    This module will NOT work with the official Godot Editor and Export Templates! To be able to use Kotlin and Java scripts in Godot, you need our Editor and Export Templates builds.
 
 ## Developer discussion
 
