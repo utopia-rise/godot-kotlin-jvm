@@ -3,17 +3,12 @@
 #include "core/variant/variant.h"
 #include "logging.h"
 
-JvmLoadingConfiguration::JvmLoadingConfiguration(JvmLoadingType loading_type, bool user_code_included_in_vm) :
-  loading_type {loading_type},
-  user_code_included_in_vm {user_code_included_in_vm} {}
-
 void JvmLoadingConfiguration::add_jni_checks() {
     options.push_back("-Xcheck:jni");
 }
 
 void JvmLoadingConfiguration::add_debug_options(uint16_t p_port, String& p_address, bool p_wait) {
     String jvm_debug_port = String::num_int64(p_port);
-    String jvm_debug_address = p_address;
 
     String suspend;
     if (p_wait) {
@@ -23,7 +18,7 @@ void JvmLoadingConfiguration::add_debug_options(uint16_t p_port, String& p_addre
     }
 
     String debug_command {
-      vformat("-agentlib:jdwp=transport=dt_socket,server=y,suspend=%s,address=%s:%s", suspend, jvm_debug_address, jvm_debug_port)
+      vformat("-agentlib:jdwp=transport=dt_socket,server=y,suspend=%s,address=%s:%s", suspend, p_address, jvm_debug_port)
     };
     options.push_back(debug_command);
 }

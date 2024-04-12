@@ -116,9 +116,6 @@ void GodotKotlinJvmEditor::_notificationv(int p_notification, bool p_reversed) {
         file_system_dock->connect(SNAME("file_removed"), callable_mp(this, &GodotKotlinJvmEditor::on_file_system_dock_file_removed));
         file_system_dock->connect(SNAME("folder_moved"), callable_mp(this, &GodotKotlinJvmEditor::on_file_system_dock_folder_moved));
 
-        if (!GDKotlin::get_instance().initialized()) {
-            error_dialog->show_with_errors("Godot-Kotlin-Jvm configuration errors encountered", GDKotlin::get_instance().get_configuration_errors());
-        }
     }
 }
 

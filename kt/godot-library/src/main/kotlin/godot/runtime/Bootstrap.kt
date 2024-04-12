@@ -37,7 +37,6 @@ internal class Bootstrap {
             val libsDir = Paths.get(jarRootDir)
             val mainJarPath = libsDir.resolve(jarFile)
 
-
             if (File(mainJarPath.toString()).exists()) {
                 doInit(mainJarPath.toUri().toURL(), loader)
             } else {

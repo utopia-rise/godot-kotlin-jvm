@@ -3,27 +3,11 @@
 #include "jvm_wrapper/memory/memory_manager.h"
 #include "jvm_wrapper/memory/transfer_context.h"
 #include "lifecycle/class_loader.h"
-#include "lifecycle/jvm_loader.h"
 #include "lifecycle/jvm_manager.h"
 
 #include <core/config/project_settings.h>
 #include <core/io/resource_loader.h>
 #include <main/main.h>
-
-#ifndef TOOLS_ENABLED
-
-#include <core/io/dir_access.h>
-
-#endif
-
-#ifdef __ANDROID__
-
-#include <platform/android/java_godot_wrapper.h>
-#include <platform/android/os_android.h>
-
-#endif
-
-static constexpr const char* jvm_configuration_path {"res://godot_kotlin_configuration.json"};
 
 GDKotlin& GDKotlin::get_instance() {
     static GDKotlin instance;
@@ -32,10 +16,10 @@ GDKotlin& GDKotlin::get_instance() {
 
 void GDKotlin::fetch_user_configuration() {
     bool invalid_file_content = false;
-    bool configuration_file_exist = FileAccess::exists(jvm_configuration_path);
+    bool configuration_file_exist = FileAccess::exists(JVM_CONFIGURATION_PATH);
 
     if (configuration_file_exist) {
-        Ref<FileAccess> file_access = FileAccess::open(jvm_configuration_path, FileAccess::READ);
+        Ref<FileAccess> file_access = FileAccess::open(JVM_CONFIGURATION_PATH, FileAccess::READ);
         String content = file_access->get_as_utf8_string();
 
         // The function is going to mutate the provided user_configuration with the valid values found in the file.
@@ -54,9 +38,9 @@ void GDKotlin::fetch_user_configuration() {
     // If user_configuration is missing or malformed, then we write a new one.
     // Valid values from the json file should be in the instance already, so they won't be lost when writing to disk.
     if (invalid_file_content || !configuration_file_exist) {
-        Ref<FileAccess> file_access = FileAccess::open(jvm_configuration_path, FileAccess::WRITE);
+        Ref<FileAccess> file_access = FileAccess::open(JVM_CONFIGURATION_PATH, FileAccess::WRITE);
         String json = JvmUserConfiguration::export_configuration_to_json(user_configuration);
-        LOG_INFO(vformat("Writing a new user_configuration file to disk at %s", jvm_configuration_path));
+        LOG_INFO(vformat("Writing a new user_configuration file to disk at %s", JVM_CONFIGURATION_PATH));
         file_access->store_string(json);
     }
 #endif
@@ -69,40 +53,133 @@ void GDKotlin::fetch_user_configuration() {
     JvmUserConfiguration::sanitize_and_log_configuration(user_configuration);
 }
 
-
 void GDKotlin::fetch_loading_configuration() {
     JvmLoadingConfiguration::create(user_configuration, loading_configuration);
     JvmLoadingConfiguration::add_options(user_configuration, loading_configuration);
+}
+
+#ifdef TOOLS_ENABLED
+
+String GDKotlin::get_path_to_environment_jvm() {
+    String javaHome {OS::get_singleton()->get_environment("JAVA_HOME")};
+    if (javaHome.is_empty()) { return javaHome; }
+    return javaHome.path_join(RELATIVE_JVM_LIB_PATH);
+}
+
+String GDKotlin::get_path_to_embedded_jvm() {
+    return String(RES_DIRECTORY) + String(EMBEDDED_JRE_DIRECTORY) + String(RELATIVE_JVM_LIB_PATH);
+}
+
+String GDKotlin::get_path_to_native_image() {
+    return String(BUILD_DIRECTORY) + String(GRAAL_NATIVE_IMAGE_PATH);
+}
+
+#else
+
+#include <core/io/dir_access.h>
+
+String GDKotlin::copy_new_file_to_user_dir(const String& file_name) {
+    String file_res_path {String(BUILD_DIRECTORY) + file_name};
+    String file_user_path {String(USER_DIRECTORY) + file_name};
+
+    if (!FileAccess::exists(file_user_path) || FileAccess::get_md5(file_user_path) != FileAccess::get_md5(file_res_path)) {
+        LOG_VERBOSE(vformat("%s file has changed. Copying it from res:// to user://.", file_name));
+
+        Error err;
+        Ref<DirAccess> dir_access {DirAccess::open(BUILD_DIRECTORY, &err)};
+
+        JVM_ERR_FAIL_COND_V_MSG(err != OK, "", vformat("Cannot open %s file in res://.", file_name));
+
+        dir_access->copy(file_res_path, file_user_path);
+    }
+    return file_user_path;
+}
+
+String GDKotlin::get_path_to_embedded_jvm() {
+    return OS::get_singleton()->get_executable_path().get_base_dir() +
+#if defined(MACOS_ENABLED)
+           String("../PlugIns/") +
+#endif
+           String(EMBEDDED_JRE_DIRECTORY) + String(RELATIVE_JVM_LIB_PATH);
+}
+
+String GDKotlin::get_path_to_native_image() {
+    return copy_new_file_to_user_dir(GRAAL_NATIVE_IMAGE_PATH);
+}
+
+#endif
+
+void GDKotlin::load_dynamic_lib() {
+    String path_to_jvm_lib;
+    switch (user_configuration.vm_type) {
+        case jni::JvmType::JVM:
+            if (String embedded_jvm = get_path_to_embedded_jvm(); FileAccess::exists(embedded_jvm)) {
+                path_to_jvm_lib = embedded_jvm;
+            }
+#ifdef TOOLS_ENABLED
+            else if (String environment_jvm = get_path_to_environment_jvm();
+                     !environment_jvm.is_empty() && FileAccess::exists(environment_jvm)) {
+                LOG_WARNING(vformat("Godot-JVM: You really should embed a JRE in your project with jlink! See the "
+                                    "documentation if you don't know how to do that"));
+                path_to_jvm_lib = environment_jvm;
+            } else {
+#ifdef MACOS_ENABLED
+                JVM_CRASH_NOW_MSG(
+                  "The environment variable JAVA_HOME is not found and there is no embedded JRE. If you "
+                  "launched the editor through a double click on Godot.app, also make sure that JAVA_HOME "
+                  "is set through launchctl: `launchctl setenv JAVA_HOME </path/to/jdk>`"
+                );
+#else
+                JVM_CRASH_NOW_MSG("The environment variable JAVA_HOME is not found and there is no embedded JRE.");
+#endif
+            }
+#else
+            else {
+                JVM_CRASH_NOW_MSG("No embedded JRE found!");
+            }
+#endif
+
+            break;
+        case jni::JvmType::GRAAL_NATIVE_IMAGE:
+            if (String native_jvm = get_path_to_native_image(); FileAccess::exists(native_jvm)) {
+                path_to_jvm_lib = native_jvm;
+            } else {
+                JVM_CRASH_NOW_MSG("Cannot find Graal VM user code native image! /n This usually happens when you "
+                                  "define that your project should be executed using graalvm but did not successfully "
+                                  "compile your project and thus usercode.(sh, dll, dylib) cannot be found.");
+            }
+            break;
+        default:
+            // Sanity check. Should never happen
+            JVM_CRASH_NOW_MSG("Tried to load a VM that's neither the JVM nor Graal Native Image");
+    }
+
+    if (OS::get_singleton()->open_dynamic_library(path_to_jvm_lib, jvm_dynamic_library_handle) != OK) {
+        JVM_CRASH_NOW_MSG(vformat("Failed to load the jvm dynamic library from path %s!", path_to_jvm_lib));
+    }
 }
 
 void GDKotlin::init() {
     fetch_user_configuration();
     fetch_loading_configuration();
 
+    if (loading_configuration.loading_type == JvmLoadingType::DYNAMIC) { load_dynamic_lib(); }
 
-#ifndef __ANDROID__
-    if (user_configuration.vm_type == jni::JvmType::GRAAL_NATIVE_IMAGE) { _check_and_copy_jar(LIB_GRAAL_VM_RELATIVE_PATH); }
-#endif
-
-    JvmLoader::create_jvm(loading_configuration, user_configuration.vm_type);
-    LOG_INFO("Starting JVM ...");
-
-    auto project_settings = ProjectSettings::get_singleton();
+    JvmManager::initialize_or_get_jvm(user_configuration, loading_configuration);
 
     jni::Env env {jni::Jvm::current_env()};
-
     jni::JObject class_loader {_prepare_class_loader(env, user_configuration.vm_type)};
 
 #ifdef __ANDROID__
     String main_jar_file {"main-dex.jar"};
-    _check_and_copy_jar(main_jar_file);
+    copy_new_file_to_user_dir(main_jar_file);
 #else
     String main_jar_file;
     if (user_configuration.vm_type == jni::JvmType::GRAAL_NATIVE_IMAGE) {
         main_jar_file = "graal_usercode";
     } else {
         main_jar_file = "main.jar";
-        _check_and_copy_jar(main_jar_file);
+        // copy_new_file_to_user_dir(main_jar_file);
     }
 #endif
 
@@ -126,12 +203,12 @@ void GDKotlin::init() {
     bootstrap = Bootstrap::create_instance(env);
 
 #ifdef TOOLS_ENABLED
-    String jar_path {project_settings->globalize_path("res://build/libs/")};
+    String jar_path {ProjectSettings::get_singleton()->globalize_path("res://build/libs/")};
 #else
-    String jar_path {project_settings->globalize_path("user://")};
+    String jar_path {ProjectSettings::get_singleton()->globalize_path("user://")};
 #endif
 
-    String project_path {project_settings->globalize_path("res://")};
+    String project_path {ProjectSettings::get_singleton()->globalize_path("res://")};
 
 #ifdef __ANDROID__
     String main_jar {ProjectSettings::get_singleton()->globalize_path(vformat("user://%s", main_jar_file))};
@@ -150,6 +227,12 @@ void GDKotlin::init() {
 #endif
     );
     is_initialized = true;
+}
+
+void GDKotlin::unload_dynamic_lib() {
+    if (OS::get_singleton()->close_dynamic_library(jvm_dynamic_library_handle) != OK) {
+        JVM_CRASH_NOW_MSG("Failed to close the jvm dynamic library!");
+    }
 }
 
 void GDKotlin::finish() {
@@ -175,8 +258,9 @@ void GDKotlin::finish() {
     JvmManager::destroy_jni_classes();
 
     ClassLoader::delete_default_loader(env);
-    JvmLoader::close_jvm();
-    LOG_INFO("Shutting down JVM ...");
+    JvmManager::close_jvm(loading_configuration);
+
+    if (loading_configuration.loading_type == JvmLoadingType::DYNAMIC) { unload_dynamic_lib(); }
 }
 
 void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
@@ -197,29 +281,6 @@ const JvmUserConfiguration& GDKotlin::get_configuration() {
     return user_configuration;
 }
 
-void GDKotlin::_check_and_copy_jar(const String& jar_name) {
-#ifndef TOOLS_ENABLED
-    String libs_res_path {"res://build/libs"};
-    String jar_user_path {vformat("user://%s", jar_name)};
-    String jar_res_path {vformat("%s/%s", libs_res_path, jar_name)};
-
-    if (!FileAccess::exists(jar_user_path) || FileAccess::get_md5(jar_user_path) != FileAccess::get_md5(jar_res_path)) {
-#ifdef DEBUG_ENABLED
-        LOG_INFO(vformat("%s jar has changed, will copy it from res...", jar_name));
-#endif
-
-        Error err;
-        Ref<DirAccess> dir_access {DirAccess::open(libs_res_path, &err)};
-
-#ifdef DEBUG_ENABLED
-        JVM_CRASH_COND_MSG(err != OK, vformat("Cannot open %s jar in res.", jar_name));
-#endif
-
-        dir_access->copy(jar_res_path, jar_user_path);
-    }
-#endif
-}
-
 jni::JObject GDKotlin::_prepare_class_loader(jni::Env& p_env, jni::JvmType type) {
     if (type == jni::JvmType::GRAAL_NATIVE_IMAGE) { return {}; }
 #ifdef __ANDROID__
@@ -229,7 +290,7 @@ jni::JObject GDKotlin::_prepare_class_loader(jni::Env& p_env, jni::JvmType type)
     String bootstrap_jar_file {"godot-bootstrap.jar"};
 #endif
 
-    _check_and_copy_jar(bootstrap_jar_file);
+    // copy_new_file_to_user_dir(bootstrap_jar_file);
 
 #ifdef TOOLS_ENABLED
     String bootstrap_jar {OS::get_singleton()->get_executable_path().get_base_dir() + "/godot-bootstrap.jar"};
@@ -254,29 +315,6 @@ jni::JObject GDKotlin::_prepare_class_loader(jni::Env& p_env, jni::JvmType type)
     return class_loader;
 }
 
-bool GDKotlin::check_configuration() {
-    bool has_configuration_error = false;
-    if (Engine::get_singleton()->is_editor_hint() && OS::get_singleton()->get_environment("JAVA_HOME").is_empty()) {
-        LOG_WARNING("JAVA_HOME not defined. Godot-JVM module won't be loaded!");
-
-#ifdef MACOS_ENABLED
-        OS::get_singleton()->alert(
-          "The environment variable JAVA_HOME is not found. If you launched the editor "
-          "through a double click on Godot.app, also make sure that JAVA_HOME is set through launchctl: `launchctl "
-          "setenv JAVA_HOME </path/to/jdk>`",
-          ""
-        );
-#else
-        OS::get_singleton()->alert("The environment variable JAVA_HOME is not found.", "JAVA_HOME not defined. Godot-JVM module won't be loaded!");
-#endif
-
-        exit(1);// TODO: remove once we refactor gd_kotlin and move init checks
-        has_configuration_error = true;
-    }
-    return !has_configuration_error;
-}
-
 bool GDKotlin::initialized() const {
     return is_initialized;
 }
-

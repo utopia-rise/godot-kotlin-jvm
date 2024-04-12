@@ -7,6 +7,9 @@
 #include <core/templates/local_vector.h>
 #include <jni.h>
 
+class JvmManager;
+class GDKotlin;
+
 enum JvmLoadingType {
     NONE,
     STATIC,// For iOS but can also be used in the future if we want to expand the model to other OS.
@@ -15,6 +18,9 @@ enum JvmLoadingType {
 };
 
 class JvmLoadingConfiguration {
+    friend class JvmManager;
+    friend class GDKotlin;
+
     int version {JNI_VERSION_1_8};
     JvmLoadingType loading_type {NONE};
     bool user_code_included_in_vm {false};

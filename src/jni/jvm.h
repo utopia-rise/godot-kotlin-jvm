@@ -3,7 +3,6 @@
 
 #include "env.h"
 #include "jni.h"
-#include "lifecycle/jvm_loading_configuration.h"
 
 namespace jni {
     typedef jint(JNICALL* CreateJavaVM)(JavaVM**, void**, void*);

@@ -4,7 +4,6 @@
 
 #include "gd_kotlin.h"
 #include "godotkotlin_defs.h"
-#include "lifecycle/jni_constants.h"
 #include "lifecycle/jvm_user_configuration.h"
 
 #include <core/config/project_settings.h>
@@ -86,14 +85,14 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
                 bool is_x64 {p_features.has("x86_64")};
 
                 if (!is_arm64 && !is_x64) {
-                    add_macos_plugin_file(vformat("res://%s", jni::JniConstants::CURRENT_RUNTIME_JRE));
+                    add_macos_plugin_file(vformat("res://%s", EMBEDDED_JRE_DIRECTORY));
                 } else {
-                    if (is_arm64) { add_macos_plugin_file(vformat("res://%s", jni::JniConstants::JRE_ARM64)); }
+                    if (is_arm64) { add_macos_plugin_file(vformat("res://%s", EMBEDDED_JRE_ARM_DIRECTORY)); }
 
-                    if (is_x64) { add_macos_plugin_file(vformat("res://%s", jni::JniConstants::JRE_AMD64)); }
+                    if (is_x64) { add_macos_plugin_file(vformat("res://%s", EMBEDDED_JRE_AMD_DIRECTORY)); }
                 }
             } else {
-                _copy_jre_to(jni::JniConstants::JRE_AMD64, dir_access);
+                _copy_jre_to(EMBEDDED_JRE_AMD_DIRECTORY, dir_access);
             }
         } else {
             LOG_ERROR(vformat("Cannot copy JRE folder to %s, error is %s", p_path, error));
