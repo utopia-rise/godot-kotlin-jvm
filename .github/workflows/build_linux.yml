@@ -22,8 +22,13 @@ jobs:
             target: editor
             sconsflags: ''
 
-          - name: Build editor debug (target=editor, dev_build=yes, debug_symbols=true )
+          - name: Build editor debug (target=editor, debug_symbols=true )
             cache-name: editor_debug_linux_x86_64
+            target: editor
+            sconsflags: debug_symbols=true
+
+          - name: Build editor dev (target=editor, dev_build=yes, debug_symbols=true )
+            cache-name: editor_dev_linux_x86_64
             target: editor
             sconsflags: dev_build=yes debug_symbols=true
 

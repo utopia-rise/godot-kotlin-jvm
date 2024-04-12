@@ -27,8 +27,14 @@ jobs:
             should-clean: true
             sconsflags: ''
 
-          - name: Build editor debug (target=editor, dev_build=yes, debug_symbols=true )
+          - name: Build editor debug (target=editor, debug_symbols=true )
             cache-name: editor_debug_windows_x86_64
+            target: editor
+            should-clean: false
+            sconsflags: debug_symbols=true
+
+          - name: Build editor dev (target=editor, dev_build=yes, debug_symbols=true )
+            cache-name: editor_dev_windows_x86_64
             target: editor
             should-clean: false
             sconsflags: dev_build=yes debug_symbols=true

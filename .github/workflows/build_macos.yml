@@ -22,8 +22,13 @@ jobs:
             target: editor
             sconsflags: arch=x86_64
 
-          - name: Build editor debug x86_64 (target=editor, dev_build=yes, debug_symbols=true )
+          - name: Build editor debug x86_64 (target=editor, debug_symbols=true )
             cache-name: editor_debug_macos_x86_64
+            target: editor
+            sconsflags: arch=x86_64 debug_symbols=true
+
+          - name: Build editor dev x86_64 (target=editor, dev_build=yes, debug_symbols=true )
+            cache-name: editor_dev_macos_x86_64
             target: editor
             sconsflags: arch=x86_64 dev_build=yes debug_symbols=true
 
@@ -42,8 +47,13 @@ jobs:
             target: editor
             sconsflags: arch=arm64
 
-          - name: Build editor debug arm64 (target=editor, dev_build=yes, debug_symbols=true )
+          - name: Build editor debug arm64 (target=editor, debug_symbols=true )
             cache-name: editor_debug_macos_arm64
+            target: editor
+            sconsflags: arch=arm64 debug_symbols=true
+
+          - name: Build editor dev arm64 (target=editor, dev_build=yes, debug_symbols=true )
+            cache-name: editor_dev_macos_arm64
             target: editor
             sconsflags: arch=arm64 dev_build=yes debug_symbols=true
 

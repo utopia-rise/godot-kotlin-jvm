@@ -18,8 +18,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - name: debug tests
-            target: debug
+          - name: dev tests
+            target: dev
           - name: release tests
             target: release
 

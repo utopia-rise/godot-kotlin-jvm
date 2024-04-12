@@ -25,6 +25,10 @@ jobs:
 
           - name: Create universal editor binary debug
             target: debug
+            editor-target-insert: ''
+
+          - name: Create universal editor binary dev
+            target: dev
             editor-target-insert: '.dev'
     steps:
       - name: Clone Godot JVM module.
