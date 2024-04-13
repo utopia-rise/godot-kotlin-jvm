@@ -68,7 +68,10 @@ void GDKotlin::set_jvm_options() {
 
     if (user_configuration.jvm_jmx_port >= 0) { jvm_options.add_jmx_option(user_configuration.jvm_jmx_port); }
 
-    if (!Engine::get_singleton()->is_editor_hint()) { jvm_options.add_custom_options(user_configuration.jvm_args); }
+    if (!Engine::get_singleton()->is_editor_hint() && !user_configuration.jvm_args.is_empty()) {
+        LOG_WARNING("You are using custom arguments for the JVM. Make sure they are valid or you risk the JVM to not launch properly");
+        jvm_options.add_custom_options(user_configuration.jvm_args);
+    }
 }
 
 #ifndef TOOLS_ENABLED

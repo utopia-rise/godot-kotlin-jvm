@@ -36,7 +36,9 @@ typedef jint(JNICALL* CreateJavaVM)(JavaVM**, void**, void*);
 CreateJavaVM get_create_jvm_function(void* lib_handle) {
 #ifdef DYNAMIC_JVM
     void* createJavaVMSymbolHandle;
-    if (OS::get_singleton()->get_dynamic_library_symbol_handle(lib_handle, "JNI_CreateJavaVM", createJavaVMSymbolHandle) != OK) {}
+    if (OS::get_singleton()->get_dynamic_library_symbol_handle(lib_handle, "JNI_CreateJavaVM", createJavaVMSymbolHandle) != OK) {
+        JVM_CRASH_NOW_MSG("Failed to obtain JNI_CreateJavaVM symbol from dynamic library!");
+    }
     return reinterpret_cast<CreateJavaVM>(createJavaVMSymbolHandle);
 #elif defined STATIC_JVM
     return &JNI_CreateJavaVM;
@@ -59,6 +61,7 @@ void JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
 
     for (auto i = 0; i < static_cast<int>(nOptions); i++) {
         args.options[i].optionString = jvm_options.options[i].ptrw();
+        LOG_DEV_VERBOSE(vformat("JVM argument %s: %s", i, args.options[i].optionString));
     }
 
 #ifndef NO_USE_STDLIB
