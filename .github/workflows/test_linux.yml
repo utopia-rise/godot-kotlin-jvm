@@ -20,8 +20,10 @@ jobs:
         include:
           - name: dev tests
             target: dev
+            bootstrap-target: debug
           - name: release tests
             target: release
+            bootstrap-target: release
 
     steps:
       - name: Clone Godot Engine
@@ -51,15 +53,15 @@ jobs:
           name: editor_${{ matrix.target }}_linux_x86_64
           path: './bin'
 
-      - name: Download godot-bootstrap ${{ matrix.target }}
+      - name: Download godot-bootstrap ${{ matrix.bootstrap-target }}
         uses: ./.github/actions/download-artifact
         with:
-          name: jvm_godot-bootstrap_${{ matrix.target }}
+          name: jvm_godot-bootstrap_${{ matrix.bootstrap-target }}
           path: './bin'
 
       - name: Build tests project
         run: |
-          modules/kotlin_jvm/harness/tests/gradlew -p modules/kotlin_jvm/harness/tests/ build -P${{ matrix.target }}
+          modules/kotlin_jvm/harness/tests/gradlew -p modules/kotlin_jvm/harness/tests/ build -P${{ matrix.bootstrap-target }}
 
       - name: Run Tests
         run: |
