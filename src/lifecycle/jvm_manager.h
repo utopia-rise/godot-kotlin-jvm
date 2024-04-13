@@ -9,8 +9,6 @@
 class JvmManager {
 public:
     static void initialize_or_get_jvm(JvmUserConfiguration& user_configuration, JvmLoadingConfiguration& loading_configuration);
-    static void load_bootstrap();
-    static void load_usercode();
     static void initialize_jni_classes(jni::Env& p_env, ClassLoader* class_loader);
     static void destroy_jni_classes();
     static void close_jvm(JvmLoadingConfiguration& loading_configuration);

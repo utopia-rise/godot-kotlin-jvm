@@ -77,3 +77,7 @@ void ClassLoader::set_as_context_loader(jni::Env& env) {
 
     thread.call_void_method(env, setContextClassLoaderMethod, args);
 }
+
+const jni::JObject& ClassLoader::get_wrapped() const {
+    return wrapped;
+}

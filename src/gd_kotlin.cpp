@@ -161,13 +161,14 @@ void GDKotlin::load_dynamic_lib() {
     }
 }
 
-ClassLoader* GDKotlin::load_bootstrap()  const {
-    if (loading_configuration.code_included_in_vm) { return nullptr;}
+ClassLoader* GDKotlin::load_bootstrap() const {
+    if (loading_configuration.code_included_in_vm) { return nullptr; }
 
     jni::Env env {jni::Jvm::current_env()};
 #ifdef TOOLS_ENABLED
     String bootstrap_jar {OS::get_singleton()->get_executable_path().get_base_dir().path_join(BOOTSTRAP_FILE)};
-    constexpr const char* error_text {"No godot-bootstrap.jar found! This file needs to stay alongside the godot editor executable!"};
+    constexpr const char* error_text {"No godot-bootstrap.jar found! This file needs to stay alongside the godot "
+                                      "editor executable!"};
 #else
     String bootstrap_jar {ProjectSettings::get_singleton()->globalize_path(copy_new_file_to_user_dir(BOOTSTRAP_FILE))};
     constexpr const char* error_text {"No godot-bootstrap.jar found!"};
@@ -175,7 +176,6 @@ ClassLoader* GDKotlin::load_bootstrap()  const {
 
     JVM_CRASH_COND_MSG(!FileAccess::exists(bootstrap_jar), error_text);
     LOG_INFO(vformat("Loading bootstrap jar: %s", bootstrap_jar));
-
 
     ClassLoader* class_loader = ClassLoader::create_instance(env, bootstrap_jar, jni::JObject(nullptr));
     class_loader->set_as_context_loader(env);
@@ -204,6 +204,28 @@ void GDKotlin::initialize_core_library(ClassLoader* class_loader) {
     bootstrap = Bootstrap::create_instance(env, class_loader);
 }
 
+void GDKotlin::load_user_code(ClassLoader* bootstrap_class_loader) {
+#ifdef TOOLS_ENABLED
+    String project_path {ProjectSettings::get_singleton()->globalize_path(RES_DIRECTORY)};
+#else
+    String project_path {""};
+#endif
+
+    jni::Env env {jni::Jvm::current_env()};
+    if (loading_configuration.code_included_in_vm) {
+        bootstrap->init(env, project_path, "", jni::JObject(nullptr));
+    } else {
+#ifdef TOOLS_ENABLED
+        String user_code_path {ProjectSettings::get_singleton()->globalize_path(String(BUILD_DIRECTORY) + String(USER_CODE_FILE))};
+#else
+        String user_code_path {copy_new_file_to_user_dir(USER_CODE_FILE)};
+#endif
+        ClassLoader* user_class_loader = ClassLoader::create_instance(env, user_code_path, bootstrap_class_loader->get_wrapped());
+        bootstrap->init(env, project_path, user_code_path, user_class_loader->get_wrapped());
+        delete user_class_loader;
+    }
+}
+
 void GDKotlin::init() {
     fetch_user_configuration();
     fetch_loading_configuration();
@@ -213,45 +235,8 @@ void GDKotlin::init() {
 
     ClassLoader* class_loader {load_bootstrap()};
     initialize_core_library(class_loader);
-
-#ifdef __ANDROID__
-    String main_jar_file {"main-dex.jar"};
-    copy_new_file_to_user_dir(main_jar_file);
-#else
-    String main_jar_file;
-    if (user_configuration.vm_type == jni::JvmType::GRAAL_NATIVE_IMAGE) {
-        main_jar_file = "graal_usercode";
-    } else {
-        main_jar_file = "main.jar";
-        // copy_new_file_to_user_dir(main_jar_file);
-    }
-#endif
-
-
-#ifdef TOOLS_ENABLED
-    String jar_path {ProjectSettings::get_singleton()->globalize_path("res://build/libs/")};
-#else
-    String jar_path {ProjectSettings::get_singleton()->globalize_path("user://")};
-#endif
-
-    String project_path {ProjectSettings::get_singleton()->globalize_path("res://")};
-
-#ifdef __ANDROID__
-    String main_jar {ProjectSettings::get_singleton()->globalize_path(vformat("user://%s", main_jar_file))};
-#endif
-
-    bootstrap->init(
-      env,
-      Engine::get_singleton()->is_editor_hint(),
-      project_path,
-      jar_path,
-      main_jar_file,
-#ifdef __ANDROID__
-      ClassLoader::provide_loader(env, main_jar, wrapped)
-#else
-      jni::JObject()
-#endif
-    );
+    load_user_code(class_loader);
+    delete class_loader;
 }
 
 void GDKotlin::unload_dynamic_lib() {
@@ -261,10 +246,9 @@ void GDKotlin::unload_dynamic_lib() {
 }
 
 void GDKotlin::finish() {
-    auto env = jni::Jvm::current_env();
+    jni::Env env {jni::Jvm::current_env()};
 
     bootstrap->finish(env);
-
     delete bootstrap;
     bootstrap = nullptr;
 
@@ -281,8 +265,6 @@ void GDKotlin::finish() {
     }
 
     JvmManager::destroy_jni_classes();
-
-    ClassLoader::delete_default_loader(env);
     JvmManager::close_jvm(loading_configuration);
 
     if (loading_configuration.loading_type == JvmLoadingType::DYNAMIC) { unload_dynamic_lib(); }

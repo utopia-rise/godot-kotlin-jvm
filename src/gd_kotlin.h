@@ -14,6 +14,7 @@
 
 static constexpr const char* RELATIVE_JVM_LIB_PATH {"lib/server/libjvm.so"};
 static constexpr const char* BOOTSTRAP_FILE {"godot-bootstrap.jar"};
+static constexpr const char* USER_CODE_FILE {"main.jar"};
 static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {"usercode.so"};
 
 #elif MACOS_ENABLED
@@ -22,12 +23,14 @@ static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {"usercode.so"};
 
 static constexpr const char* RELATIVE_JVM_LIB_PATH {"lib/server/libjvm.dylib"};
 static constexpr const char* BOOTSTRAP_FILE {"godot-bootstrap.jar"};
+static constexpr const char* USER_CODE_FILE {"main.jar"};
 static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {"usercode.dylib"};
 
 #elif WINDOWS_ENABLED
 
 static constexpr const char* RELATIVE_JVM_LIB_PATH {"bin/server/jvm.dll"};
 static constexpr const char* BOOTSTRAP_FILE {"godot-bootstrap.jar"};
+static constexpr const char* USER_CODE_FILE {"main.jar"};
 static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {"usercode.dll"};
 
 #elif __ANDROID__
@@ -35,14 +38,16 @@ static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {"usercode.dll"};
 #include <platform/android/java_godot_wrapper.h>
 #include <platform/android/os_android.h>
 
-static constexpr const char* RELATIVE_JVM_LIB_PATH {"lib/server/libjvm.so"};
+static constexpr const char* RELATIVE_JVM_LIB_PATH {""};
 static constexpr const char* BOOTSTRAP_FILE {"godot-bootstrap-dex.jar"};
-static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {"usercode.so"};
+static constexpr const char* USER_CODE_FILE {"main-dex.jar"};
+static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {""};
 
 #elif IOS_ENABLED
 
-static constexpr const char* RELATIVE_JVM_LIB_PATH {"lib/server/libjvm.so"};
+static constexpr const char* RELATIVE_JVM_LIB_PATH {""};
 static constexpr const char* BOOTSTRAP_FILE {""};
+static constexpr const char* USER_CODE_FILE {""};
 static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {"usercode.so"};
 
 #endif
@@ -59,7 +64,6 @@ static constexpr const char* EMBEDDED_JRE_DIRECTORY {EMBEDDED_JRE_AMD_DIRECTORY}
 static constexpr const char* BUILD_DIRECTORY {"res://build/libs/"};
 static constexpr const char* USER_DIRECTORY {"user://"};
 static constexpr const char* RES_DIRECTORY {"res://"};
-
 
 static constexpr const char* JVM_CONFIGURATION_PATH {"res://godot_kotlin_configuration.json"};
 
@@ -89,7 +93,7 @@ class GDKotlin {
 
     ClassLoader* load_bootstrap() const;
     void initialize_core_library(ClassLoader* class_loader);
-
+    void load_user_code(ClassLoader* bootstrap_class_loader);
 
 public:
     GDKotlin() = default;

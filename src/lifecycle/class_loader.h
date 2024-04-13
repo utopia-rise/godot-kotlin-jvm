@@ -7,8 +7,7 @@ class ClassLoader {
 private:
     jni::JObject wrapped {};
 
-    explicit ClassLoader(jni::Env& p_env, jni::JObject p_wrapped);
-    ~ClassLoader();
+    ClassLoader(jni::Env& p_env, jni::JObject p_wrapped);
 
 public:
     ClassLoader() = delete;
@@ -16,6 +15,9 @@ public:
     void operator=(const ClassLoader&) = delete;
     ClassLoader(ClassLoader&& instance) = delete;
     void operator=(ClassLoader& $) = delete;
+    ~ClassLoader();
+
+    const jni::JObject& get_wrapped() const;
 
     jni::JClass load_class(jni::Env& env, const char* name);
     void set_as_context_loader(jni::Env& env);

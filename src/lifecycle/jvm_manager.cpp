@@ -21,6 +21,8 @@
 #include "jvm_wrapper/memory/transfer_context.h"
 #include "jvm_wrapper/registration//kt_class.h"
 
+#include <jni.h>
+
 #ifndef NO_USE_STDLIB
 #include <locale>
 #endif
@@ -43,7 +45,7 @@ void JvmManager::initialize_or_get_jvm(JvmUserConfiguration& user_configuration,
         args.nOptions = static_cast<int32_t>(nOptions);
         args.options = options;
 
-        for (auto i = 0; i < nOptions; i++) {
+        for (auto i = 0; i < static_cast<int>(nOptions); i++) {
             args.options[i].optionString = (char*) loading_configuration.options[i].ptr();
         }
 
