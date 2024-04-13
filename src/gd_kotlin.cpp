@@ -22,12 +22,12 @@ void GDKotlin::fetch_user_configuration() {
         Ref<FileAccess> file_access = FileAccess::open(JVM_CONFIGURATION_PATH, FileAccess::READ);
         String content = file_access->get_as_utf8_string();
 
-        // The function is going to mutate the provided user_configuration with the valid values found in the file.
+        // The function is going to mutate the provided configuration with the valid values found in the file.
         // If some of the values parsed in the file are invalid, it will return true;
-        LOG_VERBOSE("Parsing JSON user_configuration file...")
+        LOG_VERBOSE("Parsing JSON configuration file...")
         invalid_file_content = JvmUserConfiguration::parse_configuration_json(content, user_configuration);
         if (invalid_file_content) {
-            LOG_WARNING("user_configuration file is malformed. One or several settings might not be applied.");
+            LOG_WARNING("Configuration file is malformed. One or several settings might not be applied.");
         }
     } else {
         // No need for a warning, it's most likely the first time the project is run.
@@ -35,12 +35,12 @@ void GDKotlin::fetch_user_configuration() {
     }
 
 #ifdef TOOLS_ENABLED
-    // If user_configuration is missing or malformed, then we write a new one.
+    // If configuration is missing or malformed, then we write a new one.
     // Valid values from the json file should be in the instance already, so they won't be lost when writing to disk.
     if (invalid_file_content || !configuration_file_exist) {
         Ref<FileAccess> file_access = FileAccess::open(JVM_CONFIGURATION_PATH, FileAccess::WRITE);
         String json = JvmUserConfiguration::export_configuration_to_json(user_configuration);
-        LOG_INFO(vformat("Writing a new user_configuration file to disk at %s", JVM_CONFIGURATION_PATH));
+        LOG_INFO(vformat("Writing a new configuration file to disk at %s", JVM_CONFIGURATION_PATH));
         file_access->store_string(json);
     }
 #endif
@@ -48,7 +48,7 @@ void GDKotlin::fetch_user_configuration() {
     HashMap<String, Variant> cmd_argument_map;
     LOG_VERBOSE("Parsing commandline arguments...")
     JvmUserConfiguration::parse_command_line(OS::get_singleton()->get_cmdline_args(), cmd_argument_map);
-    LOG_VERBOSE("Creating final JVM user_configuration...")
+    LOG_VERBOSE("Creating final JVM Configuration...")
     JvmUserConfiguration::merge_with_command_line(user_configuration, cmd_argument_map);
     JvmUserConfiguration::sanitize_and_log_configuration(user_configuration);
 }
@@ -226,9 +226,6 @@ void GDKotlin::init() {
         // copy_new_file_to_user_dir(main_jar_file);
     }
 #endif
-
-
-
 
 
 #ifdef TOOLS_ENABLED
