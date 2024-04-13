@@ -231,7 +231,7 @@ void GDKotlin::init() {
     fetch_loading_configuration();
 
     load_dynamic_lib();
-    JvmManager::initialize_or_get_jvm(user_configuration, loading_configuration);
+    JvmManager::initialize_or_get_jvm(jvm_dynamic_library_handle, user_configuration, loading_configuration);
 
     ClassLoader* class_loader {load_bootstrap()};
     initialize_core_library(class_loader);

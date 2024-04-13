@@ -27,14 +27,37 @@
 #include <locale>
 #endif
 
-void JvmManager::initialize_or_get_jvm(JvmUserConfiguration& user_configuration, JvmLoadingConfiguration& loading_configuration) {
+typedef jint(JNICALL* CreateJavaVM)(JavaVM**, void**, void*);
+typedef jint(JNICALL* GetCreatedJavaVMs)(JavaVM**, jsize, jsize*);
+
+CreateJavaVM get_create_jvm_function(void* lib_handle) {
+#if defined WINDOWS_ENABLED || defined X11_ENABLED || defined MACOS_ENABLED
+    void* createJavaVMSymbolHandle;
+    if (OS::get_singleton()->get_dynamic_library_symbol_handle(lib_handle, "JNI_CreateJavaVM", createJavaVMSymbolHandle) != OK) {}
+    return reinterpret_cast<CreateJavaVM>(createJavaVMSymbolHandle);
+#else
+    return &JNI_CreateJavaVM;
+#endif
+}
+
+GetCreatedJavaVMs get_get_created_java_vm_function(void* lib_handle) {
+#if defined WINDOWS_ENABLED || defined X11_ENABLED || defined MACOS_ENABLED
+    void* getCreatedJavaVMsSymbolHandle;
+    if (OS::get_singleton()->get_dynamic_library_symbol_handle(lib_handle, "JNI_GetCreatedJavaVMs", getCreatedJavaVMsSymbolHandle) != OK) {}
+    return reinterpret_cast<GetCreatedJavaVMs>(getCreatedJavaVMsSymbolHandle);
+#else
+    &JNI_GetCreatedJavaVMs;
+#endif
+}
+
+void JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& user_configuration, JvmLoadingConfiguration& loading_configuration) {
     JavaVM* java_vm {nullptr};
 
     if (loading_configuration.loading_type == JvmLoadingType::PROVIDED) {
         LOG_VERBOSE("Retrieving existing JVM ...");
         JavaVM* buffer[1];
         jsize count {0};
-        auto result = JNI_GetCreatedJavaVMs(buffer, 1, &count);
+        auto result = get_get_created_java_vm_function(lib_handle)(buffer, 1, &count);
         JVM_CRASH_COND_MSG(result != JNI_OK || count == 0, "Failed to retrieve existing vm!");
         java_vm = buffer[0];
     } else {
@@ -55,7 +78,7 @@ void JvmManager::initialize_or_get_jvm(JvmUserConfiguration& user_configuration,
 
         LOG_VERBOSE("Starting JVM ...");
         JNIEnv* jni_env {nullptr};
-        jint result {JNI_CreateJavaVM(&java_vm, reinterpret_cast<void**>(&jni_env), &args)};
+        jint result {get_create_jvm_function(lib_handle)(&java_vm, reinterpret_cast<void**>(&jni_env), &args)};
 
         // Set std::local::global to value it was before creating JVM.
         // See https://github.com/utopia-rise/godot-kotlin-jvm/issues/166
@@ -67,6 +90,9 @@ void JvmManager::initialize_or_get_jvm(JvmUserConfiguration& user_configuration,
         delete[] options;
         JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to create a new vm!");
     }
+
+    //Sanity check
+    JVM_CRASH_COND_MSG(java_vm == nullptr, "Current configuration doesn't allow to create or fetch a JVM.");
 
     jni::Jvm::initialize(java_vm, user_configuration.vm_type, loading_configuration.version);
 }
