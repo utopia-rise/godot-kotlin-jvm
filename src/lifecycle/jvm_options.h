@@ -21,7 +21,7 @@ class JvmOptions {
     int version {JNI_VERSION_1_8};
 #endif
 
-    LocalVector<String> options;
+    LocalVector<CharString> options;
 
     void add_jni_checks();
     void add_debug_options(uint16_t p_port, String& p_address, bool p_wait);

@@ -54,11 +54,11 @@ void JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
     auto* options = new JavaVMOption[nOptions];
     JavaVMInitArgs args;
     args.version = jvm_options.version;
-    args.nOptions = static_cast<int32_t>(nOptions);
+    args.nOptions = static_cast<jint>(nOptions);
     args.options = options;
 
     for (auto i = 0; i < static_cast<int>(nOptions); i++) {
-        args.options[i].optionString = (char*) jvm_options.options[i].ptr();
+        args.options[i].optionString = jvm_options.options[i].ptrw();
     }
 
 #ifndef NO_USE_STDLIB
