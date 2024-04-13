@@ -71,7 +71,7 @@ String GDKotlin::get_path_to_embedded_jvm() {
 }
 
 String GDKotlin::get_path_to_native_image() {
-    return String(BUILD_DIRECTORY) + String(GRAAL_NATIVE_IMAGE_PATH);
+    return String(BUILD_DIRECTORY) + String(GRAAL_NATIVE_IMAGE_FILE);
 }
 
 #else
@@ -104,12 +104,14 @@ String GDKotlin::get_path_to_embedded_jvm() {
 }
 
 String GDKotlin::get_path_to_native_image() {
-    return copy_new_file_to_user_dir(GRAAL_NATIVE_IMAGE_PATH);
+    return copy_new_file_to_user_dir(GRAAL_NATIVE_IMAGE_FILE);
 }
 
 #endif
 
 void GDKotlin::load_dynamic_lib() {
+    if (loading_configuration.loading_type != JvmLoadingType::DYNAMIC) { return; }
+
     String path_to_jvm_lib;
     switch (user_configuration.vm_type) {
         case jni::JvmType::JVM:
@@ -159,31 +161,30 @@ void GDKotlin::load_dynamic_lib() {
     }
 }
 
-void GDKotlin::init() {
-    fetch_user_configuration();
-    fetch_loading_configuration();
-
-    if (loading_configuration.loading_type == JvmLoadingType::DYNAMIC) { load_dynamic_lib(); }
-
-    JvmManager::initialize_or_get_jvm(user_configuration, loading_configuration);
+ClassLoader* GDKotlin::load_bootstrap()  const {
+    if (loading_configuration.code_included_in_vm) { return nullptr;}
 
     jni::Env env {jni::Jvm::current_env()};
-    jni::JObject class_loader {_prepare_class_loader(env, user_configuration.vm_type)};
-
-#ifdef __ANDROID__
-    String main_jar_file {"main-dex.jar"};
-    copy_new_file_to_user_dir(main_jar_file);
+#ifdef TOOLS_ENABLED
+    String bootstrap_jar {OS::get_singleton()->get_executable_path().get_base_dir().path_join(BOOTSTRAP_FILE)};
+    constexpr const char* error_text {"No godot-bootstrap.jar found! This file needs to stay alongside the godot editor executable!"};
 #else
-    String main_jar_file;
-    if (user_configuration.vm_type == jni::JvmType::GRAAL_NATIVE_IMAGE) {
-        main_jar_file = "graal_usercode";
-    } else {
-        main_jar_file = "main.jar";
-        // copy_new_file_to_user_dir(main_jar_file);
-    }
+    String bootstrap_jar {ProjectSettings::get_singleton()->globalize_path(copy_new_file_to_user_dir(BOOTSTRAP_FILE))};
+    constexpr const char* error_text {"No godot-bootstrap.jar found!"};
 #endif
 
-    JvmManager::initialize_jni_classes(env);
+    JVM_CRASH_COND_MSG(!FileAccess::exists(bootstrap_jar), error_text);
+    LOG_INFO(vformat("Loading bootstrap jar: %s", bootstrap_jar));
+
+
+    ClassLoader* class_loader = ClassLoader::create_instance(env, bootstrap_jar, jni::JObject(nullptr));
+    class_loader->set_as_context_loader(env);
+    return class_loader;
+}
+
+void GDKotlin::initialize_core_library(ClassLoader* class_loader) {
+    jni::Env env {jni::Jvm::current_env()};
+    JvmManager::initialize_jni_classes(env, class_loader);
 
     if (user_configuration.max_string_size != 0) {
         LongStringQueue::get_instance().set_string_max_size(env, user_configuration.max_string_size);
@@ -200,7 +201,35 @@ void GDKotlin::init() {
 
     if (user_configuration.disable_leak_warning_on_close) { MemoryManager::get_instance().setDisplayLeaks(env, false); }
 
-    bootstrap = Bootstrap::create_instance(env);
+    bootstrap = Bootstrap::create_instance(env, class_loader);
+}
+
+void GDKotlin::init() {
+    fetch_user_configuration();
+    fetch_loading_configuration();
+
+    load_dynamic_lib();
+    JvmManager::initialize_or_get_jvm(user_configuration, loading_configuration);
+
+    ClassLoader* class_loader {load_bootstrap()};
+    initialize_core_library(class_loader);
+
+#ifdef __ANDROID__
+    String main_jar_file {"main-dex.jar"};
+    copy_new_file_to_user_dir(main_jar_file);
+#else
+    String main_jar_file;
+    if (user_configuration.vm_type == jni::JvmType::GRAAL_NATIVE_IMAGE) {
+        main_jar_file = "graal_usercode";
+    } else {
+        main_jar_file = "main.jar";
+        // copy_new_file_to_user_dir(main_jar_file);
+    }
+#endif
+
+
+
+
 
 #ifdef TOOLS_ENABLED
     String jar_path {ProjectSettings::get_singleton()->globalize_path("res://build/libs/")};
@@ -221,12 +250,11 @@ void GDKotlin::init() {
       jar_path,
       main_jar_file,
 #ifdef __ANDROID__
-      ClassLoader::provide_loader(env, main_jar, class_loader)
+      ClassLoader::provide_loader(env, main_jar, wrapped)
 #else
       jni::JObject()
 #endif
     );
-    is_initialized = true;
 }
 
 void GDKotlin::unload_dynamic_lib() {
@@ -279,42 +307,4 @@ void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
 
 const JvmUserConfiguration& GDKotlin::get_configuration() {
     return user_configuration;
-}
-
-jni::JObject GDKotlin::_prepare_class_loader(jni::Env& p_env, jni::JvmType type) {
-    if (type == jni::JvmType::GRAAL_NATIVE_IMAGE) { return {}; }
-#ifdef __ANDROID__
-    String bootstrap_jar_file {"godot-bootstrap-dex.jar"};
-    String main_jar_file {"main-dex.jar"};
-#else
-    String bootstrap_jar_file {"godot-bootstrap.jar"};
-#endif
-
-    // copy_new_file_to_user_dir(bootstrap_jar_file);
-
-#ifdef TOOLS_ENABLED
-    String bootstrap_jar {OS::get_singleton()->get_executable_path().get_base_dir() + "/godot-bootstrap.jar"};
-#else
-    String bootstrap_jar {ProjectSettings::get_singleton()->globalize_path(vformat("user://%s", bootstrap_jar_file))};
-#endif
-
-#ifdef TOOLS_ENABLED
-    JVM_CRASH_COND_MSG(!FileAccess::exists(bootstrap_jar), "No godot-bootstrap.jar found! This file needs to stay alongside the godot editor executable!");
-#elif DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(!FileAccess::exists(bootstrap_jar), "No godot-bootstrap.jar found!");
-#endif
-
-    LOG_INFO(vformat("Loading bootstrap jar: %s", bootstrap_jar));
-
-    jni::JObject class_loader {ClassLoader::provide_loader(p_env, bootstrap_jar, jni::JObject(nullptr))};
-    ClassLoader::set_default_loader(class_loader);
-    class_loader.delete_local_ref(p_env);
-
-    class_loader = ClassLoader::get_default_loader();
-
-    return class_loader;
-}
-
-bool GDKotlin::initialized() const {
-    return is_initialized;
 }

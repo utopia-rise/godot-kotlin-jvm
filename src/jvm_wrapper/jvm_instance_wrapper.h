@@ -15,18 +15,23 @@
 #define INIT_NATIVE_METHOD(string_name, signature, function) \
     methods.push_back({const_cast<char*>(string_name), const_cast<char*>(signature), (void*) function});
 
-#define INIT_JNI_BINDINGS(...)                                                                               \
-                                                                                                             \
-public:                                                                                                      \
-    static void initialize_jni_binding(jni::Env& p_env) {                                                    \
-        Vector<jni::JNativeMethod> methods;                                                                  \
-        jni::JClass clazz {p_env.load_class(get_fully_qualified_name(), ClassLoader::get_default_loader())}; \
-                                                                                                             \
-        __VA_ARGS__                                                                                          \
-        if (methods.size() > 0) { clazz.register_natives(p_env, methods); }                                  \
-        clazz.delete_local_ref(p_env);                                                                       \
-    }                                                                                                        \
-                                                                                                             \
+#define INIT_JNI_BINDINGS(...)                                                       \
+                                                                                     \
+public:                                                                              \
+    static void initialize_jni_binding(jni::Env& p_env, ClassLoader* class_loader) { \
+        Vector<jni::JNativeMethod> methods;                                          \
+        jni::JClass clazz;                                                           \
+        if (class_loader) {                                                          \
+            clazz = class_loader->load_class(p_env, get_fully_qualified_name());     \
+        } else {                                                                     \
+            clazz = p_env.find_class(get_fully_qualified_name());                    \
+        }                                                                            \
+                                                                                     \
+        __VA_ARGS__                                                                  \
+        if (methods.size() > 0) { clazz.register_natives(p_env, methods); }          \
+        clazz.delete_local_ref(p_env);                                               \
+    }                                                                                \
+                                                                                     \
 private:
 
 /**
@@ -57,7 +62,7 @@ public:
 
     static const char* get_fully_qualified_name();
 
-    static Derived* create_instance(jni::Env& p_env);
+    static Derived* create_instance(jni::Env& p_env, ClassLoader* class_loader);
 };
 
 template<class Derived, const char* FqName>
@@ -68,8 +73,8 @@ JvmInstanceWrapper<Derived, FqName>::JvmInstanceWrapper(jni::Env& p_env, jni::JO
 }
 
 template<class Derived, const char* FqName>
-Derived* JvmInstanceWrapper<Derived, FqName>::create_instance(jni::Env& p_env) {
-    jni::JClass cls = p_env.load_class(FqName, ClassLoader::get_default_loader());
+Derived* JvmInstanceWrapper<Derived, FqName>::create_instance(jni::Env& p_env, ClassLoader* class_loader) {
+    jni::JClass cls = class_loader->load_class(p_env, FqName);
     jni::MethodId ctor = cls.get_constructor_method_id(p_env, "()V");
     jni::JObject instance = cls.new_instance(p_env, ctor);
     return new Derived(p_env, instance);

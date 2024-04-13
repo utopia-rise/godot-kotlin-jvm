@@ -23,7 +23,7 @@ class JvmLoadingConfiguration {
 
     int version {JNI_VERSION_1_8};
     JvmLoadingType loading_type {NONE};
-    bool user_code_included_in_vm {false};
+    bool code_included_in_vm {false};
 
     LocalVector<String> options;
 

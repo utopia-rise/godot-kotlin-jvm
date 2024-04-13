@@ -13,19 +13,22 @@
 #ifdef X11_ENABLED
 
 static constexpr const char* RELATIVE_JVM_LIB_PATH {"lib/server/libjvm.so"};
-static constexpr const char* GRAAL_NATIVE_IMAGE_PATH {"usercode.so"};
+static constexpr const char* BOOTSTRAP_FILE {"godot-bootstrap.jar"};
+static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {"usercode.so"};
 
 #elif MACOS_ENABLED
 
 #include <TargetConditionals.h>
 
 static constexpr const char* RELATIVE_JVM_LIB_PATH {"lib/server/libjvm.dylib"};
-static constexpr const char* GRAAL_NATIVE_IMAGE_PATH {"usercode.dylib"};
+static constexpr const char* BOOTSTRAP_FILE {"godot-bootstrap.jar"};
+static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {"usercode.dylib"};
 
 #elif WINDOWS_ENABLED
 
 static constexpr const char* RELATIVE_JVM_LIB_PATH {"bin/server/jvm.dll"};
-static constexpr const char* GRAAL_NATIVE_IMAGE_PATH {"usercode.dll"};
+static constexpr const char* BOOTSTRAP_FILE {"godot-bootstrap.jar"};
+static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {"usercode.dll"};
 
 #elif __ANDROID__
 
@@ -33,12 +36,14 @@ static constexpr const char* GRAAL_NATIVE_IMAGE_PATH {"usercode.dll"};
 #include <platform/android/os_android.h>
 
 static constexpr const char* RELATIVE_JVM_LIB_PATH {"lib/server/libjvm.so"};
-static constexpr const char* GRAAL_NATIVE_IMAGE_PATH {"usercode.so"};
+static constexpr const char* BOOTSTRAP_FILE {"godot-bootstrap-dex.jar"};
+static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {"usercode.so"};
 
 #elif IOS_ENABLED
 
 static constexpr const char* RELATIVE_JVM_LIB_PATH {"lib/server/libjvm.so"};
-static constexpr const char* GRAAL_NATIVE_IMAGE_PATH {"usercode.so"};
+static constexpr const char* BOOTSTRAP_FILE {""};
+static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {"usercode.so"};
 
 #endif
 
@@ -55,11 +60,10 @@ static constexpr const char* BUILD_DIRECTORY {"res://build/libs/"};
 static constexpr const char* USER_DIRECTORY {"user://"};
 static constexpr const char* RES_DIRECTORY {"res://"};
 
-static constexpr const char* BOOTSTRAP_PATH {"godot-bootstrap.jar"};
+
 static constexpr const char* JVM_CONFIGURATION_PATH {"res://godot_kotlin_configuration.json"};
 
 class GDKotlin {
-    bool is_initialized {false};
     bool is_gc_started {false};
 
     JvmUserConfiguration user_configuration {};
@@ -83,7 +87,9 @@ class GDKotlin {
     void load_dynamic_lib();
     void unload_dynamic_lib();
 
-    static jni::JObject _prepare_class_loader(jni::Env& p_env, jni::JvmType type);
+    ClassLoader* load_bootstrap() const;
+    void initialize_core_library(ClassLoader* class_loader);
+
 
 public:
     GDKotlin() = default;
@@ -99,8 +105,6 @@ public:
     void finish();
 
     void register_classes(jni::Env& p_env, jni::JObjectArray p_classes);
-
-    bool initialized() const;
 };
 
 #endif// GODOT_JVM_GD_KOTLIN_H

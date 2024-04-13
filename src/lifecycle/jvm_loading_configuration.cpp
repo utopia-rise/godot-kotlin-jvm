@@ -56,7 +56,7 @@ void JvmLoadingConfiguration::create(JvmUserConfiguration& user_configuration, J
       bool user_code_included_in_vm = user_configuration.vm_type == jni::JvmType::GRAAL_NATIVE_IMAGE;
 
     loading_configuration.loading_type = loading_type;
-    loading_configuration.user_code_included_in_vm = user_code_included_in_vm;
+    loading_configuration.code_included_in_vm = user_code_included_in_vm;
 }
 
 void JvmLoadingConfiguration::add_options(JvmUserConfiguration& user_configuration, JvmLoadingConfiguration& loading_configuration) {

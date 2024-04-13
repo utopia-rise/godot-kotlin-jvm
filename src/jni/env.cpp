@@ -21,27 +21,12 @@ namespace jni {
         return env != nullptr;
     }
 
+    //Support fully qualified class names with "a/b/c" and "a.b.c" format
     JClass Env::find_class(const char* name) {
-        auto cls = env->FindClass(name);
+        const char* corrected_name = String(name).replace(".", "/").utf8();
+        jclass cls = env->FindClass(corrected_name);
         JVM_CRASH_COND_MSG(cls == nullptr, vformat("Class not found: %s", name));
         return JClass(cls);
-    }
-
-    JClass Env::load_class(const char* name, JObject class_loader) {
-        static bool is_graal_vm {Jvm::get_type() == JvmType::GRAAL_NATIVE_IMAGE};
-        if (is_graal_vm) {
-            return find_class(String(name).replace(".", "/").utf8());
-        } else {
-            static jmethodID loadClassMethodId;
-
-            if (loadClassMethodId == nullptr) {
-                auto cls = find_class("java/lang/ClassLoader");
-                loadClassMethodId = cls.get_method_id(*this, "loadClass", "(Ljava/lang/String;)Ljava/lang/Class;");
-            }
-            jvalue args[1] = {static_cast<JValue>(new_string(name)).value};
-            jni::JObject ret = class_loader.call_object_method(*this, loadClassMethodId, args);
-            return JClass((jclass) ret.obj);
-        }
     }
 
     JObject Env::new_string(const char* str) {

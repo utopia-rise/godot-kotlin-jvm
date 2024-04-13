@@ -5,27 +5,22 @@
 
 class ClassLoader {
 private:
-    jni::JObject class_loader;
+    jni::JObject wrapped {};
 
-    ClassLoader();
-    ~ClassLoader() = default;
-
-    _FORCE_INLINE_ static ClassLoader& get_instance();
+    explicit ClassLoader(jni::Env& p_env, jni::JObject p_wrapped);
+    ~ClassLoader();
 
 public:
+    ClassLoader() = delete;
     ClassLoader(const ClassLoader&) = delete;
     void operator=(const ClassLoader&) = delete;
-
     ClassLoader(ClassLoader&& instance) = delete;
     void operator=(ClassLoader& $) = delete;
 
-    static void set_default_loader(jni::JObject& p_class_loader);
+    jni::JClass load_class(jni::Env& env, const char* name);
+    void set_as_context_loader(jni::Env& env);
 
-    static jni::JObject& get_default_loader();
-
-    static jni::JObject provide_loader(jni::Env& env, const String& full_jar_path, const jni::JObject& p_parent_loader);
-
-    static void delete_default_loader(jni::Env& env);
+    static ClassLoader* create_instance(jni::Env& env, const String& full_jar_path, const jni::JObject& p_parent_loader);
 };
 
 #endif// GODOT_JVM_CLASS_LOADER_H
