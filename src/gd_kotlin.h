@@ -5,7 +5,7 @@
 #include "jvm_wrapper/bootstrap.h"
 #include "jvm_wrapper/memory/transfer_context.h"
 #include "jvm_wrapper/registration/kt_class.h"
-#include "lifecycle/jvm_loading_configuration.h"
+#include "lifecycle/jvm_options.h"
 #include "lifecycle/jvm_user_configuration.h"
 
 #include <core/string/ustring.h>
@@ -71,25 +71,27 @@ class GDKotlin {
     bool is_gc_started {false};
 
     JvmUserConfiguration user_configuration {};
-    JvmLoadingConfiguration loading_configuration {};
-    void* jvm_dynamic_library_handle {nullptr};
+    JvmOptions jvm_options {};
 
     Bootstrap* bootstrap {nullptr};
 
     void fetch_user_configuration();
-    void fetch_loading_configuration();
+    void set_jvm_options();
 
-#ifdef TOOLS_ENABLED
-    static String get_path_to_environment_jvm();
-#else
+#ifndef TOOLS_ENABLED
     static String copy_new_file_to_user_dir(const String& file_name);
 #endif
 
+#ifdef DYNAMIC_JVM
+    void* jvm_dynamic_library_handle {nullptr};
+    void load_dynamic_lib();
+#ifdef TOOLS_ENABLED
+    static String get_path_to_environment_jvm();
+#endif
     static String get_path_to_embedded_jvm();
     static String get_path_to_native_image();
-
-    void load_dynamic_lib();
     void unload_dynamic_lib();
+#endif
 
     ClassLoader* load_bootstrap() const;
     void initialize_core_library(ClassLoader* class_loader);

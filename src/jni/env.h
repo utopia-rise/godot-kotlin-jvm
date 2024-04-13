@@ -24,12 +24,12 @@ namespace jni {
         Env(const Env&) = default;
         Env& operator=(const Env&) = default;
 
+        JavaVM* get_jvm();
+
         void push_local_frame(int capacity);
         void pop_local_frame();
 
         JClass find_class(const char* name);
-
-        JClass load_class(const char* name, JObject class_loader);
 
         JObject new_string(const char* str);
         String from_jstring(jni::JString str);

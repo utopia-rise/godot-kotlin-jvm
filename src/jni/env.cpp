@@ -79,4 +79,10 @@ namespace jni {
         env->ReleaseStringUTFChars(jstr, utfString);
         return ret;
     }
+
+    JavaVM* Env::get_jvm() {
+        JavaVM* jvm;
+        env->GetJavaVM(&jvm);
+        return jvm;
+    }
 }// namespace jni
