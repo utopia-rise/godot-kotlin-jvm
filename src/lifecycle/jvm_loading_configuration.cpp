@@ -43,7 +43,7 @@ void JvmLoadingConfiguration::create(JvmUserConfiguration& user_configuration, J
     JvmLoadingType loading_type;
 
 #ifdef IOS_ENABLED
-    loading_type = JvmLoadingType::STATIC
+    loading_type = JvmLoadingType::STATIC;
 #else
     if (user_configuration.vm_type == jni::JvmType::ART) {
         loading_type = JvmLoadingType::PROVIDED;
