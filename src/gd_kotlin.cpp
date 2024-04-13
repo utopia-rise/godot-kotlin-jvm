@@ -68,9 +68,7 @@ void GDKotlin::set_jvm_options() {
 
     if (user_configuration.jvm_jmx_port >= 0) { jvm_options.add_jmx_option(user_configuration.jvm_jmx_port); }
 
-    if (!Engine::get_singleton()->is_editor_hint()) {
-        jvm_options.add_custom_options(user_configuration.jvm_args);
-    }
+    if (!Engine::get_singleton()->is_editor_hint()) { jvm_options.add_custom_options(user_configuration.jvm_args); }
 }
 
 #ifndef TOOLS_ENABLED
@@ -276,11 +274,13 @@ void GDKotlin::load_dynamic_lib() {
 
 #ifdef TOOLS_ENABLED
 String GDKotlin::get_path_to_embedded_jvm() {
-    return String(RES_DIRECTORY) + String(EMBEDDED_JRE_DIRECTORY) + String(RELATIVE_JVM_LIB_PATH);
+    String godot_path {String(RES_DIRECTORY) + String(EMBEDDED_JRE_DIRECTORY) + String(RELATIVE_JVM_LIB_PATH)};
+    return ProjectSettings::get_singleton()->globalize_path(godot_path);
 }
 
 String GDKotlin::get_path_to_native_image() {
-    return String(BUILD_DIRECTORY) + String(GRAAL_NATIVE_IMAGE_FILE);
+    String godot_path {String(BUILD_DIRECTORY) + String(GRAAL_NATIVE_IMAGE_FILE)};
+    return ProjectSettings::get_singleton()->globalize_path(godot_path);
 }
 
 String GDKotlin::get_path_to_environment_jvm() {
