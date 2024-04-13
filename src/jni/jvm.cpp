@@ -24,13 +24,17 @@ namespace jni {
 
     void Jvm::attach() {
         JNIEnv* r_env;
-        auto result = _instance->vm->AttachCurrentThread((void**) &r_env, nullptr);
+#ifdef __ANDROID__
+        jint result = _instance->vm->AttachCurrentThread(&r_env, nullptr);
+#else
+        jint result = _instance->vm->AttachCurrentThread((void**) &r_env, nullptr);
+#endif
         JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to attach vm to current thread!");
         env = new Env(r_env);
     }
 
     void Jvm::detach() {
-        auto result = _instance->vm->DetachCurrentThread();
+        jint result = _instance->vm->DetachCurrentThread();
         JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to detach vm to current thread!");
         delete env;
         env = nullptr;
@@ -39,7 +43,7 @@ namespace jni {
     Env Jvm::current_env() {
         if (unlikely(!env)) {
             JNIEnv* r_env;
-            auto result = _instance->vm->GetEnv((void**) &r_env, _instance->version);
+            jint result = _instance->vm->GetEnv((void**) &r_env, _instance->version);
             JVM_CRASH_COND_MSG(result == JNI_EDETACHED, "Current thread is not attached!");
             env = new Env(r_env);
         }

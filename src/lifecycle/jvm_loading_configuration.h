@@ -21,7 +21,11 @@ class JvmLoadingConfiguration {
     friend class JvmManager;
     friend class GDKotlin;
 
+#ifdef __ANDROID__
+    int version {JNI_VERSION_1_6};
+#else
     int version {JNI_VERSION_1_8};
+#endif
     JvmLoadingType loading_type {NONE};
     bool code_included_in_vm {false};
 

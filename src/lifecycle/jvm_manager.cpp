@@ -27,8 +27,13 @@
 #include <locale>
 #endif
 
+#ifdef __ANDROID__
+typedef jint(JNICALL* CreateJavaVM)(JavaVM**, JNIEnv**, void*);
+typedef jint(JNICALL* GetCreatedJavaVMs)(JavaVM**, jsize, jsize*);
+#else
 typedef jint(JNICALL* CreateJavaVM)(JavaVM**, void**, void*);
 typedef jint(JNICALL* GetCreatedJavaVMs)(JavaVM**, jsize, jsize*);
+#endif
 
 CreateJavaVM get_create_jvm_function(void* lib_handle) {
 #if defined WINDOWS_ENABLED || defined X11_ENABLED || defined MACOS_ENABLED
@@ -43,7 +48,8 @@ CreateJavaVM get_create_jvm_function(void* lib_handle) {
 GetCreatedJavaVMs get_get_created_java_vm_function(void* lib_handle) {
 #if defined WINDOWS_ENABLED || defined X11_ENABLED || defined MACOS_ENABLED
     void* getCreatedJavaVMsSymbolHandle;
-    if (OS::get_singleton()->get_dynamic_library_symbol_handle(lib_handle, "JNI_GetCreatedJavaVMs", getCreatedJavaVMsSymbolHandle) != OK) {}
+    if (OS::get_singleton()->get_dynamic_library_symbol_handle(lib_handle, "JNI_GetCreatedJavaVMs", getCreatedJavaVMsSymbolHandle) != OK) {
+    }
     return reinterpret_cast<GetCreatedJavaVMs>(getCreatedJavaVMsSymbolHandle);
 #else
     &JNI_GetCreatedJavaVMs;
@@ -78,7 +84,12 @@ void JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
 
         LOG_VERBOSE("Starting JVM ...");
         JNIEnv* jni_env {nullptr};
+
+#ifdef __ANDROID__
+        jint result {get_create_jvm_function(lib_handle)(&java_vm, &jni_env, &args)};
+#else
         jint result {get_create_jvm_function(lib_handle)(&java_vm, reinterpret_cast<void**>(&jni_env), &args)};
+#endif
 
         // Set std::local::global to value it was before creating JVM.
         // See https://github.com/utopia-rise/godot-kotlin-jvm/issues/166
@@ -91,7 +102,7 @@ void JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
         JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to create a new vm!");
     }
 
-    //Sanity check
+    // Sanity check
     JVM_CRASH_COND_MSG(java_vm == nullptr, "Current configuration doesn't allow to create or fetch a JVM.");
 
     jni::Jvm::initialize(java_vm, user_configuration.vm_type, loading_configuration.version);
