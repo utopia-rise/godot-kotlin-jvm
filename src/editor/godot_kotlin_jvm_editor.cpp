@@ -5,7 +5,7 @@
 #include "../logging.h"
 #include "editor/build/build_manager.h"
 #include "gd_kotlin.h"
-#include "godotkotlin_defs.h"
+#include "language/names.h"
 
 #include <core/config/project_settings.h>
 #include <editor/editor_interface.h>

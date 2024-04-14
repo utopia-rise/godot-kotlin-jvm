@@ -1,7 +1,7 @@
 #include "java_script.h"
 
-#include "godotkotlin_defs.h"
 #include "language/java_language.h"
+#include "language/names.h"
 
 ScriptLanguage* JavaScript::get_language() const {
     return JavaLanguage::get_instance();

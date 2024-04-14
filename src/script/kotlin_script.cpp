@@ -1,7 +1,7 @@
 #include "kotlin_script.h"
 
-#include "godotkotlin_defs.h"
 #include "language/kotlin_language.h"
+#include "language/names.h"
 
 ScriptLanguage* KotlinScript::get_language() const {
     return KotlinLanguage::get_instance();

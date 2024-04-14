@@ -1,6 +1,6 @@
 #include "jvm_resource_format_saver.h"
 
-#include "godotkotlin_defs.h"
+#include "language/names.h"
 #include "script/jvm_script.h"
 
 void JvmResourceFormatSaver::get_recognized_extensions(const Ref<Resource>& p_resource, List<String>* p_extensions) const {

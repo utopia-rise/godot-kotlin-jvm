@@ -1,7 +1,7 @@
 #include "java_language.h"
 
 #include "gd_kotlin.h"
-#include "godotkotlin_defs.h"
+#include "names.h"
 #include "script/java_script.h"
 
 #include <core/io/resource_loader.h>

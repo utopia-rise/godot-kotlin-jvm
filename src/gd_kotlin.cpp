@@ -4,6 +4,7 @@
 #include "jvm_wrapper/memory/transfer_context.h"
 #include "lifecycle/class_loader.h"
 #include "lifecycle/jvm_manager.h"
+#include "lifecycle/paths.h"
 
 #include <core/config/project_settings.h>
 #include <core/io/resource_loader.h>

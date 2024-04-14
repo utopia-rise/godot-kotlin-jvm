@@ -3,8 +3,9 @@
 #include "kotlin_editor_export_plugin.h"
 
 #include "gd_kotlin.h"
-#include "godotkotlin_defs.h"
+#include "language/names.h"
 #include "lifecycle/jvm_user_configuration.h"
+#include "lifecycle/paths.h"
 
 #include <core/config/project_settings.h>
 
