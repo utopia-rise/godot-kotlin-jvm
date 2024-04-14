@@ -42,7 +42,7 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
             is_invalid = true;
             LOG_WARNING(vformat("Invalid Use Debug value in configuration file: %s. It will be ignored", boolean));
         }
-        json_dict.erase(WAIT_FOR_DEBUGGER_JSON_IDENTIFIER);
+        json_dict.erase(USE_DEBUG_JSON_IDENTIFIER);
     }
     if (json_dict.has(DEBUG_PORT_JSON_IDENTIFIER)) {
         int32_t port = json_dict[DEBUG_PORT_JSON_IDENTIFIER];
@@ -312,9 +312,18 @@ void replace_json_value_by_cmd_value(const HashMap<String, Variant>& map, T& jso
 
 void JvmUserConfiguration::merge_with_command_line(JvmUserConfiguration& json_config, const HashMap<String, Variant>& cmd_map) {
     replace_json_value_by_cmd_value(cmd_map, json_config.vm_type, VM_TYPE_CMD_IDENTIFIER);
+
     replace_json_value_by_cmd_value(cmd_map, json_config.jvm_debug_port, DEBUG_PORT_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.jvm_debug_address, DEBUG_ADDRESS_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.wait_for_debugger, WAIT_FOR_DEBUGGER_CMD_IDENTIFIER);
+
+    if (cmd_map.has(DEBUG_PORT_CMD_IDENTIFIER) || cmd_map.has(DEBUG_ADDRESS_CMD_IDENTIFIER) || cmd_map.has(WAIT_FOR_DEBUGGER_CMD_IDENTIFIER)) {
+        // Set use debug to true if any of the 3 previous arguments are used.
+        // Will be overridden if the actual argument is used.
+        json_config.use_debug = true;
+    }
+    replace_json_value_by_cmd_value(cmd_map, json_config.use_debug, DEBUG_PORT_CMD_IDENTIFIER);
+
     replace_json_value_by_cmd_value(cmd_map, json_config.jvm_jmx_port, JMX_PORT_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.max_string_size, MAX_STRING_SIZE_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.force_gc, FORCE_GC_CMD_IDENTIFIER);
