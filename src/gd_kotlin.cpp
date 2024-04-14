@@ -69,7 +69,8 @@ void GDKotlin::set_jvm_options() {
     if (user_configuration.jvm_jmx_port >= 0) { jvm_options.add_jmx_option(user_configuration.jvm_jmx_port); }
 
     if (!Engine::get_singleton()->is_editor_hint() && !user_configuration.jvm_args.is_empty()) {
-        LOG_WARNING("You are using custom arguments for the JVM. Make sure they are valid or you risk the JVM to not launch properly");
+        LOG_WARNING("You are using custom arguments for the JVM. Make sure they are valid or you risk the JVM to not "
+                    "launch properly");
         jvm_options.add_custom_options(user_configuration.jvm_args);
     }
 }
@@ -152,12 +153,22 @@ void GDKotlin::load_user_code(ClassLoader* bootstrap_class_loader) {
         bootstrap->init(env, project_path, "", jni::JObject(nullptr));
     } else {
 #ifdef TOOLS_ENABLED
-        String user_code_path {ProjectSettings::get_singleton()->globalize_path(String(BUILD_DIRECTORY) + String(USER_CODE_FILE))};
+        String user_code_path {String(BUILD_DIRECTORY) + String(USER_CODE_FILE)};
 #else
         String user_code_path {copy_new_file_to_user_dir(USER_CODE_FILE)};
 #endif
-        ClassLoader* user_class_loader = ClassLoader::create_instance(env, user_code_path, bootstrap_class_loader->get_wrapped());
-        bootstrap->init(env, project_path, user_code_path, user_class_loader->get_wrapped());
+        LOG_VERBOSE(vformat("Loading usercode file at: %s", user_code_path));
+        ClassLoader* user_class_loader = ClassLoader::create_instance(
+          env,
+          ProjectSettings::get_singleton()->globalize_path(user_code_path),
+          bootstrap_class_loader->get_wrapped()
+        );
+        bootstrap->init(
+          env,
+          project_path,
+          ProjectSettings::get_singleton()->globalize_path(user_code_path),
+          user_class_loader->get_wrapped()
+        );
         delete user_class_loader;
     }
 }
@@ -251,7 +262,7 @@ void GDKotlin::load_dynamic_lib() {
             }
 #else
             else {
-                JVM_CRASH_NOW_MSG("No embedded JRE found!");
+                JVM_CRASH_NOW_MSG(vformat("No embedded JRE found at: %s!", get_path_to_embedded_jvm()));
             }
 #endif
 
@@ -295,11 +306,13 @@ String GDKotlin::get_path_to_environment_jvm() {
 #else
 
 String GDKotlin::get_path_to_embedded_jvm() {
-    return OS::get_singleton()->get_executable_path().get_base_dir() +
+    return OS::get_singleton()
+      ->get_executable_path()
+      .get_base_dir()
 #if defined(MACOS_ENABLED)
-           String("../PlugIns/") +
+      .path_join("../PlugIns/")
 #endif
-           String(EMBEDDED_JRE_DIRECTORY) + String(RELATIVE_JVM_LIB_PATH);
+      .path_join((EMBEDDED_JRE_DIRECTORY) + String(RELATIVE_JVM_LIB_PATH));
 }
 
 String GDKotlin::get_path_to_native_image() {

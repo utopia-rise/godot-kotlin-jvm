@@ -46,7 +46,7 @@ internal class Bootstrap {
                     ::warning
                 } else {
                     ::err
-                }.invoke("No main.jar detected. No classes will be loaded. Build the gradle project to load classes")
+                }.invoke("No main.jar detected at $userCodeFile. No classes will be loaded. Build the gradle project to load classes")
             }
 
             if (projectRootDir.isNotEmpty()) {

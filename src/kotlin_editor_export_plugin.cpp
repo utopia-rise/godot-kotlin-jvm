@@ -47,9 +47,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
         } else {
             if (FileAccess::exists(configuration_path)) {
                 Ref<FileAccess> configuration_access_read {FileAccess::open(configuration_path, FileAccess::READ)};
-                JvmUserConfiguration configuration;
-                JvmUserConfiguration::parse_configuration_json(configuration_access_read->get_as_utf8_string(), configuration);
-                jni::JvmType jvm_type {configuration.vm_type};
+                jni::JvmType jvm_type {GDKotlin::get_instance().get_configuration().vm_type};
                 switch (jvm_type) {
                     case jni::JvmType::JVM:
                         files_to_add.push_back("res://build/libs/main.jar");
@@ -64,7 +62,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
 
                         break;
                     default:
-                        LOG_ERROR("Unknown VM type, aborting export.");
+                        LOG_ERROR("Incorrect VM type for desktop, aborting export.");
                         return;
                 }
             } else {
