@@ -316,7 +316,7 @@ String GDKotlin::get_path_to_embedded_jvm() {
 }
 
 String GDKotlin::get_path_to_native_image() {
-    return copy_new_file_to_user_dir(GRAAL_NATIVE_IMAGE_FILE);
+    return ProjectSettings::get_singleton()->globalize_path(copy_new_file_to_user_dir(GRAAL_NATIVE_IMAGE_FILE));
 }
 #endif
 

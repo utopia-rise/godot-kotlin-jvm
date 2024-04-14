@@ -74,7 +74,12 @@ JvmInstanceWrapper<Derived, FqName>::JvmInstanceWrapper(jni::Env& p_env, jni::JO
 
 template<class Derived, const char* FqName>
 Derived* JvmInstanceWrapper<Derived, FqName>::create_instance(jni::Env& p_env, ClassLoader* class_loader) {
-    jni::JClass cls = class_loader->load_class(p_env, FqName);
+    jni::JClass cls;
+    if (class_loader) {
+        cls = class_loader->load_class(p_env, FqName);
+    } else {
+        cls = p_env.find_class(FqName);
+    }
     jni::MethodId ctor = cls.get_constructor_method_id(p_env, "()V");
     jni::JObject instance = cls.new_instance(p_env, ctor);
     return new Derived(p_env, instance);
