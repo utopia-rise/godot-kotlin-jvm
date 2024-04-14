@@ -30,10 +30,23 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
         }
         json_dict.erase(VM_TYPE_JSON_IDENTIFIER);
     }
+    if (json_dict.has(USE_DEBUG_JSON_IDENTIFIER)) {
+        String boolean = json_dict[USE_DEBUG_JSON_IDENTIFIER];
+        LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", USE_DEBUG_JSON_IDENTIFIER, boolean));
+        if (boolean == TRUE_STRING) {
+            json_config.use_debug = true;
+        } else if (boolean == FALSE_STRING) {
+            json_config.use_debug = false;
+        } else {
+            is_invalid = true;
+            LOG_WARNING(vformat("Invalid Use Debug value in configuration file: %s. It will be ignored", boolean));
+        }
+        json_dict.erase(WAIT_FOR_DEBUGGER_JSON_IDENTIFIER);
+    }
     if (json_dict.has(DEBUG_PORT_JSON_IDENTIFIER)) {
         int32_t port = json_dict[DEBUG_PORT_JSON_IDENTIFIER];
         LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", DEBUG_PORT_JSON_IDENTIFIER, port));
-        if (port >= -1 && port <= 65535) {
+        if (port >= 0 && port <= 65535) {
             json_config.jvm_debug_port = port;
         } else {
             is_invalid = true;
@@ -79,7 +92,7 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
     if (json_dict.has(MAX_STRING_SIZE_JSON_IDENTIFIER)) {
         int32_t size = json_dict[MAX_STRING_SIZE_JSON_IDENTIFIER];
         LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", MAX_STRING_SIZE_JSON_IDENTIFIER, size));
-        if (size >= 0) {
+        if (size >= -1) {
             json_config.max_string_size = size;
         } else {
             is_invalid = true;
@@ -166,6 +179,7 @@ String JvmUserConfiguration::export_configuration_to_json(const JvmUserConfigura
     }
     json[VM_TYPE_JSON_IDENTIFIER] = vm_type_value;
 
+    json[USE_DEBUG_JSON_IDENTIFIER] = configuration.jvm_debug_port;
     json[DEBUG_PORT_JSON_IDENTIFIER] = configuration.jvm_debug_port;
     json[DEBUG_ADDRESS_JSON_IDENTIFIER] = configuration.jvm_debug_address;
     json[WAIT_FOR_DEBUGGER_JSON_IDENTIFIER] = configuration.wait_for_debugger;
@@ -235,8 +249,10 @@ void JvmUserConfiguration::parse_command_line(const List<String>& args, HashMap<
             } else {
                 LOG_WARNING(vformat("Wrong JVM type in command line arguments: %s. It will be ignored", value));
             }
+        } else if (identifier == USE_DEBUG_CMD_IDENTIFIER) {
+            configuration_map[USE_DEBUG_CMD_IDENTIFIER] = get_cmd_bool_or_default(value, TRUE_STRING);
         } else if (identifier == DEBUG_PORT_CMD_IDENTIFIER) {
-            uint16_t port = -1;
+            int64_t port = -1;
             if (value.is_valid_int()) { port = value.to_int(); }
             if (port >= 0 && port <= 65535) {
                 configuration_map[DEBUG_PORT_CMD_IDENTIFIER] = port;
@@ -252,7 +268,7 @@ void JvmUserConfiguration::parse_command_line(const List<String>& args, HashMap<
         } else if (identifier == WAIT_FOR_DEBUGGER_CMD_IDENTIFIER) {
             configuration_map[WAIT_FOR_DEBUGGER_CMD_IDENTIFIER] = get_cmd_bool_or_default(value, TRUE_STRING);
         } else if (identifier == JMX_PORT_CMD_IDENTIFIER) {
-            uint16_t port = -1;
+            int64_t port = -1;
             if (value.is_valid_int()) { port = value.to_int(); }
             if (port >= 0 && port <= 65535) {
                 configuration_map[JMX_PORT_CMD_IDENTIFIER] = port;
@@ -260,9 +276,9 @@ void JvmUserConfiguration::parse_command_line(const List<String>& args, HashMap<
                 LOG_WARNING(vformat("Invalid JMX port value command line arguments: %s. It will be ignored", port));
             }
         } else if (identifier == MAX_STRING_SIZE_CMD_IDENTIFIER) {
-            uint16_t size = -1;
+            int64_t size = -1;
             if (value.is_valid_int()) { size = value.to_int(); }
-            if (value.is_valid_int() && size >= 0) {
+            if (value.is_valid_int() && size >= -1) {
                 configuration_map[MAX_STRING_SIZE_CMD_IDENTIFIER] = size;
             } else {
                 LOG_WARNING(vformat("Invalid Maximum String Size value in configuration file: %s. It will be ignored", size));
@@ -299,15 +315,6 @@ void JvmUserConfiguration::merge_with_command_line(JvmUserConfiguration& json_co
 }
 
 void JvmUserConfiguration::sanitize_and_log_configuration(JvmUserConfiguration& config) {
-    // Initialize remote jvm debug if one of jvm debug arguments is encountered.
-    if (config.jvm_debug_port >= 0 || !config.jvm_debug_address.is_empty()) {
-        if (config.jvm_debug_address.is_empty()) {
-            config.jvm_debug_address = DEFAULT_JVM_ADDRESS;
-        } else if (config.jvm_debug_port == -1) {
-            config.jvm_debug_port = DEFAULT_JVM_PORT;
-        }
-    }
-
     if (config.max_string_size != 0) {
         LOG_WARNING(vformat(
           "The max string size was changed to %s which can modify the size of the shared buffer. "

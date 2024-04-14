@@ -79,7 +79,7 @@ nav:
       - Custom source directories: user-guide/advanced/custom-src-dirs.md
       - Custom Gradle wrapper path: user-guide/advanced/custom-gradle-wrapper-path.md
       - Gradle plugin configuration: user-guide/advanced/gradle-plugin-configuration.md
-      - Command-line arguments: user-guide/advanced/commandline-args.md
+      - Command-line and configuration arguments: user-guide/advanced/commandline-args_and_configuration.md
       - Kotlin singletons: user-guide/advanced/kotlin-singleton.md
       - GraalVM Native Image: user-guide/advanced/graal-vm-native-image.md
   - Develop libraries:

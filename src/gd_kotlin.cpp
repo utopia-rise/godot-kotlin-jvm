@@ -57,15 +57,16 @@ void GDKotlin::fetch_user_configuration() {
 void GDKotlin::set_jvm_options() {
 #ifdef DEBUG_ENABLED
     jvm_options.add_jni_checks();
-#endif
 
-    if (user_configuration.jvm_debug_port != -1) {
+
+    if (user_configuration.use_debug) {
         jvm_options.add_debug_options(
           user_configuration.jvm_debug_port,
           user_configuration.jvm_debug_address,
           user_configuration.wait_for_debugger
         );
     }
+#endif
 
     if (user_configuration.jvm_jmx_port >= 0) { jvm_options.add_jmx_option(user_configuration.jvm_jmx_port); }
 
