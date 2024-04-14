@@ -1,5 +1,6 @@
-#include "core/io/json.h"
 #include "jvm_user_configuration.h"
+
+#include "core/io/json.h"
 
 bool JvmUserConfiguration::parse_configuration_json(const String& json_string, JvmUserConfiguration& json_config) {
     bool is_invalid = false;
@@ -145,13 +146,19 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
         json_dict.erase(JVM_ARGUMENTS_JSON_IDENTIFIER);
     }
 
-    if(!json_dict.is_empty()){
+    if (!json_dict.is_empty()) {
         Array keys = json_dict.keys();
-        for(int i = 0; i < keys.size(); i++){
+        for (int i = 0; i < keys.size(); i++) {
             String key = keys[i];
             String value = json_dict[key];
             LOG_WARNING(vformat("Invalid json configuration argument: %s -> %s", key, value));
         }
+        is_invalid = true;
+    }
+
+    if (!json_dict.has(VERSION_JSON_IDENTIFIER) || json_dict[VERSION_JSON_IDENTIFIER] != JSON_ARGUMENT_VERSION) {
+        LOG_WARNING("Your existing jvm json configuration file was made for an older version of this binding. A new "
+                    "will one will be created. Your previous settings should remain if compatible.");
         is_invalid = true;
     }
 
@@ -177,6 +184,7 @@ String JvmUserConfiguration::export_configuration_to_json(const JvmUserConfigura
             vm_type_value = ART_STRING;
             break;
     }
+    json[VERSION_JSON_IDENTIFIER] = JSON_ARGUMENT_VERSION;
     json[VM_TYPE_JSON_IDENTIFIER] = vm_type_value;
 
     json[USE_DEBUG_JSON_IDENTIFIER] = configuration.jvm_debug_port;
@@ -227,9 +235,9 @@ bool get_cmd_bool_or_default(const String& value, bool default_if_empty) {
 }
 
 void JvmUserConfiguration::parse_command_line(const List<String>& args, HashMap<String, Variant>& configuration_map) {
-    // We use a HashMap instead of JvmUserConfiguration so we can still make the difference between a JvmUserConfiguration
-    // default value and the absence of the matching command line argument. Knowing this is essential when merging with
-    // the json configuration later.
+    // We use a HashMap instead of JvmUserConfiguration so we can still make the difference between a
+    // JvmUserConfiguration default value and the absence of the matching command line argument. Knowing this is
+    // essential when merging with the json configuration later.
 
     // Keep in sync with https://godot-kotl.in/en/latest/advanced/commandline-args/
     for (const auto& arg : args) {
@@ -331,7 +339,9 @@ void JvmUserConfiguration::sanitize_and_log_configuration(JvmUserConfiguration& 
         LOG_WARNING("GC thread was disable. this should only be used for debugging purpose");
     }
 
-    if (config.disable_leak_warning_on_close) { LOG_WARNING("You won't be notified if your Kotlin code got instances leaking"); }
+    if (config.disable_leak_warning_on_close) {
+        LOG_WARNING("You won't be notified if your Kotlin code got instances leaking");
+    }
 
     if (!config.jvm_args.is_empty()) {
         LOG_WARNING(vformat("Custom JVM arguments are provided, be sure they are valid: %s", config.jvm_args));

@@ -4,6 +4,7 @@
 #include "jni/jvm.h"
 
 // JSON IDENTIFIER
+static constexpr const char* VERSION_JSON_IDENTIFIER {"version"};
 static constexpr const char* VM_TYPE_JSON_IDENTIFIER {"vm_type"};
 static constexpr const char* USE_DEBUG_JSON_IDENTIFIER {"use_debug"};
 static constexpr const char* DEBUG_PORT_JSON_IDENTIFIER {"debug_port"};
@@ -35,6 +36,8 @@ static constexpr const char* GRAAL_NATIVE_IMAGE_STRING {"graal_native_image"};
 static constexpr const char* ART_STRING {"art"};
 static constexpr const char* TRUE_STRING {"true"};
 static constexpr const char* FALSE_STRING {"false"};
+static constexpr const char* JSON_ARGUMENT_VERSION {"1.0"};
+
 
 struct JvmUserConfiguration {
     jni::JvmType vm_type {jni::JvmType::NONE};
