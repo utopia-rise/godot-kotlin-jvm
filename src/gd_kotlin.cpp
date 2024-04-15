@@ -100,7 +100,7 @@ String GDKotlin::copy_new_file_to_user_dir(const String& file_name) {
 
 #endif
 
-ClassLoader* GDKotlin::load_bootstrap() const {
+ClassLoader* GDKotlin::load_bootstrap() {
     if (user_configuration.vm_type == jni::JvmType::GRAAL_NATIVE_IMAGE) { return nullptr; }
 
     jni::Env env {jni::Jvm::current_env()};
@@ -116,14 +116,13 @@ ClassLoader* GDKotlin::load_bootstrap() const {
     JVM_CRASH_COND_MSG(!FileAccess::exists(bootstrap_jar), error_text);
     LOG_VERBOSE(vformat("Loading bootstrap jar: %s", bootstrap_jar));
 
-    ClassLoader* class_loader = ClassLoader::create_instance(env, bootstrap_jar, jni::JObject(nullptr));
-    class_loader->set_as_context_loader(env);
-    return class_loader;
+    bootstrap_class_loader = ClassLoader::create_instance(env, bootstrap_jar, jni::JObject(nullptr));
+    bootstrap_class_loader->set_as_context_loader(env);
 }
 
-void GDKotlin::initialize_core_library(ClassLoader* class_loader) {
+void GDKotlin::initialize_core_library() {
     jni::Env env {jni::Jvm::current_env()};
-    JvmManager::initialize_jni_classes(env, class_loader);
+    JvmManager::initialize_jni_classes(env, bootstrap_class_loader);
 
     if (user_configuration.max_string_size != -1) {
         LongStringQueue::get_instance().set_string_max_size(env, user_configuration.max_string_size);
@@ -140,10 +139,10 @@ void GDKotlin::initialize_core_library(ClassLoader* class_loader) {
 
     if (user_configuration.disable_leak_warning_on_close) { MemoryManager::get_instance().setDisplayLeaks(env, false); }
 
-    bootstrap = Bootstrap::create_instance(env, class_loader);
+    bootstrap = Bootstrap::create_instance(env, bootstrap_class_loader);
 }
 
-void GDKotlin::load_user_code(ClassLoader* bootstrap_class_loader) {
+void GDKotlin::load_user_code() {
 #ifdef TOOLS_ENABLED
     String project_path {ProjectSettings::get_singleton()->globalize_path(RES_DIRECTORY)};
 #else
@@ -186,10 +185,8 @@ void GDKotlin::init() {
     JvmManager::initialize_or_get_jvm(nullptr, user_configuration, jvm_options);
 #endif
 
-    ClassLoader* class_loader {load_bootstrap()};
-    initialize_core_library(class_loader);
-    load_user_code(class_loader);
-    delete class_loader;
+    load_bootstrap();
+    initialize_core_library();
 }
 
 void GDKotlin::finish() {
@@ -198,6 +195,9 @@ void GDKotlin::finish() {
     bootstrap->finish(env);
     delete bootstrap;
     bootstrap = nullptr;
+
+    delete bootstrap_class_loader;
+    bootstrap_class_loader = nullptr;
 
     TypeManager::get_instance().clear();
 

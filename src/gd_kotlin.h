@@ -16,6 +16,7 @@ class GDKotlin {
     JvmUserConfiguration user_configuration {};
     JvmOptions jvm_options {};
 
+    ClassLoader* bootstrap_class_loader {nullptr};
     Bootstrap* bootstrap {nullptr};
 
     void fetch_user_configuration();
@@ -36,9 +37,8 @@ class GDKotlin {
     void unload_dynamic_lib();
 #endif
 
-    ClassLoader* load_bootstrap() const;
-    void initialize_core_library(ClassLoader* class_loader);
-    void load_user_code(ClassLoader* bootstrap_class_loader);
+    ClassLoader* load_bootstrap();
+    void initialize_core_library();
 
 public:
     GDKotlin() = default;
@@ -51,6 +51,7 @@ public:
     const JvmUserConfiguration& get_configuration();
 
     void init();
+    void load_user_code();
     void finish();
 
     void register_classes(jni::Env& p_env, jni::JObjectArray p_classes);

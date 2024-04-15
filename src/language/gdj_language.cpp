@@ -25,13 +25,7 @@ GdjLanguage* GdjLanguage::get_instance() {
 }
 
 void GdjLanguage::init() {
-#ifdef TOOLS_ENABLED
-    if (Engine::get_singleton()->is_project_manager_hint()) {
-        LOG_DEV_VERBOSE("Detected that we're in the project manager. Won't initialize Godot Kotlin/JVM module.");
-        return;
-    }
-#endif
-    GDKotlin::get_instance().init();
+    GDKotlin::get_instance().load_user_code();
 }
 
 void GdjLanguage::frame() {
@@ -50,6 +44,8 @@ void GdjLanguage::finish() {
 #endif
     GDKotlin::get_instance().finish();
 }
+
+
 
 void GdjLanguage::thread_enter() {
 #ifdef TOOLS_ENABLED
