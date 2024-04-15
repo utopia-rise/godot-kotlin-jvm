@@ -1,0 +1,94 @@
+name: 🚀 Deploy Godot artifacts
+
+on:
+  workflow_call:
+    inputs:
+      godot-kotlin-jvm-version:
+        type: string
+
+jobs:
+  deploy-editors:
+    runs-on: ubuntu-latest
+    name: Deploy ${{ matrix.platform }} ${{ matrix.target }} editor for ${{ matrix.arch }}
+    strategy:
+      matrix:
+        include:
+          - platform: linuxbsd
+            target: debug
+            arch: x86_64
+
+          - platform: linuxbsd
+            target: release
+            arch: x86_64
+
+          - platform: windows
+            target: debug
+            arch: x86_64
+
+          - platform: windows
+            target: release
+            arch: x86_64
+
+          - platform: macos
+            target: debug
+            arch: universal
+
+          - platform: macos
+            target: release
+            arch: universal
+    steps:
+      - name: Download deploy_release_url
+        uses: actions/download-artifact@v3
+        with:
+          name: deploy_release_url
+          path: '.'
+
+      - name: Set release url
+        id: release_url
+        run: echo "release_url=$(cat deploy_release_url.txt)" >> $GITHUB_OUTPUT
+
+      - name: Download ${{ matrix.platform }} ${{ matrix.target }} editor for ${{ matrix.arch }}
+        uses: actions/download-artifact@v3
+        with:
+          name: godot-kotlin-jvm_editor_${{ matrix.platform }}_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
+          path: '.'
+
+      - name: Upload editor to github release
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.release_url.outputs.release_url }}
+          asset_path: godot-kotlin-jvm_editor_${{ matrix.platform }}_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
+          asset_name: godot-kotlin-jvm_editor_${{ matrix.platform }}_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
+          asset_content_type: application/octet-stream
+
+  deploy-export_templates:
+    runs-on: ubuntu-latest
+    name: Deploy export templates
+    steps:
+      - name: Download deploy_release_url
+        uses: actions/download-artifact@v3
+        with:
+          name: deploy_release_url
+          path: '.'
+
+      - name: Set release url
+        id: release_url
+        run: echo "release_url=$(cat deploy_release_url.txt)" >> $GITHUB_OUTPUT
+
+      - name: Download export templates
+        uses: actions/download-artifact@v3
+        with:
+          name: godot-kotlin-jvm_export_templates_${{ inputs.godot-kotlin-jvm-version }}.tpz
+          path: '.'
+
+      - name: Upload export templates to github release
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.release_url.outputs.release_url }}
+          asset_path: godot-kotlin-jvm_export_templates_${{ inputs.godot-kotlin-jvm-version }}.tpz
+          asset_name: godot-kotlin-jvm_export_templates_${{ inputs.godot-kotlin-jvm-version }}.tpz
+          asset_content_type: application/octet-stream

@@ -45,9 +45,18 @@ This module relies on a Kotlin *compiler plugin* for registering your classes an
 
 The current latest release is compatible with Kotlin version `1.9.23`.
 
+!!! info
+    It is possible to use this module with other Kotlin versions as well but we do not provide any guarantees for it. You find more infos in the [Gradle Plugin configuration](user-guide/advanced/gradle-plugin-configuration.md#disable-build-failure-on-kotlin-version-mismatch) section.
+
 ## Custom engine builds
 
 Get our pre-built engine builds and export templates from the latest [GitHub releases](https://github.com/utopia-rise/godot-kotlin-jvm/releases).
+
+Contrary to the official binaries, there are two builds of the editor per Platform: debug and release.
+`release` editors are the editors you use normally. `debug` editors provide debug symbols and are intended to provide better stacktraces in case of crashes of the editor. Please use those when submitting bugreports. 
+
+!!! warning
+    This module will NOT work with the official Godot Editor and Export Templates! To be able to use Kotlin and Java scripts in Godot, you need our Editor and Export Templates builds.
 
 ## Developer discussion
 

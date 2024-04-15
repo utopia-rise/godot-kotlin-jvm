@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.konan.target.HostManager
+import java.io.OutputStream
+
 plugins {
     // no need to apply kotlin jvm plugin. Our plugin already applies the correct version for you
 //    kotlin("jvm") version "1.7.10"
@@ -52,4 +55,66 @@ dependencies {
 
 kotlin.sourceSets.main {
     kotlin.srcDirs("otherSourceDir")
+}
+
+
+
+tasks {
+    register<Exec>("runGutTests") {
+        group = "verification"
+
+        val editorExecutable: String = projectDir
+                .resolve("../../../../bin")
+                .listFiles()
+                ?.also {
+                    println("[${it.joinToString()}]")
+                }
+                ?.firstOrNull { it.name.startsWith("godot.") }
+                ?.absolutePath
+                ?: throw Exception("Could not find editor executable")
+
+        var didAllTestsPass = false
+        var isJvmClosed = false
+        val testOutputFile = File("$projectDir/test_output.txt")
+        standardOutput = testOutputFile.outputStream()
+
+        doLast {
+            val outputLines = testOutputFile.readText().split("\n")
+
+            outputLines.forEach { line ->
+                when {
+                    line.contains("All tests passed") -> {
+                        didAllTestsPass = true
+                    }
+                    line.contains("JVM GC thread was closed") -> {
+                        isJvmClosed = true
+                    }
+                }
+            }
+
+            if (!didAllTestsPass) {
+                println(testOutputFile.readText())
+                throw Exception("ERROR: Some assertions failed")
+            }
+            if (!isJvmClosed) {
+                throw Exception("ERROR: JVM has not closed properly")
+            }
+        }
+
+        isIgnoreExitValue = true
+
+        if (HostManager.hostIsMingw) {
+            commandLine(
+                    "cmd",
+                    "/c",
+                    "$editorExecutable -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+            )
+        } else {
+            commandLine(
+                    "bash",
+                    "-c",
+                    "$editorExecutable -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+            )
+        }
+    }
 }

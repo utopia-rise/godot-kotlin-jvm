@@ -1,0 +1,71 @@
+name: 🪟 Windows Tests
+on:
+  workflow_call:
+    inputs:
+      godot-version:
+        type: string
+      jvm-version:
+        type: string
+
+concurrency:
+  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-windows_tests
+  cancel-in-progress: true
+
+jobs:
+  test-windows:
+    runs-on: windows-latest
+    name: ${{ matrix.name }}
+    strategy:
+      matrix:
+        include:
+          - name: dev tests
+            target: dev
+            bootstrap-target: debug
+          - name: release tests
+            target: release
+            bootstrap-target: release
+
+    steps:
+      - name: Clone Godot Engine
+        uses: actions/checkout@v4
+        with:
+          repository: godotengine/godot
+          ref: ${{ inputs.godot-version }}
+
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v4
+        with:
+          path: modules/kotlin_jvm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: adopt-hotspot
+          java-version: ${{ inputs.jvm-version }}
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          cache-read-only: false
+
+      - name: Download windows editor ${{ matrix.target }}
+        uses: ./.github/actions/download-artifact
+        with:
+          name: editor_${{ matrix.target }}_windows_x86_64
+          path: './bin'
+
+      - name: Download godot-bootstrap ${{ matrix.bootstrap-target }}
+        uses: ./.github/actions/download-artifact
+        with:
+          name: jvm_godot-bootstrap_${{ matrix.bootstrap-target }}
+          path: './bin'
+
+      - name: Build tests project
+        run: |
+          modules/kotlin_jvm/harness/tests/gradlew -p modules/kotlin_jvm/harness/tests/ build -P${{ matrix.bootstrap-target }}
+
+      - name: Run Tests
+        run: |
+          cd modules/kotlin_jvm/harness/tests/
+          jlink --add-modules java.base,java.logging --output jre-amd64
+          ./gradlew runGutTests
+        timeout-minutes: 30

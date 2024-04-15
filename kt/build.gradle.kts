@@ -28,6 +28,7 @@ tasks {
             val toTag = tags.getOrNull(0)
             val changeLogPrefix = """
                 The files prefixed with `godot-kotlin-jvm_editor_` are the editors.
+                `release` editors are the editors you use normally. `debug` editors provide debug symbols and are intended to provide better stacktraces in case of crashes of the editor. Please use those when submitting bugreports.
                 
                 `godot-kotlin-jvm_export_templates_$fullGodotKotlinJvmVersion.tpz` is the archive for all export templates . See [exporting](https://godot-kotl.in/en/latest/user-guide/exporting/) documentation on how to use it.
                 

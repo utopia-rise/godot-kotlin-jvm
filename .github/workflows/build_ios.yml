@@ -1,0 +1,53 @@
+name: 🍏 iOS Builds
+on:
+  workflow_call:
+    inputs:
+      godot-version:
+        type: string
+
+concurrency:
+  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-ios_build
+  cancel-in-progress: true
+
+jobs:
+  ios-template:
+    runs-on: macos-latest
+    name: Build ios template (all)
+
+    steps:
+      - name: Clone Godot Engine
+        uses: actions/checkout@v4
+        with:
+          repository: godotengine/godot
+          ref: ${{ inputs.godot-version }}
+
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v4
+        with:
+          path: modules/kotlin_jvm
+
+      - name: Setup Godot build cache
+        uses: ./.github/actions/godot-cache
+        continue-on-error: true
+
+      - name: Setup python and scons
+        uses: ./.github/actions/godot-deps
+
+      - name: Compilation release (arm64)
+        uses: ./.github/actions/godot-build
+        with:
+          sconsflags: ${{ env.SCONSFLAGS }}
+          platform: ios
+          target: template_release
+
+      - name: Compilation debug (arm64)
+        uses: ./.github/actions/godot-build
+        with:
+          sconsflags: ${{ env.SCONSFLAGS }}
+          platform: ios
+          target: template_debug
+
+      - name: Upload artifact
+        uses: ./.github/actions/upload-artifact
+        with:
+          name: export_template_ios_all
