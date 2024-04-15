@@ -289,7 +289,7 @@ void GDKotlin::load_dynamic_lib() {
 
 #ifdef TOOLS_ENABLED
 String GDKotlin::get_path_to_embedded_jvm() {
-    String godot_path {String(RES_DIRECTORY) + String(EMBEDDED_JRE_DIRECTORY) + String(RELATIVE_JVM_LIB_PATH)};
+    String godot_path {String(RES_DIRECTORY).path_join(EMBEDDED_JRE_DIRECTORY).path_join(RELATIVE_JVM_LIB_PATH)};
     return ProjectSettings::get_singleton()->globalize_path(godot_path);
 }
 
@@ -313,7 +313,8 @@ String GDKotlin::get_path_to_embedded_jvm() {
 #if defined(MACOS_ENABLED)
       .path_join("../PlugIns/")
 #endif
-      .path_join((EMBEDDED_JRE_DIRECTORY) + String(RELATIVE_JVM_LIB_PATH));
+      .path_join(EMBEDDED_JRE_DIRECTORY)
+      .path_join(RELATIVE_JVM_LIB_PATH);
 }
 
 String GDKotlin::get_path_to_native_image() {

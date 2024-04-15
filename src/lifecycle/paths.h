@@ -43,8 +43,8 @@ static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {"usercode.so"};
 
 #endif
 
-static constexpr const char* EMBEDDED_JRE_ARM_DIRECTORY {"jre-arm64/"};
-static constexpr const char* EMBEDDED_JRE_AMD_DIRECTORY {"jre-amd64/"};
+static constexpr const char* EMBEDDED_JRE_ARM_DIRECTORY {"jre-arm64"};
+static constexpr const char* EMBEDDED_JRE_AMD_DIRECTORY {"jre-amd64"};
 
 #ifdef __arm64__
 static constexpr const char* EMBEDDED_JRE_DIRECTORY {EMBEDDED_JRE_ARM_DIRECTORY};
