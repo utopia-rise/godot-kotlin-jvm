@@ -1,0 +1,52 @@
+name: 🐧 Assemble Linux
+on:
+  workflow_call:
+    inputs:
+      godot-kotlin-jvm-version:
+        type: string
+      godot-version:
+        type: string
+
+concurrency:
+  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-linux_assemble
+  cancel-in-progress: true
+
+jobs:
+  create-linux-editor-zip:
+    runs-on: ubuntu-20.04
+    name: ${{ matrix.name }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Create editor zip release
+            target: release
+            arch: x86_64
+
+          - name: Create editor zip debug
+            target: debug
+            arch: x86_64
+    steps:
+      - name: Download ${{ matrix.target }} editor
+        uses: actions/download-artifact@v3
+        with:
+          name: editor_${{ matrix.target }}_linux_${{ matrix.arch }}
+          path: godot-kotlin-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
+
+      - name: Download ${{ matrix.target }} bootstrap jar
+        uses: actions/download-artifact@v3
+        with:
+          name: jvm_godot-bootstrap_${{ matrix.target }}
+          path: godot-kotlin-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
+
+      - name: Create linux editor zip
+        run: |
+          cd godot-kotlin-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
+          zip -r godot-kotlin-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip *
+        shell: bash
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: godot-kotlin-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
+          path: godot-kotlin-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}/godot-kotlin-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip

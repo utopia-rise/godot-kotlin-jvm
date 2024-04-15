@@ -32,6 +32,8 @@ This version of the binding is currently **Alpha**! This means that the bindings
 production-ready. However, if you are curious in using Kotlin in Godot, this is a good opportunity
 to help us in improving the project!
 
+To be able to use this binding, you need to download our custom editor build and export templates from the [GitHub releases page](https://github.com/utopia-rise/godot-kotlin-jvm/releases)! The official godot binaries will NOT work!
+
 ## Documentation
 
 The documentation can be found [here](https://godot-kotl.in). It's a work in progress, and we would love your input to
