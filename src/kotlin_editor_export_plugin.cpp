@@ -31,21 +31,21 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
         bool export_jvm {!p_features.has(graal_feature) || export_all};
 
         if (export_jvm) {
-            files_to_add.push_back(String(BUILD_DIRECTORY) + String(DESKTOP_BOOTSTRAP_FILE));
-            files_to_add.push_back(String(BUILD_DIRECTORY) + String(DESKTOP_USER_CODE_FILE));
+            files_to_add.push_back(String(BUILD_DIRECTORY).path_join(DESKTOP_BOOTSTRAP_FILE));
+            files_to_add.push_back(String(BUILD_DIRECTORY).path_join(DESKTOP_USER_CODE_FILE));
 
             if (is_osx_export) {
                 bool is_arm64 {p_features.has("arm64")};
                 bool is_x64 {p_features.has("x86_64")};
 
                 if (!is_arm64 && !is_x64) {
-                    add_macos_plugin_file(String(RES_DIRECTORY) + String(EMBEDDED_JRE_DIRECTORY));
+                    add_macos_plugin_file(String(RES_DIRECTORY).path_join(EMBEDDED_JRE_DIRECTORY));
                 } else {
-                    if (is_arm64) { add_macos_plugin_file(String(RES_DIRECTORY) + String(EMBEDDED_JRE_ARM_DIRECTORY)); }
-                    if (is_x64) { add_macos_plugin_file(String(RES_DIRECTORY) + String(EMBEDDED_JRE_AMD_DIRECTORY)); }
+                    if (is_arm64) { add_macos_plugin_file(String(RES_DIRECTORY).path_join(EMBEDDED_JRE_ARM_DIRECTORY)); }
+                    if (is_x64) { add_macos_plugin_file(String(RES_DIRECTORY).path_join(EMBEDDED_JRE_AMD_DIRECTORY)); }
                 }
             } else {
-                String jre_dir {String(RES_DIRECTORY) + String(EMBEDDED_JRE_AMD_DIRECTORY)};
+                String jre_dir {String(RES_DIRECTORY).path_join(EMBEDDED_JRE_AMD_DIRECTORY)};
                 String target_dir {ProjectSettings::get_singleton()->globalize_path(RES_DIRECTORY).path_join(p_path).get_base_dir().path_join(EMBEDDED_JRE_AMD_DIRECTORY)};
                 Error error;
                 Ref<DirAccess> dir_access {DirAccess::open(jre_dir, &error)};
@@ -77,12 +77,12 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
         }
 
     } else if (is_android_export) {
-        files_to_add.push_back(String(BUILD_DIRECTORY) + String(ANDROID_BOOTSTRAP_FILE));
-        files_to_add.push_back(String(BUILD_DIRECTORY) + String(ANDROID_USER_CODE_FILE));
+        files_to_add.push_back(String(BUILD_DIRECTORY).path_join(ANDROID_BOOTSTRAP_FILE));
+        files_to_add.push_back(String(BUILD_DIRECTORY).path_join(ANDROID_USER_CODE_FILE));
         _generate_export_configuration_file(jni::JvmType::ART);
     } else if (is_ios_export) {
         add_ios_project_static_lib(
-          ProjectSettings::get_singleton()->globalize_path(String(BUILD_DIRECTORY) + String(IOS_GRAAL_NATIVE_IMAGE_FILE))
+          ProjectSettings::get_singleton()->globalize_path(String(BUILD_DIRECTORY).path_join(IOS_GRAAL_NATIVE_IMAGE_FILE))
         );
         _generate_export_configuration_file(jni::JvmType::GRAAL_NATIVE_IMAGE);
         return;
