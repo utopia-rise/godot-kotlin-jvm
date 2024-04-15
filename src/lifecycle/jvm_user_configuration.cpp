@@ -147,15 +147,16 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
     }
 
     if (json_dict.has(VERSION_JSON_IDENTIFIER)) {
-        if (json_dict[VERSION_JSON_IDENTIFIER] != JSON_ARGUMENT_VERSION) {
+        String version {json_dict[VERSION_JSON_IDENTIFIER]};
+        LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", VERSION_JSON_IDENTIFIER, version))
+        if (version != JSON_ARGUMENT_VERSION) {
             LOG_WARNING("Your existing jvm json configuration file was made for an older version of this binding. A "
                         "new will one will be created. Your previous settings should remain if compatible.");
             is_invalid = true;
         }
-        json_dict.erase(JVM_ARGUMENTS_JSON_IDENTIFIER);
+        json_dict.erase(VERSION_JSON_IDENTIFIER);
     } else {
-        LOG_WARNING("Your existing jvm json configuration file was made for an older version of this binding. A new "
-                    "will one will be created. Your previous settings should remain if compatible.");
+        LOG_WARNING("No version found in the configuration file");
         is_invalid = true;
     }
 
