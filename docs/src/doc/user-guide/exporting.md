@@ -99,7 +99,7 @@ In order to build for graalvm, follow `GraalVM native-image` section in [advance
 The `main.jar` and `godot-bootstrap.jar` are compiled into a single `usercode` shared library is copied into `pck` during the export process. Similar to the regular export versions, the `usercode` shared library is copied to the `user://` dir. Don't forget to delete it when creating an uninstaller.
 
 On desktop, you can add the feature `export-graal-native-image` to make your game run on GraalVM Native Image. 
-You can also use `export-all-jvm` to export both the JVM and the Native Image. By default, your export will use the same mode as one used by the editor that exported it, but you can easily override this by using a command-line argument when launching.
+You can also use `export-all-jvm` to export both the JVM and the Native Image. By default, your export will use the same mode as the one used by the editor that exported it, but you can easily override this by using a command-line argument when launching.
 
 ## iOS
 
