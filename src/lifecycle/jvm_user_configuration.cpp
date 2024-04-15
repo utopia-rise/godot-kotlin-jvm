@@ -151,7 +151,7 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
         for (int i = 0; i < keys.size(); i++) {
             String key = keys[i];
             String value = json_dict[key];
-            LOG_WARNING(vformat("Invalid json configuration argument: %s -> %s", key, value));
+            LOG_WARNING(vformat("Invalid json configuration argument name: %s", key));
         }
         is_invalid = true;
     }
@@ -187,7 +187,7 @@ String JvmUserConfiguration::export_configuration_to_json(const JvmUserConfigura
     json[VERSION_JSON_IDENTIFIER] = JSON_ARGUMENT_VERSION;
     json[VM_TYPE_JSON_IDENTIFIER] = vm_type_value;
 
-    json[USE_DEBUG_JSON_IDENTIFIER] = configuration.jvm_debug_port;
+    json[USE_DEBUG_JSON_IDENTIFIER] = configuration.use_debug;
     json[DEBUG_PORT_JSON_IDENTIFIER] = configuration.jvm_debug_port;
     json[DEBUG_ADDRESS_JSON_IDENTIFIER] = configuration.jvm_debug_address;
     json[WAIT_FOR_DEBUGGER_JSON_IDENTIFIER] = configuration.wait_for_debugger;
@@ -332,7 +332,7 @@ void JvmUserConfiguration::merge_with_command_line(JvmUserConfiguration& json_co
 }
 
 void JvmUserConfiguration::sanitize_and_log_configuration(JvmUserConfiguration& config) {
-    if (config.max_string_size != 0) {
+    if (config.max_string_size != -1) {
         LOG_WARNING(vformat(
           "The max string size was changed to %s which can modify the size of the shared buffer. "
           "Be aware that it might impact performance and memory usage.",

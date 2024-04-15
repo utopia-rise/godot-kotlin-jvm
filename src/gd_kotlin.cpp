@@ -125,7 +125,7 @@ void GDKotlin::initialize_core_library(ClassLoader* class_loader) {
     jni::Env env {jni::Jvm::current_env()};
     JvmManager::initialize_jni_classes(env, class_loader);
 
-    if (user_configuration.max_string_size != 0) {
+    if (user_configuration.max_string_size != -1) {
         LongStringQueue::get_instance().set_string_max_size(env, user_configuration.max_string_size);
     }
 
