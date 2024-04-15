@@ -11,7 +11,19 @@
 #include <core/string/ustring.h>
 
 class GDKotlin {
-    bool is_gc_started {false};
+public:
+    // Values should be in the correct initialization order, the number matters.
+    enum State {
+        NOT_STARTED = 0,// Default stated;
+        JVM_LIBRARY_LOADED = 1,// Only for Dynamic loading
+        JVM_STARTED = 2,// Or retrieved in the case of Android
+        BOOTSTRAP_LOADED = 3,
+        CORE_LIBRARY_INITIALIZED = 4,
+        JVM_SCRIPTS_INITIALIZED = 5,
+    };
+
+private:
+    State state {State::NOT_STARTED};
 
     JvmUserConfiguration user_configuration {};
     JvmOptions jvm_options {};
@@ -28,7 +40,7 @@ class GDKotlin {
 
 #ifdef DYNAMIC_JVM
     void* jvm_dynamic_library_handle {nullptr};
-    void load_dynamic_lib();
+    bool load_dynamic_lib();
 #ifdef TOOLS_ENABLED
     static String get_path_to_environment_jvm();
 #endif
@@ -37,8 +49,8 @@ class GDKotlin {
     void unload_dynamic_lib();
 #endif
 
-    ClassLoader* load_bootstrap();
-    void initialize_core_library();
+    bool load_bootstrap();
+    bool initialize_core_library();
 
 public:
     GDKotlin() = default;
@@ -47,10 +59,10 @@ public:
     GDKotlin& operator=(const GDKotlin&) = delete;
 
     static GDKotlin& get_instance();
-
     const JvmUserConfiguration& get_configuration();
+    State get_state() const;
 
-    void init();
+    State init();
     void load_user_code();
     void finish();
 

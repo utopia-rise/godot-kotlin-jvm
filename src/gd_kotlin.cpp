@@ -58,7 +58,6 @@ void GDKotlin::set_jvm_options() {
 #ifdef DEBUG_ENABLED
     jvm_options.add_jni_checks();
 
-
     if (user_configuration.use_debug) {
         jvm_options.add_debug_options(
           user_configuration.jvm_debug_port,
@@ -100,8 +99,10 @@ String GDKotlin::copy_new_file_to_user_dir(const String& file_name) {
 
 #endif
 
-ClassLoader* GDKotlin::load_bootstrap() {
-    if (user_configuration.vm_type == jni::JvmType::GRAAL_NATIVE_IMAGE) { return nullptr; }
+bool GDKotlin::load_bootstrap() {
+    if (user_configuration.vm_type == jni::JvmType::GRAAL_NATIVE_IMAGE) {
+        return true;// Bootstrap already part of the image
+    }
 
     jni::Env env {jni::Jvm::current_env()};
 #ifdef TOOLS_ENABLED
@@ -113,16 +114,19 @@ ClassLoader* GDKotlin::load_bootstrap() {
     constexpr const char* error_text {"No godot-bootstrap.jar found!"};
 #endif
 
-    JVM_CRASH_COND_MSG(!FileAccess::exists(bootstrap_jar), error_text);
+    JVM_ERR_FAIL_COND_V_MSG(!FileAccess::exists(bootstrap_jar), false, error_text);
     LOG_VERBOSE(vformat("Loading bootstrap jar: %s", bootstrap_jar));
 
     bootstrap_class_loader = ClassLoader::create_instance(env, bootstrap_jar, jni::JObject(nullptr));
     bootstrap_class_loader->set_as_context_loader(env);
 }
 
-void GDKotlin::initialize_core_library() {
+bool GDKotlin::initialize_core_library() {
     jni::Env env {jni::Jvm::current_env()};
-    JvmManager::initialize_jni_classes(env, bootstrap_class_loader);
+
+    if(!JvmManager::initialize_jni_classes(env, bootstrap_class_loader)){
+        return false;
+    }
 
     if (user_configuration.max_string_size != -1) {
         LongStringQueue::get_instance().set_string_max_size(env, user_configuration.max_string_size);
@@ -133,13 +137,12 @@ void GDKotlin::initialize_core_library() {
 
         MemoryManager::get_instance().start(env, user_configuration.force_gc);
         LOG_VERBOSE("GC thread started.");
-
-        is_gc_started = true;
     }
 
     if (user_configuration.disable_leak_warning_on_close) { MemoryManager::get_instance().setDisplayLeaks(env, false); }
 
     bootstrap = Bootstrap::create_instance(env, bootstrap_class_loader);
+    return true;
 }
 
 void GDKotlin::load_user_code() {
@@ -172,50 +175,66 @@ void GDKotlin::load_user_code() {
         );
         delete user_class_loader;
     }
+    state = State::JVM_SCRIPTS_INITIALIZED;
 }
 
-void GDKotlin::init() {
+GDKotlin::State GDKotlin::init() {
     fetch_user_configuration();
     set_jvm_options();
 
 #ifdef DYNAMIC_JVM
-    load_dynamic_lib();
-    JvmManager::initialize_or_get_jvm(jvm_dynamic_library_handle, user_configuration, jvm_options);
+    if (load_dynamic_lib()) { state = State::JVM_LIBRARY_LOADED; }
+    if (JvmManager::initialize_or_get_jvm(jvm_dynamic_library_handle, user_configuration, jvm_options)) {
+        state = State::JVM_STARTED;
+    }
 #else
-    JvmManager::initialize_or_get_jvm(nullptr, user_configuration, jvm_options);
+    if (JvmManager::initialize_or_get_jvm(nullptr, user_configuration, jvm_options)) {
+        state = State::JVM_STARTED;
+    }
 #endif
 
-    load_bootstrap();
-    initialize_core_library();
+    if (load_bootstrap()) { state = State::BOOTSTRAP_LOADED; }
+    if (initialize_core_library()) { state = State::CORE_LIBRARY_INITIALIZED; }
+
+    return state;
 }
 
 void GDKotlin::finish() {
-    jni::Env env {jni::Jvm::current_env()};
-
-    bootstrap->finish(env);
-    delete bootstrap;
-    bootstrap = nullptr;
-
-    delete bootstrap_class_loader;
-    bootstrap_class_loader = nullptr;
-
-    TypeManager::get_instance().clear();
-
-    if (is_gc_started) {
-        MemoryManager::get_instance().close(env);
-
-        while (!MemoryManager::get_instance().is_closed(env)) {
-            OS::get_singleton()->delay_usec(600000);
-        }
-        LOG_VERBOSE("JVM GC thread was closed");
-        MemoryManager::get_instance().clean_up(env);
+    if(state >= State::JVM_SCRIPTS_INITIALIZED){
+        TypeManager::get_instance().clear();
     }
 
-    JvmManager::destroy_jni_classes();
-    JvmManager::close_jvm();
+    if(state >= State::CORE_LIBRARY_INITIALIZED){
+        jni::Env env {jni::Jvm::current_env()};
+        if (!user_configuration.disable_gc) {
+            MemoryManager::get_instance().close(env);
+
+            while (!MemoryManager::get_instance().is_closed(env)) {
+                OS::get_singleton()->delay_usec(600000);
+            }
+            LOG_VERBOSE("JVM GC thread was closed");
+            MemoryManager::get_instance().clean_up(env);
+        }
+        JvmManager::destroy_jni_classes();
+    }
+
+    if(state >= State::BOOTSTRAP_LOADED){
+        jni::Env env {jni::Jvm::current_env()};
+        bootstrap->finish(env);
+        delete bootstrap;
+        bootstrap = nullptr;
+        delete bootstrap_class_loader;
+        bootstrap_class_loader = nullptr;
+    }
+
+    if(state >= State::JVM_STARTED){
+        JvmManager::close_jvm();
+    }
 
 #ifdef DYNAMIC_JVM
-    unload_dynamic_lib();
+    if(state >= State::JVM_LIBRARY_LOADED){
+        unload_dynamic_lib();
+    }
 #endif
 }
 
@@ -238,7 +257,7 @@ const JvmUserConfiguration& GDKotlin::get_configuration() {
 }
 
 #ifdef DYNAMIC_JVM
-void GDKotlin::load_dynamic_lib() {
+bool GDKotlin::load_dynamic_lib() {
     String path_to_jvm_lib;
     switch (user_configuration.vm_type) {
         case jni::JvmType::JVM:
@@ -253,18 +272,19 @@ void GDKotlin::load_dynamic_lib() {
                 path_to_jvm_lib = environment_jvm;
             } else {
 #ifdef MACOS_ENABLED
-                JVM_CRASH_NOW_MSG(
+                JVM_ERR_FAIL_V_MSG(
+                  false,
                   "The environment variable JAVA_HOME is not found and there is no embedded JRE. If you "
                   "launched the editor through a double click on Godot.app, also make sure that JAVA_HOME "
                   "is set through launchctl: `launchctl setenv JAVA_HOME </path/to/jdk>`"
                 );
 #else
-                JVM_CRASH_NOW_MSG("The environment variable JAVA_HOME is not found and there is no embedded JRE.");
+                JVM_ERR_FAIL_V_MSG(false, "The environment variable JAVA_HOME is not found and there is no embedded JRE.");
 #endif
             }
 #else
             else {
-                JVM_CRASH_NOW_MSG(vformat("No embedded JRE found at: %s!", get_path_to_embedded_jvm()));
+                JVM_ERR_FAIL_V_MSG(false, vformat("No embedded JRE found at: %s!", get_path_to_embedded_jvm()));
             }
 #endif
 
@@ -273,9 +293,13 @@ void GDKotlin::load_dynamic_lib() {
             if (String native_jvm = get_path_to_native_image(); FileAccess::exists(native_jvm)) {
                 path_to_jvm_lib = native_jvm;
             } else {
-                JVM_CRASH_NOW_MSG("Cannot find Graal VM user code native image! /n This usually happens when you "
-                                  "define that your project should be executed using graalvm but did not successfully "
-                                  "compile your project and thus usercode.(sh, dll, dylib) cannot be found.");
+                JVM_ERR_FAIL_V_MSG(
+                  false,
+                  "Cannot find Graal VM user code native image! /n This usually happens when you "
+                  "define that your project should be executed using graalvm but did not "
+                  "successfully "
+                  "compile your project and thus usercode.(sh, dll, dylib) cannot be found."
+                );
             }
             break;
         default:
@@ -284,8 +308,9 @@ void GDKotlin::load_dynamic_lib() {
     }
 
     if (OS::get_singleton()->open_dynamic_library(path_to_jvm_lib, jvm_dynamic_library_handle) != OK) {
-        JVM_CRASH_NOW_MSG(vformat("Failed to load the jvm dynamic library from path %s!", path_to_jvm_lib));
+        JVM_ERR_FAIL_V_MSG(false, vformat("Failed to load the jvm dynamic library from path %s!", path_to_jvm_lib));
     }
+    return true;
 }
 
 #ifdef TOOLS_ENABLED
@@ -325,7 +350,11 @@ String GDKotlin::get_path_to_native_image() {
 
 void GDKotlin::unload_dynamic_lib() {
     if (OS::get_singleton()->close_dynamic_library(jvm_dynamic_library_handle) != OK) {
-        JVM_CRASH_NOW_MSG("Failed to close the jvm dynamic library!");
+        JVM_ERR_FAIL_MSG("Failed to close the jvm dynamic library!");
     }
+}
+
+GDKotlin::State GDKotlin::get_state() const {
+    return state;
 }
 #endif

@@ -36,7 +36,7 @@ CreateJavaVM get_create_jvm_function(void* lib_handle) {
 #ifdef DYNAMIC_JVM
     void* createJavaVMSymbolHandle;
     if (OS::get_singleton()->get_dynamic_library_symbol_handle(lib_handle, "JNI_CreateJavaVM", createJavaVMSymbolHandle) != OK) {
-        JVM_CRASH_NOW_MSG("Failed to obtain JNI_CreateJavaVM symbol from dynamic library!");
+        return nullptr;
     }
     return reinterpret_cast<CreateJavaVM>(createJavaVMSymbolHandle);
 #elif defined STATIC_JVM
@@ -47,7 +47,7 @@ CreateJavaVM get_create_jvm_function(void* lib_handle) {
 #endif
 }
 
-void JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& user_configuration, JvmOptions& jvm_options) {
+bool JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& user_configuration, JvmOptions& jvm_options) {
     JavaVM* java_vm {nullptr};
 
 #if defined DYNAMIC_JVM || defined STATIC_JVM
@@ -70,17 +70,19 @@ void JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
     LOG_VERBOSE("Starting JVM ...");
     JNIEnv* jni_env {nullptr};
 
-    jint result {get_create_jvm_function(lib_handle)(&java_vm, reinterpret_cast<void**>(&jni_env), &args)};
+    CreateJavaVM func {get_create_jvm_function(lib_handle)};
+    JVM_ERR_FAIL_COND_V_MSG(func == nullptr, false,"Failed to obtain JNI_CreateJavaVM symbol from dynamic library!");
+    jint result {func(&java_vm, reinterpret_cast<void**>(&jni_env), &args)};
 
     // Set std::local::global to value it was before creating JVM.
     // See https://github.com/utopia-rise/godot-kotlin-jvm/issues/166
     // and https://github.com/utopia-rise/godot-kotlin-jvm/issues/170
-#ifndef NO_USE_STDLIB
+#ifndef NO_USE_STDLIBss
     std::locale::global(global);
 #endif
 
     delete[] options;
-    JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to create a new vm!");
+    JVM_ERR_FAIL_COND_V_MSG(result != JNI_OK, false, "Failed to create a new vm!");
 
 #elif defined PROVIDED_JVM
     LOG_VERBOSE("Retrieving existing JVM ...");
@@ -92,33 +94,35 @@ void JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
 #endif
 
     jni::Jvm::initialize(java_vm, user_configuration.vm_type, jvm_options.version);
+    return true;
 }
 
-void JvmManager::initialize_jni_classes(jni::Env& p_env, ClassLoader* class_loader) {
+bool JvmManager::initialize_jni_classes(jni::Env& p_env, ClassLoader* class_loader) {
+    bool loaded_properly;
     // Singleton
-    TransferContext::initialize(p_env, class_loader);
-    TypeManager::initialize(p_env, class_loader);
-    LongStringQueue::initialize(p_env, class_loader);
-    MemoryManager::initialize(p_env, class_loader);
+    loaded_properly = TransferContext::initialize(p_env, class_loader);
+    loaded_properly = loaded_properly && TypeManager::initialize(p_env, class_loader);
+    loaded_properly = loaded_properly && LongStringQueue::initialize(p_env, class_loader);
+    loaded_properly = loaded_properly && MemoryManager::initialize(p_env, class_loader);
 
-    bridges::GDPrintBridge::initialize(p_env, class_loader);
+    loaded_properly = loaded_properly && bridges::GDPrintBridge::initialize(p_env, class_loader);
 
-    bridges::CallableBridge::initialize(p_env, class_loader);
-    bridges::DictionaryBridge::initialize(p_env, class_loader);
-    bridges::RidBridge::initialize(p_env, class_loader);
-    bridges::StringNameBridge::initialize(p_env, class_loader);
-    bridges::NodePathBridge::initialize(p_env, class_loader);
-    bridges::VariantArrayBridge::initialize(p_env, class_loader);
+    loaded_properly = loaded_properly && bridges::CallableBridge::initialize(p_env, class_loader);
+    loaded_properly = loaded_properly && bridges::DictionaryBridge::initialize(p_env, class_loader);
+    loaded_properly = loaded_properly && bridges::RidBridge::initialize(p_env, class_loader);
+    loaded_properly = loaded_properly && bridges::StringNameBridge::initialize(p_env, class_loader);
+    loaded_properly = loaded_properly && bridges::NodePathBridge::initialize(p_env, class_loader);
+    loaded_properly = loaded_properly && bridges::VariantArrayBridge::initialize(p_env, class_loader);
 
-    bridges::PackedByteArrayBridge::initialize(p_env, class_loader);
-    bridges::PackedColorArrayBridge::initialize(p_env, class_loader);
-    bridges::PackedFloat32ArrayBridge::initialize(p_env, class_loader);
-    bridges::PackedFloat64ArrayBridge::initialize(p_env, class_loader);
-    bridges::PackedInt32IntArrayBridge::initialize(p_env, class_loader);
-    bridges::PackedInt64IntArrayBridge::initialize(p_env, class_loader);
-    bridges::PackedStringArrayBridge::initialize(p_env, class_loader);
-    bridges::PackedVector2ArrayBridge::initialize(p_env, class_loader);
-    bridges::PackedVector3ArrayBridge::initialize(p_env, class_loader);
+    loaded_properly = loaded_properly && bridges::PackedByteArrayBridge::initialize(p_env, class_loader);
+    loaded_properly = loaded_properly && bridges::PackedColorArrayBridge::initialize(p_env, class_loader);
+    loaded_properly = loaded_properly && bridges::PackedFloat32ArrayBridge::initialize(p_env, class_loader);
+    loaded_properly = loaded_properly && bridges::PackedFloat64ArrayBridge::initialize(p_env, class_loader);
+    loaded_properly = loaded_properly && bridges::PackedInt32IntArrayBridge::initialize(p_env, class_loader);
+    loaded_properly = loaded_properly && bridges::PackedInt64IntArrayBridge::initialize(p_env, class_loader);
+    loaded_properly = loaded_properly && bridges::PackedStringArrayBridge::initialize(p_env, class_loader);
+    loaded_properly = loaded_properly && bridges::PackedVector2ArrayBridge::initialize(p_env, class_loader);
+    loaded_properly = loaded_properly && bridges::PackedVector3ArrayBridge::initialize(p_env, class_loader);
 
     // Instance
     Bootstrap::initialize_jni_binding(p_env, class_loader);
@@ -132,6 +136,7 @@ void JvmManager::initialize_jni_classes(jni::Env& p_env, ClassLoader* class_load
     KtFunctionInfo::initialize_jni_binding(p_env, class_loader);
     KtFunction::initialize_jni_binding(p_env, class_loader);
     KtClass::initialize_jni_binding(p_env, class_loader);
+    return loaded_properly;
 }
 
 void JvmManager::destroy_jni_classes() {

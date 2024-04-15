@@ -37,7 +37,7 @@ class JvmSingletonWrapper : public JvmInstanceWrapper<Derived, FqName> {
 
     static Derived* _instance;
 
-    static void initialize(jni::Env& p_env, ClassLoader* class_loader);
+    static bool initialize(jni::Env& p_env, ClassLoader* class_loader);
     static void destroy();
 
 protected:
@@ -66,13 +66,13 @@ Derived* JvmSingletonWrapper<Derived, FqName>::_instance {nullptr};
 
 template<class Derived, const char* FqName>
 Derived& JvmSingletonWrapper<Derived, FqName>::get_instance() {
-    JVM_CRASH_COND_MSG(!_instance, String(FqName) + " singleton is not initialized.");
+    JVM_DEV_ASSERT(_instance, String(FqName) + " singleton is not initialized.");
     return *_instance;
 }
 
 template<class Derived, const char* FqName>
-void JvmSingletonWrapper<Derived, FqName>::initialize(jni::Env& p_env, ClassLoader* class_loader) {
-    JVM_CRASH_COND_MSG(_instance, String(FqName) + " singleton is already initialized.");
+bool JvmSingletonWrapper<Derived, FqName>::initialize(jni::Env& p_env, ClassLoader* class_loader) {
+    JVM_DEV_ASSERT(!_instance, String(FqName) + " singleton is already initialized.");
 
     jni::JClass singleton_cls;
     if (class_loader) {
@@ -84,11 +84,12 @@ void JvmSingletonWrapper<Derived, FqName>::initialize(jni::Env& p_env, ClassLoad
       singleton_cls.get_static_field_id(p_env, "INSTANCE", vformat("L%s;", FqName).replace(".", "/").utf8().ptr());
     jni::JObject singleton_instance = singleton_cls.get_static_object_field(p_env, singleton_instance_field);
 
-    JVM_CRASH_COND_MSG(singleton_instance.is_null(), "Failed to retrieve " + String(FqName) + " singleton");
+    JVM_ERR_FAIL_COND_V_MSG(singleton_instance.is_null(), false, "Failed to retrieve " + String(FqName) + " singleton");
 
     _instance = new Derived(p_env, singleton_instance);
 
     Derived::initialize_jni_binding(p_env, class_loader);
+    return true;
 }
 
 template<class Derived, const char* FqName>
