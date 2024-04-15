@@ -41,7 +41,7 @@
 #else
 #define LOG_DEV(message)
 #define LOG_DEV_VERBOSE(message)
-#define DEV_ASSERT(m_cond, message)
+#define JVM_DEV_ASSERT(m_cond, message)
 #endif
 
 #endif// GODOT_JVM_LOGGING_H
