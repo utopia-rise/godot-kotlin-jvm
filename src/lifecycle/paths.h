@@ -10,8 +10,8 @@ static constexpr const char* LINUX_GRAAL_NATIVE_IMAGE_FILE {"usercode.so"};
 static constexpr const char* MACOS_RELATIVE_JVM_LIB_PATH {"lib/server/libjvm.dylib"};
 static constexpr const char* MACOS_GRAAL_NATIVE_IMAGE_FILE {"usercode.dylib"};
 
-static constexpr const char* WIND0WS_RELATIVE_JVM_LIB_PATH {"bin/server/jvm.dll"};
-static constexpr const char* WIND0WS_GRAAL_NATIVE_IMAGE_FILE {"usercode.dll"};
+static constexpr const char* WINDOWS_RELATIVE_JVM_LIB_PATH {"bin/server/jvm.dll"};
+static constexpr const char* WINDOWS_GRAAL_NATIVE_IMAGE_FILE {"usercode.dll"};
 
 static constexpr const char* ANDROID_RELATIVE_JVM_LIB_PATH {""};
 static constexpr const char* ANDROID_BOOTSTRAP_FILE {"godot-bootstrap-dex.jar"};
@@ -41,10 +41,10 @@ static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {MACOS_GRAAL_NATIVE_IMAGE_F
 
 #elif WINDOWS_ENABLED
 
-static constexpr const char* RELATIVE_JVM_LIB_PATH {WIND0WS_RELATIVE_JVM_LIB_PATH};
+static constexpr const char* RELATIVE_JVM_LIB_PATH {WINDOWS_RELATIVE_JVM_LIB_PATH};
 static constexpr const char* BOOTSTRAP_FILE {DESKTOP_BOOTSTRAP_FILE};
 static constexpr const char* USER_CODE_FILE {DESKTOP_USER_CODE_FILE};
-static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {WIND0WS_GRAAL_NATIVE_IMAGE_FILE};
+static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {WINDOWS_GRAAL_NATIVE_IMAGE_FILE};
 
 #elif __ANDROID__
 

@@ -60,7 +60,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
 
         } else if (export_graal) {
             if (is_windows_export) {
-                files_to_add.push_back(String(BUILD_DIRECTORY) + WIND0WS_GRAAL_NATIVE_IMAGE_FILE);
+                files_to_add.push_back(String(BUILD_DIRECTORY) + WINDOWS_GRAAL_NATIVE_IMAGE_FILE);
             } else if (is_linux_export) {
                 files_to_add.push_back(String(BUILD_DIRECTORY) + LINUX_GRAAL_NATIVE_IMAGE_FILE);
             } else if (is_osx_export) {
@@ -85,7 +85,6 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
           ProjectSettings::get_singleton()->globalize_path(String(BUILD_DIRECTORY).path_join(IOS_GRAAL_NATIVE_IMAGE_FILE))
         );
         _generate_export_configuration_file(jni::JvmType::GRAAL_NATIVE_IMAGE);
-        return;
     } else {
         LOG_ERROR("Godot Kotlin/JVM doesn't handle this platform");
     }

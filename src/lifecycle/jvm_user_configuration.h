@@ -24,7 +24,7 @@ static constexpr const char* DEBUG_PORT_CMD_IDENTIFIER {"--jvm-debug-port"};
 static constexpr const char* DEBUG_ADDRESS_CMD_IDENTIFIER {"--jvm-debug-address"};
 static constexpr const char* WAIT_FOR_DEBUGGER_CMD_IDENTIFIER {"--wait-for-debugger"};
 static constexpr const char* JMX_PORT_CMD_IDENTIFIER {"--jvm-jmx-port"};
-static constexpr const char* MAX_STRING_SIZE_CMD_IDENTIFIER {"--jvm-max_string_size"};
+static constexpr const char* MAX_STRING_SIZE_CMD_IDENTIFIER {"--jvm-max-string-size"};
 static constexpr const char* FORCE_GC_CMD_IDENTIFIER {"--jvm-force-gc"};
 static constexpr const char* DISABLE_GC_CMD_IDENTIFIER {"--jvm-disable-gc"};
 static constexpr const char* DISABLE_LEAK_WARNING_CMD_IDENTIFIER {"--jvm-disable-closing-leaks-warning"};
