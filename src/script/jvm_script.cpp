@@ -3,13 +3,11 @@
 #include <scene/main/node.h>
 
 #include "core/os/thread.h"
-#include "gd_kotlin.h"
 #include "jvm_instance.h"
 #include "jvm_placeholder_instance.h"
-#include "language/jvm_language.h"
-#include "language/kotlin_language.h"
-#include "language/names.h"
-#include "logging.h"
+#include "language/gdj_language.h"
+#include "script/jvm_script_manager.h"
+#include "binding/kotlin_binding_manager.h"
 
 Variant JvmScript::_new(const Variant** p_args, int p_arg_count, Callable::CallError& r_error) {
     Object* obj = _object_create(p_args, p_arg_count);
@@ -61,7 +59,7 @@ bool JvmScript::inherits_script(const Ref<Script>& p_script) const {
 Ref<Script> JvmScript::get_base_script() const {
     if (!is_valid() || kotlin_class->registered_supertypes.size() == 0) { return {}; }
     StringName parent_name = kotlin_class->registered_supertypes[0];
-    return TypeManager::get_instance().get_user_script_from_name(parent_name);
+    return JvmScriptManager::get_instance().get_user_script_from_name(parent_name);
 }
 
 StringName JvmScript::get_instance_base_type() const {
@@ -212,7 +210,7 @@ String JvmScript::get_class_icon_path() const {
 }
 
 PlaceHolderScriptInstance* JvmScript::placeholder_instance_create(Object* p_this) {
-    PlaceHolderScriptInstance* placeholder {memnew(JvmPlaceHolderInstance(KotlinLanguage::get_instance(), Ref<Script>(this), p_this))};
+    PlaceHolderScriptInstance* placeholder {memnew(JvmPlaceHolderInstance(GdjLanguage::get_instance(), Ref<Script>(this), p_this))};
 
     List<PropertyInfo> exported_properties;
     get_script_exported_property_list(&exported_properties);

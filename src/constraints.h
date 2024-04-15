@@ -1,7 +1,3 @@
-//
-// Created by cedric on 11.09.23.
-//
-
 #ifndef GODOT_JVM_CONSTRAINTS_H
 #define GODOT_JVM_CONSTRAINTS_H
 

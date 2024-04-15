@@ -1,14 +1,21 @@
 #include "gd_kotlin.h"
 
-#include "jvm_wrapper/memory/memory_manager.h"
-#include "jvm_wrapper/memory/transfer_context.h"
-#include "lifecycle/class_loader.h"
-#include "lifecycle/jvm_manager.h"
 #include "lifecycle/paths.h"
+#include "jvm_wrapper/memory/memory_manager.h"
+#include "jvm_wrapper/memory/type_manager.h"
+#include "jvm_wrapper/memory/long_string_queue.h"
+#include "script/jvm_script_manager.h"
 
 #include <core/config/project_settings.h>
 #include <core/io/resource_loader.h>
 #include <main/main.h>
+
+#define CHECK_AND_SET_STATE(cond, new_state) \
+    if (cond) {                              \
+        state = State::new_state;            \
+    } else {                                 \
+        return;                              \
+    }
 
 GDKotlin& GDKotlin::get_instance() {
     static GDKotlin instance;
@@ -124,9 +131,7 @@ bool GDKotlin::load_bootstrap() {
 bool GDKotlin::initialize_core_library() {
     jni::Env env {jni::Jvm::current_env()};
 
-    if(!JvmManager::initialize_jni_classes(env, bootstrap_class_loader)){
-        return false;
-    }
+    if (!JvmManager::initialize_jni_classes(env, bootstrap_class_loader)) { return false; }
 
     if (user_configuration.max_string_size != -1) {
         LongStringQueue::get_instance().set_string_max_size(env, user_configuration.max_string_size);
@@ -154,6 +159,7 @@ void GDKotlin::load_user_code() {
 
     jni::Env env {jni::Jvm::current_env()};
     if (user_configuration.vm_type == jni::JvmType::GRAAL_NATIVE_IMAGE) {
+        state = State::JVM_SCRIPTS_INITIALIZED;
         bootstrap->init(env, project_path, "", jni::JObject(nullptr));
     } else {
 #ifdef TOOLS_ENABLED
@@ -161,7 +167,10 @@ void GDKotlin::load_user_code() {
 #else
         String user_code_path {copy_new_file_to_user_dir(USER_CODE_FILE)};
 #endif
+        CHECK_AND_SET_STATE(FileAccess::exists(user_code_path), JVM_SCRIPTS_INITIALIZED)
+
         LOG_VERBOSE(vformat("Loading usercode file at: %s", user_code_path));
+        // TODO: Rework this part when cpp reloading done, can't check what's happening in the Kotlin code from here.
         ClassLoader* user_class_loader = ClassLoader::create_instance(
           env,
           ProjectSettings::get_singleton()->globalize_path(user_code_path),
@@ -175,36 +184,32 @@ void GDKotlin::load_user_code() {
         );
         delete user_class_loader;
     }
-    state = State::JVM_SCRIPTS_INITIALIZED;
 }
 
-GDKotlin::State GDKotlin::init() {
+void GDKotlin::init() {
     fetch_user_configuration();
     set_jvm_options();
 
 #ifdef DYNAMIC_JVM
-    if (load_dynamic_lib()) { state = State::JVM_LIBRARY_LOADED; }
-    if (JvmManager::initialize_or_get_jvm(jvm_dynamic_library_handle, user_configuration, jvm_options)) {
-        state = State::JVM_STARTED;
-    }
+    CHECK_AND_SET_STATE(load_dynamic_lib(), JVM_LIBRARY_LOADED)
+    CHECK_AND_SET_STATE(JvmManager::initialize_or_get_jvm(jvm_dynamic_library_handle, user_configuration, jvm_options), JVM_STARTED)
 #else
-    if (JvmManager::initialize_or_get_jvm(nullptr, user_configuration, jvm_options)) {
-        state = State::JVM_STARTED;
-    }
+    CHECK_AND_SET_STATE(JvmManager::initialize_or_get_jvm(nullptr, user_configuration, jvm_options), JVM_STARTED)
 #endif
 
-    if (load_bootstrap()) { state = State::BOOTSTRAP_LOADED; }
-    if (initialize_core_library()) { state = State::CORE_LIBRARY_INITIALIZED; }
-
-    return state;
+    CHECK_AND_SET_STATE(load_bootstrap(), BOOTSTRAP_LOADED)
+    CHECK_AND_SET_STATE(initialize_core_library(), CORE_LIBRARY_INITIALIZED)
 }
 
 void GDKotlin::finish() {
-    if(state >= State::JVM_SCRIPTS_INITIALIZED){
+    if (state >= State::JVM_SCRIPTS_INITIALIZED) {
+        jni::Env env {jni::Jvm::current_env()};
+        bootstrap->finish(env);
+        JvmScriptManager::get_instance().clear();
         TypeManager::get_instance().clear();
     }
 
-    if(state >= State::CORE_LIBRARY_INITIALIZED){
+    if (state >= State::CORE_LIBRARY_INITIALIZED) {
         jni::Env env {jni::Jvm::current_env()};
         if (!user_configuration.disable_gc) {
             MemoryManager::get_instance().close(env);
@@ -218,38 +223,17 @@ void GDKotlin::finish() {
         JvmManager::destroy_jni_classes();
     }
 
-    if(state >= State::BOOTSTRAP_LOADED){
-        jni::Env env {jni::Jvm::current_env()};
-        bootstrap->finish(env);
+    if (state >= State::BOOTSTRAP_LOADED) {
         delete bootstrap;
         bootstrap = nullptr;
         delete bootstrap_class_loader;
         bootstrap_class_loader = nullptr;
     }
 
-    if(state >= State::JVM_STARTED){
-        JvmManager::close_jvm();
-    }
-
+    if (state >= State::JVM_STARTED) { JvmManager::close_jvm(); }
 #ifdef DYNAMIC_JVM
-    if(state >= State::JVM_LIBRARY_LOADED){
-        unload_dynamic_lib();
-    }
+    if (state >= State::JVM_LIBRARY_LOADED) { unload_dynamic_lib(); }
 #endif
-}
-
-void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
-    LOG_DEV("Loading classes ...");
-
-    jni::Env env {jni::Jvm::current_env()};
-    Vector<KtClass*> classes;
-    for (auto i = 0; i < p_classes.length(p_env); i++) {
-        KtClass* kt_class = new KtClass(env, p_classes.get(p_env, i));
-        kt_class->fetch_members(env);
-        classes.append(kt_class);
-        LOG_DEV_VERBOSE(vformat("Loaded class %s : %s", kt_class->registered_class_name, kt_class->base_godot_class));
-    }
-    TypeManager::get_instance().create_and_update_scripts(classes);
 }
 
 const JvmUserConfiguration& GDKotlin::get_configuration() {
@@ -357,4 +341,5 @@ void GDKotlin::unload_dynamic_lib() {
 GDKotlin::State GDKotlin::get_state() const {
     return state;
 }
+
 #endif

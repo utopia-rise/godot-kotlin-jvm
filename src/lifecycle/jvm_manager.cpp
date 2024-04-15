@@ -19,6 +19,7 @@
 #include "jvm_wrapper/bridge/variant_array_bridge.h"
 #include "jvm_wrapper/memory/memory_manager.h"
 #include "jvm_wrapper/memory/transfer_context.h"
+#include "jvm_wrapper/registration/kt_class.h"
 
 #include <jni.h>
 

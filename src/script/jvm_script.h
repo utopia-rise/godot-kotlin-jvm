@@ -10,7 +10,7 @@ class JvmScript : public Script {
     GDCLASS(JvmScript, Script);
 
     friend class JvmInstance;
-    friend class TypeManager;
+    friend class JvmScriptManager;
 
 protected:
     KtClass* kotlin_class;

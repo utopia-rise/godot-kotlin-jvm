@@ -1,10 +1,8 @@
 #ifndef GODOT_JVM_GD_KOTLIN_H
 #define GODOT_JVM_GD_KOTLIN_H
 
-#include "jni/wrapper.h"
 #include "jvm_wrapper/bootstrap.h"
-#include "jvm_wrapper/memory/transfer_context.h"
-#include "jvm_wrapper/registration/kt_class.h"
+#include "lifecycle/jvm_manager.h"
 #include "lifecycle/jvm_options.h"
 #include "lifecycle/jvm_user_configuration.h"
 
@@ -62,11 +60,9 @@ public:
     const JvmUserConfiguration& get_configuration();
     State get_state() const;
 
-    State init();
+    void init();
     void load_user_code();
     void finish();
-
-    void register_classes(jni::Env& p_env, jni::JObjectArray p_classes);
 };
 
 #endif// GODOT_JVM_GD_KOTLIN_H

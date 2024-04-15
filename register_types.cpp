@@ -14,10 +14,10 @@
 #include "register_types.h"
 #include "resource_format/jvm_resource_format_loader.h"
 #include "resource_format/jvm_resource_format_saver.h"
-#include "script/gdj_script.h"
-#include "script/java_script.h"
 #include "script/jvm_script.h"
-#include "script/kotlin_script.h"
+#include "script/language/gdj_script.h"
+#include "script/language/java_script.h"
+#include "script/language/kotlin_script.h"
 
 Ref<JvmResourceFormatLoader> resource_format_loader;
 Ref<JvmResourceFormatSaver> resource_format_saver;

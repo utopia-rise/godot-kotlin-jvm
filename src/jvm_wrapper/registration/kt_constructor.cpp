@@ -1,6 +1,6 @@
 #include "kt_constructor.h"
 
-#include "gd_kotlin.h"
+#include "jvm_wrapper/memory/transfer_context.h"
 
 KtConstructor::KtConstructor(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanceWrapper(p_env, p_wrapped),
   parameter_count(0) {

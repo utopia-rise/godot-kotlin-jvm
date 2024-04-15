@@ -1,8 +1,6 @@
 #include "jvm_instance.h"
 
-#include "gd_kotlin.h"
-#include "jvm_wrapper/registration/kt_class.h"
-#include "language/kotlin_language.h"
+#include "jvm_wrapper/memory/transfer_context.h"
 
 JvmInstance::JvmInstance(jni::Env& p_env, Object* p_owner, KtObject* p_kt_object, JvmScript* p_script) :
   owner(p_owner),
