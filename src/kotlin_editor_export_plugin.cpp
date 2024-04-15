@@ -9,8 +9,8 @@
 
 #include <core/config/project_settings.h>
 
+static constexpr const char* graal_feature {"export-graal-native-image"};
 static constexpr const char* all_jvm_feature {"export-all-jvm"};
-static constexpr const char* configuration_path {"res://godot_kotlin_configuration.json"};
 
 void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, bool p_debug, const String& p_path, int p_flags) {
     LOG_INFO("Beginning Godot-Jvm specific exports.");
@@ -18,88 +18,82 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
     // Add mandatory jars to pck
     Vector<String> files_to_add;
 
-    bool is_graal_only {false};
-    bool is_ios_export {p_features.has("ios")};
-    bool is_android_export {p_features.has("android")};
+    bool is_windows_export {p_features.has("windows")};
+    bool is_linux_export {p_features.has("linux")};
     bool is_osx_export {p_features.has("macos")};
-    if (is_ios_export) {
-        _generate_export_configuration_file(jni::JvmType::GRAAL_NATIVE_IMAGE);
-        add_ios_project_static_lib(ProjectSettings::get_singleton()->globalize_path("res://build/libs/ios/usercode.a"));
-        return;
-    } else if (is_android_export) {
-        files_to_add.push_back("res://build/libs/main-dex.jar");
-        files_to_add.push_back("res://build/libs/godot-bootstrap-dex.jar");
-        _generate_export_configuration_file(jni::JvmType::ART);
-    } else {
-        String graal_usercode_lib;
-        if (p_features.has("windows")) {
-            graal_usercode_lib = "usercode.dll";
-        } else if (is_osx_export) {
-            graal_usercode_lib = "usercode.dylib";
-        } else if (p_features.has("linuxbsd")) {
-            graal_usercode_lib = "usercode.so";
-        }
-        if (p_features.has(all_jvm_feature)) {
-            files_to_add.push_back("res://build/libs/main.jar");
-            files_to_add.push_back("res://build/libs/godot-bootstrap.jar");
-            files_to_add.push_back(vformat("res://build/libs/%s", graal_usercode_lib));
-            _generate_export_configuration_file(GDKotlin::get_instance().get_configuration().vm_type);
+    bool is_desktop_export {is_windows_export || is_linux_export || is_osx_export};
+    bool is_android_export {p_features.has("android")};
+    bool is_ios_export {p_features.has("ios")};
 
-        } else {
-            if (FileAccess::exists(configuration_path)) {
-                Ref<FileAccess> configuration_access_read {FileAccess::open(configuration_path, FileAccess::READ)};
-                jni::JvmType jvm_type {GDKotlin::get_instance().get_configuration().vm_type};
-                switch (jvm_type) {
-                    case jni::JvmType::JVM:
-                        files_to_add.push_back("res://build/libs/main.jar");
-                        files_to_add.push_back("res://build/libs/godot-bootstrap.jar");
-                        _generate_export_configuration_file(jni::JvmType::JVM);
+    if (is_desktop_export) {
+        bool export_all {p_features.has(all_jvm_feature)};
+        bool export_graal {p_features.has(graal_feature) || export_all};
+        bool export_jvm {!p_features.has(graal_feature) || export_all};
 
-                        break;
-                    case jni::JvmType::GRAAL_NATIVE_IMAGE:
-                        files_to_add.push_back(vformat("res://build/libs/%s", graal_usercode_lib));
-                        _generate_export_configuration_file(jni::JvmType::GRAAL_NATIVE_IMAGE);
-                        is_graal_only = true;
+        if (export_jvm) {
+            files_to_add.push_back(String(BUILD_DIRECTORY) + String(DESKTOP_BOOTSTRAP_FILE));
+            files_to_add.push_back(String(BUILD_DIRECTORY) + String(DESKTOP_USER_CODE_FILE));
 
-                        break;
-                    default:
-                        LOG_ERROR("Incorrect VM type for desktop, aborting export.");
-                        return;
-                }
-            } else {
-                LOG_ERROR(vformat("Cannot find configuration file %s", configuration_path));
-            }
-        }
-    }
-
-    // Copy JRE for desktop platforms
-    if (!is_android_export && !is_graal_only) {
-        const Vector<String>& path_split = p_path.split("/");
-        String export_dir {p_path.replace(path_split[path_split.size() - 1], "")};
-        Error error;
-        Ref<DirAccess> dir_access {DirAccess::open(export_dir, &error)};
-        if (error == OK) {
             if (is_osx_export) {
                 bool is_arm64 {p_features.has("arm64")};
                 bool is_x64 {p_features.has("x86_64")};
 
                 if (!is_arm64 && !is_x64) {
-                    add_macos_plugin_file(vformat("res://%s", EMBEDDED_JRE_DIRECTORY));
+                    add_macos_plugin_file(String(RES_DIRECTORY) + String(EMBEDDED_JRE_DIRECTORY));
                 } else {
-                    if (is_arm64) { add_macos_plugin_file(vformat("res://%s", EMBEDDED_JRE_ARM_DIRECTORY)); }
-
-                    if (is_x64) { add_macos_plugin_file(vformat("res://%s", EMBEDDED_JRE_AMD_DIRECTORY)); }
+                    if (is_arm64) { add_macos_plugin_file(String(RES_DIRECTORY) + String(EMBEDDED_JRE_ARM_DIRECTORY)); }
+                    if (is_x64) { add_macos_plugin_file(String(RES_DIRECTORY) + String(EMBEDDED_JRE_AMD_DIRECTORY)); }
                 }
             } else {
-                _copy_jre_to(EMBEDDED_JRE_AMD_DIRECTORY, dir_access);
+                String jre_dir {String(RES_DIRECTORY) + String(EMBEDDED_JRE_AMD_DIRECTORY)};
+                String target_dir {ProjectSettings::get_singleton()->globalize_path(RES_DIRECTORY).path_join(p_path).get_base_dir().path_join(EMBEDDED_JRE_AMD_DIRECTORY)};
+                Error error;
+                Ref<DirAccess> dir_access {DirAccess::open(jre_dir, &error)};
+                if (error != OK) {
+                    LOG_ERROR(vformat("Cannot open directory %s", jre_dir));
+                }
+                if (dir_access->copy_dir(jre_dir, target_dir) != OK) {
+                    LOG_ERROR(vformat("Cannot copy %s folder to export folder, please make sure you created a JRE directory at the root of your project using jlink.", EMBEDDED_JRE_AMD_DIRECTORY)
+                    );
+                }
             }
-        } else {
-            LOG_ERROR(vformat("Cannot copy JRE folder to %s, error is %s", p_path, error));
+
+        } else if (export_graal) {
+            if (is_windows_export) {
+                files_to_add.push_back(String(BUILD_DIRECTORY) + WIND0WS_GRAAL_NATIVE_IMAGE_FILE);
+            } else if (is_linux_export) {
+                files_to_add.push_back(String(BUILD_DIRECTORY) + LINUX_GRAAL_NATIVE_IMAGE_FILE);
+            } else if (is_osx_export) {
+                files_to_add.push_back(String(BUILD_DIRECTORY) + MACOS_GRAAL_NATIVE_IMAGE_FILE);
+            }
         }
+
+        if (export_all) {
+            _generate_export_configuration_file(GDKotlin::get_instance().get_configuration().vm_type);
+        } else if (export_jvm) {
+            _generate_export_configuration_file(jni::JvmType::JVM);
+        } else if (export_graal) {
+            _generate_export_configuration_file(jni::JvmType::GRAAL_NATIVE_IMAGE);
+        }
+
+    } else if (is_android_export) {
+        files_to_add.push_back(String(BUILD_DIRECTORY) + String(ANDROID_BOOTSTRAP_FILE));
+        files_to_add.push_back(String(BUILD_DIRECTORY) + String(ANDROID_USER_CODE_FILE));
+        _generate_export_configuration_file(jni::JvmType::ART);
+    } else if (is_ios_export) {
+        add_ios_project_static_lib(
+          ProjectSettings::get_singleton()->globalize_path(String(BUILD_DIRECTORY) + String(IOS_GRAAL_NATIVE_IMAGE_FILE))
+        );
+        _generate_export_configuration_file(jni::JvmType::GRAAL_NATIVE_IMAGE);
+        return;
+    } else {
+        LOG_ERROR("Godot Kotlin/JVM doesn't handle this platform");
     }
 
-    for (int i = 0; i < files_to_add.size(); ++i) {
-        const String& file_to_add {files_to_add[i]};
+    for (const String& file_to_add : files_to_add) {
+        if (!FileAccess::exists(file_to_add)) {
+            LOG_ERROR(vformat("File can't be found, it won't be exported: %s", file_to_add));
+        }
         add_file(file_to_add, FileAccess::get_file_as_bytes(file_to_add), false);
         LOG_INFO(vformat("Exporting %s", file_to_add));
     }
@@ -108,8 +102,8 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
 }
 
 void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::JvmType vm_type) {
-    JvmUserConfiguration configuration = GDKotlin::get_instance().get_configuration(); // Copy
-    configuration.vm_type = vm_type; // We only need to change the vm type
+    JvmUserConfiguration configuration = GDKotlin::get_instance().get_configuration();// Copy
+    configuration.vm_type = vm_type;// We only need to change the vm type
 
     const char32_t* json_string {JvmUserConfiguration::export_configuration_to_json(configuration).get_data()};
     Vector<uint8_t> json_bytes;
@@ -120,23 +114,9 @@ void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::JvmType 
     // we manually add the configuration file to the exclude filter to prevent it from being added multiple times
     // this could happen if a user adds json files globally with the include filter `*.json` for example
     // it also seems that json files are added by default now, which also triggers this issue
-    get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + configuration_path);
+    get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + JVM_CONFIGURATION_PATH);
 
-    add_file(configuration_path, json_bytes, false);
-}
-
-void KotlinEditorExportPlugin::_copy_jre_to(const char* jre_folder, Ref<DirAccess> dir_access) {
-    if (dir_access->copy_dir(
-            ProjectSettings::get_singleton()->globalize_path(vformat("res://%s", jre_folder)),
-            vformat("%s/%s", dir_access->get_current_dir(), jre_folder)
-    ) != OK) {
-        LOG_ERROR(vformat(
-          "Cannot copy %s folder to export folder, please make sure you created a %s in project "
-          "root folder using jlink.",
-          jre_folder,
-          jre_folder
-        ));
-    }
+    add_file(JVM_CONFIGURATION_PATH, json_bytes, false);
 }
 
 String KotlinEditorExportPlugin::get_name() const {
