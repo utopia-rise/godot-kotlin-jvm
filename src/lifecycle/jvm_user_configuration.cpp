@@ -58,7 +58,7 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
     if (json_dict.has(DEBUG_ADDRESS_JSON_IDENTIFIER)) {
         String address = json_dict[DEBUG_ADDRESS_JSON_IDENTIFIER];
         LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", DEBUG_ADDRESS_JSON_IDENTIFIER, address));
-        if (address.is_valid_ip_address() || address.is_empty()) {
+        if (address.is_valid_ip_address() || address == "*") {
             json_config.jvm_debug_address = address;
         } else {
             is_invalid = true;
@@ -146,6 +146,12 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
         json_dict.erase(JVM_ARGUMENTS_JSON_IDENTIFIER);
     }
 
+    if (json_dict.has(VERSION_JSON_IDENTIFIER) || json_dict[VERSION_JSON_IDENTIFIER] != JSON_ARGUMENT_VERSION) {
+        LOG_WARNING("Your existing jvm json configuration file was made for an older version of this binding. A new "
+                    "will one will be created. Your previous settings should remain if compatible.");
+        is_invalid = true;
+    }
+
     if (!json_dict.is_empty()) {
         Array keys = json_dict.keys();
         for (int i = 0; i < keys.size(); i++) {
@@ -153,12 +159,6 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
             String value = json_dict[key];
             LOG_WARNING(vformat("Invalid json configuration argument name: %s", key));
         }
-        is_invalid = true;
-    }
-
-    if (!json_dict.has(VERSION_JSON_IDENTIFIER) || json_dict[VERSION_JSON_IDENTIFIER] != JSON_ARGUMENT_VERSION) {
-        LOG_WARNING("Your existing jvm json configuration file was made for an older version of this binding. A new "
-                    "will one will be created. Your previous settings should remain if compatible.");
         is_invalid = true;
     }
 
