@@ -23,6 +23,20 @@ uintptr_t PackedByteArrayBridge::engine_call_constructor_array(JNIEnv* p_raw_env
     return reinterpret_cast<uintptr_t>(memnew(PackedByteArray(args[0].operator Vector<uint8_t>())));
 }
 
+uintptr_t PackedByteArrayBridge::engine_convert_byte_array(JNIEnv* p_raw_env, jobject p_instance, jbyteArray byteArray) {
+    jni::Env env {p_raw_env};
+    jni::JByteArray arr {byteArray};
+
+   jint size {arr.length(env)};
+
+   Vector<uint8_t> vec;
+   vec.resize(size);
+   arr.get_array_elements(env, reinterpret_cast<jbyte*>(vec.ptrw()), size);
+
+    return reinterpret_cast<uintptr_t>(memnew(PackedByteArray(vec)));
+}
+
+
 void PackedByteArrayBridge::engine_call_append(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
     Variant args[1] = {};

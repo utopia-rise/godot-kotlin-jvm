@@ -171,4 +171,15 @@ namespace jni {
         auto ret = env.env->GetObjectArrayElement((jobjectArray) obj, index);
         return JObject(ret);
     }
+
+    void JByteArray::get_array_elements(Env& env, jbyte* arr, jsize size) {
+        // Convert java byte array to native byte array
+        jbyte* nativeByteArray = env.env->GetByteArrayElements((jbyteArray) obj, nullptr);
+
+        // Copy elements
+        std::copy(nativeByteArray, nativeByteArray + size, arr);
+
+        // Release the original Java array
+        env.env->ReleaseByteArrayElements((jbyteArray) obj, nativeByteArray, 0);
+    }
 }// namespace jni

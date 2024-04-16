@@ -13,6 +13,7 @@ namespace bridges {
             INIT_NATIVE_METHOD("engine_call_constructor", "()J", PackedByteArrayBridge::engine_call_constructor)
             INIT_NATIVE_METHOD("engine_call_constructor_packed_array", "()J", PackedByteArrayBridge::engine_call_constructor_packed_array)
             INIT_NATIVE_METHOD("engine_call_constructor_array", "()J", PackedByteArrayBridge::engine_call_constructor_array)
+            INIT_NATIVE_METHOD("engine_convert_byte_array", "([B)J", PackedByteArrayBridge::engine_convert_byte_array)
             INIT_NATIVE_METHOD("engine_call_append", "(J)V", PackedByteArrayBridge::engine_call_append)
             INIT_NATIVE_METHOD("engine_call_appendArray", "(J)V", PackedByteArrayBridge::engine_call_appendArray)
             INIT_NATIVE_METHOD("engine_call_bsearch", "(J)V", PackedByteArrayBridge::engine_call_bsearch)
@@ -77,23 +78,17 @@ namespace bridges {
 
     public:
         static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance);
-
         static uintptr_t engine_call_constructor_packed_array(JNIEnv* p_raw_env, jobject p_instance);
-
         static uintptr_t engine_call_constructor_array(JNIEnv* p_raw_env, jobject p_instance);
+        static uintptr_t engine_convert_byte_array(JNIEnv* p_raw_env, jobject p_instance, jbyteArray byteArray);
+
 
         static void engine_call_append(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_appendArray(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_bsearch(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_clear(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_compress(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_count(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_decode_double(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_decode_float(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_decode_half(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);

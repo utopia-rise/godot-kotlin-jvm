@@ -54,6 +54,7 @@ namespace jni {
         friend class JClass;
         friend class JArray;
         friend class JObjectArray;
+        friend class JByteArray;
     };
 }// namespace jni
 

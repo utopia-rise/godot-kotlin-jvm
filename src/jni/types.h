@@ -108,6 +108,15 @@ namespace jni {
         JObject get(Env& env, int index);
     };
 
+    class JByteArray : public JArray {
+    public:
+        JByteArray(JObject jObject) : JArray(jObject) {};
+
+        explicit JByteArray(jarray array) : JArray(array) {}
+
+        void get_array_elements(Env& env, jbyte*, jsize size);
+    };
+
     typedef JNINativeMethod JNativeMethod;
 
     class JClass : public JObject {
