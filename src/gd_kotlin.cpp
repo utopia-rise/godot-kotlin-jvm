@@ -113,7 +113,7 @@ ClassLoader* GDKotlin::load_bootstrap() const {
 #endif
 
     JVM_CRASH_COND_MSG(!FileAccess::exists(bootstrap_jar), error_text);
-    LOG_INFO(vformat("Loading bootstrap jar: %s", bootstrap_jar));
+    LOG_VERBOSE(vformat("Loading bootstrap jar: %s", bootstrap_jar));
 
     ClassLoader* class_loader = ClassLoader::create_instance(env, bootstrap_jar, jni::JObject(nullptr));
     class_loader->set_as_context_loader(env);
@@ -129,10 +129,10 @@ void GDKotlin::initialize_core_library(ClassLoader* class_loader) {
     }
 
     if (!user_configuration.disable_gc) {
-        if (user_configuration.force_gc) { LOG_DEV("Starting GC thread with force mode."); }
+        if (user_configuration.force_gc) { LOG_VERBOSE("Starting GC thread with force mode."); }
 
         MemoryManager::get_instance().start(env, user_configuration.force_gc);
-        LOG_DEV("GC thread started.");
+        LOG_VERBOSE("GC thread started.");
 
         is_gc_started = true;
     }
@@ -206,7 +206,7 @@ void GDKotlin::finish() {
         while (!MemoryManager::get_instance().is_closed(env)) {
             OS::get_singleton()->delay_usec(600000);
         }
-        LOG_DEV("JVM GC thread was closed");
+        LOG_VERBOSE("JVM GC thread was closed");
         MemoryManager::get_instance().clean_up(env);
     }
 
