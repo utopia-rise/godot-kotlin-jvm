@@ -29,13 +29,7 @@ void GdjLanguage::init() {
     if (GDKotlin::get_instance().get_state() == GDKotlin::State::CORE_LIBRARY_INITIALIZED) {
         GDKotlin::get_instance().load_user_code();
     }
-    if (GDKotlin::get_instance().get_state() != GDKotlin::State::JVM_SCRIPTS_INITIALIZED) {
-        OS::get_singleton()->alert(
-          "Godot Kotlin/JVM module couldn't be fully initialized. Java and Kotlin scripts will still appear in the "
-          "editor but won't be functional",
-          "Kotlin/JVM module error"
-        );
-    }
+    GDKotlin::get_instance().validate_state();
 }
 
 void GdjLanguage::frame() {

@@ -12,7 +12,7 @@ class GDKotlin {
 public:
     // Values should be in the correct initialization order, the number matters.
     enum State {
-        NOT_STARTED = 0,// Default stated;
+        NOT_STARTED = 0,// Default state;
         JVM_LIBRARY_LOADED = 1,// Only for Dynamic loading
         JVM_STARTED = 2,// Or retrieved in the case of Android
         BOOTSTRAP_LOADED = 3,
@@ -58,11 +58,15 @@ public:
 
     static GDKotlin& get_instance();
     const JvmUserConfiguration& get_configuration();
-    State get_state() const;
+    State get_state();
 
     void init();
     void load_user_code();
     void finish();
+
+#ifdef DEBUG_ENABLED
+    void validate_state();
+#endif
 };
 
 #endif// GODOT_JVM_GD_KOTLIN_H

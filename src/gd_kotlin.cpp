@@ -1,9 +1,9 @@
 #include "gd_kotlin.h"
 
-#include "lifecycle/paths.h"
+#include "jvm_wrapper/memory/long_string_queue.h"
 #include "jvm_wrapper/memory/memory_manager.h"
 #include "jvm_wrapper/memory/type_manager.h"
-#include "jvm_wrapper/memory/long_string_queue.h"
+#include "lifecycle/paths.h"
 #include "script/jvm_script_manager.h"
 
 #include <core/config/project_settings.h>
@@ -20,6 +20,10 @@
 GDKotlin& GDKotlin::get_instance() {
     static GDKotlin instance;
     return instance;
+}
+
+GDKotlin::State GDKotlin::get_state() {
+    return state;
 }
 
 void GDKotlin::fetch_user_configuration() {
@@ -167,8 +171,6 @@ void GDKotlin::load_user_code() {
 #else
         String user_code_path {copy_new_file_to_user_dir(USER_CODE_FILE)};
 #endif
-        CHECK_AND_SET_STATE(FileAccess::exists(user_code_path), JVM_SCRIPTS_INITIALIZED)
-
         LOG_VERBOSE(vformat("Loading usercode file at: %s", user_code_path));
         // TODO: Rework this part when cpp reloading done, can't check what's happening in the Kotlin code from here.
         ClassLoader* user_class_loader = ClassLoader::create_instance(
@@ -183,6 +185,7 @@ void GDKotlin::load_user_code() {
           user_class_loader->get_wrapped()
         );
         delete user_class_loader;
+        CHECK_AND_SET_STATE(FileAccess::exists(user_code_path), JVM_SCRIPTS_INITIALIZED)
     }
 }
 
@@ -234,6 +237,8 @@ void GDKotlin::finish() {
 #ifdef DYNAMIC_JVM
     if (state >= State::JVM_LIBRARY_LOADED) { unload_dynamic_lib(); }
 #endif
+
+    state = State::NOT_STARTED;
 }
 
 const JvmUserConfiguration& GDKotlin::get_configuration() {
@@ -338,8 +343,63 @@ void GDKotlin::unload_dynamic_lib() {
     }
 }
 
-GDKotlin::State GDKotlin::get_state() const {
-    return state;
+#ifdef DEBUG_ENABLED
+void GDKotlin::validate_state() {
+    bool invalid {false};
+
+    String warning {"Godot Kotlin/JVM module couldn't be fully initialized. \n"
+                    "Java and Kotlin scripts will still appear in the editor but won't be functional.\n"
+                    "The cause was:\n"};
+    String cause {"No cause identified"};
+    String pre_hint {"\nOne possible solution is:\n"};
+    String hint {"No solution suggested"};
+    ;
+
+    if (state == State::NOT_STARTED) {
+        invalid = true;
+#ifdef DYNAMIC_JVM
+        if (user_configuration.vm_type == jni::JVM) {
+            cause = "Couldn't open JVM dynamic library";
+            hint =
+              "Make sure the JAVA_HOME environment variable is set or add an embedded JRE to your project using jlink";
+        } else if (user_configuration.vm_type == jni::GRAAL_NATIVE_IMAGE) {
+            cause = "Couldn't open Graal Native Image";
+            hint = "Make sure you have built your JVM project with Graal native image enabled in your gradle build";
+        }
+#endif
+    }
+
+    if (state == State::JVM_LIBRARY_LOADED) {
+        invalid = true;
+        cause = "Couldn't start the JVM";
+        hint = "Check your configuration file and command-lines argument for any invalid setting, including your "
+               "custom jvm arguments";
+    }
+
+    if (state == State::JVM_STARTED) {
+        invalid = true;
+#ifdef DYNAMIC_JVM
+        if (user_configuration.vm_type == jni::JVM) {
+            cause = "Couldn't find the bootstrap.jar";
+            hint = "Don't forget to set a up-to-date boostrap.jar next to the editor executable.";
+        }
+#endif
+    }
+
+    if (state == State::BOOTSTRAP_LOADED) {
+        invalid = true;
+        cause = "The Godot Kotlin core library couldn't be initialized";
+        hint = "The Godot Kotlin version you use in your JVM project might not match the Godot executable.";
+    }
+
+    // Don't invalidate the state because everything is either loaded or the Kotlin project has simply not be built.
+    if (state == State::CORE_LIBRARY_INITIALIZED || state == State::JVM_SCRIPTS_INITIALIZED) { return; }
+
+    if (invalid) {
+        finish();
+        OS::get_singleton()->alert(warning + cause + pre_hint + hint, "Kotlin/JVM module initialization error");
+    }
 }
+#endif
 
 #endif
