@@ -106,6 +106,7 @@ void JvmScriptManager::update_all_exports_if_dirty() {
     }
     scripts_dirty = false;
 }
+#endif
 
 void JvmScriptManager::clear() {
     named_user_scripts.clear();
@@ -118,4 +119,4 @@ JvmScriptManager& JvmScriptManager::get_instance() {
     static JvmScriptManager instance;
     return instance;
 }
-#endif
+

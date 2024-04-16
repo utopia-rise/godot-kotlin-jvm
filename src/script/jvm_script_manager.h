@@ -4,7 +4,9 @@
 #include "jvm_script.h"
 
 class JvmScriptManager {
+#ifdef TOOLS_ENABLED
     bool scripts_dirty = false;
+#endif
 
     Vector<Ref<NamedScript>> named_user_scripts;
     HashMap<StringName, Ref<NamedScript>> named_user_scripts_map;

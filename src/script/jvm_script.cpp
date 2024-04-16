@@ -127,7 +127,7 @@ bool JvmScript::has_method(const StringName& p_method) const {
 
 MethodInfo JvmScript::get_method_info(const StringName& p_method) const {
     if (is_valid()) {
-        if (KtFunction * method {kotlin_class->get_method(p_method)}) { return method->get_member_info(); }
+        if (KtFunction* method {kotlin_class->get_method(p_method)}) { return method->get_member_info(); }
     }
     return {};
 }

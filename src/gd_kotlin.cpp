@@ -130,6 +130,7 @@ bool GDKotlin::load_bootstrap() {
 
     bootstrap_class_loader = ClassLoader::create_instance(env, bootstrap_jar, jni::JObject(nullptr));
     bootstrap_class_loader->set_as_context_loader(env);
+    return true;
 }
 
 bool GDKotlin::initialize_core_library() {
@@ -342,45 +343,45 @@ void GDKotlin::unload_dynamic_lib() {
         JVM_ERR_FAIL_MSG("Failed to close the jvm dynamic library!");
     }
 }
+#endif
 
 #ifdef DEBUG_ENABLED
 void GDKotlin::validate_state() {
     bool invalid {false};
 
-    String warning {"Godot Kotlin/JVM module couldn't be fully initialized. \n"
+    String warning {"Godot Kotlin/JVM module couldn't be fully initialized.\n"
                     "Java and Kotlin scripts will still appear in the editor but won't be functional.\n"
                     "The cause was:\n"};
-    String cause {"No cause identified"};
+    String cause {"No cause identified."};
     String pre_hint {"\nOne possible solution is:\n"};
-    String hint {"No solution suggested"};
-    ;
+    String hint {"No solution suggested."};
 
     if (state == State::NOT_STARTED) {
         invalid = true;
 #ifdef DYNAMIC_JVM
         if (user_configuration.vm_type == jni::JVM) {
-            cause = "Couldn't open JVM dynamic library";
+            cause = "Couldn't open JVM dynamic library.";
             hint =
-              "Make sure the JAVA_HOME environment variable is set or add an embedded JRE to your project using jlink";
+              "Make sure the JAVA_HOME environment variable is set or add an embedded JRE to your project using jlink.";
         } else if (user_configuration.vm_type == jni::GRAAL_NATIVE_IMAGE) {
-            cause = "Couldn't open Graal Native Image";
-            hint = "Make sure you have built your JVM project with Graal native image enabled in your gradle build";
+            cause = "Couldn't open Graal Native Image.";
+            hint = "Make sure you have built your JVM project with Graal native image enabled in your gradle build.";
         }
 #endif
     }
 
     if (state == State::JVM_LIBRARY_LOADED) {
         invalid = true;
-        cause = "Couldn't start the JVM";
+        cause = "Couldn't start the JVM.";
         hint = "Check your configuration file and command-lines argument for any invalid setting, including your "
-               "custom jvm arguments";
+               "custom jvm arguments.";
     }
 
     if (state == State::JVM_STARTED) {
         invalid = true;
 #ifdef DYNAMIC_JVM
         if (user_configuration.vm_type == jni::JVM) {
-            cause = "Couldn't find the bootstrap.jar";
+            cause = "Couldn't find the bootstrap.jar.";
             hint = "Don't forget to set a up-to-date boostrap.jar next to the editor executable.";
         }
 #endif
@@ -388,7 +389,7 @@ void GDKotlin::validate_state() {
 
     if (state == State::BOOTSTRAP_LOADED) {
         invalid = true;
-        cause = "The Godot Kotlin core library couldn't be initialized";
+        cause = "The Godot Kotlin core library couldn't be initialized.";
         hint = "The Godot Kotlin version you use in your JVM project might not match the Godot executable.";
     }
 
@@ -400,6 +401,4 @@ void GDKotlin::validate_state() {
         OS::get_singleton()->alert(warning + cause + pre_hint + hint, "Kotlin/JVM module initialization error");
     }
 }
-#endif
-
 #endif

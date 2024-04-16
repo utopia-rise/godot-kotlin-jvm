@@ -1,6 +1,5 @@
 #include "bootstrap.h"
 
-#include "gd_kotlin.h"
 #include "jvm_wrapper/memory/type_manager.h"
 #include "script/jvm_script_manager.h"
 

@@ -29,7 +29,10 @@ void GdjLanguage::init() {
     if (GDKotlin::get_instance().get_state() == GDKotlin::State::CORE_LIBRARY_INITIALIZED) {
         GDKotlin::get_instance().load_user_code();
     }
+
+#ifdef DEBUG_ENABLED
     GDKotlin::get_instance().validate_state();
+#endif
 }
 
 void GdjLanguage::frame() {
