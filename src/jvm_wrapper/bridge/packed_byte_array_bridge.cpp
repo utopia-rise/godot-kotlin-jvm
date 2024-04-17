@@ -23,20 +23,6 @@ uintptr_t PackedByteArrayBridge::engine_call_constructor_array(JNIEnv* p_raw_env
     return reinterpret_cast<uintptr_t>(memnew(PackedByteArray(args[0].operator Vector<uint8_t>())));
 }
 
-uintptr_t PackedByteArrayBridge::engine_convert_byte_array(JNIEnv* p_raw_env, jobject p_instance, jbyteArray p_byte_array) {
-    jni::Env env {p_raw_env};
-    jni::JByteArray arr {p_byte_array};
-
-   jint size {arr.length(env)};
-
-   Vector<uint8_t> vec;
-   vec.resize(size);
-   arr.get_array_elements(env, reinterpret_cast<jbyte*>(vec.ptrw()), size);
-
-    return reinterpret_cast<uintptr_t>(memnew(PackedByteArray(vec)));
-}
-
-
 void PackedByteArrayBridge::engine_call_append(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
     Variant args[1] = {};
@@ -110,7 +96,7 @@ void PackedByteArrayBridge::engine_call_decode_half(JNIEnv* p_raw_env, jobject p
     jni::Env env {p_raw_env};
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
-    
+
     Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
 
     Variant ret {instance.call(SNAME("decode_half"), args[0])};
@@ -535,6 +521,29 @@ void PackedByteArrayBridge::engine_call_to_int64_array(JNIEnv* p_raw_env, jobjec
     Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
     Variant ret {instance.call(SNAME("to_int64_array"))};
     TransferContext::get_instance().write_return_value(env, ret);
+}
+
+uintptr_t PackedByteArrayBridge::engine_convert_to_godot(JNIEnv* p_raw_env, jobject p_instance, jbyteArray p_array) {
+    jni::Env env {p_raw_env};
+    jni::JByteArray arr {p_array};
+
+    jint size {arr.length(env)};
+
+    Vector<uint8_t> vec;
+    vec.resize(size);
+    arr.get_array_elements(env, reinterpret_cast<jbyte*>(vec.ptrw()), size);
+
+    return reinterpret_cast<uintptr_t>(memnew(PackedByteArray(vec)));
+}
+
+jbyteArray PackedByteArrayBridge::engine_convert_to_jvm(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    PackedByteArray* packed {from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    int size {packed->size()};
+
+    jni::Env env {p_raw_env};
+    jni::JByteArray arr {env, size};
+    arr.set_array_elements(env, reinterpret_cast<const jbyte*>(packed->ptr()), size);
+    return reinterpret_cast<jbyteArray>(arr.get_wrapped());
 }
 
 PackedByteArrayBridge::~PackedByteArrayBridge() = default;

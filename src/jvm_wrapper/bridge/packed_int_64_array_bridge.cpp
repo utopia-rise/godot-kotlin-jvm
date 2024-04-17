@@ -23,19 +23,6 @@ uintptr_t PackedInt64IntArrayBridge::engine_call_constructor_array(JNIEnv* p_raw
     return reinterpret_cast<uintptr_t>(memnew(PackedInt64Array(args[0].operator Vector<int64_t>())));
 }
 
-uintptr_t PackedInt64IntArrayBridge::engine_convert_long_array(JNIEnv* p_raw_env, jobject p_instance, jlongArray p_long_array) {
-    jni::Env env {p_raw_env};
-    jni::JLongArray arr {p_long_array};
-
-    jint size {arr.length(env)};
-
-    Vector<int64_t > vec;
-    vec.resize(size);
-    arr.get_array_elements(env, reinterpret_cast<jlong*>(vec.ptrw()), size);
-
-    return reinterpret_cast<uintptr_t>(memnew(PackedInt64Array(vec)));
-}
-
 void PackedInt64IntArrayBridge::engine_call_append(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
     Variant args[1] = {};
@@ -185,6 +172,29 @@ void PackedInt64IntArrayBridge::engine_call_to_byte_array(JNIEnv* p_raw_env, job
     jni::Env env {p_raw_env};
     Variant ret {from_uint_to_ptr<PackedInt64Array>(p_raw_ptr)->to_byte_array()};
     TransferContext::get_instance().write_return_value(env, ret);
+}
+
+uintptr_t PackedInt64IntArrayBridge::engine_convert_to_godot(JNIEnv* p_raw_env, jobject p_instance, jlongArray p_array) {
+    jni::Env env {p_raw_env};
+    jni::JLongArray arr {p_array};
+
+    jint size {arr.length(env)};
+
+    Vector<int64_t> vec;
+    vec.resize(size);
+    arr.get_array_elements(env, reinterpret_cast<jlong*>(vec.ptrw()), size);
+
+    return reinterpret_cast<uintptr_t>(memnew(PackedInt64Array(vec)));
+}
+
+jlongArray PackedInt64IntArrayBridge::engine_convert_to_jvm(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    PackedInt64Array* packed {from_uint_to_ptr<PackedInt64Array>(p_raw_ptr)};
+    int size {packed->size()};
+
+    jni::Env env {p_raw_env};
+    jni::JLongArray arr {env, size};
+    arr.set_array_elements(env, reinterpret_cast<const jlong*>(packed->ptr()), size);
+    return reinterpret_cast<jlongArray>(arr.get_wrapped());
 }
 
 PackedInt64IntArrayBridge::~PackedInt64IntArrayBridge() = default;

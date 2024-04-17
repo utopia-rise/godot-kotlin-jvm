@@ -41,4 +41,34 @@ class PackedArrayTest : Node() {
         val arr = doubleArrayOf(0.0, 1.0, 2.0, 4.0, 8.0, 16.0, 32.0, 64.0, 127.0)
         return PackedFloat64Array(arr);
     }
+
+    @RegisterFunction
+    fun getByteArrayValue(arr: PackedByteArray, index: Int) : Byte {
+        val kotlinArr = arr.toByteArray()
+        return kotlinArr[index];
+    }
+
+    @RegisterFunction
+    fun getIntArrayValue(arr: PackedInt32Array, index: Int) : Int {
+        val kotlinArr = arr.toIntArray()
+        return kotlinArr[index];
+    }
+
+    @RegisterFunction
+    fun getLongArrayValue(arr: PackedInt64Array, index: Int) : Long {
+        val kotlinArr = arr.toLongArray()
+        return kotlinArr[index];
+    }
+
+    @RegisterFunction
+    fun getFloatArrayValue(arr: PackedFloat32Array, index: Int) : Float {
+        val kotlinArr = arr.toFloatArray()
+        return kotlinArr[index];
+    }
+
+    @RegisterFunction
+    fun getDoubleArrayValue(arr: PackedFloat64Array, index: Int) : Double {
+        val kotlinArr = arr.toDoubleArray()
+        return kotlinArr[index];
+    }
 }

@@ -76,7 +76,7 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
      * Constructs a new [PackedByteArray] from an existing Kotlin [ByteArray] or Java byte[].
      */
     constructor(from: ByteArray) {
-        _handle = Bridge.engine_convert_byte_array(from)
+        _handle = Bridge.engine_convert_to_godot(from)
         MemoryManager.registerNativeCoreType(this, VariantType.PACKED_BYTE_ARRAY)
     }
 
@@ -656,13 +656,13 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
         return _handle.hashCode()
     }
 
+    fun toByteArray() = Bridge.engine_convert_to_jvm(_handle)
 
     @Suppress("FunctionName")
     private object Bridge {
         external fun engine_call_constructor(): VoidPtr
         external fun engine_call_constructor_packed_array(): VoidPtr
         external fun engine_call_constructor_array(): VoidPtr
-        external fun engine_convert_byte_array(array: ByteArray): VoidPtr
 
         external fun engine_call_append(_handle: VoidPtr)
         external fun engine_call_appendArray(_handle: VoidPtr)
@@ -723,6 +723,9 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
         external fun engine_call_to_float64_array(_handle: VoidPtr)
         external fun engine_call_to_int32_array(_handle: VoidPtr)
         external fun engine_call_to_int64_array(_handle: VoidPtr)
+
+        external fun engine_convert_to_godot(array: ByteArray): VoidPtr
+        external fun engine_convert_to_jvm(_handle: VoidPtr): ByteArray
     }
 }
 

@@ -143,7 +143,7 @@ To avoid confusion and conflict with Kotlin types, the following Godot symbol is
 ## Global functions
 
 In GDScript, some functions are always available (such as mathematical or RNG functions).
-The complete list can be found on the following [page](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html) of Godot's documentaion.
+The complete list can be found on the following [page](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html) of Godot's documentation.
 
 In Kotlin, global functions are available inside the `GD` object singleton. However, don't forget that some functions couldn't be reproduced in Kotlin.
 E.g., the `load()` function is available but `preload()` is not.

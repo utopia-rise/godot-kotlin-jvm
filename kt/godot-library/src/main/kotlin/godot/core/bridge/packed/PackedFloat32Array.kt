@@ -53,7 +53,7 @@ class PackedFloat32Array : NativeCoreType, Iterable<Float> {
      * Constructs a new [PackedFloat32Array] from an existing Kotlin [FloatArray] or Java float[].
      */
     constructor(from: FloatArray) {
-        _handle = Bridge.engine_convert_float_array(from)
+        _handle = Bridge.engine_convert_to_godot(from)
         MemoryManager.registerNativeCoreType(this, VariantType.PACKED_FLOAT_32_ARRAY)
     }
 
@@ -275,13 +275,13 @@ class PackedFloat32Array : NativeCoreType, Iterable<Float> {
         return _handle.hashCode()
     }
 
+    fun toFloatArray() = Bridge.engine_convert_to_jvm(_handle)
 
     @Suppress("FunctionName")
     private object Bridge {
         external fun engine_call_constructor(): VoidPtr
         external fun engine_call_constructor_packed_array(): VoidPtr
         external fun engine_call_constructor_array(): VoidPtr
-        external fun engine_convert_float_array(array: FloatArray): VoidPtr
 
         external fun engine_call_append(_handle: VoidPtr)
         external fun engine_call_appendArray(_handle: VoidPtr)
@@ -305,6 +305,9 @@ class PackedFloat32Array : NativeCoreType, Iterable<Float> {
         external fun engine_call_slice(_handle: VoidPtr)
         external fun engine_call_sort(_handle: VoidPtr)
         external fun engine_call_to_byte_array(_handle: VoidPtr)
+
+        external fun engine_convert_to_godot(array: FloatArray): VoidPtr
+        external fun engine_convert_to_jvm(_handle: VoidPtr): FloatArray
     }
 }
 

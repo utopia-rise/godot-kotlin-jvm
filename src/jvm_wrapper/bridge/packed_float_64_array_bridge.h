@@ -2,6 +2,7 @@
 #define GODOT_JVM_PACKED_FLOAT_64_ARRAY_BRIDGE_H
 
 #include "jvm_wrapper/jvm_singleton_wrapper.h"
+#include "packed_byte_array_bridge.h"
 
 namespace bridges {
 
@@ -13,7 +14,7 @@ namespace bridges {
             INIT_NATIVE_METHOD("engine_call_constructor", "()J", PackedFloat64ArrayBridge::engine_call_constructor)
             INIT_NATIVE_METHOD("engine_call_constructor_packed_array", "()J", PackedFloat64ArrayBridge::engine_call_constructor_packed_array)
             INIT_NATIVE_METHOD("engine_call_constructor_array", "()J", PackedFloat64ArrayBridge::engine_call_constructor_array)
-            INIT_NATIVE_METHOD("engine_convert_double_array", "([D)J", PackedFloat64ArrayBridge::engine_convert_double_array)
+
             INIT_NATIVE_METHOD("engine_call_append", "(J)V", PackedFloat64ArrayBridge::engine_call_append)
             INIT_NATIVE_METHOD("engine_call_appendArray", "(J)V", PackedFloat64ArrayBridge::engine_call_appendArray)
             INIT_NATIVE_METHOD("engine_call_bsearch", "(J)V", PackedFloat64ArrayBridge::engine_call_bsearch)
@@ -36,6 +37,9 @@ namespace bridges {
             INIT_NATIVE_METHOD("engine_call_slice", "(J)V", PackedFloat64ArrayBridge::engine_call_slice)
             INIT_NATIVE_METHOD("engine_call_sort", "(J)V", PackedFloat64ArrayBridge::engine_call_sort)
             INIT_NATIVE_METHOD("engine_call_to_byte_array", "(J)V", PackedFloat64ArrayBridge::engine_call_to_byte_array)
+
+            INIT_NATIVE_METHOD("engine_convert_to_godot", "([D)J", PackedFloat64ArrayBridge::engine_convert_to_godot)
+            INIT_NATIVE_METHOD("engine_convert_to_jvm", "([J)D", PackedFloat64ArrayBridge::engine_convert_to_jvm)
           )
         // clang-format on
 
@@ -68,6 +72,9 @@ namespace bridges {
         static void engine_call_slice(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_sort(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_to_byte_array(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
+
+        static uintptr_t engine_convert_to_godot(JNIEnv* p_raw_env, jobject p_instance, jdoubleArray p_array);
+        static jdoubleArray engine_convert_to_jvm(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
     };
 }// namespace bridge
 

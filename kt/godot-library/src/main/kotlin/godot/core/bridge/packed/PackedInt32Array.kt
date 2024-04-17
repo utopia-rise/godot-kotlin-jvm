@@ -51,7 +51,7 @@ class PackedInt32Array : NativeCoreType, Iterable<Int> {
      * Constructs a new [PackedInt32Array] from an existing Kotlin [IntArray] or Java int[].
      */
     constructor(from: IntArray) {
-        _handle = Bridge.engine_convert_int_array(from)
+        _handle = Bridge.engine_convert_to_godot(from)
         MemoryManager.registerNativeCoreType(this, VariantType.PACKED_INT_32_ARRAY)
     }
 
@@ -272,13 +272,13 @@ class PackedInt32Array : NativeCoreType, Iterable<Int> {
         return _handle.hashCode()
     }
 
+    fun toIntArray() = Bridge.engine_convert_to_jvm(_handle)
 
     @Suppress("FunctionName")
     private object Bridge {
         external fun engine_call_constructor(): VoidPtr
         external fun engine_call_constructor_packed_array(): VoidPtr
         external fun engine_call_constructor_array(): VoidPtr
-        external fun engine_convert_int_array(array: IntArray): VoidPtr
 
         external fun engine_call_append(_handle: VoidPtr)
         external fun engine_call_appendArray(_handle: VoidPtr)
@@ -302,6 +302,9 @@ class PackedInt32Array : NativeCoreType, Iterable<Int> {
         external fun engine_call_slice(_handle: VoidPtr)
         external fun engine_call_sort(_handle: VoidPtr)
         external fun engine_call_to_byte_array(_handle: VoidPtr)
+
+        external fun engine_convert_to_godot(array: IntArray): VoidPtr
+        external fun engine_convert_to_jvm(_handle: VoidPtr): IntArray
     }
 }
 

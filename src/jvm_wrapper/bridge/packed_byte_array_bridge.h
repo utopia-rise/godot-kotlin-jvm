@@ -13,7 +13,7 @@ namespace bridges {
             INIT_NATIVE_METHOD("engine_call_constructor", "()J", PackedByteArrayBridge::engine_call_constructor)
             INIT_NATIVE_METHOD("engine_call_constructor_packed_array", "()J", PackedByteArrayBridge::engine_call_constructor_packed_array)
             INIT_NATIVE_METHOD("engine_call_constructor_array", "()J", PackedByteArrayBridge::engine_call_constructor_array)
-            INIT_NATIVE_METHOD("engine_convert_byte_array", "([B)J", PackedByteArrayBridge::engine_convert_byte_array)
+
             INIT_NATIVE_METHOD("engine_call_append", "(J)V", PackedByteArrayBridge::engine_call_append)
             INIT_NATIVE_METHOD("engine_call_appendArray", "(J)V", PackedByteArrayBridge::engine_call_appendArray)
             INIT_NATIVE_METHOD("engine_call_bsearch", "(J)V", PackedByteArrayBridge::engine_call_bsearch)
@@ -73,6 +73,9 @@ namespace bridges {
             INIT_NATIVE_METHOD("engine_call_to_float64_array", "(J)V", PackedByteArrayBridge::engine_call_to_float64_array)
             INIT_NATIVE_METHOD("engine_call_to_int32_array", "(J)V", PackedByteArrayBridge::engine_call_to_int32_array)
             INIT_NATIVE_METHOD("engine_call_to_int64_array", "(J)V", PackedByteArrayBridge::engine_call_to_int64_array)
+
+            INIT_NATIVE_METHOD("engine_convert_to_godot", "([B)J", PackedByteArrayBridge::engine_convert_to_godot)
+            INIT_NATIVE_METHOD("engine_convert_to_jvm", "([J)B", PackedByteArrayBridge::engine_convert_to_jvm)
         )
         // clang-format on
 
@@ -80,8 +83,6 @@ namespace bridges {
         static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance);
         static uintptr_t engine_call_constructor_packed_array(JNIEnv* p_raw_env, jobject p_instance);
         static uintptr_t engine_call_constructor_array(JNIEnv* p_raw_env, jobject p_instance);
-        static uintptr_t engine_convert_byte_array(JNIEnv* p_raw_env, jobject p_instance, jbyteArray p_byte_array);
-
 
         static void engine_call_append(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_appendArray(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
@@ -104,9 +105,7 @@ namespace bridges {
         static void engine_call_decode_var_size(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
 
         static void engine_call_decompress(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_decompress_dynamic(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_duplicate(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
 
         static void engine_call_encode_double(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
@@ -126,47 +125,32 @@ namespace bridges {
         static void engine_call_get_string_from_utf32(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
 
         static void engine_call_fill(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_find(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_is_empty(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_get_string_from_ascii(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_get_string_from_utf8(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_has(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_has_encoded_var(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_hex_encode(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_get(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_insert(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_reverse(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_rfind(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_pushback(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_remove_at(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_resize(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_set(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_size(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_slice(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static void engine_call_sort(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
 
         static void engine_call_to_float32_array(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_to_float64_array(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_to_int32_array(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_to_int64_array(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
+
+        static uintptr_t engine_convert_to_godot(JNIEnv* p_raw_env, jobject p_instance, jbyteArray p_array);
+        static jbyteArray engine_convert_to_jvm(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
     };
 
 }// namespace bridge
