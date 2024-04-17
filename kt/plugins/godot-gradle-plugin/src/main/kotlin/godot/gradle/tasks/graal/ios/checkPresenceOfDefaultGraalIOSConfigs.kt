@@ -77,6 +77,21 @@ fun Project.checkPresenceOfDefaultGraalIOSConfigsTask(
             )
             copyToGraalFromPluginResourceIfDoesNotExists(
                 capCacheDir
+                    .resolve("JNIHeaderDirectivesJDK20OrLater.cap"),
+                "ios/capcache/JNIHeaderDirectivesJDK20OrLater.cap"
+            )
+            copyToGraalFromPluginResourceIfDoesNotExists(
+                capCacheDir
+                    .resolve("JNIHeaderDirectivesJDK21OrLater.cap"),
+                "ios/capcache/JNIHeaderDirectivesJDK21OrLater.cap"
+            )
+            copyToGraalFromPluginResourceIfDoesNotExists(
+                capCacheDir
+                    .resolve("JNIHeaderDirectivesJDK22OrLater.cap"),
+                "ios/capcache/JNIHeaderDirectivesJDK22OrLater.cap"
+            )
+            copyToGraalFromPluginResourceIfDoesNotExists(
+                capCacheDir
                     .resolve("LibFFIHeaderDirectives.cap"),
                 "ios/capcache/LibFFIHeaderDirectives.cap"
             )
