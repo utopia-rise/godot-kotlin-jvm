@@ -1,8 +1,11 @@
 #include "jvm_script.h"
 
+#include <scene/main/node.h>
+
 #include "core/os/thread.h"
 #include "gd_kotlin.h"
 #include "jvm_instance.h"
+#include "jvm_placeholder_instance.h"
 #include "language/jvm_language.h"
 #include "language/kotlin_language.h"
 #include "language/names.h"
@@ -208,7 +211,7 @@ String JvmScript::get_class_icon_path() const {
 }
 
 PlaceHolderScriptInstance* JvmScript::placeholder_instance_create(Object* p_this) {
-    PlaceHolderScriptInstance* placeholder {memnew(PlaceHolderScriptInstance(KotlinLanguage::get_instance(), Ref<Script>(this), p_this))};
+    PlaceHolderScriptInstance* placeholder {memnew(JvmPlaceHolderInstance(KotlinLanguage::get_instance(), Ref<Script>(this), p_this))};
 
     List<PropertyInfo> exported_properties;
     get_script_exported_property_list(&exported_properties);
@@ -243,6 +246,9 @@ void JvmScript::update_exports() {
 
     for (PlaceHolderScriptInstance* placeholder : placeholders) {
         placeholder->update(exported_properties, exported_members_default_value_cache);
+        if(Node* node = cast_to<Node>(placeholder->get_owner())){
+            node->update_configuration_warnings();
+        }
     }
 
     memdelete(tmp_object);
