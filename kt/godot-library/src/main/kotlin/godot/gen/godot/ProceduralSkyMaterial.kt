@@ -32,7 +32,7 @@ import kotlin.Unit
  *
  * [godot.ProceduralSkyMaterial] supports up to 4 suns, using the color, and energy, direction, and angular distance of the first four [godot.DirectionalLight3D] nodes in the scene. This means that the suns are defined individually by the properties of their corresponding [godot.DirectionalLight3D]s and globally by [sunAngleMax] and [sunCurve].
  *
- * [godot.ProceduralSkyMaterial] uses a lightweight shader to draw the sky and is therefore suited for real time updates. This makes it a great option for a sky that is simple and computationally cheap, but unrealistic. If you need a more realistic procedural option, use [godot.PhysicalSkyMaterial].
+ * [godot.ProceduralSkyMaterial] uses a lightweight shader to draw the sky and is therefore suited for real-time updates. This makes it a great option for a sky that is simple and computationally cheap, but unrealistic. If you need a more realistic procedural option, use [godot.PhysicalSkyMaterial].
  */
 @GodotBaseType
 public open class ProceduralSkyMaterial : Material() {

@@ -43,7 +43,7 @@ import kotlin.Unit
  *
  * **Note:** Lightmap baking on [godot.CSGShape3D]s and [godot.PrimitiveMesh]es is not supported, as these cannot store UV2 data required for baking.
  *
- * **Note:** If no custom lightmappers are installed, [godot.LightmapGI] can only be baked when using the Vulkan backend (Forward+ or Mobile), not OpenGL.
+ * **Note:** If no custom lightmappers are installed, [godot.LightmapGI] can only be baked when using the Vulkan backend (Forward+ or Mobile), not OpenGL. Additionally, [godot.LightmapGI] rendering is not currently supported when using the OpenGL backend (Compatibility).
  */
 @GodotBaseType
 public open class LightmapGI : VisualInstance3D() {

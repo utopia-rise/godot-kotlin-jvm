@@ -20,7 +20,7 @@ import kotlin.Suppress
  * Tutorials:
  * [https://github.com/Eoin-ONeill-Yokai/Godot-Rich-Text-Effect-Test-Project](https://github.com/Eoin-ONeill-Yokai/Godot-Rich-Text-Effect-Test-Project)
  *
- * A custom effect for a [godot.RichTextLabel].
+ * A custom effect for a [godot.RichTextLabel], which can be loaded in the [godot.RichTextLabel] inspector or using [godot.RichTextLabel.installEffect].
  *
  * **Note:** For a [godot.RichTextEffect] to be usable, a BBCode tag must be defined as a member variable called `bbcode` in the script.
  *

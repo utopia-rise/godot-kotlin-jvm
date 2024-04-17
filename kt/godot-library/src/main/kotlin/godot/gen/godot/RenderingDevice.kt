@@ -822,7 +822,7 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    * ```
    * 				var rd = RenderingDevice.new()
-   * 				var clear_colors = PackedColorArray([godot.Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 0)]
+   * 				var clear_colors = PackedColorArray([godot.Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 0)])
    * 				var draw_list = rd.draw_list_begin(framebuffers*, RenderingDevice.INITIAL_ACTION_CLEAR, RenderingDevice.FINAL_ACTION_READ, RenderingDevice.INITIAL_ACTION_CLEAR, RenderingDevice.FINAL_ACTION_DISCARD, clear_colors)
    *
    * 				# Draw opaque.

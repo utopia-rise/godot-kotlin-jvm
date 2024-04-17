@@ -89,32 +89,34 @@ public open class GraphEdit : Control() {
   public val connectionDragEnded: Signal0 by signal()
 
   /**
-   * Emitted when the user presses [kbd]Ctrl + C[/kbd].
+   * Emitted when this [godot.GraphEdit] captures a `ui_copy` action ([kbd]Ctrl + C[/kbd] by default). In general, this signal indicates that the selected [godot.GraphElement]s should be copied.
    */
   public val copyNodesRequest: Signal0 by signal()
 
   /**
-   * Emitted when the user presses [kbd]Ctrl + V[/kbd].
+   * Emitted when this [godot.GraphEdit] captures a `ui_paste` action ([kbd]Ctrl + V[/kbd] by default). In general, this signal indicates that previously copied [godot.GraphElement]s should be pasted.
    */
   public val pasteNodesRequest: Signal0 by signal()
 
   /**
-   * Emitted when a GraphNode is attempted to be duplicated in the GraphEdit.
+   * Emitted when this [godot.GraphEdit] captures a `ui_graph_duplicate` action ([kbd]Ctrl + D[/kbd] by default). In general, this signal indicates that the selected [godot.GraphElement]s should be duplicated.
    */
   public val duplicateNodesRequest: Signal0 by signal()
 
   /**
-   * Emitted when attempting to remove a GraphNode from the GraphEdit. Provides a list of node names to be removed (all selected nodes, excluding nodes without closing button).
+   * Emitted when this [godot.GraphEdit] captures a `ui_graph_delete` action ([kbd]Delete[/kbd] by default).
+   *
+   * [nodes] is an array of node names that should be removed. These usually include all selected nodes.
    */
   public val deleteNodesRequest: Signal1<VariantArray<StringName>> by signal("nodes")
 
   /**
-   * Emitted when a GraphNode is selected.
+   * Emitted when the given [godot.GraphElement] node is selected.
    */
   public val nodeSelected: Signal1<Node> by signal("node")
 
   /**
-   *
+   * Emitted when the given [godot.GraphElement] node is deselected.
    */
   public val nodeDeselected: Signal1<Node> by signal("node")
 
@@ -124,12 +126,12 @@ public open class GraphEdit : Control() {
   public val popupRequest: Signal1<Vector2> by signal("position")
 
   /**
-   * Emitted at the beginning of a GraphNode movement.
+   * Emitted at the beginning of a [godot.GraphElement]'s movement.
    */
   public val beginNodeMove: Signal0 by signal()
 
   /**
-   * Emitted at the end of a GraphNode movement.
+   * Emitted at the end of a [godot.GraphElement]'s movement.
    */
   public val endNodeMove: Signal0 by signal()
 
@@ -651,7 +653,7 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Returns an Array containing the list of connections. A connection consists in a structure of the form `{ from_port: 0, from: "GraphNode name 0", to_port: 1, to: "GraphNode name 1" }`.
+   * Returns an Array containing the list of connections. A connection consists in a structure of the form `{ from_port: 0, from_node: "GraphNode name 0", to_port: 1, to_node: "GraphNode name 1" }`.
    */
   public fun getConnectionList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()

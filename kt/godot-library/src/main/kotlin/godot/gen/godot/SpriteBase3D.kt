@@ -97,7 +97,9 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
   /**
-   * A color value used to *multiply* the texture's colors. Can be used for mood-coloring or to simulate the color of light.
+   * A color value used to *multiply* the texture's colors. Can be used for mood-coloring or to simulate the color of ambient light.
+   *
+   * **Note:** Unlike [godot.CanvasItem.modulate] for 2D, colors with values above `1.0` (overbright) are not supported.
    *
    * **Note:** If a [godot.GeometryInstance3D.materialOverride] is defined on the [godot.SpriteBase3D], the material override must be configured to take vertex colors into account for albedo. Otherwise, the color defined in [modulate] will be ignored. For a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] must be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
    */
@@ -297,6 +299,8 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
 
   /**
    * Filter flags for the texture. See [enum BaseMaterial3D.TextureFilter] for options.
+   *
+   * **Note:** Linear filtering may cause artifacts around the edges, which are especially noticeable on opaque textures. To prevent this, use textures with transparent or identical colors around the edges.
    */
   public var textureFilter: BaseMaterial3D.TextureFilter
     get() {
@@ -357,7 +361,9 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
 
 
   /**
-   * A color value used to *multiply* the texture's colors. Can be used for mood-coloring or to simulate the color of light.
+   * A color value used to *multiply* the texture's colors. Can be used for mood-coloring or to simulate the color of ambient light.
+   *
+   * **Note:** Unlike [godot.CanvasItem.modulate] for 2D, colors with values above `1.0` (overbright) are not supported.
    *
    * **Note:** If a [godot.GeometryInstance3D.materialOverride] is defined on the [godot.SpriteBase3D], the material override must be configured to take vertex colors into account for albedo. Otherwise, the color defined in [modulate] will be ignored. For a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] must be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
    *

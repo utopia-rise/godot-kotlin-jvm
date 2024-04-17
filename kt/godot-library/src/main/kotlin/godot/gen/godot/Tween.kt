@@ -38,7 +38,7 @@ import kotlin.jvm.JvmOverloads
  *
  * Tweens are mostly useful for animations requiring a numerical property to be interpolated over a range of values. The name *tween* comes from *in-betweening*, an animation technique where you specify *keyframes* and the computer interpolates the frames that appear between them. Animating something with a [godot.Tween] is called tweening.
  *
- * [godot.Tween] is more suited than [godot.AnimationPlayer] for animations where you don't know the final values in advance. For example, interpolating a dynamically-chosen camera zoom value is best done with a [godot.Tween]; it would be difficult to do the same thing with an [godot.AnimationPlayer] node. Tweens are also more light-weight than [godot.AnimationPlayer], so they are very much suited for simple animations or general tasks that don't require visual tweaking provided by the editor. They can be used in a fire-and-forget manner for some logic that normally would be done by code. You can e.g. make something shoot periodically by using a looped [godot.CallbackTweener] with a delay.
+ * [godot.Tween] is more suited than [godot.AnimationPlayer] for animations where you don't know the final values in advance. For example, interpolating a dynamically-chosen camera zoom value is best done with a [godot.Tween]; it would be difficult to do the same thing with an [godot.AnimationPlayer] node. Tweens are also more light-weight than [godot.AnimationPlayer], so they are very much suited for simple animations or general tasks that don't require visual tweaking provided by the editor. They can be used in a "fire-and-forget" manner for some logic that normally would be done by code. You can e.g. make something shoot periodically by using a looped [godot.CallbackTweener] with a delay.
  *
  * A [godot.Tween] can be created by using either [godot.SceneTree.createTween] or [godot.Node.createTween]. [godot.Tween]s created manually (i.e. by using `Tween.new()`) are invalid and can't be used for tweening values.
  *
@@ -635,6 +635,14 @@ public open class Tween : RefCounted() {
 
   /**
    * If [parallel] is `true`, the [godot.Tweener]s appended after this method will by default run simultaneously, as opposed to sequentially.
+   *
+   * **Note:** Just like with [parallel], the tweener added right before this method will also be part of the parallel step.
+   *
+   * ```
+   * 				tween.tween_property(self, "position", Vector2(300, 0), 0.5)
+   * 				tween.set_parallel()
+   * 				tween.tween_property(self, "modulate", Color.GREEN, 0.5) # Runs together with the position tweener.
+   * 				```
    */
   @JvmOverloads
   public fun setParallel(parallel: Boolean = true): Tween? {

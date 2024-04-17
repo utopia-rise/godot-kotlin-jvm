@@ -125,6 +125,8 @@ public open class PhysicalBone3D : PhysicsBody3D() {
 
   /**
    * The body's bounciness. Values range from `0` (no bounce) to `1` (full bounciness).
+   *
+   * **Note:** Even with [bounce] set to `1.0`, some energy will be lost over time due to linear and angular damping. To have a [godot.PhysicalBone3D] that preserves all its energy over time, set [bounce] to `1.0`, [linearDampMode] to [DAMP_MODE_REPLACE], [linearDamp] to `0.0`, [angularDampMode] to [DAMP_MODE_REPLACE], and [angularDamp] to `0.0`.
    */
   public var bounce: Float
     get() {

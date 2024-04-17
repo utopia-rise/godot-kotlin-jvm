@@ -3540,7 +3540,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the world space transform of the instance. Equivalent to [godot.Node3D.transform].
+   * Sets the world space transform of the instance. Equivalent to [godot.Node3D.globalTransform].
    */
   public fun instanceSetTransform(instance: RID, transform: Transform3D): Unit {
     TransferContext.writeArguments(_RID to instance, TRANSFORM3D to transform)
@@ -4412,6 +4412,17 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Returns the bounding rectangle for a canvas item in local space, as calculated by the renderer. This bound is used internally for culling.
+   *
+   * **Warning:** This function is intended for debugging in the editor, and will pass through and return a zero [godot.core.Rect2] in exported projects.
+   */
+  public fun debugCanvasItemGetRect(item: RID): Rect2 {
+    TransferContext.writeArguments(_RID to item)
+    TransferContext.callMethod(rawPtr, MethodBindings.debugCanvasItemGetRectPtr, RECT2)
+    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+  }
+
+  /**
    * Creates a canvas light and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `canvas_light_*` RenderingServer functions.
    *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
@@ -4992,7 +5003,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Forces redrawing of all viewports at once.
+   * Forces redrawing of all viewports at once. Must be called from the main thread.
    */
   @JvmOverloads
   public fun forceDraw(swapBuffers: Boolean = true, frameStep: Double = 0.0): Unit {
@@ -9076,6 +9087,9 @@ public object RenderingServer : Object() {
 
     public val canvasItemSetCanvasGroupModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_canvas_group_mode")
+
+    public val debugCanvasItemGetRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "debug_canvas_item_get_rect")
 
     public val canvasLightCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_create")

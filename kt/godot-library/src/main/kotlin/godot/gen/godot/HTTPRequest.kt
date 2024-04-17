@@ -116,7 +116,7 @@ import kotlin.jvm.JvmOverloads
  *
  *     // Create an HTTP request node and connect its completion signal.
  *
- *     var httpRequest = new HTTPRequest();
+ *     var httpRequest = new HttpRequest();
  *
  *     AddChild(httpRequest);
  *
@@ -152,7 +152,7 @@ import kotlin.jvm.JvmOverloads
  *
  *     });
  *
- *     error = httpRequest.Request("https://httpbin.org/post", null, HTTPClient.Method.Post, body);
+ *     error = httpRequest.Request("https://httpbin.org/post", null, HttpClient.Method.Post, body);
  *
  *     if (error != Error.Ok)
  *
@@ -260,7 +260,7 @@ import kotlin.jvm.JvmOverloads
  *
  *     // Create an HTTP request node and connect its completion signal.
  *
- *     var httpRequest = new HTTPRequest();
+ *     var httpRequest = new HttpRequest();
  *
  *     AddChild(httpRequest);
  *
@@ -290,7 +290,7 @@ import kotlin.jvm.JvmOverloads
  *
  * {
  *
- *     if (result != (long)HTTPRequest.Result.Success)
+ *     if (result != (long)HttpRequest.Result.Success)
  *
  *     {
  *

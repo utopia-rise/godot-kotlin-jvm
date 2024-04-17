@@ -65,7 +65,27 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class RichTextLabel : Control() {
   /**
-   * Triggered when the user clicks on content between meta tags. If the meta is defined in text, e.g. [code skip-lint][hi]({"data"="hi"})`, then the parameter for this signal will be a [godot.String] type. If a particular type or an object is desired, the [pushMeta] method must be used to manually insert the data into the tag stack.
+   * Triggered when the user clicks on content between meta (URL) tags. If the meta is defined in BBCode, e.g. [code skip-lint][godot.Text]({"key": "value"})`, then the parameter for this signal will always be a [godot.String] type. If a particular type or an object is desired, the [pushMeta] method must be used to manually insert the data into the tag stack. Alternatively, you can convert the [godot.String] input to the desired type based on its contents (such as calling [godot.JSON.parse] on it).
+   *
+   * For example, the following method can be connected to [metaClicked] to open clicked URLs using the user's default web browser:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * # This assumes RichTextLabel's `meta_clicked` signal was connected to
+   *
+   * # the function below using the signal connection dialog.
+   *
+   * func _richtextlabel_on_meta_clicked(meta):
+   *
+   *     # `meta` is of Variant type, so convert it to a String to avoid script errors at run-time.
+   *
+   *     OS.shell_open(str(meta))
+   *
+   * [/gdscript]
+   *
+   * [/codeblocks]
    */
   public val metaClicked: Signal1<Any?> by signal("meta")
 
@@ -229,7 +249,7 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * If `true`, the label underlines meta tags such as [code skip-lint][url]{text}[/url]`.
+   * If `true`, the label underlines meta tags such as [code skip-lint][url]{text}[/url]`. These tags can call a function when clicked if [metaClicked] is connected to a function.
    */
   public var metaUnderlined: Boolean
     get() {
@@ -648,6 +668,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Adds a meta tag to the tag stack. Similar to the BBCode [code skip-lint][{text}](something)`, but supports non-[godot.String] metadata types.
+   *
+   * **Note:** Meta tags do nothing by default when clicked. To assign behavior when clicked, connect [metaClicked] to a function that is called when the meta tag is clicked.
    */
   public fun pushMeta(`data`: Any?): Unit {
     TransferContext.writeArguments(ANY to data)
@@ -947,7 +969,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Returns the line number of the character position provided.
+   * Returns the line number of the character position provided. Line and character numbers are both zero-indexed.
    *
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
    */
@@ -958,7 +980,7 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Returns the paragraph number of the character position provided.
+   * Returns the paragraph number of the character position provided. Paragraph and character numbers are both zero-indexed.
    *
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the document. Use [isReady] or [finished] to determine whether document is fully loaded.
    */
@@ -1073,7 +1095,32 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Installs a custom effect. [effect] should be a valid [godot.RichTextEffect].
+   * Installs a custom effect. This can also be done in the RichTextLabel inspector using the [customEffects] property. [effect] should be a valid [godot.RichTextEffect].
+   *
+   * Example RichTextEffect:
+   *
+   * ```
+   * 				# effect.gd
+   * 				class_name MyCustomEffect
+   * 				extends RichTextEffect
+   *
+   * 				var bbcode = "my_custom_effect"
+   *
+   * 				# ...
+   * 				```
+   *
+   * Registering the above effect in RichTextLabel from script:
+   *
+   * ```
+   * 				# rich_text_label.gd
+   * 				extends RichTextLabel
+   *
+   * 				func _ready():
+   * 				    install_effect(MyCustomEffect.new())
+   *
+   * 				    # Alternatively, if not using `class_name` in the script that extends RichTextEffect:
+   * 				    install_effect(preload("res://effect.gd").new())
+   * 				```
    */
   public fun installEffect(effect: Any?): Unit {
     TransferContext.writeArguments(ANY to effect)

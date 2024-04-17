@@ -177,7 +177,7 @@ public open class TabContainer : Container() {
     }
 
   /**
-   * If `true`, children [godot.Control] nodes that are hidden have their minimum size take into account in the total, instead of only the currently visible one.
+   * If `true`, child [godot.Control] nodes that are hidden have their minimum size take into account in the total, instead of only the currently visible one.
    */
   public var useHiddenTabsForMinSize: Boolean
     get() {

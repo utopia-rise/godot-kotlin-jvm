@@ -289,7 +289,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
      */
     STATE_MACHINE_TYPE_NESTED(1),
     /**
-     * This is a grouped state machine that can be controlled from a parent state machine. It does not work on standalone. There must be a state machine with [stateMachineType] of [STATE_MACHINE_TYPE_ROOT] or [STATE_MACHINE_TYPE_NESTED] in the parent or ancestor.
+     * This is a grouped state machine that can be controlled from a parent state machine. It does not work independently. There must be a state machine with [stateMachineType] of [STATE_MACHINE_TYPE_ROOT] or [STATE_MACHINE_TYPE_NESTED] in the parent or ancestor.
      */
     STATE_MACHINE_TYPE_GROUPED(2),
     ;

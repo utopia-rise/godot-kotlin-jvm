@@ -14,7 +14,7 @@ import kotlin.Suppress
 /**
  * An optionally compressed [godot.Cubemap].
  *
- * A cubemap that is loaded from a `.ccube` file. This file format is internal to Godot; it is created by importing other image formats with the import system. [godot.CompressedCubemap] can use one of 4 compresson methods:
+ * A cubemap that is loaded from a `.ccube` file. This file format is internal to Godot; it is created by importing other image formats with the import system. [godot.CompressedCubemap] can use one of 4 compression methods:
  *
  * - Lossless (WebP or PNG, uncompressed on the GPU)
  *

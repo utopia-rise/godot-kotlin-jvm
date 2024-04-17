@@ -1058,7 +1058,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The texture to use for multiplying the intensity of the subsurface scattering transmitteance intensity. See also [subsurfScatterTexture]. Ignored if [subsurfScatterSkinMode] is `true`.
+   * The texture to use for multiplying the intensity of the subsurface scattering transmittance intensity. See also [subsurfScatterTexture]. Ignored if [subsurfScatterSkinMode] is `true`.
    */
   public var subsurfScatterTransmittanceTexture: Texture2D?
     get() {

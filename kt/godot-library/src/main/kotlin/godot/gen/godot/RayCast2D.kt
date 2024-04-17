@@ -209,6 +209,36 @@ public open class RayCast2D : Node2D() {
 
   /**
    * Returns the shape ID of the first object that the ray intersects, or `0` if no object is intersecting the ray (i.e. [isColliding] returns `false`).
+   *
+   * To get the intersected shape node, for a [godot.CollisionObject2D] target, use:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var target = get_collider() # A CollisionObject2D.
+   *
+   * var shape_id = get_collider_shape() # The shape index in the collider.
+   *
+   * var owner_id = target.shape_find_owner(shape_id) # The owner ID in the collider.
+   *
+   * var shape = target.shape_owner_get_owner(owner_id)
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * var target = (CollisionObject2D)GetCollider(); // A CollisionObject2D.
+   *
+   * var shapeId = GetColliderShape(); // The shape index in the collider.
+   *
+   * var ownerId = target.ShapeFindOwner(shapeId); // The owner ID in the collider.
+   *
+   * var shape = target.ShapeOwnerGetOwner(ownerId);
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    */
   public fun getColliderShape(): Int {
     TransferContext.writeArguments()
@@ -217,7 +247,7 @@ public open class RayCast2D : Node2D() {
   }
 
   /**
-   * Returns the collision point at which the ray intersects the closest object.
+   * Returns the collision point at which the ray intersects the closest object. If [hitFromInside] is `true` and the ray starts inside of a collision shape, this function will return the origin point of the ray.
    *
    * **Note:** This point is in the **global** coordinate system.
    */

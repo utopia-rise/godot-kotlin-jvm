@@ -159,7 +159,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * Allows the current node to clip children nodes, essentially acting as a mask.
+   * Allows the current node to clip child nodes, essentially acting as a mask.
    */
   public var clipChildren: ClipChildrenMode
     get() {
@@ -375,7 +375,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns `true` if the node is present in the [godot.SceneTree], its [visible] property is `true` and all its ancestors are also visible. If any ancestor is hidden, this node will not be visible in the scene tree, and is consequently not drawn (see [_draw]).
+   * Returns `true` if the node is present in the [godot.SceneTree], its [visible] property is `true` and all its ancestors are also visible. If any ancestor is hidden, this node will not be visible in the scene tree, and is therefore not drawn (see [_draw]).
    */
   public fun isVisibleInTree(): Boolean {
     TransferContext.writeArguments()
@@ -410,7 +410,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Moves this node to display on top of its siblings.
    *
-   * Internally, the node is moved to the bottom of parent's children list. The method has no effect on nodes without a parent.
+   * Internally, the node is moved to the bottom of parent's child list. The method has no effect on nodes without a parent.
    */
   public fun moveToFront(): Unit {
     TransferContext.writeArguments()

@@ -626,7 +626,9 @@ public open class Node3D : Node() {
 
 
   /**
-   * Returns the parent [godot.Node3D], or an empty [godot.Object] if no parent exists or parent is not of type [godot.Node3D].
+   * Returns the parent [godot.Node3D], or `null` if no parent exists, the parent is not of type [godot.Node3D], or [topLevel] is `true`.
+   *
+   * **Note:** Calling this method is not equivalent to `get_parent() as Node3D`, which does not take [topLevel] into account.
    */
   public fun getParentNode3d(): Node3D? {
     TransferContext.writeArguments()

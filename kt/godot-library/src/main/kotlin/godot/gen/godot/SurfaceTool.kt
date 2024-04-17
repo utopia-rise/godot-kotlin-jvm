@@ -327,7 +327,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Generates a LOD for a given [ndThreshold] in linear units (square root of quadric error metric), using at most [targetIndexCount] indices.
    *
-   * *Deprecated.* Unused internally and neglects to preserve normals or UVs. Consider using [godot.ImporterMesh.generateLods] instead.
+   * *Deprecated.* Unused internally and fails to preserve normals or UVs. Consider using [godot.ImporterMesh.generateLods] instead.
    */
   @JvmOverloads
   public fun generateLod(ndThreshold: Float, targetIndexCount: Int = 3): PackedInt32Array {

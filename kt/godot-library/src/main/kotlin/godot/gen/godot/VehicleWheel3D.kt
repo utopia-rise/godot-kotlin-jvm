@@ -107,7 +107,7 @@ public open class VehicleWheel3D : Node3D() {
     }
 
   /**
-   * This value affects the roll of your vehicle. If set to 1.0 for all wheels, your vehicle will be prone to rolling over, while a value of 0.0 will resist body roll.
+   * This value affects the roll of your vehicle. If set to 1.0 for all wheels, your vehicle will resist body roll, while a value of 0.0 will be prone to rolling over.
    */
   public var wheelRollInfluence: Float
     get() {

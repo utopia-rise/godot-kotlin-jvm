@@ -438,7 +438,7 @@ public open class TextEdit : Control() {
   /**
    * If `true`, a right-click moves the caret at the mouse position before displaying the context menu.
    *
-   * If `false`, the context menu disregards mouse location.
+   * If `false`, the context menu ignores mouse location.
    */
   public var caretMoveOnRightClick: Boolean
     get() {

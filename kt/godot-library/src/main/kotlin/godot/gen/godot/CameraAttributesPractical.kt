@@ -117,7 +117,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
     }
 
   /**
-   * Sets the maximum amount of blur. When using physically-based blur amounts, will instead act as a multiplier. High values lead to an increased amount of bluriness, but can be much more expensive to calculate. It is best to keep this as low as possible for a given art style.
+   * Sets the maximum amount of blur. When using physically-based blur amounts, will instead act as a multiplier. High values lead to an increased amount of blurriness, but can be much more expensive to calculate. It is best to keep this as low as possible for a given art style.
    */
   public var dofBlurAmount: Float
     get() {

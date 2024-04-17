@@ -33,7 +33,7 @@ import kotlin.Suppress
 @GodotBaseType
 public open class AudioEffectPitchShift : AudioEffect() {
   /**
-   * The pitch scale to use. `1.0` is the default pitch and plays sounds unaltered. [pitchScale] can range from `0.0` (infinitely low pitch, inaudible) to `16` (16 times higher than the initial pitch).
+   * The pitch scale to use. `1.0` is the default pitch and plays sounds unaffected. [pitchScale] can range from `0.0` (infinitely low pitch, inaudible) to `16` (16 times higher than the initial pitch).
    */
   public var pitchScale: Float
     get() {

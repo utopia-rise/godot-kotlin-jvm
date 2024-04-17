@@ -141,7 +141,7 @@ public open class PrimitiveMesh : Mesh() {
 
 
   /**
-   *
+   * Override this method to customize how this primitive mesh should be generated. Should return an [godot.Array] where each element is another Array of values required for the mesh (see the [enum Mesh.ArrayType] constants).
    */
   public open fun _createMeshArray(): VariantArray<Any?> {
     throw NotImplementedError("_create_mesh_array is not implemented for PrimitiveMesh")
