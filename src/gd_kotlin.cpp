@@ -373,7 +373,7 @@ void GDKotlin::validate_state() {
     if (state == State::JVM_LIBRARY_LOADED) {
         invalid = true;
         cause = "Couldn't start the JVM.";
-        hint = "Check your configuration file and command-lines argument for any invalid setting, including your "
+        hint = "Check your configuration file and command-line arguments for any invalid setting, including your "
                "custom jvm arguments.";
     }
 

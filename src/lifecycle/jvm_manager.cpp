@@ -78,7 +78,7 @@ bool JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
     // Set std::local::global to value it was before creating JVM.
     // See https://github.com/utopia-rise/godot-kotlin-jvm/issues/166
     // and https://github.com/utopia-rise/godot-kotlin-jvm/issues/170
-#ifndef NO_USE_STDLIBss
+#ifndef NO_USE_STDLIB
     std::locale::global(global);
 #endif
 
