@@ -232,7 +232,7 @@ class PackedInt32Array : NativeCoreType, Iterable<Int> {
         Bridge.engine_call_sort(_handle)
     }
 
-    fun toByteArray(): PackedByteArray {
+    fun toPackedByteArray(): PackedByteArray {
         Bridge.engine_call_to_byte_array(_handle)
         return TransferContext.readReturnValue(VariantType.PACKED_BYTE_ARRAY) as PackedByteArray
     }

@@ -137,6 +137,8 @@ If you need more than 10 parameters, you can either use the not typesafe functio
 To avoid confusion and conflict with Kotlin types, the following Godot symbol is renamed.
 
 - `Array` -> `VariantArray` (to avoid confusion with a built-in type in Kotlin)
+- `PackedXArray::toByteArray` -> `PackedXArray::toPackedByteArray` (to avoid confusion with a built-in type in Kotlin)
+- `PackedByteArray::toXArray` -> `PackedByteArray::toPackedXArray` (to avoid confusion with a built-in type in Kotlin)
 
 ## Global functions
 

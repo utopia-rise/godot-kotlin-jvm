@@ -604,19 +604,19 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
         Bridge.engine_call_sort(_handle)
     }
 
-    fun toFloat32Array(): PackedFloat32Array {
+    fun toPackedFloat32Array(): PackedFloat32Array {
         Bridge.engine_call_to_float32_array(_handle)
         return TransferContext.readReturnValue(VariantType.PACKED_FLOAT_32_ARRAY) as PackedFloat32Array
     }
-    fun toFloat64Array(): PackedFloat64Array {
+    fun toPackedFloat64Array(): PackedFloat64Array {
         Bridge.engine_call_to_float64_array(_handle)
         return TransferContext.readReturnValue(VariantType.PACKED_FLOAT_64_ARRAY) as PackedFloat64Array
     }
-    fun toInt32Array(): PackedInt32Array {
+    fun toPackedInt32Array(): PackedInt32Array {
         Bridge.engine_call_to_int32_array(_handle)
         return TransferContext.readReturnValue(VariantType.PACKED_INT_32_ARRAY) as PackedInt32Array
     }
-    fun toInt64Array(): PackedInt64Array {
+    fun toPackedInt64Array(): PackedInt64Array {
         Bridge.engine_call_to_int64_array(_handle)
         return TransferContext.readReturnValue(VariantType.PACKED_INT_64_ARRAY) as PackedInt64Array
     }
