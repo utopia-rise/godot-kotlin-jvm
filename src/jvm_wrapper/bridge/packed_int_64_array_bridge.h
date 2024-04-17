@@ -13,6 +13,7 @@ namespace bridges {
             INIT_NATIVE_METHOD("engine_call_constructor", "()J", PackedInt64IntArrayBridge::engine_call_constructor)
             INIT_NATIVE_METHOD("engine_call_constructor_packed_array", "()J", PackedInt64IntArrayBridge::engine_call_constructor_packed_array)
             INIT_NATIVE_METHOD("engine_call_constructor_array", "()J", PackedInt64IntArrayBridge::engine_call_constructor_array)
+            INIT_NATIVE_METHOD("engine_convert_long_array", "([J)J", PackedInt64IntArrayBridge::engine_convert_long_array)
             INIT_NATIVE_METHOD("engine_call_append", "(J)V", PackedInt64IntArrayBridge::engine_call_append)
             INIT_NATIVE_METHOD("engine_call_appendArray", "(J)V", PackedInt64IntArrayBridge::engine_call_appendArray)
             INIT_NATIVE_METHOD("engine_call_bsearch", "(J)V", PackedInt64IntArrayBridge::engine_call_bsearch)
@@ -43,6 +44,7 @@ namespace bridges {
         static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance);
         static uintptr_t engine_call_constructor_packed_array(JNIEnv* p_raw_env, jobject p_instance);
         static uintptr_t engine_call_constructor_array(JNIEnv* p_raw_env, jobject p_instance);
+        static uintptr_t engine_convert_long_array(JNIEnv* p_raw_env, jobject p_instance, jlongArray p_long_array);
 
         static void engine_call_append(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_appendArray(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);

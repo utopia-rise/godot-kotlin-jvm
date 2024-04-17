@@ -23,6 +23,19 @@ uintptr_t PackedFloat32ArrayBridge::engine_call_constructor_array(JNIEnv* p_raw_
     return reinterpret_cast<uintptr_t>(memnew(PackedFloat32Array(args[0].operator Vector<float>())));
 }
 
+uintptr_t PackedFloat32ArrayBridge::engine_convert_float_array(JNIEnv* p_raw_env, jobject p_instance, jfloatArray p_float_array) {
+    jni::Env env {p_raw_env};
+    jni::JFloatArray arr {p_float_array};
+
+    jint size {arr.length(env)};
+
+    Vector<float> vec;
+    vec.resize(size);
+    arr.get_array_elements(env, reinterpret_cast<jfloat*>(vec.ptrw()), size);
+
+    return reinterpret_cast<uintptr_t>(memnew(PackedFloat32Array(vec)));
+}
+
 void PackedFloat32ArrayBridge::engine_call_append(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
     Variant args[1] = {};

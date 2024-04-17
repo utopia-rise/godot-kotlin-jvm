@@ -23,6 +23,19 @@ uintptr_t PackedInt32IntArrayBridge::engine_call_constructor_array(JNIEnv* p_raw
     return reinterpret_cast<uintptr_t>(memnew(PackedInt32Array(args[0].operator Vector<int>())));
 }
 
+uintptr_t PackedInt32IntArrayBridge::engine_convert_int_array(JNIEnv* p_raw_env, jobject p_instance, jintArray p_int_array) {
+    jni::Env env {p_raw_env};
+    jni::JIntArray arr {p_int_array};
+
+    jint size {arr.length(env)};
+
+    Vector<int32_t> vec;
+    vec.resize(size);
+    arr.get_array_elements(env, reinterpret_cast<jint*>(vec.ptrw()), size);
+
+    return reinterpret_cast<uintptr_t>(memnew(PackedInt32Array(vec)));
+}
+
 void PackedInt32IntArrayBridge::engine_call_append(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
     Variant args[1] = {};

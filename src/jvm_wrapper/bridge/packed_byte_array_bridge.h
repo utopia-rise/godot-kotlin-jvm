@@ -80,7 +80,7 @@ namespace bridges {
         static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance);
         static uintptr_t engine_call_constructor_packed_array(JNIEnv* p_raw_env, jobject p_instance);
         static uintptr_t engine_call_constructor_array(JNIEnv* p_raw_env, jobject p_instance);
-        static uintptr_t engine_convert_byte_array(JNIEnv* p_raw_env, jobject p_instance, jbyteArray byteArray);
+        static uintptr_t engine_convert_byte_array(JNIEnv* p_raw_env, jobject p_instance, jbyteArray p_byte_array);
 
 
         static void engine_call_append(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);

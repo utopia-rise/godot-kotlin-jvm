@@ -47,6 +47,14 @@ class PackedInt32Array : NativeCoreType, Iterable<Int> {
         MemoryManager.registerNativeCoreType(this, VariantType.PACKED_INT_32_ARRAY)
     }
 
+    /**
+     * Constructs a new [PackedInt32Array] from an existing Kotlin [IntArray] or Java int[].
+     */
+    constructor(from: IntArray) {
+        _handle = Bridge.engine_convert_int_array(from)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_INT_32_ARRAY)
+    }
+
     //POOL ARRAY API SHARED
     /**
      * Appends an element at the end of the array (alias of push_back).
@@ -270,6 +278,7 @@ class PackedInt32Array : NativeCoreType, Iterable<Int> {
         external fun engine_call_constructor(): VoidPtr
         external fun engine_call_constructor_packed_array(): VoidPtr
         external fun engine_call_constructor_array(): VoidPtr
+        external fun engine_convert_int_array(array: IntArray): VoidPtr
 
         external fun engine_call_append(_handle: VoidPtr)
         external fun engine_call_appendArray(_handle: VoidPtr)
@@ -295,3 +304,8 @@ class PackedInt32Array : NativeCoreType, Iterable<Int> {
         external fun engine_call_to_byte_array(_handle: VoidPtr)
     }
 }
+
+/**
+ * Convert a [IntArray] into a Godot [PackedInt32Array], this call is optimised for a large amount of data.
+ */
+fun IntArray.toPackedArray() = PackedInt32Array(this)

@@ -47,6 +47,14 @@ class PackedInt64Array : NativeCoreType, Iterable<Long> {
         MemoryManager.registerNativeCoreType(this, VariantType.PACKED_INT_64_ARRAY)
     }
 
+    /**
+     * Constructs a new [PackedInt64Array] from an existing Kotlin [LongArray] or Java long[].
+     */
+    constructor(from: LongArray) {
+        _handle = Bridge.engine_convert_long_array(from)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_INT_64_ARRAY)
+    }
+
     //POOL ARRAY API SHARED
     /**
      * Appends an element at the end of the array (alias of push_back).
@@ -271,6 +279,7 @@ class PackedInt64Array : NativeCoreType, Iterable<Long> {
         external fun engine_call_constructor(): VoidPtr
         external fun engine_call_constructor_packed_array(): VoidPtr
         external fun engine_call_constructor_array(): VoidPtr
+        external fun engine_convert_long_array(array: LongArray): VoidPtr
 
         external fun engine_call_append(_handle: VoidPtr)
         external fun engine_call_appendArray(_handle: VoidPtr)
@@ -296,3 +305,8 @@ class PackedInt64Array : NativeCoreType, Iterable<Long> {
         external fun engine_call_to_byte_array(_handle: VoidPtr)
     }
 }
+
+/**
+ * Convert a [LongArray] into a Godot [PackedInt64Array], this call is optimised for a large amount of data.
+ */
+fun LongArray.toPackedArray() = PackedInt64Array(this)

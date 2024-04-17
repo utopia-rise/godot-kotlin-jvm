@@ -73,12 +73,13 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
     }
 
     /**
-     * Constructs a new PackedByteArray from an existing Kotlin ByteArray or Java byte[].
+     * Constructs a new [PackedByteArray] from an existing Kotlin [ByteArray] or Java byte[].
      */
     constructor(from: ByteArray) {
         _handle = Bridge.engine_convert_byte_array(from)
         MemoryManager.registerNativeCoreType(this, VariantType.PACKED_BYTE_ARRAY)
     }
+
     //POOL ARRAY API SHARED
     /**
      * Appends an element at the end of the array (alias of push_back).
@@ -726,6 +727,6 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
 }
 
 /**
- * Convert a ByteArray into a Godot PackedByteArray, this call is optimised for a large amount of data.
+ * Convert a [ByteArray] into a Godot [PackedByteArray], this call is optimised for a large amount of data.
  */
 fun ByteArray.toPackedArray() = PackedByteArray(this)

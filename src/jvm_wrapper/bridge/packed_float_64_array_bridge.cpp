@@ -23,6 +23,19 @@ uintptr_t PackedFloat64ArrayBridge::engine_call_constructor_array(JNIEnv* p_raw_
     return reinterpret_cast<uintptr_t>(memnew(PackedFloat64Array(args[0].operator Vector<double>())));
 }
 
+uintptr_t PackedFloat64ArrayBridge::engine_convert_double_array(JNIEnv* p_raw_env, jobject p_instance, jdoubleArray p_double_array) {
+    jni::Env env {p_raw_env};
+    jni::JDoubleArray arr {p_double_array};
+
+    jint size {arr.length(env)};
+
+    Vector<double> vec;
+    vec.resize(size);
+    arr.get_array_elements(env, reinterpret_cast<jdouble*>(vec.ptrw()), size);
+
+    return reinterpret_cast<uintptr_t>(memnew(PackedFloat64Array(vec)));
+}
+
 void PackedFloat64ArrayBridge::engine_call_append(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
     Variant args[1] = {};

@@ -46,6 +46,14 @@ class PackedFloat64Array : NativeCoreType, Iterable<Double> {
         MemoryManager.registerNativeCoreType(this, VariantType.PACKED_FLOAT_64_ARRAY)
     }
 
+    /**
+     * Constructs a new [PackedFloat64Array] from an existing Kotlin [DoubleArray] or Java double[].
+     */
+    constructor(from: DoubleArray) {
+        _handle = Bridge.engine_convert_double_array(from)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_FLOAT_64_ARRAY)
+    }
+
     //POOL ARRAY API SHARED
     /**
      * Appends an element at the end of the array (alias of push_back).
@@ -270,6 +278,7 @@ class PackedFloat64Array : NativeCoreType, Iterable<Double> {
         external fun engine_call_constructor(): VoidPtr
         external fun engine_call_constructor_packed_array(): VoidPtr
         external fun engine_call_constructor_array(): VoidPtr
+        external fun engine_convert_double_array(array: DoubleArray): VoidPtr
 
         external fun engine_call_append(_handle: VoidPtr)
         external fun engine_call_appendArray(_handle: VoidPtr)
@@ -295,3 +304,8 @@ class PackedFloat64Array : NativeCoreType, Iterable<Double> {
         external fun engine_call_to_byte_array(_handle: VoidPtr)
     }
 }
+
+/**
+ * Convert a [DoubleArray] into a Godot [PackedFloat64Array], this call is optimised for a large amount of data.
+ */
+fun DoubleArray.toPackedArray() = PackedFloat64Array(this)

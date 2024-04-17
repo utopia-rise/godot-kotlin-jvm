@@ -112,9 +112,45 @@ namespace jni {
     public:
         JByteArray(JObject jObject) : JArray(jObject) {};
 
-        explicit JByteArray(jarray array) : JArray(array) {}
+        explicit JByteArray(jbyteArray array) : JArray(array) {}
 
         void get_array_elements(Env& env, jbyte*, jsize size);
+    };
+
+    class JIntArray : public JArray {
+    public:
+        JIntArray(JObject jObject) : JArray(jObject) {};
+
+        explicit JIntArray(jintArray array) : JArray(array) {}
+
+        void get_array_elements(Env& env, jint*, jsize size);
+    };
+
+    class JLongArray : public JArray {
+    public:
+        JLongArray(JObject jObject) : JArray(jObject) {};
+
+        explicit JLongArray(jlongArray array) : JArray(array) {}
+
+        void get_array_elements(Env& env, jlong*, jsize size);
+    };
+
+    class JFloatArray : public JArray {
+    public:
+        JFloatArray(JObject jObject) : JArray(jObject) {};
+
+        explicit JFloatArray(jfloatArray array) : JArray(array) {}
+
+        void get_array_elements(Env& env, jfloat*, jsize size);
+    };
+
+    class JDoubleArray : public JArray {
+    public:
+        JDoubleArray(JObject jObject) : JArray(jObject) {};
+
+        explicit JDoubleArray(jdoubleArray array) : JArray(array) {}
+
+        void get_array_elements(Env& env, jdouble*, jsize size);
     };
 
     typedef JNINativeMethod JNativeMethod;

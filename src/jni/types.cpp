@@ -173,13 +173,57 @@ namespace jni {
     }
 
     void JByteArray::get_array_elements(Env& env, jbyte* arr, jsize size) {
-        // Convert java byte array to native byte array
-        jbyte* nativeByteArray = env.env->GetByteArrayElements((jbyteArray) obj, nullptr);
+        // Convert java array to native array
+        jbyte* nativeArray = env.env->GetByteArrayElements((jbyteArray) obj, nullptr);
 
         // Copy elements
-        std::copy(nativeByteArray, nativeByteArray + size, arr);
+        std::copy(nativeArray, nativeArray + size, arr);
 
         // Release the original Java array
-        env.env->ReleaseByteArrayElements((jbyteArray) obj, nativeByteArray, 0);
+        env.env->ReleaseByteArrayElements((jbyteArray) obj, nativeArray, 0);
+    }
+
+    void JIntArray::get_array_elements(Env& env, jint* arr, jsize size) {
+        // Convert java array to native array
+        jint* nativeArray = env.env->GetIntArrayElements((jintArray) obj, nullptr);
+
+        // Copy elements
+        std::copy(nativeArray, nativeArray + size, arr);
+
+        // Release the original Java array
+        env.env->ReleaseIntArrayElements((jintArray) obj, nativeArray, 0);
+    }
+
+    void JLongArray::get_array_elements(Env& env, jlong* arr, jsize size) {
+        // Convert java array to native array
+        jlong* nativeArray = env.env->GetLongArrayElements((jlongArray) obj, nullptr);
+
+        // Copy elements
+        std::copy(nativeArray, nativeArray + size, arr);
+
+        // Release the original Java array
+        env.env->ReleaseLongArrayElements((jlongArray) obj, nativeArray, 0);
+    }
+
+    void JFloatArray::get_array_elements(Env& env, jfloat* arr, jsize size) {
+        // Convert java array to native array
+        jfloat* nativeArray = env.env->GetFloatArrayElements((jfloatArray) obj, nullptr);
+
+        // Copy elements
+        std::copy(nativeArray, nativeArray + size, arr);
+
+        // Release the original Java array
+        env.env->ReleaseFloatArrayElements((jfloatArray) obj, nativeArray, 0);
+    }
+
+    void JDoubleArray::get_array_elements(Env& env, jdouble* arr, jsize size) {
+        // Convert java array to native array
+        jdouble* nativeArray = env.env->GetDoubleArrayElements((jdoubleArray) obj, nullptr);
+
+        // Copy elements
+        std::copy(nativeArray, nativeArray + size, arr);
+
+        // Release the original Java array
+        env.env->ReleaseDoubleArrayElements((jdoubleArray) obj, nativeArray, 0);
     }
 }// namespace jni

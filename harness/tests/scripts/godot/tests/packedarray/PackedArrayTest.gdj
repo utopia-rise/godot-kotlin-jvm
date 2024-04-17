@@ -18,5 +18,9 @@ properties = [
     
 ]
 functions = [
-    convert_byte_array
+    convert_byte_array,
+	convert_int_array,
+	convert_long_array,
+	convert_float_array,
+	convert_double_array
 ]
