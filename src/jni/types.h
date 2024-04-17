@@ -1,5 +1,3 @@
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "google-explicit-constructor"
 #ifndef GODOT_LOADER_JOBJECT_H
 #define GODOT_LOADER_JOBJECT_H
 
@@ -203,5 +201,3 @@ namespace jni {
 }// namespace jni
 
 #endif// GODOT_LOADER_JOBJECT_H
-
-#pragma clang diagnostic pop

@@ -87,7 +87,7 @@ bool KtClass::get_has_notification(jni::Env& env) {
 }
 
 void KtClass::fetch_registered_supertypes(jni::Env& env) {
-    jni::JObjectArray classesArray = wrapped.call_object_method(env, GET_REGISTERED_SUPERTYPES);
+    jni::JObjectArray classesArray {wrapped.call_object_method(env, GET_REGISTERED_SUPERTYPES)};
     for (int i = 0; i < classesArray.length(env); i++) {
         StringName parent_name = StringName(env.from_jstring(jni::JString(classesArray.get(env, i))));
         registered_supertypes.append(parent_name);
@@ -99,7 +99,7 @@ void KtClass::fetch_registered_supertypes(jni::Env& env) {
 }
 
 void KtClass::fetch_methods(jni::Env& env) {
-    jni::JObjectArray functionsArray = wrapped.call_object_method(env, GET_FUNCTIONS);
+    jni::JObjectArray functionsArray {wrapped.call_object_method(env, GET_FUNCTIONS)};
     for (int i = 0; i < functionsArray.length(env); i++) {
         jni::JObject object = functionsArray.get(env, i);
         auto* ktFunction {new KtFunction(env, object)};
@@ -112,7 +112,7 @@ void KtClass::fetch_methods(jni::Env& env) {
 }
 
 void KtClass::fetch_properties(jni::Env& env) {
-    jni::JObjectArray propertiesArray = wrapped.call_object_method(env, GET_PROPERTIES);
+    jni::JObjectArray propertiesArray {wrapped.call_object_method(env, GET_PROPERTIES)};
     for (int i = 0; i < propertiesArray.length(env); i++) {
         auto* ktProperty {new KtProperty(env, propertiesArray.get(env, i))};
         properties[ktProperty->get_name()] = ktProperty;
@@ -124,7 +124,7 @@ void KtClass::fetch_properties(jni::Env& env) {
 }
 
 void KtClass::fetch_signals(jni::Env& env) {
-    jni::JObjectArray signal_info_array = wrapped.call_object_method(env, GET_SIGNAL_INFOS);
+    jni::JObjectArray signal_info_array {wrapped.call_object_method(env, GET_SIGNAL_INFOS)};
     for (int i = 0; i < signal_info_array.length(env); i++) {
         auto* kt_signal_info {new KtSignalInfo(env, signal_info_array.get(env, i))};
         signal_infos[kt_signal_info->name] = kt_signal_info;
@@ -136,7 +136,7 @@ void KtClass::fetch_signals(jni::Env& env) {
 }
 
 void KtClass::fetch_constructors(jni::Env& env) {
-    jni::JObjectArray constructors_array = wrapped.call_object_method(env, GET_CONSTRUCTORS);
+    jni::JObjectArray constructors_array {wrapped.call_object_method(env, GET_CONSTRUCTORS)};
     for (int i = 0; i < constructors_array.length(env); i++) {
         const jni::JObject& constructor {constructors_array.get(env, i)};
         KtConstructor* kt_constructor {nullptr};
