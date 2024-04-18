@@ -18,6 +18,7 @@ jobs:
   # This is needed as github actions does not allow to run on every push except on pull request pushes
   # general concept taken from: https://github.com/orgs/community/discussions/27071#discussioncomment-4943026
   get-pr-number:
+    name: 🔗 Get PR number if present
     runs-on: ubuntu-latest
     # Map a step output to a job output
     outputs:
