@@ -13,7 +13,10 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # https://github.com/orgs/community/discussions/27071#discussioncomment-4943026
+  # This job checks if the current commit is part of a pull request
+  # The output is then used to determine if the subsequent jobs should run (see the `if` in `setup-build-variables`)
+  # This is needed as github actions does not allow to run on every push except on pull request pushes
+  # general concept taken from: https://github.com/orgs/community/discussions/27071#discussioncomment-4943026
   get-pr-number:
     runs-on: ubuntu-latest
     # Map a step output to a job output
