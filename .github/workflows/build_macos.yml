@@ -19,51 +19,61 @@ jobs:
         include:
           - name: Build editor release x86_64 (target=editor)
             cache-name: editor_macos_x86_64
+            artifact-name: editor_release_macos_x86_64
             target: editor
             sconsflags: arch=x86_64
 
           - name: Build editor debug x86_64 (target=editor, debug_symbols=true )
             cache-name: editor_macos_x86_64
+            artifact-name: editor_debug_macos_x86_64
             target: editor
             sconsflags: arch=x86_64 debug_symbols=true
 
           - name: Build editor dev x86_64 (target=editor, dev_build=yes, debug_symbols=true )
             cache-name: editor_macos_x86_64
+            artifact-name: editor_dev_macos_x86_64
             target: editor
             sconsflags: arch=x86_64 dev_build=yes debug_symbols=true
 
           - name: Build release template x86_64
             cache-name: export_template_macos_x86_64
+            artifact-name: export_template_release_macos_x86_64
             target: template_release
             sconsflags: arch=x86_64
 
           - name: Build debug template x86_64
             cache-name: export_template_macos_x86_64
+            artifact-name: export_template_debug_macos_x86_64
             target: template_debug
             sconsflags: arch=x86_64
 
           - name: Build editor release arm64 (target=editor)
             cache-name: editor_macos_arm64
+            artifact-name: editor_release_macos_arm64
             target: editor
             sconsflags: arch=arm64
 
           - name: Build editor debug arm64 (target=editor, debug_symbols=true )
             cache-name: editor_macos_arm64
+            artifact-name: editor_debug_macos_arm64
             target: editor
             sconsflags: arch=arm64 debug_symbols=true
 
           - name: Build editor dev arm64 (target=editor, dev_build=yes, debug_symbols=true )
             cache-name: editor_macos_arm64
+            artifact-name: editor_dev_macos_arm64
             target: editor
             sconsflags: arch=arm64 dev_build=yes debug_symbols=true
 
           - name: Build release template arm64
             cache-name: export_template_macos_arm64
+            artifact-name: export_template_release_macos_arm64
             target: template_release
             sconsflags: arch=arm64
 
           - name: Build debug template arm64
             cache-name: export_template_macos_arm64
+            artifact-name: export_template_debug_macos_arm64
             target: template_debug
             sconsflags: arch=arm64
 
@@ -115,4 +125,4 @@ jobs:
       - name: Upload artifact
         uses: ./.github/actions/upload-artifact
         with:
-          name: ${{ matrix.cache-name }}
+          name: ${{ matrix.export_template_debug_macos_arm64 }}

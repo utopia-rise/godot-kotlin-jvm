@@ -23,30 +23,35 @@ jobs:
         include:
           - name: Build editor release (target=editor)
             cache-name: editor_windows_x86_64
+            artifact-name: editor_release_windows_x86_64
             target: editor
             should-clean: true
             sconsflags: ''
 
           - name: Build editor debug (target=editor, debug_symbols=true )
             cache-name: editor_windows_x86_64
+            artifact-name: editor_debug_windows_x86_64
             target: editor
             should-clean: false
             sconsflags: debug_symbols=true
 
           - name: Build editor dev (target=editor, dev_build=yes, debug_symbols=true )
             cache-name: editor_windows_x86_64
+            artifact-name: editor_dev_windows_x86_64
             target: editor
             should-clean: false
             sconsflags: dev_build=yes debug_symbols=true
 
           - name: Build release template
             cache-name: export_template_windows_x86_64
+            artifact-name: export_template_release_windows_x86_64
             target: template_release
             should-clean: true
             sconsflags: ''
 
           - name: Build debug template
             cache-name: export_template_windows_x86_64
+            artifact-name: export_template_debug_windows_x86_64
             target: template_debug
             should-clean: false
             sconsflags: ''
@@ -94,4 +99,4 @@ jobs:
       - name: Upload artifact
         uses: ./.github/actions/upload-artifact
         with:
-          name: ${{ matrix.cache-name }}
+          name: ${{ matrix.artifact-name }}
