@@ -29,13 +29,19 @@ jobs:
               return context.issue.number;
             } else {
               // Otherwise return issue number from commit
-              return (
+              const data = (
                 await github.rest.repos.listPullRequestsAssociatedWithCommit({
                   commit_sha: context.sha,
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                 })
-              ).data[0].number;
+              ).data[0];
+              
+              if (data.number) {
+                return data.number;
+              } else {
+                return '';
+              }
             }
           result-encoding: string
 
