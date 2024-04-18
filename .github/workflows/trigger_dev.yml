@@ -47,8 +47,9 @@ jobs:
   setup-build-variables:
     needs:
       - get-pr-number
+    # we only want to run this if we're not in a pull request.
+    # all subsequent jobs in this workflow depend on this one. So if we don't execute it, they won't be executed either
     if: ${{ needs.get-pr-number.outputs['pr-number'] == '' }}
-    # Fake job to define outputs which can be used in the other jobs
     name: 🛠️ Setup build variables
     runs-on: ubuntu-latest
     steps:
