@@ -2,27 +2,30 @@
 
 [ext_resource type="Script" path="res://scripts/godot/tests/Invocation.gdj" id="1"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_euhbu"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_prd4u"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_3p36q"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_tuyoa"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_m2i5r"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_bh4po"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_epry3"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_bdc7j"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_10kw1"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_abcao"]
 
-[node name="Spatial" type="Node3D"]
+[node name="Spatial" type="Node3D" node_paths=PackedStringArray("button")]
 script = ExtResource("1")
-resource_test = SubResource("NavigationMesh_euhbu")
-jvm_id = 794940817
-nav_meshes = Array[NavigationMesh]([SubResource("NavigationMesh_3p36q")])
-nullable_array = Array[NavigationMesh]([SubResource("NavigationMesh_m2i5r"), null])
+button = NodePath("CanvasLayer/Button")
+nullable_long = 2
+lateinit_string = "works also from inspector"
+resource_test = SubResource("NavigationMesh_prd4u")
+jvm_id = 319061373
+nav_meshes = Array[NavigationMesh]([SubResource("NavigationMesh_tuyoa")])
+nullable_array = Array[NavigationMesh]([SubResource("NavigationMesh_bh4po"), null])
 nav_meshes_dictionary = {
-"AwesomeNavmesh": SubResource("NavigationMesh_epry3")
+"AwesomeNavmesh": SubResource("NavigationMesh_bdc7j")
 }
 nullable_dictionary = {
-"notnull": SubResource("NavigationMesh_10kw1"),
+"notnull": SubResource("NavigationMesh_abcao"),
 "null": null
 }
 

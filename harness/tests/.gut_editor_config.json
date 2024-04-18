@@ -6,8 +6,7 @@
   "res://test/unit"
  ],
  "disable_colors": false,
- "double_strategy": 1,
- "errors_do_not_cause_failure": false,
+ "double_strategy": "partial",
  "font_color": "ccccccff",
  "font_name": "CourierPrime",
  "font_size": 16,
@@ -27,8 +26,6 @@
   "hide_output_text": false,
   "hide_result_tree": false,
   "hide_settings": false,
-  "output_font_name": "CourierPrime",
-  "output_font_size": 30,
   "use_colors": false
  },
  "post_run_script": "",
