@@ -83,4 +83,4 @@ jobs:
       - name: Upload artifact
         uses: ./.github/actions/upload-artifact
         with:
-          name: ${{ matrix.export_template_debug_macos_arm64 }}
+          name: ${{ matrix.artifact-name }}
