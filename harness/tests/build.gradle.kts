@@ -94,13 +94,15 @@ tasks {
                 }
             }
 
-            if (!didAllTestsPass) {
-                throw Exception("ERROR: Some assertions failed")
+            val error = when {
+                !didAllTestsPass -> Exception("ERROR: Some assertions failed")
+                !isJvmClosed -> Exception("ERROR: JVM has not closed properly")
+                else -> null
             }
-            if (!isJvmClosed) {
-                throw Exception("ERROR: JVM has not closed properly")
-            }
+
             println(testOutput)
+
+            error?.let { throw it }
         }
 
         isIgnoreExitValue = true
