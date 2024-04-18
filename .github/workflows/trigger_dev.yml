@@ -7,9 +7,6 @@ on:
       - '*/*'       # matches every branch containing a single '/'
       - '**'        # matches every branch
       - '!master'   # excludes master
-  pull_request:
-    branches:
-      - '!**' # match no branch; aka do not run on pull requests
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-trigger_dev
@@ -20,6 +17,7 @@ jobs:
     # Fake job to define outputs which can be used in the other jobs
     name: 🛠️ Setup build variables
     runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' # do not run on pull requests. It seems we cannot set this on the whole workflow, hence we set it on the individual steps instead...
     steps:
       - run: |
           echo "Setup done"
@@ -31,6 +29,7 @@ jobs:
   build-jvm:
     name: ☕ Build Jvm
     uses: ./.github/workflows/build_jvm.yml
+    if: github.event_name != 'pull_request' # do not run on pull requests. It seems we cannot set this on the whole workflow, hence we set it on the individual steps instead...
     needs:
       - setup-build-variables
     with:
@@ -40,6 +39,7 @@ jobs:
   build-linux:
     name: 🐧 Build Linux
     uses: ./.github/workflows/build_linux.yml
+    if: github.event_name != 'pull_request' # do not run on pull requests. It seems we cannot set this on the whole workflow, hence we set it on the individual steps instead...
     needs:
       - setup-build-variables
     with:
@@ -48,6 +48,7 @@ jobs:
   assemble-linux:
     name: 🐧 Assemble linux
     uses: ./.github/workflows/assemble_linux.yml
+    if: github.event_name != 'pull_request' # do not run on pull requests. It seems we cannot set this on the whole workflow, hence we set it on the individual steps instead...
     needs:
       - setup-build-variables
       - build-jvm
@@ -59,6 +60,7 @@ jobs:
   test-linux:
     name: 🐧 Test Linux
     uses: ./.github/workflows/test_linux.yml
+    if: github.event_name != 'pull_request' # do not run on pull requests. It seems we cannot set this on the whole workflow, hence we set it on the individual steps instead...
     needs:
       - setup-build-variables
       - build-jvm
