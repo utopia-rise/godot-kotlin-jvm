@@ -77,6 +77,7 @@ tasks {
         var isJvmClosed = false
         val testOutputFile = File("$projectDir/test_output.txt")
         standardOutput = testOutputFile.outputStream()
+        errorOutput = testOutputFile.outputStream()
 
         doLast {
             val testOutput = testOutputFile.readText()
