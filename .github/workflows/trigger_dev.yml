@@ -13,11 +13,44 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # https://github.com/orgs/community/discussions/27071#discussioncomment-4943026
+  get-pr-number:
+    runs-on: ubuntu-latest
+    # Map a step output to a job output
+    outputs:
+      pr-number: ${{ steps.get-pr-number.outputs.pr-number }}
+    steps:
+      - uses: actions/github-script@v6
+        id: get_issue_number
+        with:
+          script: |
+            if (context.issue.number) {
+              // Return issue number if present
+              return context.issue.number;
+            } else {
+              // Otherwise return issue number from commit
+              return (
+                await github.rest.repos.listPullRequestsAssociatedWithCommit({
+                  commit_sha: context.sha,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                })
+              ).data[0].number;
+            }
+          result-encoding: string
+
+      - id: get-pr-number
+        run: |
+          echo "Got PR number: ${{steps.get_issue_number.outputs.result}}"
+          echo "pr-number=${{steps.get_issue_number.outputs.result}}" >> "$GITHUB_OUTPUT"
+
   setup-build-variables:
+    needs:
+      - get-pr-number
+    if: ${{ needs.get-pr-number.outputs['pr-number'] != '' }}
     # Fake job to define outputs which can be used in the other jobs
     name: 🛠️ Setup build variables
     runs-on: ubuntu-latest
-    if: github.event_name != 'pull_request' # do not run on pull requests. It seems we cannot set this on the whole workflow, hence we set it on the individual steps instead...
     steps:
       - run: |
           echo "Setup done"
@@ -29,7 +62,6 @@ jobs:
   build-jvm:
     name: ☕ Build Jvm
     uses: ./.github/workflows/build_jvm.yml
-    if: github.event_name != 'pull_request' # do not run on pull requests. It seems we cannot set this on the whole workflow, hence we set it on the individual steps instead...
     needs:
       - setup-build-variables
     with:
@@ -39,7 +71,6 @@ jobs:
   build-linux:
     name: 🐧 Build Linux
     uses: ./.github/workflows/build_linux.yml
-    if: github.event_name != 'pull_request' # do not run on pull requests. It seems we cannot set this on the whole workflow, hence we set it on the individual steps instead...
     needs:
       - setup-build-variables
     with:
@@ -48,7 +79,6 @@ jobs:
   assemble-linux:
     name: 🐧 Assemble linux
     uses: ./.github/workflows/assemble_linux.yml
-    if: github.event_name != 'pull_request' # do not run on pull requests. It seems we cannot set this on the whole workflow, hence we set it on the individual steps instead...
     needs:
       - setup-build-variables
       - build-jvm
@@ -60,7 +90,6 @@ jobs:
   test-linux:
     name: 🐧 Test Linux
     uses: ./.github/workflows/test_linux.yml
-    if: github.event_name != 'pull_request' # do not run on pull requests. It seems we cannot set this on the whole workflow, hence we set it on the individual steps instead...
     needs:
       - setup-build-variables
       - build-jvm
