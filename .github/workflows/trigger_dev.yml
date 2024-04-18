@@ -47,7 +47,7 @@ jobs:
   setup-build-variables:
     needs:
       - get-pr-number
-    if: ${{ needs.get-pr-number.outputs['pr-number'] != '' }}
+    if: ${{ needs.get-pr-number.outputs['pr-number'] == '' }}
     # Fake job to define outputs which can be used in the other jobs
     name: 🛠️ Setup build variables
     runs-on: ubuntu-latest
