@@ -23,26 +23,22 @@ jobs:
             sconsflags: ''
 
           - name: Build editor debug (target=editor, debug_symbols=true )
-            cache-name: editor_linux_x86_64
-            artifact-name: editor_debug_linux_x86_64
+            cache-name: editor_debug_linux_x86_64
             target: editor
             sconsflags: debug_symbols=true
 
           - name: Build editor dev (target=editor, dev_build=yes, debug_symbols=true )
-            cache-name: editor_linux_x86_64
-            artifact-name: editor_dev_linux_x86_64
+            cache-name: editor_dev_linux_x86_64
             target: editor
             sconsflags: dev_build=yes debug_symbols=true
 
           - name: Build release template x86_64
-            cache-name: export_template_linux_x86_64
-            artifact-name: export_template_release_linux_x86_64
+            cache-name: export_template_release_linux_x86_64
             target: template_release
             sconsflags: ''
 
           - name: Build debug template x86_64
-            cache-name: export_template_linux_x86_64
-            artifact-name: export_template_debug_linux_x86_64
+            cache-name: export_template_debug_linux_x86_64
             target: template_debug
             sconsflags: ''
 
@@ -59,7 +55,7 @@ jobs:
           path: modules/kotlin_jvm
 
       - name: Setup Godot build cache
-        uses: ./.github/actions/godot-cache
+        uses: ./.github/actions/scons-cache
         with:
           cache-name: ${{ matrix.cache-name }}
         continue-on-error: true
@@ -83,4 +79,4 @@ jobs:
       - name: Upload artifact
         uses: ./.github/actions/upload-artifact
         with:
-          name: ${{ matrix.artifact-name }}
+          name: ${{ matrix.cache-name }}

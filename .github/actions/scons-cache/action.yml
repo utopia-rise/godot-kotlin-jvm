@@ -1,0 +1,20 @@
+name: Setup scons build cache
+description: Setup scons build cache.
+inputs:
+  cache-name:
+    description: The cache base name (job name by default).
+    default: "${{github.job}}"
+  scons-cache:
+    description: The scons cache path.
+    default: "${{github.workspace}}/.scons-cache/"
+runs:
+  using: "composite"
+  steps:
+    # Upload cache on completion and check it out now
+    - name: Load .scons_cache directory
+      uses: actions/cache@v3
+      with:
+        path: ${{inputs.scons-cache}}
+        key: ${{inputs.cache-name}}
+        restore-keys: |
+          ${{inputs.cache-name}}
