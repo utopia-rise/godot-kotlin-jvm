@@ -1,4 +1,5 @@
 name: Dev build and test
+
 on:
   push:
     branches:
@@ -6,8 +7,9 @@ on:
       - '*/*'       # matches every branch containing a single '/'
       - '**'        # matches every branch
       - '!master'   # excludes master
-
-  pull_request: # do not run on pull requests
+  pull_request:
+    branches:
+      - '!**' # match no branch; aka do not run on pull requests
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-trigger_dev
