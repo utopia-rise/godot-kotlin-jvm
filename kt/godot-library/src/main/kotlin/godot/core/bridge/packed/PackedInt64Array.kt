@@ -273,7 +273,7 @@ class PackedInt64Array : NativeCoreType, Iterable<Long> {
         return _handle.hashCode()
     }
 
-    fun toLongArray() = Bridge.engine_convert_to_jvm(_handle)
+    fun toLongArray(): LongArray = Bridge.engine_convert_to_jvm(_handle)
 
     @Suppress("FunctionName")
     private object Bridge {

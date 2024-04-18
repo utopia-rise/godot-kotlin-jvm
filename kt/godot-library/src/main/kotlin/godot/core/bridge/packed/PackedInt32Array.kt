@@ -272,7 +272,7 @@ class PackedInt32Array : NativeCoreType, Iterable<Int> {
         return _handle.hashCode()
     }
 
-    fun toIntArray() = Bridge.engine_convert_to_jvm(_handle)
+    fun toIntArray(): IntArray = Bridge.engine_convert_to_jvm(_handle)
 
     @Suppress("FunctionName")
     private object Bridge {

@@ -275,7 +275,7 @@ class PackedFloat32Array : NativeCoreType, Iterable<Float> {
         return _handle.hashCode()
     }
 
-    fun toFloatArray() = Bridge.engine_convert_to_jvm(_handle)
+    fun toFloatArray(): FloatArray = Bridge.engine_convert_to_jvm(_handle)
 
     @Suppress("FunctionName")
     private object Bridge {

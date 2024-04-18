@@ -272,7 +272,7 @@ class PackedFloat64Array : NativeCoreType, Iterable<Double> {
         return _handle.hashCode()
     }
 
-    fun toDoubleArray() = Bridge.engine_convert_to_jvm(_handle)
+    fun toDoubleArray(): DoubleArray = Bridge.engine_convert_to_jvm(_handle)
 
     @Suppress("FunctionName")
     private object Bridge {

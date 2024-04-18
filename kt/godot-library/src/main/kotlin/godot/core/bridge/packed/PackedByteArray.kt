@@ -656,7 +656,7 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
         return _handle.hashCode()
     }
 
-    fun toByteArray() = Bridge.engine_convert_to_jvm(_handle)
+    fun toByteArray(): ByteArray = Bridge.engine_convert_to_jvm(_handle)
 
     @Suppress("FunctionName")
     private object Bridge {
