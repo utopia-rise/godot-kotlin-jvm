@@ -79,7 +79,8 @@ tasks {
         standardOutput = testOutputFile.outputStream()
 
         doLast {
-            val outputLines = testOutputFile.readText().split("\n")
+            val testOutput = testOutputFile.readText()
+            val outputLines = testOutput.split("\n")
 
             outputLines.forEach { line ->
                 when {
@@ -93,12 +94,12 @@ tasks {
             }
 
             if (!didAllTestsPass) {
-                println(testOutputFile.readText())
                 throw Exception("ERROR: Some assertions failed")
             }
             if (!isJvmClosed) {
                 throw Exception("ERROR: JVM has not closed properly")
             }
+            println(testOutput)
         }
 
         isIgnoreExitValue = true
