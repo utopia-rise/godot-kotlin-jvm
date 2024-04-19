@@ -198,7 +198,7 @@ namespace jni {
 
     JDoubleArray::JDoubleArray(Env& env, const jsize size) : JArray() {
         // Allocate an Array with reserved size;
-        obj = env.env->NewByteArray(size);
+        obj = env.env->NewDoubleArray(size);
     }
 
     void JByteArray::get_array_elements(Env& env, jbyte* arr, const jsize size) {
