@@ -22,10 +22,7 @@
 #include "jvm_wrapper/registration/kt_class.h"
 
 #include <jni.h>
-
-#ifndef NO_USE_STDLIB
 #include <locale>
-#endif
 
 #ifdef __ANDROID__
 #include <platform/android/thread_jandroid.h>
@@ -64,9 +61,7 @@ bool JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
         LOG_DEV_VERBOSE(vformat("JVM argument %s: %s", i, args.options[i].optionString));
     }
 
-#ifndef NO_USE_STDLIB
     std::locale global;
-#endif
 
     LOG_VERBOSE("Starting JVM ...");
     JNIEnv* jni_env {nullptr};
@@ -78,9 +73,8 @@ bool JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
     // Set std::local::global to value it was before creating JVM.
     // See https://github.com/utopia-rise/godot-kotlin-jvm/issues/166
     // and https://github.com/utopia-rise/godot-kotlin-jvm/issues/170
-#ifndef NO_USE_STDLIB
+
     std::locale::global(global);
-#endif
 
     delete[] options;
     JVM_ERR_FAIL_COND_V_MSG(result != JNI_OK, false, "Failed to create a new vm!");
