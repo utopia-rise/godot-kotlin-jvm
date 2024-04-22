@@ -31,7 +31,7 @@ jni::JObject to_java_url(jni::Env& env, const String& bootstrapJar) {
 
 ClassLoader* ClassLoader::create_instance(jni::Env& env, const String& full_jar_path, const jni::JObject& p_parent_loader) {
 #ifdef __ANDROID__
-    jni ::JClass class_loader_cls {env.find_class("dalvik/system/DexClassLoader")};
+    jni::JClass class_loader_cls {env.find_class("dalvik/system/DexClassLoader")};
     jni::MethodId ctor {class_loader_cls.get_constructor_method_id(env, "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V")
     };
     jni::JObject jar_path {env.new_string(full_jar_path.utf8().get_data())};

@@ -39,7 +39,7 @@ static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {""};
 static constexpr const char* RELATIVE_JVM_LIB_PATH {""};
 static constexpr const char* BOOTSTRAP_FILE {""};
 static constexpr const char* USER_CODE_FILE {""};
-static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {"usercode.so"};
+static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {"usercode.a"};
 
 #endif
 

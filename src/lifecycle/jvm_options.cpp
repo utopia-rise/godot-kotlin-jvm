@@ -8,12 +8,7 @@ void JvmOptions::add_jni_checks() {
 void JvmOptions::add_debug_options(uint16_t p_port, String& p_address, bool p_wait) {
     String jvm_debug_port = String::num_int64(p_port);
 
-    String suspend;
-    if (p_wait) {
-        suspend = "y";
-    } else {
-        suspend = "n";
-    }
+    String suspend { p_wait ? "y" : "n" };
 
     String debug_command {
       vformat("-agentlib:jdwp=transport=dt_socket,server=y,suspend=%s,address=%s:%s", suspend, p_address, jvm_debug_port)
