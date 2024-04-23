@@ -1,0 +1,169 @@
+#include "jvm_manager.h"
+
+#include "jvm_wrapper/bootstrap.h"
+#include "jvm_wrapper/bridge/callable_bridge.h"
+#include "jvm_wrapper/bridge/dictionary_bridge.h"
+#include "jvm_wrapper/bridge/gd_print_bridge.h"
+#include "jvm_wrapper/bridge/node_path_bridge.h"
+#include "jvm_wrapper/bridge/packed_byte_array_bridge.h"
+#include "jvm_wrapper/bridge/packed_color_array_bridge.h"
+#include "jvm_wrapper/bridge/packed_float_32_array_bridge.h"
+#include "jvm_wrapper/bridge/packed_float_64_array_bridge.h"
+#include "jvm_wrapper/bridge/packed_int_32_array_bridge.h"
+#include "jvm_wrapper/bridge/packed_int_64_array_bridge.h"
+#include "jvm_wrapper/bridge/packed_string_array_bridge.h"
+#include "jvm_wrapper/bridge/packed_vector2_array_bridge.h"
+#include "jvm_wrapper/bridge/packed_vector3_array_bridge.h"
+#include "jvm_wrapper/bridge/rid_bridge.h"
+#include "jvm_wrapper/bridge/string_name_bridge.h"
+#include "jvm_wrapper/bridge/variant_array_bridge.h"
+#include "jvm_wrapper/memory/memory_manager.h"
+#include "jvm_wrapper/memory/transfer_context.h"
+
+#include <jni.h>
+
+#ifndef NO_USE_STDLIB
+#include <locale>
+#endif
+
+#ifdef __ANDROID__
+#include <platform/android/thread_jandroid.h>
+#endif
+
+typedef jint(JNICALL* CreateJavaVM)(JavaVM**, void**, void*);
+
+CreateJavaVM get_create_jvm_function(void* lib_handle) {
+#ifdef DYNAMIC_JVM
+    void* createJavaVMSymbolHandle;
+    if (OS::get_singleton()->get_dynamic_library_symbol_handle(lib_handle, "JNI_CreateJavaVM", createJavaVMSymbolHandle) != OK) {
+        JVM_CRASH_NOW_MSG("Failed to obtain JNI_CreateJavaVM symbol from dynamic library!");
+    }
+    return reinterpret_cast<CreateJavaVM>(createJavaVMSymbolHandle);
+#elif defined STATIC_JVM
+    return &JNI_CreateJavaVM;
+#else
+    // Sanity check in case we mess up preprocessors
+    JVM_CRASH_NOW_MSG("Current configuration doesn't provide a way to create a JVM!");
+#endif
+}
+
+void JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& user_configuration, JvmOptions& jvm_options) {
+    JavaVM* java_vm {nullptr};
+
+#if defined DYNAMIC_JVM || defined STATIC_JVM
+    uint32_t nOptions {jvm_options.options.size()};
+    auto* options = new JavaVMOption[nOptions];
+    JavaVMInitArgs args;
+    args.version = jvm_options.version;
+    args.nOptions = static_cast<jint>(nOptions);
+    args.options = options;
+
+    for (auto i = 0; i < static_cast<int>(nOptions); i++) {
+        args.options[i].optionString = jvm_options.options[i].ptrw();
+        LOG_DEV_VERBOSE(vformat("JVM argument %s: %s", i, args.options[i].optionString));
+    }
+
+#ifndef NO_USE_STDLIB
+    std::locale global;
+#endif
+
+    LOG_VERBOSE("Starting JVM ...");
+    JNIEnv* jni_env {nullptr};
+
+    jint result {get_create_jvm_function(lib_handle)(&java_vm, reinterpret_cast<void**>(&jni_env), &args)};
+
+    // Set std::local::global to value it was before creating JVM.
+    // See https://github.com/utopia-rise/godot-kotlin-jvm/issues/166
+    // and https://github.com/utopia-rise/godot-kotlin-jvm/issues/170
+#ifndef NO_USE_STDLIB
+    std::locale::global(global);
+#endif
+
+    delete[] options;
+    JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to create a new vm!");
+
+#elif defined PROVIDED_JVM
+    LOG_VERBOSE("Retrieving existing JVM ...");
+    jni::Env env {get_jni_env()};
+    java_vm = env.get_jvm();
+#else
+    // Sanity check in case we mess up preprocessors
+    JVM_CRASH_COND_MSG(java_vm == nullptr, "Current configuration doesn't allow to create or fetch a JVM.");
+#endif
+
+    jni::Jvm::initialize(java_vm, user_configuration.vm_type, jvm_options.version);
+}
+
+void JvmManager::initialize_jni_classes(jni::Env& p_env, ClassLoader* class_loader) {
+    // Singleton
+    TransferContext::initialize(p_env, class_loader);
+    TypeManager::initialize(p_env, class_loader);
+    LongStringQueue::initialize(p_env, class_loader);
+    MemoryManager::initialize(p_env, class_loader);
+
+    bridges::GDPrintBridge::initialize(p_env, class_loader);
+
+    bridges::CallableBridge::initialize(p_env, class_loader);
+    bridges::DictionaryBridge::initialize(p_env, class_loader);
+    bridges::RidBridge::initialize(p_env, class_loader);
+    bridges::StringNameBridge::initialize(p_env, class_loader);
+    bridges::NodePathBridge::initialize(p_env, class_loader);
+    bridges::VariantArrayBridge::initialize(p_env, class_loader);
+
+    bridges::PackedByteArrayBridge::initialize(p_env, class_loader);
+    bridges::PackedColorArrayBridge::initialize(p_env, class_loader);
+    bridges::PackedFloat32ArrayBridge::initialize(p_env, class_loader);
+    bridges::PackedFloat64ArrayBridge::initialize(p_env, class_loader);
+    bridges::PackedInt32IntArrayBridge::initialize(p_env, class_loader);
+    bridges::PackedInt64IntArrayBridge::initialize(p_env, class_loader);
+    bridges::PackedStringArrayBridge::initialize(p_env, class_loader);
+    bridges::PackedVector2ArrayBridge::initialize(p_env, class_loader);
+    bridges::PackedVector3ArrayBridge::initialize(p_env, class_loader);
+
+    // Instance
+    Bootstrap::initialize_jni_binding(p_env, class_loader);
+    KtObject::initialize_jni_binding(p_env, class_loader);
+
+    KtPropertyInfo::initialize_jni_binding(p_env, class_loader);
+    KtProperty::initialize_jni_binding(p_env, class_loader);
+    KtConstructor::initialize_jni_binding(p_env, class_loader);
+    KtSignalInfo::initialize_jni_binding(p_env, class_loader);
+    KtRpcConfig::initialize_jni_binding(p_env, class_loader);
+    KtFunctionInfo::initialize_jni_binding(p_env, class_loader);
+    KtFunction::initialize_jni_binding(p_env, class_loader);
+    KtClass::initialize_jni_binding(p_env, class_loader);
+}
+
+void JvmManager::destroy_jni_classes() {
+    // Singleton
+    TransferContext::destroy();
+    TypeManager::destroy();
+    LongStringQueue::destroy();
+    MemoryManager::destroy();
+
+    bridges::GDPrintBridge::destroy();
+
+    bridges::CallableBridge::destroy();
+    bridges::DictionaryBridge::destroy();
+    bridges::RidBridge::destroy();
+    bridges::StringNameBridge::destroy();
+    bridges::NodePathBridge::destroy();
+    bridges::VariantArrayBridge::destroy();
+
+    bridges::PackedByteArrayBridge::destroy();
+    bridges::PackedColorArrayBridge::destroy();
+    bridges::PackedFloat32ArrayBridge::destroy();
+    bridges::PackedFloat64ArrayBridge::destroy();
+    bridges::PackedInt32IntArrayBridge::destroy();
+    bridges::PackedInt64IntArrayBridge::destroy();
+    bridges::PackedStringArrayBridge::destroy();
+    bridges::PackedVector2ArrayBridge::destroy();
+    bridges::PackedVector3ArrayBridge::destroy();
+}
+
+void JvmManager::close_jvm() {
+    LOG_VERBOSE("Shutting down JVM ...");
+#if defined DYNAMIC_JVM || defined STATIC_JVM
+    jni::Jvm::destroy();
+#endif
+}

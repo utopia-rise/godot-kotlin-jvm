@@ -1,8 +1,8 @@
 #include "kt_class.h"
 
-#include "jni/class_loader.h"
-#include "jvm_wrapper/memory/transfer_context.h"
 #include "gd_kotlin.h"
+#include "jvm_wrapper/memory/transfer_context.h"
+#include "lifecycle/class_loader.h"
 
 KtClass::KtClass(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanceWrapper(p_env, p_wrapped),
   constructors {},

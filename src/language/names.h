@@ -1,5 +1,5 @@
-#ifndef GODOT_JVM_GODOTKOTLIN_DEFS_H
-#define GODOT_JVM_GODOTKOTLIN_DEFS_H
+#ifndef GODOT_JVM_NAMES_H
+#define GODOT_JVM_NAMES_H
 
 // keep in sync with godot.tools.common.constants.FileExtensions.GodotKotlinJvm.registrationFile
 
@@ -16,10 +16,9 @@
 #define GODOT_JAVA_LANGUAGE_NAME "Java"
 
 #define GODOT_KOTLIN_PACKAGE "godot"
-#define GODOT_ENTRY_PATH "res://build/generated/ksp"
 
 #define PACKAGE_TEMPLATE "%PACKAGE%"
 #define BASE_TEMPLATE "%BASE%"
 #define CLASS_TEMPLATE "%CLASS%"
 
-#endif// GODOT_JVM_GODOTKOTLIN_DEFS_H
+#endif// GODOT_JVM_NAMES_H

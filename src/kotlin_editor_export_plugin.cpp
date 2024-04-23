@@ -3,9 +3,9 @@
 #include "kotlin_editor_export_plugin.h"
 
 #include "gd_kotlin.h"
-#include "godotkotlin_defs.h"
-#include "jni/jni_constants.h"
-#include "lifecycle/jvm_configuration.h"
+#include "language/names.h"
+#include "lifecycle/jvm_user_configuration.h"
+#include "lifecycle/paths.h"
 
 #include <core/config/project_settings.h>
 
@@ -24,7 +24,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
     bool is_android_export {p_features.has("android")};
     bool is_osx_export {p_features.has("macos")};
     if (is_ios_export) {
-        _generate_export_configuration_file(jni::Jvm::GRAAL_NATIVE_IMAGE);
+        _generate_export_configuration_file(jni::JvmType::GRAAL_NATIVE_IMAGE);
         String base_ios_build_dir {"res://build/libs/ios/"};
         String base_ios_jdk_dir {base_ios_build_dir.path_join("ios-jdk").path_join(ios_jdk_version)};
         add_ios_project_static_lib(
@@ -46,7 +46,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
     } else if (is_android_export) {
         files_to_add.push_back("res://build/libs/main-dex.jar");
         files_to_add.push_back("res://build/libs/godot-bootstrap-dex.jar");
-        _generate_export_configuration_file(jni::Jvm::ART);
+        _generate_export_configuration_file(jni::JvmType::ART);
     } else {
         String graal_usercode_lib;
         if (p_features.has("windows")) {
@@ -65,24 +65,22 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
         } else {
             if (FileAccess::exists(configuration_path)) {
                 Ref<FileAccess> configuration_access_read {FileAccess::open(configuration_path, FileAccess::READ)};
-                JvmConfiguration configuration;
-                JvmConfiguration::parse_configuration_json(configuration_access_read->get_as_utf8_string(), configuration);
-                jni::Jvm::Type jvm_type {configuration.vm_type};
+                jni::JvmType jvm_type {GDKotlin::get_instance().get_configuration().vm_type};
                 switch (jvm_type) {
-                    case jni::Jvm::JVM:
+                    case jni::JvmType::JVM:
                         files_to_add.push_back("res://build/libs/main.jar");
                         files_to_add.push_back("res://build/libs/godot-bootstrap.jar");
-                        _generate_export_configuration_file(jni::Jvm::JVM);
+                        _generate_export_configuration_file(jni::JvmType::JVM);
 
                         break;
-                    case jni::Jvm::GRAAL_NATIVE_IMAGE:
+                    case jni::JvmType::GRAAL_NATIVE_IMAGE:
                         files_to_add.push_back(vformat("res://build/libs/%s", graal_usercode_lib));
-                        _generate_export_configuration_file(jni::Jvm::GRAAL_NATIVE_IMAGE);
+                        _generate_export_configuration_file(jni::JvmType::GRAAL_NATIVE_IMAGE);
                         is_graal_only = true;
 
                         break;
                     default:
-                        LOG_ERROR("Unknown VM type, aborting export.");
+                        LOG_ERROR("Incorrect VM type for desktop, aborting export.");
                         return;
                 }
             } else {
@@ -103,14 +101,14 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
                 bool is_x64 {p_features.has("x86_64")};
 
                 if (!is_arm64 && !is_x64) {
-                    add_macos_plugin_file(vformat("res://%s", jni::JniConstants::CURRENT_RUNTIME_JRE));
+                    add_macos_plugin_file(vformat("res://%s", EMBEDDED_JRE_DIRECTORY));
                 } else {
-                    if (is_arm64) { add_macos_plugin_file(vformat("res://%s", jni::JniConstants::JRE_ARM64)); }
+                    if (is_arm64) { add_macos_plugin_file(vformat("res://%s", EMBEDDED_JRE_ARM_DIRECTORY)); }
 
-                    if (is_x64) { add_macos_plugin_file(vformat("res://%s", jni::JniConstants::JRE_AMD64)); }
+                    if (is_x64) { add_macos_plugin_file(vformat("res://%s", EMBEDDED_JRE_AMD_DIRECTORY)); }
                 }
             } else {
-                _copy_jre_to(jni::JniConstants::JRE_AMD64, dir_access);
+                _copy_jre_to(EMBEDDED_JRE_AMD_DIRECTORY, dir_access);
             }
         } else {
             LOG_ERROR(vformat("Cannot copy JRE folder to %s, error is %s", p_path, error));
@@ -126,11 +124,11 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
     LOG_INFO("Finished Godot-Jvm specific exports.");
 }
 
-void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::Jvm::Type vm_type) {
-    JvmConfiguration configuration = GDKotlin::get_instance().get_configuration(); // Copy
+void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::JvmType vm_type) {
+    JvmUserConfiguration configuration = GDKotlin::get_instance().get_configuration(); // Copy
     configuration.vm_type = vm_type; // We only need to change the vm type
 
-    const char32_t* json_string {JvmConfiguration::export_configuration_to_json(configuration).get_data()};
+    const char32_t* json_string {JvmUserConfiguration::export_configuration_to_json(configuration).get_data()};
     Vector<uint8_t> json_bytes;
     for (int i = 0; json_string[i] != '\0'; ++i) {
         json_bytes.push_back(json_string[i]);
