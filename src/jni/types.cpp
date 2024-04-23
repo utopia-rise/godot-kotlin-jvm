@@ -42,6 +42,10 @@ namespace jni {
 
     JObject::JObject(jobject obj) : obj(obj) {}
 
+    jobject JObject::get_wrapped() const{
+        return obj;
+    }
+
     void JObject::delete_global_ref(Env& p_env) {
         p_env.env->DeleteGlobalRef(obj);
         p_env.check_exceptions();
@@ -171,4 +175,105 @@ namespace jni {
         auto ret = env.env->GetObjectArrayElement((jobjectArray) obj, index);
         return JObject(ret);
     }
+
+    JByteArray::JByteArray(Env& env, const jsize size) : JArray() {
+        // Allocate an Array with reserved size;
+        obj = env.env->NewByteArray(size);
+    }
+
+    JIntArray::JIntArray(Env& env, const jsize size) : JArray() {
+        // Allocate an Array with reserved size;
+        obj = env.env->NewIntArray(size);
+    }
+
+    JLongArray::JLongArray(Env& env, const jsize size) : JArray() {
+        // Allocate an Array with reserved size;
+        obj = env.env->NewLongArray(size);
+    }
+
+    JFloatArray::JFloatArray(Env& env, const jsize size) : JArray() {
+        // Allocate an Array with reserved size;
+        obj = env.env->NewFloatArray(size);
+    }
+
+    JDoubleArray::JDoubleArray(Env& env, const jsize size) : JArray() {
+        // Allocate an Array with reserved size;
+        obj = env.env->NewDoubleArray(size);
+    }
+
+    void JByteArray::get_array_elements(Env& env, jbyte* arr, const jsize size) {
+        // Convert java array to native array
+        jbyte* nativeArray = env.env->GetByteArrayElements((jbyteArray) obj, nullptr);
+
+        // Copy elements
+        std::copy(nativeArray, nativeArray + size, arr);
+
+        // Release the original Java array
+        env.env->ReleaseByteArrayElements((jbyteArray) obj, nativeArray, 0);
+    }
+
+    void JIntArray::get_array_elements(Env& env, jint* arr, const jsize size) {
+        // Convert java array to native array
+        jint* nativeArray = env.env->GetIntArrayElements((jintArray) obj, nullptr);
+
+        // Copy elements
+        std::copy(nativeArray, nativeArray + size, arr);
+
+        // Release the original Java array
+        env.env->ReleaseIntArrayElements((jintArray) obj, nativeArray, 0);
+    }
+
+    void JLongArray::get_array_elements(Env& env, jlong* arr, const jsize size) {
+        // Convert java array to native array
+        jlong* nativeArray = env.env->GetLongArrayElements((jlongArray) obj, nullptr);
+
+        // Copy elements
+        std::copy(nativeArray, nativeArray + size, arr);
+
+        // Release the original Java array
+        env.env->ReleaseLongArrayElements((jlongArray) obj, nativeArray, 0);
+    }
+
+    void JFloatArray::get_array_elements(Env& env, jfloat* arr, const jsize size) {
+        // Convert java array to native array
+        jfloat* nativeArray = env.env->GetFloatArrayElements((jfloatArray) obj, nullptr);
+
+        // Copy elements
+        std::copy(nativeArray, nativeArray + size, arr);
+
+        // Release the original Java array
+        env.env->ReleaseFloatArrayElements((jfloatArray) obj, nativeArray, 0);
+    }
+
+    void JDoubleArray::get_array_elements(Env& env, jdouble* arr, const jsize size) {
+        // Convert java array to native array
+        jdouble* nativeArray = env.env->GetDoubleArrayElements((jdoubleArray) obj, nullptr);
+
+        // Copy elements
+        std::copy(nativeArray, nativeArray + size, arr);
+
+        // Release the original Java array
+        env.env->ReleaseDoubleArrayElements((jdoubleArray) obj, nativeArray, 0);
+    }
+
+    void JByteArray::set_array_elements(Env& env, const jbyte* arr, const jsize size) {
+        env.env->SetByteArrayRegion((jbyteArray) obj, 0, size, arr);
+    }
+
+    void JIntArray::set_array_elements(Env& env, const jint* arr, const jsize size) {
+        env.env->SetIntArrayRegion((jintArray) obj, 0, size, arr);
+    }
+
+    void JLongArray::set_array_elements(Env& env, const jlong* arr, const jsize size) {
+        env.env->SetLongArrayRegion((jlongArray) obj, 0, size, arr);
+    }
+
+    void JFloatArray::set_array_elements(Env& env, const jfloat* arr, const jsize size) {
+        env.env->SetFloatArrayRegion((jfloatArray) obj, 0, size, arr);
+    }
+
+    void JDoubleArray::set_array_elements(Env& env, const jdouble* arr, const jsize size) {
+        env.env->SetDoubleArrayRegion((jdoubleArray) obj, 0, size, arr);
+    }
+
 }// namespace jni

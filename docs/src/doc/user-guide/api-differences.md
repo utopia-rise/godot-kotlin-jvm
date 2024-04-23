@@ -137,11 +137,13 @@ If you need more than 10 parameters, you can either use the not typesafe functio
 To avoid confusion and conflict with Kotlin types, the following Godot symbol is renamed.
 
 - `Array` -> `VariantArray` (to avoid confusion with a built-in type in Kotlin)
+- `PackedXArray::toByteArray` -> `PackedXArray::toPackedByteArray` (to avoid confusion with a built-in type in Kotlin)
+- `PackedByteArray::toXArray` -> `PackedByteArray::toPackedXArray` (to avoid confusion with a built-in type in Kotlin)
 
 ## Global functions
 
 In GDScript, some functions are always available (such as mathematical or RNG functions).
-The complete list can be found on the following [page](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html) of Godot's documentaion.
+The complete list can be found on the following [page](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html) of Godot's documentation.
 
 In Kotlin, global functions are available inside the `GD` object singleton. However, don't forget that some functions couldn't be reproduced in Kotlin.
 E.g., the `load()` function is available but `preload()` is not.

@@ -6,15 +6,15 @@
 KtPropertyInfo::KtPropertyInfo(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanceWrapper(p_env, p_wrapped) {
     type = static_cast<Variant::Type>(wrapped.call_int_method(p_env, GET_TYPE));
 
-    jni::JString jname = wrapped.call_object_method(p_env, GET_NAME);
+    jni::JString jname {wrapped.call_object_method(p_env, GET_NAME)};
     name = p_env.from_jstring(jname);
 
-    jni::JString jclass_name = wrapped.call_object_method(p_env, GET_CLASS_NAME);
+    jni::JString jclass_name {wrapped.call_object_method(p_env, GET_CLASS_NAME)};
     class_name = p_env.from_jstring(jclass_name);
 
     hint = static_cast<PropertyHint>(wrapped.call_int_method(p_env, GET_HINT));
 
-    jni::JString jhint_string = wrapped.call_object_method(p_env, GET_HINT_STRING);
+    jni::JString jhint_string {wrapped.call_object_method(p_env, GET_HINT_STRING)};
     hint_string = p_env.from_jstring(jhint_string);
 
     visible_in_editor = wrapped.call_boolean_method(p_env, GET_VISIBLE_IN_EDITOR);

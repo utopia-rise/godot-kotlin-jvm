@@ -41,16 +41,16 @@ namespace jni {
 
     class JObject {
     public:
-        jobject obj;
+        jobject obj {nullptr};
 
+        JObject() = default;
         JObject(jobject);
 
         // todo: delete copy ctor and assignment?
         JObject(const JObject&) = default;
-
         JObject& operator=(const JObject&) = default;
 
-        inline JObject() : JObject(nullptr) {}
+        jobject get_wrapped() const;
 
         template<class T>
         inline T new_global_ref(Env& env);
@@ -83,29 +83,84 @@ namespace jni {
 
     class JString : public JObject {
     public:
-        JString(JObject jObject) : JObject(jObject.obj) {};
-
-        explicit JString(jstring str) : JObject(str) {}
+        JString() = default;
+        JString(jstring string) : JObject(string) {}
+        explicit JString(JObject jObject) : JObject(jObject) {};
     };
 
     class JArray : public JObject {
     public:
-        JArray(JObject jObject) : JObject(jObject.obj) {};
-
-        explicit JArray(jarray array) : JObject(array) {}
+        JArray() = default;
+        JArray(jarray array) : JObject(array) {}
+        explicit JArray(JObject jObject) : JObject(jObject) {};
 
         int length(Env& env);
     };
 
     class JObjectArray : public JArray {
     public:
-        JObjectArray(JObject jObject) : JArray(jObject) {};
-
-        explicit JObjectArray(jarray array) : JArray(array) {}
+        JObjectArray() = default;
+        JObjectArray(jarray array) : JArray(array) {}
+        explicit JObjectArray(JObject jObject) : JArray(jObject) {};
 
         void set(Env& env, int index, JObject value);
 
         JObject get(Env& env, int index);
+    };
+
+    class JByteArray : public JArray {
+    public:
+        JByteArray() = default;
+        JByteArray(Env& env, jsize size = 0);
+        JByteArray(jbyteArray array) : JArray(array) {}
+        explicit JByteArray(JObject jObject) : JArray(jObject) {};
+
+        void get_array_elements(Env& env, jbyte* arr, jsize size);
+        void set_array_elements(Env& env, const jbyte* arr, jsize size);
+    };
+
+    class JIntArray : public JArray {
+    public:
+        JIntArray() = default;
+        JIntArray(Env& env, jsize size = 0);
+        JIntArray(jbyteArray array) : JArray(array) {}
+        explicit JIntArray(JObject jObject) : JArray(jObject) {};
+
+        void get_array_elements(Env& env, jint* arr, jsize size);
+        void set_array_elements(Env& env, const jint* arr, jsize size);
+    };
+
+    class JLongArray : public JArray {
+    public:
+        JLongArray() = default;
+        JLongArray(Env& env, jsize size = 0);
+        JLongArray(jbyteArray array) : JArray(array) {}
+        explicit JLongArray(JObject jObject) : JArray(jObject) {};
+
+        void get_array_elements(Env& env, jlong* arr, jsize size);
+        void set_array_elements(Env& env, const jlong* arr, jsize size);
+    };
+
+    class JFloatArray : public JArray {
+    public:
+        JFloatArray() = default;
+        JFloatArray(Env& env, jsize size = 0);
+        JFloatArray(jbyteArray array) : JArray(array) {}
+        explicit JFloatArray(JObject jObject) : JArray(jObject) {};
+
+        void get_array_elements(Env& env, jfloat* arr, jsize size);
+        void set_array_elements(Env& env, const jfloat* arr, jsize size);
+    };
+
+    class JDoubleArray : public JArray {
+    public:
+        JDoubleArray() = default;
+        JDoubleArray(Env& env, jsize size = 0);
+        JDoubleArray(jbyteArray array) : JArray(array) {}
+        explicit JDoubleArray(JObject jObject) : JArray(jObject) {};
+
+        void get_array_elements(Env& env, jdouble* arr, jsize size);
+        void set_array_elements(Env& env, const jdouble* arr, jsize size);
     };
 
     typedef JNINativeMethod JNativeMethod;

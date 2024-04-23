@@ -13,6 +13,7 @@ namespace bridges {
             INIT_NATIVE_METHOD("engine_call_constructor", "()J", PackedFloat32ArrayBridge::engine_call_constructor)
             INIT_NATIVE_METHOD("engine_call_constructor_packed_array", "()J", PackedFloat32ArrayBridge::engine_call_constructor_packed_array)
             INIT_NATIVE_METHOD("engine_call_constructor_array", "()J", PackedFloat32ArrayBridge::engine_call_constructor_array)
+
             INIT_NATIVE_METHOD("engine_call_append", "(J)V", PackedFloat32ArrayBridge::engine_call_append)
             INIT_NATIVE_METHOD("engine_call_appendArray", "(J)V", PackedFloat32ArrayBridge::engine_call_appendArray)
             INIT_NATIVE_METHOD("engine_call_bsearch", "(J)V", PackedFloat32ArrayBridge::engine_call_bsearch)
@@ -35,6 +36,9 @@ namespace bridges {
             INIT_NATIVE_METHOD("engine_call_slice", "(J)V", PackedFloat32ArrayBridge::engine_call_slice)
             INIT_NATIVE_METHOD("engine_call_sort", "(J)V", PackedFloat32ArrayBridge::engine_call_sort)
             INIT_NATIVE_METHOD("engine_call_to_byte_array", "(J)V", PackedFloat32ArrayBridge::engine_call_to_byte_array)
+
+            INIT_NATIVE_METHOD("engine_convert_to_godot", "([F)J", PackedFloat32ArrayBridge::engine_convert_to_godot)
+            INIT_NATIVE_METHOD("engine_convert_to_jvm", "([J)F", PackedFloat32ArrayBridge::engine_convert_to_jvm)
           )
         // clang-format on
     public:
@@ -42,6 +46,7 @@ namespace bridges {
         static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance);
         static uintptr_t engine_call_constructor_packed_array(JNIEnv* p_raw_env, jobject p_instance);
         static uintptr_t engine_call_constructor_array(JNIEnv* p_raw_env, jobject p_instance);
+        static uintptr_t engine_convert_float_array(JNIEnv* p_raw_env, jobject p_instance, jfloatArray p_float_array);
 
         static void engine_call_append(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_appendArray(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
@@ -65,6 +70,9 @@ namespace bridges {
         static void engine_call_slice(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_sort(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_to_byte_array(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
+
+        static uintptr_t engine_convert_to_godot(JNIEnv* p_raw_env, jobject p_instance, jfloatArray p_array);
+        static jfloatArray engine_convert_to_jvm(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
     };
 }// namespace bridge
 
