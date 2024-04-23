@@ -1,8 +1,47 @@
 package godot.core
 
 import godot.Object
-import godot.core.VariantType.*
 import godot.core.VariantType.AABB
+import godot.core.VariantType.ANY
+import godot.core.VariantType.ARRAY
+import godot.core.VariantType.BASIS
+import godot.core.VariantType.BOOL
+import godot.core.VariantType.CALLABLE
+import godot.core.VariantType.COLOR
+import godot.core.VariantType.DICTIONARY
+import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.JVM_BYTE
+import godot.core.VariantType.JVM_FLOAT
+import godot.core.VariantType.JVM_INT
+import godot.core.VariantType.LONG
+import godot.core.VariantType.NIL
+import godot.core.VariantType.NODE_PATH
+import godot.core.VariantType.PACKED_BYTE_ARRAY
+import godot.core.VariantType.PACKED_COLOR_ARRAY
+import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
+import godot.core.VariantType.PACKED_FLOAT_64_ARRAY
+import godot.core.VariantType.PACKED_INT_32_ARRAY
+import godot.core.VariantType.PACKED_INT_64_ARRAY
+import godot.core.VariantType.PACKED_STRING_ARRAY
+import godot.core.VariantType.PACKED_VECTOR2_ARRAY
+import godot.core.VariantType.PACKED_VECTOR3_ARRAY
+import godot.core.VariantType.PLANE
+import godot.core.VariantType.PROJECTION
+import godot.core.VariantType.QUATERNION
+import godot.core.VariantType.RECT2
+import godot.core.VariantType.RECT2I
+import godot.core.VariantType.SIGNAL
+import godot.core.VariantType.STRING
+import godot.core.VariantType.STRING_NAME
+import godot.core.VariantType.TRANSFORM2D
+import godot.core.VariantType.TRANSFORM3D
+import godot.core.VariantType.VECTOR2
+import godot.core.VariantType.VECTOR2I
+import godot.core.VariantType.VECTOR3
+import godot.core.VariantType.VECTOR3I
+import godot.core.VariantType.VECTOR4
+import godot.core.VariantType.VECTOR4I
+import godot.core.VariantType._RID
 import godot.core.memory.MemoryManager
 import godot.signals.Signal
 import godot.util.toRealT
@@ -683,49 +722,8 @@ enum class VariantType(
             entries[expectedType].toKotlinWithoutNullCheck(buffer, expectedType)
         },
         { buffer: ByteBuffer, any: Any ->
-            when (any) {
-                is Unit -> NIL.toGodotWithoutNullCheck(buffer, any)
-                is Byte -> JVM_BYTE.toGodotWithoutNullCheck(buffer, any)
-                is Boolean -> BOOL.toGodotWithoutNullCheck(buffer, any)
-                is Int -> JVM_INT.toGodotWithoutNullCheck(buffer, any)
-                is Long -> LONG.toGodotWithoutNullCheck(buffer, any)
-                is Float -> JVM_FLOAT.toGodotWithoutNullCheck(buffer, any)
-                is Double -> DOUBLE.toGodotWithoutNullCheck(buffer, any)
-                is String -> STRING.toGodotWithoutNullCheck(buffer, any)
-                is Vector2 -> VECTOR2.toGodotWithoutNullCheck(buffer, any)
-                is Vector2i -> VECTOR2I.toGodotWithoutNullCheck(buffer, any)
-                is Rect2 -> RECT2.toGodotWithoutNullCheck(buffer, any)
-                is Rect2i -> RECT2I.toGodotWithoutNullCheck(buffer, any)
-                is Vector3 -> VECTOR3.toGodotWithoutNullCheck(buffer, any)
-                is Vector3i -> VECTOR3I.toGodotWithoutNullCheck(buffer, any)
-                is Transform2D -> TRANSFORM2D.toGodotWithoutNullCheck(buffer, any)
-                is Vector4 -> VECTOR4.toGodotWithoutNullCheck(buffer, any)
-                is Vector4i -> VECTOR4I.toGodotWithoutNullCheck(buffer, any)
-                is Plane -> PLANE.toGodotWithoutNullCheck(buffer, any)
-                is Quaternion -> QUATERNION.toGodotWithoutNullCheck(buffer, any)
-                is godot.core.AABB -> AABB.toGodotWithoutNullCheck(buffer, any)
-                is Basis -> BASIS.toGodotWithoutNullCheck(buffer, any)
-                is Transform3D -> TRANSFORM3D.toGodotWithoutNullCheck(buffer, any)
-                is Color -> COLOR.toGodotWithoutNullCheck(buffer, any)
-                is StringName -> STRING_NAME.toGodotWithoutNullCheck(buffer, any)
-                is NodePath -> NODE_PATH.toGodotWithoutNullCheck(buffer, any)
-                is RID -> _RID.toGodotWithoutNullCheck(buffer, any)
-                is VariantArray<*> -> ARRAY.toGodotWithoutNullCheck(buffer, any)
-                is Callable -> CALLABLE.toGodotWithoutNullCheck(buffer, any)
-                is Signal -> SIGNAL.toGodotWithoutNullCheck(buffer, any)
-                is Dictionary<*, *> -> DICTIONARY.toGodotWithoutNullCheck(buffer, any)
-                is PackedByteArray -> PACKED_BYTE_ARRAY.toGodotWithoutNullCheck(buffer, any)
-                is PackedInt32Array -> PACKED_INT_32_ARRAY.toGodotWithoutNullCheck(buffer, any)
-                is PackedInt64Array -> PACKED_INT_64_ARRAY.toGodotWithoutNullCheck(buffer, any)
-                is PackedFloat32Array -> PACKED_FLOAT_32_ARRAY.toGodotWithoutNullCheck(buffer, any)
-                is PackedFloat64Array -> PACKED_FLOAT_64_ARRAY.toGodotWithoutNullCheck(buffer, any)
-                is PackedStringArray -> PACKED_STRING_ARRAY.toGodotWithoutNullCheck(buffer, any)
-                is PackedVector2Array -> PACKED_VECTOR2_ARRAY.toGodotWithoutNullCheck(buffer, any)
-                is PackedVector3Array -> PACKED_VECTOR3_ARRAY.toGodotWithoutNullCheck(buffer, any)
-                is PackedColorArray -> PACKED_COLOR_ARRAY.toGodotWithoutNullCheck(buffer, any)
-                is KtObject -> OBJECT.toGodotWithoutNullCheck(buffer, any)
-                else -> throw UnsupportedOperationException("Can't convert type ${any::class} to Variant")
-            }
+            val type = variantMapper[any::class] ?: throw UnsupportedOperationException("Can't convert type ${any::class} to Variant")
+            type.toGodotWithoutNullCheck(buffer, any)
         }
     );
 
