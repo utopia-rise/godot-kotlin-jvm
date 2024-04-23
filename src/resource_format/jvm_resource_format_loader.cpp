@@ -1,7 +1,7 @@
 #include "jvm_resource_format_loader.h"
 
-#include "godotkotlin_defs.h"
 #include "jvm_wrapper/memory/type_manager.h"
+#include "language/names.h"
 #include "script/gdj_script.h"
 #include "script/java_script.h"
 #include "script/jvm_script.h"

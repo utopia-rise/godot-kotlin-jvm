@@ -1,7 +1,7 @@
 #include "kotlin_language.h"
 
 #include "gd_kotlin.h"
-#include "godotkotlin_defs.h"
+#include "names.h"
 #include "script/kotlin_script.h"
 
 #include <core/io/resource_loader.h>

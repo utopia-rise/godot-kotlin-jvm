@@ -2,16 +2,9 @@
 #define GODOT_JVM_WRAPPER_H
 
 #include "env.h"
-#include "init_args.h"
 #include "jvm.h"
 #include "types.h"
-
-#ifndef __ANDROID__
-#include "jvm_loader.h"
-#endif
-
 #include "local_frame.h"
-#include "types.h"
 
 namespace jni {
 

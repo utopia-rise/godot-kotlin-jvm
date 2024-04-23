@@ -1,8 +1,7 @@
-#include "jvm_configuration.h"
-
 #include "core/io/json.h"
+#include "jvm_user_configuration.h"
 
-bool JvmConfiguration::parse_configuration_json(const String& json_string, JvmConfiguration& json_config) {
+bool JvmUserConfiguration::parse_configuration_json(const String& json_string, JvmUserConfiguration& json_config) {
     bool is_invalid = false;
     JSON json;
     Error error {json.parse(json_string)};
@@ -18,13 +17,13 @@ bool JvmConfiguration::parse_configuration_json(const String& json_string, JvmCo
         String value = json_dict[VM_TYPE_JSON_IDENTIFIER];
         LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", VM_TYPE_JSON_IDENTIFIER, value))
         if (value == AUTO_STRING) {
-            json_config.vm_type = jni::Jvm::NONE;
+            json_config.vm_type = jni::JvmType::NONE;
         } else if (value == JVM_STRING) {
-            json_config.vm_type = jni::Jvm::JVM;
+            json_config.vm_type = jni::JvmType::JVM;
         } else if (value == GRAAL_NATIVE_IMAGE_STRING) {
-            json_config.vm_type = jni::Jvm::GRAAL_NATIVE_IMAGE;
+            json_config.vm_type = jni::JvmType::GRAAL_NATIVE_IMAGE;
         } else if (value == ART_STRING) {
-            json_config.vm_type = jni::Jvm::ART;
+            json_config.vm_type = jni::JvmType::ART;
         } else {
             is_invalid = true;
             LOG_WARNING(vformat("Wrong JVM type in configuration file: %s. It will be ignored", value));
@@ -146,22 +145,22 @@ bool JvmConfiguration::parse_configuration_json(const String& json_string, JvmCo
     return is_invalid;
 }
 
-String JvmConfiguration::export_configuration_to_json(const JvmConfiguration& configuration) {
+String JvmUserConfiguration::export_configuration_to_json(const JvmUserConfiguration& configuration) {
     // This function assumes all values are valid.
     Dictionary json;
 
     String vm_type_value;
     switch (configuration.vm_type) {
-        case jni::Jvm::NONE:
+        case jni::JvmType::NONE:
             vm_type_value = AUTO_STRING;
             break;
-        case jni::Jvm::Type::JVM:
+        case jni::JvmType::JVM:
             vm_type_value = JVM_STRING;
             break;
-        case jni::Jvm::Type::GRAAL_NATIVE_IMAGE:
+        case jni::JvmType::GRAAL_NATIVE_IMAGE:
             vm_type_value = GRAAL_NATIVE_IMAGE_STRING;
             break;
-        case jni::Jvm::Type::ART:
+        case jni::JvmType::ART:
             vm_type_value = ART_STRING;
             break;
     }
@@ -213,8 +212,8 @@ bool get_cmd_bool_or_default(const String& value, bool default_if_empty) {
     }
 }
 
-void JvmConfiguration::parse_command_line(const List<String>& args, HashMap<String, Variant>& configuration_map) {
-    // We use a HashMap instead of JvmConfiguration so we can still make the difference between a JvmConfiguration
+void JvmUserConfiguration::parse_command_line(const List<String>& args, HashMap<String, Variant>& configuration_map) {
+    // We use a HashMap instead of JvmUserConfiguration so we can still make the difference between a JvmUserConfiguration
     // default value and the absence of the matching command line argument. Knowing this is essential when merging with
     // the json configuration later.
 
@@ -226,13 +225,13 @@ void JvmConfiguration::parse_command_line(const List<String>& args, HashMap<Stri
 
         if (identifier == VM_TYPE_CMD_IDENTIFIER) {
             if (value == AUTO_STRING) {
-                configuration_map[VM_TYPE_CMD_IDENTIFIER] = jni::Jvm::NONE;
+                configuration_map[VM_TYPE_CMD_IDENTIFIER] = jni::JvmType::NONE;
             } else if (value == JVM_STRING) {
-                configuration_map[VM_TYPE_CMD_IDENTIFIER] = jni::Jvm::JVM;
+                configuration_map[VM_TYPE_CMD_IDENTIFIER] = jni::JvmType::JVM;
             } else if (value == GRAAL_NATIVE_IMAGE_STRING) {
-                configuration_map[VM_TYPE_CMD_IDENTIFIER] = jni::Jvm::GRAAL_NATIVE_IMAGE;
+                configuration_map[VM_TYPE_CMD_IDENTIFIER] = jni::JvmType::GRAAL_NATIVE_IMAGE;
             } else if (value == ART_STRING) {
-                configuration_map[VM_TYPE_CMD_IDENTIFIER] = jni::Jvm::ART;
+                configuration_map[VM_TYPE_CMD_IDENTIFIER] = jni::JvmType::ART;
             } else {
                 LOG_WARNING(vformat("Wrong JVM type in command line arguments: %s. It will be ignored", value));
             }
@@ -287,7 +286,7 @@ void replace_json_value_by_cmd_value(const HashMap<String, Variant>& map, T& jso
     if (map.has(cmd_key)) { json_value = VariantCaster<T>::cast(map[cmd_key]); }
 }
 
-void JvmConfiguration::merge_with_command_line(JvmConfiguration& json_config, const HashMap<String, Variant>& cmd_map) {
+void JvmUserConfiguration::merge_with_command_line(JvmUserConfiguration& json_config, const HashMap<String, Variant>& cmd_map) {
     replace_json_value_by_cmd_value(cmd_map, json_config.vm_type, VM_TYPE_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.jvm_debug_port, DEBUG_PORT_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.jvm_debug_address, DEBUG_ADDRESS_CMD_IDENTIFIER);
@@ -299,7 +298,7 @@ void JvmConfiguration::merge_with_command_line(JvmConfiguration& json_config, co
     replace_json_value_by_cmd_value(cmd_map, json_config.disable_leak_warning_on_close, DISABLE_LEAK_WARNING_CMD_IDENTIFIER);
 }
 
-void JvmConfiguration::sanitize_and_log_configuration(JvmConfiguration& config) {
+void JvmUserConfiguration::sanitize_and_log_configuration(JvmUserConfiguration& config) {
     // Initialize remote jvm debug if one of jvm debug arguments is encountered.
     if (config.jvm_debug_port >= 0 || !config.jvm_debug_address.is_empty()) {
         if (config.jvm_debug_address.is_empty()) {
@@ -332,42 +331,42 @@ void JvmConfiguration::sanitize_and_log_configuration(JvmConfiguration& config) 
     }
 
 #ifdef __ANDROID__
-    if (config.vm_type == jni::Jvm::Type::NONE) {
-        config.vm_type = jni::Jvm::Type::ART;
+    if (config.vm_type == jni::JvmType::NONE) {
+        config.vm_type = jni::JvmType::ART;
         LOG_INFO("You are running on Android. VM automatically set to ART");
-    } else if (config.vm_type != jni::Jvm::Type::ART) {
-        config.vm_type = jni::Jvm::Type::ART;
+    } else if (config.vm_type != jni::JvmType::ART) {
+        config.vm_type = jni::JvmType::ART;
         LOG_WARNING("You are running on Android. Switching VM to ART");
     }
 #elif IOS_ENABLED
-    if (config.vm_type == jni::Jvm::Type::NONE) {
-        config.vm_type = jni::Jvm::Type::GRAAL_NATIVE_IMAGE;
+    if (config.vm_type == jni::JvmType::NONE) {
+        config.vm_type = jni::JvmType::GRAAL_NATIVE_IMAGE;
         LOG_INFO("You are running on iOS. VM automatically set to Graal native_image");
-    } else if (config.vm_type != jni::Jvm::Type::GRAAL_NATIVE_IMAGE) {
-        config.vm_type = jni::Jvm::Type::GRAAL_NATIVE_IMAGE;
+    } else if (config.vm_type != jni::JvmType::GRAAL_NATIVE_IMAGE) {
+        config.vm_type = jni::JvmType::GRAAL_NATIVE_IMAGE;
         LOG_WARNING("You are running on iOS. Switching VM to Graal native_image");
     }
 #else
-    if (config.vm_type == jni::Jvm::Type::NONE) {
-        config.vm_type = jni::Jvm::Type::JVM;
+    if (config.vm_type == jni::JvmType::NONE) {
+        config.vm_type = jni::JvmType::JVM;
         LOG_INFO("You are running on desktop. VM automatically set to JVM");
-    } else if (config.vm_type == jni::Jvm::Type::ART) {
-        config.vm_type = jni::Jvm::Type::JVM;
+    } else if (config.vm_type == jni::JvmType::ART) {
+        config.vm_type = jni::JvmType::JVM;
         LOG_WARNING("You can't run ART on desktop. Switching VM to JVM");
     }
 #endif
     else {
         switch (config.vm_type) {
-            case jni::Jvm::JVM:
+            case jni::JvmType::JVM:
                 LOG_INFO(vformat("VM set to %s", JVM_STRING));
                 break;
-            case jni::Jvm::GRAAL_NATIVE_IMAGE:
+            case jni::JvmType::GRAAL_NATIVE_IMAGE:
                 LOG_INFO(vformat("VM set to %s", GRAAL_NATIVE_IMAGE_STRING));
                 break;
-            case jni::Jvm::ART:
+            case jni::JvmType::ART:
                 LOG_INFO(vformat("VM set to %s", ART_STRING));
                 break;
-            case jni::Jvm::NONE:
+            case jni::JvmType::NONE:
                 // Should never happen.
                 break;
         }
