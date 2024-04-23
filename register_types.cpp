@@ -35,7 +35,13 @@ static EditorPlugin* godot_kotlin_jvm_editor_plugin_creator_func() {
 #endif
 
 void initialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
+#ifdef TOOLS_ENABLED
+    if (Engine::get_singleton()->is_project_manager_hint()) { return; }
+#endif
+
     if (p_level == MODULE_INITIALIZATION_LEVEL_SCENE) {
+        GDKotlin::get_instance().init();
+
         GDREGISTER_ABSTRACT_CLASS(JvmScript);
         GDREGISTER_CLASS(GdjScript);
         GDREGISTER_CLASS(KotlinScript);
@@ -60,7 +66,16 @@ void initialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
 }
 
 void uninitialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
+#ifdef TOOLS_ENABLED
+    if (Engine::get_singleton()->is_project_manager_hint()) { return; }
+#endif
+
     if (p_level != MODULE_INITIALIZATION_LEVEL_SERVERS) { return; }
+
+    ResourceLoader::remove_resource_format_loader((resource_format_loader));
+    ResourceSaver::remove_resource_format_saver(resource_format_saver);
+    resource_format_loader.unref();
+    resource_format_saver.unref();
 
     JavaLanguage* java_language {JavaLanguage::get_instance()};
     ScriptServer::unregister_language(java_language);
@@ -74,8 +89,5 @@ void uninitialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
     ScriptServer::unregister_language(jvm_language);
     memdelete(jvm_language);
 
-    ResourceLoader::remove_resource_format_loader((resource_format_loader));
-    ResourceSaver::remove_resource_format_saver(resource_format_saver);
-    resource_format_loader.unref();
-    resource_format_saver.unref();
+    GDKotlin::get_instance().finish();
 }

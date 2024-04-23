@@ -42,16 +42,10 @@ void GdjLanguage::frame() {
 }
 
 void GdjLanguage::thread_enter() {
-#ifdef TOOLS_ENABLED
-    if (Engine::get_singleton()->is_project_manager_hint()) { return; }
-#endif
     jni::Jvm::attach();
 }
 
 void GdjLanguage::thread_exit() {
-#ifdef TOOLS_ENABLED
-    if (Engine::get_singleton()->is_project_manager_hint()) { return; }
-#endif
     jni::Jvm::detach();
 }
 
