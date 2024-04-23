@@ -119,3 +119,10 @@ and paste the following content:
 The snippet above uses our Gradle plugin. Without the plugin, the user has to manually define all needed
 dependencies, manually register the classes, signals, properties, functions and manually create and copy
 the needed JAR's to the appropriate locations.
+
+## Examples
+
+If you want to examples of what a JVM Godot project looks like, you can check the following repositories:
+
+- [Minimal project template](https://github.com/utopia-rise/godot-kotlin-project-template)
+- [GDQuest 3D demo converted to Kotlin](https://github.com/utopia-rise/godot-kotlin-3d-demo)

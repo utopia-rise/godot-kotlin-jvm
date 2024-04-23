@@ -13,6 +13,12 @@ It is built as a module (like the C# binding) to interact with **Godot**'s core 
 The binding provides you Godot API's as [Kotlin classes](https://godot-kotl.in/en/stable/getting-started/your-first-class/),
 so you can write your game logic completely in Kotlin.
 
+You can find project examples in those repositories:
+
+- [Minimal project template](https://github.com/utopia-rise/godot-kotlin-project-template)
+- [GDQuest 3D demo converted to Kotlin](https://github.com/utopia-rise/godot-kotlin-3d-demo)
+
+
 ### Code Distribution
 
 There are two methods for distributing JVM bytecode produced by the Kotlin compiler:

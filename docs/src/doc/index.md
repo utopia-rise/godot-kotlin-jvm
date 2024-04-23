@@ -14,6 +14,11 @@ If you are looking for the documentation for Godot Kotlin/Native; you can find i
 
 This project is in alpha, it is by no means production ready.
 
+## Project templates and demos
+
+- [Minimal project template](https://github.com/utopia-rise/godot-kotlin-project-template)
+- [GDQuest 3D demo converted to Kotlin](https://github.com/utopia-rise/godot-kotlin-3d-demo)
+
 ### What's not working
 
 The items in this list are explicitly mentioned here as these will be implemented in future versions.
