@@ -25,7 +25,7 @@ void LongStringQueue::queue_string(const String& str) {
 }
 
 void LongStringQueue::send_string_to_jvm(jni::Env& p_env, const String& str) {
-    jni::JString java_string = p_env.new_string(str.utf8().get_data());
+    jni::JString java_string {p_env.new_string(str.utf8().get_data())};
     jvalue args[1] = {jni::to_jni_arg(java_string)};
     wrapped.call_void_method(p_env, QUEUE_STRING, args);
 }

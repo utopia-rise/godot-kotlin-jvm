@@ -570,174 +570,174 @@ class Invocation : Node3D() {
 	fun hasCameraNode() = getNodeOrNull(NodePath("Camera")) != null
 
 	@RegisterFunction
-	fun addByteToPoolArray(byte: Byte) = packedByteArray.append(byte)
+	fun addByteToPackedArray(byte: Byte) = packedByteArray.append(byte)
 
 	@RegisterFunction
-	fun addByteArrayToPoolArray(array: PackedByteArray) = packedByteArray.appendArray(array)
+	fun addByteArrayToPackedArray(array: PackedByteArray) = packedByteArray.appendArray(array)
 
 	@RegisterFunction
-	fun deleteByteFromPoolArray(index: Int) = packedByteArray.removeAt(index)
+	fun deleteByteFromPackedArray(index: Int) = packedByteArray.removeAt(index)
 
 	@RegisterFunction
-	fun getByteFromPoolArray(index: Int) = packedByteArray[index]
+	fun getByteFromPackedArray(index: Int) = packedByteArray[index]
 
 	@RegisterFunction
-	fun setByteInPoolArray(index: Int, value: Byte) {
+	fun setByteInPackedArray(index: Int, value: Byte) {
 		packedByteArray[index] = value
 	}
 
 	@RegisterFunction
-	fun resizeBytePoolArray(newSize: Int) {
+	fun resizeBytePackedArray(newSize: Int) {
 		packedByteArray.resize(newSize)
 	}
 
 	@RegisterFunction
-	fun addColorToPoolArray(color: Color) = packedColorArray.append(color)
+	fun addColorToPackedArray(color: Color) = packedColorArray.append(color)
 
 	@RegisterFunction
-	fun addColorArrayToPoolArray(colorArray: PackedColorArray) = packedColorArray.appendArray(colorArray)
+	fun addColorArrayToPackedArray(colorArray: PackedColorArray) = packedColorArray.appendArray(colorArray)
 
 	@RegisterFunction
-	fun deleteColorFromPoolArray(index: Int) = packedColorArray.removeAt(index)
+	fun deleteColorFromPackedArray(index: Int) = packedColorArray.removeAt(index)
 
 	@RegisterFunction
-	fun getColorFromPoolArray(index: Int) = packedColorArray[index]
+	fun getColorFromPackedArray(index: Int) = packedColorArray[index]
 
 	@RegisterFunction
-	fun setColorInPoolArray(index: Int, color: Color) {
+	fun setColorInPackedArray(index: Int, color: Color) {
 		packedColorArray[index] = color
 	}
 
 	@RegisterFunction
-	fun resizeColorPoolArray(newSize: Int) {
+	fun resizeColorPackedArray(newSize: Int) {
 		packedColorArray.resize(newSize)
 	}
 
 	@RegisterFunction
-	fun addIntToPoolArray(int: Int) = packedInt32Array.append(int)
+	fun addIntToPackedArray(int: Int) = packedInt32Array.append(int)
 
 	@RegisterFunction
-	fun addIntArrayToPoolArray(intArray: PackedInt32Array) = this.packedInt32Array.appendArray(intArray)
+	fun addIntArrayToPackedArray(intArray: PackedInt32Array) = this.packedInt32Array.appendArray(intArray)
 
 	@RegisterFunction
-	fun deleteIntFromPoolArray(index: Int) = packedInt32Array.removeAt(index)
+	fun deleteIntFromPackedArray(index: Int) = packedInt32Array.removeAt(index)
 
 	@RegisterFunction
-	fun getIntFromPoolArray(index: Int) = packedInt32Array[index]
+	fun getIntFromPackedArray(index: Int) = packedInt32Array[index]
 
 	@RegisterFunction
-	fun setIntInPoolArray(index: Int, value: Int) {
+	fun setIntInPackedArray(index: Int, value: Int) {
 		packedInt32Array[index] = value
 	}
 
 	@RegisterFunction
-	fun resizeIntPoolArray(newSize: Int) {
+	fun resizeIntPackedArray(newSize: Int) {
 		packedInt32Array.resize(newSize)
 	}
 
 	@RegisterFunction
-	fun addRealToPoolArray(realT: RealT) = packedFloat64Array.append(realT)
+	fun addRealToPackedArray(realT: RealT) = packedFloat64Array.append(realT)
 
 	@RegisterFunction
-	fun addRealArrayToPoolArray(realArray: PackedFloat64Array) = packedFloat64Array.appendArray(realArray)
+	fun addRealArrayToPackedArray(realArray: PackedFloat64Array) = packedFloat64Array.appendArray(realArray)
 
 	@RegisterFunction
 	fun readStringFromByteArray() {
 
 		val asciiArray = testString.toByteArray(Charsets.US_ASCII)
-		val pool1 = PackedByteArray()
+		val packed1 = PackedByteArray()
 		for (char in asciiArray) {
-			pool1.append(char)
+			packed1.append(char)
 		}
-		asciiString = pool1.getStringFromAscii()
+		asciiString = packed1.getStringFromAscii()
 
 		val utf8Array = testString.toByteArray(Charsets.UTF_8)
-		val pool2 = PackedByteArray()
+		val packed2 = PackedByteArray()
 		for (char in utf8Array) {
-			pool2.append(char)
+			packed2.append(char)
 		}
-		utf8String = pool2.getStringFromUtf8()
+		utf8String = packed2.getStringFromUtf8()
 	}
 
 	@RegisterFunction
-	fun deleteRealFromPoolArray(index: Int) = packedFloat64Array.removeAt(index)
+	fun deleteRealFromPackedArray(index: Int) = packedFloat64Array.removeAt(index)
 
 	@RegisterFunction
-	fun getRealFromPoolArray(index: Int) = packedFloat64Array[index]
+	fun getRealFromPackedArray(index: Int) = packedFloat64Array[index]
 
 	@RegisterFunction
-	fun setRealInPoolArray(index: Int, value: Double) {
+	fun setRealInPackedArray(index: Int, value: Double) {
 		packedFloat64Array[index] = value
 	}
 
 	@RegisterFunction
-	fun resizeRealPoolArray(newSize: Int) {
+	fun resizeRealPackedArray(newSize: Int) {
 		packedFloat64Array.resize(newSize)
 	}
 
 	@RegisterFunction
-	fun addStringToPoolArray(string: String) = packedStringArray.append(string)
+	fun addStringToPackedArray(string: String) = packedStringArray.append(string)
 
 	@RegisterFunction
-	fun addStringArrayToPoolArray(stringArray: PackedStringArray) = packedStringArray.appendArray(stringArray)
+	fun addStringArrayToPackedArray(stringArray: PackedStringArray) = packedStringArray.appendArray(stringArray)
 
 	@RegisterFunction
-	fun deleteStringFromPoolArray(index: Int) = packedStringArray.removeAt(index)
+	fun deleteStringFromPackedArray(index: Int) = packedStringArray.removeAt(index)
 
 	@RegisterFunction
-	fun getStringFromPoolArray(index: Int) = packedStringArray[index]
+	fun getStringFromPackedArray(index: Int) = packedStringArray[index]
 
 	@RegisterFunction
-	fun setStringInPoolArray(index: Int, value: String) {
+	fun setStringInPackedArray(index: Int, value: String) {
 		packedStringArray[index] = value
 	}
 
 	@RegisterFunction
-	fun resizeStringPoolArray(newSize: Int) {
+	fun resizeStringPackedArray(newSize: Int) {
 		packedStringArray.resize(newSize)
 	}
 
 	@RegisterFunction
-	fun addVector2ToPoolArray(vector2: Vector2) = packedVector2Array.append(vector2)
+	fun addVector2ToPackedArray(vector2: Vector2) = packedVector2Array.append(vector2)
 
 	@RegisterFunction
-	fun addVector2ArrayToPoolArray(vector2Array: PackedVector2Array) = packedVector2Array.appendArray(vector2Array)
+	fun addVector2ArrayToPackedArray(vector2Array: PackedVector2Array) = packedVector2Array.appendArray(vector2Array)
 
 	@RegisterFunction
-	fun deleteVector2FromPoolArray(index: Int) = packedVector2Array.removeAt(index)
+	fun deleteVector2FromPackedArray(index: Int) = packedVector2Array.removeAt(index)
 
 	@RegisterFunction
-	fun getVector2FromPoolArray(index: Int) = packedVector2Array[index]
+	fun getVector2FromPackedArray(index: Int) = packedVector2Array[index]
 
 	@RegisterFunction
-	fun setVector2InPoolArray(index: Int, vector2: Vector2) {
+	fun setVector2InPackedArray(index: Int, vector2: Vector2) {
 		packedVector2Array[index] = vector2
 	}
 
 	@RegisterFunction
-	fun resizeVector2PoolArray(newSize: Int) {
+	fun resizeVector2PackedArray(newSize: Int) {
 		packedVector2Array.resize(newSize)
 	}
 
 	@RegisterFunction
-	fun addVector3ToPoolArray(vector3: Vector3) = packedVector3Array.append(vector3)
+	fun addVector3ToPackedArray(vector3: Vector3) = packedVector3Array.append(vector3)
 
 	@RegisterFunction
-	fun addVector3ArrayToPoolArray(vector3Array: PackedVector3Array) = packedVector3Array.appendArray(vector3Array)
+	fun addVector3ArrayToPackedArray(vector3Array: PackedVector3Array) = packedVector3Array.appendArray(vector3Array)
 
 	@RegisterFunction
-	fun deleteVector3FromPoolArray(index: Int) = packedVector3Array.removeAt(index)
+	fun deleteVector3FromPackedArray(index: Int) = packedVector3Array.removeAt(index)
 
 	@RegisterFunction
-	fun getVector3FromPoolArray(index: Int) = packedVector3Array[index]
+	fun getVector3FromPackedArray(index: Int) = packedVector3Array[index]
 
 	@RegisterFunction
-	fun setVector3InPoolArray(index: Int, vector3: Vector3) {
+	fun setVector3InPackedArray(index: Int, vector3: Vector3) {
 		packedVector3Array[index] = vector3
 	}
 
 	@RegisterFunction
-	fun resizeVector3PoolArray(newSize: Int) {
+	fun resizeVector3PackedArray(newSize: Int) {
 		packedVector3Array.resize(newSize)
 	}
 
