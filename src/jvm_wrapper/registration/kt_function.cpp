@@ -41,10 +41,10 @@ void KtFunction::invoke(jni::Env& p_env, const KtObject* instance, const Variant
 }
 
 KtFunctionInfo::KtFunctionInfo(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanceWrapper(p_env, p_wrapped) {
-    jni::JString string = wrapped.call_object_method(p_env, GET_NAME);
+    jni::JString string {wrapped.call_object_method(p_env, GET_NAME)};
     name = p_env.from_jstring(string);
 
-    jni::JObjectArray propertyInfoArray = wrapped.call_object_method(p_env, GET_ARGUMENTS);
+    jni::JObjectArray propertyInfoArray {wrapped.call_object_method(p_env, GET_ARGUMENTS)};
     for (int i = 0; i < propertyInfoArray.length(p_env); i++) {
         arguments.push_back(new KtPropertyInfo(p_env, propertyInfoArray.get(p_env, i)));
     }

@@ -72,6 +72,14 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
         MemoryManager.registerNativeCoreType(this, VariantType.PACKED_BYTE_ARRAY)
     }
 
+    /**
+     * Constructs a new [PackedByteArray] from an existing Kotlin [ByteArray] or Java byte[].
+     */
+    constructor(from: ByteArray) {
+        _handle = Bridge.engine_convert_to_godot(from)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_BYTE_ARRAY)
+    }
+
     //POOL ARRAY API SHARED
     /**
      * Appends an element at the end of the array (alias of push_back).
@@ -596,19 +604,19 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
         Bridge.engine_call_sort(_handle)
     }
 
-    fun toFloat32Array(): PackedFloat32Array {
+    fun toPackedFloat32Array(): PackedFloat32Array {
         Bridge.engine_call_to_float32_array(_handle)
         return TransferContext.readReturnValue(VariantType.PACKED_FLOAT_32_ARRAY) as PackedFloat32Array
     }
-    fun toFloat64Array(): PackedFloat64Array {
+    fun toPackedFloat64Array(): PackedFloat64Array {
         Bridge.engine_call_to_float64_array(_handle)
         return TransferContext.readReturnValue(VariantType.PACKED_FLOAT_64_ARRAY) as PackedFloat64Array
     }
-    fun toInt32Array(): PackedInt32Array {
+    fun toPackedInt32Array(): PackedInt32Array {
         Bridge.engine_call_to_int32_array(_handle)
         return TransferContext.readReturnValue(VariantType.PACKED_INT_32_ARRAY) as PackedInt32Array
     }
-    fun toInt64Array(): PackedInt64Array {
+    fun toPackedInt64Array(): PackedInt64Array {
         Bridge.engine_call_to_int64_array(_handle)
         return TransferContext.readReturnValue(VariantType.PACKED_INT_64_ARRAY) as PackedInt64Array
     }
@@ -648,6 +656,7 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
         return _handle.hashCode()
     }
 
+    fun toByteArray(): ByteArray = Bridge.engine_convert_to_jvm(_handle)
 
     @Suppress("FunctionName")
     private object Bridge {
@@ -714,5 +723,13 @@ class PackedByteArray : NativeCoreType, Iterable<Byte> {
         external fun engine_call_to_float64_array(_handle: VoidPtr)
         external fun engine_call_to_int32_array(_handle: VoidPtr)
         external fun engine_call_to_int64_array(_handle: VoidPtr)
+
+        external fun engine_convert_to_godot(array: ByteArray): VoidPtr
+        external fun engine_convert_to_jvm(_handle: VoidPtr): ByteArray
     }
 }
+
+/**
+ * Convert a [ByteArray] into a Godot [PackedByteArray], this call is optimised for a large amount of data.
+ */
+fun ByteArray.toPackedArray() = PackedByteArray(this)

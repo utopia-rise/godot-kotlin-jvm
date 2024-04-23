@@ -47,6 +47,14 @@ class PackedInt64Array : NativeCoreType, Iterable<Long> {
         MemoryManager.registerNativeCoreType(this, VariantType.PACKED_INT_64_ARRAY)
     }
 
+    /**
+     * Constructs a new [PackedInt64Array] from an existing Kotlin [LongArray] or Java long[].
+     */
+    constructor(from: LongArray) {
+        _handle = Bridge.engine_convert_to_godot(from)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_INT_64_ARRAY)
+    }
+
     //POOL ARRAY API SHARED
     /**
      * Appends an element at the end of the array (alias of push_back).
@@ -225,7 +233,7 @@ class PackedInt64Array : NativeCoreType, Iterable<Long> {
         Bridge.engine_call_sort(_handle)
     }
 
-    fun toByteArray(): PackedByteArray {
+    fun toPackedByteArray(): PackedByteArray {
         Bridge.engine_call_to_byte_array(_handle)
         return TransferContext.readReturnValue(VariantType.PACKED_BYTE_ARRAY) as PackedByteArray
     }
@@ -265,6 +273,7 @@ class PackedInt64Array : NativeCoreType, Iterable<Long> {
         return _handle.hashCode()
     }
 
+    fun toLongArray(): LongArray = Bridge.engine_convert_to_jvm(_handle)
 
     @Suppress("FunctionName")
     private object Bridge {
@@ -294,5 +303,13 @@ class PackedInt64Array : NativeCoreType, Iterable<Long> {
         external fun engine_call_slice(_handle: VoidPtr)
         external fun engine_call_sort(_handle: VoidPtr)
         external fun engine_call_to_byte_array(_handle: VoidPtr)
+
+        external fun engine_convert_to_godot(array: LongArray): VoidPtr
+        external fun engine_convert_to_jvm(_handle: VoidPtr): LongArray
     }
 }
+
+/**
+ * Convert a [LongArray] into a Godot [PackedInt64Array], this call is optimised for a large amount of data.
+ */
+fun LongArray.toPackedArray() = PackedInt64Array(this)
