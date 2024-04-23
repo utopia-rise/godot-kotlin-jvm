@@ -13,7 +13,6 @@ import java.io.File
 import java.net.URL
 import java.net.URLClassLoader
 import java.nio.file.FileSystems
-import java.nio.file.Paths
 import java.nio.file.StandardWatchEventKinds
 import java.nio.file.WatchService
 import java.util.*
@@ -30,25 +29,27 @@ internal class Bootstrap {
     private var watchService: WatchService? = null
     private var engineTypesRegistered: Boolean = false
 
-    fun init(isEditor: Boolean, projectRootDir: String, jarRootDir: String, jarFile: String, loader: ClassLoader?) {
-        if (jarFile == "graal_usercode") {
+    /** projectRootDir is empty if not in editor (only used for reloading)
+     * userCodePath is empty if usercode loaded as part of the VM
+     * loader is empty if usercode loaded as part of the VM
+     **/
+    fun init(projectRootDir: String, userCodePath: String, loader: ClassLoader?) {
+        if (loader == null) {
             doInitGraal()
         } else {
-            val libsDir = Paths.get(jarRootDir)
-            val mainJarPath = libsDir.resolve(jarFile)
+            val userCodeFile = File(userCodePath)
 
-
-            if (File(mainJarPath.toString()).exists()) {
-                doInit(mainJarPath.toUri().toURL(), loader)
+            if (userCodeFile.exists()) {
+                doInit(userCodeFile.toURI().toURL(), loader)
             } else {
-                if (isEditor) {
+                if (projectRootDir.isNotEmpty()) {
                     ::warning
                 } else {
                     ::err
-                }.invoke("No main.jar detected. No classes will be loaded. Build the gradle project to load classes")
+                }.invoke("No main.jar detected at $userCodeFile. No classes will be loaded. Build the gradle project to load classes")
             }
 
-            if (isEditor) {
+            if (projectRootDir.isNotEmpty()) {
                 watchService = FileSystems.getDefault().newWatchService()
                 val watchKey = getBuildLockDir(projectRootDir).toPath().register(
                     watchService,
@@ -72,13 +73,13 @@ internal class Bootstrap {
                         }
                         info("Changes detected, reloading classes ...")
 
-                        if(::serviceLoader.isInitialized){
+                        if (::serviceLoader.isInitialized) {
                             clearClassesCache()
                             serviceLoader.reload()
                         }
 
-                        if (File(mainJarPath.toString()).exists()) {
-                            doInit(mainJarPath.toUri().toURL(), null) //no classloader so new main jar get's loaded
+                        if (userCodeFile.exists()) {
+                            doInit(userCodeFile.toURI().toURL(), null) //no classloader so new main jar gets loaded
                         } else {
                             warning("No main.jar detected. No classes will be loaded. Build the project to load classes")
                         }

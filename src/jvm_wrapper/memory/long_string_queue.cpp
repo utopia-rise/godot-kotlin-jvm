@@ -1,6 +1,6 @@
 #include "long_string_queue.h"
 
-#include "jni/class_loader.h"
+#include "lifecycle/class_loader.h"
 
 // If changed, remember to change also LongStringQueue::stringMaxSize on JVM side  and the StringTest.kt
 uint16_t LongStringQueue::max_string_size = 512;

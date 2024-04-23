@@ -1,11 +1,10 @@
-//
-// Created by raniejade on 11/9/20.
-//
-
 #ifndef GODOT_JVM_LOCAL_FRAME_H
 #define GODOT_JVM_LOCAL_FRAME_H
 
 namespace jni {
+
+#define LOCAL_FRAME(size) jni::LocalFrame frame = jni::LocalFrame(size)
+
     /*
      * Set ups a local frame and pop it when the object is destroyed. The semantics
      * are similar to:

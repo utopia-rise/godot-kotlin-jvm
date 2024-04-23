@@ -5,45 +5,55 @@
 #include "jvm_wrapper/bootstrap.h"
 #include "jvm_wrapper/memory/transfer_context.h"
 #include "jvm_wrapper/registration/kt_class.h"
-#include "lifecycle/jvm_configuration.h"
+#include "lifecycle/jvm_options.h"
+#include "lifecycle/jvm_user_configuration.h"
 
 #include <core/string/ustring.h>
 
 class GDKotlin {
-private:
-    GDKotlin();
-    ~GDKotlin() = default;
+    bool is_gc_started {false};
 
-    Bootstrap* bootstrap;
-    bool is_gc_started;
-    JvmConfiguration configuration;
+    JvmUserConfiguration user_configuration {};
+    JvmOptions jvm_options {};
 
-    static void _check_and_copy_jar(const String& jar_name);
-    static jni::JObject _prepare_class_loader(jni::Env& p_env, jni::Jvm::Type type);
+    Bootstrap* bootstrap {nullptr};
 
-    bool check_configuration();
+    void fetch_user_configuration();
+    void set_jvm_options();
 
-    bool is_initialized;
+#ifndef TOOLS_ENABLED
+    static String copy_new_file_to_user_dir(const String& file_name);
+#endif
 
-    Vector<Pair<String, String>> configuration_errors;
+#ifdef DYNAMIC_JVM
+    void* jvm_dynamic_library_handle {nullptr};
+    void load_dynamic_lib();
+#ifdef TOOLS_ENABLED
+    static String get_path_to_environment_jvm();
+#endif
+    static String get_path_to_embedded_jvm();
+    static String get_path_to_native_image();
+    void unload_dynamic_lib();
+#endif
 
-    static void fetchJvmConfiguration(JvmConfiguration& jvm_configuration);
+    ClassLoader* load_bootstrap() const;
+    void initialize_core_library(ClassLoader* class_loader);
+    void load_user_code(ClassLoader* bootstrap_class_loader);
 
 public:
+    GDKotlin() = default;
+    ~GDKotlin() = default;
     GDKotlin(const GDKotlin&) = delete;
     GDKotlin& operator=(const GDKotlin&) = delete;
 
-    const JvmConfiguration& get_configuration();
+    static GDKotlin& get_instance();
+
+    const JvmUserConfiguration& get_configuration();
 
     void init();
     void finish();
 
     void register_classes(jni::Env& p_env, jni::JObjectArray p_classes);
-
-
-    static GDKotlin& get_instance();
-    bool initialized() const;
-    const Vector<Pair<String, String>>& get_configuration_errors() const;
 };
 
 #endif// GODOT_JVM_GD_KOTLIN_H

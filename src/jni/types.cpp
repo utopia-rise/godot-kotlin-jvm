@@ -1,9 +1,6 @@
 #include "types.h"
 
 #include "env.h"
-#include "logging.h"
-
-#include <vector>
 
 namespace jni {
 

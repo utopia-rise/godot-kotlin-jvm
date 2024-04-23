@@ -2,10 +2,10 @@
 
 #include "core/os/thread.h"
 #include "gd_kotlin.h"
-#include "godotkotlin_defs.h"
 #include "jvm_instance.h"
 #include "language/jvm_language.h"
 #include "language/kotlin_language.h"
+#include "language/names.h"
 #include "logging.h"
 
 Variant JvmScript::_new(const Variant** p_args, int p_arg_count, Callable::CallError& r_error) {

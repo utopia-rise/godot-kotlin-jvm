@@ -27,7 +27,6 @@ module_env.add_source_files(module_env.modules_sources, "src/editor/build/*.cpp"
 module_env.add_source_files(module_env.modules_sources, "src/editor/dialog/*.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/editor/panel/*.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/jni/*.cpp")
-module_env.add_source_files(module_env.modules_sources, "src/jni/platforms/*.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/binding/*.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/resource_format/*.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/language/*.cpp")
@@ -37,3 +36,4 @@ module_env.add_source_files(module_env.modules_sources, "src/jvm_wrapper/registr
 module_env.add_source_files(module_env.modules_sources, "src/jvm_wrapper/bridge/*.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/jvm_wrapper/memory/*.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/lifecycle/*.cpp")
+module_env.add_source_files(module_env.modules_sources, "src/lifecycle/platforms/*.cpp")

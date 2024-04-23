@@ -1,7 +1,7 @@
 #include "kt_function.h"
 
 #include "gd_kotlin.h"
-#include "jni/class_loader.h"
+#include "lifecycle/class_loader.h"
 
 KtFunction::KtFunction(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanceWrapper(p_env, p_wrapped), parameter_count(-1) {
     method_info = new KtFunctionInfo(p_env, wrapped.call_object_method(p_env, GET_FUNCTION_INFO));

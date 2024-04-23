@@ -42,9 +42,6 @@
     "name":"java.lang.Integer",
     "methods":[{"name":"intValue","parameterTypes":[] }]
   },
-
-
-
   {
     "name" : "godot.core.memory.TransferContext",
     "fields" : [
@@ -665,7 +662,7 @@
       { "name" : "<init>", "parameterTypes" : [] },
       { "name" : "loadClasses", "parameterTypes" : ["godot.core.KtClass[]"] },
       { "name" : "registerManagedEngineTypes", "parameterTypes" : ["java.lang.String[]", "java.lang.String[]"] },
-      { "name" : "init", "parameterTypes": ["boolean", "java.lang.String", "java.lang.String", "java.lang.String", "java.lang.ClassLoader"]},
+      { "name" : "init", "parameterTypes": ["java.lang.String", "java.lang.String", "java.lang.ClassLoader"]},
       { "name" : "finish", "parameterTypes" : [] }
     ]
   },
