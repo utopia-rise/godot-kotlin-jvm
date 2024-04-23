@@ -87,7 +87,7 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return all children animation nodes in order as a `name: node` dictionary.
+   * When inheriting from [godot.AnimationRootNode], implement this virtual method to return all child animation nodes in order as a `name: node` dictionary.
    */
   public open fun _getChildNodes(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_child_nodes is not implemented for AnimationNode")
@@ -241,7 +241,7 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Blend another animation node (in case this animation node contains children animation nodes). This function is only useful if you inherit from [godot.AnimationRootNode] instead, else editors will not display your animation node for addition.
+   * Blend another animation node (in case this animation node contains child animation nodes). This function is only useful if you inherit from [godot.AnimationRootNode] instead, otherwise editors will not display your animation node for addition.
    */
   @JvmOverloads
   public fun blendNode(

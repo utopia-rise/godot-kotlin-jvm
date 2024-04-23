@@ -34,7 +34,7 @@ import kotlin.jvm.JvmOverloads
  *
  * Conversion methods assume "the same timezone", and do not handle timezone conversions or DST automatically. Leap seconds are also not handled, they must be done manually if desired. Suffixes such as "Z" are not handled, you need to strip them away manually.
  *
- * When getting time information from the system, the time can either be in the local timezone or UTC depending on the `utc` parameter. However, the [getUnixTimeFromSystem] method always returns the time in UTC.
+ * When getting time information from the system, the time can either be in the local timezone or UTC depending on the `utc` parameter. However, the [getUnixTimeFromSystem] method always uses UTC as it returns the seconds passed since the [godot.Unix epoch](https://en.wikipedia.org/wiki/Unix_time).
  *
  * **Important:** The `_from_system` methods use the system clock that the user can manually set. **Never use** this method for precise time calculation since its results are subject to automatic adjustments by the user or the operating system. **Always use** [getTicksUsec] or [getTicksMsec] for precise time calculation instead, since they are guaranteed to be monotonic (i.e. never decrease).
  */
@@ -260,7 +260,7 @@ public object Time : Object() {
   }
 
   /**
-   * Returns the current Unix timestamp in seconds based on the system time in UTC. This method is implemented by the operating system and always returns the time in UTC.
+   * Returns the current Unix timestamp in seconds based on the system time in UTC. This method is implemented by the operating system and always returns the time in UTC. The Unix timestamp is the number of seconds passed since 1970-01-01 at 00:00:00, the [godot.Unix epoch](https://en.wikipedia.org/wiki/Unix_time).
    *
    * **Note:** Unlike other methods that use integer timestamps, this method returns the timestamp as a [float] for sub-second precision.
    */

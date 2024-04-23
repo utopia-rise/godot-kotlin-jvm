@@ -17,7 +17,7 @@ import kotlin.Suppress
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/125](https://godotengine.org/asset-library/asset/125)
  *
- * Allows to scale the speed of the animation (or reverse it) in any children [godot.AnimationNode]s. Setting it to `0.0` will pause the animation.
+ * Allows to scale the speed of the animation (or reverse it) in any child [godot.AnimationNode]s. Setting it to `0.0` will pause the animation.
  */
 @GodotBaseType
 public open class AnimationNodeTimeScale : AnimationNode() {

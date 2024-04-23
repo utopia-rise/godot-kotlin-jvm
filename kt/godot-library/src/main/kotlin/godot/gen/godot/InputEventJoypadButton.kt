@@ -47,7 +47,9 @@ public open class InputEventJoypadButton : InputEvent() {
     }
 
   /**
-   * Represents the pressure the user puts on the button with their finger, if the controller supports it. Ranges from `0` to `1`.
+   * Represents the pressure the user puts on a pressure-sensitive button.
+   *
+   * *Deprecated.* This property is never set by the engine and is always `0`.
    */
   public var pressure: Float
     get() {

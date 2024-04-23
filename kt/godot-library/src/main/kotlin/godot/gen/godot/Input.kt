@@ -609,6 +609,8 @@ public object Input : Object() {
    * [/csharp]
    *
    * [/codeblocks]
+   *
+   * **Note:** Calling this function has no influence on the operating system. So for example sending an [godot.InputEventMouseMotion] will not move the OS mouse cursor to the specified position (use [warpMouse] instead) and sending [kbd]Alt/Cmd + Tab[/kbd] as [godot.InputEventKey] won't toggle between active windows.
    */
   public fun parseInputEvent(event: InputEvent): Unit {
     TransferContext.writeArguments(OBJECT to event)

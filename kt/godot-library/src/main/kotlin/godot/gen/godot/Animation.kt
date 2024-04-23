@@ -52,7 +52,7 @@ import kotlin.jvm.JvmOverloads
  *
  * # This creates an animation that makes the node "Enemy" move to the right by
  *
- * # 100 pixels in 0.5 seconds.
+ * # 100 pixels in 2.0 seconds.
  *
  * var animation = Animation.new()
  *
@@ -62,7 +62,9 @@ import kotlin.jvm.JvmOverloads
  *
  * animation.track_insert_key(track_index, 0.0, 0)
  *
- * animation.track_insert_key(track_index, 0.5, 100)
+ * animation.track_insert_key(track_index, 2.0, 100)
+ *
+ * animation.length = 2.0
  *
  * [/gdscript]
  *
@@ -70,7 +72,7 @@ import kotlin.jvm.JvmOverloads
  *
  * // This creates an animation that makes the node "Enemy" move to the right by
  *
- * // 100 pixels in 0.5 seconds.
+ * // 100 pixels in 2.0 seconds.
  *
  * var animation = new Animation();
  *
@@ -80,7 +82,9 @@ import kotlin.jvm.JvmOverloads
  *
  * animation.TrackInsertKey(trackIndex, 0.0f, 0);
  *
- * animation.TrackInsertKey(trackIndex, 0.5f, 100);
+ * animation.TrackInsertKey(trackIndex, 2.0f, 100);
+ *
+ * animation.Length = 2.0f;
  *
  * [/csharp]
  *

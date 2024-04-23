@@ -394,7 +394,7 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns the size of a character, optionally taking kerning into account if the next character is provided.
+   * Returns the size of a character. Does not take kerning into account.
    *
    * **Note:** Do not use this function to calculate width of the string character by character, use [getStringSize] or [godot.TextLine] instead. The height returned is the font height (see also [getHeight]) and has no relation to the glyph height.
    */

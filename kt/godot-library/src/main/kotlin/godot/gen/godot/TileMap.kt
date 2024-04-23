@@ -46,7 +46,7 @@ import kotlin.jvm.JvmOverloads
  *
  * Node for 2D tile-based maps. Tilemaps use a [godot.TileSet] which contain a list of tiles which are used to create grid-based maps. A TileMap may have several layers, layouting tiles on top of each other.
  *
- * For performance reasons, all TileMap updates are batched at the end of a frame. Notably, this means that scene tiles from a [godot.TileSetScenesCollectionSource] may be initialized after their parent.
+ * For performance reasons, all TileMap updates are batched at the end of a frame. Notably, this means that scene tiles from a [godot.TileSetScenesCollectionSource] may be initialized after their parent. This is only queued when inside the scene tree.
  *
  * To force an update earlier on, call [updateInternals].
  */

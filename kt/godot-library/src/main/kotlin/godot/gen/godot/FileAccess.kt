@@ -602,6 +602,8 @@ public open class FileAccess internal constructor() : RefCounted() {
     READ(1),
     /**
      * Opens the file for write operations. The file is created if it does not exist, and truncated if it does.
+     *
+     * **Note:** When creating a file it must be in an already existing directory. To recursively create directories for a file path, see [godot.DirAccess.makeDirRecursive]).
      */
     WRITE(2),
     /**
@@ -610,6 +612,8 @@ public open class FileAccess internal constructor() : RefCounted() {
     READ_WRITE(3),
     /**
      * Opens the file for read and write operations. The file is created if it does not exist, and truncated if it does. The cursor is positioned at the beginning of the file.
+     *
+     * **Note:** When creating a file it must be in an already existing directory. To recursively create directories for a file path, see [godot.DirAccess.makeDirRecursive]).
      */
     WRITE_READ(7),
     ;

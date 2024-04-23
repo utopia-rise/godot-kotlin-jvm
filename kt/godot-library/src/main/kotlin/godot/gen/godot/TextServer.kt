@@ -2286,7 +2286,7 @@ public open class TextServer internal constructor() : RefCounted() {
      */
     FONT_LCD_SUBPIXEL_LAYOUT_VBGR(4),
     /**
-     *
+     * Represents the size of the [enum FontLCDSubpixelLayout] enum.
      */
     FONT_LCD_SUBPIXEL_LAYOUT_MAX(5),
     ;
@@ -2982,7 +2982,7 @@ public open class TextServer internal constructor() : RefCounted() {
      */
     SPACING_BOTTOM(3),
     /**
-     *
+     * Represents the size of the [enum SpacingType] enum.
      */
     SPACING_MAX(4),
     ;

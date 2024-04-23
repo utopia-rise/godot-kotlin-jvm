@@ -387,6 +387,7 @@ public fun registerEngineTypes(): Unit {
       ::GPUParticlesCollisionSDF3D)
   TypeManager.registerEngineType("GPUParticlesCollisionSphere3D",
       GPUParticlesCollisionSphere3D::class, ::GPUParticlesCollisionSphere3D)
+  TypeManager.registerEngineType("GdjScript", GdjScript::class, ::GdjScript)
   TypeManager.registerEngineType("Generic6DOFJoint3D", Generic6DOFJoint3D::class,
       ::Generic6DOFJoint3D)
   TypeManager.registerEngineType("GeometryInstance3D", GeometryInstance3D::class,
@@ -460,9 +461,11 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("JSON", JSON::class, ::JSON)
   TypeManager.registerEngineType("JSONRPC", JSONRPC::class, ::JSONRPC)
   TypeManager.registerEngineType("JavaClass", JavaClass::class, ::JavaClass)
+  TypeManager.registerEngineType("JavaScript", JavaScript::class, ::JavaScript)
   TypeManager.registerEngineType("JavaScriptObject", JavaScriptObject::class, ::JavaScriptObject)
   TypeManager.registerEngineType("Joint2D", Joint2D::class, ::Joint2D)
   TypeManager.registerEngineType("Joint3D", Joint3D::class, ::Joint3D)
+  TypeManager.registerEngineType("JvmScript", JvmScript::class, ::JvmScript)
   TypeManager.registerEngineType("KinematicCollision2D", KinematicCollision2D::class,
       ::KinematicCollision2D)
   TypeManager.registerEngineType("KinematicCollision3D", KinematicCollision3D::class,
@@ -738,10 +741,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("ResourceFormatSaver", ResourceFormatSaver::class,
       ::ResourceFormatSaver)
   TypeManager.registerEngineType("ResourceImporter", ResourceImporter::class, ::ResourceImporter)
-  TypeManager.registerEngineType("ResourceImporterMP3", ResourceImporterMP3::class,
-      ::ResourceImporterMP3)
-  TypeManager.registerEngineType("ResourceImporterOggVorbis", ResourceImporterOggVorbis::class,
-      ::ResourceImporterOggVorbis)
   TypeManager.registerEngineType("ResourcePreloader", ResourcePreloader::class, ::ResourcePreloader)
   TypeManager.registerEngineType("RibbonTrailMesh", RibbonTrailMesh::class, ::RibbonTrailMesh)
   TypeManager.registerEngineType("RichTextEffect", RichTextEffect::class, ::RichTextEffect)
@@ -1444,6 +1443,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[GPUParticlesCollisionHeightField3D::class] = OBJECT
   variantMapper[GPUParticlesCollisionSDF3D::class] = OBJECT
   variantMapper[GPUParticlesCollisionSphere3D::class] = OBJECT
+  variantMapper[GdjScript::class] = OBJECT
   variantMapper[Generic6DOFJoint3D::class] = OBJECT
   variantMapper[GeometryInstance3D::class] = OBJECT
   variantMapper[Gradient::class] = OBJECT
@@ -1500,9 +1500,11 @@ public fun registerVariantMapping(): Unit {
   variantMapper[JSON::class] = OBJECT
   variantMapper[JSONRPC::class] = OBJECT
   variantMapper[JavaClass::class] = OBJECT
+  variantMapper[JavaScript::class] = OBJECT
   variantMapper[JavaScriptObject::class] = OBJECT
   variantMapper[Joint2D::class] = OBJECT
   variantMapper[Joint3D::class] = OBJECT
+  variantMapper[JvmScript::class] = OBJECT
   variantMapper[KinematicCollision2D::class] = OBJECT
   variantMapper[KinematicCollision3D::class] = OBJECT
   variantMapper[KotlinScript::class] = OBJECT
@@ -1702,8 +1704,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[ResourceFormatLoader::class] = OBJECT
   variantMapper[ResourceFormatSaver::class] = OBJECT
   variantMapper[ResourceImporter::class] = OBJECT
-  variantMapper[ResourceImporterMP3::class] = OBJECT
-  variantMapper[ResourceImporterOggVorbis::class] = OBJECT
   variantMapper[ResourcePreloader::class] = OBJECT
   variantMapper[RibbonTrailMesh::class] = OBJECT
   variantMapper[RichTextEffect::class] = OBJECT
@@ -2259,6 +2259,7 @@ public fun registerEngineTypeMethods(): Unit {
   GPUParticlesCollisionHeightField3D.MethodBindings
   GPUParticlesCollisionSDF3D.MethodBindings
   GPUParticlesCollisionSphere3D.MethodBindings
+  GdjScript.MethodBindings
   Generic6DOFJoint3D.MethodBindings
   GeometryInstance3D.MethodBindings
   Gradient.MethodBindings
@@ -2315,9 +2316,11 @@ public fun registerEngineTypeMethods(): Unit {
   JSON.MethodBindings
   JSONRPC.MethodBindings
   JavaClass.MethodBindings
+  JavaScript.MethodBindings
   JavaScriptObject.MethodBindings
   Joint2D.MethodBindings
   Joint3D.MethodBindings
+  JvmScript.MethodBindings
   KinematicCollision2D.MethodBindings
   KinematicCollision3D.MethodBindings
   KotlinScript.MethodBindings
@@ -2517,8 +2520,6 @@ public fun registerEngineTypeMethods(): Unit {
   ResourceFormatLoader.MethodBindings
   ResourceFormatSaver.MethodBindings
   ResourceImporter.MethodBindings
-  ResourceImporterMP3.MethodBindings
-  ResourceImporterOggVorbis.MethodBindings
   ResourcePreloader.MethodBindings
   RibbonTrailMesh.MethodBindings
   RichTextEffect.MethodBindings

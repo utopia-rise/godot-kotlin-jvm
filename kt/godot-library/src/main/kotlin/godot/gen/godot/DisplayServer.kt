@@ -88,7 +88,7 @@ public object DisplayServer : Object() {
   public final const val MAIN_WINDOW_ID: Long = 0
 
   /**
-   * The ID that refers to a nonexisting window. This is be returned by some [godot.DisplayServer] methods if no window matches the requested result.
+   * The ID that refers to a nonexistent window. This is returned by some [godot.DisplayServer] methods if no window matches the requested result.
    */
   public final const val INVALID_WINDOW_ID: Long = -1
 
@@ -2388,7 +2388,7 @@ public object DisplayServer : Object() {
      */
     FEATURE_CUSTOM_CURSOR_SHAPE(8),
     /**
-     * Display server supports spawning dialogs using the operating system's native look-and-feel. **macOS**
+     * Display server supports spawning dialogs using the operating system's native look-and-feel. **Windows, macOS, Linux (X11)**
      */
     FEATURE_NATIVE_DIALOG(9),
     /**
@@ -2869,19 +2869,19 @@ public object DisplayServer : Object() {
     id: Long,
   ) {
     /**
-     * No vertical synchronization, which means the engine will display frames as fast as possible (tearing may be visible). Framerate is unlimited (notwithstanding [godot.Engine.maxFps]).
+     * No vertical synchronization, which means the engine will display frames as fast as possible (tearing may be visible). Framerate is unlimited (regardless of [godot.Engine.maxFps]).
      */
     VSYNC_DISABLED(0),
     /**
-     * Default vertical synchronization mode, the image is displayed only on vertical blanking intervals (no tearing is visible). Framerate is limited by the monitor refresh rate (notwithstanding [godot.Engine.maxFps]).
+     * Default vertical synchronization mode, the image is displayed only on vertical blanking intervals (no tearing is visible). Framerate is limited by the monitor refresh rate (regardless of [godot.Engine.maxFps]).
      */
     VSYNC_ENABLED(1),
     /**
-     * Behaves like [VSYNC_DISABLED] when the framerate drops below the screen's refresh rate to reduce stuttering (tearing may be visible). Otherwise, vertical synchronization is enabled to avoid tearing. Framerate is limited by the monitor refresh rate (notwithstanding [godot.Engine.maxFps]). Behaves like [VSYNC_ENABLED] when using the Compatibility rendering method.
+     * Behaves like [VSYNC_DISABLED] when the framerate drops below the screen's refresh rate to reduce stuttering (tearing may be visible). Otherwise, vertical synchronization is enabled to avoid tearing. Framerate is limited by the monitor refresh rate (regardless of [godot.Engine.maxFps]). Behaves like [VSYNC_ENABLED] when using the Compatibility rendering method.
      */
     VSYNC_ADAPTIVE(2),
     /**
-     * Displays the most recent image in the queue on vertical blanking intervals, while rendering to the other images (no tearing is visible). Framerate is unlimited (notwithstanding [godot.Engine.maxFps]).
+     * Displays the most recent image in the queue on vertical blanking intervals, while rendering to the other images (no tearing is visible). Framerate is unlimited (regardless of [godot.Engine.maxFps]).
      *
      * Although not guaranteed, the images can be rendered as fast as possible, which may reduce input lag (also called "Fast" V-Sync mode). [VSYNC_MAILBOX] works best when at least twice as many frames as the display refresh rate are rendered. Behaves like [VSYNC_ENABLED] when using the Compatibility rendering method.
      */

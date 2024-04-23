@@ -18,16 +18,16 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Represents an input event from a MIDI device, such as a piano.
+ * Represents a MIDI message from a MIDI device, such as a musical keyboard.
  *
  * Tutorials:
  * [https://en.wikipedia.org/wiki/Piano_key_frequencies#List](https://en.wikipedia.org/wiki/Piano_key_frequencies#List)
  *
- * InputEventMIDI allows receiving input events from MIDI (Musical Instrument Digital Interface) devices such as a piano.
+ * InputEventMIDI stores information about messages from [MIDI](https://en.wikipedia.org/wiki/MIDI) (Musical Instrument Digital Interface) devices. These may include musical keyboards, synthesizers, and drum machines.
  *
- * MIDI signals can be sent over a 5-pin MIDI connector or over USB, if your device supports both be sure to check the settings in the device to see which output it's using.
+ * MIDI messages can be received over a 5-pin MIDI connector or over USB. If your device supports both be sure to check the settings in the device to see which output it is using.
  *
- * To receive input events from MIDI devices, you need to call [godot.OS.openMidiInputs]. You can check which devices are detected using [godot.OS.getConnectedMidiInputs].
+ * By default, Godot does not detect MIDI devices. You need to call [godot.OS.openMidiInputs], first. You can check which devices are detected with [godot.OS.getConnectedMidiInputs], and close the connection with [godot.OS.closeMidiInputs].
  *
  * [codeblocks]
  *
@@ -49,25 +49,25 @@ import kotlin.Suppress
  *
  *
  *
- * func _print_midi_info(midi_event: InputEventMIDI):
+ * func _print_midi_info(midi_event):
  *
  *     print(midi_event)
  *
- *     print("Channel " + str(midi_event.channel))
+ *     print("Channel ", midi_event.channel)
  *
- *     print("Message " + str(midi_event.message))
+ *     print("Message ", midi_event.message)
  *
- *     print("Pitch " + str(midi_event.pitch))
+ *     print("Pitch ", midi_event.pitch)
  *
- *     print("Velocity " + str(midi_event.velocity))
+ *     print("Velocity ", midi_event.velocity)
  *
- *     print("Instrument " + str(midi_event.instrument))
+ *     print("Instrument ", midi_event.instrument)
  *
- *     print("Pressure " + str(midi_event.pressure))
+ *     print("Pressure ", midi_event.pressure)
  *
- *     print("Controller number: " + str(midi_event.controller_number))
+ *     print("Controller number: ", midi_event.controller_number)
  *
- *     print("Controller value: " + str(midi_event.controller_value))
+ *     print("Controller value: ", midi_event.controller_value)
  *
  * [/gdscript]
  *
@@ -85,11 +85,11 @@ import kotlin.Suppress
  *
  *
  *
- * public override void _Input(InputEvent @event)
+ * public override void _Input(InputEvent inputEvent)
  *
  * {
  *
- *     if (@event is InputEventMIDI midiEvent)
+ *     if (inputEvent is InputEventMidi midiEvent)
  *
  *     {
  *
@@ -101,7 +101,7 @@ import kotlin.Suppress
  *
  *
  *
- * private void PrintMIDIInfo(InputEventMIDI midiEvent)
+ * private void PrintMIDIInfo(InputEventMidi midiEvent)
  *
  * {
  *
@@ -129,12 +129,12 @@ import kotlin.Suppress
  *
  * [/codeblocks]
  *
- * Note that Godot does not currently support MIDI output, so there is no way to emit MIDI signals from Godot. Only MIDI input works.
+ * **Note:** Godot does not support MIDI output, so there is no way to emit MIDI messages from Godot. Only MIDI input is supported.
  */
 @GodotBaseType
 public open class InputEventMIDI : InputEvent() {
   /**
-   * The MIDI channel of this input event. There are 16 channels, so this value ranges from 0 to 15. MIDI channel 9 is reserved for the use with percussion instruments, the rest of the channels are for non-percussion instruments.
+   * The MIDI channel of this message, ranging from `0` to `15`. MIDI channel `9` is reserved for percussion instruments.
    */
   public var channel: Int
     get() {
@@ -148,15 +148,9 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   /**
-   * Returns a value indicating the type of message for this MIDI signal. This is a member of the [enum MIDIMessage] enum.
+   * Represents the type of MIDI message (see the [enum MIDIMessage] enum).
    *
-   * For MIDI messages between 0x80 and 0xEF, only the left half of the bits are returned as this value, as the other part is the channel (ex: 0x94 becomes 0x9). For MIDI messages from 0xF0 to 0xFF, the value is returned as-is.
-   *
-   * Notes will return [MIDI_MESSAGE_NOTE_ON] when activated, but they might not always return [MIDI_MESSAGE_NOTE_OFF] when deactivated, therefore your code should treat the input as stopped if some period of time has passed.
-   *
-   * Some MIDI devices may send [MIDI_MESSAGE_NOTE_ON] with zero velocity instead of [MIDI_MESSAGE_NOTE_OFF].
-   *
-   * For more information, see the note in [velocity] and the MIDI message status byte list chart linked above.
+   * For more information, see the [godot.MIDI message status byte list chart](https://www.midi.org/specifications-old/item/table-2-expanded-messages-list-status-bytes).
    */
   public var message: MIDIMessage
     get() {
@@ -170,7 +164,9 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   /**
-   * The pitch index number of this MIDI signal. This value ranges from 0 to 127. On a piano, middle C is 60, and A440 is 69, see the "MIDI note" column of the piano key frequency chart on Wikipedia for more information.
+   * The pitch index number of this MIDI message. This value ranges from `0` to `127`.
+   *
+   * On a piano, the **middle C** is `60`, followed by a **C-sharp** (`61`), then a **D** (`62`), and so on. Each octave is split in offsets of 12. See the "MIDI note number" column of the [piano key frequency chart](https://en.wikipedia.org/wiki/Piano_key_frequencies) a full list.
    */
   public var pitch: Int
     get() {
@@ -184,9 +180,16 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   /**
-   * The velocity of the MIDI signal. This value ranges from 0 to 127. For a piano, this corresponds to how quickly the key was pressed, and is rarely above about 110 in practice.
+   * The velocity of the MIDI message. This value ranges from `0` to `127`. For a musical keyboard, this corresponds to how quickly the key was pressed, and is rarely above `110` in practice.
    *
-   * **Note:** Some MIDI devices may send a [MIDI_MESSAGE_NOTE_ON] message with zero velocity and expect this to be treated the same as a [MIDI_MESSAGE_NOTE_OFF] message, but device implementations vary so Godot reports event data exactly as received. Depending on the hardware and the needs of the game/app, this MIDI quirk can be handled robustly with a couple lines of script (check for [MIDI_MESSAGE_NOTE_ON] with velocity zero).
+   * **Note:** Some MIDI devices may send a [MIDI_MESSAGE_NOTE_ON] message with `0` velocity and expect it to be treated the same as a [MIDI_MESSAGE_NOTE_OFF] message. If necessary, this can be handled with a few lines of code:
+   *
+   * ```
+   * 			func _input(event):
+   * 			    if event is InputEventMIDI:
+   * 			        if event.message == MIDI_MESSAGE_NOTE_ON and event.velocity > 0:
+   * 			            print("Note pressed!")
+   * 			```
    */
   public var velocity: Int
     get() {
@@ -200,7 +203,9 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   /**
-   * The instrument of this input event. This value ranges from 0 to 127. Refer to the instrument list on the General MIDI wikipedia article to see a list of instruments, except that this value is 0-index, so subtract one from every number on that chart. A standard piano will have an instrument number of 0.
+   * The instrument (also called *program* or *preset*) used on this MIDI message. This value ranges from `0` to `127`.
+   *
+   * To see what each value means, refer to the [godot.General MIDI's instrument list](https://en.wikipedia.org/wiki/General_MIDI#Program_change_events). Keep in mind that the list is off by 1 because it does not begin from 0. A value of `0` corresponds to the acoustic grand piano.
    */
   public var instrument: Int
     get() {
@@ -214,7 +219,9 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   /**
-   * The pressure of the MIDI signal. This value ranges from 0 to 127. For many devices, this value is always zero.
+   * The strength of the key being pressed. This value ranges from `0` to `127`.
+   *
+   * **Note:** For many devices, this value is always `0`. Other devices such as musical keyboards may simulate pressure by changing the [velocity], instead.
    */
   public var pressure: Int
     get() {
@@ -228,7 +235,7 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   /**
-   * If the message is [MIDI_MESSAGE_CONTROL_CHANGE], this indicates the controller number, otherwise this is zero. Controllers include devices such as pedals and levers.
+   * The unique number of the controller, if [message] is [MIDI_MESSAGE_CONTROL_CHANGE], otherwise this is `0`. This value can be used to identify sliders for volume, balance, and panning, as well as switches and pedals on the MIDI device. See the [godot.General MIDI specification](https://en.wikipedia.org/wiki/General_MIDI#Controller_events) for a small list.
    */
   public var controllerNumber: Int
     get() {
@@ -242,7 +249,7 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   /**
-   * If the message is [MIDI_MESSAGE_CONTROL_CHANGE], this indicates the controller value, otherwise this is zero. Controllers include devices such as pedals and levers.
+   * The value applied to the controller. If [message] is [MIDI_MESSAGE_CONTROL_CHANGE], this value ranges from `0` to `127`, otherwise it is `0`. See also [controllerValue].
    */
   public var controllerValue: Int
     get() {

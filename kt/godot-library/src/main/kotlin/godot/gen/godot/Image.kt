@@ -360,7 +360,7 @@ public open class Image : Resource() {
   }
 
   /**
-   *
+   * Returns the color channels used by this image, as one of the [enum UsedChannels] constants. If the image is compressed, the original [source] must be specified.
    */
   @JvmOverloads
   public fun detectUsedChannels(source: CompressSource =
@@ -710,7 +710,7 @@ public open class Image : Resource() {
   }
 
   /**
-   *
+   * Adjusts this image's [brightness], [contrast], and [saturation] by the given values. Does not work if the image is compressed (see [isCompressed]).
    */
   public fun adjustBcs(
     brightness: Float,
@@ -847,7 +847,7 @@ public open class Image : Resource() {
      */
     FORMAT_RGBA4444(6),
     /**
-     *
+     * OpenGL texture format `RGB` with three components. Red and blue have a bitdepth of 5, and green has a bitdepth of 6.
      */
     FORMAT_RGB565(7),
     /**
@@ -965,11 +965,11 @@ public open class Image : Resource() {
      */
     FORMAT_ETC2_RGB8A1(32),
     /**
-     *
+     * [godot.Ericsson Texture Compression format 2](https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC) (`RGBA8` variant), which compresses RA data and interprets it as two channels (red and green). See also [godot.FORMAT_ETC2_RGBA8].
      */
     FORMAT_ETC2_RA_AS_RG(33),
     /**
-     *
+     * The [godot.S3TC](https://en.wikipedia.org/wiki/S3_Texture_Compression) texture format also known as Block Compression 3 or BC3, which compresses RA data and interprets it as two channels (red and green). See also [godot.FORMAT_DXT5].
      */
     FORMAT_DXT5_RA_AS_RG(34),
     /**
@@ -1032,7 +1032,7 @@ public open class Image : Resource() {
      */
     INTERPOLATE_TRILINEAR(3),
     /**
-     * Performs Lanczos interpolation. This is the slowest image resizing mode, but it typically gives the best results, especially when downscalng images.
+     * Performs Lanczos interpolation. This is the slowest image resizing mode, but it typically gives the best results, especially when downscaling images.
      */
     INTERPOLATE_LANCZOS(4),
     ;
@@ -1117,27 +1117,27 @@ public open class Image : Resource() {
     id: Long,
   ) {
     /**
-     *
+     * The image only uses one channel for luminance (grayscale).
      */
     USED_CHANNELS_L(0),
     /**
-     *
+     * The image uses two channels for luminance and alpha, respectively.
      */
     USED_CHANNELS_LA(1),
     /**
-     *
+     * The image only uses the red channel.
      */
     USED_CHANNELS_R(2),
     /**
-     *
+     * The image uses two channels for red and green.
      */
     USED_CHANNELS_RG(3),
     /**
-     *
+     * The image uses three channels for red, green, and blue.
      */
     USED_CHANNELS_RGB(4),
     /**
-     *
+     * The image uses four channels for red, green, blue, and alpha.
      */
     USED_CHANNELS_RGBA(5),
     ;

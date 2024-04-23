@@ -98,7 +98,7 @@ public open class PacketPeerUDP : PacketPeer() {
    *
    * [csharp]
    *
-   * var socket = new PacketPeerUDP();
+   * var socket = new PacketPeerUdp();
    *
    * // Server
    *

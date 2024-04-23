@@ -34,7 +34,7 @@ import kotlin.Unit
  *
  * [godot.CanvasTexture] is an alternative to [godot.ImageTexture] for 2D rendering. It allows using normal maps and specular maps in any node that inherits from [godot.CanvasItem]. [godot.CanvasTexture] also allows overriding the texture's filter and repeat mode independently of the node's properties (or the project settings).
  *
- * **Note:** [godot.CanvasTexture] cannot be used in 3D rendering. For physically-based materials in 3D, use [godot.BaseMaterial3D] instead.
+ * **Note:** [godot.CanvasTexture] cannot be used in 3D. It will not display correctly when applied to any [godot.VisualInstance3D], such as [godot.Sprite3D] or [godot.Decal]. For physically-based materials in 3D, use [godot.BaseMaterial3D] instead.
  */
 @GodotBaseType
 public open class CanvasTexture : Texture2D() {

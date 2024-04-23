@@ -133,7 +133,7 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   /**
-   *
+   * The pressure coefficient of this soft body. Simulate pressure build-up from inside this body. Higher values increase the strength of this effect.
    */
   public var pressureCoefficient: Float
     get() {
@@ -147,7 +147,7 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   /**
-   *
+   * The body's damping coefficient. Higher values will slow down the body more noticeably when forces are applied.
    */
   public var dampingCoefficient: Float
     get() {
@@ -161,7 +161,9 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   /**
+   * The body's drag coefficient. Higher values increase this body's air resistance.
    *
+   * **Note:** This value is currently unused by Godot's default physics implementation.
    */
   public var dragCoefficient: Float
     get() {
@@ -208,7 +210,7 @@ public open class SoftBody3D : MeshInstance3D() {
   }
 
   /**
-   *
+   * Returns the internal [RID] used by the [godot.PhysicsServer3D] for this body.
    */
   public fun getPhysicsRid(): RID {
     TransferContext.writeArguments()

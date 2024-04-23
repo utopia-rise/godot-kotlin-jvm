@@ -94,7 +94,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
     }
 
   /**
-   * The drag position.
+   * The drag position in the viewport the node is in, using the coordinate system of this viewport.
    */
   @CoreTypeLocalCopy
   public var position: Vector2
@@ -168,7 +168,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
 
 
   /**
-   * The drag position.
+   * The drag position in the viewport the node is in, using the coordinate system of this viewport.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

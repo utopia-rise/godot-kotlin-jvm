@@ -107,7 +107,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
      */
     TYPE_DATA(0),
     /**
-     * Adds `hint_albedo` as hint to the uniform declaration for proper sRGB to linear conversion.
+     * Adds `source_color` as hint to the uniform declaration for proper sRGB to linear conversion.
      */
     TYPE_COLOR(1),
     /**

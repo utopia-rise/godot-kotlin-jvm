@@ -22,7 +22,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 
 /**
- * Base class for 3-dimensionnal textures.
+ * Base class for 3-dimensional textures.
  *
  * Base class for [godot.ImageTexture3D] and [godot.CompressedTexture3D]. Cannot be used directly, but contains all the functions necessary for accessing the derived resource types. [godot.Texture3D] is the base class for all 3-dimensional texture types. See also [godot.TextureLayered].
  *

@@ -103,6 +103,8 @@ public object ResourceLoader : Object() {
    * GDScript has a simplified [@GDScript.load] built-in method which can be used in most situations, leaving the use of [godot.ResourceLoader] for more advanced scenarios.
    *
    * **Note:** If [godot.ProjectSettings.editor/export/convertTextResourcesToBinary] is `true`, [@GDScript.load] will not be able to read converted files in an exported project. If you rely on run-time loading of files present within the PCK, set [godot.ProjectSettings.editor/export/convertTextResourcesToBinary] to `false`.
+   *
+   * **Note:** Relative paths will be prefixed with `"res://"` before loading, to avoid unexpected results make sure your paths are absolute.
    */
   @JvmOverloads
   public fun load(

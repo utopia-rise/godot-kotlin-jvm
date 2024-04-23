@@ -455,7 +455,9 @@ public object AudioServer : Object() {
   }
 
   /**
+   * If set to `true`, all instances of [godot.AudioStreamPlayback] will call [godot.AudioStreamPlayback.TagUsedStreams] every mix step.
    *
+   * **Note:** This is enabled by default in the editor, as it is used by editor plugins for the audio stream previews.
    */
   public fun setEnableTaggingUsedAudioStreams(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)

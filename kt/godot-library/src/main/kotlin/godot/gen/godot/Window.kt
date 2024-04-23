@@ -932,7 +932,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the combined minimum size from the child [godot.Control] nodes of the window. Use [childControlsChanged] to update it when children nodes have changed.
+   * Returns the combined minimum size from the child [godot.Control] nodes of the window. Use [childControlsChanged] to update it when child nodes have changed.
    *
    * The value returned by this method can be overridden with [_getContentsMinimumSize].
    */

@@ -441,7 +441,7 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * Returns an array with the points that are in the path found by [godot.AStarGrid2D] between the given points. The array is ordered from the starting point to the ending point of the path.
    *
-   * **Note:** This method is not thread-safe. If called from a [godot.Thread], it will return an empty [godot.PackedVector3Array] and will print an error message.
+   * **Note:** This method is not thread-safe. If called from a [godot.Thread], it will return an empty [godot.PackedVector2Array] and will print an error message.
    */
   public fun getPointPath(fromId: Vector2i, toId: Vector2i): PackedVector2Array {
     TransferContext.writeArguments(VECTOR2I to fromId, VECTOR2I to toId)

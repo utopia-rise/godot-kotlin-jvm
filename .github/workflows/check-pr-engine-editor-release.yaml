@@ -3,8 +3,8 @@ on: [pull_request]
 
 env:
   SCONS_CACHE_MSVC_CONFIG: true
-  GODOT_BASE_VERSION: 4.2.0
-  GODOT_BASE_BRANCH: 4.2.0
+  GODOT_BASE_VERSION: 4.2.2
+  GODOT_BASE_BRANCH: 4.2.2
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-check-pr-engine-editor-release
@@ -39,19 +39,12 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: 4.2.1-stable
+          ref: 4.2.2-stable
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
         with:
           path: modules/kotlin_jvm
           submodules: recursive
-      # TODO: remove once on godot 4.2.2 or newer!
-      - name: Cherry pick macos fix
-        run: |
-          git fetch -a
-          git config --global user.email "mario@super.com"
-          git config --global user.name "Super Mario"
-          git cherry-pick a2c1c01941a3dec3e2a361d9dc21bb0390efcbaf
       - name: Setup Godot dependencies
         uses: ./.github/actions/godot-deps
       - name: Fix scons version

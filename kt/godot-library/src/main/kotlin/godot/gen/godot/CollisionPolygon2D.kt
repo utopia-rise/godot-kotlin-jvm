@@ -49,6 +49,8 @@ public open class CollisionPolygon2D : Node2D() {
   /**
    * The polygon's list of vertices. Each point will be connected to the next, and the final point will be connected to the first.
    *
+   * **Note:** The returned vertices are in the local coordinate space of the given [godot.CollisionPolygon2D].
+   *
    * **Warning:** The returned value is a clone of the [godot.PackedVector2Array], not a reference.
    */
   public var polygon: PackedVector2Array

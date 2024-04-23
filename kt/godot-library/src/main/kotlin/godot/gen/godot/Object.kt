@@ -163,7 +163,7 @@ public open class Object : KtObject() {
    *
    * var node = new Node2D();
    *
-   * node.Set("global_scale", new Vector2(8, 2.5));
+   * node.Set(Node2D.PropertyName.GlobalScale, new Vector2(8, 2.5));
    *
    * GD.Print(node.GlobalScale); // Prints Vector2(8, 2.5)
    *
@@ -199,7 +199,7 @@ public open class Object : KtObject() {
    *
    * node.Rotation = 1.5f;
    *
-   * var a = node.Get("rotation"); // a is 1.5
+   * var a = node.Get(Node2D.PropertyName.Rotation); // a is 1.5
    *
    * [/csharp]
    *
@@ -648,7 +648,7 @@ public open class Object : KtObject() {
   /**
    * Calls the [method] on the object during idle time. Always returns null, **not** the method's result.
    *
-   * Idle time happens mainly at the end of process and physics frames. In it, deferred calls will be run until there are none left, which means you can defer calls from other deferred calls and they'll still be run in the current idle time cycle. If not done carefully, this can result in infinite recursion without causing a stack overflow, which will hang the game similarly to an infinite loop.
+   * Idle time happens mainly at the end of process and physics frames. In it, deferred calls will be run until there are none left, which means you can defer calls from other deferred calls and they'll still be run in the current idle time cycle. This means you should not call a method deferred from itself (or from a method called by it), as this causes infinite recursion the same way as if you had called the method directly.
    *
    * This method supports a variable number of arguments, so parameters can be passed as a comma separated list.
    *
@@ -706,17 +706,17 @@ public open class Object : KtObject() {
    *
    *
    *
-   * node.rotation = 45.0
+   * node.rotation = 1.5
    *
-   * node.set_deferred("rotation", 90.0)
+   * node.set_deferred("rotation", 3.0)
    *
-   * print(node.rotation) # Prints 45.0
+   * print(node.rotation) # Prints 1.5
    *
    *
    *
    * await get_tree().process_frame
    *
-   * print(node.rotation) # Prints 90.0
+   * print(node.rotation) # Prints 3.0
    *
    * [/gdscript]
    *
@@ -724,17 +724,17 @@ public open class Object : KtObject() {
    *
    * var node = new Node2D();
    *
-   * node.Rotation = 45f;
+   * node.Rotation = 1.5f;
    *
-   * node.SetDeferred("rotation", 90f);
+   * node.SetDeferred(Node2D.PropertyName.Rotation, 3f);
    *
-   * GD.Print(node.Rotation); // Prints 45.0
+   * GD.Print(node.Rotation); // Prints 1.5
    *
    *
    *
    * await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
    *
-   * GD.Print(node.Rotation); // Prints 90.0
+   * GD.Print(node.Rotation); // Prints 3.0
    *
    * [/csharp]
    *
@@ -1261,6 +1261,11 @@ public open class Object : KtObject() {
      * Notification received when the object is about to be deleted. Can act as the deconstructor of some programming languages.
      */
     public final const val NOTIFICATION_PREDELETE: Long = 1
+
+    /**
+     * Notification received when the object finishes hot reloading. This notification is only sent for extensions classes and derived.
+     */
+    public final const val NOTIFICATION_EXTENSION_RELOADED: Long = 2
   }
 
   internal object MethodBindings {

@@ -202,6 +202,8 @@ public open class Texture2D : Texture() {
   /**
    * Returns an [godot.Image] that is a copy of data from this [godot.Texture2D] (a new [godot.Image] is created each time). [godot.Image]s can be accessed and manipulated directly.
    *
+   * **Note:** This will return `null` if this [godot.Texture2D] is invalid.
+   *
    * **Note:** This will fetch the texture data from the GPU, which might cause performance problems when overused.
    */
   public fun getImage(): Image? {

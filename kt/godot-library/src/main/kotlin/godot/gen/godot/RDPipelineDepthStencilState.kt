@@ -43,7 +43,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   *
+   * If `true`, writes to the depth buffer whenever the depth test returns true. Only works when enable_depth_test is also true.
    */
   public var enableDepthWrite: Boolean
     get() {
@@ -57,7 +57,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   *
+   * The method used for comparing the previous and current depth values.
    */
   public var depthCompareOperator: RenderingDevice.CompareOperator
     get() {
@@ -71,7 +71,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   *
+   * If `true`, each depth value will be tested to see if it is between [depthRangeMin] and [depthRangeMax]. If it is outside of these values, it is discarded.
    */
   public var enableDepthRange: Boolean
     get() {
@@ -85,7 +85,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   *
+   * The minimum depth that returns true for [enableDepthRange].
    */
   public var depthRangeMin: Float
     get() {
@@ -99,7 +99,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   *
+   * The maximum depth that returns true for [enableDepthRange].
    */
   public var depthRangeMax: Float
     get() {
@@ -113,7 +113,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   *
+   * If `true`, enables stencil testing. There are separate stencil buffers for front-facing triangles and back-facing triangles. See properties that begin with "front_op" and properties with "back_op" for each.
    */
   public var enableStencil: Boolean
     get() {
@@ -127,7 +127,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   *
+   * The operation to perform on the stencil buffer for front pixels that fail the stencil test.
    */
   public var frontOpFail: RenderingDevice.StencilOperation
     get() {
@@ -141,7 +141,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   *
+   * The operation to perform on the stencil buffer for front pixels that pass the stencil test.
    */
   public var frontOpPass: RenderingDevice.StencilOperation
     get() {
@@ -155,7 +155,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   *
+   * The operation to perform on the stencil buffer for front pixels that pass the stencil test but fail the depth test.
    */
   public var frontOpDepthFail: RenderingDevice.StencilOperation
     get() {
@@ -169,7 +169,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   *
+   * The method used for comparing the previous front stencil value and [frontOpReference].
    */
   public var frontOpCompare: RenderingDevice.CompareOperator
     get() {
@@ -183,7 +183,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   *
+   * Selects which bits from the front stencil value will be compared.
    */
   public var frontOpCompareMask: Long
     get() {
@@ -197,7 +197,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   *
+   * Selects which bits from the front stencil value will be changed.
    */
   public var frontOpWriteMask: Long
     get() {
@@ -211,7 +211,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   *
+   * The value the previous front stencil value will be compared to.
    */
   public var frontOpReference: Long
     get() {
@@ -225,7 +225,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   *
+   * The operation to perform on the stencil buffer for back pixels that fail the stencil test
    */
   public var backOpFail: RenderingDevice.StencilOperation
     get() {
@@ -239,7 +239,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   *
+   * The operation to perform on the stencil buffer for back pixels that pass the stencil test.
    */
   public var backOpPass: RenderingDevice.StencilOperation
     get() {
@@ -253,7 +253,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   *
+   * The operation to perform on the stencil buffer for back pixels that pass the stencil test but fail the depth test.
    */
   public var backOpDepthFail: RenderingDevice.StencilOperation
     get() {
@@ -267,7 +267,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   *
+   * The method used for comparing the previous back stencil value and [backOpReference].
    */
   public var backOpCompare: RenderingDevice.CompareOperator
     get() {
@@ -281,7 +281,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   *
+   * Selects which bits from the back stencil value will be compared.
    */
   public var backOpCompareMask: Long
     get() {
@@ -295,7 +295,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   *
+   * Selects which bits from the back stencil value will be changed.
    */
   public var backOpWriteMask: Long
     get() {
@@ -309,7 +309,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   *
+   * The value the previous back stencil value will be compared to.
    */
   public var backOpReference: Long
     get() {

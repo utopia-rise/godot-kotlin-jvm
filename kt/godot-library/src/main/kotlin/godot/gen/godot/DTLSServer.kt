@@ -103,7 +103,7 @@ import kotlin.Suppress
  *
  *     private UdpServer _server = new UdpServer();
  *
- *     private Godot.Collections.Array<PacketPeerDTLS> _peers = new Godot.Collections.Array<PacketPeerDTLS>();
+ *     private Godot.Collections.Array<PacketPeerDtls> _peers = new Godot.Collections.Array<PacketPeerDtls>();
  *
  *
  *
@@ -131,9 +131,9 @@ import kotlin.Suppress
  *
  *         {
  *
- *             PacketPeerUDP peer = _server.TakeConnection();
+ *             PacketPeerUdp peer = _server.TakeConnection();
  *
- *             PacketPeerDTLS dtlsPeer = _dtls.TakeConnection(peer);
+ *             PacketPeerDtls dtlsPeer = _dtls.TakeConnection(peer);
  *
  *             if (dtlsPeer.GetStatus() != PacketPeerDtls.Status.Handshaking)
  *

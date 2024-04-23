@@ -53,13 +53,11 @@ import kotlin.jvm.JvmOverloads
  * The overall transform of a bone with respect to the skeleton is determined by bone pose. Bone rest defines the initial transform of the bone pose.
  *
  * Note that "global pose" below refers to the overall transform of the bone with respect to skeleton, so it is not the actual global/world transform of the bone.
- *
- * To setup different types of inverse kinematics, consider using [godot.SkeletonIK3D], or add a custom IK implementation in [godot.Node.Process] as a child node.
  */
 @GodotBaseType
 public open class Skeleton3D : Node3D() {
   /**
-   *
+   * Emitted when the pose is updated, after [NOTIFICATION_UPDATE_SKELETON] is received.
    */
   public val poseUpdated: Signal0 by signal()
 
@@ -69,12 +67,12 @@ public open class Skeleton3D : Node3D() {
   public val bonePoseChanged: Signal1<Long> by signal("boneIdx")
 
   /**
-   *
+   * Emitted when the bone at [boneIdx] is toggled with [setBoneEnabled]. Use [isBoneEnabled] to check the new value.
    */
   public val boneEnabledChanged: Signal1<Long> by signal("boneIdx")
 
   /**
-   *
+   * Emitted when the value of [showRestOnly] changes.
    */
   public val showRestOnlyChanged: Signal0 by signal()
 
@@ -95,7 +93,7 @@ public open class Skeleton3D : Node3D() {
     }
 
   /**
-   *
+   * If `true`, forces the bones in their default rest pose, regardless of their values. In the editor, this also prevents the bones from being edited.
    */
   public var showRestOnly: Boolean
     get() {
@@ -213,7 +211,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns an array containing the bone indexes of all the children node of the passed in bone, [boneIdx].
+   * Returns an array containing the bone indexes of all the child node of the passed in bone, [boneIdx].
    */
   public fun getBoneChildren(boneIdx: Int): PackedInt32Array {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
@@ -497,7 +495,9 @@ public open class Skeleton3D : Node3D() {
 
   public companion object {
     /**
+     * Notification received when this skeleton's pose needs to be updated.
      *
+     * This notification is received *before* the related [poseUpdated] signal.
      */
     public final const val NOTIFICATION_UPDATE_SKELETON: Long = 50
   }
