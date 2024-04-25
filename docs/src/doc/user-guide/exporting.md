@@ -103,17 +103,13 @@ On desktop platform default export is inferred by the `godot_kotin_configuration
 ## iOS
 
 !!! warning
-    IOS export is experimental.
+With this export you don't have a choice regarding JVM version you use. Please use GraalVM 23.1.3.
 
 Additionally, to the regular GraalVM configuration mentioned above, add the following in `build.gradle.kts`:
 
 ```kotlin
 godot {
-    isGraalNativeImageExportEnabled.set(true)
     graalVmDirectory.set(File("Path to your graalVM install")) // or setup GRAALVM_HOME environment variable.
     isIOSExportEnabled.set(true)
 }
 ```
-
-!!! warning
-    With this export you don't have a choice regarding JVM embedding in the app. Godot Kotlin's Gradle plugin will automatically download a iOS static JDK libraries and pack it with your code for iOS.
