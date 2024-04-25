@@ -17,57 +17,29 @@ fun Project.copyDefaultGraalIOSConfigsTask(
         dependsOn(checkPresenceOfDefaultGraalJniConfigTask)
 
         doLast {
-            // Configurations from gluon substrate: https://github.com/gluonhq/substrate/tree/master/src/main/resources/config
+            listOf(
+                // Configurations from gluon substrate: https://github.com/gluonhq/substrate/tree/master/src/main/resources/config
+                
+                "ios/$iosJniConfig",
+                "ios/$iosReflectionConfig",
+                "ios/$iosResourceConfig",
 
-            copyToGraalBuildDirectory(
-                "ios/$iosJniConfig"
-            )
-            copyToGraalBuildDirectory(
-                "ios/$iosReflectionConfig"
-            )
-            copyToGraalBuildDirectory(
-                "ios/$iosResourceConfig"
-            )
+                // Cap files from gluon substrate: https://github.com/gluonhq/substrate/tree/master/src/main/resources/native/ios/cap
+                // Cap files are representations of native structures and size.
 
-            // Cap files from gluon substrate: https://github.com/gluonhq/substrate/tree/master/src/main/resources/native/ios/cap
-            // From what I understand cap files are constant native values dependants on OS
-
-            copyToGraalBuildDirectory(
-                "ios/capcache/AArch64LibCHelperDirectives.cap"
-            )
-            copyToGraalBuildDirectory(
-                "ios/capcache/AMD64LibCHelperDirectives.cap"
-            )
-            copyToGraalBuildDirectory(
-                "ios/capcache/BuiltinDirectives.cap"
-            )
-            copyToGraalBuildDirectory(
-                "ios/capcache/JNIHeaderDirectives.cap"
-            )
-            copyToGraalBuildDirectory(
-                "ios/capcache/JNIHeaderDirectivesJDK19OrLater.cap"
-            )
-            copyToGraalBuildDirectory(
-                "ios/capcache/JNIHeaderDirectivesJDK20OrLater.cap"
-            )
-            copyToGraalBuildDirectory(
-                "ios/capcache/JNIHeaderDirectivesJDK21OrLater.cap"
-            )
-            copyToGraalBuildDirectory(
-                "ios/capcache/JNIHeaderDirectivesJDK22OrLater.cap"
-            )
-            copyToGraalBuildDirectory(
-                "ios/capcache/LibFFIHeaderDirectives.cap"
-            )
-            copyToGraalBuildDirectory(
-                "ios/capcache/LLVMDirectives.cap"
-            )
-            copyToGraalBuildDirectory(
-                "ios/capcache/PosixDirectives.cap"
-            )
-            copyToGraalBuildDirectory(
+                "ios/capcache/AArch64LibCHelperDirectives.cap",
+                "ios/capcache/AMD64LibCHelperDirectives.cap",
+                "ios/capcache/BuiltinDirectives.cap",
+                "ios/capcache/JNIHeaderDirectives.cap",
+                "ios/capcache/JNIHeaderDirectivesJDK19OrLater.cap",
+                "ios/capcache/JNIHeaderDirectivesJDK20OrLater.cap",
+                "ios/capcache/JNIHeaderDirectivesJDK21OrLater.cap",
+                "ios/capcache/JNIHeaderDirectivesJDK22OrLater.cap",
+                "ios/capcache/LibFFIHeaderDirectives.cap",
+                "ios/capcache/LLVMDirectives.cap",
+                "ios/capcache/PosixDirectives.cap",
                 "ios/capcache/RISCV64LibCHelperDirectives.cap"
-            )
+            ).forEach { resource -> copyToGraalBuildDirectory(resource) }
         }
     }
 }
