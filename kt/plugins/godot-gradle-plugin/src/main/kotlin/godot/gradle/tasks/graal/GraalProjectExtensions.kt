@@ -7,15 +7,17 @@ import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
 import java.io.File
 import java.io.InputStream
 
-fun Project.copyToGraalFromPluginResourceIfDoesNotExists(file: File, resourcePath: String) {
-    if (file.exists()) return
-
-    val resource =
-        GodotExtension::class.java.getResource(resourcePath)?.content
+fun Project.copyToGraalBuildDirectory(resourcePath: String) {
+    val resource = GodotExtension::class.java.getResource(resourcePath)?.content
     require(resource is InputStream)
-    file.ensureParentDirsCreated()
-    file.createNewFile()
-    file.writeBytes(resource.readAllBytes())
+
+    val outputFile = buildDir.resolve("graal").resolve(resourcePath)
+    outputFile.ensureParentDirsCreated()
+    if (outputFile.exists()) {
+        outputFile.delete()
+    }
+    outputFile.createNewFile()
+    outputFile.writeBytes(resource.readAllBytes())
 }
 
 fun Project.getGraalVmAdditionalJniConfigs(): String {

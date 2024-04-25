@@ -33,9 +33,6 @@ fun Project.setupBuildTask(
                 finalizedBy(createGraalNativeImageTask)
             }
             if (godotJvmExtension.isIOSExportEnabled.get()) {
-                require(godotJvmExtension.isGraalNativeImageExportEnabled.get()) {
-                    "GraalVM should be enabled when exporting for ios."
-                }
                 finalizedBy(createIOSTask)
             }
         }
