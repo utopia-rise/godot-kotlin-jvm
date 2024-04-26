@@ -4,7 +4,6 @@
 #include "core/object/script_language.h"
 #include "jvm_script.h"
 #include "jvm_wrapper/registration/kt_class.h"
-#include "binding/kotlin_binding_manager.h"
 
 class JvmInstance : public ScriptInstance {
 private:

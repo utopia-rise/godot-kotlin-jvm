@@ -1,6 +1,6 @@
 #include "transfer_context.h"
 
-#include "gd_kotlin.h"
+#include "script/jvm_script_manager.h"
 #include "script/jvm_instance.h"
 
 const int MAX_STACK_SIZE = MAX_FUNCTION_ARG_COUNT * 8;
@@ -80,9 +80,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong
 
     MethodBind* method_bind {reinterpret_cast<MethodBind*>(static_cast<uintptr_t>(j_method_ptr))};
 
-#ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(args_size > MAX_FUNCTION_ARG_COUNT, vformat("Cannot have more than %s arguments for method call but tried to call method \"%s::%s\" with %s args", MAX_FUNCTION_ARG_COUNT, method_bind->get_instance_class(), method_bind->get_name(), args_size));
-#endif
+    JVM_DEV_ASSERT(args_size <= MAX_FUNCTION_ARG_COUNT, vformat("Cannot have more than %s arguments for method call but tried to call method \"%s::%s\" with %s args", MAX_FUNCTION_ARG_COUNT, method_bind->get_instance_class(), method_bind->get_name(), args_size));
 
     Callable::CallError r_error {Callable::CallError::CALL_OK};
 
@@ -136,7 +134,7 @@ void TransferContext::create_native_object(JNIEnv* p_raw_env, jobject p_instance
     int script_index {static_cast<int>(p_script_index)};
     if (script_index != -1) {
         KtObject* kt_object = memnew(KtObject(env, jni::JObject(p_object), ptr->is_ref_counted()));
-        Ref<JvmScript> kotlin_script {TypeManager::get_instance().get_user_script_for_index(script_index)};
+        Ref<JvmScript> kotlin_script {JvmScriptManager::get_instance().get_user_script_for_index(script_index)};
         JvmInstance* script = memnew(JvmInstance(env, ptr, kt_object, kotlin_script.ptr()));
         ptr->set_script_instance(script);
     }
@@ -163,7 +161,7 @@ void TransferContext::free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p
     auto* owner = reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr));
 
 #ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(Object::cast_to<RefCounted>(owner), "Can't 'free' a reference.");
+    JVM_ERR_FAIL_COND_MSG(owner->is_ref_counted(), "Can't 'free' a reference.");
 #endif
 
     memdelete(owner);

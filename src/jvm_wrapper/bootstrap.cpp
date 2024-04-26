@@ -1,16 +1,25 @@
 #include "bootstrap.h"
 
-#include "gd_kotlin.h"
+#include "jvm_wrapper/memory/type_manager.h"
+#include "script/jvm_script_manager.h"
 
 void Bootstrap::load_classes(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
     jni::Env env(p_env);
-    jni::JObjectArray classes {jni::JObjectArray(p_classes)};
+    jni::JObjectArray jni_classes {p_classes};
     jni::JObject j_object {p_this};
 
-    GDKotlin::get_instance().register_classes(env, classes);
+    Vector<KtClass*> classes;
+    for (auto i = 0; i < jni_classes.length(env); i++) {
+        KtClass* kt_class = new KtClass(env, jni_classes.get(env, i));
+        kt_class->fetch_members(env);
+        classes.append(kt_class);
+        LOG_DEV_VERBOSE(vformat("Loaded class %s : %s", kt_class->registered_class_name, kt_class->base_godot_class));
+    }
 
     j_object.delete_local_ref(env);
-    classes.delete_local_ref(env);
+    jni_classes.delete_local_ref(env);
+
+    JvmScriptManager::get_instance().create_and_update_scripts(classes);
 }
 
 void Bootstrap::register_engine_type(JNIEnv* p_env, jobject p_this, jobjectArray p_classes_names, jobjectArray p_singleton_names) {
@@ -36,15 +45,11 @@ void Bootstrap::register_engine_type(JNIEnv* p_env, jobject p_this, jobjectArray
 
 Bootstrap::Bootstrap(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanceWrapper(p_env, p_wrapped) {}
 
-
 void Bootstrap::init(jni::Env& p_env, const String& p_project_path, const String& p_jar_file, const jni::JObject& p_class_loader) {
     LOCAL_FRAME(2);
     jni::JObject project_path = p_env.new_string(p_project_path.utf8().get_data());
     jni::JObject jar_file {p_env.new_string(p_jar_file.utf8().get_data())};
-    jvalue args[5] = {
-      jni::to_jni_arg(project_path),
-      jni::to_jni_arg(jar_file),
-      jni::to_jni_arg(p_class_loader)};
+    jvalue args[3] = {jni::to_jni_arg(project_path), jni::to_jni_arg(jar_file), jni::to_jni_arg(p_class_loader)};
     wrapped.call_void_method(p_env, INIT, args);
 }
 

@@ -37,7 +37,7 @@ bool KotlinBinding::refcount_decremented_unsafe() {
 }
 
 void KotlinBinding::set_kt_binding(jni::JObject j_object) {
-    JVM_CRASH_COND_MSG(kt_binding, "Trying to set a KtBinding on an already bound Object");
+    JVM_DEV_ASSERT(!kt_binding, "Trying to set a KtBinding on an already bound Object");
 
     jni::Env env {jni::Jvm::current_env()};
     kt_binding = memnew(KtBinding(env, j_object));

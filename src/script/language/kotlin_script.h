@@ -1,7 +1,7 @@
 #ifndef GODOT_JVM_KOTLIN_SCRIPT_H
 #define GODOT_JVM_KOTLIN_SCRIPT_H
 
-#include "jvm_script.h"
+#include "script/jvm_script.h"
 
 class KotlinScript : public PathScript {
     GDCLASS(KotlinScript, JvmScript);

@@ -1,6 +1,6 @@
 #include "gd_print_bridge.h"
 
-#include "gd_kotlin.h"
+#include "jvm_wrapper/memory/transfer_context.h"
 
 using namespace bridges;
 

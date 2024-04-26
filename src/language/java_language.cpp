@@ -1,8 +1,7 @@
 #include "java_language.h"
 
-#include "gd_kotlin.h"
 #include "names.h"
-#include "script/java_script.h"
+#include "script/language/java_script.h"
 
 #include <core/io/resource_loader.h>
 
