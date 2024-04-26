@@ -3,13 +3,11 @@
 #include <scene/main/node.h>
 
 #include "core/os/thread.h"
-#include "gd_kotlin.h"
 #include "jvm_instance.h"
 #include "jvm_placeholder_instance.h"
-#include "language/jvm_language.h"
-#include "language/kotlin_language.h"
-#include "language/names.h"
-#include "logging.h"
+#include "language/gdj_language.h"
+#include "script/jvm_script_manager.h"
+#include "binding/kotlin_binding_manager.h"
 
 Variant JvmScript::_new(const Variant** p_args, int p_arg_count, Callable::CallError& r_error) {
     Object* obj = _object_create(p_args, p_arg_count);
@@ -22,12 +20,6 @@ Variant JvmScript::_new(const Variant** p_args, int p_arg_count, Callable::CallE
 }
 
 Object* JvmScript::_object_create(const Variant** p_args, int p_arg_count) {
-#ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(
-      !is_valid(),
-      vformat("Invalid script %s was attempted to be used. Make sure you have properly built your project.", get_path())
-    );
-#endif
     Object* owner {ClassDB::instantiate(kotlin_class->base_godot_class)};
 
     ScriptInstance* instance {_instance_create<true>(p_args, p_arg_count, owner)};
@@ -45,10 +37,11 @@ bool JvmScript::can_instantiate() const {
     if (Engine::get_singleton()->is_editor_hint()) {
         return false;
     } else {
-        return true;
+        return is_valid();
     }
 #else
-    return true;
+    return is_valid();
+    ;
 #endif
 }
 
@@ -66,7 +59,7 @@ bool JvmScript::inherits_script(const Ref<Script>& p_script) const {
 Ref<Script> JvmScript::get_base_script() const {
     if (!is_valid() || kotlin_class->registered_supertypes.size() == 0) { return {}; }
     StringName parent_name = kotlin_class->registered_supertypes[0];
-    return TypeManager::get_instance().get_user_script_from_name(parent_name);
+    return JvmScriptManager::get_instance().get_user_script_from_name(parent_name);
 }
 
 StringName JvmScript::get_instance_base_type() const {
@@ -88,15 +81,21 @@ ScriptInstance* JvmScript::_instance_create(const Variant** p_args, int p_arg_co
     }
 
 #ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(
+    JVM_ERR_FAIL_COND_V_MSG(
       !is_valid(),
+      nullptr,
       vformat("Invalid script %s was attempted to be used. Make sure you have properly built your project.", get_path())
     );
-    LOG_VERBOSE(vformat("Try to create %s instance.", kotlin_class->registered_class_name));
+    LOG_DEV_VERBOSE(vformat("Try to create %s instance.", kotlin_class->registered_class_name));
 #endif
 
     jni::Env env = jni::Jvm::current_env();
     KtObject* wrapped = kotlin_class->create_instance(env, p_args, p_arg_count, p_this);
+
+#ifdef DEBUG_ENABLED
+    if (unlikely(!wrapped)) { return nullptr; }// Error already throw by create_instance()
+#endif
+
     return memnew(JvmInstance(env, p_this, wrapped, this));
 }
 
@@ -211,7 +210,7 @@ String JvmScript::get_class_icon_path() const {
 }
 
 PlaceHolderScriptInstance* JvmScript::placeholder_instance_create(Object* p_this) {
-    PlaceHolderScriptInstance* placeholder {memnew(JvmPlaceHolderInstance(KotlinLanguage::get_instance(), Ref<Script>(this), p_this))};
+    PlaceHolderScriptInstance* placeholder {memnew(JvmPlaceHolderInstance(GdjLanguage::get_instance(), Ref<Script>(this), p_this))};
 
     List<PropertyInfo> exported_properties;
     get_script_exported_property_list(&exported_properties);

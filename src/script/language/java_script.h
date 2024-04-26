@@ -1,7 +1,7 @@
 #ifndef GODOT_JVM_JAVA_SCRIPT_H
 #define GODOT_JVM_JAVA_SCRIPT_H
 
-#include "jvm_script.h"
+#include "script/jvm_script.h"
 
 class JavaScript : public PathScript {
     GDCLASS(JavaScript, JvmScript);

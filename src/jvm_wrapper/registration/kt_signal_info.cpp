@@ -1,7 +1,5 @@
 #include "kt_signal_info.h"
 
-#include "lifecycle/class_loader.h"
-
 KtSignalInfo::KtSignalInfo(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanceWrapper(p_env, p_wrapped) {
 
     jni::JString string {wrapped.call_object_method(p_env, GET_NAME)};

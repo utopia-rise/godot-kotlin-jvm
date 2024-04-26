@@ -2,9 +2,9 @@
 
 #include "gd_kotlin.h"
 #include "jvm_wrapper/memory/transfer_context.h"
-#include "lifecycle/class_loader.h"
 
-KtClass::KtClass(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanceWrapper(p_env, p_wrapped),
+KtClass::KtClass(jni::Env& p_env, jni::JObject p_wrapped) :
+  JvmInstanceWrapper(p_env, p_wrapped),
   constructors {},
   _has_notification() {
     LOCAL_FRAME(4);
@@ -25,24 +25,23 @@ KtClass::~KtClass() {
 }
 
 KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_arg_count, Object* p_owner) {
-#ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(
-      p_arg_count > MAX_CONSTRUCTOR_SIZE,
+    JVM_DEV_ASSERT(
+      p_arg_count <= MAX_CONSTRUCTOR_SIZE,
       vformat("Cannot call constructor with %s, max arg count is %s", p_arg_count, MAX_CONSTRUCTOR_SIZE)
     );
-#endif
 
     KtConstructor* constructor {constructors[p_arg_count]};
 
 #ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(constructor == nullptr, vformat("Cannot find constructor with %s parameters for class %s", p_arg_count, registered_class_name));
+    JVM_ERR_FAIL_COND_V_MSG(
+      constructor == nullptr,
+      nullptr,
+      vformat("Cannot find constructor with %s parameters for class %s", p_arg_count, registered_class_name)
+    );
 #endif
 
     KtObject* jvm_instance {constructor->create_instance(env, p_args, p_owner)};
-
-#ifdef DEV_ENABLED
-    LOG_VERBOSE(vformat("Instantiated an object with resource path %s", registered_class_name));
-#endif
+    LOG_DEV_VERBOSE(vformat("Instantiated an object with resource path %s", registered_class_name));
 
     return jvm_instance;
 }
@@ -174,9 +173,7 @@ const Dictionary KtClass::get_rpc_config() {
 }
 
 void KtClass::do_notification(jni::Env& env, KtObject* p_instance, int p_notification, bool p_reversed) {
-    if (!_has_notification) {
-        return;
-    }
+    if (!_has_notification) { return; }
 
     Variant notification = p_notification;
     Variant reversed = p_reversed;

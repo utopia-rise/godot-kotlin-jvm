@@ -1,7 +1,6 @@
 #include "kt_property.h"
 
-#include "gd_kotlin.h"
-#include "lifecycle/class_loader.h"
+#include "jvm_wrapper/memory/transfer_context.h"
 
 KtPropertyInfo::KtPropertyInfo(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanceWrapper(p_env, p_wrapped) {
     type = static_cast<Variant::Type>(wrapped.call_int_method(p_env, GET_TYPE));

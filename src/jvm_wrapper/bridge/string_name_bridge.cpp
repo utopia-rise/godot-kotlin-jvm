@@ -1,7 +1,7 @@
 #include "string_name_bridge.h"
 
 #include "bridges_utils.h"
-#include "gd_kotlin.h"
+#include "jvm_wrapper/memory/transfer_context.h"
 
 using namespace bridges;
 
