@@ -20,7 +20,6 @@ public:
 
 private:
     void _generate_export_configuration_file(jni::JvmType vm_type);
-    static void _copy_jre_to(const char* jre_folder, Ref<DirAccess> dir_access);
 };
 
 #endif// GODOT_JVM_KOTLINEDITOREXPORTPLUGIN_H
