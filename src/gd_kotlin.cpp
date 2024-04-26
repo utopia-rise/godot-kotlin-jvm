@@ -57,15 +57,16 @@ void GDKotlin::fetch_user_configuration() {
 void GDKotlin::set_jvm_options() {
 #ifdef DEBUG_ENABLED
     jvm_options.add_jni_checks();
-#endif
 
-    if (user_configuration.jvm_debug_port != -1) {
+
+    if (user_configuration.use_debug) {
         jvm_options.add_debug_options(
           user_configuration.jvm_debug_port,
           user_configuration.jvm_debug_address,
           user_configuration.wait_for_debugger
         );
     }
+#endif
 
     if (user_configuration.jvm_jmx_port >= 0) { jvm_options.add_jmx_option(user_configuration.jvm_jmx_port); }
 
@@ -124,7 +125,7 @@ void GDKotlin::initialize_core_library(ClassLoader* class_loader) {
     jni::Env env {jni::Jvm::current_env()};
     JvmManager::initialize_jni_classes(env, class_loader);
 
-    if (user_configuration.max_string_size != 0) {
+    if (user_configuration.max_string_size != -1) {
         LongStringQueue::get_instance().set_string_max_size(env, user_configuration.max_string_size);
     }
 
