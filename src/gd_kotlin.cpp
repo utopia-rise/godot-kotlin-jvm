@@ -278,15 +278,24 @@ bool GDKotlin::load_user_code() {
 #else
         String user_code_path {copy_new_file_to_user_dir(USER_CODE_FILE)};
 #endif
-        if (!FileAccess::exists(user_code_path)) { return false; }
+        if (!FileAccess::exists(user_code_path)) {
+            String message {"No main.jar detected at $userCodeFile. No classes will be loaded. Build the gradle "
+                            "project to load classes"};
+#ifdef TOOLS_ENABLED
+            LOG_WARNING(vformat(message, user_code_path));
+#elif defined DEBUG_ENABLED
+            LOG_ERROR(vformat(message, user_code_path));
+#endif
+            return false;
+        }
 
         JVM_LOG_VERBOSE("Loading usercode file at: %s", user_code_path);
-        // TODO: Rework this part when cpp reloading done, can't check what's happening in the Kotlin code from here.
         ClassLoader* user_class_loader = ClassLoader::create_instance(
           env,
           ProjectSettings::get_singleton()->globalize_path(user_code_path),
           bootstrap_class_loader->get_wrapped()
         );
+
         bootstrap->init(
           env,
           project_path,
@@ -322,12 +331,11 @@ void GDKotlin::unload_boostrap() {
     bootstrap_class_loader = nullptr;
 }
 
-
 #define SET_LOADING_STATE(cond, new_state, target_state) \
-    if (state < State::new_state) {                        \
-        if (!cond) { return; }                             \
-        state = State::new_state;                          \
-        if (new_state == target_state) { return; }         \
+    if (state < State::new_state) {                      \
+        if (!cond) { return; }                           \
+        state = State::new_state;                        \
+        if (new_state == target_state) { return; }       \
     }
 
 void GDKotlin::initialize_up_to(State target_state) {
@@ -346,10 +354,10 @@ void GDKotlin::initialize_up_to(State target_state) {
 }
 
 #define UNSET_LOADING_STATE(function, new_state, target_state) \
-    if (state > State::new_state) {                        \
-        function;                           \
-        state = State::new_state;                          \
-        if (new_state == target_state) { return; }         \
+    if (state > State::new_state) {                            \
+        function;                                              \
+        state = State::new_state;                              \
+        if (new_state == target_state) { return; }             \
     }
 
 void GDKotlin::finalize_down_to(State target_state) {
