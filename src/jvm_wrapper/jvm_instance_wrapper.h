@@ -43,6 +43,18 @@ public:                                                                         
         clazz.delete_local_ref(p_env);                                               \
     }                                                                                \
                                                                                      \
+    static void finalize_jni_binding(jni::Env& p_env, ClassLoader* class_loader) {   \
+        jni::JClass clazz;                                                           \
+        if (class_loader) {                                                          \
+            clazz = class_loader->load_class(p_env, get_fully_qualified_name());     \
+        } else {                                                                     \
+            clazz = p_env.find_class(get_fully_qualified_name());                    \
+        }                                                                            \
+                                                                                     \
+        clazz.unregister_natives(p_env);                                             \
+        clazz.delete_local_ref(p_env);                                               \
+    }                                                                                \
+                                                                                     \
 private:
 
 /**
@@ -64,14 +76,14 @@ protected:
 
 public:
     bool is_ref_weak() const;
-
     const jni::JObject& get_wrapped() const;
-
     void swap_to_strong_unsafe(jni::Env& p_env);
-
     void swap_to_weak_unsafe(jni::Env& p_env);
+    static const char* get_fully_qualified_name();
 
+    static bool initialize(jni::Env& p_env, ClassLoader* class_loader);
     static Derived* create_instance(jni::Env& p_env, ClassLoader* class_loader);
+    static void finalize(jni::Env& p_env, ClassLoader* class_loader);
 };
 
 template<class Derived, const char* FqName>
@@ -79,6 +91,12 @@ JvmInstanceWrapper<Derived, FqName>::JvmInstanceWrapper(jni::Env& p_env, jni::JO
     // When created, it's a strong reference by default
     wrapped = p_wrapped.new_global_ref<jni::JObject>(p_env);
     p_wrapped.delete_local_ref(p_env);
+}
+
+template<class Derived, const char* FqName>
+bool JvmInstanceWrapper<Derived, FqName>::initialize(jni::Env& p_env, ClassLoader* class_loader) {
+    Derived::initialize_jni_binding(p_env, class_loader);
+    return true;
 }
 
 template<class Derived, const char* FqName>
@@ -92,6 +110,11 @@ Derived* JvmInstanceWrapper<Derived, FqName>::create_instance(jni::Env& p_env, C
     jni::MethodID ctor = cls.get_constructor_method_id(p_env, "()V");
     jni::JObject instance = cls.new_instance(p_env, ctor);
     return new Derived(p_env, instance);
+}
+
+template<class Derived, const char* FqName>
+void JvmInstanceWrapper<Derived, FqName>::finalize(jni::Env& p_env, ClassLoader* class_loader) {
+    Derived::finalize_jni_binding(p_env, class_loader);
 }
 
 template<class Derived, const char* FqName>

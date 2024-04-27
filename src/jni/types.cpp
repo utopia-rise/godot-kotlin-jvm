@@ -92,6 +92,12 @@ namespace jni {
     }
 
     MethodID JClass::get_constructor_method_id(Env& env, const char* signature) {
+    void JClass::unregister_natives(Env& env) {
+        env.env->UnregisterNatives((jclass) obj);
+        env.check_exceptions();
+    }
+
+    MethodID JClass::get_constructor_method_id(Env& env, const char* signature) {
         return get_method_id(env, "<init>", signature);
     }
 
