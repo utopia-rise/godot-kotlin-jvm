@@ -1,122 +1,144 @@
 
 #include "jvm_script_manager.h"
 
+#include "lifecycle/paths.h"
 #include "script/language/gdj_script.h"
 
 void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
-    LOG_DEV("Loading JVM Scripts...");
-
 #if defined(DEBUG_ENABLED) && !defined(TOOLS_ENABLED)
-    JVM_ERR_FAIL_COND_MSG(named_user_scripts.size() != 0, "JVM scripts are being initialized more than once.");
+    JVM_ERR_FAIL_COND_MSG(named_scripts.size() != 0, "JVM scripts are being initialized more than once.");
 #endif
-
-    Vector<Ref<NamedScript>> scripts;
-    // We first deal with named scripts.
 
 #ifdef TOOLS_ENABLED
     // Clear all containers and keeping a cache for comparison.
-    HashMap<StringName, Ref<NamedScript>> script_cache = named_user_scripts_map;
-    named_user_scripts.clear();
-    named_user_scripts_map.clear();
+    HashMap<StringName, Ref<NamedScript>> named_script_cache = named_scripts_map;
+    named_scripts.clear();
+    named_scripts_map.clear();
+
     filepath_to_name_map.clear();
+
+    Vector<Ref<PathScript>> path_script_cache = path_scripts;
+    path_scripts.clear();
+    path_scripts_map.clear();
 #endif
 
+    LOG_DEV("Loading JVM Scripts...");
+
+    // Named Script
     for (KtClass* kotlin_class : classes) {
         String script_name = kotlin_class->registered_class_name;
-        Ref<GdjScript> script;
+
+        Ref<GdjScript> named_script;
 #ifdef TOOLS_ENABLED
         // First check if the scripts already exist
-        if (script_cache.has(script_name)) {
-            script = script_cache[script_name];
-            delete script->kotlin_class;
-            script->kotlin_class = kotlin_class;
-            script_cache.erase(script_name);
+        if (named_script_cache.has(script_name)) {
+            named_script = named_script_cache[script_name];
+
+            delete named_script->kotlin_class;
+            named_script->kotlin_class = kotlin_class;
+
+            named_script_cache.erase(script_name);
+
             LOG_DEV_VERBOSE(vformat("JVM Script updated: %s", script_name));
         } else {
 #endif
-            script.instantiate();
-            script->kotlin_class = kotlin_class;
+            named_script.instantiate();
+            named_script->kotlin_class = kotlin_class;
+
             LOG_DEV_VERBOSE(vformat("JVM Script created: %s", script_name));
 #ifdef TOOLS_ENABLED
         }
 #endif
-        scripts.push_back(Ref(script));
-    }
-
-    for (const Ref<NamedScript>& script : scripts) {
-        named_user_scripts.push_back(script);
-        named_user_scripts_map[script->get_global_name()] = script;
-
-        String source_path = "res://" + script->kotlin_class->relative_source_path;
+        // Add mapping from path to name for PathScripts.
+        String source_path = RES_DIRECTORY + kotlin_class->relative_source_path;
         if (FileAccess::exists(source_path)) {
-            filepath_to_name_map[source_path] = script->kotlin_class->registered_class_name;
+            filepath_to_name_map[source_path] = kotlin_class->registered_class_name;
         }
+
+        named_scripts.push_back(named_script);
+        named_scripts_map[script_name] = named_script;
     }
 
 #ifdef TOOLS_ENABLED
     // Only scripts left in the cache are the ones that have been removed or placeholders without associated KtClass
-    // We simply delete their kotlin_class if they got one
-    for (const KeyValue<StringName, Ref<NamedScript>>& keyValue : script_cache) {
-        Ref<JvmScript> ref = keyValue.value;
-        if (ref->kotlin_class) {
-            LOG_DEV_VERBOSE(vformat("JVM Script deleted: %s", ref->kotlin_class->registered_class_name));
-            delete ref->kotlin_class;
-            ref->kotlin_class = nullptr;
+    // We simply remove their kotlin_class if they got one.
+    for (const KeyValue<StringName, Ref<NamedScript>>& keyValue : named_script_cache) {
+        Ref<NamedScript> script {keyValue.value};
+        StringName name {keyValue.key};
+        if (script->kotlin_class) {
+            LOG_DEV_VERBOSE(vformat("JVM Script deleted: %s", script->kotlin_class->registered_class_name));
+            delete script->kotlin_class;
+            script->kotlin_class = nullptr;
         }
 
-        // We only add them back if they are in use, otherwise we let the Script die.
-        if (!ref->placeholders.is_empty()) { scripts.push_back(ref); }
+        // We only add them back if placeholders are in use in the editor. That way they can be updated if back in the next reload.
+        // Without that a separate Script instance would be created and nodes not updated.
+        // Otherwise, we let the script die.
+        if (!script->placeholders.is_empty()) {
+            named_scripts.push_back(script);
+            named_scripts_map[name] = script;
+        }
     }
 
     // Now we deal with path script reloading.
-    Vector<Ref<PathScript>> path_script_cache = path_user_scripts;
-    path_user_scripts.clear();
     for (Ref<PathScript>& script : path_script_cache) {
         String path = script->get_path();
-        // No need to delete the KotlinClass, it has already been done with the namedScript that shares it.
+        // No need to delete the KotlinClass, it has already been done with the NamedScript that shares it.
         script->kotlin_class = nullptr;
         if (filepath_to_name_map.has(path)) {
-            script->kotlin_class = named_user_scripts_map[filepath_to_name_map[path]]->kotlin_class;
-            path_user_scripts.push_back(script);
+            script->kotlin_class = named_scripts_map[filepath_to_name_map[path]]->kotlin_class;
+
+        } else if (script->placeholders.is_empty()) {
+            continue;
         }
+        // Only scripts used in placeholder or with a mapping to a Named Script are kept.
+        path_scripts.push_back(script);
+        path_scripts_map[path] = script;
     }
+
+    update_all_scripts();
 #endif
 }
 
-const Ref<NamedScript>& JvmScriptManager::get_user_script_for_index(int p_index) const {
+const Ref<NamedScript>& JvmScriptManager::get_named_script_for_index(int p_index) const {
     // No check. Meant to be a fast operation
-    return named_user_scripts[p_index];
+    return named_scripts[p_index];
 }
 
-Ref<NamedScript> JvmScriptManager::get_user_script_from_name(const StringName& name) const {
-    if (HashMap<StringName, Ref<NamedScript>>::ConstIterator element = named_user_scripts_map.find(name)) {
+Ref<NamedScript> JvmScriptManager::get_script_from_name(const StringName& name) const {
+    if (HashMap<StringName, Ref<NamedScript>>::ConstIterator element = named_scripts_map.find(name)) {
         return element->value;
     }
-    return Ref<JvmScript>();
+    return {};
+}
+
+Ref<PathScript> JvmScriptManager::get_script_from_path(const String& p_path) const {
+    if (HashMap<String, Ref<PathScript>>::ConstIterator element = path_scripts_map.find(p_path)) {
+        return element->value;
+    }
+    return {};
 }
 
 #ifdef TOOLS_ENABLED
-void JvmScriptManager::update_all_exports_if_dirty() {
-    if (!scripts_dirty) return;
-    for (const Ref<NamedScript>& script : named_user_scripts) {
-        script->update_exports();
+void JvmScriptManager::update_all_scripts() {
+    for (const Ref<NamedScript>& script : named_scripts) {
+        script->update_script();
     }
-    for (const Ref<PathScript>& script : path_user_scripts) {
-        script->update_exports();
+    for (const Ref<PathScript>& script : path_scripts) {
+        script->update_script();
     }
-    scripts_dirty = false;
 }
 #endif
 
 void JvmScriptManager::clear() {
-    named_user_scripts.clear();
-    named_user_scripts_map.clear();
-    path_user_scripts.clear();
+    named_scripts.clear();
+    named_scripts_map.clear();
     filepath_to_name_map.clear();
+    path_scripts.clear();
+    path_scripts_map.clear();
 }
 
 JvmScriptManager& JvmScriptManager::get_instance() {
     static JvmScriptManager instance;
     return instance;
 }
-
