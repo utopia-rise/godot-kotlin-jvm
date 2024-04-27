@@ -15,6 +15,10 @@ class JvmScriptManager {
     JvmScriptManager() = default;
     ~JvmScriptManager() = default;
 
+#ifdef TOOLS_ENABLED
+    void update_all_scripts();
+#endif
+
 public:
     JvmScriptManager(const JvmScriptManager&) = delete;
     void operator=(const JvmScriptManager&) = delete;
@@ -33,15 +37,11 @@ public:
     Ref<SCRIPT> get_or_create_script(const String& p_path);
 
     void clear();
-
-#ifdef TOOLS_ENABLED
-    void update_all_scripts();
-#endif
 };
 
 template<class SCRIPT>
 Ref<SCRIPT> JvmScriptManager::get_or_create_script(const String& p_path) {
-    if constexpr (!std::is_base_of<JvmScript, SCRIPT>()) return {};
+    if constexpr (!std::is_base_of<JvmScript, SCRIPT>()) { return {}; }
     // Placeholder scripts have to be registered in the TypeManager in order to be transformed in valid scripts when the jar is built.
 
     Ref<SCRIPT> script;
