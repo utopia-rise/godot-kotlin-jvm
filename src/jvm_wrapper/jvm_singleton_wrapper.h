@@ -33,12 +33,7 @@ protected:                                                                \
  */
 template<class Derived, const char* FqName>
 class JvmSingletonWrapper : public JvmInstanceWrapper<Derived, FqName> {
-    friend class JvmManager;
-
     static Derived* _instance;
-
-    static bool initialize(jni::Env& p_env, ClassLoader* class_loader);
-    static void destroy();
 
 protected:
     JvmSingletonWrapper(jni::Env& p_env, jni::JObject p_wrapped);
@@ -52,22 +47,10 @@ public:
     JvmSingletonWrapper<Derived, FqName>& operator=(JvmSingletonWrapper<Derived, FqName>&&) noexcept = delete;
     JvmSingletonWrapper(JvmSingletonWrapper<Derived, FqName>&& instance) noexcept = delete;
 
-    static Derived* create_instance(jni::Env& p_env);
+    static bool initialize(jni::Env& p_env, ClassLoader* class_loader);
+    static Derived* create_instance(jni::Env& p_env, ClassLoader* class_loader);
+    static void finalize(jni::Env& p_env, ClassLoader* class_loader);
 };
-
-template<class Derived, const char* FqName>
-Derived* JvmSingletonWrapper<Derived, FqName>::create_instance(jni::Env& p_env) {
-    JVM_ERR_FAIL_V_MSG(_instance, "Can't create a new instance of a this class. Returning the singleton instead");
-}
-
-template<class Derived, const char* FqName>
-Derived* JvmSingletonWrapper<Derived, FqName>::_instance {nullptr};
-
-template<class Derived, const char* FqName>
-Derived& JvmSingletonWrapper<Derived, FqName>::get_instance() {
-    JVM_DEV_ASSERT(_instance, String(FqName) + " singleton is not initialized.");
-    return *_instance;
-}
 
 template<class Derived, const char* FqName>
 bool JvmSingletonWrapper<Derived, FqName>::initialize(jni::Env& p_env, ClassLoader* class_loader) {
@@ -91,10 +74,28 @@ bool JvmSingletonWrapper<Derived, FqName>::initialize(jni::Env& p_env, ClassLoad
     return true;
 }
 
+
 template<class Derived, const char* FqName>
-void JvmSingletonWrapper<Derived, FqName>::destroy() {
+Derived* JvmSingletonWrapper<Derived, FqName>::create_instance(jni::Env& p_env, ClassLoader* class_loader) {
+    JVM_DEV_ASSERT(true, "Can't create a new instance of a this class. Returning the singleton instead");
+    return _instance;
+}
+
+template<class Derived, const char* FqName>
+void JvmSingletonWrapper<Derived, FqName>::finalize(jni::Env& p_env, ClassLoader* class_loader) {
+    JVM_DEV_ASSERT(_instance, String(FqName) + " singleton is not initialized.");
     delete _instance;
     _instance = nullptr;
+    Derived::finalize_jni_binding(p_env, class_loader);
+}
+
+template<class Derived, const char* FqName>
+Derived* JvmSingletonWrapper<Derived, FqName>::_instance {nullptr};
+
+template<class Derived, const char* FqName>
+Derived& JvmSingletonWrapper<Derived, FqName>::get_instance() {
+    JVM_DEV_ASSERT(_instance, String(FqName) + " singleton is not initialized.");
+    return *_instance;
 }
 
 template<class Derived, const char* FqName>

@@ -17,8 +17,8 @@
 class JvmManager {
 public:
     static bool initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& user_configuration, JvmOptions& jvm_options);
-    static bool initialize_jni_classes(jni::Env& p_env, ClassLoader* class_loader);
-    static void destroy_jni_classes();
+    static bool initialize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loader);
+    static void finalize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loader);
     static void close_jvm();
 };
 
