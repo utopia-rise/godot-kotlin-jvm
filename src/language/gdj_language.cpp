@@ -27,7 +27,9 @@ GdjLanguage* GdjLanguage::get_instance() {
 }
 
 void GdjLanguage::init() {
-    GDKotlin::get_instance().init();
+    if (GDKotlin::get_instance().get_state() == GDKotlin::State::CORE_LIBRARY_INITIALIZED) {
+        GDKotlin::get_instance().initialize_up_to(GDKotlin::State::JVM_SCRIPTS_INITIALIZED);
+    }
 
 #ifdef DEBUG_ENABLED
     GDKotlin::get_instance().validate_state();
