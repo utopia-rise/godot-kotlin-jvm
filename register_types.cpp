@@ -86,4 +86,6 @@ void uninitialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
     JvmLanguage* jvm_language {GdjLanguage::get_instance()};
     ScriptServer::unregister_language(jvm_language);
     memdelete(jvm_language);
+
+    GDKotlin::get_instance().finalize_down_to(GDKotlin::State::NOT_STARTED);
 }
