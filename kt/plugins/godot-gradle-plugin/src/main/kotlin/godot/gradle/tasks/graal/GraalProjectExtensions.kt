@@ -17,7 +17,9 @@ fun Project.copyToGraalBuildDirectory(resourcePath: String) {
         outputFile.delete()
     }
     outputFile.createNewFile()
-    outputFile.writeBytes(resource.readAllBytes())
+    resource.copyTo(
+        outputFile.outputStream()
+    )
 }
 
 fun Project.getGraalVmAdditionalJniConfigs(): String {

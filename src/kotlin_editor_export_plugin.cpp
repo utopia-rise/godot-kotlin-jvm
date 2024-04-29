@@ -13,6 +13,7 @@
 
 static constexpr const char* all_jvm_feature {"export-all-jvm"};
 static constexpr const char* configuration_path {"res://godot_kotlin_configuration.json"};
+static constexpr const char* ios_jdk_version {"21"};
 
 void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, bool p_debug, const String& p_path, int p_flags) {
     LOG_INFO("Beginning Godot-Jvm specific exports.");
@@ -27,7 +28,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
     if (is_ios_export) {
         _generate_export_configuration_file(jni::Jvm::GRAAL_NATIVE_IMAGE);
         String base_ios_build_dir {"res://build/libs/ios/"};
-        String base_ios_jdk_dir {base_ios_build_dir.path_join("ios-jdk/21/")};
+        String base_ios_jdk_dir {base_ios_build_dir.path_join("ios-jdk").path_join(ios_jdk_version)};
         add_ios_project_static_lib(
                 ProjectSettings::get_singleton()->globalize_path(
                         base_ios_jdk_dir.path_join("libjava-release.a")

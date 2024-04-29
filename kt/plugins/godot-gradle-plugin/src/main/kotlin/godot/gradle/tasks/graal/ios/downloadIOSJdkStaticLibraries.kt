@@ -1,5 +1,6 @@
 package godot.gradle.tasks.graal.ios
 
+import godot.utils.GodotBuildProperties
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.TaskProvider
@@ -19,7 +20,7 @@ fun Project.downloadIOSJdkStaticLibraries(): TaskProvider<out Task> = tasks
                     .resolve("ios-jdk")
                     .resolve("21")
 
-                val iosGraalJdkReleaseBaseLink = "https://github.com/utopia-rise/ios-graal-jdk-21/releases/download/v23.1.3-21-b33/"
+                val iosGraalJdkReleaseBaseLink = "https://github.com/utopia-rise/ios-graal-jdk-${GodotBuildProperties.iosJdkVersion}/releases/download/${GodotBuildProperties.iosGraalJdkBuildVersion}/"
 
                 val libJavaFileName = "libjava-release.a"
 
@@ -28,7 +29,9 @@ fun Project.downloadIOSJdkStaticLibraries(): TaskProvider<out Task> = tasks
                 if (!libJavaFile.exists()) {
                     libJavaFile.ensureParentDirsCreated()
                     libJavaFile.createNewFile()
-                    libJavaFile.writeBytes(URL("$iosGraalJdkReleaseBaseLink/$libJavaFileName").readBytes())
+                    URL("$iosGraalJdkReleaseBaseLink/$libJavaFileName").openStream().copyTo(
+                        libJavaFile.outputStream()
+                    )
                 }
 
                 val libJvmFileName = "libjvm-release.a"
@@ -37,7 +40,9 @@ fun Project.downloadIOSJdkStaticLibraries(): TaskProvider<out Task> = tasks
 
                 if (!libJvmFile.exists()) {
                     libJvmFile.createNewFile()
-                    libJvmFile.writeBytes(URL("$iosGraalJdkReleaseBaseLink/$libJvmFileName").readBytes())
+                    URL("$iosGraalJdkReleaseBaseLink/$libJvmFileName").openStream().copyTo(
+                        libJvmFile.outputStream()
+                    )
                 }
             }
         }

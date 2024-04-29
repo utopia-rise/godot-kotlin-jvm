@@ -19,7 +19,7 @@ fun Project.copyDefaultGraalIOSConfigsTask(
         doLast {
             listOf(
                 // Configurations from gluon substrate: https://github.com/gluonhq/substrate/tree/master/src/main/resources/config
-                
+
                 "ios/$iosJniConfig",
                 "ios/$iosReflectionConfig",
                 "ios/$iosResourceConfig",
