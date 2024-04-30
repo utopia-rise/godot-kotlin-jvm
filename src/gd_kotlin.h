@@ -5,6 +5,7 @@
 #include "lifecycle/jvm_manager.h"
 #include "lifecycle/jvm_options.h"
 #include "lifecycle/jvm_user_configuration.h"
+#include "resource_format/java_archive.h"
 
 #include <core/string/ustring.h>
 
@@ -30,6 +31,7 @@ private:
 
     ClassLoader* bootstrap_class_loader {nullptr};
     Bootstrap* bootstrap {nullptr};
+    Ref<JavaArchive> jar;
     Object* callable_middleman; //TODO: delete when https://github.com/godotengine/godot/issues/95231 is resolved
 
     void fetch_user_configuration();

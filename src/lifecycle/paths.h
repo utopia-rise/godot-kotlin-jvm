@@ -100,6 +100,7 @@ static constexpr const char* ENTRY_DIRECTORY {"res://build/generated/ksp"};
 static constexpr const char* BUILD_DIRECTORY {"res://build/libs/"};
 static constexpr const char* USER_DIRECTORY {"user://"};
 static constexpr const char* RES_DIRECTORY {"res://"};
+static constexpr const char* JVM_DIRECTORY {"jvm"};
 
 static constexpr const char* JVM_CONFIGURATION_PATH {"res://godot_kotlin_configuration.json"};
 
