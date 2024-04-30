@@ -14,8 +14,8 @@ jobs:
       - run: |
           echo "Setup done"
     outputs: # defined here explicitly, so it only needs to be defined here. All other workflows can just reference it
-      godot-kotlin-jvm-version: "0.8.3-4.2.1"
-      godot-version: "4.2.1-stable"
+      godot-kotlin-jvm-version: "0.9.1-4.2.2"
+      godot-version: "4.2.2-stable"
       jvm-version: "17"
 
   build-jvm:

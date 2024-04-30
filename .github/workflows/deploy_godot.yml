@@ -38,7 +38,7 @@ jobs:
             arch: universal
     steps:
       - name: Download deploy_release_url
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: deploy_release_url
           path: '.'
@@ -48,7 +48,7 @@ jobs:
         run: echo "release_url=$(cat deploy_release_url.txt)" >> $GITHUB_OUTPUT
 
       - name: Download ${{ matrix.platform }} ${{ matrix.target }} editor for ${{ matrix.arch }}
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: godot-kotlin-jvm_editor_${{ matrix.platform }}_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
           path: '.'
@@ -68,7 +68,7 @@ jobs:
     name: Deploy export templates
     steps:
       - name: Download deploy_release_url
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: deploy_release_url
           path: '.'
@@ -78,7 +78,7 @@ jobs:
         run: echo "release_url=$(cat deploy_release_url.txt)" >> $GITHUB_OUTPUT
 
       - name: Download export templates
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: godot-kotlin-jvm_export_templates_${{ inputs.godot-kotlin-jvm-version }}.tpz
           path: '.'
