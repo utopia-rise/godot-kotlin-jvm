@@ -39,7 +39,7 @@ namespace bridges {
             INIT_NATIVE_METHOD("engine_call_to_byte_array", "(J)V", PackedFloat64ArrayBridge::engine_call_to_byte_array)
 
             INIT_NATIVE_METHOD("engine_convert_to_godot", "([D)J", PackedFloat64ArrayBridge::engine_convert_to_godot)
-            INIT_NATIVE_METHOD("engine_convert_to_jvm", "([J)D", PackedFloat64ArrayBridge::engine_convert_to_jvm)
+            INIT_NATIVE_METHOD("engine_convert_to_jvm", "(J)[D", PackedFloat64ArrayBridge::engine_convert_to_jvm)
           )
         // clang-format on
 
