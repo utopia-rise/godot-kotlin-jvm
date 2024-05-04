@@ -2,6 +2,7 @@ package godot.gradle.tasks.graal.ios
 
 import godot.gradle.projectExt.godotJvmExtension
 import godot.gradle.tasks.graal.*
+import godot.utils.GodotBuildProperties
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.Exec
@@ -10,7 +11,8 @@ import java.io.File
 
 fun Project.createIOSGraalNativeImageTask(
     checkNativeImageToolAccessibleTask: TaskProvider<out Task>,
-    checkPresenceOfDefaultGraalIOSConfigsTask: TaskProvider<out Task>,
+    copyDefaultGraalIOSConfigsTask: TaskProvider<out Task>,
+    downloadIOSCapCacheTask: TaskProvider<out Task>,
     packageMainJarTask: TaskProvider<out Task>,
     packageBootstrapJarTask: TaskProvider<out Task>
 ): TaskProvider<out Task> = tasks.register("createIOSGraalNativeImage", Exec::class.java) {
@@ -20,7 +22,8 @@ fun Project.createIOSGraalNativeImageTask(
 
         dependsOn(
             checkNativeImageToolAccessibleTask,
-            checkPresenceOfDefaultGraalIOSConfigsTask,
+            copyDefaultGraalIOSConfigsTask,
+            downloadIOSCapCacheTask,
             packageMainJarTask,
             packageBootstrapJarTask
         )
@@ -95,7 +98,12 @@ fun Project.createIOSGraalNativeImageTask(
                 "-Dsvm.targetName=iOS",
                 "-Dsvm.targetArch=arm64",
                 "-H:+UseCAPCache",
-                "-H:CAPCacheDir=${iosGraalConfigDir.resolve("capcache").absolutePath}",
+                "-H:CAPCacheDir=${
+                    iosGraalConfigDir
+                        .resolve("capcache")
+                        .resolve("${GodotBuildProperties.iosCapCacheVersion}-${GodotBuildProperties.iosJdkVersion}")
+                        .absolutePath
+                }",
                 "-H:CompilerBackend=lir",
                 "-Dsvm.platform=org.graalvm.nativeimage.Platform\$IOS_AARCH64",
                 jniConfigurationFilesArgument,

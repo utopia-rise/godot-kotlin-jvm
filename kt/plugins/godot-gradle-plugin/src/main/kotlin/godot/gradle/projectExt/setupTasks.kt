@@ -65,7 +65,8 @@ fun Project.setupTasks() {
             )
             val createIOSGraalNativeImageTask = createIOSGraalNativeImageTask(
                 checkNativeImageToolAccessibleTask = checkNativeImageToolAccessibleTask,
-                checkPresenceOfDefaultGraalIOSConfigsTask = copyDefaultGraalIOSConfigsTask,
+                copyDefaultGraalIOSConfigsTask = copyDefaultGraalIOSConfigsTask,
+                downloadIOSCapCacheTask = downloadIOSCapCacheFiles(),
                 packageMainJarTask = packageMainJarTask,
                 packageBootstrapJarTask = packageBootstrapJarTask
             )

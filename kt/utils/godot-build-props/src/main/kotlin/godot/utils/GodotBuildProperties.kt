@@ -32,4 +32,8 @@ object GodotBuildProperties {
     val iosGraalJdkBuildVersion by lazy {
         buildProperties["ios.graal.jdk.build.version"] as String
     }
+
+    val iosCapCacheVersion by lazy {
+        buildProperties["ios.cap.cache.version"] as String
+    }
 }

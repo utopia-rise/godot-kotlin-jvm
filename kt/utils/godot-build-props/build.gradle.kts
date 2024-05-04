@@ -21,7 +21,8 @@ tasks {
             "godot.version" to libs.versions.godot.get(),
             "kotlin.version" to libs.versions.kotlin.get(),
             "ios.jdk.version" to libs.versions.iosJdk.get(),
-            "ios.graal.jdk.build.version" to libs.versions.iosGraalJdkBuild.get()
+            "ios.graal.jdk.build.version" to libs.versions.iosGraalJdkBuild.get(),
+            "ios.cap.cache.version" to libs.versions.iosCapCache.get()
         )
         from("src/main/resources") {
             include("*.properties")
