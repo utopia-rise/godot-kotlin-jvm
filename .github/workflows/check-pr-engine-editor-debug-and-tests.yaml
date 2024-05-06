@@ -146,12 +146,13 @@ jobs:
       matrix:
         name: [ Debug, Release ]
         include:
+          # TODO: update macos and Java versions
           - name: Debug
-            os: macos-latest
+            os: macos-13
             java-version: 11
             target: debug
           - name: Release
-            os: macos-latest
+            os: macos-13
             java-version: 11
             target: release
     runs-on: ${{ matrix.os }}

@@ -37,7 +37,7 @@ fun Project.createGraalNativeImageTask(
 
                 workingDir = libsDir
 
-                val graalDirectory = projectDir.resolve("graal")
+                val graalDirectory = buildDir.resolve("graal")
 
                 val jniConfigurationFilesArgument = "-H:JNIConfigurationFiles=" +
                     graalDirectory.resolve("godot-kotlin-graal-jni-config.json").absolutePath + "," +

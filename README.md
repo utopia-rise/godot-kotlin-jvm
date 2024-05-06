@@ -57,3 +57,8 @@ JetBrains is helping us to develop this project by providing development tools t
 Intellij IDEA is our IDE of choice for Kotlin development and we strongly recommend using it.
 
 [![jblogo](.README/jetbrains.svg)](https://www.jetbrains.com/)
+
+## Special thanks
+
+We'd like to give a special thanks to [MOE](https://multi-os-engine.org/) community. They helped us a lot to get iOS
+platform working. If you intend to create a multi platform mobile app (not game), check out their project.

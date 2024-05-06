@@ -24,4 +24,16 @@ object GodotBuildProperties {
     val supportedKotlinVersion by lazy {
         buildProperties["kotlin.version"] as String
     }
+
+    val iosJdkVersion by lazy {
+        buildProperties["ios.jdk.version"] as String
+    }
+
+    val iosGraalJdkBuildVersion by lazy {
+        buildProperties["ios.graal.jdk.build.version"] as String
+    }
+
+    val iosCapCacheVersion by lazy {
+        buildProperties["ios.cap.cache.version"] as String
+    }
 }
