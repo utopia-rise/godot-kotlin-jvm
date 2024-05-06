@@ -10,4 +10,5 @@ Once done and compiled, create a new release and upload new built static librari
 - Update CAP (C Annotation Processor) cache in [cap-cache-generator](https://github.com/utopia-rise/cap-cache-generator).  
 To do so, change your `GRAALVM_HOME` environment variable to point to the new GraalVM you're updating for.  
 Then tag a new release and upload new CAP files in it.  
-- Change iOS JDK versions and CAP cache versions in `libs.versions.toml` of this project. 
+- Change iOS JDK versions and CAP cache versions in `libs.versions.toml` of this project.  
+- Change graalvm version and link in [exporting guide](https://github.com/utopia-rise/godot-kotlin-jvm/blob/master/docs/src/doc/user-guide/exporting.md) iOS section.
