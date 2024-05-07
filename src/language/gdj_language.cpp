@@ -36,7 +36,6 @@ void GdjLanguage::init() {
 void GdjLanguage::frame() {
 #ifdef TOOLS_ENABLED
     if (Engine::get_singleton()->is_project_manager_hint()) { return; }
-    TypeManager::get_instance().update_all_exports_if_dirty();
 #endif
 }
 

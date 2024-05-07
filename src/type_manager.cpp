@@ -141,19 +141,23 @@ void TypeManager::create_and_update_scripts(Vector<KtClass*>& classes) {
             path_user_scripts.push_back(script);
         }
     }
+
+    update_all_exports_if_dirty();
 #endif
 }
 
 #ifdef TOOLS_ENABLED
 void TypeManager::update_all_exports_if_dirty() {
-    if (!types_dirty) return;
     for (const Ref<NamedScript>& script : named_user_scripts) {
-        script->update_exports();
+        // We have to delay the update_export. The engine is not fully initialized and scripts can cause undefined behaviors.
+        JvmScript* ptr = script.ptr();
+        MessageQueue::get_singleton()->push_callable(callable_mp(ptr, &NamedScript::update_exports));
     }
     for (const Ref<PathScript>& script : path_user_scripts) {
-        script->update_exports();
+        // We have to delay the update_export. The engine is not fully initialized and scripts can cause undefined behaviors.
+        JvmScript* ptr = script.ptr();
+        MessageQueue::get_singleton()->push_callable(callable_mp(ptr, &NamedScript::update_exports));
     }
-    types_dirty = false;
 }
 #endif
 
@@ -178,4 +182,4 @@ TypeManager* TypeManager::init() {
     return native_instance;
 }
 
-TypeManager::TypeManager(jni::JObject p_wrapped) : JavaSingletonWrapper<TypeManager>(p_wrapped), types_dirty {false} {}
+TypeManager::TypeManager(jni::JObject p_wrapped) : JavaSingletonWrapper<TypeManager>(p_wrapped) {}
