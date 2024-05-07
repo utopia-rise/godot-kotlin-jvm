@@ -103,7 +103,7 @@ On desktop platform default export is inferred by the `godot_kotin_configuration
 ## iOS
 
 !!! warning
-With this export you don't have a choice regarding JVM version you use. Please use [GraalVM 23.1.3](https://download.oracle.com/graalvm/21/latest/graalvm-jdk-21_macos-aarch64_bin.tar.gz).
+    With this export you don't have a choice regarding JVM version you use. Please use [GraalVM 23.1.3](https://download.oracle.com/graalvm/21/latest/graalvm-jdk-21_macos-aarch64_bin.tar.gz).
 
 Additionally, to the regular GraalVM configuration mentioned above, add the following in `build.gradle.kts`:
 
