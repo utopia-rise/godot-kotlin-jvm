@@ -71,7 +71,7 @@ void KtProperty::call_set(jni::Env& p_env, KtObject* instance, const Variant& p_
 #ifdef TOOLS_ENABLED
 void KtProperty::safe_call_get(jni::Env& p_env, KtObject* instance, Variant& r_ret) {
     jvalue call_args[1] = {jni::to_jni_arg(instance->get_wrapped())};
-    wrapped.call_void_method_noexcept(p_env, CALL_GET, call_args);
+    wrapped.call_void_method<false>(p_env, CALL_GET, call_args);
     if (p_env.exception_check()) {
         Callable::CallError error;
         Variant::construct(propertyInfo->type, r_ret, {}, 0, error);

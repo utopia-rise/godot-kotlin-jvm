@@ -2,7 +2,6 @@
 #define GODOT_LOADER_ENV_H
 
 #include "logging.h"
-#include "types.h"
 
 #include <core/string/ustring.h>
 #include <jni.h>
@@ -16,6 +15,17 @@
 #endif
 
 namespace jni {
+
+    class JObject;
+    class JClass;
+    class JArray;
+    class JObjectArray;
+    class JByteArray;
+    class JIntArray;
+    class JLongArray;
+    class JFloatArray;
+    class JDoubleArray;
+    class JString;
 
     class Env {
     public:
@@ -32,7 +42,7 @@ namespace jni {
         JClass find_class(const char* name);
 
         JObject new_string(const char* str);
-        String from_jstring(jni::JString str);
+        String from_jstring(JString str);
 
         bool exception_check();
         void exception_describe();

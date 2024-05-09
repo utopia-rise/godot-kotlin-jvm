@@ -1,6 +1,6 @@
 #include "env.h"
 
-#include "jvm.h"
+#include "types.h"
 
 namespace jni {
 

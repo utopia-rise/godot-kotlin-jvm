@@ -1,7 +1,5 @@
 #include "types.h"
 
-#include "env.h"
-
 namespace jni {
 
     JValue::JValue(JObject obj) {
@@ -48,27 +46,18 @@ namespace jni {
 
     void JObject::delete_global_ref(Env& p_env) {
         p_env.env->DeleteGlobalRef(obj);
-        p_env.check_exceptions();
     }
 
     void JObject::delete_weak_ref(Env& p_env) {
         p_env.env->DeleteWeakGlobalRef(obj);
-        p_env.check_exceptions();
     }
 
     void JObject::delete_local_ref(Env& p_env) {
         p_env.env->DeleteLocalRef(obj);
-        p_env.check_exceptions();
     }
 
     bool JObject::is_null() {
         return obj == nullptr;
-    }
-
-    JObject JObject::call_object_method(Env& env, MethodId method, jvalue* args) const {
-        auto ret = env.env->CallObjectMethodA((jclass) obj, method, args);
-        env.check_exceptions();
-        return JObject(ret);
     }
 
     jint JObject::call_int_method(Env& env, MethodId method, jvalue* args) const {
@@ -93,15 +82,6 @@ namespace jni {
         auto ret = env.env->CallBooleanMethodA((jclass) obj, method, args);
         env.check_exceptions();
         return ret;
-    }
-
-    void JObject::call_void_method(Env& env, MethodId method, jvalue* args) const {
-        env.env->CallVoidMethodA((jclass) obj, method, args);
-        env.check_exceptions();
-    }
-
-    void JObject::call_void_method_noexcept(Env& env, MethodId method, jvalue* args) const {
-        env.env->CallVoidMethodA((jclass) obj, method, args);
     }
 
     MethodId JClass::get_method_id(Env& env, const char* name, const char* signature) {
