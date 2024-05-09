@@ -1,8 +1,9 @@
 package godot.core.callable
 
 import godot.core.KtObject
-import godot.core.memory.TransferContext
 import godot.core.VariantType
+import godot.core.memory.TransferContext
+import godot.global.GD
 import godot.tools.common.constants.Constraints
 import godot.util.threadLocal
 
@@ -17,10 +18,27 @@ abstract class KtCallable<T : KtObject, R : Any?>(
 
     fun invoke(instance: T) {
         TransferContext.readArguments(types, isNullables, paramsArray)
-        val ret = invokeKt(instance)
+        try {
+            invokeKt(instance)
+        } catch (e: Exception) {
+            GD.printErr("Error calling a JVM method from Godot:", e.stackTrace)
+        }
         resetParamsArray()
+    }
 
-        TransferContext.writeReturnValue(ret, variantType)
+    fun invokeWithReturn(instance: T): Any? {
+        TransferContext.readArguments(types, isNullables, paramsArray)
+
+        var ret: Any? = Unit
+        try {
+            ret = invokeKt(instance)
+            TransferContext.writeReturnValue(ret, variantType)
+        } catch (e: Exception) {
+            GD.printErr("Error calling a JVM method from Godot:", e.stackTrace)
+            TransferContext.writeReturnValue(null, VariantType.NIL)
+        }
+        resetParamsArray()
+        return ret
     }
 
     companion object {
