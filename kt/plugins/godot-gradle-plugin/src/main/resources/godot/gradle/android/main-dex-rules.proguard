@@ -1,0 +1,3 @@
+# rules for which classes need to go into the main dex file
+# in our case it doesn't really matter as at engine start, we basically load everything important upfront
+# because of this, this file can remain empty

@@ -1,5 +1,9 @@
 #include "class_loader.h"
 
+#ifdef __ANDROID__
+#include <sys/stat.h>
+#endif
+
 #include <cassert>
 
 ClassLoader::ClassLoader(jni::Env& p_env, jni::JObject p_wrapped) {
@@ -31,6 +35,9 @@ jni::JObject to_java_url(jni::Env& env, const String& bootstrapJar) {
 
 ClassLoader* ClassLoader::create_instance(jni::Env& env, const String& full_jar_path, const jni::JObject& p_parent_loader) {
 #ifdef __ANDROID__
+    // mark file as read only. Needed since android 14: https://developer.android.com/about/versions/14/behavior-changes-14#safer-dynamic-code-loading
+    chmod(full_jar_path.utf8().get_data(), S_IRUSR | S_IRGRP | S_IROTH);
+
     jni::JClass class_loader_cls {env.find_class("dalvik/system/DexClassLoader")};
     jni::MethodId ctor {class_loader_cls.get_constructor_method_id(env, "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V")
     };
