@@ -169,8 +169,9 @@ internal object MemoryManager {
     }
 
     fun getInstance(id: Long): KtObject? {
-        return getBinding(id)?.value
-    }
+        synchronized(ObjectDB) {
+            return getBinding(id)?.value
+        }}
 
     private fun getBinding(id: Long): GodotBinding? {
         val objectID = ObjectID(id)
