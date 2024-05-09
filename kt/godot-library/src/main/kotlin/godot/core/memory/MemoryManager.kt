@@ -181,10 +181,6 @@ internal object MemoryManager {
         return null
     }
 
-    fun getNativeCoreTypeInstance(ptr: VoidPtr): NativeCoreType? {
-        return nativeCoreTypeMap[ptr]?.get()
-    }
-
     fun isInstanceValid(ktObject: KtObject) = checkInstance(ktObject.rawPtr, ktObject.id.id)
 
     fun start(forceJvmGarbageCollector: Boolean) {
