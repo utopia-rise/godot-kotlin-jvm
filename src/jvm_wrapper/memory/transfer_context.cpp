@@ -9,11 +9,7 @@ thread_local static Variant variant_args[MAX_STACK_SIZE];// NOLINT(cert-err58-cp
 thread_local static const Variant* variant_args_ptr[MAX_STACK_SIZE];
 thread_local static int stack_offset = -1;
 
-TransferContext::~TransferContext() {
-    for (auto& variant_arg : variant_args) {
-        variant_arg = Variant();
-    }
-}
+TransferContext::~TransferContext() = default;
 
 SharedBuffer* TransferContext::get_and_rewind_buffer(jni::Env& p_env) {
     thread_local static SharedBuffer shared_buffer;
@@ -101,11 +97,14 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong
         Variant* args {variant_args + stack_offset};
         read_args_to_array(buffer, args, args_size);
 
-
         const Variant** args_ptr {variant_args_ptr + stack_offset};
 
         stack_offset += args_size;
         const Variant& ret_value {method_bind->call(ptr, args_ptr, args_size, r_error)};
+        // Remove Variants so memory can be freed immediately after method call.
+        for (uint32_t i = 0; i < args_size; i++) {
+            args[i] = Variant();
+        }
         stack_offset -= args_size;
 
         buffer->rewind();
