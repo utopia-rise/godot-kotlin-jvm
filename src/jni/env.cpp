@@ -67,6 +67,7 @@ namespace jni {
 
                 return stackTrace;
             } catch (...) {
+                env->ExceptionDescribe();
                 return {};
             }
         }
