@@ -44,26 +44,26 @@ namespace jni {
 
         if (e != nullptr) {
             try {
-                jclass stringWriterClass {env->FindClass("java/io/StringWriter")};
-                jmethodID stringWriterConstructor {env->GetMethodID(stringWriterClass, "<init>", "()V")};
-                jobject stringWriter {env->NewObject(stringWriterClass, stringWriterConstructor)};
+                jclass string_writer_class {env->FindClass("java/io/StringWriter")};
+                jmethodID string_writer_constructor {env->GetMethodID(string_writer_class, "<init>", "()V")};
+                jobject string_writer {env->NewObject(string_writer_class, string_writer_constructor)};
 
-                jclass printWriterClass {env->FindClass("java/io/PrintWriter")};
-                jmethodID printWriterConstructor {env->GetMethodID(printWriterClass, "<init>", "(Ljava/io/Writer;)V")};
-                jobject printWriter {env->NewObject(printWriterClass, printWriterConstructor, stringWriter)};
+                jclass print_writer_class {env->FindClass("java/io/PrintWriter")};
+                jmethodID print_writer_constructor {env->GetMethodID(print_writer_class, "<init>", "(Ljava/io/Writer;)V")};
+                jobject print_writer {env->NewObject(print_writer_class, print_writer_constructor, string_writer)};
 
-                jclass throwableClass {env->FindClass("java/lang/Throwable")};
-                jmethodID printStackTraceMethod {env->GetMethodID(throwableClass, "printStackTrace", "(Ljava/io/PrintWriter;)V")};
-                env->CallVoidMethod(e, printStackTraceMethod, printWriter);
+                jclass throwable_class {env->FindClass("java/lang/Throwable")};
+                jmethodID print_stack_trace_method {env->GetMethodID(throwable_class, "printStackTrace", "(Ljava/io/PrintWriter;)V")};
+                env->CallVoidMethod(e, print_stack_trace_method, print_writer);
 
-                jmethodID toStringMethod {env->GetMethodID(stringWriterClass, "toString", "()Ljava/lang/String;")};
-                auto jStackTraceString {(jstring) env->CallObjectMethod(stringWriter, toStringMethod)};
+                jmethodID to_string_method {env->GetMethodID(string_writer_class, "toString", "()Ljava/lang/String;")};
+                auto j_stack_trace_string {(jstring) env->CallObjectMethod(string_writer, to_string_method)};
 
-                const char* cStackTrace {env->GetStringUTFChars(jStackTraceString, nullptr)};
-                String stackTrace {cStackTrace};
-                env->ReleaseStringUTFChars(jStackTraceString, cStackTrace);
+                const char* c_stack_trace {env->GetStringUTFChars(j_stack_trace_string, nullptr)};
+                String stack_trace {c_stack_trace};
+                env->ReleaseStringUTFChars(j_stack_trace_string, c_stack_trace);
 
-                return stackTrace;
+                return stack_trace;
             } catch (...) {
                 env->ExceptionDescribe();
                 return {};
