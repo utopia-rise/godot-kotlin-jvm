@@ -43,31 +43,26 @@ namespace jni {
         jthrowable e = env->ExceptionOccurred();
 
         if (e != nullptr) {
-            try {
-                jclass string_writer_class {env->FindClass("java/io/StringWriter")};
-                jmethodID string_writer_constructor {env->GetMethodID(string_writer_class, "<init>", "()V")};
-                jobject string_writer {env->NewObject(string_writer_class, string_writer_constructor)};
+            jclass string_writer_class {env->FindClass("java/io/StringWriter")};
+            jmethodID string_writer_constructor {env->GetMethodID(string_writer_class, "<init>", "()V")};
+            jobject string_writer {env->NewObject(string_writer_class, string_writer_constructor)};
 
-                jclass print_writer_class {env->FindClass("java/io/PrintWriter")};
-                jmethodID print_writer_constructor {env->GetMethodID(print_writer_class, "<init>", "(Ljava/io/Writer;)V")};
-                jobject print_writer {env->NewObject(print_writer_class, print_writer_constructor, string_writer)};
+            jclass print_writer_class {env->FindClass("java/io/PrintWriter")};
+            jmethodID print_writer_constructor {env->GetMethodID(print_writer_class, "<init>", "(Ljava/io/Writer;)V")};
+            jobject print_writer {env->NewObject(print_writer_class, print_writer_constructor, string_writer)};
 
-                jclass throwable_class {env->FindClass("java/lang/Throwable")};
-                jmethodID print_stack_trace_method {env->GetMethodID(throwable_class, "printStackTrace", "(Ljava/io/PrintWriter;)V")};
-                env->CallVoidMethod(e, print_stack_trace_method, print_writer);
+            jclass throwable_class {env->FindClass("java/lang/Throwable")};
+            jmethodID print_stack_trace_method {env->GetMethodID(throwable_class, "printStackTrace", "(Ljava/io/PrintWriter;)V")};
+            env->CallVoidMethod(e, print_stack_trace_method, print_writer);
 
-                jmethodID to_string_method {env->GetMethodID(string_writer_class, "toString", "()Ljava/lang/String;")};
-                auto j_stack_trace_string {(jstring) env->CallObjectMethod(string_writer, to_string_method)};
+            jmethodID to_string_method {env->GetMethodID(string_writer_class, "toString", "()Ljava/lang/String;")};
+            auto j_stack_trace_string {(jstring) env->CallObjectMethod(string_writer, to_string_method)};
 
-                const char* c_stack_trace {env->GetStringUTFChars(j_stack_trace_string, nullptr)};
-                String stack_trace {c_stack_trace};
-                env->ReleaseStringUTFChars(j_stack_trace_string, c_stack_trace);
+            const char* c_stack_trace {env->GetStringUTFChars(j_stack_trace_string, nullptr)};
+            String stack_trace {c_stack_trace};
+            env->ReleaseStringUTFChars(j_stack_trace_string, c_stack_trace);
 
-                return stack_trace;
-            } catch (...) {
-                env->ExceptionDescribe();
-                return {};
-            }
+            return stack_trace;
         }
 #else
         env->ExceptionDescribe();
