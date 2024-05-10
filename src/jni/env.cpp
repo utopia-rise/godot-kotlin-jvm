@@ -38,8 +38,42 @@ namespace jni {
         return env->ExceptionCheck();
     }
 
-    void Env::exception_describe() {
+    String Env::exception_describe() {
+#ifdef TOOLS_ENABLED
+        jthrowable e = env->ExceptionOccurred();
+
+        if (e != nullptr) {
+            try {
+                jclass stringWriterClass = env->FindClass("java/io/StringWriter");
+                jmethodID stringWriterConstructor = env->GetMethodID(stringWriterClass, "<init>", "()V");
+                jobject stringWriter = env->NewObject(stringWriterClass, stringWriterConstructor);
+
+                jclass printWriterClass = env->FindClass("java/io/PrintWriter");
+                jmethodID printWriterConstructor = env->GetMethodID(printWriterClass, "<init>", "(Ljava/io/Writer;)V");
+                jobject printWriter = env->NewObject(printWriterClass, printWriterConstructor, stringWriter);
+
+                jclass throwableClass = env->FindClass("java/lang/Throwable");
+                jmethodID printStackTraceMethod = env->GetMethodID(throwableClass, "printStackTrace", "(Ljava/io/PrintWriter;)V");
+                env->CallVoidMethod(e, printStackTraceMethod, printWriter);
+
+                jmethodID toStringMethod = env->GetMethodID(stringWriterClass, "toString", "()Ljava/lang/String;");
+                auto jStackTraceString = (jstring) env->CallObjectMethod(stringWriter, toStringMethod);
+
+                // Convert Java String to C++ string
+                const char* cStackTrace = env->GetStringUTFChars(jStackTraceString, nullptr);
+                String stackTrace {cStackTrace};
+                // Release memory
+                env->ReleaseStringUTFChars(jStackTraceString, cStackTrace);
+
+                return stackTrace;
+            } catch (...) {
+                return {};
+            }
+        }
+#else
         env->ExceptionDescribe();
+#endif
+        return {};
     }
 
     void Env::exception_clear() {
@@ -48,9 +82,13 @@ namespace jni {
 
     void Env::check_exceptions() {
         if (exception_check()) {
-            exception_describe();
+            String exception = exception_describe();
             exception_clear();
-            HANDLE_JVM_EXCEPTIONS(true, "An exception has occurred!");
+
+            if (exception.is_empty()) {
+                exception = "An exception has occurred!";
+            }
+            HANDLE_JVM_EXCEPTIONS(true, exception);
         }
     }
 

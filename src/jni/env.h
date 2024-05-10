@@ -35,7 +35,7 @@ namespace jni {
         String from_jstring(jni::JString str);
 
         bool exception_check();
-        void exception_describe();
+        String exception_describe();
         void exception_clear();
 
         void check_exceptions();
