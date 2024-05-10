@@ -59,10 +59,8 @@ namespace jni {
                 jmethodID toStringMethod = env->GetMethodID(stringWriterClass, "toString", "()Ljava/lang/String;");
                 auto jStackTraceString = (jstring) env->CallObjectMethod(stringWriter, toStringMethod);
 
-                // Convert Java String to C++ string
                 const char* cStackTrace = env->GetStringUTFChars(jStackTraceString, nullptr);
                 String stackTrace {cStackTrace};
-                // Release memory
                 env->ReleaseStringUTFChars(jStackTraceString, cStackTrace);
 
                 return stackTrace;
