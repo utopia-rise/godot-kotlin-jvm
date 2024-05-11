@@ -60,8 +60,37 @@ kotlin.sourceSets.main {
 
 
 tasks {
+    val importResources = register<Exec>("importResources") {
+        group = "verification"
+
+        val editorExecutable: String = projectDir
+            .resolve("../../../../bin")
+            .listFiles()
+            ?.also {
+                println("[${it.joinToString()}]")
+            }
+            ?.firstOrNull { it.name.startsWith("godot.") }
+            ?.absolutePath
+            ?: throw Exception("Could not find editor executable")
+
+        if (HostManager.hostIsMingw) {
+            commandLine(
+                "cmd",
+                "/c",
+                "$editorExecutable --headless --import",
+            )
+        } else {
+            commandLine(
+                "bash",
+                "-c",
+                "$editorExecutable --headless --import",
+            )
+        }
+    }
     register<Exec>("runGutTests") {
         group = "verification"
+
+        dependsOn(importResources)
 
         val editorExecutable: String = projectDir
                 .resolve("../../../../bin")
