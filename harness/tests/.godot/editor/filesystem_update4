@@ -1,8 +1,0 @@
-res://Spatial.tscn
-res://scripts/godot/tests/FuncRefTest.gdj
-res://scripts/godot/tests/args/FunctionArgSizeTest.gdj
-res://scripts/godot/tests/Invocation.gdj
-res://scripts/godot/tests/instance/RefCountedInstance.gdj
-res://scripts/ScriptInOtherSourceDir.gdj
-res://test/unit/test_function_args.gd
-res://test/unit/test_constructor_args.gd
