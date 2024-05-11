@@ -63,6 +63,8 @@ tasks {
     val importResources = register<Exec>("importResources") {
         group = "verification"
 
+        isIgnoreExitValue = true
+
         val editorExecutable: String = projectDir
             .resolve("../../../../bin")
             .listFiles()
