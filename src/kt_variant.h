@@ -366,7 +366,7 @@ namespace ktvariant {
 
     template<class T>
     static Variant from_kvariant_to_kVariantCoreTypeValue(SharedBuffer* byte_buffer) {
-        auto result { reinterpret_cast<T*>(byte_buffer) };
+        auto result { reinterpret_cast<T*>(byte_buffer->get_cursor()) };
         byte_buffer->increment_position(sizeof(T));
         return *result;
     }
