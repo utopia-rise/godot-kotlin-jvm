@@ -2,9 +2,9 @@ extends "res://addons/gut/test.gd"
 
 
 func test_array_any_not_null_append():
-	var invocation_script = Invocation.new()
+	var invocation_script: Object = Invocation.new()
 	assert_eq(invocation_script.array_any_size(), 0, "Array should be empty")
-	var obj = Node.new()
+	var obj: Node = Node.new()
 	invocation_script.append_any_to_array(obj)
 	invocation_script.append_any_to_array(1)
 	assert_eq(invocation_script.array_any_size(), 2, "Array size should be 2")
@@ -16,7 +16,7 @@ func test_array_any_not_null_append():
 	obj.free()
 
 func test_array_any_not_null_remove():
-	var invocation_script = Invocation.new()
+	var invocation_script: Object = Invocation.new()
 	invocation_script.append_any_to_array(1)
 	assert_eq(invocation_script.array_any_size(), 1, "Array size should be 1")
 	invocation_script.remove_any_from_array(1)
@@ -30,7 +30,7 @@ func test_array_any_not_null_remove():
 	obj.free()
 
 func test_array_typed_not_null_append():
-	var invocation_script = Invocation.new()
+	var invocation_script: Object = Invocation.new()
 	assert_eq(invocation_script.nav_meshes_size(), 1, "Array size should be 1")
 	var nav_mesh = NavigationMesh.new()
 	invocation_script.append_nav_mesh(nav_mesh)
@@ -40,7 +40,7 @@ func test_array_typed_not_null_append():
 	invocation_script.free()
 
 func test_array_typed_not_null_remove():
-	var invocation_script = Invocation.new()
+	var invocation_script: Object = Invocation.new()
 	assert_eq(invocation_script.nav_meshes_size(), 1, "Array size should be 1")
 	invocation_script.remove_nav_mesh_with_index(0)
 	assert_eq(invocation_script.nav_meshes_size(), 0, "Array size should be 0")
