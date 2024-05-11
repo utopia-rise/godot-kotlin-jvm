@@ -7,6 +7,8 @@ import godot.Object
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
+import godot.util.camelToSnakeCase
+import kotlin.reflect.KCallable
 
 class Callable : NativeCoreType {
 
@@ -159,6 +161,63 @@ class Callable : NativeCoreType {
         external fun engine_call_rpc(_handle: VoidPtr)
         external fun engine_call_rpc_id(_handle: VoidPtr)
         external fun engine_call_unbind(_handle: VoidPtr)
+    }
+
+    companion object {
+        operator fun <T : Object> invoke(
+            target: T,
+            callable: T.() -> Unit
+        ) = Callable(target, (callable as KCallable<*>).name.camelToSnakeCase().asStringName())
+
+        operator fun <T : Object, P> invoke(
+            target: T,
+            callable: T.(P) -> Unit
+        ) = Callable(target, (callable as KCallable<*>).name.camelToSnakeCase().asStringName())
+
+        operator fun <T : Object, P1, P2> invoke(
+            target: T,
+            callable: T.(P1, P2) -> Unit
+        ) = Callable(target, (callable as KCallable<*>).name.camelToSnakeCase().asStringName())
+
+        operator fun <T : Object, P1, P2, P3> invoke(
+            target: T,
+            callable: T.(P1, P2, P3) -> Unit
+        ) = Callable(target, (callable as KCallable<*>).name.camelToSnakeCase().asStringName())
+
+        operator fun <T : Object, P1, P2, P3, P4> invoke(
+            target: T,
+            callable: T.(P1, P2, P3, P4) -> Unit
+        ) = Callable(target, (callable as KCallable<*>).name.camelToSnakeCase().asStringName())
+
+        operator fun <T : Object, P1, P2, P3, P4, P5> invoke(
+            target: T,
+            callable: T.(P1, P2, P3, P4, P5) -> Unit
+        ) = Callable(target, (callable as KCallable<*>).name.camelToSnakeCase().asStringName())
+
+        operator fun <T : Object, P1, P2, P3, P4, P5, P6> invoke(
+            target: T,
+            callable: T.(P1, P2, P3, P4, P5, P6) -> Unit
+        ) = Callable(target, (callable as KCallable<*>).name.camelToSnakeCase().asStringName())
+
+        operator fun <T : Object, P1, P2, P3, P4, P5, P6, P7> invoke(
+            target: T,
+            callable: T.(P1, P2, P3, P4, P5, P6, P7) -> Unit
+        ) = Callable(target, (callable as KCallable<*>).name.camelToSnakeCase().asStringName())
+
+        operator fun <T : Object, P1, P2, P3, P4, P5, P6, P7, P8> invoke(
+            target: T,
+            callable: T.(P1, P2, P3, P4, P5, P6, P7, P8) -> Unit
+        ) = Callable(target, (callable as KCallable<*>).name.camelToSnakeCase().asStringName())
+
+        operator fun <T : Object, P1, P2, P3, P4, P5, P6, P7, P8, P9> invoke(
+            target: T,
+            callable: T.(P1, P2, P3, P4, P5, P6, P7, P8, P9) -> Unit
+        ) = Callable(target, (callable as KCallable<*>).name.camelToSnakeCase().asStringName())
+
+        operator fun <T : Object, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> invoke(
+            target: T,
+            callable: T.(P1, P2, P3, P4, P5, P6, P7, P8, P9, P10) -> Unit
+        ) = Callable(target, (callable as KCallable<*>).name.camelToSnakeCase().asStringName())
     }
 }
 
