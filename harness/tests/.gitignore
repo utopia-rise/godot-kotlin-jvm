@@ -10,3 +10,4 @@ jre-amd64
 graal/godot-kotlin-graal-jni-config.json
 
 *.log
+/.godot/
