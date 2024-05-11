@@ -11,3 +11,4 @@ graal/godot-kotlin-graal-jni-config.json
 
 *.log
 /.godot/
+/test_output.txt
