@@ -14,14 +14,13 @@
 
 namespace ktvariant {
 
-    const int LONG_SIZE = 8;
-    const int FLOAT64_SIZE = 8;
-    const int BOOL_SIZE = 4;
+    constexpr const int LONG_SIZE = 8;
+    constexpr const int FLOAT64_SIZE = 8;
+    constexpr const int BOOL_SIZE = 4;
 
-    const int PTR_SIZE = 8;
+    constexpr const int PTR_SIZE = 8;
 
-    const int INT_SIZE = 4;
-    const int FLOAT32_SIZE = 4;
+    constexpr const int INT_SIZE = 4;
 
     static void set_variant_type(SharedBuffer* des, Variant::Type variant_type) {
         des->increment_position(encode_uint32(variant_type, des->get_cursor()));
@@ -365,172 +364,11 @@ namespace ktvariant {
         return Variant(b);
     }
 
-    static inline Vector2 to_godot_vector2(SharedBuffer* byte_buffer) {
-        float x {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT32_SIZE);
-        float y {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT32_SIZE);
-        return {x, y};
-    }
-
-    static Variant from_kvariant_tokVector2Value(SharedBuffer* byte_buffer) {
-        return Variant(to_godot_vector2(byte_buffer));
-    }
-
-    static inline Vector2i to_godot_vector2i(SharedBuffer* byte_buffer) {
-        auto x {static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
-        byte_buffer->increment_position(INT_SIZE);
-        auto y {static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
-        byte_buffer->increment_position(INT_SIZE);
-        return {x, y};
-    }
-
-    static Variant from_kvariant_tokVector2iValue(SharedBuffer* byte_buffer) {
-        return Variant(to_godot_vector2i(byte_buffer));
-    }
-
-    static Variant from_kvariant_tokRect2Value(SharedBuffer* byte_buffer) {
-        const Vector2 pos {to_godot_vector2(byte_buffer)};
-        const Vector2 size {to_godot_vector2(byte_buffer)};
-        return Variant(Rect2(pos, size));
-    }
-
-    static Variant from_kvariant_tokRect2iValue(SharedBuffer* byte_buffer) {
-        const Vector2i pos {to_godot_vector2i(byte_buffer)};
-        const Vector2i size {to_godot_vector2i(byte_buffer)};
-        return Variant(Rect2i(pos, size));
-    }
-
-    static inline Vector3 to_godot_vector3(SharedBuffer* byte_buffer) {
-        float x {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT32_SIZE);
-        float y {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT32_SIZE);
-        float z {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT32_SIZE);
-        return {x, y, z};
-    }
-
-    static Variant from_kvariant_tokVector3Value(SharedBuffer* byte_buffer) {
-        return Variant(to_godot_vector3(byte_buffer));
-    }
-
-    static inline Vector3i to_godot_vector3i(SharedBuffer* byte_buffer) {
-        auto x {static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
-        byte_buffer->increment_position(INT_SIZE);
-        auto y {static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
-        byte_buffer->increment_position(INT_SIZE);
-        auto z {static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
-        byte_buffer->increment_position(INT_SIZE);
-        return {x, y, z};
-    }
-
-    static Variant from_kvariant_tokVector3iValue(SharedBuffer* byte_buffer) {
-        return Variant(to_godot_vector3i(byte_buffer));
-    }
-
-    static Variant from_kvariant_tokTransform2DValue(SharedBuffer* byte_buffer) {
-        Transform2D transform2d;
-        transform2d[0] = to_godot_vector2(byte_buffer);
-        transform2d[1] = to_godot_vector2(byte_buffer);
-        transform2d.set_origin(to_godot_vector2(byte_buffer));
-        return Variant(transform2d);
-    }
-
-    static inline Vector4 to_godot_vector4(SharedBuffer* byte_buffer) {
-        float x {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT32_SIZE);
-        float y {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT32_SIZE);
-        float z {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT32_SIZE);
-        float w {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT32_SIZE);
-        return {x, y, z, w};
-    }
-
-    static Variant from_kvariant_tokVector4Value(SharedBuffer* byte_buffer) {
-        return Variant(to_godot_vector4(byte_buffer));
-    }
-
-    static inline Vector4i to_godot_vector4i(SharedBuffer* byte_buffer) {
-        auto x {static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
-        byte_buffer->increment_position(INT_SIZE);
-        auto y {static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
-        byte_buffer->increment_position(INT_SIZE);
-        auto z {static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
-        byte_buffer->increment_position(INT_SIZE);
-        auto w {static_cast<int32_t>(decode_uint32(byte_buffer->get_cursor()))};
-        byte_buffer->increment_position(INT_SIZE);
-        return {x, y, z, w};
-    }
-
-    static Variant from_kvariant_tokVector4iValue(SharedBuffer* byte_buffer) {
-        return Variant(to_godot_vector4i(byte_buffer));
-    }
-
-    static Variant from_kvariant_tokPlaneValue(SharedBuffer* byte_buffer) {
-        Vector3 norm {to_godot_vector3(byte_buffer)};
-        float d {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT32_SIZE);
-        return Variant(Plane(norm, d));
-    }
-
-    static Variant from_kvariant_tokQuaternionValue(SharedBuffer* byte_buffer) {
-        float x {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT32_SIZE);
-        float y {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT32_SIZE);
-        float z {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT32_SIZE);
-        float w {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT32_SIZE);
-        return Variant(Quaternion(x, y, z, w));
-    }
-
-    static Variant from_kvariant_tokAabbValue(SharedBuffer* byte_buffer) {
-        const Vector3& pos {to_godot_vector3(byte_buffer)};
-        const Vector3& size {to_godot_vector3(byte_buffer)};
-        return Variant(AABB(pos, size));
-    }
-
-    static inline Basis to_godot_basis(SharedBuffer* byte_buffer) {
-        const Vector3& row0 = to_godot_vector3(byte_buffer);
-        const Vector3& row1 = to_godot_vector3(byte_buffer);
-        const Vector3& row2 = to_godot_vector3(byte_buffer);
-        Basis basis;
-        basis.rows[0] = row0;
-        basis.rows[1] = row1;
-        basis.rows[2] = row2;
-        return basis;
-    }
-
-    static Variant from_kvariant_tokBasisValue(SharedBuffer* byte_buffer) {
-        return Variant(to_godot_basis(byte_buffer));
-    }
-
-    static Variant from_kvariant_tokTransform3DValue(SharedBuffer* byte_buffer) {
-        const Basis& basis {to_godot_basis(byte_buffer)};
-        const Vector3& origin {to_godot_vector3(byte_buffer)};
-        return Variant(Transform3D(basis, origin));
-    }
-
-    static Variant from_kvariant_tokProjectionValue(SharedBuffer* byte_buffer) {
-        return Variant(
-          Projection(to_godot_vector4(byte_buffer), to_godot_vector4(byte_buffer), to_godot_vector4(byte_buffer), to_godot_vector4(byte_buffer))
-        );
-    }
-
-    static Variant from_kvariant_tokColorValue(SharedBuffer* byte_buffer) {
-        float r {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT32_SIZE);
-        float g {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT32_SIZE);
-        float b {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT32_SIZE);
-        float a {decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT32_SIZE);
-        return Variant(Color(r, g, b, a));
+    template<class T>
+    static Variant from_kvariant_to_kVariantCoreTypeValue(SharedBuffer* byte_buffer) {
+        auto result { reinterpret_cast<T*>(byte_buffer) };
+        byte_buffer->increment_position(sizeof(T));
+        return *result;
     }
 
     static inline Object* to_godot_object(SharedBuffer* byte_buffer) {
@@ -567,22 +405,22 @@ namespace ktvariant {
         to_gd_array[Variant::INT] = from_kvariant_tokLongValue;
         to_gd_array[Variant::FLOAT] = from_kvariant_tokFloat64Value;
         to_gd_array[Variant::STRING] = from_kvariant_tokStringValue;
-        to_gd_array[Variant::VECTOR2] = from_kvariant_tokVector2Value;
-        to_gd_array[Variant::VECTOR2I] = from_kvariant_tokVector2iValue;
-        to_gd_array[Variant::RECT2] = from_kvariant_tokRect2Value;
-        to_gd_array[Variant::RECT2I] = from_kvariant_tokRect2iValue;
-        to_gd_array[Variant::VECTOR3] = from_kvariant_tokVector3Value;
-        to_gd_array[Variant::VECTOR3I] = from_kvariant_tokVector3iValue;
-        to_gd_array[Variant::TRANSFORM2D] = from_kvariant_tokTransform2DValue;
-        to_gd_array[Variant::VECTOR4] = from_kvariant_tokVector4Value;
-        to_gd_array[Variant::VECTOR4I] = from_kvariant_tokVector4iValue;
-        to_gd_array[Variant::PLANE] = from_kvariant_tokPlaneValue;
-        to_gd_array[Variant::QUATERNION] = from_kvariant_tokQuaternionValue;
-        to_gd_array[Variant::AABB] = from_kvariant_tokAabbValue;
-        to_gd_array[Variant::BASIS] = from_kvariant_tokBasisValue;
-        to_gd_array[Variant::TRANSFORM3D] = from_kvariant_tokTransform3DValue;
-        to_gd_array[Variant::PROJECTION] = from_kvariant_tokProjectionValue;
-        to_gd_array[Variant::COLOR] = from_kvariant_tokColorValue;
+        to_gd_array[Variant::VECTOR2] = from_kvariant_to_kVariantCoreTypeValue<Vector2>;
+        to_gd_array[Variant::VECTOR2I] = from_kvariant_to_kVariantCoreTypeValue<Vector2i>;
+        to_gd_array[Variant::RECT2] = from_kvariant_to_kVariantCoreTypeValue<Rect2>;
+        to_gd_array[Variant::RECT2I] = from_kvariant_to_kVariantCoreTypeValue<Rect2i>;
+        to_gd_array[Variant::VECTOR3] = from_kvariant_to_kVariantCoreTypeValue<Vector3>;
+        to_gd_array[Variant::VECTOR3I] = from_kvariant_to_kVariantCoreTypeValue<Vector3i>;
+        to_gd_array[Variant::TRANSFORM2D] = from_kvariant_to_kVariantCoreTypeValue<Transform2D>;
+        to_gd_array[Variant::VECTOR4] = from_kvariant_to_kVariantCoreTypeValue<Vector4>;
+        to_gd_array[Variant::VECTOR4I] = from_kvariant_to_kVariantCoreTypeValue<Vector4i>;
+        to_gd_array[Variant::PLANE] = from_kvariant_to_kVariantCoreTypeValue<Plane>;
+        to_gd_array[Variant::QUATERNION] = from_kvariant_to_kVariantCoreTypeValue<Quaternion>;
+        to_gd_array[Variant::AABB] = from_kvariant_to_kVariantCoreTypeValue<AABB>;
+        to_gd_array[Variant::BASIS] = from_kvariant_to_kVariantCoreTypeValue<Basis>;
+        to_gd_array[Variant::TRANSFORM3D] = from_kvariant_to_kVariantCoreTypeValue<Transform3D>;
+        to_gd_array[Variant::PROJECTION] = from_kvariant_to_kVariantCoreTypeValue<Projection>;
+        to_gd_array[Variant::COLOR] = from_kvariant_to_kVariantCoreTypeValue<Color>;
         to_gd_array[Variant::CALLABLE] = from_kvariant_tokVariantNativeCoreTypeValue<Callable>;
         to_gd_array[Variant::SIGNAL] = from_kvariant_toKSignalValue;
         to_gd_array[Variant::DICTIONARY] = from_kvariant_tokVariantNativeCoreTypeValue<Dictionary>;
