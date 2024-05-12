@@ -20,8 +20,8 @@ abstract class KtCallable<T : KtObject, R : Any?>(
         TransferContext.readArguments(types, isNullables, paramsArray)
         try {
             invokeKt(instance)
-        } catch (e: Exception) {
-            GD.printErr("Error calling a JVM method from Godot:", e.stackTrace)
+        } catch (t: Throwable) {
+            GD.printErr("Error calling a JVM method from Godot:", t.stackTrace)
         }
         resetParamsArray()
     }
@@ -33,8 +33,8 @@ abstract class KtCallable<T : KtObject, R : Any?>(
         try {
             ret = invokeKt(instance)
             TransferContext.writeReturnValue(ret, variantType)
-        } catch (e: Exception) {
-            GD.printErr("Error calling a JVM method from Godot:", e.stackTrace)
+        } catch (t: Throwable) {
+            GD.printErr("Error calling a JVM method from Godot:", t.stackTrace)
             TransferContext.writeReturnValue(null, VariantType.NIL)
         }
         resetParamsArray()
