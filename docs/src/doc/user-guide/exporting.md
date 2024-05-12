@@ -30,11 +30,11 @@ To export your game, you need to have an embedded JRE created. Run the following
 
 !!! info
     As the jre is platform dependent, you need to create a jre for each platform. Adjust the above command on a per-platform basis:  
-    - For Linux: `jre-amd64-linux`
-    - For Windows: `jre-amd64-windows`
-    - For MacOS: 
-        - `jre-amd64-macos`
-        - `jre-arm64-macos`
+    - For Linux: `jre-amd64-linux`  
+    - For Windows: `jre-amd64-windows`  
+    - For MacOS:  
+        - `jre-amd64-macos`  
+        - `jre-arm64-macos`  
     - For iOS and Android, no embedded JRE is needed
 
 The above command will create a very minimal JVM, if you need extra features you can include the following modules:
