@@ -693,7 +693,8 @@
     "name":"godot.core.callable.KtCallable",
     "methods":[
       {"name":"getParameterCount","parameterTypes":[] },
-      {"name":"invoke","parameterTypes":["godot.core.KtObject"] }
+      {"name":"invoke","parameterTypes":["godot.core.KtObject"] },
+      {"name":"invokeWithReturn","parameterTypes":["godot.core.KtObject"] }
     ]
   },
   {
