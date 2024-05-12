@@ -65,8 +65,19 @@ static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {IOS_GRAAL_NATIVE_IMAGE_FIL
 
 #endif
 
+#ifdef X11_ENABLED
+static constexpr const char* EMBEDDED_JRE_ARM_DIRECTORY {"jre-arm64-linux"};
+static constexpr const char* EMBEDDED_JRE_AMD_DIRECTORY {"jre-amd64-linux"};
+#elif WINDOWS_ENABLED
+static constexpr const char* EMBEDDED_JRE_ARM_DIRECTORY {"jre-arm64-windows"};
+static constexpr const char* EMBEDDED_JRE_AMD_DIRECTORY {"jre-amd64-windows"};
+#elif OSX_ENABLED
+static constexpr const char* EMBEDDED_JRE_ARM_DIRECTORY {"jre-arm64-macos"};
+static constexpr const char* EMBEDDED_JRE_AMD_DIRECTORY {"jre-amd64-macos"};
+#else
 static constexpr const char* EMBEDDED_JRE_ARM_DIRECTORY {"jre-arm64"};
 static constexpr const char* EMBEDDED_JRE_AMD_DIRECTORY {"jre-amd64"};
+#endif
 
 #ifdef __arm64__
 static constexpr const char* EMBEDDED_JRE_DIRECTORY {EMBEDDED_JRE_ARM_DIRECTORY};

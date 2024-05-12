@@ -24,8 +24,11 @@ fun Project.generateGdIgnoreFilesTask(): TaskProvider<Task> {
                 val targetDirSequence = sequenceOf(
                     buildDir,
                     projectDir.resolve("gradle"),
-                    projectDir.resolve("jre-arm64"),
-                    projectDir.resolve("jre-amd64"),
+                    *(projectDir
+                        .listFiles()
+                        ?.filter { it.name.startsWith("jre-") }
+                        ?.toTypedArray()
+                        ?: emptyArray()),
                 )
                 targetDirSequence.filter { dirToIgnore -> dirToIgnore.exists() && dirToIgnore.isDirectory }
                     .forEach { dirToIgnore ->
