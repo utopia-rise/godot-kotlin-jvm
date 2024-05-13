@@ -39,7 +39,7 @@ namespace jni {
     }
 
     String Env::exception_describe() {
-#ifdef TOOLS_ENABLED
+#ifdef DEBUG_ENABLED
         jthrowable e = env->ExceptionOccurred();
 
         if (e != nullptr) {
