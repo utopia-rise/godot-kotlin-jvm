@@ -11,14 +11,12 @@ namespace jni {
     template<class T>
     inline T JObject::new_global_ref(Env& env) {
         auto ref = env.env->NewGlobalRef(obj);
-        env.check_exceptions();
         return T {JObject(ref).obj};
     }
 
     template<class T>
     inline T JObject::new_weak_ref(Env& env) {
         auto ref = env.env->NewWeakGlobalRef(obj);
-        env.check_exceptions();
         return T {JObject(ref).obj};
     }
 

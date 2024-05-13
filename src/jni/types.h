@@ -1,13 +1,12 @@
 #ifndef GODOT_LOADER_JOBJECT_H
 #define GODOT_LOADER_JOBJECT_H
 
+#include "env.h"
+
 #include <core/templates/vector.h>
 #include <jni.h>
 
 namespace jni {
-
-    // forward declare
-    class Env;
 
     class JObject;
 
@@ -64,6 +63,10 @@ namespace jni {
 
         void delete_local_ref(Env& p_env);
 
+        template<bool CHECK_EXCEPTION = true>
+        void call_void_method(Env& env, MethodId method, jvalue* args = {}) const;
+
+        template<bool CHECK_EXCEPTION = true>
         JObject call_object_method(Env& env, MethodId method, jvalue* args = {}) const;
 
         jint call_int_method(Env& env, MethodId method, jvalue* args = {}) const;
@@ -74,12 +77,33 @@ namespace jni {
 
         jboolean call_boolean_method(Env& env, MethodId method, jvalue* args = {}) const;
 
-        void call_void_method(Env& env, MethodId method, jvalue* args = {}) const;
-
-        void call_void_method_noexcept(Env& env, MethodId method, jvalue* args = {}) const;
-
         bool is_null();
     };
+
+    template<bool CHECK_EXCEPTION>
+    void JObject::call_void_method(Env& env, MethodId method, jvalue* args) const {
+        env.env->CallVoidMethodA((jclass) obj, method, args);
+#ifdef DEV_ENABLED
+        env.check_exceptions();
+#else
+        if constexpr (CHECK_EXCEPTION){
+            env.check_exceptions();
+        }
+#endif
+    }
+
+    template<bool CHECK_EXCEPTION>
+    JObject JObject::call_object_method(Env& env, MethodId method, jvalue* args) const {
+        JObject ret = env.env->CallObjectMethodA((jclass) obj, method, args);
+#ifdef DEV_ENABLED
+        env.check_exceptions();
+#else
+        if constexpr (CHECK_EXCEPTION){
+            env.check_exceptions();
+        }
+#endif
+        return ret;
+    }
 
     class JString : public JObject {
     public:

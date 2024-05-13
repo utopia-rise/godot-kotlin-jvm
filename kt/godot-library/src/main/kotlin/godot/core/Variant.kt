@@ -162,7 +162,7 @@ private var ByteBuffer.basis: Basis
 private var ByteBuffer.stringName: Any
     get() {
         val ptr = long
-        return MemoryManager.getNativeCoreTypeInstance(ptr) ?: StringName(ptr)
+        return StringName(ptr)
     }
     set(value) {
         STRING_NAME.toGodotNativeCoreType<StringName>(this, value)
@@ -517,7 +517,7 @@ enum class VariantType(
         22,
         { buffer: ByteBuffer, _: Int ->
             val ptr = buffer.long
-            MemoryManager.getNativeCoreTypeInstance(ptr) ?: NodePath(ptr)
+            NodePath(ptr)
         },
         { buffer: ByteBuffer, any: Any ->
             NODE_PATH.toGodotNativeCoreType<NodePath>(buffer, any)
@@ -527,7 +527,7 @@ enum class VariantType(
         23,
         { buffer: ByteBuffer, _: Int ->
             val ptr = buffer.long
-            MemoryManager.getNativeCoreTypeInstance(ptr) ?: RID(ptr)
+            RID(ptr)
         },
         { buffer: ByteBuffer, any: Any ->
             _RID.toGodotNativeCoreType<RID>(buffer, any)
@@ -548,7 +548,7 @@ enum class VariantType(
         25,
         { buffer: ByteBuffer, _: Int ->
             val ptr = buffer.long
-            MemoryManager.getNativeCoreTypeInstance(ptr) ?: Callable(ptr)
+            Callable(ptr)
         },
         { buffer: ByteBuffer, any: Any ->
             CALLABLE.toGodotNativeCoreType<Callable>(buffer, any)
@@ -573,7 +573,7 @@ enum class VariantType(
         27,
         { buffer: ByteBuffer, _: Int ->
             val ptr = buffer.long
-            MemoryManager.getNativeCoreTypeInstance(ptr) ?: Dictionary<Any, Any?>(ptr)
+            Dictionary<Any, Any?>(ptr)
         },
         { buffer: ByteBuffer, any: Any ->
             DICTIONARY.toGodotNativeCoreType<Dictionary<*, *>>(buffer, any)
@@ -583,7 +583,7 @@ enum class VariantType(
         28,
         { buffer: ByteBuffer, _: Int ->
             val ptr = buffer.long
-            MemoryManager.getNativeCoreTypeInstance(ptr) ?: VariantArray<Any?>(ptr)
+            VariantArray<Any?>(ptr)
         },
         { buffer: ByteBuffer, any: Any ->
             ARRAY.toGodotNativeCoreType<VariantArray<*>>(buffer, any)
