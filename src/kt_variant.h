@@ -14,8 +14,6 @@
 
 namespace ktvariant {
 
-    constexpr const int LONG_SIZE = 8;
-    constexpr const int FLOAT64_SIZE = 8;
     constexpr const int BOOL_SIZE = 4;
 
     constexpr const int PTR_SIZE = 8;
@@ -28,16 +26,6 @@ namespace ktvariant {
 
     static void to_kvariant_fromNIL(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::NIL);
-    }
-
-    static void to_kvariant_fromINT(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, Variant::Type::INT);
-        des->increment_position(encode_uint64(static_cast<int64_t>(src), des->get_cursor()));
-    }
-
-    static void to_kvariant_fromFLOAT(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, Variant::Type::FLOAT);
-        des->increment_position(encode_double(src.operator double_t(), des->get_cursor()));
     }
 
     static void to_kvariant_fromSTRING(SharedBuffer* des, const Variant& src) {
@@ -61,151 +49,12 @@ namespace ktvariant {
         des->increment_position(encode_uint32(src.operator bool(), des->get_cursor()));
     }
 
-    static inline void append_vector2(SharedBuffer* des, const Vector2& from) {
-        des->increment_position(encode_float(from.x, des->get_cursor()));
-        des->increment_position(encode_float(from.y, des->get_cursor()));
-    }
+    template<Variant::Type variantType, class T>
+    static void to_kvariant_fromCORETYPE(SharedBuffer* des, const Variant& src) {
+        set_variant_type(des, variantType);
 
-    static void to_kvariant_fromVECTOR2(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, Variant::Type::VECTOR2);
-        append_vector2(des, src);
-    }
-
-    static inline void append_vector2i(SharedBuffer* des, const Vector2i& from) {
-        des->increment_position(encode_uint32(from.x, des->get_cursor()));
-        des->increment_position(encode_uint32(from.y, des->get_cursor()));
-    }
-
-    static void to_kvariant_fromVECTOR2I(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, Variant::Type::VECTOR2I);
-        append_vector2i(des, src);
-    }
-
-    static void to_kvariant_fromRECT2(SharedBuffer* des, const Variant& src) {
-        Rect2 src_rect2 {src};
-        set_variant_type(des, Variant::Type::RECT2);
-        append_vector2(des, src_rect2.position);
-        append_vector2(des, src_rect2.size);
-    }
-
-    static void to_kvariant_fromRECT2I(SharedBuffer* des, const Variant& src) {
-        Rect2i rect2i {src};
-        set_variant_type(des, Variant::Type::RECT2I);
-        append_vector2i(des, rect2i.position);
-        append_vector2i(des, rect2i.size);
-    }
-
-    static inline void append_vector3(SharedBuffer* des, const Vector3& from) {
-        des->increment_position(encode_float(from.x, des->get_cursor()));
-        des->increment_position(encode_float(from.y, des->get_cursor()));
-        des->increment_position(encode_float(from.z, des->get_cursor()));
-    }
-
-    static void to_kvariant_fromVECTOR3(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, Variant::Type::VECTOR3);
-        append_vector3(des, src);
-    }
-
-    static inline void append_vector3i(SharedBuffer* des, const Vector3i& from) {
-        des->increment_position(encode_uint32(from.x, des->get_cursor()));
-        des->increment_position(encode_uint32(from.y, des->get_cursor()));
-        des->increment_position(encode_uint32(from.z, des->get_cursor()));
-    }
-
-    static void to_kvariant_fromVECTOR3I(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, Variant::Type::VECTOR3I);
-        append_vector3i(des, src);
-    }
-
-    static void to_kvariant_fromTRANSFORM2D(SharedBuffer* des, const Variant& src) {
-        Transform2D src_transform_2d {src};
-        set_variant_type(des, Variant::Type::TRANSFORM2D);
-        append_vector2(des, src_transform_2d[0]);
-        append_vector2(des, src_transform_2d[1]);
-        append_vector2(des, src_transform_2d.get_origin());
-    }
-
-    static inline void append_vector4(SharedBuffer* des, const Vector4& from) {
-        des->increment_position(encode_float(from.x, des->get_cursor()));
-        des->increment_position(encode_float(from.y, des->get_cursor()));
-        des->increment_position(encode_float(from.z, des->get_cursor()));
-        des->increment_position(encode_float(from.w, des->get_cursor()));
-    }
-
-    static void to_kvariant_fromVECTOR4(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, Variant::Type::VECTOR4);
-        append_vector4(des, src);
-    }
-
-    static inline void append_vector4i(SharedBuffer* des, const Vector4i& from) {
-        des->increment_position(encode_uint32(from.x, des->get_cursor()));
-        des->increment_position(encode_uint32(from.y, des->get_cursor()));
-        des->increment_position(encode_uint32(from.z, des->get_cursor()));
-        des->increment_position(encode_uint32(from.w, des->get_cursor()));
-    }
-
-    static void to_kvariant_fromVECTOR4I(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, Variant::Type::VECTOR4I);
-        append_vector4i(des, src);
-    }
-
-    static void to_kvariant_fromPLANE(SharedBuffer* des, const Variant& src) {
-        Plane src_plane {src.operator Plane()};
-        set_variant_type(des, Variant::Type::PLANE);
-        append_vector3(des, src_plane.normal);
-        des->increment_position(encode_float(src_plane.d, des->get_cursor()));
-    }
-
-    static void to_kvariant_fromQUATERNION(SharedBuffer* des, const Variant& src) {
-        Quaternion src_quat {src.operator Quaternion()};
-        set_variant_type(des, Variant::Type::QUATERNION);
-        des->increment_position(encode_float(src_quat.x, des->get_cursor()));
-        des->increment_position(encode_float(src_quat.y, des->get_cursor()));
-        des->increment_position(encode_float(src_quat.z, des->get_cursor()));
-        des->increment_position(encode_float(src_quat.w, des->get_cursor()));
-    }
-
-    static void to_kvariant_fromAABB(SharedBuffer* des, const Variant& src) {
-        AABB src_aabb {src};
-        set_variant_type(des, Variant::Type::AABB);
-        append_vector3(des, src_aabb.position);
-        append_vector3(des, src_aabb.size);
-    }
-
-    static inline void append_basis(SharedBuffer* des, const Basis& data) {
-        append_vector3(des, data.rows[0]);
-        append_vector3(des, data.rows[1]);
-        append_vector3(des, data.rows[2]);
-    }
-
-    static void to_kvariant_fromBASIS(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, Variant::Type::BASIS);
-        append_basis(des, src);
-    }
-
-    static void to_kvariant_fromTRANSFORM3D(SharedBuffer* des, const Variant& src) {
-        Transform3D src_transform {src.operator Transform3D()};
-        set_variant_type(des, Variant::Type::TRANSFORM3D);
-        append_basis(des, src_transform.basis);
-        append_vector3(des, src_transform.origin);
-    }
-
-    static void to_kvariant_fromPROJECTION(SharedBuffer* des, const Variant& src) {
-        Projection src_projection {src.operator Projection()};
-        set_variant_type(des, Variant::Type::PROJECTION);
-        append_vector4(des, src_projection.columns[0]);
-        append_vector4(des, src_projection.columns[1]);
-        append_vector4(des, src_projection.columns[2]);
-        append_vector4(des, src_projection.columns[3]);
-    }
-
-    static void to_kvariant_fromCOLOR(SharedBuffer* des, const Variant& src) {
-        Color src_color {src.operator Color()};
-        set_variant_type(des, Variant::Type::COLOR);
-        des->increment_position(encode_float(src_color.r, des->get_cursor()));
-        des->increment_position(encode_float(src_color.g, des->get_cursor()));
-        des->increment_position(encode_float(src_color.b, des->get_cursor()));
-        des->increment_position(encode_float(src_color.a, des->get_cursor()));
+        *reinterpret_cast<T*>(des->get_cursor()) = src;
+        des->increment_position(sizeof(T));
     }
 
     template<class TNativeCoreType>
@@ -268,25 +117,25 @@ namespace ktvariant {
     static void init_to_kt_methods(void (*to_kt_array[Variant::Type::VARIANT_MAX])(SharedBuffer*, const Variant&)) {
         to_kt_array[Variant::NIL] = to_kvariant_fromNIL;
         to_kt_array[Variant::BOOL] = to_kvariant_fromBOOL;
-        to_kt_array[Variant::INT] = to_kvariant_fromINT;
-        to_kt_array[Variant::FLOAT] = to_kvariant_fromFLOAT;
+        to_kt_array[Variant::INT] = to_kvariant_fromCORETYPE<Variant::INT, uint64_t>;
+        to_kt_array[Variant::FLOAT] = to_kvariant_fromCORETYPE<Variant::FLOAT, double>;
         to_kt_array[Variant::STRING] = to_kvariant_fromSTRING;
-        to_kt_array[Variant::VECTOR2] = to_kvariant_fromVECTOR2;
-        to_kt_array[Variant::VECTOR2I] = to_kvariant_fromVECTOR2I;
-        to_kt_array[Variant::RECT2] = to_kvariant_fromRECT2;
-        to_kt_array[Variant::RECT2I] = to_kvariant_fromRECT2I;
-        to_kt_array[Variant::VECTOR3] = to_kvariant_fromVECTOR3;
-        to_kt_array[Variant::VECTOR3I] = to_kvariant_fromVECTOR3I;
-        to_kt_array[Variant::TRANSFORM2D] = to_kvariant_fromTRANSFORM2D;
-        to_kt_array[Variant::VECTOR4] = to_kvariant_fromVECTOR4;
-        to_kt_array[Variant::VECTOR4I] = to_kvariant_fromVECTOR4I;
-        to_kt_array[Variant::PLANE] = to_kvariant_fromPLANE;
-        to_kt_array[Variant::QUATERNION] = to_kvariant_fromQUATERNION;
-        to_kt_array[Variant::AABB] = to_kvariant_fromAABB;
-        to_kt_array[Variant::BASIS] = to_kvariant_fromBASIS;
-        to_kt_array[Variant::TRANSFORM3D] = to_kvariant_fromTRANSFORM3D;
-        to_kt_array[Variant::PROJECTION] = to_kvariant_fromPROJECTION;
-        to_kt_array[Variant::COLOR] = to_kvariant_fromCOLOR;
+        to_kt_array[Variant::VECTOR2] = to_kvariant_fromCORETYPE<Variant::VECTOR2, Vector2>;
+        to_kt_array[Variant::VECTOR2I] = to_kvariant_fromCORETYPE<Variant::VECTOR2I, Vector2i>;
+        to_kt_array[Variant::RECT2] = to_kvariant_fromCORETYPE<Variant::RECT2, Rect2>;
+        to_kt_array[Variant::RECT2I] = to_kvariant_fromCORETYPE<Variant::RECT2I, Rect2i>;
+        to_kt_array[Variant::VECTOR3] = to_kvariant_fromCORETYPE<Variant::VECTOR3, Vector3>;
+        to_kt_array[Variant::VECTOR3I] = to_kvariant_fromCORETYPE<Variant::VECTOR3I, Vector3i>;
+        to_kt_array[Variant::TRANSFORM2D] = to_kvariant_fromCORETYPE<Variant::TRANSFORM2D, Transform2D>;
+        to_kt_array[Variant::VECTOR4] = to_kvariant_fromCORETYPE<Variant::VECTOR4, Vector4>;
+        to_kt_array[Variant::VECTOR4I] = to_kvariant_fromCORETYPE<Variant::VECTOR4I, Vector4i>;
+        to_kt_array[Variant::PLANE] = to_kvariant_fromCORETYPE<Variant::PLANE, Plane>;
+        to_kt_array[Variant::QUATERNION] = to_kvariant_fromCORETYPE<Variant::QUATERNION, Quaternion>;
+        to_kt_array[Variant::AABB] = to_kvariant_fromCORETYPE<Variant::AABB, AABB>;
+        to_kt_array[Variant::BASIS] = to_kvariant_fromCORETYPE<Variant::BASIS, Basis>;
+        to_kt_array[Variant::TRANSFORM3D] = to_kvariant_fromCORETYPE<Variant::TRANSFORM3D, Transform3D>;
+        to_kt_array[Variant::PROJECTION] = to_kvariant_fromCORETYPE<Variant::PROJECTION, Projection>;
+        to_kt_array[Variant::COLOR] = to_kvariant_fromCORETYPE<Variant::COLOR, Color>;
         to_kt_array[Variant::CALLABLE] = to_kvariant_fromNATIVECORETYPE < Variant::CALLABLE, Callable, &Variant::operator Callable>;
         to_kt_array[Variant::SIGNAL] = to_kvariant_fromSIGNAL;
         to_kt_array[Variant::DICTIONARY] = to_kvariant_fromNATIVECORETYPE < Variant::DICTIONARY, Dictionary,
@@ -328,18 +177,6 @@ namespace ktvariant {
 
     static Variant from_kvariant_tokNilValue(SharedBuffer* byte_buffer) {
         return Variant();
-    }
-
-    static Variant from_kvariant_tokLongValue(SharedBuffer* byte_buffer) {
-        uint64_t ulong {decode_uint64(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(LONG_SIZE);
-        return Variant(ulong);
-    }
-
-    static Variant from_kvariant_tokFloat64Value(SharedBuffer* byte_buffer) {
-        double real {decode_double(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT64_SIZE);
-        return Variant(real);
     }
 
     static Variant from_kvariant_tokStringValue(SharedBuffer* byte_buffer) {
@@ -402,8 +239,8 @@ namespace ktvariant {
     static void init_to_gd_methods(Variant (*to_gd_array[Variant::Type::VARIANT_MAX])(SharedBuffer* byte_buffer)) {
         to_gd_array[Variant::NIL] = from_kvariant_tokNilValue;
         to_gd_array[Variant::BOOL] = from_kvariant_tokBoolValue;
-        to_gd_array[Variant::INT] = from_kvariant_tokLongValue;
-        to_gd_array[Variant::FLOAT] = from_kvariant_tokFloat64Value;
+        to_gd_array[Variant::INT] = from_kvariant_to_kVariantCoreTypeValue<uint64_t>;
+        to_gd_array[Variant::FLOAT] = from_kvariant_to_kVariantCoreTypeValue<double>;
         to_gd_array[Variant::STRING] = from_kvariant_tokStringValue;
         to_gd_array[Variant::VECTOR2] = from_kvariant_to_kVariantCoreTypeValue<Vector2>;
         to_gd_array[Variant::VECTOR2I] = from_kvariant_to_kVariantCoreTypeValue<Vector2i>;
