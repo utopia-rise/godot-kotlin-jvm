@@ -171,7 +171,8 @@ internal object MemoryManager {
     fun getInstance(id: Long): KtObject? {
         synchronized(ObjectDB) {
             return getBinding(id)?.value
-        }}
+        }
+    }
 
     private fun getBinding(id: Long): GodotBinding? {
         val objectID = ObjectID(id)
@@ -367,14 +368,14 @@ internal object MemoryManager {
             System.gc()
         }
     }
-    
+
     private external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
     private external fun bindInstance(instanceId: Long, obj: GodotBinding)
     private external fun unbindInstance(instanceId: Long)
     private external fun decrementRefCounter(instanceId: Long)
     private external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
     private external fun notifyLeak()
-    
+
 
     private enum class GCState {
         NONE,
