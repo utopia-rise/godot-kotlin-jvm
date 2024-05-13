@@ -2,7 +2,7 @@ extends "res://addons/gut/test.gd"
 
 
 func test_should_get_right_vector3_using_operator_get():
-	var basis_test = BasisTest.new()
+	var basis_test: Object = BasisTest.new()
 	var engine_basis = Basis(Vector3(1, 2, 3), Vector3(6, 8, 10), Vector3(5, 9, 7))
 	var jvm_basis = Basis(Vector3(1, 2, 3), Vector3(6, 8, 10), Vector3(5, 9, 7))
 	assert_eq(engine_basis[0], basis_test.get_from_basis(jvm_basis, 0), "Basis get operator on JVM side should be same as gdscript one.")
@@ -11,7 +11,7 @@ func test_should_get_right_vector3_using_operator_get():
 	basis_test.free()
 
 func test_should_set_right_vector3_using_operator_set():
-	var basis_test = BasisTest.new()
+	var basis_test: Object = BasisTest.new()
 	var engine_basis = Basis(Vector3(1, 2, 3), Vector3(6, 8, 10), Vector3(5, 9, 7))
 	var jvm_basis = Basis(Vector3(1, 2, 3), Vector3(6, 8, 10), Vector3(5, 9, 7))
 	engine_basis[0] = Vector3(10, 20, 30)

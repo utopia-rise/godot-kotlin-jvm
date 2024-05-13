@@ -2,7 +2,7 @@ extends "res://addons/gut/test.gd"
 
 
 func test_dictionary_any_not_null_append():
-	var invocation_script = Invocation.new()
+	var invocation_script: Object = Invocation.new()
 	assert_eq(invocation_script.any_dict_size(), 0, "Dict should be empty")
 	var key = Node.new()
 	var value = Node.new()
@@ -18,7 +18,7 @@ func test_dictionary_any_not_null_append():
 	value.free()
 
 func test_dictionary_any_not_null_remove():
-	var invocation_script = Invocation.new()
+	var invocation_script: Object = Invocation.new()
 	invocation_script.append_to_any_dict("key2", 11)
 	assert_eq(invocation_script.any_dict_size(), 1, "Dict size should be 1")
 	invocation_script.remove_from_any_dict("key2")

@@ -50,7 +50,7 @@ func test_get_string_call() -> void:
 	invocation_script.free()
 
 func test_int_value() -> void:
-	var invocation_script = Invocation.new()
+	var invocation_script: Object = Invocation.new()
 	assert_eq(invocation_script.int_value(2), 2, "int value cast should return exactly same value")
 	invocation_script.free()
 
@@ -60,7 +60,7 @@ func test_long_value() -> void:
 	invocation_script.free()
 
 func test_float_value() -> void:
-	var invocation_script = Invocation.new()
+	var invocation_script: Object = Invocation.new()
 	assert_eq(invocation_script.float_value(2.0), 2.0, "float value cast should return exactly same value")
 	invocation_script.free()
 
