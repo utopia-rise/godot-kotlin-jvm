@@ -82,7 +82,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
         files_to_add.push_back(String(BUILD_DIRECTORY).path_join(ANDROID_USER_CODE_FILE));
         _generate_export_configuration_file(jni::JvmType::ART);
     } else if (is_ios_export) {
-        String base_ios_build_dir {"res://build/libs/ios/"};
+        String base_ios_build_dir {String(BUILD_DIRECTORY).path_join("ios") };
         String base_ios_jdk_dir {base_ios_build_dir.path_join("ios-jdk").path_join(ios_jdk_version)};
 
         _generate_export_configuration_file(jni::JvmType::GRAAL_NATIVE_IMAGE);
@@ -94,7 +94,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
           ProjectSettings::get_singleton()->globalize_path(base_ios_jdk_dir.path_join("libjvm-release.a"))
         );
         add_ios_project_static_lib(
-          ProjectSettings::get_singleton()->globalize_path(String(BUILD_DIRECTORY).path_join(IOS_GRAAL_NATIVE_IMAGE_FILE))
+          ProjectSettings::get_singleton()->globalize_path(base_ios_build_dir.path_join(IOS_GRAAL_NATIVE_IMAGE_FILE))
         );
     } else {
         LOG_ERROR("Godot Kotlin/JVM doesn't handle this platform");
