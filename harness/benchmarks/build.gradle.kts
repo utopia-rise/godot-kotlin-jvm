@@ -1,9 +1,11 @@
+import godot.BenchmarkComparisonTask
 import org.jetbrains.kotlin.konan.target.HostManager
 import java.net.HttpURLConnection
 import java.net.URL
 
 plugins {
     id("com.utopia-rise.godot-kotlin-jvm")
+    id("com.utopia-rise.compare-benchmark-data")
 }
 
 repositories {
@@ -80,9 +82,9 @@ tasks {
                 throw IllegalStateException("Cannot upload $benchmarkResultsFile as it does not exist. Make sure you ran ${runBenchmarks.name} first")
             }
 
-            val uploadUrl = System.getenv("BENCHMARK_UPLOAD_URL")
+            val benchmarkDataUrl = System.getenv("BENCHMARK_DATA_URL")
 
-            val connection = URL(uploadUrl).openConnection() as HttpURLConnection
+            val connection = URL(benchmarkDataUrl).openConnection() as HttpURLConnection
             connection.requestMethod = "POST"
             connection.doOutput = true
             connection.setRequestProperty("Content-Type", "application/json")
@@ -103,5 +105,27 @@ tasks {
                 println("POST not successful: $responseCode")
             }
         }
+    }
+    val pullLatestBenchmarkData = register("pullLatestBenchmarkData") {
+        doLast {
+            val latestBenchmarkResults = project.file("benchmark-results-latest.json")
+
+            val benchmarkDataUrl = System.getenv("BENCHMARK_DATA_URL")
+
+            URL(benchmarkDataUrl).openConnection().getInputStream().use { inputStream ->
+                latestBenchmarkResults.outputStream().use { outputStream ->
+                    inputStream.copyTo(outputStream)
+                }
+            }
+        }
+    }
+    withType<BenchmarkComparisonTask> {
+        dependsOn(
+            pullLatestBenchmarkData,
+            runBenchmarks,
+        )
+
+        benchmarkResults = file("benchmark-results.json")
+        latestBenchmarkResults = file("benchmark-results-latest.json")
     }
 }

@@ -14,6 +14,11 @@ includeBuild("../../kt") {
         substitute(module("com.utopia-rise:godot-entry-generator")).using(project(":godot-entry-generator"))
     }
 }
+includeBuild("benchmark-comparison") {
+    dependencySubstitution {
+        substitute(module("com.utopia-rise:godot-compare-benchmark-data")).using(project(":"))
+    }
+}
 
 
 pluginManagement {
@@ -28,6 +33,9 @@ pluginManagement {
         }
         if (requested.id.id == "com.utopia-rise.api-generator") {
             useModule("com.utopia-rise:api-generator:${requested.version}")
+        }
+        if (requested.id.id == "com.utopia-rise.compare-benchmark-data") {
+            useModule("com.utopia-rise:godot-compare-benchmark-data:${requested.version}")
         }
     }
 }

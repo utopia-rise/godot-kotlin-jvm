@@ -453,3 +453,4 @@ fabric.properties
 # End of https://www.toptal.com/developers/gitignore/api/godot,csharp,rider
 /.godot/
 /benchmark-results.json
+/benchmark-results-latest.json
