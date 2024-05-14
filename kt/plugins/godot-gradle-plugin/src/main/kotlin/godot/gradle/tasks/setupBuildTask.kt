@@ -16,16 +16,19 @@ fun Project.setupBuildTask(
     createBuildLockTask: TaskProvider<out Task>,
     generateGdIgnoreFilesTask: TaskProvider<out Task>,
 ) {
-    tasks.named("build") {
+    tasks.named("compileKotlin") {
         with(it) {
             dependsOn(
                 createBuildLockTask,
-                packageBootstrapJarTask,
-                packageMainJarTask,
-                generateGdIgnoreFilesTask
             )
 
-            finalizedBy(deleteBuildLockTask)
+            finalizedBy(
+                packageBootstrapJarTask,
+                packageMainJarTask,
+                generateGdIgnoreFilesTask,
+                deleteBuildLockTask,
+            )
+
             if (godotJvmExtension.isAndroidExportEnabled.get()) {
                 finalizedBy(packageBootstrapDexJarTask, packageMainDexJarTask)
             }
