@@ -35,13 +35,6 @@ void GdjLanguage::init() {
 #endif
 }
 
-void GdjLanguage::frame() {
-#ifdef TOOLS_ENABLED
-    JvmScriptManager::get_instance().update_all_scripts();
-#endif
-}
-
-
 void GdjLanguage::thread_enter() {
     jni::Jvm::attach();
 }
