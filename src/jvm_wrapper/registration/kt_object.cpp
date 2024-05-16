@@ -5,5 +5,5 @@ KtObject::KtObject(jni::Env& p_env, jni::JObject p_wrapped, bool p_is_ref) : Jvm
 KtObject::~KtObject() {
     if (is_ref) { return; }
     jni::Env env {jni::Jvm::current_env()};
-    wrapped.call_object_method(env, ON_DESTROY);
+    wrapped.call_void_method(env, ON_DESTROY);
 }
