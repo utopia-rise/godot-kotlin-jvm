@@ -80,3 +80,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.cache-name }}
+          path: "bin/*"

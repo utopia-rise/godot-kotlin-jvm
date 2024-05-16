@@ -98,3 +98,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: export_template_android_all
+          path: "bin/*"

@@ -51,3 +51,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: export_template_ios_all
+          path: "bin/*"
