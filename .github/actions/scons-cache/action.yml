@@ -1,3 +1,6 @@
+# base key setup copied from the godot cache action setup
+# just added some if statements for only restoring the cache when not on master and only saving when on master
+
 name: Setup scons cache
 description: Setup scons build cache.
 inputs:
