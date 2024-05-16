@@ -4,6 +4,8 @@ on:
     inputs:
       godot-version:
         type: string
+      jvm-version:
+        type: string
 
 env:
   SCONS_CACHE_MSVC_CONFIG: true
