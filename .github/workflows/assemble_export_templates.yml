@@ -21,7 +21,7 @@ jobs:
         shell: bash
 
       - name: Download android export templates
-        uses: ./.github/actions/download-artifact
+        uses: actions/download-artifact@v4
         with:
           name: export_template_android_all
           path: android_templates/
@@ -34,7 +34,7 @@ jobs:
           cp android_templates/android_release.apk templates/android_release.apk
 
       - name: Download ios export template
-        uses: ./.github/actions/download-artifact
+        uses: actions/download-artifact@v4
         with:
           name: export_template_all_ios
 
@@ -43,7 +43,7 @@ jobs:
         run: mv export_template_all_ios.zip templates/ios.zip
 
       - name: Download linux x86_64 debug export template
-        uses: ./.github/actions/download-artifact
+        uses: actions/download-artifact@v4
         with:
           name: export_template_debug_linux_x86_64
 
@@ -52,7 +52,7 @@ jobs:
         run: mv godot.linuxbsd.template_debug.x86_64 templates/linux_debug.x86_64
 
       - name: Download linux x86_64 release export template
-        uses: ./.github/actions/download-artifact
+        uses: actions/download-artifact@v4
         with:
           name: export_template_release_linux_x86_64
 
@@ -61,7 +61,7 @@ jobs:
         run: mv godot.linuxbsd.template_release.x86_64 templates/linux_release.x86_64
 
       - name: Download windows x86_64 debug export template
-        uses: ./.github/actions/download-artifact
+        uses: actions/download-artifact@v4
         with:
           name: export_template_debug_windows_x86_64
 
@@ -70,7 +70,7 @@ jobs:
         run: mv godot.windows.template_debug.x86_64.exe templates/windows_debug_x86_64.exe
 
       - name: Download windows x86_64 release export template
-        uses: ./.github/actions/download-artifact
+        uses: actions/download-artifact@v4
         with:
           name: export_template_release_windows_x86_64
 
@@ -79,7 +79,7 @@ jobs:
         run: mv godot.windows.template_release.x86_64.exe templates/windows_release_x86_64.exe
 
       - name: Download macos debug export template
-        uses: ./.github/actions/download-artifact
+        uses: actions/download-artifact@v4
         with:
           name: export_template_all_macos
 
@@ -101,7 +101,7 @@ jobs:
         shell: bash
 
       - name: Upload artifact
-        uses: ./.github/actions/upload-artifact
+        uses: actions/upload-artifact@v4
         with:
           name: godot-kotlin-jvm_export_templates_${{ inputs.godot-kotlin-jvm-version }}.tpz
           path: templates/godot-kotlin-jvm_export_templates_${{ inputs.godot-kotlin-jvm-version }}.tpz

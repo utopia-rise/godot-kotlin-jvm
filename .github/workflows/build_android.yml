@@ -95,6 +95,6 @@ jobs:
           ls -l bin/
 
       - name: Upload artifact
-        uses: ./.github/actions/upload-artifact
+        uses: actions/upload-artifact@v4
         with:
           name: export_template_android_all

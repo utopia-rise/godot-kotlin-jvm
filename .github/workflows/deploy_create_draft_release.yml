@@ -50,19 +50,19 @@ jobs:
         run: echo $(echo "$GITHUB_REF" | grep -Po '(\d+\.\d+\.\d+-\d+\.\d+\.\d+(-SNAPSHOT)?)') > deploy_godot_kotlin_jvm_version.txt
 
       - name: Save Release URL File for publish
-        uses: ./.github/actions/upload-artifact
+        uses: actions/upload-artifact@v4
         with:
           name: deploy_release_url
           path: deploy_release_url.txt
 
       - name: Save supported godot version for publish
-        uses: ./.github/actions/upload-artifact
+        uses: actions/upload-artifact@v4
         with:
           name: deploy_godot_version
           path: deploy_godot_version.txt
 
       - name: Save godot kotlin jvm version for publish
-        uses: ./.github/actions/upload-artifact
+        uses: actions/upload-artifact@v4
         with:
           name: deploy_godot_kotlin_jvm_version
           path: deploy_godot_kotlin_jvm_version.txt
