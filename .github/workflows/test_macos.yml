@@ -48,13 +48,13 @@ jobs:
           cache-read-only: ${{ github.ref != 'refs/heads/master' }}
 
       - name: Download macos editor ${{ matrix.target }}
-        uses: ./.github/actions/download-artifact
+        uses: actions/download-artifact@v4
         with:
           name: editor_${{ matrix.target }}_macos_universal
           path: './bin'
 
       - name: Download godot-bootstrap ${{ matrix.bootstrap-target }}
-        uses: ./.github/actions/download-artifact
+        uses: actions/download-artifact@v4
         with:
           name: jvm_godot-bootstrap_${{ matrix.bootstrap-target }}
           path: './bin'
