@@ -29,13 +29,13 @@ jobs:
             arch: x86_64
     steps:
       - name: Download ${{ matrix.target }} editor
-        uses: actions/download-artifact@v4
+        uses: ./.github/actions/download-artifact
         with:
           name: editor_${{ matrix.target }}_windows_${{ matrix.arch }}
           path: godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
 
       - name: Download ${{ matrix.target }} bootstrap jar
-        uses: actions/download-artifact@v4
+        uses: ./.github/actions/download-artifact
         with:
           name: jvm_godot-bootstrap_${{ matrix.target }}
           path: godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
@@ -47,7 +47,7 @@ jobs:
         shell: bash
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: ./.github/actions/upload-artifact
         with:
           name: godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
           path: godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}/godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip

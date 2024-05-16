@@ -105,6 +105,6 @@ jobs:
           chmod +x bin/godot.*
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: ./.github/actions/upload-artifact
         with:
           name: ${{ matrix.cache-name }}

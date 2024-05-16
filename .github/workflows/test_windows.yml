@@ -48,13 +48,13 @@ jobs:
           cache-read-only: ${{ github.ref != 'refs/heads/master' }}
 
       - name: Download windows editor ${{ matrix.target }}
-        uses: actions/download-artifact@v4
+        uses: ./.github/actions/download-artifact
         with:
           name: editor_${{ matrix.target }}_windows_x86_64
           path: './bin'
 
       - name: Download godot-bootstrap ${{ matrix.bootstrap-target }}
-        uses: actions/download-artifact@v4
+        uses: ./.github/actions/download-artifact
         with:
           name: jvm_godot-bootstrap_${{ matrix.bootstrap-target }}
           path: './bin'
