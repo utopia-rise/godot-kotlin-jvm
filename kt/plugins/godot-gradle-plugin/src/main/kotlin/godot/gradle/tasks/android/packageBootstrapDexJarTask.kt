@@ -1,5 +1,6 @@
 package godot.gradle.tasks.android
 
+import godot.gradle.GodotPlugin
 import godot.gradle.projectExt.godotJvmExtension
 import org.gradle.api.Project
 import org.gradle.api.Task
@@ -24,6 +25,12 @@ fun Project.packageBootstrapDexJarTask(
             doFirst {
                 val libsDir = project.buildDir.resolve("libs")
                 val godotBootstrapJar = File(libsDir, "godot-bootstrap.jar")
+                val mainDexRules = project.buildDir.resolve("main-dex-rules.proguard").also { mainDexRules ->
+                    mainDexRules.outputStream().use { outputStream ->
+                        requireNotNull(GodotPlugin::class.java.getResourceAsStream("android/main-dex-rules.proguard"))
+                            .copyTo(outputStream)
+                    }
+                }.absolutePath
 
                 workingDir = libsDir
                 if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
@@ -38,6 +45,8 @@ fun Project.packageBootstrapDexJarTask(
                         "${godotJvmExtension.androidCompileSdkDir.get().asFile.absolutePath}${File.separator}android.jar",
                         "--min-api",
                         godotJvmExtension.androidMinApi.get(),
+                        "--main-dex-rules",
+                        mainDexRules,
                     )
                 } else {
                     commandLine(
@@ -49,6 +58,8 @@ fun Project.packageBootstrapDexJarTask(
                         "${godotJvmExtension.androidCompileSdkDir.get().asFile.absolutePath}/android.jar",
                         "--min-api",
                         godotJvmExtension.androidMinApi.get(),
+                        "--main-dex-rules",
+                        mainDexRules,
                     )
                 }
             }

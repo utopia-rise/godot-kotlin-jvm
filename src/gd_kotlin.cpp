@@ -93,20 +93,36 @@ void GDKotlin::set_jvm_options() {
 
 #include <core/io/dir_access.h>
 
+#ifdef __ANDROID__
+#include <unistd.h>
+#endif
+
 String GDKotlin::copy_new_file_to_user_dir(const String& file_name) {
     String file_res_path {String(BUILD_DIRECTORY) + file_name};
     String file_user_path {String(USER_DIRECTORY) + file_name};
 
+#ifndef __ANDROID__
     if (!FileAccess::exists(file_user_path) || FileAccess::get_md5(file_user_path) != FileAccess::get_md5(file_res_path)) {
         LOG_VERBOSE(vformat("%s file has changed. Copying it from res:// to user://.", file_name));
+#else
+    // as per suggestion of https://developer.android.com/about/versions/14/behavior-changes-14#safer-dynamic-code-loading, we first delete existing files and then copy them again
+    // if we don't do this, subsequent app starts where the files already exist, error out
 
-        Error err;
-        Ref<DirAccess> dir_access {DirAccess::open(BUILD_DIRECTORY, &err)};
+    String file_user_path_global {ProjectSettings::get_singleton()->globalize_path(file_user_path)};
+    unlink(file_user_path_global.utf8().get_data()); // we do not really care about errors here
+#endif
 
-        JVM_ERR_FAIL_COND_V_MSG(err != OK, "", vformat("Cannot open %s file in res://.", file_name));
+    Error err;
+    Ref<DirAccess> dir_access {DirAccess::open(BUILD_DIRECTORY, &err)};
 
-        dir_access->copy(file_res_path, file_user_path);
+    JVM_ERR_FAIL_COND_V_MSG(err != OK, "", vformat("Cannot open %s file in res://.", file_name));
+
+    dir_access->copy(file_res_path, file_user_path);
+
+#ifndef __ANDROID__
     }
+#endif
+
     return file_user_path;
 }
 
