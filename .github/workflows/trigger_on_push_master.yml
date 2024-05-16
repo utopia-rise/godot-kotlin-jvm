@@ -91,6 +91,7 @@ jobs:
     secrets: inherit # needed so that this sub workflow can also access github secrets for this workflow
     uses: ./.github/workflows/benchmark_windows.yml
     needs:
+      - setup-build-variables
       - assemble-windows
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
