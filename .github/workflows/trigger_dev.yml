@@ -24,7 +24,7 @@ jobs:
     outputs:
       pr-number: ${{ steps.get-pr-number.outputs.pr-number }}
     steps:
-      - uses: actions/github-script@v6
+      - uses: actions/github-script@v7
         id: get_issue_number
         with:
           script: |
