@@ -27,7 +27,7 @@ jobs:
           path: modules/kotlin_jvm
 
       - name: Setup Godot build cache
-        uses: ./.github/actions/godot-cache
+        uses: ./.github/actions/scons-cache
         continue-on-error: true
 
       - name: Setup python and scons

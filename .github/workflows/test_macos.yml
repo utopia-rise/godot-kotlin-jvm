@@ -45,7 +45,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
         with:
-          cache-read-only: false
+          cache-read-only: ${{ github.ref != 'refs/heads/master' }}
 
       - name: Download macos editor ${{ matrix.target }}
         uses: ./.github/actions/download-artifact
