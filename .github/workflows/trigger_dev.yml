@@ -1,0 +1,99 @@
+name: Dev build and test
+
+on:
+  push:
+    branches:
+      - '*'         # matches every branch that doesn't contain a '/'
+      - '*/*'       # matches every branch containing a single '/'
+      - '**'        # matches every branch
+      - '!master'   # excludes master
+
+concurrency:
+  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-trigger_dev
+  cancel-in-progress: true
+
+jobs:
+  # This job checks if the current commit is part of a pull request
+  # The output is then used to determine if the subsequent jobs should run (see the `if` in `setup-build-variables`)
+  # This is needed as github actions does not allow to run on every push except on pull request pushes
+  # general concept taken from: https://github.com/orgs/community/discussions/27071#discussioncomment-4943026
+  get-pr-number:
+    name: 🔗 Get PR number if present
+    runs-on: ubuntu-latest
+    # Map a step output to a job output
+    outputs:
+      pr-number: ${{ steps.get-pr-number.outputs.pr-number }}
+    steps:
+      - uses: actions/github-script@v6
+        id: get_issue_number
+        with:
+          script: |
+            if (context.issue.number) {
+              // Return issue number if present
+              return context.issue.number;
+            } else {
+              // Otherwise return issue number from commit
+              const data = (
+                await github.rest.repos.listPullRequestsAssociatedWithCommit({
+                  commit_sha: context.sha,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                })
+              ).data[0];
+            
+              if (data) {
+                return data.number;
+              } else {
+                return '';
+              }
+            }
+          result-encoding: string
+
+      - id: get-pr-number
+        run: |
+          echo "Got PR number: ${{steps.get_issue_number.outputs.result}}"
+          echo "pr-number=${{steps.get_issue_number.outputs.result}}" >> "$GITHUB_OUTPUT"
+
+  setup-build-variables:
+    needs:
+      - get-pr-number
+    # we only want to run this if we're not in a pull request.
+    # all subsequent jobs in this workflow depend on this one. So if we don't execute it, they won't be executed either
+    if: ${{ needs.get-pr-number.outputs['pr-number'] == '' }}
+    name: 🛠️ Setup build variables
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Setup done"
+    outputs: # defined here explicitly, so it only needs to be defined here. All other workflows can just reference it
+      godot-kotlin-jvm-version: "0.8.3-4.2.1"
+      godot-version: "4.2.1-stable"
+      jvm-version: "17"
+
+  build-jvm:
+    name: ☕ Build Jvm
+    uses: ./.github/workflows/build_jvm.yml
+    needs:
+      - setup-build-variables
+    with:
+      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+      jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
+
+  build-linux:
+    name: 🐧 Build Linux
+    uses: ./.github/workflows/build_linux.yml
+    needs:
+      - setup-build-variables
+    with:
+      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+
+  test-linux:
+    name: 🐧 Test Linux
+    uses: ./.github/workflows/test_linux.yml
+    needs:
+      - setup-build-variables
+      - build-jvm
+      - build-linux
+    with:
+      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+      jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
