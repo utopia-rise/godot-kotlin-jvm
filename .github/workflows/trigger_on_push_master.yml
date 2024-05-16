@@ -1,6 +1,6 @@
 name: Master pipeline
 on:
-  push:
+  push
 #    TODO: enable after testing is done!
 #    branches:
 #      - master
