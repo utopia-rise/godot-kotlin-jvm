@@ -1,10 +1,11 @@
 name: Master pipeline
 on:
   push:
-    branches:
-      - master
-  schedule:
-      - cron: '0 0 * * 1' # run once a week on monday midnight to prevent the cache from being cleared
+#    TODO: enable after testing is done!
+#    branches:
+#      - master
+#  schedule:
+#      - cron: '0 0 * * 1' # run once a week on monday midnight to prevent the cache from being cleared
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-trigger_on_push_master
@@ -72,3 +73,25 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+
+  # needed for benchmarks
+  assemble-windows:
+    name: 🪟 Assemble windows
+    uses: ./.github/workflows/assemble_windows.yml
+    needs:
+      - setup-build-variables
+      - build-jvm
+      - build-windows
+    with:
+      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
+      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+
+  benchmark-windows:
+    name: 📊 Benchmark windows
+    secrets: inherit # needed so that this sub workflow can also access github secrets for this workflow
+    uses: ./.github/workflows/benchmark_windows.yml
+    needs:
+      - assemble-windows
+    with:
+      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+      jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}

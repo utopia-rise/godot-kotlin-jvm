@@ -1,0 +1,68 @@
+name: 📊 Benchmark windows
+on:
+  workflow_call:
+    inputs:
+      godot-version:
+        type: string
+
+env:
+  SCONS_CACHE_MSVC_CONFIG: true
+  BENCHMARK_DATA_URL: ${{ secrets.BENCHMARK_DATA_URL }}
+
+concurrency:
+  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-windows_benchmark
+  cancel-in-progress: true
+
+jobs:
+  build-windows:
+    # Windows 10 with latest image
+    runs-on:
+      - self-hosted
+      - win11
+      - benchmark
+    name: Benchmark windows
+
+    steps:
+      - name: Clone Godot Engine
+        uses: actions/checkout@v4
+        with:
+          repository: godotengine/godot
+          ref: ${{ inputs.godot-version }}
+
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v4
+        with:
+          path: modules/kotlin_jvm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: adopt-hotspot
+          java-version: ${{ inputs.jvm-version }}
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          cache-read-only: false
+
+      - name: Download windows editor release
+        uses: ./.github/actions/download-artifact
+        with:
+          name: editor_release_windows_x86_64
+          path: './bin'
+
+      - name: Download godot-bootstrap release
+        uses: ./.github/actions/download-artifact
+        with:
+          name: jvm_godot-bootstrap_release
+          path: './bin'
+
+      - name: Build benchmarks project
+        run: |
+          modules/kotlin_jvm/harness/benchmarks/gradlew -p modules/kotlin_jvm/harness/benchmarks/ build -Prelease=true
+
+      - name: Run benchmarks
+        run: |
+          cd modules/kotlin_jvm/harness/benchmarks/
+          jlink --add-modules java.base,java.logging --output jre-amd64
+          ./gradlew executeAndUploadBenchmarkResults
+        timeout-minutes: 30
