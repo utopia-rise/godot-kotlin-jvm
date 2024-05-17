@@ -68,18 +68,16 @@ jobs:
         run: |
           modules/kotlin_jvm/harness/benchmarks/gradlew -p modules/kotlin_jvm/harness/benchmarks/ build -Prelease=true
 
-      - name: Setup embedded jdk
+      - name: Run benchmarks
         run: |
           cd modules/kotlin_jvm/harness/benchmarks/
           jlink --add-modules java.base,java.logging --output jre-amd64
-
-      - name: Run benchmarks
-        run: |
           ./gradlew executeAndUploadBenchmarkResults
         timeout-minutes: 30
 
       - name: Profile benchmarks
         run: |
+          cd modules/kotlin_jvm/harness/benchmarks/
           rm -rf jre-amd64
           ./gradlew profileAndUpload
         timeout-minutes: 30
