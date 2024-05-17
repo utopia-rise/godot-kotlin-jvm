@@ -128,4 +128,20 @@ tasks {
         benchmarkResults = file("benchmark-results.json")
         latestBenchmarkResults = file("benchmark-results-latest.json")
     }
+
+    register<Copy>("profileAndUpload") {
+        group = "profiling"
+
+        from(projectDir.resolve("profiling/godot_kotlin_configuration.json"))
+        into(projectDir)
+
+        doLast {
+            val serverAddress = System.getenv("PYROSCOPE_SERVER_ADDRESS")
+            if (serverAddress == null || serverAddress.isBlank()) {
+                throw IllegalArgumentException("No PYROSCOPE_SERVER_ADDRESS env variable found! Make sure you've set ALL PYROSCOPE env variables")
+            }
+        }
+
+        finalizedBy(runBenchmarks)
+    }
 }

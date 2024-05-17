@@ -10,6 +10,12 @@ on:
 env:
   SCONS_CACHE_MSVC_CONFIG: true
   BENCHMARK_DATA_URL: ${{ secrets.BENCHMARK_DATA_URL }}
+  PYROSCOPE_APPLICATION_NAME: 'godot.benchmarks'
+  PYROSCOPE_PROFILER_ALLOC: 512k
+  PYROSCOPE_PROFILER_LOCK: 10ms
+  PYROSCOPE_SERVER_ADDRESS: ${{ secrets.PYROSCOPE_SERVER_ADDRESS }}
+  PYROSCOPE_BASIC_AUTH_USER: ${{ secrets.PYROSCOPE_BASIC_AUTH_USER }}
+  PYROSCOPE_BASIC_AUTH_PASSWORD: ${{ secrets.PYROSCOPE_BASIC_AUTH_PASSWORD }}
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-windows_benchmark
@@ -62,9 +68,18 @@ jobs:
         run: |
           modules/kotlin_jvm/harness/benchmarks/gradlew -p modules/kotlin_jvm/harness/benchmarks/ build -Prelease=true
 
-      - name: Run benchmarks
+      - name: Setup embedded jdk
         run: |
           cd modules/kotlin_jvm/harness/benchmarks/
           jlink --add-modules java.base,java.logging --output jre-amd64
+
+      - name: Run benchmarks
+        run: |
           ./gradlew executeAndUploadBenchmarkResults
+        timeout-minutes: 30
+
+      - name: Profile benchmarks
+        run: |
+          rm -rf jre-amd64
+          ./gradlew profileAndUpload
         timeout-minutes: 30
