@@ -92,18 +92,7 @@ bool JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
     return true;
 }
 
-bool JvmManager::initialize_jni_classes(jni::Env& p_env, ClassLoader* class_loader) {
-    Bootstrap::initialize_jni_binding(p_env, class_loader);
-    KtObject::initialize_jni_binding(p_env, class_loader);
-    KtPropertyInfo::initialize_jni_binding(p_env, class_loader);
-    KtProperty::initialize_jni_binding(p_env, class_loader);
-    KtConstructor::initialize_jni_binding(p_env, class_loader);
-    KtSignalInfo::initialize_jni_binding(p_env, class_loader);
-    KtRpcConfig::initialize_jni_binding(p_env, class_loader);
-    KtFunctionInfo::initialize_jni_binding(p_env, class_loader);
-    KtFunction::initialize_jni_binding(p_env, class_loader);
-    KtClass::initialize_jni_binding(p_env, class_loader);
-
+bool JvmManager::initialize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loader) {
     return TransferContext::initialize(p_env, class_loader)
         && TypeManager::initialize(p_env, class_loader)
         && LongStringQueue::initialize(p_env, class_loader)
@@ -123,34 +112,50 @@ bool JvmManager::initialize_jni_classes(jni::Env& p_env, ClassLoader* class_load
         && bridges::PackedInt64IntArrayBridge::initialize(p_env, class_loader)
         && bridges::PackedStringArrayBridge::initialize(p_env, class_loader)
         && bridges::PackedVector2ArrayBridge::initialize(p_env, class_loader)
-        && bridges::PackedVector3ArrayBridge::initialize(p_env, class_loader);
+        && bridges::PackedVector3ArrayBridge::initialize(p_env, class_loader)
+        && Bootstrap::initialize(p_env, class_loader)
+        && KtObject::initialize(p_env, class_loader)
+        && KtPropertyInfo::initialize(p_env, class_loader)
+        && KtProperty::initialize(p_env, class_loader)
+        && KtConstructor::initialize(p_env, class_loader)
+        && KtSignalInfo::initialize(p_env, class_loader)
+        && KtRpcConfig::initialize(p_env, class_loader)
+        && KtFunctionInfo::initialize(p_env, class_loader)
+        && KtFunction::initialize(p_env, class_loader)
+        && KtClass::initialize(p_env, class_loader);
 }
 
-void JvmManager::destroy_jni_classes() {
-    // Singleton
-    TransferContext::destroy();
-    TypeManager::destroy();
-    LongStringQueue::destroy();
-    MemoryManager::destroy();
-
-    bridges::GDPrintBridge::destroy();
-
-    bridges::CallableBridge::destroy();
-    bridges::DictionaryBridge::destroy();
-    bridges::RidBridge::destroy();
-    bridges::StringNameBridge::destroy();
-    bridges::NodePathBridge::destroy();
-    bridges::VariantArrayBridge::destroy();
-
-    bridges::PackedByteArrayBridge::destroy();
-    bridges::PackedColorArrayBridge::destroy();
-    bridges::PackedFloat32ArrayBridge::destroy();
-    bridges::PackedFloat64ArrayBridge::destroy();
-    bridges::PackedInt32IntArrayBridge::destroy();
-    bridges::PackedInt64IntArrayBridge::destroy();
-    bridges::PackedStringArrayBridge::destroy();
-    bridges::PackedVector2ArrayBridge::destroy();
-    bridges::PackedVector3ArrayBridge::destroy();
+void JvmManager::finalize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loader) {
+    TransferContext::finalize(p_env, class_loader);
+    TypeManager::finalize(p_env, class_loader);
+    LongStringQueue::finalize(p_env, class_loader);
+    MemoryManager::finalize(p_env, class_loader);
+    bridges::GDPrintBridge::finalize(p_env, class_loader);
+    bridges::CallableBridge::finalize(p_env, class_loader);
+    bridges::DictionaryBridge::finalize(p_env, class_loader);
+    bridges::RidBridge::finalize(p_env, class_loader);
+    bridges::StringNameBridge::finalize(p_env, class_loader);
+    bridges::NodePathBridge::finalize(p_env, class_loader);
+    bridges::VariantArrayBridge::finalize(p_env, class_loader);
+    bridges::PackedByteArrayBridge::finalize(p_env, class_loader);
+    bridges::PackedColorArrayBridge::finalize(p_env, class_loader);
+    bridges::PackedFloat32ArrayBridge::finalize(p_env, class_loader);
+    bridges::PackedFloat64ArrayBridge::finalize(p_env, class_loader);
+    bridges::PackedInt32IntArrayBridge::finalize(p_env, class_loader);
+    bridges::PackedInt64IntArrayBridge::finalize(p_env, class_loader);
+    bridges::PackedStringArrayBridge::finalize(p_env, class_loader);
+    bridges::PackedVector2ArrayBridge::finalize(p_env, class_loader);
+    bridges::PackedVector3ArrayBridge::finalize(p_env, class_loader);
+    Bootstrap::finalize(p_env, class_loader);
+    KtObject::finalize(p_env, class_loader);
+    KtPropertyInfo::finalize(p_env, class_loader);
+    KtProperty::finalize(p_env, class_loader);
+    KtConstructor::finalize(p_env, class_loader);
+    KtSignalInfo::finalize(p_env, class_loader);
+    KtRpcConfig::finalize(p_env, class_loader);
+    KtFunctionInfo::finalize(p_env, class_loader);
+    KtFunction::finalize(p_env, class_loader);
+    KtClass::finalize(p_env, class_loader);
 }
 
 void JvmManager::close_jvm() {

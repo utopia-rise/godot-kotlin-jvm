@@ -59,7 +59,7 @@ bool JvmScript::inherits_script(const Ref<Script>& p_script) const {
 Ref<Script> JvmScript::get_base_script() const {
     if (!is_valid() || kotlin_class->registered_supertypes.size() == 0) { return {}; }
     StringName parent_name = kotlin_class->registered_supertypes[0];
-    return JvmScriptManager::get_instance().get_user_script_from_name(parent_name);
+    return JvmScriptManager::get_instance().get_script_from_name(parent_name);
 }
 
 StringName JvmScript::get_instance_base_type() const {
@@ -220,13 +220,7 @@ PlaceHolderScriptInstance* JvmScript::placeholder_instance_create(Object* p_this
     return placeholder;
 }
 
-void JvmScript::update_exports() {
-    // TODO: Remove this when multithreading is fixed.
-    if (!Thread::is_main_thread()) {
-        MessageQueue::get_singleton()->push_callable(callable_mp(this, &JvmScript::update_exports));
-        return;
-    }
-
+void JvmScript::update_script() {
     exported_members_default_value_cache.clear();
     if (!is_valid()) { return; }
 

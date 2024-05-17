@@ -133,7 +133,7 @@ void TransferContext::create_native_object(JNIEnv* p_raw_env, jobject p_instance
     int script_index {static_cast<int>(p_script_index)};
     if (script_index != -1) {
         KtObject* kt_object = memnew(KtObject(env, jni::JObject(p_object), ptr->is_ref_counted()));
-        Ref<JvmScript> kotlin_script {JvmScriptManager::get_instance().get_user_script_for_index(script_index)};
+        Ref<JvmScript> kotlin_script {JvmScriptManager::get_instance().get_named_script_for_index(script_index)};
         JvmInstance* script = memnew(JvmInstance(env, ptr, kt_object, kotlin_script.ptr()));
         ptr->set_script_instance(script);
     }

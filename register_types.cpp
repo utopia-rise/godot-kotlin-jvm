@@ -14,6 +14,7 @@
 #include "register_types.h"
 #include "resource_format/jvm_resource_format_loader.h"
 #include "resource_format/jvm_resource_format_saver.h"
+#include "resource_format/java_archive_resource_format_loader.h"
 #include "script/jvm_script.h"
 #include "script/language/gdj_script.h"
 #include "script/language/java_script.h"
@@ -21,6 +22,8 @@
 
 Ref<JvmResourceFormatLoader> resource_format_loader;
 Ref<JvmResourceFormatSaver> resource_format_saver;
+
+Ref<JavaArchiveFormatLoader> java_archive_format_loader;
 
 #ifdef TOOLS_ENABLED
 static void editor_init() {
@@ -40,7 +43,7 @@ void initialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
 #endif
 
     if (p_level == MODULE_INITIALIZATION_LEVEL_SCENE) {
-        GDKotlin::get_instance().init();
+        GDKotlin::get_instance().initialize_up_to(GDKotlin::State::CORE_LIBRARY_INITIALIZED);
 
         GDREGISTER_ABSTRACT_CLASS(JvmScript);
         GDREGISTER_CLASS(GdjScript);
@@ -55,6 +58,11 @@ void initialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
         ResourceLoader::add_resource_format_loader(resource_format_loader);
         resource_format_saver.instantiate();
         ResourceSaver::add_resource_format_saver(resource_format_saver);
+
+        java_archive_format_loader.instantiate();
+        ResourceLoader::add_resource_format_loader(java_archive_format_loader);
+
+        MessageQueue::get_singleton()->push_callable(callable_mp(GDKotlin::get_instance(), &GDKotlin::initialize_up_to));
     }
 
 #ifdef TOOLS_ENABLED
@@ -70,7 +78,9 @@ void uninitialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
     if (Engine::get_singleton()->is_project_manager_hint()) { return; }
 #endif
 
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SERVERS) { return; }
+    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) { return; }
+
+    ResourceLoader::remove_resource_format_loader((java_archive_format_loader));
 
     ResourceLoader::remove_resource_format_loader((resource_format_loader));
     ResourceSaver::remove_resource_format_saver(resource_format_saver);
@@ -89,5 +99,5 @@ void uninitialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
     ScriptServer::unregister_language(jvm_language);
     memdelete(jvm_language);
 
-    GDKotlin::get_instance().finish();
+    GDKotlin::get_instance().finalize_down_to(GDKotlin::State::NOT_STARTED);
 }

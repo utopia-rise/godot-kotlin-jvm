@@ -215,6 +215,8 @@ namespace jni {
 
         void register_natives(Env& env, Vector<JNativeMethod> methods);
 
+        void unregister_natives(Env& env);
+
         JObject call_static_object_method(Env& env, MethodId method, jvalue* args = {});
 
         JObject get_static_object_field(Env& env, FieldId field);

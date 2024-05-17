@@ -5,6 +5,7 @@
 #include "lifecycle/jvm_manager.h"
 #include "lifecycle/jvm_options.h"
 #include "lifecycle/jvm_user_configuration.h"
+#include "resource_format/java_archive.h"
 
 #include <core/string/ustring.h>
 
@@ -28,6 +29,7 @@ private:
 
     ClassLoader* bootstrap_class_loader {nullptr};
     Bootstrap* bootstrap {nullptr};
+    Ref<JavaArchive> jar;
 
     void fetch_user_configuration();
     void set_jvm_options();
@@ -39,16 +41,22 @@ private:
 #ifdef DYNAMIC_JVM
     void* jvm_dynamic_library_handle {nullptr};
     bool load_dynamic_lib();
+    void unload_dynamic_lib();
 #ifdef TOOLS_ENABLED
     static String get_path_to_environment_jvm();
 #endif
     static String get_path_to_embedded_jvm();
     static String get_path_to_native_image();
-    void unload_dynamic_lib();
 #endif
 
     bool load_bootstrap();
+    void unload_boostrap();
+
     bool initialize_core_library();
+    void finalize_core_library() const;
+
+    bool load_user_code();
+    void unload_user_code();
 
 public:
     GDKotlin() = default;
@@ -60,9 +68,12 @@ public:
     const JvmUserConfiguration& get_configuration();
     State get_state();
 
-    void init();
-    void load_user_code();
-    void finish();
+    void initialize_up_to(State target_state);
+    void finalize_down_to(State target_state);
+
+#ifdef DYNAMIC_JVM
+    void reload_user_code();
+#endif
 
 #ifdef DEBUG_ENABLED
     void validate_state();
