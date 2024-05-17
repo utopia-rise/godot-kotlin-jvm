@@ -78,6 +78,6 @@ jobs:
       - name: Profile benchmarks
         run: |
           cd modules/kotlin_jvm/harness/benchmarks/
-          rm -rf jre-amd64
+          rmdir jre-amd64
           ./gradlew profileAndUpload
         timeout-minutes: 30
