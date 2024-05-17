@@ -11,8 +11,7 @@ config_version=5
 [application]
 
 config/name="godot-project"
-run/main_scene="res://Benchmarks.tscn"
-config/features=PackedStringArray("4.1")
+config/features=PackedStringArray("4.2")
 config/icon="res://icon.png"
 
 [rendering]
