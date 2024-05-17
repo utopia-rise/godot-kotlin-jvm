@@ -5,7 +5,7 @@
   "disable_gc": false,
   "force_gc": false,
   "jmx_port": -1,
-  "jvm_args": "-javaagent:profiling/pyroscope.jar",
+  "jvm_args": "",
   "max_string_size": -1,
   "use_debug": false,
   "version": "1.0",
