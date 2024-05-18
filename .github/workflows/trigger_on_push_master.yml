@@ -80,6 +80,7 @@ jobs:
     uses: ./.github/workflows/benchmark_windows.yml
     needs:
       - setup-build-variables
+      - build-jvm
       - build-windows
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
@@ -91,6 +92,7 @@ jobs:
     uses: ./.github/workflows/profile_linux.yml
     needs:
       - setup-build-variables
+      - build-jvm
       - build-linux
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
