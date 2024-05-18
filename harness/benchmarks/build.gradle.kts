@@ -146,6 +146,14 @@ tasks {
                     projectDir.resolve("godot_kotlin_configuration.json"),
                     overwrite = true
                 )
+
+            val pyroscopeJarRelativePath = "profiling/pyroscope.jar"
+            val pyroscopeJar = projectDir.resolve(pyroscopeJarRelativePath)
+            projectDir
+                .resolve("godot_kotlin_configuration.json")
+                .apply {
+                    writeText(readText().replace(pyroscopeJarRelativePath, pyroscopeJar.absolutePath))
+                }
         }
 
         finalizedBy(runBenchmarks)
