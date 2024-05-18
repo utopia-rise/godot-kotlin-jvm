@@ -148,12 +148,6 @@ tasks {
                     godotKotlinConfiguration,
                     overwrite = true
                 )
-
-            val pyroscopeJarRelativePath = "profiling/pyroscope.jar"
-            val pyroscopeJar = projectDir.resolve(pyroscopeJarRelativePath)
-            godotKotlinConfiguration.apply {
-                writeText(readText().replace(pyroscopeJarRelativePath, pyroscopeJar.absolutePath))
-            }
         }
 
         finalizedBy(runBenchmarks)
