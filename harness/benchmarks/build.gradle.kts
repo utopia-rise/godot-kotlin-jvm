@@ -140,20 +140,20 @@ tasks {
             if (serverAddress == null || serverAddress.isBlank()) {
                 throw IllegalArgumentException("No PYROSCOPE_SERVER_ADDRESS env variable found! Make sure you've set ALL PYROSCOPE env variables")
             }
+
+            val godotKotlinConfiguration = projectDir.resolve("godot_kotlin_configuration.json")
             projectDir
                 .resolve("profiling/godot_kotlin_configuration.json")
                 .copyTo(
-                    projectDir.resolve("godot_kotlin_configuration.json"),
+                    godotKotlinConfiguration,
                     overwrite = true
                 )
 
             val pyroscopeJarRelativePath = "profiling/pyroscope.jar"
             val pyroscopeJar = projectDir.resolve(pyroscopeJarRelativePath)
-            projectDir
-                .resolve("godot_kotlin_configuration.json")
-                .apply {
-                    writeText(readText().replace(pyroscopeJarRelativePath, pyroscopeJar.absolutePath))
-                }
+            godotKotlinConfiguration.apply {
+                writeText(readText().replace(pyroscopeJarRelativePath, pyroscopeJar.absolutePath))
+            }
         }
 
         finalizedBy(runBenchmarks)
