@@ -49,15 +49,15 @@ jobs:
 #      - setup-build-variables
 #    with:
 #      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-#
-#  build-linux:
-#    name: 🐧 Build Linux
-#    uses: ./.github/workflows/build_linux.yml
-#    needs:
-#      - setup-build-variables
-#    with:
-#      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-#
+
+  build-linux:
+    name: 🐧 Build Linux
+    uses: ./.github/workflows/build_linux.yml
+    needs:
+      - setup-build-variables
+    with:
+      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+
 #  build-macos:
 #    name: 🍎 Build macOS
 #    uses: ./.github/workflows/build_macos.yml
@@ -74,25 +74,24 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 
-  # needed for benchmarks
-  assemble-windows:
-    name: 🪟 Assemble windows
-    uses: ./.github/workflows/assemble_windows.yml
-    needs:
-      - setup-build-variables
-      - build-jvm
-      - build-windows
-    with:
-      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-
   benchmark-windows:
     name: 📊 Benchmark windows
     secrets: inherit # needed so that this sub workflow can also access github secrets for this workflow
     uses: ./.github/workflows/benchmark_windows.yml
     needs:
       - setup-build-variables
-      - assemble-windows
+      - build-windows
+    with:
+      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+      jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
+
+  profile-linux:
+    name: 📊 Profile linux
+    secrets: inherit # needed so that this sub workflow can also access github secrets for this workflow
+    uses: ./.github/workflows/profile_linux.yml
+    needs:
+      - setup-build-variables
+      - build-linux
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}

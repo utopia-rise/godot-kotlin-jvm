@@ -1,4 +1,4 @@
-name: 📊 Benchmark windows
+name: 📊 Profile linux
 on:
   workflow_call:
     inputs:
@@ -8,21 +8,21 @@ on:
         type: string
 
 env:
-  SCONS_CACHE_MSVC_CONFIG: true
-  BENCHMARK_DATA_URL: ${{ secrets.BENCHMARK_DATA_URL }}
+  PYROSCOPE_APPLICATION_NAME: 'godot.benchmarks'
+  PYROSCOPE_PROFILER_ALLOC: 512k
+  PYROSCOPE_PROFILER_LOCK: 10ms
+  PYROSCOPE_SERVER_ADDRESS: ${{ secrets.PYROSCOPE_SERVER_ADDRESS }}
+  PYROSCOPE_BASIC_AUTH_USER: ${{ secrets.PYROSCOPE_BASIC_AUTH_USER }}
+  PYROSCOPE_BASIC_AUTH_PASSWORD: ${{ secrets.PYROSCOPE_BASIC_AUTH_PASSWORD }}
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-windows_benchmark
   cancel-in-progress: true
 
 jobs:
-  benchmark-windows:
-    # Windows 10 with latest image
-    runs-on:
-      - self-hosted
-      - win11
-      - benchmark
-    name: Benchmark windows
+  profile-linux:
+    runs-on: ubuntu-latest
+    name: Profile linux
 
     steps:
       - name: Clone Godot Engine
@@ -46,10 +46,10 @@ jobs:
         with:
           cache-read-only: false
 
-      - name: Download windows editor release
+      - name: Download linux editor release
         uses: ./.github/actions/download-artifact
         with:
-          name: editor_release_windows_x86_64
+          name: editor_release_linux_x86_64
           path: './bin'
 
       - name: Download godot-bootstrap release
@@ -62,9 +62,9 @@ jobs:
         run: |
           modules/kotlin_jvm/harness/benchmarks/gradlew -p modules/kotlin_jvm/harness/benchmarks/ build -Prelease=true
 
-      - name: Run benchmarks
+      - name: Profile benchmarks
         run: |
           cd modules/kotlin_jvm/harness/benchmarks/
-          jlink --add-modules java.base,java.logging --output jre-amd64
-          ./gradlew executeAndUploadBenchmarkResults
+          # no embedded jre
+          ./gradlew profileAndUpload
         timeout-minutes: 30
