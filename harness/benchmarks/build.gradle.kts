@@ -46,6 +46,8 @@ tasks {
         group = "validation"
         dependsOn(importResources, compileKotlin)
 
+        outputs.upToDateWhen { false }
+
         isIgnoreExitValue = true
 
         val editorExecutable: String = projectDir
@@ -76,9 +78,10 @@ tasks {
         dependsOn(runBenchmarks)
 
         doLast {
-            val benchmarkResultsFile = project.file("benchmark-results.json")
+            val benchmarkResultsFile = projectDir.resolve("benchmark-results.json")
 
             if (!benchmarkResultsFile.exists()) {
+                println(projectDir.listFiles().toList())
                 throw IllegalStateException("Cannot upload $benchmarkResultsFile as it does not exist. Make sure you ran ${runBenchmarks.name} first")
             }
 
