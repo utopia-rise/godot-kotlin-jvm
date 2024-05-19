@@ -7,5 +7,5 @@ The data collection is done using the  `pyroscope.jar` from [Pyroscope](https://
 The documentation for Pyroscope and grafana can be found [here](https://grafana.com/docs/pyroscope/latest/).
 
 ## Dashboards
-- The public profiling dashboard can be found [here](TBD) (no auth needed, but only view rights).
+- The public profiling dashboard can be found [here](https://monitoring.hippmann.ch/public-dashboards/22a47dbec7e04eed8fdad1135e22ef09?orgId=2) (no auth needed, but only view rights).
 - The maintainer dashboard together with the maintainer login is given to the maintainers directly by [@chippmann](https://github.com/chippmann)
