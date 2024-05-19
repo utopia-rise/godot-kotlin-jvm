@@ -8,7 +8,8 @@ on:
         type: string
 
 env:
-  PYROSCOPE_APPLICATION_NAME: 'godot.benchmarks'
+  PYROSCOPE_APPLICATION_NAME: 'godot.benchmarks.jvm'
+  PYROSCOPE_APPLICATION_NAME_NATIVE: 'godot.benchmarks.native'
   PYROSCOPE_PROFILER_ALLOC: 512k
   PYROSCOPE_PROFILER_LOCK: 10ms
   PYROSCOPE_LABELS: "os=linux,arch=x86_64"
@@ -67,6 +68,29 @@ jobs:
         run: |
           cd modules/kotlin_jvm/harness/benchmarks/
           chmod +x ../../../../bin/godot.*
-          # no embedded jre
+          
+          # download alloy to profile the cpp code
+          curl -LO https://github.com/grafana/alloy/releases/download/v1.1.0/alloy-linux-amd64.zip
+
+          # Unzip alloy file
+          unzip alloy-linux-amd64.zip
+          
+          chmod +x alloy-linux-amd64
+          # Run the executable in the background
+          ./alloy-linux-amd64 run profiling/config.alloy --stability.level public-preview &
+          
+          # Store the PID of the background process
+          ALLOY_PID=$!
+          
+          # Wait for 10 seconds to allow alloy to start up
+          sleep 10
+          
+          # execute the benchmarks
           ./gradlew profileAndUpload
+          
+          # Wait for another 10 seconds to allow alloy to submit any queued profiling data
+          sleep 10
+          
+          # Stop the backgrounded process using its PID
+          kill $ALLOY_PID
         timeout-minutes: 30

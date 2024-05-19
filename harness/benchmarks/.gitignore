@@ -454,3 +454,4 @@ fabric.properties
 /.godot/
 /benchmark-results.json
 /benchmark-results-latest.json
+data-alloy/
