@@ -16,7 +16,7 @@ env:
   PYROSCOPE_BASIC_AUTH_PASSWORD: ${{ secrets.PYROSCOPE_BASIC_AUTH_PASSWORD }}
 
 concurrency:
-  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-windows_benchmark
+  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-profile_linux
   cancel-in-progress: true
 
 jobs:
