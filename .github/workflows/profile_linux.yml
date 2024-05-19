@@ -65,6 +65,7 @@ jobs:
       - name: Profile benchmarks
         run: |
           cd modules/kotlin_jvm/harness/benchmarks/
+          chmod +x ../../../../bin/godot.*
           # no embedded jre
           ./gradlew profileAndUpload
         timeout-minutes: 30
