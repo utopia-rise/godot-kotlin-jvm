@@ -1,10 +1,10 @@
 name: Master pipeline
 on:
-  push:
-    branches:
-      - master
-  schedule:
-      - cron: '0 0 * * 1' # run once a week on monday midnight to prevent the cache from being cleared
+  push
+#    branches:
+#      - master
+#  schedule:
+#      - cron: '0 0 * * 1' # run once a week on monday midnight to prevent the cache from being cleared
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-trigger_on_push_master
@@ -32,22 +32,22 @@ jobs:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
 
-  build-android:
-    name: 🤖 Build and Assemble Android
-    uses: ./.github/workflows/build_android.yml
-    needs:
-      - setup-build-variables
-    with:
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
-
-  build-ios:
-    name: 🍏 Build iOS
-    uses: ./.github/workflows/build_ios.yml
-    needs:
-      - setup-build-variables
-    with:
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+#  build-android:
+#    name: 🤖 Build and Assemble Android
+#    uses: ./.github/workflows/build_android.yml
+#    needs:
+#      - setup-build-variables
+#    with:
+#      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+#      jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
+#
+#  build-ios:
+#    name: 🍏 Build iOS
+#    uses: ./.github/workflows/build_ios.yml
+#    needs:
+#      - setup-build-variables
+#    with:
+#      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 
   build-linux:
     name: 🐧 Build Linux
@@ -57,13 +57,13 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 
-  build-macos:
-    name: 🍎 Build macOS
-    uses: ./.github/workflows/build_macos.yml
-    needs:
-      - setup-build-variables
-    with:
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+#  build-macos:
+#    name: 🍎 Build macOS
+#    uses: ./.github/workflows/build_macos.yml
+#    needs:
+#      - setup-build-variables
+#    with:
+#      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 
   build-windows:
     name: 🪟 Build Windows
