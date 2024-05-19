@@ -1,0 +1,45 @@
+
+// we discover all processes
+discovery.process "all" {}
+
+// relabel job does basically provide us the means to filter out the processes we're interrested in
+discovery.relabel "godot_process" {
+   	targets = discovery.process.all.targets
+
+    // we only are interested in processes which contain "godot" in the name (hence the keep)
+   	rule {
+   	    source_labels = ["__meta_process_exe"]
+   	    regex = ".*godot.*"
+   	    action = "keep"
+   	}
+}
+
+// configuration of sample rate (default 96) if to high: high cpu usage, if too low: [unknown] labels in short calls
+pyroscope.ebpf "godot_instance" {
+	forward_to = [pyroscope.write.endpoint.receiver]
+	targets = discovery.relabel.godot_process.output
+	sample_rate = 1000 // sample rate is per second
+	demangle = "full" // demangle the cpp call name
+}
+
+// only needed so we can define a service_name. If this block is not set, "undefined" will be the service name
+pyroscope.scrape "local" {
+  forward_to     = [pyroscope.write.endpoint.receiver]
+  targets    = [
+    {"__address__" = "localhost:12345", "service_name"=env("PYROSCOPE_APPLICATION_NAME_NATIVE")},
+  ]
+}
+
+// actually ingest the data to our pyroscope host
+pyroscope.write "endpoint" {
+	endpoint {
+        basic_auth {
+           password = env("PYROSCOPE_BASIC_AUTH_PASSWORD")
+           username = env("PYROSCOPE_BASIC_AUTH_USER")
+        }
+		url = format(
+			"http://%s",
+			env("PYROSCOPE_SERVER_ADDRESS"),
+		)
+	}
+}

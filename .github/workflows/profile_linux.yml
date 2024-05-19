@@ -1,0 +1,96 @@
+name: 📊 Profile linux
+on:
+  workflow_call:
+    inputs:
+      godot-version:
+        type: string
+      jvm-version:
+        type: string
+
+env:
+  PYROSCOPE_APPLICATION_NAME: 'godot.benchmarks.jvm'
+  PYROSCOPE_APPLICATION_NAME_NATIVE: 'godot.benchmarks.native'
+  PYROSCOPE_PROFILER_ALLOC: 512k
+  PYROSCOPE_PROFILER_LOCK: 10ms
+  PYROSCOPE_LABELS: "os=linux,arch=x86_64"
+  PYROSCOPE_SERVER_ADDRESS: ${{ secrets.PYROSCOPE_SERVER_ADDRESS }}
+  PYROSCOPE_BASIC_AUTH_USER: ${{ secrets.PYROSCOPE_BASIC_AUTH_USER }}
+  PYROSCOPE_BASIC_AUTH_PASSWORD: ${{ secrets.PYROSCOPE_BASIC_AUTH_PASSWORD }}
+
+concurrency:
+  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-profile_linux
+  cancel-in-progress: true
+
+jobs:
+  profile-linux:
+    runs-on: ubuntu-latest
+    name: Profile linux
+
+    steps:
+      - name: Clone Godot Engine
+        uses: actions/checkout@v4
+        with:
+          repository: godotengine/godot
+          ref: ${{ inputs.godot-version }}
+
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v4
+        with:
+          path: modules/kotlin_jvm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: adopt-hotspot
+          java-version: ${{ inputs.jvm-version }}
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          cache-read-only: false
+
+      - name: Download linux editor release
+        uses: ./.github/actions/download-artifact
+        with:
+          name: editor_release_linux_x86_64
+          path: './bin'
+
+      - name: Download godot-bootstrap release
+        uses: ./.github/actions/download-artifact
+        with:
+          name: jvm_godot-bootstrap_release
+          path: './bin'
+
+      - name: Build benchmarks project
+        run: |
+          modules/kotlin_jvm/harness/benchmarks/gradlew -p modules/kotlin_jvm/harness/benchmarks/ build -Prelease=true
+
+      - name: Profile benchmarks
+        run: |
+          cd modules/kotlin_jvm/harness/benchmarks/
+          chmod +x ../../../../bin/godot.*
+          
+          # download alloy to profile the cpp code
+          curl -LO https://github.com/grafana/alloy/releases/download/v1.1.0/alloy-linux-amd64.zip
+
+          # Unzip alloy file
+          unzip alloy-linux-amd64.zip
+          
+          chmod +x alloy-linux-amd64
+          # Run the executable in the background
+          ./alloy-linux-amd64 run profiling/config.alloy --stability.level public-preview &
+          
+          # Store the PID of the background process
+          ALLOY_PID=$!
+          
+          # Wait for 10 seconds to allow alloy to start up
+          sleep 10
+          
+          # execute the benchmarks
+          ./gradlew profileAndUpload
+          
+          # Wait for another 10 seconds to allow alloy to submit any queued profiling data
+          sleep 10
+          
+          # Stop the backgrounded process using its PID
+          kill $ALLOY_PID
+        timeout-minutes: 30
