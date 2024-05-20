@@ -64,7 +64,7 @@ jobs:
           path: modules/kotlin_jvm
 
       - name: Setup Godot build cache
-        uses: ./.github/actions/godot-cache
+        uses: ./.github/actions/scons-cache
         with:
           cache-name: ${{ matrix.cache-name }}
         continue-on-error: true
@@ -92,6 +92,7 @@ jobs:
           Remove-Item bin/* -Include *.pdb -Force
 
       - name: Upload artifact
-        uses: ./.github/actions/upload-artifact
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.cache-name }}
+          path: "bin/*"

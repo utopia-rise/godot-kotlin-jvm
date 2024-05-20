@@ -95,56 +95,61 @@ tasks {
         dependsOn(importResources)
 
         val editorExecutable: String = projectDir
-                .resolve("../../../../bin")
-                .listFiles()
-                ?.also {
-                    println("[${it.joinToString()}]")
-                }
-                ?.firstOrNull { it.name.startsWith("godot.") }
-                ?.absolutePath
-                ?: throw Exception("Could not find editor executable")
+            .resolve("../../../../bin")
+            .listFiles()
+            ?.also {
+                println("[${it.joinToString()}]")
+            }
+            ?.firstOrNull { it.name.startsWith("godot.") }
+            ?.absolutePath
+            ?: throw Exception("Could not find editor executable")
 
         var didAllTestsPass = false
         var isJvmClosed = false
         val testOutputFile = File("$projectDir/test_output.txt")
         standardOutput = testOutputFile.outputStream()
+        errorOutput = testOutputFile.outputStream()
 
         doLast {
-            val outputLines = testOutputFile.readText().split("\n")
+            val testOutput = testOutputFile.readText()
+            val outputLines = testOutput.split("\n")
 
             outputLines.forEach { line ->
                 when {
                     line.contains("All tests passed") -> {
                         didAllTestsPass = true
                     }
+
                     line.contains("JVM GC thread was closed") -> {
                         isJvmClosed = true
                     }
                 }
             }
 
-            if (!didAllTestsPass) {
-                println(testOutputFile.readText())
-                throw Exception("ERROR: Some assertions failed")
+            val error = when {
+                !didAllTestsPass -> Exception("ERROR: Some assertions failed")
+                !isJvmClosed -> Exception("ERROR: JVM has not closed properly")
+                else -> null
             }
-            if (!isJvmClosed) {
-                throw Exception("ERROR: JVM has not closed properly")
-            }
+
+            println(testOutput)
+
+            error?.let { throw it }
         }
 
         isIgnoreExitValue = true
 
         if (HostManager.hostIsMingw) {
             commandLine(
-                    "cmd",
-                    "/c",
-                    "$editorExecutable -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+                "cmd",
+                "/c",
+                "$editorExecutable -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
             )
         } else {
             commandLine(
-                    "bash",
-                    "-c",
-                    "$editorExecutable -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+                "bash",
+                "-c",
+                "$editorExecutable -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
             )
         }
     }

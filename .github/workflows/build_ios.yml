@@ -27,7 +27,7 @@ jobs:
           path: modules/kotlin_jvm
 
       - name: Setup Godot build cache
-        uses: ./.github/actions/godot-cache
+        uses: ./.github/actions/scons-cache
         continue-on-error: true
 
       - name: Setup python and scons
@@ -48,6 +48,7 @@ jobs:
           target: template_debug
 
       - name: Upload artifact
-        uses: ./.github/actions/upload-artifact
+        uses: actions/upload-artifact@v4
         with:
           name: export_template_ios_all
+          path: "bin/*"

@@ -38,11 +38,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: editor_${{ matrix.target }}_macos_x86_64
+          path: "./"
 
       - name: Download ${{ matrix.target }} arm64 editor
         uses: actions/download-artifact@v4
         with:
           name: editor_${{ matrix.target }}_macos_arm64
+          path: "./"
 
       - name: Create ${{ matrix.target }} OSX universal binary
         uses: ./.github/actions/create-macos-universal-binary
@@ -129,11 +131,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: export_template_${{ matrix.target }}_macos_x86_64
+          path: "./"
 
       - name: Download ${{ matrix.target }} arm64 export_template
         uses: actions/download-artifact@v4
         with:
           name: export_template_${{ matrix.target }}_macos_arm64
+          path: "./"
 
       - name: Create macos universal binary
         uses: ./.github/actions/create-macos-universal-binary
