@@ -41,7 +41,7 @@ KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_
 #endif
 
     KtObject* jvm_instance {constructor->create_instance(env, p_args, p_owner)};
-    LOG_DEV_VERBOSE(vformat("Instantiated an object with resource path %s", registered_class_name));
+    LOG_DEV_VERBOSE(vformat("Instantiated a Jvm script: %s", registered_class_name));
 
     return jvm_instance;
 }

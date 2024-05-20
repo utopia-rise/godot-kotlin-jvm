@@ -63,7 +63,7 @@ private:
 
 public:
     PlaceHolderScriptInstance* placeholder_instance_create(Object* p_this) override;
-    void update_exports() override;
+    void update_script();
     Vector<DocData::ClassDoc> get_documentation() const override;
     PropertyInfo get_class_category() const override;
     String get_class_icon_path() const override;

@@ -57,23 +57,11 @@ Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& 
 
     String extension = p_path.get_extension();
     if (extension == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
-        // We don't import Kotlin scripts so p_path == p_original_path
-        String script_name = JvmScript::get_script_file_name(p_path);
-        ref = JvmScriptManager::get_instance().get_user_script_from_name(script_name);
-        if (ref.is_null()) {
-#ifdef TOOLS_ENABLED
-            // If we reach that location, it means that the script file being loaded hasn't been built into the .jar.
-            // We create a script placeholder instead. When reloading, it will be properly updated with the correct KtClass.
-            ref = JvmScriptManager::get_instance().create_script<GdjScript>(p_path);
-#endif
-        }
-    }
-    // Path scripts are always created from the resource_loader and set in the resource cache afterward.
-    // If we reach that location, it means the script doesn't exist.
-    else if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION) {
-        ref = JvmScriptManager::get_instance().create_script<KotlinScript>(p_path);
+        ref = JvmScriptManager::get_instance().get_or_create_script<GdjScript>(p_path);
+    } else if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION) {
+        ref = JvmScriptManager::get_instance().get_or_create_script<KotlinScript>(p_path);
     } else if (extension == GODOT_JAVA_SCRIPT_EXTENSION) {
-        ref = JvmScriptManager::get_instance().create_script<JavaScript>(p_path);
+        ref = JvmScriptManager::get_instance().get_or_create_script<JavaScript>(p_path);
     }
 
     if (ref.is_valid()) {
@@ -82,8 +70,8 @@ Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& 
         Error load_err {read_all_file_utf8(p_path, source_code)};
         if (r_error) { *r_error = load_err; }
         ref->set_source_code(source_code);
+        ref->update_script();
 #endif
-        ref->set_path(p_path, true);
     } else {
         if (r_error) { *r_error = Error::ERR_UNAVAILABLE; }
     }
