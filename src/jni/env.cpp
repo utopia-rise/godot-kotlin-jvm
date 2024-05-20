@@ -40,9 +40,7 @@ namespace jni {
 
     String Env::exception_describe() {
 #ifdef DEBUG_ENABLED
-        jthrowable e = env->ExceptionOccurred();
-
-        if (e != nullptr) {
+        if (jthrowable e = env->ExceptionOccurred()) {
             jclass string_writer_class {env->FindClass("java/io/StringWriter")};
             jmethodID string_writer_constructor {env->GetMethodID(string_writer_class, "<init>", "()V")};
             jobject string_writer {env->NewObject(string_writer_class, string_writer_constructor)};
