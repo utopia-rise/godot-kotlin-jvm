@@ -41,6 +41,7 @@ namespace jni {
     String Env::exception_describe() {
 #ifdef DEBUG_ENABLED
         if (jthrowable e = env->ExceptionOccurred()) {
+            env->ExceptionClear(); // needs to be cleared now as otherwise it spams errors. We already have a ref to the exception.
             jclass string_writer_class {env->FindClass("java/io/StringWriter")};
             jmethodID string_writer_constructor {env->GetMethodID(string_writer_class, "<init>", "()V")};
             jobject string_writer {env->NewObject(string_writer_class, string_writer_constructor)};
@@ -53,8 +54,18 @@ namespace jni {
             jmethodID print_stack_trace_method {env->GetMethodID(throwable_class, "printStackTrace", "(Ljava/io/PrintWriter;)V")};
             env->CallVoidMethod(e, print_stack_trace_method, print_writer);
 
+            if (exception_check()) {
+                exception_clear();
+                return {};
+            }
+
             jmethodID to_string_method {env->GetMethodID(string_writer_class, "toString", "()Ljava/lang/String;")};
             auto j_stack_trace_string {(jstring) env->CallObjectMethod(string_writer, to_string_method)};
+
+            if (exception_check()) {
+                exception_clear();
+                return {};
+            }
 
             const char* c_stack_trace {env->GetStringUTFChars(j_stack_trace_string, nullptr)};
             String stack_trace {c_stack_trace};
@@ -69,7 +80,10 @@ namespace jni {
     }
 
     void Env::exception_clear() {
+        // no op if DEBUG_ENABLED. Then the exception is cleared in exception_describe
+#ifndef DEBUG_ENABLED
         env->ExceptionClear();
+#endif
     }
 
     void Env::check_exceptions() {
