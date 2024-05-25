@@ -745,7 +745,8 @@ enum class VariantType(
 
     internal val toGodot = { buffer: ByteBuffer, any: Any? ->
         if (any == null) {
-            NIL.toGodotWithoutNullCheck(buffer, Unit)
+            // TODO: replace with NIL.toGodotWithoutNullCheck(buffer, Unit) once https://youtrack.jetbrains.com/issue/KT-68339 is fixed!
+            buffer.variantType = 0
         } else {
             toGodotWithoutNullCheck(buffer, any)
         }

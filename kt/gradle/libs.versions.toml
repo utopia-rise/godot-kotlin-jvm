@@ -1,12 +1,12 @@
 [versions]
 
 godotKotlinJvm = "0.9.1"
-kotlin = "1.9.23"
+kotlin = "2.0.0"
 godot = "4.2.2"
 
 shadowJar = "8.1.1" # https://github.com/johnrengelman/shadow/releases
 kotlinPoet = "1.12.0" # https://github.com/square/kotlinpoet/releases
-ksp = "1.9.23-1.0.19" # https://github.com/google/ksp/releases
+ksp = "2.0.0-1.0.21" # https://github.com/google/ksp/releases
 
 jacksonDataBind = "2.11.0"
 jacksonDataFormatXml = "2.10.1"
@@ -16,8 +16,8 @@ grgit = "4.1.1"
 gradlePublish = "1.2.1"
 
 changelog = "2.1.2"
-gradleIntelliJPlugin = "1.17.3"
-ideaSync = "1.1.7" # https://plugins.gradle.org/plugin/org.jetbrains.gradle.plugin.idea-ext
+gradleIntelliJPlugin = "1.17.3" # https://plugins.gradle.org/plugin/org.jetbrains.intellij
+ideaSync = "1.1.8" # https://plugins.gradle.org/plugin/org.jetbrains.gradle.plugin.idea-ext
 kotlinPreProcessors = "0.2.0"
 
 iosJdk = "21"
