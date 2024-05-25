@@ -65,6 +65,7 @@ class Callable : NativeCoreType {
 
     fun getBoundArguments(): VariantArray<Any?> {
         Bridge.engine_call_get_bound_arguments(_handle)
+        @Suppress("UNCHECKED_CAST")
         return TransferContext.readReturnValue(VariantType.ARRAY, false) as VariantArray<Any?>
     }
 

@@ -473,11 +473,6 @@ class GenerationService(
                         .addMember("\"${methodName}_prop\"")
                         .build()
                 )
-                .addAnnotation(
-                    AnnotationSpec.builder(Suppress::class)
-                        .addMember("\"INAPPLICABLE_JVM_NAME\"")
-                        .build()
-                )
                 .build()
         }
 
@@ -492,11 +487,6 @@ class GenerationService(
                 .addAnnotation(
                     AnnotationSpec.builder(JvmName::class)
                         .addMember("\"${methodName}_prop\"")
-                        .build()
-                )
-                .addAnnotation(
-                    AnnotationSpec.builder(Suppress::class)
-                        .addMember("\"INAPPLICABLE_JVM_NAME\"")
                         .build()
                 )
                 .build()

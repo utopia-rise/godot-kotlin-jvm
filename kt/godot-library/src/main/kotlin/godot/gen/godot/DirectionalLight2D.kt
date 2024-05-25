@@ -36,10 +36,8 @@ public open class DirectionalLight2D : Light2D() {
    */
   public var height: Float
     @JvmName("getHeight_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getHeight()
     @JvmName("setHeight_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     set(`value`) {
       super.setHeight(value)
     }

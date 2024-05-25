@@ -53,7 +53,6 @@ public open class InputEventAction : InputEvent() {
    */
   public var pressed: Boolean
     @JvmName("isPressed_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.isPressed()
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)

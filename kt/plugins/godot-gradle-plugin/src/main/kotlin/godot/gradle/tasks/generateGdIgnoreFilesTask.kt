@@ -19,7 +19,7 @@ fun Project.generateGdIgnoreFilesTask(): TaskProvider<Task> {
                 }
 
                 val projectDir = this.project.projectDir
-                val buildDir = this.project.buildDir
+                val buildDir = this.project.layout.buildDirectory.asFile.get()
 
                 val targetDirSequence = sequenceOf(
                     buildDir,

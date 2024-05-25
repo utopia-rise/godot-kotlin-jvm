@@ -11,7 +11,7 @@ fun Project.copyToGraalBuildDirectory(resourcePath: String) {
     val resource = GodotExtension::class.java.getResource(resourcePath)?.content
     require(resource is InputStream)
 
-    val outputFile = buildDir.resolve("graal").resolve(resourcePath)
+    val outputFile = layout.buildDirectory.asFile.get().resolve("graal").resolve(resourcePath)
     outputFile.ensureParentDirsCreated()
     if (outputFile.exists()) {
         outputFile.delete()

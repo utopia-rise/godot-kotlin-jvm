@@ -55,7 +55,6 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
    */
   public var layers: Int
     @JvmName("getLayers_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getLayers()
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())

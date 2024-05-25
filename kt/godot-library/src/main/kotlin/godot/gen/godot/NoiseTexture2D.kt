@@ -26,7 +26,6 @@ import kotlin.jvm.JvmName
 public open class NoiseTexture2D : Texture2D() {
   public var width: Int
     @JvmName("getWidth_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getWidth()
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
@@ -35,7 +34,6 @@ public open class NoiseTexture2D : Texture2D() {
 
   public var height: Int
     @JvmName("getHeight_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getHeight()
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())

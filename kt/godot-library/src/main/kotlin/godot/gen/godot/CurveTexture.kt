@@ -33,7 +33,6 @@ public open class CurveTexture : Texture2D() {
    */
   public var width: Int
     @JvmName("getWidth_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getWidth()
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())

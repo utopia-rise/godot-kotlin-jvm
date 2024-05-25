@@ -40,7 +40,6 @@ public open class InputEventKey : InputEventWithModifiers() {
    */
   public var pressed: Boolean
     @JvmName("isPressed_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.isPressed()
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -166,7 +165,6 @@ public open class InputEventKey : InputEventWithModifiers() {
    */
   public var echo: Boolean
     @JvmName("isEcho_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.isEcho()
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)

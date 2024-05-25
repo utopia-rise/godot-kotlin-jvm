@@ -28,10 +28,10 @@ fun Project.createMainDexFileTask(
             )
 
             doFirst {
-                val libsDir = project.buildDir.resolve("libs")
+                val libsDir = project.layout.buildDirectory.asFile.get().resolve("libs")
                 val mainJar = File(libsDir, "main.jar")
                 val godotBootstrapJar = File(libsDir, "godot-bootstrap.jar")
-                val mainDexRules = project.buildDir.resolve("main-dex-rules.proguard").also { mainDexRules ->
+                val mainDexRules = project.layout.buildDirectory.asFile.get().resolve("main-dex-rules.proguard").also { mainDexRules ->
                     mainDexRules.outputStream().use { outputStream ->
                         requireNotNull(GodotPlugin::class.java.getResourceAsStream("android/main-dex-rules.proguard"))
                             .copyTo(outputStream)

@@ -40,7 +40,6 @@ public open class ArrayOccluder3D : Occluder3D() {
    */
   public var vertices: PackedVector3Array
     @JvmName("getVertices_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getVertices()
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to value)
@@ -54,7 +53,6 @@ public open class ArrayOccluder3D : Occluder3D() {
    */
   public var indices: PackedInt32Array
     @JvmName("getIndices_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getIndices()
     set(`value`) {
       TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)

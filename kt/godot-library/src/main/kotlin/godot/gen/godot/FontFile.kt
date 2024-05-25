@@ -145,7 +145,6 @@ public open class FontFile : Font() {
    */
   public var fontName: String
     @JvmName("getFontName_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getFontName()
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -157,7 +156,6 @@ public open class FontFile : Font() {
    */
   public var styleName: String
     @JvmName("getFontStyleName_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getFontStyleName()
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
@@ -169,7 +167,6 @@ public open class FontFile : Font() {
    */
   public var fontStyle: TextServer.FontStyle
     @JvmName("getFontStyle_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getFontStyle()
     set(`value`) {
       TransferContext.writeArguments(LONG to value.flag)
@@ -181,7 +178,6 @@ public open class FontFile : Font() {
    */
   public var fontWeight: Int
     @JvmName("getFontWeight_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getFontWeight()
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
@@ -193,7 +189,6 @@ public open class FontFile : Font() {
    */
   public var fontStretch: Int
     @JvmName("getFontStretch_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getFontStretch()
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())

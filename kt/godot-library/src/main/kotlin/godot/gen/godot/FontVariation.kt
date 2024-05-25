@@ -165,7 +165,6 @@ public open class FontVariation : Font() {
    */
   public var opentypeFeatures: Dictionary<Any?, Any?>
     @JvmName("getOpentypeFeatures_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getOpentypeFeatures()
     set(`value`) {
       TransferContext.writeArguments(DICTIONARY to value)
