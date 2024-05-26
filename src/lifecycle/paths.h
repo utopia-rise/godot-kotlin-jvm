@@ -23,6 +23,37 @@ static constexpr const char* IOS_BOOTSTRAP_FILE {""};
 static constexpr const char* IOS_USER_CODE_FILE {""};
 static constexpr const char* IOS_GRAAL_NATIVE_IMAGE_FILE {"usercode.a"};
 
+static constexpr const char* LINUX_EMBEDDED_JRE_ARM_DIRECTORY {"jre-arm64-linux"};
+static constexpr const char* LINUX_EMBEDDED_JRE_AMD_DIRECTORY {"jre-amd64-linux"};
+
+static constexpr const char* WINDOWS_EMBEDDED_JRE_ARM_DIRECTORY {"jre-arm64-windows"};
+static constexpr const char* WINDOWS_EMBEDDED_JRE_AMD_DIRECTORY {"jre-amd64-windows"};
+
+static constexpr const char* MACOS_EMBEDDED_JRE_ARM_DIRECTORY {"jre-arm64-macos"};
+static constexpr const char* MACOS_EMBEDDED_JRE_AMD_DIRECTORY {"jre-amd64-macos"};
+
+#ifdef X11_ENABLED
+#ifdef __arm64__
+static constexpr const char* HOST_EMBEDDED_JRE_DIRECTORY {LINUX_EMBEDDED_JRE_ARM_DIRECTORY};
+#else
+static constexpr const char* HOST_EMBEDDED_JRE_DIRECTORY {LINUX_EMBEDDED_JRE_AMD_DIRECTORY};
+#endif
+
+#elif WINDOWS_ENABLED
+#ifdef __arm64__
+static constexpr const char* HOST_EMBEDDED_JRE_DIRECTORY {WINDOWS_EMBEDDED_JRE_ARM_DIRECTORY};
+#else
+static constexpr const char* HOST_EMBEDDED_JRE_DIRECTORY {WINDOWS_EMBEDDED_JRE_AMD_DIRECTORY};
+#endif
+
+#elif MACOS_ENABLED
+#ifdef __arm64__
+static constexpr const char* HOST_EMBEDDED_JRE_DIRECTORY {MACOS_EMBEDDED_JRE_ARM_DIRECTORY};
+#else
+static constexpr const char* HOST_EMBEDDED_JRE_DIRECTORY {MACOS_EMBEDDED_JRE_AMD_DIRECTORY};
+#endif
+#endif
+
 #ifdef X11_ENABLED
 
 static constexpr const char* RELATIVE_JVM_LIB_PATH {LINUX_RELATIVE_JVM_LIB_PATH};
@@ -63,26 +94,6 @@ static constexpr const char* BOOTSTRAP_FILE {IOS_BOOTSTRAP_FILE};
 static constexpr const char* USER_CODE_FILE {IOS_USER_CODE_FILE};
 static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {IOS_GRAAL_NATIVE_IMAGE_FILE};
 
-#endif
-
-#ifdef X11_ENABLED
-static constexpr const char* EMBEDDED_JRE_ARM_DIRECTORY {"jre-arm64-linux"};
-static constexpr const char* EMBEDDED_JRE_AMD_DIRECTORY {"jre-amd64-linux"};
-#elif WINDOWS_ENABLED
-static constexpr const char* EMBEDDED_JRE_ARM_DIRECTORY {"jre-arm64-windows"};
-static constexpr const char* EMBEDDED_JRE_AMD_DIRECTORY {"jre-amd64-windows"};
-#elif OSX_ENABLED
-static constexpr const char* EMBEDDED_JRE_ARM_DIRECTORY {"jre-arm64-macos"};
-static constexpr const char* EMBEDDED_JRE_AMD_DIRECTORY {"jre-amd64-macos"};
-#else
-static constexpr const char* EMBEDDED_JRE_ARM_DIRECTORY {"jre-arm64"};
-static constexpr const char* EMBEDDED_JRE_AMD_DIRECTORY {"jre-amd64"};
-#endif
-
-#ifdef __arm64__
-static constexpr const char* EMBEDDED_JRE_DIRECTORY {EMBEDDED_JRE_ARM_DIRECTORY};
-#else
-static constexpr const char* EMBEDDED_JRE_DIRECTORY {EMBEDDED_JRE_AMD_DIRECTORY};
 #endif
 
 static constexpr const char* ENTRY_DIRECTORY {"res://build/generated/ksp"};
