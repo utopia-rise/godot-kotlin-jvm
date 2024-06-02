@@ -13,6 +13,8 @@ import godot.util.isEqualApprox
 import godot.util.isZeroApprox
 import godot.util.toRealT
 import kotlin.math.pow
+import kotlin.math.abs
+import kotlin.math.sign
 
 //Necessary for stepDecimal function
 const val MAX_N = 10
@@ -348,19 +350,19 @@ internal interface GDMath {
 
     /** Moves from toward to by the delta value.
      *  Use a negative delta value to move away. */
-    fun moveToward(from: Int, to: Int, delta: Int) = from + kotlin.math.min(to - from, delta)
+    fun moveToward(from: Int, to: Int, delta: Int) = if (abs(to - from) <= delta) to else from + (to - from).sign * delta
 
     /** Moves from toward to by the delta value.
      *  Use a negative delta value to move away. */
-    fun moveToward(from: Long, to: Long, delta: Long) = from + kotlin.math.min(to - from, delta)
+    fun moveToward(from: Long, to: Long, delta: Long) = if (abs(to - from) <= delta) to else from + (to - from).sign * delta
 
     /** Moves from toward to by the delta value.
      *  Use a negative delta value to move away. */
-    fun moveToward(from: Float, to: Float, delta: Float) = from + kotlin.math.min(to - from, delta)
+    fun moveToward(from: Float, to: Float, delta: Float) = if (abs(to - from) <= delta) to else from + (to - from).sign * delta
 
     /** Moves from toward to by the delta value.
      *  Use a negative delta value to move away. */
-    fun moveToward(from: Double, to: Double, delta: Double) = from + kotlin.math.min(to - from, delta)
+    fun moveToward(from: Double, to: Double, delta: Double) = if (abs(to - from) <= delta) to else from + (to - from).sign * delta
 
 
     /** Returns the nearest larger power of 2 for integer value. */
