@@ -19,7 +19,7 @@ fun Project.createIOSStaticLibraryTask(
         )
 
         doFirst {
-            val iosLibDir = project.buildDir.resolve("libs").resolve("ios")
+            val iosLibDir = project.layout.buildDirectory.asFile.get().resolve("libs").resolve("ios")
 
             commandLine(
                 "ar",

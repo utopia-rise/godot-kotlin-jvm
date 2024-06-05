@@ -40,7 +40,6 @@ public open class PlaceholderTexture2D : Texture2D() {
   @CoreTypeLocalCopy
   public var size: Vector2
     @JvmName("getSize_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getSize()
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)

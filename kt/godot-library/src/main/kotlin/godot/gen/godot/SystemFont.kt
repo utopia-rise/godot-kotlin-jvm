@@ -72,7 +72,6 @@ public open class SystemFont : Font() {
    */
   public var fontWeight: Int
     @JvmName("getFontWeight_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getFontWeight()
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
@@ -84,7 +83,6 @@ public open class SystemFont : Font() {
    */
   public var fontStretch: Int
     @JvmName("getFontStretch_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getFontStretch()
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())

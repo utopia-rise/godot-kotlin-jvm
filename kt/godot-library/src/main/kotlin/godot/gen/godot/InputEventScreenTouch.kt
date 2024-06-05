@@ -68,7 +68,6 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
    */
   public var canceled: Boolean
     @JvmName("isCanceled_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.isCanceled()
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
@@ -80,7 +79,6 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
    */
   public var pressed: Boolean
     @JvmName("isPressed_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.isPressed()
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)

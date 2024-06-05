@@ -139,7 +139,6 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
    */
   public var inputCount: Int
     @JvmName("getInputCount_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getInputCount()
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())

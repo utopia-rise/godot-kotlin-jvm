@@ -88,7 +88,7 @@ fun Project.configureThirdPartyPlugins() {
 
         ideaExtension.apply {
             module { ideaModule ->
-                ideaModule.generatedSourceDirs.add(buildDir.resolve("generated/ksp/main/kotlin/"))
+                ideaModule.generatedSourceDirs.add(layout.buildDirectory.asFile.get().resolve("generated/ksp/main/kotlin/"))
             }
         }
     }
@@ -99,5 +99,5 @@ private fun Project.addKspGeneratedSourcesToMainSourceSet() {
         .sourceSets
         .getByName("main")
         .kotlin
-        .srcDirs(buildDir.resolve("generated/ksp/main/kotlin/"))
+        .srcDirs(layout.buildDirectory.asFile.get().resolve("generated/ksp/main/kotlin/"))
 }

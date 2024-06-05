@@ -13,7 +13,10 @@ fun Project.downloadIOSCapCacheFiles(): TaskProvider<out Task> = tasks
             description = "INTERNAL TASK ! Downloads CAP cache needed for iOS compilation using GraalVM native-image."
 
             doLast { _ ->
-                val capCacheDirectory = buildDir
+                val capCacheDirectory = layout
+                    .buildDirectory
+                    .asFile
+                    .get()
                     .resolve("graal")
                     .resolve("ios")
                     .resolve("capcache")

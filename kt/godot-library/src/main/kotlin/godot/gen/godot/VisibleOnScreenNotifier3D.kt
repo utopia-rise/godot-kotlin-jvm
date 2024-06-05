@@ -50,7 +50,6 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
   @CoreTypeLocalCopy
   public var aabb: AABB
     @JvmName("getAabb_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getAabb()
     set(`value`) {
       TransferContext.writeArguments(godot.core.VariantType.AABB to value)

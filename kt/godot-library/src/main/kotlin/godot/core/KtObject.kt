@@ -85,20 +85,25 @@ abstract class KtObject {
 
     protected abstract fun new(scriptIndex: Int): Boolean
 
+    @Suppress("NOTHING_TO_INLINE")
     internal inline fun callConstructor(classIndex: Int, scriptIndex: Int): Unit {
         TransferContext.createNativeObject(classIndex, this, scriptIndex)
         TransferContext.initializeKtObject(this)
     }
 
+    @Suppress("NOTHING_TO_INLINE")
     internal inline fun getSingleton(classIndex: Int) {
         TransferContext.getSingleton(classIndex)
         TransferContext.initializeKtObject(this)
     }
 
+    @Suppress("FunctionName")
     open fun _notification(): GodotNotification = godotNotification{}
 
+    @Suppress("UNCHECKED_CAST")
     protected fun <T: KtObject> T.godotNotification(block: T.(Int) -> Unit ): GodotNotification = GodotNotification(block as Any.(Int) -> Unit)
 
+    @Suppress("FunctionName")
     open fun _onDestroy() = Unit
 
     fun free() {

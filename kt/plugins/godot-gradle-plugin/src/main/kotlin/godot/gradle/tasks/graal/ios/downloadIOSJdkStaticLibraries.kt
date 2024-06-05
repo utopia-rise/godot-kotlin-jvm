@@ -14,7 +14,10 @@ fun Project.downloadIOSJdkStaticLibraries(): TaskProvider<out Task> = tasks
             description = "INTERNAL TASK ! Downloads ios static JDK libraries."
 
             doLast {
-                val iosJdkDirectory = buildDir
+                val iosJdkDirectory = layout
+                    .buildDirectory
+                    .asFile
+                    .get()
                     .resolve("libs")
                     .resolve("ios")
                     .resolve("ios-jdk")

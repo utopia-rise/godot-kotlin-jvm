@@ -15,7 +15,7 @@ public class JavaTestClass extends Node {
     public Signal testSignal = SignalProvider.signal(this, "test_signal");
 
     @RegisterSignal
-    public Signal testSignal2 = SignalProvider.signal(this, "test_signal_2", "param1", "param2");
+    public Signal2<String, String> testSignal2 = SignalProvider.signal(this, "test_signal_2", "param1", "param2");
 
     // The following should NOT work as we cannot extract parameter names. The compiler checks should catch that and throw a build error
 //    @RegisterSignal

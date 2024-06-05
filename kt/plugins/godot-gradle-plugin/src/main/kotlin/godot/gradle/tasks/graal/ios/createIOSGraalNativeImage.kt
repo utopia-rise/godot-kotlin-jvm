@@ -29,10 +29,10 @@ fun Project.createIOSGraalNativeImageTask(
         )
 
         doFirst {
-            val libsDir = project.buildDir.resolve("libs")
-            val iosLibDir = buildDir.resolve("libs").resolve("ios")
+            val libsDir = project.layout.buildDirectory.asFile.get().resolve("libs")
+            val iosLibDir = layout.buildDirectory.asFile.get().resolve("libs").resolve("ios")
 
-            val graalDirectory = buildDir.resolve("graal")
+            val graalDirectory = layout.buildDirectory.asFile.get().resolve("graal")
 
             val iosGraalConfigDir = graalDirectory.resolve("ios")
             val jniConfigurationFilesArgument = "-H:JNIConfigurationFiles=" +

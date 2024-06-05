@@ -174,6 +174,7 @@ internal fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): God
     }
 }
 
+@Suppress("UNCHECKED_CAST")
 private fun <T: Number> KSAnnotation.provideRangeHintAnnotation(stepDefault: T): RangeHintAnnotation<T> {
     val start = (arguments.firstOrNull { it.name?.asString() == "start" }?.value ?: arguments.first().value) as T
     val end = (arguments.firstOrNull { it.name?.asString() == "end" }?.value ?: arguments[1].value) as T

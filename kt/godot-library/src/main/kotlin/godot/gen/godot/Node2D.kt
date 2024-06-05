@@ -123,7 +123,6 @@ public open class Node2D : CanvasItem() {
   @CoreTypeLocalCopy
   public var transform: Transform2D
     @JvmName("getTransform_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getTransform()
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
@@ -208,7 +207,6 @@ public open class Node2D : CanvasItem() {
   @CoreTypeLocalCopy
   public var globalTransform: Transform2D
     @JvmName("getGlobalTransform_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getGlobalTransform()
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)

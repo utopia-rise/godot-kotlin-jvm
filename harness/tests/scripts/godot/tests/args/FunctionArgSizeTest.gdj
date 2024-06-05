@@ -6,19 +6,19 @@ fqName = godot.tests.args.FunctionArgSizeTest
 relativeSourcePath = src/main/kotlin/godot/tests/args/FunctionArgSizeTest.kt
 baseType = Node
 supertypes = [
-	godot.Node,
+    godot.Node,
 	godot.Object,
 	godot.core.KtObject,
 	kotlin.Any
 ]
 signals = [
-	
+    
 ]
 properties = [
-	
+    
 ]
 functions = [
-	arg0,
+    arg0,
 	arg1,
 	arg2,
 	arg3,
