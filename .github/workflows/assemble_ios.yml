@@ -46,13 +46,13 @@ jobs:
         run: |
           cp -r misc/dist/ios_xcode .
           cp -r MoltenVK/Package/Release/MoltenVK/MoltenVK.xcframework ios_xcode/
-          mkdir -p macos_template.app/Contents/MacOS
           cp libgodot.ios.template_release.arm64.a ios_xcode/libgodot.ios.release.xcframework/ios-arm64/libgodot.a
           cp libgodot.ios.template_debug.arm64.a ios_xcode/libgodot.ios.debug.xcframework/ios-arm64/libgodot.a
-          zip -q -9 -r export_template_all_ios.zip ios_xcode
+          mv ios_xcode/ ios/ && cd ios/
+          zip -q -9 -r export_template_all_ios.zip .
 
       - name: Upload iOS template app
         uses: actions/upload-artifact@v4
         with:
           name: export_template_all_ios
-          path: export_template_all_ios.zip
+          path: ios/export_template_all_ios.zip
