@@ -40,21 +40,55 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
                 bool is_x64 {p_features.has("x86_64")};
 
                 if (!is_arm64 && !is_x64) {
-                    add_macos_plugin_file(String(RES_DIRECTORY).path_join(EMBEDDED_JRE_DIRECTORY));
+                    add_macos_plugin_file(String(RES_DIRECTORY).path_join(HOST_EMBEDDED_JRE_DIRECTORY));
                 } else {
-                    if (is_arm64) { add_macos_plugin_file(String(RES_DIRECTORY).path_join(EMBEDDED_JRE_ARM_DIRECTORY)); }
-                    if (is_x64) { add_macos_plugin_file(String(RES_DIRECTORY).path_join(EMBEDDED_JRE_AMD_DIRECTORY)); }
+                    if (is_arm64) { add_macos_plugin_file(String(RES_DIRECTORY).path_join(MACOS_EMBEDDED_JRE_ARM_DIRECTORY)); }
+                    if (is_x64) { add_macos_plugin_file(String(RES_DIRECTORY).path_join(MACOS_EMBEDDED_JRE_AMD_DIRECTORY)); }
                 }
             } else {
-                String jre_dir {String(RES_DIRECTORY).path_join(EMBEDDED_JRE_AMD_DIRECTORY)};
-                String target_dir {ProjectSettings::get_singleton()->globalize_path(RES_DIRECTORY).path_join(p_path).get_base_dir().path_join(EMBEDDED_JRE_AMD_DIRECTORY)};
+                bool is_arm64 {p_features.has("arm64")};
+                bool is_x64 {p_features.has("x86_64")};
+
+                String jre_dir;
+                String target_dir;
+
+                if (!is_arm64 && !is_x64) {
+                    jre_dir = String(RES_DIRECTORY).path_join(HOST_EMBEDDED_JRE_DIRECTORY);
+                    target_dir = ProjectSettings::get_singleton()->globalize_path(RES_DIRECTORY).path_join(p_path).get_base_dir().path_join(HOST_EMBEDDED_JRE_DIRECTORY);
+                } else {
+                    if (is_arm64) {
+                        if (is_linux_export) {
+                            jre_dir = String(RES_DIRECTORY).path_join(LINUX_EMBEDDED_JRE_ARM_DIRECTORY);
+                            target_dir = ProjectSettings::get_singleton()->globalize_path(RES_DIRECTORY).path_join(p_path).get_base_dir().path_join(LINUX_EMBEDDED_JRE_ARM_DIRECTORY);
+                        }
+                        if (is_windows_export) {
+                            jre_dir = String(RES_DIRECTORY).path_join(WINDOWS_EMBEDDED_JRE_ARM_DIRECTORY);
+                            target_dir = ProjectSettings::get_singleton()->globalize_path(RES_DIRECTORY).path_join(p_path).get_base_dir().path_join(WINDOWS_EMBEDDED_JRE_ARM_DIRECTORY);
+                        }
+                    }
+                    if (is_x64) {
+                        if (is_linux_export) {
+                            jre_dir = String(RES_DIRECTORY).path_join(LINUX_EMBEDDED_JRE_AMD_DIRECTORY);
+                            target_dir = ProjectSettings::get_singleton()->globalize_path(RES_DIRECTORY).path_join(p_path).get_base_dir().path_join(LINUX_EMBEDDED_JRE_AMD_DIRECTORY);
+                        }
+                        if (is_windows_export) {
+                            jre_dir = String(RES_DIRECTORY).path_join(WINDOWS_EMBEDDED_JRE_AMD_DIRECTORY);
+                            target_dir = ProjectSettings::get_singleton()->globalize_path(RES_DIRECTORY).path_join(p_path).get_base_dir().path_join(WINDOWS_EMBEDDED_JRE_AMD_DIRECTORY);
+                        }
+                    }
+                }
+
+                if(jre_dir.is_empty() || target_dir.is_empty()) {
+                    LOG_ERROR("Could not find a jre directory for the current export configuration");
+                }
+
                 Error error;
                 Ref<DirAccess> dir_access {DirAccess::open(jre_dir, &error)};
                 if (error != OK) {
                     LOG_ERROR(vformat("Cannot open directory %s", jre_dir));
                 }
                 if (dir_access->copy_dir(jre_dir, target_dir) != OK) {
-                    LOG_ERROR(vformat("Cannot copy %s folder to export folder, please make sure you created a JRE directory at the root of your project using jlink.", EMBEDDED_JRE_AMD_DIRECTORY)
+                    LOG_ERROR(vformat("Cannot copy %s folder to export folder, please make sure you created a JRE directory at the root of your project using jlink for the platform you want to export.", jre_dir)
                     );
                 }
             }
