@@ -46,9 +46,3 @@ fun PsiClass.resolveToDescriptor(): ClassDescriptor? {
         else -> getJavaClassDescriptor()
     }
 }
-
-val PsiClass.declarations: List<PsiElement>
-    get() = when (this) {
-        is KtClass -> this.declarations
-        else -> this.ownDeclarations.map { symbolDeclaration -> symbolDeclaration.declaringElement }
-    }
