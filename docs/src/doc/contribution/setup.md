@@ -12,9 +12,9 @@ Make sure that Java is installed and its `PATH` set in your system as well (**at
     - navigate to `<module-root>/harness/tests`
     - create embedded JVM:
         - For amd64 systems:
-          - `jlink --add-modules java.base,java.logging --output jre-amd64`
+          - `jlink --add-modules java.base,java.logging --output jre-amd64-<platform ex. linux>`
         - For arm64 systems:
-          - `jlink --add-modules java.base,java.logging --output jre-arm64`
+          - `jlink --add-modules java.base,java.logging --output jre-arm64-<platform ex. macos>`
         - If you want to remote debug add module `jdk.jdwp.agent` to command.
         - If you want to enable jmx, add `jdk.management.agent` to command.
     - Windows: `gradlew build`
