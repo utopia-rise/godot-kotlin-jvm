@@ -17,6 +17,7 @@ fun Project.packageBootstrapJarTask(
             archiveBaseName.set("godot-bootstrap")
             configurations.clear()
             configurations.add(this@packageBootstrapJarTask.configurations.getByName("bootstrap"))
+            archiveVersion.set("") // otherwise the version is appended to the name and our export plugin cannot find it anymore
 
             dependsOn(createBuildLockTask)
             finalizedBy(deleteBuildLockTask)
