@@ -1,36 +1,69 @@
-To build our module, you need to same dependencies as the ones described in the [official Godot documentation](https://docs.godotengine.org/en/stable/development/compiling/index.html).
+To build our module, you need the same dependencies as the ones described in the
+[official Godot documentation](https://docs.godotengine.org/en/stable/development/compiling/index.html).
+Before building the engine, we invite you to read this document until the end.
 
 Make sure that Java is installed and its `PATH` set in your system as well (**at least Java 11 is needed**).
 
-1. Clone Godot's repository with the stable tag you want to develop for: `git clone git@github.com:godotengine/godot.git 4.1.2-stable --recursive`
+!!! note
+    To check if Java is installed on your platform, open a terminal and type the following command:
+    ```bash
+    echo $JAVA_HOME
+    ```
+    If the command outputs a directory path, then Java is installed on your system. Otherwise, we strongly suggest you
+    to install the JDK using [SDKMAN!](https://sdkman.io/)
 
-2. In the `godot-root` dir, run the following command: `git submodule add git@github.com:utopia-rise/godot-kotlin-jvm.git modules/kotlin_jvm`
+Once you have all the necessary dependencies, proceed to do the following:
 
-3. From the `godot-root` dir, build the engine with our module: `scons platform=linuxbsd # your target platform`
+1. Clone Godot's repository with the stable tag you want to develop for. Notice that the branch tag must be
+aligned to the current binding's version (e.g., current version `0.9.1-4.2.2`, we need Godot at `4.2.2` version).
 
-4. Build sample
-    - navigate to `<module-root>/harness/tests`
-    - create embedded JVM:
-        - For amd64 systems:
+```bash
+git clone git@github.com:godotengine/godot.git --branch 4.2.2-stable --recursive
+```
+
+2. In the `godot` directory, run the following command:
+```bash
+git submodule add git@github.com:utopia-rise/godot-kotlin-jvm.git modules/kotlin_jvm
+```
+
+3. Once the [git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) is added, change your directory to `godot`, and build the engine with our module:
+```bash
+scons platform=linuxbsd # your target platform (windows, macos, ...)
+```
+
+4. Build the sample following these steps:
+    1. Navigate to `<module-root>/harness/tests`
+    2. Create an embedded Java Virtual Machine:
+        - For `amd64` systems:
           - `jlink --add-modules java.base,java.logging --output jre-amd64`
-        - For arm64 systems:
+        - For `arm64` (macOS with **Apple Silicon** chips) systems:
           - `jlink --add-modules java.base,java.logging --output jre-arm64`
         - If you want to remote debug add module `jdk.jdwp.agent` to command.
-        - If you want to enable jmx, add `jdk.management.agent` to command.
-    - Windows: `gradlew build`
-    - Unix: `./gradlew build`
+        - If you want to enable `jmx`, add `jdk.management.agent` to command.
+    3. Then build the project using the Gradle wrapper.
+        - Windows: `gradlew build`
+        - Unix: `./gradlew build`
 
-5. In order to run the engine, run `godot.linuxbsd.editor.x86_64` (or the equivalent of your platform) located in the `bin` folder of `godot-root`
+5. To run the engine, run `godot.linuxbsd.editor.x86_64` (or the equivalent of your platform) located in the `bin` folder of `godot`.
 
-6. In order to debug your JVM code, you should start Godot with command line `--jvm-debug-port=XXXX`, where `XXXX`
-stands for the JMX port of you choice. You can then set up remote debug configuration in Intellij IDEA.
+6. To debug your JVM code, you should start Godot with command line `--jvm-debug-port=XXXX`, where `XXXX`
+stands for the JMX port of you choice.
+You can then set up [remote debug configuration in Intellij IDEA](https://www.jetbrains.com/help/idea/tutorial-remote-debug.html).
 
 
 ## Publishing locally
 
-In order to publish our artifacts locally, you'll need to run `gradlew :tools-common:publishToMavenLocal publishToMavenLocal`
+To publish our artifacts locally, you'll need to run the following command:
+```bash
+./gradlew :tools-common:publishToMavenLocal publishToMavenLocal && ./gradlew publishToMavenLocal -Prelease=true
+```
 
-Check in you maven local repository what the version is you've just published: `ls ~/.m2/repository/com/utopia-rise/godot-gradle-plugin`.
+Check in you maven local repository what is the version you've just published, doing the following:
+
+```bash
+ls ~/.m2/repository/com/utopia-rise/godot-gradle-plugin
+```
+
 The version should look something like this: `0.7.2-4.1.2-c8df371-SNAPSHOT`.
 
 Your test project should use `mavenLocal()` in the repositories block in `build.gradle.kts` and the following in `settings.gradle.kts`:
@@ -56,7 +89,8 @@ pluginManagement {
 
 When you build a sample, it generates a `godot-bootstrap.jar` in `build/libs`.
 This JAR is needed by the engine to function correctly. You need to copy this jar to `<godot-root>/bin`.
-If you want to automate that, consider using the following gradle task in the samples `build.gradle.kts`- but don't commit it!
+If you want to automate that, consider using the following Gradle task in the samples `build.gradle.kts` - but, please,
+**don't commit it**!
 
 ```kt
 afterEvaluate {
