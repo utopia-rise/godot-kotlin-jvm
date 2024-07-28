@@ -55,7 +55,7 @@ You can then set up [remote debug configuration in Intellij IDEA](https://www.je
 
 To publish our artifacts locally, you'll need to run the following command:
 ```bash
-./gradlew :tools-common:publishToMavenLocal publishToMavenLocal
+./gradlew :tools-common:publishToMavenLocal publishToMavenLocal && ./gradlew publishToMavenLocal -Prelease=true
 ```
 
 Check in you maven local repository what is the version you've just published, doing the following:
