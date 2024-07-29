@@ -10,3 +10,4 @@ build
 
 # Ignore embedded jre
 jre
+/jvm/
