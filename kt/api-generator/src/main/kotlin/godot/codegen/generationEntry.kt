@@ -11,6 +11,7 @@ import godot.codegen.repositories.*
 import godot.codegen.repositories.impl.*
 import godot.codegen.services.*
 import godot.codegen.services.impl.*
+import godot.tools.common.constants.Constraints
 import godot.tools.common.constants.GENERATED_COMMENT
 import java.io.File
 
@@ -78,4 +79,7 @@ fun File.generateApiFrom(jsonSource: File, docsDir: File? = null) {
             .build()
             .writeTo(this)
     }
+
+    KtCallableGenerationService().generate(Constraints.MAX_FUNCTION_ARG_COUNT).writeTo(this)
+    SignalGenerationService().generate(Constraints.MAX_FUNCTION_ARG_COUNT).writeTo(this)
 }

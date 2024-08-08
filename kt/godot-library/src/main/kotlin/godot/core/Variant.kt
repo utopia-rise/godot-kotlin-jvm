@@ -42,6 +42,7 @@ import godot.core.VariantType.VECTOR3I
 import godot.core.VariantType.VECTOR4
 import godot.core.VariantType.VECTOR4I
 import godot.core.VariantType._RID
+import godot.core.callable.KtCallable
 import godot.core.memory.MemoryManager
 import godot.signals.Signal
 import godot.util.toRealT
@@ -80,7 +81,8 @@ internal val variantMapper = mutableMapOf(
     Vector4::class to VECTOR4,
     Vector4i::class to VECTOR4I,
     Projection::class to PROJECTION,
-    Callable::class to CALLABLE,
+    NativeCallable::class to CALLABLE,
+    KtCallable::class to CALLABLE,
     Signal::class to SIGNAL,
     PackedByteArray::class to PACKED_BYTE_ARRAY,
     PackedColorArray::class to PACKED_COLOR_ARRAY,
@@ -548,10 +550,18 @@ enum class VariantType(
         25,
         { buffer: ByteBuffer, _: Int ->
             val ptr = buffer.long
-            Callable(ptr)
+            NativeCallable(ptr)
         },
         { buffer: ByteBuffer, any: Any ->
-            CALLABLE.toGodotNativeCoreType<Callable>(buffer, any)
+            buffer.variantType = CALLABLE.ordinal
+            if (any is NativeCallable) {
+                buffer.bool = false
+                buffer.putLong(any._handle)
+            } else {
+                require(any is KtCallable<*>)
+                buffer.bool = true
+                buffer.putLong(any.wrapInCustomCallable())
+            }
         }
     ),
     SIGNAL(
