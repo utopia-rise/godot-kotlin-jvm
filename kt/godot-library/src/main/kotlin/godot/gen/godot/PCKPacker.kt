@@ -42,7 +42,7 @@ import kotlin.jvm.JvmOverloads
  *
  * [csharp]
  *
- * var packer = new PckPacker();
+ * var packer = new PCKPacker();
  *
  * packer.PckStart("test.pck");
  *

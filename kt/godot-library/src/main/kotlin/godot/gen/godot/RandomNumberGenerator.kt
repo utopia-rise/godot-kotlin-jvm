@@ -32,7 +32,7 @@ import kotlin.jvm.JvmOverloads
  *
  * **Note:** The underlying algorithm is an implementation detail and should not be depended upon.
  *
- * To generate a random float number (within a given range) based on a time-dependent seed:
+ * To generate a random float number (within a given range) based on a time-dependant seed:
  *
  * ```
  * 		var rng = RandomNumberGenerator.new()

@@ -1,57 +1,37 @@
+@file:Suppress("UNCHECKED_CAST")
+
 package godot.core.callable
 
-import godot.core.KtObject
 import godot.core.VariantType
-import godot.core.memory.TransferContext
-import godot.global.GD
-import godot.tools.common.constants.Constraints
-import godot.util.threadLocal
+import godot.core.Callable
+import godot.util.VoidPtr
 
-abstract class KtCallable<T : KtObject, R : Any?>(
-    private val name: String,
-    val parameterCount: Int,
-    val variantType: VariantType,
+abstract class KtCallable<R : Any?>(
+    internal val variantType: VariantType,
     vararg parameterTypes: Pair<VariantType, Boolean>
-) {
+) : Callable {
     private val types: Array<VariantType> = parameterTypes.map { it.first }.toTypedArray()
     private val isNullables: Array<Boolean> = parameterTypes.map { it.second }.toTypedArray()
 
-    fun invoke(instance: T) {
-        TransferContext.readArguments(types, isNullables, paramsArray)
-        try {
-            invokeKt(instance)
-        } catch (t: Throwable) {
-            GD.printErr("Error calling a JVM method from Godot:", t.stackTrace)
-        }
-        resetParamsArray()
+    val returnVariantType: Int
+        get() = variantType.ordinal
+
+    fun invokeNoReturn(): Unit = withParameters(types, isNullables) {
+        invokeKt()
     }
 
-    fun invokeWithReturn(instance: T): Any? {
-        TransferContext.readArguments(types, isNullables, paramsArray)
-
-        var ret: Any? = Unit
-        try {
-            ret = invokeKt(instance)
-            TransferContext.writeReturnValue(ret, variantType)
-        } catch (t: Throwable) {
-            GD.printErr("Error calling a JVM method from Godot:", t.stackTrace)
-            TransferContext.writeReturnValue(null, VariantType.NIL)
-        }
-        resetParamsArray()
-        return ret
+    fun invokeWithReturn(): Any? = withParametersReturn(types, isNullables, variantType) {
+        invokeKt()
     }
 
-    companion object {
-        val paramsArray by threadLocal {
-            Array<Any?>(Constraints.MAX_FUNCTION_ARG_COUNT) {
-                null
-            }
-        }
+    internal abstract fun invokeKt(): R
 
-        fun resetParamsArray() {
-            paramsArray.fill(null)
-        }
+    internal companion object : ParametersReader()
+
+    internal fun wrapInCustomCallable(): VoidPtr = Bridge.wrap_in_custom_callable(this, variantType.ordinal, hashCode())
+
+    @Suppress("FunctionName")
+    private object Bridge {
+        external fun wrap_in_custom_callable(instance: KtCallable<*>,variantTypeOrdinal: Int, hashCode: Int): VoidPtr
     }
-
-    internal abstract fun invokeKt(instance: T): R
 }

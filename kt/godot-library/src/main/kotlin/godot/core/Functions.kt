@@ -2,8 +2,12 @@
 
 package godot.core
 
-import godot.core.callable.KtCallable
+import godot.core.callable.ParametersReader
+import godot.core.memory.TransferContext
+import godot.global.GD
+import godot.tools.common.constants.Constraints
 import godot.util.camelToSnakeCase
+import godot.util.threadLocal
 
 enum class PropertyHint {
     NONE, ///< no hint provided.
@@ -65,11 +69,26 @@ data class KtRpcConfig(
 
 abstract class KtFunction<T : KtObject, R : Any?>(
     val functionInfo: KtFunctionInfo,
-    parameterCount: Int,
-    variantType: VariantType,
+    val parameterCount: Int,
+    private val variantType: VariantType,
     vararg parameterTypes: Pair<VariantType, Boolean>
-) : KtCallable<T, R>(functionInfo.name, parameterCount, variantType, *parameterTypes) {
+) {
+    private val types: Array<VariantType> = parameterTypes.map { it.first }.toTypedArray()
+    private val isNullables: Array<Boolean> = parameterTypes.map { it.second }.toTypedArray()
+
     val registrationName = functionInfo.name.camelToSnakeCase()
+
+    fun invoke(instance: T): Unit = withParameters(types, isNullables) {
+        invokeKt(instance)
+    }
+
+    fun invokeWithReturn(instance: T): Any? = withParametersReturn(types, isNullables, variantType) {
+        invokeKt(instance)
+    }
+
+    internal companion object : ParametersReader()
+
+    internal abstract fun invokeKt(instance: T): R
 }
 
 class KtFunction0<T : KtObject, R : Any?>(

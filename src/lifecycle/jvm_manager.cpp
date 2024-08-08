@@ -20,6 +20,8 @@
 #include "jvm_wrapper/memory/memory_manager.h"
 #include "jvm_wrapper/memory/transfer_context.h"
 #include "jvm_wrapper/registration/kt_class.h"
+#include "kotlin_callable_custom.h"
+#include "jvm_wrapper/bridge/kt_callable_bridge.h"
 
 #include <jni.h>
 #include <locale>
@@ -103,6 +105,7 @@ bool JvmManager::initialize_jni_classes(jni::Env& p_env, ClassLoader* class_load
     KtFunctionInfo::initialize_jni_binding(p_env, class_loader);
     KtFunction::initialize_jni_binding(p_env, class_loader);
     KtClass::initialize_jni_binding(p_env, class_loader);
+    KtCallable::initialize_jni_binding(p_env, class_loader);
 
     return TransferContext::initialize(p_env, class_loader)
         && TypeManager::initialize(p_env, class_loader)
@@ -110,6 +113,7 @@ bool JvmManager::initialize_jni_classes(jni::Env& p_env, ClassLoader* class_load
         && MemoryManager::initialize(p_env, class_loader)
         && bridges::GDPrintBridge::initialize(p_env, class_loader)
         && bridges::CallableBridge::initialize(p_env, class_loader)
+        && bridges::KtCallableBridge::initialize(p_env, class_loader)
         && bridges::DictionaryBridge::initialize(p_env, class_loader)
         && bridges::RidBridge::initialize(p_env, class_loader)
         && bridges::StringNameBridge::initialize(p_env, class_loader)

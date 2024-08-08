@@ -4,7 +4,7 @@ import godot.Node
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
-import godot.core.Callable
+import godot.core.NativeCallable
 import godot.core.VariantArray
 import godot.core.variantArrayOf
 import godot.global.GD
@@ -16,22 +16,22 @@ class CallableMethodBindTest: Node() {
 
     @RegisterFunction
     fun callWithMethodWithAllBinds() {
-        Callable(this, CallableMethodBindTest::readySignalMethodBindTest).bind(1, 2, 3).call()
+        NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).bind(1, 2, 3).call()
     }
 
     @RegisterFunction
     fun callWithMethodWithTwoBinds() {
-        Callable(this, CallableMethodBindTest::readySignalMethodBindTest).bind(2, 3).call(0)
+        NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).bind(2, 3).call(0)
     }
 
     @RegisterFunction
     fun callWithMethodWithOneBind() {
-        Callable(this, CallableMethodBindTest::readySignalMethodBindTest).bind(3).call(0, 0)
+        NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).bind(3).call(0, 0)
     }
 
     @RegisterFunction
     fun callWithMethodWithNoBind() {
-        Callable(this, CallableMethodBindTest::readySignalMethodBindTest).bind().call(0, 0, 0)
+        NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).bind().call(0, 0, 0)
     }
 
     @RegisterFunction

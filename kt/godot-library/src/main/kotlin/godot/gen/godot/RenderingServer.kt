@@ -3540,7 +3540,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the world space transform of the instance. Equivalent to [godot.Node3D.globalTransform].
+   * Sets the world space transform of the instance. Equivalent to [godot.Node3D.transform].
    */
   public fun instanceSetTransform(instance: RID, transform: Transform3D): Unit {
     TransferContext.writeArguments(_RID to instance, TRANSFORM3D to transform)
@@ -4411,11 +4411,6 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetCanvasGroupModePtr, NIL)
   }
 
-  /**
-   * Returns the bounding rectangle for a canvas item in local space, as calculated by the renderer. This bound is used internally for culling.
-   *
-   * **Warning:** This function is intended for debugging in the editor, and will pass through and return a zero [godot.core.Rect2] in exported projects.
-   */
   public fun debugCanvasItemGetRect(item: RID): Rect2 {
     TransferContext.writeArguments(_RID to item)
     TransferContext.callMethod(rawPtr, MethodBindings.debugCanvasItemGetRectPtr, RECT2)
@@ -5003,7 +4998,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Forces redrawing of all viewports at once. Must be called from the main thread.
+   * Forces redrawing of all viewports at once.
    */
   @JvmOverloads
   public fun forceDraw(swapBuffers: Boolean = true, frameStep: Double = 0.0): Unit {

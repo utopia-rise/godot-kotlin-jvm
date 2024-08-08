@@ -3,7 +3,7 @@ package godot.tests;
 import godot.Button;
 import godot.Node;
 import godot.annotation.*;
-import godot.core.Callable;
+import godot.core.NativeCallable;
 import godot.core.StringNameUtils;
 import godot.signals.Signal;
 import godot.signals.Signal2;
@@ -70,7 +70,7 @@ public class JavaTestClass extends Node {
     public void connectAndTriggerSignal() {
         connect(
                 StringNameUtils.asStringName("test_signal"),
-                new Callable(this, StringNameUtils.asStringName("signal_callback")),
+                new NativeCallable(this, StringNameUtils.asStringName("signal_callback")),
                 (int) ConnectFlags.CONNECT_ONE_SHOT.getId()
         );
         emitSignal(StringNameUtils.asStringName("test_signal"));
