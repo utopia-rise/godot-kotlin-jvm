@@ -78,6 +78,8 @@ namespace jni {
         jboolean call_boolean_method(Env& env, MethodId method, jvalue* args = {}) const;
 
         bool is_null();
+
+        bool is_same_object(Env& env, const JObject& other) const;
     };
 
     template<bool CHECK_EXCEPTION>

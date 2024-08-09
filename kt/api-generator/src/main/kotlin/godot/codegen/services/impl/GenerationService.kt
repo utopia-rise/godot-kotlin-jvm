@@ -25,21 +25,7 @@ import godot.codegen.services.IClassGraphService
 import godot.codegen.services.IEnumService
 import godot.codegen.services.IGenerationService
 import godot.codegen.traits.CallableTrait
-import godot.tools.common.constants.CORE_TYPE_LOCAL_COPY
-import godot.tools.common.constants.CORE_TYPE_HELPER
-import godot.tools.common.constants.GENERATED_COMMENT
-import godot.tools.common.constants.GODOT_BASE_TYPE
-import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.GodotTypes
-import godot.tools.common.constants.KT_OBJECT
-import godot.tools.common.constants.TRANSFER_CONTEXT
-import godot.tools.common.constants.TYPE_MANAGER
-import godot.tools.common.constants.VARIANT_TYPE_ANY
-import godot.tools.common.constants.VARIANT_TYPE_LONG
-import godot.tools.common.constants.godotApiPackage
-import godot.tools.common.constants.godotCorePackage
-import godot.tools.common.constants.godotUtilPackage
-import godot.tools.common.constants.signalPackage
+import godot.tools.common.constants.*
 import java.util.*
 
 private const val methodBindingsInnerClassName = "MethodBindings"
@@ -724,8 +710,6 @@ class GenerationService(
         .build()
 
     private fun TypeSpec.Builder.generateTypesafeRpc() {
-        val camelToSnakeCaseUtilFunction = MemberName(godotUtilPackage, "camelToSnakeCase")
-        val asStringNameUtilFunction = MemberName(godotCorePackage, "asStringName")
         for (i in 0..10) {
             val kFunctionTypeParameters = mutableListOf<TypeVariableName>()
             if (i != 0) {
@@ -763,7 +747,7 @@ class GenerationService(
                     templateString += ", $argParamName"
                 }
                 templateString += ")"
-                rpcFunSpec.addStatement(templateString, camelToSnakeCaseUtilFunction, asStringNameUtilFunction)
+                rpcFunSpec.addStatement(templateString, CAMEL_TO_SNAKE_CASE_UTIL_FUNCTION, AS_STRING_NAME_UTIL_FUNCTION)
 
                 rpcFunSpec.addTypeVariable(TypeVariableName.invoke("FUNCTION", kFunctionClassName).copy(reified = true))
                 addFunction(rpcFunSpec.build())
@@ -836,13 +820,13 @@ class GenerationService(
                 val appliedDefault = if ((argument.isEnum() || argument.isBitField()) && defaultValueKotlinCode != null) {
                     enumService.findEnumValue(
                         argumentTypeClassName,
-                        defaultValueKotlinCode.toLong()
+                        defaultValueKotlinCode.first.toLong()
                     ).name
                 } else {
-                    defaultValueKotlinCode
+                    defaultValueKotlinCode?.first
                 }
                 if (appliedDefault != null) {
-                    parameterBuilder.defaultValue(appliedDefault)
+                    parameterBuilder.defaultValue(appliedDefault, *defaultValueKotlinCode!!.second)
 
                     // add @JvmOverloads annotation for java support if not already present
                     val jvmOverloadAnnotationSpec = AnnotationSpec.builder(JvmOverloads::class.asClassName()).build()

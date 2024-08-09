@@ -209,6 +209,8 @@ void GDKotlin::load_user_code() {
 }
 
 void GDKotlin::init() {
+    callable_middleman = memnew(Object);
+
     fetch_user_configuration();
     set_jvm_options();
 
@@ -258,6 +260,9 @@ void GDKotlin::finish() {
 #endif
 
     state = State::NOT_STARTED;
+
+    memdelete(callable_middleman);
+    callable_middleman = nullptr;
 }
 
 const JvmUserConfiguration& GDKotlin::get_configuration() {
@@ -362,6 +367,10 @@ void GDKotlin::unload_dynamic_lib() {
     }
 }
 #endif
+
+Object* GDKotlin::get_callable_middleman() const {
+    return callable_middleman;
+}
 
 #ifdef DEBUG_ENABLED
 void GDKotlin::validate_state() {

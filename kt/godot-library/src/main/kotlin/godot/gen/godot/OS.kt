@@ -294,8 +294,6 @@ public object OS : Object() {
    * **Note:** To execute a Unix shell built-in command, specify shell executable name in [path], `-c` as the first argument, and the desired command as the second argument.
    *
    * **Note:** On macOS, sandboxed applications are limited to run only embedded helper executables, specified during export.
-   *
-   * **Note:** On Android, system commands such as `dumpsys` can only be run on a rooted device.
    */
   @JvmOverloads
   public fun execute(
@@ -713,11 +711,9 @@ public object OS : Object() {
    * For example, in the command line below, `--fullscreen` will not be returned in [getCmdlineUserArgs] and `--level 1` will only be returned in [getCmdlineUserArgs]:
    *
    * ```
-   * 				# Godot has been executed with the following command:
-   * 				# godot --fullscreen -- --level=2 --hardcore
-   *
-   * 				OS.get_cmdline_args()      # Returns ["--fullscreen", "--level=2", "--hardcore"]
-   * 				OS.get_cmdline_user_args() # Returns ["--level=2", "--hardcore"]
+   * 				godot --fullscreen -- --level 1
+   * 				# Or:
+   * 				godot --fullscreen ++ --level 1
    * 				```
    */
   public fun getCmdlineUserArgs(): PackedStringArray {

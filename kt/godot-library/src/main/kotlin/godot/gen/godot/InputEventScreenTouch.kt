@@ -49,7 +49,7 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
     }
 
   /**
-   * The touch position in the viewport the node is in, using the coordinate system of this viewport.
+   * The touch position, in screen (global) coordinates.
    */
   @CoreTypeLocalCopy
   public var position: Vector2
@@ -105,7 +105,7 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
   }
 
   /**
-   * The touch position in the viewport the node is in, using the coordinate system of this viewport.
+   * The touch position, in screen (global) coordinates.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
