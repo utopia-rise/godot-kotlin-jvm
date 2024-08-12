@@ -59,6 +59,9 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
   /**
    * The list of object [RID]s that will be excluded from collisions. Use [CollisionObject3D.getRid]
    * to get the [RID] associated with a [CollisionObject3D]-derived node.
+   * **Note:** The returned array is copied and any changes to it will not update the original
+   * property value. To update the value you need to modify the returned array, and then assign it to
+   * the property again.
    */
   public var exclude: VariantArray<RID>
     get() {

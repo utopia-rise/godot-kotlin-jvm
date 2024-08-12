@@ -56,6 +56,20 @@ public open class WorldEnvironment : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCameraAttributesPtr, NIL)
     }
 
+  /**
+   * The default [Compositor] resource to use if none set on the [Camera3D].
+   */
+  public var compositor: Compositor?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getCompositorPtr, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Compositor?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCompositorPtr, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_WORLDENVIRONMENT, scriptIndex)
     return true
@@ -75,5 +89,11 @@ public open class WorldEnvironment : Node() {
 
     public val getCameraAttributesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("WorldEnvironment", "get_camera_attributes")
+
+    public val setCompositorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WorldEnvironment", "set_compositor")
+
+    public val getCompositorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WorldEnvironment", "get_compositor")
   }
 }

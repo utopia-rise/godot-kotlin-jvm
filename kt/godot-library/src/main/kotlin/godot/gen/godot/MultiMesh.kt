@@ -6,6 +6,8 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.Color
@@ -91,6 +93,23 @@ public open class MultiMesh : Resource() {
     }
 
   /**
+   * Custom AABB for this MultiMesh resource. Setting this manually prevents costly runtime AABB
+   * recalculations.
+   */
+  @CoreTypeLocalCopy
+  public var customAabb: AABB
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getCustomAabbPtr,
+          godot.core.VariantType.AABB)
+      return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(godot.core.VariantType.AABB to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCustomAabbPtr, NIL)
+    }
+
+  /**
    * Number of instances that will get drawn. This clears and (re)sizes the buffers. Setting data
    * format or flags afterwards will have no effect.
    * By default, all instances are drawn but you can limit this with [visibleInstanceCount].
@@ -154,6 +173,31 @@ public open class MultiMesh : Resource() {
   }
 
   /**
+   * Custom AABB for this MultiMesh resource. Setting this manually prevents costly runtime AABB
+   * recalculations.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = multimesh.customAabb
+   * //Your changes
+   * multimesh.customAabb = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun customAabbMutate(block: AABB.() -> Unit): AABB = customAabb.apply{
+      block(this)
+      customAabb = this
+  }
+
+
+  /**
    * Sets the [Transform3D] for a specific instance.
    */
   public fun setInstanceTransform(instance: Int, transform: Transform3D): Unit {
@@ -190,6 +234,8 @@ public open class MultiMesh : Resource() {
   /**
    * Sets the color of a specific instance by *multiplying* the mesh's existing vertex colors. This
    * allows for different color tinting per instance.
+   * **Note:** Each component is stored in 32 bits in the Forward+ and Mobile rendering methods, but
+   * is packed into 16 bits in the Compatibility rendering method.
    * For the color to take effect, ensure that [useColors] is `true` on the [MultiMesh] and
    * [BaseMaterial3D.vertexColorUseAsAlbedo] is `true` on the material. If you intend to set an
    * absolute color instead of tinting, make sure the material's albedo color is set to pure white
@@ -210,8 +256,10 @@ public open class MultiMesh : Resource() {
   }
 
   /**
-   * Sets custom data for a specific instance. Although [Color] is used, it is just a container for
-   * 4 floating point numbers.
+   * Sets custom data for a specific instance. [customData] is a [Color] type only to contain 4
+   * floating-point numbers.
+   * **Note:** Each number is stored in 32 bits in the Forward+ and Mobile rendering methods, but is
+   * packed into 16 bits in the Compatibility rendering method.
    * For the custom data to be used, ensure that [useCustomData] is `true`.
    * This custom instance data has to be manually accessed in your custom shader using
    * `INSTANCE_CUSTOM`.
@@ -322,6 +370,12 @@ public open class MultiMesh : Resource() {
 
     public val getInstanceCustomDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("MultiMesh", "get_instance_custom_data")
+
+    public val setCustomAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "set_custom_aabb")
+
+    public val getCustomAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "get_custom_aabb")
 
     public val getAabbPtr: VoidPtr = TypeManager.getMethodBindPtr("MultiMesh", "get_aabb")
 

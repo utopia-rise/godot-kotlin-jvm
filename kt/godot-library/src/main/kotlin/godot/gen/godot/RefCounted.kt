@@ -33,8 +33,8 @@ import kotlin.Suppress
  * misused.
  * **Note:** In C#, reference-counted objects will not be freed instantly after they are no longer
  * in use. Instead, garbage collection will run periodically and will free reference-counted objects
- * that are no longer in use. This means that unused ones will linger on for a while before being
- * removed.
+ * that are no longer in use. This means that unused ones will remain in memory for a while before
+ * being removed.
  */
 @GodotBaseType
 public open class RefCounted : Object() {

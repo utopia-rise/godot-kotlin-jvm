@@ -149,6 +149,10 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * The billboard mode to use for the sprite. See [BaseMaterial3D.BillboardMode] for possible
    * values.
+   * **Note:** When billboarding is enabled and the material also casts shadows, billboards will
+   * face **the** camera in the scene when rendering shadows. In scenes with multiple cameras, the
+   * intended shadow cannot be determined and this will result in undefined behavior. See
+   * [url=https://github.com/godotengine/godot/pull/72638]GitHub Pull Request #72638[/url] for details.
    */
   public var billboard: BaseMaterial3D.BillboardMode
     get() {

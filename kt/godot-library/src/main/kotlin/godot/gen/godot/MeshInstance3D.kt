@@ -85,6 +85,16 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
+   * Returns the internal [SkinReference] containing the skeleton's [RID] attached to this RID. See
+   * also [Resource.getRid], [SkinReference.getSkeleton], and [RenderingServer.instanceAttachSkeleton].
+   */
+  public fun getSkinReference(): SkinReference? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSkinReferencePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as SkinReference?)
+  }
+
+  /**
    * Returns the number of surface override materials. This is equivalent to [Mesh.getSurfaceCount].
    * See also [getSurfaceOverrideMaterial].
    */
@@ -214,6 +224,20 @@ public open class MeshInstance3D : GeometryInstance3D() {
     TransferContext.callMethod(rawPtr, MethodBindings.createDebugTangentsPtr, NIL)
   }
 
+  /**
+   * Takes a snapshot from the current [ArrayMesh] with all blend shapes applied according to their
+   * current weights and bakes it to the provided [existing] mesh. If no [existing] mesh is provided a
+   * new [ArrayMesh] is created, baked and returned. Mesh surface materials are not copied.
+   * **Performance:** [Mesh] data needs to be received from the GPU, stalling the [RenderingServer]
+   * in the process.
+   */
+  @JvmOverloads
+  public fun bakeMeshFromCurrentBlendShapeMix(existing: ArrayMesh? = null): ArrayMesh? {
+    TransferContext.writeArguments(OBJECT to existing)
+    TransferContext.callMethod(rawPtr, MethodBindings.bakeMeshFromCurrentBlendShapeMixPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?)
+  }
+
   public companion object
 
   internal object MethodBindings {
@@ -230,6 +254,9 @@ public open class MeshInstance3D : GeometryInstance3D() {
     public val setSkinPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshInstance3D", "set_skin")
 
     public val getSkinPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshInstance3D", "get_skin")
+
+    public val getSkinReferencePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshInstance3D", "get_skin_reference")
 
     public val getSurfaceOverrideMaterialCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("MeshInstance3D", "get_surface_override_material_count")
@@ -266,5 +293,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
 
     public val createDebugTangentsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("MeshInstance3D", "create_debug_tangents")
+
+    public val bakeMeshFromCurrentBlendShapeMixPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshInstance3D", "bake_mesh_from_current_blend_shape_mix")
   }
 }

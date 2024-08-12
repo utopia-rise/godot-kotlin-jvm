@@ -78,6 +78,8 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * In spatial shaders, `1.0 - transparency` is set as the default value of the `ALPHA` built-in.
    * **Note:** [transparency] is clamped between `0.0` and `1.0`, so this property cannot be used to
    * make transparent materials more opaque than they originally are.
+   * **Note:** Only supported when using the Forward+ rendering method. When using the Mobile or
+   * Compatibility rendering method, [transparency] is ignored and is considered as always being `0.0`.
    */
   public var transparency: Float
     get() {
@@ -483,6 +485,9 @@ public open class GeometryInstance3D : VisualInstance3D() {
      * Will fade-out itself when reaching the limits of its own visibility range. This is slower
      * than [VISIBILITY_RANGE_FADE_DISABLED], but it can provide smoother transitions. The fading range
      * is determined by [visibilityRangeBeginMargin] and [visibilityRangeEndMargin].
+     * **Note:** Only supported when using the Forward+ rendering method. When using the Mobile or
+     * Compatibility rendering method, this mode acts like [VISIBILITY_RANGE_FADE_DISABLED] but with
+     * hysteresis disabled.
      */
     VISIBILITY_RANGE_FADE_SELF(1),
     /**
@@ -490,6 +495,9 @@ public open class GeometryInstance3D : VisualInstance3D() {
      * limits of its own visibility range. This is slower than [VISIBILITY_RANGE_FADE_DISABLED], but it
      * can provide smoother transitions. The fading range is determined by [visibilityRangeBeginMargin]
      * and [visibilityRangeEndMargin].
+     * **Note:** Only supported when using the Forward+ rendering method. When using the Mobile or
+     * Compatibility rendering method, this mode acts like [VISIBILITY_RANGE_FADE_DISABLED] but with
+     * hysteresis disabled.
      */
     VISIBILITY_RANGE_FADE_DEPENDENCIES(2),
     ;

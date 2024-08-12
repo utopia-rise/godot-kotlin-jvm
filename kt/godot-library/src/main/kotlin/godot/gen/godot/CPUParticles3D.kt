@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.AABB
 import godot.core.Color
 import godot.core.PackedColorArray
 import godot.core.PackedVector3Array
@@ -209,6 +210,25 @@ public open class CPUParticles3D : GeometryInstance3D() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setFractionalDeltaPtr, NIL)
+    }
+
+  /**
+   * The [AABB] that determines the node's region which needs to be visible on screen for the
+   * particle system to be active.
+   * Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The
+   * [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.
+   */
+  @CoreTypeLocalCopy
+  public var visibilityAabb: AABB
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityAabbPtr,
+          godot.core.VariantType.AABB)
+      return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(godot.core.VariantType.AABB to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityAabbPtr, NIL)
     }
 
   /**
@@ -1118,6 +1138,33 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   /**
+   * The [AABB] that determines the node's region which needs to be visible on screen for the
+   * particle system to be active.
+   * Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The
+   * [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = cpuparticles3d.visibilityAabb
+   * //Your changes
+   * cpuparticles3d.visibilityAabb = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun visibilityAabbMutate(block: AABB.() -> Unit): AABB = visibilityAabb.apply{
+      block(this)
+      visibilityAabb = this
+  }
+
+
+  /**
    * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_BOX].
    *
    * This is a helper function to make dealing with local copies easier. 
@@ -1466,6 +1513,9 @@ public open class CPUParticles3D : GeometryInstance3D() {
     public val setRandomnessRatioPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CPUParticles3D", "set_randomness_ratio")
 
+    public val setVisibilityAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_visibility_aabb")
+
     public val setLifetimeRandomnessPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CPUParticles3D", "set_lifetime_randomness")
 
@@ -1500,6 +1550,9 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
     public val getRandomnessRatioPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CPUParticles3D", "get_randomness_ratio")
+
+    public val getVisibilityAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_visibility_aabb")
 
     public val getLifetimeRandomnessPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CPUParticles3D", "get_lifetime_randomness")

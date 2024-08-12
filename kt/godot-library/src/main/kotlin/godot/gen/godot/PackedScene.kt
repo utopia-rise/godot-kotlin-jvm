@@ -105,7 +105,8 @@ public open class PackedScene : Resource() {
   }
 
   /**
-   * Pack will ignore any sub-nodes not owned by given node. See [Node.owner].
+   * Packs the [path] node, and all owned sub-nodes, into this [PackedScene]. Any existing data will
+   * be cleared. See [Node.owner].
    */
   public fun pack(path: Node): GodotError {
     TransferContext.writeArguments(OBJECT to path)

@@ -137,6 +137,22 @@ public open class UndoRedo : Object() {
    */
   public val versionChanged: Signal0 by signal()
 
+  /**
+   * The maximum number of steps that can be stored in the undo/redo history. If the number of
+   * stored steps exceeds this limit, older steps are removed from history and can no longer be reached
+   * by calling [undo]. A value of `0` or lower means no limit.
+   */
+  public var maxSteps: Int
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getMaxStepsPtr, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, MethodBindings.setMaxStepsPtr, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_UNDOREDO, scriptIndex)
     return true
@@ -221,8 +237,10 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Register a reference for "do" that will be erased if the "do" history is lost. This is useful
-   * mostly for new nodes created for the "do" call. Do not use for resources.
+   * Register a reference to an object that will be erased if the "do" history is deleted. This is
+   * useful for objects added by the "do" action and removed by the "undo" action.
+   * When the "do" history is deleted, if the object is a [RefCounted], it will be unreferenced.
+   * Otherwise, it will be freed. Do not use for resources.
    * [codeblock]
    * var node = Node2D.new()
    * undo_redo.create_action("Add node")
@@ -238,8 +256,10 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Register a reference for "undo" that will be erased if the "undo" history is lost. This is
-   * useful mostly for nodes removed with the "do" call (not the "undo" call!).
+   * Register a reference to an object that will be erased if the "undo" history is deleted. This is
+   * useful for objects added by the "undo" action and removed by the "do" action.
+   * When the "undo" history is deleted, if the object is a [RefCounted], it will be unreferenced.
+   * Otherwise, it will be freed. Do not use for resources.
    * [codeblock]
    * var node = $Node2D
    * undo_redo.create_action("Remove node")
@@ -374,12 +394,13 @@ public open class UndoRedo : Object() {
      */
     MERGE_DISABLE(0),
     /**
-     * Makes so that the action's "undo" operations are from the first action created and the "do"
-     * operations are from the last subsequent action with the same name.
+     * Merges this action with the previous one if they have the same name. Keeps only the first
+     * action's "undo" operations and the last action's "do" operations. Useful for sequential changes
+     * to a single value.
      */
     MERGE_ENDS(1),
     /**
-     * Makes subsequent actions with the same name be merged into one.
+     * Merges this action with the previous one if they have the same name.
      */
     MERGE_ALL(2),
     ;
@@ -446,6 +467,10 @@ public open class UndoRedo : Object() {
     public val hasRedoPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "has_redo")
 
     public val getVersionPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "get_version")
+
+    public val setMaxStepsPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "set_max_steps")
+
+    public val getMaxStepsPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "get_max_steps")
 
     public val redoPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "redo")
 

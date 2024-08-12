@@ -38,55 +38,56 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * As one of the most important classes, the [SceneTree] manages the hierarchy of nodes in a scene
- * as well as scenes themselves. Nodes can be added, retrieved and removed. The whole scene tree (and
+ * As one of the most important classes, the [SceneTree] manages the hierarchy of nodes in a scene,
+ * as well as scenes themselves. Nodes can be added, fetched and removed. The whole scene tree (and
  * thus the current scene) can be paused. Scenes can be loaded, switched and reloaded.
- * You can also use the [SceneTree] to organize your nodes into groups: every node can be assigned
- * as many groups as you want to create, e.g. an "enemy" group. You can then iterate these groups or
- * even call methods and set properties on all the group's members at once.
- * [SceneTree] is the default [MainLoop] implementation used by scenes, and is thus in charge of the
- * game loop.
+ * You can also use the [SceneTree] to organize your nodes into **groups**: every node can be added
+ * to as many groups as you want to create, e.g. an "enemy" group. You can then iterate these groups or
+ * even call methods and set properties on all the nodes belonging to any given group.
+ * [SceneTree] is the default [MainLoop] implementation used by the engine, and is thus in charge of
+ * the game loop.
  */
 @GodotBaseType
 public open class SceneTree : MainLoop() {
   /**
-   * Emitted whenever the [SceneTree] hierarchy changed (children being moved or renamed, etc.).
+   * Emitted any time the tree's hierarchy changes (nodes being moved, renamed, etc.).
    */
   public val treeChanged: Signal0 by signal()
 
   /**
-   * This signal is only emitted in the editor, it allows the editor to update the visibility of
-   * disabled nodes. Emitted whenever any node's [Node.processMode] is changed.
+   * Emitted when the [Node.processMode] of any node inside the tree is changed. Only emitted in the
+   * editor, to update the visibility of disabled nodes.
    */
   public val treeProcessModeChanged: Signal0 by signal()
 
   /**
-   * Emitted whenever a node is added to the [SceneTree].
+   * Emitted when the [node] enters this tree.
    */
   public val nodeAdded: Signal1<Node> by signal("node")
 
   /**
-   * Emitted whenever a node is removed from the [SceneTree].
+   * Emitted when the [node] exits this tree.
    */
   public val nodeRemoved: Signal1<Node> by signal("node")
 
   /**
-   * Emitted whenever a node is renamed.
+   * Emitted when the [node]'s [Node.name] is changed.
    */
   public val nodeRenamed: Signal1<Node> by signal("node")
 
   /**
-   * Emitted when a node's configuration changed. Only emitted in `tool` mode.
+   * Emitted when the [node]'s [Node.updateConfigurationWarnings] is called. Only emitted in the
+   * editor.
    */
   public val nodeConfigurationWarningChanged: Signal1<Node> by signal("node")
 
   /**
-   * Emitted immediately before [Node.Process] is called on every node in the [SceneTree].
+   * Emitted immediately before [Node.Process] is called on every node in this tree.
    */
   public val processFrame: Signal0 by signal()
 
   /**
-   * Emitted immediately before [Node.PhysicsProcess] is called on every node in the [SceneTree].
+   * Emitted immediately before [Node.PhysicsProcess] is called on every node in this tree.
    */
   public val physicsFrame: Signal0 by signal()
 
@@ -174,9 +175,10 @@ public open class SceneTree : MainLoop() {
     }
 
   /**
-   * If `true`, the [SceneTree] is paused. Doing so will have the following behavior:
-   * - 2D and 3D physics will be stopped. This includes signals and collision detection.
-   * - [Node.Process], [Node.PhysicsProcess] and [Node.Input] will not be called anymore in nodes.
+   * If `true`, the scene tree is considered paused. This causes the following behavior:
+   * - 2D and 3D physics will be stopped, as well as collision detection and related signals.
+   * - Depending on each node's [Node.processMode], their [Node.Process], [Node.PhysicsProcess] and
+   * [Node.Input] callback methods may not called anymore.
    */
   public var paused: Boolean
     get() {
@@ -190,7 +192,9 @@ public open class SceneTree : MainLoop() {
     }
 
   /**
-   * The root of the edited scene.
+   * The root of the scene currently being edited in the editor. This is usually a direct child of
+   * [root].
+   * **Note:** This property does nothing in release builds.
    */
   public var editedSceneRoot: Node?
     get() {
@@ -204,9 +208,10 @@ public open class SceneTree : MainLoop() {
     }
 
   /**
-   * Returns the root node of the currently running scene, regardless of its structure.
-   * **Warning:** Setting this directly might not work as expected, and will *not* add or remove any
-   * nodes from the tree, consider using [changeSceneToFile] or [changeSceneToPacked] instead.
+   * The root node of the currently loaded main scene, usually as a direct child of [root]. See also
+   * [changeSceneToFile], [changeSceneToPacked], and [reloadCurrentScene].
+   * **Warning:** Setting this property directly may not work as expected, as it does *not* add or
+   * remove any nodes from this tree.
    */
   public var currentScene: Node?
     get() {
@@ -220,7 +225,13 @@ public open class SceneTree : MainLoop() {
     }
 
   /**
-   * The [SceneTree]'s root [Window].
+   * The tree's root [Window]. This is top-most [Node] of the scene tree, and is always present. An
+   * absolute [NodePath] always starts from this node. Children of the root node may include the loaded
+   * [currentScene], as well as any
+   * [url=$DOCS_URL/tutorials/scripting/singletons_autoload.html]AutoLoad[/url] configured in the
+   * Project Settings.
+   * **Warning:** Do not delete this node. This will result in unstable behavior, followed by a
+   * crash.
    */
   public val root: Window?
     get() {
@@ -247,15 +258,31 @@ public open class SceneTree : MainLoop() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMultiplayerPollEnabledPtr, NIL)
     }
 
+  /**
+   * If `true`, the renderer will interpolate the transforms of physics objects between the last two
+   * transforms, so that smooth motion is seen even when physics ticks do not coincide with rendered
+   * frames.
+   * The default value of this property is controlled by
+   * [ProjectSettings.physics/common/physicsInterpolation].
+   */
+  public var physicsInterpolation: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isPhysicsInterpolationEnabledPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsInterpolationEnabledPtr, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_SCENETREE, scriptIndex)
     return true
   }
 
   /**
-   * Returns `true` if the given group exists.
-   * A group exists if any [Node] in the tree belongs to it (see [Node.addToGroup]). Groups without
-   * nodes are removed automatically.
+   * Returns `true` if a node added to the given group [name] exists in the tree.
    */
   public fun hasGroup(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -264,14 +291,15 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Returns a [SceneTreeTimer] which will emit [signal SceneTreeTimer.timeout] after the given time
-   * in seconds elapsed in this [SceneTree].
-   * If [processAlways] is set to `false`, pausing the [SceneTree] will also pause the timer.
-   * If [processInPhysics] is set to `true`, will update the [SceneTreeTimer] during the physics
-   * frame instead of the process frame (fixed framerate processing).
-   * If [ignoreTimeScale] is set to `true`, will ignore [Engine.timeScale] and update the
-   * [SceneTreeTimer] with the actual frame delta.
-   * Commonly used to create a one-shot delay timer as in the following example:
+   * Returns a new [SceneTreeTimer]. After [timeSec] in seconds have passed, the timer will emit
+   * [signal SceneTreeTimer.timeout] and will be automatically freed.
+   * If [processAlways] is `false`, the timer will be paused when setting [SceneTree.paused] to
+   * `true`.
+   * If [processInPhysics] is `true`, the timer will update at the end of the physics frame, instead
+   * of the process frame.
+   * If [ignoreTimeScale] is `true`, the timer will ignore [Engine.timeScale] and update with the
+   * real, elapsed time.
+   * This method is commonly used to create a one-shot delay timer, as in the following example:
    *
    * gdscript:
    * ```gdscript
@@ -290,9 +318,8 @@ public open class SceneTree : MainLoop() {
    * }
    * ```
    *
-   * The timer will be automatically freed after its time elapses.
-   * **Note:** The timer is processed after all of the nodes in the current frame, i.e. node's
-   * [Node.Process] method would be called before the timer (or [Node.PhysicsProcess] if
+   * **Note:** The timer is always updated *after* all of the nodes in the tree. A node's
+   * [Node.Process] method would be called before the timer updates (or [Node.PhysicsProcess] if
    * [processInPhysics] is set to `true`).
    */
   @JvmOverloads
@@ -308,11 +335,10 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Creates and returns a new [Tween]. The Tween will start automatically on the next process frame
-   * or physics frame (depending on [Tween.TweenProcessMode]).
-   * **Note:** When creating a [Tween] using this method, the [Tween] will not be tied to the [Node]
-   * that called it. It will continue to animate even if the [Node] is freed, but it will automatically
-   * finish if there's nothing left to animate. If you want the [Tween] to be automatically killed when
+   * Creates and returns a new [Tween] processed in this tree. The Tween will start automatically on
+   * the next process frame or physics frame (depending on its [Tween.TweenProcessMode]).
+   * **Note:** A [Tween] created using this method is not bound to any [Node]. It may keep working
+   * until there is nothing left to animate. If you want the [Tween] to be automatically killed when
    * the [Node] is freed, use [Node.createTween] or [Tween.bindNode].
    */
   public fun createTween(): Tween? {
@@ -322,7 +348,7 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Returns an array of currently existing [Tween]s in the [SceneTree] (both running and paused).
+   * Returns an [Array] of currently existing [Tween]s in the tree, including paused tweens.
    */
   public fun getProcessedTweens(): VariantArray<Tween> {
     TransferContext.writeArguments()
@@ -331,7 +357,7 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Returns the number of nodes in this [SceneTree].
+   * Returns the number of nodes inside this tree.
    */
   public fun getNodeCount(): Int {
     TransferContext.writeArguments()
@@ -340,7 +366,8 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Returns the current frame number, i.e. the total frame count since the application started.
+   * Returns how many frames have been processed, since the application started. This is *not* a
+   * measurement of elapsed time.
    */
   public fun getFrame(): Long {
     TransferContext.writeArguments()
@@ -349,13 +376,12 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Quits the application at the end of the current iteration. Argument [exitCode] can optionally
-   * be given (defaulting to 0) to customize the exit status code.
-   * By convention, an exit code of `0` indicates success whereas a non-zero exit code indicates an
-   * error.
-   * For portability reasons, the exit code should be set between 0 and 125 (inclusive).
-   * **Note:** On iOS this method doesn't work. Instead, as recommended by the iOS Human Interface
-   * Guidelines, the user is expected to close apps via the Home button.
+   * Quits the application at the end of the current iteration, with the given [exitCode].
+   * By convention, an exit code of `0` indicates success, whereas any other exit code indicates an
+   * error. For portability reasons, it should be between `0` and `125` (inclusive).
+   * **Note:** On iOS this method doesn't work. Instead, as recommended by the
+   * [url=https://developer.apple.com/library/archive/qa/qa1561/_index.html]iOS Human Interface
+   * Guidelines[/url], the user is expected to close apps via the Home button.
    */
   @JvmOverloads
   public fun quit(exitCode: Int = 0): Unit {
@@ -364,8 +390,8 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Queues the given object for deletion, delaying the call to [Object.free] to the end of the
-   * current frame.
+   * Queues the given [obj] to be deleted, calling its [Object.free] at the end of the current
+   * frame. This method is similar to [Node.queueFree].
    */
   public fun queueDelete(obj: Object): Unit {
     TransferContext.writeArguments(OBJECT to obj)
@@ -373,18 +399,20 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Calls [method] on each member of the given group, respecting the given [GroupCallFlags]. You
-   * can pass arguments to [method] by specifying them at the end of the method call. If a node doesn't
-   * have the given method or the argument list does not match (either in count or in types), it will
-   * be skipped.
+   * Calls the given [method] on each node inside this tree added to the given [group]. Use [flags]
+   * to customize this method's behavior (see [GroupCallFlags]). Additional arguments for [method] can
+   * be passed at the end of this method. Nodes that cannot call [method] (either because the method
+   * doesn't exist or the arguments do not match) are ignored.
    * [codeblock]
-   * # Call the method in a deferred manner and in reverse order.
-   * get_tree().call_group_flags(SceneTree.GROUP_CALL_DEFERRED | SceneTree.GROUP_CALL_REVERSE)
+   * # Calls "hide" to all nodes of the "enemies" group, at the end of the frame and in reverse tree
+   * order.
+   * get_tree().call_group_flags(
+   *         SceneTree.GROUP_CALL_DEFERRED | SceneTree.GROUP_CALL_REVERSE,
+   *         "enemies", "hide")
    * [/codeblock]
-   * **Note:** Group call flags are used to control the method calling behavior. By default, methods
-   * will be called immediately in a way similar to [callGroup]. However, if the [GROUP_CALL_DEFERRED]
-   * flag is present in the [flags] argument, methods will be called at the end of the frame in a way
-   * similar to [Object.setDeferred].
+   * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods.
+   * Prefer using the names exposed in the `MethodName` class to avoid allocating a new [StringName] on
+   * each call.
    */
   public fun callGroupFlags(
     flags: Long,
@@ -397,13 +425,8 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Sends the given notification to all members of the [group], respecting the given
-   * [GroupCallFlags].
-   * **Note:** Group call flags are used to control the notification sending behavior. By default,
-   * notifications will be sent immediately in a way similar to [notifyGroup]. However, if the
-   * [GROUP_CALL_DEFERRED] flag is present in the [callFlags] argument, notifications will be sent at
-   * the end of the current frame in a way similar to using `Object.call_deferred("notification",
-   * ...)`.
+   * Calls [Object.notification] with the given [notification] to all nodes inside this tree added
+   * to the [group]. Use [callFlags] to customize this method's behavior (see [GroupCallFlags]).
    */
   public fun notifyGroupFlags(
     callFlags: Long,
@@ -415,12 +438,12 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Sets the given [property] to [value] on all members of the given group, respecting the given
-   * [GroupCallFlags].
-   * **Note:** Group call flags are used to control the property setting behavior. By default,
-   * properties will be set immediately in a way similar to [setGroup]. However, if the
-   * [GROUP_CALL_DEFERRED] flag is present in the [callFlags] argument, properties will be set at the
-   * end of the frame in a way similar to [Object.callDeferred].
+   * Sets the given [property] to [value] on all nodes inside this tree added to the given [group].
+   * Nodes that do not have the [property] are ignored. Use [callFlags] to customize this method's
+   * behavior (see [GroupCallFlags]).
+   * **Note:** In C#, [property] must be in snake_case when referring to built-in Godot properties.
+   * Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [StringName]
+   * on each call.
    */
   public fun setGroupFlags(
     callFlags: Long,
@@ -433,11 +456,15 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Calls [method] on each member of the given group. You can pass arguments to [method] by
-   * specifying them at the end of the method call. If a node doesn't have the given method or the
-   * argument list does not match (either in count or in types), it will be skipped.
-   * **Note:** [callGroup] will call methods immediately on all members at once, which can cause
-   * stuttering if an expensive method is called on lots of members.
+   * Calls [method] on each node inside this tree added to the given [group]. You can pass arguments
+   * to [method] by specifying them at the end of this method call. Nodes that cannot call [method]
+   * (either because the method doesn't exist or the arguments do not match) are ignored. See also
+   * [setGroup] and [notifyGroup].
+   * **Note:** This method acts immediately on all selected nodes at once, which may cause
+   * stuttering in some performance-intensive situations.
+   * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods.
+   * Prefer using the names exposed in the `MethodName` class to avoid allocating a new [StringName] on
+   * each call.
    */
   public fun callGroup(
     group: StringName,
@@ -449,9 +476,11 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Sends the given notification to all members of the [group].
-   * **Note:** [notifyGroup] will immediately notify all members at once, which can cause stuttering
-   * if an expensive method is called as a result of sending the notification to lots of members.
+   * Calls [Object.notification] with the given [notification] to all nodes inside this tree added
+   * to the [group]. See also [url=$DOCS_URL/tutorials/best_practices/godot_notifications.html]Godot
+   * notifications[/url] and [callGroup] and [setGroup].
+   * **Note:** This method acts immediately on all selected nodes at once, which may cause
+   * stuttering in some performance-intensive situations.
    */
   public fun notifyGroup(group: StringName, notification: Int): Unit {
     TransferContext.writeArguments(STRING_NAME to group, LONG to notification.toLong())
@@ -459,9 +488,13 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Sets the given [property] to [value] on all members of the given group.
-   * **Note:** [setGroup] will set the property immediately on all members at once, which can cause
-   * stuttering if a property with an expensive setter is set on lots of members.
+   * Sets the given [property] to [value] on all nodes inside this tree added to the given [group].
+   * Nodes that do not have the [property] are ignored. See also [callGroup] and [notifyGroup].
+   * **Note:** This method acts immediately on all selected nodes at once, which may cause
+   * stuttering in some performance-intensive situations.
+   * **Note:** In C#, [property] must be in snake_case when referring to built-in Godot properties.
+   * Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [StringName]
+   * on each call.
    */
   public fun setGroup(
     group: StringName,
@@ -473,7 +506,8 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Returns a list of all nodes assigned to the given group.
+   * Returns an [Array] containing all nodes inside this tree, that have been added to the given
+   * [group], in scene hierarchy order.
    */
   public fun getNodesInGroup(group: StringName): VariantArray<Node> {
     TransferContext.writeArguments(STRING_NAME to group)
@@ -482,13 +516,22 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Returns the first node in the specified group, or `null` if the group is empty or does not
-   * exist.
+   * Returns the first [Node] found inside the tree, that has been added to the given [group], in
+   * scene hierarchy order. Returns `null` if no match is found. See also [getNodesInGroup].
    */
   public fun getFirstNodeInGroup(group: StringName): Node? {
     TransferContext.writeArguments(STRING_NAME to group)
     TransferContext.callMethod(rawPtr, MethodBindings.getFirstNodeInGroupPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Node?)
+  }
+
+  /**
+   * Returns the number of nodes assigned to the given group.
+   */
+  public fun getNodeCountInGroup(group: StringName): Int {
+    TransferContext.writeArguments(STRING_NAME to group)
+    TransferContext.callMethod(rawPtr, MethodBindings.getNodeCountInGroupPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -525,10 +568,11 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Reloads the currently active scene.
-   * Returns [OK] on success, [ERR_UNCONFIGURED] if no [currentScene] was defined yet,
-   * [ERR_CANT_OPEN] if [currentScene] cannot be loaded into a [PackedScene], or [ERR_CANT_CREATE] if
-   * the scene cannot be instantiated.
+   * Reloads the currently active scene, replacing [currentScene] with a new instance of its
+   * original [PackedScene].
+   * Returns [OK] on success, [ERR_UNCONFIGURED] if no [currentScene] is defined, [ERR_CANT_OPEN] if
+   * [currentScene] cannot be loaded into a [PackedScene], or [ERR_CANT_CREATE] if the scene cannot be
+   * instantiated.
    */
   public fun reloadCurrentScene(): GodotError {
     TransferContext.writeArguments()
@@ -573,22 +617,24 @@ public open class SceneTree : MainLoop() {
     id: Long,
   ) {
     /**
-     * Call a group with no flags (default).
+     * Call nodes within a group with no special behavior (default).
      */
     GROUP_CALL_DEFAULT(0),
     /**
-     * Call a group in reverse scene order.
+     * Call nodes within a group in reverse tree hierarchy order (all nested children are called
+     * before their respective parent nodes).
      */
     GROUP_CALL_REVERSE(1),
     /**
-     * Call a group at the end of the current frame (process or physics).
+     * Call nodes within a group at the end of the current frame (can be either process or physics
+     * frame), similar to [Object.callDeferred].
      */
     GROUP_CALL_DEFERRED(2),
     /**
-     * Call a group only once even if the call is executed many times.
-     * **Note:** Arguments are not taken into account when deciding whether the call is unique or
-     * not. Therefore when the same method is called with different arguments, only the first call will
-     * be performed.
+     * Call nodes within a group only once, even if the call is executed many times in the same
+     * frame. Must be combined with [GROUP_CALL_DEFERRED] to work.
+     * **Note:** Different arguments are not taken into account. Therefore, when the same call is
+     * executed with different arguments, only the first call will be performed.
      */
     GROUP_CALL_UNIQUE(4),
     ;
@@ -664,6 +710,12 @@ public open class SceneTree : MainLoop() {
 
     public val quitPtr: VoidPtr = TypeManager.getMethodBindPtr("SceneTree", "quit")
 
+    public val setPhysicsInterpolationEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneTree", "set_physics_interpolation_enabled")
+
+    public val isPhysicsInterpolationEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneTree", "is_physics_interpolation_enabled")
+
     public val queueDeletePtr: VoidPtr = TypeManager.getMethodBindPtr("SceneTree", "queue_delete")
 
     public val callGroupFlagsPtr: VoidPtr =
@@ -686,6 +738,9 @@ public open class SceneTree : MainLoop() {
 
     public val getFirstNodeInGroupPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SceneTree", "get_first_node_in_group")
+
+    public val getNodeCountInGroupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneTree", "get_node_count_in_group")
 
     public val setCurrentScenePtr: VoidPtr =
         TypeManager.getMethodBindPtr("SceneTree", "set_current_scene")

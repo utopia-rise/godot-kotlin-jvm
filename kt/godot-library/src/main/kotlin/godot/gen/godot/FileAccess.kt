@@ -41,24 +41,24 @@ import kotlin.jvm.JvmOverloads
  *
  * gdscript:
  * ```gdscript
- * func save(content):
+ * func save_to_file(content):
  *     var file = FileAccess.open("user://save_game.dat", FileAccess.WRITE)
  *     file.store_string(content)
  *
- * func load():
+ * func load_from_file():
  *     var file = FileAccess.open("user://save_game.dat", FileAccess.READ)
  *     var content = file.get_as_text()
  *     return content
  * ```
  * csharp:
  * ```csharp
- * public void Save(string content)
+ * public void SaveToFile(string content)
  * {
  *     using var file = FileAccess.Open("user://save_game.dat", FileAccess.ModeFlags.Write);
  *     file.StoreString(content);
  * }
  *
- * public string Load()
+ * public string LoadFromFile()
  * {
  *     using var file = FileAccess.Open("user://save_game.dat", FileAccess.ModeFlags.Read);
  *     string content = file.GetAsText();
@@ -106,6 +106,17 @@ public open class FileAccess internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_FILEACCESS, scriptIndex)
     return true
+  }
+
+  /**
+   * Resizes the file to a specified length. The file must be open in a mode that permits writing.
+   * If the file is extended, NUL characters are appended. If the file is truncated, all data from the
+   * end file to the original length of the file is lost.
+   */
+  public fun resize(length: Long): GodotError {
+    TransferContext.writeArguments(LONG to length)
+    TransferContext.callMethod(rawPtr, MethodBindings.resizePtr, LONG)
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -288,7 +299,9 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next line of the file as a [String].
+   * Returns the next line of the file as a [String]. The returned string doesn't include newline
+   * (`\n`) or carriage return (`\r`) characters, but does include any other leading or trailing
+   * whitespace.
    * Text is interpreted as being UTF-8 encoded.
    */
   public fun getLine(): String {
@@ -305,7 +318,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * they include the delimiter character. Double quotes within a text value can be escaped by doubling
    * their occurrence.
    * For example, the following CSV lines are valid and will be properly parsed as two strings each:
-   * [codeblock]
+   * [codeblock lang=text]
    * Alice,"Hello, Bob!"
    * Bob,Alice! What a surprise!
    * Alice,"I thought you'd reply with ""Hello, world""."
@@ -565,7 +578,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Opens the file for write operations. The file is created if it does not exist, and truncated
      * if it does.
      * **Note:** When creating a file it must be in an already existing directory. To recursively
-     * create directories for a file path, see [DirAccess.makeDirRecursive]).
+     * create directories for a file path, see [DirAccess.makeDirRecursive].
      */
     WRITE(2),
     /**
@@ -577,7 +590,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Opens the file for read and write operations. The file is created if it does not exist, and
      * truncated if it does. The cursor is positioned at the beginning of the file.
      * **Note:** When creating a file it must be in an already existing directory. To recursively
-     * create directories for a file path, see [DirAccess.makeDirRecursive]).
+     * create directories for a file path, see [DirAccess.makeDirRecursive].
      */
     WRITE_READ(7),
     ;
@@ -830,7 +843,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Returns a SHA-256 [String] representing the file at the given path or an empty [String] on
+     * Returns an SHA-256 [String] representing the file at the given path or an empty [String] on
      * failure.
      */
     public fun getSha256(path: String): String {
@@ -943,6 +956,8 @@ public open class FileAccess internal constructor() : RefCounted() {
 
     public val getFileAsStringPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileAccess", "get_file_as_string")
+
+    public val resizePtr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "resize")
 
     public val flushPtr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "flush")
 

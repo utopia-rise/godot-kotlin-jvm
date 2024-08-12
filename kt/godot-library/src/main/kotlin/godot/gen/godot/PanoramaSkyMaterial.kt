@@ -9,11 +9,14 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Boolean
+import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 
@@ -57,6 +60,20 @@ public open class PanoramaSkyMaterial : Material() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFilteringEnabledPtr, NIL)
     }
 
+  /**
+   * The sky's overall brightness multiplier. Higher values result in a brighter sky.
+   */
+  public var energyMultiplier: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnergyMultiplierPtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnergyMultiplierPtr, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PANORAMASKYMATERIAL, scriptIndex)
     return true
@@ -76,5 +93,11 @@ public open class PanoramaSkyMaterial : Material() {
 
     public val isFilteringEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PanoramaSkyMaterial", "is_filtering_enabled")
+
+    public val setEnergyMultiplierPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PanoramaSkyMaterial", "set_energy_multiplier")
+
+    public val getEnergyMultiplierPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PanoramaSkyMaterial", "get_energy_multiplier")
   }
 }

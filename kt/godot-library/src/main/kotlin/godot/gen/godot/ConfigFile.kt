@@ -32,7 +32,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * This helper class can be used to store [Variant] values on the filesystem using INI-style
  * formatting. The stored values are identified by a section and a key:
- * [codeblock]
+ * [codeblock lang=text]
  * [section]
  * some_key=42
  * string_example="Hello World3D!"

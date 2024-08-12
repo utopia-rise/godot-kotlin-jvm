@@ -335,6 +335,39 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   /**
+   * Returns `true` if the file or directory is a symbolic link, directory junction, or other
+   * reparse point.
+   * **Note:** This method is implemented on macOS, Linux, and Windows.
+   */
+  public fun isLink(path: String): Boolean {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr, MethodBindings.isLinkPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Returns target of the symbolic link.
+   * **Note:** This method is implemented on macOS, Linux, and Windows.
+   */
+  public fun readLink(path: String): String {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr, MethodBindings.readLinkPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  /**
+   * Creates symbolic link between files or folders.
+   * **Note:** On Windows, this method works only if the application is running with elevated
+   * privileges or Developer Mode is enabled.
+   * **Note:** This method is implemented on macOS, Linux, and Windows.
+   */
+  public fun createLink(source: String, target: String): GodotError {
+    TransferContext.writeArguments(STRING to source, STRING to target)
+    TransferContext.callMethod(rawPtr, MethodBindings.createLinkPtr, LONG)
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
    * Returns `true` if the file system or directory use case sensitive file names.
    * **Note:** This method is implemented on macOS, Linux (for EXT4 and F2FS filesystems only) and
    * Windows. On other platforms, it always returns `true`.
@@ -550,6 +583,12 @@ public open class DirAccess internal constructor() : RefCounted() {
 
     public val removeAbsolutePtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "remove_absolute")
+
+    public val isLinkPtr: VoidPtr = TypeManager.getMethodBindPtr("DirAccess", "is_link")
+
+    public val readLinkPtr: VoidPtr = TypeManager.getMethodBindPtr("DirAccess", "read_link")
+
+    public val createLinkPtr: VoidPtr = TypeManager.getMethodBindPtr("DirAccess", "create_link")
 
     public val setIncludeNavigationalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "set_include_navigational")

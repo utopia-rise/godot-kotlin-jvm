@@ -159,9 +159,13 @@ public enum class VariantType(
    */
   TYPE_PACKED_COLOR_ARRAY(37),
   /**
+   * Variable is of type [PackedVector4Array].
+   */
+  TYPE_PACKED_VECTOR4_ARRAY(38),
+  /**
    * Represents the size of the [Variant.Type] enum.
    */
-  TYPE_MAX(38),
+  TYPE_MAX(39),
   ;
 
   public val id: Long

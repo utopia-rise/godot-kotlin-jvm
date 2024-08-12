@@ -47,7 +47,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    * [Key] constants.
    * To get a human-readable representation of the [InputEventKey], use
    * `OS.get_keycode_string(event.keycode)` where `event` is the [InputEventKey].
-   * [codeblock]
+   * [codeblock lang=text]
    *     +-----+ +-----+
    *     | Q   | | Q   | - "Q" - keycode
    *     |   Й | |  ض | - "Й" and "ض" - key_label
@@ -108,7 +108,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    * For keyboard layouts with a single label on the key, it is equivalent to [keycode].
    * To get a human-readable representation of the [InputEventKey], use
    * `OS.get_keycode_string(event.key_label)` where `event` is the [InputEventKey].
-   * [codeblock]
+   * [codeblock lang=text]
    *     +-----+ +-----+
    *     | Q   | | Q   | - "Q" - keycode
    *     |   Й | |  ض | - "Й" and "ض" - key_label
@@ -143,8 +143,28 @@ public open class InputEventKey : InputEventWithModifiers() {
     }
 
   /**
-   * If `true`, the key was already pressed before this event. It means the user is holding the key
-   * down.
+   * Represents the location of a key which has both left and right versions, such as
+   * [kbd]Shift[/kbd] or [kbd]Alt[/kbd].
+   */
+  public var location: KeyLocation
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getLocationPtr, LONG)
+      return KeyLocation.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLocationPtr, NIL)
+    }
+
+  /**
+   * If `true`, the key was already pressed before this event. An echo event is a repeated key event
+   * sent when the user is holding down the key.
+   * **Note:** The rate at which echo events are sent is typically around 20 events per second
+   * (after holding down the key for roughly half a second). However, the key repeat delay/speed can be
+   * changed by the user or disabled entirely in the operating system settings. To ensure your project
+   * works correctly on all configurations, do not assume the user has a specific key repeat
+   * configuration in your project's behavior.
    */
   public var echo: Boolean
     @JvmName("isEcho_prop")
@@ -224,6 +244,16 @@ public open class InputEventKey : InputEventWithModifiers() {
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
+  /**
+   * Returns a [String] representation of the event's [location]. This will be a blank string if the
+   * event is not specific to a location.
+   */
+  public fun asTextLocation(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.asTextLocationPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
   public companion object
 
   internal object MethodBindings {
@@ -249,6 +279,12 @@ public open class InputEventKey : InputEventWithModifiers() {
 
     public val getUnicodePtr: VoidPtr = TypeManager.getMethodBindPtr("InputEventKey", "get_unicode")
 
+    public val setLocationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventKey", "set_location")
+
+    public val getLocationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventKey", "get_location")
+
     public val setEchoPtr: VoidPtr = TypeManager.getMethodBindPtr("InputEventKey", "set_echo")
 
     public val getKeycodeWithModifiersPtr: VoidPtr =
@@ -268,5 +304,8 @@ public open class InputEventKey : InputEventWithModifiers() {
 
     public val asTextKeyLabelPtr: VoidPtr =
         TypeManager.getMethodBindPtr("InputEventKey", "as_text_key_label")
+
+    public val asTextLocationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventKey", "as_text_location")
   }
 }

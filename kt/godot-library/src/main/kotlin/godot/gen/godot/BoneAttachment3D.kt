@@ -62,6 +62,9 @@ public open class BoneAttachment3D : Node3D() {
    * Whether the BoneAttachment3D node will override the bone pose of the bone it is attached to.
    * When set to `true`, the BoneAttachment3D node can change the pose of the bone. When set to
    * `false`, the BoneAttachment3D will always be set to the bone's transform.
+   * **Note:** This override performs interruptively in the skeleton update process using signals
+   * due to the old design. It may cause unintended behavior when used at the same time with
+   * [SkeletonModifier3D].
    */
   public var overridePose: Boolean
     get() {
@@ -80,13 +83,13 @@ public open class BoneAttachment3D : Node3D() {
   }
 
   /**
-   * A function that is called automatically when the [Skeleton3D] the BoneAttachment3D node is
-   * using has a bone that has changed its pose. This function is where the BoneAttachment3D node
-   * updates its position so it is correctly bound when it is *not* set to override the bone pose.
+   * A function that is called automatically when the [Skeleton3D] is updated. This function is
+   * where the [BoneAttachment3D] node updates its position so it is correctly bound when it is *not*
+   * set to override the bone pose.
    */
-  public fun onBonePoseUpdate(boneIndex: Int): Unit {
-    TransferContext.writeArguments(LONG to boneIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.onBonePoseUpdatePtr, NIL)
+  public fun onSkeletonUpdate(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.onSkeletonUpdatePtr, NIL)
   }
 
   /**
@@ -142,8 +145,8 @@ public open class BoneAttachment3D : Node3D() {
     public val getBoneIdxPtr: VoidPtr =
         TypeManager.getMethodBindPtr("BoneAttachment3D", "get_bone_idx")
 
-    public val onBonePoseUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "on_bone_pose_update")
+    public val onSkeletonUpdatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BoneAttachment3D", "on_skeleton_update")
 
     public val setOverridePosePtr: VoidPtr =
         TypeManager.getMethodBindPtr("BoneAttachment3D", "set_override_pose")

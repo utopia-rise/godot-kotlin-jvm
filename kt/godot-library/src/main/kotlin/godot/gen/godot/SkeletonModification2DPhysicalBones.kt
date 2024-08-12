@@ -28,8 +28,6 @@ import kotlin.jvm.JvmOverloads
  * This modification takes the transforms of [PhysicalBone2D] nodes and applies them to [Bone2D]
  * nodes. This allows the [Bone2D] nodes to react to physics thanks to the linked [PhysicalBone2D]
  * nodes.
- * Experimental. Physical bones may be changed in the future to perform the position update of
- * [Bone2D] on their own.
  */
 @GodotBaseType
 public open class SkeletonModification2DPhysicalBones : SkeletonModification2D() {

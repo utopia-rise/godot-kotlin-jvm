@@ -253,7 +253,7 @@ public open class ShapeCast3D : Node3D() {
 
 
   /**
-   * *Obsoleted.* Use [signal Resource.changed] instead.
+   * This method does nothing.
    */
   public fun resourceChanged(resource: Resource): Unit {
     TransferContext.writeArguments(OBJECT to resource)
@@ -354,6 +354,9 @@ public open class ShapeCast3D : Node3D() {
   /**
    * The fraction from the [ShapeCast3D]'s origin to its [targetPosition] (between 0 and 1) of how
    * far the shape must move to trigger a collision.
+   * In ideal conditions this would be the same as [getClosestCollisionSafeFraction], however shape
+   * casting is calculated in discrete steps, so the precise point of collision can occur between two
+   * calculated positions.
    */
   public fun getClosestCollisionUnsafeFraction(): Float {
     TransferContext.writeArguments()

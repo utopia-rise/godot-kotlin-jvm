@@ -415,7 +415,7 @@ public open class GridMap : Node3D() {
 
   /**
    * Returns the position of a grid cell in the GridMap's local coordinate space. To convert the
-   * returned value into global coordinates, use [Node3D.toGlobal]. See also [mapToLocal].
+   * returned value into global coordinates, use [Node3D.toGlobal]. See also [localToMap].
    */
   public fun mapToLocal(mapPosition: Vector3i): Vector3 {
     TransferContext.writeArguments(VECTOR3I to mapPosition)
@@ -424,7 +424,7 @@ public open class GridMap : Node3D() {
   }
 
   /**
-   * *Obsoleted.* Use [signal Resource.changed] instead.
+   * This method does nothing.
    */
   public fun resourceChanged(resource: Resource): Unit {
     TransferContext.writeArguments(OBJECT to resource)

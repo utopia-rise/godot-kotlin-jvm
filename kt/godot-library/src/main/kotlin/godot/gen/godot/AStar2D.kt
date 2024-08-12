@@ -357,11 +357,18 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns an array with the points that are in the path found by AStar2D between the given
    * points. The array is ordered from the starting point to the ending point of the path.
+   * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
+   * the point closest to the target that can be reached.
    * **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty
-   * [PackedVector2Array] and will print an error message.
+   * array and will print an error message.
    */
-  public fun getPointPath(fromId: Long, toId: Long): PackedVector2Array {
-    TransferContext.writeArguments(LONG to fromId, LONG to toId)
+  @JvmOverloads
+  public fun getPointPath(
+    fromId: Long,
+    toId: Long,
+    allowPartialPath: Boolean = false,
+  ): PackedVector2Array {
+    TransferContext.writeArguments(LONG to fromId, LONG to toId, BOOL to allowPartialPath)
     TransferContext.callMethod(rawPtr, MethodBindings.getPointPathPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
   }
@@ -369,6 +376,8 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns an array with the IDs of the points that form the path found by AStar2D between the
    * given points. The array is ordered from the starting point to the ending point of the path.
+   * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
+   * the point closest to the target that can be reached.
    *
    * gdscript:
    * ```gdscript
@@ -403,8 +412,13 @@ public open class AStar2D : RefCounted() {
    * If you change the 2nd point's weight to 3, then the result will be `[1, 4, 3]` instead, because
    * now even though the distance is longer, it's "easier" to get through point 4 than through point 2.
    */
-  public fun getIdPath(fromId: Long, toId: Long): PackedInt64Array {
-    TransferContext.writeArguments(LONG to fromId, LONG to toId)
+  @JvmOverloads
+  public fun getIdPath(
+    fromId: Long,
+    toId: Long,
+    allowPartialPath: Boolean = false,
+  ): PackedInt64Array {
+    TransferContext.writeArguments(LONG to fromId, LONG to toId, BOOL to allowPartialPath)
     TransferContext.callMethod(rawPtr, MethodBindings.getIdPathPtr, PACKED_INT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
   }

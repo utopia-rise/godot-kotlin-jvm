@@ -81,6 +81,10 @@ public open class Script internal constructor() : Resource() {
 
   /**
    * Returns `true` if the script contains non-empty source code.
+   * **Note:** If a script does not have source code, this does not mean that it is invalid or
+   * unusable. For example, a [GDScript] that was exported with binary tokenization has no source code,
+   * but still behaves as expected and could be instantiated. This can be checked with
+   * [canInstantiate].
    */
   public fun hasSourceCode(): Boolean {
     TransferContext.writeArguments()
@@ -113,6 +117,33 @@ public open class Script internal constructor() : Resource() {
   public fun getInstanceBaseType(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInstanceBaseTypePtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+  }
+
+  /**
+   * Returns the class name associated with the script, if there is one. Returns an empty string
+   * otherwise.
+   * To give the script a global name, you can use the `class_name` keyword in GDScript and the
+   * `[GlobalClass]` attribute in C#.
+   *
+   * gdscript:
+   * ```gdscript
+   * class_name MyNode
+   * extends Node
+   * ```
+   * csharp:
+   * ```csharp
+   * using Godot;
+   *
+   * [GlobalClass]
+   * public partial class MyNode : Node
+   * {
+   * }
+   * ```
+   */
+  public fun getGlobalName(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
@@ -209,6 +240,8 @@ public open class Script internal constructor() : Resource() {
 
     public val getInstanceBaseTypePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Script", "get_instance_base_type")
+
+    public val getGlobalNamePtr: VoidPtr = TypeManager.getMethodBindPtr("Script", "get_global_name")
 
     public val hasScriptSignalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Script", "has_script_signal")

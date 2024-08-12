@@ -39,8 +39,8 @@ import kotlin.jvm.JvmName
  * gdscript:
  * ```gdscript
  * var fv = FontVariation.new()
- * fv.set_base_font(load("res://BarlowCondensed-Regular.ttf"))
- * fv.set_variation_embolden(1.2)
+ * fv.base_font = load("res://BarlowCondensed-Regular.ttf")
+ * fv.variation_embolden = 1.2
  * $Label.add_theme_font_override("font", fv)
  * $Label.add_theme_font_size_override("font_size", 64)
  * ```
@@ -212,6 +212,20 @@ public open class FontVariation : Font() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSpacingPtr, NIL)
     }
 
+  /**
+   * Extra baseline offset (as a fraction of font height).
+   */
+  public var baselineOffset: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getBaselineOffsetPtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, MethodBindings.setBaselineOffsetPtr, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_FONTVARIATION, scriptIndex)
     return true
@@ -282,5 +296,11 @@ public open class FontVariation : Font() {
         TypeManager.getMethodBindPtr("FontVariation", "set_opentype_features")
 
     public val setSpacingPtr: VoidPtr = TypeManager.getMethodBindPtr("FontVariation", "set_spacing")
+
+    public val setBaselineOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontVariation", "set_baseline_offset")
+
+    public val getBaselineOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontVariation", "get_baseline_offset")
   }
 }

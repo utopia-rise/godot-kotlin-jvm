@@ -64,6 +64,7 @@ public open class Viewport internal constructor() : Node() {
 
   /**
    * Emitted when a Control node grabs keyboard focus.
+   * **Note:** A Control node losing focus doesn't cause this signal to be emitted.
    */
   public val guiFocusChanged: Signal1<Control> by signal("node")
 
@@ -170,6 +171,11 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setHandleInputLocallyPtr, NIL)
     }
 
+  /**
+   * If `true`, [CanvasItem] nodes will internally snap to full pixels. Their position can still be
+   * sub-pixel, but the decimals will not have effect. This can lead to a crisper appearance at the
+   * cost of less smooth movement, especially when [Camera2D] smoothing is enabled.
+   */
   public var snap2dTransformsToPixel: Boolean
     get() {
       TransferContext.writeArguments()
@@ -181,6 +187,11 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSnap2dTransformsToPixelPtr, NIL)
     }
 
+  /**
+   * If `true`, vertices of [CanvasItem] nodes will snap to full pixels. Only affects the final
+   * vertex positions, not the transforms. This can lead to a crisper appearance at the cost of less
+   * smooth movement, especially when [Camera2D] smoothing is enabled.
+   */
   public var snap2dVerticesToPixel: Boolean
     get() {
       TransferContext.writeArguments()
@@ -342,8 +353,8 @@ public open class Viewport internal constructor() : Node() {
 
   /**
    * If `true`, 2D rendering will use an high dynamic range (HDR) format framebuffer matching the
-   * bit depth of the 3D framebuffer. When using the Forward+ renderer this will be a `RGBA16`
-   * framebuffer, while when using the Mobile renderer it will be a `RGB10_A2` framebuffer.
+   * bit depth of the 3D framebuffer. When using the Forward+ renderer this will be an `RGBA16`
+   * framebuffer, while when using the Mobile renderer it will be an `RGB10_A2` framebuffer.
    * Additionally, 2D rendering will take place in linear color space and will be converted to sRGB
    * space immediately before blitting to the screen (if the Viewport is attached to the screen).
    * Practically speaking, this means that the end result of the Viewport will not be clamped into the
@@ -468,21 +479,38 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
+   * Sets the update mode for Variable Rate Shading (VRS) for the viewport. VRS requires the input
+   * texture to be converted to the format usable by the VRS method supported by the hardware. The
+   * update mode defines how often this happens. If the GPU does not support VRS, or VRS is not
+   * enabled, this property is ignored.
+   */
+  public var vrsUpdateMode: VRSUpdateMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getVrsUpdateModePtr, LONG)
+      return Viewport.VRSUpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVrsUpdateModePtr, NIL)
+    }
+
+  /**
    * Texture to use when [vrsMode] is set to [Viewport.VRS_TEXTURE].
    * The texture *must* use a lossless compression format so that colors can be matched precisely.
    * The following VRS densities are mapped to various colors, with brighter colors representing a
    * lower level of shading precision:
-   * [codeblock]
-   * - 1x1 = rgb(0, 0, 0)     - #000000
-   * - 1x2 = rgb(0, 85, 0)    - #005500
-   * - 2x1 = rgb(85, 0, 0)    - #550000
-   * - 2x2 = rgb(85, 85, 0)   - #555500
-   * - 2x4 = rgb(85, 170, 0)  - #55aa00
-   * - 4x2 = rgb(170, 85, 0)  - #aa5500
-   * - 4x4 = rgb(170, 170, 0) - #aaaa00
-   * - 4x8 = rgb(170, 255, 0) - #aaff00 - Not supported on most hardware
-   * - 8x4 = rgb(255, 170, 0) - #ffaa00 - Not supported on most hardware
-   * - 8x8 = rgb(255, 255, 0) - #ffff00 - Not supported on most hardware
+   * [codeblock lang=text]
+   * - 1×1 = rgb(0, 0, 0)     - #000000
+   * - 1×2 = rgb(0, 85, 0)    - #005500
+   * - 2×1 = rgb(85, 0, 0)    - #550000
+   * - 2×2 = rgb(85, 85, 0)   - #555500
+   * - 2×4 = rgb(85, 170, 0)  - #55aa00
+   * - 4×2 = rgb(170, 85, 0)  - #aa5500
+   * - 4×4 = rgb(170, 170, 0) - #aaaa00
+   * - 4×8 = rgb(170, 255, 0) - #aaff00 - Not supported on most hardware
+   * - 8×4 = rgb(255, 170, 0) - #ffaa00 - Not supported on most hardware
+   * - 8×8 = rgb(255, 255, 0) - #ffff00 - Not supported on most hardware
    * [/codeblock]
    */
   public var vrsTexture: Texture2D?
@@ -591,6 +619,24 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
+   * If `true`, the input_event signal will only be sent to one physics object in the mouse picking
+   * process. If you want to get the top object only, you must also enable [physicsObjectPickingSort].
+   * If `false`, an input_event signal will be sent to all physics objects in the mouse picking
+   * process.
+   * This applies to 2D CanvasItem object picking only.
+   */
+  public var physicsObjectPickingFirstOnly: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsObjectPickingFirstOnlyPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsObjectPickingFirstOnlyPtr, NIL)
+    }
+
+  /**
    * If `true`, the viewport will not receive input events.
    */
   public var guiDisableInput: Boolean
@@ -634,6 +680,17 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setEmbeddingSubwindowsPtr, NIL)
     }
 
+  /**
+   * Controls how much of the original viewport's size should be covered by the 2D signed distance
+   * field. This SDF can be sampled in [CanvasItem] shaders and is also used for [GPUParticles2D]
+   * collision. Higher values allow portions of occluders located outside the viewport to still be
+   * taken into account in the generated signed distance field, at the cost of performance. If you
+   * notice particles falling through [LightOccluder2D]s as the occluders leave the viewport, increase
+   * this setting.
+   * The percentage is added on each axis and on both sides. For example, with the default
+   * [SDF_OVERSIZE_120_PERCENT], the signed distance field will cover 20&#37; of the viewport's size
+   * outside the viewport on each side (top, right, bottom, left).
+   */
   public var sdfOversize: SDFOversize
     get() {
       TransferContext.writeArguments()
@@ -645,6 +702,10 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSdfOversizePtr, NIL)
     }
 
+  /**
+   * The resolution scale to use for the 2D signed distance field. Higher values lead to a more
+   * precise and more stable signed distance field as the camera moves, at the cost of performance.
+   */
   public var sdfScale: SDFScale
     get() {
       TransferContext.writeArguments()
@@ -966,14 +1027,11 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Triggers the given [InputEvent] in this [Viewport]. This can be used to pass input events
-   * between viewports, or to locally apply inputs that were sent over the network or saved to a file.
+   * Triggers the given [event] in this [Viewport]. This can be used to pass an [InputEvent] between
+   * viewports, or to locally apply inputs that were sent over the network or saved to a file.
    * If [inLocalCoords] is `false`, the event's position is in the embedder's coordinates and will
    * be converted to viewport coordinates. If [inLocalCoords] is `true`, the event's position is in
    * viewport coordinates.
-   * While this method serves a similar purpose as [Input.parseInputEvent], it does not remap the
-   * specified [event] based on project settings like
-   * [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse].
    * Calling this method will propagate calls to child nodes for following methods in the given
    * order:
    * - [Node.ShortcutInput]
@@ -984,21 +1042,11 @@ public open class Viewport internal constructor() : Node() {
    * If none of the methods handle the event and [physicsObjectPicking] is `true`, the event is used
    * for physics object picking.
    * **Note:** This method doesn't propagate input events to embedded [Window]s or [SubViewport]s.
-   * *Deprecated.* Use [pushInput] instead.
    */
   @JvmOverloads
   public fun pushUnhandledInput(event: InputEvent, inLocalCoords: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to event, BOOL to inLocalCoords)
     TransferContext.callMethod(rawPtr, MethodBindings.pushUnhandledInputPtr, NIL)
-  }
-
-  /**
-   * Returns the currently active 2D camera. Returns null if there are no active cameras.
-   */
-  public fun getCamera2d(): Camera2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCamera2dPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Camera2D?)
   }
 
   /**
@@ -1081,6 +1129,19 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
+   * Returns the [Control] that the mouse is currently hovering over in this viewport. If no
+   * [Control] has the cursor, returns null.
+   * Typically the leaf [Control] node or deepest level of the subtree which claims hover. This is
+   * very useful when used together with [Node.isAncestorOf] to find if the mouse is within a control
+   * tree.
+   */
+  public fun guiGetHoveredControl(): Control? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.guiGetHoveredControlPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Control?)
+  }
+
+  /**
    * Stops the input from propagating further down the [SceneTree].
    * **Note:** This does not affect the methods in [Input], only the way events are propagated.
    */
@@ -1129,6 +1190,15 @@ public open class Viewport internal constructor() : Node() {
     TransferContext.writeArguments(LONG to layer)
     TransferContext.callMethod(rawPtr, MethodBindings.getCanvasCullMaskBitPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Returns the currently active 2D camera. Returns null if there are no active cameras.
+   */
+  public fun getCamera2d(): Camera2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCamera2dPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Camera2D?)
   }
 
   /**
@@ -1344,9 +1414,23 @@ public open class Viewport internal constructor() : Node() {
   public enum class RenderInfoType(
     id: Long,
   ) {
+    /**
+     * Visible render pass (excluding shadows).
+     */
     RENDER_INFO_TYPE_VISIBLE(0),
+    /**
+     * Shadow render pass. Objects will be rendered several times depending on the number of amounts
+     * of lights with shadows and the number of directional shadow splits.
+     */
     RENDER_INFO_TYPE_SHADOW(1),
-    RENDER_INFO_TYPE_MAX(2),
+    /**
+     * Canvas item rendering. This includes all 2D rendering.
+     */
+    RENDER_INFO_TYPE_CANVAS(2),
+    /**
+     * Represents the size of the [RenderInfoType] enum.
+     */
+    RENDER_INFO_TYPE_MAX(3),
     ;
 
     public val id: Long
@@ -1370,6 +1454,9 @@ public open class Viewport internal constructor() : Node() {
      * Objects are displayed without light information.
      */
     DEBUG_DRAW_UNSHADED(1),
+    /**
+     * Objects are displayed without textures and only with lighting information.
+     */
     DEBUG_DRAW_LIGHTING(2),
     /**
      * Objects are displayed semi-transparent with additive blending so you can see where they are
@@ -1378,9 +1465,13 @@ public open class Viewport internal constructor() : Node() {
      */
     DEBUG_DRAW_OVERDRAW(3),
     /**
-     * Objects are displayed in wireframe style.
+     * Objects are displayed as wireframe models.
      */
     DEBUG_DRAW_WIREFRAME(4),
+    /**
+     * Objects are displayed without lighting information and their textures replaced by normal
+     * mapping.
+     */
     DEBUG_DRAW_NORMAL_BUFFER(5),
     /**
      * Objects are displayed with only the albedo value from [VoxelGI]s.
@@ -1404,6 +1495,9 @@ public open class Viewport internal constructor() : Node() {
      * quadrant of the [Viewport].
      */
     DEBUG_DRAW_DIRECTIONAL_SHADOW_ATLAS(10),
+    /**
+     * Draws the scene luminance buffer (if available) in the upper left quadrant of the [Viewport].
+     */
     DEBUG_DRAW_SCENE_LUMINANCE(11),
     /**
      * Draws the screen-space ambient occlusion texture instead of the scene so that you can clearly
@@ -1427,15 +1521,49 @@ public open class Viewport internal constructor() : Node() {
      * quadrant of the [Viewport].
      */
     DEBUG_DRAW_DECAL_ATLAS(15),
+    /**
+     * Draws the cascades used to render signed distance field global illumination (SDFGI).
+     * Does nothing if the current environment's [Environment.sdfgiEnabled] is `false` or SDFGI is
+     * not supported on the platform.
+     */
     DEBUG_DRAW_SDFGI(16),
+    /**
+     * Draws the probes used for signed distance field global illumination (SDFGI).
+     * Does nothing if the current environment's [Environment.sdfgiEnabled] is `false` or SDFGI is
+     * not supported on the platform.
+     */
     DEBUG_DRAW_SDFGI_PROBES(17),
+    /**
+     * Draws the buffer used for global illumination (GI).
+     */
     DEBUG_DRAW_GI_BUFFER(18),
+    /**
+     * Draws all of the objects at their highest polycount, without low level of detail (LOD).
+     */
     DEBUG_DRAW_DISABLE_LOD(19),
+    /**
+     * Draws the cluster used by [OmniLight3D] nodes to optimize light rendering.
+     */
     DEBUG_DRAW_CLUSTER_OMNI_LIGHTS(20),
+    /**
+     * Draws the cluster used by [SpotLight3D] nodes to optimize light rendering.
+     */
     DEBUG_DRAW_CLUSTER_SPOT_LIGHTS(21),
+    /**
+     * Draws the cluster used by [Decal] nodes to optimize decal rendering.
+     */
     DEBUG_DRAW_CLUSTER_DECALS(22),
+    /**
+     * Draws the cluster used by [ReflectionProbe] nodes to optimize decal rendering.
+     */
     DEBUG_DRAW_CLUSTER_REFLECTION_PROBES(23),
+    /**
+     * Draws the buffer used for occlusion culling.
+     */
     DEBUG_DRAW_OCCLUDERS(24),
+    /**
+     * Draws vector lines over the viewport to indicate the movement of pixels between frames.
+     */
     DEBUG_DRAW_MOTION_VECTORS(25),
     /**
      * Draws the internal resolution buffer of the scene before post-processing is applied.
@@ -1487,7 +1615,7 @@ public open class Viewport internal constructor() : Node() {
      */
     DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST_WITH_MIPMAPS(3),
     /**
-     * Max value for [DefaultCanvasItemTextureFilter] enum.
+     * Represents the size of the [DefaultCanvasItemTextureFilter] enum.
      */
     DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_MAX(4),
     ;
@@ -1522,7 +1650,7 @@ public open class Viewport internal constructor() : Node() {
      */
     DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_MIRROR(2),
     /**
-     * Max value for [DefaultCanvasItemTextureRepeat] enum.
+     * Represents the size of the [DefaultCanvasItemTextureRepeat] enum.
      */
     DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_MAX(3),
     ;
@@ -1540,10 +1668,28 @@ public open class Viewport internal constructor() : Node() {
   public enum class SDFOversize(
     id: Long,
   ) {
+    /**
+     * The signed distance field only covers the viewport's own rectangle.
+     */
     SDF_OVERSIZE_100_PERCENT(0),
+    /**
+     * The signed distance field is expanded to cover 20&#37; of the viewport's size around the
+     * borders.
+     */
     SDF_OVERSIZE_120_PERCENT(1),
+    /**
+     * The signed distance field is expanded to cover 50&#37; of the viewport's size around the
+     * borders.
+     */
     SDF_OVERSIZE_150_PERCENT(2),
+    /**
+     * The signed distance field is expanded to cover 100&#37; (double) of the viewport's size
+     * around the borders.
+     */
     SDF_OVERSIZE_200_PERCENT(3),
+    /**
+     * Represents the size of the [SDFOversize] enum.
+     */
     SDF_OVERSIZE_MAX(4),
     ;
 
@@ -1560,9 +1706,21 @@ public open class Viewport internal constructor() : Node() {
   public enum class SDFScale(
     id: Long,
   ) {
+    /**
+     * The signed distance field is rendered at full resolution.
+     */
     SDF_SCALE_100_PERCENT(0),
+    /**
+     * The signed distance field is rendered at half the resolution of this viewport.
+     */
     SDF_SCALE_50_PERCENT(1),
+    /**
+     * The signed distance field is rendered at a quarter the resolution of this viewport.
+     */
     SDF_SCALE_25_PERCENT(2),
+    /**
+     * Represents the size of the [SDFScale] enum.
+     */
     SDF_SCALE_MAX(3),
     ;
 
@@ -1580,21 +1738,53 @@ public open class Viewport internal constructor() : Node() {
     id: Long,
   ) {
     /**
-     * VRS is disabled.
+     * Variable Rate Shading is disabled.
      */
     VRS_DISABLED(0),
     /**
-     * VRS uses a texture. Note, for stereoscopic use a texture atlas with a texture for each view.
+     * Variable Rate Shading uses a texture. Note, for stereoscopic use a texture atlas with a
+     * texture for each view.
      */
     VRS_TEXTURE(1),
     /**
-     * VRS texture is supplied by the primary [XRInterface].
+     * Variable Rate Shading's texture is supplied by the primary [XRInterface].
      */
     VRS_XR(2),
     /**
      * Represents the size of the [VRSMode] enum.
      */
     VRS_MAX(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
+  }
+
+  public enum class VRSUpdateMode(
+    id: Long,
+  ) {
+    /**
+     * The input texture for variable rate shading will not be processed.
+     */
+    VRS_UPDATE_DISABLED(0),
+    /**
+     * The input texture for variable rate shading will be processed once.
+     */
+    VRS_UPDATE_ONCE(1),
+    /**
+     * The input texture for variable rate shading will be processed each frame.
+     */
+    VRS_UPDATE_ALWAYS(2),
+    /**
+     * Represents the size of the [VRSUpdateMode] enum.
+     */
+    VRS_UPDATE_MAX(3),
     ;
 
     public val id: Long
@@ -1699,6 +1889,12 @@ public open class Viewport internal constructor() : Node() {
     public val getPhysicsObjectPickingSortPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "get_physics_object_picking_sort")
 
+    public val setPhysicsObjectPickingFirstOnlyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "set_physics_object_picking_first_only")
+
+    public val getPhysicsObjectPickingFirstOnlyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "get_physics_object_picking_first_only")
+
     public val getViewportRidPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "get_viewport_rid")
 
@@ -1709,14 +1905,6 @@ public open class Viewport internal constructor() : Node() {
 
     public val pushUnhandledInputPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "push_unhandled_input")
-
-    public val getCamera2dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_camera_2d")
-
-    public val setAsAudioListener2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_as_audio_listener_2d")
-
-    public val isAudioListener2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_audio_listener_2d")
 
     public val getMousePositionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "get_mouse_position")
@@ -1740,6 +1928,9 @@ public open class Viewport internal constructor() : Node() {
 
     public val guiGetFocusOwnerPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "gui_get_focus_owner")
+
+    public val guiGetHoveredControlPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "gui_get_hovered_control")
 
     public val setDisableInputPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "set_disable_input")
@@ -1844,6 +2035,14 @@ public open class Viewport internal constructor() : Node() {
     public val getMeshLodThresholdPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "get_mesh_lod_threshold")
 
+    public val setAsAudioListener2dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "set_as_audio_listener_2d")
+
+    public val isAudioListener2dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "is_audio_listener_2d")
+
+    public val getCamera2dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_camera_2d")
+
     public val setWorld3dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_world_3d")
 
     public val getWorld3dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_world_3d")
@@ -1899,6 +2098,12 @@ public open class Viewport internal constructor() : Node() {
     public val setVrsModePtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_vrs_mode")
 
     public val getVrsModePtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_vrs_mode")
+
+    public val setVrsUpdateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "set_vrs_update_mode")
+
+    public val getVrsUpdateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "get_vrs_update_mode")
 
     public val setVrsTexturePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "set_vrs_texture")

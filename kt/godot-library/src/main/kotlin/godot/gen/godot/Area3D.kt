@@ -44,6 +44,8 @@ import kotlin.Unit
  * it).
  * This node can also locally alter or override physics parameters (gravity, damping) and route
  * audio to custom audio buses.
+ * **Note:** Areas and bodies created with [PhysicsServer3D] might not interact as expected with
+ * [Area3D]s, and might not emit signals or track objects correctly.
  * **Warning:** Using a [ConcavePolygonShape3D] inside a [CollisionShape3D] child of this node
  * (created e.g. by using the **Create Trimesh Collision Sibling** option in the **Mesh** menu that
  * appears when selecting a [MeshInstance3D] node) may give unexpected results, since this collision
@@ -337,6 +339,8 @@ public open class Area3D : CollisionObject3D() {
 
   /**
    * The magnitude of area-specific wind force.
+   * **Note:** This wind force only applies to [SoftBody3D] nodes. Other physics bodies are
+   * currently not affected by wind.
    */
   public var windForceMagnitude: Float
     get() {
@@ -351,6 +355,8 @@ public open class Area3D : CollisionObject3D() {
 
   /**
    * The exponential rate at which wind force decreases with distance from its origin.
+   * **Note:** This wind force only applies to [SoftBody3D] nodes. Other physics bodies are
+   * currently not affected by wind.
    */
   public var windAttenuationFactor: Float
     get() {
@@ -367,6 +373,8 @@ public open class Area3D : CollisionObject3D() {
    * The [Node3D] which is used to specify the direction and origin of an area-specific wind force.
    * The direction is opposite to the z-axis of the [Node3D]'s local transform, and its origin is the
    * origin of the [Node3D]'s local transform.
+   * **Note:** This wind force only applies to [SoftBody3D] nodes. Other physics bodies are
+   * currently not affected by wind.
    */
   public var windSourcePath: NodePath
     get() {

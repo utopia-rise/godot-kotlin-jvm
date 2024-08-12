@@ -235,6 +235,20 @@ public open class ProceduralSkyMaterial : Material() {
       TransferContext.callMethod(rawPtr, MethodBindings.setUseDebandingPtr, NIL)
     }
 
+  /**
+   * The sky's overall brightness multiplier. Higher values result in a brighter sky.
+   */
+  public var energyMultiplier: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnergyMultiplierPtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, MethodBindings.setEnergyMultiplierPtr, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PROCEDURALSKYMATERIAL, scriptIndex)
     return true
@@ -443,5 +457,11 @@ public open class ProceduralSkyMaterial : Material() {
 
     public val getUseDebandingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_use_debanding")
+
+    public val setEnergyMultiplierPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_energy_multiplier")
+
+    public val getEnergyMultiplierPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_energy_multiplier")
   }
 }

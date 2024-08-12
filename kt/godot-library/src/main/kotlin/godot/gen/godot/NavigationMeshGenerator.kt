@@ -25,7 +25,7 @@ import kotlin.jvm.JvmOverloads
  * resources inside [NavigationRegion3D]. The [NavigationMeshGenerator] has very limited to no use for
  * 2D as the navigation mesh baking process expects 3D node types and 3D source geometry to parse.
  * The entire navigation mesh baking is best done in a separate thread as the voxelization,
- * collision tests and mesh optimization steps involved are very performance and time hungry
+ * collision tests and mesh optimization steps involved are very slow and performance-intensive
  * operations.
  * Navigation mesh baking happens in multiple steps and the result depends on 3D source geometry and
  * properties of the [NavigationMesh] resource. In the first step, starting from a root node and
@@ -59,11 +59,7 @@ public object NavigationMeshGenerator : Object() {
   }
 
   /**
-   * The bake function is deprecated due to core threading changes. To upgrade existing code, first
-   * create a [NavigationMeshSourceGeometryData3D] resource. Use this resource with
-   * [parseSourceGeometryData] to parse the SceneTree for nodes that should contribute to the
-   * navigation mesh baking. The SceneTree parsing needs to happen on the main thread. After the
-   * parsing is finished use the resource with [bakeFromSourceGeometryData] to bake a navigation mesh.
+   * Bakes the [navigationMesh] with source geometry collected starting from the [rootNode].
    */
   public fun bake(navigationMesh: NavigationMesh, rootNode: Node): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to rootNode)

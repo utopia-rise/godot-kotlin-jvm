@@ -328,10 +328,8 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Generates a LOD for a given [ndThreshold] in linear units (square root of quadric error
+   * Generates an LOD for a given [ndThreshold] in linear units (square root of quadric error
    * metric), using at most [targetIndexCount] indices.
-   * *Deprecated.* Unused internally and fails to preserve normals or UVs. Consider using
-   * [ImporterMesh.generateLods] instead.
    */
   @JvmOverloads
   public fun generateLod(ndThreshold: Float, targetIndexCount: Int = 3): PackedInt32Array {
@@ -374,6 +372,19 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
+   * Creates this SurfaceTool from existing vertex arrays such as returned by [commitToArrays],
+   * [Mesh.surfaceGetArrays], [Mesh.surfaceGetBlendShapeArrays], [ImporterMesh.getSurfaceArrays], and
+   * [ImporterMesh.getSurfaceBlendShapeArrays]. [primitiveType] controls the type of mesh data,
+   * defaulting to [Mesh.PRIMITIVE_TRIANGLES].
+   */
+  @JvmOverloads
+  public fun createFromArrays(arrays: VariantArray<Any?>, primitiveType: Mesh.PrimitiveType =
+      Mesh.PrimitiveType.PRIMITIVE_TRIANGLES): Unit {
+    TransferContext.writeArguments(ARRAY to arrays, LONG to primitiveType.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.createFromArraysPtr, NIL)
+  }
+
+  /**
    * Creates a vertex array from the specified blend shape of an existing [Mesh]. This can be used
    * to extract a specific pose from a blend shape.
    */
@@ -413,8 +424,9 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Commits the data to the same format used by [ArrayMesh.addSurfaceFromArrays]. This way you can
-   * further process the mesh data using the [ArrayMesh] API.
+   * Commits the data to the same format used by [ArrayMesh.addSurfaceFromArrays],
+   * [ImporterMesh.addSurface], and [createFromArrays]. This way you can further process the mesh data
+   * using the [ArrayMesh] or [ImporterMesh] APIs.
    */
   public fun commitToArrays(): VariantArray<Any?> {
     TransferContext.writeArguments()
@@ -572,6 +584,9 @@ public open class SurfaceTool : RefCounted() {
     public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "clear")
 
     public val createFromPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "create_from")
+
+    public val createFromArraysPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "create_from_arrays")
 
     public val createFromBlendShapePtr: VoidPtr =
         TypeManager.getMethodBindPtr("SurfaceTool", "create_from_blend_shape")

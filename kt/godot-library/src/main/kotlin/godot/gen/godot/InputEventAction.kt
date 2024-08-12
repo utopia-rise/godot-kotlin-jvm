@@ -11,6 +11,7 @@ import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
@@ -19,6 +20,7 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
+import kotlin.Long
 import kotlin.Suppress
 import kotlin.jvm.JvmName
 
@@ -74,6 +76,22 @@ public open class InputEventAction : InputEvent() {
       TransferContext.callMethod(rawPtr, MethodBindings.setStrengthPtr, NIL)
     }
 
+  /**
+   * The real event index in action this event corresponds to (from events defined for this action
+   * in the [InputMap]). If `-1`, a unique ID will be used and actions pressed with this ID will need
+   * to be released with another [InputEventAction].
+   */
+  public var eventIndex: Int
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getEventIndexPtr, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, MethodBindings.setEventIndexPtr, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_INPUTEVENTACTION, scriptIndex)
     return true
@@ -96,5 +114,11 @@ public open class InputEventAction : InputEvent() {
 
     public val getStrengthPtr: VoidPtr =
         TypeManager.getMethodBindPtr("InputEventAction", "get_strength")
+
+    public val setEventIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventAction", "set_event_index")
+
+    public val getEventIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventAction", "get_event_index")
   }
 }

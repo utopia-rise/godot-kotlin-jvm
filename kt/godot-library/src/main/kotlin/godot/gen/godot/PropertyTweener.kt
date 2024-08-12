@@ -7,8 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Callable
 import godot.core.TypeManager
 import godot.core.VariantType.ANY
+import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
@@ -99,6 +101,32 @@ public open class PropertyTweener : Tweener() {
   }
 
   /**
+   * Allows interpolating the value with a custom easing function. The provided [interpolatorMethod]
+   * will be called with a value ranging from `0.0` to `1.0` and is expected to return a value within
+   * the same range (values outside the range can be used for overshoot). The return value of the
+   * method is then used for interpolation between initial and final value. Note that the parameter
+   * passed to the method is still subject to the tweener's own easing.
+   * **Example:**
+   * [codeblock]
+   * @export var curve: Curve
+   *
+   * func _ready():
+   *     var tween = create_tween()
+   *     # Interpolate the value using a custom curve.
+   *     tween.tween_property(self, "position:x", 300,
+   * 1).as_relative().set_custom_interpolator(tween_curve)
+   *
+   * func tween_curve(v):
+   *     return curve.sample_baked(v)
+   * [/codeblock]
+   */
+  public fun setCustomInterpolator(interpolatorMethod: Callable): PropertyTweener? {
+    TransferContext.writeArguments(CALLABLE to interpolatorMethod)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCustomInterpolatorPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?)
+  }
+
+  /**
    * Sets the time in seconds after which the [PropertyTweener] will start interpolating. By default
    * there's no delay.
    */
@@ -122,6 +150,9 @@ public open class PropertyTweener : Tweener() {
     public val setTransPtr: VoidPtr = TypeManager.getMethodBindPtr("PropertyTweener", "set_trans")
 
     public val setEasePtr: VoidPtr = TypeManager.getMethodBindPtr("PropertyTweener", "set_ease")
+
+    public val setCustomInterpolatorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PropertyTweener", "set_custom_interpolator")
 
     public val setDelayPtr: VoidPtr = TypeManager.getMethodBindPtr("PropertyTweener", "set_delay")
   }

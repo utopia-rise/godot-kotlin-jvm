@@ -146,39 +146,6 @@ public open class NavigationRegion2D : Node2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTravelCostPtr, NIL)
     }
 
-  /**
-   * If `true` constraints avoidance agent's with an avoidance mask bit that matches with a bit of
-   * the [avoidanceLayers] to the navigation polygon. Due to each navigation polygon outline creating
-   * an obstacle and each polygon edge creating an avoidance line constrain keep the navigation polygon
-   * shape as simple as possible for performance.
-   * **Experimental:** This is an experimental feature and should not be used in production as
-   * agent's can get stuck on the navigation polygon corners and edges especially at high frame rate.
-   */
-  public var constrainAvoidance: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getConstrainAvoidancePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setConstrainAvoidancePtr, NIL)
-    }
-
-  /**
-   * A bitfield determining all avoidance layers for the avoidance constrain.
-   */
-  public var avoidanceLayers: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceLayersPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceLayersPtr, NIL)
-    }
-
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_NAVIGATIONREGION2D, scriptIndex)
     return true
@@ -234,27 +201,7 @@ public open class NavigationRegion2D : Node2D() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [avoidanceLayers] bitmask,
-   * given a [layerNumber] between 1 and 32.
-   */
-  public fun setAvoidanceLayerValue(layerNumber: Int, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceLayerValuePtr, NIL)
-  }
-
-  /**
-   * Returns whether or not the specified layer of the [avoidanceLayers] bitmask is enabled, given a
-   * [layerNumber] between 1 and 32.
-   */
-  public fun getAvoidanceLayerValue(layerNumber: Int): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceLayerValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-  }
-
-  /**
    * Returns the [RID] of this region on the [NavigationServer2D].
-   * *Deprecated.* Use [getRid] instead.
    */
   public fun getRegionRid(): RID {
     TransferContext.writeArguments()
@@ -270,6 +217,15 @@ public open class NavigationRegion2D : Node2D() {
   public fun bakeNavigationPolygon(onThread: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to onThread)
     TransferContext.callMethod(rawPtr, MethodBindings.bakeNavigationPolygonPtr, NIL)
+  }
+
+  /**
+   * Returns `true` when the [NavigationPolygon] is being baked on a background thread.
+   */
+  public fun isBaking(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isBakingPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object
@@ -313,24 +269,6 @@ public open class NavigationRegion2D : Node2D() {
     public val getNavigationLayerValuePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationRegion2D", "get_navigation_layer_value")
 
-    public val setConstrainAvoidancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "set_constrain_avoidance")
-
-    public val getConstrainAvoidancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "get_constrain_avoidance")
-
-    public val setAvoidanceLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "set_avoidance_layers")
-
-    public val getAvoidanceLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "get_avoidance_layers")
-
-    public val setAvoidanceLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "set_avoidance_layer_value")
-
-    public val getAvoidanceLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "get_avoidance_layer_value")
-
     public val getRegionRidPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationRegion2D", "get_region_rid")
 
@@ -348,5 +286,8 @@ public open class NavigationRegion2D : Node2D() {
 
     public val bakeNavigationPolygonPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationRegion2D", "bake_navigation_polygon")
+
+    public val isBakingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "is_baking")
   }
 }

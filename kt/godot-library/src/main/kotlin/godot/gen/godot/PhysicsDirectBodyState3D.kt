@@ -544,7 +544,8 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   }
 
   /**
-   * Calls the built-in force integration code.
+   * Updates the body's linear and angular velocity by applying gravity and damping for the
+   * equivalent of one physics tick.
    */
   public fun integrateForces(): Unit {
     TransferContext.writeArguments()

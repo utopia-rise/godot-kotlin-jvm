@@ -261,9 +261,12 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Creates a 2D area object in the physics server, and returns the [RID] that identifies it. Use
-   * [areaAddShape] to add shapes to it, use [areaSetTransform] to set its transform, and use
-   * [areaSetSpace] to add the area to a space.
+   * Creates a 2D area object in the physics server, and returns the [RID] that identifies it. The
+   * default settings for the created area include a collision layer and mask set to `1`, and
+   * `monitorable` set to `false`.
+   * Use [areaAddShape] to add shapes to it, use [areaSetTransform] to set its transform, and use
+   * [areaSetSpace] to add the area to a space. If you want the area to be detectable use
+   * [areaSetMonitorable].
    */
   public fun areaCreate(): RID {
     TransferContext.writeArguments()
@@ -554,8 +557,10 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Creates a 2D body object in the physics server, and returns the [RID] that identifies it. Use
-   * [bodyAddShape] to add shapes to it, use [bodySetState] to set its transform, and use
+   * Creates a 2D body object in the physics server, and returns the [RID] that identifies it. The
+   * default settings for the created area include a collision layer and mask set to `1`, and body mode
+   * set to [BODY_MODE_RIGID].
+   * Use [bodyAddShape] to add shapes to it, use [bodySetState] to set its transform, and use
    * [bodySetSpace] to add the body to a space.
    */
   public fun bodyCreate(): RID {
@@ -1092,8 +1097,11 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets whether the body uses a callback function to calculate its own physics (see
-   * [bodySetForceIntegrationCallback]).
+   * Sets whether the body omits the standard force integration. If [enable] is `true`, the body
+   * will not automatically use applied forces, torques, and damping to update the body's linear and
+   * angular velocity. In this case, [bodySetForceIntegrationCallback] can be used to manually update
+   * the linear and angular velocity instead.
+   * This method is called when the property [RigidBody2D.customIntegrator] is set.
    */
   public fun bodySetOmitForceIntegration(body: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to body, BOOL to enable)
@@ -1101,8 +1109,8 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns `true` if the body uses a callback function to calculate its own physics (see
-   * [bodySetForceIntegrationCallback]).
+   * Returns `true` if the body is omitting the standard force integration. See
+   * [bodySetOmitForceIntegration].
    */
   public fun bodyIsOmittingForceIntegration(body: RID): Boolean {
     TransferContext.writeArguments(_RID to body)
@@ -1111,12 +1119,30 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the function used to calculate physics for the body, if that body allows it (see
-   * [bodySetOmitForceIntegration]).
-   * The force integration function takes the following two parameters:
-   * 1. a [PhysicsDirectBodyState2D] `state`: used to retrieve and modify the body's state,
-   * 2. a [Variant] [userdata]: optional user data.
-   * **Note:** This callback is currently not called in Godot Physics.
+   * Sets the body's state synchronization callback function to [callable]. Use an empty [Callable]
+   * ([code skip-lint]Callable()[/code]) to clear the callback.
+   * The function [callable] will be called every physics frame, assuming that the body was active
+   * during the previous physics tick, and can be used to fetch the latest state from the physics
+   * server.
+   * The function [callable] must take the following parameters:
+   * 1. `state`: a [PhysicsDirectBodyState2D], used to retrieve the body's state.
+   */
+  public fun bodySetStateSyncCallback(body: RID, callable: Callable): Unit {
+    TransferContext.writeArguments(_RID to body, CALLABLE to callable)
+    TransferContext.callMethod(rawPtr, MethodBindings.bodySetStateSyncCallbackPtr, NIL)
+  }
+
+  /**
+   * Sets the body's custom force integration callback function to [callable]. Use an empty
+   * [Callable] ([code skip-lint]Callable()[/code]) to clear the custom callback.
+   * The function [callable] will be called every physics tick, before the standard force
+   * integration (see [bodySetOmitForceIntegration]). It can be used for example to update the body's
+   * linear and angular velocity based on contact with other bodies.
+   * If [userdata] is not `null`, the function [callable] must take the following two parameters:
+   * 1. `state`: a [PhysicsDirectBodyState2D] used to retrieve and modify the body's state,
+   * 2. [code skip-lint]userdata[/code]: a [Variant]; its value will be the [userdata] passed into
+   * this method.
+   * If [userdata] is `null`, then [callable] must take only the `state` parameter.
    */
   @JvmOverloads
   public fun bodySetForceIntegrationCallback(
@@ -2306,6 +2332,9 @@ public object PhysicsServer2D : Object() {
 
     public val bodyIsOmittingForceIntegrationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsServer2D", "body_is_omitting_force_integration")
+
+    public val bodySetStateSyncCallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer2D", "body_set_state_sync_callback")
 
     public val bodySetForceIntegrationCallbackPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsServer2D", "body_set_force_integration_callback")

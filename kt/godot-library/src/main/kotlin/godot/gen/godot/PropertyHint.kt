@@ -224,9 +224,6 @@ public enum class PropertyHint(
    * **Note:** The trailing colon is required for properly detecting built-in types.
    */
   PROPERTY_HINT_TYPE_STRING(23),
-  /**
-   * *Deprecated.* This hint is not used anywhere and will be removed in the future.
-   */
   PROPERTY_HINT_NODE_PATH_TO_EDITED_NODE(24),
   /**
    * Hints that an object is too big to be sent via the debugger.
@@ -250,10 +247,6 @@ public enum class PropertyHint(
    * [FileDialog.filters].
    */
   PROPERTY_HINT_GLOBAL_SAVE_FILE(28),
-  /**
-   * Hints that an [int] property is an object ID.
-   * *Deprecated.* This hint is not used anywhere and will be removed in the future.
-   */
   PROPERTY_HINT_INT_IS_OBJECTID(29),
   /**
    * Hints that an [int] property is a pointer. Used by GDExtension.

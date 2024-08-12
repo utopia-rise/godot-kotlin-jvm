@@ -110,6 +110,21 @@ public open class FontFile : Font() {
     }
 
   /**
+   * If set to `true`, embedded font bitmap loading is disabled (bitmap-only and color fonts ignore
+   * this property).
+   */
+  public var disableEmbeddedBitmaps: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getDisableEmbeddedBitmapsPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDisableEmbeddedBitmapsPtr, NIL)
+    }
+
+  /**
    * Font anti-aliasing mode.
    */
   public var antialiasing: TextServer.FontAntialiasing
@@ -476,7 +491,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Sets 2D transform, applied to the font outlines, can be used for slanting, flipping and
+   * Sets 2D transform, applied to the font outlines, can be used for slanting, flipping, and
    * rotating glyphs.
    */
   public fun setTransform(cacheIndex: Int, transform: Transform2D): Unit {
@@ -515,6 +530,23 @@ public open class FontFile : Font() {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to spacing.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getExtraSpacingPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  /**
+   * Sets extra baseline offset (as a fraction of font height).
+   */
+  public fun setExtraBaselineOffset(cacheIndex: Int, baselineOffset: Float): Unit {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), DOUBLE to baselineOffset.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setExtraBaselineOffsetPtr, NIL)
+  }
+
+  /**
+   * Returns extra baseline offset (as a fraction of font height).
+   */
+  public fun getExtraBaselineOffset(cacheIndex: Int): Float {
+    TransferContext.writeArguments(LONG to cacheIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.getExtraBaselineOffsetPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -734,7 +766,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Removes all rendered glyphs information from the cache entry.
+   * Removes all rendered glyph information from the cache entry.
    * **Note:** This function will not remove textures associated with the glyphs, use
    * [removeTexture] to remove them manually.
    */
@@ -1094,6 +1126,12 @@ public open class FontFile : Font() {
     public val getAntialiasingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FontFile", "get_antialiasing")
 
+    public val setDisableEmbeddedBitmapsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "set_disable_embedded_bitmaps")
+
+    public val getDisableEmbeddedBitmapsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "get_disable_embedded_bitmaps")
+
     public val setGenerateMipmapsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FontFile", "set_generate_mipmaps")
 
@@ -1189,6 +1227,12 @@ public open class FontFile : Font() {
 
     public val getExtraSpacingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FontFile", "get_extra_spacing")
+
+    public val setExtraBaselineOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "set_extra_baseline_offset")
+
+    public val getExtraBaselineOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "get_extra_baseline_offset")
 
     public val setFaceIndexPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "set_face_index")
 

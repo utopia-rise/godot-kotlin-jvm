@@ -17,6 +17,7 @@ import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DICTIONARY
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -28,6 +29,7 @@ import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -45,6 +47,9 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class GLTFState : Resource() {
+  /**
+   * The original raw JSON document corresponding to this GLTFState.
+   */
   public var json: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
@@ -93,6 +98,9 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCopyrightPtr, NIL)
     }
 
+  /**
+   * The binary buffer attached to a .glb file.
+   */
   public var glbData: PackedByteArray
     get() {
       TransferContext.writeArguments()
@@ -355,6 +363,20 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCreateAnimationsPtr, NIL)
     }
 
+  /**
+   * True to force all GLTFNodes in the document to be bones of a single Skeleton3D godot node.
+   */
+  public var importAsSkeletonBones: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getImportAsSkeletonBonesPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setImportAsSkeletonBonesPtr, NIL)
+    }
+
   public var animations: VariantArray<GLTFAnimation>
     get() {
       TransferContext.writeArguments()
@@ -377,6 +399,20 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setHandleBinaryImagePtr, NIL)
     }
 
+  /**
+   * The baking fps of the animation for either import or export.
+   */
+  public var bakeFps: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getBakeFpsPtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBakeFpsPtr, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GLTFSTATE, scriptIndex)
     return true
@@ -391,6 +427,17 @@ public open class GLTFState : Resource() {
   public fun addUsedExtension(extensionName: String, required: Boolean): Unit {
     TransferContext.writeArguments(STRING to extensionName, BOOL to required)
     TransferContext.callMethod(rawPtr, MethodBindings.addUsedExtensionPtr, NIL)
+  }
+
+  /**
+   * Appends the given byte array data to the buffers and creates a [GLTFBufferView] for it. The
+   * index of the destination [GLTFBufferView] is returned. If [deduplication] is true, the buffers
+   * will first be searched for duplicate data, otherwise new bytes will always be appended.
+   */
+  public fun appendDataToBuffers(`data`: PackedByteArray, deduplication: Boolean): Int {
+    TransferContext.writeArguments(PACKED_BYTE_ARRAY to data, BOOL to deduplication)
+    TransferContext.callMethod(rawPtr, MethodBindings.appendDataToBuffersPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -489,6 +536,9 @@ public open class GLTFState : Resource() {
   internal object MethodBindings {
     public val addUsedExtensionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "add_used_extension")
+
+    public val appendDataToBuffersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "append_data_to_buffers")
 
     public val getJsonPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_json")
 
@@ -620,6 +670,12 @@ public open class GLTFState : Resource() {
     public val setCreateAnimationsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_create_animations")
 
+    public val getImportAsSkeletonBonesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "get_import_as_skeleton_bones")
+
+    public val setImportAsSkeletonBonesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "set_import_as_skeleton_bones")
+
     public val getAnimationsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "get_animations")
 
@@ -643,5 +699,9 @@ public open class GLTFState : Resource() {
 
     public val setHandleBinaryImagePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_handle_binary_image")
+
+    public val setBakeFpsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "set_bake_fps")
+
+    public val getBakeFpsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_bake_fps")
   }
 }

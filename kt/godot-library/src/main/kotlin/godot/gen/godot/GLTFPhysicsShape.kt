@@ -34,9 +34,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Represents a physics shape as defined by the `OMI_collider` GLTF extension. This class is an
- * intermediary between the GLTF data and Godot's nodes, and it's abstracted in a way that allows
- * adding support for different GLTF physics extensions in the future.
+ * Represents a physics shape as defined by the `OMI_physics_shape` or `OMI_collider` GLTF
+ * extensions. This class is an intermediary between the GLTF data and Godot's nodes, and it's
+ * abstracted in a way that allows adding support for different GLTF physics extensions in the future.
  */
 @GodotBaseType
 public open class GLTFPhysicsShape : Resource() {
@@ -190,7 +190,18 @@ public open class GLTFPhysicsShape : Resource() {
   }
 
   /**
-   * Serializes this GLTFPhysicsShape instance into a [Dictionary].
+   * Converts this GLTFPhysicsShape instance into a Godot [Shape3D] resource.
+   */
+  @JvmOverloads
+  public fun toResource(cacheShapes: Boolean = false): Shape3D? {
+    TransferContext.writeArguments(BOOL to cacheShapes)
+    TransferContext.callMethod(rawPtr, MethodBindings.toResourcePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Shape3D?)
+  }
+
+  /**
+   * Serializes this GLTFPhysicsShape instance into a [Dictionary] in the format defined by
+   * `OMI_physics_shape`.
    */
   public fun toDictionary(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
@@ -200,11 +211,20 @@ public open class GLTFPhysicsShape : Resource() {
 
   public companion object {
     /**
-     * Create a new GLTFPhysicsShape instance from the given Godot [CollisionShape3D] node.
+     * Creates a new GLTFPhysicsShape instance from the given Godot [CollisionShape3D] node.
      */
     public fun fromNode(shapeNode: CollisionShape3D): GLTFPhysicsShape? {
       TransferContext.writeArguments(OBJECT to shapeNode)
       TransferContext.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as GLTFPhysicsShape?)
+    }
+
+    /**
+     * Creates a new GLTFPhysicsShape instance from the given Godot [Shape3D] resource.
+     */
+    public fun fromResource(shapeResource: Shape3D): GLTFPhysicsShape? {
+      TransferContext.writeArguments(OBJECT to shapeResource)
+      TransferContext.callMethod(0, MethodBindings.fromResourcePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as GLTFPhysicsShape?)
     }
 
@@ -222,6 +242,12 @@ public open class GLTFPhysicsShape : Resource() {
     public val fromNodePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_node")
 
     public val toNodePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFPhysicsShape", "to_node")
+
+    public val fromResourcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_resource")
+
+    public val toResourcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "to_resource")
 
     public val fromDictionaryPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_dictionary")

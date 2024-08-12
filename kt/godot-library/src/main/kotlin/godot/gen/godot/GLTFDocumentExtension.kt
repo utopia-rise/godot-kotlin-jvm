@@ -133,8 +133,8 @@ public open class GLTFDocumentExtension : Resource() {
   /**
    * Part of the import process. This method is run after [_parseNodeExtensions] and before
    * [_generateSceneNode].
-   * This method can be used to modify any of the data imported so far, including any scene nodes,
-   * before running the final per-node import step.
+   * This method can be used to modify any of the data imported so far after parsing, before
+   * generating the nodes and then running the final per-node import step.
    */
   public open fun _importPostParse(state: GLTFState): GodotError {
     throw NotImplementedError("_import_post_parse is not implemented for GLTFDocumentExtension")
@@ -270,7 +270,10 @@ public open class GLTFDocumentExtension : Resource() {
    * Part of the export process. This method is run after [_getSaveableImageFormats] and before
    * [_exportPost]. If this [GLTFDocumentExtension] is used for exporting images, this runs after
    * [_serializeTextureJson].
-   * This method can be used to modify the final JSON of each node.
+   * This method can be used to modify the final JSON of each node. Data should be primarily stored
+   * in [gltfNode] prior to serializing the JSON, but the original Godot [node] is also provided if
+   * available. The node may be null if not available, such as when exporting GLTF data not generated
+   * from a Godot scene.
    */
   public open fun _exportNode(
     state: GLTFState,

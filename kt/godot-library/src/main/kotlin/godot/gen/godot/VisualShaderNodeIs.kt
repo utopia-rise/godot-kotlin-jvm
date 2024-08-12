@@ -49,7 +49,8 @@ public open class VisualShaderNodeIs : VisualShaderNode() {
      */
     FUNC_IS_INF(0),
     /**
-     * Comparison with `NaN` (Not a Number; denotes invalid numeric results, e.g. division by zero).
+     * Comparison with `NaN` (Not a Number; indicates invalid numeric results, such as division by
+     * zero).
      */
     FUNC_IS_NAN(1),
     /**

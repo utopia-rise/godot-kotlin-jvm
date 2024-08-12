@@ -60,7 +60,7 @@ public open class CollisionShape3D : Node3D() {
   }
 
   /**
-   * *Obsoleted.* Use [signal Resource.changed] instead.
+   * This method does nothing.
    */
   public fun resourceChanged(resource: Resource): Unit {
     TransferContext.writeArguments(OBJECT to resource)

@@ -56,6 +56,21 @@ public open class VisualShaderNode internal constructor() : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDefaultInputValuesPtr, NIL)
     }
 
+  /**
+   * Represents the index of the frame this node is linked to. If set to `-1` the node is not linked
+   * to any frame.
+   */
+  public var linkedParentGraphFrame: Int
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getFramePtr, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, MethodBindings.setFramePtr, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_VISUALSHADERNODE, scriptIndex)
     return true
@@ -197,5 +212,9 @@ public open class VisualShaderNode internal constructor() : Resource() {
 
     public val getDefaultInputValuesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("VisualShaderNode", "get_default_input_values")
+
+    public val setFramePtr: VoidPtr = TypeManager.getMethodBindPtr("VisualShaderNode", "set_frame")
+
+    public val getFramePtr: VoidPtr = TypeManager.getMethodBindPtr("VisualShaderNode", "get_frame")
   }
 }

@@ -60,6 +60,10 @@ import kotlin.jvm.JvmOverloads
  * A [CanvasItem] can be hidden, which will also hide its children. By adjusting various other
  * properties of a [CanvasItem], you can also modulate its color (via [modulate] or [selfModulate]),
  * change its Z-index, blend mode, and more.
+ * Note that properties like transform, modulation, and visibility are only propagated to *direct*
+ * [CanvasItem] child nodes. If there is a non-[CanvasItem] node in between, like [Node] or
+ * [AnimationPlayer], the [CanvasItem] nodes below will have an independent position and [modulate]
+ * chain. See also [topLevel].
  */
 @GodotBaseType
 public open class CanvasItem internal constructor() : Node() {
@@ -214,8 +218,8 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * Z index. Controls the order in which the nodes render. A node with a higher Z index will
-   * display in front of others. Must be between [RenderingServer.CANVAS_ITEM_Z_MIN] and
+   * Controls the order in which the nodes render. A node with a higher Z index will display in
+   * front of others. Must be between [RenderingServer.CANVAS_ITEM_Z_MIN] and
    * [RenderingServer.CANVAS_ITEM_Z_MAX] (inclusive).
    * **Note:** Changing the Z index of a [Control] only affects the drawing order, not the order in
    * which input events are handled. This can be useful to implement certain UI animations, e.g. a menu
@@ -248,12 +252,14 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * If `true`, child nodes with the lowest Y position are drawn before those with a higher Y
-   * position. If `false`, Y-sorting is disabled. Y-sorting only affects children that inherit from
-   * [CanvasItem].
-   * You can nest nodes with Y-sorting. Child Y-sorted nodes are sorted in the same space as the
-   * parent Y-sort. This feature allows you to organize a scene better or divide it into multiple ones
-   * without changing your scene tree.
+   * If `true`, this and child [CanvasItem] nodes with a higher Y position are rendered in front of
+   * nodes with a lower Y position. If `false`, this and child [CanvasItem] nodes are rendered normally
+   * in scene tree order.
+   * With Y-sorting enabled on a parent node ('A') but disabled on a child node ('B'), the child
+   * node ('B') is sorted but its children ('C1', 'C2', etc) render together on the same Y position as
+   * the child node ('B'). This allows you to organize the render order of a scene without changing the
+   * scene tree.
+   * Nodes sort relative to each other only if they are on the same [zIndex].
    */
   public var ySortEnabled: Boolean
     get() {
@@ -401,6 +407,9 @@ public open class CanvasItem internal constructor() : Node() {
    * Returns `true` if the node is present in the [SceneTree], its [visible] property is `true` and
    * all its ancestors are also visible. If any ancestor is hidden, this node will not be visible in
    * the scene tree, and is therefore not drawn (see [_draw]).
+   * Visibility is checked only in parent nodes that inherit from [CanvasItem], [CanvasLayer], and
+   * [Window]. If the parent is of any other type (such as [Node], [AnimationPlayer], or [Node3D]), it
+   * is assumed to be visible.
    */
   public fun isVisibleInTree(): Boolean {
     TransferContext.writeArguments()
@@ -472,6 +481,9 @@ public open class CanvasItem internal constructor() : Node() {
    * If [width] is negative, then a two-point primitives will be drawn instead of a four-point ones.
    * This means that when the CanvasItem is scaled, the line parts will remain thin. If this behavior
    * is not desired, then pass a positive [width] like `1.0`.
+   * If [antialiased] is `true`, half transparent "feathers" will be attached to the boundary,
+   * making outlines smooth.
+   * **Note:** [antialiased] is only effective if [width] is greater than `0.0`.
    */
   @JvmOverloads
   public fun drawDashedLine(
@@ -481,8 +493,9 @@ public open class CanvasItem internal constructor() : Node() {
     width: Float = -1.0f,
     dash: Float = 2.0f,
     aligned: Boolean = true,
+    antialiased: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to, COLOR to color, DOUBLE to width.toDouble(), DOUBLE to dash.toDouble(), BOOL to aligned)
+    TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to, COLOR to color, DOUBLE to width.toDouble(), DOUBLE to dash.toDouble(), BOOL to aligned, BOOL to antialiased)
     TransferContext.callMethod(rawPtr, MethodBindings.drawDashedLinePtr, NIL)
   }
 
@@ -565,14 +578,16 @@ public open class CanvasItem internal constructor() : Node() {
    * If [width] is negative, then two-point primitives will be drawn instead of a four-point ones.
    * This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not
    * desired, then pass a positive [width] like `1.0`.
+   * **Note:** [antialiased] is only effective if [width] is greater than `0.0`.
    */
   @JvmOverloads
   public fun drawMultiline(
     points: PackedVector2Array,
     color: Color,
     width: Float = -1.0f,
+    antialiased: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, COLOR to color, DOUBLE to width.toDouble())
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, COLOR to color, DOUBLE to width.toDouble(), BOOL to antialiased)
     TransferContext.callMethod(rawPtr, MethodBindings.drawMultilinePtr, NIL)
   }
 
@@ -585,14 +600,16 @@ public open class CanvasItem internal constructor() : Node() {
    * If [width] is negative, then two-point primitives will be drawn instead of a four-point ones.
    * This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not
    * desired, then pass a positive [width] like `1.0`.
+   * **Note:** [antialiased] is only effective if [width] is greater than `0.0`.
    */
   @JvmOverloads
   public fun drawMultilineColors(
     points: PackedVector2Array,
     colors: PackedColorArray,
     width: Float = -1.0f,
+    antialiased: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, DOUBLE to width.toDouble())
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, DOUBLE to width.toDouble(), BOOL to antialiased)
     TransferContext.callMethod(rawPtr, MethodBindings.drawMultilineColorsPtr, NIL)
   }
 
@@ -603,6 +620,8 @@ public open class CanvasItem internal constructor() : Node() {
    * If [width] is negative, then two-point primitives will be drawn instead of a four-point ones.
    * This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not
    * desired, then pass a positive [width] like `1.0`.
+   * If [antialiased] is `true`, half transparent "feathers" will be attached to the boundary,
+   * making outlines smooth.
    * **Note:** [width] is only effective if [filled] is `false`.
    * **Note:** Unfilled rectangles drawn with a negative [width] may not display perfectly. For
    * example, corners may be missing or brighter due to overlapping lines (for a translucent [color]).
@@ -613,20 +632,33 @@ public open class CanvasItem internal constructor() : Node() {
     color: Color,
     filled: Boolean = true,
     width: Float = -1.0f,
+    antialiased: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(RECT2 to rect, COLOR to color, BOOL to filled, DOUBLE to width.toDouble())
+    TransferContext.writeArguments(RECT2 to rect, COLOR to color, BOOL to filled, DOUBLE to width.toDouble(), BOOL to antialiased)
     TransferContext.callMethod(rawPtr, MethodBindings.drawRectPtr, NIL)
   }
 
   /**
-   * Draws a colored, filled circle. See also [drawArc], [drawPolyline] and [drawPolygon].
+   * Draws a circle. See also [drawArc], [drawPolyline], and [drawPolygon].
+   * If [filled] is `true`, the circle will be filled with the [color] specified. If [filled] is
+   * `false`, the circle will be drawn as a stroke with the [color] and [width] specified.
+   * If [width] is negative, then two-point primitives will be drawn instead of a four-point ones.
+   * This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not
+   * desired, then pass a positive [width] like `1.0`.
+   * If [antialiased] is `true`, half transparent "feathers" will be attached to the boundary,
+   * making outlines smooth.
+   * **Note:** [width] is only effective if [filled] is `false`.
    */
+  @JvmOverloads
   public fun drawCircle(
     position: Vector2,
     radius: Float,
     color: Color,
+    filled: Boolean = true,
+    width: Float = -1.0f,
+    antialiased: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(VECTOR2 to position, DOUBLE to radius.toDouble(), COLOR to color)
+    TransferContext.writeArguments(VECTOR2 to position, DOUBLE to radius.toDouble(), COLOR to color, BOOL to filled, DOUBLE to width.toDouble(), BOOL to antialiased)
     TransferContext.callMethod(rawPtr, MethodBindings.drawCirclePtr, NIL)
   }
 
@@ -1113,6 +1145,16 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
+   * Returns the [CanvasLayer] that contains this node, or `null` if the node is not in any
+   * [CanvasLayer].
+   */
+  public fun getCanvasLayerNode(): CanvasLayer? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCanvasLayerNodePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as CanvasLayer?)
+  }
+
+  /**
    * Returns the [World2D] where this item is in.
    */
   public fun getWorld2d(): World2D? {
@@ -1296,7 +1338,7 @@ public open class CanvasItem internal constructor() : Node() {
      */
     TEXTURE_REPEAT_ENABLED(2),
     /**
-     * Texture will repeat in a 2x2 tiled mode, where elements at even positions are mirrored.
+     * Texture will repeat in a 2×2 tiled mode, where elements at even positions are mirrored.
      */
     TEXTURE_REPEAT_MIRROR(3),
     /**
@@ -1560,6 +1602,9 @@ public open class CanvasItem internal constructor() : Node() {
         TypeManager.getMethodBindPtr("CanvasItem", "get_global_mouse_position")
 
     public val getCanvasPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasItem", "get_canvas")
+
+    public val getCanvasLayerNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasItem", "get_canvas_layer_node")
 
     public val getWorld2dPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasItem", "get_world_2d")
 

@@ -78,7 +78,7 @@ public open class AudioStreamWAV : AudioStream() {
     }
 
   /**
-   * The loop start point (in number of samples, relative to the beginning of the sample). This
+   * The loop start point (in number of samples, relative to the beginning of the stream). This
    * information will be imported automatically from the WAV file if present.
    */
   public var loopBegin: Int
@@ -93,7 +93,7 @@ public open class AudioStreamWAV : AudioStream() {
     }
 
   /**
-   * The loop end point (in number of samples, relative to the beginning of the sample). This
+   * The loop end point (in number of samples, relative to the beginning of the stream). This
    * information will be imported automatically from the WAV file if present.
    */
   public var loopEnd: Int
@@ -150,7 +150,8 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   /**
-   * Saves the AudioStreamWAV as a WAV file to [path]. Samples with IMA ADPCM format can't be saved.
+   * Saves the AudioStreamWAV as a WAV file to [path]. Samples with IMA ADPCM or QOA formats can't
+   * be saved.
    * **Note:** A `.wav` extension is automatically appended to [path] if it is missing.
    */
   public fun saveToWav(path: String): GodotError {
@@ -174,6 +175,10 @@ public open class AudioStreamWAV : AudioStream() {
      * Audio is compressed using IMA ADPCM.
      */
     FORMAT_IMA_ADPCM(2),
+    /**
+     * Audio is compressed as QOA ([url=https://qoaformat.org/]Quite OK Audio[/url]).
+     */
+    FORMAT_QOA(3),
     ;
 
     public val id: Long

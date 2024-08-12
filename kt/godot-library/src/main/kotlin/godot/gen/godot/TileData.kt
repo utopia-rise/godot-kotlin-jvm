@@ -38,6 +38,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * [TileData] object represents a single tile in a [TileSet]. It is usually edited using the tileset
@@ -271,9 +272,16 @@ public open class TileData : Object() {
 
   /**
    * Returns the occluder polygon of the tile for the TileSet occlusion layer with index [layerId].
+   * [flipH], [flipV], and [transpose] allow transforming the returned polygon.
    */
-  public fun getOccluder(layerId: Int): OccluderPolygon2D? {
-    TransferContext.writeArguments(LONG to layerId.toLong())
+  @JvmOverloads
+  public fun getOccluder(
+    layerId: Int,
+    flipH: Boolean = false,
+    flipV: Boolean = false,
+    transpose: Boolean = false,
+  ): OccluderPolygon2D? {
+    TransferContext.writeArguments(LONG to layerId.toLong(), BOOL to flipH, BOOL to flipV, BOOL to transpose)
     TransferContext.callMethod(rawPtr, MethodBindings.getOccluderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as OccluderPolygon2D?)
   }
@@ -418,7 +426,8 @@ public open class TileData : Object() {
   }
 
   /**
-   * Sets the tile's terrain bit for the given [peeringBit] direction.
+   * Sets the tile's terrain bit for the given [peeringBit] direction. To check that a direction is
+   * valid, use [isValidTerrainPeeringBit].
    */
   public fun setTerrainPeeringBit(peeringBit: TileSet.CellNeighbor, terrain: Int): Unit {
     TransferContext.writeArguments(LONG to peeringBit.id, LONG to terrain.toLong())
@@ -426,12 +435,22 @@ public open class TileData : Object() {
   }
 
   /**
-   * Returns the tile's terrain bit for the given [peeringBit] direction.
+   * Returns the tile's terrain bit for the given [peeringBit] direction. To check that a direction
+   * is valid, use [isValidTerrainPeeringBit].
    */
   public fun getTerrainPeeringBit(peeringBit: TileSet.CellNeighbor): Int {
     TransferContext.writeArguments(LONG to peeringBit.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getTerrainPeeringBitPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  /**
+   * Returns whether the given [peeringBit] direction is valid for this tile.
+   */
+  public fun isValidTerrainPeeringBit(peeringBit: TileSet.CellNeighbor): Boolean {
+    TransferContext.writeArguments(LONG to peeringBit.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.isValidTerrainPeeringBitPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -445,9 +464,16 @@ public open class TileData : Object() {
   /**
    * Returns the navigation polygon of the tile for the TileSet navigation layer with index
    * [layerId].
+   * [flipH], [flipV], and [transpose] allow transforming the returned polygon.
    */
-  public fun getNavigationPolygon(layerId: Int): NavigationPolygon? {
-    TransferContext.writeArguments(LONG to layerId.toLong())
+  @JvmOverloads
+  public fun getNavigationPolygon(
+    layerId: Int,
+    flipH: Boolean = false,
+    flipV: Boolean = false,
+    transpose: Boolean = false,
+  ): NavigationPolygon? {
+    TransferContext.writeArguments(LONG to layerId.toLong(), BOOL to flipH, BOOL to flipV, BOOL to transpose)
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationPolygonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as NavigationPolygon?)
   }
@@ -586,6 +612,9 @@ public open class TileData : Object() {
 
     public val getTerrainPeeringBitPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TileData", "get_terrain_peering_bit")
+
+    public val isValidTerrainPeeringBitPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "is_valid_terrain_peering_bit")
 
     public val setNavigationPolygonPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TileData", "set_navigation_polygon")

@@ -35,6 +35,8 @@ import kotlin.jvm.JvmOverloads
 /**
  * A deformable 3D physics mesh. Used to create elastic or deformable objects such as cloth, rubber,
  * or other flexible materials.
+ * Additionally, [SoftBody3D] is subject to wind forces defined in [Area3D] (see
+ * [Area3D.windSourcePath], [Area3D.windForceMagnitude], and [Area3D.windAttenuationFactor]).
  * **Note:** There are many known bugs in [SoftBody3D]. Therefore, it's not recommended to use them
  * for things that can affect gameplay (such as trampolines).
  */

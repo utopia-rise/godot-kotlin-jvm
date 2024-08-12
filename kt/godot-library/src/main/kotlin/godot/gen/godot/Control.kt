@@ -157,10 +157,11 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * The minimum size of the node's bounding rectangle. If you set it to a value greater than (0,
-   * 0), the node's bounding rectangle will always have at least this size, even if its content is
-   * smaller. If it's set to (0, 0), the node sizes automatically to fit its content, be it a texture
-   * or child nodes.
+   * The minimum size of the node's bounding rectangle. If you set it to a value greater than `(0,
+   * 0)`, the node's bounding rectangle will always have at least this size. Note that [Control] nodes
+   * have their internal minimum size returned by [getMinimumSize]. It depends on the control's
+   * contents, like text, textures, or style boxes. The actual minimum size is the maximum value of
+   * this property and the internal minimum size (see [getCombinedMinimumSize]).
    */
   @CoreTypeLocalCopy
   public var customMinimumSize: Vector2
@@ -500,22 +501,6 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Toggles if any text should automatically change to its translated version depending on the
-   * current locale.
-   * Also decides if the node's strings should be parsed for POT generation.
-   */
-  public var autoTranslate: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAutoTranslatingPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoTranslatePtr, NIL)
-    }
-
-  /**
    * If `true`, automatically converts code line numbers, list indices, [SpinBox] and [ProgressBar]
    * values from the Western Arabic (0..9) to the numeral systems used in current locale.
    * **Note:** Numbers within the text are not automatically converted, it can be done manually,
@@ -530,6 +515,21 @@ public open class Control : CanvasItem() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setLocalizeNumeralSystemPtr, NIL)
+    }
+
+  /**
+   * Toggles if any text should automatically change to its translated version depending on the
+   * current locale.
+   */
+  public var autoTranslate: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isAutoTranslatingPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAutoTranslatePtr, NIL)
     }
 
   /**
@@ -806,10 +806,11 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * The minimum size of the node's bounding rectangle. If you set it to a value greater than (0,
-   * 0), the node's bounding rectangle will always have at least this size, even if its content is
-   * smaller. If it's set to (0, 0), the node sizes automatically to fit its content, be it a texture
-   * or child nodes.
+   * The minimum size of the node's bounding rectangle. If you set it to a value greater than `(0,
+   * 0)`, the node's bounding rectangle will always have at least this size. Note that [Control] nodes
+   * have their internal minimum size returned by [getMinimumSize]. It depends on the control's
+   * contents, like text, textures, or style boxes. The actual minimum size is the maximum value of
+   * this property and the internal minimum size (see [getCombinedMinimumSize]).
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -2581,6 +2582,17 @@ public open class Control : CanvasItem() {
      * **Note:** As an optimization, this notification won't be sent from changes that occur while
      * this node is outside of the scene tree. Instead, all of the theme item updates can be applied at
      * once when the node enters the scene tree.
+     * **Note:** This notification is received alongside [Node.NOTIFICATION_ENTER_TREE], so if you
+     * are instantiating a scene, the child nodes will not be initialized yet. You can use it to setup
+     * theming for this node, child nodes created from script, or if you want to access child nodes
+     * added in the editor, make sure the node is ready using [Node.isNodeReady].
+     * [codeblock]
+     * func _notification(what):
+     *     if what == NOTIFICATION_THEME_CHANGED:
+     *         if not is_node_ready():
+     *             await ready # Wait until ready signal.
+     *         $Label.add_theme_color_override("font_color", Color.YELLOW)
+     * [/codeblock]
      */
     public final const val NOTIFICATION_THEME_CHANGED: Long = 45
 

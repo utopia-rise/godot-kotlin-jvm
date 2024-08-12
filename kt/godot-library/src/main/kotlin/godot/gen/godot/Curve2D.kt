@@ -216,18 +216,15 @@ public open class Curve2D : Resource() {
 
   /**
    * Similar to [sampleBaked], but returns [Transform2D] that includes a rotation along the curve,
-   * with [Transform2D.origin] as the point position, [Transform2D.x] as the sideways vector, and
-   * [Transform2D.y] as the forward vector. Returns an empty transform if the length of the curve is
-   * `0`.
+   * with [Transform2D.origin] as the point position and the [Transform2D.x] vector pointing in the
+   * direction of the path at that point. Returns an empty transform if the length of the curve is `0`.
    * [codeblock]
    * var baked = curve.sample_baked_with_rotation(offset)
-   * # This will rotate and position the node with the up direction pointing along the curve.
+   * # The returned Transform2D can be set directly.
+   * transform = baked
+   * # You can also read the origin and rotation separately from the returned Transform2D.
    * position = baked.get_origin()
    * rotation = baked.get_rotation()
-   * # Alternatively, not preserving scale.
-   * transform = baked * Transform2D.FLIP_Y
-   * # To match the rotation of PathFollow2D, not preserving scale.
-   * transform = Transform2D(baked.y, baked.x, baked.origin)
    * [/codeblock]
    */
   @JvmOverloads

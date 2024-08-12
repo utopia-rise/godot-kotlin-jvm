@@ -33,14 +33,15 @@ import kotlin.Suppress
  *     # Check that file exists.
  *     if not FileAccess.file_exists(path):
  *         return
- *     # Start a SHA-256 context.
+ *     # Start an SHA-256 context.
  *     var ctx = HashingContext.new()
  *     ctx.start(HashingContext.HASH_SHA256)
  *     # Open the file to hash.
  *     var file = FileAccess.open(path, FileAccess.READ)
  *     # Update the context after reading each chunk.
- *     while not file.eof_reached():
- *         ctx.update(file.get_buffer(CHUNK_SIZE))
+ *     while file.get_position() < file.get_length():
+ *         var remaining = file.get_length() - file.get_position()
+ *         ctx.update(file.get_buffer(min(remaining, CHUNK_SIZE)))
  *     # Get the computed hash.
  *     var res = ctx.finish()
  *     # Print the result as hex string and array.
@@ -57,15 +58,16 @@ import kotlin.Suppress
  *     {
  *         return;
  *     }
- *     // Start a SHA-256 context.
+ *     // Start an SHA-256 context.
  *     var ctx = new HashingContext();
  *     ctx.Start(HashingContext.HashType.Sha256);
  *     // Open the file to hash.
  *     using var file = FileAccess.Open(path, FileAccess.ModeFlags.Read);
  *     // Update the context after reading each chunk.
- *     while (!file.EofReached())
+ *     while (file.GetPosition() < file.GetLength())
  *     {
- *         ctx.Update(file.GetBuffer(ChunkSize));
+ *         int remaining = (int)(file.GetLength() - file.GetPosition());
+ *         ctx.Update(file.GetBuffer(Mathf.Min(remaining, ChunkSize)));
  *     }
  *     // Get the computed hash.
  *     byte[] res = ctx.Finish();
@@ -82,8 +84,8 @@ public open class HashingContext : RefCounted() {
   }
 
   /**
-   * Starts a new hash computation of the given [type] (e.g. [HASH_SHA256] to start computation of a
-   * SHA-256).
+   * Starts a new hash computation of the given [type] (e.g. [HASH_SHA256] to start computation of
+   * an SHA-256).
    */
   public fun start(type: HashType): GodotError {
     TransferContext.writeArguments(LONG to type.id)

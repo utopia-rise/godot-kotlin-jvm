@@ -23,6 +23,7 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.TRANSFORM3D
 import godot.core.memory.TransferContext
+import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
@@ -42,6 +43,11 @@ import kotlin.Unit
  */
 @GodotBaseType
 public object XRServer : Object() {
+  /**
+   * Emitted when the reference frame transform changes.
+   */
+  public val referenceFrameChanged: Signal0 by signal()
+
   /**
    * Emitted when a new interface has been added.
    */
@@ -108,6 +114,14 @@ public object XRServer : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getReferenceFramePtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+  }
+
+  /**
+   * Clears the reference frame that was set by previous calls to [centerOnHmd].
+   */
+  public fun clearReferenceFrame(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.clearReferenceFramePtr, NIL)
   }
 
   /**
@@ -198,17 +212,17 @@ public object XRServer : Object() {
   }
 
   /**
-   * Registers a new [XRPositionalTracker] that tracks a spatial location in real space.
+   * Registers a new [XRTracker] that tracks a physical object.
    */
-  public fun addTracker(tracker: XRPositionalTracker): Unit {
+  public fun addTracker(tracker: XRTracker): Unit {
     TransferContext.writeArguments(OBJECT to tracker)
     TransferContext.callMethod(rawPtr, MethodBindings.addTrackerPtr, NIL)
   }
 
   /**
-   * Removes this positional [tracker].
+   * Removes this [tracker].
    */
-  public fun removeTracker(tracker: XRPositionalTracker): Unit {
+  public fun removeTracker(tracker: XRTracker): Unit {
     TransferContext.writeArguments(OBJECT to tracker)
     TransferContext.callMethod(rawPtr, MethodBindings.removeTrackerPtr, NIL)
   }
@@ -225,10 +239,10 @@ public object XRServer : Object() {
   /**
    * Returns the positional tracker with the given [trackerName].
    */
-  public fun getTracker(trackerName: StringName): XRPositionalTracker? {
+  public fun getTracker(trackerName: StringName): XRTracker? {
     TransferContext.writeArguments(STRING_NAME to trackerName)
     TransferContext.callMethod(rawPtr, MethodBindings.getTrackerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as XRPositionalTracker?)
+    return (TransferContext.readReturnValue(OBJECT, true) as XRTracker?)
   }
 
   public fun getPrimaryInterface(): XRInterface? {
@@ -263,6 +277,18 @@ public object XRServer : Object() {
      * The tracker tracks the location and size of an AR anchor.
      */
     TRACKER_ANCHOR(8),
+    /**
+     * The tracker tracks the location and joints of a hand.
+     */
+    TRACKER_HAND(16),
+    /**
+     * The tracker tracks the location and joints of a body.
+     */
+    TRACKER_BODY(32),
+    /**
+     * The tracker tracks the expressions of a face.
+     */
+    TRACKER_FACE(64),
     /**
      * Used internally to filter trackers of any known type.
      */
@@ -331,6 +357,9 @@ public object XRServer : Object() {
 
     public val getReferenceFramePtr: VoidPtr =
         TypeManager.getMethodBindPtr("XRServer", "get_reference_frame")
+
+    public val clearReferenceFramePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRServer", "clear_reference_frame")
 
     public val centerOnHmdPtr: VoidPtr = TypeManager.getMethodBindPtr("XRServer", "center_on_hmd")
 

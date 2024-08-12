@@ -172,6 +172,15 @@ public object ClassDB : Object() {
   }
 
   /**
+   * Returns the default value of [property] of [class] or its ancestor classes.
+   */
+  public fun classGetPropertyDefaultValue(_class: StringName, `property`: StringName): Any? {
+    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to property)
+    TransferContext.callMethod(rawPtr, MethodBindings.classGetPropertyDefaultValuePtr, ANY)
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
+  }
+
+  /**
    * Returns whether [class] (or its ancestry if [noInheritance] is `false`) has a method called
    * [method] or not.
    */
@@ -184,6 +193,21 @@ public object ClassDB : Object() {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to method, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr, MethodBindings.classHasMethodPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Returns the number of arguments of the method [method] of [class] or its ancestry if
+   * [noInheritance] is `false`.
+   */
+  @JvmOverloads
+  public fun classGetMethodArgumentCount(
+    _class: StringName,
+    method: StringName,
+    noInheritance: Boolean = false,
+  ): Int {
+    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to method, BOOL to noInheritance)
+    TransferContext.callMethod(rawPtr, MethodBindings.classGetMethodArgumentCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -286,6 +310,21 @@ public object ClassDB : Object() {
   }
 
   /**
+   * Returns whether [class] (or its ancestor classes if [noInheritance] is `false`) has an enum
+   * called [enum] that is a bitfield.
+   */
+  @JvmOverloads
+  public fun isClassEnumBitfield(
+    _class: StringName,
+    _enum: StringName,
+    noInheritance: Boolean = false,
+  ): Boolean {
+    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to _enum, BOOL to noInheritance)
+    TransferContext.callMethod(rawPtr, MethodBindings.isClassEnumBitfieldPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
    * Returns whether this [class] is enabled or not.
    */
   public fun isClassEnabled(_class: StringName): Boolean {
@@ -331,8 +370,14 @@ public object ClassDB : Object() {
     public val classSetPropertyPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ClassDB", "class_set_property")
 
+    public val classGetPropertyDefaultValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_property_default_value")
+
     public val classHasMethodPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ClassDB", "class_has_method")
+
+    public val classGetMethodArgumentCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_method_argument_count")
 
     public val classGetMethodListPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ClassDB", "class_get_method_list")
@@ -356,6 +401,9 @@ public object ClassDB : Object() {
 
     public val classGetIntegerConstantEnumPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ClassDB", "class_get_integer_constant_enum")
+
+    public val isClassEnumBitfieldPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "is_class_enum_bitfield")
 
     public val isClassEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ClassDB", "is_class_enabled")

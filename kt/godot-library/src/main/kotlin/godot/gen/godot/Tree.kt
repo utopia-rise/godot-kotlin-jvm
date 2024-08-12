@@ -98,12 +98,13 @@ public open class Tree : Control() {
   /**
    * Emitted when an item is selected with a mouse button.
    */
-  public val itemMouseSelected: Signal2<Vector2, Long> by signal("position", "mouseButtonIndex")
+  public val itemMouseSelected: Signal2<Vector2, Long> by signal("mousePosition",
+      "mouseButtonIndex")
 
   /**
    * Emitted when a mouse button is clicked in the empty space of the tree.
    */
-  public val emptyClicked: Signal2<Vector2, Long> by signal("position", "mouseButtonIndex")
+  public val emptyClicked: Signal2<Vector2, Long> by signal("clickPosition", "mouseButtonIndex")
 
   /**
    * Emitted when an item is edited.
@@ -247,8 +248,9 @@ public open class Tree : Control() {
     }
 
   /**
-   * If `true`, recursive folding is enabled for this [Tree]. Holding down Shift while clicking the
-   * fold arrow collapses or uncollapses the [TreeItem] and all its descendants.
+   * If `true`, recursive folding is enabled for this [Tree]. Holding down [kbd]Shift[/kbd] while
+   * clicking the fold arrow or using `ui_right`/`ui_left` shortcuts collapses or uncollapses the
+   * [TreeItem] and all its descendants.
    */
   public var enableRecursiveFolding: Boolean
     get() {

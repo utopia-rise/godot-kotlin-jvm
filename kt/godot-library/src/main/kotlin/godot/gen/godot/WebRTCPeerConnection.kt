@@ -228,8 +228,8 @@ public open class WebRTCPeerConnection : RefCounted() {
   }
 
   /**
-   * Returns the [SignalingState] on the local end of the connection while connecting or
-   * reconnecting to another peer.
+   * Returns the signaling state on the local end of the connection while connecting or reconnecting
+   * to another peer.
    */
   public fun getSignalingState(): SignalingState {
     TransferContext.writeArguments()

@@ -62,6 +62,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   /**
    * Emitted when the animation reaches the end, or the start if it is played in reverse. When the
    * animation finishes, it pauses the playback.
+   * **Note:** This signal is not emitted if an animation is looping.
    */
   public val animationFinished: Signal0 by signal()
 

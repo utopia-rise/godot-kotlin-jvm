@@ -34,14 +34,14 @@ import kotlin.Unit
  * Setting corner radius to high values is allowed. As soon as corners overlap, the stylebox will
  * switch to a relative system.
  * **Example:**
- * [codeblock]
+ * [codeblock lang=text]
  * height = 30
  * corner_radius_top_left = 50
  * corner_radius_bottom_left = 100
  * [/codeblock]
  * The relative system now would take the 1:2 ratio of the two left corners to calculate the actual
  * corner width. Both corners added will **never** be more than the height. Result:
- * [codeblock]
+ * [codeblock lang=text]
  * corner_radius_top_left: 10
  * corner_radius_bottom_left: 20
  * [/codeblock]

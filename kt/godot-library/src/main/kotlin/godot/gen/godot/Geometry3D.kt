@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
 import godot.core.Plane
 import godot.core.TypeManager
@@ -15,6 +16,7 @@ import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
+import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.PACKED_VECTOR3_ARRAY
 import godot.core.VariantType.PLANE
 import godot.core.VariantType.VECTOR3
@@ -259,6 +261,20 @@ public object Geometry3D : Object() {
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
+  /**
+   * Tetrahedralizes the volume specified by a discrete set of [points] in 3D space, ensuring that
+   * no point lies within the circumsphere of any resulting tetrahedron. The method returns a
+   * [PackedInt32Array] where each tetrahedron consists of four consecutive point indices into the
+   * [points] array (resulting in an array with `n * 4` elements, where `n` is the number of tetrahedra
+   * found). If the tetrahedralization is unsuccessful, an empty [PackedInt32Array] is returned.
+   */
+  public fun tetrahedralizeDelaunay(points: PackedVector3Array): PackedInt32Array {
+    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to points)
+    TransferContext.callMethod(rawPtr, MethodBindings.tetrahedralizeDelaunayPtr,
+        PACKED_INT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+  }
+
   internal object MethodBindings {
     public val computeConvexMeshPointsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Geometry3D", "compute_convex_mesh_points")
@@ -300,5 +316,8 @@ public object Geometry3D : Object() {
         TypeManager.getMethodBindPtr("Geometry3D", "segment_intersects_convex")
 
     public val clipPolygonPtr: VoidPtr = TypeManager.getMethodBindPtr("Geometry3D", "clip_polygon")
+
+    public val tetrahedralizeDelaunayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Geometry3D", "tetrahedralize_delaunay")
   }
 }

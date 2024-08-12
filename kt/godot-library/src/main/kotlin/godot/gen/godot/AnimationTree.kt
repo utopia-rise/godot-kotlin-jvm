@@ -86,7 +86,7 @@ public open class AnimationTree : AnimationMixer() {
   }
 
   /**
-   * For backward compatibility. See [AnimationMixer.AnimationCallbackModeProcess].
+   * Sets the process notification in which to update animations.
    */
   public fun setProcessCallback(mode: AnimationProcessCallback): Unit {
     TransferContext.writeArguments(LONG to mode.id)
@@ -94,7 +94,7 @@ public open class AnimationTree : AnimationMixer() {
   }
 
   /**
-   * For backward compatibility. See [AnimationMixer.AnimationCallbackModeProcess].
+   * Returns the process notification in which to update animations.
    */
   public fun getProcessCallback(): AnimationProcessCallback {
     TransferContext.writeArguments()
@@ -105,17 +105,8 @@ public open class AnimationTree : AnimationMixer() {
   public enum class AnimationProcessCallback(
     id: Long,
   ) {
-    /**
-     * For backward compatibility. See [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS].
-     */
     ANIMATION_PROCESS_PHYSICS(0),
-    /**
-     * For backward compatibility. See [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_IDLE].
-     */
     ANIMATION_PROCESS_IDLE(1),
-    /**
-     * For backward compatibility. See [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL].
-     */
     ANIMATION_PROCESS_MANUAL(2),
     ;
 

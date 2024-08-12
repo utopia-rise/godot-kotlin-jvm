@@ -50,7 +50,7 @@ import kotlin.Unit
  * `module_raycast_enabled=yes`.
  */
 @GodotBaseType
-public open class OccluderInstance3D : Node3D() {
+public open class OccluderInstance3D : VisualInstance3D() {
   /**
    * The occluder resource for this [OccluderInstance3D]. You can generate an occluder resource by
    * selecting an [OccluderInstance3D] node then using the **Bake Occluders** button at the top of the

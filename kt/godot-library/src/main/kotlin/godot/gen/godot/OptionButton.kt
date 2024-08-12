@@ -53,20 +53,6 @@ public open class OptionButton : Button() {
   public val itemFocused: Signal1<Long> by signal("index")
 
   /**
-   * The number of items to select from.
-   */
-  public var itemCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getItemCountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setItemCountPtr, NIL)
-    }
-
-  /**
    * The index of the currently selected item, or `-1` if no item is selected.
    */
   public val selected: Int
@@ -105,6 +91,20 @@ public open class OptionButton : Button() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setAllowReselectPtr, NIL)
+    }
+
+  /**
+   * The number of items to select from.
+   */
+  public var itemCount: Int
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getItemCountPtr, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, MethodBindings.setItemCountPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {

@@ -17,9 +17,9 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * InputEventShortcut is a special event that can be received in [Node.UnhandledKeyInput]. It is
- * typically sent by the editor's Command Palette to trigger actions, but can also be sent manually
- * using [Viewport.pushInput].
+ * InputEventShortcut is a special event that can be received in [Node.Input], [Node.ShortcutInput],
+ * and [Node.UnhandledInput]. It is typically sent by the editor's Command Palette to trigger actions,
+ * but can also be sent manually using [Viewport.pushInput].
  */
 @GodotBaseType
 public open class InputEventShortcut : InputEvent() {

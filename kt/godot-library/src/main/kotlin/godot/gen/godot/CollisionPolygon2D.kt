@@ -24,9 +24,9 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A node that provides a thickened polygon shape (a prism) to a [CollisionObject2D] parent and
- * allows to edit it. The polygon can be concave or convex. This can give a detection shape to an
- * [Area2D] or turn [PhysicsBody2D] into a solid object.
+ * A node that provides a polygon shape to a [CollisionObject2D] parent and allows to edit it. The
+ * polygon can be concave or convex. This can give a detection shape to an [Area2D], turn
+ * [PhysicsBody2D] into a solid object, or give a hollow shape to a [StaticBody2D].
  * **Warning:** A non-uniformly scaled [CollisionShape2D] will likely not behave as expected. Make
  * sure to keep its scale the same on all axes and adjust its shape resource instead.
  */
@@ -51,7 +51,6 @@ public open class CollisionPolygon2D : Node2D() {
    * will be connected to the first.
    * **Note:** The returned vertices are in the local coordinate space of the given
    * [CollisionPolygon2D].
-   * **Warning:** The returned value is a clone of the [PackedVector2Array], not a reference.
    */
   public var polygon: PackedVector2Array
     get() {

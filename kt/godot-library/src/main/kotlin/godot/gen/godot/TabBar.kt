@@ -90,21 +90,8 @@ public open class TabBar : Control() {
   public val activeTabRearranged: Signal1<Long> by signal("idxTo")
 
   /**
-   * The number of tabs currently in the bar.
-   */
-  public var tabCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTabCountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTabCountPtr, NIL)
-    }
-
-  /**
-   * Select tab at index `tab_idx`.
+   * The index of the current selected tab. A value of `-1` means that no tab is selected and can
+   * only be set when [deselectEnabled] is `true` or if all tabs are hidden or disabled.
    */
   public var currentTab: Int
     get() {
@@ -246,6 +233,35 @@ public open class TabBar : Control() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSelectWithRmbPtr, NIL)
     }
 
+  /**
+   * If `true`, all tabs can be deselected so that no tab is selected. Click on the current tab to
+   * deselect it.
+   */
+  public var deselectEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getDeselectEnabledPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDeselectEnabledPtr, NIL)
+    }
+
+  /**
+   * The number of tabs currently in the bar.
+   */
+  public var tabCount: Int
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getTabCountPtr, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, MethodBindings.setTabCountPtr, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_TABBAR, scriptIndex)
     return true
@@ -294,6 +310,26 @@ public open class TabBar : Control() {
   public fun getTabTitle(tabIdx: Int): String {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getTabTitlePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  /**
+   * Sets a [tooltip] for tab at index [tabIdx].
+   * **Note:** By default, if the [tooltip] is empty and the tab text is truncated (not all
+   * characters fit into the tab), the title will be displayed as a tooltip. To hide the tooltip,
+   * assign `" "` as the [tooltip] text.
+   */
+  public fun setTabTooltip(tabIdx: Int, tooltip: String): Unit {
+    TransferContext.writeArguments(LONG to tabIdx.toLong(), STRING to tooltip)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTabTooltipPtr, NIL)
+  }
+
+  /**
+   * Returns the tooltip text of the tab at index [tabIdx].
+   */
+  public fun getTabTooltip(tabIdx: Int): String {
+    TransferContext.writeArguments(LONG to tabIdx.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.getTabTooltipPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -606,6 +642,10 @@ public open class TabBar : Control() {
 
     public val getTabTitlePtr: VoidPtr = TypeManager.getMethodBindPtr("TabBar", "get_tab_title")
 
+    public val setTabTooltipPtr: VoidPtr = TypeManager.getMethodBindPtr("TabBar", "set_tab_tooltip")
+
+    public val getTabTooltipPtr: VoidPtr = TypeManager.getMethodBindPtr("TabBar", "get_tab_tooltip")
+
     public val setTabTextDirectionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TabBar", "set_tab_text_direction")
 
@@ -719,6 +759,12 @@ public open class TabBar : Control() {
 
     public val getSelectWithRmbPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TabBar", "get_select_with_rmb")
+
+    public val setDeselectEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabBar", "set_deselect_enabled")
+
+    public val getDeselectEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabBar", "get_deselect_enabled")
 
     public val clearTabsPtr: VoidPtr = TypeManager.getMethodBindPtr("TabBar", "clear_tabs")
   }

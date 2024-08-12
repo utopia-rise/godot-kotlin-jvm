@@ -464,6 +464,29 @@ public object AudioServer : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.setEnableTaggingUsedAudioStreamsPtr, NIL)
   }
 
+  /**
+   * If `true`, the stream is registered as a sample. The engine will not have to register it before
+   * playing the sample.
+   * If `false`, the stream will have to be registered before playing it. To prevent lag spikes,
+   * register the stream as sample with [registerStreamAsSample].
+   */
+  public fun isStreamRegisteredAsSample(stream: AudioStream): Boolean {
+    TransferContext.writeArguments(OBJECT to stream)
+    TransferContext.callMethod(rawPtr, MethodBindings.isStreamRegisteredAsSamplePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Forces the registration of a stream as a sample.
+   * **Note:** Lag spikes may occur when calling this method, especially on single-threaded builds.
+   * It is suggested to call this method while loading assets, where the lag spike could be masked,
+   * instead of registering the sample right before it needs to be played.
+   */
+  public fun registerStreamAsSample(stream: AudioStream): Unit {
+    TransferContext.writeArguments(OBJECT to stream)
+    TransferContext.callMethod(rawPtr, MethodBindings.registerStreamAsSamplePtr, NIL)
+  }
+
   public enum class SpeakerMode(
     id: Long,
   ) {
@@ -483,6 +506,41 @@ public object AudioServer : Object() {
      * A 7.1 channel surround setup was detected.
      */
     SPEAKER_SURROUND_71(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
+  }
+
+  public enum class PlaybackType(
+    id: Long,
+  ) {
+    /**
+     * The playback will be considered of the type declared at
+     * [ProjectSettings.audio/general/defaultPlaybackType].
+     */
+    PLAYBACK_TYPE_DEFAULT(0),
+    /**
+     * Force the playback to be considered as a stream.
+     */
+    PLAYBACK_TYPE_STREAM(1),
+    /**
+     * Force the playback to be considered as a sample. This can provide lower latency and more
+     * stable playback (with less risk of audio crackling), at the cost of having less flexibility.
+     * **Note:** Only currently supported on the web platform.
+     * **Note:** [AudioEffect]s are not supported when playback is considered as a sample.
+     */
+    PLAYBACK_TYPE_SAMPLE(2),
+    /**
+     * Represents the size of the [PlaybackType] enum.
+     */
+    PLAYBACK_TYPE_MAX(3),
     ;
 
     public val id: Long
@@ -622,5 +680,11 @@ public object AudioServer : Object() {
 
     public val setEnableTaggingUsedAudioStreamsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioServer", "set_enable_tagging_used_audio_streams")
+
+    public val isStreamRegisteredAsSamplePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "is_stream_registered_as_sample")
+
+    public val registerStreamAsSamplePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "register_stream_as_sample")
   }
 }

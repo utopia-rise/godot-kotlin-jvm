@@ -8,7 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
+import godot.core.PackedStringArray
 import godot.core.TypeManager
+import godot.core.VariantArray
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
@@ -41,6 +43,46 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    */
   public open fun _getRequestedExtensions(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_requested_extensions is not implemented for OpenXRExtensionWrapperExtension")
+  }
+
+  /**
+   * Returns the number of composition layers this extension wrapper provides via
+   * [_getCompositionLayer].
+   * This will only be called if the extension previously registered itself with
+   * [OpenXRAPIExtension.registerCompositionLayerProvider].
+   */
+  public open fun _getCompositionLayerCount(): Int {
+    throw NotImplementedError("_get_composition_layer_count is not implemented for OpenXRExtensionWrapperExtension")
+  }
+
+  /**
+   * Returns a pointer to an `XrCompositionLayerBaseHeader` struct to provide the given composition
+   * layer.
+   * This will only be called if the extension previously registered itself with
+   * [OpenXRAPIExtension.registerCompositionLayerProvider].
+   */
+  public open fun _getCompositionLayer(index: Int): Long {
+    throw NotImplementedError("_get_composition_layer is not implemented for OpenXRExtensionWrapperExtension")
+  }
+
+  /**
+   * Returns an integer that will be used to sort the given composition layer provided via
+   * [_getCompositionLayer]. Lower numbers will move the layer to the front of the list, and higher
+   * numbers to the end. The default projection layer has an order of `0`, so layers provided by this
+   * method should probably be above or below (but not exactly) `0`.
+   * This will only be called if the extension previously registered itself with
+   * [OpenXRAPIExtension.registerCompositionLayerProvider].
+   */
+  public open fun _getCompositionLayerOrder(index: Int): Int {
+    throw NotImplementedError("_get_composition_layer_order is not implemented for OpenXRExtensionWrapperExtension")
+  }
+
+  /**
+   * Returns a [PackedStringArray] of positional tracker names that are used within the extension
+   * wrapper.
+   */
+  public open fun _getSuggestedTrackerNames(): PackedStringArray {
+    throw NotImplementedError("_get_suggested_tracker_names is not implemented for OpenXRExtensionWrapperExtension")
   }
 
   /**
@@ -89,6 +131,12 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * Called right before the XR viewports begin their rendering step.
    */
   public open fun _onPreRender(): Unit {
+  }
+
+  /**
+   * Called right after the main swapchains are (re)created.
+   */
+  public open fun _onMainSwapchainsCreated(): Unit {
   }
 
   /**
@@ -150,6 +198,23 @@ public open class OpenXRExtensionWrapperExtension : Object() {
   }
 
   /**
+   * Gets an array of [Dictionary]s that represent properties, just like [Object.GetPropertyList],
+   * that will be added to [OpenXRCompositionLayer] nodes.
+   */
+  public open fun _getViewportCompositionLayerExtensionProperties():
+      VariantArray<Dictionary<Any?, Any?>> {
+    throw NotImplementedError("_get_viewport_composition_layer_extension_properties is not implemented for OpenXRExtensionWrapperExtension")
+  }
+
+  /**
+   * Gets a [Dictionary] containing the default values for the properties returned by
+   * [_getViewportCompositionLayerExtensionProperties].
+   */
+  public open fun _getViewportCompositionLayerExtensionPropertyDefaults(): Dictionary<Any?, Any?> {
+    throw NotImplementedError("_get_viewport_composition_layer_extension_property_defaults is not implemented for OpenXRExtensionWrapperExtension")
+  }
+
+  /**
    * Returns the created [OpenXRAPIExtension], which can be used to access the OpenXR API.
    */
   public fun getOpenxrApi(): OpenXRAPIExtension? {
@@ -184,6 +249,21 @@ public open class OpenXRExtensionWrapperExtension : Object() {
     public val _setSwapchainCreateInfoAndGetNextPointerPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRExtensionWrapperExtension", "_set_swapchain_create_info_and_get_next_pointer")
 
+    public val _setHandJointLocationsAndGetNextPointerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRExtensionWrapperExtension", "_set_hand_joint_locations_and_get_next_pointer")
+
+    public val _getCompositionLayerCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRExtensionWrapperExtension", "_get_composition_layer_count")
+
+    public val _getCompositionLayerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRExtensionWrapperExtension", "_get_composition_layer")
+
+    public val _getCompositionLayerOrderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRExtensionWrapperExtension", "_get_composition_layer_order")
+
+    public val _getSuggestedTrackerNamesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRExtensionWrapperExtension", "_get_suggested_tracker_names")
+
     public val _onRegisterMetadataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRExtensionWrapperExtension", "_on_register_metadata")
 
@@ -204,6 +284,9 @@ public open class OpenXRExtensionWrapperExtension : Object() {
 
     public val _onPreRenderPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRExtensionWrapperExtension", "_on_pre_render")
+
+    public val _onMainSwapchainsCreatedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRExtensionWrapperExtension", "_on_main_swapchains_created")
 
     public val _onSessionDestroyedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRExtensionWrapperExtension", "_on_session_destroyed")
@@ -234,6 +317,18 @@ public open class OpenXRExtensionWrapperExtension : Object() {
 
     public val _onEventPolledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRExtensionWrapperExtension", "_on_event_polled")
+
+    public val _setViewportCompositionLayerAndGetNextPointerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRExtensionWrapperExtension", "_set_viewport_composition_layer_and_get_next_pointer")
+
+    public val _getViewportCompositionLayerExtensionPropertiesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRExtensionWrapperExtension", "_get_viewport_composition_layer_extension_properties")
+
+    public val _getViewportCompositionLayerExtensionPropertyDefaultsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRExtensionWrapperExtension", "_get_viewport_composition_layer_extension_property_defaults")
+
+    public val _onViewportCompositionLayerDestroyedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRExtensionWrapperExtension", "_on_viewport_composition_layer_destroyed")
 
     public val getOpenxrApiPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRExtensionWrapperExtension", "get_openxr_api")

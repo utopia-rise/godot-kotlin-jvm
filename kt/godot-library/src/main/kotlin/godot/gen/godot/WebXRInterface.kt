@@ -89,9 +89,10 @@ import kotlin.Unit
  *     # supported.
  *     webxr_interface.requested_reference_space_types = 'bounded-floor, local-floor, local'
  *     # In order to use 'local-floor' or 'bounded-floor' we must also
- *     # mark the features as required or optional.
+ *     # mark the features as required or optional. By including 'hand-tracking'
+ *     # as an optional feature, it will be enabled if supported.
  *     webxr_interface.required_features = 'local-floor'
- *     webxr_interface.optional_features = 'bounded-floor'
+ *     webxr_interface.optional_features = 'bounded-floor, hand-tracking'
  *
  *     # This will return false if we're unable to even request the session,
  *     # however, it can still fail asynchronously later in the process, so we
@@ -108,7 +109,10 @@ import kotlin.Unit
  *     # This will be the reference space type you ultimately got, out of the
  *     # types that you requested above. This is useful if you want the game to
  *     # work a little differently in 'bounded-floor' versus 'local-floor'.
- *     print ("Reference space type: " + webxr_interface.reference_space_type)
+ *     print("Reference space type: ", webxr_interface.reference_space_type)
+ *     # This will be the list of features that were successfully enabled
+ *     # (except on browsers that don't support this property).
+ *     print("Enabled features: ", webxr_interface.enabled_features)
  *
  * func _webxr_session_ended():
  *     $Button.visible = true
@@ -247,8 +251,8 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * This doesn't have any effect on the interface when already initialized.
    * Possible values come from
    * [url=https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpaceType]WebXR's
-   * XRReferenceSpaceType[/url]. If you want to use a particular reference space type, it must be
-   * listed in either [requiredFeatures] or [optionalFeatures].
+   * XRReferenceSpaceType[/url], or include other features like `"hand-tracking"` to enable hand
+   * tracking.
    */
   public var requiredFeatures: String
     get() {
@@ -269,8 +273,8 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * This doesn't have any effect on the interface when already initialized.
    * Possible values come from
    * [url=https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpaceType]WebXR's
-   * XRReferenceSpaceType[/url]. If you want to use a particular reference space type, it must be
-   * listed in either [requiredFeatures] or [optionalFeatures].
+   * XRReferenceSpaceType[/url], or include other features like `"hand-tracking"` to enable hand
+   * tracking.
    */
   public var optionalFeatures: String
     get() {
@@ -323,6 +327,21 @@ public open class WebXRInterface internal constructor() : XRInterface() {
     }
 
   /**
+   * A comma-separated list of features that were successfully enabled by [XRInterface.initialize]
+   * when setting up the WebXR session.
+   * This may include features requested by setting [requiredFeatures] and [optionalFeatures], and
+   * will only be available after [signal session_started] has been emitted.
+   * **Note:** This may not be support by all web browsers, in which case it will be an empty
+   * string.
+   */
+  public val enabledFeatures: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getEnabledFeaturesPtr, STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+
+  /**
    * Indicates if the WebXR session's imagery is visible to the user.
    * Possible values come from
    * [url=https://developer.mozilla.org/en-US/docs/Web/API/XRVisibilityState]WebXR's
@@ -363,7 +382,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   }
 
   /**
-   * Gets an [XRPositionalTracker] for the given [inputSourceId].
+   * Gets an [XRControllerTracker] for the given [inputSourceId].
    * In the context of WebXR, an input source can be an advanced VR controller like the Oculus Touch
    * or Index controllers, or even a tap on the screen, a spoken voice command or a button press on the
    * device itself. When a non-traditional input source is used, interpret the position and orientation
@@ -376,10 +395,10 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * - [signal squeeze]
    * - [signal squeezestart]
    */
-  public fun getInputSourceTracker(inputSourceId: Int): XRPositionalTracker? {
+  public fun getInputSourceTracker(inputSourceId: Int): XRControllerTracker? {
     TransferContext.writeArguments(LONG to inputSourceId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getInputSourceTrackerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as XRPositionalTracker?)
+    return (TransferContext.readReturnValue(OBJECT, true) as XRControllerTracker?)
   }
 
   /**
@@ -480,6 +499,9 @@ public open class WebXRInterface internal constructor() : XRInterface() {
 
     public val getReferenceSpaceTypePtr: VoidPtr =
         TypeManager.getMethodBindPtr("WebXRInterface", "get_reference_space_type")
+
+    public val getEnabledFeaturesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebXRInterface", "get_enabled_features")
 
     public val setRequestedReferenceSpaceTypesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("WebXRInterface", "set_requested_reference_space_types")

@@ -156,14 +156,12 @@ public open class RenderingDevice internal constructor() : Object() {
    * using it is not set to [FINAL_ACTION_CONTINUE]) to update this texture.
    * **Note:** The existing [texture] requires the [TEXTURE_USAGE_CAN_UPDATE_BIT] to be updatable.
    */
-  @JvmOverloads
   public fun textureUpdate(
     texture: RID,
     layer: Long,
     `data`: PackedByteArray,
-    postBarrier: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS,
   ): GodotError {
-    TransferContext.writeArguments(_RID to texture, LONG to layer, PACKED_BYTE_ARRAY to data, LONG to postBarrier.flag)
+    TransferContext.writeArguments(_RID to texture, LONG to layer, PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.textureUpdatePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -229,7 +227,6 @@ public open class RenderingDevice internal constructor() : Object() {
    * **Note:** [toTexture] requires the [TEXTURE_USAGE_CAN_COPY_TO_BIT] to be retrieved.
    * **Note:** [fromTexture] and [toTexture] must be of the same type (color or depth).
    */
-  @JvmOverloads
   public fun textureCopy(
     fromTexture: RID,
     toTexture: RID,
@@ -240,9 +237,8 @@ public open class RenderingDevice internal constructor() : Object() {
     dstMipmap: Long,
     srcLayer: Long,
     dstLayer: Long,
-    postBarrier: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS,
   ): GodotError {
-    TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, VECTOR3 to fromPos, VECTOR3 to toPos, VECTOR3 to size, LONG to srcMipmap, LONG to dstMipmap, LONG to srcLayer, LONG to dstLayer, LONG to postBarrier.flag)
+    TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, VECTOR3 to fromPos, VECTOR3 to toPos, VECTOR3 to size, LONG to srcMipmap, LONG to dstMipmap, LONG to srcLayer, LONG to dstLayer)
     TransferContext.callMethod(rawPtr, MethodBindings.textureCopyPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -257,7 +253,6 @@ public open class RenderingDevice internal constructor() : Object() {
    * being created. Ensure the draw list is finalized (and that the color/depth texture using it is not
    * set to [FINAL_ACTION_CONTINUE]) to clear this texture.
    */
-  @JvmOverloads
   public fun textureClear(
     texture: RID,
     color: Color,
@@ -265,9 +260,8 @@ public open class RenderingDevice internal constructor() : Object() {
     mipmapCount: Long,
     baseLayer: Long,
     layerCount: Long,
-    postBarrier: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS,
   ): GodotError {
-    TransferContext.writeArguments(_RID to texture, COLOR to color, LONG to baseMipmap, LONG to mipmapCount, LONG to baseLayer, LONG to layerCount, LONG to postBarrier.flag)
+    TransferContext.writeArguments(_RID to texture, COLOR to color, LONG to baseMipmap, LONG to mipmapCount, LONG to baseLayer, LONG to layerCount)
     TransferContext.callMethod(rawPtr, MethodBindings.textureClearPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -291,13 +285,8 @@ public open class RenderingDevice internal constructor() : Object() {
    * **Note:** [toTexture] texture must **not** be multisampled and must also be 2D (or a slice of a
    * 3D/cubemap texture).
    */
-  @JvmOverloads
-  public fun textureResolveMultisample(
-    fromTexture: RID,
-    toTexture: RID,
-    postBarrier: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS,
-  ): GodotError {
-    TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, LONG to postBarrier.flag)
+  public fun textureResolveMultisample(fromTexture: RID, toTexture: RID): GodotError {
+    TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture)
     TransferContext.callMethod(rawPtr, MethodBindings.textureResolveMultisamplePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -696,43 +685,57 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
+   * Copies [size] bytes from the [srcBuffer] at [srcOffset] into [dstBuffer] at [dstOffset].
+   * Prints an error if:
+   * - [size] exceeds the size of either [srcBuffer] or [dstBuffer] at their corresponding offsets
+   * - a draw list is currently active (created by [drawListBegin])
+   * - a compute list is currently active (created by [computeListBegin])
+   */
+  public fun bufferCopy(
+    srcBuffer: RID,
+    dstBuffer: RID,
+    srcOffset: Long,
+    dstOffset: Long,
+    size: Long,
+  ): GodotError {
+    TransferContext.writeArguments(_RID to srcBuffer, _RID to dstBuffer, LONG to srcOffset, LONG to dstOffset, LONG to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.bufferCopyPtr, LONG)
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
    * Updates a region of [sizeBytes] bytes, starting at [offset], in the buffer, with the specified
-   * [data]. Raises a memory barrier except when [postBarrier] is set to [BARRIER_MASK_NO_BARRIER].
+   * [data].
    * Prints an error if:
    * - the region specified by [offset] + [sizeBytes] exceeds the buffer
    * - a draw list is currently active (created by [drawListBegin])
    * - a compute list is currently active (created by [computeListBegin])
    */
-  @JvmOverloads
   public fun bufferUpdate(
     buffer: RID,
     offset: Long,
     sizeBytes: Long,
     `data`: PackedByteArray,
-    postBarrier: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS,
   ): GodotError {
-    TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes, PACKED_BYTE_ARRAY to data, LONG to postBarrier.flag)
+    TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes, PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.bufferUpdatePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
-   * Clears the contents of the [buffer], clearing [sizeBytes] bytes, starting at [offset]. Always
-   * raises a memory barrier.
+   * Clears the contents of the [buffer], clearing [sizeBytes] bytes, starting at [offset].
    * Prints an error if:
    * - the size isn't a multiple of four
    * - the region specified by [offset] + [sizeBytes] exceeds the buffer
    * - a draw list is currently active (created by [drawListBegin])
    * - a compute list is currently active (created by [computeListBegin])
    */
-  @JvmOverloads
   public fun bufferClear(
     buffer: RID,
     offset: Long,
     sizeBytes: Long,
-    postBarrier: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS,
   ): GodotError {
-    TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes, LONG to postBarrier.flag)
+    TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes)
     TransferContext.callMethod(rawPtr, MethodBindings.bufferClearPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -843,13 +846,14 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Returns the screen's framebuffer format.
+   * Returns the framebuffer format of the given screen.
    * **Note:** Only the main [RenderingDevice] returned by [RenderingServer.getRenderingDevice] has
    * a format. If called on a local [RenderingDevice], this method prints an error and returns
    * [INVALID_ID].
    */
-  public fun screenGetFramebufferFormat(): Long {
-    TransferContext.writeArguments()
+  @JvmOverloads
+  public fun screenGetFramebufferFormat(screen: Int = 0): Long {
+    TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetFramebufferFormatPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
@@ -906,16 +910,14 @@ public open class RenderingDevice internal constructor() : Object() {
     clearDepth: Float = 1.0f,
     clearStencil: Long = 0,
     region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
-    storageTextures: VariantArray<RID> = godot.core.variantArrayOf(),
   ): Long {
-    TransferContext.writeArguments(_RID to framebuffer, LONG to initialColorAction.id, LONG to finalColorAction.id, LONG to initialDepthAction.id, LONG to finalDepthAction.id, PACKED_COLOR_ARRAY to clearColorValues, DOUBLE to clearDepth.toDouble(), LONG to clearStencil, RECT2 to region, ARRAY to storageTextures)
+    TransferContext.writeArguments(_RID to framebuffer, LONG to initialColorAction.id, LONG to finalColorAction.id, LONG to initialDepthAction.id, LONG to finalDepthAction.id, PACKED_COLOR_ARRAY to clearColorValues, DOUBLE to clearDepth.toDouble(), LONG to clearStencil, RECT2 to region)
     TransferContext.callMethod(rawPtr, MethodBindings.drawListBeginPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
-   * Variant of [drawListBegin] with support for multiple splits. The [splits] parameter determines
-   * how many splits are created.
+   * This method does nothing and always returns an empty [PackedInt64Array].
    */
   @JvmOverloads
   public fun drawListBeginSplit(
@@ -1034,8 +1036,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Switches to the next draw pass and returns the split's ID. Equivalent to
-   * [drawListSwitchToNextPassSplit] with `splits` set to `1`.
+   * Switches to the next draw pass.
    */
   public fun drawListSwitchToNextPass(): Long {
     TransferContext.writeArguments()
@@ -1044,9 +1045,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Switches to the next draw pass, with the number of splits allocated specified in [splits]. The
-   * return value is an array containing the ID of each split. For single-split usage, see
-   * [drawListSwitchToNextPass].
+   * This method does nothing and always returns an empty [PackedInt64Array].
    */
   public fun drawListSwitchToNextPassSplit(splits: Long): PackedInt64Array {
     TransferContext.writeArguments(LONG to splits)
@@ -1058,19 +1057,16 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Finishes a list of raster drawing commands created with the `draw_*` methods.
    */
-  @JvmOverloads
-  public fun drawListEnd(postBarrier: BarrierMask =
-      RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS): Unit {
-    TransferContext.writeArguments(LONG to postBarrier.flag)
+  public fun drawListEnd(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.drawListEndPtr, NIL)
   }
 
   /**
    * Starts a list of compute commands created with the `compute_*` methods. The returned value
    * should be passed to other `compute_list_*` functions.
-   * If [allowDrawOverlap] is `true`, you may have one draw list running at the same time as one
-   * compute list. Multiple compute lists cannot be created at the same time; you must finish the
-   * previous compute list first using [computeListEnd].
+   * Multiple compute lists cannot be created at the same time; you must finish the previous compute
+   * list first using [computeListEnd].
    * A simple compute operation might look like this (code is not a complete example):
    * [codeblock]
    * var rd = RenderingDevice.new()
@@ -1088,9 +1084,8 @@ public open class RenderingDevice internal constructor() : Object() {
    * rd.compute_list_end()
    * [/codeblock]
    */
-  @JvmOverloads
-  public fun computeListBegin(allowDrawOverlap: Boolean = false): Long {
-    TransferContext.writeArguments(BOOL to allowDrawOverlap)
+  public fun computeListBegin(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.computeListBeginPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
@@ -1148,6 +1143,20 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
+   * Submits the compute list for processing on the GPU with the given group counts stored in the
+   * [buffer] at [offset]. Buffer must have been created with [STORAGE_BUFFER_USAGE_DISPATCH_INDIRECT]
+   * flag.
+   */
+  public fun computeListDispatchIndirect(
+    computeList: Long,
+    buffer: RID,
+    offset: Long,
+  ): Unit {
+    TransferContext.writeArguments(LONG to computeList, _RID to buffer, LONG to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.computeListDispatchIndirectPtr, NIL)
+  }
+
+  /**
    * Raises a Vulkan compute barrier in the specified [computeList].
    */
   public fun computeListAddBarrier(computeList: Long): Unit {
@@ -1158,10 +1167,8 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Finishes a list of compute commands created with the `compute_*` methods.
    */
-  @JvmOverloads
-  public fun computeListEnd(postBarrier: BarrierMask =
-      RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS): Unit {
-    TransferContext.writeArguments(LONG to postBarrier.flag)
+  public fun computeListEnd(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.computeListEndPtr, NIL)
   }
 
@@ -1280,8 +1287,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Puts a memory barrier in place. This is used for synchronization to avoid data races. See also
-   * [fullBarrier], which may be useful for debugging.
+   * This method does nothing.
    */
   @JvmOverloads
   public fun barrier(from: BarrierMask = RenderingDevice.BarrierMask.BARRIER_MASK_ALL_BARRIERS,
@@ -1291,8 +1297,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Puts a *full* memory barrier in place. This is a memory [barrier] with all flags enabled.
-   * [fullBarrier] it should only be used for debugging as it can severely impact performance.
+   * This method does nothing.
    */
   public fun fullBarrier(): Unit {
     TransferContext.writeArguments()
@@ -1332,8 +1337,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * [drawCommandEndLabel] call. When viewed from the linear series of submissions to a single queue,
    * calls to [drawCommandBeginLabel] and [drawCommandEndLabel] must be matched and balanced.
    * The `VK_EXT_DEBUG_UTILS_EXTENSION_NAME` Vulkan extension must be available and enabled for
-   * command buffer debug label region to work. See also [drawCommandInsertLabel] and
-   * [drawCommandEndLabel].
+   * command buffer debug label region to work. See also [drawCommandEndLabel].
    */
   public fun drawCommandBeginLabel(name: String, color: Color): Unit {
     TransferContext.writeArguments(STRING to name, COLOR to color)
@@ -1341,8 +1345,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Inserts a command buffer debug label region in the current command buffer. Unlike
-   * [drawCommandBeginLabel], this region should not be ended with a [drawCommandEndLabel] call.
+   * This method does nothing.
    */
   public fun drawCommandInsertLabel(name: String, color: Color): Unit {
     TransferContext.writeArguments(STRING to name, COLOR to color)
@@ -1468,57 +1471,77 @@ public open class RenderingDevice internal constructor() : Object() {
     id: Long,
   ) {
     /**
-     * Vulkan device driver resource. This is a "global" resource and ignores the RID passed in
+     * Specific device object based on a physical device.
+     * - Vulkan: Vulkan device driver resource (`VkDevice`). (`rid` argument doesn't apply.)
      */
+    DRIVER_RESOURCE_LOGICAL_DEVICE(0),
+    /**
+     * Physical device the specific logical device is based on.
+     * - Vulkan: `VkDevice`. (`rid` argument doesn't apply.)
+     */
+    DRIVER_RESOURCE_PHYSICAL_DEVICE(1),
+    /**
+     * Top-most graphics API entry object.
+     * - Vulkan: `VkInstance`. (`rid` argument doesn't apply.)
+     */
+    DRIVER_RESOURCE_TOPMOST_OBJECT(2),
+    /**
+     * The main graphics-compute command queue.
+     * - Vulkan: `VkQueue`. (`rid` argument doesn't apply.)
+     */
+    DRIVER_RESOURCE_COMMAND_QUEUE(3),
+    /**
+     * The specific family the main queue belongs to.
+     * - Vulkan: the queue family index, an `uint32_t`. (`rid` argument doesn't apply.)
+     */
+    DRIVER_RESOURCE_QUEUE_FAMILY(4),
+    /**
+     * - Vulkan: `VkImage`.
+     */
+    DRIVER_RESOURCE_TEXTURE(5),
+    /**
+     * The view of an owned or shared texture.
+     * - Vulkan: `VkImageView`.
+     */
+    DRIVER_RESOURCE_TEXTURE_VIEW(6),
+    /**
+     * The native id of the data format of the texture.
+     * - Vulkan: `VkFormat`.
+     */
+    DRIVER_RESOURCE_TEXTURE_DATA_FORMAT(7),
+    /**
+     * - Vulkan: `VkSampler`.
+     */
+    DRIVER_RESOURCE_SAMPLER(8),
+    /**
+     * - Vulkan: `VkDescriptorSet`.
+     */
+    DRIVER_RESOURCE_UNIFORM_SET(9),
+    /**
+     * Buffer of any kind of (storage, vertex, etc.).
+     * - Vulkan: `VkBuffer`.
+     */
+    DRIVER_RESOURCE_BUFFER(10),
+    /**
+     * - Vulkan: `VkPipeline`.
+     */
+    DRIVER_RESOURCE_COMPUTE_PIPELINE(11),
+    /**
+     * - Vulkan: `VkPipeline`.
+     */
+    DRIVER_RESOURCE_RENDER_PIPELINE(12),
     DRIVER_RESOURCE_VULKAN_DEVICE(0),
-    /**
-     * Physical device (graphics card) driver resource.
-     */
     DRIVER_RESOURCE_VULKAN_PHYSICAL_DEVICE(1),
-    /**
-     * Vulkan instance driver resource.
-     */
     DRIVER_RESOURCE_VULKAN_INSTANCE(2),
-    /**
-     * Vulkan queue driver resource.
-     */
     DRIVER_RESOURCE_VULKAN_QUEUE(3),
-    /**
-     * Vulkan queue family index driver resource.
-     */
     DRIVER_RESOURCE_VULKAN_QUEUE_FAMILY_INDEX(4),
-    /**
-     * Vulkan image driver resource.
-     */
     DRIVER_RESOURCE_VULKAN_IMAGE(5),
-    /**
-     * Vulkan image view driver resource.
-     */
     DRIVER_RESOURCE_VULKAN_IMAGE_VIEW(6),
-    /**
-     * Vulkan image native texture format driver resource.
-     */
     DRIVER_RESOURCE_VULKAN_IMAGE_NATIVE_TEXTURE_FORMAT(7),
-    /**
-     * Vulkan sampler driver resource.
-     */
     DRIVER_RESOURCE_VULKAN_SAMPLER(8),
-    /**
-     * Vulkan [url=https://vkguide.dev/docs/chapter-4/descriptors/]descriptor set[/url] driver
-     * resource.
-     */
     DRIVER_RESOURCE_VULKAN_DESCRIPTOR_SET(9),
-    /**
-     * Vulkan buffer driver resource.
-     */
     DRIVER_RESOURCE_VULKAN_BUFFER(10),
-    /**
-     * Vulkan compute pipeline driver resource.
-     */
     DRIVER_RESOURCE_VULKAN_COMPUTE_PIPELINE(11),
-    /**
-     * Vulkan render pipeline driver resource.
-     */
     DRIVER_RESOURCE_VULKAN_RENDER_PIPELINE(12),
     ;
 
@@ -2287,15 +2310,14 @@ public open class RenderingDevice internal constructor() : Object() {
     DATA_FORMAT_BC5_SNORM_BLOCK(141),
     /**
      * VRAM-compressed unsigned red/green/blue channel data format with the floating-point value
-     * stored as-is. The format's precision is 8 bits of red channel and 8 bits of green channel. Using
-     * BC6H texture compression (also known as BPTC HDR).
+     * stored as-is. The format's precision is between 10 and 13 bits for the red/green/blue channels.
+     * Using BC6H texture compression (also known as BPTC HDR).
      */
     DATA_FORMAT_BC6H_UFLOAT_BLOCK(142),
     /**
      * VRAM-compressed signed red/green/blue channel data format with the floating-point value
-     * stored as-is. The format's precision is between 4 and 7 bits for the red/green/blue channels and
-     * between 0 and 8 bits for the alpha channel. Using BC7 texture compression (also known as BPTC
-     * HDR).
+     * stored as-is. The format's precision is between 10 and 13 bits for the red/green/blue channels.
+     * Using BC6H texture compression (also known as BPTC HDR).
      */
     DATA_FORMAT_BC6H_SFLOAT_BLOCK(143),
     /**
@@ -2352,7 +2374,7 @@ public open class RenderingDevice internal constructor() : Object() {
     DATA_FORMAT_EAC_R11_UNORM_BLOCK(152),
     /**
      * 11-bit VRAM-compressed signed red channel data format with normalized value. Values are in
-     * the `[0.0, 1.0]` range. Using ETC2 texture compression.
+     * the `[-1.0, 1.0]` range. Using ETC2 texture compression.
      */
     DATA_FORMAT_EAC_R11_SNORM_BLOCK(153),
     /**
@@ -2362,7 +2384,7 @@ public open class RenderingDevice internal constructor() : Object() {
     DATA_FORMAT_EAC_R11G11_UNORM_BLOCK(154),
     /**
      * 11-bit VRAM-compressed signed red/green channel data format with normalized value. Values are
-     * in the `[0.0, 1.0]` range. Using ETC2 texture compression.
+     * in the `[-1.0, 1.0]` range. Using ETC2 texture compression.
      */
     DATA_FORMAT_EAC_R11G11_SNORM_BLOCK(155),
     /**
@@ -3957,37 +3979,27 @@ public open class RenderingDevice internal constructor() : Object() {
     id: Long,
   ) {
     /**
-     * Start rendering and clear the whole framebuffer.
+     * Load the previous contents of the framebuffer.
      */
-    INITIAL_ACTION_CLEAR(0),
+    INITIAL_ACTION_LOAD(0),
     /**
-     * Start rendering and clear the framebuffer in the specified region.
+     * Clear the whole framebuffer or its specified region.
      */
-    INITIAL_ACTION_CLEAR_REGION(1),
+    INITIAL_ACTION_CLEAR(1),
     /**
-     * Continue rendering and clear the framebuffer in the specified region. Framebuffer must have
-     * been left in [FINAL_ACTION_CONTINUE] state as the final action previously.
+     * Ignore the previous contents of the framebuffer. This is the fastest option if you'll
+     * overwrite all of the pixels and don't need to read any of them.
      */
-    INITIAL_ACTION_CLEAR_REGION_CONTINUE(2),
-    /**
-     * Start rendering, but keep attached color texture contents. If the framebuffer was previously
-     * used to read in a shader, this will automatically insert a layout transition.
-     */
-    INITIAL_ACTION_KEEP(3),
-    /**
-     * Start rendering, ignore what is there; write above it. In general, this is the fastest option
-     * when you will be writing every single pixel and you don't need a clear color.
-     */
-    INITIAL_ACTION_DROP(4),
-    /**
-     * Continue rendering. Framebuffer must have been left in [FINAL_ACTION_CONTINUE] state as the
-     * final action previously.
-     */
-    INITIAL_ACTION_CONTINUE(5),
+    INITIAL_ACTION_DISCARD(2),
     /**
      * Represents the size of the [InitialAction] enum.
      */
-    INITIAL_ACTION_MAX(6),
+    INITIAL_ACTION_MAX(3),
+    INITIAL_ACTION_CLEAR_REGION(1),
+    INITIAL_ACTION_CLEAR_REGION_CONTINUE(1),
+    INITIAL_ACTION_KEEP(0),
+    INITIAL_ACTION_DROP(2),
+    INITIAL_ACTION_CONTINUE(0),
     ;
 
     public val id: Long
@@ -4004,24 +4016,20 @@ public open class RenderingDevice internal constructor() : Object() {
     id: Long,
   ) {
     /**
-     * Store the texture for reading and make it read-only if it has the
-     * [TEXTURE_USAGE_SAMPLING_BIT] bit (only applies to color, depth and stencil attachments).
+     * Store the result of the draw list in the framebuffer. This is generally what you want to do.
      */
-    FINAL_ACTION_READ(0),
+    FINAL_ACTION_STORE(0),
     /**
-     * Discard the texture data and make it read-only if it has the [TEXTURE_USAGE_SAMPLING_BIT] bit
-     * (only applies to color, depth and stencil attachments).
+     * Discard the contents of the framebuffer. This is the fastest option if you don't need to use
+     * the results of the draw list.
      */
     FINAL_ACTION_DISCARD(1),
     /**
-     * Store the texture and continue for further processing. Similar to [FINAL_ACTION_READ], but
-     * does not make the texture read-only if it has the [TEXTURE_USAGE_SAMPLING_BIT] bit.
-     */
-    FINAL_ACTION_CONTINUE(2),
-    /**
      * Represents the size of the [FinalAction] enum.
      */
-    FINAL_ACTION_MAX(3),
+    FINAL_ACTION_MAX(2),
+    FINAL_ACTION_READ(0),
+    FINAL_ACTION_CONTINUE(0),
     ;
 
     public val id: Long
@@ -4481,6 +4489,9 @@ public open class RenderingDevice internal constructor() : Object() {
     public val uniformSetIsValidPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "uniform_set_is_valid")
 
+    public val bufferCopyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "buffer_copy")
+
     public val bufferUpdatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "buffer_update")
 
@@ -4570,6 +4581,9 @@ public open class RenderingDevice internal constructor() : Object() {
 
     public val computeListDispatchPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "compute_list_dispatch")
+
+    public val computeListDispatchIndirectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "compute_list_dispatch_indirect")
 
     public val computeListAddBarrierPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "compute_list_add_barrier")

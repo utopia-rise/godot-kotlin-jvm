@@ -9,12 +9,15 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.TypeManager
+import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -52,6 +55,85 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, MethodBindings.setPlayModePtr, NIL)
+    }
+
+  /**
+   * If `true`, [AnimationNode] provides an animation based on the [Animation] resource with some
+   * parameters adjusted.
+   */
+  public var useCustomTimeline: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isUsingCustomTimelinePtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseCustomTimelinePtr, NIL)
+    }
+
+  /**
+   * If [useCustomTimeline] is `true`, offset the start position of the animation.
+   */
+  public var timelineLength: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getTimelineLengthPtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTimelineLengthPtr, NIL)
+    }
+
+  /**
+   * If `true`, scales the time so that the length specified in [timelineLength] is one cycle.
+   * This is useful for matching the periods of walking and running animations.
+   * If `false`, the original animation length is respected. If you set the loop to [loopMode], the
+   * animation will loop in [timelineLength].
+   */
+  public var stretchTimeScale: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isStretchingTimeScalePtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setStretchTimeScalePtr, NIL)
+    }
+
+  /**
+   * If [useCustomTimeline] is `true`, offset the start position of the animation.
+   * This is useful for adjusting which foot steps first in 3D walking animations.
+   */
+  public var startOffset: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getStartOffsetPtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setStartOffsetPtr, NIL)
+    }
+
+  /**
+   * If [useCustomTimeline] is `true`, override the loop settings of the original [Animation]
+   * resource with the value.
+   * **Note:** If the [Animation.loopMode] isn't set to looping, the
+   * [Animation.trackSetInterpolationLoopWrap] option will not be respected. If you cannot get the
+   * expected behavior, consider duplicating the [Animation] resource and changing the loop settings.
+   */
+  public var loopMode: Animation.LoopMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getLoopModePtr, LONG)
+      return Animation.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLoopModePtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -96,5 +178,35 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
 
     public val getPlayModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_play_mode")
+
+    public val setUseCustomTimelinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_use_custom_timeline")
+
+    public val isUsingCustomTimelinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "is_using_custom_timeline")
+
+    public val setTimelineLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_timeline_length")
+
+    public val getTimelineLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_timeline_length")
+
+    public val setStretchTimeScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_stretch_time_scale")
+
+    public val isStretchingTimeScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "is_stretching_time_scale")
+
+    public val setStartOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_start_offset")
+
+    public val getStartOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_start_offset")
+
+    public val setLoopModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_loop_mode")
+
+    public val getLoopModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_loop_mode")
   }
 }

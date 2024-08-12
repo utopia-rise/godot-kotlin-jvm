@@ -6,16 +6,22 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.Rect2
 import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
+import godot.core.VariantType.RECT2
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This is a generic mobile VR implementation where you need to provide details about the phone and
@@ -27,7 +33,7 @@ import kotlin.Suppress
  * [codeblock]
  * var interface = XRServer.find_interface("Native mobile")
  * if interface and interface.initialize():
- *     get_viewport().xr = true
+ *     get_viewport().use_xr = true
  * [/codeblock]
  */
 @GodotBaseType
@@ -90,6 +96,22 @@ public open class MobileVRInterface : XRInterface() {
     }
 
   /**
+   * Set the offset rect relative to the area being rendered. A length of 1 represents the whole
+   * rendering area on that axis.
+   */
+  @CoreTypeLocalCopy
+  public var offsetRect: Rect2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getOffsetRectPtr, RECT2)
+      return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(RECT2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOffsetRectPtr, NIL)
+    }
+
+  /**
    * The oversample setting. Because of the lens distortion we have to render our buffers at a
    * higher resolution then the screen can natively handle. A value between 1.5 and 2.0 often provides
    * good results but at the cost of performance.
@@ -134,10 +156,69 @@ public open class MobileVRInterface : XRInterface() {
       TransferContext.callMethod(rawPtr, MethodBindings.setK2Ptr, NIL)
     }
 
+  /**
+   * The minimum radius around the focal point where full quality is guaranteed if VRS is used as a
+   * percentage of screen size.
+   * **Note:** Mobile and Forward+ renderers only. Requires [Viewport.vrsMode] to be set to
+   * [Viewport.VRS_XR].
+   */
+  public var vrsMinRadius: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getVrsMinRadiusPtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, MethodBindings.setVrsMinRadiusPtr, NIL)
+    }
+
+  /**
+   * The strength used to calculate the VRS density map. The greater this value, the more noticeable
+   * VRS is. This improves performance at the cost of quality.
+   * **Note:** Mobile and Forward+ renderers only. Requires [Viewport.vrsMode] to be set to
+   * [Viewport.VRS_XR].
+   */
+  public var vrsStrength: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getVrsStrengthPtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, MethodBindings.setVrsStrengthPtr, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_MOBILEVRINTERFACE, scriptIndex)
     return true
   }
+
+  /**
+   * Set the offset rect relative to the area being rendered. A length of 1 represents the whole
+   * rendering area on that axis.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = mobilevrinterface.offsetRect
+   * //Your changes
+   * mobilevrinterface.offsetRect = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun offsetRectMutate(block: Rect2.() -> Unit): Rect2 = offsetRect.apply{
+      block(this)
+      offsetRect = this
+  }
+
 
   public companion object
 
@@ -164,6 +245,12 @@ public open class MobileVRInterface : XRInterface() {
     public val getDisplayToLensPtr: VoidPtr =
         TypeManager.getMethodBindPtr("MobileVRInterface", "get_display_to_lens")
 
+    public val setOffsetRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_offset_rect")
+
+    public val getOffsetRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_offset_rect")
+
     public val setOversamplePtr: VoidPtr =
         TypeManager.getMethodBindPtr("MobileVRInterface", "set_oversample")
 
@@ -177,5 +264,17 @@ public open class MobileVRInterface : XRInterface() {
     public val setK2Ptr: VoidPtr = TypeManager.getMethodBindPtr("MobileVRInterface", "set_k2")
 
     public val getK2Ptr: VoidPtr = TypeManager.getMethodBindPtr("MobileVRInterface", "get_k2")
+
+    public val getVrsMinRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_vrs_min_radius")
+
+    public val setVrsMinRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_vrs_min_radius")
+
+    public val getVrsStrengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_vrs_strength")
+
+    public val setVrsStrengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_vrs_strength")
   }
 }

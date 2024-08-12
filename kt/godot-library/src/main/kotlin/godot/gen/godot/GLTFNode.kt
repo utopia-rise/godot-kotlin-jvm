@@ -19,6 +19,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.QUATERNION
+import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR3
@@ -29,6 +30,7 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -41,6 +43,20 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class GLTFNode : Resource() {
+  /**
+   * The original name of the node.
+   */
+  public var originalName: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getOriginalNamePtr, STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setOriginalNamePtr, NIL)
+    }
+
   /**
    * The index of the parent node in the [GLTFState]. If -1, this node is a root node.
    */
@@ -350,6 +366,12 @@ public open class GLTFNode : Resource() {
   public companion object
 
   internal object MethodBindings {
+    public val getOriginalNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "get_original_name")
+
+    public val setOriginalNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "set_original_name")
+
     public val getParentPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_parent")
 
     public val setParentPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_parent")

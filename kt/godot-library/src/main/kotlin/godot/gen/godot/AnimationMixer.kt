@@ -39,6 +39,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * Base class for [AnimationPlayer] and [AnimationTree] to manage animation lists. It also has
@@ -48,12 +49,6 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AnimationMixer internal constructor() : Node() {
-  /**
-   * Editor only. Notifies when the property have been updated to update dummy [AnimationPlayer] in
-   * animation player editor.
-   */
-  public val mixerUpdated: Signal0 by signal()
-
   /**
    * Notifies when an animation list is changed.
    */
@@ -80,6 +75,16 @@ public open class AnimationMixer internal constructor() : Node() {
    * [clearCaches].
    */
   public val cachesCleared: Signal0 by signal()
+
+  /**
+   * Notifies when the blending result related have been applied to the target objects.
+   */
+  public val mixerApplied: Signal0 by signal()
+
+  /**
+   * Notifies when the property related process have been updated.
+   */
+  public val mixerUpdated: Signal0 by signal()
 
   /**
    * If `true`, the [AnimationMixer] will be processing.
@@ -141,7 +146,7 @@ public open class AnimationMixer internal constructor() : Node() {
     }
 
   /**
-   * The node from which node path references will travel.
+   * The node which node path references will travel from.
    */
   public var rootNode: NodePath
     get() {
@@ -157,13 +162,12 @@ public open class AnimationMixer internal constructor() : Node() {
   /**
    * The path to the Animation track used for root motion. Paths must be valid scene-tree paths to a
    * node, and must be specified starting from the parent node of the node that will reproduce the
-   * animation. To specify a track that controls properties or bones, append its name after the path,
-   * separated by `":"`. For example, `"character/skeleton:ankle"` or
-   * `"character/mesh:transform/local"`.
-   * If the track has type [Animation.TYPE_POSITION_3D], [Animation.TYPE_ROTATION_3D] or
+   * animation. The [rootMotionTrack] uses the same format as [Animation.trackSetPath], but note that a
+   * bone must be specified.
+   * If the track has type [Animation.TYPE_POSITION_3D], [Animation.TYPE_ROTATION_3D], or
    * [Animation.TYPE_SCALE_3D] the transformation will be canceled visually, and the animation will
    * appear to stay in place. See also [getRootMotionPosition], [getRootMotionRotation],
-   * [getRootMotionScale] and [RootMotionView].
+   * [getRootMotionScale], and [RootMotionView].
    */
   public var rootMotionTrack: NodePath
     get() {
@@ -207,7 +211,7 @@ public open class AnimationMixer internal constructor() : Node() {
     }
 
   /**
-   * The call mode to use for Call Method tracks.
+   * The call mode used for "Call Method" tracks.
    */
   public var callbackModeMethod: AnimationCallbackModeMethod
     get() {
@@ -220,26 +224,55 @@ public open class AnimationMixer internal constructor() : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCallbackModeMethodPtr, NIL)
     }
 
+  /**
+   * Ordinarily, tracks can be set to [Animation.UPDATE_DISCRETE] to update infrequently, usually
+   * when using nearest interpolation.
+   * However, when blending with [Animation.UPDATE_CONTINUOUS] several results are considered. The
+   * [callbackModeDiscrete] specify it explicitly. See also [AnimationCallbackModeDiscrete].
+   * To make the blended results look good, it is recommended to set this to
+   * [ANIMATION_CALLBACK_MODE_DISCRETE_FORCE_CONTINUOUS] to update every frame during blending. Other
+   * values exist for compatibility and they are fine if there is no blending, but not so, may produce
+   * artifacts.
+   */
+  public var callbackModeDiscrete: AnimationCallbackModeDiscrete
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getCallbackModeDiscretePtr, LONG)
+      return AnimationMixer.AnimationCallbackModeDiscrete.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCallbackModeDiscretePtr, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_ANIMATIONMIXER, scriptIndex)
     return true
   }
 
   /**
-   * A virtual function for processing after key getting during playback.
+   * A virtual function for processing after getting a key during playback.
    */
   public open fun _postProcessKeyValue(
     animation: Animation,
     track: Int,
     `value`: Any?,
-    _object: Object,
-    objectIdx: Int,
+    objectId: Long,
+    objectSubIdx: Int,
   ): Any? {
     throw NotImplementedError("_post_process_key_value is not implemented for AnimationMixer")
   }
 
   /**
    * Adds [library] to the animation player, under the key [name].
+   * AnimationMixer has a global library by default with an empty string as key. For adding an
+   * animation to the global library:
+   *
+   * gdscript:
+   * ```gdscript
+   * var global_library = mixer.get_animation_library("")
+   * global_library.add_animation("animation_name", animation_resource)
+   * ```
    */
   public fun addAnimationLibrary(name: StringName, library: AnimationLibrary): GodotError {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to library)
@@ -264,7 +297,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Returns `true` if the [AnimationPlayer] stores an [AnimationLibrary] with key [name].
+   * Returns `true` if the [AnimationMixer] stores an [AnimationLibrary] with key [name].
    */
   public fun hasAnimationLibrary(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -274,7 +307,7 @@ public open class AnimationMixer internal constructor() : Node() {
 
   /**
    * Returns the first [AnimationLibrary] with key [name] or `null` if not found.
-   * To get the [AnimationPlayer]'s global animation library, use `get_animation_library("")`.
+   * To get the [AnimationMixer]'s global animation library, use `get_animation_library("")`.
    */
   public fun getAnimationLibrary(name: StringName): AnimationLibrary? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -292,7 +325,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   /**
-   * Returns `true` if the [AnimationPlayer] stores an [Animation] with key [name].
+   * Returns `true` if the [AnimationMixer] stores an [Animation] with key [name].
    */
   public fun hasAnimation(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -463,11 +496,11 @@ public open class AnimationMixer internal constructor() : Node() {
    *     if Input.is_action_just_pressed("animate"):
    *         state_machine.travel("Animate")
    *     var current_root_motion_rotation_accumulator: Quaternion =
-   * animation_tree.get_root_motion_Quaternion_accumulator()
+   * animation_tree.get_root_motion_rotation_accumulator()
    *     var difference: Quaternion = prev_root_motion_rotation_accumulator.inverse() *
    * current_root_motion_rotation_accumulator
    *     prev_root_motion_rotation_accumulator = current_root_motion_rotation_accumulator
-   *     transform.basis *= difference
+   *     transform.basis *=  Basis(difference)
    * ```
    *
    * However, if the animation loops, an unintended discrete change may occur, so this is only
@@ -526,6 +559,28 @@ public open class AnimationMixer internal constructor() : Node() {
   public fun advance(delta: Double): Unit {
     TransferContext.writeArguments(DOUBLE to delta)
     TransferContext.callMethod(rawPtr, MethodBindings.advancePtr, NIL)
+  }
+
+  /**
+   * If the animation track specified by [name] has an option [Animation.UPDATE_CAPTURE], stores
+   * current values of the objects indicated by the track path as a cache. If there is already a
+   * captured cache, the old cache is discarded.
+   * After this it will interpolate with current animation blending result during the playback
+   * process for the time specified by [duration], working like a crossfade.
+   * You can specify [transType] as the curve for the interpolation. For better results, it may be
+   * appropriate to specify [Tween.TRANS_LINEAR] for cases where the first key of the track begins with
+   * a non-zero value or where the key value does not change, and [Tween.TRANS_QUAD] for cases where
+   * the key value changes linearly.
+   */
+  @JvmOverloads
+  public fun capture(
+    name: StringName,
+    duration: Double,
+    transType: Tween.TransitionType = Tween.TransitionType.TRANS_LINEAR,
+    easeType: Tween.EaseType = Tween.EaseType.EASE_IN,
+  ): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, DOUBLE to duration, LONG to transType.id, LONG to easeType.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.capturePtr, NIL)
   }
 
   /**
@@ -600,6 +655,41 @@ public open class AnimationMixer internal constructor() : Node() {
     }
   }
 
+  public enum class AnimationCallbackModeDiscrete(
+    id: Long,
+  ) {
+    /**
+     * An [Animation.UPDATE_DISCRETE] track value takes precedence when blending
+     * [Animation.UPDATE_CONTINUOUS] or [Animation.UPDATE_CAPTURE] track values and
+     * [Animation.UPDATE_DISCRETE] track values.
+     */
+    ANIMATION_CALLBACK_MODE_DISCRETE_DOMINANT(0),
+    /**
+     * An [Animation.UPDATE_CONTINUOUS] or [Animation.UPDATE_CAPTURE] track value takes precedence
+     * when blending the [Animation.UPDATE_CONTINUOUS] or [Animation.UPDATE_CAPTURE] track values and
+     * the [Animation.UPDATE_DISCRETE] track values. This is the default behavior for
+     * [AnimationPlayer].
+     */
+    ANIMATION_CALLBACK_MODE_DISCRETE_RECESSIVE(1),
+    /**
+     * Always treat the [Animation.UPDATE_DISCRETE] track value as [Animation.UPDATE_CONTINUOUS]
+     * with [Animation.INTERPOLATION_NEAREST]. This is the default behavior for [AnimationTree].
+     * If a value track has non-numeric type key values, it is internally converted to use
+     * [ANIMATION_CALLBACK_MODE_DISCRETE_RECESSIVE] with [Animation.UPDATE_DISCRETE].
+     */
+    ANIMATION_CALLBACK_MODE_DISCRETE_FORCE_CONTINUOUS(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
+  }
+
   public companion object
 
   internal object MethodBindings {
@@ -661,6 +751,12 @@ public open class AnimationMixer internal constructor() : Node() {
     public val getCallbackModeMethodPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationMixer", "get_callback_mode_method")
 
+    public val setCallbackModeDiscretePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "set_callback_mode_discrete")
+
+    public val getCallbackModeDiscretePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_callback_mode_discrete")
+
     public val setAudioMaxPolyphonyPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationMixer", "set_audio_max_polyphony")
 
@@ -695,6 +791,8 @@ public open class AnimationMixer internal constructor() : Node() {
         TypeManager.getMethodBindPtr("AnimationMixer", "clear_caches")
 
     public val advancePtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationMixer", "advance")
+
+    public val capturePtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationMixer", "capture")
 
     public val setResetOnSaveEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationMixer", "set_reset_on_save_enabled")

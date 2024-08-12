@@ -260,6 +260,26 @@ public open class VisualShader : Shader() {
   }
 
   /**
+   * Attaches the given node to the given frame.
+   */
+  public fun attachNodeToFrame(
+    type: Type,
+    id: Int,
+    frame: Int,
+  ): Unit {
+    TransferContext.writeArguments(LONG to type.id, LONG to id.toLong(), LONG to frame.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.attachNodeToFramePtr, NIL)
+  }
+
+  /**
+   * Detaches the given node from the frame it is attached to.
+   */
+  public fun detachNodeFromFrame(type: Type, id: Int): Unit {
+    TransferContext.writeArguments(LONG to type.id, LONG to id.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.detachNodeFromFramePtr, NIL)
+  }
+
+  /**
    * Adds a new varying value node to the shader.
    */
   public fun addVarying(
@@ -428,12 +448,12 @@ public open class VisualShader : Shader() {
 
   public companion object {
     /**
-     * Denotes invalid [VisualShader] node.
+     * Indicates an invalid [VisualShader] node.
      */
     public final const val NODE_ID_INVALID: Long = -1
 
     /**
-     * Denotes output node of [VisualShader].
+     * Indicates an output node of [VisualShader].
      */
     public final const val NODE_ID_OUTPUT: Long = 0
   }
@@ -485,6 +505,12 @@ public open class VisualShader : Shader() {
 
     public val getGraphOffsetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("VisualShader", "get_graph_offset")
+
+    public val attachNodeToFramePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "attach_node_to_frame")
+
+    public val detachNodeFromFramePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "detach_node_from_frame")
 
     public val addVaryingPtr: VoidPtr = TypeManager.getMethodBindPtr("VisualShader", "add_varying")
 

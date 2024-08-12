@@ -161,7 +161,7 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Direct access to the 3x3 basis of the [transform] property.
+   * Basis of the [transform] property. Represents the rotation, scale, and shear of this node.
    */
   @CoreTypeLocalCopy
   public var basis: Basis
@@ -500,7 +500,7 @@ public open class Node3D : Node() {
 
 
   /**
-   * Direct access to the 3x3 basis of the [transform] property.
+   * Basis of the [transform] property. Represents the rotation, scale, and shear of this node.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

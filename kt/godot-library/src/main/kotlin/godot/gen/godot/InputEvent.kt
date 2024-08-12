@@ -38,8 +38,8 @@ import kotlin.jvm.JvmOverloads
 public open class InputEvent internal constructor() : Resource() {
   /**
    * The event's device ID.
-   * **Note:** This device ID will always be `-1` for emulated mouse input from a touchscreen. This
-   * can be used to distinguish emulated mouse input from physical mouse input.
+   * **Note:** [device] can be negative for special use cases that don't refer to devices physically
+   * present on the system. See [DEVICE_ID_EMULATION].
    */
   public var device: Int
     get() {
@@ -151,7 +151,13 @@ public open class InputEvent internal constructor() : Resource() {
 
   /**
    * Returns `true` if this input event is an echo event (only for events of type [InputEventKey]).
-   * Any other event type returns `false`.
+   * An echo event is a repeated key event sent when the user is holding down the key. Any other event
+   * type returns `false`.
+   * **Note:** The rate at which echo events are sent is typically around 20 events per second
+   * (after holding down the key for roughly half a second). However, the key repeat delay/speed can be
+   * changed by the user or disabled entirely in the operating system settings. To ensure your project
+   * works correctly on all configurations, do not assume the user has a specific key repeat
+   * configuration in your project's behavior.
    */
   public fun isEcho(): Boolean {
     TransferContext.writeArguments()
@@ -216,7 +222,14 @@ public open class InputEvent internal constructor() : Resource() {
     return (TransferContext.readReturnValue(OBJECT, true) as InputEvent?)
   }
 
-  public companion object
+  public companion object {
+    /**
+     * Device ID used for emulated mouse input from a touchscreen, or for emulated touch input from
+     * a mouse. This can be used to distinguish emulated mouse input from physical mouse input, or
+     * emulated touch input from physical touch input.
+     */
+    public final const val DEVICE_ID_EMULATION: Long = -1
+  }
 
   internal object MethodBindings {
     public val setDevicePtr: VoidPtr = TypeManager.getMethodBindPtr("InputEvent", "set_device")

@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Dictionary
 import godot.core.PackedStringArray
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -19,6 +21,7 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
 import godot.util.VoidPtr
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -80,9 +83,9 @@ public open class FileDialog : ConfirmationDialog() {
 
   /**
    * The file system access scope. See [Access] constants.
-   * **Warning:** Currently, in sandboxed environments such as Web builds or sandboxed macOS apps,
-   * FileDialog cannot access the host file system. See
-   * [url=https://github.com/godotengine/godot-proposals/issues/1123]godot-proposals#1123[/url].
+   * **Warning:** In Web builds, FileDialog cannot access the host file system. In sandboxed Linux
+   * and macOS environments, [useNativeDialog] is automatically used to allow limited access to host
+   * file system.
    */
   public var access: Access
     get() {
@@ -98,6 +101,7 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * If non-empty, the given sub-folder will be "root" of this [FileDialog], i.e. user won't be able
    * to go to its parent directory.
+   * **Note:** This property is ignored by native file dialogs.
    */
   public var rootSubfolder: String
     get() {
@@ -111,10 +115,8 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
-   * The available file type filters. For example, this shows only `.png` and `.gd` files:
-   * `set_filters(PackedStringArray(["*.png ; PNG Images","*.gd ; GDScript Files"]))`. Multiple file
-   * types can also be specified in a single filter. `"*.png, *.jpg, *.jpeg ; Supported Images"` will
-   * show both PNG and JPEG files when selected.
+   * The available file type filters. Each filter string in the array should be formatted like this:
+   * `*.txt,*.doc;Text Files`. The description text of the filter is optional and can be omitted.
    */
   public var filters: PackedStringArray
     get() {
@@ -128,7 +130,22 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
+   * The number of additional [OptionButton]s and [CheckBox]es in the dialog.
+   */
+  public var optionCount: Int
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getOptionCountPtr, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, MethodBindings.setOptionCountPtr, NIL)
+    }
+
+  /**
    * If `true`, the dialog will show hidden files.
+   * **Note:** This property is ignored by native file dialogs on Linux.
    */
   public var showHiddenFiles: Boolean
     get() {
@@ -144,7 +161,13 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * If `true`, [access] is set to [ACCESS_FILESYSTEM], and it is supported by the current
    * [DisplayServer], OS native dialog will be used instead of custom one.
-   * **Note:** On macOS, sandboxed apps always use native dialogs to access host filesystem.
+   * **Note:** On Linux and macOS, sandboxed apps always use native dialogs to access the host file
+   * system.
+   * **Note:** On macOS, sandboxed apps will save security-scoped bookmarks to retain access to the
+   * opened folders across multiple sessions. Use [OS.getGrantedPermissions] to get a list of saved
+   * bookmarks.
+   * **Note:** Native dialogs are isolated from the base process, file dialog properties can't be
+   * modified once the dialog is shown.
    */
   public var useNativeDialog: Boolean
     get() {
@@ -159,6 +182,8 @@ public open class FileDialog : ConfirmationDialog() {
 
   /**
    * The current working directory of the file dialog.
+   * **Note:** For native file dialogs, this property is only treated as a hint and may not be
+   * respected by specific OS implementations.
    */
   public var currentDir: String
     get() {
@@ -227,9 +252,87 @@ public open class FileDialog : ConfirmationDialog() {
   }
 
   /**
+   * Returns the name of the [OptionButton] or [CheckBox] with index [option].
+   */
+  public fun getOptionName(option: Int): String {
+    TransferContext.writeArguments(LONG to option.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.getOptionNamePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  /**
+   * Returns an array of values of the [OptionButton] with index [option].
+   */
+  public fun getOptionValues(option: Int): PackedStringArray {
+    TransferContext.writeArguments(LONG to option.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.getOptionValuesPtr, PACKED_STRING_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+  }
+
+  /**
+   * Returns the default value index of the [OptionButton] or [CheckBox] with index [option].
+   */
+  public fun getOptionDefault(option: Int): Int {
+    TransferContext.writeArguments(LONG to option.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.getOptionDefaultPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  /**
+   * Sets the name of the [OptionButton] or [CheckBox] with index [option].
+   */
+  public fun setOptionName(option: Int, name: String): Unit {
+    TransferContext.writeArguments(LONG to option.toLong(), STRING to name)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOptionNamePtr, NIL)
+  }
+
+  /**
+   * Sets the option values of the [OptionButton] with index [option].
+   */
+  public fun setOptionValues(option: Int, values: PackedStringArray): Unit {
+    TransferContext.writeArguments(LONG to option.toLong(), PACKED_STRING_ARRAY to values)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOptionValuesPtr, NIL)
+  }
+
+  /**
+   * Sets the default value index of the [OptionButton] or [CheckBox] with index [option].
+   */
+  public fun setOptionDefault(option: Int, defaultValueIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to option.toLong(), LONG to defaultValueIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setOptionDefaultPtr, NIL)
+  }
+
+  /**
+   * Adds an additional [OptionButton] to the file dialog. If [values] is empty, a [CheckBox] is
+   * added instead.
+   * [defaultValueIndex] should be an index of the value in the [values]. If [values] is empty it
+   * should be either `1` (checked), or `0` (unchecked).
+   */
+  public fun addOption(
+    name: String,
+    values: PackedStringArray,
+    defaultValueIndex: Int,
+  ): Unit {
+    TransferContext.writeArguments(STRING to name, PACKED_STRING_ARRAY to values, LONG to defaultValueIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.addOptionPtr, NIL)
+  }
+
+  /**
+   * Returns a [Dictionary] with the selected values of the additional [OptionButton]s and/or
+   * [CheckBox]es. [Dictionary] keys are names and values are selected value indices.
+   */
+  public fun getSelectedOptions(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSelectedOptionsPtr, DICTIONARY)
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+  }
+
+  /**
    * Returns the vertical box container of the dialog, custom controls can be added to it.
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
+   * **Note:** Changes to this node are ignored by native file dialogs, use [addOption] to add
+   * custom elements to the dialog instead.
    */
   public fun getVbox(): VBoxContainer? {
     TransferContext.writeArguments()
@@ -258,6 +361,7 @@ public open class FileDialog : ConfirmationDialog() {
 
   /**
    * Invalidate and update the current dialog content list.
+   * **Note:** This method does nothing on native file dialogs.
    */
   public fun invalidate(): Unit {
     TransferContext.writeArguments()
@@ -337,6 +441,35 @@ public open class FileDialog : ConfirmationDialog() {
     public val setFiltersPtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "set_filters")
 
     public val getFiltersPtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "get_filters")
+
+    public val getOptionNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "get_option_name")
+
+    public val getOptionValuesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "get_option_values")
+
+    public val getOptionDefaultPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "get_option_default")
+
+    public val setOptionNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "set_option_name")
+
+    public val setOptionValuesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "set_option_values")
+
+    public val setOptionDefaultPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "set_option_default")
+
+    public val setOptionCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "set_option_count")
+
+    public val getOptionCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "get_option_count")
+
+    public val addOptionPtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "add_option")
+
+    public val getSelectedOptionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "get_selected_options")
 
     public val getCurrentDirPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileDialog", "get_current_dir")

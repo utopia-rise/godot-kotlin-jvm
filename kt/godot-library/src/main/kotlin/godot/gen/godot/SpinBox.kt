@@ -25,7 +25,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * [SpinBox] is a numerical input text field. It allows entering integers and floating point
+ * [SpinBox] is a numerical input text field. It allows entering integers and floating-point
  * numbers.
  * **Example:**
  *

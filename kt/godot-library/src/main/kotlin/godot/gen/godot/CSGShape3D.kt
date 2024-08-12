@@ -51,7 +51,8 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
 
   /**
    * Snap makes the mesh vertices snap to a given distance so that the faces of two meshes can be
-   * perfectly aligned. A lower value results in greater precision but may be harder to adjust.
+   * perfectly aligned. A lower value results in greater precision but may be harder to adjust. The
+   * top-level CSG shape's snap value is used for the entire CSG tree.
    */
   public var snap: Float
     get() {

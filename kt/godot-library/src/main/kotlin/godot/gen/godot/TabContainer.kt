@@ -90,6 +90,7 @@ public open class TabContainer : Container() {
   /**
    * The current tab index. When set, this index's [Control] node's `visible` property is set to
    * `true` and all others are set to `false`.
+   * A value of `-1` means that no tab is selected.
    */
   public var currentTab: Int
     get() {
@@ -100,6 +101,20 @@ public open class TabContainer : Container() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, MethodBindings.setCurrentTabPtr, NIL)
+    }
+
+  /**
+   * Sets the position of the tab bar. See [TabPosition] for details.
+   */
+  public var tabsPosition: TabPosition
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getTabsPositionPtr, LONG)
+      return TabContainer.TabPosition.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTabsPositionPtr, NIL)
     }
 
   /**
@@ -205,6 +220,22 @@ public open class TabContainer : Container() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTabFocusModePtr, NIL)
     }
 
+  /**
+   * If `true`, all tabs can be deselected so that no tab is selected. Click on the [currentTab] to
+   * deselect it.
+   * Only the tab header will be shown if no tabs are selected.
+   */
+  public var deselectEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getDeselectEnabledPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDeselectEnabledPtr, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_TABCONTAINER, scriptIndex)
     return true
@@ -297,6 +328,26 @@ public open class TabContainer : Container() {
   }
 
   /**
+   * Sets a custom tooltip text for tab at index [tabIdx].
+   * **Note:** By default, if the [tooltip] is empty and the tab text is truncated (not all
+   * characters fit into the tab), the title will be displayed as a tooltip. To hide the tooltip,
+   * assign `" "` as the [tooltip] text.
+   */
+  public fun setTabTooltip(tabIdx: Int, tooltip: String): Unit {
+    TransferContext.writeArguments(LONG to tabIdx.toLong(), STRING to tooltip)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTabTooltipPtr, NIL)
+  }
+
+  /**
+   * Returns the tooltip text of the tab at index [tabIdx].
+   */
+  public fun getTabTooltip(tabIdx: Int): String {
+    TransferContext.writeArguments(LONG to tabIdx.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.getTabTooltipPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  /**
    * Sets an icon for the tab at index [tabIdx].
    */
   public fun setTabIcon(tabIdx: Int, icon: Texture2D): Unit {
@@ -311,6 +362,25 @@ public open class TabContainer : Container() {
     TransferContext.writeArguments(LONG to tabIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getTabIconPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  /**
+   * Sets the maximum allowed width of the icon for the tab at index [tabIdx]. This limit is applied
+   * on top of the default size of the icon and on top of [theme_item icon_max_width]. The height is
+   * adjusted according to the icon's ratio.
+   */
+  public fun setTabIconMaxWidth(tabIdx: Int, width: Int): Unit {
+    TransferContext.writeArguments(LONG to tabIdx.toLong(), LONG to width.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTabIconMaxWidthPtr, NIL)
+  }
+
+  /**
+   * Returns the maximum allowed width of the icon for the tab at index [tabIdx].
+   */
+  public fun getTabIconMaxWidth(tabIdx: Int): Int {
+    TransferContext.writeArguments(LONG to tabIdx.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.getTabIconMaxWidthPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -424,6 +494,33 @@ public open class TabContainer : Container() {
     return (TransferContext.readReturnValue(OBJECT, true) as Popup?)
   }
 
+  public enum class TabPosition(
+    id: Long,
+  ) {
+    /**
+     * Places the tab bar at the top.
+     */
+    POSITION_TOP(0),
+    /**
+     * Places the tab bar at the bottom. The tab bar's [StyleBox] will be flipped vertically.
+     */
+    POSITION_BOTTOM(1),
+    /**
+     * Represents the size of the [TabPosition] enum.
+     */
+    POSITION_MAX(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
+  }
+
   public companion object
 
   internal object MethodBindings {
@@ -459,6 +556,12 @@ public open class TabContainer : Container() {
     public val getTabAlignmentPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TabContainer", "get_tab_alignment")
 
+    public val setTabsPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabContainer", "set_tabs_position")
+
+    public val getTabsPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabContainer", "get_tabs_position")
+
     public val setClipTabsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TabContainer", "set_clip_tabs")
 
@@ -483,9 +586,21 @@ public open class TabContainer : Container() {
     public val getTabTitlePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TabContainer", "get_tab_title")
 
+    public val setTabTooltipPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabContainer", "set_tab_tooltip")
+
+    public val getTabTooltipPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabContainer", "get_tab_tooltip")
+
     public val setTabIconPtr: VoidPtr = TypeManager.getMethodBindPtr("TabContainer", "set_tab_icon")
 
     public val getTabIconPtr: VoidPtr = TypeManager.getMethodBindPtr("TabContainer", "get_tab_icon")
+
+    public val setTabIconMaxWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabContainer", "set_tab_icon_max_width")
+
+    public val getTabIconMaxWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabContainer", "get_tab_icon_max_width")
 
     public val setTabDisabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TabContainer", "set_tab_disabled")
@@ -544,5 +659,11 @@ public open class TabContainer : Container() {
 
     public val getTabFocusModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TabContainer", "get_tab_focus_mode")
+
+    public val setDeselectEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabContainer", "set_deselect_enabled")
+
+    public val getDeselectEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabContainer", "get_deselect_enabled")
   }
 }

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Callable
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.Rect2
@@ -16,6 +17,7 @@ import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.DOUBLE
@@ -112,7 +114,8 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the given column's cell mode to [mode]. See [TreeCellMode] constants.
+   * Sets the given column's cell mode to [mode]. This determines how the cell is displayed and
+   * edited. See [TreeCellMode] constants for details.
    */
   public fun setCellMode(column: Int, mode: TreeCellMode): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to mode.id)
@@ -269,23 +272,35 @@ public open class TreeItem internal constructor() : Object() {
     return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  /**
+   * Set BiDi algorithm override for the structured text. Has effect for cells that display text.
+   */
   public fun setStructuredTextBidiOverride(column: Int, parser: TextServer.StructuredTextParser):
       Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to parser.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
 
+  /**
+   * Returns the BiDi algorithm override set for this cell.
+   */
   public fun getStructuredTextBidiOverride(column: Int): TextServer.StructuredTextParser {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
     return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  /**
+   * Set additional options for BiDi override. Has effect for cells that display text.
+   */
   public fun setStructuredTextBidiOverrideOptions(column: Int, args: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), ARRAY to args)
     TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
   }
 
+  /**
+   * Returns the additional BiDi options set for this cell.
+   */
   public fun getStructuredTextBidiOverrideOptions(column: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
@@ -329,7 +344,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the given column's icon [Texture2D].
+   * Sets the given cell's icon [Texture2D]. The cell has to be in [CELL_MODE_ICON] mode.
    */
   public fun setIcon(column: Int, texture: Texture2D): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), OBJECT to texture)
@@ -462,9 +477,9 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the given column's custom draw callback to [callback] method on [object].
-   * The [callback] should accept two arguments: the [TreeItem] that is drawn and its position and
-   * size as a [Rect2].
+   * Sets the given column's custom draw callback to the [callback] method on [object].
+   * The method named [callback] should accept two arguments: the [TreeItem] that is drawn and its
+   * position and size as a [Rect2].
    */
   public fun setCustomDraw(
     column: Int,
@@ -473,6 +488,27 @@ public open class TreeItem internal constructor() : Object() {
   ): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), OBJECT to _object, STRING_NAME to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.setCustomDrawPtr, NIL)
+  }
+
+  /**
+   * Sets the given column's custom draw callback. Use an empty [Callable] ([code
+   * skip-lint]Callable()[/code]) to clear the custom callback. The cell has to be in
+   * [CELL_MODE_CUSTOM] to use this feature.
+   * The [callback] should accept two arguments: the [TreeItem] that is drawn and its position and
+   * size as a [Rect2].
+   */
+  public fun setCustomDrawCallback(column: Int, callback: Callable): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), CALLABLE to callback)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCustomDrawCallbackPtr, NIL)
+  }
+
+  /**
+   * Returns the custom callback of column [column].
+   */
+  public fun getCustomDrawCallback(column: Int): Callable {
+    TransferContext.writeArguments(LONG to column.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.getCustomDrawCallbackPtr, CALLABLE)
+    return (TransferContext.readReturnValue(CALLABLE, false) as Callable)
   }
 
   /**
@@ -494,6 +530,18 @@ public open class TreeItem internal constructor() : Object() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  /**
+   * Returns `true` if [visible] is `true` and all its ancestors are also visible.
+   */
+  public fun isVisibleInTree(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isVisibleInTreePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Uncollapses all [TreeItem]s necessary to reveal this [TreeItem], i.e. all ancestor [TreeItem]s.
+   */
   public fun uncollapseTree(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.uncollapseTreePtr, NIL)
@@ -647,11 +695,17 @@ public open class TreeItem internal constructor() : Object() {
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
+  /**
+   * Makes a cell with [CELL_MODE_CUSTOM] display as a non-flat button with a [StyleBox].
+   */
   public fun setCustomAsButton(column: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setCustomAsButtonPtr, NIL)
   }
 
+  /**
+   * Returns `true` if the cell was made into a button with [setCustomAsButton].
+   */
   public fun isCustomSetAsButton(column: Int): Boolean {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isCustomSetAsButtonPtr, BOOL)
@@ -712,6 +766,16 @@ public open class TreeItem internal constructor() : Object() {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getButtonByIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  /**
+   * Returns the color of the button with ID [id] in column [column]. If the specified button does
+   * not exist, returns [Color.BLACK].
+   */
+  public fun getButtonColor(column: Int, id: Int): Color {
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to id.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.getButtonColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
   /**
@@ -1039,21 +1103,34 @@ public open class TreeItem internal constructor() : Object() {
     id: Long,
   ) {
     /**
-     * Cell contains a string.
+     * Cell shows a string label. When editable, the text can be edited using a [LineEdit], or a
+     * [TextEdit] popup if [setEditMultiline] is used.
      */
     CELL_MODE_STRING(0),
     /**
-     * Cell contains a checkbox.
+     * Cell shows a checkbox, optionally with text. The checkbox can be pressed, released, or
+     * indeterminate (via [setIndeterminate]). The checkbox can't be clicked unless the cell is
+     * editable.
      */
     CELL_MODE_CHECK(1),
     /**
-     * Cell contains a range.
+     * Cell shows a numeric range. When editable, it can be edited using a range slider. Use
+     * [setRange] to set the value and [setRangeConfig] to configure the range.
+     * This cell can also be used in a text dropdown mode when you assign a text with [setText].
+     * Separate options with a comma, e.g. `"Option1,Option2,Option3"`.
      */
     CELL_MODE_RANGE(2),
     /**
-     * Cell contains an icon.
+     * Cell shows an icon. It can't be edited nor display text.
      */
     CELL_MODE_ICON(3),
+    /**
+     * Cell shows as a clickable button. It will display an arrow similar to [OptionButton], but
+     * doesn't feature a dropdown (for that you can use [CELL_MODE_RANGE]). Clicking the button emits
+     * the [signal Tree.item_edited] signal. The button is flat by default, you can use
+     * [setCustomAsButton] to display it with a [StyleBox].
+     * This mode also supports custom drawing using [setCustomDrawCallback].
+     */
     CELL_MODE_CUSTOM(4),
     ;
 
@@ -1174,6 +1251,12 @@ public open class TreeItem internal constructor() : Object() {
     public val setCustomDrawPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "set_custom_draw")
 
+    public val setCustomDrawCallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "set_custom_draw_callback")
+
+    public val getCustomDrawCallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_custom_draw_callback")
+
     public val setCollapsedPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "set_collapsed")
 
     public val isCollapsedPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "is_collapsed")
@@ -1187,6 +1270,9 @@ public open class TreeItem internal constructor() : Object() {
     public val setVisiblePtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "set_visible")
 
     public val isVisiblePtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "is_visible")
+
+    public val isVisibleInTreePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "is_visible_in_tree")
 
     public val uncollapseTreePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "uncollapse_tree")
@@ -1260,6 +1346,9 @@ public open class TreeItem internal constructor() : Object() {
 
     public val getButtonByIdPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "get_button_by_id")
+
+    public val getButtonColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_button_color")
 
     public val getButtonPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "get_button")
 

@@ -370,7 +370,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Sets the [TileAnimationMode] of the tile at [atlasCoords] to [mode]. See also
+   * Sets the tile animation mode of the tile at [atlasCoords] to [mode]. See also
    * [getTileAnimationMode].
    */
   public fun setTileAnimationMode(atlasCoords: Vector2i, mode: TileAnimationMode): Unit {
@@ -379,7 +379,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * Returns the [TileAnimationMode] of the tile at [atlasCoords]. See also [setTileAnimationMode].
+   * Returns the tile animation mode of the tile at [atlasCoords]. See also [setTileAnimationMode].
    */
   public fun getTileAnimationMode(atlasCoords: Vector2i): TileAnimationMode {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
@@ -572,6 +572,17 @@ public open class TileSetAtlasSource : TileSetSource() {
      *     # If tile is not already flipped, flip it.
      *     $TileMap.set_cell(0, Vector2i(2, 2), source_id, atlas_coords, alternate_id |
      * TileSetAtlasSource.TRANSFORM_FLIP_H)
+     * [/codeblock]
+     * **Note:** These transformations can be combined to do the equivalent of 0, 90, 180, and 270
+     * degree rotations, as shown below:
+     * [codeblock]
+     * enum TileTransform {
+     *     ROTATE_0 = 0,
+     *     ROTATE_90 = TileSetAtlasSource.TRANSFORM_TRANSPOSE | TileSetAtlasSource.TRANSFORM_FLIP_H,
+     *     ROTATE_180 = TileSetAtlasSource.TRANSFORM_FLIP_H | TileSetAtlasSource.TRANSFORM_FLIP_V,
+     *     ROTATE_270 = TileSetAtlasSource.TRANSFORM_TRANSPOSE |
+     * TileSetAtlasSource.TRANSFORM_FLIP_V,
+     * }
      * [/codeblock]
      */
     public final const val TRANSFORM_FLIP_H: Long = 4096

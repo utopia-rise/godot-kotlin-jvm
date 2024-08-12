@@ -50,9 +50,9 @@ import kotlin.jvm.JvmOverloads
 /**
  * A multiline text editor. It also has limited facilities for editing code, such as syntax
  * highlighting support. For more advanced facilities for editing code, see [CodeEdit].
- * **Note:** Most viewport, caret and edit methods contain a `caret_index` argument for
+ * **Note:** Most viewport, caret, and edit methods contain a `caret_index` argument for
  * [caretMultiple] support. The argument should be one of the following: `-1` for all carets, `0` for
- * the main caret, or greater than `0` for secondary carets.
+ * the main caret, or greater than `0` for secondary carets in the order they were created.
  * **Note:** When holding down [kbd]Alt[/kbd], the vertical scroll wheel will scroll 5 times as fast
  * as it would normally do. This also works in the Godot script editor.
  */
@@ -76,7 +76,7 @@ public open class TextEdit : Control() {
   public val linesEditedFrom: Signal2<Long, Long> by signal("fromLine", "toLine")
 
   /**
-   * Emitted when the caret changes position.
+   * Emitted when any caret changes position.
    */
   public val caretChanged: Signal0 by signal()
 
@@ -197,7 +197,7 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * If `true`, allow drag and drop of selected text.
+   * If `true`, allow drag and drop of selected text. Text can still be dropped from other sources.
    */
   public var dragAndDropSelectionEnabled: Boolean
     get() {
@@ -266,6 +266,20 @@ public open class TextEdit : Control() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
+    }
+
+  /**
+   * If `true`, all wrapped lines are indented to the same amount as the unwrapped line.
+   */
+  public var indentWrappedLines: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isIndentWrappedLinesPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setIndentWrappedLinesPtr, NIL)
     }
 
   /**
@@ -356,7 +370,8 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * If `true`, a minimap is shown, providing an outline of your source code.
+   * If `true`, a minimap is shown, providing an outline of your source code. The minimap uses a
+   * fixed-width text size.
    */
   public var minimapDraw: Boolean
     get() {
@@ -482,6 +497,57 @@ public open class TextEdit : Control() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setMultipleCaretsEnabledPtr, NIL)
+    }
+
+  /**
+   * If `false`, using [kbd]Ctrl + Left[/kbd] or [kbd]Ctrl + Right[/kbd] ([kbd]Cmd + Left[/kbd] or
+   * [kbd]Cmd + Right[/kbd] on macOS) bindings will stop moving caret only if a space or punctuation is
+   * detected. If `true`, it will also stop the caret if a character is part of
+   * `!"#$&#37;&'()*+,-./:;<=>?@[\]^`{|}~`, the Unicode General Punctuation table, or the Unicode CJK
+   * Punctuation table. Useful for subword moving. This behavior also will be applied to the behavior
+   * of text selection.
+   */
+  public var useDefaultWordSeparators: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isDefaultWordSeparatorsEnabledPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseDefaultWordSeparatorsPtr, NIL)
+    }
+
+  /**
+   * If `false`, using [kbd]Ctrl + Left[/kbd] or [kbd]Ctrl + Right[/kbd] ([kbd]Cmd + Left[/kbd] or
+   * [kbd]Cmd + Right[/kbd] on macOS) bindings will use the behavior of [useDefaultWordSeparators]. If
+   * `true`, it will also stop the caret if a character within [customWordSeparators] is detected.
+   * Useful for subword moving. This behavior also will be applied to the behavior of text selection.
+   */
+  public var useCustomWordSeparators: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isCustomWordSeparatorsEnabledPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setUseCustomWordSeparatorsPtr, NIL)
+    }
+
+  /**
+   * The characters to consider as word delimiters if [useCustomWordSeparators] is `true`. The
+   * characters should be defined without separation, for example `#_!`.
+   */
+  public var customWordSeparators: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getCustomWordSeparatorsPtr, STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCustomWordSeparatorsPtr, NIL)
     }
 
   /**
@@ -672,12 +738,31 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns if the user has IME text.
+   * Returns `true` if the user has text in the
+   * [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] (IME).
    */
   public fun hasImeText(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasImeTextPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Closes the [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] (IME) if
+   * it is open. Any text in the IME will be lost.
+   */
+  public fun cancelIme(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.cancelImePtr, NIL)
+  }
+
+  /**
+   * Applies text from the [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url]
+   * (IME) to each caret and closes the IME if it is open.
+   */
+  public fun applyIme(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.applyImePtr, NIL)
   }
 
   /**
@@ -733,7 +818,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the text for a specific line.
+   * Sets the text for a specific [line].
+   * Carets on the line will attempt to keep their visual x position.
    */
   public fun setLine(line: Int, newText: String): Unit {
     TransferContext.writeArguments(LONG to line.toLong(), STRING to newText)
@@ -789,7 +875,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Swaps the two lines.
+   * Swaps the two lines. Carets will be swapped with the lines.
    */
   public fun swapLines(fromLine: Int, toLine: Int): Unit {
     TransferContext.writeArguments(LONG to fromLine.toLong(), LONG to toLine.toLong())
@@ -805,6 +891,18 @@ public open class TextEdit : Control() {
   }
 
   /**
+   * Removes the line of text at [line]. Carets on this line will attempt to match their previous
+   * visual x position.
+   * If [moveCaretsDown] is `true` carets will move to the next line down, otherwise carets will
+   * move up.
+   */
+  @JvmOverloads
+  public fun removeLineAt(line: Int, moveCaretsDown: Boolean = true): Unit {
+    TransferContext.writeArguments(LONG to line.toLong(), BOOL to moveCaretsDown)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeLineAtPtr, NIL)
+  }
+
+  /**
    * Insert the specified text at the caret position.
    */
   @JvmOverloads
@@ -814,9 +912,27 @@ public open class TextEdit : Control() {
   }
 
   /**
+   * Inserts the [text] at [line] and [column].
+   * If [beforeSelectionBegin] is `true`, carets and selections that begin at [line] and [column]
+   * will moved to the end of the inserted text, along with all carets after it.
+   * If [beforeSelectionEnd] is `true`, selections that end at [line] and [column] will be extended
+   * to the end of the inserted text. These parameters can be used to insert text inside of or outside
+   * of selections.
+   */
+  @JvmOverloads
+  public fun insertText(
+    text: String,
+    line: Int,
+    column: Int,
+    beforeSelectionBegin: Boolean = true,
+    beforeSelectionEnd: Boolean = false,
+  ): Unit {
+    TransferContext.writeArguments(STRING to text, LONG to line.toLong(), LONG to column.toLong(), BOOL to beforeSelectionBegin, BOOL to beforeSelectionEnd)
+    TransferContext.callMethod(rawPtr, MethodBindings.insertTextPtr, NIL)
+  }
+
+  /**
    * Removes text between the given positions.
-   * **Note:** This does not adjust the caret or selection, which as a result it can end up in an
-   * invalid position.
    */
   public fun removeText(
     fromLine: Int,
@@ -1059,9 +1175,9 @@ public open class TextEdit : Control() {
     text: String,
     flags: Long,
     fromLine: Int,
-    fromColum: Int,
+    fromColumn: Int,
   ): Vector2i {
-    TransferContext.writeArguments(STRING to text, LONG to flags, LONG to fromLine.toLong(), LONG to fromColum.toLong())
+    TransferContext.writeArguments(STRING to text, LONG to flags, LONG to fromLine.toLong(), LONG to fromColumn.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.searchPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
@@ -1140,7 +1256,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns `true` if the user is dragging their mouse for scrolling or selecting.
+   * Returns `true` if the user is dragging their mouse for scrolling, selecting, or text dragging.
    */
   public fun isDraggingCursor(): Boolean {
     TransferContext.writeArguments()
@@ -1163,8 +1279,8 @@ public open class TextEdit : Control() {
    * Adds a new caret at the given location. Returns the index of the new caret, or `-1` if the
    * location is invalid.
    */
-  public fun addCaret(line: Int, col: Int): Int {
-    TransferContext.writeArguments(LONG to line.toLong(), LONG to col.toLong())
+  public fun addCaret(line: Int, column: Int): Int {
+    TransferContext.writeArguments(LONG to line.toLong(), LONG to column.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.addCaretPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
@@ -1187,16 +1303,6 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Merges any overlapping carets. Will favor the newest caret, or the caret with a selection.
-   * **Note:** This is not called when a caret changes position but after certain actions, so it is
-   * possible to get into a state where carets overlap.
-   */
-  public fun mergeOverlappingCarets(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.mergeOverlappingCaretsPtr, NIL)
-  }
-
-  /**
    * Returns the number of carets in this [TextEdit].
    */
   public fun getCaretCount(): Int {
@@ -1206,7 +1312,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Adds an additional caret above or below every caret. If [below] is true the new caret will be
+   * Adds an additional caret above or below every caret. If [below] is `true` the new caret will be
    * added below and above otherwise.
    */
   public fun addCaretAtCarets(below: Boolean): Unit {
@@ -1215,29 +1321,101 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns a list of caret indexes in their edit order, this done from bottom to top. Edit order
-   * refers to the way actions such as [insertTextAtCaret] are applied.
+   * Returns the carets sorted by selection beginning from lowest line and column to highest (from
+   * top to bottom of text).
+   * If [includeIgnoredCarets] is `false`, carets from [multicaretEditIgnoreCaret] will be ignored.
    */
-  public fun getCaretIndexEditOrder(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCaretIndexEditOrderPtr,
-        PACKED_INT_32_ARRAY)
+  @JvmOverloads
+  public fun getSortedCarets(includeIgnoredCarets: Boolean = false): PackedInt32Array {
+    TransferContext.writeArguments(BOOL to includeIgnoredCarets)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSortedCaretsPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
   /**
-   * Reposition the carets affected by the edit. This assumes edits are applied in edit order, see
-   * [getCaretIndexEditOrder].
+   * Collapse all carets in the given range to the [fromLine] and [fromColumn] position.
+   * [inclusive] applies to both ends.
+   * If [isInMulitcaretEdit] is `true`, carets that are collapsed will be `true` for
+   * [multicaretEditIgnoreCaret].
+   * [mergeOverlappingCarets] will be called if any carets were collapsed.
    */
-  public fun adjustCaretsAfterEdit(
-    caret: Int,
+  @JvmOverloads
+  public fun collapseCarets(
     fromLine: Int,
-    fromCol: Int,
+    fromColumn: Int,
     toLine: Int,
-    toCol: Int,
+    toColumn: Int,
+    inclusive: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(LONG to caret.toLong(), LONG to fromLine.toLong(), LONG to fromCol.toLong(), LONG to toLine.toLong(), LONG to toCol.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.adjustCaretsAfterEditPtr, NIL)
+    TransferContext.writeArguments(LONG to fromLine.toLong(), LONG to fromColumn.toLong(), LONG to toLine.toLong(), LONG to toColumn.toLong(), BOOL to inclusive)
+    TransferContext.callMethod(rawPtr, MethodBindings.collapseCaretsPtr, NIL)
+  }
+
+  /**
+   * Merges any overlapping carets. Will favor the newest caret, or the caret with a selection.
+   * If [isInMulitcaretEdit] is `true`, the merge will be queued to happen at the end of the
+   * multicaret edit. See [beginMulticaretEdit] and [endMulticaretEdit].
+   * **Note:** This is not called when a caret changes position but after certain actions, so it is
+   * possible to get into a state where carets overlap.
+   */
+  public fun mergeOverlappingCarets(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.mergeOverlappingCaretsPtr, NIL)
+  }
+
+  /**
+   * Starts an edit for multiple carets. The edit must be ended with [endMulticaretEdit]. Multicaret
+   * edits can be used to edit text at multiple carets and delay merging the carets until the end, so
+   * the caret indexes aren't affected immediately. [beginMulticaretEdit] and [endMulticaretEdit] can
+   * be nested, and the merge will happen at the last [endMulticaretEdit].
+   * Example usage:
+   * [codeblock]
+   * begin_complex_operation()
+   * begin_multicaret_edit()
+   * for i in range(get_caret_count()):
+   *     if multicaret_edit_ignore_caret(i):
+   *         continue
+   *     # Logic here.
+   * end_multicaret_edit()
+   * end_complex_operation()
+   * [/codeblock]
+   */
+  public fun beginMulticaretEdit(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.beginMulticaretEditPtr, NIL)
+  }
+
+  /**
+   * Ends an edit for multiple carets, that was started with [beginMulticaretEdit]. If this was the
+   * last [endMulticaretEdit] and [mergeOverlappingCarets] was called, carets will be merged.
+   */
+  public fun endMulticaretEdit(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.endMulticaretEditPtr, NIL)
+  }
+
+  /**
+   * Returns `true` if a [beginMulticaretEdit] has been called and [endMulticaretEdit] has not yet
+   * been called.
+   */
+  public fun isInMulitcaretEdit(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isInMulitcaretEditPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Returns `true` if the given [caretIndex] should be ignored as part of a multicaret edit. See
+   * [beginMulticaretEdit] and [endMulticaretEdit]. Carets that should be ignored are ones that were
+   * part of removed text and will likely be merged at the end of the edit, or carets that were added
+   * during the edit.
+   * It is recommended to `continue` within a loop iterating on multiple carets if a caret should be
+   * ignored.
+   */
+  public fun multicaretEditIgnoreCaret(caretIndex: Int): Boolean {
+    TransferContext.writeArguments(LONG to caretIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.multicaretEditIgnoreCaretPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -1261,10 +1439,15 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Moves the caret to the specified [line] index.
+   * Moves the caret to the specified [line] index. The caret column will be moved to the same
+   * visual position it was at the last time [setCaretColumn] was called, or clamped to the end of the
+   * line.
    * If [adjustViewport] is `true`, the viewport will center at the caret position after the move
    * occurs.
    * If [canBeHidden] is `true`, the specified [line] can be hidden.
+   * If [wrapIndex] is `-1`, the caret column will be clamped to the [line]'s length. If [wrapIndex]
+   * is greater than `-1`, the column will be moved to attempt to match the visual x position on the
+   * line's [wrapIndex] to the position from the last time [setCaretColumn] was called.
    * **Note:** If supporting multiple carets this will not check for any overlap. See
    * [mergeOverlappingCarets].
    */
@@ -1340,14 +1523,8 @@ public open class TextEdit : Control() {
   /**
    * Sets the current selection mode.
    */
-  @JvmOverloads
-  public fun setSelectionMode(
-    mode: SelectionMode,
-    line: Int = -1,
-    column: Int = -1,
-    caretIndex: Int = 0,
-  ): Unit {
-    TransferContext.writeArguments(LONG to mode.id, LONG to line.toLong(), LONG to column.toLong(), LONG to caretIndex.toLong())
+  public fun setSelectionMode(mode: SelectionMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setSelectionModePtr, NIL)
   }
 
@@ -1388,18 +1565,31 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Perform selection, from line/column to line/column.
+   * Moves a selection and a caret for the next occurrence of the current selection. If there is no
+   * active selection, moves to the next occurrence of the word under caret.
+   */
+  public fun skipSelectionForNextOccurrence(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.skipSelectionForNextOccurrencePtr, NIL)
+  }
+
+  /**
+   * Selects text from [originLine] and [originColumn] to [caretLine] and [caretColumn] for the
+   * given [caretIndex]. This moves the selection origin and the caret. If the positions are the same,
+   * the selection will be deselected.
    * If [selectingEnabled] is `false`, no selection will occur.
+   * **Note:** If supporting multiple carets this will not check for any overlap. See
+   * [mergeOverlappingCarets].
    */
   @JvmOverloads
   public fun select(
-    fromLine: Int,
-    fromColumn: Int,
-    toLine: Int,
-    toColumn: Int,
+    originLine: Int,
+    originColumn: Int,
+    caretLine: Int,
+    caretColumn: Int,
     caretIndex: Int = 0,
   ): Unit {
-    TransferContext.writeArguments(LONG to fromLine.toLong(), LONG to fromColumn.toLong(), LONG to toLine.toLong(), LONG to toColumn.toLong(), LONG to caretIndex.toLong())
+    TransferContext.writeArguments(LONG to originLine.toLong(), LONG to originColumn.toLong(), LONG to caretLine.toLong(), LONG to caretColumn.toLong(), LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.selectPtr, NIL)
   }
 
@@ -1425,27 +1615,91 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the original start line of the selection.
+   * Returns the caret index of the selection at the given [line] and [column], or `-1` if there is
+   * none.
+   * If [includeEdges] is `false`, the position must be inside the selection and not at either end.
+   * If [onlySelections] is `false`, carets without a selection will also be considered.
    */
   @JvmOverloads
-  public fun getSelectionLine(caretIndex: Int = 0): Int {
-    TransferContext.writeArguments(LONG to caretIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSelectionLinePtr, LONG)
+  public fun getSelectionAtLineColumn(
+    line: Int,
+    column: Int,
+    includeEdges: Boolean = true,
+    onlySelections: Boolean = true,
+  ): Int {
+    TransferContext.writeArguments(LONG to line.toLong(), LONG to column.toLong(), BOOL to includeEdges, BOOL to onlySelections)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSelectionAtLineColumnPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
-   * Returns the original start column of the selection.
+   * Returns an [Array] of line ranges where `x` is the first line and `y` is the last line. All
+   * lines within these ranges will have a caret on them or be part of a selection. Each line will only
+   * be part of one line range, even if it has multiple carets on it.
+   * If a selection's end column ([getSelectionToColumn]) is at column `0`, that line will not be
+   * included. If a selection begins on the line after another selection ends and [mergeAdjacent] is
+   * `true`, or they begin and end on the same line, one line range will include both selections.
    */
   @JvmOverloads
-  public fun getSelectionColumn(caretIndex: Int = 0): Int {
+  public fun getLineRangesFromCarets(onlySelections: Boolean = false, mergeAdjacent: Boolean =
+      true): VariantArray<Vector2i> {
+    TransferContext.writeArguments(BOOL to onlySelections, BOOL to mergeAdjacent)
+    TransferContext.callMethod(rawPtr, MethodBindings.getLineRangesFromCaretsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>)
+  }
+
+  /**
+   * Returns the origin line of the selection. This is the opposite end from the caret.
+   */
+  @JvmOverloads
+  public fun getSelectionOriginLine(caretIndex: Int = 0): Int {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSelectionColumnPtr, LONG)
+    TransferContext.callMethod(rawPtr, MethodBindings.getSelectionOriginLinePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
-   * Returns the selection begin line.
+   * Returns the origin column of the selection. This is the opposite end from the caret.
+   */
+  @JvmOverloads
+  public fun getSelectionOriginColumn(caretIndex: Int = 0): Int {
+    TransferContext.writeArguments(LONG to caretIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.getSelectionOriginColumnPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  /**
+   * Sets the selection origin line to the [line] for the given [caretIndex]. If the selection
+   * origin is moved to the caret position, the selection will deselect.
+   * If [canBeHidden] is `false`, The line will be set to the nearest unhidden line below or above.
+   * If [wrapIndex] is `-1`, the selection origin column will be clamped to the [line]'s length. If
+   * [wrapIndex] is greater than `-1`, the column will be moved to attempt to match the visual x
+   * position on the line's [wrapIndex] to the position from the last time [setSelectionOriginColumn]
+   * or [select] was called.
+   */
+  @JvmOverloads
+  public fun setSelectionOriginLine(
+    line: Int,
+    canBeHidden: Boolean = true,
+    wrapIndex: Int = -1,
+    caretIndex: Int = 0,
+  ): Unit {
+    TransferContext.writeArguments(LONG to line.toLong(), BOOL to canBeHidden, LONG to wrapIndex.toLong(), LONG to caretIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSelectionOriginLinePtr, NIL)
+  }
+
+  /**
+   * Sets the selection origin column to the [column] for the given [caretIndex]. If the selection
+   * origin is moved to the caret position, the selection will deselect.
+   */
+  @JvmOverloads
+  public fun setSelectionOriginColumn(column: Int, caretIndex: Int = 0): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to caretIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSelectionOriginColumnPtr, NIL)
+  }
+
+  /**
+   * Returns the selection begin line. Returns the caret line if there is no selection.
    */
   @JvmOverloads
   public fun getSelectionFromLine(caretIndex: Int = 0): Int {
@@ -1455,7 +1709,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the selection begin column.
+   * Returns the selection begin column. Returns the caret column if there is no selection.
    */
   @JvmOverloads
   public fun getSelectionFromColumn(caretIndex: Int = 0): Int {
@@ -1465,7 +1719,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the selection end line.
+   * Returns the selection end line. Returns the caret line if there is no selection.
    */
   @JvmOverloads
   public fun getSelectionToLine(caretIndex: Int = 0): Int {
@@ -1475,13 +1729,24 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the selection end column.
+   * Returns the selection end column. Returns the caret column if there is no selection.
    */
   @JvmOverloads
   public fun getSelectionToColumn(caretIndex: Int = 0): Int {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getSelectionToColumnPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  /**
+   * Returns `true` if the caret of the selection is after the selection origin. This can be used to
+   * determine the direction of the selection.
+   */
+  @JvmOverloads
+  public fun isCaretAfterSelectionOrigin(caretIndex: Int = 0): Boolean {
+    TransferContext.writeArguments(LONG to caretIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.isCaretAfterSelectionOriginPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -1720,7 +1985,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the type of gutter.
+   * Sets the type of gutter. Gutters can contain icons, text, or custom visuals. See
+   * [TextEdit.GutterType] for options.
    */
   public fun setGutterType(gutter: Int, type: GutterType): Unit {
     TransferContext.writeArguments(LONG to gutter.toLong(), LONG to type.id)
@@ -1728,7 +1994,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the type of the gutter at the given index.
+   * Returns the type of the gutter at the given index. Gutters can contain icons, text, or custom
+   * visuals. See [TextEdit.GutterType] for options.
    */
   public fun getGutterType(gutter: Int): GutterType {
     TransferContext.writeArguments(LONG to gutter.toLong())
@@ -1815,7 +2082,8 @@ public open class TextEdit : Control() {
 
   /**
    * Set a custom draw method for the gutter. The callback method must take the following args:
-   * `line: int, gutter: int, Area: Rect2`.
+   * `line: int, gutter: int, Area: Rect2`. This only works when the gutter type is
+   * [GUTTER_TYPE_CUSTOM] (see [setGutterType]).
    */
   public fun setGutterCustomDraw(column: Int, drawCallback: Callable): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), CALLABLE to drawCallback)
@@ -1853,7 +2121,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the text for [gutter] on [line] to [text].
+   * Sets the text for [gutter] on [line] to [text]. This only works when the gutter type is
+   * [GUTTER_TYPE_STRING] (see [setGutterType]).
    */
   public fun setLineGutterText(
     line: Int,
@@ -1865,7 +2134,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the text currently in [gutter] at [line].
+   * Returns the text currently in [gutter] at [line]. This only works when the gutter type is
+   * [GUTTER_TYPE_STRING] (see [setGutterType]).
    */
   public fun getLineGutterText(line: Int, gutter: Int): String {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to gutter.toLong())
@@ -1874,7 +2144,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the icon for [gutter] on [line] to [icon].
+   * Sets the icon for [gutter] on [line] to [icon]. This only works when the gutter type is
+   * [GUTTER_TYPE_ICON] (see [setGutterType]).
    */
   public fun setLineGutterIcon(
     line: Int,
@@ -1886,7 +2157,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the icon currently in [gutter] at [line].
+   * Returns the icon currently in [gutter] at [line]. This only works when the gutter type is
+   * [GUTTER_TYPE_ICON] (see [setGutterType]).
    */
   public fun getLineGutterIcon(line: Int, gutter: Int): Texture2D? {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to gutter.toLong())
@@ -2024,6 +2296,51 @@ public open class TextEdit : Control() {
   public fun menuOption(option: Int): Unit {
     TransferContext.writeArguments(LONG to option.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.menuOptionPtr, NIL)
+  }
+
+  /**
+   * This method does nothing.
+   */
+  public fun adjustCaretsAfterEdit(
+    caret: Int,
+    fromLine: Int,
+    fromCol: Int,
+    toLine: Int,
+    toCol: Int,
+  ): Unit {
+    TransferContext.writeArguments(LONG to caret.toLong(), LONG to fromLine.toLong(), LONG to fromCol.toLong(), LONG to toLine.toLong(), LONG to toCol.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.adjustCaretsAfterEditPtr, NIL)
+  }
+
+  /**
+   * Returns a list of caret indexes in their edit order, this done from bottom to top. Edit order
+   * refers to the way actions such as [insertTextAtCaret] are applied.
+   */
+  public fun getCaretIndexEditOrder(): PackedInt32Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCaretIndexEditOrderPtr,
+        PACKED_INT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+  }
+
+  /**
+   * Returns the original start line of the selection.
+   */
+  @JvmOverloads
+  public fun getSelectionLine(caretIndex: Int = 0): Int {
+    TransferContext.writeArguments(LONG to caretIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.getSelectionLinePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  /**
+   * Returns the original start column of the selection.
+   */
+  @JvmOverloads
+  public fun getSelectionColumn(caretIndex: Int = 0): Int {
+    TransferContext.writeArguments(LONG to caretIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.getSelectionColumnPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public enum class MenuItems(
@@ -2308,15 +2625,18 @@ public open class TextEdit : Control() {
     id: Long,
   ) {
     /**
-     * Draw a string.
+     * When a gutter is set to string using [setGutterType], it is used to contain text set via the
+     * [setLineGutterText] method.
      */
     GUTTER_TYPE_STRING(0),
     /**
-     * Draw an icon.
+     * When a gutter is set to icon using [setGutterType], it is used to contain an icon set via the
+     * [setLineGutterIcon] method.
      */
     GUTTER_TYPE_ICON(1),
     /**
-     * Custom draw.
+     * When a gutter is set to custom using [setGutterType], it is used to contain custom visuals
+     * controlled by a callback method set via the [setGutterCustomDraw] method.
      */
     GUTTER_TYPE_CUSTOM(2),
     ;
@@ -2350,6 +2670,10 @@ public open class TextEdit : Control() {
 
     public val hasImeTextPtr: VoidPtr = TypeManager.getMethodBindPtr("TextEdit", "has_ime_text")
 
+    public val cancelImePtr: VoidPtr = TypeManager.getMethodBindPtr("TextEdit", "cancel_ime")
+
+    public val applyImePtr: VoidPtr = TypeManager.getMethodBindPtr("TextEdit", "apply_ime")
+
     public val setEditablePtr: VoidPtr = TypeManager.getMethodBindPtr("TextEdit", "set_editable")
 
     public val isEditablePtr: VoidPtr = TypeManager.getMethodBindPtr("TextEdit", "is_editable")
@@ -2379,6 +2703,12 @@ public open class TextEdit : Control() {
     public val setTabSizePtr: VoidPtr = TypeManager.getMethodBindPtr("TextEdit", "set_tab_size")
 
     public val getTabSizePtr: VoidPtr = TypeManager.getMethodBindPtr("TextEdit", "get_tab_size")
+
+    public val setIndentWrappedLinesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "set_indent_wrapped_lines")
+
+    public val isIndentWrappedLinesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "is_indent_wrapped_lines")
 
     public val setOvertypeModeEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "set_overtype_mode_enabled")
@@ -2443,8 +2773,12 @@ public open class TextEdit : Control() {
 
     public val insertLineAtPtr: VoidPtr = TypeManager.getMethodBindPtr("TextEdit", "insert_line_at")
 
+    public val removeLineAtPtr: VoidPtr = TypeManager.getMethodBindPtr("TextEdit", "remove_line_at")
+
     public val insertTextAtCaretPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "insert_text_at_caret")
+
+    public val insertTextPtr: VoidPtr = TypeManager.getMethodBindPtr("TextEdit", "insert_text")
 
     public val removeTextPtr: VoidPtr = TypeManager.getMethodBindPtr("TextEdit", "remove_text")
 
@@ -2579,20 +2913,32 @@ public open class TextEdit : Control() {
     public val removeSecondaryCaretsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "remove_secondary_carets")
 
-    public val mergeOverlappingCaretsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextEdit", "merge_overlapping_carets")
-
     public val getCaretCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "get_caret_count")
 
     public val addCaretAtCaretsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "add_caret_at_carets")
 
-    public val getCaretIndexEditOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextEdit", "get_caret_index_edit_order")
+    public val getSortedCaretsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "get_sorted_carets")
 
-    public val adjustCaretsAfterEditPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextEdit", "adjust_carets_after_edit")
+    public val collapseCaretsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "collapse_carets")
+
+    public val mergeOverlappingCaretsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "merge_overlapping_carets")
+
+    public val beginMulticaretEditPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "begin_multicaret_edit")
+
+    public val endMulticaretEditPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "end_multicaret_edit")
+
+    public val isInMulitcaretEditPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "is_in_mulitcaret_edit")
+
+    public val multicaretEditIgnoreCaretPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "multicaret_edit_ignore_caret")
 
     public val isCaretVisiblePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "is_caret_visible")
@@ -2615,6 +2961,24 @@ public open class TextEdit : Control() {
 
     public val getWordUnderCaretPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "get_word_under_caret")
+
+    public val setUseDefaultWordSeparatorsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "set_use_default_word_separators")
+
+    public val isDefaultWordSeparatorsEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "is_default_word_separators_enabled")
+
+    public val setUseCustomWordSeparatorsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "set_use_custom_word_separators")
+
+    public val isCustomWordSeparatorsEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "is_custom_word_separators_enabled")
+
+    public val setCustomWordSeparatorsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "set_custom_word_separators")
+
+    public val getCustomWordSeparatorsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "get_custom_word_separators")
 
     public val setSelectingEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "set_selecting_enabled")
@@ -2648,6 +3012,9 @@ public open class TextEdit : Control() {
     public val addSelectionForNextOccurrencePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "add_selection_for_next_occurrence")
 
+    public val skipSelectionForNextOccurrencePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "skip_selection_for_next_occurrence")
+
     public val selectPtr: VoidPtr = TypeManager.getMethodBindPtr("TextEdit", "select")
 
     public val hasSelectionPtr: VoidPtr = TypeManager.getMethodBindPtr("TextEdit", "has_selection")
@@ -2655,11 +3022,23 @@ public open class TextEdit : Control() {
     public val getSelectedTextPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "get_selected_text")
 
-    public val getSelectionLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextEdit", "get_selection_line")
+    public val getSelectionAtLineColumnPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "get_selection_at_line_column")
 
-    public val getSelectionColumnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextEdit", "get_selection_column")
+    public val getLineRangesFromCaretsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "get_line_ranges_from_carets")
+
+    public val getSelectionOriginLinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "get_selection_origin_line")
+
+    public val getSelectionOriginColumnPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "get_selection_origin_column")
+
+    public val setSelectionOriginLinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "set_selection_origin_line")
+
+    public val setSelectionOriginColumnPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "set_selection_origin_column")
 
     public val getSelectionFromLinePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "get_selection_from_line")
@@ -2672,6 +3051,9 @@ public open class TextEdit : Control() {
 
     public val getSelectionToColumnPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "get_selection_to_column")
+
+    public val isCaretAfterSelectionOriginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "is_caret_after_selection_origin")
 
     public val deselectPtr: VoidPtr = TypeManager.getMethodBindPtr("TextEdit", "deselect")
 
@@ -2919,5 +3301,17 @@ public open class TextEdit : Control() {
         TypeManager.getMethodBindPtr("TextEdit", "is_menu_visible")
 
     public val menuOptionPtr: VoidPtr = TypeManager.getMethodBindPtr("TextEdit", "menu_option")
+
+    public val adjustCaretsAfterEditPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "adjust_carets_after_edit")
+
+    public val getCaretIndexEditOrderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "get_caret_index_edit_order")
+
+    public val getSelectionLinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "get_selection_line")
+
+    public val getSelectionColumnPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "get_selection_column")
   }
 }

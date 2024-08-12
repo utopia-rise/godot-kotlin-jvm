@@ -123,10 +123,9 @@ public open class MeshDataTool : RefCounted() {
   }
 
   /**
-   * Returns the [Mesh]'s format. Format is an integer made up of [Mesh] format flags combined
-   * together. For example, a mesh containing both vertices and normals would return a format of `3`
-   * because [Mesh.ARRAY_FORMAT_VERTEX] is `1` and [Mesh.ARRAY_FORMAT_NORMAL] is `2`.
-   * See [Mesh.ArrayFormat] for a list of format flags.
+   * Returns the [Mesh]'s format as a combination of the [Mesh.ArrayFormat] flags. For example, a
+   * mesh containing both vertices and normals would return a format of `3` because
+   * [Mesh.ARRAY_FORMAT_VERTEX] is `1` and [Mesh.ARRAY_FORMAT_NORMAL] is `2`.
    */
   public fun getFormat(): Long {
     TransferContext.writeArguments()

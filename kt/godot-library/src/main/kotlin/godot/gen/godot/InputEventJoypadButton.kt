@@ -42,10 +42,6 @@ public open class InputEventJoypadButton : InputEvent() {
       TransferContext.callMethod(rawPtr, MethodBindings.setButtonIndexPtr, NIL)
     }
 
-  /**
-   * Represents the pressure the user puts on a pressure-sensitive button.
-   * *Deprecated.* This property is never set by the engine and is always `0`.
-   */
   public var pressure: Float
     get() {
       TransferContext.writeArguments()

@@ -14,6 +14,12 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 
+/**
+ * An audio effect instance manipulates the audio it receives for a given effect. This instance is
+ * automatically created by an [AudioEffect] when it is added to a bus, and should usually not be
+ * created directly. If necessary, it can be fetched at run-time with
+ * [AudioServer.getBusEffectInstance].
+ */
 @GodotBaseType
 public open class AudioEffectInstance : RefCounted() {
   public override fun new(scriptIndex: Int): Boolean {
@@ -21,6 +27,11 @@ public open class AudioEffectInstance : RefCounted() {
     return true
   }
 
+  /**
+   * Override this method to customize the processing behavior of this effect instance.
+   * Should return `true` to force the [AudioServer] to always call [_process], even if the bus has
+   * been muted or cannot otherwise be heard.
+   */
   public open fun _processSilence(): Boolean {
     throw NotImplementedError("_process_silence is not implemented for AudioEffectInstance")
   }

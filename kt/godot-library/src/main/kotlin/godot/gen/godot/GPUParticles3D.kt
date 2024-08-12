@@ -45,18 +45,26 @@ import kotlin.Unit
 @GodotBaseType
 public open class GPUParticles3D : GeometryInstance3D() {
   /**
-   * Emitted when all active particles have finished processing. When [oneShot] is disabled,
-   * particles will process continuously, so this is never emitted.
-   * **Note:** Due to the particles being computed on the GPU there might be a delay before the
-   * signal gets emitted.
+   * Emitted when all active particles have finished processing. To immediately emit new particles,
+   * call [restart].
+   * Never emitted when [oneShot] is disabled, as particles will be emitted and processed
+   * continuously.
+   * **Note:** For [oneShot] emitters, due to the particles being computed on the GPU, there may be
+   * a short period after receiving the signal during which setting [emitting] to `true` will not
+   * restart the emission cycle. This delay is avoided by instead calling [restart].
    */
   public val finished: Signal0 by signal()
 
   /**
    * If `true`, particles are being emitted. [emitting] can be used to start and stop particles from
    * emitting. However, if [oneShot] is `true` setting [emitting] to `true` will not restart the
-   * emission cycle until after all active particles finish processing. You can use the [signal
-   * finished] signal to be notified once all active particles finish processing.
+   * emission cycle unless all active particles have finished processing. Use the [signal finished]
+   * signal to be notified once all active particles finish processing.
+   * **Note:** For [oneShot] emitters, due to the particles being computed on the GPU, there may be
+   * a short period after receiving the [signal finished] signal during which setting this to `true`
+   * will not restart the emission cycle.
+   * **Tip:** If your [oneShot] emitter needs to immediately restart emitting particles once [signal
+   * finished] signal is received, consider calling [restart] instead of setting [emitting].
    */
   public var emitting: Boolean
     get() {
@@ -525,7 +533,9 @@ public open class GPUParticles3D : GeometryInstance3D() {
 
 
   /**
-   * Restarts the particle emission, clearing existing particles.
+   * Restarts the particle emission cycle, clearing existing particles. To avoid particles vanishing
+   * from the viewport, wait for the [signal finished] signal before calling.
+   * **Note:** The [signal finished] signal is only emitted by [oneShot] emitters.
    */
   public fun restart(): Unit {
     TransferContext.writeArguments()
@@ -545,6 +555,8 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * Emits a single particle. Whether [xform], [velocity], [color] and [custom] are applied depends
    * on the value of [flags]. See [EmitFlags].
+   * The default ParticleProcessMaterial will overwrite [color] and use the contents of [custom] as
+   * `(rotation, age, animation, lifetime)`.
    */
   public fun emitParticle(
     xform: Transform3D,

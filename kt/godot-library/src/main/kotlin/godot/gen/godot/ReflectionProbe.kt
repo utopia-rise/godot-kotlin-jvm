@@ -183,9 +183,11 @@ public open class ReflectionProbe : VisualInstance3D() {
 
   /**
    * Sets the cull mask which determines what objects are drawn by this probe. Every
-   * [VisualInstance3D] with a layer included in this cull mask will be rendered by the probe. To
-   * improve performance, it is best to only include large objects which are likely to take up a lot of
-   * space in the reflection.
+   * [VisualInstance3D] with a layer included in this cull mask will be rendered by the probe. It is
+   * best to only include large objects which are likely to take up a lot of space in the reflection in
+   * order to save on rendering cost.
+   * This can also be used to prevent an object from reflecting upon itself (for instance, a
+   * [ReflectionProbe] centered on a vehicle).
    */
   public var cullMask: Long
     get() {
@@ -196,6 +198,23 @@ public open class ReflectionProbe : VisualInstance3D() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
+    }
+
+  /**
+   * Sets the reflection mask which determines what objects have reflections applied from this
+   * probe. Every [VisualInstance3D] with a layer included in this reflection mask will have
+   * reflections applied from this probe. See also [cullMask], which can be used to exclude objects
+   * from appearing in the reflection while still making them affected by the [ReflectionProbe].
+   */
+  public var reflectionMask: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getReflectionMaskPtr, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setReflectionMaskPtr, NIL)
     }
 
   /**
@@ -481,6 +500,12 @@ public open class ReflectionProbe : VisualInstance3D() {
 
     public val getCullMaskPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ReflectionProbe", "get_cull_mask")
+
+    public val setReflectionMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_reflection_mask")
+
+    public val getReflectionMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "get_reflection_mask")
 
     public val setUpdateModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("ReflectionProbe", "set_update_mode")

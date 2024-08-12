@@ -103,6 +103,7 @@ public open class RichTextLabel : Control() {
 
   /**
    * If `true`, the label uses BBCode formatting.
+   * **Note:** This only affects the contents of [text], not the tag stack.
    */
   public var bbcodeEnabled: Boolean
     get() {
@@ -548,10 +549,24 @@ public open class RichTextLabel : Control() {
    * Removes a paragraph of content from the label. Returns `true` if the paragraph exists.
    * The [paragraph] argument is the index of the paragraph to remove, it can take values in the
    * interval `[0, get_paragraph_count() - 1]`.
+   * If [noInvalidate] is set to `true`, cache for the subsequent paragraphs is not invalidated. Use
+   * it for faster updates if deleted paragraph is fully self-contained (have no unclosed tags), or
+   * this call is part of the complex edit operation and [invalidateParagraph] will be called at the
+   * end of operation.
    */
-  public fun removeParagraph(paragraph: Int): Boolean {
-    TransferContext.writeArguments(LONG to paragraph.toLong())
+  @JvmOverloads
+  public fun removeParagraph(paragraph: Int, noInvalidate: Boolean = false): Boolean {
+    TransferContext.writeArguments(LONG to paragraph.toLong(), BOOL to noInvalidate)
     TransferContext.callMethod(rawPtr, MethodBindings.removeParagraphPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Invalidates [paragraph] and all subsequent paragraphs cache.
+   */
+  public fun invalidateParagraph(paragraph: Int): Boolean {
+    TransferContext.writeArguments(LONG to paragraph.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.invalidateParagraphPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -688,11 +703,15 @@ public open class RichTextLabel : Control() {
   /**
    * Adds a meta tag to the tag stack. Similar to the BBCode [code
    * skip-lint][url=something]{text}[/url][/code], but supports non-[String] metadata types.
+   * If [metaUnderlined] is `true`, meta tags display an underline. This behavior can be customized
+   * with [underlineMode].
    * **Note:** Meta tags do nothing by default when clicked. To assign behavior when clicked,
    * connect [signal meta_clicked] to a function that is called when the meta tag is clicked.
    */
-  public fun pushMeta(`data`: Any?): Unit {
-    TransferContext.writeArguments(ANY to data)
+  @JvmOverloads
+  public fun pushMeta(`data`: Any?, underlineMode: MetaUnderline =
+      RichTextLabel.MetaUnderline.META_UNDERLINE_ALWAYS): Unit {
+    TransferContext.writeArguments(ANY to data, LONG to underlineMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.pushMetaPtr, NIL)
   }
 
@@ -730,7 +749,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint][table=columns,inline_align][/code] tag to the tag stack.
+   * Adds a [code skip-lint][table=columns,inline_align][/code] tag to the tag stack. Use
+   * [setTableColumnExpand] to set column expansion ratio. Use [pushCell] to add cells.
    */
   @JvmOverloads
   public fun pushTable(
@@ -811,7 +831,10 @@ public open class RichTextLabel : Control() {
 
   /**
    * Adds a [code skip-lint][cell][/code] tag to the tag stack. Must be inside a [code
-   * skip-lint][table][/code] tag. See [pushTable] for details.
+   * skip-lint][table][/code] tag. See [pushTable] for details. Use [setTableColumnExpand] to set
+   * column expansion ratio, [setCellBorderColor] to set cell border, [setCellRowBackgroundColor] to
+   * set cell background, [setCellSizeOverride] to override cell size, and [setCellPadding] to set
+   * padding.
    */
   public fun pushCell(): Unit {
     TransferContext.writeArguments()
@@ -878,9 +901,9 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Clears the tag stack.
-   * **Note:** This method will not modify [text], but setting [text] to an empty string also clears
-   * the stack.
+   * Clears the tag stack, causing the label to display nothing.
+   * **Note:** This method does not affect [text], and its contents will show again if the label is
+   * redrawn. However, setting [text] to an empty [String] also clears the stack.
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
@@ -1288,6 +1311,34 @@ public open class RichTextLabel : Control() {
     }
   }
 
+  public enum class MetaUnderline(
+    id: Long,
+  ) {
+    /**
+     * Meta tag does not display an underline, even if [metaUnderlined] is `true`.
+     */
+    META_UNDERLINE_NEVER(0),
+    /**
+     * If [metaUnderlined] is `true`, meta tag always display an underline.
+     */
+    META_UNDERLINE_ALWAYS(1),
+    /**
+     * If [metaUnderlined] is `true`, meta tag display an underline when the mouse cursor is over
+     * it.
+     */
+    META_UNDERLINE_ON_HOVER(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
+  }
+
   public sealed interface ImageUpdateMask {
     public val flag: Long
 
@@ -1388,6 +1439,9 @@ public open class RichTextLabel : Control() {
 
     public val removeParagraphPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "remove_paragraph")
+
+    public val invalidateParagraphPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "invalidate_paragraph")
 
     public val pushFontPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "push_font")
 

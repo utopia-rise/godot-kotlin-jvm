@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.PackedFloat32Array
 import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Boolean
@@ -115,9 +117,12 @@ public open class RandomNumberGenerator : RefCounted() {
   }
 
   /**
-   * Returns a [url=https://en.wikipedia.org/wiki/Normal_distribution]normally-distributed[/url]
-   * pseudo-random number, using Box-Muller transform with the specified [mean] and a standard
-   * [deviation]. This is also called Gaussian distribution.
+   * Returns a [url=https://en.wikipedia.org/wiki/Normal_distribution]normally-distributed[/url],
+   * pseudo-random floating-point number from the specified [mean] and a standard [deviation]. This is
+   * also known as a Gaussian distribution.
+   * **Note:** This method uses the
+   * [url=https://en.wikipedia.org/wiki/Box&#37;E2&#37;80&#37;93Muller_transform]Box-Muller
+   * transform[/url] algorithm.
    */
   @JvmOverloads
   public fun randfn(mean: Float = 0.0f, deviation: Float = 1.0f): Float {
@@ -142,6 +147,28 @@ public open class RandomNumberGenerator : RefCounted() {
     TransferContext.writeArguments(LONG to from.toLong(), LONG to to.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.randiRangePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  /**
+   * Returns a random index with non-uniform weights. Prints an error and returns `-1` if the array
+   * is empty.
+   *
+   * gdscript:
+   * ```gdscript
+   * var rng = RandomNumberGenerator.new()
+   *
+   * var my_array = ["one", "two", "three", "four"]
+   * var weights = PackedFloat32Array([0.5, 1, 1, 2])
+   *
+   * # Prints one of the four elements in `my_array`.
+   * # It is more likely to print "four", and less likely to print "one".
+   * print(my_array[rng.rand_weighted(weights)])
+   * ```
+   */
+  public fun randWeighted(weights: PackedFloat32Array): Long {
+    TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to weights)
+    TransferContext.callMethod(rawPtr, MethodBindings.randWeightedPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -180,6 +207,9 @@ public open class RandomNumberGenerator : RefCounted() {
 
     public val randiRangePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RandomNumberGenerator", "randi_range")
+
+    public val randWeightedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "rand_weighted")
 
     public val randomizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RandomNumberGenerator", "randomize")

@@ -21,6 +21,11 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.jvm.JvmOverloads
 
+/**
+ * The runtime part of an [AudioEffectSpectrumAnalyzer], which can be used to query the magnitude of
+ * a frequency range on its host bus.
+ * An instance of this class can be acquired with [AudioServer.getBusEffectInstance].
+ */
 @GodotBaseType
 public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : AudioEffectInstance()
     {
@@ -29,6 +34,12 @@ public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : A
     return true
   }
 
+  /**
+   * Returns the magnitude of the frequencies from [fromHz] to [toHz] in linear energy as a Vector2.
+   * The `x` component of the return value represents the left stereo channel, and `y` represents the
+   * right channel.
+   * [mode] determines how the frequency range will be processed. See [MagnitudeMode].
+   */
   @JvmOverloads
   public fun getMagnitudeForFrequencyRange(
     fromHz: Float,
@@ -44,11 +55,11 @@ public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : A
     id: Long,
   ) {
     /**
-     * Use the average value as magnitude.
+     * Use the average value across the frequency range as magnitude.
      */
     MAGNITUDE_AVERAGE(0),
     /**
-     * Use the maximum value as magnitude.
+     * Use the maximum value of the frequency range as magnitude.
      */
     MAGNITUDE_MAX(1),
     ;

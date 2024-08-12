@@ -69,6 +69,21 @@ public open class GraphNode : GraphElement() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTitlePtr, NIL)
     }
 
+  /**
+   * If `true`, you can connect ports with different types, even if the connection was not
+   * explicitly allowed in the parent [GraphEdit].
+   */
+  public var ignoreInvalidConnectionType: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isIgnoringValidConnectionTypePtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreInvalidConnectionTypePtr, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_GRAPHNODE, scriptIndex)
     return true
@@ -200,6 +215,24 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
+   * Sets the custom [Texture2D] of the left (input) side of the slot with the given [slotIndex] to
+   * [customIcon].
+   */
+  public fun setSlotCustomIconLeft(slotIndex: Int, customIcon: Texture2D): Unit {
+    TransferContext.writeArguments(LONG to slotIndex.toLong(), OBJECT to customIcon)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSlotCustomIconLeftPtr, NIL)
+  }
+
+  /**
+   * Returns the left (input) custom [Texture2D] of the slot with the given [slotIndex].
+   */
+  public fun getSlotCustomIconLeft(slotIndex: Int): Texture2D? {
+    TransferContext.writeArguments(LONG to slotIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.getSlotCustomIconLeftPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  /**
    * Returns `true` if right (output) side of the slot with the given [slotIndex] is enabled.
    */
   public fun isSlotEnabledRight(slotIndex: Int): Boolean {
@@ -250,6 +283,24 @@ public open class GraphNode : GraphElement() {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getSlotColorRightPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  /**
+   * Sets the custom [Texture2D] of the right (output) side of the slot with the given [slotIndex]
+   * to [customIcon].
+   */
+  public fun setSlotCustomIconRight(slotIndex: Int, customIcon: Texture2D): Unit {
+    TransferContext.writeArguments(LONG to slotIndex.toLong(), OBJECT to customIcon)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSlotCustomIconRightPtr, NIL)
+  }
+
+  /**
+   * Returns the right (output) custom [Texture2D] of the slot with the given [slotIndex].
+   */
+  public fun getSlotCustomIconRight(slotIndex: Int): Texture2D? {
+    TransferContext.writeArguments(LONG to slotIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.getSlotCustomIconRightPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
   /**
@@ -396,6 +447,12 @@ public open class GraphNode : GraphElement() {
     public val getSlotColorLeftPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphNode", "get_slot_color_left")
 
+    public val setSlotCustomIconLeftPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_custom_icon_left")
+
+    public val getSlotCustomIconLeftPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "get_slot_custom_icon_left")
+
     public val isSlotEnabledRightPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphNode", "is_slot_enabled_right")
 
@@ -414,11 +471,23 @@ public open class GraphNode : GraphElement() {
     public val getSlotColorRightPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphNode", "get_slot_color_right")
 
+    public val setSlotCustomIconRightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_custom_icon_right")
+
+    public val getSlotCustomIconRightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "get_slot_custom_icon_right")
+
     public val isSlotDrawStyleboxPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphNode", "is_slot_draw_stylebox")
 
     public val setSlotDrawStyleboxPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphNode", "set_slot_draw_stylebox")
+
+    public val setIgnoreInvalidConnectionTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "set_ignore_invalid_connection_type")
+
+    public val isIgnoringValidConnectionTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "is_ignoring_valid_connection_type")
 
     public val getInputPortCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphNode", "get_input_port_count")

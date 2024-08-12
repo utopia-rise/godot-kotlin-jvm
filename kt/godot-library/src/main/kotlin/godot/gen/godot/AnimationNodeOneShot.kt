@@ -94,6 +94,11 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   /**
    * The fade-in duration. For example, setting this to `1.0` for a 5 second length animation will
    * produce a cross-fade that starts at 0 second and ends at 1 second during the animation.
+   * **Note:** [AnimationNodeOneShot] transitions the current state after the end of the fading.
+   * When [AnimationNodeOutput] is considered as the most upstream, so the [fadeinTime] is scaled
+   * depending on the downstream delta. For example, if this value is set to `1.0` and a
+   * [AnimationNodeTimeScale] with a value of `2.0` is chained downstream, the actual processing time
+   * will be 0.5 second.
    */
   public var fadeinTime: Double
     get() {
@@ -124,6 +129,11 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   /**
    * The fade-out duration. For example, setting this to `1.0` for a 5 second length animation will
    * produce a cross-fade that starts at 4 second and ends at 5 second during the animation.
+   * **Note:** [AnimationNodeOneShot] transitions the current state after the end of the fading.
+   * When [AnimationNodeOutput] is considered as the most upstream, so the [fadeoutTime] is scaled
+   * depending on the downstream delta. For example, if this value is set to `1.0` and an
+   * [AnimationNodeTimeScale] with a value of `2.0` is chained downstream, the actual processing time
+   * will be 0.5 second.
    */
   public var fadeoutTime: Double
     get() {
@@ -149,6 +159,21 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setFadeoutCurvePtr, NIL)
+    }
+
+  /**
+   * If `true`, breaks the loop at the end of the loop cycle for transition, even if the animation
+   * is looping.
+   */
+  public var breakLoopAtEnd: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isLoopBrokenAtEndPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBreakLoopAtEndPtr, NIL)
     }
 
   /**
@@ -283,6 +308,12 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
 
     public val getFadeoutCurvePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadeout_curve")
+
+    public val setBreakLoopAtEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_break_loop_at_end")
+
+    public val isLoopBrokenAtEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "is_loop_broken_at_end")
 
     public val setAutorestartPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart")

@@ -53,7 +53,7 @@ public open class SceneReplicationConfig : Resource() {
   }
 
   /**
-   * Returns whether the given [path] is configured for synchronization.
+   * Returns `true` if the given [path] is configured for synchronization.
    */
   public fun hasProperty(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
@@ -79,8 +79,8 @@ public open class SceneReplicationConfig : Resource() {
   }
 
   /**
-   * Returns whether the property identified by the given [path] is configured to be synchronized on
-   * spawn.
+   * Returns `true` if the property identified by the given [path] is configured to be synchronized
+   * on spawn.
    */
   public fun propertyGetSpawn(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
@@ -117,9 +117,8 @@ public open class SceneReplicationConfig : Resource() {
   }
 
   /**
-   * Returns whether the property identified by the given [path] is configured to be synchronized on
-   * process.
-   * *Deprecated.* Use [propertyGetReplicationMode] instead.
+   * Returns `true` if the property identified by the given [path] is configured to be synchronized
+   * on process.
    */
   public fun propertyGetSync(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
@@ -130,7 +129,6 @@ public open class SceneReplicationConfig : Resource() {
   /**
    * Sets whether the property identified by the given [path] is configured to be synchronized on
    * process.
-   * *Deprecated.* Use [propertySetReplicationMode] with [REPLICATION_MODE_ALWAYS] instead.
    */
   public fun propertySetSync(path: NodePath, enabled: Boolean): Unit {
     TransferContext.writeArguments(NODE_PATH to path, BOOL to enabled)
@@ -138,9 +136,8 @@ public open class SceneReplicationConfig : Resource() {
   }
 
   /**
-   * Returns whether the property identified by the given [path] is configured to be reliably
+   * Returns `true` if the property identified by the given [path] is configured to be reliably
    * synchronized when changes are detected on process.
-   * *Deprecated.* Use [propertyGetReplicationMode] instead.
    */
   public fun propertyGetWatch(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
@@ -151,7 +148,6 @@ public open class SceneReplicationConfig : Resource() {
   /**
    * Sets whether the property identified by the given [path] is configured to be reliably
    * synchronized when changes are detected on process.
-   * *Deprecated.* Use [propertySetReplicationMode] with [REPLICATION_MODE_ON_CHANGE] instead.
    */
   public fun propertySetWatch(path: NodePath, enabled: Boolean): Unit {
     TransferContext.writeArguments(NODE_PATH to path, BOOL to enabled)

@@ -33,11 +33,17 @@ public open class SliderJoint3D : Joint3D() {
     return true
   }
 
+  /**
+   * Assigns [value] to the given parameter (see [Param] constants).
+   */
   public fun setParam(`param`: Param, `value`: Float): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
   }
 
+  /**
+   * Returns the value of the given parameter (see [Param] constants).
+   */
   public fun getParam(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
@@ -48,94 +54,111 @@ public open class SliderJoint3D : Joint3D() {
     id: Long,
   ) {
     /**
-     * The maximum difference between the pivot points on their X axis before damping happens.
+     * Constant for accessing [linearLimit/upperDistance]. The maximum difference between the pivot
+     * points on their X axis before damping happens.
      */
     PARAM_LINEAR_LIMIT_UPPER(0),
     /**
-     * The minimum difference between the pivot points on their X axis before damping happens.
+     * Constant for accessing [linearLimit/lowerDistance]. The minimum difference between the pivot
+     * points on their X axis before damping happens.
      */
     PARAM_LINEAR_LIMIT_LOWER(1),
     /**
-     * A factor applied to the movement across the slider axis once the limits get surpassed. The
-     * lower, the slower the movement.
+     * Constant for accessing [linearLimit/softness]. A factor applied to the movement across the
+     * slider axis once the limits get surpassed. The lower, the slower the movement.
      */
     PARAM_LINEAR_LIMIT_SOFTNESS(2),
     /**
-     * The amount of restitution once the limits are surpassed. The lower, the more velocity-energy
-     * gets lost.
+     * Constant for accessing [linearLimit/restitution]. The amount of restitution once the limits
+     * are surpassed. The lower, the more velocity-energy gets lost.
      */
     PARAM_LINEAR_LIMIT_RESTITUTION(3),
     /**
-     * The amount of damping once the slider limits are surpassed.
+     * Constant for accessing [linearLimit/damping]. The amount of damping once the slider limits
+     * are surpassed.
      */
     PARAM_LINEAR_LIMIT_DAMPING(4),
     /**
-     * A factor applied to the movement across the slider axis as long as the slider is in the
-     * limits. The lower, the slower the movement.
+     * Constant for accessing [linearMotion/softness]. A factor applied to the movement across the
+     * slider axis as long as the slider is in the limits. The lower, the slower the movement.
      */
     PARAM_LINEAR_MOTION_SOFTNESS(5),
     /**
-     * The amount of restitution inside the slider limits.
+     * Constant for accessing [linearMotion/restitution]. The amount of restitution inside the
+     * slider limits.
      */
     PARAM_LINEAR_MOTION_RESTITUTION(6),
     /**
-     * The amount of damping inside the slider limits.
+     * Constant for accessing [linearMotion/damping]. The amount of damping inside the slider
+     * limits.
      */
     PARAM_LINEAR_MOTION_DAMPING(7),
     /**
-     * A factor applied to the movement across axes orthogonal to the slider.
+     * Constant for accessing [linearOrtho/softness]. A factor applied to the movement across axes
+     * orthogonal to the slider.
      */
     PARAM_LINEAR_ORTHOGONAL_SOFTNESS(8),
     /**
-     * The amount of restitution when movement is across axes orthogonal to the slider.
+     * Constant for accessing [linearMotion/restitution]. The amount of restitution when movement is
+     * across axes orthogonal to the slider.
      */
     PARAM_LINEAR_ORTHOGONAL_RESTITUTION(9),
     /**
-     * The amount of damping when movement is across axes orthogonal to the slider.
+     * Constant for accessing [linearMotion/damping]. The amount of damping when movement is across
+     * axes orthogonal to the slider.
      */
     PARAM_LINEAR_ORTHOGONAL_DAMPING(10),
     /**
-     * The upper limit of rotation in the slider.
+     * Constant for accessing [angularLimit/upperAngle]. The upper limit of rotation in the slider.
      */
     PARAM_ANGULAR_LIMIT_UPPER(11),
     /**
-     * The lower limit of rotation in the slider.
+     * Constant for accessing [angularLimit/lowerAngle]. The lower limit of rotation in the slider.
      */
     PARAM_ANGULAR_LIMIT_LOWER(12),
     /**
-     * A factor applied to the all rotation once the limit is surpassed.
+     * Constant for accessing [angularLimit/softness]. A factor applied to the all rotation once the
+     * limit is surpassed.
      */
     PARAM_ANGULAR_LIMIT_SOFTNESS(13),
     /**
-     * The amount of restitution of the rotation when the limit is surpassed.
+     * Constant for accessing [angularLimit/restitution]. The amount of restitution of the rotation
+     * when the limit is surpassed.
      */
     PARAM_ANGULAR_LIMIT_RESTITUTION(14),
     /**
-     * The amount of damping of the rotation when the limit is surpassed.
+     * Constant for accessing [angularLimit/damping]. The amount of damping of the rotation when the
+     * limit is surpassed.
      */
     PARAM_ANGULAR_LIMIT_DAMPING(15),
     /**
-     * A factor applied to the all rotation in the limits.
+     * Constant for accessing [angularMotion/softness]. A factor applied to the all rotation in the
+     * limits.
      */
     PARAM_ANGULAR_MOTION_SOFTNESS(16),
     /**
-     * The amount of restitution of the rotation in the limits.
+     * Constant for accessing [angularMotion/restitution]. The amount of restitution of the rotation
+     * in the limits.
      */
     PARAM_ANGULAR_MOTION_RESTITUTION(17),
     /**
-     * The amount of damping of the rotation in the limits.
+     * Constant for accessing [angularMotion/damping]. The amount of damping of the rotation in the
+     * limits.
      */
     PARAM_ANGULAR_MOTION_DAMPING(18),
     /**
-     * A factor applied to the all rotation across axes orthogonal to the slider.
+     * Constant for accessing [angularOrtho/softness]. A factor applied to the all rotation across
+     * axes orthogonal to the slider.
      */
     PARAM_ANGULAR_ORTHOGONAL_SOFTNESS(19),
     /**
-     * The amount of restitution of the rotation across axes orthogonal to the slider.
+     * Constant for accessing [angularOrtho/restitution]. The amount of restitution of the rotation
+     * across axes orthogonal to the slider.
      */
     PARAM_ANGULAR_ORTHOGONAL_RESTITUTION(20),
     /**
-     * The amount of damping of the rotation across axes orthogonal to the slider.
+     * Constant for accessing [angularOrtho/damping]. The amount of damping of the rotation across
+     * axes orthogonal to the slider.
      */
     PARAM_ANGULAR_ORTHOGONAL_DAMPING(21),
     /**

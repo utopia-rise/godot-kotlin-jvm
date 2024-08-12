@@ -103,9 +103,6 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     throw NotImplementedError("_create_script is not implemented for ScriptLanguageExtension")
   }
 
-  /**
-   * *Deprecated.* This method is not called by the engine.
-   */
   public open fun _hasNamedClasses(): Boolean {
     throw NotImplementedError("_has_named_classes is not implemented for ScriptLanguageExtension")
   }
@@ -122,7 +119,11 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     throw NotImplementedError("_can_inherit_from_file is not implemented for ScriptLanguageExtension")
   }
 
-  public open fun _findFunction(className: String, functionName: String): Int {
+  /**
+   * Returns the line where the function is defined in the code, or `-1` if the function is not
+   * present.
+   */
+  public open fun _findFunction(function: String, code: String): Int {
     throw NotImplementedError("_find_function is not implemented for ScriptLanguageExtension")
   }
 
@@ -132,6 +133,10 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     functionArgs: PackedStringArray,
   ): String {
     throw NotImplementedError("_make_function is not implemented for ScriptLanguageExtension")
+  }
+
+  public open fun _canMakeFunction(): Boolean {
+    throw NotImplementedError("_can_make_function is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _openInExternalEditor(
@@ -144,6 +149,10 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
 
   public open fun _overridesExternalEditor(): Boolean {
     throw NotImplementedError("_overrides_external_editor is not implemented for ScriptLanguageExtension")
+  }
+
+  public open fun _preferredFileNameCasing(): ScriptLanguage.ScriptNameCasing {
+    throw NotImplementedError("_preferred_file_name_casing is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _completeCode(
@@ -200,6 +209,13 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
 
   public open fun _debugGetStackLevelFunction(level: Int): String {
     throw NotImplementedError("_debug_get_stack_level_function is not implemented for ScriptLanguageExtension")
+  }
+
+  /**
+   * Returns the source associated with a given debug stack position.
+   */
+  public open fun _debugGetStackLevelSource(level: Int): String {
+    throw NotImplementedError("_debug_get_stack_level_source is not implemented for ScriptLanguageExtension")
   }
 
   public open fun _debugGetStackLevelLocals(
@@ -263,6 +279,9 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   public open fun _profilingStop(): Unit {
   }
 
+  public open fun _profilingSetSaveNativeCalls(enable: Boolean): Unit {
+  }
+
   public open fun _frame(): Unit {
   }
 
@@ -310,9 +329,9 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     LOCATION_LOCAL(0),
     /**
      * The option is from the containing class or a parent class, relative to the location of the
-     * code completion query. Perform a bitwise OR with the class depth (e.g. 0 for the local class, 1
-     * for the parent, 2 for the grandparent, etc) to store the depth of an option in the class or a
-     * parent class.
+     * code completion query. Perform a bitwise OR with the class depth (e.g. `0` for the local class,
+     * `1` for the parent, `2` for the grandparent, etc.) to store the depth of an option in the class
+     * or a parent class.
      */
     LOCATION_PARENT_MASK(256),
     /**
@@ -431,11 +450,17 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     public val _makeFunctionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_make_function")
 
+    public val _canMakeFunctionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_can_make_function")
+
     public val _openInExternalEditorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_open_in_external_editor")
 
     public val _overridesExternalEditorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_overrides_external_editor")
+
+    public val _preferredFileNameCasingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_preferred_file_name_casing")
 
     public val _completeCodePtr: VoidPtr =
         TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_complete_code")
@@ -472,6 +497,9 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
 
     public val _debugGetStackLevelFunctionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_debug_get_stack_level_function")
+
+    public val _debugGetStackLevelSourcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_debug_get_stack_level_source")
 
     public val _debugGetStackLevelLocalsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_debug_get_stack_level_locals")
@@ -514,6 +542,9 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
 
     public val _profilingStopPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_profiling_stop")
+
+    public val _profilingSetSaveNativeCallsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_profiling_set_save_native_calls")
 
     public val _profilingGetAccumulatedDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ScriptLanguageExtension", "_profiling_get_accumulated_data")

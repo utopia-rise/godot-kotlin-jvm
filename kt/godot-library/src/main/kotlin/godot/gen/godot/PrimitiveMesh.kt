@@ -176,6 +176,14 @@ public open class PrimitiveMesh : Mesh() {
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
+  /**
+   * Request an update of this primitive mesh based on its properties.
+   */
+  public fun requestUpdate(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.requestUpdatePtr, NIL)
+  }
+
   public companion object
 
   internal object MethodBindings {
@@ -212,5 +220,8 @@ public open class PrimitiveMesh : Mesh() {
 
     public val getUv2PaddingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PrimitiveMesh", "get_uv2_padding")
+
+    public val requestUpdatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "request_update")
   }
 }

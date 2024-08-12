@@ -416,7 +416,10 @@ public open class Node2D : CanvasItem() {
   }
 
   /**
-   * Rotates the node so it points towards the [point], which is expected to use global coordinates.
+   * Rotates the node so that its local +X axis points towards the [point], which is expected to use
+   * global coordinates.
+   * [point] should not be the same as the node's position, otherwise the node always looks to the
+   * right.
    */
   public fun lookAt(point: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to point)

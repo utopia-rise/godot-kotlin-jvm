@@ -12,6 +12,8 @@ import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
+import godot.core.VariantType.NIL
+import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
@@ -21,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [OpenXRAPIExtension] makes OpenXR available for GDExtension. It provides the OpenXR API to
@@ -148,7 +151,16 @@ public open class OpenXRAPIExtension : RefCounted() {
   }
 
   /**
-   * Returns the timing for the next frame.
+   * Returns the predicted display timing for the current frame.
+   */
+  public fun getPredictedDisplayTime(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPredictedDisplayTimePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  /**
+   * Returns the predicted display timing for the next frame.
    */
   public fun getNextFrameTime(): Long {
     TransferContext.writeArguments()
@@ -163,6 +175,78 @@ public open class OpenXRAPIExtension : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.canRenderPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Returns the corresponding `XRHandTrackerEXT` handle for the given hand index value.
+   */
+  public fun getHandTracker(handIndex: Int): Long {
+    TransferContext.writeArguments(LONG to handIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.getHandTrackerPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  /**
+   * Registers the given extension as a composition layer provider.
+   */
+  public fun registerCompositionLayerProvider(extension: OpenXRExtensionWrapperExtension): Unit {
+    TransferContext.writeArguments(OBJECT to extension)
+    TransferContext.callMethod(rawPtr, MethodBindings.registerCompositionLayerProviderPtr, NIL)
+  }
+
+  /**
+   * Unregisters the given extension as a composition layer provider.
+   */
+  public fun unregisterCompositionLayerProvider(extension: OpenXRExtensionWrapperExtension): Unit {
+    TransferContext.writeArguments(OBJECT to extension)
+    TransferContext.callMethod(rawPtr, MethodBindings.unregisterCompositionLayerProviderPtr, NIL)
+  }
+
+  /**
+   * If set to `true`, an OpenXR extension is loaded which is capable of emulating the
+   * [XRInterface.XR_ENV_BLEND_MODE_ALPHA_BLEND] blend mode.
+   */
+  public fun setEmulateEnvironmentBlendModeAlphaBlend(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEmulateEnvironmentBlendModeAlphaBlendPtr,
+        NIL)
+  }
+
+  /**
+   * Returns [OpenXRAPIExtension.OpenXRAlphaBlendModeSupport] denoting if
+   * [XRInterface.XR_ENV_BLEND_MODE_ALPHA_BLEND] is really supported, emulated or not supported at all.
+   */
+  public fun isEnvironmentBlendModeAlphaSupported(): OpenXRAlphaBlendModeSupport {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isEnvironmentBlendModeAlphaSupportedPtr, LONG)
+    return OpenXRAPIExtension.OpenXRAlphaBlendModeSupport.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public enum class OpenXRAlphaBlendModeSupport(
+    id: Long,
+  ) {
+    /**
+     * Means that [XRInterface.XR_ENV_BLEND_MODE_ALPHA_BLEND] isn't supported at all.
+     */
+    OPENXR_ALPHA_BLEND_MODE_SUPPORT_NONE(0),
+    /**
+     * Means that [XRInterface.XR_ENV_BLEND_MODE_ALPHA_BLEND] is really supported.
+     */
+    OPENXR_ALPHA_BLEND_MODE_SUPPORT_REAL(1),
+    /**
+     * Means that [XRInterface.XR_ENV_BLEND_MODE_ALPHA_BLEND] is emulated.
+     */
+    OPENXR_ALPHA_BLEND_MODE_SUPPORT_EMULATING(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
   }
 
   public companion object {
@@ -213,10 +297,28 @@ public open class OpenXRAPIExtension : RefCounted() {
     public val getPlaySpacePtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_play_space")
 
+    public val getPredictedDisplayTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_predicted_display_time")
+
     public val getNextFrameTimePtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_next_frame_time")
 
     public val canRenderPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRAPIExtension", "can_render")
+
+    public val getHandTrackerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_hand_tracker")
+
+    public val registerCompositionLayerProviderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "register_composition_layer_provider")
+
+    public val unregisterCompositionLayerProviderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "unregister_composition_layer_provider")
+
+    public val setEmulateEnvironmentBlendModeAlphaBlendPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "set_emulate_environment_blend_mode_alpha_blend")
+
+    public val isEnvironmentBlendModeAlphaSupportedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "is_environment_blend_mode_alpha_supported")
   }
 }

@@ -25,21 +25,29 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Counts down a specified interval and emits a signal on reaching 0. Can be set to repeat or
- * "one-shot" mode.
- * **Note:** Timers are affected by [Engine.timeScale], a higher scale means quicker timeouts, and
- * vice versa.
+ * The [Timer] node is a countdown timer and is the simplest way to handle time-based logic in the
+ * engine. When a timer reaches the end of its [waitTime], it will emit the [signal timeout] signal.
+ * After a timer enters the tree, it can be manually started with [start]. A timer node is also
+ * started automatically if [autostart] is `true`.
+ * Without requiring much code, a timer node can be added and configured in the editor. The [signal
+ * timeout] signal it emits can also be connected through the Node dock in the editor:
+ * [codeblock]
+ * func _on_timer_timeout():
+ *     print("Time to attack!")
+ * [/codeblock]
  * **Note:** To create a one-shot timer without instantiating a node, use [SceneTree.createTimer].
+ * **Note:** Timers are affected by [Engine.timeScale]. The higher the time scale, the sooner timers
+ * will end. How often a timer processes may depend on the framerate or [Engine.physicsTicksPerSecond].
  */
 @GodotBaseType
 public open class Timer : Node() {
   /**
-   * Emitted when the timer reaches 0.
+   * Emitted when the timer reaches the end.
    */
   public val timeout: Signal0 by signal()
 
   /**
-   * Processing callback. See [TimerProcessCallback].
+   * Specifies when the timer is updated during the main loop (see [TimerProcessCallback]).
    */
   public var processCallback: TimerProcessCallback
     get() {
@@ -53,12 +61,13 @@ public open class Timer : Node() {
     }
 
   /**
-   * The wait time in seconds.
-   * **Note:** Timers can only emit once per rendered frame at most (or once per physics frame if
-   * [processCallback] is [TIMER_PROCESS_PHYSICS]). This means very low wait times (lower than 0.05
-   * seconds) will behave in significantly different ways depending on the rendered framerate. For very
-   * low wait times, it is recommended to use a process loop in a script instead of using a Timer node.
-   * Timers are affected by [Engine.timeScale], a higher scale means quicker timeouts, and vice versa.
+   * The time required for the timer to end, in seconds. This property can also be set every time
+   * [start] is called.
+   * **Note:** Timers can only process once per physics or process frame (depending on the
+   * [processCallback]). An unstable framerate may cause the timer to end inconsistently, which is
+   * especially noticeable if the wait time is lower than roughly `0.05` seconds. For very short
+   * timers, it is recommended to write your own code instead of using a [Timer] node. Timers are also
+   * affected by [Engine.timeScale].
    */
   public var waitTime: Double
     get() {
@@ -72,7 +81,8 @@ public open class Timer : Node() {
     }
 
   /**
-   * If `true`, the timer will stop when reaching 0. If `false`, it will restart.
+   * If `true`, the timer will stop after reaching the end. Otherwise, as by default, the timer will
+   * automatically restart.
    */
   public var oneShot: Boolean
     get() {
@@ -86,9 +96,8 @@ public open class Timer : Node() {
     }
 
   /**
-   * If `true`, the timer will automatically start when entering the scene tree.
-   * **Note:** This property is automatically set to `false` after the timer enters the scene tree
-   * and starts.
+   * If `true`, the timer will start immediately when it enters the scene tree.
+   * **Note:** After the timer enters the tree, this property is automatically set to `false`.
    */
   public var autostart: Boolean
     get() {
@@ -102,8 +111,8 @@ public open class Timer : Node() {
     }
 
   /**
-   * If `true`, the timer is paused and will not process until it is unpaused again, even if [start]
-   * is called.
+   * If `true`, the timer is paused. A paused timer does not process until this property is set back
+   * to `false`, even when [start] is called.
    */
   public var paused: Boolean
     get() {
@@ -117,9 +126,8 @@ public open class Timer : Node() {
     }
 
   /**
-   * The timer's remaining time in seconds. Returns 0 if the timer is inactive.
-   * **Note:** This value is read-only and cannot be set. It is based on [waitTime], which can be
-   * set using [start].
+   * The timer's remaining time in seconds. This is always `0` if the timer is stopped.
+   * **Note:** This property is read-only and cannot be modified. It is based on [waitTime].
    */
   public val timeLeft: Double
     get() {
@@ -134,9 +142,9 @@ public open class Timer : Node() {
   }
 
   /**
-   * Starts the timer. Sets [waitTime] to [timeSec] if `time_sec > 0`. This also resets the
-   * remaining time to [waitTime].
-   * **Note:** This method will not resume a paused timer. See [paused].
+   * Starts the timer, if it was not started already. Fails if the timer is not inside the tree. If
+   * [timeSec] is greater than `0`, this value is used for the [waitTime].
+   * **Note:** This method does not resume a paused timer. See [paused].
    */
   @JvmOverloads
   public fun start(timeSec: Double = -1.0): Unit {
@@ -153,7 +161,7 @@ public open class Timer : Node() {
   }
 
   /**
-   * Returns `true` if the timer is stopped.
+   * Returns `true` if the timer is stopped or has not started.
    */
   public fun isStopped(): Boolean {
     TransferContext.writeArguments()
@@ -165,11 +173,12 @@ public open class Timer : Node() {
     id: Long,
   ) {
     /**
-     * Update the timer during physics frames (see [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
+     * Update the timer every physics process frame (see
+     * [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
     TIMER_PROCESS_PHYSICS(0),
     /**
-     * Update the timer during process frames (see [Node.NOTIFICATION_INTERNAL_PROCESS]).
+     * Update the timer every process (rendered) frame (see [Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
     TIMER_PROCESS_IDLE(1),
     ;

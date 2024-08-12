@@ -181,6 +181,16 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   }
 
   /**
+   * Returns the gravity vector computed from all sources that can affect the body, including all
+   * gravity overrides from [Area3D] nodes and the global world gravity.
+   */
+  public fun getGravity(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  /**
    * Returns an array of nodes that were added as collision exceptions for this body.
    */
   public fun getCollisionExceptions(): VariantArray<PhysicsBody3D> {
@@ -212,6 +222,8 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
         TypeManager.getMethodBindPtr("PhysicsBody3D", "move_and_collide")
 
     public val testMovePtr: VoidPtr = TypeManager.getMethodBindPtr("PhysicsBody3D", "test_move")
+
+    public val getGravityPtr: VoidPtr = TypeManager.getMethodBindPtr("PhysicsBody3D", "get_gravity")
 
     public val setAxisLockPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsBody3D", "set_axis_lock")

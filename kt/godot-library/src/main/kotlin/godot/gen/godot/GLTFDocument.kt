@@ -149,6 +149,7 @@ public open class GLTFDocument : Resource() {
 
   /**
    * Takes a [GLTFState] object through the [state] parameter and returns a Godot Engine scene node.
+   * The [bakeFps] parameter overrides the bake_fps in [state].
    */
   @JvmOverloads
   public fun generateScene(
@@ -174,7 +175,7 @@ public open class GLTFDocument : Resource() {
   /**
    * Takes a [GLTFState] object through the [state] parameter and writes a glTF file to the
    * filesystem.
-   * **Note:** The extension of the glTF file determines if it is a .glb binary file or a .gltf
+   * **Note:** The extension of the glTF file determines if it is a .glb binary file or a .gltf text
    * file.
    */
   public fun writeToFilesystem(state: GLTFState, path: String): GodotError {
@@ -242,24 +243,6 @@ public open class GLTFDocument : Resource() {
   }
 
   internal object MethodBindings {
-    public val appendFromFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocument", "append_from_file")
-
-    public val appendFromBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocument", "append_from_buffer")
-
-    public val appendFromScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocument", "append_from_scene")
-
-    public val generateScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocument", "generate_scene")
-
-    public val generateBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocument", "generate_buffer")
-
-    public val writeToFilesystemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocument", "write_to_filesystem")
-
     public val setImageFormatPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFDocument", "set_image_format")
 
@@ -277,6 +260,24 @@ public open class GLTFDocument : Resource() {
 
     public val getRootNodeModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFDocument", "get_root_node_mode")
+
+    public val appendFromFilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "append_from_file")
+
+    public val appendFromBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "append_from_buffer")
+
+    public val appendFromScenePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "append_from_scene")
+
+    public val generateScenePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "generate_scene")
+
+    public val generateBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "generate_buffer")
+
+    public val writeToFilesystemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "write_to_filesystem")
 
     public val registerGltfDocumentExtensionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFDocument", "register_gltf_document_extension")

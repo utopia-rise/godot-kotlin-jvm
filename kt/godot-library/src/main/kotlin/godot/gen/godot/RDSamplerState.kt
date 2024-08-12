@@ -27,7 +27,8 @@ import kotlin.Suppress
 @GodotBaseType
 public open class RDSamplerState : RefCounted() {
   /**
-   * The sampler's magnification filter.
+   * The sampler's magnification filter. It is the filtering method used when sampling texels that
+   * appear bigger than on-screen pixels.
    */
   public var magFilter: RenderingDevice.SamplerFilter
     get() {
@@ -40,6 +41,10 @@ public open class RDSamplerState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMagFilterPtr, NIL)
     }
 
+  /**
+   * The sampler's minification filter. It is the filtering method used when sampling texels that
+   * appear smaller than on-screen pixels.
+   */
   public var minFilter: RenderingDevice.SamplerFilter
     get() {
       TransferContext.writeArguments()
@@ -235,6 +240,10 @@ public open class RDSamplerState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBorderColorPtr, NIL)
     }
 
+  /**
+   * If `true`, the texture will be sampled with coordinates ranging from 0 to the texture's
+   * resolution. Otherwise, the coordinates will be normalized and range from 0 to 1.
+   */
   public var unnormalizedUvw: Boolean
     get() {
       TransferContext.writeArguments()

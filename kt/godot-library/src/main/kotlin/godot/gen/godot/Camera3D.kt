@@ -116,6 +116,20 @@ public open class Camera3D : Node3D() {
     }
 
   /**
+   * The [Compositor] to use for this camera.
+   */
+  public var compositor: Compositor?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getCompositorPtr, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Compositor?)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCompositorPtr, NIL)
+    }
+
+  /**
    * The horizontal (X) offset of the camera viewport.
    */
   public var hOffset: Float
@@ -708,6 +722,12 @@ public open class Camera3D : Node3D() {
 
     public val getAttributesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Camera3D", "get_attributes")
+
+    public val setCompositorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Camera3D", "set_compositor")
+
+    public val getCompositorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Camera3D", "get_compositor")
 
     public val setKeepAspectModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Camera3D", "set_keep_aspect_mode")

@@ -41,7 +41,8 @@ import kotlin.jvm.JvmOverloads
  * Mesh is a type of [Resource] that contains vertex array-based geometry, divided in *surfaces*.
  * Each surface contains a completely separate array and a material used to draw it. Design wise, a
  * mesh with multiple surfaces is preferred to a single surface, because objects created in 3D editing
- * software commonly contain multiple materials.
+ * software commonly contain multiple materials. The maximum number of surfaces per mesh is
+ * [RenderingServer.MAX_MESH_SURFACES].
  */
 @GodotBaseType
 public open class Mesh : Resource() {
@@ -360,6 +361,8 @@ public open class Mesh : Resource() {
     ARRAY_VERTEX(0),
     /**
      * [PackedVector3Array] of vertex normals.
+     * **Note:** The array has to consist of normal vectors, otherwise they will be normalized by
+     * the engine, potentially causing visual discrepancies.
      */
     ARRAY_NORMAL(1),
     /**

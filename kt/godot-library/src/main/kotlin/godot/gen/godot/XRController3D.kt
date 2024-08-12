@@ -64,6 +64,11 @@ public open class XRController3D : XRNode3D() {
    */
   public val inputVector2Changed: Signal2<String, Vector2> by signal("name", "value")
 
+  /**
+   * Emitted when the interaction profile on this controller is changed.
+   */
+  public val profileChanged: Signal1<String> by signal("role")
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_XRCONTROLLER3D, scriptIndex)
     return true
