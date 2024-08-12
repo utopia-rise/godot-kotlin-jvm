@@ -2,7 +2,7 @@
 
 godotKotlinJvm = "0.9.1"
 kotlin = "2.0.0"
-godot = "4.2.2"
+godot = "4.3.0"
 
 shadowJar = "8.1.1" # https://github.com/johnrengelman/shadow/releases
 kotlinPoet = "1.12.0" # https://github.com/square/kotlinpoet/releases
