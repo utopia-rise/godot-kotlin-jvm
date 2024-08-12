@@ -43,7 +43,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   }
 
   /**
-   * Request a disconnection from a peer. An [ENetConnection.EVENTDISCONNECT] will be generated
+   * Request a disconnection from a peer. An [ENetConnection.EVENT_DISCONNECT] will be generated
    * during [ENetConnection.service] once the disconnection is complete.
    */
   @JvmOverloads
@@ -54,7 +54,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
 
   /**
    * Request a disconnection from a peer, but only after all queued outgoing packets are sent. An
-   * [ENetConnection.EVENTDISCONNECT] will be generated during [ENetConnection.service] once the
+   * [ENetConnection.EVENT_DISCONNECT] will be generated during [ENetConnection.service] once the
    * disconnection is complete.
    */
   @JvmOverloads
@@ -64,7 +64,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   }
 
   /**
-   * Force an immediate disconnection from a peer. No [ENetConnection.EVENTDISCONNECT] will be
+   * Force an immediate disconnection from a peer. No [ENetConnection.EVENT_DISCONNECT] will be
    * generated. The foreign peer is not guaranteed to receive the disconnect notification, and is reset
    * immediately upon return from this function.
    */
@@ -124,8 +124,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * be dropped and thus sent by ENet to the peer. By measuring fluctuations in round trip times of
    * reliable packets over the specified [interval], ENet will either increase the probability by the
    * amount specified in the [acceleration] parameter, or decrease it by the amount specified in the
-   * [deceleration] parameter (both are ratios to [PACKETTHROTTLESCALE]).
-   * When the throttle has a value of [PACKETTHROTTLESCALE], no unreliable packets are dropped by
+   * [deceleration] parameter (both are ratios to [PACKET_THROTTLE_SCALE]).
+   * When the throttle has a value of [PACKET_THROTTLE_SCALE], no unreliable packets are dropped by
    * ENet, and so 100&#37; of all unreliable packets will be sent.
    * When the throttle has a value of `0`, all unreliable packets are dropped by ENet, and so 0&#37;
    * of all unreliable packets will be sent.
@@ -238,7 +238,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     STATE_CONNECTION_PENDING(3),
     /**
      * The peer has successfully connected, but is not ready to communicate with yet
-     * ([STATECONNECTED]).
+     * ([STATE_CONNECTED]).
      */
     STATE_CONNECTION_SUCCEEDED(4),
     /**
@@ -278,7 +278,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     id: Long,
   ) {
     /**
-     * Mean packet loss of reliable packets as a ratio with respect to the [PACKETLOSSSCALE].
+     * Mean packet loss of reliable packets as a ratio with respect to the [PACKET_LOSS_SCALE].
      */
     PEER_PACKET_LOSS(0),
     /**
@@ -313,17 +313,17 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     PEER_PACKET_THROTTLE(7),
     /**
      * The maximum number of unreliable packets that should not be dropped. This value is always
-     * greater than or equal to `1`. The initial value is equal to [PACKETTHROTTLESCALE].
+     * greater than or equal to `1`. The initial value is equal to [PACKET_THROTTLE_SCALE].
      */
     PEER_PACKET_THROTTLE_LIMIT(8),
     /**
      * Internal value used to increment the packet throttle counter. The value is hardcoded to `7`
-     * and cannot be changed. You probably want to look at [PEERPACKETTHROTTLEACCELERATION] instead.
+     * and cannot be changed. You probably want to look at [PEER_PACKET_THROTTLE_ACCELERATION] instead.
      */
     PEER_PACKET_THROTTLE_COUNTER(9),
     /**
      * The time at which throttle statistics were last updated (in milliseconds since the connection
-     * started). The interval for throttle statistics updates is [PEERPACKETTHROTTLEINTERVAL].
+     * started). The interval for throttle statistics updates is [PEER_PACKET_THROTTLE_INTERVAL].
      */
     PEER_PACKET_THROTTLE_EPOCH(10),
     /**
@@ -355,7 +355,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
 
   public companion object {
     /**
-     * The reference scale for packet loss. See [getStatistic] and [PEERPACKETLOSS].
+     * The reference scale for packet loss. See [getStatistic] and [PEER_PACKET_LOSS].
      */
     public final const val PACKET_LOSS_SCALE: Long = 65536
 

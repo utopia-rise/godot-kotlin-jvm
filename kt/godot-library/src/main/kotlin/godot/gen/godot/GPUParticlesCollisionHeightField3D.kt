@@ -56,7 +56,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
 
   /**
    * Higher resolutions can represent small details more accurately in large scenes, at the cost of
-   * lower performance. If [updateMode] is [UPDATEMODEALWAYS], consider using the lowest resolution
+   * lower performance. If [updateMode] is [UPDATE_MODE_ALWAYS], consider using the lowest resolution
    * possible.
    */
   public var resolution: Resolution

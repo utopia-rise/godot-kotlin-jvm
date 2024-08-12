@@ -25,17 +25,13 @@ import kotlin.Suppress
 import kotlin.jvm.JvmName
 
 /**
- * A font loaded from a system font. Falls back to a default theme font if not implemented on the host OS.
- *
- * [godot.SystemFont] loads a font from a system font with the first matching name from [fontNames].
- *
+ * [SystemFont] loads a font from a system font with the first matching name from [fontNames].
  * It will attempt to match font style, but it's not guaranteed.
- *
- * The returned font might be part of a font collection or be a variable font with OpenType "weight", "width" and/or "italic" features set.
- *
- * You can create [godot.FontVariation] of the system font for precise control over its features.
- *
- * **Note:** This class is implemented on iOS, Linux, macOS and Windows, on other platforms it will fallback to default theme font.
+ * The returned font might be part of a font collection or be a variable font with OpenType
+ * "weight", "width" and/or "italic" features set.
+ * You can create [FontVariation] of the system font for precise control over its features.
+ * **Note:** This class is implemented on iOS, Linux, macOS and Windows, on other platforms it will
+ * fallback to default theme font.
  */
 @GodotBaseType
 public open class SystemFont : Font() {
@@ -68,7 +64,8 @@ public open class SystemFont : Font() {
     }
 
   /**
-   * Preferred weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`.
+   * Preferred weight (boldness) of the font. A value in the `100...999` range, normal font weight
+   * is `400`, bold font weight is `700`.
    */
   public var fontWeight: Int
     @JvmName("getFontWeight_prop")
@@ -79,7 +76,8 @@ public open class SystemFont : Font() {
     }
 
   /**
-   * Preferred font stretch amount, compared to a normal width. A percentage value between `50%` and `200%`.
+   * Preferred font stretch amount, compared to a normal width. A percentage value between `50&#37;`
+   * and `200&#37;`.
    */
   public var fontStretch: Int
     @JvmName("getFontStretch_prop")
@@ -160,7 +158,9 @@ public open class SystemFont : Font() {
     }
 
   /**
-   * Font glyph subpixel positioning mode. Subpixel positioning provides shaper text and better kerning for smaller font sizes, at the cost of memory usage and font rasterization speed. Use [godot.TextServer.SUBPIXEL_POSITIONING_AUTO] to automatically enable it based on the font size.
+   * Font glyph subpixel positioning mode. Subpixel positioning provides shaper text and better
+   * kerning for smaller font sizes, at the cost of memory usage and font rasterization speed. Use
+   * [TextServer.SUBPIXEL_POSITIONING_AUTO] to automatically enable it based on the font size.
    */
   public var subpixelPositioning: TextServer.SubpixelPositioning
     get() {
@@ -174,7 +174,8 @@ public open class SystemFont : Font() {
     }
 
   /**
-   * If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance field generated from the dynamic font vector data.
+   * If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance
+   * field generated from the dynamic font vector data.
    */
   public var multichannelSignedDistanceField: Boolean
     get() {
@@ -188,7 +189,10 @@ public open class SystemFont : Font() {
     }
 
   /**
-   * The width of the range around the shape between the minimum and maximum representable signed distance. If using font outlines, [msdfPixelRange] must be set to at least *twice* the size of the largest font outline. The default [msdfPixelRange] value of `16` allows outline sizes up to `8` to look correct.
+   * The width of the range around the shape between the minimum and maximum representable signed
+   * distance. If using font outlines, [msdfPixelRange] must be set to at least *twice* the size of the
+   * largest font outline. The default [msdfPixelRange] value of `16` allows outline sizes up to `8` to
+   * look correct.
    */
   public var msdfPixelRange: Int
     get() {
@@ -202,7 +206,9 @@ public open class SystemFont : Font() {
     }
 
   /**
-   * Source font size used to generate MSDF textures. Higher values allow for more precision, but are slower to render and require more memory. Only increase this value if you notice a visible lack of precision in glyph rendering.
+   * Source font size used to generate MSDF textures. Higher values allow for more precision, but
+   * are slower to render and require more memory. Only increase this value if you notice a visible
+   * lack of precision in glyph rendering.
    */
   public var msdfSize: Int
     get() {

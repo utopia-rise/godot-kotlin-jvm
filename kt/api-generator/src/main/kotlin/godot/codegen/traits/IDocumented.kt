@@ -5,11 +5,13 @@ import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import godot.tools.common.extensions.convertToCamelCase
 
+private const val constantTitle = "constant"
+
 private val titlesToSanitize = arrayOf(
     "member",
     "method",
     "enum",
-    "constant",
+    constantTitle,
     "param"
 )
 
@@ -42,7 +44,12 @@ interface IDocumented {
                 while (matchResult != null) {
                     val titleRange = matchResult.groups[1]!!.range
                     val contentRange = matchResult.groups[2]!!.range
-                    val content = unicodeString!!.substring(contentRange).convertToCamelCase()
+                    val content = with(unicodeString!!.substring(contentRange)) {
+                        if (unicodeString!!.substring(titleRange).startsWith(constantTitle)) {
+                            return@with this
+                        }
+                        convertToCamelCase()
+                    }
                     unicodeString = unicodeString
                         .replaceRange(contentRange, content)
                         .removeRange(titleRange)

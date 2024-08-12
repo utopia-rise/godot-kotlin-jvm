@@ -144,7 +144,7 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * If set to something other than [TextServer.AUTOWRAPOFF], the text gets wrapped inside the
+   * If set to something other than [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the
    * node's bounding rectangle. If you resize the node, it will change its height automatically to show
    * all the text. To see how each mode behaves, see [TextServer.AutowrapMode].
    */

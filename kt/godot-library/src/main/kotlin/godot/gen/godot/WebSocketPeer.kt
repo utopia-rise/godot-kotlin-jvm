@@ -222,7 +222,7 @@ public open class WebSocketPeer : PacketPeer() {
    * section 7.4 for a list of valid status codes). [reason] is the human readable reason for closing
    * the connection (can be any UTF-8 string that's smaller than 123 bytes). If [code] is negative, the
    * connection will be closed immediately without notifying the remote peer.
-   * **Note:** To achieve a clean close, you will need to keep polling until [STATECLOSED] is
+   * **Note:** To achieve a clean close, you will need to keep polling until [STATE_CLOSED] is
    * reached.
    * **Note:** The Web export might not support all status codes. Please refer to browser-specific
    * documentation for more details.
@@ -304,7 +304,7 @@ public open class WebSocketPeer : PacketPeer() {
 
   /**
    * Returns the received WebSocket close frame status code, or `-1` when the connection was not
-   * cleanly closed. Only call this method when [getReadyState] returns [STATECLOSED].
+   * cleanly closed. Only call this method when [getReadyState] returns [STATE_CLOSED].
    */
   public fun getCloseCode(): Int {
     TransferContext.writeArguments()
@@ -314,7 +314,7 @@ public open class WebSocketPeer : PacketPeer() {
 
   /**
    * Returns the received WebSocket close frame status reason string. Only call this method when
-   * [getReadyState] returns [STATECLOSED].
+   * [getReadyState] returns [STATE_CLOSED].
    */
   public fun getCloseReason(): String {
     TransferContext.writeArguments()

@@ -22,39 +22,26 @@ import kotlin.Suppress
 import kotlin.jvm.JvmOverloads
 
 /**
- * Creates packages that can be loaded into a running project.
+ * The [PCKPacker] is used to create packages that can be loaded into a running project using
+ * [ProjectSettings.loadResourcePack].
  *
- * The [godot.PCKPacker] is used to create packages that can be loaded into a running project using [godot.ProjectSettings.loadResourcePack].
- *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * var packer = PCKPacker.new()
- *
  * packer.pck_start("test.pck")
- *
  * packer.add_file("res://text.txt", "text.txt")
- *
  * packer.flush()
- *
- * [/gdscript]
- *
- * [csharp]
- *
+ * ```
+ * csharp:
+ * ```csharp
  * var packer = new PckPacker();
- *
  * packer.PckStart("test.pck");
- *
  * packer.AddFile("res://text.txt", "text.txt");
- *
  * packer.Flush();
+ * ```
  *
- * [/csharp]
- *
- * [/codeblocks]
- *
- * The above [godot.PCKPacker] creates package `test.pck`, then adds a file named `text.txt` at the root of the package.
+ * The above [PCKPacker] creates package `test.pck`, then adds a file named `text.txt` at the root
+ * of the package.
  */
 @GodotBaseType
 public open class PCKPacker : RefCounted() {
@@ -64,7 +51,8 @@ public open class PCKPacker : RefCounted() {
   }
 
   /**
-   * Creates a new PCK file with the name [pckName]. The `.pck` file extension isn't added automatically, so it should be part of [pckName] (even though it's not required).
+   * Creates a new PCK file with the name [pckName]. The `.pck` file extension isn't added
+   * automatically, so it should be part of [pckName] (even though it's not required).
    */
   @JvmOverloads
   public fun pckStart(
@@ -79,7 +67,8 @@ public open class PCKPacker : RefCounted() {
   }
 
   /**
-   * Adds the [sourcePath] file to the current PCK package at the [pckPath] internal path (should start with `res://`).
+   * Adds the [sourcePath] file to the current PCK package at the [pckPath] internal path (should
+   * start with `res://`).
    */
   @JvmOverloads
   public fun addFile(
@@ -93,7 +82,8 @@ public open class PCKPacker : RefCounted() {
   }
 
   /**
-   * Writes the files specified using all [addFile] calls since the last flush. If [verbose] is `true`, a list of files added will be printed to the console for easier debugging.
+   * Writes the files specified using all [addFile] calls since the last flush. If [verbose] is
+   * `true`, a list of files added will be printed to the console for easier debugging.
    */
   @JvmOverloads
   public fun flush(verbose: Boolean = false): GodotError {

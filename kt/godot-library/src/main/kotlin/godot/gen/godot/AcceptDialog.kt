@@ -97,7 +97,7 @@ public open class AcceptDialog : Window() {
     }
 
   /**
-   * If `true`, the dialog will be hidden when the escape key ([KEYESCAPE]) is pressed.
+   * If `true`, the dialog will be hidden when the escape key ([KEY_ESCAPE]) is pressed.
    */
   public var dialogCloseOnEscape: Boolean
     get() {

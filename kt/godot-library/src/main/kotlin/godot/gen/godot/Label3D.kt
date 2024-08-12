@@ -230,7 +230,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Sets the render priority for the text. Higher priority objects will be sorted in front of lower
    * priority objects.
-   * **Note:** This only applies if [alphaCut] is set to [ALPHACUTDISABLED] (default value).
+   * **Note:** This only applies if [alphaCut] is set to [ALPHA_CUT_DISABLED] (default value).
    * **Note:** This only applies to sorting of transparent objects. This will not impact how
    * transparent objects are sorted relative to opaque objects. This is because opaque objects are not
    * sorted, while transparent objects are sorted from back to front (subject to priority).
@@ -249,7 +249,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Sets the render priority for the text outline. Higher priority objects will be sorted in front
    * of lower priority objects.
-   * **Note:** This only applies if [alphaCut] is set to [ALPHACUTDISABLED] (default value).
+   * **Note:** This only applies if [alphaCut] is set to [ALPHA_CUT_DISABLED] (default value).
    * **Note:** This only applies to sorting of transparent objects. This will not impact how
    * transparent objects are sorted relative to opaque objects. This is because opaque objects are not
    * sorted, while transparent objects are sorted from back to front (subject to priority).
@@ -413,7 +413,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * If set to something other than [TextServer.AUTOWRAPOFF], the text gets wrapped inside the
+   * If set to something other than [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the
    * node's bounding rectangle. If you resize the node, it will change its height automatically to show
    * all the text. To see how each mode behaves, see [TextServer.AutowrapMode].
    */
@@ -662,8 +662,8 @@ public open class Label3D : GeometryInstance3D() {
     ALPHA_CUT_DISCARD(1),
     /**
      * This mode draws fully opaque pixels in the depth prepass. This is slower than
-     * [ALPHACUTDISABLED] or [ALPHACUTDISCARD], but it allows displaying translucent areas and smooth
-     * edges while using proper sorting.
+     * [ALPHA_CUT_DISABLED] or [ALPHA_CUT_DISCARD], but it allows displaying translucent areas and
+     * smooth edges while using proper sorting.
      * **Note:** When using text with overlapping glyphs (e.g., cursive scripts), this mode might
      * have transparency sorting issues between the main text and the outline.
      */

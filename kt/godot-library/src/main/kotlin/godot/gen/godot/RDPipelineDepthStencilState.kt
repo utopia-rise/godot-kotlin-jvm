@@ -22,14 +22,15 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Pipeline depth/stencil state (used by [godot.RenderingDevice]).
- *
- * [godot.RDPipelineDepthStencilState] controls the way depth and stencil comparisons are performed when sampling those values using [godot.RenderingDevice].
+ * [RDPipelineDepthStencilState] controls the way depth and stencil comparisons are performed when
+ * sampling those values using [RenderingDevice].
  */
 @GodotBaseType
 public open class RDPipelineDepthStencilState : RefCounted() {
   /**
-   * If `true`, enables depth testing which allows objects to be automatically occluded by other objects based on their depth. This also allows objects to be partially occluded by other objects. If `false`, objects will appear in the order they were drawn (like in Godot's 2D renderer).
+   * If `true`, enables depth testing which allows objects to be automatically occluded by other
+   * objects based on their depth. This also allows objects to be partially occluded by other objects.
+   * If `false`, objects will appear in the order they were drawn (like in Godot's 2D renderer).
    */
   public var enableDepthTest: Boolean
     get() {
@@ -43,7 +44,8 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   * If `true`, writes to the depth buffer whenever the depth test returns true. Only works when enable_depth_test is also true.
+   * If `true`, writes to the depth buffer whenever the depth test returns true. Only works when
+   * enable_depth_test is also true.
    */
   public var enableDepthWrite: Boolean
     get() {
@@ -71,7 +73,8 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   * If `true`, each depth value will be tested to see if it is between [depthRangeMin] and [depthRangeMax]. If it is outside of these values, it is discarded.
+   * If `true`, each depth value will be tested to see if it is between [depthRangeMin] and
+   * [depthRangeMax]. If it is outside of these values, it is discarded.
    */
   public var enableDepthRange: Boolean
     get() {
@@ -113,7 +116,9 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   * If `true`, enables stencil testing. There are separate stencil buffers for front-facing triangles and back-facing triangles. See properties that begin with "front_op" and properties with "back_op" for each.
+   * If `true`, enables stencil testing. There are separate stencil buffers for front-facing
+   * triangles and back-facing triangles. See properties that begin with "front_op" and properties with
+   * "back_op" for each.
    */
   public var enableStencil: Boolean
     get() {
@@ -155,7 +160,8 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   * The operation to perform on the stencil buffer for front pixels that pass the stencil test but fail the depth test.
+   * The operation to perform on the stencil buffer for front pixels that pass the stencil test but
+   * fail the depth test.
    */
   public var frontOpDepthFail: RenderingDevice.StencilOperation
     get() {
@@ -253,7 +259,8 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   * The operation to perform on the stencil buffer for back pixels that pass the stencil test but fail the depth test.
+   * The operation to perform on the stencil buffer for back pixels that pass the stencil test but
+   * fail the depth test.
    */
   public var backOpDepthFail: RenderingDevice.StencilOperation
     get() {

@@ -35,13 +35,13 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public object IP : Object() {
   /**
-   * Maximum number of concurrent DNS resolver queries allowed, [RESOLVERINVALIDID] is returned if
+   * Maximum number of concurrent DNS resolver queries allowed, [RESOLVER_INVALID_ID] is returned if
    * exceeded.
    */
   public final const val RESOLVER_MAX_QUERIES: Long = 256
 
   /**
-   * Invalid ID constant. Returned if [RESOLVERMAXQUERIES] is exceeded.
+   * Invalid ID constant. Returned if [RESOLVER_MAX_QUERIES] is exceeded.
    */
   public final const val RESOLVER_INVALID_ID: Long = -1
 
@@ -76,7 +76,7 @@ public object IP : Object() {
 
   /**
    * Creates a queue item to resolve a hostname to an IPv4 or IPv6 address depending on the [Type]
-   * constant given as [ipType]. Returns the queue ID if successful, or [RESOLVERINVALIDID] on error.
+   * constant given as [ipType]. Returns the queue ID if successful, or [RESOLVER_INVALID_ID] on error.
    */
   @JvmOverloads
   public fun resolveHostnameQueueItem(host: String, ipType: Type = IP.Type.TYPE_ANY): Int {

@@ -60,7 +60,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling)
    * when calling [moveAndSlide]. Defaults to [Vector3.UP]. As the vector will be normalized it can't
    * be equal to [Vector3.ZERO], if you want all collisions to be reported as walls, consider using
-   * [MOTIONMODEFLOATING] as [motionMode].
+   * [MOTION_MODE_FLOATING] as [motionMode].
    */
   @CoreTypeLocalCopy
   public var upDirection: Vector3
@@ -122,7 +122,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
 
   /**
    * Minimum angle (in radians) where the body is allowed to slide when it encounters a slope. The
-   * default value equals 15 degrees. When [motionMode] is [MOTIONMODEGROUNDED], it only affects
+   * default value equals 15 degrees. When [motionMode] is [MOTION_MODE_GROUNDED], it only affects
    * movement if [floorBlockOnWall] is `true`.
    */
   public var wallMinSlideAngle: Float
@@ -297,7 +297,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling)
    * when calling [moveAndSlide]. Defaults to [Vector3.UP]. As the vector will be normalized it can't
    * be equal to [Vector3.ZERO], if you want all collisions to be reported as walls, consider using
-   * [MOTIONMODEFLOATING] as [motionMode].
+   * [MOTION_MODE_FLOATING] as [motionMode].
    *
    * This is a helper function to make dealing with local copies easier. 
    *

@@ -90,7 +90,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Override this method to define the returned type of each input port of the associated custom
    * node (see [VisualShaderNode.PortType] for possible types).
    * Defining this method is **optional**, but recommended. If not overridden, input ports will
-   * return the [VisualShaderNode.PORTTYPESCALAR] type.
+   * return the [VisualShaderNode.PORT_TYPE_SCALAR] type.
    */
   public open fun _getInputPortType(port: Int): VisualShaderNode.PortType {
     throw NotImplementedError("_get_input_port_type is not implemented for VisualShaderNodeCustom")
@@ -140,7 +140,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Override this method to define the returned type of each output port of the associated custom
    * node (see [VisualShaderNode.PortType] for possible types).
    * Defining this method is **optional**, but recommended. If not overridden, output ports will
-   * return the [VisualShaderNode.PORTTYPESCALAR] type.
+   * return the [VisualShaderNode.PORT_TYPE_SCALAR] type.
    */
   public open fun _getOutputPortType(port: Int): VisualShaderNode.PortType {
     throw NotImplementedError("_get_output_port_type is not implemented for VisualShaderNodeCustom")

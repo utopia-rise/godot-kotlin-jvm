@@ -22,13 +22,12 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 
 /**
- * Base class for 3-dimensional textures.
- *
- * Base class for [godot.ImageTexture3D] and [godot.CompressedTexture3D]. Cannot be used directly, but contains all the functions necessary for accessing the derived resource types. [godot.Texture3D] is the base class for all 3-dimensional texture types. See also [godot.TextureLayered].
- *
+ * Base class for [ImageTexture3D] and [CompressedTexture3D]. Cannot be used directly, but contains
+ * all the functions necessary for accessing the derived resource types. [Texture3D] is the base class
+ * for all 3-dimensional texture types. See also [TextureLayered].
  * All images need to have the same width, height and number of mipmap levels.
- *
- * To create such a texture file yourself, reimport your image files using the Godot Editor import presets.
+ * To create such a texture file yourself, reimport your image files using the Godot Editor import
+ * presets.
  */
 @GodotBaseType
 public open class Texture3D : Texture() {
@@ -38,42 +37,42 @@ public open class Texture3D : Texture() {
   }
 
   /**
-   * Called when the [godot.Texture3D]'s format is queried.
+   * Called when the [Texture3D]'s format is queried.
    */
   public open fun _getFormat(): Image.Format {
     throw NotImplementedError("_get_format is not implemented for Texture3D")
   }
 
   /**
-   * Called when the [godot.Texture3D]'s width is queried.
+   * Called when the [Texture3D]'s width is queried.
    */
   public open fun _getWidth(): Int {
     throw NotImplementedError("_get_width is not implemented for Texture3D")
   }
 
   /**
-   * Called when the [godot.Texture3D]'s height is queried.
+   * Called when the [Texture3D]'s height is queried.
    */
   public open fun _getHeight(): Int {
     throw NotImplementedError("_get_height is not implemented for Texture3D")
   }
 
   /**
-   * Called when the [godot.Texture3D]'s depth is queried.
+   * Called when the [Texture3D]'s depth is queried.
    */
   public open fun _getDepth(): Int {
     throw NotImplementedError("_get_depth is not implemented for Texture3D")
   }
 
   /**
-   * Called when the presence of mipmaps in the [godot.Texture3D] is queried.
+   * Called when the presence of mipmaps in the [Texture3D] is queried.
    */
   public open fun _hasMipmaps(): Boolean {
     throw NotImplementedError("_has_mipmaps is not implemented for Texture3D")
   }
 
   /**
-   * Called when the [godot.Texture3D]'s data is queried.
+   * Called when the [Texture3D]'s data is queried.
    */
   public open fun _getData(): VariantArray<Image> {
     throw NotImplementedError("_get_data is not implemented for Texture3D")
@@ -89,7 +88,7 @@ public open class Texture3D : Texture() {
   }
 
   /**
-   * Returns the [godot.Texture3D]'s width in pixels. Width is typically represented by the X axis.
+   * Returns the [Texture3D]'s width in pixels. Width is typically represented by the X axis.
    */
   public fun getWidth(): Int {
     TransferContext.writeArguments()
@@ -98,7 +97,7 @@ public open class Texture3D : Texture() {
   }
 
   /**
-   * Returns the [godot.Texture3D]'s height in pixels. Width is typically represented by the Y axis.
+   * Returns the [Texture3D]'s height in pixels. Width is typically represented by the Y axis.
    */
   public fun getHeight(): Int {
     TransferContext.writeArguments()
@@ -107,7 +106,8 @@ public open class Texture3D : Texture() {
   }
 
   /**
-   * Returns the [godot.Texture3D]'s depth in pixels. Depth is typically represented by the Z axis (a dimension not present in [godot.Texture2D]).
+   * Returns the [Texture3D]'s depth in pixels. Depth is typically represented by the Z axis (a
+   * dimension not present in [Texture2D]).
    */
   public fun getDepth(): Int {
     TransferContext.writeArguments()
@@ -116,7 +116,7 @@ public open class Texture3D : Texture() {
   }
 
   /**
-   * Returns `true` if the [godot.Texture3D] has generated mipmaps.
+   * Returns `true` if the [Texture3D] has generated mipmaps.
    */
   public fun hasMipmaps(): Boolean {
     TransferContext.writeArguments()
@@ -125,7 +125,8 @@ public open class Texture3D : Texture() {
   }
 
   /**
-   * Returns the [godot.Texture3D]'s data as an array of [godot.Image]s. Each [godot.Image] represents a *slice* of the [godot.Texture3D], with different slices mapping to different depth (Z axis) levels.
+   * Returns the [Texture3D]'s data as an array of [Image]s. Each [Image] represents a *slice* of
+   * the [Texture3D], with different slices mapping to different depth (Z axis) levels.
    */
   public fun getData(): VariantArray<Image> {
     TransferContext.writeArguments()
@@ -134,7 +135,7 @@ public open class Texture3D : Texture() {
   }
 
   /**
-   * Creates a placeholder version of this resource ([godot.PlaceholderTexture3D]).
+   * Creates a placeholder version of this resource ([PlaceholderTexture3D]).
    */
   public fun createPlaceholder(): Resource? {
     TransferContext.writeArguments()

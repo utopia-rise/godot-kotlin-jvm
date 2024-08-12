@@ -402,15 +402,15 @@ public open class AnimationPlayer : AnimationMixer() {
     id: Long,
   ) {
     /**
-     * For backward compatibility. See [AnimationMixer.ANIMATIONCALLBACKMODEPROCESSPHYSICS].
+     * For backward compatibility. See [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS].
      */
     ANIMATION_PROCESS_PHYSICS(0),
     /**
-     * For backward compatibility. See [AnimationMixer.ANIMATIONCALLBACKMODEPROCESSIDLE].
+     * For backward compatibility. See [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_IDLE].
      */
     ANIMATION_PROCESS_IDLE(1),
     /**
-     * For backward compatibility. See [AnimationMixer.ANIMATIONCALLBACKMODEPROCESSMANUAL].
+     * For backward compatibility. See [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL].
      */
     ANIMATION_PROCESS_MANUAL(2),
     ;
@@ -429,11 +429,11 @@ public open class AnimationPlayer : AnimationMixer() {
     id: Long,
   ) {
     /**
-     * For backward compatibility. See [AnimationMixer.ANIMATIONCALLBACKMODEMETHODDEFERRED].
+     * For backward compatibility. See [AnimationMixer.ANIMATION_CALLBACK_MODE_METHOD_DEFERRED].
      */
     ANIMATION_METHOD_CALL_DEFERRED(0),
     /**
-     * For backward compatibility. See [AnimationMixer.ANIMATIONCALLBACKMODEMETHODIMMEDIATE].
+     * For backward compatibility. See [AnimationMixer.ANIMATION_CALLBACK_MODE_METHOD_IMMEDIATE].
      */
     ANIMATION_METHOD_CALL_IMMEDIATE(1),
     ;

@@ -42,7 +42,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
    * can be used to control it.
    * This ID becomes invalid when the stream ends (if it does not loop), when the
    * [AudioStreamPlaybackPolyphonic] is stopped, or when [stopStream] is called.
-   * This function returns [INVALIDID] if the amount of streams currently playing equals
+   * This function returns [INVALID_ID] if the amount of streams currently playing equals
    * [AudioStreamPolyphonic.polyphony]. If you need a higher amount of maximum polyphony, raise this
    * value.
    */

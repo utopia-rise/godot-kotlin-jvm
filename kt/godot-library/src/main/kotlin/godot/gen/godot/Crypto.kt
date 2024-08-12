@@ -212,7 +212,7 @@ public open class Crypto : RefCounted() {
   /**
    * Generates an [url=https://en.wikipedia.org/wiki/HMAC]HMAC[/url] digest of [msg] using [key].
    * The [hashType] parameter is the hashing algorithm that is used for the inner and outer hashes.
-   * Currently, only [HashingContext.HASHSHA256] and [HashingContext.HASHSHA1] are supported.
+   * Currently, only [HashingContext.HASH_SHA256] and [HashingContext.HASH_SHA1] are supported.
    */
   public fun hmacDigest(
     hashType: HashingContext.HashType,

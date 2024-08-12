@@ -92,7 +92,7 @@ public open class XMLParser : RefCounted() {
 
   /**
    * Returns the name of an element node. This method will raise an error if the currently parsed
-   * node is not of [NODEELEMENT] or [NODEELEMENTEND] type.
+   * node is not of [NODE_ELEMENT] or [NODE_ELEMENT_END] type.
    */
   public fun getNodeName(): String {
     TransferContext.writeArguments()
@@ -122,8 +122,8 @@ public open class XMLParser : RefCounted() {
 
   /**
    * Returns the number of attributes in the currently parsed element.
-   * **Note:** If this method is used while the currently parsed node is not [NODEELEMENT] or
-   * [NODEELEMENTEND], this count will not be updated and will still reflect the last element.
+   * **Note:** If this method is used while the currently parsed node is not [NODE_ELEMENT] or
+   * [NODE_ELEMENT_END], this count will not be updated and will still reflect the last element.
    */
   public fun getAttributeCount(): Int {
     TransferContext.writeArguments()

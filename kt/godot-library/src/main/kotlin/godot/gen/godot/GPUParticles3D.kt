@@ -280,7 +280,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
    * The base diameter for particle collision in meters. If particles appear to sink into the ground
    * when colliding, increase this value. If particles appear to float when colliding, decrease this
    * value. Only effective if [ParticleProcessMaterial.collisionMode] is
-   * [ParticleProcessMaterial.COLLISIONRIGID] or [ParticleProcessMaterial.COLLISIONHIDEONCONTACT].
+   * [ParticleProcessMaterial.COLLISION_RIGID] or [ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT].
    * **Note:** Particles always have a spherical collision shape.
    */
   public var collisionBaseSize: Float
@@ -335,7 +335,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
 
   /**
    * Particle draw order. Uses [DrawOrder] values.
-   * **Note:** [DRAWORDERINDEX] is the only option that supports motion vectors for effects like
+   * **Note:** [DRAW_ORDER_INDEX] is the only option that supports motion vectors for effects like
    * TAA. It is suggested to use this draw order if the particles are opaque to fix ghosting artifacts.
    */
   public var drawOrder: DrawOrder

@@ -44,25 +44,21 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Abstract base class for viewports. Encapsulates drawing and interaction with a game world.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/586](https://godotengine.org/asset-library/asset/586)
- *
- * A [godot.Viewport] creates a different view into the screen, or a sub-view inside another viewport. Child 2D nodes will display on it, and child Camera3D 3D nodes will render on it too.
- *
- * Optionally, a viewport can have its own 2D or 3D world, so it doesn't share what it draws with other viewports.
- *
- * Viewports can also choose to be audio listeners, so they generate positional audio depending on a 2D or 3D camera child of it.
- *
+ * A [Viewport] creates a different view into the screen, or a sub-view inside another viewport.
+ * Child 2D nodes will display on it, and child Camera3D 3D nodes will render on it too.
+ * Optionally, a viewport can have its own 2D or 3D world, so it doesn't share what it draws with
+ * other viewports.
+ * Viewports can also choose to be audio listeners, so they generate positional audio depending on a
+ * 2D or 3D camera child of it.
  * Also, viewports can be assigned to different screens in case the devices have multiple screens.
- *
- * Finally, viewports can also behave as render targets, in which case they will not be visible unless the associated texture is used to draw.
+ * Finally, viewports can also behave as render targets, in which case they will not be visible
+ * unless the associated texture is used to draw.
  */
 @GodotBaseType
 public open class Viewport internal constructor() : Node() {
   /**
-   * Emitted when the size of the viewport is changed, whether by resizing of window, or some other means.
+   * Emitted when the size of the viewport is changed, whether by resizing of window, or some other
+   * means.
    */
   public val sizeChanged: Signal0 by signal()
 
@@ -86,7 +82,8 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, the viewport will use the primary XR interface to render XR output. When applicable this can result in a stereoscopic image and the resulting render being output to a headset.
+   * If `true`, the viewport will use the primary XR interface to render XR output. When applicable
+   * this can result in a stereoscopic image and the resulting render being output to a headset.
    */
   public var useXr: Boolean
     get() {
@@ -100,7 +97,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, the viewport will use a unique copy of the [godot.World3D] defined in [world3d].
+   * If `true`, the viewport will use a unique copy of the [World3D] defined in [world3d].
    */
   public var ownWorld3d: Boolean
     get() {
@@ -114,7 +111,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * The custom [godot.World3D] which can be used as 3D environment source.
+   * The custom [World3D] which can be used as 3D environment source.
    */
   public var world3d: World3D?
     get() {
@@ -128,7 +125,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * The custom [godot.World2D] which can be used as 2D environment source.
+   * The custom [World2D] which can be used as 2D environment source.
    */
   public var world2d: World2D?
     get() {
@@ -156,10 +153,10 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, this viewport will mark incoming input events as handled by itself. If `false`, this is instead done by the first parent viewport that is set to handle input locally.
-   *
-   * A [godot.SubViewportContainer] will automatically set this property to `false` for the [godot.Viewport] contained inside of it.
-   *
+   * If `true`, this viewport will mark incoming input events as handled by itself. If `false`, this
+   * is instead done by the first parent viewport that is set to handle input locally.
+   * A [SubViewportContainer] will automatically set this property to `false` for the [Viewport]
+   * contained inside of it.
    * See also [setInputAsHandled] and [isInputHandled].
    */
   public var handleInputLocally: Boolean
@@ -173,9 +170,6 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setHandleInputLocallyPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var snap2dTransformsToPixel: Boolean
     get() {
       TransferContext.writeArguments()
@@ -187,9 +181,6 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSnap2dTransformsToPixelPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var snap2dVerticesToPixel: Boolean
     get() {
       TransferContext.writeArguments()
@@ -202,7 +193,9 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * The multisample anti-aliasing mode for 2D/Canvas rendering. A higher number results in smoother edges at the cost of significantly worse performance. A value of 2 or 4 is best unless targeting very high-end systems. This has no effect on shader-induced aliasing or texture aliasing.
+   * The multisample anti-aliasing mode for 2D/Canvas rendering. A higher number results in smoother
+   * edges at the cost of significantly worse performance. A value of 2 or 4 is best unless targeting
+   * very high-end systems. This has no effect on shader-induced aliasing or texture aliasing.
    */
   public var msaa2d: MSAA
     get() {
@@ -216,7 +209,11 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * The multisample anti-aliasing mode for 3D rendering. A higher number results in smoother edges at the cost of significantly worse performance. A value of 2 or 4 is best unless targeting very high-end systems. See also bilinear scaling 3d [scaling3dMode] for supersampling, which provides higher quality but is much more expensive. This has no effect on shader-induced aliasing or texture aliasing.
+   * The multisample anti-aliasing mode for 3D rendering. A higher number results in smoother edges
+   * at the cost of significantly worse performance. A value of 2 or 4 is best unless targeting very
+   * high-end systems. See also bilinear scaling 3d [scaling3dMode] for supersampling, which provides
+   * higher quality but is much more expensive. This has no effect on shader-induced aliasing or
+   * texture aliasing.
    */
   public var msaa3d: MSAA
     get() {
@@ -230,7 +227,10 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Sets the screen-space antialiasing method used. Screen-space antialiasing works by selectively blurring edges in a post-process shader. It differs from MSAA which takes multiple coverage samples while rendering objects. Screen-space AA methods are typically faster than MSAA and will smooth out specular aliasing, but tend to make scenes appear blurry.
+   * Sets the screen-space antialiasing method used. Screen-space antialiasing works by selectively
+   * blurring edges in a post-process shader. It differs from MSAA which takes multiple coverage
+   * samples while rendering objects. Screen-space AA methods are typically faster than MSAA and will
+   * smooth out specular aliasing, but tend to make scenes appear blurry.
    */
   public var screenSpaceAa: ScreenSpaceAA
     get() {
@@ -244,9 +244,11 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Enables Temporal Anti-Aliasing for this viewport. TAA works by jittering the camera and accumulating the images of the last rendered frames, motion vector rendering is used to account for camera and object motion.
-   *
-   * **Note:** The implementation is not complete yet, some visual instances such as particles and skinned meshes may show artifacts.
+   * Enables Temporal Anti-Aliasing for this viewport. TAA works by jittering the camera and
+   * accumulating the images of the last rendered frames, motion vector rendering is used to account
+   * for camera and object motion.
+   * **Note:** The implementation is not complete yet, some visual instances such as particles and
+   * skinned meshes may show artifacts.
    */
   public var useTaa: Boolean
     get() {
@@ -260,9 +262,12 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, uses a fast post-processing filter to make banding significantly less visible in 3D. 2D rendering is *not* affected by debanding unless the [godot.Environment.backgroundMode] is [godot.Environment.BG_CANVAS]. See also [godot.ProjectSettings.rendering/antiAliasing/quality/useDebanding].
-   *
-   * In some cases, debanding may introduce a slightly noticeable dithering pattern. It's recommended to enable debanding only when actually needed since the dithering pattern will make lossless-compressed screenshots larger.
+   * If `true`, uses a fast post-processing filter to make banding significantly less visible in 3D.
+   * 2D rendering is *not* affected by debanding unless the [Environment.backgroundMode] is
+   * [Environment.BG_CANVAS]. See also [ProjectSettings.rendering/antiAliasing/quality/useDebanding].
+   * In some cases, debanding may introduce a slightly noticeable dithering pattern. It's
+   * recommended to enable debanding only when actually needed since the dithering pattern will make
+   * lossless-compressed screenshots larger.
    */
   public var useDebanding: Boolean
     get() {
@@ -276,11 +281,18 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, [godot.OccluderInstance3D] nodes will be usable for occlusion culling in 3D for this viewport. For the root viewport, [godot.ProjectSettings.rendering/occlusionCulling/useOcclusionCulling] must be set to `true` instead.
-   *
-   * **Note:** Enabling occlusion culling has a cost on the CPU. Only enable occlusion culling if you actually plan to use it, and think whether your scene can actually benefit from occlusion culling. Large, open scenes with few or no objects blocking the view will generally not benefit much from occlusion culling. Large open scenes generally benefit more from mesh LOD and visibility ranges ([godot.GeometryInstance3D.visibilityRangeBegin] and [godot.GeometryInstance3D.visibilityRangeEnd]) compared to occlusion culling.
-   *
-   * **Note:** Due to memory constraints, occlusion culling is not supported by default in Web export templates. It can be enabled by compiling custom Web export templates with `module_raycast_enabled=yes`.
+   * If `true`, [OccluderInstance3D] nodes will be usable for occlusion culling in 3D for this
+   * viewport. For the root viewport, [ProjectSettings.rendering/occlusionCulling/useOcclusionCulling]
+   * must be set to `true` instead.
+   * **Note:** Enabling occlusion culling has a cost on the CPU. Only enable occlusion culling if
+   * you actually plan to use it, and think whether your scene can actually benefit from occlusion
+   * culling. Large, open scenes with few or no objects blocking the view will generally not benefit
+   * much from occlusion culling. Large open scenes generally benefit more from mesh LOD and visibility
+   * ranges ([GeometryInstance3D.visibilityRangeBegin] and [GeometryInstance3D.visibilityRangeEnd])
+   * compared to occlusion culling.
+   * **Note:** Due to memory constraints, occlusion culling is not supported by default in Web
+   * export templates. It can be enabled by compiling custom Web export templates with
+   * `module_raycast_enabled=yes`.
    */
   public var useOcclusionCulling: Boolean
     get() {
@@ -294,11 +306,14 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * The automatic LOD bias to use for meshes rendered within the [godot.Viewport] (this is analogous to [godot.ReflectionProbe.meshLodThreshold]). Higher values will use less detailed versions of meshes that have LOD variations generated. If set to `0.0`, automatic LOD is disabled. Increase [meshLodThreshold] to improve performance at the cost of geometry detail.
-   *
-   * To control this property on the root viewport, set the [godot.ProjectSettings.rendering/meshLod/lodChange/thresholdPixels] project setting.
-   *
-   * **Note:** [meshLodThreshold] does not affect [godot.GeometryInstance3D] visibility ranges (also known as "manual" LOD or hierarchical LOD).
+   * The automatic LOD bias to use for meshes rendered within the [Viewport] (this is analogous to
+   * [ReflectionProbe.meshLodThreshold]). Higher values will use less detailed versions of meshes that
+   * have LOD variations generated. If set to `0.0`, automatic LOD is disabled. Increase
+   * [meshLodThreshold] to improve performance at the cost of geometry detail.
+   * To control this property on the root viewport, set the
+   * [ProjectSettings.rendering/meshLod/lodChange/thresholdPixels] project setting.
+   * **Note:** [meshLodThreshold] does not affect [GeometryInstance3D] visibility ranges (also known
+   * as "manual" LOD or hierarchical LOD).
    */
   public var meshLodThreshold: Float
     get() {
@@ -326,9 +341,17 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, 2D rendering will use an high dynamic range (HDR) format framebuffer matching the bit depth of the 3D framebuffer. When using the Forward+ renderer this will be a `RGBA16` framebuffer, while when using the Mobile renderer it will be a `RGB10_A2` framebuffer. Additionally, 2D rendering will take place in linear color space and will be converted to sRGB space immediately before blitting to the screen (if the Viewport is attached to the screen). Practically speaking, this means that the end result of the Viewport will not be clamped into the `0-1` range and can be used in 3D rendering without color space adjustments. This allows 2D rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as substantially improves the appearance of effects requiring highly detailed gradients.
-   *
-   * **Note:** This setting will have no effect when using the GL Compatibility renderer as the GL Compatibility renderer always renders in low dynamic range for performance reasons.
+   * If `true`, 2D rendering will use an high dynamic range (HDR) format framebuffer matching the
+   * bit depth of the 3D framebuffer. When using the Forward+ renderer this will be a `RGBA16`
+   * framebuffer, while when using the Mobile renderer it will be a `RGB10_A2` framebuffer.
+   * Additionally, 2D rendering will take place in linear color space and will be converted to sRGB
+   * space immediately before blitting to the screen (if the Viewport is attached to the screen).
+   * Practically speaking, this means that the end result of the Viewport will not be clamped into the
+   * `0-1` range and can be used in 3D rendering without color space adjustments. This allows 2D
+   * rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as
+   * substantially improves the appearance of effects requiring highly detailed gradients.
+   * **Note:** This setting will have no effect when using the GL Compatibility renderer as the GL
+   * Compatibility renderer always renders in low dynamic range for performance reasons.
    */
   public var useHdr2d: Boolean
     get() {
@@ -342,9 +365,13 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Sets scaling 3d mode. Bilinear scaling renders at different resolution to either undersample or supersample the viewport. FidelityFX Super Resolution 1.0, abbreviated to FSR, is an upscaling technology that produces high quality images at fast framerates by using a spatially aware upscaling algorithm. FSR is slightly more expensive than bilinear, but it produces significantly higher image quality. FSR should be used where possible.
-   *
-   * To control this property on the root viewport, set the [godot.ProjectSettings.rendering/scaling3d/mode] project setting.
+   * Sets scaling 3d mode. Bilinear scaling renders at different resolution to either undersample or
+   * supersample the viewport. FidelityFX Super Resolution 1.0, abbreviated to FSR, is an upscaling
+   * technology that produces high quality images at fast framerates by using a spatially aware
+   * upscaling algorithm. FSR is slightly more expensive than bilinear, but it produces significantly
+   * higher image quality. FSR should be used where possible.
+   * To control this property on the root viewport, set the
+   * [ProjectSettings.rendering/scaling3d/mode] project setting.
    */
   public var scaling3dMode: Scaling3DMode
     get() {
@@ -358,11 +385,18 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Scales the 3D render buffer based on the viewport size uses an image filter specified in [godot.ProjectSettings.rendering/scaling3d/mode] to scale the output image to the full viewport size. Values lower than `1.0` can be used to speed up 3D rendering at the cost of quality (undersampling). Values greater than `1.0` are only valid for bilinear mode and can be used to improve 3D rendering quality at a high performance cost (supersampling). See also [godot.ProjectSettings.rendering/antiAliasing/quality/msaa3d] for multi-sample antialiasing, which is significantly cheaper but only smooths the edges of polygons.
-   *
-   * When using FSR upscaling, AMD recommends exposing the following values as preset options to users "Ultra Quality: 0.77", "Quality: 0.67", "Balanced: 0.59", "Performance: 0.5" instead of exposing the entire scale.
-   *
-   * To control this property on the root viewport, set the [godot.ProjectSettings.rendering/scaling3d/scale] project setting.
+   * Scales the 3D render buffer based on the viewport size uses an image filter specified in
+   * [ProjectSettings.rendering/scaling3d/mode] to scale the output image to the full viewport size.
+   * Values lower than `1.0` can be used to speed up 3D rendering at the cost of quality
+   * (undersampling). Values greater than `1.0` are only valid for bilinear mode and can be used to
+   * improve 3D rendering quality at a high performance cost (supersampling). See also
+   * [ProjectSettings.rendering/antiAliasing/quality/msaa3d] for multi-sample antialiasing, which is
+   * significantly cheaper but only smooths the edges of polygons.
+   * When using FSR upscaling, AMD recommends exposing the following values as preset options to
+   * users "Ultra Quality: 0.77", "Quality: 0.67", "Balanced: 0.59", "Performance: 0.5" instead of
+   * exposing the entire scale.
+   * To control this property on the root viewport, set the
+   * [ProjectSettings.rendering/scaling3d/scale] project setting.
    */
   public var scaling3dScale: Float
     get() {
@@ -376,13 +410,18 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Affects the final texture sharpness by reading from a lower or higher mipmap (also called "texture LOD bias"). Negative values make mipmapped textures sharper but grainier when viewed at a distance, while positive values make mipmapped textures blurrier (even when up close).
-   *
-   * Enabling temporal antialiasing ([useTaa]) will automatically apply a `-0.5` offset to this value, while enabling FXAA ([screenSpaceAa]) will automatically apply a `-0.25` offset to this value. If both TAA and FXAA are enabled at the same time, an offset of `-0.75` is applied to this value.
-   *
-   * **Note:** If [scaling3dScale] is lower than `1.0` (exclusive), [textureMipmapBias] is used to adjust the automatic mipmap bias which is calculated internally based on the scale factor. The formula for this is `log2(scaling_3d_scale) + mipmap_bias`.
-   *
-   * To control this property on the root viewport, set the [godot.ProjectSettings.rendering/textures/defaultFilters/textureMipmapBias] project setting.
+   * Affects the final texture sharpness by reading from a lower or higher mipmap (also called
+   * "texture LOD bias"). Negative values make mipmapped textures sharper but grainier when viewed at a
+   * distance, while positive values make mipmapped textures blurrier (even when up close).
+   * Enabling temporal antialiasing ([useTaa]) will automatically apply a `-0.5` offset to this
+   * value, while enabling FXAA ([screenSpaceAa]) will automatically apply a `-0.25` offset to this
+   * value. If both TAA and FXAA are enabled at the same time, an offset of `-0.75` is applied to this
+   * value.
+   * **Note:** If [scaling3dScale] is lower than `1.0` (exclusive), [textureMipmapBias] is used to
+   * adjust the automatic mipmap bias which is calculated internally based on the scale factor. The
+   * formula for this is `log2(scaling_3d_scale) + mipmap_bias`.
+   * To control this property on the root viewport, set the
+   * [ProjectSettings.rendering/textures/defaultFilters/textureMipmapBias] project setting.
    */
   public var textureMipmapBias: Float
     get() {
@@ -396,9 +435,11 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Determines how sharp the upscaled image will be when using the FSR upscaling mode. Sharpness halves with every whole number. Values go from 0.0 (sharpest) to 2.0. Values above 2.0 won't make a visible difference.
-   *
-   * To control this property on the root viewport, set the [godot.ProjectSettings.rendering/scaling3d/fsrSharpness] project setting.
+   * Determines how sharp the upscaled image will be when using the FSR upscaling mode. Sharpness
+   * halves with every whole number. Values go from 0.0 (sharpest) to 2.0. Values above 2.0 won't make
+   * a visible difference.
+   * To control this property on the root viewport, set the
+   * [ProjectSettings.rendering/scaling3d/fsrSharpness] project setting.
    */
   public var fsrSharpness: Float
     get() {
@@ -412,7 +453,8 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * The Variable Rate Shading (VRS) mode that is used for this viewport. Note, if hardware does not support VRS this property is ignored.
+   * The Variable Rate Shading (VRS) mode that is used for this viewport. Note, if hardware does not
+   * support VRS this property is ignored.
    */
   public var vrsMode: VRSMode
     get() {
@@ -426,22 +468,22 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Texture to use when [vrsMode] is set to [godot.Viewport.VRS_TEXTURE].
-   *
-   * The texture *must* use a lossless compression format so that colors can be matched precisely. The following VRS densities are mapped to various colors, with brighter colors representing a lower level of shading precision:
-   *
-   * ```
-   * 			- 1x1 = rgb(0, 0, 0)     - #000000
-   * 			- 1x2 = rgb(0, 85, 0)    - #005500
-   * 			- 2x1 = rgb(85, 0, 0)    - #550000
-   * 			- 2x2 = rgb(85, 85, 0)   - #555500
-   * 			- 2x4 = rgb(85, 170, 0)  - #55aa00
-   * 			- 4x2 = rgb(170, 85, 0)  - #aa5500
-   * 			- 4x4 = rgb(170, 170, 0) - #aaaa00
-   * 			- 4x8 = rgb(170, 255, 0) - #aaff00 - Not supported on most hardware
-   * 			- 8x4 = rgb(255, 170, 0) - #ffaa00 - Not supported on most hardware
-   * 			- 8x8 = rgb(255, 255, 0) - #ffff00 - Not supported on most hardware
-   * 			```
+   * Texture to use when [vrsMode] is set to [Viewport.VRS_TEXTURE].
+   * The texture *must* use a lossless compression format so that colors can be matched precisely.
+   * The following VRS densities are mapped to various colors, with brighter colors representing a
+   * lower level of shading precision:
+   * [codeblock]
+   * - 1x1 = rgb(0, 0, 0)     - #000000
+   * - 1x2 = rgb(0, 85, 0)    - #005500
+   * - 2x1 = rgb(85, 0, 0)    - #550000
+   * - 2x2 = rgb(85, 85, 0)   - #555500
+   * - 2x4 = rgb(85, 170, 0)  - #55aa00
+   * - 4x2 = rgb(170, 85, 0)  - #aa5500
+   * - 4x4 = rgb(170, 170, 0) - #aaaa00
+   * - 4x8 = rgb(170, 255, 0) - #aaff00 - Not supported on most hardware
+   * - 8x4 = rgb(255, 170, 0) - #ffaa00 - Not supported on most hardware
+   * - 8x8 = rgb(255, 255, 0) - #ffff00 - Not supported on most hardware
+   * [/codeblock]
    */
   public var vrsTexture: Texture2D?
     get() {
@@ -455,7 +497,8 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Sets the default filter mode used by [godot.CanvasItem]s in this Viewport. See [enum DefaultCanvasItemTextureFilter] for options.
+   * Sets the default filter mode used by [CanvasItem]s in this Viewport. See
+   * [DefaultCanvasItemTextureFilter] for options.
    */
   public var canvasItemDefaultTextureFilter: DefaultCanvasItemTextureFilter
     get() {
@@ -469,7 +512,8 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Sets the default repeat mode used by [godot.CanvasItem]s in this Viewport. See [enum DefaultCanvasItemTextureRepeat] for options.
+   * Sets the default repeat mode used by [CanvasItem]s in this Viewport. See
+   * [DefaultCanvasItemTextureRepeat] for options.
    */
   public var canvasItemDefaultTextureRepeat: DefaultCanvasItemTextureRepeat
     get() {
@@ -512,8 +556,8 @@ public open class Viewport internal constructor() : Node() {
 
   /**
    * If `true`, the objects rendered by viewport become subjects of mouse picking process.
-   *
-   * **Note:** The number of simultaneously pickable objects is limited to 64 and they are selected in a non-deterministic order, which can be different in each picking process.
+   * **Note:** The number of simultaneously pickable objects is limited to 64 and they are selected
+   * in a non-deterministic order, which can be different in each picking process.
    */
   public var physicsObjectPicking: Boolean
     get() {
@@ -527,11 +571,13 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, objects receive mouse picking events sorted primarily by their [godot.CanvasItem.zIndex] and secondarily by their position in the scene tree. If `false`, the order is undetermined.
-   *
-   * **Note:** This setting is disabled by default because of its potential expensive computational cost.
-   *
-   * **Note:** Sorting happens after selecting the pickable objects. Because of the limitation of 64 simultaneously pickable objects, it is not guaranteed that the object with the highest [godot.CanvasItem.zIndex] receives the picking event.
+   * If `true`, objects receive mouse picking events sorted primarily by their [CanvasItem.zIndex]
+   * and secondarily by their position in the scene tree. If `false`, the order is undetermined.
+   * **Note:** This setting is disabled by default because of its potential expensive computational
+   * cost.
+   * **Note:** Sorting happens after selecting the pickable objects. Because of the limitation of 64
+   * simultaneously pickable objects, it is not guaranteed that the object with the highest
+   * [CanvasItem.zIndex] receives the picking event.
    */
   public var physicsObjectPickingSort: Boolean
     get() {
@@ -573,7 +619,9 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, sub-windows (popups and dialogs) will be embedded inside application window as control-like nodes. If `false`, they will appear as separate windows handled by the operating system.
+   * If `true`, sub-windows (popups and dialogs) will be embedded inside application window as
+   * control-like nodes. If `false`, they will appear as separate windows handled by the operating
+   * system.
    */
   public var guiEmbedSubwindows: Boolean
     get() {
@@ -586,9 +634,6 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setEmbeddingSubwindowsPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var sdfOversize: SDFOversize
     get() {
       TransferContext.writeArguments()
@@ -600,9 +645,6 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSdfOversizePtr, NIL)
     }
 
-  /**
-   *
-   */
   public var sdfScale: SDFScale
     get() {
       TransferContext.writeArguments()
@@ -615,9 +657,11 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * The shadow atlas' resolution (used for omni and spot lights). The value is rounded up to the nearest power of 2.
-   *
-   * **Note:** If this is set to `0`, no positional shadows will be visible at all. This can improve performance significantly on low-end systems by reducing both the CPU and GPU load (as fewer draw calls are needed to draw the scene without shadows).
+   * The shadow atlas' resolution (used for omni and spot lights). The value is rounded up to the
+   * nearest power of 2.
+   * **Note:** If this is set to `0`, no positional shadows will be visible at all. This can improve
+   * performance significantly on low-end systems by reducing both the CPU and GPU load (as fewer draw
+   * calls are needed to draw the scene without shadows).
    */
   public var positionalShadowAtlasSize: Int
     get() {
@@ -631,7 +675,8 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Use 16 bits for the omni/spot shadow depth map. Enabling this results in shadows having less precision and may result in shadow acne, but can lead to performance improvements on some devices.
+   * Use 16 bits for the omni/spot shadow depth map. Enabling this results in shadows having less
+   * precision and may result in shadow acne, but can lead to performance improvements on some devices.
    */
   public var positionalShadowAtlas16Bits: Boolean
     get() {
@@ -709,7 +754,8 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * The canvas transform of the viewport, useful for changing the on-screen positions of all child [godot.CanvasItem]s. This is relative to the global canvas transform of the viewport.
+   * The canvas transform of the viewport, useful for changing the on-screen positions of all child
+   * [CanvasItem]s. This is relative to the global canvas transform of the viewport.
    */
   @CoreTypeLocalCopy
   public var canvasTransform: Transform2D
@@ -739,7 +785,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * The rendering layers in which this [godot.Viewport] renders [godot.CanvasItem] nodes.
+   * The rendering layers in which this [Viewport] renders [CanvasItem] nodes.
    */
   public var canvasCullMask: Long
     get() {
@@ -758,7 +804,8 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * The canvas transform of the viewport, useful for changing the on-screen positions of all child [godot.CanvasItem]s. This is relative to the global canvas transform of the viewport.
+   * The canvas transform of the viewport, useful for changing the on-screen positions of all child
+   * [CanvasItem]s. This is relative to the global canvas transform of the viewport.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -808,7 +855,8 @@ public open class Viewport internal constructor() : Node() {
 
 
   /**
-   * Returns the first valid [godot.World2D] for this viewport, searching the [world2d] property of itself and any Viewport ancestor.
+   * Returns the first valid [World2D] for this viewport, searching the [world2d] property of itself
+   * and any Viewport ancestor.
    */
   public fun findWorld2d(): World2D? {
     TransferContext.writeArguments()
@@ -817,7 +865,8 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns the transform from the viewport's coordinate system to the embedder's coordinate system.
+   * Returns the transform from the viewport's coordinate system to the embedder's coordinate
+   * system.
    */
   public fun getFinalTransform(): Transform2D {
     TransferContext.writeArguments()
@@ -826,7 +875,8 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns the transform from the Viewport's coordinates to the screen coordinates of the containing window manager window.
+   * Returns the transform from the Viewport's coordinates to the screen coordinates of the
+   * containing window manager window.
    */
   public fun getScreenTransform(): Transform2D {
     TransferContext.writeArguments()
@@ -844,7 +894,8 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns rendering statistics of the given type. See [enum RenderInfoType] and [enum RenderInfo] for options.
+   * Returns rendering statistics of the given type. See [RenderInfoType] and [RenderInfo] for
+   * options.
    */
   public fun getRenderInfo(type: RenderInfoType, info: RenderInfo): Int {
     TransferContext.writeArguments(LONG to type.id, LONG to info.id)
@@ -854,14 +905,14 @@ public open class Viewport internal constructor() : Node() {
 
   /**
    * Returns the viewport's texture.
-   *
-   * **Note:** When trying to store the current texture (e.g. in a file), it might be completely black or outdated if used too early, especially when used in e.g. [godot.Node.Ready]. To make sure the texture you get is correct, you can await [godot.RenderingServer.framePostDraw] signal.
-   *
-   * ```
-   * 				func _ready():
-   * 				    await RenderingServer.frame_post_draw
-   * 				    $Viewport.get_texture().get_image().save_png("user://Screenshot.png")
-   * 				```
+   * **Note:** When trying to store the current texture (e.g. in a file), it might be completely
+   * black or outdated if used too early, especially when used in e.g. [Node.Ready]. To make sure the
+   * texture you get is correct, you can await [signal RenderingServer.frame_post_draw] signal.
+   * [codeblock]
+   * func _ready():
+   *     await RenderingServer.frame_post_draw
+   *     $Viewport.get_texture().get_image().save_png("user://Screenshot.png")
+   * [/codeblock]
    */
   public fun getTexture(): ViewportTexture? {
     TransferContext.writeArguments()
@@ -870,7 +921,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns the viewport's RID from the [godot.RenderingServer].
+   * Returns the viewport's RID from the [RenderingServer].
    */
   public fun getViewportRid(): RID {
     TransferContext.writeArguments()
@@ -879,7 +930,8 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Helper method which calls the `set_text()` method on the currently focused [godot.Control], provided that it is defined (e.g. if the focused Control is [godot.Button] or [godot.LineEdit]).
+   * Helper method which calls the `set_text()` method on the currently focused [Control], provided
+   * that it is defined (e.g. if the focused Control is [Button] or [LineEdit]).
    */
   public fun pushTextInput(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
@@ -887,27 +939,25 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Triggers the given [event] in this [godot.Viewport]. This can be used to pass an [godot.InputEvent] between viewports, or to locally apply inputs that were sent over the network or saved to a file.
-   *
-   * If [inLocalCoords] is `false`, the event's position is in the embedder's coordinates and will be converted to viewport coordinates. If [inLocalCoords] is `true`, the event's position is in viewport coordinates.
-   *
-   * While this method serves a similar purpose as [godot.Input.parseInputEvent], it does not remap the specified [event] based on project settings like [godot.ProjectSettings.inputDevices/pointing/emulateTouchFromMouse].
-   *
-   * Calling this method will propagate calls to child nodes for following methods in the given order:
-   *
-   * - [godot.Node.Input]
-   *
-   * - [godot.Control.GuiInput] for [godot.Control] nodes
-   *
-   * - [godot.Node.ShortcutInput]
-   *
-   * - [godot.Node.UnhandledKeyInput]
-   *
-   * - [godot.Node.UnhandledInput]
-   *
-   * If an earlier method marks the input as handled via [setInputAsHandled], any later method in this list will not be called.
-   *
-   * If none of the methods handle the event and [physicsObjectPicking] is `true`, the event is used for physics object picking.
+   * Triggers the given [event] in this [Viewport]. This can be used to pass an [InputEvent] between
+   * viewports, or to locally apply inputs that were sent over the network or saved to a file.
+   * If [inLocalCoords] is `false`, the event's position is in the embedder's coordinates and will
+   * be converted to viewport coordinates. If [inLocalCoords] is `true`, the event's position is in
+   * viewport coordinates.
+   * While this method serves a similar purpose as [Input.parseInputEvent], it does not remap the
+   * specified [event] based on project settings like
+   * [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse].
+   * Calling this method will propagate calls to child nodes for following methods in the given
+   * order:
+   * - [Node.Input]
+   * - [Control.GuiInput] for [Control] nodes
+   * - [Node.ShortcutInput]
+   * - [Node.UnhandledKeyInput]
+   * - [Node.UnhandledInput]
+   * If an earlier method marks the input as handled via [setInputAsHandled], any later method in
+   * this list will not be called.
+   * If none of the methods handle the event and [physicsObjectPicking] is `true`, the event is used
+   * for physics object picking.
    */
   @JvmOverloads
   public fun pushInput(event: InputEvent, inLocalCoords: Boolean = false): Unit {
@@ -916,26 +966,24 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Triggers the given [godot.InputEvent] in this [godot.Viewport]. This can be used to pass input events between viewports, or to locally apply inputs that were sent over the network or saved to a file.
-   *
-   * If [inLocalCoords] is `false`, the event's position is in the embedder's coordinates and will be converted to viewport coordinates. If [inLocalCoords] is `true`, the event's position is in viewport coordinates.
-   *
-   * While this method serves a similar purpose as [godot.Input.parseInputEvent], it does not remap the specified [event] based on project settings like [godot.ProjectSettings.inputDevices/pointing/emulateTouchFromMouse].
-   *
-   * Calling this method will propagate calls to child nodes for following methods in the given order:
-   *
-   * - [godot.Node.ShortcutInput]
-   *
-   * - [godot.Node.UnhandledKeyInput]
-   *
-   * - [godot.Node.UnhandledInput]
-   *
-   * If an earlier method marks the input as handled via [setInputAsHandled], any later method in this list will not be called.
-   *
-   * If none of the methods handle the event and [physicsObjectPicking] is `true`, the event is used for physics object picking.
-   *
-   * **Note:** This method doesn't propagate input events to embedded [godot.Window]s or [godot.SubViewport]s.
-   *
+   * Triggers the given [InputEvent] in this [Viewport]. This can be used to pass input events
+   * between viewports, or to locally apply inputs that were sent over the network or saved to a file.
+   * If [inLocalCoords] is `false`, the event's position is in the embedder's coordinates and will
+   * be converted to viewport coordinates. If [inLocalCoords] is `true`, the event's position is in
+   * viewport coordinates.
+   * While this method serves a similar purpose as [Input.parseInputEvent], it does not remap the
+   * specified [event] based on project settings like
+   * [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse].
+   * Calling this method will propagate calls to child nodes for following methods in the given
+   * order:
+   * - [Node.ShortcutInput]
+   * - [Node.UnhandledKeyInput]
+   * - [Node.UnhandledInput]
+   * If an earlier method marks the input as handled via [setInputAsHandled], any later method in
+   * this list will not be called.
+   * If none of the methods handle the event and [physicsObjectPicking] is `true`, the event is used
+   * for physics object picking.
+   * **Note:** This method doesn't propagate input events to embedded [Window]s or [SubViewport]s.
    * *Deprecated.* Use [pushInput] instead.
    */
   @JvmOverloads
@@ -954,7 +1002,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns the mouse's position in this [godot.Viewport] using the coordinate system of this [godot.Viewport].
+   * Returns the mouse's position in this [Viewport] using the coordinate system of this [Viewport].
    */
   public fun getMousePosition(): Vector2 {
     TransferContext.writeArguments()
@@ -963,9 +1011,10 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Moves the mouse pointer to the specified position in this [godot.Viewport] using the coordinate system of this [godot.Viewport].
-   *
-   * **Note:** [warpMouse] is only supported on Windows, macOS and Linux. It has no effect on Android, iOS and Web.
+   * Moves the mouse pointer to the specified position in this [Viewport] using the coordinate
+   * system of this [Viewport].
+   * **Note:** [warpMouse] is only supported on Windows, macOS and Linux. It has no effect on
+   * Android, iOS and Web.
    */
   public fun warpMouse(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
@@ -973,7 +1022,10 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Force instantly updating the display based on the current mouse cursor position. This includes updating the mouse cursor shape and sending necessary [godot.Control.mouseEntered], [godot.CollisionObject2D.mouseEntered], [godot.CollisionObject3D.mouseEntered] and [godot.Window.mouseEntered] signals and their respective `mouse_exited` counterparts.
+   * Force instantly updating the display based on the current mouse cursor position. This includes
+   * updating the mouse cursor shape and sending necessary [signal Control.mouse_entered], [signal
+   * CollisionObject2D.mouse_entered], [signal CollisionObject3D.mouse_entered] and [signal
+   * Window.mouse_entered] signals and their respective `mouse_exited` counterparts.
    */
   public fun updateMouseCursorState(): Unit {
     TransferContext.writeArguments()
@@ -981,7 +1033,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns the drag data from the GUI, that was previously returned by [godot.Control.GetDragData].
+   * Returns the drag data from the GUI, that was previously returned by [Control.GetDragData].
    */
   public fun guiGetDragData(): Any? {
     TransferContext.writeArguments()
@@ -991,8 +1043,8 @@ public open class Viewport internal constructor() : Node() {
 
   /**
    * Returns `true` if the viewport is currently performing a drag operation.
-   *
-   * Alternative to [godot.Node.NOTIFICATION_DRAG_BEGIN] and [godot.Node.NOTIFICATION_DRAG_END] when you prefer polling the value.
+   * Alternative to [Node.NOTIFICATION_DRAG_BEGIN] and [Node.NOTIFICATION_DRAG_END] when you prefer
+   * polling the value.
    */
   public fun guiIsDragging(): Boolean {
     TransferContext.writeArguments()
@@ -1010,7 +1062,8 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Removes the focus from the currently focused [godot.Control] within this viewport. If no [godot.Control] has the focus, does nothing.
+   * Removes the focus from the currently focused [Control] within this viewport. If no [Control]
+   * has the focus, does nothing.
    */
   public fun guiReleaseFocus(): Unit {
     TransferContext.writeArguments()
@@ -1018,7 +1071,8 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns the [godot.Control] having the focus within this viewport. If no [godot.Control] has the focus, returns null.
+   * Returns the [Control] having the focus within this viewport. If no [Control] has the focus,
+   * returns null.
    */
   public fun guiGetFocusOwner(): Control? {
     TransferContext.writeArguments()
@@ -1027,9 +1081,8 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Stops the input from propagating further down the [godot.SceneTree].
-   *
-   * **Note:** This does not affect the methods in [godot.Input], only the way events are propagated.
+   * Stops the input from propagating further down the [SceneTree].
+   * **Note:** This does not affect the methods in [Input], only the way events are propagated.
    */
   public fun setInputAsHandled(): Unit {
     TransferContext.writeArguments()
@@ -1037,11 +1090,12 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns whether the current [godot.InputEvent] has been handled. Input events are not handled until [setInputAsHandled] has been called during the lifetime of an [godot.InputEvent].
-   *
-   * This is usually done as part of input handling methods like [godot.Node.Input], [godot.Control.GuiInput] or others, as well as in corresponding signal handlers.
-   *
-   * If [handleInputLocally] is set to `false`, this method will try finding the first parent viewport that is set to handle input locally, and return its value for [isInputHandled] instead.
+   * Returns whether the current [InputEvent] has been handled. Input events are not handled until
+   * [setInputAsHandled] has been called during the lifetime of an [InputEvent].
+   * This is usually done as part of input handling methods like [Node.Input], [Control.GuiInput] or
+   * others, as well as in corresponding signal handlers.
+   * If [handleInputLocally] is set to `false`, this method will try finding the first parent
+   * viewport that is set to handle input locally, and return its value for [isInputHandled] instead.
    */
   public fun isInputHandled(): Boolean {
     TransferContext.writeArguments()
@@ -1050,9 +1104,8 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns a list of the visible embedded [godot.Window]s inside the viewport.
-   *
-   * **Note:** [godot.Window]s inside other viewports will not be listed.
+   * Returns a list of the visible embedded [Window]s inside the viewport.
+   * **Note:** [Window]s inside other viewports will not be listed.
    */
   public fun getEmbeddedSubwindows(): VariantArray<Window> {
     TransferContext.writeArguments()
@@ -1061,7 +1114,8 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Set/clear individual bits on the rendering layer mask. This simplifies editing this [godot.Viewport]'s layers.
+   * Set/clear individual bits on the rendering layer mask. This simplifies editing this
+   * [Viewport]'s layers.
    */
   public fun setCanvasCullMaskBit(layer: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to layer, BOOL to enable)
@@ -1078,7 +1132,8 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns the first valid [godot.World3D] for this viewport, searching the [world3d] property of itself and any Viewport ancestor.
+   * Returns the first valid [World3D] for this viewport, searching the [world3d] property of itself
+   * and any Viewport ancestor.
    */
   public fun findWorld3d(): World3D? {
     TransferContext.writeArguments()
@@ -1119,15 +1174,19 @@ public open class Viewport internal constructor() : Node() {
      */
     SHADOW_ATLAS_QUADRANT_SUBDIV_64(4),
     /**
-     * This quadrant will be split 256 ways and used by up to 256 shadow maps. Unless the [positionalShadowAtlasSize] is very high, the shadows in this quadrant will be very low resolution.
+     * This quadrant will be split 256 ways and used by up to 256 shadow maps. Unless the
+     * [positionalShadowAtlasSize] is very high, the shadows in this quadrant will be very low
+     * resolution.
      */
     SHADOW_ATLAS_QUADRANT_SUBDIV_256(5),
     /**
-     * This quadrant will be split 1024 ways and used by up to 1024 shadow maps. Unless the [positionalShadowAtlasSize] is very high, the shadows in this quadrant will be very low resolution.
+     * This quadrant will be split 1024 ways and used by up to 1024 shadow maps. Unless the
+     * [positionalShadowAtlasSize] is very high, the shadows in this quadrant will be very low
+     * resolution.
      */
     SHADOW_ATLAS_QUADRANT_SUBDIV_1024(6),
     /**
-     * Represents the size of the [enum PositionalShadowAtlasQuadrantSubdiv] enum.
+     * Represents the size of the [PositionalShadowAtlasQuadrantSubdiv] enum.
      */
     SHADOW_ATLAS_QUADRANT_SUBDIV_MAX(7),
     ;
@@ -1146,19 +1205,28 @@ public open class Viewport internal constructor() : Node() {
     id: Long,
   ) {
     /**
-     * Use bilinear scaling for the viewport's 3D buffer. The amount of scaling can be set using [scaling3dScale]. Values less than `1.0` will result in undersampling while values greater than `1.0` will result in supersampling. A value of `1.0` disables scaling.
+     * Use bilinear scaling for the viewport's 3D buffer. The amount of scaling can be set using
+     * [scaling3dScale]. Values less than `1.0` will result in undersampling while values greater than
+     * `1.0` will result in supersampling. A value of `1.0` disables scaling.
      */
     SCALING_3D_MODE_BILINEAR(0),
     /**
-     * Use AMD FidelityFX Super Resolution 1.0 upscaling for the viewport's 3D buffer. The amount of scaling can be set using [scaling3dScale]. Values less than `1.0` will be result in the viewport being upscaled using FSR. Values greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of `1.0` disables scaling.
+     * Use AMD FidelityFX Super Resolution 1.0 upscaling for the viewport's 3D buffer. The amount of
+     * scaling can be set using [scaling3dScale]. Values less than `1.0` will be result in the viewport
+     * being upscaled using FSR. Values greater than `1.0` are not supported and bilinear downsampling
+     * will be used instead. A value of `1.0` disables scaling.
      */
     SCALING_3D_MODE_FSR(1),
     /**
-     * Use AMD FidelityFX Super Resolution 2.2 upscaling for the viewport's 3D buffer. The amount of scaling can be set using [godot.Viewport.scaling3dScale]. Values less than `1.0` will be result in the viewport being upscaled using FSR2. Values greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of `1.0` will use FSR2 at native resolution as a TAA solution.
+     * Use AMD FidelityFX Super Resolution 2.2 upscaling for the viewport's 3D buffer. The amount of
+     * scaling can be set using [Viewport.scaling3dScale]. Values less than `1.0` will be result in the
+     * viewport being upscaled using FSR2. Values greater than `1.0` are not supported and bilinear
+     * downsampling will be used instead. A value of `1.0` will use FSR2 at native resolution as a TAA
+     * solution.
      */
     SCALING_3D_MODE_FSR2(2),
     /**
-     * Represents the size of the [enum Scaling3DMode] enum.
+     * Represents the size of the [Scaling3DMode] enum.
      */
     SCALING_3D_MODE_MAX(3),
     ;
@@ -1177,23 +1245,28 @@ public open class Viewport internal constructor() : Node() {
     id: Long,
   ) {
     /**
-     * Multisample antialiasing mode disabled. This is the default value, and is also the fastest setting.
+     * Multisample antialiasing mode disabled. This is the default value, and is also the fastest
+     * setting.
      */
     MSAA_DISABLED(0),
     /**
-     * Use 2× Multisample Antialiasing. This has a moderate performance cost. It helps reduce aliasing noticeably, but 4× MSAA still looks substantially better.
+     * Use 2× Multisample Antialiasing. This has a moderate performance cost. It helps reduce
+     * aliasing noticeably, but 4× MSAA still looks substantially better.
      */
     MSAA_2X(1),
     /**
-     * Use 4× Multisample Antialiasing. This has a significant performance cost, and is generally a good compromise between performance and quality.
+     * Use 4× Multisample Antialiasing. This has a significant performance cost, and is generally a
+     * good compromise between performance and quality.
      */
     MSAA_4X(2),
     /**
-     * Use 8× Multisample Antialiasing. This has a very high performance cost. The difference between 4× and 8× MSAA may not always be visible in real gameplay conditions. Likely unsupported on low-end and older hardware.
+     * Use 8× Multisample Antialiasing. This has a very high performance cost. The difference
+     * between 4× and 8× MSAA may not always be visible in real gameplay conditions. Likely unsupported
+     * on low-end and older hardware.
      */
     MSAA_8X(3),
     /**
-     * Represents the size of the [enum MSAA] enum.
+     * Represents the size of the [MSAA] enum.
      */
     MSAA_MAX(4),
     ;
@@ -1216,11 +1289,13 @@ public open class Viewport internal constructor() : Node() {
      */
     SCREEN_SPACE_AA_DISABLED(0),
     /**
-     * Use fast approximate antialiasing. FXAA is a popular screen-space antialiasing method, which is fast but will make the image look blurry, especially at lower resolutions. It can still work relatively well at large resolutions such as 1440p and 4K.
+     * Use fast approximate antialiasing. FXAA is a popular screen-space antialiasing method, which
+     * is fast but will make the image look blurry, especially at lower resolutions. It can still work
+     * relatively well at large resolutions such as 1440p and 4K.
      */
     SCREEN_SPACE_AA_FXAA(1),
     /**
-     * Represents the size of the [enum ScreenSpaceAA] enum.
+     * Represents the size of the [ScreenSpaceAA] enum.
      */
     SCREEN_SPACE_AA_MAX(2),
     ;
@@ -1251,7 +1326,7 @@ public open class Viewport internal constructor() : Node() {
      */
     RENDER_INFO_DRAW_CALLS_IN_FRAME(2),
     /**
-     * Represents the size of the [enum RenderInfo] enum.
+     * Represents the size of the [RenderInfo] enum.
      */
     RENDER_INFO_MAX(3),
     ;
@@ -1269,17 +1344,8 @@ public open class Viewport internal constructor() : Node() {
   public enum class RenderInfoType(
     id: Long,
   ) {
-    /**
-     *
-     */
     RENDER_INFO_TYPE_VISIBLE(0),
-    /**
-     *
-     */
     RENDER_INFO_TYPE_SHADOW(1),
-    /**
-     *
-     */
     RENDER_INFO_TYPE_MAX(2),
     ;
 
@@ -1304,101 +1370,72 @@ public open class Viewport internal constructor() : Node() {
      * Objects are displayed without light information.
      */
     DEBUG_DRAW_UNSHADED(1),
-    /**
-     *
-     */
     DEBUG_DRAW_LIGHTING(2),
     /**
-     * Objects are displayed semi-transparent with additive blending so you can see where they are drawing over top of one another. A higher overdraw means you are wasting performance on drawing pixels that are being hidden behind others.
+     * Objects are displayed semi-transparent with additive blending so you can see where they are
+     * drawing over top of one another. A higher overdraw means you are wasting performance on drawing
+     * pixels that are being hidden behind others.
      */
     DEBUG_DRAW_OVERDRAW(3),
     /**
      * Objects are displayed in wireframe style.
      */
     DEBUG_DRAW_WIREFRAME(4),
-    /**
-     *
-     */
     DEBUG_DRAW_NORMAL_BUFFER(5),
     /**
-     * Objects are displayed with only the albedo value from [godot.VoxelGI]s.
+     * Objects are displayed with only the albedo value from [VoxelGI]s.
      */
     DEBUG_DRAW_VOXEL_GI_ALBEDO(6),
     /**
-     * Objects are displayed with only the lighting value from [godot.VoxelGI]s.
+     * Objects are displayed with only the lighting value from [VoxelGI]s.
      */
     DEBUG_DRAW_VOXEL_GI_LIGHTING(7),
     /**
-     * Objects are displayed with only the emission color from [godot.VoxelGI]s.
+     * Objects are displayed with only the emission color from [VoxelGI]s.
      */
     DEBUG_DRAW_VOXEL_GI_EMISSION(8),
     /**
-     * Draws the shadow atlas that stores shadows from [godot.OmniLight3D]s and [godot.SpotLight3D]s in the upper left quadrant of the [godot.Viewport].
+     * Draws the shadow atlas that stores shadows from [OmniLight3D]s and [SpotLight3D]s in the
+     * upper left quadrant of the [Viewport].
      */
     DEBUG_DRAW_SHADOW_ATLAS(9),
     /**
-     * Draws the shadow atlas that stores shadows from [godot.DirectionalLight3D]s in the upper left quadrant of the [godot.Viewport].
+     * Draws the shadow atlas that stores shadows from [DirectionalLight3D]s in the upper left
+     * quadrant of the [Viewport].
      */
     DEBUG_DRAW_DIRECTIONAL_SHADOW_ATLAS(10),
-    /**
-     *
-     */
     DEBUG_DRAW_SCENE_LUMINANCE(11),
     /**
-     * Draws the screen-space ambient occlusion texture instead of the scene so that you can clearly see how it is affecting objects. In order for this display mode to work, you must have [godot.Environment.ssaoEnabled] set in your [godot.WorldEnvironment].
+     * Draws the screen-space ambient occlusion texture instead of the scene so that you can clearly
+     * see how it is affecting objects. In order for this display mode to work, you must have
+     * [Environment.ssaoEnabled] set in your [WorldEnvironment].
      */
     DEBUG_DRAW_SSAO(12),
     /**
-     * Draws the screen-space indirect lighting texture instead of the scene so that you can clearly see how it is affecting objects. In order for this display mode to work, you must have [godot.Environment.ssilEnabled] set in your [godot.WorldEnvironment].
+     * Draws the screen-space indirect lighting texture instead of the scene so that you can clearly
+     * see how it is affecting objects. In order for this display mode to work, you must have
+     * [Environment.ssilEnabled] set in your [WorldEnvironment].
      */
     DEBUG_DRAW_SSIL(13),
     /**
-     * Colors each PSSM split for the [godot.DirectionalLight3D]s in the scene a different color so you can see where the splits are. In order, they will be colored red, green, blue, and yellow.
+     * Colors each PSSM split for the [DirectionalLight3D]s in the scene a different color so you
+     * can see where the splits are. In order, they will be colored red, green, blue, and yellow.
      */
     DEBUG_DRAW_PSSM_SPLITS(14),
     /**
-     * Draws the decal atlas used by [godot.Decal]s and light projector textures in the upper left quadrant of the [godot.Viewport].
+     * Draws the decal atlas used by [Decal]s and light projector textures in the upper left
+     * quadrant of the [Viewport].
      */
     DEBUG_DRAW_DECAL_ATLAS(15),
-    /**
-     *
-     */
     DEBUG_DRAW_SDFGI(16),
-    /**
-     *
-     */
     DEBUG_DRAW_SDFGI_PROBES(17),
-    /**
-     *
-     */
     DEBUG_DRAW_GI_BUFFER(18),
-    /**
-     *
-     */
     DEBUG_DRAW_DISABLE_LOD(19),
-    /**
-     *
-     */
     DEBUG_DRAW_CLUSTER_OMNI_LIGHTS(20),
-    /**
-     *
-     */
     DEBUG_DRAW_CLUSTER_SPOT_LIGHTS(21),
-    /**
-     *
-     */
     DEBUG_DRAW_CLUSTER_DECALS(22),
-    /**
-     *
-     */
     DEBUG_DRAW_CLUSTER_REFLECTION_PROBES(23),
-    /**
-     *
-     */
     DEBUG_DRAW_OCCLUDERS(24),
-    /**
-     *
-     */
     DEBUG_DRAW_MOTION_VECTORS(25),
     /**
      * Draws the internal resolution buffer of the scene before post-processing is applied.
@@ -1420,27 +1457,37 @@ public open class Viewport internal constructor() : Node() {
     id: Long,
   ) {
     /**
-     * The texture filter reads from the nearest pixel only. This makes the texture look pixelated from up close, and grainy from a distance (due to mipmaps not being sampled).
+     * The texture filter reads from the nearest pixel only. This makes the texture look pixelated
+     * from up close, and grainy from a distance (due to mipmaps not being sampled).
      */
     DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST(0),
     /**
-     * The texture filter blends between the nearest 4 pixels. This makes the texture look smooth from up close, and grainy from a distance (due to mipmaps not being sampled).
+     * The texture filter blends between the nearest 4 pixels. This makes the texture look smooth
+     * from up close, and grainy from a distance (due to mipmaps not being sampled).
      */
     DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR(1),
     /**
-     * The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps (or uses the nearest mipmap if [godot.ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This makes the texture look smooth from up close, and smooth from a distance.
-     *
-     * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [godot.Camera2D] zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than on-screen pixels.
+     * The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps (or
+     * uses the nearest mipmap if
+     * [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This
+     * makes the texture look smooth from up close, and smooth from a distance.
+     * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [Camera2D]
+     * zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than
+     * on-screen pixels.
      */
     DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR_WITH_MIPMAPS(2),
     /**
-     * The texture filter reads from the nearest pixel and blends between the nearest 2 mipmaps (or uses the nearest mipmap if [godot.ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This makes the texture look pixelated from up close, and smooth from a distance.
-     *
-     * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [godot.Camera2D] zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than on-screen pixels.
+     * The texture filter reads from the nearest pixel and blends between the nearest 2 mipmaps (or
+     * uses the nearest mipmap if
+     * [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This
+     * makes the texture look pixelated from up close, and smooth from a distance.
+     * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [Camera2D]
+     * zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than
+     * on-screen pixels.
      */
     DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST_WITH_MIPMAPS(3),
     /**
-     * Max value for [enum DefaultCanvasItemTextureFilter] enum.
+     * Max value for [DefaultCanvasItemTextureFilter] enum.
      */
     DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_MAX(4),
     ;
@@ -1459,11 +1506,15 @@ public open class Viewport internal constructor() : Node() {
     id: Long,
   ) {
     /**
-     * Disables textures repeating. Instead, when reading UVs outside the 0-1 range, the value will be clamped to the edge of the texture, resulting in a stretched out look at the borders of the texture.
+     * Disables textures repeating. Instead, when reading UVs outside the 0-1 range, the value will
+     * be clamped to the edge of the texture, resulting in a stretched out look at the borders of the
+     * texture.
      */
     DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_DISABLED(0),
     /**
-     * Enables the texture to repeat when UV coordinates are outside the 0-1 range. If using one of the linear filtering modes, this can result in artifacts at the edges of a texture when the sampler filters across the edges of the texture.
+     * Enables the texture to repeat when UV coordinates are outside the 0-1 range. If using one of
+     * the linear filtering modes, this can result in artifacts at the edges of a texture when the
+     * sampler filters across the edges of the texture.
      */
     DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_ENABLED(1),
     /**
@@ -1471,7 +1522,7 @@ public open class Viewport internal constructor() : Node() {
      */
     DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_MIRROR(2),
     /**
-     * Max value for [enum DefaultCanvasItemTextureRepeat] enum.
+     * Max value for [DefaultCanvasItemTextureRepeat] enum.
      */
     DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_MAX(3),
     ;
@@ -1489,25 +1540,10 @@ public open class Viewport internal constructor() : Node() {
   public enum class SDFOversize(
     id: Long,
   ) {
-    /**
-     *
-     */
     SDF_OVERSIZE_100_PERCENT(0),
-    /**
-     *
-     */
     SDF_OVERSIZE_120_PERCENT(1),
-    /**
-     *
-     */
     SDF_OVERSIZE_150_PERCENT(2),
-    /**
-     *
-     */
     SDF_OVERSIZE_200_PERCENT(3),
-    /**
-     *
-     */
     SDF_OVERSIZE_MAX(4),
     ;
 
@@ -1524,21 +1560,9 @@ public open class Viewport internal constructor() : Node() {
   public enum class SDFScale(
     id: Long,
   ) {
-    /**
-     *
-     */
     SDF_SCALE_100_PERCENT(0),
-    /**
-     *
-     */
     SDF_SCALE_50_PERCENT(1),
-    /**
-     *
-     */
     SDF_SCALE_25_PERCENT(2),
-    /**
-     *
-     */
     SDF_SCALE_MAX(3),
     ;
 
@@ -1564,11 +1588,11 @@ public open class Viewport internal constructor() : Node() {
      */
     VRS_TEXTURE(1),
     /**
-     * VRS texture is supplied by the primary [godot.XRInterface].
+     * VRS texture is supplied by the primary [XRInterface].
      */
     VRS_XR(2),
     /**
-     * Represents the size of the [enum VRSMode] enum.
+     * Represents the size of the [VRSMode] enum.
      */
     VRS_MAX(3),
     ;

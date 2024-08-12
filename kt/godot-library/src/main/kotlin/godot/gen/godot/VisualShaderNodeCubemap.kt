@@ -39,7 +39,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
     }
 
   /**
-   * The [Cubemap] texture to sample when using [SOURCETEXTURE] as [source].
+   * The [Cubemap] texture to sample when using [SOURCE_TEXTURE] as [source].
    */
   public var cubeMap: Cubemap?
     get() {

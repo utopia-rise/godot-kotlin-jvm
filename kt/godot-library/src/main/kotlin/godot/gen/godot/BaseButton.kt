@@ -31,7 +31,7 @@ import kotlin.Unit
 public open class BaseButton : Control() {
   /**
    * Emitted when the button is toggled or pressed. This is on [signal button_down] if [actionMode]
-   * is [ACTIONMODEBUTTONPRESS] and on [signal button_up] otherwise.
+   * is [ACTION_MODE_BUTTON_PRESS] and on [signal button_up] otherwise.
    * If you need to know the button's pressed state (and [toggleMode] is active), use [signal
    * toggled] instead.
    */

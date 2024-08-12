@@ -147,14 +147,14 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     PRECISION_NONE(0),
     /**
      * The derivative will be calculated using the current fragment's neighbors (which may not
-     * include the current fragment). This tends to be faster than using [PRECISIONFINE], but may not
+     * include the current fragment). This tends to be faster than using [PRECISION_FINE], but may not
      * be suitable when more precision is needed. This is equivalent to using `dFdxCoarse()` or
      * `dFdyCoarse()` in text shaders.
      */
     PRECISION_COARSE(1),
     /**
      * The derivative will be calculated using the current fragment and its immediate neighbors.
-     * This tends to be slower than using [PRECISIONCOARSE], but may be necessary when more precision
+     * This tends to be slower than using [PRECISION_COARSE], but may be necessary when more precision
      * is needed. This is equivalent to using `dFdxFine()` or `dFdyFine()` in text shaders.
      */
     PRECISION_FINE(2),

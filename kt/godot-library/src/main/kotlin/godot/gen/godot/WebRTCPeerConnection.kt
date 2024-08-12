@@ -74,7 +74,7 @@ public open class WebRTCPeerConnection : RefCounted() {
 
   /**
    * Re-initialize this peer connection, closing any previously active connection, and going back to
-   * state [STATENEW]. A dictionary of [configuration] options can be passed to configure the peer
+   * state [STATE_NEW]. A dictionary of [configuration] options can be passed to configure the peer
    * connection.
    * Valid [configuration] options are:
    * [codeblock]
@@ -102,7 +102,7 @@ public open class WebRTCPeerConnection : RefCounted() {
   /**
    * Returns a new [WebRTCDataChannel] (or `null` on failure) with given [label] and optionally
    * configured via the [options] dictionary. This method can only be called when the connection is in
-   * state [STATENEW].
+   * state [STATE_NEW].
    * There are two ways to create a working data channel: either call [createDataChannel] on only
    * one of the peer and listen to [signal data_channel_received] on the other, or call
    * [createDataChannel] on both peers, with the same values, and the `"negotiated"` option set to
@@ -310,8 +310,8 @@ public open class WebRTCPeerConnection : RefCounted() {
   ) {
     /**
      * There is no ongoing exchange of offer and answer underway. This may mean that the
-     * [WebRTCPeerConnection] is new ([STATENEW]) or that negotiation is complete and a connection has
-     * been established ([STATECONNECTED]).
+     * [WebRTCPeerConnection] is new ([STATE_NEW]) or that negotiation is complete and a connection has
+     * been established ([STATE_CONNECTED]).
      */
     SIGNALING_STATE_STABLE(0),
     /**

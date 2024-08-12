@@ -188,7 +188,7 @@ public open class PopupMenu : Popup() {
    * Adds a new item with text [label].
    * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is
    * provided, one will be created from the index. If no [accel] is provided, then the default value of
-   * 0 (corresponding to [@GlobalScope.KEYNONE]) will be assigned to the item (which means it won't
+   * 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't
    * have any accelerator). See [getItemAccelerator] for more info on accelerators.
    * **Note:** The provided [id] is used only in [signal id_pressed] and [signal id_focused]
    * signals. It's not related to the `index` arguments in e.g. [setItemChecked].
@@ -207,7 +207,7 @@ public open class PopupMenu : Popup() {
    * Adds a new item with text [label] and icon [texture].
    * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is
    * provided, one will be created from the index. If no [accel] is provided, then the default value of
-   * 0 (corresponding to [@GlobalScope.KEYNONE]) will be assigned to the item (which means it won't
+   * 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't
    * have any accelerator). See [getItemAccelerator] for more info on accelerators.
    */
   @JvmOverloads
@@ -225,7 +225,7 @@ public open class PopupMenu : Popup() {
    * Adds a new checkable item with text [label].
    * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is
    * provided, one will be created from the index. If no [accel] is provided, then the default value of
-   * 0 (corresponding to [@GlobalScope.KEYNONE]) will be assigned to the item (which means it won't
+   * 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't
    * have any accelerator). See [getItemAccelerator] for more info on accelerators.
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
    * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
@@ -245,7 +245,7 @@ public open class PopupMenu : Popup() {
    * Adds a new checkable item with text [label] and icon [texture].
    * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is
    * provided, one will be created from the index. If no [accel] is provided, then the default value of
-   * 0 (corresponding to [@GlobalScope.KEYNONE]) will be assigned to the item (which means it won't
+   * 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't
    * have any accelerator). See [getItemAccelerator] for more info on accelerators.
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
    * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
@@ -266,7 +266,7 @@ public open class PopupMenu : Popup() {
    * Adds a new radio check button with text [label].
    * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is
    * provided, one will be created from the index. If no [accel] is provided, then the default value of
-   * 0 (corresponding to [@GlobalScope.KEYNONE]) will be assigned to the item (which means it won't
+   * 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't
    * have any accelerator). See [getItemAccelerator] for more info on accelerators.
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
    * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
@@ -303,7 +303,7 @@ public open class PopupMenu : Popup() {
    * value is defined by [defaultState].
    * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is
    * provided, one will be created from the index. If no [accel] is provided, then the default value of
-   * 0 (corresponding to [@GlobalScope.KEYNONE]) will be assigned to the item (which means it won't
+   * 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't
    * have any accelerator). See [getItemAccelerator] for more info on accelerators.
    */
   @JvmOverloads
@@ -722,7 +722,7 @@ public open class PopupMenu : Popup() {
    * that can be pressed to trigger the menu button even if it's not currently open. The return value
    * is an integer which is generally a combination of [KeyModifierMask]s and [Key]s using bitwise OR
    * such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]). If no accelerator is defined for the
-   * specified [index], [getItemAccelerator] returns `0` (corresponding to [@GlobalScope.KEYNONE]).
+   * specified [index], [getItemAccelerator] returns `0` (corresponding to [@GlobalScope.KEY_NONE]).
    */
   public fun getItemAccelerator(index: Int): Key {
     TransferContext.writeArguments(LONG to index.toLong())

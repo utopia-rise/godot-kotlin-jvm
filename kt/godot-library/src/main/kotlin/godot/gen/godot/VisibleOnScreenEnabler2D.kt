@@ -33,7 +33,7 @@ import kotlin.Suppress
 public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
   /**
    * Determines how the target node is enabled. Corresponds to [Node.ProcessMode]. When the node is
-   * disabled, it always uses [Node.PROCESSMODEDISABLED].
+   * disabled, it always uses [Node.PROCESS_MODE_DISABLED].
    */
   public var enableMode: EnableMode
     get() {
@@ -72,15 +72,15 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
     id: Long,
   ) {
     /**
-     * Corresponds to [Node.PROCESSMODEINHERIT].
+     * Corresponds to [Node.PROCESS_MODE_INHERIT].
      */
     ENABLE_MODE_INHERIT(0),
     /**
-     * Corresponds to [Node.PROCESSMODEALWAYS].
+     * Corresponds to [Node.PROCESS_MODE_ALWAYS].
      */
     ENABLE_MODE_ALWAYS(1),
     /**
-     * Corresponds to [Node.PROCESSMODEWHENPAUSED].
+     * Corresponds to [Node.PROCESS_MODE_WHEN_PAUSED].
      */
     ENABLE_MODE_WHEN_PAUSED(2),
     ;

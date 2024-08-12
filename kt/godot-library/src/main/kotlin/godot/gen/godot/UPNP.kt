@@ -350,7 +350,7 @@ public open class UPNP : RefCounted() {
     UPNP_RESULT_NO_PORT_MAPS_AVAILABLE(11),
     /**
      * Conflict with other mechanism. May be returned instead of
-     * [UPNPRESULTCONFLICTWITHOTHERMAPPING] if a port mapping conflicts with an existing one.
+     * [UPNP_RESULT_CONFLICT_WITH_OTHER_MAPPING] if a port mapping conflicts with an existing one.
      */
     UPNP_RESULT_CONFLICT_WITH_OTHER_MECHANISM(12),
     /**

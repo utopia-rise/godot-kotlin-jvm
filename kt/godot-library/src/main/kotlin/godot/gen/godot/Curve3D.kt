@@ -70,7 +70,7 @@ public open class Curve3D : Resource() {
 
   /**
    * If `true`, the curve will bake up vectors used for orientation. This is used when
-   * [PathFollow3D.rotationMode] is set to [PathFollow3D.ROTATIONORIENTED]. Changing it forces the
+   * [PathFollow3D.rotationMode] is set to [PathFollow3D.ROTATION_ORIENTED]. Changing it forces the
    * cache to be recomputed.
    */
   public var upVectorEnabled: Boolean

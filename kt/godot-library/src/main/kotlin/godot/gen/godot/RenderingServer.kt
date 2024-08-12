@@ -76,28 +76,36 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 
 /**
- * Server for anything visible.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/performance/using_servers.html]($DOCS_URL/tutorials/performance/using_servers.html)
- *
- * The rendering server is the API backend for everything visible. The whole scene system mounts on it to display. The rendering server is completely opaque: the internals are entirely implementation-specific and cannot be accessed.
- *
- * The rendering server can be used to bypass the scene/[godot.Node] system entirely. This can improve performance in cases where the scene system is the bottleneck, but won't improve performance otherwise (for instance, if the GPU is already fully utilized).
- *
- * Resources are created using the `*_create` functions. These functions return [RID]s which are not references to the objects themselves, but opaque *pointers* towards these objects.
- *
- * All objects are drawn to a viewport. You can use the [godot.Viewport] attached to the [godot.SceneTree] or you can create one yourself with [viewportCreate]. When using a custom scenario or canvas, the scenario or canvas needs to be attached to the viewport using [viewportSetScenario] or [viewportAttachCanvas].
- *
- * **Scenarios:** In 3D, all visual objects must be associated with a scenario. The scenario is a visual representation of the world. If accessing the rendering server from a running game, the scenario can be accessed from the scene tree from any [godot.Node3D] node with [godot.Node3D.getWorld3d]. Otherwise, a scenario can be created with [scenarioCreate].
- *
+ * The rendering server is the API backend for everything visible. The whole scene system mounts on
+ * it to display. The rendering server is completely opaque: the internals are entirely
+ * implementation-specific and cannot be accessed.
+ * The rendering server can be used to bypass the scene/[Node] system entirely. This can improve
+ * performance in cases where the scene system is the bottleneck, but won't improve performance
+ * otherwise (for instance, if the GPU is already fully utilized).
+ * Resources are created using the `*_create` functions. These functions return [RID]s which are not
+ * references to the objects themselves, but opaque *pointers* towards these objects.
+ * All objects are drawn to a viewport. You can use the [Viewport] attached to the [SceneTree] or
+ * you can create one yourself with [viewportCreate]. When using a custom scenario or canvas, the
+ * scenario or canvas needs to be attached to the viewport using [viewportSetScenario] or
+ * [viewportAttachCanvas].
+ * **Scenarios:** In 3D, all visual objects must be associated with a scenario. The scenario is a
+ * visual representation of the world. If accessing the rendering server from a running game, the
+ * scenario can be accessed from the scene tree from any [Node3D] node with [Node3D.getWorld3d].
+ * Otherwise, a scenario can be created with [scenarioCreate].
  * Similarly, in 2D, a canvas is needed to draw all canvas items.
- *
- * **3D:** In 3D, all visible objects are comprised of a resource and an instance. A resource can be a mesh, a particle system, a light, or any other 3D object. In order to be visible resources must be attached to an instance using [instanceSetBase]. The instance must also be attached to the scenario using [instanceSetScenario] in order to be visible. RenderingServer methods that don't have a prefix are usually 3D-specific (but not always).
- *
- * **2D:** In 2D, all visible objects are some form of canvas item. In order to be visible, a canvas item needs to be the child of a canvas attached to a viewport, or it needs to be the child of another canvas item that is eventually attached to the canvas. 2D-specific RenderingServer methods generally start with `canvas_*`.
- *
- * **Headless mode:** Starting the engine with the `--headless` [command line argument]($DOCS_URL/tutorials/editor/command_line_tutorial.html) disables all rendering and window management functions. Most functions from [godot.RenderingServer] will return dummy values in this case.
+ * **3D:** In 3D, all visible objects are comprised of a resource and an instance. A resource can be
+ * a mesh, a particle system, a light, or any other 3D object. In order to be visible resources must be
+ * attached to an instance using [instanceSetBase]. The instance must also be attached to the scenario
+ * using [instanceSetScenario] in order to be visible. RenderingServer methods that don't have a prefix
+ * are usually 3D-specific (but not always).
+ * **2D:** In 2D, all visible objects are some form of canvas item. In order to be visible, a canvas
+ * item needs to be the child of a canvas attached to a viewport, or it needs to be the child of
+ * another canvas item that is eventually attached to the canvas. 2D-specific RenderingServer methods
+ * generally start with `canvas_*`.
+ * **Headless mode:** Starting the engine with the `--headless`
+ * [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command line argument[/url] disables all
+ * rendering and window management functions. Most functions from [RenderingServer] will return dummy
+ * values in this case.
  */
 @GodotBaseType
 public object RenderingServer : Object() {
@@ -147,33 +155,19 @@ public object RenderingServer : Object() {
   public final const val MATERIAL_RENDER_PRIORITY_MAX: Long = 127
 
   /**
-   * The number of custom data arrays available ([godot.ARRAY_CUSTOM0], [godot.ARRAY_CUSTOM1], [godot.ARRAY_CUSTOM2], [godot.ARRAY_CUSTOM3]).
+   * The number of custom data arrays available ([ARRAY_CUSTOM0], [ARRAY_CUSTOM1], [ARRAY_CUSTOM2],
+   * [ARRAY_CUSTOM3]).
    */
   public final const val ARRAY_CUSTOM_COUNT: Long = 4
 
-  /**
-   *
-   */
   public final const val PARTICLES_EMIT_FLAG_POSITION: Long = 1
 
-  /**
-   *
-   */
   public final const val PARTICLES_EMIT_FLAG_ROTATION_SCALE: Long = 2
 
-  /**
-   *
-   */
   public final const val PARTICLES_EMIT_FLAG_VELOCITY: Long = 4
 
-  /**
-   *
-   */
   public final const val PARTICLES_EMIT_FLAG_COLOR: Long = 8
 
-  /**
-   *
-   */
   public final const val PARTICLES_EMIT_FLAG_CUSTOM: Long = 16
 
   /**
@@ -182,7 +176,8 @@ public object RenderingServer : Object() {
   public val framePreDraw: Signal0 by signal()
 
   /**
-   * Emitted at the end of the frame, after the RenderingServer has finished updating all the Viewports.
+   * Emitted at the end of the frame, after the RenderingServer has finished updating all the
+   * Viewports.
    */
   public val framePostDraw: Signal0 by signal()
 
@@ -192,13 +187,13 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a 2-dimensional texture and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `texture_2d_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * **Note:** The equivalent resource is [godot.Texture2D].
-   *
-   * **Note:** Not to be confused with [godot.RenderingDevice.textureCreate], which creates the graphics API's own texture type as opposed to the Godot-specific [godot.Texture2D] resource.
+   * Creates a 2-dimensional texture and adds it to the RenderingServer. It can be accessed with the
+   * RID that is returned. This RID will be used in all `texture_2d_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * **Note:** The equivalent resource is [Texture2D].
+   * **Note:** Not to be confused with [RenderingDevice.textureCreate], which creates the graphics
+   * API's own texture type as opposed to the Godot-specific [Texture2D] resource.
    */
   public fun texture2dCreate(image: Image): RID {
     TransferContext.writeArguments(OBJECT to image)
@@ -207,11 +202,12 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a 2-dimensional layered texture and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `texture_2d_layered_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * **Note:** The equivalent resource is [godot.TextureLayered].
+   * Creates a 2-dimensional layered texture and adds it to the RenderingServer. It can be accessed
+   * with the RID that is returned. This RID will be used in all `texture_2d_layered_*` RenderingServer
+   * functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * **Note:** The equivalent resource is [TextureLayered].
    */
   public fun texture2dLayeredCreate(layers: VariantArray<Image>, layeredType: TextureLayeredType):
       RID {
@@ -221,7 +217,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * **Note:** The equivalent resource is [godot.Texture3D].
+   * **Note:** The equivalent resource is [Texture3D].
    */
   public fun texture3dCreate(
     format: Image.Format,
@@ -237,7 +233,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * *Deprecated.* ProxyTexture was removed in Godot 4, so this method does nothing when called and always returns a null [RID].
+   * *Deprecated.* ProxyTexture was removed in Godot 4, so this method does nothing when called and
+   * always returns a null [RID].
    */
   public fun textureProxyCreate(base: RID): RID {
     TransferContext.writeArguments(_RID to base)
@@ -246,9 +243,11 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Updates the texture specified by the [texture] [RID] with the data in [image]. A [layer] must also be specified, which should be `0` when updating a single-layer texture ([godot.Texture2D]).
-   *
-   * **Note:** The [image] must have the same width, height and format as the current [texture] data. Otherwise, an error will be printed and the original texture won't be modified. If you need to use different width, height or format, use [textureReplace] instead.
+   * Updates the texture specified by the [texture] [RID] with the data in [image]. A [layer] must
+   * also be specified, which should be `0` when updating a single-layer texture ([Texture2D]).
+   * **Note:** The [image] must have the same width, height and format as the current [texture]
+   * data. Otherwise, an error will be printed and the original texture won't be modified. If you need
+   * to use different width, height or format, use [textureReplace] instead.
    */
   public fun texture2dUpdate(
     texture: RID,
@@ -260,9 +259,11 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Updates the texture specified by the [texture] [RID]'s data with the data in [data]. All the texture's layers must be replaced at once.
-   *
-   * **Note:** The [texture] must have the same width, height, depth and format as the current texture data. Otherwise, an error will be printed and the original texture won't be modified. If you need to use different width, height, depth or format, use [textureReplace] instead.
+   * Updates the texture specified by the [texture] [RID]'s data with the data in [data]. All the
+   * texture's layers must be replaced at once.
+   * **Note:** The [texture] must have the same width, height, depth and format as the current
+   * texture data. Otherwise, an error will be printed and the original texture won't be modified. If
+   * you need to use different width, height, depth or format, use [textureReplace] instead.
    */
   public fun texture3dUpdate(texture: RID, `data`: VariantArray<Image>): Unit {
     TransferContext.writeArguments(_RID to texture, ARRAY to data)
@@ -278,11 +279,13 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a placeholder for a 2-dimensional layered texture and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `texture_2d_layered_*` RenderingServer functions, although it does nothing when used. See also [texture2dLayeredPlaceholderCreate]
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * **Note:** The equivalent resource is [godot.PlaceholderTexture2D].
+   * Creates a placeholder for a 2-dimensional layered texture and adds it to the RenderingServer.
+   * It can be accessed with the RID that is returned. This RID will be used in all
+   * `texture_2d_layered_*` RenderingServer functions, although it does nothing when used. See also
+   * [texture2dLayeredPlaceholderCreate]
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * **Note:** The equivalent resource is [PlaceholderTexture2D].
    */
   public fun texture2dPlaceholderCreate(): RID {
     TransferContext.writeArguments()
@@ -291,9 +294,11 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a placeholder for a 2-dimensional layered texture and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `texture_2d_layered_*` RenderingServer functions, although it does nothing when used. See also [texture2dPlaceholderCreate].
-   *
-   * **Note:** The equivalent resource is [godot.PlaceholderTextureLayered].
+   * Creates a placeholder for a 2-dimensional layered texture and adds it to the RenderingServer.
+   * It can be accessed with the RID that is returned. This RID will be used in all
+   * `texture_2d_layered_*` RenderingServer functions, although it does nothing when used. See also
+   * [texture2dPlaceholderCreate].
+   * **Note:** The equivalent resource is [PlaceholderTextureLayered].
    */
   public fun texture2dLayeredPlaceholderCreate(layeredType: TextureLayeredType): RID {
     TransferContext.writeArguments(LONG to layeredType.id)
@@ -302,11 +307,12 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a placeholder for a 3-dimensional texture and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `texture_3d_*` RenderingServer functions, although it does nothing when used.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * **Note:** The equivalent resource is [godot.PlaceholderTexture3D].
+   * Creates a placeholder for a 3-dimensional texture and adds it to the RenderingServer. It can be
+   * accessed with the RID that is returned. This RID will be used in all `texture_3d_*`
+   * RenderingServer functions, although it does nothing when used.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * **Note:** The equivalent resource is [PlaceholderTexture3D].
    */
   public fun texture3dPlaceholderCreate(): RID {
     TransferContext.writeArguments()
@@ -315,15 +321,13 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns an [godot.Image] instance from the given [texture] [RID].
-   *
-   * Example of getting the test texture from [getTestTexture] and applying it to a [godot.Sprite2D] node:
-   *
-   * ```
-   * 				var texture_rid = RenderingServer.get_test_texture()
-   * 				var texture = ImageTexture.create_from_image(RenderingServer.texture_2d_get(texture_rid))
-   * 				$Sprite2D.texture = texture
-   * 				```
+   * Returns an [Image] instance from the given [texture] [RID].
+   * Example of getting the test texture from [getTestTexture] and applying it to a [Sprite2D] node:
+   * [codeblock]
+   * var texture_rid = RenderingServer.get_test_texture()
+   * var texture = ImageTexture.create_from_image(RenderingServer.texture_2d_get(texture_rid))
+   * $Sprite2D.texture = texture
+   * [/codeblock]
    */
   public fun texture2dGet(texture: RID): Image? {
     TransferContext.writeArguments(_RID to texture)
@@ -332,7 +336,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns an [godot.Image] instance from the given [texture] [RID] and [layer].
+   * Returns an [Image] instance from the given [texture] [RID] and [layer].
    */
   public fun texture2dLayerGet(texture: RID, layer: Int): Image? {
     TransferContext.writeArguments(_RID to texture, LONG to layer.toLong())
@@ -341,7 +345,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns 3D texture data as an array of [godot.Image]s for the specified texture [RID].
+   * Returns 3D texture data as an array of [Image]s for the specified texture [RID].
    */
   public fun texture3dGet(texture: RID): VariantArray<Image> {
     TransferContext.writeArguments(_RID to texture)
@@ -350,16 +354,14 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Replaces [texture]'s texture data by the texture specified by the [byTexture] RID, without changing [texture]'s RID.
+   * Replaces [texture]'s texture data by the texture specified by the [byTexture] RID, without
+   * changing [texture]'s RID.
    */
   public fun textureReplace(texture: RID, byTexture: RID): Unit {
     TransferContext.writeArguments(_RID to texture, _RID to byTexture)
     TransferContext.callMethod(rawPtr, MethodBindings.textureReplacePtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun textureSetSizeOverride(
     texture: RID,
     width: Int,
@@ -369,17 +371,11 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.textureSetSizeOverridePtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun textureSetPath(texture: RID, path: String): Unit {
     TransferContext.writeArguments(_RID to texture, STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.textureSetPathPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun textureGetPath(texture: RID): String {
     TransferContext.writeArguments(_RID to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.textureGetPathPtr, STRING)
@@ -387,7 +383,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the [enum Image.Format] for the texture.
+   * Returns the [Image.Format] for the texture.
    */
   public fun textureGetFormat(texture: RID): Image.Format {
     TransferContext.writeArguments(_RID to texture)
@@ -395,16 +391,14 @@ public object RenderingServer : Object() {
     return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  /**
-   *
-   */
   public fun textureSetForceRedrawIfVisible(texture: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to texture, BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.textureSetForceRedrawIfVisiblePtr, NIL)
   }
 
   /**
-   * Creates a new texture object based on a texture created directly on the [godot.RenderingDevice]. If the texture contains layers, [layerType] is used to define the layer type.
+   * Creates a new texture object based on a texture created directly on the [RenderingDevice]. If
+   * the texture contains layers, [layerType] is used to define the layer type.
    */
   @JvmOverloads
   public fun textureRdCreate(rdTexture: RID, layerType: TextureLayeredType =
@@ -415,7 +409,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns a texture [RID] that can be used with [godot.RenderingDevice].
+   * Returns a texture [RID] that can be used with [RenderingDevice].
    */
   @JvmOverloads
   public fun textureGetRdTexture(texture: RID, srgb: Boolean = false): RID {
@@ -425,9 +419,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the internal graphics handle for this texture object. For use when communicating with third-party APIs mostly with GDExtension.
-   *
-   * **Note:** This function returns a `uint64_t` which internally maps to a `GLuint` (OpenGL) or `VkImage` (Vulkan).
+   * Returns the internal graphics handle for this texture object. For use when communicating with
+   * third-party APIs mostly with GDExtension.
+   * **Note:** This function returns a `uint64_t` which internally maps to a `GLuint` (OpenGL) or
+   * `VkImage` (Vulkan).
    */
   @JvmOverloads
   public fun textureGetNativeHandle(texture: RID, srgb: Boolean = false): Long {
@@ -437,11 +432,11 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates an empty shader and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `shader_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * **Note:** The equivalent resource is [godot.Shader].
+   * Creates an empty shader and adds it to the RenderingServer. It can be accessed with the RID
+   * that is returned. This RID will be used in all `shader_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * **Note:** The equivalent resource is [Shader].
    */
   public fun shaderCreate(): RID {
     TransferContext.writeArguments()
@@ -458,7 +453,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the path hint for the specified shader. This should generally match the [godot.Shader] resource's [godot.Resource.resourcePath].
+   * Sets the path hint for the specified shader. This should generally match the [Shader]
+   * resource's [Resource.resourcePath].
    */
   public fun shaderSetPathHint(shader: RID, path: String): Unit {
     TransferContext.writeArguments(_RID to shader, STRING to path)
@@ -484,7 +480,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the default value for the specified shader uniform. This is usually the value written in the shader source code.
+   * Returns the default value for the specified shader uniform. This is usually the value written
+   * in the shader source code.
    */
   public fun shaderGetParameterDefault(shader: RID, name: StringName): Any? {
     TransferContext.writeArguments(_RID to shader, STRING_NAME to name)
@@ -494,7 +491,6 @@ public object RenderingServer : Object() {
 
   /**
    * Sets a shader's default texture. Overwrites the texture given by name.
-   *
    * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
   @JvmOverloads
@@ -510,7 +506,6 @@ public object RenderingServer : Object() {
 
   /**
    * Returns a default texture from a shader searched by name.
-   *
    * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
   @JvmOverloads
@@ -525,11 +520,11 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates an empty material and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `material_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * **Note:** The equivalent resource is [godot.Material].
+   * Creates an empty material and adds it to the RenderingServer. It can be accessed with the RID
+   * that is returned. This RID will be used in all `material_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * **Note:** The equivalent resource is [Material].
    */
   public fun materialCreate(): RID {
     TransferContext.writeArguments()
@@ -582,9 +577,6 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.materialSetNextPassPtr, NIL)
   }
 
-  /**
-   *
-   */
   @JvmOverloads
   public fun meshCreateFromSurfaces(surfaces: VariantArray<Dictionary<Any?, Any?>>,
       blendShapeCount: Int = 0): RID {
@@ -594,13 +586,13 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a new mesh and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `mesh_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * To place in a scene, attach this mesh to an instance using [instanceSetBase] using the returned RID.
-   *
-   * **Note:** The equivalent resource is [godot.Mesh].
+   * Creates a new mesh and adds it to the RenderingServer. It can be accessed with the RID that is
+   * returned. This RID will be used in all `mesh_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * To place in a scene, attach this mesh to an instance using [instanceSetBase] using the returned
+   * RID.
+   * **Note:** The equivalent resource is [Mesh].
    */
   public fun meshCreate(): RID {
     TransferContext.writeArguments()
@@ -622,7 +614,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the stride of the vertex positions for a mesh with given [format]. Note importantly that vertex positions are stored consecutively and are not interleaved with the other attributes in the vertex buffer (normals and tangents).
+   * Returns the stride of the vertex positions for a mesh with given [format]. Note importantly
+   * that vertex positions are stored consecutively and are not interleaved with the other attributes
+   * in the vertex buffer (normals and tangents).
    */
   public fun meshSurfaceGetFormatVertexStride(format: ArrayFormat, vertexCount: Int): Long {
     TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
@@ -631,7 +625,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the stride of the combined normals and tangents for a mesh with given [format]. Note importantly that, while normals and tangents are in the vertex buffer with vertices, they are only interleaved with each other and so have a different stride than vertex positions.
+   * Returns the stride of the combined normals and tangents for a mesh with given [format]. Note
+   * importantly that, while normals and tangents are in the vertex buffer with vertices, they are only
+   * interleaved with each other and so have a different stride than vertex positions.
    */
   public fun meshSurfaceGetFormatNormalTangentStride(format: ArrayFormat, vertexCount: Int): Long {
     TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
@@ -658,17 +654,11 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
-  /**
-   *
-   */
   public fun meshAddSurface(mesh: RID, surface: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(_RID to mesh, DICTIONARY to surface)
     TransferContext.callMethod(rawPtr, MethodBindings.meshAddSurfacePtr, NIL)
   }
 
-  /**
-   *
-   */
   @JvmOverloads
   public fun meshAddSurfaceFromArrays(
     mesh: RID,
@@ -729,9 +719,6 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  /**
-   *
-   */
   public fun meshGetSurface(mesh: RID, surface: Int): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(_RID to mesh, LONG to surface.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.meshGetSurfacePtr, DICTIONARY)
@@ -792,9 +779,6 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.meshClearPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun meshSurfaceUpdateVertexRegion(
     mesh: RID,
     surface: Int,
@@ -805,9 +789,6 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceUpdateVertexRegionPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun meshSurfaceUpdateAttributeRegion(
     mesh: RID,
     surface: Int,
@@ -818,9 +799,6 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceUpdateAttributeRegionPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun meshSurfaceUpdateSkinRegion(
     mesh: RID,
     surface: Int,
@@ -831,22 +809,19 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceUpdateSkinRegionPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun meshSetShadowMesh(mesh: RID, shadowMesh: RID): Unit {
     TransferContext.writeArguments(_RID to mesh, _RID to shadowMesh)
     TransferContext.callMethod(rawPtr, MethodBindings.meshSetShadowMeshPtr, NIL)
   }
 
   /**
-   * Creates a new multimesh on the RenderingServer and returns an [RID] handle. This RID will be used in all `multimesh_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * To place in a scene, attach this multimesh to an instance using [instanceSetBase] using the returned RID.
-   *
-   * **Note:** The equivalent resource is [godot.MultiMesh].
+   * Creates a new multimesh on the RenderingServer and returns an [RID] handle. This RID will be
+   * used in all `multimesh_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * To place in a scene, attach this multimesh to an instance using [instanceSetBase] using the
+   * returned RID.
+   * **Note:** The equivalent resource is [MultiMesh].
    */
   public fun multimeshCreate(): RID {
     TransferContext.writeArguments()
@@ -854,9 +829,6 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  /**
-   *
-   */
   @JvmOverloads
   public fun multimeshAllocateData(
     multimesh: RID,
@@ -879,7 +851,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the mesh to be drawn by the multimesh. Equivalent to [godot.MultiMesh.mesh].
+   * Sets the mesh to be drawn by the multimesh. Equivalent to [MultiMesh.mesh].
    */
   public fun multimeshSetMesh(multimesh: RID, mesh: RID): Unit {
     TransferContext.writeArguments(_RID to multimesh, _RID to mesh)
@@ -887,7 +859,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [godot.Transform3D] for this instance. Equivalent to [godot.MultiMesh.setInstanceTransform].
+   * Sets the [Transform3D] for this instance. Equivalent to [MultiMesh.setInstanceTransform].
    */
   public fun multimeshInstanceSetTransform(
     multimesh: RID,
@@ -899,7 +871,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [godot.core.Transform2D] for this instance. For use when multimesh is used in 2D. Equivalent to [godot.MultiMesh.setInstanceTransform2d].
+   * Sets the [Transform2D] for this instance. For use when multimesh is used in 2D. Equivalent to
+   * [MultiMesh.setInstanceTransform2d].
    */
   public fun multimeshInstanceSetTransform2d(
     multimesh: RID,
@@ -911,7 +884,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the color by which this instance will be modulated. Equivalent to [godot.MultiMesh.setInstanceColor].
+   * Sets the color by which this instance will be modulated. Equivalent to
+   * [MultiMesh.setInstanceColor].
    */
   public fun multimeshInstanceSetColor(
     multimesh: RID,
@@ -923,7 +897,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the custom data for this instance. Custom data is passed as a [godot.core.Color], but is interpreted as a `vec4` in the shader. Equivalent to [godot.MultiMesh.setInstanceCustomData].
+   * Sets the custom data for this instance. Custom data is passed as a [Color], but is interpreted
+   * as a `vec4` in the shader. Equivalent to [MultiMesh.setInstanceCustomData].
    */
   public fun multimeshInstanceSetCustomData(
     multimesh: RID,
@@ -944,7 +919,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Calculates and returns the axis-aligned bounding box that encloses all instances within the multimesh.
+   * Calculates and returns the axis-aligned bounding box that encloses all instances within the
+   * multimesh.
    */
   public fun multimeshGetAabb(multimesh: RID): AABB {
     TransferContext.writeArguments(_RID to multimesh)
@@ -954,7 +930,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the [godot.Transform3D] of the specified instance.
+   * Returns the [Transform3D] of the specified instance.
    */
   public fun multimeshInstanceGetTransform(multimesh: RID, index: Int): Transform3D {
     TransferContext.writeArguments(_RID to multimesh, LONG to index.toLong())
@@ -963,7 +939,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the [godot.core.Transform2D] of the specified instance. For use when the multimesh is set to use 2D transforms.
+   * Returns the [Transform2D] of the specified instance. For use when the multimesh is set to use
+   * 2D transforms.
    */
   public fun multimeshInstanceGetTransform2d(multimesh: RID, index: Int): Transform2D {
     TransferContext.writeArguments(_RID to multimesh, LONG to index.toLong())
@@ -991,7 +968,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the number of instances visible at a given time. If -1, all instances that have been allocated are drawn. Equivalent to [godot.MultiMesh.visibleInstanceCount].
+   * Sets the number of instances visible at a given time. If -1, all instances that have been
+   * allocated are drawn. Equivalent to [MultiMesh.visibleInstanceCount].
    */
   public fun multimeshSetVisibleInstances(multimesh: RID, visible: Int): Unit {
     TransferContext.writeArguments(_RID to multimesh, LONG to visible.toLong())
@@ -1008,22 +986,25 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Set the entire data to use for drawing the [multimesh] at once to [buffer] (such as instance transforms and colors). [buffer]'s size must match the number of instances multiplied by the per-instance data size (which depends on the enabled MultiMesh fields). Otherwise, an error message is printed and nothing is rendered. See also [multimeshGetBuffer].
-   *
+   * Set the entire data to use for drawing the [multimesh] at once to [buffer] (such as instance
+   * transforms and colors). [buffer]'s size must match the number of instances multiplied by the
+   * per-instance data size (which depends on the enabled MultiMesh fields). Otherwise, an error
+   * message is printed and nothing is rendered. See also [multimeshGetBuffer].
    * The per-instance data size and expected data order is:
-   *
-   * ```
-   * 				2D:
-   * 				  - Position: 8 floats (8 floats for Transform2D)
-   * 				  - Position + Vertex color: 12 floats (8 floats for Transform2D, 4 floats for Color)
-   * 				  - Position + Custom data: 12 floats (8 floats for Transform2D, 4 floats of custom data)
-   * 				  - Position + Vertex color + Custom data: 16 floats (8 floats for Transform2D, 4 floats for Color, 4 floats of custom data)
-   * 				3D:
-   * 				  - Position: 12 floats (12 floats for Transform3D)
-   * 				  - Position + Vertex color: 16 floats (12 floats for Transform3D, 4 floats for Color)
-   * 				  - Position + Custom data: 16 floats (12 floats for Transform3D, 4 floats of custom data)
-   * 				  - Position + Vertex color + Custom data: 20 floats (12 floats for Transform3D, 4 floats for Color, 4 floats of custom data)
-   * 				```
+   * [codeblock]
+   * 2D:
+   *   - Position: 8 floats (8 floats for Transform2D)
+   *   - Position + Vertex color: 12 floats (8 floats for Transform2D, 4 floats for Color)
+   *   - Position + Custom data: 12 floats (8 floats for Transform2D, 4 floats of custom data)
+   *   - Position + Vertex color + Custom data: 16 floats (8 floats for Transform2D, 4 floats for
+   * Color, 4 floats of custom data)
+   * 3D:
+   *   - Position: 12 floats (12 floats for Transform3D)
+   *   - Position + Vertex color: 16 floats (12 floats for Transform3D, 4 floats for Color)
+   *   - Position + Custom data: 16 floats (12 floats for Transform3D, 4 floats of custom data)
+   *   - Position + Vertex color + Custom data: 20 floats (12 floats for Transform3D, 4 floats for
+   * Color, 4 floats of custom data)
+   * [/codeblock]
    */
   public fun multimeshSetBuffer(multimesh: RID, buffer: PackedFloat32Array): Unit {
     TransferContext.writeArguments(_RID to multimesh, PACKED_FLOAT_32_ARRAY to buffer)
@@ -1031,9 +1012,11 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the MultiMesh data (such as instance transforms, colors, etc). See [multimeshSetBuffer] for a description of the returned data.
-   *
-   * **Note:** If the buffer is in the engine's internal cache, it will have to be fetched from GPU memory and possibly decompressed. This means [multimeshGetBuffer] is potentially a slow operation and should be avoided whenever possible.
+   * Returns the MultiMesh data (such as instance transforms, colors, etc). See [multimeshSetBuffer]
+   * for a description of the returned data.
+   * **Note:** If the buffer is in the engine's internal cache, it will have to be fetched from GPU
+   * memory and possibly decompressed. This means [multimeshGetBuffer] is potentially a slow operation
+   * and should be avoided whenever possible.
    */
   public fun multimeshGetBuffer(multimesh: RID): PackedFloat32Array {
     TransferContext.writeArguments(_RID to multimesh)
@@ -1042,9 +1025,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a skeleton and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `skeleton_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
+   * Creates a skeleton and adds it to the RenderingServer. It can be accessed with the RID that is
+   * returned. This RID will be used in all `skeleton_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
    */
   public fun skeletonCreate(): RID {
     TransferContext.writeArguments()
@@ -1052,9 +1036,6 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  /**
-   *
-   */
   @JvmOverloads
   public fun skeletonAllocateData(
     skeleton: RID,
@@ -1075,7 +1056,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [godot.Transform3D] for a specific bone of this skeleton.
+   * Sets the [Transform3D] for a specific bone of this skeleton.
    */
   public fun skeletonBoneSetTransform(
     skeleton: RID,
@@ -1087,7 +1068,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the [godot.Transform3D] set for a specific bone of this skeleton.
+   * Returns the [Transform3D] set for a specific bone of this skeleton.
    */
   public fun skeletonBoneGetTransform(skeleton: RID, bone: Int): Transform3D {
     TransferContext.writeArguments(_RID to skeleton, LONG to bone.toLong())
@@ -1096,7 +1077,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [godot.core.Transform2D] for a specific bone of this skeleton.
+   * Sets the [Transform2D] for a specific bone of this skeleton.
    */
   public fun skeletonBoneSetTransform2d(
     skeleton: RID,
@@ -1108,7 +1089,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the [godot.core.Transform2D] set for a specific bone of this skeleton.
+   * Returns the [Transform2D] set for a specific bone of this skeleton.
    */
   public fun skeletonBoneGetTransform2d(skeleton: RID, bone: Int): Transform2D {
     TransferContext.writeArguments(_RID to skeleton, LONG to bone.toLong())
@@ -1116,22 +1097,19 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
   }
 
-  /**
-   *
-   */
   public fun skeletonSetBaseTransform2d(skeleton: RID, baseTransform: Transform2D): Unit {
     TransferContext.writeArguments(_RID to skeleton, TRANSFORM2D to baseTransform)
     TransferContext.callMethod(rawPtr, MethodBindings.skeletonSetBaseTransform2dPtr, NIL)
   }
 
   /**
-   * Creates a directional light and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID can be used in most `light_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * To place in a scene, attach this directional light to an instance using [instanceSetBase] using the returned RID.
-   *
-   * **Note:** The equivalent node is [godot.DirectionalLight3D].
+   * Creates a directional light and adds it to the RenderingServer. It can be accessed with the RID
+   * that is returned. This RID can be used in most `light_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * To place in a scene, attach this directional light to an instance using [instanceSetBase] using
+   * the returned RID.
+   * **Note:** The equivalent node is [DirectionalLight3D].
    */
   public fun directionalLightCreate(): RID {
     TransferContext.writeArguments()
@@ -1140,13 +1118,13 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a new omni light and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID can be used in most `light_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * To place in a scene, attach this omni light to an instance using [instanceSetBase] using the returned RID.
-   *
-   * **Note:** The equivalent node is [godot.OmniLight3D].
+   * Creates a new omni light and adds it to the RenderingServer. It can be accessed with the RID
+   * that is returned. This RID can be used in most `light_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * To place in a scene, attach this omni light to an instance using [instanceSetBase] using the
+   * returned RID.
+   * **Note:** The equivalent node is [OmniLight3D].
    */
   public fun omniLightCreate(): RID {
     TransferContext.writeArguments()
@@ -1155,11 +1133,12 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a spot light and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID can be used in most `light_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * To place in a scene, attach this spot light to an instance using [instanceSetBase] using the returned RID.
+   * Creates a spot light and adds it to the RenderingServer. It can be accessed with the RID that
+   * is returned. This RID can be used in most `light_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * To place in a scene, attach this spot light to an instance using [instanceSetBase] using the
+   * returned RID.
    */
   public fun spotLightCreate(): RID {
     TransferContext.writeArguments()
@@ -1168,7 +1147,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the color of the light. Equivalent to [godot.Light3D.lightColor].
+   * Sets the color of the light. Equivalent to [Light3D.lightColor].
    */
   public fun lightSetColor(light: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to light, COLOR to color)
@@ -1176,7 +1155,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the specified 3D light parameter. See [enum LightParam] for options. Equivalent to [godot.Light3D.setParam].
+   * Sets the specified 3D light parameter. See [LightParam] for options. Equivalent to
+   * [Light3D.setParam].
    */
   public fun lightSetParam(
     light: RID,
@@ -1188,7 +1168,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, light will cast shadows. Equivalent to [godot.Light3D.shadowEnabled].
+   * If `true`, light will cast shadows. Equivalent to [Light3D.shadowEnabled].
    */
   public fun lightSetShadow(light: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to light, BOOL to enabled)
@@ -1196,7 +1176,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the projector texture to use for the specified 3D light. Equivalent to [godot.Light3D.lightProjector].
+   * Sets the projector texture to use for the specified 3D light. Equivalent to
+   * [Light3D.lightProjector].
    */
   public fun lightSetProjector(light: RID, texture: RID): Unit {
     TransferContext.writeArguments(_RID to light, _RID to texture)
@@ -1204,7 +1185,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, the 3D light will subtract light instead of adding light. Equivalent to [godot.Light3D.lightNegative].
+   * If `true`, the 3D light will subtract light instead of adding light. Equivalent to
+   * [Light3D.lightNegative].
    */
   public fun lightSetNegative(light: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to light, BOOL to enable)
@@ -1212,7 +1194,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the cull mask for this 3D light. Lights only affect objects in the selected layers. Equivalent to [godot.Light3D.lightCullMask].
+   * Sets the cull mask for this 3D light. Lights only affect objects in the selected layers.
+   * Equivalent to [Light3D.lightCullMask].
    */
   public fun lightSetCullMask(light: RID, mask: Long): Unit {
     TransferContext.writeArguments(_RID to light, LONG to mask)
@@ -1220,7 +1203,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the distance fade for this 3D light. This acts as a form of level of detail (LOD) and can be used to improve performance. Equivalent to [godot.Light3D.distanceFadeEnabled], [godot.Light3D.distanceFadeBegin], [godot.Light3D.distanceFadeShadow], and [godot.Light3D.distanceFadeLength].
+   * Sets the distance fade for this 3D light. This acts as a form of level of detail (LOD) and can
+   * be used to improve performance. Equivalent to [Light3D.distanceFadeEnabled],
+   * [Light3D.distanceFadeBegin], [Light3D.distanceFadeShadow], and [Light3D.distanceFadeLength].
    */
   public fun lightSetDistanceFade(
     decal: RID,
@@ -1234,7 +1219,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, reverses the backface culling of the mesh. This can be useful when you have a flat mesh that has a light behind it. If you need to cast a shadow on both sides of the mesh, set the mesh to use double-sided shadows with [instanceGeometrySetCastShadowsSetting]. Equivalent to [godot.Light3D.shadowReverseCullFace].
+   * If `true`, reverses the backface culling of the mesh. This can be useful when you have a flat
+   * mesh that has a light behind it. If you need to cast a shadow on both sides of the mesh, set the
+   * mesh to use double-sided shadows with [instanceGeometrySetCastShadowsSetting]. Equivalent to
+   * [Light3D.shadowReverseCullFace].
    */
   public fun lightSetReverseCullFaceMode(light: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to light, BOOL to enabled)
@@ -1242,7 +1230,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the bake mode to use for the specified 3D light. Equivalent to [godot.Light3D.lightBakeMode].
+   * Sets the bake mode to use for the specified 3D light. Equivalent to [Light3D.lightBakeMode].
    */
   public fun lightSetBakeMode(light: RID, bakeMode: LightBakeMode): Unit {
     TransferContext.writeArguments(_RID to light, LONG to bakeMode.id)
@@ -1250,7 +1238,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the maximum SDFGI cascade in which the 3D light's indirect lighting is rendered. Higher values allow the light to be rendered in SDFGI further away from the camera.
+   * Sets the maximum SDFGI cascade in which the 3D light's indirect lighting is rendered. Higher
+   * values allow the light to be rendered in SDFGI further away from the camera.
    */
   public fun lightSetMaxSdfgiCascade(light: RID, cascade: Long): Unit {
     TransferContext.writeArguments(_RID to light, LONG to cascade)
@@ -1258,7 +1247,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets whether to use a dual paraboloid or a cubemap for the shadow map. Dual paraboloid is faster but may suffer from artifacts. Equivalent to [godot.OmniLight3D.omniShadowMode].
+   * Sets whether to use a dual paraboloid or a cubemap for the shadow map. Dual paraboloid is
+   * faster but may suffer from artifacts. Equivalent to [OmniLight3D.omniShadowMode].
    */
   public fun lightOmniSetShadowMode(light: RID, mode: LightOmniShadowMode): Unit {
     TransferContext.writeArguments(_RID to light, LONG to mode.id)
@@ -1266,7 +1256,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the shadow mode for this directional light. Equivalent to [godot.DirectionalLight3D.directionalShadowMode]. See [enum LightDirectionalShadowMode] for options.
+   * Sets the shadow mode for this directional light. Equivalent to
+   * [DirectionalLight3D.directionalShadowMode]. See [LightDirectionalShadowMode] for options.
    */
   public fun lightDirectionalSetShadowMode(light: RID, mode: LightDirectionalShadowMode): Unit {
     TransferContext.writeArguments(_RID to light, LONG to mode.id)
@@ -1274,7 +1265,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, this directional light will blend between shadow map splits resulting in a smoother transition between them. Equivalent to [godot.DirectionalLight3D.directionalShadowBlendSplits].
+   * If `true`, this directional light will blend between shadow map splits resulting in a smoother
+   * transition between them. Equivalent to [DirectionalLight3D.directionalShadowBlendSplits].
    */
   public fun lightDirectionalSetBlendSplits(light: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to light, BOOL to enable)
@@ -1282,7 +1274,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, this light will not be used for anything except sky shaders. Use this for lights that impact your sky shader that you may want to hide from affecting the rest of the scene. For example, you may want to enable this when the sun in your sky shader falls below the horizon.
+   * If `true`, this light will not be used for anything except sky shaders. Use this for lights
+   * that impact your sky shader that you may want to hide from affecting the rest of the scene. For
+   * example, you may want to enable this when the sun in your sky shader falls below the horizon.
    */
   public fun lightDirectionalSetSkyMode(light: RID, mode: LightDirectionalSkyMode): Unit {
     TransferContext.writeArguments(_RID to light, LONG to mode.id)
@@ -1290,7 +1284,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the texture filter mode to use when rendering light projectors. This parameter is global and cannot be set on a per-light basis.
+   * Sets the texture filter mode to use when rendering light projectors. This parameter is global
+   * and cannot be set on a per-light basis.
    */
   public fun lightProjectorsSetFilter(filter: LightProjectorFilter): Unit {
     TransferContext.writeArguments(LONG to filter.id)
@@ -1298,7 +1293,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the filter quality for omni and spot light shadows in 3D. See also [godot.ProjectSettings.rendering/lightsAndShadows/positionalShadow/softShadowFilterQuality]. This parameter is global and cannot be set on a per-viewport basis.
+   * Sets the filter quality for omni and spot light shadows in 3D. See also
+   * [ProjectSettings.rendering/lightsAndShadows/positionalShadow/softShadowFilterQuality]. This
+   * parameter is global and cannot be set on a per-viewport basis.
    */
   public fun positionalSoftShadowFilterSetQuality(quality: ShadowQuality): Unit {
     TransferContext.writeArguments(LONG to quality.id)
@@ -1306,7 +1303,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the filter [quality] for directional light shadows in 3D. See also [godot.ProjectSettings.rendering/lightsAndShadows/directionalShadow/softShadowFilterQuality]. This parameter is global and cannot be set on a per-viewport basis.
+   * Sets the filter [quality] for directional light shadows in 3D. See also
+   * [ProjectSettings.rendering/lightsAndShadows/directionalShadow/softShadowFilterQuality]. This
+   * parameter is global and cannot be set on a per-viewport basis.
    */
   public fun directionalSoftShadowFilterSetQuality(quality: ShadowQuality): Unit {
     TransferContext.writeArguments(LONG to quality.id)
@@ -1314,7 +1313,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [size] of the directional light shadows in 3D. See also [godot.ProjectSettings.rendering/lightsAndShadows/directionalShadow/size]. This parameter is global and cannot be set on a per-viewport basis.
+   * Sets the [size] of the directional light shadows in 3D. See also
+   * [ProjectSettings.rendering/lightsAndShadows/directionalShadow/size]. This parameter is global and
+   * cannot be set on a per-viewport basis.
    */
   public fun directionalShadowAtlasSetSize(size: Int, is16bits: Boolean): Unit {
     TransferContext.writeArguments(LONG to size.toLong(), BOOL to is16bits)
@@ -1322,13 +1323,13 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a reflection probe and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `reflection_probe_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * To place in a scene, attach this reflection probe to an instance using [instanceSetBase] using the returned RID.
-   *
-   * **Note:** The equivalent node is [godot.ReflectionProbe].
+   * Creates a reflection probe and adds it to the RenderingServer. It can be accessed with the RID
+   * that is returned. This RID will be used in all `reflection_probe_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * To place in a scene, attach this reflection probe to an instance using [instanceSetBase] using
+   * the returned RID.
+   * **Note:** The equivalent node is [ReflectionProbe].
    */
   public fun reflectionProbeCreate(): RID {
     TransferContext.writeArguments()
@@ -1337,7 +1338,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets how often the reflection probe updates. Can either be once or every frame. See [enum ReflectionProbeUpdateMode] for options.
+   * Sets how often the reflection probe updates. Can either be once or every frame. See
+   * [ReflectionProbeUpdateMode] for options.
    */
   public fun reflectionProbeSetUpdateMode(probe: RID, mode: ReflectionProbeUpdateMode): Unit {
     TransferContext.writeArguments(_RID to probe, LONG to mode.id)
@@ -1345,7 +1347,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the intensity of the reflection probe. Intensity modulates the strength of the reflection. Equivalent to [godot.ReflectionProbe.intensity].
+   * Sets the intensity of the reflection probe. Intensity modulates the strength of the reflection.
+   * Equivalent to [ReflectionProbe.intensity].
    */
   public fun reflectionProbeSetIntensity(probe: RID, intensity: Float): Unit {
     TransferContext.writeArguments(_RID to probe, DOUBLE to intensity.toDouble())
@@ -1353,7 +1356,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the reflection probe's ambient light mode. Equivalent to [godot.ReflectionProbe.ambientMode].
+   * Sets the reflection probe's ambient light mode. Equivalent to [ReflectionProbe.ambientMode].
    */
   public fun reflectionProbeSetAmbientMode(probe: RID, mode: ReflectionProbeAmbientMode): Unit {
     TransferContext.writeArguments(_RID to probe, LONG to mode.id)
@@ -1361,7 +1364,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the reflection probe's custom ambient light color. Equivalent to [godot.ReflectionProbe.ambientColor].
+   * Sets the reflection probe's custom ambient light color. Equivalent to
+   * [ReflectionProbe.ambientColor].
    */
   public fun reflectionProbeSetAmbientColor(probe: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to probe, COLOR to color)
@@ -1369,7 +1373,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the reflection probe's custom ambient light energy. Equivalent to [godot.ReflectionProbe.ambientColorEnergy].
+   * Sets the reflection probe's custom ambient light energy. Equivalent to
+   * [ReflectionProbe.ambientColorEnergy].
    */
   public fun reflectionProbeSetAmbientEnergy(probe: RID, energy: Float): Unit {
     TransferContext.writeArguments(_RID to probe, DOUBLE to energy.toDouble())
@@ -1377,7 +1382,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the max distance away from the probe an object can be before it is culled. Equivalent to [godot.ReflectionProbe.maxDistance].
+   * Sets the max distance away from the probe an object can be before it is culled. Equivalent to
+   * [ReflectionProbe.maxDistance].
    */
   public fun reflectionProbeSetMaxDistance(probe: RID, distance: Float): Unit {
     TransferContext.writeArguments(_RID to probe, DOUBLE to distance.toDouble())
@@ -1385,7 +1391,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the size of the area that the reflection probe will capture. Equivalent to [godot.ReflectionProbe.size].
+   * Sets the size of the area that the reflection probe will capture. Equivalent to
+   * [ReflectionProbe.size].
    */
   public fun reflectionProbeSetSize(probe: RID, size: Vector3): Unit {
     TransferContext.writeArguments(_RID to probe, VECTOR3 to size)
@@ -1393,7 +1400,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the origin offset to be used when this reflection probe is in box project mode. Equivalent to [godot.ReflectionProbe.originOffset].
+   * Sets the origin offset to be used when this reflection probe is in box project mode. Equivalent
+   * to [ReflectionProbe.originOffset].
    */
   public fun reflectionProbeSetOriginOffset(probe: RID, offset: Vector3): Unit {
     TransferContext.writeArguments(_RID to probe, VECTOR3 to offset)
@@ -1401,7 +1409,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, reflections will ignore sky contribution. Equivalent to [godot.ReflectionProbe.interior].
+   * If `true`, reflections will ignore sky contribution. Equivalent to [ReflectionProbe.interior].
    */
   public fun reflectionProbeSetAsInterior(probe: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to probe, BOOL to enable)
@@ -1409,7 +1417,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, uses box projection. This can make reflections look more correct in certain situations. Equivalent to [godot.ReflectionProbe.boxProjection].
+   * If `true`, uses box projection. This can make reflections look more correct in certain
+   * situations. Equivalent to [ReflectionProbe.boxProjection].
    */
   public fun reflectionProbeSetEnableBoxProjection(probe: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to probe, BOOL to enable)
@@ -1417,7 +1426,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, computes shadows in the reflection probe. This makes the reflection much slower to compute. Equivalent to [godot.ReflectionProbe.enableShadows].
+   * If `true`, computes shadows in the reflection probe. This makes the reflection much slower to
+   * compute. Equivalent to [ReflectionProbe.enableShadows].
    */
   public fun reflectionProbeSetEnableShadows(probe: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to probe, BOOL to enable)
@@ -1425,7 +1435,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the render cull mask for this reflection probe. Only instances with a matching cull mask will be rendered by this probe. Equivalent to [godot.ReflectionProbe.cullMask].
+   * Sets the render cull mask for this reflection probe. Only instances with a matching cull mask
+   * will be rendered by this probe. Equivalent to [ReflectionProbe.cullMask].
    */
   public fun reflectionProbeSetCullMask(probe: RID, layers: Long): Unit {
     TransferContext.writeArguments(_RID to probe, LONG to layers)
@@ -1433,7 +1444,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the resolution to use when rendering the specified reflection probe. The [resolution] is specified for each cubemap face: for instance, specifying `512` will allocate 6 faces of 512×512 each (plus mipmaps for roughness levels).
+   * Sets the resolution to use when rendering the specified reflection probe. The [resolution] is
+   * specified for each cubemap face: for instance, specifying `512` will allocate 6 faces of 512×512
+   * each (plus mipmaps for roughness levels).
    */
   public fun reflectionProbeSetResolution(probe: RID, resolution: Int): Unit {
     TransferContext.writeArguments(_RID to probe, LONG to resolution.toLong())
@@ -1441,7 +1454,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the mesh level of detail to use in the reflection probe rendering. Higher values will use less detailed versions of meshes that have LOD variations generated, which can improve performance. Equivalent to [godot.ReflectionProbe.meshLodThreshold].
+   * Sets the mesh level of detail to use in the reflection probe rendering. Higher values will use
+   * less detailed versions of meshes that have LOD variations generated, which can improve
+   * performance. Equivalent to [ReflectionProbe.meshLodThreshold].
    */
   public fun reflectionProbeSetMeshLodThreshold(probe: RID, pixels: Float): Unit {
     TransferContext.writeArguments(_RID to probe, DOUBLE to pixels.toDouble())
@@ -1449,13 +1464,13 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a decal and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `decal_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * To place in a scene, attach this decal to an instance using [instanceSetBase] using the returned RID.
-   *
-   * **Note:** The equivalent node is [godot.Decal].
+   * Creates a decal and adds it to the RenderingServer. It can be accessed with the RID that is
+   * returned. This RID will be used in all `decal_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * To place in a scene, attach this decal to an instance using [instanceSetBase] using the
+   * returned RID.
+   * **Note:** The equivalent node is [Decal].
    */
   public fun decalCreate(): RID {
     TransferContext.writeArguments()
@@ -1464,7 +1479,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [size] of the decal specified by the [decal] RID. Equivalent to [godot.Decal.size].
+   * Sets the [size] of the decal specified by the [decal] RID. Equivalent to [Decal.size].
    */
   public fun decalSetSize(decal: RID, size: Vector3): Unit {
     TransferContext.writeArguments(_RID to decal, VECTOR3 to size)
@@ -1472,7 +1487,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [texture] in the given texture [type] slot for the specified decal. Equivalent to [godot.Decal.setTexture].
+   * Sets the [texture] in the given texture [type] slot for the specified decal. Equivalent to
+   * [Decal.setTexture].
    */
   public fun decalSetTexture(
     decal: RID,
@@ -1484,7 +1500,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the emission [energy] in the decal specified by the [decal] RID. Equivalent to [godot.Decal.emissionEnergy].
+   * Sets the emission [energy] in the decal specified by the [decal] RID. Equivalent to
+   * [Decal.emissionEnergy].
    */
   public fun decalSetEmissionEnergy(decal: RID, energy: Float): Unit {
     TransferContext.writeArguments(_RID to decal, DOUBLE to energy.toDouble())
@@ -1492,7 +1509,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [albedoMix] in the decal specified by the [decal] RID. Equivalent to [godot.Decal.albedoMix].
+   * Sets the [albedoMix] in the decal specified by the [decal] RID. Equivalent to
+   * [Decal.albedoMix].
    */
   public fun decalSetAlbedoMix(decal: RID, albedoMix: Float): Unit {
     TransferContext.writeArguments(_RID to decal, DOUBLE to albedoMix.toDouble())
@@ -1500,7 +1518,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the color multiplier in the decal specified by the [decal] RID to [color]. Equivalent to [godot.Decal.modulate].
+   * Sets the color multiplier in the decal specified by the [decal] RID to [color]. Equivalent to
+   * [Decal.modulate].
    */
   public fun decalSetModulate(decal: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to decal, COLOR to color)
@@ -1508,7 +1527,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the cull [mask] in the decal specified by the [decal] RID. Equivalent to [godot.Decal.cullMask].
+   * Sets the cull [mask] in the decal specified by the [decal] RID. Equivalent to [Decal.cullMask].
    */
   public fun decalSetCullMask(decal: RID, mask: Long): Unit {
     TransferContext.writeArguments(_RID to decal, LONG to mask)
@@ -1516,7 +1535,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the distance fade parameters in the decal specified by the [decal] RID. Equivalent to [godot.Decal.distanceFadeEnabled], [godot.Decal.distanceFadeBegin] and [godot.Decal.distanceFadeLength].
+   * Sets the distance fade parameters in the decal specified by the [decal] RID. Equivalent to
+   * [Decal.distanceFadeEnabled], [Decal.distanceFadeBegin] and [Decal.distanceFadeLength].
    */
   public fun decalSetDistanceFade(
     decal: RID,
@@ -1529,7 +1549,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the upper fade ([above]) and lower fade ([below]) in the decal specified by the [decal] RID. Equivalent to [godot.Decal.upperFade] and [godot.Decal.lowerFade].
+   * Sets the upper fade ([above]) and lower fade ([below]) in the decal specified by the [decal]
+   * RID. Equivalent to [Decal.upperFade] and [Decal.lowerFade].
    */
   public fun decalSetFade(
     decal: RID,
@@ -1541,7 +1562,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the normal [fade] in the decal specified by the [decal] RID. Equivalent to [godot.Decal.normalFade].
+   * Sets the normal [fade] in the decal specified by the [decal] RID. Equivalent to
+   * [Decal.normalFade].
    */
   public fun decalSetNormalFade(decal: RID, fade: Float): Unit {
     TransferContext.writeArguments(_RID to decal, DOUBLE to fade.toDouble())
@@ -1549,7 +1571,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the texture [filter] mode to use when rendering decals. This parameter is global and cannot be set on a per-decal basis.
+   * Sets the texture [filter] mode to use when rendering decals. This parameter is global and
+   * cannot be set on a per-decal basis.
    */
   public fun decalsSetFilter(filter: DecalFilter): Unit {
     TransferContext.writeArguments(LONG to filter.id)
@@ -1557,7 +1580,12 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If [halfResolution] is `true`, renders [godot.VoxelGI] and SDFGI ([godot.Environment.sdfgiEnabled]) buffers at halved resolution on each axis (e.g. 960×540 when the viewport size is 1920×1080). This improves performance significantly when VoxelGI or SDFGI is enabled, at the cost of artifacts that may be visible on polygon edges. The loss in quality becomes less noticeable as the viewport resolution increases. [godot.LightmapGI] rendering is not affected by this setting. Equivalent to [godot.ProjectSettings.rendering/globalIllumination/gi/useHalfResolution].
+   * If [halfResolution] is `true`, renders [VoxelGI] and SDFGI ([Environment.sdfgiEnabled]) buffers
+   * at halved resolution on each axis (e.g. 960×540 when the viewport size is 1920×1080). This
+   * improves performance significantly when VoxelGI or SDFGI is enabled, at the cost of artifacts that
+   * may be visible on polygon edges. The loss in quality becomes less noticeable as the viewport
+   * resolution increases. [LightmapGI] rendering is not affected by this setting. Equivalent to
+   * [ProjectSettings.rendering/globalIllumination/gi/useHalfResolution].
    */
   public fun giSetUseHalfResolution(halfResolution: Boolean): Unit {
     TransferContext.writeArguments(BOOL to halfResolution)
@@ -1565,11 +1593,12 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a new voxel-based global illumination object and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `voxel_gi_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * **Note:** The equivalent node is [godot.VoxelGI].
+   * Creates a new voxel-based global illumination object and adds it to the RenderingServer. It can
+   * be accessed with the RID that is returned. This RID will be used in all `voxel_gi_*`
+   * RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * **Note:** The equivalent node is [VoxelGI].
    */
   public fun voxelGiCreate(): RID {
     TransferContext.writeArguments()
@@ -1577,9 +1606,6 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  /**
-   *
-   */
   public fun voxelGiAllocateData(
     voxelGi: RID,
     toCellXform: Transform3D,
@@ -1594,54 +1620,36 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.voxelGiAllocateDataPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun voxelGiGetOctreeSize(voxelGi: RID): Vector3i {
     TransferContext.writeArguments(_RID to voxelGi)
     TransferContext.callMethod(rawPtr, MethodBindings.voxelGiGetOctreeSizePtr, VECTOR3I)
     return (TransferContext.readReturnValue(VECTOR3I, false) as Vector3i)
   }
 
-  /**
-   *
-   */
   public fun voxelGiGetOctreeCells(voxelGi: RID): PackedByteArray {
     TransferContext.writeArguments(_RID to voxelGi)
     TransferContext.callMethod(rawPtr, MethodBindings.voxelGiGetOctreeCellsPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
-  /**
-   *
-   */
   public fun voxelGiGetDataCells(voxelGi: RID): PackedByteArray {
     TransferContext.writeArguments(_RID to voxelGi)
     TransferContext.callMethod(rawPtr, MethodBindings.voxelGiGetDataCellsPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
-  /**
-   *
-   */
   public fun voxelGiGetDistanceField(voxelGi: RID): PackedByteArray {
     TransferContext.writeArguments(_RID to voxelGi)
     TransferContext.callMethod(rawPtr, MethodBindings.voxelGiGetDistanceFieldPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
-  /**
-   *
-   */
   public fun voxelGiGetLevelCounts(voxelGi: RID): PackedInt32Array {
     TransferContext.writeArguments(_RID to voxelGi)
     TransferContext.callMethod(rawPtr, MethodBindings.voxelGiGetLevelCountsPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
-  /**
-   *
-   */
   public fun voxelGiGetToCellXform(voxelGi: RID): Transform3D {
     TransferContext.writeArguments(_RID to voxelGi)
     TransferContext.callMethod(rawPtr, MethodBindings.voxelGiGetToCellXformPtr, TRANSFORM3D)
@@ -1649,7 +1657,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [godot.VoxelGIData.dynamicRange] value to use on the specified [voxelGi]'s [RID].
+   * Sets the [VoxelGIData.dynamicRange] value to use on the specified [voxelGi]'s [RID].
    */
   public fun voxelGiSetDynamicRange(voxelGi: RID, range: Float): Unit {
     TransferContext.writeArguments(_RID to voxelGi, DOUBLE to range.toDouble())
@@ -1657,7 +1665,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [godot.VoxelGIData.propagation] value to use on the specified [voxelGi]'s [RID].
+   * Sets the [VoxelGIData.propagation] value to use on the specified [voxelGi]'s [RID].
    */
   public fun voxelGiSetPropagation(voxelGi: RID, amount: Float): Unit {
     TransferContext.writeArguments(_RID to voxelGi, DOUBLE to amount.toDouble())
@@ -1665,7 +1673,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [godot.VoxelGIData.energy] value to use on the specified [voxelGi]'s [RID].
+   * Sets the [VoxelGIData.energy] value to use on the specified [voxelGi]'s [RID].
    */
   public fun voxelGiSetEnergy(voxelGi: RID, energy: Float): Unit {
     TransferContext.writeArguments(_RID to voxelGi, DOUBLE to energy.toDouble())
@@ -1673,7 +1681,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Used to inform the renderer what exposure normalization value was used while baking the voxel gi. This value will be used and modulated at run time to ensure that the voxel gi maintains a consistent level of exposure even if the scene-wide exposure normalization is changed at run time. For more information see [cameraAttributesSetExposure].
+   * Used to inform the renderer what exposure normalization value was used while baking the voxel
+   * gi. This value will be used and modulated at run time to ensure that the voxel gi maintains a
+   * consistent level of exposure even if the scene-wide exposure normalization is changed at run time.
+   * For more information see [cameraAttributesSetExposure].
    */
   public fun voxelGiSetBakedExposureNormalization(voxelGi: RID, bakedExposure: Float): Unit {
     TransferContext.writeArguments(_RID to voxelGi, DOUBLE to bakedExposure.toDouble())
@@ -1681,7 +1692,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [godot.VoxelGIData.bias] value to use on the specified [voxelGi]'s [RID].
+   * Sets the [VoxelGIData.bias] value to use on the specified [voxelGi]'s [RID].
    */
   public fun voxelGiSetBias(voxelGi: RID, bias: Float): Unit {
     TransferContext.writeArguments(_RID to voxelGi, DOUBLE to bias.toDouble())
@@ -1689,7 +1700,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [godot.VoxelGIData.normalBias] value to use on the specified [voxelGi]'s [RID].
+   * Sets the [VoxelGIData.normalBias] value to use on the specified [voxelGi]'s [RID].
    */
   public fun voxelGiSetNormalBias(voxelGi: RID, bias: Float): Unit {
     TransferContext.writeArguments(_RID to voxelGi, DOUBLE to bias.toDouble())
@@ -1697,7 +1708,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [godot.VoxelGIData.interior] value to use on the specified [voxelGi]'s [RID].
+   * Sets the [VoxelGIData.interior] value to use on the specified [voxelGi]'s [RID].
    */
   public fun voxelGiSetInterior(voxelGi: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to voxelGi, BOOL to enable)
@@ -1705,7 +1716,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [godot.VoxelGIData.useTwoBounces] value to use on the specified [voxelGi]'s [RID].
+   * Sets the [VoxelGIData.useTwoBounces] value to use on the specified [voxelGi]'s [RID].
    */
   public fun voxelGiSetUseTwoBounces(voxelGi: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to voxelGi, BOOL to enable)
@@ -1713,7 +1724,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [godot.ProjectSettings.rendering/globalIllumination/voxelGi/quality] value to use when rendering. This parameter is global and cannot be set on a per-VoxelGI basis.
+   * Sets the [ProjectSettings.rendering/globalIllumination/voxelGi/quality] value to use when
+   * rendering. This parameter is global and cannot be set on a per-VoxelGI basis.
    */
   public fun voxelGiSetQuality(quality: VoxelGIQuality): Unit {
     TransferContext.writeArguments(LONG to quality.id)
@@ -1721,11 +1733,12 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a new lightmap global illumination instance and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `lightmap_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * **Note:** The equivalent node is [godot.LightmapGI].
+   * Creates a new lightmap global illumination instance and adds it to the RenderingServer. It can
+   * be accessed with the RID that is returned. This RID will be used in all `lightmap_*`
+   * RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * **Note:** The equivalent node is [LightmapGI].
    */
   public fun lightmapCreate(): RID {
     TransferContext.writeArguments()
@@ -1734,7 +1747,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Set the textures on the given [lightmap] GI instance to the texture array pointed to by the [light] RID. If the lightmap texture was baked with [godot.LightmapGI.directional] set to `true`, then [usesSh] must also be `true`.
+   * Set the textures on the given [lightmap] GI instance to the texture array pointed to by the
+   * [light] RID. If the lightmap texture was baked with [LightmapGI.directional] set to `true`, then
+   * [usesSh] must also be `true`.
    */
   public fun lightmapSetTextures(
     lightmap: RID,
@@ -1745,25 +1760,16 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.lightmapSetTexturesPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun lightmapSetProbeBounds(lightmap: RID, bounds: AABB): Unit {
     TransferContext.writeArguments(_RID to lightmap, godot.core.VariantType.AABB to bounds)
     TransferContext.callMethod(rawPtr, MethodBindings.lightmapSetProbeBoundsPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun lightmapSetProbeInterior(lightmap: RID, interior: Boolean): Unit {
     TransferContext.writeArguments(_RID to lightmap, BOOL to interior)
     TransferContext.callMethod(rawPtr, MethodBindings.lightmapSetProbeInteriorPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun lightmapSetProbeCaptureData(
     lightmap: RID,
     points: PackedVector3Array,
@@ -1775,9 +1781,6 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.lightmapSetProbeCaptureDataPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun lightmapGetProbeCapturePoints(lightmap: RID): PackedVector3Array {
     TransferContext.writeArguments(_RID to lightmap)
     TransferContext.callMethod(rawPtr, MethodBindings.lightmapGetProbeCapturePointsPtr,
@@ -1785,9 +1788,6 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
-  /**
-   *
-   */
   public fun lightmapGetProbeCaptureSh(lightmap: RID): PackedColorArray {
     TransferContext.writeArguments(_RID to lightmap)
     TransferContext.callMethod(rawPtr, MethodBindings.lightmapGetProbeCaptureShPtr,
@@ -1795,9 +1795,6 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray)
   }
 
-  /**
-   *
-   */
   public fun lightmapGetProbeCaptureTetrahedra(lightmap: RID): PackedInt32Array {
     TransferContext.writeArguments(_RID to lightmap)
     TransferContext.callMethod(rawPtr, MethodBindings.lightmapGetProbeCaptureTetrahedraPtr,
@@ -1805,9 +1802,6 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
-  /**
-   *
-   */
   public fun lightmapGetProbeCaptureBspTree(lightmap: RID): PackedInt32Array {
     TransferContext.writeArguments(_RID to lightmap)
     TransferContext.callMethod(rawPtr, MethodBindings.lightmapGetProbeCaptureBspTreePtr,
@@ -1816,31 +1810,33 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Used to inform the renderer what exposure normalization value was used while baking the lightmap. This value will be used and modulated at run time to ensure that the lightmap maintains a consistent level of exposure even if the scene-wide exposure normalization is changed at run time. For more information see [cameraAttributesSetExposure].
+   * Used to inform the renderer what exposure normalization value was used while baking the
+   * lightmap. This value will be used and modulated at run time to ensure that the lightmap maintains
+   * a consistent level of exposure even if the scene-wide exposure normalization is changed at run
+   * time. For more information see [cameraAttributesSetExposure].
    */
   public fun lightmapSetBakedExposureNormalization(lightmap: RID, bakedExposure: Float): Unit {
     TransferContext.writeArguments(_RID to lightmap, DOUBLE to bakedExposure.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.lightmapSetBakedExposureNormalizationPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun lightmapSetProbeCaptureUpdateSpeed(speed: Float): Unit {
     TransferContext.writeArguments(DOUBLE to speed.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.lightmapSetProbeCaptureUpdateSpeedPtr, NIL)
   }
 
   /**
-   * Creates a GPU-based particle system and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `particles_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * To place in a scene, attach these particles to an instance using [instanceSetBase] using the returned RID.
-   *
-   * **Note:** The equivalent nodes are [godot.GPUParticles2D] and [godot.GPUParticles3D].
-   *
-   * **Note:** All `particles_*` methods only apply to GPU-based particles, not CPU-based particles. [godot.CPUParticles2D] and [godot.CPUParticles3D] do not have equivalent RenderingServer functions available, as these use [godot.MultiMeshInstance2D] and [godot.MultiMeshInstance3D] under the hood (see `multimesh_*` methods).
+   * Creates a GPU-based particle system and adds it to the RenderingServer. It can be accessed with
+   * the RID that is returned. This RID will be used in all `particles_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * To place in a scene, attach these particles to an instance using [instanceSetBase] using the
+   * returned RID.
+   * **Note:** The equivalent nodes are [GPUParticles2D] and [GPUParticles3D].
+   * **Note:** All `particles_*` methods only apply to GPU-based particles, not CPU-based particles.
+   * [CPUParticles2D] and [CPUParticles3D] do not have equivalent RenderingServer functions available,
+   * as these use [MultiMeshInstance2D] and [MultiMeshInstance3D] under the hood (see `multimesh_*`
+   * methods).
    */
   public fun particlesCreate(): RID {
     TransferContext.writeArguments()
@@ -1849,7 +1845,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets whether the GPU particles specified by the [particles] RID should be rendered in 2D or 3D according to [mode].
+   * Sets whether the GPU particles specified by the [particles] RID should be rendered in 2D or 3D
+   * according to [mode].
    */
   public fun particlesSetMode(particles: RID, mode: ParticlesMode): Unit {
     TransferContext.writeArguments(_RID to particles, LONG to mode.id)
@@ -1857,7 +1854,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, particles will emit over time. Setting to false does not reset the particles, but only stops their emission. Equivalent to [godot.GPUParticles3D.emitting].
+   * If `true`, particles will emit over time. Setting to false does not reset the particles, but
+   * only stops their emission. Equivalent to [GPUParticles3D.emitting].
    */
   public fun particlesSetEmitting(particles: RID, emitting: Boolean): Unit {
     TransferContext.writeArguments(_RID to particles, BOOL to emitting)
@@ -1874,7 +1872,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the number of particles to be drawn and allocates the memory for them. Equivalent to [godot.GPUParticles3D.amount].
+   * Sets the number of particles to be drawn and allocates the memory for them. Equivalent to
+   * [GPUParticles3D.amount].
    */
   public fun particlesSetAmount(particles: RID, amount: Int): Unit {
     TransferContext.writeArguments(_RID to particles, LONG to amount.toLong())
@@ -1882,7 +1881,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the amount ratio for particles to be emitted. Equivalent to [godot.GPUParticles3D.amountRatio].
+   * Sets the amount ratio for particles to be emitted. Equivalent to [GPUParticles3D.amountRatio].
    */
   public fun particlesSetAmountRatio(particles: RID, ratio: Float): Unit {
     TransferContext.writeArguments(_RID to particles, DOUBLE to ratio.toDouble())
@@ -1890,7 +1889,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the lifetime of each particle in the system. Equivalent to [godot.GPUParticles3D.lifetime].
+   * Sets the lifetime of each particle in the system. Equivalent to [GPUParticles3D.lifetime].
    */
   public fun particlesSetLifetime(particles: RID, lifetime: Double): Unit {
     TransferContext.writeArguments(_RID to particles, DOUBLE to lifetime)
@@ -1898,7 +1897,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, particles will emit once and then stop. Equivalent to [godot.GPUParticles3D.oneShot].
+   * If `true`, particles will emit once and then stop. Equivalent to [GPUParticles3D.oneShot].
    */
   public fun particlesSetOneShot(particles: RID, oneShot: Boolean): Unit {
     TransferContext.writeArguments(_RID to particles, BOOL to oneShot)
@@ -1906,7 +1905,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the preprocess time for the particles' animation. This lets you delay starting an animation until after the particles have begun emitting. Equivalent to [godot.GPUParticles3D.preprocess].
+   * Sets the preprocess time for the particles' animation. This lets you delay starting an
+   * animation until after the particles have begun emitting. Equivalent to
+   * [GPUParticles3D.preprocess].
    */
   public fun particlesSetPreProcessTime(particles: RID, time: Double): Unit {
     TransferContext.writeArguments(_RID to particles, DOUBLE to time)
@@ -1914,7 +1915,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the explosiveness ratio. Equivalent to [godot.GPUParticles3D.explosiveness].
+   * Sets the explosiveness ratio. Equivalent to [GPUParticles3D.explosiveness].
    */
   public fun particlesSetExplosivenessRatio(particles: RID, ratio: Float): Unit {
     TransferContext.writeArguments(_RID to particles, DOUBLE to ratio.toDouble())
@@ -1922,7 +1923,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the emission randomness ratio. This randomizes the emission of particles within their phase. Equivalent to [godot.GPUParticles3D.randomness].
+   * Sets the emission randomness ratio. This randomizes the emission of particles within their
+   * phase. Equivalent to [GPUParticles3D.randomness].
    */
   public fun particlesSetRandomnessRatio(particles: RID, ratio: Float): Unit {
     TransferContext.writeArguments(_RID to particles, DOUBLE to ratio.toDouble())
@@ -1930,7 +1932,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the value that informs a [godot.ParticleProcessMaterial] to rush all particles towards the end of their lifetime.
+   * Sets the value that informs a [ParticleProcessMaterial] to rush all particles towards the end
+   * of their lifetime.
    */
   public fun particlesSetInterpToEnd(particles: RID, factor: Float): Unit {
     TransferContext.writeArguments(_RID to particles, DOUBLE to factor.toDouble())
@@ -1938,7 +1941,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the velocity of a particle node, that will be used by [godot.ParticleProcessMaterial.inheritVelocityRatio].
+   * Sets the velocity of a particle node, that will be used by
+   * [ParticleProcessMaterial.inheritVelocityRatio].
    */
   public fun particlesSetEmitterVelocity(particles: RID, velocity: Vector3): Unit {
     TransferContext.writeArguments(_RID to particles, VECTOR3 to velocity)
@@ -1946,7 +1950,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets a custom axis-aligned bounding box for the particle system. Equivalent to [godot.GPUParticles3D.visibilityAabb].
+   * Sets a custom axis-aligned bounding box for the particle system. Equivalent to
+   * [GPUParticles3D.visibilityAabb].
    */
   public fun particlesSetCustomAabb(particles: RID, aabb: AABB): Unit {
     TransferContext.writeArguments(_RID to particles, godot.core.VariantType.AABB to aabb)
@@ -1954,7 +1959,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the speed scale of the particle system. Equivalent to [godot.GPUParticles3D.speedScale].
+   * Sets the speed scale of the particle system. Equivalent to [GPUParticles3D.speedScale].
    */
   public fun particlesSetSpeedScale(particles: RID, scale: Double): Unit {
     TransferContext.writeArguments(_RID to particles, DOUBLE to scale)
@@ -1962,7 +1967,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, particles use local coordinates. If `false` they use global coordinates. Equivalent to [godot.GPUParticles3D.localCoords].
+   * If `true`, particles use local coordinates. If `false` they use global coordinates. Equivalent
+   * to [GPUParticles3D.localCoords].
    */
   public fun particlesSetUseLocalCoordinates(particles: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to particles, BOOL to enable)
@@ -1971,8 +1977,8 @@ public object RenderingServer : Object() {
 
   /**
    * Sets the material for processing the particles.
-   *
-   * **Note:** This is not the material used to draw the materials. Equivalent to [godot.GPUParticles3D.processMaterial].
+   * **Note:** This is not the material used to draw the materials. Equivalent to
+   * [GPUParticles3D.processMaterial].
    */
   public fun particlesSetProcessMaterial(particles: RID, material: RID): Unit {
     TransferContext.writeArguments(_RID to particles, _RID to material)
@@ -1980,47 +1986,41 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the frame rate that the particle system rendering will be fixed to. Equivalent to [godot.GPUParticles3D.fixedFps].
+   * Sets the frame rate that the particle system rendering will be fixed to. Equivalent to
+   * [GPUParticles3D.fixedFps].
    */
   public fun particlesSetFixedFps(particles: RID, fps: Int): Unit {
     TransferContext.writeArguments(_RID to particles, LONG to fps.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.particlesSetFixedFpsPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun particlesSetInterpolate(particles: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to particles, BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.particlesSetInterpolatePtr, NIL)
   }
 
   /**
-   * If `true`, uses fractional delta which smooths the movement of the particles. Equivalent to [godot.GPUParticles3D.fractDelta].
+   * If `true`, uses fractional delta which smooths the movement of the particles. Equivalent to
+   * [GPUParticles3D.fractDelta].
    */
   public fun particlesSetFractionalDelta(particles: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to particles, BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.particlesSetFractionalDeltaPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun particlesSetCollisionBaseSize(particles: RID, size: Float): Unit {
     TransferContext.writeArguments(_RID to particles, DOUBLE to size.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.particlesSetCollisionBaseSizePtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun particlesSetTransformAlign(particles: RID, align: ParticlesTransformAlign): Unit {
     TransferContext.writeArguments(_RID to particles, LONG to align.id)
     TransferContext.callMethod(rawPtr, MethodBindings.particlesSetTransformAlignPtr, NIL)
   }
 
   /**
-   * If [enable] is `true`, enables trails for the [particles] with the specified [lengthSec] in seconds. Equivalent to [godot.GPUParticles3D.trailEnabled] and [godot.GPUParticles3D.trailLifetime].
+   * If [enable] is `true`, enables trails for the [particles] with the specified [lengthSec] in
+   * seconds. Equivalent to [GPUParticles3D.trailEnabled] and [GPUParticles3D.trailLifetime].
    */
   public fun particlesSetTrails(
     particles: RID,
@@ -2031,9 +2031,6 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.particlesSetTrailsPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun particlesSetTrailBindPoses(particles: RID, bindPoses: VariantArray<Transform3D>):
       Unit {
     TransferContext.writeArguments(_RID to particles, ARRAY to bindPoses)
@@ -2050,7 +2047,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Add particle system to list of particle systems that need to be updated. Update will take place on the next frame, or on the next call to [instancesCullAabb], [instancesCullConvex], or [instancesCullRay].
+   * Add particle system to list of particle systems that need to be updated. Update will take place
+   * on the next frame, or on the next call to [instancesCullAabb], [instancesCullConvex], or
+   * [instancesCullRay].
    */
   public fun particlesRequestProcess(particles: RID): Unit {
     TransferContext.writeArguments(_RID to particles)
@@ -2058,16 +2057,13 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Reset the particles on the next update. Equivalent to [godot.GPUParticles3D.restart].
+   * Reset the particles on the next update. Equivalent to [GPUParticles3D.restart].
    */
   public fun particlesRestart(particles: RID): Unit {
     TransferContext.writeArguments(_RID to particles)
     TransferContext.callMethod(rawPtr, MethodBindings.particlesRestartPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun particlesSetSubemitter(particles: RID, subemitterParticles: RID): Unit {
     TransferContext.writeArguments(_RID to particles, _RID to subemitterParticles)
     TransferContext.callMethod(rawPtr, MethodBindings.particlesSetSubemitterPtr, NIL)
@@ -2089,7 +2085,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the draw order of the particles to one of the named enums from [enum ParticlesDrawOrder]. See [enum ParticlesDrawOrder] for options. Equivalent to [godot.GPUParticles3D.drawOrder].
+   * Sets the draw order of the particles to one of the named enums from [ParticlesDrawOrder]. See
+   * [ParticlesDrawOrder] for options. Equivalent to [GPUParticles3D.drawOrder].
    */
   public fun particlesSetDrawOrder(particles: RID, order: ParticlesDrawOrder): Unit {
     TransferContext.writeArguments(_RID to particles, LONG to order.id)
@@ -2097,7 +2094,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the number of draw passes to use. Equivalent to [godot.GPUParticles3D.drawPasses].
+   * Sets the number of draw passes to use. Equivalent to [GPUParticles3D.drawPasses].
    */
   public fun particlesSetDrawPasses(particles: RID, count: Int): Unit {
     TransferContext.writeArguments(_RID to particles, LONG to count.toLong())
@@ -2105,7 +2102,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the mesh to be used for the specified draw pass. Equivalent to [godot.GPUParticles3D.drawPass1], [godot.GPUParticles3D.drawPass2], [godot.GPUParticles3D.drawPass3], and [godot.GPUParticles3D.drawPass4].
+   * Sets the mesh to be used for the specified draw pass. Equivalent to [GPUParticles3D.drawPass1],
+   * [GPUParticles3D.drawPass2], [GPUParticles3D.drawPass3], and [GPUParticles3D.drawPass4].
    */
   public fun particlesSetDrawPassMesh(
     particles: RID,
@@ -2117,7 +2115,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Calculates and returns the axis-aligned bounding box that contains all the particles. Equivalent to [godot.GPUParticles3D.captureAabb].
+   * Calculates and returns the axis-aligned bounding box that contains all the particles.
+   * Equivalent to [GPUParticles3D.captureAabb].
    */
   public fun particlesGetCurrentAabb(particles: RID): AABB {
     TransferContext.writeArguments(_RID to particles)
@@ -2127,7 +2126,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [godot.Transform3D] that will be used by the particles when they first emit.
+   * Sets the [Transform3D] that will be used by the particles when they first emit.
    */
   public fun particlesSetEmissionTransform(particles: RID, transform: Transform3D): Unit {
     TransferContext.writeArguments(_RID to particles, TRANSFORM3D to transform)
@@ -2135,9 +2134,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a new 3D GPU particle collision or attractor and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID can be used in most `particles_collision_*` RenderingServer functions.
-   *
-   * **Note:** The equivalent nodes are [godot.GPUParticlesCollision3D] and [godot.GPUParticlesAttractor3D].
+   * Creates a new 3D GPU particle collision or attractor and adds it to the RenderingServer. It can
+   * be accessed with the RID that is returned. This RID can be used in most `particles_collision_*`
+   * RenderingServer functions.
+   * **Note:** The equivalent nodes are [GPUParticlesCollision3D] and [GPUParticlesAttractor3D].
    */
   public fun particlesCollisionCreate(): RID {
     TransferContext.writeArguments()
@@ -2146,7 +2146,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the collision or attractor shape [type] for the 3D GPU particles collision or attractor specified by the [particlesCollision] RID.
+   * Sets the collision or attractor shape [type] for the 3D GPU particles collision or attractor
+   * specified by the [particlesCollision] RID.
    */
   public fun particlesCollisionSetCollisionType(particlesCollision: RID,
       type: ParticlesCollisionType): Unit {
@@ -2155,7 +2156,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the cull [mask] for the 3D GPU particles collision or attractor specified by the [particlesCollision] RID. Equivalent to [godot.GPUParticlesCollision3D.cullMask] or [godot.GPUParticlesAttractor3D.cullMask] depending on the [particlesCollision] type.
+   * Sets the cull [mask] for the 3D GPU particles collision or attractor specified by the
+   * [particlesCollision] RID. Equivalent to [GPUParticlesCollision3D.cullMask] or
+   * [GPUParticlesAttractor3D.cullMask] depending on the [particlesCollision] type.
    */
   public fun particlesCollisionSetCullMask(particlesCollision: RID, mask: Long): Unit {
     TransferContext.writeArguments(_RID to particlesCollision, LONG to mask)
@@ -2163,7 +2166,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [radius] for the 3D GPU particles sphere collision or attractor specified by the [particlesCollision] RID. Equivalent to [godot.GPUParticlesCollisionSphere3D.radius] or [godot.GPUParticlesAttractorSphere3D.radius] depending on the [particlesCollision] type.
+   * Sets the [radius] for the 3D GPU particles sphere collision or attractor specified by the
+   * [particlesCollision] RID. Equivalent to [GPUParticlesCollisionSphere3D.radius] or
+   * [GPUParticlesAttractorSphere3D.radius] depending on the [particlesCollision] type.
    */
   public fun particlesCollisionSetSphereRadius(particlesCollision: RID, radius: Float): Unit {
     TransferContext.writeArguments(_RID to particlesCollision, DOUBLE to radius.toDouble())
@@ -2171,7 +2176,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [extents] for the 3D GPU particles collision by the [particlesCollision] RID. Equivalent to [godot.GPUParticlesCollisionBox3D.size], [godot.GPUParticlesCollisionSDF3D.size], [godot.GPUParticlesCollisionHeightField3D.size], [godot.GPUParticlesAttractorBox3D.size] or [godot.GPUParticlesAttractorVectorField3D.size] depending on the [particlesCollision] type.
+   * Sets the [extents] for the 3D GPU particles collision by the [particlesCollision] RID.
+   * Equivalent to [GPUParticlesCollisionBox3D.size], [GPUParticlesCollisionSDF3D.size],
+   * [GPUParticlesCollisionHeightField3D.size], [GPUParticlesAttractorBox3D.size] or
+   * [GPUParticlesAttractorVectorField3D.size] depending on the [particlesCollision] type.
    */
   public fun particlesCollisionSetBoxExtents(particlesCollision: RID, extents: Vector3): Unit {
     TransferContext.writeArguments(_RID to particlesCollision, VECTOR3 to extents)
@@ -2179,7 +2187,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [strength] for the 3D GPU particles attractor specified by the [particlesCollision] RID. Only used for attractors, not colliders. Equivalent to [godot.GPUParticlesAttractor3D.strength].
+   * Sets the [strength] for the 3D GPU particles attractor specified by the [particlesCollision]
+   * RID. Only used for attractors, not colliders. Equivalent to [GPUParticlesAttractor3D.strength].
    */
   public fun particlesCollisionSetAttractorStrength(particlesCollision: RID, strength: Float):
       Unit {
@@ -2189,7 +2198,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the directionality [amount] for the 3D GPU particles attractor specified by the [particlesCollision] RID. Only used for attractors, not colliders. Equivalent to [godot.GPUParticlesAttractor3D.directionality].
+   * Sets the directionality [amount] for the 3D GPU particles attractor specified by the
+   * [particlesCollision] RID. Only used for attractors, not colliders. Equivalent to
+   * [GPUParticlesAttractor3D.directionality].
    */
   public fun particlesCollisionSetAttractorDirectionality(particlesCollision: RID, amount: Float):
       Unit {
@@ -2199,7 +2210,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the attenuation [curve] for the 3D GPU particles attractor specified by the [particlesCollision] RID. Only used for attractors, not colliders. Equivalent to [godot.GPUParticlesAttractor3D.attenuation].
+   * Sets the attenuation [curve] for the 3D GPU particles attractor specified by the
+   * [particlesCollision] RID. Only used for attractors, not colliders. Equivalent to
+   * [GPUParticlesAttractor3D.attenuation].
    */
   public fun particlesCollisionSetAttractorAttenuation(particlesCollision: RID, curve: Float):
       Unit {
@@ -2209,7 +2222,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the signed distance field [texture] for the 3D GPU particles collision specified by the [particlesCollision] RID. Equivalent to [godot.GPUParticlesCollisionSDF3D.texture] or [godot.GPUParticlesAttractorVectorField3D.texture] depending on the [particlesCollision] type.
+   * Sets the signed distance field [texture] for the 3D GPU particles collision specified by the
+   * [particlesCollision] RID. Equivalent to [GPUParticlesCollisionSDF3D.texture] or
+   * [GPUParticlesAttractorVectorField3D.texture] depending on the [particlesCollision] type.
    */
   public fun particlesCollisionSetFieldTexture(particlesCollision: RID, texture: RID): Unit {
     TransferContext.writeArguments(_RID to particlesCollision, _RID to texture)
@@ -2217,7 +2232,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Requests an update for the 3D GPU particle collision heightfield. This may be automatically called by the 3D GPU particle collision heightfield depending on its [godot.GPUParticlesCollisionHeightField3D.updateMode].
+   * Requests an update for the 3D GPU particle collision heightfield. This may be automatically
+   * called by the 3D GPU particle collision heightfield depending on its
+   * [GPUParticlesCollisionHeightField3D.updateMode].
    */
   public fun particlesCollisionHeightFieldUpdate(particlesCollision: RID): Unit {
     TransferContext.writeArguments(_RID to particlesCollision)
@@ -2225,7 +2242,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the heightmap [resolution] for the 3D GPU particles heightfield collision specified by the [particlesCollision] RID. Equivalent to [godot.GPUParticlesCollisionHeightField3D.resolution].
+   * Sets the heightmap [resolution] for the 3D GPU particles heightfield collision specified by the
+   * [particlesCollision] RID. Equivalent to [GPUParticlesCollisionHeightField3D.resolution].
    */
   public fun particlesCollisionSetHeightFieldResolution(particlesCollision: RID,
       resolution: ParticlesCollisionHeightfieldResolution): Unit {
@@ -2235,11 +2253,11 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a new fog volume and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `fog_volume_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * **Note:** The equivalent node is [godot.FogVolume].
+   * Creates a new fog volume and adds it to the RenderingServer. It can be accessed with the RID
+   * that is returned. This RID will be used in all `fog_volume_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * **Note:** The equivalent node is [FogVolume].
    */
   public fun fogVolumeCreate(): RID {
     TransferContext.writeArguments()
@@ -2248,7 +2266,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the shape of the fog volume to either [godot.RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID], [godot.RenderingServer.FOG_VOLUME_SHAPE_CONE], [godot.RenderingServer.FOG_VOLUME_SHAPE_CYLINDER], [godot.RenderingServer.FOG_VOLUME_SHAPE_BOX] or [godot.RenderingServer.FOG_VOLUME_SHAPE_WORLD].
+   * Sets the shape of the fog volume to either [RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID],
+   * [RenderingServer.FOG_VOLUME_SHAPE_CONE], [RenderingServer.FOG_VOLUME_SHAPE_CYLINDER],
+   * [RenderingServer.FOG_VOLUME_SHAPE_BOX] or [RenderingServer.FOG_VOLUME_SHAPE_WORLD].
    */
   public fun fogVolumeSetShape(fogVolume: RID, shape: FogVolumeShape): Unit {
     TransferContext.writeArguments(_RID to fogVolume, LONG to shape.id)
@@ -2256,7 +2276,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the size of the fog volume when shape is [godot.RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID], [godot.RenderingServer.FOG_VOLUME_SHAPE_CONE], [godot.RenderingServer.FOG_VOLUME_SHAPE_CYLINDER] or [godot.RenderingServer.FOG_VOLUME_SHAPE_BOX].
+   * Sets the size of the fog volume when shape is [RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID],
+   * [RenderingServer.FOG_VOLUME_SHAPE_CONE], [RenderingServer.FOG_VOLUME_SHAPE_CYLINDER] or
+   * [RenderingServer.FOG_VOLUME_SHAPE_BOX].
    */
   public fun fogVolumeSetSize(fogVolume: RID, size: Vector3): Unit {
     TransferContext.writeArguments(_RID to fogVolume, VECTOR3 to size)
@@ -2264,7 +2286,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [godot.Material] of the fog volume. Can be either a [godot.FogMaterial] or a custom [godot.ShaderMaterial].
+   * Sets the [Material] of the fog volume. Can be either a [FogMaterial] or a custom
+   * [ShaderMaterial].
    */
   public fun fogVolumeSetMaterial(fogVolume: RID, material: RID): Unit {
     TransferContext.writeArguments(_RID to fogVolume, _RID to material)
@@ -2272,13 +2295,14 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a new 3D visibility notifier object and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `visibility_notifier_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * To place in a scene, attach this mesh to an instance using [instanceSetBase] using the returned RID.
-   *
-   * **Note:** The equivalent node is [godot.VisibleOnScreenNotifier3D].
+   * Creates a new 3D visibility notifier object and adds it to the RenderingServer. It can be
+   * accessed with the RID that is returned. This RID will be used in all `visibility_notifier_*`
+   * RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * To place in a scene, attach this mesh to an instance using [instanceSetBase] using the returned
+   * RID.
+   * **Note:** The equivalent node is [VisibleOnScreenNotifier3D].
    */
   public fun visibilityNotifierCreate(): RID {
     TransferContext.writeArguments()
@@ -2286,17 +2310,11 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  /**
-   *
-   */
   public fun visibilityNotifierSetAabb(notifier: RID, aabb: AABB): Unit {
     TransferContext.writeArguments(_RID to notifier, godot.core.VariantType.AABB to aabb)
     TransferContext.callMethod(rawPtr, MethodBindings.visibilityNotifierSetAabbPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun visibilityNotifierSetCallbacks(
     notifier: RID,
     enterCallable: Callable,
@@ -2307,11 +2325,12 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates an occluder instance and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `occluder_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * **Note:** The equivalent resource is [godot.Occluder3D] (not to be confused with the [godot.OccluderInstance3D] node).
+   * Creates an occluder instance and adds it to the RenderingServer. It can be accessed with the
+   * RID that is returned. This RID will be used in all `occluder_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * **Note:** The equivalent resource is [Occluder3D] (not to be confused with the
+   * [OccluderInstance3D] node).
    */
   public fun occluderCreate(): RID {
     TransferContext.writeArguments()
@@ -2320,7 +2339,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the mesh data for the given occluder RID, which controls the shape of the occlusion culling that will be performed.
+   * Sets the mesh data for the given occluder RID, which controls the shape of the occlusion
+   * culling that will be performed.
    */
   public fun occluderSetMesh(
     occluder: RID,
@@ -2332,11 +2352,11 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a 3D camera and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `camera_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * **Note:** The equivalent node is [godot.Camera3D].
+   * Creates a 3D camera and adds it to the RenderingServer. It can be accessed with the RID that is
+   * returned. This RID will be used in all `camera_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * **Note:** The equivalent node is [Camera3D].
    */
   public fun cameraCreate(): RID {
     TransferContext.writeArguments()
@@ -2345,7 +2365,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets camera to use perspective projection. Objects on the screen becomes smaller when they are far away.
+   * Sets camera to use perspective projection. Objects on the screen becomes smaller when they are
+   * far away.
    */
   public fun cameraSetPerspective(
     camera: RID,
@@ -2358,7 +2379,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets camera to use orthogonal projection, also known as orthographic projection. Objects remain the same size on the screen no matter how far away they are.
+   * Sets camera to use orthogonal projection, also known as orthographic projection. Objects remain
+   * the same size on the screen no matter how far away they are.
    */
   public fun cameraSetOrthogonal(
     camera: RID,
@@ -2371,7 +2393,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets camera to use frustum projection. This mode allows adjusting the [offset] argument to create "tilted frustum" effects.
+   * Sets camera to use frustum projection. This mode allows adjusting the [offset] argument to
+   * create "tilted frustum" effects.
    */
   public fun cameraSetFrustum(
     camera: RID,
@@ -2385,7 +2408,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets [godot.Transform3D] of camera.
+   * Sets [Transform3D] of camera.
    */
   public fun cameraSetTransform(camera: RID, transform: Transform3D): Unit {
     TransferContext.writeArguments(_RID to camera, TRANSFORM3D to transform)
@@ -2393,7 +2416,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the cull mask associated with this camera. The cull mask describes which 3D layers are rendered by this camera. Equivalent to [godot.Camera3D.cullMask].
+   * Sets the cull mask associated with this camera. The cull mask describes which 3D layers are
+   * rendered by this camera. Equivalent to [Camera3D.cullMask].
    */
   public fun cameraSetCullMask(camera: RID, layers: Long): Unit {
     TransferContext.writeArguments(_RID to camera, LONG to layers)
@@ -2401,7 +2425,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the environment used by this camera. Equivalent to [godot.Camera3D.environment].
+   * Sets the environment used by this camera. Equivalent to [Camera3D.environment].
    */
   public fun cameraSetEnvironment(camera: RID, env: RID): Unit {
     TransferContext.writeArguments(_RID to camera, _RID to env)
@@ -2417,7 +2441,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, preserves the horizontal aspect ratio which is equivalent to [godot.Camera3D.KEEP_WIDTH]. If `false`, preserves the vertical aspect ratio which is equivalent to [godot.Camera3D.KEEP_HEIGHT].
+   * If `true`, preserves the horizontal aspect ratio which is equivalent to [Camera3D.KEEP_WIDTH].
+   * If `false`, preserves the vertical aspect ratio which is equivalent to [Camera3D.KEEP_HEIGHT].
    */
   public fun cameraSetUseVerticalAspect(camera: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to camera, BOOL to enable)
@@ -2425,11 +2450,11 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates an empty viewport and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `viewport_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * **Note:** The equivalent node is [godot.Viewport].
+   * Creates an empty viewport and adds it to the RenderingServer. It can be accessed with the RID
+   * that is returned. This RID will be used in all `viewport_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * **Note:** The equivalent node is [Viewport].
    */
   public fun viewportCreate(): RID {
     TransferContext.writeArguments()
@@ -2438,7 +2463,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, the viewport uses augmented or virtual reality technologies. See [godot.XRInterface].
+   * If `true`, the viewport uses augmented or virtual reality technologies. See [XRInterface].
    */
   public fun viewportSetUseXr(viewport: RID, useXr: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to useXr)
@@ -2474,27 +2499,24 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Copies the viewport to a region of the screen specified by [rect]. If [viewportSetRenderDirectToScreen] is `true`, then the viewport does not use a framebuffer and the contents of the viewport are rendered directly to screen. However, note that the root viewport is drawn last, therefore it will draw over the screen. Accordingly, you must set the root viewport to an area that does not cover the area that you have attached this viewport to.
-   *
+   * Copies the viewport to a region of the screen specified by [rect]. If
+   * [viewportSetRenderDirectToScreen] is `true`, then the viewport does not use a framebuffer and the
+   * contents of the viewport are rendered directly to screen. However, note that the root viewport is
+   * drawn last, therefore it will draw over the screen. Accordingly, you must set the root viewport to
+   * an area that does not cover the area that you have attached this viewport to.
    * For example, you can set the root viewport to not render at all with the following code:
-   *
    * FIXME: The method seems to be non-existent.
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * func _ready():
-   *
    *     get_viewport().set_attach_to_screen_rect(Rect2())
-   *
    *     $Viewport.set_attach_to_screen_rect(Rect2(0, 0, 600, 600))
+   * ```
    *
-   * [/gdscript]
-   *
-   * [/codeblocks]
-   *
-   * Using this can result in significant optimization, especially on lower-end devices. However, it comes at the cost of having to manage your viewports manually. For further optimization, see [viewportSetRenderDirectToScreen].
+   * Using this can result in significant optimization, especially on lower-end devices. However, it
+   * comes at the cost of having to manage your viewports manually. For further optimization, see
+   * [viewportSetRenderDirectToScreen].
    */
   @JvmOverloads
   public fun viewportAttachToScreen(
@@ -2507,7 +2529,15 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, render the contents of the viewport directly to screen. This allows a low-level optimization where you can skip drawing a viewport to the root viewport. While this optimization can result in a significant increase in speed (especially on older devices), it comes at a cost of usability. When this is enabled, you cannot read from the viewport or from the screen_texture. You also lose the benefit of certain window settings, such as the various stretch modes. Another consequence to be aware of is that in 2D the rendering happens in window coordinates, so if you have a viewport that is double the size of the window, and you set this, then only the portion that fits within the window will be drawn, no automatic scaling is possible, even if your game scene is significantly larger than the window size.
+   * If `true`, render the contents of the viewport directly to screen. This allows a low-level
+   * optimization where you can skip drawing a viewport to the root viewport. While this optimization
+   * can result in a significant increase in speed (especially on older devices), it comes at a cost of
+   * usability. When this is enabled, you cannot read from the viewport or from the screen_texture. You
+   * also lose the benefit of certain window settings, such as the various stretch modes. Another
+   * consequence to be aware of is that in 2D the rendering happens in window coordinates, so if you
+   * have a viewport that is double the size of the window, and you set this, then only the portion
+   * that fits within the window will be drawn, no automatic scaling is possible, even if your game
+   * scene is significantly larger than the window size.
    */
   public fun viewportSetRenderDirectToScreen(viewport: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to enabled)
@@ -2515,7 +2545,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the rendering mask associated with this [godot.Viewport]. Only [godot.CanvasItem] nodes with a matching rendering visibility layer will be rendered by this [godot.Viewport].
+   * Sets the rendering mask associated with this [Viewport]. Only [CanvasItem] nodes with a
+   * matching rendering visibility layer will be rendered by this [Viewport].
    */
   public fun viewportSetCanvasCullMask(viewport: RID, canvasCullMask: Long): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to canvasCullMask)
@@ -2523,7 +2554,11 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the 3D resolution scaling mode. Bilinear scaling renders at different resolution to either undersample or supersample the viewport. FidelityFX Super Resolution 1.0, abbreviated to FSR, is an upscaling technology that produces high quality images at fast framerates by using a spatially aware upscaling algorithm. FSR is slightly more expensive than bilinear, but it produces significantly higher image quality. FSR should be used where possible.
+   * Sets the 3D resolution scaling mode. Bilinear scaling renders at different resolution to either
+   * undersample or supersample the viewport. FidelityFX Super Resolution 1.0, abbreviated to FSR, is
+   * an upscaling technology that produces high quality images at fast framerates by using a spatially
+   * aware upscaling algorithm. FSR is slightly more expensive than bilinear, but it produces
+   * significantly higher image quality. FSR should be used where possible.
    */
   public fun viewportSetScaling3dMode(viewport: RID, scaling3dMode: ViewportScaling3DMode): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to scaling3dMode.id)
@@ -2531,9 +2566,15 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Scales the 3D render buffer based on the viewport size uses an image filter specified in [enum ViewportScaling3DMode] to scale the output image to the full viewport size. Values lower than `1.0` can be used to speed up 3D rendering at the cost of quality (undersampling). Values greater than `1.0` are only valid for bilinear mode and can be used to improve 3D rendering quality at a high performance cost (supersampling). See also [enum ViewportMSAA] for multi-sample antialiasing, which is significantly cheaper but only smoothens the edges of polygons.
-   *
-   * When using FSR upscaling, AMD recommends exposing the following values as preset options to users "Ultra Quality: 0.77", "Quality: 0.67", "Balanced: 0.59", "Performance: 0.5" instead of exposing the entire scale.
+   * Scales the 3D render buffer based on the viewport size uses an image filter specified in
+   * [ViewportScaling3DMode] to scale the output image to the full viewport size. Values lower than
+   * `1.0` can be used to speed up 3D rendering at the cost of quality (undersampling). Values greater
+   * than `1.0` are only valid for bilinear mode and can be used to improve 3D rendering quality at a
+   * high performance cost (supersampling). See also [ViewportMSAA] for multi-sample antialiasing,
+   * which is significantly cheaper but only smoothens the edges of polygons.
+   * When using FSR upscaling, AMD recommends exposing the following values as preset options to
+   * users "Ultra Quality: 0.77", "Quality: 0.67", "Balanced: 0.59", "Performance: 0.5" instead of
+   * exposing the entire scale.
    */
   public fun viewportSetScaling3dScale(viewport: RID, scale: Float): Unit {
     TransferContext.writeArguments(_RID to viewport, DOUBLE to scale.toDouble())
@@ -2541,7 +2582,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Determines how sharp the upscaled image will be when using the FSR upscaling mode. Sharpness halves with every whole number. Values go from 0.0 (sharpest) to 2.0. Values above 2.0 won't make a visible difference.
+   * Determines how sharp the upscaled image will be when using the FSR upscaling mode. Sharpness
+   * halves with every whole number. Values go from 0.0 (sharpest) to 2.0. Values above 2.0 won't make
+   * a visible difference.
    */
   public fun viewportSetFsrSharpness(viewport: RID, sharpness: Float): Unit {
     TransferContext.writeArguments(_RID to viewport, DOUBLE to sharpness.toDouble())
@@ -2549,9 +2592,16 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Affects the final texture sharpness by reading from a lower or higher mipmap (also called "texture LOD bias"). Negative values make mipmapped textures sharper but grainier when viewed at a distance, while positive values make mipmapped textures blurrier (even when up close). To get sharper textures at a distance without introducing too much graininess, set this between `-0.75` and `0.0`. Enabling temporal antialiasing ([godot.ProjectSettings.rendering/antiAliasing/quality/useTaa]) can help reduce the graininess visible when using negative mipmap bias.
-   *
-   * **Note:** When the 3D scaling mode is set to FSR 1.0, this value is used to adjust the automatic mipmap bias which is calculated internally based on the scale factor. The formula for this is `-log2(1.0 / scale) + mipmap_bias`.
+   * Affects the final texture sharpness by reading from a lower or higher mipmap (also called
+   * "texture LOD bias"). Negative values make mipmapped textures sharper but grainier when viewed at a
+   * distance, while positive values make mipmapped textures blurrier (even when up close). To get
+   * sharper textures at a distance without introducing too much graininess, set this between `-0.75`
+   * and `0.0`. Enabling temporal antialiasing
+   * ([ProjectSettings.rendering/antiAliasing/quality/useTaa]) can help reduce the graininess visible
+   * when using negative mipmap bias.
+   * **Note:** When the 3D scaling mode is set to FSR 1.0, this value is used to adjust the
+   * automatic mipmap bias which is calculated internally based on the scale factor. The formula for
+   * this is `-log2(1.0 / scale) + mipmap_bias`.
    */
   public fun viewportSetTextureMipmapBias(viewport: RID, mipmapBias: Float): Unit {
     TransferContext.writeArguments(_RID to viewport, DOUBLE to mipmapBias.toDouble())
@@ -2559,7 +2609,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets when the viewport should be updated. See [enum ViewportUpdateMode] constants for options.
+   * Sets when the viewport should be updated. See [ViewportUpdateMode] constants for options.
    */
   public fun viewportSetUpdateMode(viewport: RID, updateMode: ViewportUpdateMode): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to updateMode.id)
@@ -2567,7 +2617,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the clear mode of a viewport. See [enum ViewportClearMode] for options.
+   * Sets the clear mode of a viewport. See [ViewportClearMode] for options.
    */
   public fun viewportSetClearMode(viewport: RID, clearMode: ViewportClearMode): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to clearMode.id)
@@ -2609,7 +2659,12 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the viewport's environment mode which allows enabling or disabling rendering of 3D environment over 2D canvas. When disabled, 2D will not be affected by the environment. When enabled, 2D will be affected by the environment if the environment background mode is [ENV_BG_CANVAS]. The default behavior is to inherit the setting from the viewport's parent. If the topmost parent is also set to [VIEWPORT_ENVIRONMENT_INHERIT], then the behavior will be the same as if it was set to [VIEWPORT_ENVIRONMENT_ENABLED].
+   * Sets the viewport's environment mode which allows enabling or disabling rendering of 3D
+   * environment over 2D canvas. When disabled, 2D will not be affected by the environment. When
+   * enabled, 2D will be affected by the environment if the environment background mode is
+   * [ENV_BG_CANVAS]. The default behavior is to inherit the setting from the viewport's parent. If the
+   * topmost parent is also set to [VIEWPORT_ENVIRONMENT_INHERIT], then the behavior will be the same
+   * as if it was set to [VIEWPORT_ENVIRONMENT_ENABLED].
    */
   public fun viewportSetEnvironmentMode(viewport: RID, mode: ViewportEnvironmentMode): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to mode.id)
@@ -2625,7 +2680,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets a viewport's scenario. The scenario contains information about environment information, reflection atlas, etc.
+   * Sets a viewport's scenario. The scenario contains information about environment information,
+   * reflection atlas, etc.
    */
   public fun viewportSetScenario(viewport: RID, scenario: RID): Unit {
     TransferContext.writeArguments(_RID to viewport, _RID to scenario)
@@ -2649,7 +2705,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, canvas item transforms (i.e. origin position) are snapped to the nearest pixel when rendering. This can lead to a crisper appearance at the cost of less smooth movement, especially when [godot.Camera2D] smoothing is enabled. Equivalent to [godot.ProjectSettings.rendering/2d/snap/snap2dTransformsToPixel].
+   * If `true`, canvas item transforms (i.e. origin position) are snapped to the nearest pixel when
+   * rendering. This can lead to a crisper appearance at the cost of less smooth movement, especially
+   * when [Camera2D] smoothing is enabled. Equivalent to
+   * [ProjectSettings.rendering/2d/snap/snap2dTransformsToPixel].
    */
   public fun viewportSetSnap2dTransformsToPixel(viewport: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to enabled)
@@ -2657,7 +2716,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, canvas item vertices (i.e. polygon points) are snapped to the nearest pixel when rendering. This can lead to a crisper appearance at the cost of less smooth movement, especially when [godot.Camera2D] smoothing is enabled. Equivalent to [godot.ProjectSettings.rendering/2d/snap/snap2dVerticesToPixel].
+   * If `true`, canvas item vertices (i.e. polygon points) are snapped to the nearest pixel when
+   * rendering. This can lead to a crisper appearance at the cost of less smooth movement, especially
+   * when [Camera2D] smoothing is enabled. Equivalent to
+   * [ProjectSettings.rendering/2d/snap/snap2dVerticesToPixel].
    */
   public fun viewportSetSnap2dVerticesToPixel(viewport: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to enabled)
@@ -2665,7 +2727,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the default texture filtering mode for the specified [viewport] RID. See [enum CanvasItemTextureFilter] for options.
+   * Sets the default texture filtering mode for the specified [viewport] RID. See
+   * [CanvasItemTextureFilter] for options.
    */
   public fun viewportSetDefaultCanvasItemTextureFilter(viewport: RID,
       filter: CanvasItemTextureFilter): Unit {
@@ -2675,7 +2738,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the default texture repeat mode for the specified [viewport] RID. See [enum CanvasItemTextureRepeat] for options.
+   * Sets the default texture repeat mode for the specified [viewport] RID. See
+   * [CanvasItemTextureRepeat] for options.
    */
   public fun viewportSetDefaultCanvasItemTextureRepeat(viewport: RID,
       repeat: CanvasItemTextureRepeat): Unit {
@@ -2698,8 +2762,8 @@ public object RenderingServer : Object() {
 
   /**
    * Sets the stacking order for a viewport's canvas.
-   *
-   * [layer] is the actual canvas layer, while [sublayer] specifies the stacking order of the canvas among those in the same layer.
+   * [layer] is the actual canvas layer, while [sublayer] specifies the stacking order of the canvas
+   * among those in the same layer.
    */
   public fun viewportSetCanvasStacking(
     viewport: RID,
@@ -2728,7 +2792,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the viewport's 2D signed distance field [godot.ProjectSettings.rendering/2d/sdf/oversize] and [godot.ProjectSettings.rendering/2d/sdf/scale]. This is used when sampling the signed distance field in [godot.CanvasItem] shaders as well as [godot.GPUParticles2D] collision. This is *not* used by SDFGI in 3D rendering.
+   * Sets the viewport's 2D signed distance field [ProjectSettings.rendering/2d/sdf/oversize] and
+   * [ProjectSettings.rendering/2d/sdf/scale]. This is used when sampling the signed distance field in
+   * [CanvasItem] shaders as well as [GPUParticles2D] collision. This is *not* used by SDFGI in 3D
+   * rendering.
    */
   public fun viewportSetSdfOversizeAndScale(
     viewport: RID,
@@ -2740,9 +2807,14 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [size] of the shadow atlas's images (used for omni and spot lights) on the viewport specified by the [viewport] RID. The value is rounded up to the nearest power of 2. If [use16Bits] is `true`, use 16 bits for the omni/spot shadow depth map. Enabling this results in shadows having less precision and may result in shadow acne, but can lead to performance improvements on some devices.
-   *
-   * **Note:** If this is set to `0`, no positional shadows will be visible at all. This can improve performance significantly on low-end systems by reducing both the CPU and GPU load (as fewer draw calls are needed to draw the scene without shadows).
+   * Sets the [size] of the shadow atlas's images (used for omni and spot lights) on the viewport
+   * specified by the [viewport] RID. The value is rounded up to the nearest power of 2. If [use16Bits]
+   * is `true`, use 16 bits for the omni/spot shadow depth map. Enabling this results in shadows having
+   * less precision and may result in shadow acne, but can lead to performance improvements on some
+   * devices.
+   * **Note:** If this is set to `0`, no positional shadows will be visible at all. This can improve
+   * performance significantly on low-end systems by reducing both the CPU and GPU load (as fewer draw
+   * calls are needed to draw the scene without shadows).
    */
   @JvmOverloads
   public fun viewportSetPositionalShadowAtlasSize(
@@ -2755,7 +2827,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the number of subdivisions to use in the specified shadow atlas [quadrant] for omni and spot shadows. See also [godot.Viewport.setPositionalShadowAtlasQuadrantSubdiv].
+   * Sets the number of subdivisions to use in the specified shadow atlas [quadrant] for omni and
+   * spot shadows. See also [Viewport.setPositionalShadowAtlasQuadrantSubdiv].
    */
   public fun viewportSetPositionalShadowAtlasQuadrantSubdivision(
     viewport: RID,
@@ -2768,7 +2841,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the multisample anti-aliasing mode for 3D on the specified [viewport] RID. See [enum ViewportMSAA] for options.
+   * Sets the multisample anti-aliasing mode for 3D on the specified [viewport] RID. See
+   * [ViewportMSAA] for options.
    */
   public fun viewportSetMsaa3d(viewport: RID, msaa: ViewportMSAA): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to msaa.id)
@@ -2776,7 +2850,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the multisample anti-aliasing mode for 2D/Canvas on the specified [viewport] RID. See [enum ViewportMSAA] for options.
+   * Sets the multisample anti-aliasing mode for 2D/Canvas on the specified [viewport] RID. See
+   * [ViewportMSAA] for options.
    */
   public fun viewportSetMsaa2d(viewport: RID, msaa: ViewportMSAA): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to msaa.id)
@@ -2784,9 +2859,18 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, 2D rendering will use a high dynamic range (HDR) format framebuffer matching the bit depth of the 3D framebuffer. When using the Forward+ renderer this will be a `RGBA16` framebuffer, while when using the Mobile renderer it will be a `RGB10_A2` framebuffer. Additionally, 2D rendering will take place in linear color space and will be converted to sRGB space immediately before blitting to the screen (if the Viewport is attached to the screen). Practically speaking, this means that the end result of the Viewport will not be clamped into the `0-1` range and can be used in 3D rendering without color space adjustments. This allows 2D rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as substantially improves the appearance of effects requiring highly detailed gradients. This setting has the same effect as [godot.Viewport.useHdr2d].
-   *
-   * **Note:** This setting will have no effect when using the GL Compatibility renderer as the GL Compatibility renderer always renders in low dynamic range for performance reasons.
+   * If `true`, 2D rendering will use a high dynamic range (HDR) format framebuffer matching the bit
+   * depth of the 3D framebuffer. When using the Forward+ renderer this will be a `RGBA16` framebuffer,
+   * while when using the Mobile renderer it will be a `RGB10_A2` framebuffer. Additionally, 2D
+   * rendering will take place in linear color space and will be converted to sRGB space immediately
+   * before blitting to the screen (if the Viewport is attached to the screen). Practically speaking,
+   * this means that the end result of the Viewport will not be clamped into the `0-1` range and can be
+   * used in 3D rendering without color space adjustments. This allows 2D rendering to take advantage
+   * of effects requiring high dynamic range (e.g. 2D glow) as well as substantially improves the
+   * appearance of effects requiring highly detailed gradients. This setting has the same effect as
+   * [Viewport.useHdr2d].
+   * **Note:** This setting will have no effect when using the GL Compatibility renderer as the GL
+   * Compatibility renderer always renders in low dynamic range for performance reasons.
    */
   public fun viewportSetUseHdr2d(viewport: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to enabled)
@@ -2802,7 +2886,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, use Temporal Anti-Aliasing. Equivalent to [godot.ProjectSettings.rendering/antiAliasing/quality/useTaa].
+   * If `true`, use Temporal Anti-Aliasing. Equivalent to
+   * [ProjectSettings.rendering/antiAliasing/quality/useTaa].
    */
   public fun viewportSetUseTaa(viewport: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to enable)
@@ -2810,7 +2895,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, enables debanding on the specified viewport. Equivalent to [godot.ProjectSettings.rendering/antiAliasing/quality/useDebanding].
+   * If `true`, enables debanding on the specified viewport. Equivalent to
+   * [ProjectSettings.rendering/antiAliasing/quality/useDebanding].
    */
   public fun viewportSetUseDebanding(viewport: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to enable)
@@ -2818,7 +2904,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, enables occlusion culling on the specified viewport. Equivalent to [godot.ProjectSettings.rendering/occlusionCulling/useOcclusionCulling].
+   * If `true`, enables occlusion culling on the specified viewport. Equivalent to
+   * [ProjectSettings.rendering/occlusionCulling/useOcclusionCulling].
    */
   public fun viewportSetUseOcclusionCulling(viewport: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to enable)
@@ -2826,7 +2913,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [godot.ProjectSettings.rendering/occlusionCulling/occlusionRaysPerThread] to use for occlusion culling. This parameter is global and cannot be set on a per-viewport basis.
+   * Sets the [ProjectSettings.rendering/occlusionCulling/occlusionRaysPerThread] to use for
+   * occlusion culling. This parameter is global and cannot be set on a per-viewport basis.
    */
   public fun viewportSetOcclusionRaysPerThread(raysPerThread: Int): Unit {
     TransferContext.writeArguments(LONG to raysPerThread.toLong())
@@ -2834,7 +2922,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [godot.ProjectSettings.rendering/occlusionCulling/bvhBuildQuality] to use for occlusion culling. This parameter is global and cannot be set on a per-viewport basis.
+   * Sets the [ProjectSettings.rendering/occlusionCulling/bvhBuildQuality] to use for occlusion
+   * culling. This parameter is global and cannot be set on a per-viewport basis.
    */
   public fun viewportSetOcclusionCullingBuildQuality(quality: ViewportOcclusionCullingBuildQuality):
       Unit {
@@ -2844,23 +2933,26 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns a statistic about the rendering engine which can be used for performance profiling. This is separated into render pass [type]s, each of them having the same [info]s you can query (different passes will return different values). See [enum RenderingServer.ViewportRenderInfoType] for a list of render pass types and [enum RenderingServer.ViewportRenderInfo] for a list of information that can be queried.
-   *
+   * Returns a statistic about the rendering engine which can be used for performance profiling.
+   * This is separated into render pass [type]s, each of them having the same [info]s you can query
+   * (different passes will return different values). See [RenderingServer.ViewportRenderInfoType] for
+   * a list of render pass types and [RenderingServer.ViewportRenderInfo] for a list of information
+   * that can be queried.
    * See also [getRenderingInfo], which returns global information across all viewports.
+   * **Note:** Viewport rendering information is not available until at least 2 frames have been
+   * rendered by the engine. If rendering information is not available, [viewportGetRenderInfo] returns
+   * `0`. To print rendering information in `_ready()` successfully, use the following:
+   * [codeblock]
+   * func _ready():
+   *     for _i in 2:
+   *         await get_tree().process_frame
    *
-   * **Note:** Viewport rendering information is not available until at least 2 frames have been rendered by the engine. If rendering information is not available, [viewportGetRenderInfo] returns `0`. To print rendering information in `_ready()` successfully, use the following:
-   *
-   * ```
-   * 				func _ready():
-   * 				    for _i in 2:
-   * 				        await get_tree().process_frame
-   *
-   * 				    print(
-   * 				            RenderingServer.viewport_get_render_info(get_viewport().get_viewport_rid(),
-   * 				            RenderingServer.VIEWPORT_RENDER_INFO_TYPE_VISIBLE,
-   * 				            RenderingServer.VIEWPORT_RENDER_INFO_DRAW_CALLS_IN_FRAME)
-   * 				    )
-   * 				```
+   *     print(
+   *             RenderingServer.viewport_get_render_info(get_viewport().get_viewport_rid(),
+   *             RenderingServer.VIEWPORT_RENDER_INFO_TYPE_VISIBLE,
+   *             RenderingServer.VIEWPORT_RENDER_INFO_DRAW_CALLS_IN_FRAME)
+   *     )
+   * [/codeblock]
    */
   public fun viewportGetRenderInfo(
     viewport: RID,
@@ -2873,7 +2965,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the debug draw mode of a viewport. See [enum ViewportDebugDraw] for options.
+   * Sets the debug draw mode of a viewport. See [ViewportDebugDraw] for options.
    */
   public fun viewportSetDebugDraw(viewport: RID, draw: ViewportDebugDraw): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to draw.id)
@@ -2881,7 +2973,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the measurement for the given [viewport] RID (obtained using [godot.Viewport.getViewportRid]). Once enabled, [viewportGetMeasuredRenderTimeCpu] and [viewportGetMeasuredRenderTimeGpu] will return values greater than `0.0` when queried with the given [viewport].
+   * Sets the measurement for the given [viewport] RID (obtained using [Viewport.getViewportRid]).
+   * Once enabled, [viewportGetMeasuredRenderTimeCpu] and [viewportGetMeasuredRenderTimeGpu] will
+   * return values greater than `0.0` when queried with the given [viewport].
    */
   public fun viewportSetMeasureRenderTime(viewport: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to enable)
@@ -2889,9 +2983,14 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the CPU time taken to render the last frame in milliseconds. This *only* includes time spent in rendering-related operations; scripts' `_process` functions and other engine subsystems are not included in this readout. To get a complete readout of CPU time spent to render the scene, sum the render times of all viewports that are drawn every frame plus [getFrameSetupTimeCpu]. Unlike [godot.Engine.getFramesPerSecond], this method will accurately reflect CPU utilization even if framerate is capped via V-Sync or [godot.Engine.maxFps]. See also [viewportGetMeasuredRenderTimeGpu].
-   *
-   * **Note:** Requires measurements to be enabled on the specified [viewport] using [viewportSetMeasureRenderTime]. Otherwise, this method returns `0.0`.
+   * Returns the CPU time taken to render the last frame in milliseconds. This *only* includes time
+   * spent in rendering-related operations; scripts' `_process` functions and other engine subsystems
+   * are not included in this readout. To get a complete readout of CPU time spent to render the scene,
+   * sum the render times of all viewports that are drawn every frame plus [getFrameSetupTimeCpu].
+   * Unlike [Engine.getFramesPerSecond], this method will accurately reflect CPU utilization even if
+   * framerate is capped via V-Sync or [Engine.maxFps]. See also [viewportGetMeasuredRenderTimeGpu].
+   * **Note:** Requires measurements to be enabled on the specified [viewport] using
+   * [viewportSetMeasureRenderTime]. Otherwise, this method returns `0.0`.
    */
   public fun viewportGetMeasuredRenderTimeCpu(viewport: RID): Double {
     TransferContext.writeArguments(_RID to viewport)
@@ -2900,11 +2999,18 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the GPU time taken to render the last frame in milliseconds. To get a complete readout of GPU time spent to render the scene, sum the render times of all viewports that are drawn every frame. Unlike [godot.Engine.getFramesPerSecond], this method accurately reflects GPU utilization even if framerate is capped via V-Sync or [godot.Engine.maxFps]. See also [viewportGetMeasuredRenderTimeGpu].
-   *
-   * **Note:** Requires measurements to be enabled on the specified [viewport] using [viewportSetMeasureRenderTime]. Otherwise, this method returns `0.0`.
-   *
-   * **Note:** When GPU utilization is low enough during a certain period of time, GPUs will decrease their power state (which in turn decreases core and memory clock speeds). This can cause the reported GPU time to increase if GPU utilization is kept low enough by a framerate cap (compared to what it would be at the GPU's highest power state). Keep this in mind when benchmarking using [viewportGetMeasuredRenderTimeGpu]. This behavior can be overridden in the graphics driver settings at the cost of higher power usage.
+   * Returns the GPU time taken to render the last frame in milliseconds. To get a complete readout
+   * of GPU time spent to render the scene, sum the render times of all viewports that are drawn every
+   * frame. Unlike [Engine.getFramesPerSecond], this method accurately reflects GPU utilization even if
+   * framerate is capped via V-Sync or [Engine.maxFps]. See also [viewportGetMeasuredRenderTimeGpu].
+   * **Note:** Requires measurements to be enabled on the specified [viewport] using
+   * [viewportSetMeasureRenderTime]. Otherwise, this method returns `0.0`.
+   * **Note:** When GPU utilization is low enough during a certain period of time, GPUs will
+   * decrease their power state (which in turn decreases core and memory clock speeds). This can cause
+   * the reported GPU time to increase if GPU utilization is kept low enough by a framerate cap
+   * (compared to what it would be at the GPU's highest power state). Keep this in mind when
+   * benchmarking using [viewportGetMeasuredRenderTimeGpu]. This behavior can be overridden in the
+   * graphics driver settings at the cost of higher power usage.
    */
   public fun viewportGetMeasuredRenderTimeGpu(viewport: RID): Double {
     TransferContext.writeArguments(_RID to viewport)
@@ -2913,7 +3019,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the Variable Rate Shading (VRS) mode for the viewport. If the GPU does not support VRS, this property is ignored. Equivalent to [godot.ProjectSettings.rendering/vrs/mode].
+   * Sets the Variable Rate Shading (VRS) mode for the viewport. If the GPU does not support VRS,
+   * this property is ignored. Equivalent to [ProjectSettings.rendering/vrs/mode].
    */
   public fun viewportSetVrsMode(viewport: RID, mode: ViewportVRSMode): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to mode.id)
@@ -2921,7 +3028,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * The texture to use when the VRS mode is set to [godot.RenderingServer.VIEWPORT_VRS_TEXTURE]. Equivalent to [godot.ProjectSettings.rendering/vrs/texture].
+   * The texture to use when the VRS mode is set to [RenderingServer.VIEWPORT_VRS_TEXTURE].
+   * Equivalent to [ProjectSettings.rendering/vrs/texture].
    */
   public fun viewportSetVrsTexture(viewport: RID, texture: RID): Unit {
     TransferContext.writeArguments(_RID to viewport, _RID to texture)
@@ -2929,9 +3037,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates an empty sky and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `sky_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
+   * Creates an empty sky and adds it to the RenderingServer. It can be accessed with the RID that
+   * is returned. This RID will be used in all `sky_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
    */
   public fun skyCreate(): RID {
     TransferContext.writeArguments()
@@ -2940,7 +3049,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [radianceSize] of the sky specified by the [sky] RID (in pixels). Equivalent to [godot.Sky.radianceSize].
+   * Sets the [radianceSize] of the sky specified by the [sky] RID (in pixels). Equivalent to
+   * [Sky.radianceSize].
    */
   public fun skySetRadianceSize(sky: RID, radianceSize: Int): Unit {
     TransferContext.writeArguments(_RID to sky, LONG to radianceSize.toLong())
@@ -2948,7 +3058,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the process [mode] of the sky specified by the [sky] RID. Equivalent to [godot.Sky.processMode].
+   * Sets the process [mode] of the sky specified by the [sky] RID. Equivalent to [Sky.processMode].
    */
   public fun skySetMode(sky: RID, mode: SkyMode): Unit {
     TransferContext.writeArguments(_RID to sky, LONG to mode.id)
@@ -2964,11 +3074,18 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Generates and returns an [godot.Image] containing the radiance map for the specified [sky] RID. This supports built-in sky material and custom sky shaders. If [bakeIrradiance] is `true`, the irradiance map is saved instead of the radiance map. The radiance map is used to render reflected light, while the irradiance map is used to render ambient light. See also [environmentBakePanorama].
-   *
-   * **Note:** The image is saved in linear color space without any tonemapping performed, which means it will look too dark if viewed directly in an image editor. [energy] values above `1.0` can be used to brighten the resulting image.
-   *
-   * **Note:** [size] should be a 2:1 aspect ratio for the generated panorama to have square pixels. For radiance maps, there is no point in using a height greater than [godot.Sky.radianceSize], as it won't increase detail. Irradiance maps only contain low-frequency data, so there is usually no point in going past a size of 128×64 pixels when saving an irradiance map.
+   * Generates and returns an [Image] containing the radiance map for the specified [sky] RID. This
+   * supports built-in sky material and custom sky shaders. If [bakeIrradiance] is `true`, the
+   * irradiance map is saved instead of the radiance map. The radiance map is used to render reflected
+   * light, while the irradiance map is used to render ambient light. See also
+   * [environmentBakePanorama].
+   * **Note:** The image is saved in linear color space without any tonemapping performed, which
+   * means it will look too dark if viewed directly in an image editor. [energy] values above `1.0` can
+   * be used to brighten the resulting image.
+   * **Note:** [size] should be a 2:1 aspect ratio for the generated panorama to have square pixels.
+   * For radiance maps, there is no point in using a height greater than [Sky.radianceSize], as it
+   * won't increase detail. Irradiance maps only contain low-frequency data, so there is usually no
+   * point in going past a size of 128×64 pixels when saving an irradiance map.
    */
   public fun skyBakePanorama(
     sky: RID,
@@ -2982,11 +3099,11 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates an environment and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `environment_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * **Note:** The equivalent resource is [godot.Environment].
+   * Creates an environment and adds it to the RenderingServer. It can be accessed with the RID that
+   * is returned. This RID will be used in all `environment_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * **Note:** The equivalent resource is [Environment].
    */
   public fun environmentCreate(): RID {
     TransferContext.writeArguments()
@@ -2995,7 +3112,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the environment's background mode. Equivalent to [godot.Environment.backgroundMode].
+   * Sets the environment's background mode. Equivalent to [Environment.backgroundMode].
    */
   public fun environmentSetBackground(env: RID, bg: EnvironmentBG): Unit {
     TransferContext.writeArguments(_RID to env, LONG to bg.id)
@@ -3003,7 +3120,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [godot.Sky] to be used as the environment's background when using *BGMode* sky. Equivalent to [godot.Environment.sky].
+   * Sets the [Sky] to be used as the environment's background when using *BGMode* sky. Equivalent
+   * to [Environment.sky].
    */
   public fun environmentSetSky(env: RID, sky: RID): Unit {
     TransferContext.writeArguments(_RID to env, _RID to sky)
@@ -3011,7 +3129,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets a custom field of view for the background [godot.Sky]. Equivalent to [godot.Environment.skyCustomFov].
+   * Sets a custom field of view for the background [Sky]. Equivalent to [Environment.skyCustomFov].
    */
   public fun environmentSetSkyCustomFov(env: RID, scale: Float): Unit {
     TransferContext.writeArguments(_RID to env, DOUBLE to scale.toDouble())
@@ -3019,7 +3137,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the rotation of the background [godot.Sky] expressed as a [godot.core.Basis]. Equivalent to [godot.Environment.skyRotation], where the rotation vector is used to construct the [godot.core.Basis].
+   * Sets the rotation of the background [Sky] expressed as a [Basis]. Equivalent to
+   * [Environment.skyRotation], where the rotation vector is used to construct the [Basis].
    */
   public fun environmentSetSkyOrientation(env: RID, orientation: Basis): Unit {
     TransferContext.writeArguments(_RID to env, BASIS to orientation)
@@ -3027,7 +3146,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Color displayed for clear areas of the scene. Only effective if using the [ENV_BG_COLOR] background mode.
+   * Color displayed for clear areas of the scene. Only effective if using the [ENV_BG_COLOR]
+   * background mode.
    */
   public fun environmentSetBgColor(env: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to env, COLOR to color)
@@ -3055,7 +3175,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the values to be used for ambient light rendering. See [godot.Environment] for more details.
+   * Sets the values to be used for ambient light rendering. See [Environment] for more details.
    */
   @JvmOverloads
   public fun environmentSetAmbientLight(
@@ -3073,7 +3193,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Configures glow for the specified environment RID. See `glow_*` properties in [godot.Environment] for more information.
+   * Configures glow for the specified environment RID. See `glow_*` properties in [Environment] for
+   * more information.
    */
   public fun environmentSetGlow(
     env: RID,
@@ -3095,7 +3216,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the variables to be used with the "tonemap" post-process effect. See [godot.Environment] for more details.
+   * Sets the variables to be used with the "tonemap" post-process effect. See [Environment] for
+   * more details.
    */
   public fun environmentSetTonemap(
     env: RID,
@@ -3108,7 +3230,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the values to be used with the "adjustments" post-process effect. See [godot.Environment] for more details.
+   * Sets the values to be used with the "adjustments" post-process effect. See [Environment] for
+   * more details.
    */
   public fun environmentSetAdjustment(
     env: RID,
@@ -3124,7 +3247,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the variables to be used with the screen-space reflections (SSR) post-process effect. See [godot.Environment] for more details.
+   * Sets the variables to be used with the screen-space reflections (SSR) post-process effect. See
+   * [Environment] for more details.
    */
   public fun environmentSetSsr(
     env: RID,
@@ -3139,7 +3263,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the variables to be used with the screen-space ambient occlusion (SSAO) post-process effect. See [godot.Environment] for more details.
+   * Sets the variables to be used with the screen-space ambient occlusion (SSAO) post-process
+   * effect. See [Environment] for more details.
    */
   public fun environmentSetSsao(
     env: RID,
@@ -3158,7 +3283,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Configures fog for the specified environment RID. See `fog_*` properties in [godot.Environment] for more information.
+   * Configures fog for the specified environment RID. See `fog_*` properties in [Environment] for
+   * more information.
    */
   public fun environmentSetFog(
     env: RID,
@@ -3177,7 +3303,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Configures signed distance field global illumination for the specified environment RID. See `sdfgi_*` properties in [godot.Environment] for more information.
+   * Configures signed distance field global illumination for the specified environment RID. See
+   * `sdfgi_*` properties in [Environment] for more information.
    */
   public fun environmentSetSdfgi(
     env: RID,
@@ -3197,7 +3324,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the variables to be used with the volumetric fog post-process effect. See [godot.Environment] for more details.
+   * Sets the variables to be used with the volumetric fog post-process effect. See [Environment]
+   * for more details.
    */
   public fun environmentSetVolumetricFog(
     env: RID,
@@ -3220,23 +3348,22 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If [enable] is `true`, enables bicubic upscaling for glow which improves quality at the cost of performance. Equivalent to [godot.ProjectSettings.rendering/environment/glow/upscaleMode].
+   * If [enable] is `true`, enables bicubic upscaling for glow which improves quality at the cost of
+   * performance. Equivalent to [ProjectSettings.rendering/environment/glow/upscaleMode].
    */
   public fun environmentGlowSetUseBicubicUpscale(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.environmentGlowSetUseBicubicUpscalePtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun environmentSetSsrRoughnessQuality(quality: EnvironmentSSRRoughnessQuality): Unit {
     TransferContext.writeArguments(LONG to quality.id)
     TransferContext.callMethod(rawPtr, MethodBindings.environmentSetSsrRoughnessQualityPtr, NIL)
   }
 
   /**
-   * Sets the quality level of the screen-space ambient occlusion (SSAO) post-process effect. See [godot.Environment] for more details.
+   * Sets the quality level of the screen-space ambient occlusion (SSAO) post-process effect. See
+   * [Environment] for more details.
    */
   public fun environmentSetSsaoQuality(
     quality: EnvironmentSSAOQuality,
@@ -3251,7 +3378,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the quality level of the screen-space indirect lighting (SSIL) post-process effect. See [godot.Environment] for more details.
+   * Sets the quality level of the screen-space indirect lighting (SSIL) post-process effect. See
+   * [Environment] for more details.
    */
   public fun environmentSetSsilQuality(
     quality: EnvironmentSSILQuality,
@@ -3266,7 +3394,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the number of rays to throw per frame when computing signed distance field global illumination. Equivalent to [godot.ProjectSettings.rendering/globalIllumination/sdfgi/probeRayCount].
+   * Sets the number of rays to throw per frame when computing signed distance field global
+   * illumination. Equivalent to [ProjectSettings.rendering/globalIllumination/sdfgi/probeRayCount].
    */
   public fun environmentSetSdfgiRayCount(rayCount: EnvironmentSDFGIRayCount): Unit {
     TransferContext.writeArguments(LONG to rayCount.id)
@@ -3274,7 +3403,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the number of frames to use for converging signed distance field global illumination. Equivalent to [godot.ProjectSettings.rendering/globalIllumination/sdfgi/framesToConverge].
+   * Sets the number of frames to use for converging signed distance field global illumination.
+   * Equivalent to [ProjectSettings.rendering/globalIllumination/sdfgi/framesToConverge].
    */
   public fun environmentSetSdfgiFramesToConverge(frames: EnvironmentSDFGIFramesToConverge): Unit {
     TransferContext.writeArguments(LONG to frames.id)
@@ -3282,7 +3412,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the update speed for dynamic lights' indirect lighting when computing signed distance field global illumination. Equivalent to [godot.ProjectSettings.rendering/globalIllumination/sdfgi/framesToUpdateLights].
+   * Sets the update speed for dynamic lights' indirect lighting when computing signed distance
+   * field global illumination. Equivalent to
+   * [ProjectSettings.rendering/globalIllumination/sdfgi/framesToUpdateLights].
    */
   public fun environmentSetSdfgiFramesToUpdateLight(frames: EnvironmentSDFGIFramesToUpdateLight):
       Unit {
@@ -3292,7 +3424,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the resolution of the volumetric fog's froxel buffer. [size] is modified by the screen's aspect ratio and then used to set the width and height of the buffer. While [depth] is directly used to set the depth of the buffer.
+   * Sets the resolution of the volumetric fog's froxel buffer. [size] is modified by the screen's
+   * aspect ratio and then used to set the width and height of the buffer. While [depth] is directly
+   * used to set the depth of the buffer.
    */
   public fun environmentSetVolumetricFogVolumeSize(size: Int, depth: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong(), LONG to depth.toLong())
@@ -3300,7 +3434,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Enables filtering of the volumetric fog scattering buffer. This results in much smoother volumes with very few under-sampling artifacts.
+   * Enables filtering of the volumetric fog scattering buffer. This results in much smoother
+   * volumes with very few under-sampling artifacts.
    */
   public fun environmentSetVolumetricFogFilterActive(active: Boolean): Unit {
     TransferContext.writeArguments(BOOL to active)
@@ -3309,11 +3444,17 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Generates and returns an [godot.Image] containing the radiance map for the specified [environment] RID's sky. This supports built-in sky material and custom sky shaders. If [bakeIrradiance] is `true`, the irradiance map is saved instead of the radiance map. The radiance map is used to render reflected light, while the irradiance map is used to render ambient light. See also [skyBakePanorama].
-   *
-   * **Note:** The image is saved in linear color space without any tonemapping performed, which means it will look too dark if viewed directly in an image editor.
-   *
-   * **Note:** [size] should be a 2:1 aspect ratio for the generated panorama to have square pixels. For radiance maps, there is no point in using a height greater than [godot.Sky.radianceSize], as it won't increase detail. Irradiance maps only contain low-frequency data, so there is usually no point in going past a size of 128×64 pixels when saving an irradiance map.
+   * Generates and returns an [Image] containing the radiance map for the specified [environment]
+   * RID's sky. This supports built-in sky material and custom sky shaders. If [bakeIrradiance] is
+   * `true`, the irradiance map is saved instead of the radiance map. The radiance map is used to
+   * render reflected light, while the irradiance map is used to render ambient light. See also
+   * [skyBakePanorama].
+   * **Note:** The image is saved in linear color space without any tonemapping performed, which
+   * means it will look too dark if viewed directly in an image editor.
+   * **Note:** [size] should be a 2:1 aspect ratio for the generated panorama to have square pixels.
+   * For radiance maps, there is no point in using a height greater than [Sky.radianceSize], as it
+   * won't increase detail. Irradiance maps only contain low-frequency data, so there is usually no
+   * point in going past a size of 128×64 pixels when saving an irradiance map.
    */
   public fun environmentBakePanorama(
     environment: RID,
@@ -3326,7 +3467,11 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the screen-space roughness limiter parameters, such as whether it should be enabled and its thresholds. Equivalent to [godot.ProjectSettings.rendering/antiAliasing/screenSpaceRoughnessLimiter/enabled], [godot.ProjectSettings.rendering/antiAliasing/screenSpaceRoughnessLimiter/amount] and [godot.ProjectSettings.rendering/antiAliasing/screenSpaceRoughnessLimiter/limit].
+   * Sets the screen-space roughness limiter parameters, such as whether it should be enabled and
+   * its thresholds. Equivalent to
+   * [ProjectSettings.rendering/antiAliasing/screenSpaceRoughnessLimiter/enabled],
+   * [ProjectSettings.rendering/antiAliasing/screenSpaceRoughnessLimiter/amount] and
+   * [ProjectSettings.rendering/antiAliasing/screenSpaceRoughnessLimiter/limit].
    */
   public fun screenSpaceRoughnessLimiterSetActive(
     enable: Boolean,
@@ -3338,7 +3483,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets [godot.ProjectSettings.rendering/environment/subsurfaceScattering/subsurfaceScatteringQuality] to use when rendering materials that have subsurface scattering enabled.
+   * Sets [ProjectSettings.rendering/environment/subsurfaceScattering/subsurfaceScatteringQuality]
+   * to use when rendering materials that have subsurface scattering enabled.
    */
   public fun subSurfaceScatteringSetQuality(quality: SubSurfaceScatteringQuality): Unit {
     TransferContext.writeArguments(LONG to quality.id)
@@ -3346,7 +3492,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [godot.ProjectSettings.rendering/environment/subsurfaceScattering/subsurfaceScatteringScale] and [godot.ProjectSettings.rendering/environment/subsurfaceScattering/subsurfaceScatteringDepthScale] to use when rendering materials that have subsurface scattering enabled.
+   * Sets the [ProjectSettings.rendering/environment/subsurfaceScattering/subsurfaceScatteringScale]
+   * and [ProjectSettings.rendering/environment/subsurfaceScattering/subsurfaceScatteringDepthScale] to
+   * use when rendering materials that have subsurface scattering enabled.
    */
   public fun subSurfaceScatteringSetScale(scale: Float, depthScale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to scale.toDouble(), DOUBLE to depthScale.toDouble())
@@ -3354,11 +3502,12 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a camera attributes object and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `camera_attributes_` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * **Note:** The equivalent resource is [godot.CameraAttributes].
+   * Creates a camera attributes object and adds it to the RenderingServer. It can be accessed with
+   * the RID that is returned. This RID will be used in all `camera_attributes_` RenderingServer
+   * functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * **Note:** The equivalent resource is [CameraAttributes].
    */
   public fun cameraAttributesCreate(): RID {
     TransferContext.writeArguments()
@@ -3367,7 +3516,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the quality level of the DOF blur effect to one of the options in [enum DOFBlurQuality]. [useJitter] can be used to jitter samples taken during the blur pass to hide artifacts at the cost of looking more fuzzy.
+   * Sets the quality level of the DOF blur effect to one of the options in [DOFBlurQuality].
+   * [useJitter] can be used to jitter samples taken during the blur pass to hide artifacts at the cost
+   * of looking more fuzzy.
    */
   public fun cameraAttributesSetDofBlurQuality(quality: DOFBlurQuality, useJitter: Boolean): Unit {
     TransferContext.writeArguments(LONG to quality.id, BOOL to useJitter)
@@ -3375,7 +3526,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the shape of the DOF bokeh pattern. Different shapes may be used to achieve artistic effect, or to meet performance targets. For more detail on available options see [enum DOFBokehShape].
+   * Sets the shape of the DOF bokeh pattern. Different shapes may be used to achieve artistic
+   * effect, or to meet performance targets. For more detail on available options see [DOFBokehShape].
    */
   public fun cameraAttributesSetDofBlurBokehShape(shape: DOFBokehShape): Unit {
     TransferContext.writeArguments(LONG to shape.id)
@@ -3383,7 +3535,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the parameters to use with the DOF blur effect. These parameters take on the same meaning as their counterparts in [godot.CameraAttributesPractical].
+   * Sets the parameters to use with the DOF blur effect. These parameters take on the same meaning
+   * as their counterparts in [CameraAttributesPractical].
    */
   public fun cameraAttributesSetDofBlur(
     cameraAttributes: RID,
@@ -3400,21 +3553,20 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the exposure values that will be used by the renderers. The normalization amount is used to bake a given Exposure Value (EV) into rendering calculations to reduce the dynamic range of the scene.
-   *
+   * Sets the exposure values that will be used by the renderers. The normalization amount is used
+   * to bake a given Exposure Value (EV) into rendering calculations to reduce the dynamic range of the
+   * scene.
    * The normalization factor can be calculated from exposure value (EV100) as follows:
-   *
-   * ```
-   * 				func get_exposure_normalization(float ev100):
-   * 				    			    return 1.0 / (pow(2.0, ev100) * 1.2)
-   * 				```
-   *
-   * The exposure value can be calculated from aperture (in f-stops), shutter speed (in seconds), and sensitivity (in ISO) as follows:
-   *
-   * ```
-   * 				func get_exposure(float aperture, float shutter_speed, float sensitivity):
-   * 				    return log2((aperture * aperture) / shutterSpeed * (100.0 / sensitivity))
-   * 				```
+   * [codeblock]
+   * func get_exposure_normalization(float ev100):
+   *         return 1.0 / (pow(2.0, ev100) * 1.2)
+   * [/codeblock]
+   * The exposure value can be calculated from aperture (in f-stops), shutter speed (in seconds),
+   * and sensitivity (in ISO) as follows:
+   * [codeblock]
+   * func get_exposure(float aperture, float shutter_speed, float sensitivity):
+   *     return log2((aperture * aperture) / shutterSpeed * (100.0 / sensitivity))
+   * [/codeblock]
    */
   public fun cameraAttributesSetExposure(
     cameraAttributes: RID,
@@ -3426,7 +3578,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the parameters to use with the auto-exposure effect. These parameters take on the same meaning as their counterparts in [godot.CameraAttributes] and [godot.CameraAttributesPractical].
+   * Sets the parameters to use with the auto-exposure effect. These parameters take on the same
+   * meaning as their counterparts in [CameraAttributes] and [CameraAttributesPractical].
    */
   public fun cameraAttributesSetAutoExposure(
     cameraAttributes: RID,
@@ -3441,10 +3594,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a scenario and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `scenario_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
+   * Creates a scenario and adds it to the RenderingServer. It can be accessed with the RID that is
+   * returned. This RID will be used in all `scenario_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
    * The scenario is the 3D world that all the visual instances exist in.
    */
   public fun scenarioCreate(): RID {
@@ -3454,7 +3607,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the environment that will be used with this scenario. See also [godot.Environment].
+   * Sets the environment that will be used with this scenario. See also [Environment].
    */
   public fun scenarioSetEnvironment(scenario: RID, environment: RID): Unit {
     TransferContext.writeArguments(_RID to scenario, _RID to environment)
@@ -3462,7 +3615,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the fallback environment to be used by this scenario. The fallback environment is used if no environment is set. Internally, this is used by the editor to provide a default environment.
+   * Sets the fallback environment to be used by this scenario. The fallback environment is used if
+   * no environment is set. Internally, this is used by the editor to provide a default environment.
    */
   public fun scenarioSetFallbackEnvironment(scenario: RID, environment: RID): Unit {
     TransferContext.writeArguments(_RID to scenario, _RID to environment)
@@ -3470,7 +3624,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the camera attributes ([effects]) that will be used with this scenario. See also [godot.CameraAttributes].
+   * Sets the camera attributes ([effects]) that will be used with this scenario. See also
+   * [CameraAttributes].
    */
   public fun scenarioSetCameraAttributes(scenario: RID, effects: RID): Unit {
     TransferContext.writeArguments(_RID to scenario, _RID to effects)
@@ -3478,9 +3633,12 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a visual instance, adds it to the RenderingServer, and sets both base and scenario. It can be accessed with the RID that is returned. This RID will be used in all `instance_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method. This is a shorthand for using [instanceCreate] and setting the base and scenario manually.
+   * Creates a visual instance, adds it to the RenderingServer, and sets both base and scenario. It
+   * can be accessed with the RID that is returned. This RID will be used in all `instance_*`
+   * RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method. This is a shorthand for using [instanceCreate] and setting the base and scenario
+   * manually.
    */
   public fun instanceCreate2(base: RID, scenario: RID): RID {
     TransferContext.writeArguments(_RID to base, _RID to scenario)
@@ -3489,13 +3647,14 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a visual instance and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `instance_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * An instance is a way of placing a 3D object in the scenario. Objects like particles, meshes, reflection probes and decals need to be associated with an instance to be visible in the scenario using [instanceSetBase].
-   *
-   * **Note:** The equivalent node is [godot.VisualInstance3D].
+   * Creates a visual instance and adds it to the RenderingServer. It can be accessed with the RID
+   * that is returned. This RID will be used in all `instance_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * An instance is a way of placing a 3D object in the scenario. Objects like particles, meshes,
+   * reflection probes and decals need to be associated with an instance to be visible in the scenario
+   * using [instanceSetBase].
+   * **Note:** The equivalent node is [VisualInstance3D].
    */
   public fun instanceCreate(): RID {
     TransferContext.writeArguments()
@@ -3504,7 +3663,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the base of the instance. A base can be any of the 3D objects that are created in the RenderingServer that can be displayed. For example, any of the light types, mesh, multimesh, particle system, reflection probe, decal, lightmap, voxel GI and visibility notifiers are all types that can be set as the base of an instance in order to be displayed in the scenario.
+   * Sets the base of the instance. A base can be any of the 3D objects that are created in the
+   * RenderingServer that can be displayed. For example, any of the light types, mesh, multimesh,
+   * particle system, reflection probe, decal, lightmap, voxel GI and visibility notifiers are all
+   * types that can be set as the base of an instance in order to be displayed in the scenario.
    */
   public fun instanceSetBase(instance: RID, base: RID): Unit {
     TransferContext.writeArguments(_RID to instance, _RID to base)
@@ -3512,7 +3674,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the scenario that the instance is in. The scenario is the 3D world that the objects will be displayed in.
+   * Sets the scenario that the instance is in. The scenario is the 3D world that the objects will
+   * be displayed in.
    */
   public fun instanceSetScenario(instance: RID, scenario: RID): Unit {
     TransferContext.writeArguments(_RID to instance, _RID to scenario)
@@ -3520,7 +3683,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the render layers that this instance will be drawn to. Equivalent to [godot.VisualInstance3D.layers].
+   * Sets the render layers that this instance will be drawn to. Equivalent to
+   * [VisualInstance3D.layers].
    */
   public fun instanceSetLayerMask(instance: RID, mask: Long): Unit {
     TransferContext.writeArguments(_RID to instance, LONG to mask)
@@ -3528,7 +3692,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the sorting offset and switches between using the bounding box or instance origin for depth sorting.
+   * Sets the sorting offset and switches between using the bounding box or instance origin for
+   * depth sorting.
    */
   public fun instanceSetPivotData(
     instance: RID,
@@ -3540,7 +3705,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the world space transform of the instance. Equivalent to [godot.Node3D.globalTransform].
+   * Sets the world space transform of the instance. Equivalent to [Node3D.globalTransform].
    */
   public fun instanceSetTransform(instance: RID, transform: Transform3D): Unit {
     TransferContext.writeArguments(_RID to instance, TRANSFORM3D to transform)
@@ -3548,7 +3713,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Attaches a unique Object ID to instance. Object ID must be attached to instance for proper culling with [instancesCullAabb], [instancesCullConvex], and [instancesCullRay].
+   * Attaches a unique Object ID to instance. Object ID must be attached to instance for proper
+   * culling with [instancesCullAabb], [instancesCullConvex], and [instancesCullRay].
    */
   public fun instanceAttachObjectInstanceId(instance: RID, id: Long): Unit {
     TransferContext.writeArguments(_RID to instance, LONG to id)
@@ -3568,7 +3734,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the override material of a specific surface. Equivalent to [godot.MeshInstance3D.setSurfaceOverrideMaterial].
+   * Sets the override material of a specific surface. Equivalent to
+   * [MeshInstance3D.setSurfaceOverrideMaterial].
    */
   public fun instanceSetSurfaceOverrideMaterial(
     instance: RID,
@@ -3580,7 +3747,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets whether an instance is drawn or not. Equivalent to [godot.Node3D.visible].
+   * Sets whether an instance is drawn or not. Equivalent to [Node3D.visible].
    */
   public fun instanceSetVisible(instance: RID, visible: Boolean): Unit {
     TransferContext.writeArguments(_RID to instance, BOOL to visible)
@@ -3588,13 +3755,16 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the transparency for the given geometry instance. Equivalent to [godot.GeometryInstance3D.transparency].
-   *
-   * A transparency of `0.0` is fully opaque, while `1.0` is fully transparent. Values greater than `0.0` (exclusive) will force the geometry's materials to go through the transparent pipeline, which is slower to render and can exhibit rendering issues due to incorrect transparency sorting. However, unlike using a transparent material, setting [transparency] to a value greater than `0.0` (exclusive) will *not* disable shadow rendering.
-   *
+   * Sets the transparency for the given geometry instance. Equivalent to
+   * [GeometryInstance3D.transparency].
+   * A transparency of `0.0` is fully opaque, while `1.0` is fully transparent. Values greater than
+   * `0.0` (exclusive) will force the geometry's materials to go through the transparent pipeline,
+   * which is slower to render and can exhibit rendering issues due to incorrect transparency sorting.
+   * However, unlike using a transparent material, setting [transparency] to a value greater than `0.0`
+   * (exclusive) will *not* disable shadow rendering.
    * In spatial shaders, `1.0 - transparency` is set as the default value of the `ALPHA` built-in.
-   *
-   * **Note:** [transparency] is clamped between `0.0` and `1.0`, so this property cannot be used to make transparent materials more opaque than they originally are.
+   * **Note:** [transparency] is clamped between `0.0` and `1.0`, so this property cannot be used to
+   * make transparent materials more opaque than they originally are.
    */
   public fun instanceGeometrySetTransparency(instance: RID, transparency: Float): Unit {
     TransferContext.writeArguments(_RID to instance, DOUBLE to transparency.toDouble())
@@ -3602,7 +3772,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets a custom AABB to use when culling objects from the view frustum. Equivalent to setting [godot.GeometryInstance3D.customAabb].
+   * Sets a custom AABB to use when culling objects from the view frustum. Equivalent to setting
+   * [GeometryInstance3D.customAabb].
    */
   public fun instanceSetCustomAabb(instance: RID, aabb: AABB): Unit {
     TransferContext.writeArguments(_RID to instance, godot.core.VariantType.AABB to aabb)
@@ -3618,7 +3789,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets a margin to increase the size of the AABB when culling objects from the view frustum. This allows you to avoid culling objects that fall outside the view frustum. Equivalent to [godot.GeometryInstance3D.extraCullMargin].
+   * Sets a margin to increase the size of the AABB when culling objects from the view frustum. This
+   * allows you to avoid culling objects that fall outside the view frustum. Equivalent to
+   * [GeometryInstance3D.extraCullMargin].
    */
   public fun instanceSetExtraVisibilityMargin(instance: RID, margin: Float): Unit {
     TransferContext.writeArguments(_RID to instance, DOUBLE to margin.toDouble())
@@ -3626,7 +3799,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the visibility parent for the given instance. Equivalent to [godot.Node3D.visibilityParent].
+   * Sets the visibility parent for the given instance. Equivalent to [Node3D.visibilityParent].
    */
   public fun instanceSetVisibilityParent(instance: RID, parent: RID): Unit {
     TransferContext.writeArguments(_RID to instance, _RID to parent)
@@ -3634,7 +3807,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, ignores both frustum and occlusion culling on the specified 3D geometry instance. This is not the same as [godot.GeometryInstance3D.ignoreOcclusionCulling], which only ignores occlusion culling and leaves frustum culling intact.
+   * If `true`, ignores both frustum and occlusion culling on the specified 3D geometry instance.
+   * This is not the same as [GeometryInstance3D.ignoreOcclusionCulling], which only ignores occlusion
+   * culling and leaves frustum culling intact.
    */
   public fun instanceSetIgnoreCulling(instance: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to instance, BOOL to enabled)
@@ -3642,7 +3817,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the flag for a given [enum InstanceFlags]. See [enum InstanceFlags] for more details.
+   * Sets the flag for a given [InstanceFlags]. See [InstanceFlags] for more details.
    */
   public fun instanceGeometrySetFlag(
     instance: RID,
@@ -3654,7 +3829,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the shadow casting setting to one of [enum ShadowCastingSetting]. Equivalent to [godot.GeometryInstance3D.castShadow].
+   * Sets the shadow casting setting to one of [ShadowCastingSetting]. Equivalent to
+   * [GeometryInstance3D.castShadow].
    */
   public fun instanceGeometrySetCastShadowsSetting(instance: RID,
       shadowCastingSetting: ShadowCastingSetting): Unit {
@@ -3663,7 +3839,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets a material that will override the material for all surfaces on the mesh associated with this instance. Equivalent to [godot.GeometryInstance3D.materialOverride].
+   * Sets a material that will override the material for all surfaces on the mesh associated with
+   * this instance. Equivalent to [GeometryInstance3D.materialOverride].
    */
   public fun instanceGeometrySetMaterialOverride(instance: RID, material: RID): Unit {
     TransferContext.writeArguments(_RID to instance, _RID to material)
@@ -3671,7 +3848,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets a material that will be rendered for all surfaces on top of active materials for the mesh associated with this instance. Equivalent to [godot.GeometryInstance3D.materialOverlay].
+   * Sets a material that will be rendered for all surfaces on top of active materials for the mesh
+   * associated with this instance. Equivalent to [GeometryInstance3D.materialOverlay].
    */
   public fun instanceGeometrySetMaterialOverlay(instance: RID, material: RID): Unit {
     TransferContext.writeArguments(_RID to instance, _RID to material)
@@ -3679,7 +3857,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the visibility range values for the given geometry instance. Equivalent to [godot.GeometryInstance3D.visibilityRangeBegin] and related properties.
+   * Sets the visibility range values for the given geometry instance. Equivalent to
+   * [GeometryInstance3D.visibilityRangeBegin] and related properties.
    */
   public fun instanceGeometrySetVisibilityRange(
     instance: RID,
@@ -3694,7 +3873,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the lightmap GI instance to use for the specified 3D geometry instance. The lightmap UV scale for the specified instance (equivalent to [godot.GeometryInstance3D.giLightmapScale]) and lightmap atlas slice must also be specified.
+   * Sets the lightmap GI instance to use for the specified 3D geometry instance. The lightmap UV
+   * scale for the specified instance (equivalent to [GeometryInstance3D.giLightmapScale]) and lightmap
+   * atlas slice must also be specified.
    */
   public fun instanceGeometrySetLightmap(
     instance: RID,
@@ -3707,7 +3888,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the level of detail bias to use when rendering the specified 3D geometry instance. Higher values result in higher detail from further away. Equivalent to [godot.GeometryInstance3D.lodBias].
+   * Sets the level of detail bias to use when rendering the specified 3D geometry instance. Higher
+   * values result in higher detail from further away. Equivalent to [GeometryInstance3D.lodBias].
    */
   public fun instanceGeometrySetLodBias(instance: RID, lodBias: Float): Unit {
     TransferContext.writeArguments(_RID to instance, DOUBLE to lodBias.toDouble())
@@ -3715,7 +3897,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the per-instance shader uniform on the specified 3D geometry instance. Equivalent to [godot.GeometryInstance3D.setInstanceShaderParameter].
+   * Sets the per-instance shader uniform on the specified 3D geometry instance. Equivalent to
+   * [GeometryInstance3D.setInstanceShaderParameter].
    */
   public fun instanceGeometrySetShaderParameter(
     instance: RID,
@@ -3727,8 +3910,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the value of the per-instance shader uniform from the specified 3D geometry instance. Equivalent to [godot.GeometryInstance3D.getInstanceShaderParameter].
-   *
+   * Returns the value of the per-instance shader uniform from the specified 3D geometry instance.
+   * Equivalent to [GeometryInstance3D.getInstanceShaderParameter].
    * **Note:** Per-instance shader parameter names are case-sensitive.
    */
   public fun instanceGeometryGetShaderParameter(instance: RID, parameter: StringName): Any? {
@@ -3738,7 +3921,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the default value of the per-instance shader uniform from the specified 3D geometry instance. Equivalent to [godot.GeometryInstance3D.getInstanceShaderParameter].
+   * Returns the default value of the per-instance shader uniform from the specified 3D geometry
+   * instance. Equivalent to [GeometryInstance3D.getInstanceShaderParameter].
    */
   public fun instanceGeometryGetShaderParameterDefaultValue(instance: RID, parameter: StringName):
       Any? {
@@ -3749,7 +3933,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns a dictionary of per-instance shader uniform names of the per-instance shader uniform from the specified 3D geometry instance. The returned dictionary is in PropertyInfo format, with the keys `name`, `class_name`, `type`, `hint`, `hint_string` and `usage`. Equivalent to [godot.GeometryInstance3D.getInstanceShaderParameter].
+   * Returns a dictionary of per-instance shader uniform names of the per-instance shader uniform
+   * from the specified 3D geometry instance. The returned dictionary is in PropertyInfo format, with
+   * the keys `name`, `class_name`, `type`, `hint`, `hint_string` and `usage`. Equivalent to
+   * [GeometryInstance3D.getInstanceShaderParameter].
    */
   public fun instanceGeometryGetShaderParameterList(instance: RID):
       VariantArray<Dictionary<Any?, Any?>> {
@@ -3760,9 +3947,13 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns an array of object IDs intersecting with the provided AABB. Only 3D nodes that inherit from [godot.VisualInstance3D] are considered, such as [godot.MeshInstance3D] or [godot.DirectionalLight3D]. Use [@GlobalScope.instanceFromId] to obtain the actual nodes. A scenario RID must be provided, which is available in the [godot.World3D] you want to query. This forces an update for all resources queued to update.
-   *
-   * **Warning:** This function is primarily intended for editor usage. For in-game use cases, prefer physics collision.
+   * Returns an array of object IDs intersecting with the provided AABB. Only 3D nodes that inherit
+   * from [VisualInstance3D] are considered, such as [MeshInstance3D] or [DirectionalLight3D]. Use
+   * [@GlobalScope.instanceFromId] to obtain the actual nodes. A scenario RID must be provided, which
+   * is available in the [World3D] you want to query. This forces an update for all resources queued to
+   * update.
+   * **Warning:** This function is primarily intended for editor usage. For in-game use cases,
+   * prefer physics collision.
    */
   @JvmOverloads
   public fun instancesCullAabb(aabb: AABB, scenario: RID = RID()): PackedInt64Array {
@@ -3772,9 +3963,13 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns an array of object IDs intersecting with the provided 3D ray. Only 3D nodes that inherit from [godot.VisualInstance3D] are considered, such as [godot.MeshInstance3D] or [godot.DirectionalLight3D]. Use [@GlobalScope.instanceFromId] to obtain the actual nodes. A scenario RID must be provided, which is available in the [godot.World3D] you want to query. This forces an update for all resources queued to update.
-   *
-   * **Warning:** This function is primarily intended for editor usage. For in-game use cases, prefer physics collision.
+   * Returns an array of object IDs intersecting with the provided 3D ray. Only 3D nodes that
+   * inherit from [VisualInstance3D] are considered, such as [MeshInstance3D] or [DirectionalLight3D].
+   * Use [@GlobalScope.instanceFromId] to obtain the actual nodes. A scenario RID must be provided,
+   * which is available in the [World3D] you want to query. This forces an update for all resources
+   * queued to update.
+   * **Warning:** This function is primarily intended for editor usage. For in-game use cases,
+   * prefer physics collision.
    */
   @JvmOverloads
   public fun instancesCullRay(
@@ -3788,9 +3983,13 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns an array of object IDs intersecting with the provided convex shape. Only 3D nodes that inherit from [godot.VisualInstance3D] are considered, such as [godot.MeshInstance3D] or [godot.DirectionalLight3D]. Use [@GlobalScope.instanceFromId] to obtain the actual nodes. A scenario RID must be provided, which is available in the [godot.World3D] you want to query. This forces an update for all resources queued to update.
-   *
-   * **Warning:** This function is primarily intended for editor usage. For in-game use cases, prefer physics collision.
+   * Returns an array of object IDs intersecting with the provided convex shape. Only 3D nodes that
+   * inherit from [VisualInstance3D] are considered, such as [MeshInstance3D] or [DirectionalLight3D].
+   * Use [@GlobalScope.instanceFromId] to obtain the actual nodes. A scenario RID must be provided,
+   * which is available in the [World3D] you want to query. This forces an update for all resources
+   * queued to update.
+   * **Warning:** This function is primarily intended for editor usage. For in-game use cases,
+   * prefer physics collision.
    */
   @JvmOverloads
   public fun instancesCullConvex(convex: VariantArray<Plane>, scenario: RID = RID()):
@@ -3801,7 +4000,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Bakes the material data of the Mesh passed in the [base] parameter with optional [materialOverrides] to a set of [godot.Image]s of size [imageSize]. Returns an array of [godot.Image]s containing material properties as specified in [enum BakeChannels].
+   * Bakes the material data of the Mesh passed in the [base] parameter with optional
+   * [materialOverrides] to a set of [Image]s of size [imageSize]. Returns an array of [Image]s
+   * containing material properties as specified in [BakeChannels].
    */
   public fun bakeRenderUv2(
     base: RID,
@@ -3814,11 +4015,11 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a canvas and returns the assigned [RID]. It can be accessed with the RID that is returned. This RID will be used in all `canvas_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * Canvas has no [godot.Resource] or [godot.Node] equivalent.
+   * Creates a canvas and returns the assigned [RID]. It can be accessed with the RID that is
+   * returned. This RID will be used in all `canvas_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * Canvas has no [Resource] or [Node] equivalent.
    */
   public fun canvasCreate(): RID {
     TransferContext.writeArguments()
@@ -3827,7 +4028,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * A copy of the canvas item will be drawn with a local offset of the mirroring [godot.core.Vector2].
+   * A copy of the canvas item will be drawn with a local offset of the mirroring [Vector2].
    */
   public fun canvasSetItemMirroring(
     canvas: RID,
@@ -3846,20 +4047,18 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.canvasSetModulatePtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun canvasSetDisableScale(disable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to disable)
     TransferContext.callMethod(rawPtr, MethodBindings.canvasSetDisableScalePtr, NIL)
   }
 
   /**
-   * Creates a canvas texture and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `canvas_texture_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method. See also [texture2dCreate].
-   *
-   * **Note:** The equivalent resource is [godot.CanvasTexture] and is only meant to be used in 2D rendering, not 3D.
+   * Creates a canvas texture and adds it to the RenderingServer. It can be accessed with the RID
+   * that is returned. This RID will be used in all `canvas_texture_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method. See also [texture2dCreate].
+   * **Note:** The equivalent resource is [CanvasTexture] and is only meant to be used in 2D
+   * rendering, not 3D.
    */
   public fun canvasTextureCreate(): RID {
     TransferContext.writeArguments()
@@ -3868,7 +4067,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [channel]'s [texture] for the canvas texture specified by the [canvasTexture] RID. Equivalent to [godot.CanvasTexture.diffuseTexture], [godot.CanvasTexture.normalTexture] and [godot.CanvasTexture.specularTexture].
+   * Sets the [channel]'s [texture] for the canvas texture specified by the [canvasTexture] RID.
+   * Equivalent to [CanvasTexture.diffuseTexture], [CanvasTexture.normalTexture] and
+   * [CanvasTexture.specularTexture].
    */
   public fun canvasTextureSetChannel(
     canvasTexture: RID,
@@ -3880,7 +4081,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [baseColor] and [shininess] to use for the canvas texture specified by the [canvasTexture] RID. Equivalent to [godot.CanvasTexture.specularColor] and [godot.CanvasTexture.specularShininess].
+   * Sets the [baseColor] and [shininess] to use for the canvas texture specified by the
+   * [canvasTexture] RID. Equivalent to [CanvasTexture.specularColor] and
+   * [CanvasTexture.specularShininess].
    */
   public fun canvasTextureSetShadingParameters(
     canvasTexture: RID,
@@ -3892,7 +4095,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the texture [filter] mode to use for the canvas texture specified by the [canvasTexture] RID.
+   * Sets the texture [filter] mode to use for the canvas texture specified by the [canvasTexture]
+   * RID.
    */
   public fun canvasTextureSetTextureFilter(canvasTexture: RID, filter: CanvasItemTextureFilter):
       Unit {
@@ -3901,7 +4105,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the texture [repeat] mode to use for the canvas texture specified by the [canvasTexture] RID.
+   * Sets the texture [repeat] mode to use for the canvas texture specified by the [canvasTexture]
+   * RID.
    */
   public fun canvasTextureSetTextureRepeat(canvasTexture: RID, repeat: CanvasItemTextureRepeat):
       Unit {
@@ -3910,11 +4115,11 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a new CanvasItem instance and returns its [RID]. It can be accessed with the RID that is returned. This RID will be used in all `canvas_item_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * **Note:** The equivalent node is [godot.CanvasItem].
+   * Creates a new CanvasItem instance and returns its [RID]. It can be accessed with the RID that
+   * is returned. This RID will be used in all `canvas_item_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * **Note:** The equivalent node is [CanvasItem].
    */
   public fun canvasItemCreate(): RID {
     TransferContext.writeArguments()
@@ -3923,7 +4128,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets a parent [godot.CanvasItem] to the [godot.CanvasItem]. The item will inherit transform, modulation and visibility from its parent, like [godot.CanvasItem] nodes in the scene tree.
+   * Sets a parent [CanvasItem] to the [CanvasItem]. The item will inherit transform, modulation and
+   * visibility from its parent, like [CanvasItem] nodes in the scene tree.
    */
   public fun canvasItemSetParent(item: RID, parent: RID): Unit {
     TransferContext.writeArguments(_RID to item, _RID to parent)
@@ -3931,7 +4137,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the default texture filter mode for the canvas item specified by the [item] RID. Equivalent to [godot.CanvasItem.textureFilter].
+   * Sets the default texture filter mode for the canvas item specified by the [item] RID.
+   * Equivalent to [CanvasItem.textureFilter].
    */
   public fun canvasItemSetDefaultTextureFilter(item: RID, filter: CanvasItemTextureFilter): Unit {
     TransferContext.writeArguments(_RID to item, LONG to filter.id)
@@ -3939,7 +4146,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the default texture repeat mode for the canvas item specified by the [item] RID. Equivalent to [godot.CanvasItem.textureRepeat].
+   * Sets the default texture repeat mode for the canvas item specified by the [item] RID.
+   * Equivalent to [CanvasItem.textureRepeat].
    */
   public fun canvasItemSetDefaultTextureRepeat(item: RID, repeat: CanvasItemTextureRepeat): Unit {
     TransferContext.writeArguments(_RID to item, LONG to repeat.id)
@@ -3947,7 +4155,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the visibility of the [godot.CanvasItem].
+   * Sets the visibility of the [CanvasItem].
    */
   public fun canvasItemSetVisible(item: RID, visible: Boolean): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to visible)
@@ -3955,7 +4163,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the light [mask] for the canvas item specified by the [item] RID. Equivalent to [godot.CanvasItem.lightMask].
+   * Sets the light [mask] for the canvas item specified by the [item] RID. Equivalent to
+   * [CanvasItem.lightMask].
    */
   public fun canvasItemSetLightMask(item: RID, mask: Int): Unit {
     TransferContext.writeArguments(_RID to item, LONG to mask.toLong())
@@ -3963,7 +4172,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the rendering visibility layer associated with this [godot.CanvasItem]. Only [godot.Viewport] nodes with a matching rendering mask will render this [godot.CanvasItem].
+   * Sets the rendering visibility layer associated with this [CanvasItem]. Only [Viewport] nodes
+   * with a matching rendering mask will render this [CanvasItem].
    */
   public fun canvasItemSetVisibilityLayer(item: RID, visibilityLayer: Long): Unit {
     TransferContext.writeArguments(_RID to item, LONG to visibilityLayer)
@@ -3971,7 +4181,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [transform] of the canvas item specified by the [item] RID. This affects where and how the item will be drawn. Child canvas items' transforms are multiplied by their parent's transform. Equivalent to [godot.Node2D.transform].
+   * Sets the [transform] of the canvas item specified by the [item] RID. This affects where and how
+   * the item will be drawn. Child canvas items' transforms are multiplied by their parent's transform.
+   * Equivalent to [Node2D.transform].
    */
   public fun canvasItemSetTransform(item: RID, transform: Transform2D): Unit {
     TransferContext.writeArguments(_RID to item, TRANSFORM2D to transform)
@@ -3979,9 +4191,12 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If [clip] is `true`, makes the canvas item specified by the [item] RID not draw anything outside of its rect's coordinates. This clipping is fast, but works only with axis-aligned rectangles. This means that rotation is ignored by the clipping rectangle. For more advanced clipping shapes, use [canvasItemSetCanvasGroupMode] instead.
-   *
-   * **Note:** The equivalent node functionality is found in [godot.Label.clipText], [godot.RichTextLabel] (always enabled) and more.
+   * If [clip] is `true`, makes the canvas item specified by the [item] RID not draw anything
+   * outside of its rect's coordinates. This clipping is fast, but works only with axis-aligned
+   * rectangles. This means that rotation is ignored by the clipping rectangle. For more advanced
+   * clipping shapes, use [canvasItemSetCanvasGroupMode] instead.
+   * **Note:** The equivalent node functionality is found in [Label.clipText], [RichTextLabel]
+   * (always enabled) and more.
    */
   public fun canvasItemSetClip(item: RID, clip: Boolean): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to clip)
@@ -3989,7 +4204,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If [enabled] is `true`, enables multichannel signed distance field rendering mode for the canvas item specified by the [item] RID. This is meant to be used for font rendering, or with specially generated images using [msdfgen](https://github.com/Chlumsky/msdfgen).
+   * If [enabled] is `true`, enables multichannel signed distance field rendering mode for the
+   * canvas item specified by the [item] RID. This is meant to be used for font rendering, or with
+   * specially generated images using [url=https://github.com/Chlumsky/msdfgen]msdfgen[/url].
    */
   public fun canvasItemSetDistanceFieldMode(item: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to enabled)
@@ -3997,7 +4214,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If [useCustomRect] is `true`, sets the custom visibility rectangle (used for culling) to [rect] for the canvas item specified by [item]. Setting a custom visibility rect can reduce CPU load when drawing lots of 2D instances. If [useCustomRect] is `false`, automatically computes a visibility rectangle based on the canvas item's draw commands.
+   * If [useCustomRect] is `true`, sets the custom visibility rectangle (used for culling) to [rect]
+   * for the canvas item specified by [item]. Setting a custom visibility rect can reduce CPU load when
+   * drawing lots of 2D instances. If [useCustomRect] is `false`, automatically computes a visibility
+   * rectangle based on the canvas item's draw commands.
    */
   @JvmOverloads
   public fun canvasItemSetCustomRect(
@@ -4010,7 +4230,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Multiplies the color of the canvas item specified by the [item] RID, while affecting its children. See also [canvasItemSetSelfModulate]. Equivalent to [godot.CanvasItem.modulate].
+   * Multiplies the color of the canvas item specified by the [item] RID, while affecting its
+   * children. See also [canvasItemSetSelfModulate]. Equivalent to [CanvasItem.modulate].
    */
   public fun canvasItemSetModulate(item: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to item, COLOR to color)
@@ -4018,7 +4239,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Multiplies the color of the canvas item specified by the [item] RID, without affecting its children. See also [canvasItemSetModulate]. Equivalent to [godot.CanvasItem.selfModulate].
+   * Multiplies the color of the canvas item specified by the [item] RID, without affecting its
+   * children. See also [canvasItemSetModulate]. Equivalent to [CanvasItem.selfModulate].
    */
   public fun canvasItemSetSelfModulate(item: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to item, COLOR to color)
@@ -4026,7 +4248,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If [enabled] is `true`, draws the canvas item specified by the [item] RID behind its parent. Equivalent to [godot.CanvasItem.showBehindParent].
+   * If [enabled] is `true`, draws the canvas item specified by the [item] RID behind its parent.
+   * Equivalent to [CanvasItem.showBehindParent].
    */
   public fun canvasItemSetDrawBehindParent(item: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to enabled)
@@ -4034,7 +4257,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a line on the [godot.CanvasItem] pointed to by the [item] [RID]. See also [godot.CanvasItem.drawLine].
+   * Draws a line on the [CanvasItem] pointed to by the [item] [RID]. See also
+   * [CanvasItem.drawLine].
    */
   @JvmOverloads
   public fun canvasItemAddLine(
@@ -4050,7 +4274,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a 2D polyline on the [godot.CanvasItem] pointed to by the [item] [RID]. See also [godot.CanvasItem.drawPolyline] and [godot.CanvasItem.drawPolylineColors].
+   * Draws a 2D polyline on the [CanvasItem] pointed to by the [item] [RID]. See also
+   * [CanvasItem.drawPolyline] and [CanvasItem.drawPolylineColors].
    */
   @JvmOverloads
   public fun canvasItemAddPolyline(
@@ -4065,7 +4290,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a 2D multiline on the [godot.CanvasItem] pointed to by the [item] [RID]. See also [godot.CanvasItem.drawMultiline] and [godot.CanvasItem.drawMultilineColors].
+   * Draws a 2D multiline on the [CanvasItem] pointed to by the [item] [RID]. See also
+   * [CanvasItem.drawMultiline] and [CanvasItem.drawMultilineColors].
    */
   @JvmOverloads
   public fun canvasItemAddMultiline(
@@ -4079,7 +4305,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a rectangle on the [godot.CanvasItem] pointed to by the [item] [RID]. See also [godot.CanvasItem.drawRect].
+   * Draws a rectangle on the [CanvasItem] pointed to by the [item] [RID]. See also
+   * [CanvasItem.drawRect].
    */
   public fun canvasItemAddRect(
     item: RID,
@@ -4091,7 +4318,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a circle on the [godot.CanvasItem] pointed to by the [item] [RID]. See also [godot.CanvasItem.drawCircle].
+   * Draws a circle on the [CanvasItem] pointed to by the [item] [RID]. See also
+   * [CanvasItem.drawCircle].
    */
   public fun canvasItemAddCircle(
     item: RID,
@@ -4104,7 +4332,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a 2D textured rectangle on the [godot.CanvasItem] pointed to by the [item] [RID]. See also [godot.CanvasItem.drawTextureRect] and [godot.Texture2D.drawRect].
+   * Draws a 2D textured rectangle on the [CanvasItem] pointed to by the [item] [RID]. See also
+   * [CanvasItem.drawTextureRect] and [Texture2D.drawRect].
    */
   @JvmOverloads
   public fun canvasItemAddTextureRect(
@@ -4120,7 +4349,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * See also [godot.CanvasItem.drawMsdfTextureRectRegion].
+   * See also [CanvasItem.drawMsdfTextureRectRegion].
    */
   @JvmOverloads
   public fun canvasItemAddMsdfTextureRectRegion(
@@ -4138,7 +4367,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * See also [godot.CanvasItem.drawLcdTextureRectRegion].
+   * See also [CanvasItem.drawLcdTextureRectRegion].
    */
   public fun canvasItemAddLcdTextureRectRegion(
     item: RID,
@@ -4152,7 +4381,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws the specified region of a 2D textured rectangle on the [godot.CanvasItem] pointed to by the [item] [RID]. See also [godot.CanvasItem.drawTextureRectRegion] and [godot.Texture2D.drawRectRegion].
+   * Draws the specified region of a 2D textured rectangle on the [CanvasItem] pointed to by the
+   * [item] [RID]. See also [CanvasItem.drawTextureRectRegion] and [Texture2D.drawRectRegion].
    */
   @JvmOverloads
   public fun canvasItemAddTextureRectRegion(
@@ -4169,7 +4399,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a nine-patch rectangle on the [godot.CanvasItem] pointed to by the [item] [RID].
+   * Draws a nine-patch rectangle on the [CanvasItem] pointed to by the [item] [RID].
    */
   @JvmOverloads
   public fun canvasItemAddNinePatch(
@@ -4189,7 +4419,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a 2D primitive on the [godot.CanvasItem] pointed to by the [item] [RID]. See also [godot.CanvasItem.drawPrimitive].
+   * Draws a 2D primitive on the [CanvasItem] pointed to by the [item] [RID]. See also
+   * [CanvasItem.drawPrimitive].
    */
   public fun canvasItemAddPrimitive(
     item: RID,
@@ -4203,7 +4434,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a 2D polygon on the [godot.CanvasItem] pointed to by the [item] [RID]. If you need more flexibility (such as being able to use bones), use [canvasItemAddTriangleArray] instead. See also [godot.CanvasItem.drawPolygon].
+   * Draws a 2D polygon on the [CanvasItem] pointed to by the [item] [RID]. If you need more
+   * flexibility (such as being able to use bones), use [canvasItemAddTriangleArray] instead. See also
+   * [CanvasItem.drawPolygon].
    */
   @JvmOverloads
   public fun canvasItemAddPolygon(
@@ -4218,8 +4451,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a triangle array on the [godot.CanvasItem] pointed to by the [item] [RID]. This is internally used by [godot.Line2D] and [godot.StyleBoxFlat] for rendering. [canvasItemAddTriangleArray] is highly flexible, but more complex to use than [canvasItemAddPolygon].
-   *
+   * Draws a triangle array on the [CanvasItem] pointed to by the [item] [RID]. This is internally
+   * used by [Line2D] and [StyleBoxFlat] for rendering. [canvasItemAddTriangleArray] is highly
+   * flexible, but more complex to use than [canvasItemAddPolygon].
    * **Note:** [count] is unused and can be left unspecified.
    */
   @JvmOverloads
@@ -4239,7 +4473,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a mesh created with [meshCreate] with given [transform], [modulate] color, and [texture]. This is used internally by [godot.MeshInstance2D].
+   * Draws a mesh created with [meshCreate] with given [transform], [modulate] color, and [texture].
+   * This is used internally by [MeshInstance2D].
    */
   @JvmOverloads
   public fun canvasItemAddMesh(
@@ -4254,7 +4489,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws a 2D [godot.MultiMesh] on the [godot.CanvasItem] pointed to by the [item] [RID]. See also [godot.CanvasItem.drawMultimesh].
+   * Draws a 2D [MultiMesh] on the [CanvasItem] pointed to by the [item] [RID]. See also
+   * [CanvasItem.drawMultimesh].
    */
   @JvmOverloads
   public fun canvasItemAddMultimesh(
@@ -4267,7 +4503,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Draws particles on the [godot.CanvasItem] pointed to by the [item] [RID].
+   * Draws particles on the [CanvasItem] pointed to by the [item] [RID].
    */
   public fun canvasItemAddParticles(
     item: RID,
@@ -4279,7 +4515,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets a [godot.core.Transform2D] that will be used to transform subsequent canvas item commands.
+   * Sets a [Transform2D] that will be used to transform subsequent canvas item commands.
    */
   public fun canvasItemAddSetTransform(item: RID, transform: Transform2D): Unit {
     TransferContext.writeArguments(_RID to item, TRANSFORM2D to transform)
@@ -4287,7 +4523,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If [ignore] is `true`, ignore clipping on items drawn with this canvas item until this is called again with [ignore] set to false.
+   * If [ignore] is `true`, ignore clipping on items drawn with this canvas item until this is
+   * called again with [ignore] set to false.
    */
   public fun canvasItemAddClipIgnore(item: RID, ignore: Boolean): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to ignore)
@@ -4295,7 +4532,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Subsequent drawing commands will be ignored unless they fall within the specified animation slice. This is a faster way to implement animations that loop on background rather than redrawing constantly.
+   * Subsequent drawing commands will be ignored unless they fall within the specified animation
+   * slice. This is a faster way to implement animations that loop on background rather than redrawing
+   * constantly.
    */
   @JvmOverloads
   public fun canvasItemAddAnimationSlice(
@@ -4310,7 +4549,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If [enabled] is `true`, child nodes with the lowest Y position are drawn before those with a higher Y position. Y-sorting only affects children that inherit from the canvas item specified by the [item] RID, not the canvas item itself. Equivalent to [godot.CanvasItem.ySortEnabled].
+   * If [enabled] is `true`, child nodes with the lowest Y position are drawn before those with a
+   * higher Y position. Y-sorting only affects children that inherit from the canvas item specified by
+   * the [item] RID, not the canvas item itself. Equivalent to [CanvasItem.ySortEnabled].
    */
   public fun canvasItemSetSortChildrenByY(item: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to enabled)
@@ -4318,7 +4559,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [godot.CanvasItem]'s Z index, i.e. its draw order (lower indexes are drawn first).
+   * Sets the [CanvasItem]'s Z index, i.e. its draw order (lower indexes are drawn first).
    */
   public fun canvasItemSetZIndex(item: RID, zIndex: Int): Unit {
     TransferContext.writeArguments(_RID to item, LONG to zIndex.toLong())
@@ -4334,7 +4575,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [godot.CanvasItem] to copy a rect to the backbuffer.
+   * Sets the [CanvasItem] to copy a rect to the backbuffer.
    */
   public fun canvasItemSetCopyToBackbuffer(
     item: RID,
@@ -4346,7 +4587,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Clears the [godot.CanvasItem] and removes all commands in it.
+   * Clears the [CanvasItem] and removes all commands in it.
    */
   public fun canvasItemClear(item: RID): Unit {
     TransferContext.writeArguments(_RID to item)
@@ -4354,7 +4595,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the index for the [godot.CanvasItem].
+   * Sets the index for the [CanvasItem].
    */
   public fun canvasItemSetDrawIndex(item: RID, index: Int): Unit {
     TransferContext.writeArguments(_RID to item, LONG to index.toLong())
@@ -4362,7 +4603,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets a new [material] to the canvas item specified by the [item] RID. Equivalent to [godot.CanvasItem.material].
+   * Sets a new [material] to the canvas item specified by the [item] RID. Equivalent to
+   * [CanvasItem.material].
    */
   public fun canvasItemSetMaterial(item: RID, material: RID): Unit {
     TransferContext.writeArguments(_RID to item, _RID to material)
@@ -4370,7 +4612,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets if the [godot.CanvasItem] uses its parent's material.
+   * Sets if the [CanvasItem] uses its parent's material.
    */
   public fun canvasItemSetUseParentMaterial(item: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to enabled)
@@ -4378,9 +4620,11 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the given [godot.CanvasItem] as visibility notifier. [area] defines the area of detecting visibility. [enterCallable] is called when the [godot.CanvasItem] enters the screen, [exitCallable] is called when the [godot.CanvasItem] exits the screen. If [enable] is `false`, the item will no longer function as notifier.
-   *
-   * This method can be used to manually mimic [godot.VisibleOnScreenNotifier2D].
+   * Sets the given [CanvasItem] as visibility notifier. [area] defines the area of detecting
+   * visibility. [enterCallable] is called when the [CanvasItem] enters the screen, [exitCallable] is
+   * called when the [CanvasItem] exits the screen. If [enable] is `false`, the item will no longer
+   * function as notifier.
+   * This method can be used to manually mimic [VisibleOnScreenNotifier2D].
    */
   public fun canvasItemSetVisibilityNotifier(
     item: RID,
@@ -4394,9 +4638,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the canvas group mode used during 2D rendering for the canvas item specified by the [item] RID. For faster but more limited clipping, use [canvasItemSetClip] instead.
-   *
-   * **Note:** The equivalent node functionality is found in [godot.CanvasGroup] and [godot.CanvasItem.clipChildren].
+   * Sets the canvas group mode used during 2D rendering for the canvas item specified by the [item]
+   * RID. For faster but more limited clipping, use [canvasItemSetClip] instead.
+   * **Note:** The equivalent node functionality is found in [CanvasGroup] and
+   * [CanvasItem.clipChildren].
    */
   @JvmOverloads
   public fun canvasItemSetCanvasGroupMode(
@@ -4412,9 +4657,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the bounding rectangle for a canvas item in local space, as calculated by the renderer. This bound is used internally for culling.
-   *
-   * **Warning:** This function is intended for debugging in the editor, and will pass through and return a zero [godot.core.Rect2] in exported projects.
+   * Returns the bounding rectangle for a canvas item in local space, as calculated by the renderer.
+   * This bound is used internally for culling.
+   * **Warning:** This function is intended for debugging in the editor, and will pass through and
+   * return a zero [Rect2] in exported projects.
    */
   public fun debugCanvasItemGetRect(item: RID): Rect2 {
     TransferContext.writeArguments(_RID to item)
@@ -4423,11 +4669,11 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a canvas light and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `canvas_light_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * **Note:** The equivalent node is [godot.Light2D].
+   * Creates a canvas light and adds it to the RenderingServer. It can be accessed with the RID that
+   * is returned. This RID will be used in all `canvas_light_*` RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * **Note:** The equivalent node is [Light2D].
    */
   public fun canvasLightCreate(): RID {
     TransferContext.writeArguments()
@@ -4452,7 +4698,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the scale factor of a [godot.PointLight2D]'s texture. Equivalent to [godot.PointLight2D.textureScale].
+   * Sets the scale factor of a [PointLight2D]'s texture. Equivalent to [PointLight2D.textureScale].
    */
   public fun canvasLightSetTextureScale(light: RID, scale: Float): Unit {
     TransferContext.writeArguments(_RID to light, DOUBLE to scale.toDouble())
@@ -4460,7 +4706,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the canvas light's [godot.core.Transform2D].
+   * Sets the canvas light's [Transform2D].
    */
   public fun canvasLightSetTransform(light: RID, transform: Transform2D): Unit {
     TransferContext.writeArguments(_RID to light, TRANSFORM2D to transform)
@@ -4468,7 +4714,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the texture to be used by a [godot.PointLight2D]. Equivalent to [godot.PointLight2D.texture].
+   * Sets the texture to be used by a [PointLight2D]. Equivalent to [PointLight2D.texture].
    */
   public fun canvasLightSetTexture(light: RID, texture: RID): Unit {
     TransferContext.writeArguments(_RID to light, _RID to texture)
@@ -4476,7 +4722,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the offset of a [godot.PointLight2D]'s texture. Equivalent to [godot.PointLight2D.offset].
+   * Sets the offset of a [PointLight2D]'s texture. Equivalent to [PointLight2D.offset].
    */
   public fun canvasLightSetTextureOffset(light: RID, offset: Vector2): Unit {
     TransferContext.writeArguments(_RID to light, VECTOR2 to offset)
@@ -4508,7 +4754,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the Z range of objects that will be affected by this light. Equivalent to [godot.Light2D.rangeZMin] and [godot.Light2D.rangeZMax].
+   * Sets the Z range of objects that will be affected by this light. Equivalent to
+   * [Light2D.rangeZMin] and [Light2D.rangeZMax].
    */
   public fun canvasLightSetZRange(
     light: RID,
@@ -4532,7 +4779,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * The light mask. See [godot.LightOccluder2D] for more information on light masks.
+   * The light mask. See [LightOccluder2D] for more information on light masks.
    */
   public fun canvasLightSetItemCullMask(light: RID, mask: Int): Unit {
     TransferContext.writeArguments(_RID to light, LONG to mask.toLong())
@@ -4540,7 +4787,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * The binary mask used to determine which layers this canvas light's shadows affects. See [godot.LightOccluder2D] for more information on light masks.
+   * The binary mask used to determine which layers this canvas light's shadows affects. See
+   * [LightOccluder2D] for more information on light masks.
    */
   public fun canvasLightSetItemShadowCullMask(light: RID, mask: Int): Unit {
     TransferContext.writeArguments(_RID to light, LONG to mask.toLong())
@@ -4548,7 +4796,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * The mode of the light, see [enum CanvasLightMode] constants.
+   * The mode of the light, see [CanvasLightMode] constants.
    */
   public fun canvasLightSetMode(light: RID, mode: CanvasLightMode): Unit {
     TransferContext.writeArguments(_RID to light, LONG to mode.id)
@@ -4564,7 +4812,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the canvas light's shadow's filter, see [enum CanvasLightShadowFilter] constants.
+   * Sets the canvas light's shadow's filter, see [CanvasLightShadowFilter] constants.
    */
   public fun canvasLightSetShadowFilter(light: RID, filter: CanvasLightShadowFilter): Unit {
     TransferContext.writeArguments(_RID to light, LONG to filter.id)
@@ -4588,7 +4836,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the blend mode for the given canvas light. See [enum CanvasLightBlendMode] for options. Equivalent to [godot.Light2D.blendMode].
+   * Sets the blend mode for the given canvas light. See [CanvasLightBlendMode] for options.
+   * Equivalent to [Light2D.blendMode].
    */
   public fun canvasLightSetBlendMode(light: RID, mode: CanvasLightBlendMode): Unit {
     TransferContext.writeArguments(_RID to light, LONG to mode.id)
@@ -4596,11 +4845,12 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a light occluder and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `canvas_light_occluder_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * **Note:** The equivalent node is [godot.LightOccluder2D].
+   * Creates a light occluder and adds it to the RenderingServer. It can be accessed with the RID
+   * that is returned. This RID will be used in all `canvas_light_occluder_*` RenderingServer
+   * functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * **Note:** The equivalent node is [LightOccluder2D].
    */
   public fun canvasLightOccluderCreate(): RID {
     TransferContext.writeArguments()
@@ -4632,16 +4882,13 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.canvasLightOccluderSetPolygonPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun canvasLightOccluderSetAsSdfCollision(occluder: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to occluder, BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.canvasLightOccluderSetAsSdfCollisionPtr, NIL)
   }
 
   /**
-   * Sets a light occluder's [godot.core.Transform2D].
+   * Sets a light occluder's [Transform2D].
    */
   public fun canvasLightOccluderSetTransform(occluder: RID, transform: Transform2D): Unit {
     TransferContext.writeArguments(_RID to occluder, TRANSFORM2D to transform)
@@ -4649,7 +4896,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * The light mask. See [godot.LightOccluder2D] for more information on light masks.
+   * The light mask. See [LightOccluder2D] for more information on light masks.
    */
   public fun canvasLightOccluderSetLightMask(occluder: RID, mask: Int): Unit {
     TransferContext.writeArguments(_RID to occluder, LONG to mask.toLong())
@@ -4657,11 +4904,12 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a new light occluder polygon and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `canvas_occluder_polygon_*` RenderingServer functions.
-   *
-   * Once finished with your RID, you will want to free the RID using the RenderingServer's [freeRid] method.
-   *
-   * **Note:** The equivalent resource is [godot.OccluderPolygon2D].
+   * Creates a new light occluder polygon and adds it to the RenderingServer. It can be accessed
+   * with the RID that is returned. This RID will be used in all `canvas_occluder_polygon_*`
+   * RenderingServer functions.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   * **Note:** The equivalent resource is [OccluderPolygon2D].
    */
   public fun canvasOccluderPolygonCreate(): RID {
     TransferContext.writeArguments()
@@ -4682,7 +4930,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets an occluder polygons cull mode. See [enum CanvasOccluderPolygonCullMode] constants.
+   * Sets an occluder polygons cull mode. See [CanvasOccluderPolygonCullMode] constants.
    */
   public fun canvasOccluderPolygonSetCullMode(occluderPolygon: RID,
       mode: CanvasOccluderPolygonCullMode): Unit {
@@ -4691,7 +4939,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the [godot.ProjectSettings.rendering/2d/shadowAtlas/size] to use for [godot.Light2D] shadow rendering (in pixels). The value is rounded up to the nearest power of 2.
+   * Sets the [ProjectSettings.rendering/2d/shadowAtlas/size] to use for [Light2D] shadow rendering
+   * (in pixels). The value is rounded up to the nearest power of 2.
    */
   public fun canvasSetShadowTextureSize(size: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong())
@@ -4700,7 +4949,6 @@ public object RenderingServer : Object() {
 
   /**
    * Creates a new global shader uniform.
-   *
    * **Note:** Global shader parameter names are case-sensitive.
    */
   public fun globalShaderParameterAdd(
@@ -4722,8 +4970,11 @@ public object RenderingServer : Object() {
 
   /**
    * Returns the list of global shader uniform names.
-   *
-   * **Note:** [globalShaderParameterGet] has a large performance penalty as the rendering thread needs to synchronize with the calling thread, which is slow. Do not use this method during gameplay to avoid stuttering. If you need to read values in a script after setting them, consider creating an autoload where you store the values you need to query at the same time you're setting them as global parameters.
+   * **Note:** [globalShaderParameterGet] has a large performance penalty as the rendering thread
+   * needs to synchronize with the calling thread, which is slow. Do not use this method during
+   * gameplay to avoid stuttering. If you need to read values in a script after setting them, consider
+   * creating an autoload where you store the values you need to query at the same time you're setting
+   * them as global parameters.
    */
   public fun globalShaderParameterGetList(): VariantArray<StringName> {
     TransferContext.writeArguments()
@@ -4740,7 +4991,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Overrides the global shader uniform [name] with [value]. Equivalent to the [godot.ShaderGlobalsOverride] node.
+   * Overrides the global shader uniform [name] with [value]. Equivalent to the
+   * [ShaderGlobalsOverride] node.
    */
   public fun globalShaderParameterSetOverride(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
@@ -4749,8 +5001,11 @@ public object RenderingServer : Object() {
 
   /**
    * Returns the value of the global shader uniform specified by [name].
-   *
-   * **Note:** [globalShaderParameterGet] has a large performance penalty as the rendering thread needs to synchronize with the calling thread, which is slow. Do not use this method during gameplay to avoid stuttering. If you need to read values in a script after setting them, consider creating an autoload where you store the values you need to query at the same time you're setting them as global parameters.
+   * **Note:** [globalShaderParameterGet] has a large performance penalty as the rendering thread
+   * needs to synchronize with the calling thread, which is slow. Do not use this method during
+   * gameplay to avoid stuttering. If you need to read values in a script after setting them, consider
+   * creating an autoload where you store the values you need to query at the same time you're setting
+   * them as global parameters.
    */
   public fun globalShaderParameterGet(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -4760,8 +5015,11 @@ public object RenderingServer : Object() {
 
   /**
    * Returns the type associated to the global shader uniform specified by [name].
-   *
-   * **Note:** [globalShaderParameterGet] has a large performance penalty as the rendering thread needs to synchronize with the calling thread, which is slow. Do not use this method during gameplay to avoid stuttering. If you need to read values in a script after setting them, consider creating an autoload where you store the values you need to query at the same time you're setting them as global parameters.
+   * **Note:** [globalShaderParameterGet] has a large performance penalty as the rendering thread
+   * needs to synchronize with the calling thread, which is slow. Do not use this method during
+   * gameplay to avoid stuttering. If you need to read values in a script after setting them, consider
+   * creating an autoload where you store the values you need to query at the same time you're setting
+   * them as global parameters.
    */
   public fun globalShaderParameterGetType(name: StringName): GlobalShaderParameterType {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -4770,7 +5028,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Tries to free an object in the RenderingServer. To avoid memory leaks, this should be called after using an object as memory management does not occur automatically when using RenderingServer directly.
+   * Tries to free an object in the RenderingServer. To avoid memory leaks, this should be called
+   * after using an object as memory management does not occur automatically when using RenderingServer
+   * directly.
    */
   public fun freeRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
@@ -4786,7 +5046,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns `true` if changes have been made to the RenderingServer's data. [forceDraw] is usually called if this happens.
+   * Returns `true` if changes have been made to the RenderingServer's data. [forceDraw] is usually
+   * called if this happens.
    */
   public fun hasChanged(): Boolean {
     TransferContext.writeArguments()
@@ -4795,19 +5056,21 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns a statistic about the rendering engine which can be used for performance profiling. See [enum RenderingServer.RenderingInfo] for a list of values that can be queried. See also [viewportGetRenderInfo], which returns information specific to a viewport.
+   * Returns a statistic about the rendering engine which can be used for performance profiling. See
+   * [RenderingServer.RenderingInfo] for a list of values that can be queried. See also
+   * [viewportGetRenderInfo], which returns information specific to a viewport.
+   * **Note:** Only 3D rendering is currently taken into account by some of these values, such as
+   * the number of draw calls.
+   * **Note:** Rendering information is not available until at least 2 frames have been rendered by
+   * the engine. If rendering information is not available, [getRenderingInfo] returns `0`. To print
+   * rendering information in `_ready()` successfully, use the following:
+   * [codeblock]
+   * func _ready():
+   *     for _i in 2:
+   *         await get_tree().process_frame
    *
-   * **Note:** Only 3D rendering is currently taken into account by some of these values, such as the number of draw calls.
-   *
-   * **Note:** Rendering information is not available until at least 2 frames have been rendered by the engine. If rendering information is not available, [getRenderingInfo] returns `0`. To print rendering information in `_ready()` successfully, use the following:
-   *
-   * ```
-   * 				func _ready():
-   * 				    for _i in 2:
-   * 				        await get_tree().process_frame
-   *
-   * 				    print(RenderingServer.get_rendering_info(RENDERING_INFO_TOTAL_DRAW_CALLS_IN_FRAME))
-   * 				```
+   *     print(RenderingServer.get_rendering_info(RENDERING_INFO_TOTAL_DRAW_CALLS_IN_FRAME))
+   * [/codeblock]
    */
   public fun getRenderingInfo(info: RenderingInfo): Long {
     TransferContext.writeArguments(LONG to info.id)
@@ -4817,10 +5080,10 @@ public object RenderingServer : Object() {
 
   /**
    * Returns the name of the video adapter (e.g. "GeForce GTX 1080/PCIe/SSE2").
-   *
    * **Note:** When running a headless or server binary, this function returns an empty string.
-   *
-   * **Note:** On the web platform, some browsers such as Firefox may report a different, fixed GPU name such as "GeForce GTX 980" (regardless of the user's actual GPU model). This is done to make fingerprinting more difficult.
+   * **Note:** On the web platform, some browsers such as Firefox may report a different, fixed GPU
+   * name such as "GeForce GTX 980" (regardless of the user's actual GPU model). This is done to make
+   * fingerprinting more difficult.
    */
   public fun getVideoAdapterName(): String {
     TransferContext.writeArguments()
@@ -4830,7 +5093,6 @@ public object RenderingServer : Object() {
 
   /**
    * Returns the vendor of the video adapter (e.g. "NVIDIA Corporation").
-   *
    * **Note:** When running a headless or server binary, this function returns an empty string.
    */
   public fun getVideoAdapterVendor(): String {
@@ -4840,9 +5102,12 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the type of the video adapter. Since dedicated graphics cards from a given generation will *usually* be significantly faster than integrated graphics made in the same generation, the device type can be used as a basis for automatic graphics settings adjustment. However, this is not always true, so make sure to provide users with a way to manually override graphics settings.
-   *
-   * **Note:** When using the OpenGL backend or when running in headless mode, this function always returns [godot.RenderingDevice.DEVICE_TYPE_OTHER].
+   * Returns the type of the video adapter. Since dedicated graphics cards from a given generation
+   * will *usually* be significantly faster than integrated graphics made in the same generation, the
+   * device type can be used as a basis for automatic graphics settings adjustment. However, this is
+   * not always true, so make sure to provide users with a way to manually override graphics settings.
+   * **Note:** When using the OpenGL backend or when running in headless mode, this function always
+   * returns [RenderingDevice.DEVICE_TYPE_OTHER].
    */
   public fun getVideoAdapterType(): RenderingDevice.DeviceType {
     TransferContext.writeArguments()
@@ -4851,8 +5116,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the version of the graphics video adapter *currently in use* (e.g. "1.2.189" for Vulkan, "3.3.0 NVIDIA 510.60.02" for OpenGL). This version may be different from the actual latest version supported by the hardware, as Godot may not always request the latest version. See also [godot.OS.getVideoAdapterDriverInfo].
-   *
+   * Returns the version of the graphics video adapter *currently in use* (e.g. "1.2.189" for
+   * Vulkan, "3.3.0 NVIDIA 510.60.02" for OpenGL). This version may be different from the actual latest
+   * version supported by the hardware, as Godot may not always request the latest version. See also
+   * [OS.getVideoAdapterDriverInfo].
    * **Note:** When running a headless or server binary, this function returns an empty string.
    */
   public fun getVideoAdapterApiVersion(): String {
@@ -4862,7 +5129,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns a mesh of a sphere with the given number of horizontal subdivisions, vertical subdivisions and radius. See also [getTestCube].
+   * Returns a mesh of a sphere with the given number of horizontal subdivisions, vertical
+   * subdivisions and radius. See also [getTestCube].
    */
   public fun makeSphereMesh(
     latitudes: Int,
@@ -4875,7 +5143,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the RID of the test cube. This mesh will be created and returned on the first call to [getTestCube], then it will be cached for subsequent calls. See also [makeSphereMesh].
+   * Returns the RID of the test cube. This mesh will be created and returned on the first call to
+   * [getTestCube], then it will be cached for subsequent calls. See also [makeSphereMesh].
    */
   public fun getTestCube(): RID {
     TransferContext.writeArguments()
@@ -4884,15 +5153,15 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the RID of a 256×256 texture with a testing pattern on it (in [godot.Image.FORMAT_RGB8] format). This texture will be created and returned on the first call to [getTestTexture], then it will be cached for subsequent calls. See also [getWhiteTexture].
-   *
-   * Example of getting the test texture and applying it to a [godot.Sprite2D] node:
-   *
-   * ```
-   * 				var texture_rid = RenderingServer.get_test_texture()
-   * 				var texture = ImageTexture.create_from_image(RenderingServer.texture_2d_get(texture_rid))
-   * 				$Sprite2D.texture = texture
-   * 				```
+   * Returns the RID of a 256×256 texture with a testing pattern on it (in [Image.FORMAT_RGB8]
+   * format). This texture will be created and returned on the first call to [getTestTexture], then it
+   * will be cached for subsequent calls. See also [getWhiteTexture].
+   * Example of getting the test texture and applying it to a [Sprite2D] node:
+   * [codeblock]
+   * var texture_rid = RenderingServer.get_test_texture()
+   * var texture = ImageTexture.create_from_image(RenderingServer.texture_2d_get(texture_rid))
+   * $Sprite2D.texture = texture
+   * [/codeblock]
    */
   public fun getTestTexture(): RID {
     TransferContext.writeArguments()
@@ -4901,15 +5170,15 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the ID of a 4×4 white texture (in [godot.Image.FORMAT_RGB8] format). This texture will be created and returned on the first call to [getWhiteTexture], then it will be cached for subsequent calls. See also [getTestTexture].
-   *
-   * Example of getting the white texture and applying it to a [godot.Sprite2D] node:
-   *
-   * ```
-   * 				var texture_rid = RenderingServer.get_white_texture()
-   * 				var texture = ImageTexture.create_from_image(RenderingServer.texture_2d_get(texture_rid))
-   * 				$Sprite2D.texture = texture
-   * 				```
+   * Returns the ID of a 4×4 white texture (in [Image.FORMAT_RGB8] format). This texture will be
+   * created and returned on the first call to [getWhiteTexture], then it will be cached for subsequent
+   * calls. See also [getTestTexture].
+   * Example of getting the white texture and applying it to a [Sprite2D] node:
+   * [codeblock]
+   * var texture_rid = RenderingServer.get_white_texture()
+   * var texture = ImageTexture.create_from_image(RenderingServer.texture_2d_get(texture_rid))
+   * $Sprite2D.texture = texture
+   * [/codeblock]
    */
   public fun getWhiteTexture(): RID {
     TransferContext.writeArguments()
@@ -4918,7 +5187,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets a boot image. The color defines the background color. If [scale] is `true`, the image will be scaled to fit the screen size. If [useFilter] is `true`, the image will be scaled with linear interpolation. If [useFilter] is `false`, the image will be scaled with nearest-neighbor interpolation.
+   * Sets a boot image. The color defines the background color. If [scale] is `true`, the image will
+   * be scaled to fit the screen size. If [useFilter] is `true`, the image will be scaled with linear
+   * interpolation. If [useFilter] is `false`, the image will be scaled with nearest-neighbor
+   * interpolation.
    */
   @JvmOverloads
   public fun setBootImage(
@@ -4932,7 +5204,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the default clear color which is used when a specific clear color has not been selected. See also [setDefaultClearColor].
+   * Returns the default clear color which is used when a specific clear color has not been
+   * selected. See also [setDefaultClearColor].
    */
   public fun getDefaultClearColor(): Color {
     TransferContext.writeArguments()
@@ -4941,7 +5214,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the default clear color which is used when a specific clear color has not been selected. See also [getDefaultClearColor].
+   * Sets the default clear color which is used when a specific clear color has not been selected.
+   * See also [getDefaultClearColor].
    */
   public fun setDefaultClearColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
@@ -4958,7 +5232,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns `true` if the OS supports a certain [feature]. Features might be `s3tc`, `etc`, and `etc2`.
+   * Returns `true` if the OS supports a certain [feature]. Features might be `s3tc`, `etc`, and
+   * `etc2`.
    */
   public fun hasOsFeature(feature: String): Boolean {
     TransferContext.writeArguments(STRING to feature)
@@ -4967,7 +5242,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * This method is currently unimplemented and does nothing if called with [generate] set to `true`.
+   * This method is currently unimplemented and does nothing if called with [generate] set to
+   * `true`.
    */
   public fun setDebugGenerateWireframes(generate: Boolean): Unit {
     TransferContext.writeArguments(BOOL to generate)
@@ -4986,7 +5262,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the time taken to setup rendering on the CPU in milliseconds. This value is shared across all viewports and does *not* require [viewportSetMeasureRenderTime] to be enabled on a viewport to be queried. See also [viewportGetMeasuredRenderTimeCpu].
+   * Returns the time taken to setup rendering on the CPU in milliseconds. This value is shared
+   * across all viewports and does *not* require [viewportSetMeasureRenderTime] to be enabled on a
+   * viewport to be queried. See also [viewportGetMeasuredRenderTimeCpu].
    */
   public fun getFrameSetupTimeCpu(): Double {
     TransferContext.writeArguments()
@@ -4995,7 +5273,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Forces a synchronization between the CPU and GPU, which may be required in certain cases. Only call this when needed, as CPU-GPU synchronization has a performance cost.
+   * Forces a synchronization between the CPU and GPU, which may be required in certain cases. Only
+   * call this when needed, as CPU-GPU synchronization has a performance cost.
    */
   public fun forceSync(): Unit {
     TransferContext.writeArguments()
@@ -5013,8 +5292,8 @@ public object RenderingServer : Object() {
 
   /**
    * Returns the global RenderingDevice.
-   *
-   * **Note:** When using the OpenGL backend or when running in headless mode, this function always returns `null`.
+   * **Note:** When using the OpenGL backend or when running in headless mode, this function always
+   * returns `null`.
    */
   public fun getRenderingDevice(): RenderingDevice? {
     TransferContext.writeArguments()
@@ -5023,9 +5302,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Creates a RenderingDevice that can be used to do draw and compute operations on a separate thread. Cannot draw to the screen nor share data with the global RenderingDevice.
-   *
-   * **Note:** When using the OpenGL backend or when running in headless mode, this function always returns `null`.
+   * Creates a RenderingDevice that can be used to do draw and compute operations on a separate
+   * thread. Cannot draw to the screen nor share data with the global RenderingDevice.
+   * **Note:** When using the OpenGL backend or when running in headless mode, this function always
+   * returns `null`.
    */
   public fun createLocalRenderingDevice(): RenderingDevice? {
     TransferContext.writeArguments()
@@ -5034,7 +5314,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * As the RenderingServer actual logic may run on an separate thread, accessing its internals from the main (or any other) thread will result in errors. To make it easier to run code that can safely access the rendering internals (such as [godot.RenderingDevice] and similar RD classes), push a callable via this function so it will be executed on the render thread.
+   * As the RenderingServer actual logic may run on an separate thread, accessing its internals from
+   * the main (or any other) thread will result in errors. To make it easier to run code that can
+   * safely access the rendering internals (such as [RenderingDevice] and similar RD classes), push a
+   * callable via this function so it will be executed on the render thread.
    */
   public fun callOnRenderThread(callable: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to callable)
@@ -5045,15 +5328,15 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Array of 2-dimensional textures (see [godot.Texture2DArray]).
+     * Array of 2-dimensional textures (see [Texture2DArray]).
      */
     TEXTURE_LAYERED_2D_ARRAY(0),
     /**
-     * Cubemap texture (see [godot.Cubemap]).
+     * Cubemap texture (see [Cubemap]).
      */
     TEXTURE_LAYERED_CUBEMAP(1),
     /**
-     * Array of cubemap textures (see [godot.CubemapArray]).
+     * Array of cubemap textures (see [CubemapArray]).
      */
     TEXTURE_LAYERED_CUBEMAP_ARRAY(2),
     ;
@@ -5072,27 +5355,27 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Left face of a [godot.Cubemap].
+     * Left face of a [Cubemap].
      */
     CUBEMAP_LAYER_LEFT(0),
     /**
-     * Right face of a [godot.Cubemap].
+     * Right face of a [Cubemap].
      */
     CUBEMAP_LAYER_RIGHT(1),
     /**
-     * Bottom face of a [godot.Cubemap].
+     * Bottom face of a [Cubemap].
      */
     CUBEMAP_LAYER_BOTTOM(2),
     /**
-     * Top face of a [godot.Cubemap].
+     * Top face of a [Cubemap].
      */
     CUBEMAP_LAYER_TOP(3),
     /**
-     * Front face of a [godot.Cubemap].
+     * Front face of a [Cubemap].
      */
     CUBEMAP_LAYER_FRONT(4),
     /**
-     * Back face of a [godot.Cubemap].
+     * Back face of a [Cubemap].
      */
     CUBEMAP_LAYER_BACK(5),
     ;
@@ -5131,7 +5414,7 @@ public object RenderingServer : Object() {
      */
     SHADER_FOG(4),
     /**
-     * Represents the size of the [enum ShaderMode] enum.
+     * Represents the size of the [ShaderMode] enum.
      */
     SHADER_MAX(5),
     ;
@@ -5202,7 +5485,7 @@ public object RenderingServer : Object() {
      */
     ARRAY_INDEX(12),
     /**
-     * Represents the size of the [enum ArrayType] enum.
+     * Represents the size of the [ArrayType] enum.
      */
     ARRAY_MAX(13),
     ;
@@ -5221,39 +5504,47 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Custom data array contains 8-bit-per-channel red/green/blue/alpha color data. Values are normalized, unsigned floating-point in the `[0.0, 1.0]` range.
+     * Custom data array contains 8-bit-per-channel red/green/blue/alpha color data. Values are
+     * normalized, unsigned floating-point in the `[0.0, 1.0]` range.
      */
     ARRAY_CUSTOM_RGBA8_UNORM(0),
     /**
-     * Custom data array contains 8-bit-per-channel red/green/blue/alpha color data. Values are normalized, signed floating-point in the `[-1.0, 1.0]` range.
+     * Custom data array contains 8-bit-per-channel red/green/blue/alpha color data. Values are
+     * normalized, signed floating-point in the `[-1.0, 1.0]` range.
      */
     ARRAY_CUSTOM_RGBA8_SNORM(1),
     /**
-     * Custom data array contains 16-bit-per-channel red/green color data. Values are floating-point in half precision.
+     * Custom data array contains 16-bit-per-channel red/green color data. Values are floating-point
+     * in half precision.
      */
     ARRAY_CUSTOM_RG_HALF(2),
     /**
-     * Custom data array contains 16-bit-per-channel red/green/blue/alpha color data. Values are floating-point in half precision.
+     * Custom data array contains 16-bit-per-channel red/green/blue/alpha color data. Values are
+     * floating-point in half precision.
      */
     ARRAY_CUSTOM_RGBA_HALF(3),
     /**
-     * Custom data array contains 32-bit-per-channel red color data. Values are floating-point in single precision.
+     * Custom data array contains 32-bit-per-channel red color data. Values are floating-point in
+     * single precision.
      */
     ARRAY_CUSTOM_R_FLOAT(4),
     /**
-     * Custom data array contains 32-bit-per-channel red/green color data. Values are floating-point in single precision.
+     * Custom data array contains 32-bit-per-channel red/green color data. Values are floating-point
+     * in single precision.
      */
     ARRAY_CUSTOM_RG_FLOAT(5),
     /**
-     * Custom data array contains 32-bit-per-channel red/green/blue color data. Values are floating-point in single precision.
+     * Custom data array contains 32-bit-per-channel red/green/blue color data. Values are
+     * floating-point in single precision.
      */
     ARRAY_CUSTOM_RGB_FLOAT(6),
     /**
-     * Custom data array contains 32-bit-per-channel red/green/blue/alpha color data. Values are floating-point in single precision.
+     * Custom data array contains 32-bit-per-channel red/green/blue/alpha color data. Values are
+     * floating-point in single precision.
      */
     ARRAY_CUSTOM_RGBA_FLOAT(7),
     /**
-     * Represents the size of the [enum ArrayCustomFormat] enum.
+     * Represents the size of the [ArrayCustomFormat] enum.
      */
     ARRAY_CUSTOM_MAX(8),
     ;
@@ -5414,11 +5705,12 @@ public object RenderingServer : Object() {
      */
     PRIMITIVE_TRIANGLES(3),
     /**
-     * Primitive to draw consists of a triangle strip (the last 3 vertices are always combined to make a triangle).
+     * Primitive to draw consists of a triangle strip (the last 3 vertices are always combined to
+     * make a triangle).
      */
     PRIMITIVE_TRIANGLE_STRIP(4),
     /**
-     * Represents the size of the [enum PrimitiveType] enum.
+     * Represents the size of the [PrimitiveType] enum.
      */
     PRIMITIVE_MAX(5),
     ;
@@ -5460,11 +5752,11 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Use [godot.core.Transform2D] to store MultiMesh transform.
+     * Use [Transform2D] to store MultiMesh transform.
      */
     MULTIMESH_TRANSFORM_2D(0),
     /**
-     * Use [godot.Transform3D] to store MultiMesh transform.
+     * Use [Transform3D] to store MultiMesh transform.
      */
     MULTIMESH_TRANSFORM_3D(1),
     ;
@@ -5483,27 +5775,43 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Nearest-neighbor filter for light projectors (use for pixel art light projectors). No mipmaps are used for rendering, which means light projectors at a distance will look sharp but grainy. This has roughly the same performance cost as using mipmaps.
+     * Nearest-neighbor filter for light projectors (use for pixel art light projectors). No mipmaps
+     * are used for rendering, which means light projectors at a distance will look sharp but grainy.
+     * This has roughly the same performance cost as using mipmaps.
      */
     LIGHT_PROJECTOR_FILTER_NEAREST(0),
     /**
-     * Linear filter for light projectors (use for non-pixel art light projectors). No mipmaps are used for rendering, which means light projectors at a distance will look smooth but blurry. This has roughly the same performance cost as using mipmaps.
+     * Linear filter for light projectors (use for non-pixel art light projectors). No mipmaps are
+     * used for rendering, which means light projectors at a distance will look smooth but blurry. This
+     * has roughly the same performance cost as using mipmaps.
      */
     LIGHT_PROJECTOR_FILTER_LINEAR(1),
     /**
-     * Nearest-neighbor filter for light projectors (use for pixel art light projectors). Isotropic mipmaps are used for rendering, which means light projectors at a distance will look smooth but blurry. This has roughly the same performance cost as not using mipmaps.
+     * Nearest-neighbor filter for light projectors (use for pixel art light projectors). Isotropic
+     * mipmaps are used for rendering, which means light projectors at a distance will look smooth but
+     * blurry. This has roughly the same performance cost as not using mipmaps.
      */
     LIGHT_PROJECTOR_FILTER_NEAREST_MIPMAPS(2),
     /**
-     * Linear filter for light projectors (use for non-pixel art light projectors). Isotropic mipmaps are used for rendering, which means light projectors at a distance will look smooth but blurry. This has roughly the same performance cost as not using mipmaps.
+     * Linear filter for light projectors (use for non-pixel art light projectors). Isotropic
+     * mipmaps are used for rendering, which means light projectors at a distance will look smooth but
+     * blurry. This has roughly the same performance cost as not using mipmaps.
      */
     LIGHT_PROJECTOR_FILTER_LINEAR_MIPMAPS(3),
     /**
-     * Nearest-neighbor filter for light projectors (use for pixel art light projectors). Anisotropic mipmaps are used for rendering, which means light projectors at a distance will look smooth and sharp when viewed from oblique angles. This looks better compared to isotropic mipmaps, but is slower. The level of anisotropic filtering is defined by [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     * Nearest-neighbor filter for light projectors (use for pixel art light projectors).
+     * Anisotropic mipmaps are used for rendering, which means light projectors at a distance will look
+     * smooth and sharp when viewed from oblique angles. This looks better compared to isotropic
+     * mipmaps, but is slower. The level of anisotropic filtering is defined by
+     * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
      */
     LIGHT_PROJECTOR_FILTER_NEAREST_MIPMAPS_ANISOTROPIC(4),
     /**
-     * Linear filter for light projectors (use for non-pixel art light projectors). Anisotropic mipmaps are used for rendering, which means light projectors at a distance will look smooth and sharp when viewed from oblique angles. This looks better compared to isotropic mipmaps, but is slower. The level of anisotropic filtering is defined by [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     * Linear filter for light projectors (use for non-pixel art light projectors). Anisotropic
+     * mipmaps are used for rendering, which means light projectors at a distance will look smooth and
+     * sharp when viewed from oblique angles. This looks better compared to isotropic mipmaps, but is
+     * slower. The level of anisotropic filtering is defined by
+     * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
      */
     LIGHT_PROJECTOR_FILTER_LINEAR_MIPMAPS_ANISOTROPIC(5),
     ;
@@ -5522,15 +5830,15 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Directional (sun/moon) light (see [godot.DirectionalLight3D]).
+     * Directional (sun/moon) light (see [DirectionalLight3D]).
      */
     LIGHT_DIRECTIONAL(0),
     /**
-     * Omni light (see [godot.OmniLight3D]).
+     * Omni light (see [OmniLight3D]).
      */
     LIGHT_OMNI(1),
     /**
-     * Spot light (see [godot.SpotLight3D]).
+     * Spot light (see [SpotLight3D]).
      */
     LIGHT_SPOT(2),
     ;
@@ -5553,11 +5861,13 @@ public object RenderingServer : Object() {
      */
     LIGHT_PARAM_ENERGY(0),
     /**
-     * The light's indirect energy multiplier (final indirect energy is [LIGHT_PARAM_ENERGY] * [LIGHT_PARAM_INDIRECT_ENERGY]).
+     * The light's indirect energy multiplier (final indirect energy is [LIGHT_PARAM_ENERGY] *
+     * [LIGHT_PARAM_INDIRECT_ENERGY]).
      */
     LIGHT_PARAM_INDIRECT_ENERGY(1),
     /**
-     * The light's volumetric fog energy multiplier (final volumetric fog energy is [LIGHT_PARAM_ENERGY] * [LIGHT_PARAM_VOLUMETRIC_FOG_ENERGY]).
+     * The light's volumetric fog energy multiplier (final volumetric fog energy is
+     * [LIGHT_PARAM_ENERGY] * [LIGHT_PARAM_VOLUMETRIC_FOG_ENERGY]).
      */
     LIGHT_PARAM_VOLUMETRIC_FOG_ENERGY(2),
     /**
@@ -5569,7 +5879,8 @@ public object RenderingServer : Object() {
      */
     LIGHT_PARAM_RANGE(4),
     /**
-     * The size of the light when using spot light or omni light. The angular size of the light when using directional light.
+     * The size of the light when using spot light or omni light. The angular size of the light when
+     * using directional light.
      */
     LIGHT_PARAM_SIZE(5),
     /**
@@ -5585,7 +5896,9 @@ public object RenderingServer : Object() {
      */
     LIGHT_PARAM_SPOT_ATTENUATION(8),
     /**
-     * The maximum distance for shadow splits. Increasing this value will make directional shadows visible from further away, at the cost of lower overall shadow detail and performance (since more objects need to be included in the directional shadow rendering).
+     * The maximum distance for shadow splits. Increasing this value will make directional shadows
+     * visible from further away, at the cost of lower overall shadow detail and performance (since
+     * more objects need to be included in the directional shadow rendering).
      */
     LIGHT_PARAM_SHADOW_MAX_DISTANCE(9),
     /**
@@ -5605,7 +5918,8 @@ public object RenderingServer : Object() {
      */
     LIGHT_PARAM_SHADOW_FADE_START(13),
     /**
-     * Normal bias used to offset shadow lookup by object normal. Can be used to fix self-shadowing artifacts.
+     * Normal bias used to offset shadow lookup by object normal. Can be used to fix self-shadowing
+     * artifacts.
      */
     LIGHT_PARAM_SHADOW_NORMAL_BIAS(14),
     /**
@@ -5613,27 +5927,33 @@ public object RenderingServer : Object() {
      */
     LIGHT_PARAM_SHADOW_BIAS(15),
     /**
-     * Sets the size of the directional shadow pancake. The pancake offsets the start of the shadow's camera frustum to provide a higher effective depth resolution for the shadow. However, a high pancake size can cause artifacts in the shadows of large objects that are close to the edge of the frustum. Reducing the pancake size can help. Setting the size to `0` turns off the pancaking effect.
+     * Sets the size of the directional shadow pancake. The pancake offsets the start of the
+     * shadow's camera frustum to provide a higher effective depth resolution for the shadow. However,
+     * a high pancake size can cause artifacts in the shadows of large objects that are close to the
+     * edge of the frustum. Reducing the pancake size can help. Setting the size to `0` turns off the
+     * pancaking effect.
      */
     LIGHT_PARAM_SHADOW_PANCAKE_SIZE(16),
     /**
-     * The light's shadow opacity. Values lower than `1.0` make the light appear through shadows. This can be used to fake global illumination at a low performance cost.
+     * The light's shadow opacity. Values lower than `1.0` make the light appear through shadows.
+     * This can be used to fake global illumination at a low performance cost.
      */
     LIGHT_PARAM_SHADOW_OPACITY(17),
     /**
-     * Blurs the edges of the shadow. Can be used to hide pixel artifacts in low resolution shadow maps. A high value can make shadows appear grainy and can cause other unwanted artifacts. Try to keep as near default as possible.
+     * Blurs the edges of the shadow. Can be used to hide pixel artifacts in low resolution shadow
+     * maps. A high value can make shadows appear grainy and can cause other unwanted artifacts. Try to
+     * keep as near default as possible.
      */
     LIGHT_PARAM_SHADOW_BLUR(18),
-    /**
-     *
-     */
     LIGHT_PARAM_TRANSMITTANCE_BIAS(19),
     /**
-     * Constant representing the intensity of the light, measured in Lumens when dealing with a [godot.SpotLight3D] or [godot.OmniLight3D], or measured in Lux with a [godot.DirectionalLight3D]. Only used when [godot.ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is `true`.
+     * Constant representing the intensity of the light, measured in Lumens when dealing with a
+     * [SpotLight3D] or [OmniLight3D], or measured in Lux with a [DirectionalLight3D]. Only used when
+     * [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is `true`.
      */
     LIGHT_PARAM_INTENSITY(20),
     /**
-     * Represents the size of the [enum LightParam] enum.
+     * Represents the size of the [LightParam] enum.
      */
     LIGHT_PARAM_MAX(21),
     ;
@@ -5652,15 +5972,25 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Light is ignored when baking. This is the fastest mode, but the light will be taken into account when baking global illumination. This mode should generally be used for dynamic lights that change quickly, as the effect of global illumination is less noticeable on those lights.
+     * Light is ignored when baking. This is the fastest mode, but the light will be taken into
+     * account when baking global illumination. This mode should generally be used for dynamic lights
+     * that change quickly, as the effect of global illumination is less noticeable on those lights.
      */
     LIGHT_BAKE_DISABLED(0),
     /**
-     * Light is taken into account in static baking ([godot.VoxelGI], [godot.LightmapGI], SDFGI ([godot.Environment.sdfgiEnabled])). The light can be moved around or modified, but its global illumination will not update in real-time. This is suitable for subtle changes (such as flickering torches), but generally not large changes such as toggling a light on and off.
+     * Light is taken into account in static baking ([VoxelGI], [LightmapGI], SDFGI
+     * ([Environment.sdfgiEnabled])). The light can be moved around or modified, but its global
+     * illumination will not update in real-time. This is suitable for subtle changes (such as
+     * flickering torches), but generally not large changes such as toggling a light on and off.
      */
     LIGHT_BAKE_STATIC(1),
     /**
-     * Light is taken into account in dynamic baking ([godot.VoxelGI] and SDFGI ([godot.Environment.sdfgiEnabled]) only). The light can be moved around or modified with global illumination updating in real-time. The light's global illumination appearance will be slightly different compared to [LIGHT_BAKE_STATIC]. This has a greater performance cost compared to [LIGHT_BAKE_STATIC]. When using SDFGI, the update speed of dynamic lights is affected by [godot.ProjectSettings.rendering/globalIllumination/sdfgi/framesToUpdateLights].
+     * Light is taken into account in dynamic baking ([VoxelGI] and SDFGI
+     * ([Environment.sdfgiEnabled]) only). The light can be moved around or modified with global
+     * illumination updating in real-time. The light's global illumination appearance will be slightly
+     * different compared to [LIGHT_BAKE_STATIC]. This has a greater performance cost compared to
+     * [LIGHT_BAKE_STATIC]. When using SDFGI, the update speed of dynamic lights is affected by
+     * [ProjectSettings.rendering/globalIllumination/sdfgi/framesToUpdateLights].
      */
     LIGHT_BAKE_DYNAMIC(2),
     ;
@@ -5756,13 +6086,20 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Lowest shadow filtering quality (fastest). Soft shadows are not available with this quality setting, which means the [godot.Light3D.shadowBlur] property is ignored if [godot.Light3D.lightSize] and [godot.Light3D.lightAngularDistance] is `0.0`.
-     *
-     * **Note:** The variable shadow blur performed by [godot.Light3D.lightSize] and [godot.Light3D.lightAngularDistance] is still effective when using hard shadow filtering. In this case, [godot.Light3D.shadowBlur] *is* taken into account. However, the results will not be blurred, instead the blur amount is treated as a maximum radius for the penumbra.
+     * Lowest shadow filtering quality (fastest). Soft shadows are not available with this quality
+     * setting, which means the [Light3D.shadowBlur] property is ignored if [Light3D.lightSize] and
+     * [Light3D.lightAngularDistance] is `0.0`.
+     * **Note:** The variable shadow blur performed by [Light3D.lightSize] and
+     * [Light3D.lightAngularDistance] is still effective when using hard shadow filtering. In this
+     * case, [Light3D.shadowBlur] *is* taken into account. However, the results will not be blurred,
+     * instead the blur amount is treated as a maximum radius for the penumbra.
      */
     SHADOW_QUALITY_HARD(0),
     /**
-     * Very low shadow filtering quality (faster). When using this quality setting, [godot.Light3D.shadowBlur] is automatically multiplied by 0.75× to avoid introducing too much noise. This division only applies to lights whose [godot.Light3D.lightSize] or [godot.Light3D.lightAngularDistance] is `0.0`).
+     * Very low shadow filtering quality (faster). When using this quality setting,
+     * [Light3D.shadowBlur] is automatically multiplied by 0.75× to avoid introducing too much noise.
+     * This division only applies to lights whose [Light3D.lightSize] or [Light3D.lightAngularDistance]
+     * is `0.0`).
      */
     SHADOW_QUALITY_SOFT_VERY_LOW(1),
     /**
@@ -5774,15 +6111,23 @@ public object RenderingServer : Object() {
      */
     SHADOW_QUALITY_SOFT_MEDIUM(3),
     /**
-     * High low shadow filtering quality (slow). When using this quality setting, [godot.Light3D.shadowBlur] is automatically multiplied by 1.5× to better make use of the high sample count. This increased blur also improves the stability of dynamic object shadows. This multiplier only applies to lights whose [godot.Light3D.lightSize] or [godot.Light3D.lightAngularDistance] is `0.0`).
+     * High low shadow filtering quality (slow). When using this quality setting,
+     * [Light3D.shadowBlur] is automatically multiplied by 1.5× to better make use of the high sample
+     * count. This increased blur also improves the stability of dynamic object shadows. This
+     * multiplier only applies to lights whose [Light3D.lightSize] or [Light3D.lightAngularDistance] is
+     * `0.0`).
      */
     SHADOW_QUALITY_SOFT_HIGH(4),
     /**
-     * Highest low shadow filtering quality (slowest). When using this quality setting, [godot.Light3D.shadowBlur] is automatically multiplied by 2× to better make use of the high sample count. This increased blur also improves the stability of dynamic object shadows. This multiplier only applies to lights whose [godot.Light3D.lightSize] or [godot.Light3D.lightAngularDistance] is `0.0`).
+     * Highest low shadow filtering quality (slowest). When using this quality setting,
+     * [Light3D.shadowBlur] is automatically multiplied by 2× to better make use of the high sample
+     * count. This increased blur also improves the stability of dynamic object shadows. This
+     * multiplier only applies to lights whose [Light3D.lightSize] or [Light3D.lightAngularDistance] is
+     * `0.0`).
      */
     SHADOW_QUALITY_SOFT_ULTRA(5),
     /**
-     * Represents the size of the [enum ShadowQuality] enum.
+     * Represents the size of the [ShadowQuality] enum.
      */
     SHADOW_QUALITY_MAX(6),
     ;
@@ -5828,11 +6173,13 @@ public object RenderingServer : Object() {
      */
     REFLECTION_PROBE_AMBIENT_DISABLED(0),
     /**
-     * Apply automatically-sourced environment lighting inside the reflection probe's box defined by its size.
+     * Apply automatically-sourced environment lighting inside the reflection probe's box defined by
+     * its size.
      */
     REFLECTION_PROBE_AMBIENT_ENVIRONMENT(1),
     /**
-     * Apply custom ambient lighting inside the reflection probe's box defined by its size. See [reflectionProbeSetAmbientColor] and [reflectionProbeSetAmbientEnergy].
+     * Apply custom ambient lighting inside the reflection probe's box defined by its size. See
+     * [reflectionProbeSetAmbientColor] and [reflectionProbeSetAmbientEnergy].
      */
     REFLECTION_PROBE_AMBIENT_COLOR(2),
     ;
@@ -5851,23 +6198,23 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Albedo texture slot in a decal ([godot.Decal.textureAlbedo]).
+     * Albedo texture slot in a decal ([Decal.textureAlbedo]).
      */
     DECAL_TEXTURE_ALBEDO(0),
     /**
-     * Normal map texture slot in a decal ([godot.Decal.textureNormal]).
+     * Normal map texture slot in a decal ([Decal.textureNormal]).
      */
     DECAL_TEXTURE_NORMAL(1),
     /**
-     * Occlusion/Roughness/Metallic texture slot in a decal ([godot.Decal.textureOrm]).
+     * Occlusion/Roughness/Metallic texture slot in a decal ([Decal.textureOrm]).
      */
     DECAL_TEXTURE_ORM(2),
     /**
-     * Emission texture slot in a decal ([godot.Decal.textureEmission]).
+     * Emission texture slot in a decal ([Decal.textureEmission]).
      */
     DECAL_TEXTURE_EMISSION(3),
     /**
-     * Represents the size of the [enum DecalTexture] enum.
+     * Represents the size of the [DecalTexture] enum.
      */
     DECAL_TEXTURE_MAX(4),
     ;
@@ -5886,27 +6233,43 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Nearest-neighbor filter for decals (use for pixel art decals). No mipmaps are used for rendering, which means decals at a distance will look sharp but grainy. This has roughly the same performance cost as using mipmaps.
+     * Nearest-neighbor filter for decals (use for pixel art decals). No mipmaps are used for
+     * rendering, which means decals at a distance will look sharp but grainy. This has roughly the
+     * same performance cost as using mipmaps.
      */
     DECAL_FILTER_NEAREST(0),
     /**
-     * Linear filter for decals (use for non-pixel art decals). No mipmaps are used for rendering, which means decals at a distance will look smooth but blurry. This has roughly the same performance cost as using mipmaps.
+     * Linear filter for decals (use for non-pixel art decals). No mipmaps are used for rendering,
+     * which means decals at a distance will look smooth but blurry. This has roughly the same
+     * performance cost as using mipmaps.
      */
     DECAL_FILTER_LINEAR(1),
     /**
-     * Nearest-neighbor filter for decals (use for pixel art decals). Isotropic mipmaps are used for rendering, which means decals at a distance will look smooth but blurry. This has roughly the same performance cost as not using mipmaps.
+     * Nearest-neighbor filter for decals (use for pixel art decals). Isotropic mipmaps are used for
+     * rendering, which means decals at a distance will look smooth but blurry. This has roughly the
+     * same performance cost as not using mipmaps.
      */
     DECAL_FILTER_NEAREST_MIPMAPS(2),
     /**
-     * Linear filter for decals (use for non-pixel art decals). Isotropic mipmaps are used for rendering, which means decals at a distance will look smooth but blurry. This has roughly the same performance cost as not using mipmaps.
+     * Linear filter for decals (use for non-pixel art decals). Isotropic mipmaps are used for
+     * rendering, which means decals at a distance will look smooth but blurry. This has roughly the
+     * same performance cost as not using mipmaps.
      */
     DECAL_FILTER_LINEAR_MIPMAPS(3),
     /**
-     * Nearest-neighbor filter for decals (use for pixel art decals). Anisotropic mipmaps are used for rendering, which means decals at a distance will look smooth and sharp when viewed from oblique angles. This looks better compared to isotropic mipmaps, but is slower. The level of anisotropic filtering is defined by [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     * Nearest-neighbor filter for decals (use for pixel art decals). Anisotropic mipmaps are used
+     * for rendering, which means decals at a distance will look smooth and sharp when viewed from
+     * oblique angles. This looks better compared to isotropic mipmaps, but is slower. The level of
+     * anisotropic filtering is defined by
+     * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
      */
     DECAL_FILTER_NEAREST_MIPMAPS_ANISOTROPIC(4),
     /**
-     * Linear filter for decals (use for non-pixel art decals). Anisotropic mipmaps are used for rendering, which means decals at a distance will look smooth and sharp when viewed from oblique angles. This looks better compared to isotropic mipmaps, but is slower. The level of anisotropic filtering is defined by [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     * Linear filter for decals (use for non-pixel art decals). Anisotropic mipmaps are used for
+     * rendering, which means decals at a distance will look smooth and sharp when viewed from oblique
+     * angles. This looks better compared to isotropic mipmaps, but is slower. The level of anisotropic
+     * filtering is defined by
+     * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
      */
     DECAL_FILTER_LINEAR_MIPMAPS_ANISOTROPIC(5),
     ;
@@ -5925,11 +6288,11 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Low [godot.VoxelGI] rendering quality using 4 cones.
+     * Low [VoxelGI] rendering quality using 4 cones.
      */
     VOXEL_GI_QUALITY_LOW(0),
     /**
-     * High [godot.VoxelGI] rendering quality using 6 cones.
+     * High [VoxelGI] rendering quality using 6 cones.
      */
     VOXEL_GI_QUALITY_HIGH(1),
     ;
@@ -5970,21 +6333,9 @@ public object RenderingServer : Object() {
   public enum class ParticlesTransformAlign(
     id: Long,
   ) {
-    /**
-     *
-     */
     PARTICLES_TRANSFORM_ALIGN_DISABLED(0),
-    /**
-     *
-     */
     PARTICLES_TRANSFORM_ALIGN_Z_BILLBOARD(1),
-    /**
-     *
-     */
     PARTICLES_TRANSFORM_ALIGN_Y_TO_VELOCITY(2),
-    /**
-     *
-     */
     PARTICLES_TRANSFORM_ALIGN_Z_BILLBOARD_Y_TO_VELOCITY(3),
     ;
 
@@ -6006,11 +6357,13 @@ public object RenderingServer : Object() {
      */
     PARTICLES_DRAW_ORDER_INDEX(0),
     /**
-     * Sort particles based on their lifetime. In other words, the particle with the highest lifetime is drawn at the front.
+     * Sort particles based on their lifetime. In other words, the particle with the highest
+     * lifetime is drawn at the front.
      */
     PARTICLES_DRAW_ORDER_LIFETIME(1),
     /**
-     * Sort particles based on the inverse of their lifetime. In other words, the particle with the lowest lifetime is drawn at the front.
+     * Sort particles based on the inverse of their lifetime. In other words, the particle with the
+     * lowest lifetime is drawn at the front.
      */
     PARTICLES_DRAW_ORDER_REVERSE_LIFETIME(2),
     /**
@@ -6032,33 +6385,12 @@ public object RenderingServer : Object() {
   public enum class ParticlesCollisionType(
     id: Long,
   ) {
-    /**
-     *
-     */
     PARTICLES_COLLISION_TYPE_SPHERE_ATTRACT(0),
-    /**
-     *
-     */
     PARTICLES_COLLISION_TYPE_BOX_ATTRACT(1),
-    /**
-     *
-     */
     PARTICLES_COLLISION_TYPE_VECTOR_FIELD_ATTRACT(2),
-    /**
-     *
-     */
     PARTICLES_COLLISION_TYPE_SPHERE_COLLIDE(3),
-    /**
-     *
-     */
     PARTICLES_COLLISION_TYPE_BOX_COLLIDE(4),
-    /**
-     *
-     */
     PARTICLES_COLLISION_TYPE_SDF_COLLIDE(5),
-    /**
-     *
-     */
     PARTICLES_COLLISION_TYPE_HEIGHTFIELD_COLLIDE(6),
     ;
 
@@ -6075,32 +6407,14 @@ public object RenderingServer : Object() {
   public enum class ParticlesCollisionHeightfieldResolution(
     id: Long,
   ) {
-    /**
-     *
-     */
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_256(0),
-    /**
-     *
-     */
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_512(1),
-    /**
-     *
-     */
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_1024(2),
-    /**
-     *
-     */
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_2048(3),
-    /**
-     *
-     */
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_4096(4),
-    /**
-     *
-     */
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_8192(5),
     /**
-     * Represents the size of the [enum ParticlesCollisionHeightfieldResolution] enum.
+     * Represents the size of the [ParticlesCollisionHeightfieldResolution] enum.
      */
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_MAX(6),
     ;
@@ -6119,27 +6433,32 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * [godot.FogVolume] will be shaped like an ellipsoid (stretched sphere).
+     * [FogVolume] will be shaped like an ellipsoid (stretched sphere).
      */
     FOG_VOLUME_SHAPE_ELLIPSOID(0),
     /**
-     * [godot.FogVolume] will be shaped like a cone pointing upwards (in local coordinates). The cone's angle is set automatically to fill the size. The cone will be adjusted to fit within the size. Rotate the [godot.FogVolume] node to reorient the cone. Non-uniform scaling via size is not supported (scale the [godot.FogVolume] node instead).
+     * [FogVolume] will be shaped like a cone pointing upwards (in local coordinates). The cone's
+     * angle is set automatically to fill the size. The cone will be adjusted to fit within the size.
+     * Rotate the [FogVolume] node to reorient the cone. Non-uniform scaling via size is not supported
+     * (scale the [FogVolume] node instead).
      */
     FOG_VOLUME_SHAPE_CONE(1),
     /**
-     * [godot.FogVolume] will be shaped like an upright cylinder (in local coordinates). Rotate the [godot.FogVolume] node to reorient the cylinder. The cylinder will be adjusted to fit within the size. Non-uniform scaling via size is not supported (scale the [godot.FogVolume] node instead).
+     * [FogVolume] will be shaped like an upright cylinder (in local coordinates). Rotate the
+     * [FogVolume] node to reorient the cylinder. The cylinder will be adjusted to fit within the size.
+     * Non-uniform scaling via size is not supported (scale the [FogVolume] node instead).
      */
     FOG_VOLUME_SHAPE_CYLINDER(2),
     /**
-     * [godot.FogVolume] will be shaped like a box.
+     * [FogVolume] will be shaped like a box.
      */
     FOG_VOLUME_SHAPE_BOX(3),
     /**
-     * [godot.FogVolume] will have no shape, will cover the whole world and will not be culled.
+     * [FogVolume] will have no shape, will cover the whole world and will not be culled.
      */
     FOG_VOLUME_SHAPE_WORLD(4),
     /**
-     * Represents the size of the [enum FogVolumeShape] enum.
+     * Represents the size of the [FogVolumeShape] enum.
      */
     FOG_VOLUME_SHAPE_MAX(5),
     ;
@@ -6158,19 +6477,28 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Use bilinear scaling for the viewport's 3D buffer. The amount of scaling can be set using [godot.Viewport.scaling3dScale]. Values less than `1.0` will result in undersampling while values greater than `1.0` will result in supersampling. A value of `1.0` disables scaling.
+     * Use bilinear scaling for the viewport's 3D buffer. The amount of scaling can be set using
+     * [Viewport.scaling3dScale]. Values less than `1.0` will result in undersampling while values
+     * greater than `1.0` will result in supersampling. A value of `1.0` disables scaling.
      */
     VIEWPORT_SCALING_3D_MODE_BILINEAR(0),
     /**
-     * Use AMD FidelityFX Super Resolution 1.0 upscaling for the viewport's 3D buffer. The amount of scaling can be set using [godot.Viewport.scaling3dScale]. Values less than `1.0` will be result in the viewport being upscaled using FSR. Values greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of `1.0` disables scaling.
+     * Use AMD FidelityFX Super Resolution 1.0 upscaling for the viewport's 3D buffer. The amount of
+     * scaling can be set using [Viewport.scaling3dScale]. Values less than `1.0` will be result in the
+     * viewport being upscaled using FSR. Values greater than `1.0` are not supported and bilinear
+     * downsampling will be used instead. A value of `1.0` disables scaling.
      */
     VIEWPORT_SCALING_3D_MODE_FSR(1),
     /**
-     * Use AMD FidelityFX Super Resolution 2.2 upscaling for the viewport's 3D buffer. The amount of scaling can be set using [godot.Viewport.scaling3dScale]. Values less than `1.0` will be result in the viewport being upscaled using FSR2. Values greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of `1.0` will use FSR2 at native resolution as a TAA solution.
+     * Use AMD FidelityFX Super Resolution 2.2 upscaling for the viewport's 3D buffer. The amount of
+     * scaling can be set using [Viewport.scaling3dScale]. Values less than `1.0` will be result in the
+     * viewport being upscaled using FSR2. Values greater than `1.0` are not supported and bilinear
+     * downsampling will be used instead. A value of `1.0` will use FSR2 at native resolution as a TAA
+     * solution.
      */
     VIEWPORT_SCALING_3D_MODE_FSR2(2),
     /**
-     * Represents the size of the [enum ViewportScaling3DMode] enum.
+     * Represents the size of the [ViewportScaling3DMode] enum.
      */
     VIEWPORT_SCALING_3D_MODE_MAX(3),
     ;
@@ -6259,11 +6587,13 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_ENVIRONMENT_ENABLED(1),
     /**
-     * Inherit enable/disable value from parent. If the topmost parent is also set to [VIEWPORT_ENVIRONMENT_INHERIT], then this has the same behavior as [VIEWPORT_ENVIRONMENT_ENABLED].
+     * Inherit enable/disable value from parent. If the topmost parent is also set to
+     * [VIEWPORT_ENVIRONMENT_INHERIT], then this has the same behavior as
+     * [VIEWPORT_ENVIRONMENT_ENABLED].
      */
     VIEWPORT_ENVIRONMENT_INHERIT(2),
     /**
-     * Represents the size of the [enum ViewportEnvironmentMode] enum.
+     * Represents the size of the [ViewportEnvironmentMode] enum.
      */
     VIEWPORT_ENVIRONMENT_MAX(3),
     ;
@@ -6282,23 +6612,28 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Do not oversize the 2D signed distance field. Occluders may disappear when touching the viewport's edges, and [godot.GPUParticles3D] collision may stop working earlier than intended. This has the lowest GPU requirements.
+     * Do not oversize the 2D signed distance field. Occluders may disappear when touching the
+     * viewport's edges, and [GPUParticles3D] collision may stop working earlier than intended. This
+     * has the lowest GPU requirements.
      */
     VIEWPORT_SDF_OVERSIZE_100_PERCENT(0),
     /**
-     * 2D signed distance field covers 20% of the viewport's size outside the viewport on each side (top, right, bottom, left).
+     * 2D signed distance field covers 20&#37; of the viewport's size outside the viewport on each
+     * side (top, right, bottom, left).
      */
     VIEWPORT_SDF_OVERSIZE_120_PERCENT(1),
     /**
-     * 2D signed distance field covers 50% of the viewport's size outside the viewport on each side (top, right, bottom, left).
+     * 2D signed distance field covers 50&#37; of the viewport's size outside the viewport on each
+     * side (top, right, bottom, left).
      */
     VIEWPORT_SDF_OVERSIZE_150_PERCENT(2),
     /**
-     * 2D signed distance field covers 100% of the viewport's size outside the viewport on each side (top, right, bottom, left). This has the highest GPU requirements.
+     * 2D signed distance field covers 100&#37; of the viewport's size outside the viewport on each
+     * side (top, right, bottom, left). This has the highest GPU requirements.
      */
     VIEWPORT_SDF_OVERSIZE_200_PERCENT(3),
     /**
-     * Represents the size of the [enum ViewportSDFOversize] enum.
+     * Represents the size of the [ViewportSDFOversize] enum.
      */
     VIEWPORT_SDF_OVERSIZE_MAX(4),
     ;
@@ -6321,15 +6656,17 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_SDF_SCALE_100_PERCENT(0),
     /**
-     * Half resolution 2D signed distance field scale on each axis (25% of the viewport pixel count).
+     * Half resolution 2D signed distance field scale on each axis (25&#37; of the viewport pixel
+     * count).
      */
     VIEWPORT_SDF_SCALE_50_PERCENT(1),
     /**
-     * Quarter resolution 2D signed distance field scale on each axis (6.25% of the viewport pixel count). This has the lowest GPU requirements.
+     * Quarter resolution 2D signed distance field scale on each axis (6.25&#37; of the viewport
+     * pixel count). This has the lowest GPU requirements.
      */
     VIEWPORT_SDF_SCALE_25_PERCENT(2),
     /**
-     * Represents the size of the [enum ViewportSDFScale] enum.
+     * Represents the size of the [ViewportSDFScale] enum.
      */
     VIEWPORT_SDF_SCALE_MAX(3),
     ;
@@ -6348,23 +6685,27 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Multisample antialiasing for 3D is disabled. This is the default value, and also the fastest setting.
+     * Multisample antialiasing for 3D is disabled. This is the default value, and also the fastest
+     * setting.
      */
     VIEWPORT_MSAA_DISABLED(0),
     /**
-     * Multisample antialiasing uses 2 samples per pixel for 3D. This has a moderate impact on performance.
+     * Multisample antialiasing uses 2 samples per pixel for 3D. This has a moderate impact on
+     * performance.
      */
     VIEWPORT_MSAA_2X(1),
     /**
-     * Multisample antialiasing uses 4 samples per pixel for 3D. This has a high impact on performance.
+     * Multisample antialiasing uses 4 samples per pixel for 3D. This has a high impact on
+     * performance.
      */
     VIEWPORT_MSAA_4X(2),
     /**
-     * Multisample antialiasing uses 8 samples per pixel for 3D. This has a very high impact on performance. Likely unsupported on low-end and older hardware.
+     * Multisample antialiasing uses 8 samples per pixel for 3D. This has a very high impact on
+     * performance. Likely unsupported on low-end and older hardware.
      */
     VIEWPORT_MSAA_8X(3),
     /**
-     * Represents the size of the [enum ViewportMSAA] enum.
+     * Represents the size of the [ViewportMSAA] enum.
      */
     VIEWPORT_MSAA_MAX(4),
     ;
@@ -6387,11 +6728,13 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_SCREEN_SPACE_AA_DISABLED(0),
     /**
-     * Use fast approximate antialiasing. FXAA is a popular screen-space antialiasing method, which is fast but will make the image look blurry, especially at lower resolutions. It can still work relatively well at large resolutions such as 1440p and 4K.
+     * Use fast approximate antialiasing. FXAA is a popular screen-space antialiasing method, which
+     * is fast but will make the image look blurry, especially at lower resolutions. It can still work
+     * relatively well at large resolutions such as 1440p and 4K.
      */
     VIEWPORT_SCREEN_SPACE_AA_FXAA(1),
     /**
-     * Represents the size of the [enum ViewportScreenSpaceAA] enum.
+     * Represents the size of the [ViewportScreenSpaceAA] enum.
      */
     VIEWPORT_SCREEN_SPACE_AA_MAX(2),
     ;
@@ -6410,7 +6753,8 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Low occlusion culling BVH build quality (as defined by Embree). Results in the lowest CPU usage, but least effective culling.
+     * Low occlusion culling BVH build quality (as defined by Embree). Results in the lowest CPU
+     * usage, but least effective culling.
      */
     VIEWPORT_OCCLUSION_BUILD_QUALITY_LOW(0),
     /**
@@ -6418,7 +6762,8 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_OCCLUSION_BUILD_QUALITY_MEDIUM(1),
     /**
-     * High occlusion culling BVH build quality (as defined by Embree). Results in the highest CPU usage, but most effective culling.
+     * High occlusion culling BVH build quality (as defined by Embree). Results in the highest CPU
+     * usage, but most effective culling.
      */
     VIEWPORT_OCCLUSION_BUILD_QUALITY_HIGH(2),
     ;
@@ -6449,7 +6794,7 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_RENDER_INFO_DRAW_CALLS_IN_FRAME(2),
     /**
-     * Represents the size of the [enum ViewportRenderInfo] enum.
+     * Represents the size of the [ViewportRenderInfo] enum.
      */
     VIEWPORT_RENDER_INFO_MAX(3),
     ;
@@ -6472,11 +6817,12 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_RENDER_INFO_TYPE_VISIBLE(0),
     /**
-     * Shadow render pass. Objects will be rendered several times depending on the number of amounts of lights with shadows and the number of directional shadow splits.
+     * Shadow render pass. Objects will be rendered several times depending on the number of amounts
+     * of lights with shadows and the number of directional shadow splits.
      */
     VIEWPORT_RENDER_INFO_TYPE_SHADOW(1),
     /**
-     * Represents the size of the [enum ViewportRenderInfoType] enum.
+     * Represents the size of the [ViewportRenderInfoType] enum.
      */
     VIEWPORT_RENDER_INFO_TYPE_MAX(2),
     ;
@@ -6507,9 +6853,11 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_DEBUG_DRAW_LIGHTING(2),
     /**
-     * Objects are displayed semi-transparent with additive blending so you can see where they are drawing over top of one another. A higher overdraw (represented by brighter colors) means you are wasting performance on drawing pixels that are being hidden behind others.
-     *
-     * **Note:** When using this debug draw mode, custom shaders will be ignored. This means vertex displacement won't be visible anymore.
+     * Objects are displayed semi-transparent with additive blending so you can see where they are
+     * drawing over top of one another. A higher overdraw (represented by brighter colors) means you
+     * are wasting performance on drawing pixels that are being hidden behind others.
+     * **Note:** When using this debug draw mode, custom shaders will be ignored. This means vertex
+     * displacement won't be visible anymore.
      */
     VIEWPORT_DEBUG_DRAW_OVERDRAW(3),
     /**
@@ -6517,95 +6865,116 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_DEBUG_DRAW_WIREFRAME(4),
     /**
-     * Normal buffer is drawn instead of regular scene so you can see the per-pixel normals that will be used by post-processing effects.
+     * Normal buffer is drawn instead of regular scene so you can see the per-pixel normals that
+     * will be used by post-processing effects.
      */
     VIEWPORT_DEBUG_DRAW_NORMAL_BUFFER(5),
     /**
-     * Objects are displayed with only the albedo value from [godot.VoxelGI]s.
+     * Objects are displayed with only the albedo value from [VoxelGI]s.
      */
     VIEWPORT_DEBUG_DRAW_VOXEL_GI_ALBEDO(6),
     /**
-     * Objects are displayed with only the lighting value from [godot.VoxelGI]s.
+     * Objects are displayed with only the lighting value from [VoxelGI]s.
      */
     VIEWPORT_DEBUG_DRAW_VOXEL_GI_LIGHTING(7),
     /**
-     * Objects are displayed with only the emission color from [godot.VoxelGI]s.
+     * Objects are displayed with only the emission color from [VoxelGI]s.
      */
     VIEWPORT_DEBUG_DRAW_VOXEL_GI_EMISSION(8),
     /**
-     * Draws the shadow atlas that stores shadows from [godot.OmniLight3D]s and [godot.SpotLight3D]s in the upper left quadrant of the [godot.Viewport].
+     * Draws the shadow atlas that stores shadows from [OmniLight3D]s and [SpotLight3D]s in the
+     * upper left quadrant of the [Viewport].
      */
     VIEWPORT_DEBUG_DRAW_SHADOW_ATLAS(9),
     /**
-     * Draws the shadow atlas that stores shadows from [godot.DirectionalLight3D]s in the upper left quadrant of the [godot.Viewport].
-     *
-     * The slice of the camera frustum related to the shadow map cascade is superimposed to visualize coverage. The color of each slice matches the colors used for [VIEWPORT_DEBUG_DRAW_PSSM_SPLITS]. When shadow cascades are blended the overlap is taken into account when drawing the frustum slices.
-     *
+     * Draws the shadow atlas that stores shadows from [DirectionalLight3D]s in the upper left
+     * quadrant of the [Viewport].
+     * The slice of the camera frustum related to the shadow map cascade is superimposed to
+     * visualize coverage. The color of each slice matches the colors used for
+     * [VIEWPORT_DEBUG_DRAW_PSSM_SPLITS]. When shadow cascades are blended the overlap is taken into
+     * account when drawing the frustum slices.
      * The last cascade shows all frustum slices to illustrate the coverage of all slices.
      */
     VIEWPORT_DEBUG_DRAW_DIRECTIONAL_SHADOW_ATLAS(10),
     /**
-     * Draws the estimated scene luminance. This is a 1×1 texture that is generated when autoexposure is enabled to control the scene's exposure.
+     * Draws the estimated scene luminance. This is a 1×1 texture that is generated when
+     * autoexposure is enabled to control the scene's exposure.
      */
     VIEWPORT_DEBUG_DRAW_SCENE_LUMINANCE(11),
     /**
-     * Draws the screen space ambient occlusion texture instead of the scene so that you can clearly see how it is affecting objects. In order for this display mode to work, you must have [godot.Environment.ssaoEnabled] set in your [godot.WorldEnvironment].
+     * Draws the screen space ambient occlusion texture instead of the scene so that you can clearly
+     * see how it is affecting objects. In order for this display mode to work, you must have
+     * [Environment.ssaoEnabled] set in your [WorldEnvironment].
      */
     VIEWPORT_DEBUG_DRAW_SSAO(12),
     /**
-     * Draws the screen space indirect lighting texture instead of the scene so that you can clearly see how it is affecting objects. In order for this display mode to work, you must have [godot.Environment.ssilEnabled] set in your [godot.WorldEnvironment].
+     * Draws the screen space indirect lighting texture instead of the scene so that you can clearly
+     * see how it is affecting objects. In order for this display mode to work, you must have
+     * [Environment.ssilEnabled] set in your [WorldEnvironment].
      */
     VIEWPORT_DEBUG_DRAW_SSIL(13),
     /**
-     * Colors each PSSM split for the [godot.DirectionalLight3D]s in the scene a different color so you can see where the splits are. In order they will be colored red, green, blue, yellow.
+     * Colors each PSSM split for the [DirectionalLight3D]s in the scene a different color so you
+     * can see where the splits are. In order they will be colored red, green, blue, yellow.
      */
     VIEWPORT_DEBUG_DRAW_PSSM_SPLITS(14),
     /**
-     * Draws the decal atlas that stores decal textures from [godot.Decal]s.
+     * Draws the decal atlas that stores decal textures from [Decal]s.
      */
     VIEWPORT_DEBUG_DRAW_DECAL_ATLAS(15),
     /**
-     * Draws SDFGI cascade data. This is the data structure that is used to bounce lighting against and create reflections.
+     * Draws SDFGI cascade data. This is the data structure that is used to bounce lighting against
+     * and create reflections.
      */
     VIEWPORT_DEBUG_DRAW_SDFGI(16),
     /**
-     * Draws SDFGI probe data. This is the data structure that is used to give indirect lighting dynamic objects moving within the scene.
+     * Draws SDFGI probe data. This is the data structure that is used to give indirect lighting
+     * dynamic objects moving within the scene.
      */
     VIEWPORT_DEBUG_DRAW_SDFGI_PROBES(17),
     /**
-     * Draws the global illumination buffer ([godot.VoxelGI] or SDFGI).
+     * Draws the global illumination buffer ([VoxelGI] or SDFGI).
      */
     VIEWPORT_DEBUG_DRAW_GI_BUFFER(18),
     /**
-     * Disable mesh LOD. All meshes are drawn with full detail, which can be used to compare performance.
+     * Disable mesh LOD. All meshes are drawn with full detail, which can be used to compare
+     * performance.
      */
     VIEWPORT_DEBUG_DRAW_DISABLE_LOD(19),
     /**
-     * Draws the [godot.OmniLight3D] cluster. Clustering determines where lights are positioned in screen-space, which allows the engine to only process these portions of the screen for lighting.
+     * Draws the [OmniLight3D] cluster. Clustering determines where lights are positioned in
+     * screen-space, which allows the engine to only process these portions of the screen for lighting.
      */
     VIEWPORT_DEBUG_DRAW_CLUSTER_OMNI_LIGHTS(20),
     /**
-     * Draws the [godot.SpotLight3D] cluster. Clustering determines where lights are positioned in screen-space, which allows the engine to only process these portions of the screen for lighting.
+     * Draws the [SpotLight3D] cluster. Clustering determines where lights are positioned in
+     * screen-space, which allows the engine to only process these portions of the screen for lighting.
      */
     VIEWPORT_DEBUG_DRAW_CLUSTER_SPOT_LIGHTS(21),
     /**
-     * Draws the [godot.Decal] cluster. Clustering determines where decals are positioned in screen-space, which allows the engine to only process these portions of the screen for decals.
+     * Draws the [Decal] cluster. Clustering determines where decals are positioned in screen-space,
+     * which allows the engine to only process these portions of the screen for decals.
      */
     VIEWPORT_DEBUG_DRAW_CLUSTER_DECALS(22),
     /**
-     * Draws the [godot.ReflectionProbe] cluster. Clustering determines where reflection probes are positioned in screen-space, which allows the engine to only process these portions of the screen for reflection probes.
+     * Draws the [ReflectionProbe] cluster. Clustering determines where reflection probes are
+     * positioned in screen-space, which allows the engine to only process these portions of the screen
+     * for reflection probes.
      */
     VIEWPORT_DEBUG_DRAW_CLUSTER_REFLECTION_PROBES(23),
     /**
-     * Draws the occlusion culling buffer. This low-resolution occlusion culling buffer is rasterized on the CPU and is used to check whether instances are occluded by other objects.
+     * Draws the occlusion culling buffer. This low-resolution occlusion culling buffer is
+     * rasterized on the CPU and is used to check whether instances are occluded by other objects.
      */
     VIEWPORT_DEBUG_DRAW_OCCLUDERS(24),
     /**
-     * Draws the motion vectors buffer. This is used by temporal antialiasing to correct for motion that occurs during gameplay.
+     * Draws the motion vectors buffer. This is used by temporal antialiasing to correct for motion
+     * that occurs during gameplay.
      */
     VIEWPORT_DEBUG_DRAW_MOTION_VECTORS(25),
     /**
-     * Internal buffer is drawn instead of regular scene so you can see the per-pixel output that will be used by post-processing effects.
+     * Internal buffer is drawn instead of regular scene so you can see the per-pixel output that
+     * will be used by post-processing effects.
      */
     VIEWPORT_DEBUG_DRAW_INTERNAL_BUFFER(26),
     ;
@@ -6628,15 +6997,16 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_VRS_DISABLED(0),
     /**
-     * Variable rate shading uses a texture. Note, for stereoscopic use a texture atlas with a texture for each view.
+     * Variable rate shading uses a texture. Note, for stereoscopic use a texture atlas with a
+     * texture for each view.
      */
     VIEWPORT_VRS_TEXTURE(1),
     /**
-     * Variable rate shading texture is supplied by the primary [godot.XRInterface].
+     * Variable rate shading texture is supplied by the primary [XRInterface].
      */
     VIEWPORT_VRS_XR(2),
     /**
-     * Represents the size of the [enum ViewportVRSMode] enum.
+     * Represents the size of the [ViewportVRSMode] enum.
      */
     VIEWPORT_VRS_MAX(3),
     ;
@@ -6655,21 +7025,35 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Automatically selects the appropriate process mode based on your sky shader. If your shader uses `TIME` or `POSITION`, this will use [SKY_MODE_REALTIME]. If your shader uses any of the `LIGHT_*` variables or any custom uniforms, this uses [SKY_MODE_INCREMENTAL]. Otherwise, this defaults to [SKY_MODE_QUALITY].
+     * Automatically selects the appropriate process mode based on your sky shader. If your shader
+     * uses `TIME` or `POSITION`, this will use [SKY_MODE_REALTIME]. If your shader uses any of the
+     * `LIGHT_*` variables or any custom uniforms, this uses [SKY_MODE_INCREMENTAL]. Otherwise, this
+     * defaults to [SKY_MODE_QUALITY].
      */
     SKY_MODE_AUTOMATIC(0),
     /**
-     * Uses high quality importance sampling to process the radiance map. In general, this results in much higher quality than [SKY_MODE_REALTIME] but takes much longer to generate. This should not be used if you plan on changing the sky at runtime. If you are finding that the reflection is not blurry enough and is showing sparkles or fireflies, try increasing [godot.ProjectSettings.rendering/reflections/skyReflections/ggxSamples].
+     * Uses high quality importance sampling to process the radiance map. In general, this results
+     * in much higher quality than [SKY_MODE_REALTIME] but takes much longer to generate. This should
+     * not be used if you plan on changing the sky at runtime. If you are finding that the reflection
+     * is not blurry enough and is showing sparkles or fireflies, try increasing
+     * [ProjectSettings.rendering/reflections/skyReflections/ggxSamples].
      */
     SKY_MODE_QUALITY(1),
     /**
-     * Uses the same high quality importance sampling to process the radiance map as [SKY_MODE_QUALITY], but updates over several frames. The number of frames is determined by [godot.ProjectSettings.rendering/reflections/skyReflections/roughnessLayers]. Use this when you need highest quality radiance maps, but have a sky that updates slowly.
+     * Uses the same high quality importance sampling to process the radiance map as
+     * [SKY_MODE_QUALITY], but updates over several frames. The number of frames is determined by
+     * [ProjectSettings.rendering/reflections/skyReflections/roughnessLayers]. Use this when you need
+     * highest quality radiance maps, but have a sky that updates slowly.
      */
     SKY_MODE_INCREMENTAL(2),
     /**
-     * Uses the fast filtering algorithm to process the radiance map. In general this results in lower quality, but substantially faster run times. If you need better quality, but still need to update the sky every frame, consider turning on [godot.ProjectSettings.rendering/reflections/skyReflections/fastFilterHighQuality].
-     *
-     * **Note:** The fast filtering algorithm is limited to 256×256 cubemaps, so [skySetRadianceSize] must be set to `256`. Otherwise, a warning is printed and the overridden radiance size is ignored.
+     * Uses the fast filtering algorithm to process the radiance map. In general this results in
+     * lower quality, but substantially faster run times. If you need better quality, but still need to
+     * update the sky every frame, consider turning on
+     * [ProjectSettings.rendering/reflections/skyReflections/fastFilterHighQuality].
+     * **Note:** The fast filtering algorithm is limited to 256×256 cubemaps, so
+     * [skySetRadianceSize] must be set to `256`. Otherwise, a warning is printed and the overridden
+     * radiance size is ignored.
      */
     SKY_MODE_REALTIME(3),
     ;
@@ -6700,7 +7084,8 @@ public object RenderingServer : Object() {
      */
     ENV_BG_SKY(2),
     /**
-     * Use a specified canvas layer as the background. This can be useful for instantiating a 2D scene in a 3D world.
+     * Use a specified canvas layer as the background. This can be useful for instantiating a 2D
+     * scene in a 3D world.
      */
     ENV_BG_CANVAS(3),
     /**
@@ -6712,7 +7097,7 @@ public object RenderingServer : Object() {
      */
     ENV_BG_CAMERA_FEED(5),
     /**
-     * Represents the size of the [enum EnvironmentBG] enum.
+     * Represents the size of the [EnvironmentBG] enum.
      */
     ENV_BG_MAX(6),
     ;
@@ -6739,11 +7124,11 @@ public object RenderingServer : Object() {
      */
     ENV_AMBIENT_SOURCE_DISABLED(1),
     /**
-     * Specify a specific [godot.core.Color] for ambient light.
+     * Specify a specific [Color] for ambient light.
      */
     ENV_AMBIENT_SOURCE_COLOR(2),
     /**
-     * Gather ambient light from the [godot.Sky] regardless of what the background is.
+     * Gather ambient light from the [Sky] regardless of what the background is.
      */
     ENV_AMBIENT_SOURCE_SKY(3),
     ;
@@ -6770,7 +7155,7 @@ public object RenderingServer : Object() {
      */
     ENV_REFLECTION_SOURCE_DISABLED(1),
     /**
-     * Use the [godot.Sky] for reflections regardless of what the background is.
+     * Use the [Sky] for reflections regardless of what the background is.
      */
     ENV_REFLECTION_SOURCE_SKY(2),
     ;
@@ -6789,7 +7174,8 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Additive glow blending mode. Mostly used for particles, glows (bloom), lens flare, bright sources.
+     * Additive glow blending mode. Mostly used for particles, glows (bloom), lens flare, bright
+     * sources.
      */
     ENV_GLOW_BLEND_MODE_ADDITIVE(0),
     /**
@@ -6797,15 +7183,19 @@ public object RenderingServer : Object() {
      */
     ENV_GLOW_BLEND_MODE_SCREEN(1),
     /**
-     * Soft light glow blending mode. Modifies contrast, exposes shadows and highlights (vivid bloom).
+     * Soft light glow blending mode. Modifies contrast, exposes shadows and highlights (vivid
+     * bloom).
      */
     ENV_GLOW_BLEND_MODE_SOFTLIGHT(2),
     /**
-     * Replace glow blending mode. Replaces all pixels' color by the glow value. This can be used to simulate a full-screen blur effect by tweaking the glow parameters to match the original image's brightness.
+     * Replace glow blending mode. Replaces all pixels' color by the glow value. This can be used to
+     * simulate a full-screen blur effect by tweaking the glow parameters to match the original image's
+     * brightness.
      */
     ENV_GLOW_BLEND_MODE_REPLACE(3),
     /**
-     * Mixes the glow with the underlying color to avoid increasing brightness as much while still maintaining a glow effect.
+     * Mixes the glow with the underlying color to avoid increasing brightness as much while still
+     * maintaining a glow effect.
      */
     ENV_GLOW_BLEND_MODE_MIX(4),
     ;
@@ -6824,20 +7214,26 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Output color as they came in. This can cause bright lighting to look blown out, with noticeable clipping in the output colors.
+     * Output color as they came in. This can cause bright lighting to look blown out, with
+     * noticeable clipping in the output colors.
      */
     ENV_TONE_MAPPER_LINEAR(0),
     /**
-     * Use the Reinhard tonemapper. Performs a variation on rendered pixels' colors by this formula: `color = color / (1 + color)`. This avoids clipping bright highlights, but the resulting image can look a bit dull.
+     * Use the Reinhard tonemapper. Performs a variation on rendered pixels' colors by this formula:
+     * `color = color / (1 + color)`. This avoids clipping bright highlights, but the resulting image
+     * can look a bit dull.
      */
     ENV_TONE_MAPPER_REINHARD(1),
     /**
-     * Use the filmic tonemapper. This avoids clipping bright highlights, with a resulting image that usually looks more vivid than [ENV_TONE_MAPPER_REINHARD].
+     * Use the filmic tonemapper. This avoids clipping bright highlights, with a resulting image
+     * that usually looks more vivid than [ENV_TONE_MAPPER_REINHARD].
      */
     ENV_TONE_MAPPER_FILMIC(2),
     /**
-     * Use the Academy Color Encoding System tonemapper. ACES is slightly more expensive than other options, but it handles bright lighting in a more realistic fashion by desaturating it as it becomes brighter. ACES typically has a more contrasted output compared to [ENV_TONE_MAPPER_REINHARD] and [ENV_TONE_MAPPER_FILMIC].
-     *
+     * Use the Academy Color Encoding System tonemapper. ACES is slightly more expensive than other
+     * options, but it handles bright lighting in a more realistic fashion by desaturating it as it
+     * becomes brighter. ACES typically has a more contrasted output compared to
+     * [ENV_TONE_MAPPER_REINHARD] and [ENV_TONE_MAPPER_FILMIC].
      * **Note:** This tonemapping operator is called "ACES Fitted" in Godot 3.x.
      */
     ENV_TONE_MAPPER_ACES(3),
@@ -6857,7 +7253,9 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Lowest quality of roughness filter for screen-space reflections. Rough materials will not have blurrier screen-space reflections compared to smooth (non-rough) materials. This is the fastest option.
+     * Lowest quality of roughness filter for screen-space reflections. Rough materials will not
+     * have blurrier screen-space reflections compared to smooth (non-rough) materials. This is the
+     * fastest option.
      */
     ENV_SSR_ROUGHNESS_QUALITY_DISABLED(0),
     /**
@@ -6904,7 +7302,8 @@ public object RenderingServer : Object() {
      */
     ENV_SSAO_QUALITY_HIGH(3),
     /**
-     * Highest quality screen-space ambient occlusion. Uses the adaptive target setting which can be dynamically adjusted to smoothly balance performance and visual quality.
+     * Highest quality screen-space ambient occlusion. Uses the adaptive target setting which can be
+     * dynamically adjusted to smoothly balance performance and visual quality.
      */
     ENV_SSAO_QUALITY_ULTRA(4),
     ;
@@ -6939,7 +7338,8 @@ public object RenderingServer : Object() {
      */
     ENV_SSIL_QUALITY_HIGH(3),
     /**
-     * Highest quality screen-space indirect lighting. Uses the adaptive target setting which can be dynamically adjusted to smoothly balance performance and visual quality.
+     * Highest quality screen-space indirect lighting. Uses the adaptive target setting which can be
+     * dynamically adjusted to smoothly balance performance and visual quality.
      */
     ENV_SSIL_QUALITY_ULTRA(4),
     ;
@@ -6958,15 +7358,21 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Use 50% scale for SDFGI on the Y (vertical) axis. SDFGI cells will be twice as short as they are wide. This allows providing increased GI detail and reduced light leaking with thin floors and ceilings. This is usually the best choice for scenes that don't feature much verticality.
+     * Use 50&#37; scale for SDFGI on the Y (vertical) axis. SDFGI cells will be twice as short as
+     * they are wide. This allows providing increased GI detail and reduced light leaking with thin
+     * floors and ceilings. This is usually the best choice for scenes that don't feature much
+     * verticality.
      */
     ENV_SDFGI_Y_SCALE_50_PERCENT(0),
     /**
-     * Use 75% scale for SDFGI on the Y (vertical) axis. This is a balance between the 50% and 100% SDFGI Y scales.
+     * Use 75&#37; scale for SDFGI on the Y (vertical) axis. This is a balance between the 50&#37;
+     * and 100&#37; SDFGI Y scales.
      */
     ENV_SDFGI_Y_SCALE_75_PERCENT(1),
     /**
-     * Use 100% scale for SDFGI on the Y (vertical) axis. SDFGI cells will be as tall as they are wide. This is usually the best choice for highly vertical scenes. The downside is that light leaking may become more noticeable with thin floors and ceilings.
+     * Use 100&#37; scale for SDFGI on the Y (vertical) axis. SDFGI cells will be as tall as they
+     * are wide. This is usually the best choice for highly vertical scenes. The downside is that light
+     * leaking may become more noticeable with thin floors and ceilings.
      */
     ENV_SDFGI_Y_SCALE_100_PERCENT(2),
     ;
@@ -6985,7 +7391,8 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Throw 4 rays per frame when converging SDFGI. This has the lowest GPU requirements, but creates the most noisy result.
+     * Throw 4 rays per frame when converging SDFGI. This has the lowest GPU requirements, but
+     * creates the most noisy result.
      */
     ENV_SDFGI_RAY_COUNT_4(0),
     /**
@@ -7009,11 +7416,12 @@ public object RenderingServer : Object() {
      */
     ENV_SDFGI_RAY_COUNT_96(5),
     /**
-     * Throw 128 rays per frame when converging SDFGI. This has very high GPU requirements, but creates the least noisy result.
+     * Throw 128 rays per frame when converging SDFGI. This has very high GPU requirements, but
+     * creates the least noisy result.
      */
     ENV_SDFGI_RAY_COUNT_128(6),
     /**
-     * Represents the size of the [enum EnvironmentSDFGIRayCount] enum.
+     * Represents the size of the [EnvironmentSDFGIRayCount] enum.
      */
     ENV_SDFGI_RAY_COUNT_MAX(7),
     ;
@@ -7032,7 +7440,8 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Converge SDFGI over 5 frames. This is the most responsive, but creates the most noisy result with a given ray count.
+     * Converge SDFGI over 5 frames. This is the most responsive, but creates the most noisy result
+     * with a given ray count.
      */
     ENV_SDFGI_CONVERGE_IN_5_FRAMES(0),
     /**
@@ -7052,11 +7461,12 @@ public object RenderingServer : Object() {
      */
     ENV_SDFGI_CONVERGE_IN_25_FRAMES(4),
     /**
-     * Configure SDFGI to fully converge over 30 frames. This is the least responsive, but creates the least noisy result with a given ray count.
+     * Configure SDFGI to fully converge over 30 frames. This is the least responsive, but creates
+     * the least noisy result with a given ray count.
      */
     ENV_SDFGI_CONVERGE_IN_30_FRAMES(5),
     /**
-     * Represents the size of the [enum EnvironmentSDFGIFramesToConverge] enum.
+     * Represents the size of the [EnvironmentSDFGIFramesToConverge] enum.
      */
     ENV_SDFGI_CONVERGE_MAX(6),
     ;
@@ -7075,7 +7485,8 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Update indirect light from dynamic lights in SDFGI over 1 frame. This is the most responsive, but has the highest GPU requirements.
+     * Update indirect light from dynamic lights in SDFGI over 1 frame. This is the most responsive,
+     * but has the highest GPU requirements.
      */
     ENV_SDFGI_UPDATE_LIGHT_IN_1_FRAME(0),
     /**
@@ -7091,11 +7502,12 @@ public object RenderingServer : Object() {
      */
     ENV_SDFGI_UPDATE_LIGHT_IN_8_FRAMES(3),
     /**
-     * Update indirect light from dynamic lights in SDFGI over 16 frames. This is the least responsive, but has the lowest GPU requirements.
+     * Update indirect light from dynamic lights in SDFGI over 16 frames. This is the least
+     * responsive, but has the lowest GPU requirements.
      */
     ENV_SDFGI_UPDATE_LIGHT_IN_16_FRAMES(4),
     /**
-     * Represents the size of the [enum EnvironmentSDFGIFramesToUpdateLight] enum.
+     * Represents the size of the [EnvironmentSDFGIFramesToUpdateLight] enum.
      */
     ENV_SDFGI_UPDATE_LIGHT_MAX(5),
     ;
@@ -7114,7 +7526,8 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Disables subsurface scattering entirely, even on materials that have [godot.BaseMaterial3D.subsurfScatterEnabled] set to `true`. This has the lowest GPU requirements.
+     * Disables subsurface scattering entirely, even on materials that have
+     * [BaseMaterial3D.subsurfScatterEnabled] set to `true`. This has the lowest GPU requirements.
      */
     SUB_SURFACE_SCATTERING_QUALITY_DISABLED(0),
     /**
@@ -7145,7 +7558,8 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Calculate the DOF blur using a box filter. The fastest option, but results in obvious lines in blur pattern.
+     * Calculate the DOF blur using a box filter. The fastest option, but results in obvious lines
+     * in blur pattern.
      */
     DOF_BOKEH_BOX(0),
     /**
@@ -7153,7 +7567,9 @@ public object RenderingServer : Object() {
      */
     DOF_BOKEH_HEXAGON(1),
     /**
-     * Calculates DOF blur using a circle shaped filter. Best quality and most realistic, but slowest. Use only for areas where a lot of performance can be dedicated to post-processing (e.g. cutscenes).
+     * Calculates DOF blur using a circle shaped filter. Best quality and most realistic, but
+     * slowest. Use only for areas where a lot of performance can be dedicated to post-processing (e.g.
+     * cutscenes).
      */
     DOF_BOKEH_CIRCLE(2),
     ;
@@ -7172,7 +7588,8 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Lowest quality DOF blur. This is the fastest setting, but you may be able to see filtering artifacts.
+     * Lowest quality DOF blur. This is the fastest setting, but you may be able to see filtering
+     * artifacts.
      */
     DOF_BLUR_QUALITY_VERY_LOW(0),
     /**
@@ -7184,7 +7601,8 @@ public object RenderingServer : Object() {
      */
     DOF_BLUR_QUALITY_MEDIUM(2),
     /**
-     * Highest quality DOF blur. Results in the smoothest looking blur by taking the most samples, but is also significantly slower.
+     * Highest quality DOF blur. Results in the smoothest looking blur by taking the most samples,
+     * but is also significantly slower.
      */
     DOF_BLUR_QUALITY_HIGH(3),
     ;
@@ -7255,7 +7673,7 @@ public object RenderingServer : Object() {
      */
     INSTANCE_FOG_VOLUME(12),
     /**
-     * Represents the size of the [enum InstanceType] enum.
+     * Represents the size of the [InstanceType] enum.
      */
     INSTANCE_MAX(13),
     /**
@@ -7290,11 +7708,12 @@ public object RenderingServer : Object() {
      */
     INSTANCE_FLAG_DRAW_NEXT_FRAME_IF_VISIBLE(2),
     /**
-     * Always draw, even if the instance would be culled by occlusion culling. Does not affect view frustum culling.
+     * Always draw, even if the instance would be culled by occlusion culling. Does not affect view
+     * frustum culling.
      */
     INSTANCE_FLAG_IGNORE_OCCLUSION_CULLING(3),
     /**
-     * Represents the size of the [enum InstanceFlags] enum.
+     * Represents the size of the [InstanceFlags] enum.
      */
     INSTANCE_FLAG_MAX(4),
     ;
@@ -7321,7 +7740,8 @@ public object RenderingServer : Object() {
      */
     SHADOW_CASTING_SETTING_ON(1),
     /**
-     * Disable backface culling when rendering the shadow of the object. This is slightly slower but may result in more correct shadows.
+     * Disable backface culling when rendering the shadow of the object. This is slightly slower but
+     * may result in more correct shadows.
      */
     SHADOW_CASTING_SETTING_DOUBLE_SIDED(2),
     /**
@@ -7371,19 +7791,28 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Index of [godot.Image] in array of [godot.Image]s returned by [bakeRenderUv2]. Image uses [godot.Image.FORMAT_RGBA8] and contains albedo color in the `.rgb` channels and alpha in the `.a` channel.
+     * Index of [Image] in array of [Image]s returned by [bakeRenderUv2]. Image uses
+     * [Image.FORMAT_RGBA8] and contains albedo color in the `.rgb` channels and alpha in the `.a`
+     * channel.
      */
     BAKE_CHANNEL_ALBEDO_ALPHA(0),
     /**
-     * Index of [godot.Image] in array of [godot.Image]s returned by [bakeRenderUv2]. Image uses [godot.Image.FORMAT_RGBA8] and contains the per-pixel normal of the object in the `.rgb` channels and nothing in the `.a` channel. The per-pixel normal is encoded as `normal * 0.5 + 0.5`.
+     * Index of [Image] in array of [Image]s returned by [bakeRenderUv2]. Image uses
+     * [Image.FORMAT_RGBA8] and contains the per-pixel normal of the object in the `.rgb` channels and
+     * nothing in the `.a` channel. The per-pixel normal is encoded as `normal * 0.5 + 0.5`.
      */
     BAKE_CHANNEL_NORMAL(1),
     /**
-     * Index of [godot.Image] in array of [godot.Image]s returned by [bakeRenderUv2]. Image uses [godot.Image.FORMAT_RGBA8] and contains ambient occlusion (from material and decals only) in the `.r` channel, roughness in the `.g` channel, metallic in the `.b` channel and sub surface scattering amount in the `.a` channel.
+     * Index of [Image] in array of [Image]s returned by [bakeRenderUv2]. Image uses
+     * [Image.FORMAT_RGBA8] and contains ambient occlusion (from material and decals only) in the `.r`
+     * channel, roughness in the `.g` channel, metallic in the `.b` channel and sub surface scattering
+     * amount in the `.a` channel.
      */
     BAKE_CHANNEL_ORM(2),
     /**
-     * Index of [godot.Image] in array of [godot.Image]s returned by [bakeRenderUv2]. Image uses [godot.Image.FORMAT_RGBAH] and contains emission color in the `.rgb` channels and nothing in the `.a` channel.
+     * Index of [Image] in array of [Image]s returned by [bakeRenderUv2]. Image uses
+     * [Image.FORMAT_RGBAH] and contains emission color in the `.rgb` channels and nothing in the `.a`
+     * channel.
      */
     BAKE_CHANNEL_EMISSION(3),
     ;
@@ -7402,15 +7831,15 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Diffuse canvas texture ([godot.CanvasTexture.diffuseTexture]).
+     * Diffuse canvas texture ([CanvasTexture.diffuseTexture]).
      */
     CANVAS_TEXTURE_CHANNEL_DIFFUSE(0),
     /**
-     * Normal map canvas texture ([godot.CanvasTexture.normalTexture]).
+     * Normal map canvas texture ([CanvasTexture.normalTexture]).
      */
     CANVAS_TEXTURE_CHANNEL_NORMAL(1),
     /**
-     * Specular map canvas texture ([godot.CanvasTexture.specularTexture]).
+     * Specular map canvas texture ([CanvasTexture.specularTexture]).
      */
     CANVAS_TEXTURE_CHANNEL_SPECULAR(2),
     ;
@@ -7456,43 +7885,65 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Uses the default filter mode for this [godot.Viewport].
+     * Uses the default filter mode for this [Viewport].
      */
     CANVAS_ITEM_TEXTURE_FILTER_DEFAULT(0),
     /**
-     * The texture filter reads from the nearest pixel only. This makes the texture look pixelated from up close, and grainy from a distance (due to mipmaps not being sampled).
+     * The texture filter reads from the nearest pixel only. This makes the texture look pixelated
+     * from up close, and grainy from a distance (due to mipmaps not being sampled).
      */
     CANVAS_ITEM_TEXTURE_FILTER_NEAREST(1),
     /**
-     * The texture filter blends between the nearest 4 pixels. This makes the texture look smooth from up close, and grainy from a distance (due to mipmaps not being sampled).
+     * The texture filter blends between the nearest 4 pixels. This makes the texture look smooth
+     * from up close, and grainy from a distance (due to mipmaps not being sampled).
      */
     CANVAS_ITEM_TEXTURE_FILTER_LINEAR(2),
     /**
-     * The texture filter reads from the nearest pixel and blends between the nearest 2 mipmaps (or uses the nearest mipmap if [godot.ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This makes the texture look pixelated from up close, and smooth from a distance.
-     *
-     * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [godot.Camera2D] zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than on-screen pixels.
+     * The texture filter reads from the nearest pixel and blends between the nearest 2 mipmaps (or
+     * uses the nearest mipmap if
+     * [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This
+     * makes the texture look pixelated from up close, and smooth from a distance.
+     * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [Camera2D]
+     * zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than
+     * on-screen pixels.
      */
     CANVAS_ITEM_TEXTURE_FILTER_NEAREST_WITH_MIPMAPS(3),
     /**
-     * The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps (or uses the nearest mipmap if [godot.ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This makes the texture look smooth from up close, and smooth from a distance.
-     *
-     * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [godot.Camera2D] zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than on-screen pixels.
+     * The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps (or
+     * uses the nearest mipmap if
+     * [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This
+     * makes the texture look smooth from up close, and smooth from a distance.
+     * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [Camera2D]
+     * zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than
+     * on-screen pixels.
      */
     CANVAS_ITEM_TEXTURE_FILTER_LINEAR_WITH_MIPMAPS(4),
     /**
-     * The texture filter reads from the nearest pixel and blends between 2 mipmaps (or uses the nearest mipmap if [godot.ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`) based on the angle between the surface and the camera view. This makes the texture look pixelated from up close, and smooth from a distance. Anisotropic filtering improves texture quality on surfaces that are almost in line with the camera, but is slightly slower. The anisotropic filtering level can be changed by adjusting [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
-     *
-     * **Note:** This texture filter is rarely useful in 2D projects. [CANVAS_ITEM_TEXTURE_FILTER_NEAREST_WITH_MIPMAPS] is usually more appropriate in this case.
+     * The texture filter reads from the nearest pixel and blends between 2 mipmaps (or uses the
+     * nearest mipmap if [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is
+     * `true`) based on the angle between the surface and the camera view. This makes the texture look
+     * pixelated from up close, and smooth from a distance. Anisotropic filtering improves texture
+     * quality on surfaces that are almost in line with the camera, but is slightly slower. The
+     * anisotropic filtering level can be changed by adjusting
+     * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     * **Note:** This texture filter is rarely useful in 2D projects.
+     * [CANVAS_ITEM_TEXTURE_FILTER_NEAREST_WITH_MIPMAPS] is usually more appropriate in this case.
      */
     CANVAS_ITEM_TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC(5),
     /**
-     * The texture filter blends between the nearest 4 pixels and blends between 2 mipmaps (or uses the nearest mipmap if [godot.ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`) based on the angle between the surface and the camera view. This makes the texture look smooth from up close, and smooth from a distance. Anisotropic filtering improves texture quality on surfaces that are almost in line with the camera, but is slightly slower. The anisotropic filtering level can be changed by adjusting [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
-     *
-     * **Note:** This texture filter is rarely useful in 2D projects. [CANVAS_ITEM_TEXTURE_FILTER_LINEAR_WITH_MIPMAPS] is usually more appropriate in this case.
+     * The texture filter blends between the nearest 4 pixels and blends between 2 mipmaps (or uses
+     * the nearest mipmap if [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter]
+     * is `true`) based on the angle between the surface and the camera view. This makes the texture
+     * look smooth from up close, and smooth from a distance. Anisotropic filtering improves texture
+     * quality on surfaces that are almost in line with the camera, but is slightly slower. The
+     * anisotropic filtering level can be changed by adjusting
+     * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     * **Note:** This texture filter is rarely useful in 2D projects.
+     * [CANVAS_ITEM_TEXTURE_FILTER_LINEAR_WITH_MIPMAPS] is usually more appropriate in this case.
      */
     CANVAS_ITEM_TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC(6),
     /**
-     * Max value for [enum CanvasItemTextureFilter] enum.
+     * Max value for [CanvasItemTextureFilter] enum.
      */
     CANVAS_ITEM_TEXTURE_FILTER_MAX(7),
     ;
@@ -7511,15 +7962,19 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Uses the default repeat mode for this [godot.Viewport].
+     * Uses the default repeat mode for this [Viewport].
      */
     CANVAS_ITEM_TEXTURE_REPEAT_DEFAULT(0),
     /**
-     * Disables textures repeating. Instead, when reading UVs outside the 0-1 range, the value will be clamped to the edge of the texture, resulting in a stretched out look at the borders of the texture.
+     * Disables textures repeating. Instead, when reading UVs outside the 0-1 range, the value will
+     * be clamped to the edge of the texture, resulting in a stretched out look at the borders of the
+     * texture.
      */
     CANVAS_ITEM_TEXTURE_REPEAT_DISABLED(1),
     /**
-     * Enables the texture to repeat when UV coordinates are outside the 0-1 range. If using one of the linear filtering modes, this can result in artifacts at the edges of a texture when the sampler filters across the edges of the texture.
+     * Enables the texture to repeat when UV coordinates are outside the 0-1 range. If using one of
+     * the linear filtering modes, this can result in artifacts at the edges of a texture when the
+     * sampler filters across the edges of the texture.
      */
     CANVAS_ITEM_TEXTURE_REPEAT_ENABLED(2),
     /**
@@ -7527,7 +7982,7 @@ public object RenderingServer : Object() {
      */
     CANVAS_ITEM_TEXTURE_REPEAT_MIRROR(3),
     /**
-     * Max value for [enum CanvasItemTextureRepeat] enum.
+     * Max value for [CanvasItemTextureRepeat] enum.
      */
     CANVAS_ITEM_TEXTURE_REPEAT_MAX(4),
     ;
@@ -7550,16 +8005,15 @@ public object RenderingServer : Object() {
      */
     CANVAS_GROUP_MODE_DISABLED(0),
     /**
-     * Parent is used for the purposes of clipping only. Child is clipped to the parent's visible area, parent is not drawn.
+     * Parent is used for the purposes of clipping only. Child is clipped to the parent's visible
+     * area, parent is not drawn.
      */
     CANVAS_GROUP_MODE_CLIP_ONLY(1),
     /**
-     * Parent is used for clipping child, but parent is also drawn underneath child as normal before clipping child to its visible area.
+     * Parent is used for clipping child, but parent is also drawn underneath child as normal before
+     * clipping child to its visible area.
      */
     CANVAS_GROUP_MODE_CLIP_AND_DRAW(2),
-    /**
-     *
-     */
     CANVAS_GROUP_MODE_TRANSPARENT(3),
     ;
 
@@ -7577,11 +8031,11 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * 2D point light (see [godot.PointLight2D]).
+     * 2D point light (see [PointLight2D]).
      */
     CANVAS_LIGHT_MODE_POINT(0),
     /**
-     * 2D directional (sun/moon) light (see [godot.DirectionalLight2D]).
+     * 2D directional (sun/moon) light (see [DirectionalLight2D]).
      */
     CANVAS_LIGHT_MODE_DIRECTIONAL(1),
     ;
@@ -7639,7 +8093,7 @@ public object RenderingServer : Object() {
      */
     CANVAS_LIGHT_FILTER_PCF13(2),
     /**
-     * Max value of the [enum CanvasLightShadowFilter] enum.
+     * Max value of the [CanvasLightShadowFilter] enum.
      */
     CANVAS_LIGHT_FILTER_MAX(3),
     ;
@@ -7717,7 +8171,9 @@ public object RenderingServer : Object() {
      */
     GLOBAL_VAR_TYPE_IVEC4(7),
     /**
-     * 2-dimensional integer rectangle global shader parameter (`global uniform ivec4 ...`). Equivalent to [godot.GLOBAL_VAR_TYPE_IVEC4] in shader code, but exposed as a [godot.Rect2i] in the editor UI.
+     * 2-dimensional integer rectangle global shader parameter (`global uniform ivec4 ...`).
+     * Equivalent to [GLOBAL_VAR_TYPE_IVEC4] in shader code, but exposed as a [Rect2i] in the editor
+     * UI.
      */
     GLOBAL_VAR_TYPE_RECT2I(8),
     /**
@@ -7753,51 +8209,62 @@ public object RenderingServer : Object() {
      */
     GLOBAL_VAR_TYPE_VEC4(16),
     /**
-     * Color global shader parameter (`global uniform vec4 ...`). Equivalent to [godot.GLOBAL_VAR_TYPE_VEC4] in shader code, but exposed as a [godot.core.Color] in the editor UI.
+     * Color global shader parameter (`global uniform vec4 ...`). Equivalent to
+     * [GLOBAL_VAR_TYPE_VEC4] in shader code, but exposed as a [Color] in the editor UI.
      */
     GLOBAL_VAR_TYPE_COLOR(17),
     /**
-     * 2-dimensional floating-point rectangle global shader parameter (`global uniform vec4 ...`). Equivalent to [godot.GLOBAL_VAR_TYPE_VEC4] in shader code, but exposed as a [godot.core.Rect2] in the editor UI.
+     * 2-dimensional floating-point rectangle global shader parameter (`global uniform vec4 ...`).
+     * Equivalent to [GLOBAL_VAR_TYPE_VEC4] in shader code, but exposed as a [Rect2] in the editor UI.
      */
     GLOBAL_VAR_TYPE_RECT2(18),
     /**
-     * 2×2 matrix global shader parameter (`global uniform mat2 ...`). Exposed as a [godot.PackedInt32Array] in the editor UI.
+     * 2×2 matrix global shader parameter (`global uniform mat2 ...`). Exposed as a
+     * [PackedInt32Array] in the editor UI.
      */
     GLOBAL_VAR_TYPE_MAT2(19),
     /**
-     * 3×3 matrix global shader parameter (`global uniform mat3 ...`). Exposed as a [godot.core.Basis] in the editor UI.
+     * 3×3 matrix global shader parameter (`global uniform mat3 ...`). Exposed as a [Basis] in the
+     * editor UI.
      */
     GLOBAL_VAR_TYPE_MAT3(20),
     /**
-     * 4×4 matrix global shader parameter (`global uniform mat4 ...`). Exposed as a [godot.Projection] in the editor UI.
+     * 4×4 matrix global shader parameter (`global uniform mat4 ...`). Exposed as a [Projection] in
+     * the editor UI.
      */
     GLOBAL_VAR_TYPE_MAT4(21),
     /**
-     * 2-dimensional transform global shader parameter (`global uniform mat2x3 ...`). Exposed as a [godot.core.Transform2D] in the editor UI.
+     * 2-dimensional transform global shader parameter (`global uniform mat2x3 ...`). Exposed as a
+     * [Transform2D] in the editor UI.
      */
     GLOBAL_VAR_TYPE_TRANSFORM_2D(22),
     /**
-     * 3-dimensional transform global shader parameter (`global uniform mat3x4 ...`). Exposed as a [godot.Transform3D] in the editor UI.
+     * 3-dimensional transform global shader parameter (`global uniform mat3x4 ...`). Exposed as a
+     * [Transform3D] in the editor UI.
      */
     GLOBAL_VAR_TYPE_TRANSFORM(23),
     /**
-     * 2D sampler global shader parameter (`global uniform sampler2D ...`). Exposed as a [godot.Texture2D] in the editor UI.
+     * 2D sampler global shader parameter (`global uniform sampler2D ...`). Exposed as a [Texture2D]
+     * in the editor UI.
      */
     GLOBAL_VAR_TYPE_SAMPLER2D(24),
     /**
-     * 2D sampler array global shader parameter (`global uniform sampler2DArray ...`). Exposed as a [godot.Texture2DArray] in the editor UI.
+     * 2D sampler array global shader parameter (`global uniform sampler2DArray ...`). Exposed as a
+     * [Texture2DArray] in the editor UI.
      */
     GLOBAL_VAR_TYPE_SAMPLER2DARRAY(25),
     /**
-     * 3D sampler global shader parameter (`global uniform sampler3D ...`). Exposed as a [godot.Texture3D] in the editor UI.
+     * 3D sampler global shader parameter (`global uniform sampler3D ...`). Exposed as a [Texture3D]
+     * in the editor UI.
      */
     GLOBAL_VAR_TYPE_SAMPLER3D(26),
     /**
-     * Cubemap sampler global shader parameter (`global uniform samplerCube ...`). Exposed as a [godot.Cubemap] in the editor UI.
+     * Cubemap sampler global shader parameter (`global uniform samplerCube ...`). Exposed as a
+     * [Cubemap] in the editor UI.
      */
     GLOBAL_VAR_TYPE_SAMPLERCUBE(27),
     /**
-     * Represents the size of the [enum GlobalShaderParameterType] enum.
+     * Represents the size of the [GlobalShaderParameterType] enum.
      */
     GLOBAL_VAR_TYPE_MAX(28),
     ;
@@ -7816,15 +8283,18 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Number of objects rendered in the current 3D scene. This varies depending on camera position and rotation.
+     * Number of objects rendered in the current 3D scene. This varies depending on camera position
+     * and rotation.
      */
     RENDERING_INFO_TOTAL_OBJECTS_IN_FRAME(0),
     /**
-     * Number of points, lines, or triangles rendered in the current 3D scene. This varies depending on camera position and rotation.
+     * Number of points, lines, or triangles rendered in the current 3D scene. This varies depending
+     * on camera position and rotation.
      */
     RENDERING_INFO_TOTAL_PRIMITIVES_IN_FRAME(1),
     /**
-     * Number of draw calls performed to render in the current 3D scene. This varies depending on camera position and rotation.
+     * Number of draw calls performed to render in the current 3D scene. This varies depending on
+     * camera position and rotation.
      */
     RENDERING_INFO_TOTAL_DRAW_CALLS_IN_FRAME(2),
     /**
@@ -7832,11 +8302,16 @@ public object RenderingServer : Object() {
      */
     RENDERING_INFO_TEXTURE_MEM_USED(3),
     /**
-     * Buffer memory used (in bytes). This includes vertex data, uniform buffers, and many miscellaneous buffer types used internally.
+     * Buffer memory used (in bytes). This includes vertex data, uniform buffers, and many
+     * miscellaneous buffer types used internally.
      */
     RENDERING_INFO_BUFFER_MEM_USED(4),
     /**
-     * Video memory used (in bytes). When using the Forward+ or mobile rendering backends, this is always greater than the sum of [RENDERING_INFO_TEXTURE_MEM_USED] and [RENDERING_INFO_BUFFER_MEM_USED], since there is miscellaneous data not accounted for by those two metrics. When using the GL Compatibility backend, this is equal to the sum of [RENDERING_INFO_TEXTURE_MEM_USED] and [RENDERING_INFO_BUFFER_MEM_USED].
+     * Video memory used (in bytes). When using the Forward+ or mobile rendering backends, this is
+     * always greater than the sum of [RENDERING_INFO_TEXTURE_MEM_USED] and
+     * [RENDERING_INFO_BUFFER_MEM_USED], since there is miscellaneous data not accounted for by those
+     * two metrics. When using the GL Compatibility backend, this is equal to the sum of
+     * [RENDERING_INFO_TEXTURE_MEM_USED] and [RENDERING_INFO_BUFFER_MEM_USED].
      */
     RENDERING_INFO_VIDEO_MEM_USED(5),
     ;

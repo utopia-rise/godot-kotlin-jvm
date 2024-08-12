@@ -70,7 +70,7 @@ import kotlin.jvm.JvmOverloads
  * Only one [Control] node can be in focus. Only the node in focus will receive events. To get the
  * focus, call [grabFocus]. [Control] nodes lose focus when another node grabs it, or if you hide the
  * node in focus.
- * Sets [mouseFilter] to [MOUSEFILTERIGNORE] to tell a [Control] node to ignore mouse or touch
+ * Sets [mouseFilter] to [MOUSE_FILTER_IGNORE] to tell a [Control] node to ignore mouse or touch
  * events. You'll need it if you place an icon on top of a button.
  * [Theme] resources change the Control's appearance. If you change the [Theme] on a [Control] node,
  * it affects all of its children. To override some of the theme's parameters, call one of the
@@ -136,7 +136,7 @@ public open class Control : CanvasItem() {
   public val minimumSizeChanged: Signal0 by signal()
 
   /**
-   * Emitted when the [NOTIFICATIONTHEMECHANGED] notification is sent.
+   * Emitted when the [NOTIFICATION_THEME_CHANGED] notification is sent.
    */
   public val themeChanged: Signal0 by signal()
 
@@ -483,7 +483,7 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * If the node and at least one of its neighbors uses the [SIZEEXPAND] size flag, the parent
+   * If the node and at least one of its neighbors uses the [SIZE_EXPAND] size flag, the parent
    * [Container] will let it take more or less space depending on this property. If this node has a
    * stretch ratio of 2 and its neighbor a ratio of 1, this node will take two thirds of the available
    * space.
@@ -534,7 +534,7 @@ public open class Control : CanvasItem() {
 
   /**
    * The default tooltip text. The tooltip appears when the user's mouse cursor stays idle over this
-   * control for a few moments, provided that the [mouseFilter] property is not [MOUSEFILTERIGNORE].
+   * control for a few moments, provided that the [mouseFilter] property is not [MOUSE_FILTER_IGNORE].
    * The time required for the tooltip to appear can be changed with the
    * [ProjectSettings.gui/timers/tooltipDelaySec] option. See also [getTooltip].
    * The tooltip popup will use either a default implementation, or a custom one that you can
@@ -710,7 +710,7 @@ public open class Control : CanvasItem() {
 
   /**
    * When enabled, scroll wheel events processed by [_guiInput] will be passed to the parent control
-   * even if [mouseFilter] is set to [MOUSEFILTERSTOP]. As it defaults to true, this allows nested
+   * even if [mouseFilter] is set to [MOUSE_FILTER_STOP]. As it defaults to true, this allows nested
    * scrollable containers to work out of the box.
    * You should disable it on the root of your UI if you do not want scroll events to go to the
    * [Node.UnhandledInput] processing.
@@ -1119,10 +1119,10 @@ public open class Control : CanvasItem() {
    *
    * The event won't trigger if:
    * * clicking outside the control (see [_hasPoint]);
-   * * control has [mouseFilter] set to [MOUSEFILTERIGNORE];
+   * * control has [mouseFilter] set to [MOUSE_FILTER_IGNORE];
    * * control is obstructed by another [Control] on top of it, which doesn't have [mouseFilter] set
-   * to [MOUSEFILTERIGNORE];
-   * * control's parent has [mouseFilter] set to [MOUSEFILTERSTOP] or has accepted the event;
+   * to [MOUSE_FILTER_IGNORE];
+   * * control's parent has [mouseFilter] set to [MOUSE_FILTER_STOP] or has accepted the event;
    * * it happens outside the parent's rectangle and the parent has either [clipContents] enabled.
    * **Note:** Event position is relative to the control origin.
    */
@@ -1173,7 +1173,7 @@ public open class Control : CanvasItem() {
    * using the Layout menu in the 2D editor.
    * Use parameter [resizeMode] with constants from [Control.LayoutPresetMode] to better determine
    * the resulting size of the [Control]. Constant size will be ignored if used with presets that
-   * change size, e.g. [PRESETLEFTWIDE].
+   * change size, e.g. [PRESET_LEFT_WIDE].
    * Use parameter [margin] to determine the gap between the [Control] and the edges.
    */
   @JvmOverloads
@@ -1417,7 +1417,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Prevents `*_theme_*_override` methods from emitting [NOTIFICATIONTHEMECHANGED] until
+   * Prevents `*_theme_*_override` methods from emitting [NOTIFICATION_THEME_CHANGED] until
    * [endBulkThemeOverride] is called.
    */
   public fun beginBulkThemeOverride(): Unit {
@@ -1996,7 +1996,7 @@ public open class Control : CanvasItem() {
   /**
    * Returns `true` if a drag operation is successful. Alternative to
    * [Viewport.guiIsDragSuccessful].
-   * Best used with [Node.NOTIFICATIONDRAGEND].
+   * Best used with [Node.NOTIFICATION_DRAG_END].
    */
   public fun isDragSuccessful(): Boolean {
     TransferContext.writeArguments()
@@ -2127,7 +2127,7 @@ public open class Control : CanvasItem() {
     /**
      * Show the system's window resize mouse cursor when the user hovers the node. The cursor is a
      * double-headed arrow that goes from the top left to the bottom right, the opposite of
-     * [CURSORBDIAGSIZE]. It tells the user they can resize the window or the panel both horizontally
+     * [CURSOR_BDIAGSIZE]. It tells the user they can resize the window or the panel both horizontally
      * and vertically.
      */
     CURSOR_FDIAGSIZE(12),
@@ -2138,12 +2138,12 @@ public open class Control : CanvasItem() {
     CURSOR_MOVE(13),
     /**
      * Show the system's vertical split mouse cursor when the user hovers the node. On Windows, it's
-     * the same as [CURSORVSIZE].
+     * the same as [CURSOR_VSIZE].
      */
     CURSOR_VSPLIT(14),
     /**
      * Show the system's horizontal split mouse cursor when the user hovers the node. On Windows,
-     * it's the same as [CURSORHSIZE].
+     * it's the same as [CURSOR_HSIZE].
      */
     CURSOR_HSPLIT(15),
     /**
@@ -2384,7 +2384,7 @@ public open class Control : CanvasItem() {
      * [signal mouse_exited] signals. This will not block other controls from receiving these events or
      * firing the signals. Ignored events will not be handled automatically.
      * **Note:** If the control has received [signal mouse_entered] but not [signal mouse_exited],
-     * changing the [mouseFilter] to [MOUSEFILTERIGNORE] will cause [signal mouse_exited] to be
+     * changing the [mouseFilter] to [MOUSE_FILTER_IGNORE] will cause [signal mouse_exited] to be
      * emitted.
      */
     MOUSE_FILTER_IGNORE(2),
@@ -2530,7 +2530,7 @@ public open class Control : CanvasItem() {
      * is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event
      * reach it and regardless if it's currently focused or not.
      * **Note:** [CanvasItem.zIndex] doesn't affect which Control receives the notification.
-     * See also [NOTIFICATIONMOUSEENTERSELF].
+     * See also [NOTIFICATION_MOUSE_ENTER_SELF].
      */
     public final const val NOTIFICATION_MOUSE_ENTER: Long = 41
 
@@ -2539,7 +2539,7 @@ public open class Control : CanvasItem() {
      * is not occluded behind other Controls or Windows, provided its [mouseFilter] lets the event
      * reach it and regardless if it's currently focused or not.
      * **Note:** [CanvasItem.zIndex] doesn't affect which Control receives the notification.
-     * See also [NOTIFICATIONMOUSEEXITSELF].
+     * See also [NOTIFICATION_MOUSE_EXIT_SELF].
      */
     public final const val NOTIFICATION_MOUSE_EXIT: Long = 42
 
@@ -2548,7 +2548,7 @@ public open class Control : CanvasItem() {
      * other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if
      * it's currently focused or not.
      * **Note:** [CanvasItem.zIndex] doesn't affect which Control receives the notification.
-     * See also [NOTIFICATIONMOUSEENTER].
+     * See also [NOTIFICATION_MOUSE_ENTER].
      */
     public final const val NOTIFICATION_MOUSE_ENTER_SELF: Long = 60
 
@@ -2557,7 +2557,7 @@ public open class Control : CanvasItem() {
      * other Controls or Windows, provided its [mouseFilter] lets the event reach it and regardless if
      * it's currently focused or not.
      * **Note:** [CanvasItem.zIndex] doesn't affect which Control receives the notification.
-     * See also [NOTIFICATIONMOUSEEXIT].
+     * See also [NOTIFICATION_MOUSE_EXIT].
      */
     public final const val NOTIFICATION_MOUSE_EXIT_SELF: Long = 61
 

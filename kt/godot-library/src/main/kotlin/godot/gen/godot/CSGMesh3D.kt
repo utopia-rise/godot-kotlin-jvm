@@ -29,10 +29,10 @@ import kotlin.Suppress
 public open class CSGMesh3D : CSGPrimitive3D() {
   /**
    * The [Mesh] resource to use as a CSG shape.
-   * **Note:** When using an [ArrayMesh], all vertex attributes except [Mesh.ARRAYVERTEX],
-   * [Mesh.ARRAYNORMAL] and [Mesh.ARRAYTEXUV] are left unused. Only [Mesh.ARRAYVERTEX] and
-   * [Mesh.ARRAYTEXUV] will be passed to the GPU.
-   * [Mesh.ARRAYNORMAL] is only used to determine which faces require the use of flat shading. By
+   * **Note:** When using an [ArrayMesh], all vertex attributes except [Mesh.ARRAY_VERTEX],
+   * [Mesh.ARRAY_NORMAL] and [Mesh.ARRAY_TEX_UV] are left unused. Only [Mesh.ARRAY_VERTEX] and
+   * [Mesh.ARRAY_TEX_UV] will be passed to the GPU.
+   * [Mesh.ARRAY_NORMAL] is only used to determine which faces require the use of flat shading. By
    * default, CSGMesh will ignore the mesh's vertex normals, recalculate them for each vertex and use a
    * smooth shader. If a flat shader is required for a face, ensure that all vertex normals of the face
    * are approximately equal.

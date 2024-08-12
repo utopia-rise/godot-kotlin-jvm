@@ -106,7 +106,7 @@ public open class ENetConnection : RefCounted() {
    * Waits for events on the host specified and shuttles packets between the host and its peers. The
    * returned [Array] will have 4 elements. An [EventType], the [ENetPacketPeer] which generated the
    * event, the event associated data (if any), the event associated channel (if any). If the generated
-   * event is [EVENTRECEIVE], the received packet will be queued to the associated [ENetPacketPeer].
+   * event is [EVENT_RECEIVE], the received packet will be queued to the associated [ENetPacketPeer].
    * Call this function regularly to handle connections, disconnections, and to receive new packets.
    */
   @JvmOverloads
@@ -280,12 +280,12 @@ public open class ENetConnection : RefCounted() {
     COMPRESS_RANGE_CODER(1),
     /**
      * [url=https://fastlz.org/]FastLZ[/url] compression. This option uses less CPU resources
-     * compared to [COMPRESSZLIB], at the expense of using more bandwidth.
+     * compared to [COMPRESS_ZLIB], at the expense of using more bandwidth.
      */
     COMPRESS_FASTLZ(2),
     /**
      * [url=https://www.zlib.net/]Zlib[/url] compression. This option uses less bandwidth compared
-     * to [COMPRESSFASTLZ], at the expense of using more CPU resources.
+     * to [COMPRESS_FASTLZ], at the expense of using more CPU resources.
      */
     COMPRESS_ZLIB(3),
     /**

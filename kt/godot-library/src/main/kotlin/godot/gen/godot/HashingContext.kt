@@ -82,7 +82,7 @@ public open class HashingContext : RefCounted() {
   }
 
   /**
-   * Starts a new hash computation of the given [type] (e.g. [HASHSHA256] to start computation of a
+   * Starts a new hash computation of the given [type] (e.g. [HASH_SHA256] to start computation of a
    * SHA-256).
    */
   public fun start(type: HashType): GodotError {

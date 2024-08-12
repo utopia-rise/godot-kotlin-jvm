@@ -43,8 +43,8 @@ public open class TextureRect : Control() {
   /**
    * Defines how minimum size is determined based on the texture's size. See [ExpandMode] for
    * options.
-   * **Note:** Using [EXPANDFITWIDTH], [EXPANDFITWIDTHPROPORTIONAL], [EXPANDFITHEIGHT] or
-   * [EXPANDFITHEIGHTPROPORTIONAL] may result in unstable behavior in some containers. This
+   * **Note:** Using [EXPAND_FIT_WIDTH], [EXPAND_FIT_WIDTH_PROPORTIONAL], [EXPAND_FIT_HEIGHT] or
+   * [EXPAND_FIT_HEIGHT_PROPORTIONAL] may result in unstable behavior in some containers. This
    * functionality is being re-evaluated and will change in the future.
    */
   public var expandMode: ExpandMode
@@ -124,7 +124,7 @@ public open class TextureRect : Control() {
      */
     EXPAND_FIT_WIDTH(2),
     /**
-     * Same as [EXPANDFITWIDTH], but keeps texture's aspect ratio.
+     * Same as [EXPAND_FIT_WIDTH], but keeps texture's aspect ratio.
      */
     EXPAND_FIT_WIDTH_PROPORTIONAL(3),
     /**
@@ -133,7 +133,7 @@ public open class TextureRect : Control() {
      */
     EXPAND_FIT_HEIGHT(4),
     /**
-     * Same as [EXPANDFITHEIGHT], but keeps texture's aspect ratio.
+     * Same as [EXPAND_FIT_HEIGHT], but keeps texture's aspect ratio.
      */
     EXPAND_FIT_HEIGHT_PROPORTIONAL(5),
     ;

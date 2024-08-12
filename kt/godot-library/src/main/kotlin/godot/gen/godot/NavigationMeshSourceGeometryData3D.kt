@@ -89,8 +89,8 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
   }
 
   /**
-   * Adds an [Array] the size of [Mesh.ARRAYMAX] and with vertices at index [Mesh.ARRAYVERTEX] and
-   * indices at index [Mesh.ARRAYINDEX] to the navigation mesh baking data. The array must have valid
+   * Adds an [Array] the size of [Mesh.ARRAY_MAX] and with vertices at index [Mesh.ARRAY_VERTEX] and
+   * indices at index [Mesh.ARRAY_INDEX] to the navigation mesh baking data. The array must have valid
    * triangulated mesh data to be considered. Since [NavigationMesh] resources have no transform, all
    * vertex positions need to be offset by the node's transform using [xform].
    */

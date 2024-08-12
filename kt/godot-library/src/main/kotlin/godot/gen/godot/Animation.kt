@@ -39,67 +39,46 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Holds data that can be used to animate anything in the engine.
+ * This resource holds data that can be used to animate anything in the engine. Animations are
+ * divided into tracks and each track must be linked to a node. The state of that node can be changed
+ * through time, by adding timed keys (events) to the track.
  *
- * Tutorials:
- * [$DOCS_URL/tutorials/animation/index.html]($DOCS_URL/tutorials/animation/index.html)
- *
- * This resource holds data that can be used to animate anything in the engine. Animations are divided into tracks and each track must be linked to a node. The state of that node can be changed through time, by adding timed keys (events) to the track.
- *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * # This creates an animation that makes the node "Enemy" move to the right by
- *
  * # 100 pixels in 2.0 seconds.
- *
  * var animation = Animation.new()
- *
  * var track_index = animation.add_track(Animation.TYPE_VALUE)
- *
  * animation.track_set_path(track_index, "Enemy:position:x")
- *
  * animation.track_insert_key(track_index, 0.0, 0)
- *
  * animation.track_insert_key(track_index, 2.0, 100)
- *
  * animation.length = 2.0
- *
- * [/gdscript]
- *
- * [csharp]
- *
+ * ```
+ * csharp:
+ * ```csharp
  * // This creates an animation that makes the node "Enemy" move to the right by
- *
  * // 100 pixels in 2.0 seconds.
- *
  * var animation = new Animation();
- *
  * int trackIndex = animation.AddTrack(Animation.TrackType.Value);
- *
  * animation.TrackSetPath(trackIndex, "Enemy:position:x");
- *
  * animation.TrackInsertKey(trackIndex, 0.0f, 0);
- *
  * animation.TrackInsertKey(trackIndex, 2.0f, 100);
- *
  * animation.Length = 2.0f;
+ * ```
  *
- * [/csharp]
- *
- * [/codeblocks]
- *
- * Animations are just data containers, and must be added to nodes such as an [godot.AnimationPlayer] to be played back. Animation tracks have different types, each with its own set of dedicated methods. Check [enum TrackType] to see available types.
- *
- * **Note:** For 3D position/rotation/scale, using the dedicated [godot.TYPE_POSITION_3D], [godot.TYPE_ROTATION_3D] and [godot.TYPE_SCALE_3D] track types instead of [TYPE_VALUE] is recommended for performance reasons.
+ * Animations are just data containers, and must be added to nodes such as an [AnimationPlayer] to
+ * be played back. Animation tracks have different types, each with its own set of dedicated methods.
+ * Check [TrackType] to see available types.
+ * **Note:** For 3D position/rotation/scale, using the dedicated [TYPE_POSITION_3D],
+ * [TYPE_ROTATION_3D] and [TYPE_SCALE_3D] track types instead of [TYPE_VALUE] is recommended for
+ * performance reasons.
  */
 @GodotBaseType
 public open class Animation : Resource() {
   /**
    * The total length of the animation (in seconds).
-   *
-   * **Note:** Length is not delimited by the last key, as this one may be before or after the end to ensure correct interpolation and looping.
+   * **Note:** Length is not delimited by the last key, as this one may be before or after the end
+   * to ensure correct interpolation and looping.
    */
   public var length: Float
     get() {
@@ -113,7 +92,9 @@ public open class Animation : Resource() {
     }
 
   /**
-   * Determines the behavior of both ends of the animation timeline during animation playback. This is used for correct interpolation of animation cycles, and for hinting the player that it must restart the animation.
+   * Determines the behavior of both ends of the animation timeline during animation playback. This
+   * is used for correct interpolation of animation cycles, and for hinting the player that it must
+   * restart the animation.
    */
   public var loopMode: LoopMode
     get() {
@@ -191,8 +172,9 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the path of a track. Paths must be valid scene-tree paths to a node and must be specified starting from the parent node of the node that will reproduce the animation. Tracks that control properties or bones must append their name after the path, separated by `":"`.
-   *
+   * Sets the path of a track. Paths must be valid scene-tree paths to a node and must be specified
+   * starting from the parent node of the node that will reproduce the animation. Tracks that control
+   * properties or bones must append their name after the path, separated by `":"`.
    * For example, `"character/skeleton:ankle"` or `"character/mesh:transform/local"`.
    */
   public fun trackSetPath(trackIdx: Int, path: NodePath): Unit {
@@ -328,7 +310,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the interpolated position value at the given time (in seconds). The [trackIdx] must be the index of a 3D position track.
+   * Returns the interpolated position value at the given time (in seconds). The [trackIdx] must be
+   * the index of a 3D position track.
    */
   public fun positionTrackInterpolate(trackIdx: Int, timeSec: Double): Vector3 {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
@@ -337,7 +320,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the interpolated rotation value at the given time (in seconds). The [trackIdx] must be the index of a 3D rotation track.
+   * Returns the interpolated rotation value at the given time (in seconds). The [trackIdx] must be
+   * the index of a 3D rotation track.
    */
   public fun rotationTrackInterpolate(trackIdx: Int, timeSec: Double): Quaternion {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
@@ -346,7 +330,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the interpolated scale value at the given time (in seconds). The [trackIdx] must be the index of a 3D scale track.
+   * Returns the interpolated scale value at the given time (in seconds). The [trackIdx] must be the
+   * index of a 3D scale track.
    */
   public fun scaleTrackInterpolate(trackIdx: Int, timeSec: Double): Vector3 {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
@@ -355,7 +340,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the interpolated blend shape value at the given time (in seconds). The [trackIdx] must be the index of a blend shape track.
+   * Returns the interpolated blend shape value at the given time (in seconds). The [trackIdx] must
+   * be the index of a blend shape track.
    */
   public fun blendShapeTrackInterpolate(trackIdx: Int, timeSec: Double): Float {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
@@ -407,7 +393,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the transition curve (easing) for a specific key (see the built-in math function [@GlobalScope.ease]).
+   * Sets the transition curve (easing) for a specific key (see the built-in math function
+   * [@GlobalScope.ease]).
    */
   public fun trackSetKeyTransition(
     trackIdx: Int,
@@ -431,7 +418,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the transition curve (easing) for a specific key (see the built-in math function [@GlobalScope.ease]).
+   * Returns the transition curve (easing) for a specific key (see the built-in math function
+   * [@GlobalScope.ease]).
    */
   public fun trackGetKeyTransition(trackIdx: Int, keyIdx: Int): Float {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
@@ -467,7 +455,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Finds the key index by time in a given track. Optionally, only find it if the approx/exact time is given.
+   * Finds the key index by time in a given track. Optionally, only find it if the approx/exact time
+   * is given.
    */
   @JvmOverloads
   public fun trackFindKey(
@@ -506,7 +495,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns `true` if the track at [trackIdx] wraps the interpolation loop. New tracks wrap the interpolation loop by default.
+   * Returns `true` if the track at [trackIdx] wraps the interpolation loop. New tracks wrap the
+   * interpolation loop by default.
    */
   public fun trackGetInterpolationLoopWrap(trackIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
@@ -524,7 +514,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the update mode (see [enum UpdateMode]) of a value track.
+   * Sets the update mode (see [UpdateMode]) of a value track.
    */
   public fun valueTrackSetUpdateMode(trackIdx: Int, mode: UpdateMode): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to mode.id)
@@ -541,7 +531,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the interpolated value at the given time (in seconds). The [trackIdx] must be the index of a value track.
+   * Returns the interpolated value at the given time (in seconds). The [trackIdx] must be the index
+   * of a value track.
    */
   public fun valueTrackInterpolate(trackIdx: Int, timeSec: Double): Any? {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
@@ -568,9 +559,10 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Inserts a Bezier Track key at the given [time] in seconds. The [trackIdx] must be the index of a Bezier Track.
-   *
-   * [inHandle] is the left-side weight of the added Bezier curve point, [outHandle] is the right-side one, while [value] is the actual value at this point.
+   * Inserts a Bezier Track key at the given [time] in seconds. The [trackIdx] must be the index of
+   * a Bezier Track.
+   * [inHandle] is the left-side weight of the added Bezier curve point, [outHandle] is the
+   * right-side one, while [value] is the actual value at this point.
    */
   @JvmOverloads
   public fun bezierTrackInsertKey(
@@ -586,7 +578,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the value of the key identified by [keyIdx] to the given value. The [trackIdx] must be the index of a Bezier Track.
+   * Sets the value of the key identified by [keyIdx] to the given value. The [trackIdx] must be the
+   * index of a Bezier Track.
    */
   public fun bezierTrackSetKeyValue(
     trackIdx: Int,
@@ -598,7 +591,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the in handle of the key identified by [keyIdx] to value [inHandle]. The [trackIdx] must be the index of a Bezier Track.
+   * Sets the in handle of the key identified by [keyIdx] to value [inHandle]. The [trackIdx] must
+   * be the index of a Bezier Track.
    */
   @JvmOverloads
   public fun bezierTrackSetKeyInHandle(
@@ -612,7 +606,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the out handle of the key identified by [keyIdx] to value [outHandle]. The [trackIdx] must be the index of a Bezier Track.
+   * Sets the out handle of the key identified by [keyIdx] to value [outHandle]. The [trackIdx] must
+   * be the index of a Bezier Track.
    */
   @JvmOverloads
   public fun bezierTrackSetKeyOutHandle(
@@ -626,7 +621,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the value of the key identified by [keyIdx]. The [trackIdx] must be the index of a Bezier Track.
+   * Returns the value of the key identified by [keyIdx]. The [trackIdx] must be the index of a
+   * Bezier Track.
    */
   public fun bezierTrackGetKeyValue(trackIdx: Int, keyIdx: Int): Float {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
@@ -635,7 +631,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the in handle of the key identified by [keyIdx]. The [trackIdx] must be the index of a Bezier Track.
+   * Returns the in handle of the key identified by [keyIdx]. The [trackIdx] must be the index of a
+   * Bezier Track.
    */
   public fun bezierTrackGetKeyInHandle(trackIdx: Int, keyIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
@@ -644,7 +641,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the out handle of the key identified by [keyIdx]. The [trackIdx] must be the index of a Bezier Track.
+   * Returns the out handle of the key identified by [keyIdx]. The [trackIdx] must be the index of a
+   * Bezier Track.
    */
   public fun bezierTrackGetKeyOutHandle(trackIdx: Int, keyIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
@@ -653,7 +651,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the interpolated value at the given [time] (in seconds). The [trackIdx] must be the index of a Bezier Track.
+   * Returns the interpolated value at the given [time] (in seconds). The [trackIdx] must be the
+   * index of a Bezier Track.
    */
   public fun bezierTrackInterpolate(trackIdx: Int, time: Double): Float {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time)
@@ -662,9 +661,10 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Inserts an Audio Track key at the given [time] in seconds. The [trackIdx] must be the index of an Audio Track.
-   *
-   * [stream] is the [godot.AudioStream] resource to play. [startOffset] is the number of seconds cut off at the beginning of the audio stream, while [endOffset] is at the ending.
+   * Inserts an Audio Track key at the given [time] in seconds. The [trackIdx] must be the index of
+   * an Audio Track.
+   * [stream] is the [AudioStream] resource to play. [startOffset] is the number of seconds cut off
+   * at the beginning of the audio stream, while [endOffset] is at the ending.
    */
   @JvmOverloads
   public fun audioTrackInsertKey(
@@ -680,7 +680,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the stream of the key identified by [keyIdx] to value [stream]. The [trackIdx] must be the index of an Audio Track.
+   * Sets the stream of the key identified by [keyIdx] to value [stream]. The [trackIdx] must be the
+   * index of an Audio Track.
    */
   public fun audioTrackSetKeyStream(
     trackIdx: Int,
@@ -692,7 +693,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the start offset of the key identified by [keyIdx] to value [offset]. The [trackIdx] must be the index of an Audio Track.
+   * Sets the start offset of the key identified by [keyIdx] to value [offset]. The [trackIdx] must
+   * be the index of an Audio Track.
    */
   public fun audioTrackSetKeyStartOffset(
     trackIdx: Int,
@@ -704,7 +706,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the end offset of the key identified by [keyIdx] to value [offset]. The [trackIdx] must be the index of an Audio Track.
+   * Sets the end offset of the key identified by [keyIdx] to value [offset]. The [trackIdx] must be
+   * the index of an Audio Track.
    */
   public fun audioTrackSetKeyEndOffset(
     trackIdx: Int,
@@ -716,7 +719,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the audio stream of the key identified by [keyIdx]. The [trackIdx] must be the index of an Audio Track.
+   * Returns the audio stream of the key identified by [keyIdx]. The [trackIdx] must be the index of
+   * an Audio Track.
    */
   public fun audioTrackGetKeyStream(trackIdx: Int, keyIdx: Int): Resource? {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
@@ -725,8 +729,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the start offset of the key identified by [keyIdx]. The [trackIdx] must be the index of an Audio Track.
-   *
+   * Returns the start offset of the key identified by [keyIdx]. The [trackIdx] must be the index of
+   * an Audio Track.
    * Start offset is the number of seconds cut off at the beginning of the audio stream.
    */
   public fun audioTrackGetKeyStartOffset(trackIdx: Int, keyIdx: Int): Float {
@@ -736,8 +740,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the end offset of the key identified by [keyIdx]. The [trackIdx] must be the index of an Audio Track.
-   *
+   * Returns the end offset of the key identified by [keyIdx]. The [trackIdx] must be the index of
+   * an Audio Track.
    * End offset is the number of seconds cut off at the ending of the audio stream.
    */
   public fun audioTrackGetKeyEndOffset(trackIdx: Int, keyIdx: Int): Float {
@@ -747,7 +751,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets whether the track will be blended with other animations. If `true`, the audio playback volume changes depending on the blend value.
+   * Sets whether the track will be blended with other animations. If `true`, the audio playback
+   * volume changes depending on the blend value.
    */
   public fun audioTrackSetUseBlend(trackIdx: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), BOOL to enable)
@@ -764,7 +769,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Inserts a key with value [animation] at the given [time] (in seconds). The [trackIdx] must be the index of an Animation Track.
+   * Inserts a key with value [animation] at the given [time] (in seconds). The [trackIdx] must be
+   * the index of an Animation Track.
    */
   public fun animationTrackInsertKey(
     trackIdx: Int,
@@ -777,7 +783,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the key identified by [keyIdx] to value [animation]. The [trackIdx] must be the index of an Animation Track.
+   * Sets the key identified by [keyIdx] to value [animation]. The [trackIdx] must be the index of
+   * an Animation Track.
    */
   public fun animationTrackSetKeyAnimation(
     trackIdx: Int,
@@ -789,7 +796,8 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Returns the animation name at the key identified by [keyIdx]. The [trackIdx] must be the index of an Animation Track.
+   * Returns the animation name at the key identified by [keyIdx]. The [trackIdx] must be the index
+   * of an Animation Track.
    */
   public fun animationTrackGetKeyAnimation(trackIdx: Int, keyIdx: Int): StringName {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
@@ -814,9 +822,13 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Compress the animation and all its tracks in-place. This will make [trackIsCompressed] return `true` once called on this [godot.Animation]. Compressed tracks require less memory to be played, and are designed to be used for complex 3D animations (such as cutscenes) imported from external 3D software. Compression is lossy, but the difference is usually not noticeable in real world conditions.
-   *
-   * **Note:** Compressed tracks have various limitations (such as not being editable from the editor), so only use compressed animations if you actually need them.
+   * Compress the animation and all its tracks in-place. This will make [trackIsCompressed] return
+   * `true` once called on this [Animation]. Compressed tracks require less memory to be played, and
+   * are designed to be used for complex 3D animations (such as cutscenes) imported from external 3D
+   * software. Compression is lossy, but the difference is usually not noticeable in real world
+   * conditions.
+   * **Note:** Compressed tracks have various limitations (such as not being editable from the
+   * editor), so only use compressed animations if you actually need them.
    */
   @JvmOverloads
   public fun compress(
@@ -832,19 +844,21 @@ public open class Animation : Resource() {
     id: Long,
   ) {
     /**
-     * Value tracks set values in node properties, but only those which can be interpolated. For 3D position/rotation/scale, using the dedicated [godot.TYPE_POSITION_3D], [godot.TYPE_ROTATION_3D] and [godot.TYPE_SCALE_3D] track types instead of [TYPE_VALUE] is recommended for performance reasons.
+     * Value tracks set values in node properties, but only those which can be interpolated. For 3D
+     * position/rotation/scale, using the dedicated [TYPE_POSITION_3D], [TYPE_ROTATION_3D] and
+     * [TYPE_SCALE_3D] track types instead of [TYPE_VALUE] is recommended for performance reasons.
      */
     TYPE_VALUE(0),
     /**
-     * 3D position track (values are stored in [godot.core.Vector3]s).
+     * 3D position track (values are stored in [Vector3]s).
      */
     TYPE_POSITION_3D(1),
     /**
-     * 3D rotation track (values are stored in [godot.Quaternion]s).
+     * 3D rotation track (values are stored in [Quaternion]s).
      */
     TYPE_ROTATION_3D(2),
     /**
-     * 3D scale track (values are stored in [godot.core.Vector3]s).
+     * 3D scale track (values are stored in [Vector3]s).
      */
     TYPE_SCALE_3D(3),
     /**
@@ -856,15 +870,17 @@ public open class Animation : Resource() {
      */
     TYPE_METHOD(5),
     /**
-     * Bezier tracks are used to interpolate a value using custom curves. They can also be used to animate sub-properties of vectors and colors (e.g. alpha value of a [godot.core.Color]).
+     * Bezier tracks are used to interpolate a value using custom curves. They can also be used to
+     * animate sub-properties of vectors and colors (e.g. alpha value of a [Color]).
      */
     TYPE_BEZIER(6),
     /**
-     * Audio tracks are used to play an audio stream with either type of [godot.AudioStreamPlayer]. The stream can be trimmed and previewed in the animation.
+     * Audio tracks are used to play an audio stream with either type of [AudioStreamPlayer]. The
+     * stream can be trimmed and previewed in the animation.
      */
     TYPE_AUDIO(7),
     /**
-     * Animation tracks play animations in other [godot.AnimationPlayer] nodes.
+     * Animation tracks play animations in other [AnimationPlayer] nodes.
      */
     TYPE_ANIMATION(8),
     ;
@@ -891,18 +907,18 @@ public open class Animation : Resource() {
      */
     INTERPOLATION_LINEAR(1),
     /**
-     * Cubic interpolation. This looks smoother than linear interpolation, but is more expensive to interpolate. Stick to [INTERPOLATION_LINEAR] for complex 3D animations imported from external software, even if it requires using a higher animation framerate in return.
+     * Cubic interpolation. This looks smoother than linear interpolation, but is more expensive to
+     * interpolate. Stick to [INTERPOLATION_LINEAR] for complex 3D animations imported from external
+     * software, even if it requires using a higher animation framerate in return.
      */
     INTERPOLATION_CUBIC(2),
     /**
      * Linear interpolation with shortest path rotation.
-     *
      * **Note:** The result value is always normalized and may not match the key value.
      */
     INTERPOLATION_LINEAR_ANGLE(3),
     /**
      * Cubic interpolation with shortest path rotation.
-     *
      * **Note:** The result value is always normalized and may not match the key value.
      */
     INTERPOLATION_CUBIC_ANGLE(4),
@@ -930,7 +946,8 @@ public open class Animation : Resource() {
      */
     UPDATE_DISCRETE(1),
     /**
-     * Same as linear interpolation, but also interpolates from the current value (i.e. dynamically at runtime) if the first key isn't at 0 seconds.
+     * Same as linear interpolation, but also interpolates from the current value (i.e. dynamically
+     * at runtime) if the first key isn't at 0 seconds.
      */
     UPDATE_CAPTURE(2),
     ;
@@ -953,7 +970,8 @@ public open class Animation : Resource() {
      */
     LOOP_NONE(0),
     /**
-     * At both ends of the animation, the animation will be repeated without changing the playback direction.
+     * At both ends of the animation, the animation will be repeated without changing the playback
+     * direction.
      */
     LOOP_LINEAR(1),
     /**
@@ -980,11 +998,13 @@ public open class Animation : Resource() {
      */
     LOOPED_FLAG_NONE(0),
     /**
-     * This flag indicates that the animation has reached the end of the animation and just after loop processed.
+     * This flag indicates that the animation has reached the end of the animation and just after
+     * loop processed.
      */
     LOOPED_FLAG_END(1),
     /**
-     * This flag indicates that the animation has reached the start of the animation and just after loop processed.
+     * This flag indicates that the animation has reached the start of the animation and just after
+     * loop processed.
      */
     LOOPED_FLAG_START(2),
     ;

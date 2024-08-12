@@ -26,8 +26,8 @@ import kotlin.Suppress
 @GodotBaseType
 public open class BoxContainer : Container() {
   /**
-   * The alignment of the container's children (must be one of [ALIGNMENTBEGIN], [ALIGNMENTCENTER],
-   * or [ALIGNMENTEND]).
+   * The alignment of the container's children (must be one of [ALIGNMENT_BEGIN],
+   * [ALIGNMENT_CENTER], or [ALIGNMENT_END]).
    */
   public var alignment: AlignmentMode
     get() {

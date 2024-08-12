@@ -68,7 +68,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * When [mode] is [MODEDEPTH], the depth of the extrusion.
+   * When [mode] is [MODE_DEPTH], the depth of the extrusion.
    */
   public var depth: Float
     get() {
@@ -82,7 +82,8 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * When [mode] is [MODESPIN], the total number of degrees the [polygon] is rotated when extruding.
+   * When [mode] is [MODE_SPIN], the total number of degrees the [polygon] is rotated when
+   * extruding.
    */
   public var spinDegrees: Float
     get() {
@@ -96,7 +97,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * When [mode] is [MODESPIN], the number of extrusions made.
+   * When [mode] is [MODE_SPIN], the number of extrusions made.
    */
   public var spinSides: Int
     get() {
@@ -110,7 +111,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * When [mode] is [MODEPATH], the location of the [Path3D] object used to extrude the [polygon].
+   * When [mode] is [MODE_PATH], the location of the [Path3D] object used to extrude the [polygon].
    */
   public var pathNode: NodePath
     get() {
@@ -124,8 +125,8 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * When [mode] is [MODEPATH], this will determine if the interval should be by distance
-   * ([PATHINTERVALDISTANCE]) or subdivision fractions ([PATHINTERVALSUBDIVIDE]).
+   * When [mode] is [MODE_PATH], this will determine if the interval should be by distance
+   * ([PATH_INTERVAL_DISTANCE]) or subdivision fractions ([PATH_INTERVAL_SUBDIVIDE]).
    */
   public var pathIntervalType: PathIntervalType
     get() {
@@ -139,7 +140,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * When [mode] is [MODEPATH], the path interval or ratio of path points to extrusions.
+   * When [mode] is [MODE_PATH], the path interval or ratio of path points to extrusions.
    */
   public var pathInterval: Float
     get() {
@@ -153,8 +154,8 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * When [mode] is [MODEPATH], extrusions that are less than this angle, will be merged together to
-   * reduce polygon count.
+   * When [mode] is [MODE_PATH], extrusions that are less than this angle, will be merged together
+   * to reduce polygon count.
    */
   public var pathSimplifyAngle: Float
     get() {
@@ -168,7 +169,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * When [mode] is [MODEPATH], the [PathRotation] method used to rotate the [polygon] as it is
+   * When [mode] is [MODE_PATH], the [PathRotation] method used to rotate the [polygon] as it is
    * extruded.
    */
   public var pathRotation: PathRotation
@@ -183,7 +184,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * When [mode] is [MODEPATH], if `true` the [Transform3D] of the [CSGPolygon3D] is used as the
+   * When [mode] is [MODE_PATH], if `true` the [Transform3D] of the [CSGPolygon3D] is used as the
    * starting point for the extrusions, not the [Transform3D] of the [pathNode].
    */
   public var pathLocal: Boolean
@@ -198,7 +199,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * When [mode] is [MODEPATH], by default, the top half of the [material] is stretched along the
+   * When [mode] is [MODE_PATH], by default, the top half of the [material] is stretched along the
    * entire length of the extruded shape. If `false` the top half of the material is repeated every
    * step of the extrusion.
    */
@@ -214,7 +215,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * When [mode] is [MODEPATH], this is the distance along the path, in meters, the texture
+   * When [mode] is [MODE_PATH], this is the distance along the path, in meters, the texture
    * coordinates will tile. When set to 0, texture coordinates will match geometry exactly with no
    * tiling.
    */
@@ -230,7 +231,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * When [mode] is [MODEPATH], if `true` the ends of the path are joined, by adding an extrusion
+   * When [mode] is [MODE_PATH], if `true` the ends of the path are joined, by adding an extrusion
    * between the last and first points of the path.
    */
   public var pathJoined: Boolean
@@ -339,12 +340,12 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     id: Long,
   ) {
     /**
-     * When [mode] is set to [MODEPATH], [pathInterval] will determine the distance, in meters, each
-     * interval of the path will extrude.
+     * When [mode] is set to [MODE_PATH], [pathInterval] will determine the distance, in meters,
+     * each interval of the path will extrude.
      */
     PATH_INTERVAL_DISTANCE(0),
     /**
-     * When [mode] is set to [MODEPATH], [pathInterval] will subdivide the polygons along the path.
+     * When [mode] is set to [MODE_PATH], [pathInterval] will subdivide the polygons along the path.
      */
     PATH_INTERVAL_SUBDIVIDE(1),
     ;

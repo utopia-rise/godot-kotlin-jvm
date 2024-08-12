@@ -56,9 +56,9 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
    * [maxClients] is the maximum number of clients that are allowed at once, any number up to 4095 may
    * be used, although the achievable number of simultaneous clients may be far lower and depends on
    * the application. For additional details on the bandwidth parameters, see [createClient]. Returns
-   * [OK] if a server was created, [ERRALREADYINUSE] if this ENetMultiplayerPeer instance already has
-   * an open connection (in which case you need to call [MultiplayerPeer.close] first) or
-   * [ERRCANTCREATE] if the server could not be created.
+   * [OK] if a server was created, [ERR_ALREADY_IN_USE] if this ENetMultiplayerPeer instance already
+   * has an open connection (in which case you need to call [MultiplayerPeer.close] first) or
+   * [ERR_CANT_CREATE] if the server could not be created.
    */
   @JvmOverloads
   public fun createServer(
@@ -83,9 +83,9 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
    * bandwidth. Note that ENet will strategically drop packets on specific sides of a connection
    * between peers to ensure the peer's bandwidth is not overwhelmed. The bandwidth parameters also
    * determine the window size of a connection which limits the amount of reliable packets that may be
-   * in transit at any given time. Returns [OK] if a client was created, [ERRALREADYINUSE] if this
+   * in transit at any given time. Returns [OK] if a client was created, [ERR_ALREADY_IN_USE] if this
    * ENetMultiplayerPeer instance already has an open connection (in which case you need to call
-   * [MultiplayerPeer.close] first) or [ERRCANTCREATE] if the client could not be created. If
+   * [MultiplayerPeer.close] first) or [ERR_CANT_CREATE] if the client could not be created. If
    * [localPort] is specified, the client will also listen to the given port; this is useful for some
    * NAT traversal techniques.
    */
@@ -119,7 +119,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
 
   /**
    * Add a new remote peer with the given [peerId] connected to the given [host].
-   * **Note:** The [host] must have exactly one peer in the [ENetPacketPeer.STATECONNECTED] state.
+   * **Note:** The [host] must have exactly one peer in the [ENetPacketPeer.STATE_CONNECTED] state.
    */
   public fun addMeshPeer(peerId: Int, host: ENetConnection): GodotError {
     TransferContext.writeArguments(LONG to peerId.toLong(), OBJECT to host)

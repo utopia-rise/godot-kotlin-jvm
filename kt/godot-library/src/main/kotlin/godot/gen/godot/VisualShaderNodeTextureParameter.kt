@@ -18,15 +18,13 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Performs a uniform texture lookup within the visual shader graph.
- *
  * Performs a lookup operation on the texture provided as a uniform for the shader.
  */
 @GodotBaseType
 public open class VisualShaderNodeTextureParameter internal constructor() :
     VisualShaderNodeParameter() {
   /**
-   * Defines the type of data provided by the source texture. See [enum TextureType] for options.
+   * Defines the type of data provided by the source texture. See [TextureType] for options.
    */
   public var textureType: TextureType
     get() {
@@ -54,7 +52,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
   /**
-   * Sets the texture filtering mode. See [enum TextureFilter] for options.
+   * Sets the texture filtering mode. See [TextureFilter] for options.
    */
   public var textureFilter: TextureFilter
     get() {
@@ -68,7 +66,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
   /**
-   * Sets the texture repeating mode. See [enum TextureRepeat] for options.
+   * Sets the texture repeating mode. See [TextureRepeat] for options.
    */
   public var textureRepeat: TextureRepeat
     get() {
@@ -82,7 +80,8 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
   /**
-   * Sets the texture source mode. Used for reading from the screen, depth, or normal_roughness texture. See [enum TextureSource] for options.
+   * Sets the texture source mode. Used for reading from the screen, depth, or normal_roughness
+   * texture. See [TextureSource] for options.
    */
   public var textureSource: TextureSource
     get() {
@@ -112,7 +111,8 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
      */
     TYPE_COLOR(1),
     /**
-     * Adds `hint_normal` as hint to the uniform declaration, which internally converts the texture for proper usage as normal map.
+     * Adds `hint_normal` as hint to the uniform declaration, which internally converts the texture
+     * for proper usage as normal map.
      */
     TYPE_NORMAL_MAP(2),
     /**
@@ -120,7 +120,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
      */
     TYPE_ANISOTROPY(3),
     /**
-     * Represents the size of the [enum TextureType] enum.
+     * Represents the size of the [TextureType] enum.
      */
     TYPE_MAX(4),
     ;
@@ -151,7 +151,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
      */
     COLOR_DEFAULT_TRANSPARENT(2),
     /**
-     * Represents the size of the [enum ColorDefault] enum.
+     * Represents the size of the [ColorDefault] enum.
      */
     COLOR_DEFAULT_MAX(3),
     ;
@@ -174,39 +174,61 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
      */
     FILTER_DEFAULT(0),
     /**
-     * The texture filter reads from the nearest pixel only. This makes the texture look pixelated from up close, and grainy from a distance (due to mipmaps not being sampled).
+     * The texture filter reads from the nearest pixel only. This makes the texture look pixelated
+     * from up close, and grainy from a distance (due to mipmaps not being sampled).
      */
     FILTER_NEAREST(1),
     /**
-     * The texture filter blends between the nearest 4 pixels. This makes the texture look smooth from up close, and grainy from a distance (due to mipmaps not being sampled).
+     * The texture filter blends between the nearest 4 pixels. This makes the texture look smooth
+     * from up close, and grainy from a distance (due to mipmaps not being sampled).
      */
     FILTER_LINEAR(2),
     /**
-     * The texture filter reads from the nearest pixel and blends between the nearest 2 mipmaps (or uses the nearest mipmap if [godot.ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This makes the texture look pixelated from up close, and smooth from a distance.
-     *
-     * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [godot.Camera2D] zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than on-screen pixels.
+     * The texture filter reads from the nearest pixel and blends between the nearest 2 mipmaps (or
+     * uses the nearest mipmap if
+     * [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This
+     * makes the texture look pixelated from up close, and smooth from a distance.
+     * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [Camera2D]
+     * zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than
+     * on-screen pixels.
      */
     FILTER_NEAREST_MIPMAP(3),
     /**
-     * The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps (or uses the nearest mipmap if [godot.ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This makes the texture look smooth from up close, and smooth from a distance.
-     *
-     * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [godot.Camera2D] zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than on-screen pixels.
+     * The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps (or
+     * uses the nearest mipmap if
+     * [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This
+     * makes the texture look smooth from up close, and smooth from a distance.
+     * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [Camera2D]
+     * zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than
+     * on-screen pixels.
      */
     FILTER_LINEAR_MIPMAP(4),
     /**
-     * The texture filter reads from the nearest pixel and blends between 2 mipmaps (or uses the nearest mipmap if [godot.ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`) based on the angle between the surface and the camera view. This makes the texture look pixelated from up close, and smooth from a distance. Anisotropic filtering improves texture quality on surfaces that are almost in line with the camera, but is slightly slower. The anisotropic filtering level can be changed by adjusting [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
-     *
-     * **Note:** This texture filter is rarely useful in 2D projects. [FILTER_NEAREST_MIPMAP] is usually more appropriate in this case.
+     * The texture filter reads from the nearest pixel and blends between 2 mipmaps (or uses the
+     * nearest mipmap if [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is
+     * `true`) based on the angle between the surface and the camera view. This makes the texture look
+     * pixelated from up close, and smooth from a distance. Anisotropic filtering improves texture
+     * quality on surfaces that are almost in line with the camera, but is slightly slower. The
+     * anisotropic filtering level can be changed by adjusting
+     * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     * **Note:** This texture filter is rarely useful in 2D projects. [FILTER_NEAREST_MIPMAP] is
+     * usually more appropriate in this case.
      */
     FILTER_NEAREST_MIPMAP_ANISOTROPIC(5),
     /**
-     * The texture filter blends between the nearest 4 pixels and blends between 2 mipmaps (or uses the nearest mipmap if [godot.ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`) based on the angle between the surface and the camera view. This makes the texture look smooth from up close, and smooth from a distance. Anisotropic filtering improves texture quality on surfaces that are almost in line with the camera, but is slightly slower. The anisotropic filtering level can be changed by adjusting [godot.ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
-     *
-     * **Note:** This texture filter is rarely useful in 2D projects. [FILTER_LINEAR_MIPMAP] is usually more appropriate in this case.
+     * The texture filter blends between the nearest 4 pixels and blends between 2 mipmaps (or uses
+     * the nearest mipmap if [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter]
+     * is `true`) based on the angle between the surface and the camera view. This makes the texture
+     * look smooth from up close, and smooth from a distance. Anisotropic filtering improves texture
+     * quality on surfaces that are almost in line with the camera, but is slightly slower. The
+     * anisotropic filtering level can be changed by adjusting
+     * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     * **Note:** This texture filter is rarely useful in 2D projects. [FILTER_LINEAR_MIPMAP] is
+     * usually more appropriate in this case.
      */
     FILTER_LINEAR_MIPMAP_ANISOTROPIC(6),
     /**
-     * Represents the size of the [enum TextureFilter] enum.
+     * Represents the size of the [TextureFilter] enum.
      */
     FILTER_MAX(7),
     ;
@@ -237,7 +259,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
      */
     REPEAT_DISABLED(2),
     /**
-     * Represents the size of the [enum TextureRepeat] enum.
+     * Represents the size of the [TextureRepeat] enum.
      */
     REPEAT_MAX(3),
     ;
@@ -272,7 +294,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
      */
     SOURCE_NORMAL_ROUGHNESS(3),
     /**
-     * Represents the size of the [enum TextureSource] enum.
+     * Represents the size of the [TextureSource] enum.
      */
     SOURCE_MAX(4),
     ;

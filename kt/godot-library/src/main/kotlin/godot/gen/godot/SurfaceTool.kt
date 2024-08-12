@@ -50,54 +50,38 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Helper tool to create geometry.
+ * The [SurfaceTool] is used to construct a [Mesh] by specifying vertex attributes individually. It
+ * can be used to construct a [Mesh] from a script. All properties except indices need to be added
+ * before calling [addVertex]. For example, to add vertex colors and UVs:
  *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
- *
- * The [godot.SurfaceTool] is used to construct a [godot.Mesh] by specifying vertex attributes individually. It can be used to construct a [godot.Mesh] from a script. All properties except indices need to be added before calling [addVertex]. For example, to add vertex colors and UVs:
- *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * var st = SurfaceTool.new()
- *
  * st.begin(Mesh.PRIMITIVE_TRIANGLES)
- *
  * st.set_color(Color(1, 0, 0))
- *
  * st.set_uv(Vector2(0, 0))
- *
  * st.add_vertex(Vector3(0, 0, 0))
- *
- * [/gdscript]
- *
- * [csharp]
- *
+ * ```
+ * csharp:
+ * ```csharp
  * var st = new SurfaceTool();
- *
  * st.Begin(Mesh.PrimitiveType.Triangles);
- *
  * st.SetColor(new Color(1, 0, 0));
- *
  * st.SetUV(new Vector2(0, 0));
- *
  * st.AddVertex(new Vector3(0, 0, 0));
+ * ```
  *
- * [/csharp]
- *
- * [/codeblocks]
- *
- * The above [godot.SurfaceTool] now contains one vertex of a triangle which has a UV coordinate and a specified [godot.core.Color]. If another vertex were added without calling [setUv] or [setColor], then the last values would be used.
- *
- * Vertex attributes must be passed **before** calling [addVertex]. Failure to do so will result in an error when committing the vertex information to a mesh.
- *
- * Additionally, the attributes used before the first vertex is added determine the format of the mesh. For example, if you only add UVs to the first vertex, you cannot add color to any of the subsequent vertices.
- *
- * See also [godot.ArrayMesh], [godot.ImmediateMesh] and [godot.MeshDataTool] for procedural geometry generation.
- *
- * **Note:** Godot uses clockwise [winding order](https://learnopengl.com/Advanced-OpenGL/Face-culling) for front faces of triangle primitive modes.
+ * The above [SurfaceTool] now contains one vertex of a triangle which has a UV coordinate and a
+ * specified [Color]. If another vertex were added without calling [setUv] or [setColor], then the last
+ * values would be used.
+ * Vertex attributes must be passed **before** calling [addVertex]. Failure to do so will result in
+ * an error when committing the vertex information to a mesh.
+ * Additionally, the attributes used before the first vertex is added determine the format of the
+ * mesh. For example, if you only add UVs to the first vertex, you cannot add color to any of the
+ * subsequent vertices.
+ * See also [ArrayMesh], [ImmediateMesh] and [MeshDataTool] for procedural geometry generation.
+ * **Note:** Godot uses clockwise [url=https://learnopengl.com/Advanced-OpenGL/Face-culling]winding
+ * order[/url] for front faces of triangle primitive modes.
  */
 @GodotBaseType
 public open class SurfaceTool : RefCounted() {
@@ -107,10 +91,8 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Set to [godot.SKIN_8_WEIGHTS] to indicate that up to 8 bone influences per vertex may be used.
-   *
-   * By default, only 4 bone influences are used ([godot.SKIN_4_WEIGHTS])
-   *
+   * Set to [SKIN_8_WEIGHTS] to indicate that up to 8 bone influences per vertex may be used.
+   * By default, only 4 bone influences are used ([SKIN_4_WEIGHTS])
    * **Note:** This function takes an enum, not the exact number of weights.
    */
   public fun setSkinWeightCount(count: SkinWeightCount): Unit {
@@ -119,10 +101,8 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * By default, returns [godot.SKIN_4_WEIGHTS] to indicate only 4 bone influences per vertex are used.
-   *
-   * Returns [godot.SKIN_8_WEIGHTS] if up to 8 influences are used.
-   *
+   * By default, returns [SKIN_4_WEIGHTS] to indicate only 4 bone influences per vertex are used.
+   * Returns [SKIN_8_WEIGHTS] if up to 8 influences are used.
    * **Note:** This function returns an enum, not the exact number of weights.
    */
   public fun getSkinWeightCount(): SkinWeightCount {
@@ -133,7 +113,6 @@ public open class SurfaceTool : RefCounted() {
 
   /**
    * Sets the color format for this custom [channelIndex]. Use [CUSTOM_MAX] to disable.
-   *
    * Must be invoked after [begin] and should be set before [commit] or [commitToArrays].
    */
   public fun setCustomFormat(channelIndex: Int, format: CustomFormat): Unit {
@@ -142,7 +121,8 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Returns the format for custom [channelIndex] (currently up to 4). Returns [CUSTOM_MAX] if this custom channel is unused.
+   * Returns the format for custom [channelIndex] (currently up to 4). Returns [CUSTOM_MAX] if this
+   * custom channel is unused.
    */
   public fun getCustomFormat(channelIndex: Int): CustomFormat {
     TransferContext.writeArguments(LONG to channelIndex.toLong())
@@ -151,7 +131,8 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Called before adding any vertices. Takes the primitive type as an argument (e.g. [godot.Mesh.PRIMITIVE_TRIANGLES]).
+   * Called before adding any vertices. Takes the primitive type as an argument (e.g.
+   * [Mesh.PRIMITIVE_TRIANGLES]).
    */
   public fun begin(primitive: Mesh.PrimitiveType): Unit {
     TransferContext.writeArguments(LONG to primitive.id)
@@ -159,7 +140,8 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Specifies the position of current vertex. Should be called after specifying other vertex properties (e.g. Color, UV).
+   * Specifies the position of current vertex. Should be called after specifying other vertex
+   * properties (e.g. Color, UV).
    */
   public fun addVertex(vertex: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to vertex)
@@ -167,9 +149,11 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Specifies a [godot.core.Color] to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
-   *
-   * **Note:** The material must have [godot.BaseMaterial3D.vertexColorUseAsAlbedo] enabled for the vertex color to be visible.
+   * Specifies a [Color] to use for the *next* vertex. If every vertex needs to have this
+   * information set and you fail to submit it for the first vertex, this information may not be used
+   * at all.
+   * **Note:** The material must have [BaseMaterial3D.vertexColorUseAsAlbedo] enabled for the vertex
+   * color to be visible.
    */
   public fun setColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
@@ -177,7 +161,8 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Specifies a normal to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
+   * Specifies a normal to use for the *next* vertex. If every vertex needs to have this information
+   * set and you fail to submit it for the first vertex, this information may not be used at all.
    */
   public fun setNormal(normal: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to normal)
@@ -185,7 +170,9 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Specifies a tangent to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
+   * Specifies a tangent to use for the *next* vertex. If every vertex needs to have this
+   * information set and you fail to submit it for the first vertex, this information may not be used
+   * at all.
    */
   public fun setTangent(tangent: Plane): Unit {
     TransferContext.writeArguments(PLANE to tangent)
@@ -193,7 +180,9 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Specifies a set of UV coordinates to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
+   * Specifies a set of UV coordinates to use for the *next* vertex. If every vertex needs to have
+   * this information set and you fail to submit it for the first vertex, this information may not be
+   * used at all.
    */
   public fun setUv(uv: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to uv)
@@ -201,7 +190,9 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Specifies an optional second set of UV coordinates to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
+   * Specifies an optional second set of UV coordinates to use for the *next* vertex. If every
+   * vertex needs to have this information set and you fail to submit it for the first vertex, this
+   * information may not be used at all.
    */
   public fun setUv2(uv2: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to uv2)
@@ -217,7 +208,9 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Specifies weight values to use for the *next* vertex. [weights] must contain 4 values. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
+   * Specifies weight values to use for the *next* vertex. [weights] must contain 4 values. If every
+   * vertex needs to have this information set and you fail to submit it for the first vertex, this
+   * information may not be used at all.
    */
   public fun setWeights(weights: PackedFloat32Array): Unit {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to weights)
@@ -226,8 +219,8 @@ public open class SurfaceTool : RefCounted() {
 
   /**
    * Sets the custom value on this vertex for [channelIndex].
-   *
-   * [setCustomFormat] must be called first for this [channelIndex]. Formats which are not RGBA will ignore other color channels.
+   * [setCustomFormat] must be called first for this [channelIndex]. Formats which are not RGBA will
+   * ignore other color channels.
    */
   public fun setCustom(channelIndex: Int, customColor: Color): Unit {
     TransferContext.writeArguments(LONG to channelIndex.toLong(), COLOR to customColor)
@@ -235,9 +228,11 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Specifies the smooth group to use for the *next* vertex. If this is never called, all vertices will have the default smooth group of `0` and will be smoothed with adjacent vertices of the same group. To produce a mesh with flat normals, set the smooth group to `-1`.
-   *
-   * **Note:** This function actually takes a `uint32_t`, so C# users should use `uint32.MaxValue` instead of `-1` to produce a mesh with flat normals.
+   * Specifies the smooth group to use for the *next* vertex. If this is never called, all vertices
+   * will have the default smooth group of `0` and will be smoothed with adjacent vertices of the same
+   * group. To produce a mesh with flat normals, set the smooth group to `-1`.
+   * **Note:** This function actually takes a `uint32_t`, so C# users should use `uint32.MaxValue`
+   * instead of `-1` to produce a mesh with flat normals.
    */
   public fun setSmoothGroup(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
@@ -245,9 +240,8 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Inserts a triangle fan made of array data into [godot.Mesh] being constructed.
-   *
-   * Requires the primitive type be set to [godot.Mesh.PRIMITIVE_TRIANGLES].
+   * Inserts a triangle fan made of array data into [Mesh] being constructed.
+   * Requires the primitive type be set to [Mesh.PRIMITIVE_TRIANGLES].
    */
   @JvmOverloads
   public fun addTriangleFan(
@@ -263,7 +257,8 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Adds a vertex to index array if you are using indexed vertices. Does not need to be called before adding vertices.
+   * Adds a vertex to index array if you are using indexed vertices. Does not need to be called
+   * before adding vertices.
    */
   public fun addIndex(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -271,7 +266,8 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Shrinks the vertex array by creating an index array. This can improve performance by avoiding vertex reuse.
+   * Shrinks the vertex array by creating an index array. This can improve performance by avoiding
+   * vertex reuse.
    */
   public fun index(): Unit {
     TransferContext.writeArguments()
@@ -287,11 +283,16 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Generates normals from vertices so you do not have to do it manually. If [flip] is `true`, the resulting normals will be inverted. [generateNormals] should be called *after* generating geometry and *before* committing the mesh using [commit] or [commitToArrays]. For correct display of normal-mapped surfaces, you will also have to generate tangents using [generateTangents].
-   *
-   * **Note:** [generateNormals] only works if the primitive type to be set to [godot.Mesh.PRIMITIVE_TRIANGLES].
-   *
-   * **Note:** [generateNormals] takes smooth groups into account. To generate smooth normals, set the smooth group to a value greater than or equal to `0` using [setSmoothGroup] or leave the smooth group at the default of `0`. To generate flat normals, set the smooth group to `-1` using [setSmoothGroup] prior to adding vertices.
+   * Generates normals from vertices so you do not have to do it manually. If [flip] is `true`, the
+   * resulting normals will be inverted. [generateNormals] should be called *after* generating geometry
+   * and *before* committing the mesh using [commit] or [commitToArrays]. For correct display of
+   * normal-mapped surfaces, you will also have to generate tangents using [generateTangents].
+   * **Note:** [generateNormals] only works if the primitive type to be set to
+   * [Mesh.PRIMITIVE_TRIANGLES].
+   * **Note:** [generateNormals] takes smooth groups into account. To generate smooth normals, set
+   * the smooth group to a value greater than or equal to `0` using [setSmoothGroup] or leave the
+   * smooth group at the default of `0`. To generate flat normals, set the smooth group to `-1` using
+   * [setSmoothGroup] prior to adding vertices.
    */
   @JvmOverloads
   public fun generateNormals(flip: Boolean = false): Unit {
@@ -300,7 +301,8 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Generates a tangent vector for each vertex. Requires that each vertex have UVs and normals set already (see [generateNormals]).
+   * Generates a tangent vector for each vertex. Requires that each vertex have UVs and normals set
+   * already (see [generateNormals]).
    */
   public fun generateTangents(): Unit {
     TransferContext.writeArguments()
@@ -308,7 +310,8 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Optimizes triangle sorting for performance. Requires that [getPrimitiveType] is [godot.Mesh.PRIMITIVE_TRIANGLES].
+   * Optimizes triangle sorting for performance. Requires that [getPrimitiveType] is
+   * [Mesh.PRIMITIVE_TRIANGLES].
    */
   public fun optimizeIndicesForCache(): Unit {
     TransferContext.writeArguments()
@@ -325,9 +328,10 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Generates a LOD for a given [ndThreshold] in linear units (square root of quadric error metric), using at most [targetIndexCount] indices.
-   *
-   * *Deprecated.* Unused internally and fails to preserve normals or UVs. Consider using [godot.ImporterMesh.generateLods] instead.
+   * Generates a LOD for a given [ndThreshold] in linear units (square root of quadric error
+   * metric), using at most [targetIndexCount] indices.
+   * *Deprecated.* Unused internally and fails to preserve normals or UVs. Consider using
+   * [ImporterMesh.generateLods] instead.
    */
   @JvmOverloads
   public fun generateLod(ndThreshold: Float, targetIndexCount: Int = 3): PackedInt32Array {
@@ -337,7 +341,7 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Sets [godot.Material] to be used by the [godot.Mesh] you are constructing.
+   * Sets [Material] to be used by the [Mesh] you are constructing.
    */
   public fun setMaterial(material: Material): Unit {
     TransferContext.writeArguments(OBJECT to material)
@@ -345,7 +349,7 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Returns the type of mesh geometry, such as [godot.Mesh.PRIMITIVE_TRIANGLES].
+   * Returns the type of mesh geometry, such as [Mesh.PRIMITIVE_TRIANGLES].
    */
   public fun getPrimitiveType(): Mesh.PrimitiveType {
     TransferContext.writeArguments()
@@ -362,7 +366,7 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Creates a vertex array from an existing [godot.Mesh].
+   * Creates a vertex array from an existing [Mesh].
    */
   public fun createFrom(existing: Mesh, surface: Int): Unit {
     TransferContext.writeArguments(OBJECT to existing, LONG to surface.toLong())
@@ -370,7 +374,8 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Creates a vertex array from the specified blend shape of an existing [godot.Mesh]. This can be used to extract a specific pose from a blend shape.
+   * Creates a vertex array from the specified blend shape of an existing [Mesh]. This can be used
+   * to extract a specific pose from a blend shape.
    */
   public fun createFromBlendShape(
     existing: Mesh,
@@ -382,7 +387,8 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Append vertices from a given [godot.Mesh] surface onto the current vertex array with specified [godot.Transform3D].
+   * Append vertices from a given [Mesh] surface onto the current vertex array with specified
+   * [Transform3D].
    */
   public fun appendFrom(
     existing: Mesh,
@@ -394,9 +400,10 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Returns a constructed [godot.ArrayMesh] from current information passed in. If an existing [godot.ArrayMesh] is passed in as an argument, will add an extra surface to the existing [godot.ArrayMesh].
-   *
-   * **FIXME:** Document possible values for [flags], it changed in 4.0. Likely some combinations of [enum Mesh.ArrayFormat].
+   * Returns a constructed [ArrayMesh] from current information passed in. If an existing
+   * [ArrayMesh] is passed in as an argument, will add an extra surface to the existing [ArrayMesh].
+   * **FIXME:** Document possible values for [flags], it changed in 4.0. Likely some combinations of
+   * [Mesh.ArrayFormat].
    */
   @JvmOverloads
   public fun commit(existing: ArrayMesh? = null, flags: Long = 0): ArrayMesh? {
@@ -406,7 +413,8 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Commits the data to the same format used by [godot.ArrayMesh.addSurfaceFromArrays]. This way you can further process the mesh data using the [godot.ArrayMesh] API.
+   * Commits the data to the same format used by [ArrayMesh.addSurfaceFromArrays]. This way you can
+   * further process the mesh data using the [ArrayMesh] API.
    */
   public fun commitToArrays(): VariantArray<Any?> {
     TransferContext.writeArguments()
@@ -418,35 +426,43 @@ public open class SurfaceTool : RefCounted() {
     id: Long,
   ) {
     /**
-     * Limits range of data passed to [setCustom] to unsigned normalized 0 to 1 stored in 8 bits per channel. See [godot.Mesh.ARRAY_CUSTOM_RGBA8_UNORM].
+     * Limits range of data passed to [setCustom] to unsigned normalized 0 to 1 stored in 8 bits per
+     * channel. See [Mesh.ARRAY_CUSTOM_RGBA8_UNORM].
      */
     CUSTOM_RGBA8_UNORM(0),
     /**
-     * Limits range of data passed to [setCustom] to signed normalized -1 to 1 stored in 8 bits per channel. See [godot.Mesh.ARRAY_CUSTOM_RGBA8_SNORM].
+     * Limits range of data passed to [setCustom] to signed normalized -1 to 1 stored in 8 bits per
+     * channel. See [Mesh.ARRAY_CUSTOM_RGBA8_SNORM].
      */
     CUSTOM_RGBA8_SNORM(1),
     /**
-     * Stores data passed to [setCustom] as half precision floats, and uses only red and green color channels. See [godot.Mesh.ARRAY_CUSTOM_RG_HALF].
+     * Stores data passed to [setCustom] as half precision floats, and uses only red and green color
+     * channels. See [Mesh.ARRAY_CUSTOM_RG_HALF].
      */
     CUSTOM_RG_HALF(2),
     /**
-     * Stores data passed to [setCustom] as half precision floats and uses all color channels. See [godot.Mesh.ARRAY_CUSTOM_RGBA_HALF].
+     * Stores data passed to [setCustom] as half precision floats and uses all color channels. See
+     * [Mesh.ARRAY_CUSTOM_RGBA_HALF].
      */
     CUSTOM_RGBA_HALF(3),
     /**
-     * Stores data passed to [setCustom] as full precision floats, and uses only red color channel. See [godot.Mesh.ARRAY_CUSTOM_R_FLOAT].
+     * Stores data passed to [setCustom] as full precision floats, and uses only red color channel.
+     * See [Mesh.ARRAY_CUSTOM_R_FLOAT].
      */
     CUSTOM_R_FLOAT(4),
     /**
-     * Stores data passed to [setCustom] as full precision floats, and uses only red and green color channels. See [godot.Mesh.ARRAY_CUSTOM_RG_FLOAT].
+     * Stores data passed to [setCustom] as full precision floats, and uses only red and green color
+     * channels. See [Mesh.ARRAY_CUSTOM_RG_FLOAT].
      */
     CUSTOM_RG_FLOAT(5),
     /**
-     * Stores data passed to [setCustom] as full precision floats, and uses only red, green and blue color channels. See [godot.Mesh.ARRAY_CUSTOM_RGB_FLOAT].
+     * Stores data passed to [setCustom] as full precision floats, and uses only red, green and blue
+     * color channels. See [Mesh.ARRAY_CUSTOM_RGB_FLOAT].
      */
     CUSTOM_RGB_FLOAT(6),
     /**
-     * Stores data passed to [setCustom] as full precision floats, and uses all color channels. See [godot.Mesh.ARRAY_CUSTOM_RGBA_FLOAT].
+     * Stores data passed to [setCustom] as full precision floats, and uses all color channels. See
+     * [Mesh.ARRAY_CUSTOM_RGBA_FLOAT].
      */
     CUSTOM_RGBA_FLOAT(7),
     /**

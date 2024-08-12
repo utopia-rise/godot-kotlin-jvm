@@ -109,7 +109,7 @@ public open class SceneTree : MainLoop() {
    * If `true`, the application quits automatically when navigating back (e.g. using the system
    * "Back" button on Android).
    * To handle 'Go Back' button when this option is disabled, use
-   * [DisplayServer.WINDOWEVENTGOBACKREQUEST].
+   * [DisplayServer.WINDOW_EVENT_GO_BACK_REQUEST].
    */
   public var quitOnGoBack: Boolean
     get() {
@@ -382,7 +382,7 @@ public open class SceneTree : MainLoop() {
    * get_tree().call_group_flags(SceneTree.GROUP_CALL_DEFERRED | SceneTree.GROUP_CALL_REVERSE)
    * [/codeblock]
    * **Note:** Group call flags are used to control the method calling behavior. By default, methods
-   * will be called immediately in a way similar to [callGroup]. However, if the [GROUPCALLDEFERRED]
+   * will be called immediately in a way similar to [callGroup]. However, if the [GROUP_CALL_DEFERRED]
    * flag is present in the [flags] argument, methods will be called at the end of the frame in a way
    * similar to [Object.setDeferred].
    */
@@ -401,8 +401,9 @@ public open class SceneTree : MainLoop() {
    * [GroupCallFlags].
    * **Note:** Group call flags are used to control the notification sending behavior. By default,
    * notifications will be sent immediately in a way similar to [notifyGroup]. However, if the
-   * [GROUPCALLDEFERRED] flag is present in the [callFlags] argument, notifications will be sent at the
-   * end of the current frame in a way similar to using `Object.call_deferred("notification", ...)`.
+   * [GROUP_CALL_DEFERRED] flag is present in the [callFlags] argument, notifications will be sent at
+   * the end of the current frame in a way similar to using `Object.call_deferred("notification",
+   * ...)`.
    */
   public fun notifyGroupFlags(
     callFlags: Long,
@@ -418,8 +419,8 @@ public open class SceneTree : MainLoop() {
    * [GroupCallFlags].
    * **Note:** Group call flags are used to control the property setting behavior. By default,
    * properties will be set immediately in a way similar to [setGroup]. However, if the
-   * [GROUPCALLDEFERRED] flag is present in the [callFlags] argument, properties will be set at the end
-   * of the frame in a way similar to [Object.callDeferred].
+   * [GROUP_CALL_DEFERRED] flag is present in the [callFlags] argument, properties will be set at the
+   * end of the frame in a way similar to [Object.callDeferred].
    */
   public fun setGroupFlags(
     callFlags: Long,
@@ -493,8 +494,8 @@ public open class SceneTree : MainLoop() {
   /**
    * Changes the running scene to the one at the given [path], after loading it into a [PackedScene]
    * and creating a new instance.
-   * Returns [OK] on success, [ERRCANTOPEN] if the [path] cannot be loaded into a [PackedScene], or
-   * [ERRCANTCREATE] if that scene cannot be instantiated.
+   * Returns [OK] on success, [ERR_CANT_OPEN] if the [path] cannot be loaded into a [PackedScene],
+   * or [ERR_CANT_CREATE] if that scene cannot be instantiated.
    * **Note:** See [changeSceneToPacked] for details on the order of operations.
    */
   public fun changeSceneToFile(path: String): GodotError {
@@ -505,8 +506,8 @@ public open class SceneTree : MainLoop() {
 
   /**
    * Changes the running scene to a new instance of the given [PackedScene] (which must be valid).
-   * Returns [OK] on success, [ERRCANTCREATE] if the scene cannot be instantiated, or
-   * [ERRINVALIDPARAMETER] if the scene is invalid.
+   * Returns [OK] on success, [ERR_CANT_CREATE] if the scene cannot be instantiated, or
+   * [ERR_INVALID_PARAMETER] if the scene is invalid.
    * **Note:** Operations happen in the following order when [changeSceneToPacked] is called:
    * 1. The current scene node is immediately removed from the tree. From that point, [Node.getTree]
    * called on the current (outgoing) scene will return `null`. [currentScene] will be `null`, too,
@@ -525,9 +526,9 @@ public open class SceneTree : MainLoop() {
 
   /**
    * Reloads the currently active scene.
-   * Returns [OK] on success, [ERRUNCONFIGURED] if no [currentScene] was defined yet, [ERRCANTOPEN]
-   * if [currentScene] cannot be loaded into a [PackedScene], or [ERRCANTCREATE] if the scene cannot be
-   * instantiated.
+   * Returns [OK] on success, [ERR_UNCONFIGURED] if no [currentScene] was defined yet,
+   * [ERR_CANT_OPEN] if [currentScene] cannot be loaded into a [PackedScene], or [ERR_CANT_CREATE] if
+   * the scene cannot be instantiated.
    */
   public fun reloadCurrentScene(): GodotError {
     TransferContext.writeArguments()

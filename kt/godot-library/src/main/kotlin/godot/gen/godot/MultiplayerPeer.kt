@@ -80,7 +80,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    * send **different and independent** state updates is a common way to optimize network usage and
    * decrease latency in fast-paced games.
    * **Note:** The default channel (`0`) actually works as 3 separate channels (one for each
-   * [TransferMode]) so that [TRANSFERMODERELIABLE] and [TRANSFERMODEUNRELIABLEORDERED] does not
+   * [TransferMode]) so that [TRANSFER_MODE_RELIABLE] and [TRANSFER_MODE_UNRELIABLE_ORDERED] does not
    * interact with each other by default. Refer to the specific network API documentation (e.g. ENet or
    * WebRTC) to learn how to set up channels correctly.
    */
@@ -102,10 +102,10 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
 
   /**
    * Sets the peer to which packets will be sent.
-   * The [id] can be one of: [TARGETPEERBROADCAST] to send to all connected peers,
-   * [TARGETPEERSERVER] to send to the peer acting as server, a valid peer ID to send to that specific
-   * peer, a negative peer ID to send to all peers except that one. By default, the target peer is
-   * [TARGETPEERBROADCAST].
+   * The [id] can be one of: [TARGET_PEER_BROADCAST] to send to all connected peers,
+   * [TARGET_PEER_SERVER] to send to the peer acting as server, a valid peer ID to send to that
+   * specific peer, a negative peer ID to send to all peers except that one. By default, the target
+   * peer is [TARGET_PEER_BROADCAST].
    */
   public fun setTargetPeer(id: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong())
@@ -151,7 +151,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   }
 
   /**
-   * Immediately close the multiplayer peer returning to the state [CONNECTIONDISCONNECTED].
+   * Immediately close the multiplayer peer returning to the state [CONNECTION_DISCONNECTED].
    * Connected peers will be dropped without emitting [signal peer_disconnected].
    */
   public fun close(): Unit {
@@ -239,14 +239,14 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   ) {
     /**
      * Packets are not acknowledged, no resend attempts are made for lost packets. Packets may
-     * arrive in any order. Potentially faster than [TRANSFERMODEUNRELIABLEORDERED]. Use for
+     * arrive in any order. Potentially faster than [TRANSFER_MODE_UNRELIABLE_ORDERED]. Use for
      * non-critical data, and always consider whether the order matters.
      */
     TRANSFER_MODE_UNRELIABLE(0),
     /**
      * Packets are not acknowledged, no resend attempts are made for lost packets. Packets are
-     * received in the order they were sent in. Potentially faster than [TRANSFERMODERELIABLE]. Use for
-     * non-critical data or data that would be outdated if received late due to resend attempt(s)
+     * received in the order they were sent in. Potentially faster than [TRANSFER_MODE_RELIABLE]. Use
+     * for non-critical data or data that would be outdated if received late due to resend attempt(s)
      * anyway, for example movement and positional data.
      */
     TRANSFER_MODE_UNRELIABLE_ORDERED(1),

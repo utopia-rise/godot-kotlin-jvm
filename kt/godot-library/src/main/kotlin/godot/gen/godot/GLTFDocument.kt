@@ -78,7 +78,7 @@ public open class GLTFDocument : Resource() {
 
   /**
    * How to process the root node during export. See [RootNodeMode] for details. The default and
-   * recommended value is [ROOTNODEMODESINGLEROOT].
+   * recommended value is [ROOT_NODE_MODE_SINGLE_ROOT].
    * **Note:** Regardless of how the glTF file is exported, when importing, the root node type and
    * name can be overridden in the scene import settings tab.
    */
@@ -189,7 +189,7 @@ public open class GLTFDocument : Resource() {
     /**
      * Treat the Godot scene's root node as the root node of the glTF file, and mark it as the
      * single root node via the `GODOT_single_root` glTF extension. This will be parsed the same as
-     * [ROOTNODEMODEKEEPROOT] if the implementation does not support `GODOT_single_root`.
+     * [ROOT_NODE_MODE_KEEP_ROOT] if the implementation does not support `GODOT_single_root`.
      */
     ROOT_NODE_MODE_SINGLE_ROOT(0),
     /**

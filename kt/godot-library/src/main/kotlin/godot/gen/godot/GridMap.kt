@@ -337,7 +337,7 @@ public open class GridMap : Node3D() {
 
   /**
    * Sets the mesh index for the cell referenced by its grid coordinates.
-   * A negative item index such as [INVALIDCELLITEM] will clear the cell.
+   * A negative item index such as [INVALID_CELL_ITEM] will clear the cell.
    * Optionally, the item's orientation can be passed. For valid orientation values, see
    * [getOrthogonalIndexFromBasis].
    */
@@ -353,7 +353,7 @@ public open class GridMap : Node3D() {
 
   /**
    * The [MeshLibrary] item index located at the given grid coordinates. If the cell is empty,
-   * [INVALIDCELLITEM] will be returned.
+   * [INVALID_CELL_ITEM] will be returned.
    */
   public fun getCellItem(position: Vector3i): Int {
     TransferContext.writeArguments(VECTOR3I to position)

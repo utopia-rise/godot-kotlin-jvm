@@ -109,7 +109,7 @@ public open class AESContext : RefCounted() {
   /**
    * Start the AES context in the given [mode]. A [key] of either 16 or 32 bytes must always be
    * provided, while an [iv] (initialization vector) of exactly 16 bytes, is only needed when [mode] is
-   * either [MODECBCENCRYPT] or [MODECBCDECRYPT].
+   * either [MODE_CBC_ENCRYPT] or [MODE_CBC_DECRYPT].
    */
   @JvmOverloads
   public fun start(
@@ -136,8 +136,8 @@ public open class AESContext : RefCounted() {
   /**
    * Get the current IV state for this context (IV gets updated when calling [update]). You normally
    * don't need this function.
-   * **Note:** This function only makes sense when the context is started with [MODECBCENCRYPT] or
-   * [MODECBCDECRYPT].
+   * **Note:** This function only makes sense when the context is started with [MODE_CBC_ENCRYPT] or
+   * [MODE_CBC_DECRYPT].
    */
   public fun getIvState(): PackedByteArray {
     TransferContext.writeArguments()

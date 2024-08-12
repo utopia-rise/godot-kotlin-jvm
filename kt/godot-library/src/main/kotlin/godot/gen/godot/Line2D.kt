@@ -209,9 +209,9 @@ public open class Line2D : Node2D() {
 
   /**
    * Determines the miter limit of the polyline. Normally, when [jointMode] is set to
-   * [LINEJOINTSHARP], sharp angles fall back to using the logic of [LINEJOINTBEVEL] joints to prevent
-   * very long miters. Higher values of this property mean that the fallback to a bevel joint will
-   * happen at sharper angles.
+   * [LINE_JOINT_SHARP], sharp angles fall back to using the logic of [LINE_JOINT_BEVEL] joints to
+   * prevent very long miters. Higher values of this property mean that the fallback to a bevel joint
+   * will happen at sharper angles.
    */
   public var sharpLimit: Float
     get() {
@@ -344,7 +344,7 @@ public open class Line2D : Node2D() {
     /**
      * Makes the polyline's joints pointy, connecting the sides of the two segments by extending
      * them until they intersect. If the rotation of a joint is too big (based on [sharpLimit]), the
-     * joint falls back to [LINEJOINTBEVEL] to prevent very long miters.
+     * joint falls back to [LINE_JOINT_BEVEL] to prevent very long miters.
      */
     LINE_JOINT_SHARP(0),
     /**
@@ -405,12 +405,13 @@ public open class Line2D : Node2D() {
     LINE_TEXTURE_NONE(0),
     /**
      * Tiles the texture over the polyline. [CanvasItem.textureRepeat] of the [Line2D] node must be
-     * [CanvasItem.TEXTUREREPEATENABLED] or [CanvasItem.TEXTUREREPEATMIRROR] for it to work properly.
+     * [CanvasItem.TEXTURE_REPEAT_ENABLED] or [CanvasItem.TEXTURE_REPEAT_MIRROR] for it to work
+     * properly.
      */
     LINE_TEXTURE_TILE(1),
     /**
      * Stretches the texture across the polyline. [CanvasItem.textureRepeat] of the [Line2D] node
-     * must be [CanvasItem.TEXTUREREPEATDISABLED] for best results.
+     * must be [CanvasItem.TEXTURE_REPEAT_DISABLED] for best results.
      */
     LINE_TEXTURE_STRETCH(2),
     ;

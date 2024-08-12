@@ -60,7 +60,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling)
    * when calling [moveAndSlide]. Defaults to [Vector2.UP]. As the vector will be normalized it can't
    * be equal to [Vector2.ZERO], if you want all collisions to be reported as walls, consider using
-   * [MOTIONMODEFLOATING] as [motionMode].
+   * [MOTION_MODE_FLOATING] as [motionMode].
    */
   @CoreTypeLocalCopy
   public var upDirection: Vector2
@@ -122,7 +122,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Minimum angle (in radians) where the body is allowed to slide when it encounters a slope. The
    * default value equals 15 degrees. This property only affects movement when [motionMode] is
-   * [MOTIONMODEFLOATING].
+   * [MOTION_MODE_FLOATING].
    */
   public var wallMinSlideAngle: Float
     get() {
@@ -296,7 +296,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling)
    * when calling [moveAndSlide]. Defaults to [Vector2.UP]. As the vector will be normalized it can't
    * be equal to [Vector2.ZERO], if you want all collisions to be reported as walls, consider using
-   * [MOTIONMODEFLOATING] as [motionMode].
+   * [MOTION_MODE_FLOATING] as [motionMode].
    *
    * This is a helper function to make dealing with local copies easier. 
    *

@@ -192,8 +192,8 @@ public open class GLTFNode : Resource() {
     }
 
   /**
-   * The indices of the children nodes in the [GLTFState]. If this GLTF node has no children, this
-   * will be an empty array.
+   * The indices of the child nodes in the [GLTFState]. If this GLTF node has no children, this will
+   * be an empty array.
    */
   public var children: PackedInt32Array
     get() {

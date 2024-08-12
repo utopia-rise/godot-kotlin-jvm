@@ -183,7 +183,8 @@ public open class FontFile : Font() {
   /**
    * Font glyph subpixel positioning mode. Subpixel positioning provides shaper text and better
    * kerning for smaller font sizes, at the cost of higher memory usage and lower font rasterization
-   * speed. Use [TextServer.SUBPIXELPOSITIONINGAUTO] to automatically enable it based on the font size.
+   * speed. Use [TextServer.SUBPIXEL_POSITIONING_AUTO] to automatically enable it based on the font
+   * size.
    */
   public var subpixelPositioning: TextServer.SubpixelPositioning
     get() {

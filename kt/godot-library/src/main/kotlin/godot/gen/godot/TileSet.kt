@@ -952,7 +952,7 @@ public open class TileSet : Resource() {
      */
     TILE_LAYOUT_STACKED(0),
     /**
-     * Same as [TILELAYOUTSTACKED], but the first half-offset is negative instead of positive.
+     * Same as [TILE_LAYOUT_STACKED], but the first half-offset is negative instead of positive.
      */
     TILE_LAYOUT_STACKED_OFFSET(1),
     /**

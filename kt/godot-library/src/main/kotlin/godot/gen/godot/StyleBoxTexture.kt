@@ -340,7 +340,7 @@ public open class StyleBoxTexture : StyleBox() {
     AXIS_STRETCH_MODE_TILE(1),
     /**
      * Repeats the stylebox's texture to match the stylebox's size according to the nine-patch
-     * system. Unlike [AXISSTRETCHMODETILE], the texture may be slightly stretched to make the
+     * system. Unlike [AXIS_STRETCH_MODE_TILE], the texture may be slightly stretched to make the
      * nine-patch texture tile seamlessly.
      */
     AXIS_STRETCH_MODE_TILE_FIT(2),

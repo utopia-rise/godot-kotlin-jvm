@@ -17,12 +17,8 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Meta class for playing back audio.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/526](https://godotengine.org/asset-library/asset/526)
- *
- * Can play, loop, pause a scroll through audio. See [godot.AudioStream] and [godot.AudioStreamOggVorbis] for usage.
+ * Can play, loop, pause a scroll through audio. See [AudioStream] and [AudioStreamOggVorbis] for
+ * usage.
  */
 @GodotBaseType
 public open class AudioStreamPlayback : RefCounted() {
@@ -32,26 +28,30 @@ public open class AudioStreamPlayback : RefCounted() {
   }
 
   /**
-   * Override this method to customize what happens when the playback starts at the given position, such as by calling [godot.AudioStreamPlayer.play].
+   * Override this method to customize what happens when the playback starts at the given position,
+   * such as by calling [AudioStreamPlayer.play].
    */
   public open fun _start(fromPos: Double): Unit {
   }
 
   /**
-   * Override this method to customize what happens when the playback is stopped, such as by calling [godot.AudioStreamPlayer.stop].
+   * Override this method to customize what happens when the playback is stopped, such as by calling
+   * [AudioStreamPlayer.stop].
    */
   public open fun _stop(): Unit {
   }
 
   /**
-   * Overridable method. Should return `true` if this playback is active and playing its audio stream.
+   * Overridable method. Should return `true` if this playback is active and playing its audio
+   * stream.
    */
   public open fun _isPlaying(): Boolean {
     throw NotImplementedError("_is_playing is not implemented for AudioStreamPlayback")
   }
 
   /**
-   * Overridable method. Should return how many times this audio stream has looped. Most built-in playbacks always return `0`.
+   * Overridable method. Should return how many times this audio stream has looped. Most built-in
+   * playbacks always return `0`.
    */
   public open fun _getLoopCount(): Int {
     throw NotImplementedError("_get_loop_count is not implemented for AudioStreamPlayback")
@@ -65,13 +65,16 @@ public open class AudioStreamPlayback : RefCounted() {
   }
 
   /**
-   * Override this method to customize what happens when seeking this audio stream at the given [position], such as by calling [godot.AudioStreamPlayer.seek].
+   * Override this method to customize what happens when seeking this audio stream at the given
+   * [position], such as by calling [AudioStreamPlayer.seek].
    */
   public open fun _seek(position: Double): Unit {
   }
 
   /**
-   * Overridable method. Called whenever the audio stream is mixed if the playback is active and [godot.AudioServer.setEnableTaggingUsedAudioStreams] has been set to `true`. Editor plugins may use this method to "tag" the current position along the audio stream and display it in a preview.
+   * Overridable method. Called whenever the audio stream is mixed if the playback is active and
+   * [AudioServer.setEnableTaggingUsedAudioStreams] has been set to `true`. Editor plugins may use this
+   * method to "tag" the current position along the audio stream and display it in a preview.
    */
   public open fun _tagUsedStreams(): Unit {
   }

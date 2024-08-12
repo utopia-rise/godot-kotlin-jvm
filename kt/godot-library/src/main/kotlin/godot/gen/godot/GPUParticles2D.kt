@@ -318,8 +318,8 @@ public open class GPUParticles2D : Node2D() {
    * Multiplier for particle's collision radius. `1.0` corresponds to the size of the sprite. If
    * particles appear to sink into the ground when colliding, increase this value. If particles appear
    * to float when colliding, decrease this value. Only effective if
-   * [ParticleProcessMaterial.collisionMode] is [ParticleProcessMaterial.COLLISIONRIGID] or
-   * [ParticleProcessMaterial.COLLISIONHIDEONCONTACT].
+   * [ParticleProcessMaterial.collisionMode] is [ParticleProcessMaterial.COLLISION_RIGID] or
+   * [ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT].
    * **Note:** Particles always have a spherical collision shape.
    */
   public var collisionBaseSize: Float

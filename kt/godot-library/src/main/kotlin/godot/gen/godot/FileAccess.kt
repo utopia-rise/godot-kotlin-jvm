@@ -35,83 +35,62 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 
 /**
- * Provides methods for file reading and writing operations.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
- *
- * This class can be used to permanently store data in the user device's file system and to read from it. This is useful for store game save data or player configuration files.
- *
+ * This class can be used to permanently store data in the user device's file system and to read
+ * from it. This is useful for store game save data or player configuration files.
  * Here's a sample on how to write and read from a file:
  *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * func save(content):
- *
  *     var file = FileAccess.open("user://save_game.dat", FileAccess.WRITE)
- *
  *     file.store_string(content)
  *
- *
- *
  * func load():
- *
  *     var file = FileAccess.open("user://save_game.dat", FileAccess.READ)
- *
  *     var content = file.get_as_text()
- *
  *     return content
- *
- * [/gdscript]
- *
- * [csharp]
- *
+ * ```
+ * csharp:
+ * ```csharp
  * public void Save(string content)
- *
  * {
- *
  *     using var file = FileAccess.Open("user://save_game.dat", FileAccess.ModeFlags.Write);
- *
  *     file.StoreString(content);
- *
  * }
- *
- *
  *
  * public string Load()
- *
  * {
- *
  *     using var file = FileAccess.Open("user://save_game.dat", FileAccess.ModeFlags.Read);
- *
  *     string content = file.GetAsText();
- *
  *     return content;
- *
  * }
+ * ```
  *
- * [/csharp]
- *
- * [/codeblocks]
- *
- * In the example above, the file will be saved in the user data folder as specified in the [godot.Data paths]($DOCS_URL/tutorials/io/data_paths.html) documentation.
- *
- * [godot.FileAccess] will close when it's freed, which happens when it goes out of scope or when it gets assigned with `null`. [close] can be used to close it before then explicitly. In C# the reference must be disposed manually, which can be done with the `using` statement or by calling the `Dispose` method directly.
- *
- * **Note:** To access project resources once exported, it is recommended to use [godot.ResourceLoader] instead of [godot.FileAccess], as some files are converted to engine-specific formats and their original source files might not be present in the exported PCK package.
- *
- * **Note:** Files are automatically closed only if the process exits "normally" (such as by clicking the window manager's close button or pressing **Alt + F4**). If you stop the project execution by pressing **F8** while the project is running, the file won't be closed as the game process will be killed. You can work around this by calling [flush] at regular intervals.
+ * In the example above, the file will be saved in the user data folder as specified in the
+ * [url=$DOCS_URL/tutorials/io/data_paths.html]Data paths[/url] documentation.
+ * [FileAccess] will close when it's freed, which happens when it goes out of scope or when it gets
+ * assigned with `null`. [close] can be used to close it before then explicitly. In C# the reference
+ * must be disposed manually, which can be done with the `using` statement or by calling the `Dispose`
+ * method directly.
+ * **Note:** To access project resources once exported, it is recommended to use [ResourceLoader]
+ * instead of [FileAccess], as some files are converted to engine-specific formats and their original
+ * source files might not be present in the exported PCK package.
+ * **Note:** Files are automatically closed only if the process exits "normally" (such as by
+ * clicking the window manager's close button or pressing **Alt + F4**). If you stop the project
+ * execution by pressing **F8** while the project is running, the file won't be closed as the game
+ * process will be killed. You can work around this by calling [flush] at regular intervals.
  */
 @GodotBaseType
 public open class FileAccess internal constructor() : RefCounted() {
   /**
-   * If `true`, the file is read with big-endian [endianness](https://en.wikipedia.org/wiki/Endianness). If `false`, the file is read with little-endian endianness. If in doubt, leave this to `false` as most files are written with little-endian endianness.
-   *
-   * **Note:** [bigEndian] is only about the file format, not the CPU type. The CPU endianness doesn't affect the default endianness for files written.
-   *
-   * **Note:** This is always reset to `false` whenever you open the file. Therefore, you must set [bigEndian] *after* opening the file, not before.
+   * If `true`, the file is read with big-endian
+   * [url=https://en.wikipedia.org/wiki/Endianness]endianness[/url]. If `false`, the file is read with
+   * little-endian endianness. If in doubt, leave this to `false` as most files are written with
+   * little-endian endianness.
+   * **Note:** [bigEndian] is only about the file format, not the CPU type. The CPU endianness
+   * doesn't affect the default endianness for files written.
+   * **Note:** This is always reset to `false` whenever you open the file. Therefore, you must set
+   * [bigEndian] *after* opening the file, not before.
    */
   public var bigEndian: Boolean
     get() {
@@ -130,9 +109,12 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Writes the file's buffer to disk. Flushing is automatically performed when the file is closed. This means you don't need to call [flush] manually before closing a file. Still, calling [flush] can be used to ensure the data is safe even if the project crashes instead of being closed gracefully.
-   *
-   * **Note:** Only call [flush] when you actually need it. Otherwise, it will decrease performance due to constant disk writes.
+   * Writes the file's buffer to disk. Flushing is automatically performed when the file is closed.
+   * This means you don't need to call [flush] manually before closing a file. Still, calling [flush]
+   * can be used to ensure the data is safe even if the project crashes instead of being closed
+   * gracefully.
+   * **Note:** Only call [flush] when you actually need it. Otherwise, it will decrease performance
+   * due to constant disk writes.
    */
   public fun flush(): Unit {
     TransferContext.writeArguments()
@@ -140,7 +122,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the path as a [godot.String] for the current open file.
+   * Returns the path as a [String] for the current open file.
    */
   public fun getPath(): String {
     TransferContext.writeArguments()
@@ -149,7 +131,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the absolute path as a [godot.String] for the current open file.
+   * Returns the absolute path as a [String] for the current open file.
    */
   public fun getPathAbsolute(): String {
     TransferContext.writeArguments()
@@ -167,7 +149,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Changes the file reading/writing cursor to the specified position (in bytes from the beginning of the file).
+   * Changes the file reading/writing cursor to the specified position (in bytes from the beginning
+   * of the file).
    */
   public fun seek(position: Long): Unit {
     TransferContext.writeArguments(LONG to position)
@@ -175,9 +158,10 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Changes the file reading/writing cursor to the specified position (in bytes from the end of the file).
-   *
-   * **Note:** This is an offset, so you should use negative numbers or the cursor will be at the end of the file.
+   * Changes the file reading/writing cursor to the specified position (in bytes from the end of the
+   * file).
+   * **Note:** This is an offset, so you should use negative numbers or the cursor will be at the
+   * end of the file.
    */
   @JvmOverloads
   public fun seekEnd(position: Long = 0): Unit {
@@ -205,32 +189,21 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   /**
    * Returns `true` if the file cursor has already read past the end of the file.
+   * **Note:** `eof_reached() == false` cannot be used to check whether there is more data
+   * available. To loop while there is more data available, use:
    *
-   * **Note:** `eof_reached() == false` cannot be used to check whether there is more data available. To loop while there is more data available, use:
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * while file.get_position() < file.get_length():
-   *
    *     # Read data
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * while (file.GetPosition() < file.GetLength())
-   *
    * {
-   *
    *     // Read data
-   *
    * }
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public fun eofReached(): Boolean {
     TransferContext.writeArguments()
@@ -239,7 +212,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next 8 bits from the file as an integer. See [store8] for details on what values can be stored and retrieved this way.
+   * Returns the next 8 bits from the file as an integer. See [store8] for details on what values
+   * can be stored and retrieved this way.
    */
   public fun get8(): Int {
     TransferContext.writeArguments()
@@ -248,7 +222,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next 16 bits from the file as an integer. See [store16] for details on what values can be stored and retrieved this way.
+   * Returns the next 16 bits from the file as an integer. See [store16] for details on what values
+   * can be stored and retrieved this way.
    */
   public fun get16(): Int {
     TransferContext.writeArguments()
@@ -257,7 +232,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next 32 bits from the file as an integer. See [store32] for details on what values can be stored and retrieved this way.
+   * Returns the next 32 bits from the file as an integer. See [store32] for details on what values
+   * can be stored and retrieved this way.
    */
   public fun get32(): Long {
     TransferContext.writeArguments()
@@ -266,7 +242,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next 64 bits from the file as an integer. See [store64] for details on what values can be stored and retrieved this way.
+   * Returns the next 64 bits from the file as an integer. See [store64] for details on what values
+   * can be stored and retrieved this way.
    */
   public fun get64(): Long {
     TransferContext.writeArguments()
@@ -302,7 +279,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns next [length] bytes of the file as a [godot.PackedByteArray].
+   * Returns next [length] bytes of the file as a [PackedByteArray].
    */
   public fun getBuffer(length: Long): PackedByteArray {
     TransferContext.writeArguments(LONG to length)
@@ -311,8 +288,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next line of the file as a [godot.String].
-   *
+   * Returns the next line of the file as a [String].
    * Text is interpreted as being UTF-8 encoded.
    */
   public fun getLine(): String {
@@ -322,19 +298,22 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next value of the file in CSV (Comma-Separated Values) format. You can pass a different delimiter [delim] to use other than the default `","` (comma). This delimiter must be one-character long, and cannot be a double quotation mark.
-   *
-   * Text is interpreted as being UTF-8 encoded. Text values must be enclosed in double quotes if they include the delimiter character. Double quotes within a text value can be escaped by doubling their occurrence.
-   *
+   * Returns the next value of the file in CSV (Comma-Separated Values) format. You can pass a
+   * different delimiter [delim] to use other than the default `","` (comma). This delimiter must be
+   * one-character long, and cannot be a double quotation mark.
+   * Text is interpreted as being UTF-8 encoded. Text values must be enclosed in double quotes if
+   * they include the delimiter character. Double quotes within a text value can be escaped by doubling
+   * their occurrence.
    * For example, the following CSV lines are valid and will be properly parsed as two strings each:
-   *
-   * ```
-   * 				Alice,"Hello, Bob!"
-   * 				Bob,Alice! What a surprise!
-   * 				Alice,"I thought you'd reply with ""Hello, world""."
-   * 				```
-   *
-   * Note how the second line can omit the enclosing quotes as it does not include the delimiter. However it *could* very well use quotes, it was only written without for demonstration purposes. The third line must use `""` for each quotation mark that needs to be interpreted as such instead of the end of a text value.
+   * [codeblock]
+   * Alice,"Hello, Bob!"
+   * Bob,Alice! What a surprise!
+   * Alice,"I thought you'd reply with ""Hello, world""."
+   * [/codeblock]
+   * Note how the second line can omit the enclosing quotes as it does not include the delimiter.
+   * However it *could* very well use quotes, it was only written without for demonstration purposes.
+   * The third line must use `""` for each quotation mark that needs to be interpreted as such instead
+   * of the end of a text value.
    */
   @JvmOverloads
   public fun getCsvLine(delim: String = ","): PackedStringArray {
@@ -344,9 +323,9 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the whole file as a [godot.String]. Text is interpreted as being UTF-8 encoded.
-   *
-   * If [skipCr] is `true`, carriage return characters (`\r`, CR) will be ignored when parsing the UTF-8, so that only line feed characters (`\n`, LF) represent a new line (Unix convention).
+   * Returns the whole file as a [String]. Text is interpreted as being UTF-8 encoded.
+   * If [skipCr] is `true`, carriage return characters (`\r`, CR) will be ignored when parsing the
+   * UTF-8, so that only line feed characters (`\n`, LF) represent a new line (Unix convention).
    */
   @JvmOverloads
   public fun getAsText(skipCr: Boolean = false): String {
@@ -356,7 +335,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the last error that happened when trying to perform operations. Compare with the `ERR_FILE_*` constants from [enum Error].
+   * Returns the last error that happened when trying to perform operations. Compare with the
+   * `ERR_FILE_*` constants from [Error].
    */
   public fun getError(): GodotError {
     TransferContext.writeArguments()
@@ -365,11 +345,12 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next [Variant] value from the file. If [allowObjects] is `true`, decoding objects is allowed.
-   *
+   * Returns the next [Variant] value from the file. If [allowObjects] is `true`, decoding objects
+   * is allowed.
    * Internally, this uses the same decoding mechanism as the [@GlobalScope.bytesToVar] method.
-   *
-   * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
+   * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option
+   * if the serialized object comes from untrusted sources to avoid potential security threats such as
+   * remote code execution.
    */
   @JvmOverloads
   public fun getVar(allowObjects: Boolean = false): Any? {
@@ -380,10 +361,10 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   /**
    * Stores an integer as 8 bits in the file.
-   *
-   * **Note:** The [value] should lie in the interval `[0, 255]`. Any other value will overflow and wrap around.
-   *
-   * To store a signed integer, use [store64], or convert it manually (see [store16] for an example).
+   * **Note:** The [value] should lie in the interval `[0, 255]`. Any other value will overflow and
+   * wrap around.
+   * To store a signed integer, use [store64], or convert it manually (see [store16] for an
+   * example).
    */
   public fun store8(`value`: Int): Unit {
     TransferContext.writeArguments(LONG to value.toLong())
@@ -392,74 +373,44 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   /**
    * Stores an integer as 16 bits in the file.
+   * **Note:** The [value] should lie in the interval `[0, 2^16 - 1]`. Any other value will overflow
+   * and wrap around.
+   * To store a signed integer, use [store64] or store a signed integer from the interval `[-2^15,
+   * 2^15 - 1]` (i.e. keeping one bit for the signedness) and compute its sign manually when reading.
+   * For example:
    *
-   * **Note:** The [value] should lie in the interval `[0, 2^16 - 1]`. Any other value will overflow and wrap around.
-   *
-   * To store a signed integer, use [store64] or store a signed integer from the interval `[-2^15, 2^15 - 1]` (i.e. keeping one bit for the signedness) and compute its sign manually when reading. For example:
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * const MAX_15B = 1 << 15
-   *
    * const MAX_16B = 1 << 16
    *
-   *
-   *
    * func unsigned16_to_signed(unsigned):
-   *
-   *     return (unsigned + MAX_15B) % MAX_16B - MAX_15B
-   *
-   *
+   *     return (unsigned + MAX_15B) &#37; MAX_16B - MAX_15B
    *
    * func _ready():
-   *
    *     var f = FileAccess.open("user://file.dat", FileAccess.WRITE_READ)
-   *
    *     f.store_16(-42) # This wraps around and stores 65494 (2^16 - 42).
-   *
    *     f.store_16(121) # In bounds, will store 121.
-   *
    *     f.seek(0) # Go back to start to read the stored value.
-   *
    *     var read1 = f.get_16() # 65494
-   *
    *     var read2 = f.get_16() # 121
-   *
    *     var converted1 = unsigned16_to_signed(read1) # -42
-   *
    *     var converted2 = unsigned16_to_signed(read2) # 121
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * public override void _Ready()
-   *
    * {
-   *
    *     using var f = FileAccess.Open("user://file.dat", FileAccess.ModeFlags.WriteRead);
-   *
    *     f.Store16(unchecked((ushort)-42)); // This wraps around and stores 65494 (2^16 - 42).
-   *
    *     f.Store16(121); // In bounds, will store 121.
-   *
    *     f.Seek(0); // Go back to start to read the stored value.
-   *
    *     ushort read1 = f.Get16(); // 65494
-   *
    *     ushort read2 = f.Get16(); // 121
-   *
    *     short converted1 = (short)read1; // -42
-   *
    *     short converted2 = (short)read2; // 121
-   *
    * }
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public fun store16(`value`: Int): Unit {
     TransferContext.writeArguments(LONG to value.toLong())
@@ -468,10 +419,10 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   /**
    * Stores an integer as 32 bits in the file.
-   *
-   * **Note:** The [value] should lie in the interval `[0, 2^32 - 1]`. Any other value will overflow and wrap around.
-   *
-   * To store a signed integer, use [store64], or convert it manually (see [store16] for an example).
+   * **Note:** The [value] should lie in the interval `[0, 2^32 - 1]`. Any other value will overflow
+   * and wrap around.
+   * To store a signed integer, use [store64], or convert it manually (see [store16] for an
+   * example).
    */
   public fun store32(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
@@ -480,8 +431,8 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   /**
    * Stores an integer as 64 bits in the file.
-   *
-   * **Note:** The [value] must lie in the interval `[-2^63, 2^63 - 1]` (i.e. be a valid [int] value).
+   * **Note:** The [value] must lie in the interval `[-2^63, 2^63 - 1]` (i.e. be a valid [int]
+   * value).
    */
   public fun store64(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
@@ -521,7 +472,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Appends [line] to the file followed by a line return character (`\n`), encoding the text as UTF-8.
+   * Appends [line] to the file followed by a line return character (`\n`), encoding the text as
+   * UTF-8.
    */
   public fun storeLine(line: String): Unit {
     TransferContext.writeArguments(STRING to line)
@@ -529,8 +481,9 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Store the given [godot.PackedStringArray] in the file as a line formatted in the CSV (Comma-Separated Values) format. You can pass a different delimiter [delim] to use other than the default `","` (comma). This delimiter must be one-character long.
-   *
+   * Store the given [PackedStringArray] in the file as a line formatted in the CSV (Comma-Separated
+   * Values) format. You can pass a different delimiter [delim] to use other than the default `","`
+   * (comma). This delimiter must be one-character long.
    * Text will be encoded as UTF-8.
    */
   @JvmOverloads
@@ -541,8 +494,11 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   /**
    * Appends [string] to the file without a line return, encoding the text as UTF-8.
-   *
-   * **Note:** This method is intended to be used to write text files. The string is stored as a UTF-8 encoded buffer without string length or terminating zero, which means that it can't be loaded back easily. If you want to store a retrievable string in a binary file, consider using [storePascalString] instead. For retrieving strings from a text file, you can use `get_buffer(length).get_string_from_utf8()` (if you know the length) or [getAsText].
+   * **Note:** This method is intended to be used to write text files. The string is stored as a
+   * UTF-8 encoded buffer without string length or terminating zero, which means that it can't be
+   * loaded back easily. If you want to store a retrievable string in a binary file, consider using
+   * [storePascalString] instead. For retrieving strings from a text file, you can use
+   * `get_buffer(length).get_string_from_utf8()` (if you know the length) or [getAsText].
    */
   public fun storeString(string: String): Unit {
     TransferContext.writeArguments(STRING to string)
@@ -550,11 +506,14 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Stores any Variant value in the file. If [fullObjects] is `true`, encoding objects is allowed (and can potentially include code).
-   *
+   * Stores any Variant value in the file. If [fullObjects] is `true`, encoding objects is allowed
+   * (and can potentially include code).
    * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
-   *
-   * **Note:** Not all properties are included. Only properties that are configured with the [PROPERTY_USAGE_STORAGE] flag set will be serialized. You can add a new usage flag to a property by overriding the [godot.Object.GetPropertyList] method in your class. You can also check how property usage is configured by calling [godot.Object.GetPropertyList]. See [enum PropertyUsageFlags] for the possible usage flags.
+   * **Note:** Not all properties are included. Only properties that are configured with the
+   * [PROPERTY_USAGE_STORAGE] flag set will be serialized. You can add a new usage flag to a property
+   * by overriding the [Object.GetPropertyList] method in your class. You can also check how property
+   * usage is configured by calling [Object.GetPropertyList]. See [PropertyUsageFlags] for the possible
+   * usage flags.
    */
   @JvmOverloads
   public fun storeVar(`value`: Any?, fullObjects: Boolean = false): Unit {
@@ -563,8 +522,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Stores the given [godot.String] as a line in the file in Pascal format (i.e. also store the length of the string).
-   *
+   * Stores the given [String] as a line in the file in Pascal format (i.e. also store the length of
+   * the string).
    * Text will be encoded as UTF-8.
    */
   public fun storePascalString(string: String): Unit {
@@ -573,8 +532,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns a [godot.String] saved in Pascal format from the file.
-   *
+   * Returns a [String] saved in Pascal format from the file.
    * Text is interpreted as being UTF-8 encoded.
    */
   public fun getPascalString(): String {
@@ -584,9 +542,12 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Closes the currently opened file and prevents subsequent read/write operations. Use [flush] to persist the data to disk without closing the file.
-   *
-   * **Note:** [godot.FileAccess] will automatically close when it's freed, which happens when it goes out of scope or when it gets assigned with `null`. In C# the reference must be disposed after we are done using it, this can be done with the `using` statement or calling the `Dispose` method directly.
+   * Closes the currently opened file and prevents subsequent read/write operations. Use [flush] to
+   * persist the data to disk without closing the file.
+   * **Note:** [FileAccess] will automatically close when it's freed, which happens when it goes out
+   * of scope or when it gets assigned with `null`. In C# the reference must be disposed after we are
+   * done using it, this can be done with the `using` statement or calling the `Dispose` method
+   * directly.
    */
   public fun close(): Unit {
     TransferContext.writeArguments()
@@ -601,19 +562,22 @@ public open class FileAccess internal constructor() : RefCounted() {
      */
     READ(1),
     /**
-     * Opens the file for write operations. The file is created if it does not exist, and truncated if it does.
-     *
-     * **Note:** When creating a file it must be in an already existing directory. To recursively create directories for a file path, see [godot.DirAccess.makeDirRecursive]).
+     * Opens the file for write operations. The file is created if it does not exist, and truncated
+     * if it does.
+     * **Note:** When creating a file it must be in an already existing directory. To recursively
+     * create directories for a file path, see [DirAccess.makeDirRecursive]).
      */
     WRITE(2),
     /**
-     * Opens the file for read and write operations. Does not truncate the file. The cursor is positioned at the beginning of the file.
+     * Opens the file for read and write operations. Does not truncate the file. The cursor is
+     * positioned at the beginning of the file.
      */
     READ_WRITE(3),
     /**
-     * Opens the file for read and write operations. The file is created if it does not exist, and truncated if it does. The cursor is positioned at the beginning of the file.
-     *
-     * **Note:** When creating a file it must be in an already existing directory. To recursively create directories for a file path, see [godot.DirAccess.makeDirRecursive]).
+     * Opens the file for read and write operations. The file is created if it does not exist, and
+     * truncated if it does. The cursor is positioned at the beginning of the file.
+     * **Note:** When creating a file it must be in an already existing directory. To recursively
+     * create directories for a file path, see [DirAccess.makeDirRecursive]).
      */
     WRITE_READ(7),
     ;
@@ -632,23 +596,24 @@ public open class FileAccess internal constructor() : RefCounted() {
     id: Long,
   ) {
     /**
-     * Uses the [godot.FastLZ](https://fastlz.org/) compression method.
+     * Uses the [url=https://fastlz.org/]FastLZ[/url] compression method.
      */
     COMPRESSION_FASTLZ(0),
     /**
-     * Uses the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression method.
+     * Uses the [url=https://en.wikipedia.org/wiki/DEFLATE]DEFLATE[/url] compression method.
      */
     COMPRESSION_DEFLATE(1),
     /**
-     * Uses the [godot.Zstandard](https://facebook.github.io/zstd/) compression method.
+     * Uses the [url=https://facebook.github.io/zstd/]Zstandard[/url] compression method.
      */
     COMPRESSION_ZSTD(2),
     /**
-     * Uses the [gzip](https://www.gzip.org/) compression method.
+     * Uses the [url=https://www.gzip.org/]gzip[/url] compression method.
      */
     COMPRESSION_GZIP(3),
     /**
-     * Uses the [brotli](https://github.com/google/brotli) compression method (only decompression is supported).
+     * Uses the [url=https://github.com/google/brotli]brotli[/url] compression method (only
+     * decompression is supported).
      */
     COMPRESSION_BROTLI(4),
     ;
@@ -759,9 +724,10 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   public companion object {
     /**
-     * Creates a new [godot.FileAccess] object and opens the file for writing or reading, depending on the flags.
-     *
-     * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that occurred.
+     * Creates a new [FileAccess] object and opens the file for writing or reading, depending on the
+     * flags.
+     * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that
+     * occurred.
      */
     public fun `open`(path: String, flags: ModeFlags): FileAccess? {
       TransferContext.writeArguments(STRING to path, LONG to flags.id)
@@ -770,11 +736,11 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Creates a new [godot.FileAccess] object and opens an encrypted file in write or read mode. You need to pass a binary key to encrypt/decrypt it.
-     *
+     * Creates a new [FileAccess] object and opens an encrypted file in write or read mode. You need
+     * to pass a binary key to encrypt/decrypt it.
      * **Note:** The provided key must be 32 bytes long.
-     *
-     * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that occurred.
+     * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that
+     * occurred.
      */
     public fun openEncrypted(
       path: String,
@@ -787,9 +753,10 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Creates a new [godot.FileAccess] object and opens an encrypted file in write or read mode. You need to pass a password to encrypt/decrypt it.
-     *
-     * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that occurred.
+     * Creates a new [FileAccess] object and opens an encrypted file in write or read mode. You need
+     * to pass a password to encrypt/decrypt it.
+     * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that
+     * occurred.
      */
     public fun openEncryptedWithPass(
       path: String,
@@ -802,11 +769,12 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Creates a new [godot.FileAccess] object and opens a compressed file for reading or writing.
-     *
-     * **Note:** [openCompressed] can only read files that were saved by Godot, not third-party compression formats. See [godot.GitHub issue #28999](https://github.com/godotengine/godot/issues/28999) for a workaround.
-     *
-     * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that occurred.
+     * Creates a new [FileAccess] object and opens a compressed file for reading or writing.
+     * **Note:** [openCompressed] can only read files that were saved by Godot, not third-party
+     * compression formats. See [url=https://github.com/godotengine/godot/issues/28999]GitHub issue
+     * #28999[/url] for a workaround.
+     * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that
+     * occurred.
      */
     @JvmOverloads
     public fun openCompressed(
@@ -829,9 +797,9 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Returns the whole [path] file contents as a [godot.PackedByteArray] without any decoding.
-     *
-     * Returns an empty [godot.PackedByteArray] if an error occurred while opening the file. You can use [getOpenError] to check the error that occurred.
+     * Returns the whole [path] file contents as a [PackedByteArray] without any decoding.
+     * Returns an empty [PackedByteArray] if an error occurred while opening the file. You can use
+     * [getOpenError] to check the error that occurred.
      */
     public fun getFileAsBytes(path: String): PackedByteArray {
       TransferContext.writeArguments(STRING to path)
@@ -840,9 +808,10 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Returns the whole [path] file contents as a [godot.String]. Text is interpreted as being UTF-8 encoded.
-     *
-     * Returns an empty [godot.String] if an error occurred while opening the file. You can use [getOpenError] to check the error that occurred.
+     * Returns the whole [path] file contents as a [String]. Text is interpreted as being UTF-8
+     * encoded.
+     * Returns an empty [String] if an error occurred while opening the file. You can use
+     * [getOpenError] to check the error that occurred.
      */
     public fun getFileAsString(path: String): String {
       TransferContext.writeArguments(STRING to path)
@@ -851,7 +820,8 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Returns an MD5 String representing the file at the given path or an empty [godot.String] on failure.
+     * Returns an MD5 String representing the file at the given path or an empty [String] on
+     * failure.
      */
     public fun getMd5(path: String): String {
       TransferContext.writeArguments(STRING to path)
@@ -860,7 +830,8 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Returns a SHA-256 [godot.String] representing the file at the given path or an empty [godot.String] on failure.
+     * Returns a SHA-256 [String] representing the file at the given path or an empty [String] on
+     * failure.
      */
     public fun getSha256(path: String): String {
       TransferContext.writeArguments(STRING to path)
@@ -870,10 +841,10 @@ public open class FileAccess internal constructor() : RefCounted() {
 
     /**
      * Returns `true` if the file exists in the given path.
-     *
-     * **Note:** Many resources types are imported (e.g. textures or sound files), and their source asset will not be included in the exported game, as only the imported version is used. See [godot.ResourceLoader.exists] for an alternative approach that takes resource remapping into account.
-     *
-     * For a non-static, relative equivalent, use [godot.DirAccess.fileExists].
+     * **Note:** Many resources types are imported (e.g. textures or sound files), and their source
+     * asset will not be included in the exported game, as only the imported version is used. See
+     * [ResourceLoader.exists] for an alternative approach that takes resource remapping into account.
+     * For a non-static, relative equivalent, use [DirAccess.fileExists].
      */
     public fun fileExists(path: String): Boolean {
       TransferContext.writeArguments(STRING to path)
@@ -882,7 +853,8 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Returns the last time the [file] was modified in Unix timestamp format, or `0` on error. This Unix timestamp can be converted to another format using the [godot.Time] singleton.
+     * Returns the last time the [file] was modified in Unix timestamp format, or `0` on error. This
+     * Unix timestamp can be converted to another format using the [Time] singleton.
      */
     public fun getModifiedTime(`file`: String): Long {
       TransferContext.writeArguments(STRING to file)
@@ -892,7 +864,6 @@ public open class FileAccess internal constructor() : RefCounted() {
 
     /**
      * Returns file UNIX permissions.
-     *
      * **Note:** This method is implemented on iOS, Linux/BSD, and macOS.
      */
     public fun getUnixPermissions(`file`: String): UnixPermissionFlags {
@@ -903,7 +874,6 @@ public open class FileAccess internal constructor() : RefCounted() {
 
     /**
      * Sets file UNIX permissions.
-     *
      * **Note:** This method is implemented on iOS, Linux/BSD, and macOS.
      */
     public fun setUnixPermissions(`file`: String, permissions: UnixPermissionFlags): GodotError {
@@ -914,7 +884,6 @@ public open class FileAccess internal constructor() : RefCounted() {
 
     /**
      * Returns `true`, if file `hidden` attribute is set.
-     *
      * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
      */
     public fun getHiddenAttribute(`file`: String): Boolean {
@@ -925,7 +894,6 @@ public open class FileAccess internal constructor() : RefCounted() {
 
     /**
      * Sets file **hidden** attribute.
-     *
      * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
      */
     public fun setHiddenAttribute(`file`: String, hidden: Boolean): GodotError {
@@ -936,7 +904,6 @@ public open class FileAccess internal constructor() : RefCounted() {
 
     /**
      * Sets file **read only** attribute.
-     *
      * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
      */
     public fun setReadOnlyAttribute(`file`: String, ro: Boolean): GodotError {
@@ -947,7 +914,6 @@ public open class FileAccess internal constructor() : RefCounted() {
 
     /**
      * Returns `true`, if file `read only` attribute is set.
-     *
      * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
      */
     public fun getReadOnlyAttribute(`file`: String): Boolean {

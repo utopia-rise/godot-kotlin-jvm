@@ -55,7 +55,7 @@ public open class Timer : Node() {
   /**
    * The wait time in seconds.
    * **Note:** Timers can only emit once per rendered frame at most (or once per physics frame if
-   * [processCallback] is [TIMERPROCESSPHYSICS]). This means very low wait times (lower than 0.05
+   * [processCallback] is [TIMER_PROCESS_PHYSICS]). This means very low wait times (lower than 0.05
    * seconds) will behave in significantly different ways depending on the rendered framerate. For very
    * low wait times, it is recommended to use a process loop in a script instead of using a Timer node.
    * Timers are affected by [Engine.timeScale], a higher scale means quicker timeouts, and vice versa.
@@ -165,11 +165,11 @@ public open class Timer : Node() {
     id: Long,
   ) {
     /**
-     * Update the timer during physics frames (see [Node.NOTIFICATIONINTERNALPHYSICSPROCESS]).
+     * Update the timer during physics frames (see [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
     TIMER_PROCESS_PHYSICS(0),
     /**
-     * Update the timer during process frames (see [Node.NOTIFICATIONINTERNALPROCESS]).
+     * Update the timer during process frames (see [Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
     TIMER_PROCESS_IDLE(1),
     ;

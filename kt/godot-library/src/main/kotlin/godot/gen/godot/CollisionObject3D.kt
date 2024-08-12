@@ -71,7 +71,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public val mouseExited: Signal0 by signal()
 
   /**
-   * Defines the behavior in physics when [Node.processMode] is set to [Node.PROCESSMODEDISABLED].
+   * Defines the behavior in physics when [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED].
    * See [DisableMode] for more details about the different modes.
    */
   public var disableMode: DisableMode
@@ -389,20 +389,20 @@ public open class CollisionObject3D internal constructor() : Node3D() {
     id: Long,
   ) {
     /**
-     * When [Node.processMode] is set to [Node.PROCESSMODEDISABLED], remove from the physics
+     * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], remove from the physics
      * simulation to stop all physics interactions with this [CollisionObject3D].
      * Automatically re-added to the physics simulation when the [Node] is processed again.
      */
     DISABLE_MODE_REMOVE(0),
     /**
-     * When [Node.processMode] is set to [Node.PROCESSMODEDISABLED], make the body static. Doesn't
+     * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], make the body static. Doesn't
      * affect [Area3D]. [PhysicsBody3D] can't be affected by forces or other bodies while static.
      * Automatically set [PhysicsBody3D] back to its original mode when the [Node] is processed
      * again.
      */
     DISABLE_MODE_MAKE_STATIC(1),
     /**
-     * When [Node.processMode] is set to [Node.PROCESSMODEDISABLED], do not affect the physics
+     * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], do not affect the physics
      * simulation.
      */
     DISABLE_MODE_KEEP_ACTIVE(2),

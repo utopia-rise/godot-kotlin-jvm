@@ -101,9 +101,9 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Adds a point to the curve. For each side, if the `*_mode` is [TANGENTLINEAR], the `*_tangent`
+   * Adds a point to the curve. For each side, if the `*_mode` is [TANGENT_LINEAR], the `*_tangent`
    * angle (in degrees) uses the slope of the curve halfway to the adjacent point. Allows custom
-   * assignments to the `*_tangent` angle if `*_mode` is set to [TANGENTFREE].
+   * assignments to the `*_tangent` angle if `*_mode` is set to [TANGENT_FREE].
    */
   @JvmOverloads
   public fun addPoint(

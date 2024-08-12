@@ -222,7 +222,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * Smoothing value for shadows. Higher values will result in softer shadows, at the cost of
    * visible streaks that can appear in shadow rendering. [shadowFilterSmooth] only has an effect if
-   * [shadowFilter] is [SHADOWFILTERPCF5] or [SHADOWFILTERPCF13].
+   * [shadowFilter] is [SHADOW_FILTER_PCF5] or [SHADOW_FILTER_PCF13].
    */
   public var shadowFilterSmooth: Float
     get() {

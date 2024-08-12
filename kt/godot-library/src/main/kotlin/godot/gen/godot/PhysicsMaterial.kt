@@ -58,8 +58,10 @@ public open class PhysicsMaterial : Resource() {
 
   /**
    * The body's bounciness. Values range from `0` (no bounce) to `1` (full bounciness).
-   *
-   * **Note:** Even with [bounce] set to `1.0`, some energy will be lost over time due to linear and angular damping. To have a [godot.PhysicsBody3D] that preserves all its energy over time, set [bounce] to `1.0`, the body's linear damp mode to **Replace** (if applicable), its linear damp to `0.0`, its angular damp mode to **Replace** (if applicable), and its angular damp to `0.0`.
+   * **Note:** Even with [bounce] set to `1.0`, some energy will be lost over time due to linear and
+   * angular damping. To have a [PhysicsBody3D] that preserves all its energy over time, set [bounce]
+   * to `1.0`, the body's linear damp mode to **Replace** (if applicable), its linear damp to `0.0`,
+   * its angular damp mode to **Replace** (if applicable), and its angular damp to `0.0`.
    */
   public var bounce: Float
     get() {

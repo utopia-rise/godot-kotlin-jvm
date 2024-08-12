@@ -23,7 +23,7 @@ import kotlin.Suppress
 public open class VisualShaderNodeTexture2DArray : VisualShaderNodeSample3D() {
   /**
    * A source texture array. Used if [VisualShaderNodeSample3D.source] is set to
-   * [VisualShaderNodeSample3D.SOURCETEXTURE].
+   * [VisualShaderNodeSample3D.SOURCE_TEXTURE].
    */
   public var textureArray: Texture2DArray?
     get() {

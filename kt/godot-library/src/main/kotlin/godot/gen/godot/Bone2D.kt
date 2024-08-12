@@ -85,7 +85,7 @@ public open class Bone2D : Node2D() {
 
 
   /**
-   * Resets the bone to the rest pose. This is equivalent to setting [godot.Node2D.transform] to [rest].
+   * Resets the bone to the rest pose. This is equivalent to setting [Node2D.transform] to [rest].
    */
   public fun applyRest(): Unit {
     TransferContext.writeArguments()

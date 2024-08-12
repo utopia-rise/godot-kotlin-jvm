@@ -31,19 +31,15 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base node for geometry-based visual instances.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/3d/visibility_ranges.html]($DOCS_URL/tutorials/3d/visibility_ranges.html)
- *
- * Base node for geometry-based visual instances. Shares some common functionality like visibility and custom materials.
+ * Base node for geometry-based visual instances. Shares some common functionality like visibility
+ * and custom materials.
  */
 @GodotBaseType
 public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * The material override for the whole geometry.
-   *
-   * If a material is assigned to this property, it will be used instead of any material set in any material slot of the mesh.
+   * If a material is assigned to this property, it will be used instead of any material set in any
+   * material slot of the mesh.
    */
   public var materialOverride: Material?
     get() {
@@ -58,8 +54,8 @@ public open class GeometryInstance3D : VisualInstance3D() {
 
   /**
    * The material overlay for the whole geometry.
-   *
-   * If a material is assigned to this property, it will be rendered on top of any other active material for all the surfaces.
+   * If a material is assigned to this property, it will be rendered on top of any other active
+   * material for all the surfaces.
    */
   public var materialOverlay: Material?
     get() {
@@ -73,11 +69,15 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
-   * The transparency applied to the whole geometry (as a multiplier of the materials' existing transparency). `0.0` is fully opaque, while `1.0` is fully transparent. Values greater than `0.0` (exclusive) will force the geometry's materials to go through the transparent pipeline, which is slower to render and can exhibit rendering issues due to incorrect transparency sorting. However, unlike using a transparent material, setting [transparency] to a value greater than `0.0` (exclusive) will *not* disable shadow rendering.
-   *
+   * The transparency applied to the whole geometry (as a multiplier of the materials' existing
+   * transparency). `0.0` is fully opaque, while `1.0` is fully transparent. Values greater than `0.0`
+   * (exclusive) will force the geometry's materials to go through the transparent pipeline, which is
+   * slower to render and can exhibit rendering issues due to incorrect transparency sorting. However,
+   * unlike using a transparent material, setting [transparency] to a value greater than `0.0`
+   * (exclusive) will *not* disable shadow rendering.
    * In spatial shaders, `1.0 - transparency` is set as the default value of the `ALPHA` built-in.
-   *
-   * **Note:** [transparency] is clamped between `0.0` and `1.0`, so this property cannot be used to make transparent materials more opaque than they originally are.
+   * **Note:** [transparency] is clamped between `0.0` and `1.0`, so this property cannot be used to
+   * make transparent materials more opaque than they originally are.
    */
   public var transparency: Float
     get() {
@@ -91,7 +91,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
-   * The selected shadow casting flag. See [enum ShadowCastingSetting] for possible values.
+   * The selected shadow casting flag. See [ShadowCastingSetting] for possible values.
    */
   public var castShadow: ShadowCastingSetting
     get() {
@@ -105,7 +105,8 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
-   * The extra distance added to the GeometryInstance3D's bounding box ([AABB]) to increase its cull box.
+   * The extra distance added to the GeometryInstance3D's bounding box ([AABB]) to increase its cull
+   * box.
    */
   public var extraCullMargin: Float
     get() {
@@ -119,7 +120,13 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
-   * Overrides the bounding box of this node with a custom one. This can be used to avoid the expensive [AABB] recalculation that happens when a skeleton is used with a [godot.MeshInstance3D] or to have precise control over the [godot.MeshInstance3D]'s bounding box. To use the default AABB, set value to an [AABB] with all fields set to `0.0`. To avoid frustum culling, set [customAabb] to a very large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000, 20000)`. To disable all forms of culling (including occlusion culling), call [godot.RenderingServer.instanceSetIgnoreCulling] on the [godot.GeometryInstance3D]'s [RID].
+   * Overrides the bounding box of this node with a custom one. This can be used to avoid the
+   * expensive [AABB] recalculation that happens when a skeleton is used with a [MeshInstance3D] or to
+   * have precise control over the [MeshInstance3D]'s bounding box. To use the default AABB, set value
+   * to an [AABB] with all fields set to `0.0`. To avoid frustum culling, set [customAabb] to a very
+   * large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000,
+   * 20000)`. To disable all forms of culling (including occlusion culling), call
+   * [RenderingServer.instanceSetIgnoreCulling] on the [GeometryInstance3D]'s [RID].
    */
   @CoreTypeLocalCopy
   public var customAabb: AABB
@@ -135,8 +142,9 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
-   * Changes how quickly the mesh transitions to a lower level of detail. A value of 0 will force the mesh to its lowest level of detail, a value of 1 will use the default settings, and larger values will keep the mesh in a higher level of detail at farther distances.
-   *
+   * Changes how quickly the mesh transitions to a lower level of detail. A value of 0 will force
+   * the mesh to its lowest level of detail, a value of 1 will use the default settings, and larger
+   * values will keep the mesh in a higher level of detail at farther distances.
    * Useful for testing level of detail transitions in the editor.
    */
   public var lodBias: Float
@@ -151,9 +159,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
-   * If `true`, disables occlusion culling for this instance. Useful for gizmos that must be rendered even when occlusion culling is in use.
-   *
-   * **Note:** [ignoreOcclusionCulling] does not affect frustum culling (which is what happens when an object is not visible given the camera's angle). To avoid frustum culling, set [customAabb] to a very large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000, 20000)`.
+   * If `true`, disables occlusion culling for this instance. Useful for gizmos that must be
+   * rendered even when occlusion culling is in use.
+   * **Note:** [ignoreOcclusionCulling] does not affect frustum culling (which is what happens when
+   * an object is not visible given the camera's angle). To avoid frustum culling, set [customAabb] to
+   * a very large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000,
+   * 20000, 20000)`.
    */
   public var ignoreOcclusionCulling: Boolean
     get() {
@@ -167,9 +178,10 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
-   * The global illumination mode to use for the whole geometry. To avoid inconsistent results, use a mode that matches the purpose of the mesh during gameplay (static/dynamic).
-   *
-   * **Note:** Lights' bake mode will also affect the global illumination rendering. See [godot.Light3D.lightBakeMode].
+   * The global illumination mode to use for the whole geometry. To avoid inconsistent results, use
+   * a mode that matches the purpose of the mesh during gameplay (static/dynamic).
+   * **Note:** Lights' bake mode will also affect the global illumination rendering. See
+   * [Light3D.lightBakeMode].
    */
   public var giMode: GIMode
     get() {
@@ -183,7 +195,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
-   * The texel density to use for lightmapping in [godot.LightmapGI]. Greater scale values provide higher resolution in the lightmap, which can result in sharper shadows for lights that have both direct and indirect light baked. However, greater scale values will also increase the space taken by the mesh in the lightmap texture, which increases the memory, storage, and bake time requirements. When using a single mesh at different scales, consider adjusting this value to keep the lightmap texel density consistent across meshes.
+   * The texel density to use for lightmapping in [LightmapGI]. Greater scale values provide higher
+   * resolution in the lightmap, which can result in sharper shadows for lights that have both direct
+   * and indirect light baked. However, greater scale values will also increase the space taken by the
+   * mesh in the lightmap texture, which increases the memory, storage, and bake time requirements.
+   * When using a single mesh at different scales, consider adjusting this value to keep the lightmap
+   * texel density consistent across meshes.
    */
   public var giLightmapScale: LightmapScale
     get() {
@@ -197,7 +214,9 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
-   * Starting distance from which the GeometryInstance3D will be visible, taking [visibilityRangeBeginMargin] into account as well. The default value of 0 is used to disable the range check.
+   * Starting distance from which the GeometryInstance3D will be visible, taking
+   * [visibilityRangeBeginMargin] into account as well. The default value of 0 is used to disable the
+   * range check.
    */
   public var visibilityRangeBegin: Float
     get() {
@@ -211,9 +230,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
-   * Margin for the [visibilityRangeBegin] threshold. The GeometryInstance3D will only change its visibility state when it goes over or under the [visibilityRangeBegin] threshold by this amount.
-   *
-   * If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_DISABLED], this acts as a hysteresis distance. If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_SELF] or [VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a value greater than `0.0` for the effect to be noticeable.
+   * Margin for the [visibilityRangeBegin] threshold. The GeometryInstance3D will only change its
+   * visibility state when it goes over or under the [visibilityRangeBegin] threshold by this amount.
+   * If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_DISABLED], this acts as a hysteresis
+   * distance. If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_SELF] or
+   * [VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a
+   * value greater than `0.0` for the effect to be noticeable.
    */
   public var visibilityRangeBeginMargin: Float
     get() {
@@ -227,7 +249,8 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
-   * Distance from which the GeometryInstance3D will be hidden, taking [visibilityRangeEndMargin] into account as well. The default value of 0 is used to disable the range check.
+   * Distance from which the GeometryInstance3D will be hidden, taking [visibilityRangeEndMargin]
+   * into account as well. The default value of 0 is used to disable the range check.
    */
   public var visibilityRangeEnd: Float
     get() {
@@ -241,9 +264,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
-   * Margin for the [visibilityRangeEnd] threshold. The GeometryInstance3D will only change its visibility state when it goes over or under the [visibilityRangeEnd] threshold by this amount.
-   *
-   * If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_DISABLED], this acts as a hysteresis distance. If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_SELF] or [VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a value greater than `0.0` for the effect to be noticeable.
+   * Margin for the [visibilityRangeEnd] threshold. The GeometryInstance3D will only change its
+   * visibility state when it goes over or under the [visibilityRangeEnd] threshold by this amount.
+   * If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_DISABLED], this acts as a hysteresis
+   * distance. If [visibilityRangeFadeMode] is [VISIBILITY_RANGE_FADE_SELF] or
+   * [VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a
+   * value greater than `0.0` for the effect to be noticeable.
    */
   public var visibilityRangeEndMargin: Float
     get() {
@@ -257,7 +283,8 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
-   * Controls which instances will be faded when approaching the limits of the visibility range. See [enum VisibilityRangeFadeMode] for possible values.
+   * Controls which instances will be faded when approaching the limits of the visibility range. See
+   * [VisibilityRangeFadeMode] for possible values.
    */
   public var visibilityRangeFadeMode: VisibilityRangeFadeMode
     get() {
@@ -276,7 +303,13 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   /**
-   * Overrides the bounding box of this node with a custom one. This can be used to avoid the expensive [AABB] recalculation that happens when a skeleton is used with a [godot.MeshInstance3D] or to have precise control over the [godot.MeshInstance3D]'s bounding box. To use the default AABB, set value to an [AABB] with all fields set to `0.0`. To avoid frustum culling, set [customAabb] to a very large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000, 20000)`. To disable all forms of culling (including occlusion culling), call [godot.RenderingServer.instanceSetIgnoreCulling] on the [godot.GeometryInstance3D]'s [RID].
+   * Overrides the bounding box of this node with a custom one. This can be used to avoid the
+   * expensive [AABB] recalculation that happens when a skeleton is used with a [MeshInstance3D] or to
+   * have precise control over the [MeshInstance3D]'s bounding box. To use the default AABB, set value
+   * to an [AABB] with all fields set to `0.0`. To avoid frustum culling, set [customAabb] to a very
+   * large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000,
+   * 20000)`. To disable all forms of culling (including occlusion culling), call
+   * [RenderingServer.instanceSetIgnoreCulling] on the [GeometryInstance3D]'s [RID].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -300,13 +333,16 @@ public open class GeometryInstance3D : VisualInstance3D() {
 
 
   /**
-   * Set the value of a shader uniform for this instance only ([per-instance uniform]($DOCS_URL/tutorials/shaders/shader_reference/shading_language.html#per-instance-uniforms)). See also [godot.ShaderMaterial.setShaderParameter] to assign a uniform on all instances using the same [godot.ShaderMaterial].
-   *
-   * **Note:** For a shader uniform to be assignable on a per-instance basis, it *must* be defined with `instance uniform ...` rather than `uniform ...` in the shader code.
-   *
-   * **Note:** [name] is case-sensitive and must match the name of the uniform in the code exactly (not the capitalized name in the inspector).
-   *
-   * **Note:** Per-instance shader uniforms are currently only available in 3D, so there is no 2D equivalent of this method.
+   * Set the value of a shader uniform for this instance only
+   * ([url=$DOCS_URL/tutorials/shaders/shader_reference/shading_language.html#per-instance-uniforms]per-instance
+   * uniform[/url]). See also [ShaderMaterial.setShaderParameter] to assign a uniform on all instances
+   * using the same [ShaderMaterial].
+   * **Note:** For a shader uniform to be assignable on a per-instance basis, it *must* be defined
+   * with `instance uniform ...` rather than `uniform ...` in the shader code.
+   * **Note:** [name] is case-sensitive and must match the name of the uniform in the code exactly
+   * (not the capitalized name in the inspector).
+   * **Note:** Per-instance shader uniforms are currently only available in 3D, so there is no 2D
+   * equivalent of this method.
    */
   public fun setInstanceShaderParameter(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
@@ -326,25 +362,26 @@ public open class GeometryInstance3D : VisualInstance3D() {
     id: Long,
   ) {
     /**
-     * Will not cast any shadows. Use this to improve performance for small geometry that is unlikely to cast noticeable shadows (such as debris).
+     * Will not cast any shadows. Use this to improve performance for small geometry that is
+     * unlikely to cast noticeable shadows (such as debris).
      */
     SHADOW_CASTING_SETTING_OFF(0),
     /**
      * Will cast shadows from all visible faces in the GeometryInstance3D.
-     *
-     * Will take culling into account, so faces not being rendered will not be taken into account when shadow casting.
+     * Will take culling into account, so faces not being rendered will not be taken into account
+     * when shadow casting.
      */
     SHADOW_CASTING_SETTING_ON(1),
     /**
      * Will cast shadows from all visible faces in the GeometryInstance3D.
-     *
-     * Will not take culling into account, so all faces will be taken into account when shadow casting.
+     * Will not take culling into account, so all faces will be taken into account when shadow
+     * casting.
      */
     SHADOW_CASTING_SETTING_DOUBLE_SIDED(2),
     /**
      * Will only show the shadows casted from this object.
-     *
-     * In other words, the actual mesh will not be visible, only the shadows casted from the mesh will be.
+     * In other words, the actual mesh will not be visible, only the shadows casted from the mesh
+     * will be.
      */
     SHADOW_CASTING_SETTING_SHADOWS_ONLY(3),
     ;
@@ -363,15 +400,23 @@ public open class GeometryInstance3D : VisualInstance3D() {
     id: Long,
   ) {
     /**
-     * Disabled global illumination mode. Use for dynamic objects that do not contribute to global illumination (such as characters). When using [godot.VoxelGI] and SDFGI, the geometry will *receive* indirect lighting and reflections but the geometry will not be considered in GI baking.
+     * Disabled global illumination mode. Use for dynamic objects that do not contribute to global
+     * illumination (such as characters). When using [VoxelGI] and SDFGI, the geometry will *receive*
+     * indirect lighting and reflections but the geometry will not be considered in GI baking.
      */
     GI_MODE_DISABLED(0),
     /**
-     * Baked global illumination mode. Use for static objects that contribute to global illumination (such as level geometry). This GI mode is effective when using [godot.VoxelGI], SDFGI and [godot.LightmapGI].
+     * Baked global illumination mode. Use for static objects that contribute to global illumination
+     * (such as level geometry). This GI mode is effective when using [VoxelGI], SDFGI and
+     * [LightmapGI].
      */
     GI_MODE_STATIC(1),
     /**
-     * Dynamic global illumination mode. Use for dynamic objects that contribute to global illumination. This GI mode is only effective when using [godot.VoxelGI], but it has a higher performance impact than [GI_MODE_STATIC]. When using other GI methods, this will act the same as [GI_MODE_DISABLED]. When using [godot.LightmapGI], the object will receive indirect lighting using lightmap probes instead of using the baked lightmap texture.
+     * Dynamic global illumination mode. Use for dynamic objects that contribute to global
+     * illumination. This GI mode is only effective when using [VoxelGI], but it has a higher
+     * performance impact than [GI_MODE_STATIC]. When using other GI methods, this will act the same as
+     * [GI_MODE_DISABLED]. When using [LightmapGI], the object will receive indirect lighting using
+     * lightmap probes instead of using the baked lightmap texture.
      */
     GI_MODE_DYNAMIC(2),
     ;
@@ -390,23 +435,26 @@ public open class GeometryInstance3D : VisualInstance3D() {
     id: Long,
   ) {
     /**
-     * The standard texel density for lightmapping with [godot.LightmapGI].
+     * The standard texel density for lightmapping with [LightmapGI].
      */
     LIGHTMAP_SCALE_1X(0),
     /**
-     * Multiplies texel density by 2× for lightmapping with [godot.LightmapGI]. To ensure consistency in texel density, use this when scaling a mesh by a factor between 1.5 and 3.0.
+     * Multiplies texel density by 2× for lightmapping with [LightmapGI]. To ensure consistency in
+     * texel density, use this when scaling a mesh by a factor between 1.5 and 3.0.
      */
     LIGHTMAP_SCALE_2X(1),
     /**
-     * Multiplies texel density by 4× for lightmapping with [godot.LightmapGI]. To ensure consistency in texel density, use this when scaling a mesh by a factor between 3.0 and 6.0.
+     * Multiplies texel density by 4× for lightmapping with [LightmapGI]. To ensure consistency in
+     * texel density, use this when scaling a mesh by a factor between 3.0 and 6.0.
      */
     LIGHTMAP_SCALE_4X(2),
     /**
-     * Multiplies texel density by 8× for lightmapping with [godot.LightmapGI]. To ensure consistency in texel density, use this when scaling a mesh by a factor greater than 6.0.
+     * Multiplies texel density by 8× for lightmapping with [LightmapGI]. To ensure consistency in
+     * texel density, use this when scaling a mesh by a factor greater than 6.0.
      */
     LIGHTMAP_SCALE_8X(3),
     /**
-     * Represents the size of the [enum LightmapScale] enum.
+     * Represents the size of the [LightmapScale] enum.
      */
     LIGHTMAP_SCALE_MAX(4),
     ;
@@ -425,15 +473,23 @@ public open class GeometryInstance3D : VisualInstance3D() {
     id: Long,
   ) {
     /**
-     * Will not fade itself nor its visibility dependencies, hysteresis will be used instead. This is the fastest approach to manual LOD, but it can result in noticeable LOD transitions depending on how the LOD meshes are authored. See [visibilityRangeBegin] and [godot.Node3D.visibilityParent] for more information.
+     * Will not fade itself nor its visibility dependencies, hysteresis will be used instead. This
+     * is the fastest approach to manual LOD, but it can result in noticeable LOD transitions depending
+     * on how the LOD meshes are authored. See [visibilityRangeBegin] and [Node3D.visibilityParent] for
+     * more information.
      */
     VISIBILITY_RANGE_FADE_DISABLED(0),
     /**
-     * Will fade-out itself when reaching the limits of its own visibility range. This is slower than [VISIBILITY_RANGE_FADE_DISABLED], but it can provide smoother transitions. The fading range is determined by [visibilityRangeBeginMargin] and [visibilityRangeEndMargin].
+     * Will fade-out itself when reaching the limits of its own visibility range. This is slower
+     * than [VISIBILITY_RANGE_FADE_DISABLED], but it can provide smoother transitions. The fading range
+     * is determined by [visibilityRangeBeginMargin] and [visibilityRangeEndMargin].
      */
     VISIBILITY_RANGE_FADE_SELF(1),
     /**
-     * Will fade-in its visibility dependencies (see [godot.Node3D.visibilityParent]) when reaching the limits of its own visibility range. This is slower than [VISIBILITY_RANGE_FADE_DISABLED], but it can provide smoother transitions. The fading range is determined by [visibilityRangeBeginMargin] and [visibilityRangeEndMargin].
+     * Will fade-in its visibility dependencies (see [Node3D.visibilityParent]) when reaching the
+     * limits of its own visibility range. This is slower than [VISIBILITY_RANGE_FADE_DISABLED], but it
+     * can provide smoother transitions. The fading range is determined by [visibilityRangeBeginMargin]
+     * and [visibilityRangeEndMargin].
      */
     VISIBILITY_RANGE_FADE_DEPENDENCIES(2),
     ;

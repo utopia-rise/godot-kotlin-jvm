@@ -431,8 +431,8 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the area's body monitor callback. This callback will be called when any other (shape of a)
    * body enters or exits (a shape of) the given area, and must take the following five parameters:
-   * 1. an integer `status`: either [AREABODYADDED] or [AREABODYREMOVED] depending on whether the
-   * other body shape entered or exited the area,
+   * 1. an integer `status`: either [AREA_BODY_ADDED] or [AREA_BODY_REMOVED] depending on whether
+   * the other body shape entered or exited the area,
    * 2. an [RID] `body_rid`: the [RID] of the body that entered or exited the area,
    * 3. an integer `instance_id`: the `ObjectID` attached to the body,
    * 4. an integer `body_shape_idx`: the index of the shape of the body that entered or exited the
@@ -450,8 +450,8 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the area's area monitor callback. This callback will be called when any other (shape of
    * an) area enters or exits (a shape of) the given area, and must take the following five parameters:
-   * 1. an integer `status`: either [AREABODYADDED] or [AREABODYREMOVED] depending on whether the
-   * other area's shape entered or exited the area,
+   * 1. an integer `status`: either [AREA_BODY_ADDED] or [AREA_BODY_REMOVED] depending on whether
+   * the other area's shape entered or exited the area,
    * 2. an [RID] `area_rid`: the [RID] of the other area that entered or exited the area,
    * 3. an integer `instance_id`: the `ObjectID` attached to the other area,
    * 4. an integer `area_shape_idx`: the index of the shape of the other area that entered or exited
@@ -1847,7 +1847,7 @@ public object PhysicsServer3D : Object() {
     AREA_PARAM_GRAVITY_IS_POINT(3),
     /**
      * Constant to set/get the distance at which the gravity strength is equal to the gravity
-     * controlled by [AREAPARAMGRAVITY]. For example, on a planet 100 meters in radius with a surface
+     * controlled by [AREA_PARAM_GRAVITY]. For example, on a planet 100 meters in radius with a surface
      * gravity of 4.0 m/s², set the gravity to 4.0 and the unit distance to 100.0. The gravity will
      * have falloff according to the inverse square law, so in the example, at 200 meters from the
      * center the gravity will be 1.0 m/s² (twice the distance, 1/4th the gravity), at 50 meters it

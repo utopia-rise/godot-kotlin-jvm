@@ -48,7 +48,7 @@ public open class Thread : RefCounted() {
    * Starts a new [Thread] that calls [callable].
    * If the method takes some arguments, you can pass them using [Callable.bind].
    * The [priority] of the [Thread] can be changed by passing a value from the [Priority] enum.
-   * Returns [OK] on success, or [ERRCANTCREATE] on failure.
+   * Returns [OK] on success, or [ERR_CANT_CREATE] on failure.
    */
   @JvmOverloads
   public fun start(callable: Callable, priority: Priority = Thread.Priority.PRIORITY_NORMAL):

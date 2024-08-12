@@ -43,7 +43,7 @@ public open class DirectionalLight3D : Light3D() {
   /**
    * If `true`, shadow detail is sacrificed in exchange for smoother transitions between splits.
    * Enabling shadow blend splitting also has a moderate performance cost. This is ignored when
-   * [directionalShadowMode] is [SHADOWORTHOGONAL].
+   * [directionalShadowMode] is [SHADOW_ORTHOGONAL].
    */
   public var directionalShadowBlendSplits: Boolean
     get() {
@@ -86,7 +86,7 @@ public open class DirectionalLight3D : Light3D() {
     SHADOW_ORTHOGONAL(0),
     /**
      * Splits the view frustum in 2 areas, each with its own shadow map. This shadow mode is a
-     * compromise between [SHADOWORTHOGONAL] and [SHADOWPARALLEL4SPLITS] in terms of performance.
+     * compromise between [SHADOW_ORTHOGONAL] and [SHADOW_PARALLEL_4_SPLITS] in terms of performance.
      */
     SHADOW_PARALLEL_2_SPLITS(1),
     /**

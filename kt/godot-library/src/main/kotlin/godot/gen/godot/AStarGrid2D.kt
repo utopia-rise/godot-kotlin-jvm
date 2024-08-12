@@ -37,54 +37,43 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * An implementation of A* for finding the shortest path between two points on a partial 2D grid.
+ * [AStarGrid2D] is a variant of [AStar2D] that is specialized for partial 2D grids. It is simpler
+ * to use because it doesn't require you to manually create points and connect them together. This
+ * class also supports multiple types of heuristics, modes for diagonal movement, and a jumping mode to
+ * speed up calculations.
+ * To use [AStarGrid2D], you only need to set the [region] of the grid, optionally set the
+ * [cellSize], and then call the [update] method:
  *
- * [godot.AStarGrid2D] is a variant of [godot.AStar2D] that is specialized for partial 2D grids. It is simpler to use because it doesn't require you to manually create points and connect them together. This class also supports multiple types of heuristics, modes for diagonal movement, and a jumping mode to speed up calculations.
- *
- * To use [godot.AStarGrid2D], you only need to set the [region] of the grid, optionally set the [cellSize], and then call the [update] method:
- *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * var astar_grid = AStarGrid2D.new()
- *
  * astar_grid.region = Rect2i(0, 0, 32, 32)
- *
  * astar_grid.cell_size = Vector2(16, 16)
- *
  * astar_grid.update()
- *
- * print(astar_grid.get_id_path(Vector2i(0, 0), Vector2i(3, 4))) # prints (0, 0), (1, 1), (2, 2), (3, 3), (3, 4)
- *
- * print(astar_grid.get_point_path(Vector2i(0, 0), Vector2i(3, 4))) # prints (0, 0), (16, 16), (32, 32), (48, 48), (48, 64)
- *
- * [/gdscript]
- *
- * [csharp]
- *
+ * print(astar_grid.get_id_path(Vector2i(0, 0), Vector2i(3, 4))) # prints (0, 0), (1, 1), (2, 2),
+ * (3, 3), (3, 4)
+ * print(astar_grid.get_point_path(Vector2i(0, 0), Vector2i(3, 4))) # prints (0, 0), (16, 16), (32,
+ * 32), (48, 48), (48, 64)
+ * ```
+ * csharp:
+ * ```csharp
  * AStarGrid2D astarGrid = new AStarGrid2D();
- *
  * astarGrid.Region = new Rect2I(0, 0, 32, 32);
- *
  * astarGrid.CellSize = new Vector2I(16, 16);
- *
  * astarGrid.Update();
- *
- * GD.Print(astarGrid.GetIdPath(Vector2I.Zero, new Vector2I(3, 4))); // prints (0, 0), (1, 1), (2, 2), (3, 3), (3, 4)
- *
- * GD.Print(astarGrid.GetPointPath(Vector2I.Zero, new Vector2I(3, 4))); // prints (0, 0), (16, 16), (32, 32), (48, 48), (48, 64)
- *
- * [/csharp]
- *
- * [/codeblocks]
+ * GD.Print(astarGrid.GetIdPath(Vector2I.Zero, new Vector2I(3, 4))); // prints (0, 0), (1, 1), (2,
+ * 2), (3, 3), (3, 4)
+ * GD.Print(astarGrid.GetPointPath(Vector2I.Zero, new Vector2I(3, 4))); // prints (0, 0), (16, 16),
+ * (32, 32), (48, 48), (48, 64)
+ * ```
  *
  * To remove a point from the pathfinding grid, it must be set as "solid" with [setPointSolid].
  */
 @GodotBaseType
 public open class AStarGrid2D : RefCounted() {
   /**
-   * The region of grid cells available for pathfinding. If changed, [update] needs to be called before finding the next path.
+   * The region of grid cells available for pathfinding. If changed, [update] needs to be called
+   * before finding the next path.
    */
   @CoreTypeLocalCopy
   public var region: Rect2i
@@ -99,8 +88,8 @@ public open class AStarGrid2D : RefCounted() {
     }
 
   /**
-   * The size of the grid (number of cells of size [cellSize] on each axis). If changed, [update] needs to be called before finding the next path.
-   *
+   * The size of the grid (number of cells of size [cellSize] on each axis). If changed, [update]
+   * needs to be called before finding the next path.
    * *Deprecated.* Use [region] instead.
    */
   @CoreTypeLocalCopy
@@ -116,7 +105,8 @@ public open class AStarGrid2D : RefCounted() {
     }
 
   /**
-   * The offset of the grid which will be applied to calculate the resulting point position returned by [getPointPath]. If changed, [update] needs to be called before finding the next path.
+   * The offset of the grid which will be applied to calculate the resulting point position returned
+   * by [getPointPath]. If changed, [update] needs to be called before finding the next path.
    */
   @CoreTypeLocalCopy
   public var offset: Vector2
@@ -131,7 +121,8 @@ public open class AStarGrid2D : RefCounted() {
     }
 
   /**
-   * The size of the point cell which will be applied to calculate the resulting point position returned by [getPointPath]. If changed, [update] needs to be called before finding the next path.
+   * The size of the point cell which will be applied to calculate the resulting point position
+   * returned by [getPointPath]. If changed, [update] needs to be called before finding the next path.
    */
   @CoreTypeLocalCopy
   public var cellSize: Vector2
@@ -146,9 +137,10 @@ public open class AStarGrid2D : RefCounted() {
     }
 
   /**
-   * Enables or disables jumping to skip up the intermediate points and speeds up the searching algorithm.
-   *
-   * **Note:** Currently, toggling it on disables the consideration of weight scaling in pathfinding.
+   * Enables or disables jumping to skip up the intermediate points and speeds up the searching
+   * algorithm.
+   * **Note:** Currently, toggling it on disables the consideration of weight scaling in
+   * pathfinding.
    */
   public var jumpingEnabled: Boolean
     get() {
@@ -162,7 +154,8 @@ public open class AStarGrid2D : RefCounted() {
     }
 
   /**
-   * The default [enum Heuristic] which will be used to calculate the cost between two points if [_computeCost] was not overridden.
+   * The default [Heuristic] which will be used to calculate the cost between two points if
+   * [_computeCost] was not overridden.
    */
   public var defaultComputeHeuristic: Heuristic
     get() {
@@ -176,7 +169,8 @@ public open class AStarGrid2D : RefCounted() {
     }
 
   /**
-   * The default [enum Heuristic] which will be used to calculate the cost between the point and the end point if [_estimateCost] was not overridden.
+   * The default [Heuristic] which will be used to calculate the cost between the point and the end
+   * point if [_estimateCost] was not overridden.
    */
   public var defaultEstimateHeuristic: Heuristic
     get() {
@@ -190,7 +184,8 @@ public open class AStarGrid2D : RefCounted() {
     }
 
   /**
-   * A specific [enum DiagonalMode] mode which will force the path to avoid or accept the specified diagonals.
+   * A specific [DiagonalMode] mode which will force the path to avoid or accept the specified
+   * diagonals.
    */
   public var diagonalMode: DiagonalMode
     get() {
@@ -209,7 +204,8 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   /**
-   * The region of grid cells available for pathfinding. If changed, [update] needs to be called before finding the next path.
+   * The region of grid cells available for pathfinding. If changed, [update] needs to be called
+   * before finding the next path.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -233,8 +229,8 @@ public open class AStarGrid2D : RefCounted() {
 
 
   /**
-   * The size of the grid (number of cells of size [cellSize] on each axis). If changed, [update] needs to be called before finding the next path.
-   *
+   * The size of the grid (number of cells of size [cellSize] on each axis). If changed, [update]
+   * needs to be called before finding the next path.
    * *Deprecated.* Use [region] instead.
    *
    * This is a helper function to make dealing with local copies easier. 
@@ -259,7 +255,8 @@ public open class AStarGrid2D : RefCounted() {
 
 
   /**
-   * The offset of the grid which will be applied to calculate the resulting point position returned by [getPointPath]. If changed, [update] needs to be called before finding the next path.
+   * The offset of the grid which will be applied to calculate the resulting point position returned
+   * by [getPointPath]. If changed, [update] needs to be called before finding the next path.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -283,7 +280,8 @@ public open class AStarGrid2D : RefCounted() {
 
 
   /**
-   * The size of the point cell which will be applied to calculate the resulting point position returned by [getPointPath]. If changed, [update] needs to be called before finding the next path.
+   * The size of the point cell which will be applied to calculate the resulting point position
+   * returned by [getPointPath]. If changed, [update] needs to be called before finding the next path.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -308,8 +306,7 @@ public open class AStarGrid2D : RefCounted() {
 
   /**
    * Called when estimating the cost between a point and the path's ending point.
-   *
-   * Note that this function is hidden in the default [godot.AStarGrid2D] class.
+   * Note that this function is hidden in the default [AStarGrid2D] class.
    */
   public open fun _estimateCost(fromId: Vector2i, toId: Vector2i): Float {
     throw NotImplementedError("_estimate_cost is not implemented for AStarGrid2D")
@@ -317,15 +314,15 @@ public open class AStarGrid2D : RefCounted() {
 
   /**
    * Called when computing the cost between two connected points.
-   *
-   * Note that this function is hidden in the default [godot.AStarGrid2D] class.
+   * Note that this function is hidden in the default [AStarGrid2D] class.
    */
   public open fun _computeCost(fromId: Vector2i, toId: Vector2i): Float {
     throw NotImplementedError("_compute_cost is not implemented for AStarGrid2D")
   }
 
   /**
-   * Returns `true` if the [x] and [y] is a valid grid coordinate (id), i.e. if it is inside [region]. Equivalent to `region.has_point(Vector2i(x, y))`.
+   * Returns `true` if the [x] and [y] is a valid grid coordinate (id), i.e. if it is inside
+   * [region]. Equivalent to `region.has_point(Vector2i(x, y))`.
    */
   public fun isInBounds(x: Int, y: Int): Boolean {
     TransferContext.writeArguments(LONG to x.toLong(), LONG to y.toLong())
@@ -334,7 +331,8 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   /**
-   * Returns `true` if the [id] vector is a valid grid coordinate, i.e. if it is inside [region]. Equivalent to `region.has_point(id)`.
+   * Returns `true` if the [id] vector is a valid grid coordinate, i.e. if it is inside [region].
+   * Equivalent to `region.has_point(id)`.
    */
   public fun isInBoundsv(id: Vector2i): Boolean {
     TransferContext.writeArguments(VECTOR2I to id)
@@ -352,8 +350,9 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   /**
-   * Updates the internal state of the grid according to the parameters to prepare it to search the path. Needs to be called if parameters like [region], [cellSize] or [offset] are changed. [isDirty] will return `true` if this is the case and this needs to be called.
-   *
+   * Updates the internal state of the grid according to the parameters to prepare it to search the
+   * path. Needs to be called if parameters like [region], [cellSize] or [offset] are changed.
+   * [isDirty] will return `true` if this is the case and this needs to be called.
    * **Note:** All point data (solidity and weight scale) will be cleared.
    */
   public fun update(): Unit {
@@ -362,8 +361,8 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   /**
-   * Disables or enables the specified point for pathfinding. Useful for making an obstacle. By default, all points are enabled.
-   *
+   * Disables or enables the specified point for pathfinding. Useful for making an obstacle. By
+   * default, all points are enabled.
    * **Note:** Calling [update] is not needed after the call of this function.
    */
   @JvmOverloads
@@ -382,8 +381,9 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   /**
-   * Sets the [weightScale] for the point with the given [id]. The [weightScale] is multiplied by the result of [_computeCost] when determining the overall cost of traveling across a segment from a neighboring point to this point.
-   *
+   * Sets the [weightScale] for the point with the given [id]. The [weightScale] is multiplied by
+   * the result of [_computeCost] when determining the overall cost of traveling across a segment from
+   * a neighboring point to this point.
    * **Note:** Calling [update] is not needed after the call of this function.
    */
   public fun setPointWeightScale(id: Vector2i, weightScale: Float): Unit {
@@ -402,7 +402,6 @@ public open class AStarGrid2D : RefCounted() {
 
   /**
    * Fills the given [region] on the grid with the specified value for the solid flag.
-   *
    * **Note:** Calling [update] is not needed after the call of this function.
    */
   @JvmOverloads
@@ -413,7 +412,6 @@ public open class AStarGrid2D : RefCounted() {
 
   /**
    * Fills the given [region] on the grid with the specified value for the weight scale.
-   *
    * **Note:** Calling [update] is not needed after the call of this function.
    */
   public fun fillWeightScaleRegion(region: Rect2i, weightScale: Float): Unit {
@@ -439,9 +437,10 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   /**
-   * Returns an array with the points that are in the path found by [godot.AStarGrid2D] between the given points. The array is ordered from the starting point to the ending point of the path.
-   *
-   * **Note:** This method is not thread-safe. If called from a [godot.Thread], it will return an empty [godot.PackedVector2Array] and will print an error message.
+   * Returns an array with the points that are in the path found by [AStarGrid2D] between the given
+   * points. The array is ordered from the starting point to the ending point of the path.
+   * **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty
+   * [PackedVector2Array] and will print an error message.
    */
   public fun getPointPath(fromId: Vector2i, toId: Vector2i): PackedVector2Array {
     TransferContext.writeArguments(VECTOR2I to fromId, VECTOR2I to toId)
@@ -450,7 +449,8 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   /**
-   * Returns an array with the IDs of the points that form the path found by AStar2D between the given points. The array is ordered from the starting point to the ending point of the path.
+   * Returns an array with the IDs of the points that form the path found by AStar2D between the
+   * given points. The array is ordered from the starting point to the ending point of the path.
    */
   public fun getIdPath(fromId: Vector2i, toId: Vector2i): VariantArray<Vector2i> {
     TransferContext.writeArguments(VECTOR2I to fromId, VECTOR2I to toId)
@@ -462,52 +462,51 @@ public open class AStarGrid2D : RefCounted() {
     id: Long,
   ) {
     /**
-     * The [godot.Euclidean heuristic](https://en.wikipedia.org/wiki/Euclidean_distance) to be used for the pathfinding using the following formula:
-     *
-     * ```
-     * 			dx = abs(to_id.x - from_id.x)
-     * 			dy = abs(to_id.y - from_id.y)
-     * 			result = sqrt(dx * dx + dy * dy)
-     * 			```
-     *
-     * **Note:** This is also the internal heuristic used in [godot.AStar3D] and [godot.AStar2D] by default (with the inclusion of possible z-axis coordinate).
+     * The [url=https://en.wikipedia.org/wiki/Euclidean_distance]Euclidean heuristic[/url] to be
+     * used for the pathfinding using the following formula:
+     * [codeblock]
+     * dx = abs(to_id.x - from_id.x)
+     * dy = abs(to_id.y - from_id.y)
+     * result = sqrt(dx * dx + dy * dy)
+     * [/codeblock]
+     * **Note:** This is also the internal heuristic used in [AStar3D] and [AStar2D] by default
+     * (with the inclusion of possible z-axis coordinate).
      */
     HEURISTIC_EUCLIDEAN(0),
     /**
-     * The [godot.Manhattan heuristic](https://en.wikipedia.org/wiki/Taxicab_geometry) to be used for the pathfinding using the following formula:
-     *
-     * ```
-     * 			dx = abs(to_id.x - from_id.x)
-     * 			dy = abs(to_id.y - from_id.y)
-     * 			result = dx + dy
-     * 			```
-     *
-     * **Note:** This heuristic is intended to be used with 4-side orthogonal movements, provided by setting the [diagonalMode] to [DIAGONAL_MODE_NEVER].
+     * The [url=https://en.wikipedia.org/wiki/Taxicab_geometry]Manhattan heuristic[/url] to be used
+     * for the pathfinding using the following formula:
+     * [codeblock]
+     * dx = abs(to_id.x - from_id.x)
+     * dy = abs(to_id.y - from_id.y)
+     * result = dx + dy
+     * [/codeblock]
+     * **Note:** This heuristic is intended to be used with 4-side orthogonal movements, provided by
+     * setting the [diagonalMode] to [DIAGONAL_MODE_NEVER].
      */
     HEURISTIC_MANHATTAN(1),
     /**
      * The Octile heuristic to be used for the pathfinding using the following formula:
-     *
-     * ```
-     * 			dx = abs(to_id.x - from_id.x)
-     * 			dy = abs(to_id.y - from_id.y)
-     * 			f = sqrt(2) - 1
-     * 			result = (dx < dy) ? f * dx + dy : f * dy + dx;
-     * 			```
+     * [codeblock]
+     * dx = abs(to_id.x - from_id.x)
+     * dy = abs(to_id.y - from_id.y)
+     * f = sqrt(2) - 1
+     * result = (dx < dy) ? f * dx + dy : f * dy + dx;
+     * [/codeblock]
      */
     HEURISTIC_OCTILE(2),
     /**
-     * The [godot.Chebyshev heuristic](https://en.wikipedia.org/wiki/Chebyshev_distance) to be used for the pathfinding using the following formula:
-     *
-     * ```
-     * 			dx = abs(to_id.x - from_id.x)
-     * 			dy = abs(to_id.y - from_id.y)
-     * 			result = max(dx, dy)
-     * 			```
+     * The [url=https://en.wikipedia.org/wiki/Chebyshev_distance]Chebyshev heuristic[/url] to be
+     * used for the pathfinding using the following formula:
+     * [codeblock]
+     * dx = abs(to_id.x - from_id.x)
+     * dy = abs(to_id.y - from_id.y)
+     * result = max(dx, dy)
+     * [/codeblock]
      */
     HEURISTIC_CHEBYSHEV(3),
     /**
-     * Represents the size of the [enum Heuristic] enum.
+     * Represents the size of the [Heuristic] enum.
      */
     HEURISTIC_MAX(4),
     ;
@@ -526,7 +525,8 @@ public open class AStarGrid2D : RefCounted() {
     id: Long,
   ) {
     /**
-     * The pathfinding algorithm will ignore solid neighbors around the target cell and allow passing using diagonals.
+     * The pathfinding algorithm will ignore solid neighbors around the target cell and allow
+     * passing using diagonals.
      */
     DIAGONAL_MODE_ALWAYS(0),
     /**
@@ -534,15 +534,17 @@ public open class AStarGrid2D : RefCounted() {
      */
     DIAGONAL_MODE_NEVER(1),
     /**
-     * The pathfinding algorithm will avoid using diagonals if at least two obstacles have been placed around the neighboring cells of the specific path segment.
+     * The pathfinding algorithm will avoid using diagonals if at least two obstacles have been
+     * placed around the neighboring cells of the specific path segment.
      */
     DIAGONAL_MODE_AT_LEAST_ONE_WALKABLE(2),
     /**
-     * The pathfinding algorithm will avoid using diagonals if any obstacle has been placed around the neighboring cells of the specific path segment.
+     * The pathfinding algorithm will avoid using diagonals if any obstacle has been placed around
+     * the neighboring cells of the specific path segment.
      */
     DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES(3),
     /**
-     * Represents the size of the [enum DiagonalMode] enum.
+     * Represents the size of the [DiagonalMode] enum.
      */
     DIAGONAL_MODE_MAX(4),
     ;

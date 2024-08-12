@@ -204,8 +204,8 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
      */
     BLEND_MODE_DISCRETE(1),
     /**
-     * Similar to [BLENDMODEDISCRETE], but starts the new animation at the last animation's playback
-     * position.
+     * Similar to [BLEND_MODE_DISCRETE], but starts the new animation at the last animation's
+     * playback position.
      */
     BLEND_MODE_DISCRETE_CARRY(2),
     ;

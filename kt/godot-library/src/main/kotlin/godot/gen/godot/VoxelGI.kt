@@ -47,7 +47,7 @@ import kotlin.jvm.JvmOverloads
  * walls). For interior levels, enclose your level geometry in a sufficiently large box and bridge the
  * loops to close the mesh. To further prevent light leaks, you can also strategically place temporary
  * [MeshInstance3D] nodes with their [GeometryInstance3D.giMode] set to
- * [GeometryInstance3D.GIMODESTATIC]. These temporary nodes can then be hidden after baking the
+ * [GeometryInstance3D.GI_MODE_STATIC]. These temporary nodes can then be hidden after baking the
  * [VoxelGI] node.
  */
 @GodotBaseType
@@ -149,8 +149,8 @@ public open class VoxelGI : VisualInstance3D() {
 
 
   /**
-   * Bakes the effect from all [GeometryInstance3D]s marked with [GeometryInstance3D.GIMODESTATIC]
-   * and [Light3D]s marked with either [Light3D.BAKESTATIC] or [Light3D.BAKEDYNAMIC]. If
+   * Bakes the effect from all [GeometryInstance3D]s marked with [GeometryInstance3D.GI_MODE_STATIC]
+   * and [Light3D]s marked with either [Light3D.BAKE_STATIC] or [Light3D.BAKE_DYNAMIC]. If
    * [createVisualDebug] is `true`, after baking the light, this will generate a [MultiMesh] that has a
    * cube representing each solid cell with each cube colored to the cell's albedo color. This can be
    * used to visualize the [VoxelGI]'s data and debug any issues that may be occurring.

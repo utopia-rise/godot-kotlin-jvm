@@ -43,7 +43,7 @@ public open class AnimatedTexture : Texture2D() {
   /**
    * Number of frames to use in the animation. While you can create the frames independently with
    * [setFrameTexture], you need to set this value for the animation to take new frames into account.
-   * The maximum number of frames is [MAXFRAMES].
+   * The maximum number of frames is [MAX_FRAMES].
    */
   public var frames: Int
     get() {
@@ -124,8 +124,8 @@ public open class AnimatedTexture : Texture2D() {
   /**
    * Assigns a [Texture2D] to the given frame. Frame IDs start at 0, so the first frame has ID 0,
    * and the last frame of the animation has ID [frames] - 1.
-   * You can define any number of textures up to [MAXFRAMES], but keep in mind that only frames from
-   * 0 to [frames] - 1 will be part of the animation.
+   * You can define any number of textures up to [MAX_FRAMES], but keep in mind that only frames
+   * from 0 to [frames] - 1 will be part of the animation.
    */
   public fun setFrameTexture(frame: Int, texture: Texture2D): Unit {
     TransferContext.writeArguments(LONG to frame.toLong(), OBJECT to texture)

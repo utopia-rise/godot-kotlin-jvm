@@ -249,10 +249,11 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
 
   /**
    * Convenience method to perform standard mix blending with straight (non-premultiplied) alpha.
-   * This sets [enableBlend] to `true`, [srcColorBlendFactor] to [RenderingDevice.BLENDFACTORSRCALPHA],
-   * [dstColorBlendFactor] to [RenderingDevice.BLENDFACTORONEMINUSSRCALPHA], [srcAlphaBlendFactor] to
-   * [RenderingDevice.BLENDFACTORSRCALPHA] and [dstAlphaBlendFactor] to
-   * [RenderingDevice.BLENDFACTORONEMINUSSRCALPHA].
+   * This sets [enableBlend] to `true`, [srcColorBlendFactor] to
+   * [RenderingDevice.BLEND_FACTOR_SRC_ALPHA], [dstColorBlendFactor] to
+   * [RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA], [srcAlphaBlendFactor] to
+   * [RenderingDevice.BLEND_FACTOR_SRC_ALPHA] and [dstAlphaBlendFactor] to
+   * [RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA].
    */
   public fun setAsMix(): Unit {
     TransferContext.writeArguments()

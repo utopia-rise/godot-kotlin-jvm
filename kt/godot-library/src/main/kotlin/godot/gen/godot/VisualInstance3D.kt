@@ -45,8 +45,8 @@ public open class VisualInstance3D : Node3D() {
    * To adjust [layers] more easily using a script, use [getLayerMaskValue] and [setLayerMaskValue].
    * **Note:** [VoxelGI], SDFGI and [LightmapGI] will always take all layers into account to
    * determine what contributes to global illumination. If this is an issue, set
-   * [GeometryInstance3D.giMode] to [GeometryInstance3D.GIMODEDISABLED] for meshes and
-   * [Light3D.lightBakeMode] to [Light3D.BAKEDISABLED] for lights to exclude them from global
+   * [GeometryInstance3D.giMode] to [GeometryInstance3D.GI_MODE_DISABLED] for meshes and
+   * [Light3D.lightBakeMode] to [Light3D.BAKE_DISABLED] for lights to exclude them from global
    * illumination.
    */
   public var layers: Long

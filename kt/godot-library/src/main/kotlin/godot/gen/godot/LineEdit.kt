@@ -72,7 +72,7 @@ public open class LineEdit : Control() {
   public val textChangeRejected: Signal1<String> by signal("rejectedSubstring")
 
   /**
-   * Emitted when the user presses [KEYENTER] on the [LineEdit].
+   * Emitted when the user presses [KEY_ENTER] on the [LineEdit].
    */
   public val textSubmitted: Signal1<String> by signal("newText")
 
@@ -906,7 +906,7 @@ public open class LineEdit : Control() {
      * Virtual keyboard for entering a password. On most platforms, this should disable autocomplete
      * and autocapitalization.
      * **Note:** This is not supported on Web. Instead, this behaves identically to
-     * [KEYBOARDTYPEDEFAULT].
+     * [KEYBOARD_TYPE_DEFAULT].
      */
     KEYBOARD_TYPE_PASSWORD(6),
     /**

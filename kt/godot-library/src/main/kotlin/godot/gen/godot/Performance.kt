@@ -265,7 +265,7 @@ public object Performance : Object() {
     /**
      * The amount of video memory used (texture and vertex memory combined, in bytes). Since this
      * metric also includes miscellaneous allocations, this value is always greater than the sum of
-     * [RENDERTEXTUREMEMUSED] and [RENDERBUFFERMEMUSED]. *Lower is better.*
+     * [RENDER_TEXTURE_MEM_USED] and [RENDER_BUFFER_MEM_USED]. *Lower is better.*
      */
     RENDER_VIDEO_MEM_USED(14),
     /**

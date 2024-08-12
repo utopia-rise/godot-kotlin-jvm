@@ -52,7 +52,7 @@ import kotlin.jvm.JvmOverloads
  * Selection with right mouse button may also be enabled to allow use of popup context menus. Items may
  * also be "activated" by double-clicking them or by pressing [kbd]Enter[/kbd].
  * Item text only supports single-line strings. Newline characters (e.g. `\n`) in the string won't
- * produce a newline. Text wrapping is enabled in [ICONMODETOP] mode, but the column's width is
+ * produce a newline. Text wrapping is enabled in [ICON_MODE_TOP] mode, but the column's width is
  * adjusted to fully fit its content by default. You need to set [fixedColumnWidth] greater than zero
  * to wrap the text.
  * All `set_*` methods allow negative item indices, i.e. `-1` to access the last item, `-2` to
@@ -158,7 +158,7 @@ public open class ItemList : Control() {
   /**
    * Maximum lines of text allowed in each item. Space will be reserved even when there is not
    * enough lines of text to display.
-   * **Note:** This property takes effect only when [iconMode] is [ICONMODETOP]. To make the text
+   * **Note:** This property takes effect only when [iconMode] is [ICON_MODE_TOP]. To make the text
    * wrap, [fixedColumnWidth] should be greater than zero.
    */
   public var maxTextLines: Int

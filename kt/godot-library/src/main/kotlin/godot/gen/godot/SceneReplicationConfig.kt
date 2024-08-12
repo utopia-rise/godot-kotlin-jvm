@@ -31,74 +31,128 @@ public open class SceneReplicationConfig : Resource() {
     return true
   }
 
+  /**
+   * Returns a list of synchronized property [NodePath]s.
+   */
   public fun getProperties(): VariantArray<NodePath> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPropertiesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<NodePath>)
   }
 
+  /**
+   * Adds the property identified by the given [path] to the list of the properties being
+   * synchronized, optionally passing an [index].
+   * **Note:** For details on restrictions and limitations on property synchronization, see
+   * [MultiplayerSynchronizer].
+   */
   @JvmOverloads
   public fun addProperty(path: NodePath, index: Int = -1): Unit {
     TransferContext.writeArguments(NODE_PATH to path, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.addPropertyPtr, NIL)
   }
 
+  /**
+   * Returns whether the given [path] is configured for synchronization.
+   */
   public fun hasProperty(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.hasPropertyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  /**
+   * Removes the property identified by the given [path] from the configuration.
+   */
   public fun removeProperty(path: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.removePropertyPtr, NIL)
   }
 
+  /**
+   * Finds the index of the given [path].
+   */
   public fun propertyGetIndex(path: NodePath): Int {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.propertyGetIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  /**
+   * Returns whether the property identified by the given [path] is configured to be synchronized on
+   * spawn.
+   */
   public fun propertyGetSpawn(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.propertyGetSpawnPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  /**
+   * Sets whether the property identified by the given [path] is configured to be synchronized on
+   * spawn.
+   */
   public fun propertySetSpawn(path: NodePath, enabled: Boolean): Unit {
     TransferContext.writeArguments(NODE_PATH to path, BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.propertySetSpawnPtr, NIL)
   }
 
+  /**
+   * Returns the replication mode for the property identified by the given [path]. See
+   * [ReplicationMode].
+   */
   public fun propertyGetReplicationMode(path: NodePath): ReplicationMode {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.propertyGetReplicationModePtr, LONG)
     return SceneReplicationConfig.ReplicationMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  /**
+   * Sets the synchronization mode for the property identified by the given [path]. See
+   * [ReplicationMode].
+   */
   public fun propertySetReplicationMode(path: NodePath, mode: ReplicationMode): Unit {
     TransferContext.writeArguments(NODE_PATH to path, LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.propertySetReplicationModePtr, NIL)
   }
 
+  /**
+   * Returns whether the property identified by the given [path] is configured to be synchronized on
+   * process.
+   * *Deprecated.* Use [propertyGetReplicationMode] instead.
+   */
   public fun propertyGetSync(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.propertyGetSyncPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  /**
+   * Sets whether the property identified by the given [path] is configured to be synchronized on
+   * process.
+   * *Deprecated.* Use [propertySetReplicationMode] with [REPLICATION_MODE_ALWAYS] instead.
+   */
   public fun propertySetSync(path: NodePath, enabled: Boolean): Unit {
     TransferContext.writeArguments(NODE_PATH to path, BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.propertySetSyncPtr, NIL)
   }
 
+  /**
+   * Returns whether the property identified by the given [path] is configured to be reliably
+   * synchronized when changes are detected on process.
+   * *Deprecated.* Use [propertyGetReplicationMode] instead.
+   */
   public fun propertyGetWatch(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.propertyGetWatchPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  /**
+   * Sets whether the property identified by the given [path] is configured to be reliably
+   * synchronized when changes are detected on process.
+   * *Deprecated.* Use [propertySetReplicationMode] with [REPLICATION_MODE_ON_CHANGE] instead.
+   */
   public fun propertySetWatch(path: NodePath, enabled: Boolean): Unit {
     TransferContext.writeArguments(NODE_PATH to path, BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.propertySetWatchPtr, NIL)
@@ -107,8 +161,19 @@ public open class SceneReplicationConfig : Resource() {
   public enum class ReplicationMode(
     id: Long,
   ) {
+    /**
+     * Do not keep the given property synchronized.
+     */
     REPLICATION_MODE_NEVER(0),
+    /**
+     * Replicate the given property on process by constantly sending updates using unreliable
+     * transfer mode.
+     */
     REPLICATION_MODE_ALWAYS(1),
+    /**
+     * Replicate the given property on process by sending updates using reliable transfer mode when
+     * its value changes.
+     */
     REPLICATION_MODE_ON_CHANGE(2),
     ;
 

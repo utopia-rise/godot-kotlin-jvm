@@ -160,8 +160,8 @@ public open class AnimationMixer internal constructor() : Node() {
    * animation. To specify a track that controls properties or bones, append its name after the path,
    * separated by `":"`. For example, `"character/skeleton:ankle"` or
    * `"character/mesh:transform/local"`.
-   * If the track has type [Animation.TYPEPOSITION3D], [Animation.TYPEROTATION3D] or
-   * [Animation.TYPESCALE3D] the transformation will be canceled visually, and the animation will
+   * If the track has type [Animation.TYPE_POSITION_3D], [Animation.TYPE_ROTATION_3D] or
+   * [Animation.TYPE_SCALE_3D] the transformation will be canceled visually, and the animation will
    * appear to stay in place. See also [getRootMotionPosition], [getRootMotionRotation],
    * [getRootMotionScale] and [RootMotionView].
    */
@@ -322,7 +322,7 @@ public open class AnimationMixer internal constructor() : Node() {
   /**
    * Retrieve the motion delta of position with the [rootMotionTrack] as a [Vector3] that can be
    * used elsewhere.
-   * If [rootMotionTrack] is not a path to a track of type [Animation.TYPEPOSITION3D], returns
+   * If [rootMotionTrack] is not a path to a track of type [Animation.TYPE_POSITION_3D], returns
    * `Vector3(0, 0, 0)`.
    * See also [rootMotionTrack] and [RootMotionView].
    * The most basic example is applying position to [CharacterBody3D]:
@@ -365,7 +365,7 @@ public open class AnimationMixer internal constructor() : Node() {
   /**
    * Retrieve the motion delta of rotation with the [rootMotionTrack] as a [Quaternion] that can be
    * used elsewhere.
-   * If [rootMotionTrack] is not a path to a track of type [Animation.TYPEROTATION3D], returns
+   * If [rootMotionTrack] is not a path to a track of type [Animation.TYPE_ROTATION_3D], returns
    * `Quaternion(0, 0, 0, 1)`.
    * See also [rootMotionTrack] and [RootMotionView].
    * The most basic example is applying rotation to [CharacterBody3D]:
@@ -387,7 +387,7 @@ public open class AnimationMixer internal constructor() : Node() {
   /**
    * Retrieve the motion delta of scale with the [rootMotionTrack] as a [Vector3] that can be used
    * elsewhere.
-   * If [rootMotionTrack] is not a path to a track of type [Animation.TYPESCALE3D], returns
+   * If [rootMotionTrack] is not a path to a track of type [Animation.TYPE_SCALE_3D], returns
    * `Vector3(0, 0, 0)`.
    * See also [rootMotionTrack] and [RootMotionView].
    * The most basic example is applying scale to [CharacterBody3D]:
@@ -551,12 +551,12 @@ public open class AnimationMixer internal constructor() : Node() {
     id: Long,
   ) {
     /**
-     * Process animation during physics frames (see [Node.NOTIFICATIONINTERNALPHYSICSPROCESS]). This
-     * is especially useful when animating physics bodies.
+     * Process animation during physics frames (see [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
+     * This is especially useful when animating physics bodies.
      */
     ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS(0),
     /**
-     * Process animation during process frames (see [Node.NOTIFICATIONINTERNALPROCESS]).
+     * Process animation during process frames (see [Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
     ANIMATION_CALLBACK_MODE_PROCESS_IDLE(1),
     /**

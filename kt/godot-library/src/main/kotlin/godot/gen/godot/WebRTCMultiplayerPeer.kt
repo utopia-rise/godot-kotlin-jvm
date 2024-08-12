@@ -31,7 +31,7 @@ import kotlin.jvm.JvmOverloads
  * This class constructs a full mesh of [WebRTCPeerConnection] (one connection for each peer) that
  * can be used as a [MultiplayerAPI.multiplayerPeer].
  * You can add each [WebRTCPeerConnection] via [addPeer] or remove them via [removePeer]. Peers must
- * be added in [WebRTCPeerConnection.STATENEW] state to allow it to create the appropriate channels.
+ * be added in [WebRTCPeerConnection.STATE_NEW] state to allow it to create the appropriate channels.
  * This class will not create offers nor set descriptions, it will only poll them, and notify
  * connections and disconnections.
  * When creating the peer via [createClient] or [createServer] the
@@ -93,7 +93,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
 
   /**
    * Add a new peer to the mesh with the given [peerId]. The [WebRTCPeerConnection] must be in state
-   * [WebRTCPeerConnection.STATENEW].
+   * [WebRTCPeerConnection.STATE_NEW].
    * Three channels will be created for reliable, unreliable, and ordered transport. The value of
    * [unreliableLifetime] will be passed to the `"maxPacketLifetime"` option when creating unreliable
    * and ordered channels (see [WebRTCPeerConnection.createDataChannel]).

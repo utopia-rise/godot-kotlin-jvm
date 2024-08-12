@@ -53,7 +53,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
     }
 
   /**
-   * Specifies the type of the texture if [source] is set to [SOURCETEXTURE]. See [TextureType] for
+   * Specifies the type of the texture if [source] is set to [SOURCE_TEXTURE]. See [TextureType] for
    * options.
    */
   public var textureType: TextureType

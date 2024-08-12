@@ -106,15 +106,15 @@ public open class AnimationTree : AnimationMixer() {
     id: Long,
   ) {
     /**
-     * For backward compatibility. See [AnimationMixer.ANIMATIONCALLBACKMODEPROCESSPHYSICS].
+     * For backward compatibility. See [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS].
      */
     ANIMATION_PROCESS_PHYSICS(0),
     /**
-     * For backward compatibility. See [AnimationMixer.ANIMATIONCALLBACKMODEPROCESSIDLE].
+     * For backward compatibility. See [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_IDLE].
      */
     ANIMATION_PROCESS_IDLE(1),
     /**
-     * For backward compatibility. See [AnimationMixer.ANIMATIONCALLBACKMODEPROCESSMANUAL].
+     * For backward compatibility. See [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL].
      */
     ANIMATION_PROCESS_MANUAL(2),
     ;

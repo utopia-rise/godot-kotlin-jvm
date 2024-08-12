@@ -339,7 +339,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   /**
    * If `true`, reverses the backface culling of the mesh. This can be useful when you have a flat
    * mesh that has a light behind it. If you need to cast a shadow on both sides of the mesh, set the
-   * mesh to use double-sided shadows with [GeometryInstance3D.SHADOWCASTINGSETTINGDOUBLESIDED].
+   * mesh to use double-sided shadows with [GeometryInstance3D.SHADOW_CASTING_SETTING_DOUBLE_SIDED].
    */
   public var shadowReverseCullFace: Boolean
     get() {
@@ -646,8 +646,8 @@ public open class Light3D internal constructor() : VisualInstance3D() {
      * Light is taken into account in dynamic baking ([VoxelGI] and SDFGI
      * ([Environment.sdfgiEnabled]) only). The light can be moved around or modified with global
      * illumination updating in real-time. The light's global illumination appearance will be slightly
-     * different compared to [BAKESTATIC]. This has a greater performance cost compared to
-     * [BAKESTATIC]. When using SDFGI, the update speed of dynamic lights is affected by
+     * different compared to [BAKE_STATIC]. This has a greater performance cost compared to
+     * [BAKE_STATIC]. When using SDFGI, the update speed of dynamic lights is affected by
      * [ProjectSettings.rendering/globalIllumination/sdfgi/framesToUpdateLights].
      */
     BAKE_DYNAMIC(2),

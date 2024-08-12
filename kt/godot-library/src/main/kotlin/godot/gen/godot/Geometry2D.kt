@@ -236,7 +236,7 @@ public object Geometry2D : Object() {
 
   /**
    * Merges (combines) [polygonA] and [polygonB] and returns an array of merged polygons. This
-   * performs [OPERATIONUNION] between polygons.
+   * performs [OPERATION_UNION] between polygons.
    * The operation may result in an outer polygon (boundary) and multiple inner polygons (holes)
    * produced which could be distinguished by calling [isPolygonClockwise].
    */
@@ -249,7 +249,7 @@ public object Geometry2D : Object() {
 
   /**
    * Clips [polygonA] against [polygonB] and returns an array of clipped polygons. This performs
-   * [OPERATIONDIFFERENCE] between polygons. Returns an empty array if [polygonB] completely overlaps
+   * [OPERATION_DIFFERENCE] between polygons. Returns an empty array if [polygonB] completely overlaps
    * [polygonA].
    * If [polygonB] is enclosed by [polygonA], returns an outer polygon (boundary) and inner polygon
    * (hole) which could be distinguished by calling [isPolygonClockwise].
@@ -263,7 +263,7 @@ public object Geometry2D : Object() {
 
   /**
    * Intersects [polygonA] with [polygonB] and returns an array of intersected polygons. This
-   * performs [OPERATIONINTERSECTION] between polygons. In other words, returns common area shared by
+   * performs [OPERATION_INTERSECTION] between polygons. In other words, returns common area shared by
    * polygons. Returns an empty array if no intersection occurs.
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which
    * could be distinguished by calling [isPolygonClockwise].
@@ -277,7 +277,7 @@ public object Geometry2D : Object() {
 
   /**
    * Mutually excludes common area defined by intersection of [polygonA] and [polygonB] (see
-   * [intersectPolygons]) and returns an array of excluded polygons. This performs [OPERATIONXOR]
+   * [intersectPolygons]) and returns an array of excluded polygons. This performs [OPERATION_XOR]
    * between polygons. In other words, returns all but common area between polygons.
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which
    * could be distinguished by calling [isPolygonClockwise].
@@ -291,7 +291,7 @@ public object Geometry2D : Object() {
 
   /**
    * Clips [polyline] against [polygon] and returns an array of clipped polylines. This performs
-   * [OPERATIONDIFFERENCE] between the polyline and the polygon. This operation can be thought of as
+   * [OPERATION_DIFFERENCE] between the polyline and the polygon. This operation can be thought of as
    * cutting a line with a closed shape.
    */
   public fun clipPolylineWithPolygon(polyline: PackedVector2Array, polygon: PackedVector2Array):
@@ -303,7 +303,7 @@ public object Geometry2D : Object() {
 
   /**
    * Intersects [polyline] with [polygon] and returns an array of intersected polylines. This
-   * performs [OPERATIONINTERSECTION] between the polyline and the polygon. This operation can be
+   * performs [OPERATION_INTERSECTION] between the polyline and the polygon. This operation can be
    * thought of as chopping a line with a closed shape.
    */
   public fun intersectPolylineWithPolygon(polyline: PackedVector2Array,

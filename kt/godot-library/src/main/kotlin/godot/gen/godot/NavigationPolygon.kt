@@ -109,7 +109,8 @@ public open class NavigationPolygon : Resource() {
 
   /**
    * The physics layers to scan for static colliders.
-   * Only used when [parsedGeometryType] is [PARSEDGEOMETRYSTATICCOLLIDERS] or [PARSEDGEOMETRYBOTH].
+   * Only used when [parsedGeometryType] is [PARSED_GEOMETRY_STATIC_COLLIDERS] or
+   * [PARSED_GEOMETRY_BOTH].
    */
   public var parsedCollisionMask: Long
     get() {
@@ -138,8 +139,8 @@ public open class NavigationPolygon : Resource() {
 
   /**
    * The group name of nodes that should be parsed for baking source geometry.
-   * Only used when [sourceGeometryMode] is [SOURCEGEOMETRYGROUPSWITHCHILDREN] or
-   * [SOURCEGEOMETRYGROUPSEXPLICIT].
+   * Only used when [sourceGeometryMode] is [SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN] or
+   * [SOURCE_GEOMETRY_GROUPS_EXPLICIT].
    */
   public var sourceGeometryGroupName: StringName
     get() {
@@ -349,7 +350,7 @@ public open class NavigationPolygon : Resource() {
      */
     PARSED_GEOMETRY_STATIC_COLLIDERS(1),
     /**
-     * Both [PARSEDGEOMETRYMESHINSTANCES] and [PARSEDGEOMETRYSTATICCOLLIDERS].
+     * Both [PARSED_GEOMETRY_MESH_INSTANCES] and [PARSED_GEOMETRY_STATIC_COLLIDERS].
      */
     PARSED_GEOMETRY_BOTH(2),
     /**

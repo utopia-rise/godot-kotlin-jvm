@@ -145,7 +145,7 @@ public open class BitMap : Resource() {
 
   /**
    * Returns an image of the same size as the bitmap and with a [Image.Format] of type
-   * [Image.FORMATL8]. `true` bits of the bitmap are being converted into white pixels, and `false`
+   * [Image.FORMAT_L8]. `true` bits of the bitmap are being converted into white pixels, and `false`
    * bits into black.
    */
   public fun convertToImage(): Image? {

@@ -40,18 +40,18 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Most basic 3D game object, parent of all 3D-related nodes.
- *
- * Tutorials:
- * [https://github.com/godotengine/godot-demo-projects/tree/master/3d](https://github.com/godotengine/godot-demo-projects/tree/master/3d)
- *
- * Most basic 3D game object, with a [godot.Transform3D] and visibility settings. All other 3D game objects inherit from [godot.Node3D]. Use [godot.Node3D] as a parent node to move, scale, rotate and show/hide children in a 3D project.
- *
- * Affine operations (rotate, scale, translate) happen in parent's local coordinate system, unless the [godot.Node3D] object is set as top-level. Affine operations in this coordinate system correspond to direct affine operations on the [godot.Node3D]'s transform. The word local below refers to this coordinate system. The coordinate system that is attached to the [godot.Node3D] object itself is referred to as object-local coordinate system.
- *
- * **Note:** Unless otherwise specified, all methods that have angle parameters must have angles specified as *radians*. To convert degrees to radians, use [@GlobalScope.degToRad].
- *
- * **Note:** Be aware that "Spatial" nodes are now called "Node3D" starting with Godot 4. Any Godot 3.x references to "Spatial" nodes refer to "Node3D" in Godot 4.
+ * Most basic 3D game object, with a [Transform3D] and visibility settings. All other 3D game
+ * objects inherit from [Node3D]. Use [Node3D] as a parent node to move, scale, rotate and show/hide
+ * children in a 3D project.
+ * Affine operations (rotate, scale, translate) happen in parent's local coordinate system, unless
+ * the [Node3D] object is set as top-level. Affine operations in this coordinate system correspond to
+ * direct affine operations on the [Node3D]'s transform. The word local below refers to this coordinate
+ * system. The coordinate system that is attached to the [Node3D] object itself is referred to as
+ * object-local coordinate system.
+ * **Note:** Unless otherwise specified, all methods that have angle parameters must have angles
+ * specified as *radians*. To convert degrees to radians, use [@GlobalScope.degToRad].
+ * **Note:** Be aware that "Spatial" nodes are now called "Node3D" starting with Godot 4. Any Godot
+ * 3.x references to "Spatial" nodes refer to "Node3D" in Godot 4.
  */
 @GodotBaseType
 public open class Node3D : Node() {
@@ -61,7 +61,7 @@ public open class Node3D : Node() {
   public val visibilityChanged: Signal0 by signal()
 
   /**
-   * Local space [godot.Transform3D] of this node, with respect to the parent node.
+   * Local space [Transform3D] of this node, with respect to the parent node.
    */
   @CoreTypeLocalCopy
   public var transform: Transform3D
@@ -76,7 +76,7 @@ public open class Node3D : Node() {
     }
 
   /**
-   * World3D space (global) [godot.Transform3D] of this node.
+   * World3D space (global) [Transform3D] of this node.
    */
   @CoreTypeLocalCopy
   public var globalTransform: Transform3D
@@ -91,7 +91,8 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Local position or translation of this node relative to the parent. This is equivalent to `transform.origin`.
+   * Local position or translation of this node relative to the parent. This is equivalent to
+   * `transform.origin`.
    */
   @CoreTypeLocalCopy
   public var position: Vector3
@@ -106,11 +107,15 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Rotation part of the local transformation in radians, specified in terms of Euler angles. The angles construct a rotation in the order specified by the [rotationOrder] property.
-   *
-   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [godot.core.Vector3] data structure not because the rotation is a vector, but only because [godot.core.Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
-   *
-   * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a script, use [rotationDegrees].
+   * Rotation part of the local transformation in radians, specified in terms of Euler angles. The
+   * angles construct a rotation in the order specified by the [rotationOrder] property.
+   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler
+   * angles, which are the three independent parameters of the Euler-angle parametrization of the
+   * rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector,
+   * but only because [Vector3] exists as a convenient data-structure to store 3 floating-point
+   * numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
+   * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a
+   * script, use [rotationDegrees].
    */
   @CoreTypeLocalCopy
   public var rotation: Vector3
@@ -140,7 +145,8 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Access to the node rotation as a [godot.Quaternion]. This property is ideal for tweening complex rotations.
+   * Access to the node rotation as a [Quaternion]. This property is ideal for tweening complex
+   * rotations.
    */
   @CoreTypeLocalCopy
   public var quaternion: Quaternion
@@ -171,10 +177,11 @@ public open class Node3D : Node() {
 
   /**
    * Scale part of the local transformation.
-   *
-   * **Note:** Mixed negative scales in 3D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, the scale values will either be all positive or all negative.
-   *
-   * **Note:** Not all nodes are visually scaled by the [scale] property. For example, [godot.Light3D]s are not visually affected by [scale].
+   * **Note:** Mixed negative scales in 3D are not decomposable from the transformation matrix. Due
+   * to the way scale is represented with transformation matrices in Godot, the scale values will
+   * either be all positive or all negative.
+   * **Note:** Not all nodes are visually scaled by the [scale] property. For example, [Light3D]s
+   * are not visually affected by [scale].
    */
   @CoreTypeLocalCopy
   public var scale: Vector3
@@ -203,7 +210,8 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Specify the axis rotation order of the [rotation] property. The final orientation is constructed by rotating the Euler angles in the order specified by this property.
+   * Specify the axis rotation order of the [rotation] property. The final orientation is
+   * constructed by rotating the Euler angles in the order specified by this property.
    */
   public var rotationOrder: EulerOrder
     get() {
@@ -217,7 +225,8 @@ public open class Node3D : Node() {
     }
 
   /**
-   * If `true`, the node will not inherit its transformations from its parent. Node transformations are only in global space.
+   * If `true`, the node will not inherit its transformations from its parent. Node transformations
+   * are only in global space.
    */
   public var topLevel: Boolean
     get() {
@@ -261,9 +270,13 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Rotation part of the global transformation in radians, specified in terms of YXZ-Euler angles in the format (X angle, Y angle, Z angle).
-   *
-   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [godot.core.Vector3] data structure not because the rotation is a vector, but only because [godot.core.Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
+   * Rotation part of the global transformation in radians, specified in terms of YXZ-Euler angles
+   * in the format (X angle, Y angle, Z angle).
+   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler
+   * angles, which are the three independent parameters of the Euler-angle parametrization of the
+   * rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector,
+   * but only because [Vector3] exists as a convenient data-structure to store 3 floating-point
+   * numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
    */
   @CoreTypeLocalCopy
   public var globalRotation: Vector3
@@ -293,7 +306,8 @@ public open class Node3D : Node() {
     }
 
   /**
-   * If `true`, this node is drawn. The node is only visible if all of its ancestors are visible as well (in other words, [isVisibleInTree] must return `true`).
+   * If `true`, this node is drawn. The node is only visible if all of its ancestors are visible as
+   * well (in other words, [isVisibleInTree] must return `true`).
    */
   public var visible: Boolean
     get() {
@@ -307,7 +321,12 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Defines the visibility range parent for this node and its subtree. The visibility parent must be a GeometryInstance3D. Any visual instance will only be visible if the visibility parent (and all of its visibility ancestors) is hidden by being closer to the camera than its own [godot.GeometryInstance3D.visibilityRangeBegin]. Nodes hidden via the [godot.Node3D.visible] property are essentially removed from the visibility dependency tree, so dependent instances will not take the hidden node or its ancestors into account.
+   * Defines the visibility range parent for this node and its subtree. The visibility parent must
+   * be a GeometryInstance3D. Any visual instance will only be visible if the visibility parent (and
+   * all of its visibility ancestors) is hidden by being closer to the camera than its own
+   * [GeometryInstance3D.visibilityRangeBegin]. Nodes hidden via the [Node3D.visible] property are
+   * essentially removed from the visibility dependency tree, so dependent instances will not take the
+   * hidden node or its ancestors into account.
    */
   public var visibilityParent: NodePath
     get() {
@@ -326,7 +345,7 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Local space [godot.Transform3D] of this node, with respect to the parent node.
+   * Local space [Transform3D] of this node, with respect to the parent node.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -350,7 +369,7 @@ public open class Node3D : Node() {
 
 
   /**
-   * World3D space (global) [godot.Transform3D] of this node.
+   * World3D space (global) [Transform3D] of this node.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -375,7 +394,8 @@ public open class Node3D : Node() {
 
 
   /**
-   * Local position or translation of this node relative to the parent. This is equivalent to `transform.origin`.
+   * Local position or translation of this node relative to the parent. This is equivalent to
+   * `transform.origin`.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -399,11 +419,15 @@ public open class Node3D : Node() {
 
 
   /**
-   * Rotation part of the local transformation in radians, specified in terms of Euler angles. The angles construct a rotation in the order specified by the [rotationOrder] property.
-   *
-   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [godot.core.Vector3] data structure not because the rotation is a vector, but only because [godot.core.Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
-   *
-   * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a script, use [rotationDegrees].
+   * Rotation part of the local transformation in radians, specified in terms of Euler angles. The
+   * angles construct a rotation in the order specified by the [rotationOrder] property.
+   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler
+   * angles, which are the three independent parameters of the Euler-angle parametrization of the
+   * rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector,
+   * but only because [Vector3] exists as a convenient data-structure to store 3 floating-point
+   * numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
+   * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a
+   * script, use [rotationDegrees].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -451,7 +475,8 @@ public open class Node3D : Node() {
 
 
   /**
-   * Access to the node rotation as a [godot.Quaternion]. This property is ideal for tweening complex rotations.
+   * Access to the node rotation as a [Quaternion]. This property is ideal for tweening complex
+   * rotations.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -500,10 +525,11 @@ public open class Node3D : Node() {
 
   /**
    * Scale part of the local transformation.
-   *
-   * **Note:** Mixed negative scales in 3D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, the scale values will either be all positive or all negative.
-   *
-   * **Note:** Not all nodes are visually scaled by the [scale] property. For example, [godot.Light3D]s are not visually affected by [scale].
+   * **Note:** Mixed negative scales in 3D are not decomposable from the transformation matrix. Due
+   * to the way scale is represented with transformation matrices in Godot, the scale values will
+   * either be all positive or all negative.
+   * **Note:** Not all nodes are visually scaled by the [scale] property. For example, [Light3D]s
+   * are not visually affected by [scale].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -575,9 +601,13 @@ public open class Node3D : Node() {
 
 
   /**
-   * Rotation part of the global transformation in radians, specified in terms of YXZ-Euler angles in the format (X angle, Y angle, Z angle).
-   *
-   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [godot.core.Vector3] data structure not because the rotation is a vector, but only because [godot.core.Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
+   * Rotation part of the global transformation in radians, specified in terms of YXZ-Euler angles
+   * in the format (X angle, Y angle, Z angle).
+   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler
+   * angles, which are the three independent parameters of the Euler-angle parametrization of the
+   * rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector,
+   * but only because [Vector3] exists as a convenient data-structure to store 3 floating-point
+   * numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -626,9 +656,10 @@ public open class Node3D : Node() {
 
 
   /**
-   * Returns the parent [godot.Node3D], or `null` if no parent exists, the parent is not of type [godot.Node3D], or [topLevel] is `true`.
-   *
-   * **Note:** Calling this method is not equivalent to `get_parent() as Node3D`, which does not take [topLevel] into account.
+   * Returns the parent [Node3D], or `null` if no parent exists, the parent is not of type [Node3D],
+   * or [topLevel] is `true`.
+   * **Note:** Calling this method is not equivalent to `get_parent() as Node3D`, which does not
+   * take [topLevel] into account.
    */
   public fun getParentNode3d(): Node3D? {
     TransferContext.writeArguments()
@@ -645,7 +676,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Sets whether the node uses a scale of `(1, 1, 1)` or its local transformation scale. Changes to the local transformation scale are preserved.
+   * Sets whether the node uses a scale of `(1, 1, 1)` or its local transformation scale. Changes to
+   * the local transformation scale are preserved.
    */
   public fun setDisableScale(disable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to disable)
@@ -662,7 +694,7 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Returns the current [godot.World3D] resource this [godot.Node3D] node is registered to.
+   * Returns the current [World3D] resource this [Node3D] node is registered to.
    */
   public fun getWorld3d(): World3D? {
     TransferContext.writeArguments()
@@ -671,7 +703,9 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Forces the transform to update. Transform changes in physics are not instant for performance reasons. Transforms are accumulated and then set. Use this if you need an up-to-date transform when doing physics operations.
+   * Forces the transform to update. Transform changes in physics are not instant for performance
+   * reasons. Transforms are accumulated and then set. Use this if you need an up-to-date transform
+   * when doing physics operations.
    */
   public fun forceUpdateTransform(): Unit {
     TransferContext.writeArguments()
@@ -679,7 +713,7 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Updates all the [godot.Node3D] gizmos attached to this node.
+   * Updates all the [Node3D] gizmos attached to this node.
    */
   public fun updateGizmos(): Unit {
     TransferContext.writeArguments()
@@ -687,9 +721,9 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Attach an editor gizmo to this [godot.Node3D].
-   *
-   * **Note:** The gizmo object would typically be an instance of [godot.EditorNode3DGizmo], but the argument type is kept generic to avoid creating a dependency on editor classes in [godot.Node3D].
+   * Attach an editor gizmo to this [Node3D].
+   * **Note:** The gizmo object would typically be an instance of [EditorNode3DGizmo], but the
+   * argument type is kept generic to avoid creating a dependency on editor classes in [Node3D].
    */
   public fun addGizmo(gizmo: Node3DGizmo): Unit {
     TransferContext.writeArguments(OBJECT to gizmo)
@@ -697,7 +731,7 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Returns all the gizmos attached to this [godot.Node3D].
+   * Returns all the gizmos attached to this [Node3D].
    */
   public fun getGizmos(): VariantArray<Node3DGizmo> {
     TransferContext.writeArguments()
@@ -706,7 +740,7 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Clear all gizmos attached to this [godot.Node3D].
+   * Clear all gizmos attached to this [Node3D].
    */
   public fun clearGizmos(): Unit {
     TransferContext.writeArguments()
@@ -715,8 +749,8 @@ public open class Node3D : Node() {
 
   /**
    * Set subgizmo selection for this node in the editor.
-   *
-   * **Note:** The gizmo object would typically be an instance of [godot.EditorNode3DGizmo], but the argument type is kept generic to avoid creating a dependency on editor classes in [godot.Node3D].
+   * **Note:** The gizmo object would typically be an instance of [EditorNode3DGizmo], but the
+   * argument type is kept generic to avoid creating a dependency on editor classes in [Node3D].
    */
   public fun setSubgizmoSelection(
     gizmo: Node3DGizmo,
@@ -728,7 +762,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Clears subgizmo selection for this node in the editor. Useful when subgizmo IDs become invalid after a property change.
+   * Clears subgizmo selection for this node in the editor. Useful when subgizmo IDs become invalid
+   * after a property change.
    */
   public fun clearSubgizmoSelection(): Unit {
     TransferContext.writeArguments()
@@ -736,7 +771,9 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Returns `true` if the node is present in the [godot.SceneTree], its [visible] property is `true` and all its ancestors are also visible. If any ancestor is hidden, this node will not be visible in the scene tree.
+   * Returns `true` if the node is present in the [SceneTree], its [visible] property is `true` and
+   * all its ancestors are also visible. If any ancestor is hidden, this node will not be visible in
+   * the scene tree.
    */
   public fun isVisibleInTree(): Boolean {
     TransferContext.writeArguments()
@@ -761,7 +798,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Sets whether the node notifies about its local transformation changes. [godot.Node3D] will not propagate this by default.
+   * Sets whether the node notifies about its local transformation changes. [Node3D] will not
+   * propagate this by default.
    */
   public fun setNotifyLocalTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -769,7 +807,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Returns whether node notifies about its local transformation changes. [godot.Node3D] will not propagate this by default.
+   * Returns whether node notifies about its local transformation changes. [Node3D] will not
+   * propagate this by default.
    */
   public fun isLocalTransformNotificationEnabled(): Boolean {
     TransferContext.writeArguments()
@@ -778,7 +817,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Sets whether the node notifies about its global and local transformation changes. [godot.Node3D] will not propagate this by default, unless it is in the editor context and it has a valid gizmo.
+   * Sets whether the node notifies about its global and local transformation changes. [Node3D] will
+   * not propagate this by default, unless it is in the editor context and it has a valid gizmo.
    */
   public fun setNotifyTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -786,7 +826,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Returns whether the node notifies about its global and local transformation changes. [godot.Node3D] will not propagate this by default.
+   * Returns whether the node notifies about its global and local transformation changes. [Node3D]
+   * will not propagate this by default.
    */
   public fun isTransformNotificationEnabled(): Boolean {
     TransferContext.writeArguments()
@@ -795,7 +836,7 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Rotates the local transformation around axis, a unit [godot.core.Vector3], by specified angle in radians.
+   * Rotates the local transformation around axis, a unit [Vector3], by specified angle in radians.
    */
   public fun rotate(axis: Vector3, angle: Float): Unit {
     TransferContext.writeArguments(VECTOR3 to axis, DOUBLE to angle.toDouble())
@@ -803,7 +844,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Rotates the global (world) transformation around axis, a unit [godot.core.Vector3], by specified angle in radians. The rotation axis is in global coordinate system.
+   * Rotates the global (world) transformation around axis, a unit [Vector3], by specified angle in
+   * radians. The rotation axis is in global coordinate system.
    */
   public fun globalRotate(axis: Vector3, angle: Float): Unit {
     TransferContext.writeArguments(VECTOR3 to axis, DOUBLE to angle.toDouble())
@@ -811,7 +853,7 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Scales the global (world) transformation by the given [godot.core.Vector3] scale factors.
+   * Scales the global (world) transformation by the given [Vector3] scale factors.
    */
   public fun globalScale(scale: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to scale)
@@ -819,7 +861,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Moves the global (world) transformation by [godot.core.Vector3] offset. The offset is in global coordinate system.
+   * Moves the global (world) transformation by [Vector3] offset. The offset is in global coordinate
+   * system.
    */
   public fun globalTranslate(offset: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to offset)
@@ -827,7 +870,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Rotates the local transformation around axis, a unit [godot.core.Vector3], by specified angle in radians. The rotation axis is in object-local coordinate system.
+   * Rotates the local transformation around axis, a unit [Vector3], by specified angle in radians.
+   * The rotation axis is in object-local coordinate system.
    */
   public fun rotateObjectLocal(axis: Vector3, angle: Float): Unit {
     TransferContext.writeArguments(VECTOR3 to axis, DOUBLE to angle.toDouble())
@@ -843,7 +887,7 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Changes the node's position by the given offset [godot.core.Vector3] in local space.
+   * Changes the node's position by the given offset [Vector3] in local space.
    */
   public fun translateObjectLocal(offset: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to offset)
@@ -875,9 +919,10 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Changes the node's position by the given offset [godot.core.Vector3].
-   *
-   * Note that the translation [offset] is affected by the node's scale, so if scaled by e.g. `(10, 1, 1)`, a translation by an offset of `(2, 0, 0)` would actually add 20 (`2 * 10`) to the X coordinate.
+   * Changes the node's position by the given offset [Vector3].
+   * Note that the translation [offset] is affected by the node's scale, so if scaled by e.g. `(10,
+   * 1, 1)`, a translation by an offset of `(2, 0, 0)` would actually add 20 (`2 * 10`) to the X
+   * coordinate.
    */
   public fun translate(offset: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to offset)
@@ -885,7 +930,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Resets this node's transformations (like scale, skew and taper) preserving its rotation and translation by performing Gram-Schmidt orthonormalization on this node's [godot.Transform3D].
+   * Resets this node's transformations (like scale, skew and taper) preserving its rotation and
+   * translation by performing Gram-Schmidt orthonormalization on this node's [Transform3D].
    */
   public fun orthonormalize(): Unit {
     TransferContext.writeArguments()
@@ -893,7 +939,7 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Reset all transformations for this node (sets its [godot.Transform3D] to the identity matrix).
+   * Reset all transformations for this node (sets its [Transform3D] to the identity matrix).
    */
   public fun setIdentity(): Unit {
     TransferContext.writeArguments()
@@ -901,15 +947,18 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Rotates the node so that the local forward axis (-Z, [godot.Vector3.FORWARD]) points toward the [target] position.
-   *
-   * The local up axis (+Y) points as close to the [up] vector as possible while staying perpendicular to the local forward axis. The resulting transform is orthogonal, and the scale is preserved. Non-uniform scaling may not work correctly.
-   *
-   * The [target] position cannot be the same as the node's position, the [up] vector cannot be zero, and the direction from the node's position to the [target] vector cannot be parallel to the [up] vector.
-   *
+   * Rotates the node so that the local forward axis (-Z, [Vector3.FORWARD]) points toward the
+   * [target] position.
+   * The local up axis (+Y) points as close to the [up] vector as possible while staying
+   * perpendicular to the local forward axis. The resulting transform is orthogonal, and the scale is
+   * preserved. Non-uniform scaling may not work correctly.
+   * The [target] position cannot be the same as the node's position, the [up] vector cannot be
+   * zero, and the direction from the node's position to the [target] vector cannot be parallel to the
+   * [up] vector.
    * Operations take place in global space, which means that the node must be in the scene tree.
-   *
-   * If [useModelFront] is `true`, the +Z axis (asset front) is treated as forward (implies +X is left) and points toward the [target] position. By default, the -Z axis (camera forward) is treated as forward (implies +X is right).
+   * If [useModelFront] is `true`, the +Z axis (asset front) is treated as forward (implies +X is
+   * left) and points toward the [target] position. By default, the -Z axis (camera forward) is treated
+   * as forward (implies +X is right).
    */
   @JvmOverloads
   public fun lookAt(
@@ -922,7 +971,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Moves the node to the specified [position], and then rotates the node to point toward the [target] as per [lookAt]. Operations take place in global space.
+   * Moves the node to the specified [position], and then rotates the node to point toward the
+   * [target] as per [lookAt]. Operations take place in global space.
    */
   @JvmOverloads
   public fun lookAtFromPosition(
@@ -957,15 +1007,15 @@ public open class Node3D : Node() {
     id: Long,
   ) {
     /**
-     * The rotation is edited using [godot.core.Vector3] Euler angles.
+     * The rotation is edited using [Vector3] Euler angles.
      */
     ROTATION_EDIT_MODE_EULER(0),
     /**
-     * The rotation is edited using a [godot.Quaternion].
+     * The rotation is edited using a [Quaternion].
      */
     ROTATION_EDIT_MODE_QUATERNION(1),
     /**
-     * The rotation is edited using a [godot.core.Basis]. In this mode, [scale] can't be edited separately.
+     * The rotation is edited using a [Basis]. In this mode, [scale] can't be edited separately.
      */
     ROTATION_EDIT_MODE_BASIS(2),
     ;
@@ -982,31 +1032,35 @@ public open class Node3D : Node() {
 
   public companion object {
     /**
-     * [godot.Node3D] nodes receive this notification when their global transform changes. This means that either the current or a parent node changed its transform.
-     *
-     * In order for [NOTIFICATION_TRANSFORM_CHANGED] to work, users first need to ask for it, with [setNotifyTransform]. The notification is also sent if the node is in the editor context and it has at least one valid gizmo.
+     * [Node3D] nodes receive this notification when their global transform changes. This means that
+     * either the current or a parent node changed its transform.
+     * In order for [NOTIFICATION_TRANSFORM_CHANGED] to work, users first need to ask for it, with
+     * [setNotifyTransform]. The notification is also sent if the node is in the editor context and it
+     * has at least one valid gizmo.
      */
     public final const val NOTIFICATION_TRANSFORM_CHANGED: Long = 2000
 
     /**
-     * [godot.Node3D] nodes receive this notification when they are registered to new [godot.World3D] resource.
+     * [Node3D] nodes receive this notification when they are registered to new [World3D] resource.
      */
     public final const val NOTIFICATION_ENTER_WORLD: Long = 41
 
     /**
-     * [godot.Node3D] nodes receive this notification when they are unregistered from current [godot.World3D] resource.
+     * [Node3D] nodes receive this notification when they are unregistered from current [World3D]
+     * resource.
      */
     public final const val NOTIFICATION_EXIT_WORLD: Long = 42
 
     /**
-     * [godot.Node3D] nodes receive this notification when their visibility changes.
+     * [Node3D] nodes receive this notification when their visibility changes.
      */
     public final const val NOTIFICATION_VISIBILITY_CHANGED: Long = 43
 
     /**
-     * [godot.Node3D] nodes receive this notification when their local transform changes. This is not received when the transform of a parent node is changed.
-     *
-     * In order for [NOTIFICATION_LOCAL_TRANSFORM_CHANGED] to work, users first need to ask for it, with [setNotifyLocalTransform].
+     * [Node3D] nodes receive this notification when their local transform changes. This is not
+     * received when the transform of a parent node is changed.
+     * In order for [NOTIFICATION_LOCAL_TRANSFORM_CHANGED] to work, users first need to ask for it,
+     * with [setNotifyLocalTransform].
      */
     public final const val NOTIFICATION_LOCAL_TRANSFORM_CHANGED: Long = 44
   }

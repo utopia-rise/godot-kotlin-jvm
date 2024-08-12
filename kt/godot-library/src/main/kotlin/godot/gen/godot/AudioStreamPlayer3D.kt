@@ -418,7 +418,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     ATTENUATION_LOGARITHMIC(2),
     /**
      * No attenuation of loudness according to distance. The sound will still be heard positionally,
-     * unlike an [AudioStreamPlayer]. [ATTENUATIONDISABLED] can be combined with a [maxDistance] value
+     * unlike an [AudioStreamPlayer]. [ATTENUATION_DISABLED] can be combined with a [maxDistance] value
      * greater than `0.0` to achieve linear attenuation clamped to a sphere of a defined size.
      */
     ATTENUATION_DISABLED(3),
@@ -442,12 +442,12 @@ public open class AudioStreamPlayer3D : Node3D() {
      */
     DOPPLER_TRACKING_DISABLED(0),
     /**
-     * Executes doppler tracking during process frames (see [Node.NOTIFICATIONINTERNALPROCESS]).
+     * Executes doppler tracking during process frames (see [Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
     DOPPLER_TRACKING_IDLE_STEP(1),
     /**
      * Executes doppler tracking during physics frames (see
-     * [Node.NOTIFICATIONINTERNALPHYSICSPROCESS]).
+     * [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
     DOPPLER_TRACKING_PHYSICS_STEP(2),
     ;

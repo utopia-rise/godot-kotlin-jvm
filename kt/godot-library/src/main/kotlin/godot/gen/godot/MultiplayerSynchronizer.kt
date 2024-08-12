@@ -207,12 +207,12 @@ public open class MultiplayerSynchronizer : Node() {
   ) {
     /**
      * Visibility filters are updated during process frames (see
-     * [Node.NOTIFICATIONINTERNALPROCESS]).
+     * [Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
     VISIBILITY_PROCESS_IDLE(0),
     /**
      * Visibility filters are updated during physics frames (see
-     * [Node.NOTIFICATIONINTERNALPHYSICSPROCESS]).
+     * [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
     VISIBILITY_PROCESS_PHYSICS(1),
     /**

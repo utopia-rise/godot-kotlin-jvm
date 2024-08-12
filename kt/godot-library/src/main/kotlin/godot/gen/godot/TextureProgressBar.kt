@@ -232,8 +232,8 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * Starting angle for the fill of [textureProgress] if [fillMode] is [FILLCLOCKWISE] or
-   * [FILLCOUNTERCLOCKWISE]. When the node's `value` is equal to its `min_value`, the texture doesn't
+   * Starting angle for the fill of [textureProgress] if [fillMode] is [FILL_CLOCKWISE] or
+   * [FILL_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `min_value`, the texture doesn't
    * show up at all. When the `value` increases, the texture fills and tends towards
    * [radialFillDegrees].
    */
@@ -249,9 +249,9 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * Upper limit for the fill of [textureProgress] if [fillMode] is [FILLCLOCKWISE] or
-   * [FILLCOUNTERCLOCKWISE]. When the node's `value` is equal to its `max_value`, the texture fills up
-   * to this angle.
+   * Upper limit for the fill of [textureProgress] if [fillMode] is [FILL_CLOCKWISE] or
+   * [FILL_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `max_value`, the texture fills
+   * up to this angle.
    * See [Range.value], [Range.maxValue].
    */
   public var radialFillDegrees: Float
@@ -266,7 +266,7 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * Offsets [textureProgress] if [fillMode] is [FILLCLOCKWISE] or [FILLCOUNTERCLOCKWISE].
+   * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE] or [FILL_COUNTER_CLOCKWISE].
    */
   @CoreTypeLocalCopy
   public var radialCenterOffset: Vector2
@@ -385,7 +385,7 @@ public open class TextureProgressBar : Range() {
 
 
   /**
-   * Offsets [textureProgress] if [fillMode] is [FILLCLOCKWISE] or [FILLCOUNTERCLOCKWISE].
+   * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE] or [FILL_COUNTER_CLOCKWISE].
    *
    * This is a helper function to make dealing with local copies easier. 
    *

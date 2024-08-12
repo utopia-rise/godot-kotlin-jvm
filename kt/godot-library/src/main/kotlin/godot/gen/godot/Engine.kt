@@ -384,8 +384,8 @@ public object Engine : Object() {
    * Registers a [ScriptLanguage] instance to be available with `ScriptServer`.
    * Returns:
    * - [OK] on success
-   * - [ERRUNAVAILABLE] if `ScriptServer` has reached it limit and cannot register any new language
-   * - [ERRALREADYEXISTS] if `ScriptServer` already contains a language with similar
+   * - [ERR_UNAVAILABLE] if `ScriptServer` has reached it limit and cannot register any new language
+   * - [ERR_ALREADY_EXISTS] if `ScriptServer` already contains a language with similar
    * extension/name/type
    */
   public fun registerScriptLanguage(language: ScriptLanguage): GodotError {
@@ -398,7 +398,7 @@ public object Engine : Object() {
    * Unregisters the [ScriptLanguage] instance from `ScriptServer`.
    * Returns:
    * - [OK] on success
-   * - [ERRDOESNOTEXIST] if the language is already not registered in `ScriptServer`
+   * - [ERR_DOES_NOT_EXIST] if the language is already not registered in `ScriptServer`
    */
   public fun unregisterScriptLanguage(language: ScriptLanguage): GodotError {
     TransferContext.writeArguments(OBJECT to language)

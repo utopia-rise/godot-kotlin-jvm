@@ -7,97 +7,99 @@ public enum class MIDIMessage(
   id: Long,
 ) {
   /**
-   * Enum value which doesn't correspond to any MIDI message. This is used to initialize
-   * [MIDIMessage] properties with a generic state.
+   * Does not correspond to any MIDI message. This is the default value of [InputEventMIDI.message].
    */
   MIDI_MESSAGE_NONE(0),
   /**
-   * MIDI note OFF message. Not all MIDI devices send this event; some send [MIDIMESSAGENOTEON] with
-   * zero velocity instead. See the documentation of [InputEventMIDI] for information of how to use
-   * MIDI inputs.
+   * MIDI message sent when a note is released.
+   * **Note:** Not all MIDI devices send this message; some may send [MIDI_MESSAGE_NOTE_ON] with
+   * [InputEventMIDI.velocity] set to `0`.
    */
   MIDI_MESSAGE_NOTE_OFF(8),
   /**
-   * MIDI note ON message. Some MIDI devices send this event with velocity zero instead of
-   * [MIDIMESSAGENOTEOFF], but implementations vary. See the documentation of [InputEventMIDI] for
-   * information of how to use MIDI inputs.
+   * MIDI message sent when a note is pressed.
    */
   MIDI_MESSAGE_NOTE_ON(9),
   /**
-   * MIDI aftertouch message. This message is most often sent by pressing down on the key after it
-   * "bottoms out".
+   * MIDI message sent to indicate a change in pressure while a note is being pressed down, also
+   * called aftertouch.
    */
   MIDI_MESSAGE_AFTERTOUCH(10),
   /**
-   * MIDI control change message. This message is sent when a controller value changes. Controllers
-   * include devices such as pedals and levers.
+   * MIDI message sent when a controller value changes. In a MIDI device, a controller is any input
+   * that doesn't play notes. These may include sliders for volume, balance, and panning, as well as
+   * switches and pedals. See the
+   * [url=https://en.wikipedia.org/wiki/General_MIDI#Controller_events]General MIDI specification[/url]
+   * for a small list.
    */
   MIDI_MESSAGE_CONTROL_CHANGE(11),
   /**
-   * MIDI program change message. This message sent when the program patch number changes.
+   * MIDI message sent when the MIDI device changes its current instrument (also called *program* or
+   * *preset*).
    */
   MIDI_MESSAGE_PROGRAM_CHANGE(12),
   /**
-   * MIDI channel pressure message. This message is most often sent by pressing down on the key
-   * after it "bottoms out". This message is different from polyphonic after-touch as it indicates the
-   * highest pressure across all keys.
+   * MIDI message sent to indicate a change in pressure for the whole channel. Some MIDI devices may
+   * send this instead of [MIDI_MESSAGE_AFTERTOUCH].
    */
   MIDI_MESSAGE_CHANNEL_PRESSURE(13),
   /**
-   * MIDI pitch bend message. This message is sent to indicate a change in the pitch bender (wheel
-   * or lever, typically).
+   * MIDI message sent when the value of the pitch bender changes, usually a wheel on the MIDI
+   * device.
    */
   MIDI_MESSAGE_PITCH_BEND(14),
   /**
-   * MIDI system exclusive message. This has behavior exclusive to the device you're receiving input
-   * from. Getting this data is not implemented in Godot.
+   * MIDI system exclusive (SysEx) message. This type of message is not standardized and it's highly
+   * dependent on the MIDI device sending it.
+   * **Note:** Getting this message's data from [InputEventMIDI] is not implemented.
    */
   MIDI_MESSAGE_SYSTEM_EXCLUSIVE(240),
   /**
-   * MIDI quarter frame message. Contains timing information that is used to synchronize MIDI
-   * devices. Getting this data is not implemented in Godot.
+   * MIDI message sent every quarter frame to keep connected MIDI devices synchronized. Related to
+   * [MIDI_MESSAGE_TIMING_CLOCK].
+   * **Note:** Getting this message's data from [InputEventMIDI] is not implemented.
    */
   MIDI_MESSAGE_QUARTER_FRAME(241),
   /**
-   * MIDI song position pointer message. Gives the number of 16th notes since the start of the song.
-   * Getting this data is not implemented in Godot.
+   * MIDI message sent to jump onto a new position in the current sequence or song.
+   * **Note:** Getting this message's data from [InputEventMIDI] is not implemented.
    */
   MIDI_MESSAGE_SONG_POSITION_POINTER(242),
   /**
-   * MIDI song select message. Specifies which sequence or song is to be played. Getting this data
-   * is not implemented in Godot.
+   * MIDI message sent to select a sequence or song to play.
+   * **Note:** Getting this message's data from [InputEventMIDI] is not implemented.
    */
   MIDI_MESSAGE_SONG_SELECT(243),
   /**
-   * MIDI tune request message. Upon receiving a tune request, all analog synthesizers should tune
-   * their oscillators.
+   * MIDI message sent to request a tuning calibration. Used on analog synthesizers. Most modern
+   * MIDI devices do not need this message.
    */
   MIDI_MESSAGE_TUNE_REQUEST(246),
   /**
-   * MIDI timing clock message. Sent 24 times per quarter note when synchronization is required.
+   * MIDI message sent 24 times after [MIDI_MESSAGE_QUARTER_FRAME], to keep connected MIDI devices
+   * synchronized.
    */
   MIDI_MESSAGE_TIMING_CLOCK(248),
   /**
-   * MIDI start message. Start the current sequence playing. This message will be followed with
-   * Timing Clocks.
+   * MIDI message sent to start the current sequence or song from the beginning.
    */
   MIDI_MESSAGE_START(250),
   /**
-   * MIDI continue message. Continue at the point the sequence was stopped.
+   * MIDI message sent to resume from the point the current sequence or song was paused.
    */
   MIDI_MESSAGE_CONTINUE(251),
   /**
-   * MIDI stop message. Stop the current sequence.
+   * MIDI message sent to pause the current sequence or song.
    */
   MIDI_MESSAGE_STOP(252),
   /**
-   * MIDI active sensing message. This message is intended to be sent repeatedly to tell the
-   * receiver that a connection is alive.
+   * MIDI message sent repeatedly while the MIDI device is idle, to tell the receiver that the
+   * connection is alive. Most MIDI devices do not send this message.
    */
   MIDI_MESSAGE_ACTIVE_SENSING(254),
   /**
-   * MIDI system reset message. Reset all receivers in the system to power-up status. It should not
-   * be sent on power-up itself.
+   * MIDI message sent to reset a MIDI device to its default state, as if it was just turned on. It
+   * should not be sent when the MIDI device is being turned on.
    */
   MIDI_MESSAGE_SYSTEM_RESET(255),
   ;

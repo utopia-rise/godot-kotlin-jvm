@@ -153,24 +153,24 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the shape data that defines the configuration of the shape. The [data] to be passed
    * depends on the shape's type (see [shapeGetType]):
-   * - [SHAPEWORLDBOUNDARY]: an array of length two containing a [Vector2] `normal` direction and a
-   * [float] distance `d`,
-   * - [SHAPESEPARATIONRAY]: a dictionary containing the key `length` with a [float] value and the
+   * - [SHAPE_WORLD_BOUNDARY]: an array of length two containing a [Vector2] `normal` direction and
+   * a [float] distance `d`,
+   * - [SHAPE_SEPARATION_RAY]: a dictionary containing the key `length` with a [float] value and the
    * key `slide_on_slope` with a [bool] value,
-   * - [SHAPESEGMENT]: a [Rect2] `rect` containing the first point of the segment in `rect.position`
-   * and the second point of the segment in `rect.size`,
-   * - [SHAPECIRCLE]: a [float] `radius`,
-   * - [SHAPERECTANGLE]: a [Vector2] `half_extents`,
-   * - [SHAPECAPSULE]: an array of length two (or a [Vector2]) containing a [float] `height` and a
+   * - [SHAPE_SEGMENT]: a [Rect2] `rect` containing the first point of the segment in
+   * `rect.position` and the second point of the segment in `rect.size`,
+   * - [SHAPE_CIRCLE]: a [float] `radius`,
+   * - [SHAPE_RECTANGLE]: a [Vector2] `half_extents`,
+   * - [SHAPE_CAPSULE]: an array of length two (or a [Vector2]) containing a [float] `height` and a
    * [float] `radius`,
-   * - [SHAPECONVEXPOLYGON]: either a [PackedVector2Array] of points defining a convex polygon in
+   * - [SHAPE_CONVEX_POLYGON]: either a [PackedVector2Array] of points defining a convex polygon in
    * counterclockwise order (the clockwise outward normal of each segment formed by consecutive points
    * is calculated internally), or a [PackedFloat32Array] of length divisible by four so that every
    * 4-tuple of [float]s contains the coordinates of a point followed by the coordinates of the
    * clockwise outward normal vector to the segment between the current point and the next point,
-   * - [SHAPECONCAVEPOLYGON]: a [PackedVector2Array] of length divisible by two (each pair of points
-   * forms one segment).
-   * **Warning:** In the case of [SHAPECONVEXPOLYGON], this method does not check if the points
+   * - [SHAPE_CONCAVE_POLYGON]: a [PackedVector2Array] of length divisible by two (each pair of
+   * points forms one segment).
+   * **Warning:** In the case of [SHAPE_CONVEX_POLYGON], this method does not check if the points
    * supplied actually form a convex polygon (unlike the [CollisionPolygon2D.polygon] property).
    */
   public fun shapeSetData(shape: RID, `data`: Any?): Unit {
@@ -509,8 +509,8 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the area's body monitor callback. This callback will be called when any other (shape of a)
    * body enters or exits (a shape of) the given area, and must take the following five parameters:
-   * 1. an integer `status`: either [AREABODYADDED] or [AREABODYREMOVED] depending on whether the
-   * other body shape entered or exited the area,
+   * 1. an integer `status`: either [AREA_BODY_ADDED] or [AREA_BODY_REMOVED] depending on whether
+   * the other body shape entered or exited the area,
    * 2. an [RID] `body_rid`: the [RID] of the body that entered or exited the area,
    * 3. an integer `instance_id`: the `ObjectID` attached to the body,
    * 4. an integer `body_shape_idx`: the index of the shape of the body that entered or exited the
@@ -528,8 +528,8 @@ public object PhysicsServer2D : Object() {
   /**
    * Sets the area's area monitor callback. This callback will be called when any other (shape of
    * an) area enters or exits (a shape of) the given area, and must take the following five parameters:
-   * 1. an integer `status`: either [AREABODYADDED] or [AREABODYREMOVED] depending on whether the
-   * other area's shape entered or exited the area,
+   * 1. an integer `status`: either [AREA_BODY_ADDED] or [AREA_BODY_REMOVED] depending on whether
+   * the other area's shape entered or exited the area,
    * 2. an [RID] `area_rid`: the [RID] of the other area that entered or exited the area,
    * 3. an integer `instance_id`: the `ObjectID` attached to the other area,
    * 4. an integer `area_shape_idx`: the index of the shape of the other area that entered or exited
@@ -566,11 +566,11 @@ public object PhysicsServer2D : Object() {
 
   /**
    * Adds the body to the given space, after removing the body from the previously assigned space
-   * (if any). If the body's mode is set to [BODYMODERIGID], then adding the body to a space will have
-   * the following additional effects:
-   * - If the parameter [BODYPARAMCENTEROFMASS] has never been set explicitly, then the value of
+   * (if any). If the body's mode is set to [BODY_MODE_RIGID], then adding the body to a space will
+   * have the following additional effects:
+   * - If the parameter [BODY_PARAM_CENTER_OF_MASS] has never been set explicitly, then the value of
    * that parameter will be recalculated based on the body's shapes.
-   * - If the parameter [BODYPARAMINERTIA] is set to a value `<= 0.0`, then the value of that
+   * - If the parameter [BODY_PARAM_INERTIA] is set to a value `<= 0.0`, then the value of that
    * parameter will be recalculated based on the body's shapes, mass, and center of mass.
    * **Note:** To remove a body from a space without immediately adding it back elsewhere, use
    * `PhysicsServer2D.body_set_space(body, RID())`.
@@ -1509,7 +1509,7 @@ public object PhysicsServer2D : Object() {
   ) {
     /**
      * Constant to set/get gravity override mode in an area. See [AreaSpaceOverrideMode] for
-     * possible values. The default value of this parameter is [AREASPACEOVERRIDEDISABLED].
+     * possible values. The default value of this parameter is [AREA_SPACE_OVERRIDE_DISABLED].
      */
     AREA_PARAM_GRAVITY_OVERRIDE_MODE(0),
     /**
@@ -1529,7 +1529,7 @@ public object PhysicsServer2D : Object() {
     AREA_PARAM_GRAVITY_IS_POINT(3),
     /**
      * Constant to set/get the distance at which the gravity strength is equal to the gravity
-     * controlled by [AREAPARAMGRAVITY]. For example, on a planet 100 pixels in radius with a surface
+     * controlled by [AREA_PARAM_GRAVITY]. For example, on a planet 100 pixels in radius with a surface
      * gravity of 4.0 px/s², set the gravity to 4.0 and the unit distance to 100.0. The gravity will
      * have falloff according to the inverse square law, so in the example, at 200 pixels from the
      * center the gravity will be 1.0 px/s² (twice the distance, 1/4th the gravity), at 50 pixels it
@@ -1541,7 +1541,7 @@ public object PhysicsServer2D : Object() {
     AREA_PARAM_GRAVITY_POINT_UNIT_DISTANCE(4),
     /**
      * Constant to set/get linear damping override mode in an area. See [AreaSpaceOverrideMode] for
-     * possible values. The default value of this parameter is [AREASPACEOVERRIDEDISABLED].
+     * possible values. The default value of this parameter is [AREA_SPACE_OVERRIDE_DISABLED].
      */
     AREA_PARAM_LINEAR_DAMP_OVERRIDE_MODE(5),
     /**
@@ -1551,7 +1551,7 @@ public object PhysicsServer2D : Object() {
     AREA_PARAM_LINEAR_DAMP(6),
     /**
      * Constant to set/get angular damping override mode in an area. See [AreaSpaceOverrideMode] for
-     * possible values. The default value of this parameter is [AREASPACEOVERRIDEDISABLED].
+     * possible values. The default value of this parameter is [AREA_SPACE_OVERRIDE_DISABLED].
      */
     AREA_PARAM_ANGULAR_DAMP_OVERRIDE_MODE(7),
     /**
@@ -1664,11 +1664,11 @@ public object PhysicsServer2D : Object() {
     BODY_PARAM_FRICTION(1),
     /**
      * Constant to set/get a body's mass. The default value of this parameter is `1.0`. If the
-     * body's mode is set to [BODYMODERIGID], then setting this parameter will have the following
+     * body's mode is set to [BODY_MODE_RIGID], then setting this parameter will have the following
      * additional effects:
-     * - If the parameter [BODYPARAMCENTEROFMASS] has never been set explicitly, then the value of
-     * that parameter will be recalculated based on the body's shapes.
-     * - If the parameter [BODYPARAMINERTIA] is set to a value `<= 0.0`, then the value of that
+     * - If the parameter [BODY_PARAM_CENTER_OF_MASS] has never been set explicitly, then the value
+     * of that parameter will be recalculated based on the body's shapes.
+     * - If the parameter [BODY_PARAM_INERTIA] is set to a value `<= 0.0`, then the value of that
      * parameter will be recalculated based on the body's shapes, mass, and center of mass.
      */
     BODY_PARAM_MASS(2),
@@ -1682,7 +1682,7 @@ public object PhysicsServer2D : Object() {
      * Constant to set/get a body's center of mass position in the body's local coordinate system.
      * The default value of this parameter is `Vector2(0,0)`. If this parameter is never set
      * explicitly, then it is recalculated based on the body's shapes when setting the parameter
-     * [BODYPARAMMASS] or when calling [bodySetSpace].
+     * [BODY_PARAM_MASS] or when calling [bodySetSpace].
      */
     BODY_PARAM_CENTER_OF_MASS(4),
     /**
@@ -1692,12 +1692,12 @@ public object PhysicsServer2D : Object() {
     BODY_PARAM_GRAVITY_SCALE(5),
     /**
      * Constant to set/get a body's linear damping mode. See [BodyDampMode] for possible values. The
-     * default value of this parameter is [BODYDAMPMODECOMBINE].
+     * default value of this parameter is [BODY_DAMP_MODE_COMBINE].
      */
     BODY_PARAM_LINEAR_DAMP_MODE(6),
     /**
      * Constant to set/get a body's angular damping mode. See [BodyDampMode] for possible values.
-     * The default value of this parameter is [BODYDAMPMODECOMBINE].
+     * The default value of this parameter is [BODY_DAMP_MODE_COMBINE].
      */
     BODY_PARAM_ANGULAR_DAMP_MODE(7),
     /**

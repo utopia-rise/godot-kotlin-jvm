@@ -19,7 +19,7 @@ import kotlin.Suppress
 
 /**
  * A 2D polyline shape, intended for use in physics. Used internally in [CollisionPolygon2D] when
- * it's in [CollisionPolygon2D.BUILDSEGMENTS] mode.
+ * it's in [CollisionPolygon2D.BUILD_SEGMENTS] mode.
  * Being just a collection of interconnected line segments, [ConcavePolygonShape2D] is the most
  * freely configurable single 2D shape. It can be used to form polygons of any nature, or even shapes
  * that don't enclose an area. However, [ConcavePolygonShape2D] is *hollow* even if the interconnected
@@ -33,7 +33,7 @@ import kotlin.Suppress
  * collision.
  * **Performance:** Due to its complexity, [ConcavePolygonShape2D] is the slowest 2D collision shape
  * to check collisions against. Its use should generally be limited to level geometry. If the polyline
- * is closed, [CollisionPolygon2D]'s [CollisionPolygon2D.BUILDSOLIDS] mode can be used, which
+ * is closed, [CollisionPolygon2D]'s [CollisionPolygon2D.BUILD_SOLIDS] mode can be used, which
  * decomposes the polygon into convex ones; see [ConvexPolygonShape2D]'s documentation for
  * instructions.
  */

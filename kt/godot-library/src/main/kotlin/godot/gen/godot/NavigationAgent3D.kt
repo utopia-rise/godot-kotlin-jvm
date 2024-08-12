@@ -81,7 +81,7 @@ public open class NavigationAgent3D : Node() {
    * The details dictionary may contain the following keys depending on the value of
    * [pathMetadataFlags]:
    * - `position`: The start position of the link that was reached.
-   * - `type`: Always [NavigationPathQueryResult3D.PATHSEGMENTTYPELINK].
+   * - `type`: Always [NavigationPathQueryResult3D.PATH_SEGMENT_TYPE_LINK].
    * - `rid`: The [RID] of the link.
    * - `owner`: The object which manages the link (usually [NavigationLink3D]).
    * - `link_entry_position`: If `owner` is available and the owner is a [NavigationLink3D], it will

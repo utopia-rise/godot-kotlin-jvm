@@ -74,7 +74,7 @@ public open class MovieWriter : Object() {
   /**
    * Called when the audio speaker mode used for recording the audio is requested by the engine.
    * This can affect the number of output channels in the resulting audio file/stream. Defaults to
-   * [AudioServer.SPEAKERMODESTEREO] if [_getAudioSpeakerMode] is not overridden.
+   * [AudioServer.SPEAKER_MODE_STEREO] if [_getAudioSpeakerMode] is not overridden.
    */
   public open fun _getAudioSpeakerMode(): AudioServer.SpeakerMode {
     throw NotImplementedError("_get_audio_speaker_mode is not implemented for MovieWriter")

@@ -53,7 +53,7 @@ public open class Gradient : Resource() {
    * The color space used to interpolate between points of the gradient. It does not affect the
    * returned colors, which will always be in sRGB space. See [ColorSpace] for available modes.
    * **Note:** This setting has no effect when [interpolationMode] is set to
-   * [GRADIENTINTERPOLATECONSTANT].
+   * [GRADIENT_INTERPOLATE_CONSTANT].
    */
   public var interpolationColorSpace: ColorSpace
     get() {
@@ -141,7 +141,7 @@ public open class Gradient : Resource() {
   /**
    * Reverses/mirrors the gradient.
    * **Note:** This method mirrors all points around the middle of the gradient, which may produce
-   * unexpected results when [interpolationMode] is set to [GRADIENTINTERPOLATECONSTANT].
+   * unexpected results when [interpolationMode] is set to [GRADIENT_INTERPOLATE_CONSTANT].
    */
   public fun reverse(): Unit {
     TransferContext.writeArguments()

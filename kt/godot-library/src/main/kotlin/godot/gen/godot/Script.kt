@@ -32,21 +32,18 @@ import kotlin.Suppress
 import kotlin.jvm.JvmOverloads
 
 /**
- * A class stored as a resource.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/scripting/index.html]($DOCS_URL/tutorials/scripting/index.html)
- *
- * A class stored as a resource. A script extends the functionality of all objects that instantiate it.
- *
- * This is the base class for all scripts and should not be used directly. Trying to create a new script with this class will result in an error.
- *
- * The `new` method of a script subclass creates a new instance. [godot.Object.setScript] extends an existing object, if that object's class matches one of the script's base classes.
+ * A class stored as a resource. A script extends the functionality of all objects that instantiate
+ * it.
+ * This is the base class for all scripts and should not be used directly. Trying to create a new
+ * script with this class will result in an error.
+ * The `new` method of a script subclass creates a new instance. [Object.setScript] extends an
+ * existing object, if that object's class matches one of the script's base classes.
  */
 @GodotBaseType
 public open class Script internal constructor() : Resource() {
   /**
-   * The script source code or an empty string if source code is not available. When set, does not reload the class implementation automatically.
+   * The script source code or an empty string if source code is not available. When set, does not
+   * reload the class implementation automatically.
    */
   public var sourceCode: String
     get() {
@@ -129,7 +126,7 @@ public open class Script internal constructor() : Resource() {
   }
 
   /**
-   * Returns the list of properties in this [godot.Script].
+   * Returns the list of properties in this [Script].
    */
   public fun getScriptPropertyList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
@@ -138,7 +135,7 @@ public open class Script internal constructor() : Resource() {
   }
 
   /**
-   * Returns the list of methods in this [godot.Script].
+   * Returns the list of methods in this [Script].
    */
   public fun getScriptMethodList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
@@ -147,7 +144,7 @@ public open class Script internal constructor() : Resource() {
   }
 
   /**
-   * Returns the list of user signals defined in this [godot.Script].
+   * Returns the list of user signals defined in this [Script].
    */
   public fun getScriptSignalList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
@@ -183,7 +180,8 @@ public open class Script internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true` if the script is an abstract script. An abstract script does not have a constructor and cannot be instantiated.
+   * Returns `true` if the script is an abstract script. An abstract script does not have a
+   * constructor and cannot be instantiated.
    */
   public fun isAbstract(): Boolean {
     TransferContext.writeArguments()

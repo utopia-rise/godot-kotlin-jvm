@@ -44,7 +44,7 @@ import kotlin.Suppress
  * [/codeblock]
  * **Note:** Since [CanvasGroup] and [CanvasItem.clipChildren] both utilize the backbuffer, children
  * of a [CanvasGroup] who have their [CanvasItem.clipChildren] set to anything other than
- * [CanvasItem.CLIPCHILDRENDISABLED] will not function correctly.
+ * [CanvasItem.CLIP_CHILDREN_DISABLED] will not function correctly.
  */
 @GodotBaseType
 public open class CanvasGroup : Node2D() {

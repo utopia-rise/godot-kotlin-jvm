@@ -38,12 +38,10 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 
 /**
- * A [godot.Resource] that contains vertex array-based geometry.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
- *
- * Mesh is a type of [godot.Resource] that contains vertex array-based geometry, divided in *surfaces*. Each surface contains a completely separate array and a material used to draw it. Design wise, a mesh with multiple surfaces is preferred to a single surface, because objects created in 3D editing software commonly contain multiple materials.
+ * Mesh is a type of [Resource] that contains vertex array-based geometry, divided in *surfaces*.
+ * Each surface contains a completely separate array and a material used to draw it. Design wise, a
+ * mesh with multiple surfaces is preferred to a single surface, because objects created in 3D editing
+ * software commonly contain multiple materials.
  */
 @GodotBaseType
 public open class Mesh : Resource() {
@@ -93,96 +91,98 @@ public open class Mesh : Resource() {
 
 
   /**
-   * Virtual method to override the surface count for a custom class extending [godot.Mesh].
+   * Virtual method to override the surface count for a custom class extending [Mesh].
    */
   public open fun _getSurfaceCount(): Int {
     throw NotImplementedError("_get_surface_count is not implemented for Mesh")
   }
 
   /**
-   * Virtual method to override the surface array length for a custom class extending [godot.Mesh].
+   * Virtual method to override the surface array length for a custom class extending [Mesh].
    */
   public open fun _surfaceGetArrayLen(index: Int): Int {
     throw NotImplementedError("_surface_get_array_len is not implemented for Mesh")
   }
 
   /**
-   * Virtual method to override the surface array index length for a custom class extending [godot.Mesh].
+   * Virtual method to override the surface array index length for a custom class extending [Mesh].
    */
   public open fun _surfaceGetArrayIndexLen(index: Int): Int {
     throw NotImplementedError("_surface_get_array_index_len is not implemented for Mesh")
   }
 
   /**
-   * Virtual method to override the surface arrays for a custom class extending [godot.Mesh].
+   * Virtual method to override the surface arrays for a custom class extending [Mesh].
    */
   public open fun _surfaceGetArrays(index: Int): VariantArray<Any?> {
     throw NotImplementedError("_surface_get_arrays is not implemented for Mesh")
   }
 
   /**
-   * Virtual method to override the blend shape arrays for a custom class extending [godot.Mesh].
+   * Virtual method to override the blend shape arrays for a custom class extending [Mesh].
    */
   public open fun _surfaceGetBlendShapeArrays(index: Int): VariantArray<VariantArray<Any?>> {
     throw NotImplementedError("_surface_get_blend_shape_arrays is not implemented for Mesh")
   }
 
   /**
-   * Virtual method to override the surface LODs for a custom class extending [godot.Mesh].
+   * Virtual method to override the surface LODs for a custom class extending [Mesh].
    */
   public open fun _surfaceGetLods(index: Int): Dictionary<Any?, Any?> {
     throw NotImplementedError("_surface_get_lods is not implemented for Mesh")
   }
 
   /**
-   * Virtual method to override the surface format for a custom class extending [godot.Mesh].
+   * Virtual method to override the surface format for a custom class extending [Mesh].
    */
   public open fun _surfaceGetFormat(index: Int): Long {
     throw NotImplementedError("_surface_get_format is not implemented for Mesh")
   }
 
   /**
-   * Virtual method to override the surface primitive type for a custom class extending [godot.Mesh].
+   * Virtual method to override the surface primitive type for a custom class extending [Mesh].
    */
   public open fun _surfaceGetPrimitiveType(index: Int): Long {
     throw NotImplementedError("_surface_get_primitive_type is not implemented for Mesh")
   }
 
   /**
-   * Virtual method to override the setting of a [material] at the given [index] for a custom class extending [godot.Mesh].
+   * Virtual method to override the setting of a [material] at the given [index] for a custom class
+   * extending [Mesh].
    */
   public open fun _surfaceSetMaterial(index: Int, material: Material): Unit {
   }
 
   /**
-   * Virtual method to override the surface material for a custom class extending [godot.Mesh].
+   * Virtual method to override the surface material for a custom class extending [Mesh].
    */
   public open fun _surfaceGetMaterial(index: Int): Material? {
     throw NotImplementedError("_surface_get_material is not implemented for Mesh")
   }
 
   /**
-   * Virtual method to override the number of blend shapes for a custom class extending [godot.Mesh].
+   * Virtual method to override the number of blend shapes for a custom class extending [Mesh].
    */
   public open fun _getBlendShapeCount(): Int {
     throw NotImplementedError("_get_blend_shape_count is not implemented for Mesh")
   }
 
   /**
-   * Virtual method to override the retrieval of blend shape names for a custom class extending [godot.Mesh].
+   * Virtual method to override the retrieval of blend shape names for a custom class extending
+   * [Mesh].
    */
   public open fun _getBlendShapeName(index: Int): StringName {
     throw NotImplementedError("_get_blend_shape_name is not implemented for Mesh")
   }
 
   /**
-   * Virtual method to override the names of blend shapes for a custom class extending [godot.Mesh].
+   * Virtual method to override the names of blend shapes for a custom class extending [Mesh].
    */
   public open fun _setBlendShapeName(index: Int, name: StringName): Unit {
   }
 
   /**
-   * Virtual method to override the [AABB] for a custom class extending [godot.Mesh].
+   * Virtual method to override the [AABB] for a custom class extending [Mesh].
    */
   public open fun _getAabb(): AABB {
     throw NotImplementedError("_get_aabb is not implemented for Mesh")
@@ -190,8 +190,7 @@ public open class Mesh : Resource() {
 
   /**
    * Returns the smallest [AABB] enclosing this mesh in local space. Not affected by `custom_aabb`.
-   *
-   * **Note:** This is only implemented for [godot.ArrayMesh] and [godot.PrimitiveMesh].
+   * **Note:** This is only implemented for [ArrayMesh] and [PrimitiveMesh].
    */
   public fun getAabb(): AABB {
     TransferContext.writeArguments()
@@ -200,7 +199,8 @@ public open class Mesh : Resource() {
   }
 
   /**
-   * Returns all the vertices that make up the faces of the mesh. Each three vertices represent one triangle.
+   * Returns all the vertices that make up the faces of the mesh. Each three vertices represent one
+   * triangle.
    */
   public fun getFaces(): PackedVector3Array {
     TransferContext.writeArguments()
@@ -209,7 +209,8 @@ public open class Mesh : Resource() {
   }
 
   /**
-   * Returns the number of surfaces that the [godot.Mesh] holds. This is equivalent to [godot.MeshInstance3D.getSurfaceOverrideMaterialCount].
+   * Returns the number of surfaces that the [Mesh] holds. This is equivalent to
+   * [MeshInstance3D.getSurfaceOverrideMaterialCount].
    */
   public fun getSurfaceCount(): Int {
     TransferContext.writeArguments()
@@ -218,7 +219,8 @@ public open class Mesh : Resource() {
   }
 
   /**
-   * Returns the arrays for the vertices, normals, UVs, etc. that make up the requested surface (see [godot.ArrayMesh.addSurfaceFromArrays]).
+   * Returns the arrays for the vertices, normals, UVs, etc. that make up the requested surface (see
+   * [ArrayMesh.addSurfaceFromArrays]).
    */
   public fun surfaceGetArrays(surfIdx: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
@@ -236,9 +238,11 @@ public open class Mesh : Resource() {
   }
 
   /**
-   * Sets a [godot.Material] for a given surface. Surface will be rendered using this material.
-   *
-   * **Note:** This assigns the material within the [godot.Mesh] resource, not the [godot.Material] associated to the [godot.MeshInstance3D]'s Surface Material Override properties. To set the [godot.Material] associated to the [godot.MeshInstance3D]'s Surface Material Override properties, use [godot.MeshInstance3D.setSurfaceOverrideMaterial] instead.
+   * Sets a [Material] for a given surface. Surface will be rendered using this material.
+   * **Note:** This assigns the material within the [Mesh] resource, not the [Material] associated
+   * to the [MeshInstance3D]'s Surface Material Override properties. To set the [Material] associated
+   * to the [MeshInstance3D]'s Surface Material Override properties, use
+   * [MeshInstance3D.setSurfaceOverrideMaterial] instead.
    */
   public fun surfaceSetMaterial(surfIdx: Int, material: Material): Unit {
     TransferContext.writeArguments(LONG to surfIdx.toLong(), OBJECT to material)
@@ -246,9 +250,11 @@ public open class Mesh : Resource() {
   }
 
   /**
-   * Returns a [godot.Material] in a given surface. Surface is rendered using this material.
-   *
-   * **Note:** This returns the material within the [godot.Mesh] resource, not the [godot.Material] associated to the [godot.MeshInstance3D]'s Surface Material Override properties. To get the [godot.Material] associated to the [godot.MeshInstance3D]'s Surface Material Override properties, use [godot.MeshInstance3D.getSurfaceOverrideMaterial] instead.
+   * Returns a [Material] in a given surface. Surface is rendered using this material.
+   * **Note:** This returns the material within the [Mesh] resource, not the [Material] associated
+   * to the [MeshInstance3D]'s Surface Material Override properties. To get the [Material] associated
+   * to the [MeshInstance3D]'s Surface Material Override properties, use
+   * [MeshInstance3D.getSurfaceOverrideMaterial] instead.
    */
   public fun surfaceGetMaterial(surfIdx: Int): Material? {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
@@ -257,7 +263,7 @@ public open class Mesh : Resource() {
   }
 
   /**
-   * Creates a placeholder version of this resource ([godot.PlaceholderMesh]).
+   * Creates a placeholder version of this resource ([PlaceholderMesh]).
    */
   public fun createPlaceholder(): Resource? {
     TransferContext.writeArguments()
@@ -266,7 +272,7 @@ public open class Mesh : Resource() {
   }
 
   /**
-   * Calculate a [godot.ConcavePolygonShape3D] from the mesh.
+   * Calculate a [ConcavePolygonShape3D] from the mesh.
    */
   public fun createTrimeshShape(): ConcavePolygonShape3D? {
     TransferContext.writeArguments()
@@ -275,11 +281,11 @@ public open class Mesh : Resource() {
   }
 
   /**
-   * Calculate a [godot.ConvexPolygonShape3D] from the mesh.
-   *
-   * If [clean] is `true` (default), duplicate and interior vertices are removed automatically. You can set it to `false` to make the process faster if not needed.
-   *
-   * If [simplify] is `true`, the geometry can be further simplified to reduce the number of vertices. Disabled by default.
+   * Calculate a [ConvexPolygonShape3D] from the mesh.
+   * If [clean] is `true` (default), duplicate and interior vertices are removed automatically. You
+   * can set it to `false` to make the process faster if not needed.
+   * If [simplify] is `true`, the geometry can be further simplified to reduce the number of
+   * vertices. Disabled by default.
    */
   @JvmOverloads
   public fun createConvexShape(clean: Boolean = true, simplify: Boolean = false):
@@ -291,8 +297,8 @@ public open class Mesh : Resource() {
 
   /**
    * Calculate an outline mesh at a defined offset (margin) from the original mesh.
-   *
-   * **Note:** This method typically returns the vertices in reverse order (e.g. clockwise to counterclockwise).
+   * **Note:** This method typically returns the vertices in reverse order (e.g. clockwise to
+   * counterclockwise).
    */
   public fun createOutline(margin: Float): Mesh? {
     TransferContext.writeArguments(DOUBLE to margin.toDouble())
@@ -301,7 +307,8 @@ public open class Mesh : Resource() {
   }
 
   /**
-   * Generate a [godot.TriangleMesh] from the mesh. Considers only surfaces using one of these primitive types: [PRIMITIVE_TRIANGLES], [PRIMITIVE_TRIANGLE_STRIP].
+   * Generate a [TriangleMesh] from the mesh. Considers only surfaces using one of these primitive
+   * types: [PRIMITIVE_TRIANGLES], [PRIMITIVE_TRIANGLE_STRIP].
    */
   public fun generateTriangleMesh(): TriangleMesh? {
     TransferContext.writeArguments()
@@ -348,61 +355,82 @@ public open class Mesh : Resource() {
     id: Long,
   ) {
     /**
-     * [godot.PackedVector3Array], [godot.PackedVector2Array], or [godot.Array] of vertex positions.
+     * [PackedVector3Array], [PackedVector2Array], or [Array] of vertex positions.
      */
     ARRAY_VERTEX(0),
     /**
-     * [godot.PackedVector3Array] of vertex normals.
+     * [PackedVector3Array] of vertex normals.
      */
     ARRAY_NORMAL(1),
     /**
-     * [godot.PackedFloat32Array] of vertex tangents. Each element in groups of 4 floats, first 3 floats determine the tangent, and the last the binormal direction as -1 or 1.
+     * [PackedFloat32Array] of vertex tangents. Each element in groups of 4 floats, first 3 floats
+     * determine the tangent, and the last the binormal direction as -1 or 1.
      */
     ARRAY_TANGENT(2),
     /**
-     * [godot.PackedColorArray] of vertex colors.
+     * [PackedColorArray] of vertex colors.
      */
     ARRAY_COLOR(3),
     /**
-     * [godot.PackedVector2Array] for UV coordinates.
+     * [PackedVector2Array] for UV coordinates.
      */
     ARRAY_TEX_UV(4),
     /**
-     * [godot.PackedVector2Array] for second UV coordinates.
+     * [PackedVector2Array] for second UV coordinates.
      */
     ARRAY_TEX_UV2(5),
     /**
-     * Contains custom color channel 0. [godot.PackedByteArray] if `(format >> Mesh.ARRAY_FORMAT_CUSTOM0_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_SNORM], [ARRAY_CUSTOM_RG_HALF], or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
+     * Contains custom color channel 0. [PackedByteArray] if `(format >>
+     * Mesh.ARRAY_FORMAT_CUSTOM0_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [ARRAY_CUSTOM_RGBA8_UNORM],
+     * [ARRAY_CUSTOM_RGBA8_SNORM], [ARRAY_CUSTOM_RG_HALF], or [ARRAY_CUSTOM_RGBA_HALF].
+     * [PackedFloat32Array] otherwise.
      */
     ARRAY_CUSTOM0(6),
     /**
-     * Contains custom color channel 1. [godot.PackedByteArray] if `(format >> Mesh.ARRAY_FORMAT_CUSTOM1_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_SNORM], [ARRAY_CUSTOM_RG_HALF], or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
+     * Contains custom color channel 1. [PackedByteArray] if `(format >>
+     * Mesh.ARRAY_FORMAT_CUSTOM1_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [ARRAY_CUSTOM_RGBA8_UNORM],
+     * [ARRAY_CUSTOM_RGBA8_SNORM], [ARRAY_CUSTOM_RG_HALF], or [ARRAY_CUSTOM_RGBA_HALF].
+     * [PackedFloat32Array] otherwise.
      */
     ARRAY_CUSTOM1(7),
     /**
-     * Contains custom color channel 2. [godot.PackedByteArray] if `(format >> Mesh.ARRAY_FORMAT_CUSTOM2_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_SNORM], [ARRAY_CUSTOM_RG_HALF], or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
+     * Contains custom color channel 2. [PackedByteArray] if `(format >>
+     * Mesh.ARRAY_FORMAT_CUSTOM2_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [ARRAY_CUSTOM_RGBA8_UNORM],
+     * [ARRAY_CUSTOM_RGBA8_SNORM], [ARRAY_CUSTOM_RG_HALF], or [ARRAY_CUSTOM_RGBA_HALF].
+     * [PackedFloat32Array] otherwise.
      */
     ARRAY_CUSTOM2(8),
     /**
-     * Contains custom color channel 3. [godot.PackedByteArray] if `(format >> Mesh.ARRAY_FORMAT_CUSTOM3_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [godot.ARRAY_CUSTOM_RGBA8_UNORM], [godot.ARRAY_CUSTOM_RGBA8_SNORM], [ARRAY_CUSTOM_RG_HALF], or [ARRAY_CUSTOM_RGBA_HALF]. [godot.PackedFloat32Array] otherwise.
+     * Contains custom color channel 3. [PackedByteArray] if `(format >>
+     * Mesh.ARRAY_FORMAT_CUSTOM3_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [ARRAY_CUSTOM_RGBA8_UNORM],
+     * [ARRAY_CUSTOM_RGBA8_SNORM], [ARRAY_CUSTOM_RG_HALF], or [ARRAY_CUSTOM_RGBA_HALF].
+     * [PackedFloat32Array] otherwise.
      */
     ARRAY_CUSTOM3(9),
     /**
-     * [godot.PackedFloat32Array] or [godot.PackedInt32Array] of bone indices. Contains either 4 or 8 numbers per vertex depending on the presence of the [godot.ARRAY_FLAG_USE_8_BONE_WEIGHTS] flag.
+     * [PackedFloat32Array] or [PackedInt32Array] of bone indices. Contains either 4 or 8 numbers
+     * per vertex depending on the presence of the [ARRAY_FLAG_USE_8_BONE_WEIGHTS] flag.
      */
     ARRAY_BONES(10),
     /**
-     * [godot.PackedFloat32Array] or [godot.PackedFloat64Array] of bone weights in the range `0.0` to `1.0` (inclusive). Contains either 4 or 8 numbers per vertex depending on the presence of the [godot.ARRAY_FLAG_USE_8_BONE_WEIGHTS] flag.
+     * [PackedFloat32Array] or [PackedFloat64Array] of bone weights in the range `0.0` to `1.0`
+     * (inclusive). Contains either 4 or 8 numbers per vertex depending on the presence of the
+     * [ARRAY_FLAG_USE_8_BONE_WEIGHTS] flag.
      */
     ARRAY_WEIGHTS(11),
     /**
-     * [godot.PackedInt32Array] of integers used as indices referencing vertices, colors, normals, tangents, and textures. All of those arrays must have the same number of elements as the vertex array. No index can be beyond the vertex array size. When this index array is present, it puts the function into "index mode," where the index selects the *i*'th vertex, normal, tangent, color, UV, etc. This means if you want to have different normals or colors along an edge, you have to duplicate the vertices.
-     *
-     * For triangles, the index array is interpreted as triples, referring to the vertices of each triangle. For lines, the index array is in pairs indicating the start and end of each line.
+     * [PackedInt32Array] of integers used as indices referencing vertices, colors, normals,
+     * tangents, and textures. All of those arrays must have the same number of elements as the vertex
+     * array. No index can be beyond the vertex array size. When this index array is present, it puts
+     * the function into "index mode," where the index selects the *i*'th vertex, normal, tangent,
+     * color, UV, etc. This means if you want to have different normals or colors along an edge, you
+     * have to duplicate the vertices.
+     * For triangles, the index array is interpreted as triples, referring to the vertices of each
+     * triangle. For lines, the index array is in pairs indicating the start and end of each line.
      */
     ARRAY_INDEX(12),
     /**
-     * Represents the size of the [enum ArrayType] enum.
+     * Represents the size of the [ArrayType] enum.
      */
     ARRAY_MAX(13),
     ;
@@ -421,39 +449,46 @@ public open class Mesh : Resource() {
     id: Long,
   ) {
     /**
-     * Indicates this custom channel contains unsigned normalized byte colors from 0 to 1, encoded as [godot.PackedByteArray].
+     * Indicates this custom channel contains unsigned normalized byte colors from 0 to 1, encoded
+     * as [PackedByteArray].
      */
     ARRAY_CUSTOM_RGBA8_UNORM(0),
     /**
-     * Indicates this custom channel contains signed normalized byte colors from -1 to 1, encoded as [godot.PackedByteArray].
+     * Indicates this custom channel contains signed normalized byte colors from -1 to 1, encoded as
+     * [PackedByteArray].
      */
     ARRAY_CUSTOM_RGBA8_SNORM(1),
     /**
-     * Indicates this custom channel contains half precision float colors, encoded as [godot.PackedByteArray]. Only red and green channels are used.
+     * Indicates this custom channel contains half precision float colors, encoded as
+     * [PackedByteArray]. Only red and green channels are used.
      */
     ARRAY_CUSTOM_RG_HALF(2),
     /**
-     * Indicates this custom channel contains half precision float colors, encoded as [godot.PackedByteArray].
+     * Indicates this custom channel contains half precision float colors, encoded as
+     * [PackedByteArray].
      */
     ARRAY_CUSTOM_RGBA_HALF(3),
     /**
-     * Indicates this custom channel contains full float colors, in a [godot.PackedFloat32Array]. Only the red channel is used.
+     * Indicates this custom channel contains full float colors, in a [PackedFloat32Array]. Only the
+     * red channel is used.
      */
     ARRAY_CUSTOM_R_FLOAT(4),
     /**
-     * Indicates this custom channel contains full float colors, in a [godot.PackedFloat32Array]. Only red and green channels are used.
+     * Indicates this custom channel contains full float colors, in a [PackedFloat32Array]. Only red
+     * and green channels are used.
      */
     ARRAY_CUSTOM_RG_FLOAT(5),
     /**
-     * Indicates this custom channel contains full float colors, in a [godot.PackedFloat32Array]. Only red, green and blue channels are used.
+     * Indicates this custom channel contains full float colors, in a [PackedFloat32Array]. Only
+     * red, green and blue channels are used.
      */
     ARRAY_CUSTOM_RGB_FLOAT(6),
     /**
-     * Indicates this custom channel contains full float colors, in a [godot.PackedFloat32Array].
+     * Indicates this custom channel contains full float colors, in a [PackedFloat32Array].
      */
     ARRAY_CUSTOM_RGBA_FLOAT(7),
     /**
-     * Represents the size of the [enum ArrayCustomFormat] enum.
+     * Represents the size of the [ArrayCustomFormat] enum.
      */
     ARRAY_CUSTOM_MAX(8),
     ;

@@ -184,7 +184,7 @@ public open class StyleBox : Resource() {
   }
 
   /**
-   * Returns the [CanvasItem] that handles its [CanvasItem.NOTIFICATIONDRAW] or [CanvasItem.Draw]
+   * Returns the [CanvasItem] that handles its [CanvasItem.NOTIFICATION_DRAW] or [CanvasItem.Draw]
    * callback at this moment.
    */
   public fun getCurrentItemDrawn(): CanvasItem? {

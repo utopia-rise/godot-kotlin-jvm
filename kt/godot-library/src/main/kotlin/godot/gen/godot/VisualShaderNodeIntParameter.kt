@@ -39,8 +39,8 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     }
 
   /**
-   * The minimum value this parameter can take. [hint] must be either [HINTRANGE] or [HINTRANGESTEP]
-   * for this to take effect.
+   * The minimum value this parameter can take. [hint] must be either [HINT_RANGE] or
+   * [HINT_RANGE_STEP] for this to take effect.
    */
   public var min: Int
     get() {
@@ -54,8 +54,8 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     }
 
   /**
-   * The maximum value this parameter can take. [hint] must be either [HINTRANGE] or [HINTRANGESTEP]
-   * for this to take effect.
+   * The maximum value this parameter can take. [hint] must be either [HINT_RANGE] or
+   * [HINT_RANGE_STEP] for this to take effect.
    */
   public var max: Int
     get() {
@@ -70,7 +70,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
 
   /**
    * The step between parameter's values. Forces the parameter to be a multiple of the given value.
-   * [hint] must be [HINTRANGESTEP] for this to take effect.
+   * [hint] must be [HINT_RANGE_STEP] for this to take effect.
    */
   public var step: Int
     get() {

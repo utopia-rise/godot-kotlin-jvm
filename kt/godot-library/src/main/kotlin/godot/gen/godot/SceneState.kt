@@ -268,8 +268,8 @@ public open class SceneState internal constructor() : RefCounted() {
      */
     GEN_EDIT_STATE_MAIN(2),
     /**
-     * If passed to [PackedScene.instantiate], it's similar to [GENEDITSTATEMAIN], but for the case
-     * where the scene is being instantiated to be the base of another one.
+     * If passed to [PackedScene.instantiate], it's similar to [GEN_EDIT_STATE_MAIN], but for the
+     * case where the scene is being instantiated to be the base of another one.
      * **Note:** Only available in editor builds.
      */
     GEN_EDIT_STATE_MAIN_INHERITED(3),

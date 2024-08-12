@@ -256,7 +256,7 @@ public open class UndoRedo : Object() {
 
   /**
    * Marks the next "do" and "undo" operations to be processed even if the action gets merged with
-   * another in the [MERGEENDS] mode. Return to normal operation using [endForceKeepInMergeEnds].
+   * another in the [MERGE_ENDS] mode. Return to normal operation using [endForceKeepInMergeEnds].
    */
   public fun startForceKeepInMergeEnds(): Unit {
     TransferContext.writeArguments()
@@ -265,7 +265,7 @@ public open class UndoRedo : Object() {
 
   /**
    * Stops marking operations as to be processed even if the action gets merged with another in the
-   * [MERGEENDS] mode. See [startForceKeepInMergeEnds].
+   * [MERGE_ENDS] mode. See [startForceKeepInMergeEnds].
    */
   public fun endForceKeepInMergeEnds(): Unit {
     TransferContext.writeArguments()

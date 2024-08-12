@@ -32,8 +32,8 @@ public enum class PropertyHint(
   /**
    * Hints that a [String] property can be an enumerated value to pick in a list specified via a
    * hint string such as `"Hello,Something,Else"`.
-   * Unlike [PROPERTYHINTENUM], a property with this hint still accepts arbitrary values and can be
-   * empty. The list of values serves to suggest possible values.
+   * Unlike [PROPERTY_HINT_ENUM], a property with this hint still accepts arbitrary values and can
+   * be empty. The list of values serves to suggest possible values.
    */
   PROPERTY_HINT_ENUM_SUGGESTION(3),
   /**
@@ -54,8 +54,8 @@ public enum class PropertyHint(
    * then 4, 8, 16 and so on. Explicit values can also be specified by appending `:integer` to the
    * name, e.g. `"A:4,B:8,C:16"`. You can also combine several flags (`"A:4,B:8,AB:12,C:16"`).
    * **Note:** A flag value must be at least `1` and at most `2 ** 32 - 1`.
-   * **Note:** Unlike [PROPERTYHINTENUM], the previous explicit value is not taken into account. For
-   * the hint `"A:16,B,C"`, A is 16, B is 2, C is 4.
+   * **Note:** Unlike [PROPERTY_HINT_ENUM], the previous explicit value is not taken into account.
+   * For the hint `"A:16,B,C"`, A is 16, B is 2, C is 4.
    */
   PROPERTY_HINT_FLAGS(6),
   /**

@@ -108,7 +108,7 @@ public open class PathFollow3D : Node3D() {
 
   /**
    * If `true`, the node moves on the travel path with orienting the +Z axis as forward. See also
-   * [Vector3.FORWARD] and [Vector3.MODELFRONT].
+   * [Vector3.FORWARD] and [Vector3.MODEL_FRONT].
    */
   public var useModelFront: Boolean
     get() {

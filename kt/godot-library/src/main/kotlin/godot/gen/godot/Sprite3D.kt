@@ -61,7 +61,9 @@ public open class Sprite3D : SpriteBase3D() {
     }
 
   /**
-   * The number of columns in the sprite sheet. When this property is changed, [frame] is adjusted so that the same visual frame is maintained (same row and column). If that's impossible, [frame] is reset to `0`.
+   * The number of columns in the sprite sheet. When this property is changed, [frame] is adjusted
+   * so that the same visual frame is maintained (same row and column). If that's impossible, [frame]
+   * is reset to `0`.
    */
   public var hframes: Int
     get() {
@@ -75,7 +77,9 @@ public open class Sprite3D : SpriteBase3D() {
     }
 
   /**
-   * The number of rows in the sprite sheet. When this property is changed, [frame] is adjusted so that the same visual frame is maintained (same row and column). If that's impossible, [frame] is reset to `0`.
+   * The number of rows in the sprite sheet. When this property is changed, [frame] is adjusted so
+   * that the same visual frame is maintained (same row and column). If that's impossible, [frame] is
+   * reset to `0`.
    */
   public var vframes: Int
     get() {
@@ -89,7 +93,9 @@ public open class Sprite3D : SpriteBase3D() {
     }
 
   /**
-   * Current frame to display from sprite sheet. [hframes] or [vframes] must be greater than 1. This property is automatically adjusted when [hframes] or [vframes] are changed to keep pointing to the same visual frame (same column and row). If that's impossible, this value is reset to `0`.
+   * Current frame to display from sprite sheet. [hframes] or [vframes] must be greater than 1. This
+   * property is automatically adjusted when [hframes] or [vframes] are changed to keep pointing to the
+   * same visual frame (same column and row). If that's impossible, this value is reset to `0`.
    */
   public var frame: Int
     get() {

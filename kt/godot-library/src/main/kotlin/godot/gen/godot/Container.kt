@@ -49,7 +49,7 @@ public open class Container : Control() {
    * Implement to return a list of allowed horizontal [Control.SizeFlags] for child nodes. This
    * doesn't technically prevent the usages of any other size flags, if your implementation requires
    * that. This only limits the options available to the user in the Inspector dock.
-   * **Note:** Having no size flags is equal to having [Control.SIZESHRINKBEGIN]. As such, this
+   * **Note:** Having no size flags is equal to having [Control.SIZE_SHRINK_BEGIN]. As such, this
    * value is always implicitly allowed.
    */
   public open fun _getAllowedSizeFlagsHorizontal(): PackedInt32Array {
@@ -60,7 +60,7 @@ public open class Container : Control() {
    * Implement to return a list of allowed vertical [Control.SizeFlags] for child nodes. This
    * doesn't technically prevent the usages of any other size flags, if your implementation requires
    * that. This only limits the options available to the user in the Inspector dock.
-   * **Note:** Having no size flags is equal to having [Control.SIZESHRINKBEGIN]. As such, this
+   * **Note:** Having no size flags is equal to having [Control.SIZE_SHRINK_BEGIN]. As such, this
    * value is always implicitly allowed.
    */
   public open fun _getAllowedSizeFlagsVertical(): PackedInt32Array {

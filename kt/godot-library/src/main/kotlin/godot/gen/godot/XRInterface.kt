@@ -472,8 +472,8 @@ public open class XRInterface internal constructor() : RefCounted() {
      */
     XR_PLAY_AREA_ROOMSCALE(3),
     /**
-     * Same as [XRPLAYAREAROOMSCALE] but origin point is fixed to the center of the physical space,
-     * [XRServer.centerOnHmd] disabled.
+     * Same as [XR_PLAY_AREA_ROOMSCALE] but origin point is fixed to the center of the physical
+     * space, [XRServer.centerOnHmd] disabled.
      */
     XR_PLAY_AREA_STAGE(4),
     ;

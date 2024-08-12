@@ -30,16 +30,12 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A singleton for loading resource files.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/677](https://godotengine.org/asset-library/asset/677)
- *
  * A singleton used to load resource files from the filesystem.
- *
- * It uses the many [godot.ResourceFormatLoader] classes registered in the engine (either built-in or from a plugin) to load files into memory and convert them to a format that can be used by the engine.
- *
- * **Note:** You have to import the files into the engine first to load them using [load]. If you want to load [godot.Image]s at run-time, you may use [godot.Image.load]. If you want to import audio files, you can use the snippet described in [godot.AudioStreamMP3.data].
+ * It uses the many [ResourceFormatLoader] classes registered in the engine (either built-in or from
+ * a plugin) to load files into memory and convert them to a format that can be used by the engine.
+ * **Note:** You have to import the files into the engine first to load them using [load]. If you
+ * want to load [Image]s at run-time, you may use [Image.load]. If you want to import audio files, you
+ * can use the snippet described in [AudioStreamMP3.data].
  */
 @GodotBaseType
 public object ResourceLoader : Object() {
@@ -49,9 +45,11 @@ public object ResourceLoader : Object() {
   }
 
   /**
-   * Loads the resource using threads. If [useSubThreads] is `true`, multiple threads will be used to load the resource, which makes loading faster, but may affect the main thread (and thus cause game slowdowns).
-   *
-   * The [cacheMode] property defines whether and how the cache should be used or updated when loading the resource. See [enum CacheMode] for details.
+   * Loads the resource using threads. If [useSubThreads] is `true`, multiple threads will be used
+   * to load the resource, which makes loading faster, but may affect the main thread (and thus cause
+   * game slowdowns).
+   * The [cacheMode] property defines whether and how the cache should be used or updated when
+   * loading the resource. See [CacheMode] for details.
    */
   @JvmOverloads
   public fun loadThreadedRequest(
@@ -66,9 +64,10 @@ public object ResourceLoader : Object() {
   }
 
   /**
-   * Returns the status of a threaded loading operation started with [loadThreadedRequest] for the resource at [path]. See [enum ThreadLoadStatus] for possible return values.
-   *
-   * An array variable can optionally be passed via [progress], and will return a one-element array containing the percentage of completion of the threaded loading.
+   * Returns the status of a threaded loading operation started with [loadThreadedRequest] for the
+   * resource at [path]. See [ThreadLoadStatus] for possible return values.
+   * An array variable can optionally be passed via [progress], and will return a one-element array
+   * containing the percentage of completion of the threaded loading.
    */
   @JvmOverloads
   public fun loadThreadedGetStatus(path: String, progress: VariantArray<Any?> =
@@ -80,8 +79,8 @@ public object ResourceLoader : Object() {
 
   /**
    * Returns the resource loaded by [loadThreadedRequest].
-   *
-   * If this is called before the loading thread is done (i.e. [loadThreadedGetStatus] is not [THREAD_LOAD_LOADED]), the calling thread will be blocked until the resource has finished loading.
+   * If this is called before the loading thread is done (i.e. [loadThreadedGetStatus] is not
+   * [THREAD_LOAD_LOADED]), the calling thread will be blocked until the resource has finished loading.
    */
   public fun loadThreadedGet(path: String): Resource? {
     TransferContext.writeArguments(STRING to path)
@@ -91,20 +90,23 @@ public object ResourceLoader : Object() {
 
   /**
    * Loads a resource at the given [path], caching the result for further access.
-   *
-   * The registered [godot.ResourceFormatLoader]s are queried sequentially to find the first one which can handle the file's extension, and then attempt loading. If loading fails, the remaining ResourceFormatLoaders are also attempted.
-   *
-   * An optional [typeHint] can be used to further specify the [godot.Resource] type that should be handled by the [godot.ResourceFormatLoader]. Anything that inherits from [godot.Resource] can be used as a type hint, for example [godot.Image].
-   *
-   * The [cacheMode] property defines whether and how the cache should be used or updated when loading the resource. See [enum CacheMode] for details.
-   *
-   * Returns an empty resource if no [godot.ResourceFormatLoader] could handle the file.
-   *
-   * GDScript has a simplified [@GDScript.load] built-in method which can be used in most situations, leaving the use of [godot.ResourceLoader] for more advanced scenarios.
-   *
-   * **Note:** If [godot.ProjectSettings.editor/export/convertTextResourcesToBinary] is `true`, [@GDScript.load] will not be able to read converted files in an exported project. If you rely on run-time loading of files present within the PCK, set [godot.ProjectSettings.editor/export/convertTextResourcesToBinary] to `false`.
-   *
-   * **Note:** Relative paths will be prefixed with `"res://"` before loading, to avoid unexpected results make sure your paths are absolute.
+   * The registered [ResourceFormatLoader]s are queried sequentially to find the first one which can
+   * handle the file's extension, and then attempt loading. If loading fails, the remaining
+   * ResourceFormatLoaders are also attempted.
+   * An optional [typeHint] can be used to further specify the [Resource] type that should be
+   * handled by the [ResourceFormatLoader]. Anything that inherits from [Resource] can be used as a
+   * type hint, for example [Image].
+   * The [cacheMode] property defines whether and how the cache should be used or updated when
+   * loading the resource. See [CacheMode] for details.
+   * Returns an empty resource if no [ResourceFormatLoader] could handle the file.
+   * GDScript has a simplified [@GDScript.load] built-in method which can be used in most
+   * situations, leaving the use of [ResourceLoader] for more advanced scenarios.
+   * **Note:** If [ProjectSettings.editor/export/convertTextResourcesToBinary] is `true`,
+   * [@GDScript.load] will not be able to read converted files in an exported project. If you rely on
+   * run-time loading of files present within the PCK, set
+   * [ProjectSettings.editor/export/convertTextResourcesToBinary] to `false`.
+   * **Note:** Relative paths will be prefixed with `"res://"` before loading, to avoid unexpected
+   * results make sure your paths are absolute.
    */
   @JvmOverloads
   public fun load(
@@ -128,9 +130,10 @@ public object ResourceLoader : Object() {
   }
 
   /**
-   * Registers a new [godot.ResourceFormatLoader]. The ResourceLoader will use the ResourceFormatLoader as described in [load].
-   *
-   * This method is performed implicitly for ResourceFormatLoaders written in GDScript (see [godot.ResourceFormatLoader] for more information).
+   * Registers a new [ResourceFormatLoader]. The ResourceLoader will use the ResourceFormatLoader as
+   * described in [load].
+   * This method is performed implicitly for ResourceFormatLoaders written in GDScript (see
+   * [ResourceFormatLoader] for more information).
    */
   @JvmOverloads
   public fun addResourceFormatLoader(formatLoader: ResourceFormatLoader, atFront: Boolean = false):
@@ -140,7 +143,7 @@ public object ResourceLoader : Object() {
   }
 
   /**
-   * Unregisters the given [godot.ResourceFormatLoader].
+   * Unregisters the given [ResourceFormatLoader].
    */
   public fun removeResourceFormatLoader(formatLoader: ResourceFormatLoader): Unit {
     TransferContext.writeArguments(OBJECT to formatLoader)
@@ -157,14 +160,13 @@ public object ResourceLoader : Object() {
 
   /**
    * Returns the dependencies for the resource at the given [path].
-   *
-   * **Note:** The dependencies are returned with slices separated by `::`. You can use [godot.String.getSlice] to get their components.
-   *
-   * ```
-   * 				for dep in ResourceLoader.get_dependencies(path):
-   * 				    print(dep.get_slice("::", 0)) # Prints UID.
-   * 				    print(dep.get_slice("::", 2)) # Prints path.
-   * 				```
+   * **Note:** The dependencies are returned with slices separated by `::`. You can use
+   * [String.getSlice] to get their components.
+   * [codeblock]
+   * for dep in ResourceLoader.get_dependencies(path):
+   *     print(dep.get_slice("::", 0)) # Prints UID.
+   *     print(dep.get_slice("::", 2)) # Prints path.
+   * [/codeblock]
    */
   public fun getDependencies(path: String): PackedStringArray {
     TransferContext.writeArguments(STRING to path)
@@ -174,8 +176,9 @@ public object ResourceLoader : Object() {
 
   /**
    * Returns whether a cached resource is available for the given [path].
-   *
-   * Once a resource has been loaded by the engine, it is cached in memory for faster access, and future calls to the [load] method will use the cached version. The cached resource can be overridden by using [godot.Resource.takeOverPath] on a new resource for that same path.
+   * Once a resource has been loaded by the engine, it is cached in memory for faster access, and
+   * future calls to the [load] method will use the cached version. The cached resource can be
+   * overridden by using [Resource.takeOverPath] on a new resource for that same path.
    */
   public fun hasCached(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
@@ -185,8 +188,9 @@ public object ResourceLoader : Object() {
 
   /**
    * Returns whether a recognized resource exists for the given [path].
-   *
-   * An optional [typeHint] can be used to further specify the [godot.Resource] type that should be handled by the [godot.ResourceFormatLoader]. Anything that inherits from [godot.Resource] can be used as a type hint, for example [godot.Image].
+   * An optional [typeHint] can be used to further specify the [Resource] type that should be
+   * handled by the [ResourceFormatLoader]. Anything that inherits from [Resource] can be used as a
+   * type hint, for example [Image].
    */
   @JvmOverloads
   public fun exists(path: String, typeHint: String = ""): Boolean {
@@ -238,17 +242,8 @@ public object ResourceLoader : Object() {
   public enum class CacheMode(
     id: Long,
   ) {
-    /**
-     *
-     */
     CACHE_MODE_IGNORE(0),
-    /**
-     *
-     */
     CACHE_MODE_REUSE(1),
-    /**
-     *
-     */
     CACHE_MODE_REPLACE(2),
     ;
 

@@ -110,9 +110,9 @@ public object WorkerThreadPool : Object() {
   /**
    * Pauses the thread that calls this method until the task with the given ID is completed.
    * Returns [@GlobalScope.OK] if the task could be successfully awaited.
-   * Returns [@GlobalScope.ERRINVALIDPARAMETER] if a task with the passed ID does not exist (maybe
+   * Returns [@GlobalScope.ERR_INVALID_PARAMETER] if a task with the passed ID does not exist (maybe
    * because it was already awaited and disposed of).
-   * Returns [@GlobalScope.ERRBUSY] if the call is made from another running task and, due to task
+   * Returns [@GlobalScope.ERR_BUSY] if the call is made from another running task and, due to task
    * scheduling, the task to await is at a lower level in the call stack and therefore can't progress.
    * This is an advanced situation that should only matter when some tasks depend on others.
    */

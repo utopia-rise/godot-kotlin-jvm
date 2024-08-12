@@ -29,14 +29,13 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base class for all primitive meshes. Handles applying a [godot.Material] to a primitive mesh.
- *
- * Base class for all primitive meshes. Handles applying a [godot.Material] to a primitive mesh. Examples include [godot.BoxMesh], [godot.CapsuleMesh], [godot.CylinderMesh], [godot.PlaneMesh], [godot.PrismMesh], and [godot.SphereMesh].
+ * Base class for all primitive meshes. Handles applying a [Material] to a primitive mesh. Examples
+ * include [BoxMesh], [CapsuleMesh], [CylinderMesh], [PlaneMesh], [PrismMesh], and [SphereMesh].
  */
 @GodotBaseType
 public open class PrimitiveMesh : Mesh() {
   /**
-   * The current [godot.Material] of the primitive mesh.
+   * The current [Material] of the primitive mesh.
    */
   public var material: Material?
     get() {
@@ -50,7 +49,8 @@ public open class PrimitiveMesh : Mesh() {
     }
 
   /**
-   * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices.
+   * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful
+   * to avoid unexpected culling when using a shader to offset vertices.
    */
   @CoreTypeLocalCopy
   public var customAabb: AABB
@@ -66,9 +66,9 @@ public open class PrimitiveMesh : Mesh() {
     }
 
   /**
-   * If set, the order of the vertices in each triangle are reversed resulting in the backside of the mesh being drawn.
-   *
-   * This gives the same result as using [godot.BaseMaterial3D.CULL_FRONT] in [godot.BaseMaterial3D.cullMode].
+   * If set, the order of the vertices in each triangle are reversed resulting in the backside of
+   * the mesh being drawn.
+   * This gives the same result as using [BaseMaterial3D.CULL_FRONT] in [BaseMaterial3D.cullMode].
    */
   public var flipFaces: Boolean
     get() {
@@ -82,7 +82,8 @@ public open class PrimitiveMesh : Mesh() {
     }
 
   /**
-   * If set, generates UV2 UV coordinates applying a padding using the [uv2Padding] setting. UV2 is needed for lightmapping.
+   * If set, generates UV2 UV coordinates applying a padding using the [uv2Padding] setting. UV2 is
+   * needed for lightmapping.
    */
   public var addUv2: Boolean
     get() {
@@ -96,9 +97,11 @@ public open class PrimitiveMesh : Mesh() {
     }
 
   /**
-   * If [addUv2] is set, specifies the padding in pixels applied along seams of the mesh. Lower padding values allow making better use of the lightmap texture (resulting in higher texel density), but may introduce visible lightmap bleeding along edges.
-   *
-   * If the size of the lightmap texture can't be determined when generating the mesh, UV2 is calculated assuming a texture size of 1024x1024.
+   * If [addUv2] is set, specifies the padding in pixels applied along seams of the mesh. Lower
+   * padding values allow making better use of the lightmap texture (resulting in higher texel
+   * density), but may introduce visible lightmap bleeding along edges.
+   * If the size of the lightmap texture can't be determined when generating the mesh, UV2 is
+   * calculated assuming a texture size of 1024x1024.
    */
   public var uv2Padding: Float
     get() {
@@ -117,7 +120,8 @@ public open class PrimitiveMesh : Mesh() {
   }
 
   /**
-   * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices.
+   * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful
+   * to avoid unexpected culling when using a shader to offset vertices.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -141,38 +145,30 @@ public open class PrimitiveMesh : Mesh() {
 
 
   /**
-   * Override this method to customize how this primitive mesh should be generated. Should return an [godot.Array] where each element is another Array of values required for the mesh (see the [enum Mesh.ArrayType] constants).
+   * Override this method to customize how this primitive mesh should be generated. Should return an
+   * [Array] where each element is another Array of values required for the mesh (see the
+   * [Mesh.ArrayType] constants).
    */
   public open fun _createMeshArray(): VariantArray<Any?> {
     throw NotImplementedError("_create_mesh_array is not implemented for PrimitiveMesh")
   }
 
   /**
-   * Returns mesh arrays used to constitute surface of [godot.Mesh]. The result can be passed to [godot.ArrayMesh.addSurfaceFromArrays] to create a new surface. For example:
+   * Returns mesh arrays used to constitute surface of [Mesh]. The result can be passed to
+   * [ArrayMesh.addSurfaceFromArrays] to create a new surface. For example:
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * var c = CylinderMesh.new()
-   *
    * var arr_mesh = ArrayMesh.new()
-   *
    * arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, c.get_mesh_arrays())
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * var c = new CylinderMesh();
-   *
    * var arrMesh = new ArrayMesh();
-   *
    * arrMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, c.GetMeshArrays());
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public fun getMeshArrays(): VariantArray<Any?> {
     TransferContext.writeArguments()

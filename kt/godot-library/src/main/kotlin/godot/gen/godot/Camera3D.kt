@@ -49,7 +49,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class Camera3D : Node3D() {
   /**
-   * The axis to lock during [fov]/[size] adjustments. Can be either [KEEPWIDTH] or [KEEPHEIGHT].
+   * The axis to lock during [fov]/[size] adjustments. Can be either [KEEP_WIDTH] or [KEEP_HEIGHT].
    */
   public var keepAspect: KeepAspect
     get() {
@@ -72,8 +72,8 @@ public open class Camera3D : Node3D() {
    * To adjust [cullMask] more easily using a script, use [getCullMaskValue] and [setCullMaskValue].
    * **Note:** [VoxelGI], SDFGI and [LightmapGI] will always take all layers into account to
    * determine what contributes to global illumination. If this is an issue, set
-   * [GeometryInstance3D.giMode] to [GeometryInstance3D.GIMODEDISABLED] for meshes and
-   * [Light3D.lightBakeMode] to [Light3D.BAKEDISABLED] for lights to exclude them from global
+   * [GeometryInstance3D.giMode] to [GeometryInstance3D.GI_MODE_DISABLED] for meshes and
+   * [Light3D.lightBakeMode] to [Light3D.BAKE_DISABLED] for lights to exclude them from global
    * illumination.
    */
   public var cullMask: Long
@@ -144,7 +144,7 @@ public open class Camera3D : Node3D() {
     }
 
   /**
-   * If not [DOPPLERTRACKINGDISABLED], this camera will simulate the
+   * If not [DOPPLER_TRACKING_DISABLED], this camera will simulate the
    * [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] for objects changed in
    * particular `_process` methods. See [DopplerTracking] for possible values.
    */
@@ -160,7 +160,7 @@ public open class Camera3D : Node3D() {
     }
 
   /**
-   * The camera's projection mode. In [PROJECTIONPERSPECTIVE] mode, objects' Z distance from the
+   * The camera's projection mode. In [PROJECTION_PERSPECTIVE] mode, objects' Z distance from the
    * camera's local space scales their perceived size.
    */
   public var projection: ProjectionType
@@ -230,7 +230,7 @@ public open class Camera3D : Node3D() {
   /**
    * The camera's frustum offset. This can be changed from the default to create "tilted frustum"
    * effects such as [url=https://zdoom.org/wiki/Y-shearing]Y-shearing[/url].
-   * **Note:** Only effective if [projection] is [PROJECTIONFRUSTUM].
+   * **Note:** Only effective if [projection] is [PROJECTION_FRUSTUM].
    */
   @CoreTypeLocalCopy
   public var frustumOffset: Vector2
@@ -284,7 +284,7 @@ public open class Camera3D : Node3D() {
   /**
    * The camera's frustum offset. This can be changed from the default to create "tilted frustum"
    * effects such as [url=https://zdoom.org/wiki/Y-shearing]Y-shearing[/url].
-   * **Note:** Only effective if [projection] is [PROJECTIONFRUSTUM].
+   * **Note:** Only effective if [projection] is [PROJECTION_FRUSTUM].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -382,7 +382,7 @@ public open class Camera3D : Node3D() {
   }
 
   /**
-   * Sets the camera projection to perspective mode (see [PROJECTIONPERSPECTIVE]), by specifying a
+   * Sets the camera projection to perspective mode (see [PROJECTION_PERSPECTIVE]), by specifying a
    * [fov] (field of view) angle in degrees, and the [zNear] and [zFar] clip planes in world space
    * units.
    */
@@ -396,7 +396,7 @@ public open class Camera3D : Node3D() {
   }
 
   /**
-   * Sets the camera projection to orthogonal mode (see [PROJECTIONORTHOGONAL]), by specifying a
+   * Sets the camera projection to orthogonal mode (see [PROJECTION_ORTHOGONAL]), by specifying a
    * [size], and the [zNear] and [zFar] clip planes in world space units. (As a hint, 2D games often
    * use this projection, with values specified in pixels.)
    */
@@ -410,7 +410,7 @@ public open class Camera3D : Node3D() {
   }
 
   /**
-   * Sets the camera projection to frustum mode (see [PROJECTIONFRUSTUM]), by specifying a [size],
+   * Sets the camera projection to frustum mode (see [PROJECTION_FRUSTUM]), by specifying a [size],
    * an [offset], and the [zNear] and [zFar] clip planes in world space units. See also
    * [frustumOffset].
    */

@@ -271,7 +271,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * The sphere's radius if [emissionShape] is set to [EMISSIONSHAPESPHERE].
+   * The sphere's radius if [emissionShape] is set to [EMISSION_SHAPE_SPHERE].
    */
   public var emissionSphereRadius: Float
     get() {
@@ -285,7 +285,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * The rectangle's extents if [emissionShape] is set to [EMISSIONSHAPERECTANGLE].
+   * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_RECTANGLE].
    */
   @CoreTypeLocalCopy
   public var emissionRectExtents: Vector2
@@ -300,8 +300,8 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Sets the initial positions to spawn particles when using [EMISSIONSHAPEPOINTS] or
-   * [EMISSIONSHAPEDIRECTEDPOINTS].
+   * Sets the initial positions to spawn particles when using [EMISSION_SHAPE_POINTS] or
+   * [EMISSION_SHAPE_DIRECTED_POINTS].
    */
   public var emissionPoints: PackedVector2Array
     get() {
@@ -315,7 +315,8 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Sets the direction the particles will be emitted in when using [EMISSIONSHAPEDIRECTEDPOINTS].
+   * Sets the direction the particles will be emitted in when using
+   * [EMISSION_SHAPE_DIRECTED_POINTS].
    */
   public var emissionNormals: PackedVector2Array
     get() {
@@ -329,8 +330,8 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Sets the [Color]s to modulate particles by when using [EMISSIONSHAPEPOINTS] or
-   * [EMISSIONSHAPEDIRECTEDPOINTS].
+   * Sets the [Color]s to modulate particles by when using [EMISSION_SHAPE_POINTS] or
+   * [EMISSION_SHAPE_DIRECTED_POINTS].
    */
   public var emissionColors: PackedColorArray
     get() {
@@ -996,7 +997,7 @@ public open class CPUParticles2D : Node2D() {
   }
 
   /**
-   * The rectangle's extents if [emissionShape] is set to [EMISSIONSHAPERECTANGLE].
+   * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_RECTANGLE].
    *
    * This is a helper function to make dealing with local copies easier. 
    *

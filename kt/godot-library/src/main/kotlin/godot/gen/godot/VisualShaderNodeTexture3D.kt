@@ -24,7 +24,7 @@ import kotlin.Suppress
 public open class VisualShaderNodeTexture3D : VisualShaderNodeSample3D() {
   /**
    * A source texture. Used if [VisualShaderNodeSample3D.source] is set to
-   * [VisualShaderNodeSample3D.SOURCETEXTURE].
+   * [VisualShaderNodeSample3D.SOURCE_TEXTURE].
    */
   public var texture: Texture3D?
     get() {

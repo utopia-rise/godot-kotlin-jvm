@@ -577,12 +577,12 @@ public open class TileSetAtlasSource : TileSetSource() {
     public final const val TRANSFORM_FLIP_H: Long = 4096
 
     /**
-     * Represents cell's vertical flip flag. See [TRANSFORMFLIPH] for usage.
+     * Represents cell's vertical flip flag. See [TRANSFORM_FLIP_H] for usage.
      */
     public final const val TRANSFORM_FLIP_V: Long = 8192
 
     /**
-     * Represents cell's transposed flag. See [TRANSFORMFLIPH] for usage.
+     * Represents cell's transposed flag. See [TRANSFORM_FLIP_H] for usage.
      */
     public final const val TRANSFORM_TRANSPOSE: Long = 16384
   }

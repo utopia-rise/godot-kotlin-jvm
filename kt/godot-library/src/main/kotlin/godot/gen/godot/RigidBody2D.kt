@@ -175,11 +175,11 @@ public open class RigidBody2D : PhysicsBody2D() {
 
   /**
    * The body's custom center of mass, relative to the body's origin position, when
-   * [centerOfMassMode] is set to [CENTEROFMASSMODECUSTOM]. This is the balanced point of the body,
+   * [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of the body,
    * where applied forces only cause linear acceleration. Applying forces outside of the center of mass
    * causes angular acceleration.
-   * When [centerOfMassMode] is set to [CENTEROFMASSMODEAUTO] (default value), the center of mass is
-   * automatically computed.
+   * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of
+   * mass is automatically computed.
    */
   @CoreTypeLocalCopy
   public var centerOfMass: Vector2
@@ -511,11 +511,11 @@ public open class RigidBody2D : PhysicsBody2D() {
 
   /**
    * The body's custom center of mass, relative to the body's origin position, when
-   * [centerOfMassMode] is set to [CENTEROFMASSMODECUSTOM]. This is the balanced point of the body,
+   * [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of the body,
    * where applied forces only cause linear acceleration. Applying forces outside of the center of mass
    * causes angular acceleration.
-   * When [centerOfMassMode] is set to [CENTEROFMASSMODEAUTO] (default value), the center of mass is
-   * automatically computed.
+   * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of
+   * mass is automatically computed.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -741,7 +741,7 @@ public open class RigidBody2D : PhysicsBody2D() {
      */
     FREEZE_MODE_STATIC(0),
     /**
-     * Kinematic body freeze mode. Similar to [FREEZEMODESTATIC], but collides with other bodies
+     * Kinematic body freeze mode. Similar to [FREEZE_MODE_STATIC], but collides with other bodies
      * along its path when moved. Useful for a frozen body that needs to be animated.
      */
     FREEZE_MODE_KINEMATIC(1),

@@ -81,7 +81,7 @@ public open class NavigationAgent2D : Node() {
    * The details dictionary may contain the following keys depending on the value of
    * [pathMetadataFlags]:
    * - `position`: The start position of the link that was reached.
-   * - `type`: Always [NavigationPathQueryResult2D.PATHSEGMENTTYPELINK].
+   * - `type`: Always [NavigationPathQueryResult2D.PATH_SEGMENT_TYPE_LINK].
    * - `rid`: The [RID] of the link.
    * - `owner`: The object which manages the link (usually [NavigationLink2D]).
    * - `link_entry_position`: If `owner` is available and the owner is a [NavigationLink2D], it will

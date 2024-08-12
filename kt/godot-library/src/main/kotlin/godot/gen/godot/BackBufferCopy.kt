@@ -49,7 +49,7 @@ public open class BackBufferCopy : Node2D() {
     }
 
   /**
-   * The area covered by the [BackBufferCopy]. Only used if [copyMode] is [COPYMODERECT].
+   * The area covered by the [BackBufferCopy]. Only used if [copyMode] is [COPY_MODE_RECT].
    */
   @CoreTypeLocalCopy
   public var rect: Rect2
@@ -69,7 +69,7 @@ public open class BackBufferCopy : Node2D() {
   }
 
   /**
-   * The area covered by the [BackBufferCopy]. Only used if [copyMode] is [COPYMODERECT].
+   * The area covered by the [BackBufferCopy]. Only used if [copyMode] is [COPY_MODE_RECT].
    *
    * This is a helper function to make dealing with local copies easier. 
    *

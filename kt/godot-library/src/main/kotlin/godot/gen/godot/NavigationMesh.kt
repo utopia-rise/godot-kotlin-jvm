@@ -83,8 +83,8 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The physics layers to scan for static colliders.
-   * Only used when [geometryParsedGeometryType] is [PARSEDGEOMETRYSTATICCOLLIDERS] or
-   * [PARSEDGEOMETRYBOTH].
+   * Only used when [geometryParsedGeometryType] is [PARSED_GEOMETRY_STATIC_COLLIDERS] or
+   * [PARSED_GEOMETRY_BOTH].
    */
   public var geometryCollisionMask: Long
     get() {
@@ -113,8 +113,8 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The name of the group to scan for geometry.
-   * Only used when [geometrySourceGeometryMode] is [SOURCEGEOMETRYGROUPSWITHCHILDREN] or
-   * [SOURCEGEOMETRYGROUPSEXPLICIT].
+   * Only used when [geometrySourceGeometryMode] is [SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN] or
+   * [SOURCE_GEOMETRY_GROUPS_EXPLICIT].
    */
   public var geometrySourceGroupName: StringName
     get() {
@@ -510,7 +510,7 @@ public open class NavigationMesh : Resource() {
 
   /**
    * Initializes the navigation mesh by setting the vertices and indices according to a [Mesh].
-   * **Note:** The given [mesh] must be of type [Mesh.PRIMITIVETRIANGLES] and have an index array.
+   * **Note:** The given [mesh] must be of type [Mesh.PRIMITIVE_TRIANGLES] and have an index array.
    */
   public fun createFromMesh(mesh: Mesh): Unit {
     TransferContext.writeArguments(OBJECT to mesh)
@@ -572,7 +572,7 @@ public open class NavigationMesh : Resource() {
      */
     PARSED_GEOMETRY_STATIC_COLLIDERS(1),
     /**
-     * Both [PARSEDGEOMETRYMESHINSTANCES] and [PARSEDGEOMETRYSTATICCOLLIDERS].
+     * Both [PARSED_GEOMETRY_MESH_INSTANCES] and [PARSED_GEOMETRY_STATIC_COLLIDERS].
      */
     PARSED_GEOMETRY_BOTH(2),
     /**

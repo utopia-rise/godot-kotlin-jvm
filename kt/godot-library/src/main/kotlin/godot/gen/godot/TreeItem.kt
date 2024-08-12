@@ -232,7 +232,7 @@ public open class TreeItem internal constructor() : Object() {
 
   /**
    * Sets the autowrap mode in the given [column]. If set to something other than
-   * [TextServer.AUTOWRAPOFF], the text gets wrapped inside the cell's bounding rectangle.
+   * [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the cell's bounding rectangle.
    */
   public fun setAutowrapMode(column: Int, autowrapMode: TextServer.AutowrapMode): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to autowrapMode.id)
@@ -241,7 +241,7 @@ public open class TreeItem internal constructor() : Object() {
 
   /**
    * Returns the text autowrap mode in the given [column]. By default it is
-   * [TextServer.AUTOWRAPOFF].
+   * [TextServer.AUTOWRAP_OFF].
    */
   public fun getAutowrapMode(column: Int): TextServer.AutowrapMode {
     TransferContext.writeArguments(LONG to column.toLong())
@@ -261,7 +261,7 @@ public open class TreeItem internal constructor() : Object() {
 
   /**
    * Returns the clipping behavior when the text exceeds the item's bounding rectangle in the given
-   * [column]. By default it is [TextServer.OVERRUNTRIMELLIPSIS].
+   * [column]. By default it is [TextServer.OVERRUN_TRIM_ELLIPSIS].
    */
   public fun getTextOverrunBehavior(column: Int): TextServer.OverrunBehavior {
     TransferContext.writeArguments(LONG to column.toLong())
@@ -399,7 +399,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the value of a [CELLMODERANGE] column.
+   * Sets the value of a [CELL_MODE_RANGE] column.
    */
   public fun setRange(column: Int, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), DOUBLE to value)
@@ -407,7 +407,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the value of a [CELLMODERANGE] column.
+   * Returns the value of a [CELL_MODE_RANGE] column.
    */
   public fun getRange(column: Int): Double {
     TransferContext.writeArguments(LONG to column.toLong())
@@ -416,7 +416,8 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the range of accepted values for a column. The column must be in the [CELLMODERANGE] mode.
+   * Sets the range of accepted values for a column. The column must be in the [CELL_MODE_RANGE]
+   * mode.
    * If [expr] is `true`, the edit mode slider will use an exponential scale as with
    * [Range.expEdit].
    */
